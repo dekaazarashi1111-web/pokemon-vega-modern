@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-DiplomaGfx083DBF7Cを固定公開PNGとgbagfx算法から独立再生成し、LZ消費3366/解凍8192の全identity一致。149実命令のstate0→1/同object producer、実literal、header reader、条件付きAlloc、SWI11仕様decoder、同bufferのBG consumerを168新試験で検証。終端padding2byteを除外し083DCAED4byteだけを候補化。現0641初回Actions前なので正式782/92、donor0、ROM/Save101不変。
+Diploma初回run37718308112/job113119846893は全9step成功。公開PNG由来のLZ3366/解凍8192と現0641実149命令consumerを4成功原本で照合し、生成/検証/公開前12hashと実取得byteが完全一致。新168試験継承/receipt40試験PASS。083DCAEDの4byte1件だけ正式782→783分類、92→91未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。
 
-**次: 新pr16-dex-hof-diploma-asset Actionsの初回runを監視し、現0641全SHA/115owner/874保存hitと新Diploma consumerの4成功JSONを実取得/hash照合する。その後だけ083DCAEDの4byte1件を783/91へ記録する。57保存原本/29段163変更153witnessを保持。旧credits37/minigame152/旧consumer/native/全ROMscanは再走しない。全保存入口ready/退避53300前heap13352 Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。**
+**次: 保存783親から083D6B61を次の有限scopeとする。固定JP auditのsBlastoise1_Tiles起点083D655Cについて、独立公開画像source・登録table/実literal・decoder・consumerを1件限定で調べる。reference size/近傍距離だけでextentや型を作らない。Diploma成功source14/168試験/4原本と旧credits反証を無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 782親はdiploma_chain.parentの57保存入力、783親は保存deltaをread_measured→materializeで復元。成功測定source14とworkflowを凍結し、記録commitで再測定しない。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `768918cd96c33db16b11df32ac19d663d4a2bf2c`。
-Diploma新scope開発の開始HEAD。168新試験と公開PNG独立fixtureであり、現0641実測HEAD/正式783受入ではない。
+証拠のsource HEAD: `60f32297e1a20266f8e5638df66dea28901cf84d`。
+Diploma画像assetの初回実測source。独立疎fixtureと区別した取得4原本から4byte最小型1件だけ正式受入。
 
 ## 最短の再開手順
 
@@ -25,13 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_DIPLOMA_ASSET_JA.md`
-- `content/modernization/pr16_dex_hof_diploma_development.json`
-- `scripts/pr16_dex_hof_diploma_actions.py`
-- `scripts/pr16_dex_hof_diploma_asset.py`
-- `scripts/pr16_dex_hof_diploma_sources.py`
+- `docs/PR16_DEX_HOF_DIPLOMA_ACCEPTED_JA.md`
+- `content/modernization/pr16_dex_hof_diploma_checkpoint.json`
+- `scripts/pr16_dex_hof_asset_receipt.py`
 - `scripts/pr16_dex_hof_diploma_chain.py`
-- `scripts/pr16_dex_hof_diploma_validation.py`
+- `content/modernization/pr16_dex_hof_diploma_evidence/unknown-frontier.json`
+- `scripts/pr16_dex_hof_diploma_sources.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -65,6 +64,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- Diploma初回37718308112は全9step/168試験/取得4原本の12hash一致から083DCAEDだけ783/91へ正式受入。成功source14/168試験/consumerは変更影響なしに再走しない。終端padding2は型やdonorへ含めず、次083D6B61は独立source/登録/実readerが得られるまでunknown維持。
 - Diploma新168試験は独立公開PNG→LZ→疎fixture開発確認。現0641初回Actionsの4成功JSON取得/hash照合前に正式783/91へ昇格しない。3366byteのconsumed streamと3368byteの末尾padding2byteを分離。旧credits37/minigame152/受入consumer/native/全ROMscanは再走しない。
 - 083E239Bのcredits正table/caller候補は得たが、左最初EOS083E239A後1byteが未被覆。右全文だけ・ALIGNED(4)・英語長・隣接距離で型へ昇格しない。旧手元6窓のhash固定は現0641測定ではない。正式782/92とminigame成功原本は保持し、次は別DiplomaGfx候補を有限調査。
 - minigame初回37713083180は全10step/152試験/取得4原本の12hash一致から083DE6ABだけ782/92へ正式受入。source14/成功scope/152試験は変更影響なしに再走しない。近隣083DE68EのUnused左文と083DF94Fの最初EOS後3byteを、右隣の正consumerだけで分類しない。
@@ -525,6 +525,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-DiplomaGfx083DBF7Cを固定公開PNGとgbagfx算法から独立再生成し、LZ消費3366/解凍8192の全identity一致。149実命令のstate0→1/同object producer、実literal、header reader、条件付きAlloc、SWI11仕様decoder、同bufferのBG consumerを168新試験で検証。終端padding2byteを除外し083DCAED4byteだけを候補化。現0641初回Actions前なので正式782/92、donor0、ROM/Save101不変。
+Diploma初回run37718308112/job113119846893は全9step成功。公開PNG由来のLZ3366/解凍8192と現0641実149命令consumerを4成功原本で照合し、生成/検証/公開前12hashと実取得byteが完全一致。新168試験継承/receipt40試験PASS。083DCAEDの4byte1件だけ正式782→783分類、92→91未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

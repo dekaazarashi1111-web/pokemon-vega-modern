@@ -14086,3 +14086,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 新pr16-dex-hof-diploma-asset Actionsの初回runを監視し、現0641全SHA/115owner/874保存hitと新Diploma consumerの4成功JSONを実取得/hash照合する。その後だけ083DCAEDの4byte1件を783/91へ記録する。57保存原本/29段163変更153witnessを保持。旧credits37/minigame152/旧consumer/native/全ROMscanは再走しない。全保存入口ready/退避53300前heap13352 Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。
 - Commit: parent=768918cd96c33db16b11df32ac19d663d4a2bf2c; 同branch非force。全text/LF/blob読戻し/tree/単親/remote照合と最終indexの既存guard差分0を確認。
 - Network: 固定pret c75f3523 Diploma/PNG/gbagfx/new_menu_helpers/bg/BIOS source、固定JP c04a3154 audit/metadata、GitHub同repo最新HEAD/Actions。ROM/rawhex/runtime/入力save/credential公開0。
+
+## 2026-10-08T02:40:51Z
+- Timestamp: 2026-10-08T02:40:51Z
+- Task: USER-20261008-DIPLOMA-ACCEPTANCE / 公開PNGと実consumerを照合した最小圧縮assetを1件受入
+- Version: diploma-accepted-v1
+- Status: DONE（083DCAEDの条件付き4byte1件。製品全体/残91件は継続）
+- Summary: Diploma初回run37718308112/job113119846893は全9step成功。公開PNG由来のLZ3366/解凍8192と現0641実149命令consumerを4成功原本で照合し、生成/検証/公開前12hashと実取得byteが完全一致。新168試験継承/receipt40試験PASS。083DCAEDの4byte1件だけ正式782→783分類、92→91未知。今回ROM再構成1、native0、安全0、ROM/Save101不変。
+- Files changed: 実取得4JSON/残91frontier/checkpoint/receipt validatorと40試験/受入guide/固定MDJSON/両ログ。成功測定source14不変。
+- Verify: 60f32297/run37718308112/job113119846893全9step SUCCESS。artifact11524203520 ZIP23805bytes/SHAb26e3f9067fe58caf99306e3a544671e77b79bcf36fda685c42ed2ec485b50f6。生成/検証/公開前12hashと取得4file全byte一致。現0641全SHA/115owner/874hit、57親入力/29段163変更153witnessと他873行保持、新30段164変更154witness。成功168試験を原本継承し記録時再走0、receipt40試験/main PASS。
+- Scope: 独立公開13source→PNG indexed8から8192byte4bpp→固定LZ3366消費byte、末尾2padding除外。149実命令/157窓、state0=160命令/state1=120命令、同object実gfxState++/temp32初期化→実literal→header読取→条件付きAlloc→SWI11仕様decoder→BG1同buffer8192/offset0。BIOSCPU/画面/自然到達/全callee/普遍heap/IRQは未受入。安全0/旧egg15118全域保護。
+- History: 旧credits反証/通常text未被覆3候補/minigame成功原本は不変。今回scopeは初回再構成1。旧consumer/旧suite/旧heap/全ROMscan/native再走0。開発後に誤った単体test名1件でloader error、正しいproducer→4JSON integration1件PASSで解消。受入済みscope再走ではない。
+- Actions: 固定再開37718307901/job113119845747全5step、forgetting37718307838/37718313137、runtime audit37718308061成功。一般CI37718307946/37718313422 failure、Stage79 37718307986 pending。全CI成功とはしない。
+- Next: 保存783親から083D6B61を次の有限scopeとする。固定JP auditのsBlastoise1_Tiles起点083D655Cについて、独立公開画像source・登録table/実literal・decoder・consumerを1件限定で調べる。reference size/近傍距離だけでextentや型を作らない。Diploma成功source14/168試験/4原本と旧credits反証を無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 782親はdiploma_chain.parentの57保存入力、783親は保存deltaをread_measured→materializeで復元。成功測定source14とworkflowを凍結し、記録commitで再測定しない。
+- Commit: parent=60f32297e1a20266f8e5638df66dea28901cf84d; 成功測定source14を凍結し、workflow glob外のasset_receipt pathで記録。同branch非force、全LF/blob/tree/単親/remote照合。
+- Network: GitHub Actions/job/log/artifact APIと公式file ID取得。署名URLは一時利用のみでGit保持なし。ROM/rawhex/runtime/入力save/credential追加公開0。全体private guard既存違反不変・新規0を確認。

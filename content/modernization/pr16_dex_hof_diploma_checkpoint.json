@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "classified": 783,
+  "unclassified": 91,
+  "newly_classified": 1,
+  "inherited_classified": 782,
+  "inherited_unclassified": 92,
+  "unit_tests": 168,
+  "old_scope_test_reruns": 0,
+  "current_rom_reconstructions": 1,
+  "current_owner_count": 115,
+  "saved_hit_count": 874,
+  "inherited_parent_inputs": 57,
+  "inherited_namespaces": 29,
+  "inherited_changes": 163,
+  "inherited_witnesses": 153,
+  "source_file_count": 14,
+  "public_source_file_count": 13,
+  "accepted_namespaces": 30,
+  "accepted_changes": 164,
+  "accepted_witnesses": 154,
+  "native_processes": 0,
+  "donor_safe_bytes": 0,
+  "old_full_rom_scan_runs": 0,
+  "old_native_cases_replayed": 0,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "donor_eligible": false,
+  "donor_leased": false,
+  "release_ready": false,
+  "conditional_finite_type_only": true,
+  "actual_runtime_execution_observed": false,
+  "actual_bios_cpu_executed": false,
+  "actual_screen_rendered": false,
+  "full_story_reachability_claimed": false,
+  "opaque_callee_effects_proven": false,
+  "universal_heap_or_irq_lifetime_proven": false,
+  "indirect_reference_completeness_claimed": false,
+  "padding_classified": false,
+  "reconstructed_text_promoted_as_original": false,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "status": "ACCEPTED_ONE_DIPLOMA_MINIMUM_ASSET_TYPE",
+  "source_head": "60f32297e1a20266f8e5638df66dea28901cf84d",
+  "run_id": 37718308112,
+  "run_attempt": 1,
+  "conclusion": "success",
+  "job": {
+    "id": 113119846893,
+    "name": "diploma-asset",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 37718308112,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "First scope across all branches and closed source boundary",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Official Ubuntu compiler for current candidate",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "New Diploma source-exact LZ10 and actual consumer only",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Closed successful text publication guard",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      }
+    ]
+  },
+  "artifact": {
+    "id": 11524203520,
+    "name": "pr16-diploma-asset-only",
+    "size_in_bytes": 23805,
+    "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11524203520",
+    "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11524203520/zip",
+    "expired": false,
+    "created_at": "2026-10-08T02:34:50Z",
+    "expires_at": "2027-01-06T02:31:40Z",
+    "updated_at": "2026-10-08T02:34:50Z",
+    "digest": "sha256:b26e3f9067fe58caf99306e3a544671e77b79bcf36fda685c42ed2ec485b50f6",
+    "workflow_run": {
+      "id": 37718308112,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "60f32297e1a20266f8e5638df66dea28901cf84d"
+    }
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_dex_hof_diploma_evidence/measurement.json": {
+      "sha256": "9d15682887a459c8c5118b8b5e9e0feecf9416250e7e143bd95502bfaae98e52",
+      "size": 43872
+    },
+    "content/modernization/pr16_dex_hof_diploma_evidence/provenance.json": {
+      "sha256": "3e0e351216bbb883f6cda8e21ecbf37cb79f60ae6f5bdd24ba79715058edb676",
+      "size": 13362
+    },
+    "content/modernization/pr16_dex_hof_diploma_evidence/reference-chain.json": {
+      "sha256": "017219a26f87021cafdf48f1f6fe9064a021421bb856685ade710c6ce743c7fc",
+      "size": 26250
+    },
+    "content/modernization/pr16_dex_hof_diploma_evidence/tests.json": {
+      "sha256": "947a2088691beb8247138d82d6a00aaf4c47bf80aca2b6dbf64092413b2da170",
+      "size": 141
+    }
+  },
+  "delta_identity": {
+    "sha256": "017219a26f87021cafdf48f1f6fe9064a021421bb856685ade710c6ce743c7fc",
+    "size": 26250
+  },
+  "measurement_identity": {
+    "sha256": "9d15682887a459c8c5118b8b5e9e0feecf9416250e7e143bd95502bfaae98e52",
+    "size": 43872
+  },
+  "tests_identity": {
+    "sha256": "947a2088691beb8247138d82d6a00aaf4c47bf80aca2b6dbf64092413b2da170",
+    "size": 141
+  },
+  "provenance_identity": {
+    "sha256": "3e0e351216bbb883f6cda8e21ecbf37cb79f60ae6f5bdd24ba79715058edb676",
+    "size": 13362
+  },
+  "unknown_identity": {
+    "size": 28721,
+    "sha256": "8bf60ad00a74aff3325150d5581be6ff80666dc6a1a14cca6ee885921ffe1c23"
+  },
+  "guide": "docs/PR16_DEX_HOF_DIPLOMA_ACCEPTED_JA.md",
+  "previous_checkpoint": "content/modernization/pr16_dex_hof_jp_minigame_checkpoint.json",
+  "next_ja": "保存783親から083D6B61を次の有限scopeとする。固定JP auditのsBlastoise1_Tiles起点083D655Cについて、独立公開画像source・登録table/実literal・decoder・consumerを1件限定で調べる。reference size/近傍距離だけでextentや型を作らない。Diploma成功source14/168試験/4原本と旧credits反証を無変更再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。",
+  "job_log_identity": {
+    "size": 28116,
+    "sha256": "4c3846b82023b9e590e6b63422942f9c5700ff98c0c33b34a20e5f222521e72e"
+  },
+  "generated_file_identities": {
+    "measurement.json": {
+      "sha256": "9d15682887a459c8c5118b8b5e9e0feecf9416250e7e143bd95502bfaae98e52",
+      "size": 43872
+    },
+    "provenance.json": {
+      "sha256": "3e0e351216bbb883f6cda8e21ecbf37cb79f60ae6f5bdd24ba79715058edb676",
+      "size": 13362
+    },
+    "reference-chain.json": {
+      "sha256": "017219a26f87021cafdf48f1f6fe9064a021421bb856685ade710c6ce743c7fc",
+      "size": 26250
+    },
+    "tests.json": {
+      "sha256": "947a2088691beb8247138d82d6a00aaf4c47bf80aca2b6dbf64092413b2da170",
+      "size": 141
+    }
+  },
+  "validated_file_identities": {
+    "measurement.json": {
+      "sha256": "9d15682887a459c8c5118b8b5e9e0feecf9416250e7e143bd95502bfaae98e52",
+      "size": 43872
+    },
+    "provenance.json": {
+      "sha256": "3e0e351216bbb883f6cda8e21ecbf37cb79f60ae6f5bdd24ba79715058edb676",
+      "size": 13362
+    },
+    "reference-chain.json": {
+      "sha256": "017219a26f87021cafdf48f1f6fe9064a021421bb856685ade710c6ce743c7fc",
+      "size": 26250
+    },
+    "tests.json": {
+      "sha256": "947a2088691beb8247138d82d6a00aaf4c47bf80aca2b6dbf64092413b2da170",
+      "size": 141
+    }
+  },
+  "published_file_identities": {
+    "measurement.json": {
+      "sha256": "9d15682887a459c8c5118b8b5e9e0feecf9416250e7e143bd95502bfaae98e52",
+      "size": 43872
+    },
+    "provenance.json": {
+      "sha256": "3e0e351216bbb883f6cda8e21ecbf37cb79f60ae6f5bdd24ba79715058edb676",
+      "size": 13362
+    },
+    "reference-chain.json": {
+      "sha256": "017219a26f87021cafdf48f1f6fe9064a021421bb856685ade710c6ce743c7fc",
+      "size": 26250
+    },
+    "tests.json": {
+      "sha256": "947a2088691beb8247138d82d6a00aaf4c47bf80aca2b6dbf64092413b2da170",
+      "size": 141
+    }
+  }
+}
