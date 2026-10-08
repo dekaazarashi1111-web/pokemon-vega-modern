@@ -11284,3 +11284,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 保存済み781親から083DE6ABのminigame拒否/取消を別正rootで閉じる。menuType11のstate6 SetPartyMonsAllowedInMinigameを旧menuType0早期returnへ転用せず、mode1/partyCount1/非egg・非Dodrioの有限bitflag実producerから不適合枝へ結ぶ。取消は09097AB4の別hook、右起点は083DE6AE。左右21/12byteは現0641未受入で限定設計入力に留める。交換/mailbox成功scopeや新27/旧165は再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528配線と正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 旧780親はjp_item_chain.parentの53保存入力、現781親は保存reference-chainをread_measured→materializeして復元する。成功回復/旧165/新27/consumerを無変更再走しない。
 - Commit: parent=d7543f17a4de18c731de42e12d3608832555e1da; 成功測定sourceを変えず新receipt pathで記録。同branch非force、全文LF/blob/tree/remote確認。
 - Network: GitHub Actions/job/log/artifact APIと公式file IDダウンロード。署名URLは一時利用のみ、Gitへ保持なし。ROM/rawhex/save/runtime/credential追加公開0。全体private guard既存違反は不変、新規0を確認。
+
+## 2026-10-08T00:56:15Z
+- Timestamp: 2026-10-08T00:56:15Z
+- Task: USER-20261008-JP-MINIGAME-TEXT / 参加拒否と取消の実producerから全文readerへ
+- Version: jp-minigame-text-v1
+- Status: STOPPED（新152試験PASS、現0641専用Actionsへ継続）
+- Summary: minigame menuType11/action13の実constructor/state6が非Dodrio条件からbitflag0を生成し、拒否/取消の別hookと21/12byte全文readerまで接続。新152試験・固定10source・独立review修正PASS。現0641専用Actions前の開発checkpointなので正式781/93、安全0、ROM/Save101不変。
+- Files changed: 新roots/text/chain/actions/validation、4専用試験、read-only workflow、source/development/proof JSON、guide、固定MDJSON、両ログ。
+- Verify: 新26roots＋37text＋48chain＋41actions＝152試験PASS。Actions初回subsetは固定source8件不足でsetUp停止/0試験、各identity照合で集約後に41全件PASS。固定10source全文size/SHA/Git blob/語義一致。独立reviewでFree対象をglobal cellから実allocationへ訂正、profile型aliasを拒否。rawproducer→report正規化→4file書出し→読戻し/1500000byte境界を事前確認。55保存入力から781親、28段162変更152witness保持。他873行全field不変。task graph/LF/AST/JSON PASS。
+- Boundary: state6の初期化STRH081210E8と加算STRH0812114Eからbitflag0、entry3617命令128境界/全文2491命令41境界、cancel3593命令128境界/全文1519命令25境界。左21byte keepOpen0/右12byte keepOpen1。API後半/全callback復帰/自然play/全callee/普遍heap/IRQは未証明。正式781/93、安全0、ROM/Save101不変。
+- Actions: 6304f086固定再開37705446761全5step成功、forgetting両側/runtime audit成功。一般CI37705446699/37705455764 failureを成功扱いしない。Stage79 dd69/run37688855021 in_progress、d754/run37704409103 cancelled、6304/run37705446681 pending。新専用実測はまだ0。
+- Next: 新read-only pr16-dex-hof-jp-minigame-text Actionsの初回runを照合する。現0641全SHA/115owner/874保存hitとstate6実bitflag producer/左右全文readerの4成功原本を実取得し、生成時/公開前hashが一致した後だけ083DE6ABの4byte1件を782/92へ記録する。交換/mailbox成功scope・旧165/27/22・native・旧heap・全ROMscanは再走しない。全保存入口ready/退避53300開始前Free/同期非再入/controller6528配線は別gate、正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinueは未完。
+- Commit: parent=6304f08614dbd338dbf6716db75625357fb33ed2; 全文blob/LF/tree/remote照合後に同branch非force保存。
+- Network: GitHub同repo最新HEAD/PR/Actionsと固定CFRU-JP source2本を読取。ROM/rawhex/runtime/入力save/credentialの追加公開0。
