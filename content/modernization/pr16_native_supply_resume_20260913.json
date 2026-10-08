@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "第1回復7b24518c/run37703162164は24新試験・現0641再構成・2consumer後、raw読取trace40行のtupleと公開JSON listの境界でreport型検査がfailure。失敗2本/原本欠落を保持し、report生成だけJSON正規化。公開validator厳格性を維持し、実producer→serializer→4file読戻しを含む27試験PASS。正式780/94、ROM/Save101、安全0は不変。",
+    "current_stop": "交換/mailbox回復run37704409163/job113075243551は全10step成功。現0641の2root/FD再帰/原文24byte→展開34byteとmailbox38byteを新4原本で照合し、公開前hashと実取得byte完全一致。新27試験/旧165試験継承/receipt22試験PASS。083DE02Bの4byte1件だけ正式780→781分類、94→93未知。元2failureを保持し累積ROM再構成3、native0、安全0、ROM/Save101不変。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "同pr16-dex-hof-item-recoveryの次runを確認する。既知第1回復failureと今回の2runだけを許すgate、元165試験継承、27新影響試験、現0641必要最小2reader再計測。現ROM/proof/deltaのhashを包装前に、生成4filehashをvalidator前にログ保存。公開は全検証後だけ。元測定1＋第1回復1＋今回1＝累積3を明示し、今回の全step/実原本/外側artifactを検証後だけ781/93へ。次候補083DE6ABのminigame拒否/取消は未受入、保存runtime/controller/正式切替後trainer131後半→シオウ回復/保存/coldContinueは別未完。",
+    "next_step": "保存済み781親から083DE6ABのminigame拒否/取消を別正rootで閉じる。menuType11のstate6 SetPartyMonsAllowedInMinigameを旧menuType0早期returnへ転用せず、mode1/partyCount1/非egg・非Dodrioの有限bitflag実producerから不適合枝へ結ぶ。取消は09097AB4の別hook、右起点は083DE6AE。左右21/12byteは現0641未受入で限定設計入力に留める。交換/mailbox成功scopeや新27/旧165は再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528配線と正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 旧780親はjp_item_chain.parentの53保存入力、現781親は保存reference-chainをread_measured→materializeして復元する。成功回復/旧165/新27/consumerを無変更再走しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -793,6 +793,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "成功回復37704409163は全10step/27新試験/165継承/取得4原本から083DE02Bだけ781/93へ正式受入。元37701354400と37703162164のfailure/原本欠落を保持し、scope累積再構成3を消さない。成功scopeと165/27試験は無変更再走せず次の083DE6ABへ。",
     "第1回復37703162164もfailureで保持。rawproducer tuple→公開JSON正規化の変更影響だけを新27試験で検証。元165suite/Flash/旧受入は再走しない。次回は既知失敗回復＋今回の2run gate、必要最小現ROM測定の累積3を明示し出力hashを包装前から記録する。",
     "元run37701354400の165試験/現計測step成功を消さず、artifact未生成を再構成原本で代用しない。回復は旧165試験継承＋新出力検証＋現0641の必要最小2reader再計測のみ。Flash/旧受入は再走しない。回復workflowはbranch横断run初回gateで累積2の偽装を拒否。",
     "交換/mailbox新165試験は疎fixture開発確認。現0641専用Actionsの初回成功原本を回収してから1件781/93へ。Flashの117試験/producer/全文readerと旧acceptedを再走しない。",
@@ -4399,55 +4400,63 @@
     "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED"
   },
   "next_action": {
-    "goal_ja": "同pr16-dex-hof-item-recoveryの次runを確認する。既知第1回復failureと今回の2runだけを許すgate、元165試験継承、27新影響試験、現0641必要最小2reader再計測。現ROM/proof/deltaのhashを包装前に、生成4filehashをvalidator前にログ保存。公開は全検証後だけ。元測定1＋第1回復1＋今回1＝累積3を明示し、今回の全step/実原本/外側artifactを検証後だけ781/93へ。次候補083DE6ABのminigame拒否/取消は未受入、保存runtime/controller/正式切替後trainer131後半→シオウ回復/保存/coldContinueは別未完。",
+    "goal_ja": "保存済み781親から083DE6ABのminigame拒否/取消を別正rootで閉じる。menuType11のstate6 SetPartyMonsAllowedInMinigameを旧menuType0早期returnへ転用せず、mode1/partyCount1/非egg・非Dodrioの有限bitflag実producerから不適合枝へ結ぶ。取消は09097AB4の別hook、右起点は083DE6AE。左右21/12byteは現0641未受入で限定設計入力に留める。交換/mailbox成功scopeや新27/旧165は再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528配線と正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 旧780親はjp_item_chain.parentの53保存入力、現781親は保存reference-chainをread_measured→materializeして復元する。成功回復/旧165/新27/consumerを無変更再走しない。",
     "host_write_policy_ja": "受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。",
-    "id": "RETRY_ITEM_OUTPUT_WITH_TYPED_SERIALIZATION_BOUNDARY",
+    "id": "BIND_MINIGAME_REJECTION_CANCEL_TEXT",
     "read_paths": [
-      "docs/PR16_DEX_HOF_ITEM_RECOVERY_JA.md",
-      "scripts/pr16_dex_hof_item_recovery_actions.py",
-      "scripts/pr16_dex_hof_item_recovery_validation.py",
-      "content/modernization/pr16_dex_hof_jp_item_development.json",
-      "scripts/pr16_dex_hof_jp_item_chain.py"
+      "docs/PR16_DEX_HOF_ITEM_ACCEPTED_JA.md",
+      "content/modernization/pr16_dex_hof_jp_item_checkpoint.json",
+      "scripts/pr16_dex_hof_item_receipt.py",
+      "scripts/pr16_dex_hof_jp_item_chain.py",
+      "scripts/pr16_dex_hof_jp_item_roots.py",
+      "scripts/pr16_dex_hof_lifetime_setup.py",
+      "scripts/pr16_dex_hof_choose_limit_roots.py",
+      "content/modernization/pr16_dex_hof_jp_crosswalk_candidates.json"
     ],
     "stop_rule_ja": "通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。"
   },
   "observed_date_jst": "2026-10-04",
-  "observed_head": "7b24518c175583cfb1decc33fc5ab1c12b906762",
+  "observed_head": "d7543f17a4de18c731de42e12d3608832555e1da",
   "observed_head_checks": {
-    "artifact_count": 0,
-    "classified": 780,
+    "all10_steps_success": true,
+    "all_file_hashes_match_prepublication_logs": true,
+    "artifact_id": 11518044429,
+    "classified": 781,
+    "cumulative_scope_rom_reconstructions": 3,
+    "current_owner_count": 115,
+    "current_rom_reconstructions": 1,
     "donor_safe_bytes": 0,
-    "error_code": "ITEM_RECOVERY_FAILED_PRIVATE_DETAILS_RETAINED",
-    "error_source_frames": [
-      {
-        "function": "run",
-        "line": 79,
-        "source": "pr16_dex_hof_item_recovery_actions.py"
-      },
-      {
-        "function": "validate_report",
-        "line": 180,
-        "source": "pr16_dex_hof_item_recovery_validation.py"
-      },
-      {
-        "function": "need",
-        "line": 47,
-        "source": "pr16_dex_hof_donor.py"
-      }
+    "downloaded_file_count": 4,
+    "fixed_resume_all5_steps_success": true,
+    "fixed_resume_job": 113075244866,
+    "fixed_resume_run": 37704409309,
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "general_ci_job113075242403_exact_qol_mismatches": 2,
+    "general_ci_runs": [
+      37704409023,
+      37704416429
     ],
+    "general_ci_secondary_missing_upload_after_upstream_failure": true,
     "inherited_scope_tests": 165,
-    "job_id": 113071177158,
-    "known_cumulative_scope_rom_reconstructions": 2,
+    "job_id": 113075243551,
     "native_processes": 0,
-    "new_recovery_tests": 27,
-    "original_output_hashes_available": false,
-    "planned_cumulative_scope_rom_reconstructions": 3,
-    "previous_recovery_tests": 24,
-    "reason_ja": "第1回復7b24518c/run37703162164は24新試験・現0641再構成・2consumer後、raw読取trace40行のtupleと公開JSON listの境界でreport型検査がfailure。失敗2本/原本欠落を保持し、report生成だけJSON正規化。公開validator厳格性を維持し、実producer→serializer→4file読戻しを含む27試験PASS。正式780/94、ROM/Save101、安全0は不変。",
-    "run_conclusion": "failure",
-    "run_id": 37703162164,
-    "scope_head": "7b24518c175583cfb1decc33fc5ab1c12b906762",
-    "unclassified": 94
+    "newly_classified": 1,
+    "old_scope_test_reruns": 0,
+    "original_failed_runs": [
+      37701354400,
+      37703162164
+    ],
+    "original_failed_runs_rewritten": false,
+    "prior_stage79_cancelled": 37703162176,
+    "reason_ja": "交換/mailbox回復run37704409163/job113075243551は全10step成功。現0641の2root/FD再帰/原文24byte→展開34byteとmailbox38byteを新4原本で照合し、公開前hashと実取得byte完全一致。新27試験/旧165試験継承/receipt22試験PASS。083DE02Bの4byte1件だけ正式780→781分類、94→93未知。元2failureを保持し累積ROM再構成3、native0、安全0、ROM/Save101不変。",
+    "receipt_tests": 22,
+    "recovery_tests": 27,
+    "run_id": 37704409163,
+    "scope_head": "d7543f17a4de18c731de42e12d3608832555e1da",
+    "stage79_in_progress": 37688855021,
+    "stage79_pending": 37704409103,
+    "unclassified": 93
   },
   "observed_head_history": [
     {
@@ -12596,9 +12605,50 @@
       "head": "ea976a497522bbf966d1e0e6ef9f2875d1950d37",
       "reason_ja": "第1回復のraw Python tuple対JSON listの包装境界失敗を保持して修正。",
       "semantics": "交換/mailbox元計測step成功・公開guard失敗のsource。元run全体failure/artifact0で正式受入ではない。"
+    },
+    {
+      "checks": {
+        "artifact_count": 0,
+        "classified": 780,
+        "donor_safe_bytes": 0,
+        "error_code": "ITEM_RECOVERY_FAILED_PRIVATE_DETAILS_RETAINED",
+        "error_source_frames": [
+          {
+            "function": "run",
+            "line": 79,
+            "source": "pr16_dex_hof_item_recovery_actions.py"
+          },
+          {
+            "function": "validate_report",
+            "line": 180,
+            "source": "pr16_dex_hof_item_recovery_validation.py"
+          },
+          {
+            "function": "need",
+            "line": 47,
+            "source": "pr16_dex_hof_donor.py"
+          }
+        ],
+        "inherited_scope_tests": 165,
+        "job_id": 113071177158,
+        "known_cumulative_scope_rom_reconstructions": 2,
+        "native_processes": 0,
+        "new_recovery_tests": 27,
+        "original_output_hashes_available": false,
+        "planned_cumulative_scope_rom_reconstructions": 3,
+        "previous_recovery_tests": 24,
+        "reason_ja": "第1回復7b24518c/run37703162164は24新試験・現0641再構成・2consumer後、raw読取trace40行のtupleと公開JSON listの境界でreport型検査がfailure。失敗2本/原本欠落を保持し、report生成だけJSON正規化。公開validator厳格性を維持し、実producer→serializer→4file読戻しを含む27試験PASS。正式780/94、ROM/Save101、安全0は不変。",
+        "run_conclusion": "failure",
+        "run_id": 37703162164,
+        "scope_head": "7b24518c175583cfb1decc33fc5ab1c12b906762",
+        "unclassified": 94
+      },
+      "head": "7b24518c175583cfb1decc33fc5ab1c12b906762",
+      "reason_ja": "型包装修正後の回復全10stepと取得4原本を照合し、1件だけ781/93へ正式追加。失敗2本は保持。",
+      "semantics": "第1回復run failureのsource。現候補/2consumer後の包装型境界で停止、artifact0、正式受入ではない。"
     }
   ],
-  "observed_head_semantics": "第1回復run failureのsource。現候補/2consumer後の包装型境界で停止、artifact0、正式受入ではない。",
+  "observed_head_semantics": "交換/mailbox成功回復の実測source。2失敗履歴と独立開発fixtureを分離し、取得4原本から4byte最小型1件のみ正式受入。",
   "p08_candidate_impact": {
     "candidate": {
       "crc32": "CC068B4A",
@@ -12723,16 +12773,16 @@
   "pending_runs": [
     {
       "run_id": 37688855021,
-      "scope": "汎用Stage79の依存install終端未確認。専用回復とは独立。",
+      "scope": "汎用Stage79は23:55UTC APIで実行中。native/cache終端未確定。",
       "status": "in_progress",
       "tested_head": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a"
     },
     {
       "github_status": "pending",
-      "run_id": 37701354224,
-      "scope": "汎用Stage79同concurrency待ち。今回の限定回復とは独立。",
+      "run_id": 37704409103,
+      "scope": "汎用Stage79同concurrency待ち。交換/mailbox専用成功と独立。",
       "status": "queued",
-      "tested_head": "ea976a497522bbf966d1e0e6ef9f2875d1950d37"
+      "tested_head": "d7543f17a4de18c731de42e12d3608832555e1da"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -18341,9 +18391,33 @@
       "sha256": "ea8c514db0d8047b0ab59ae30b5894204b4fe70a8a42ca6e68892780c515998b",
       "size": 3499
     },
+    "content/modernization/pr16_dex_hof_jp_item_checkpoint.json": {
+      "sha256": "3222eb921e3e1db0c40dd2b3a38406c800fab67a6b75ee39a0bea613ef812169",
+      "size": 7177
+    },
     "content/modernization/pr16_dex_hof_jp_item_development.json": {
       "sha256": "a61f665cb45c3d9a5722f0d76562531c5caed92ff8c13f788a8224e40125d08f",
       "size": 864
+    },
+    "content/modernization/pr16_dex_hof_jp_item_evidence/measurement.json": {
+      "sha256": "38a63b8ae95597f9c6b428c4fb88199141ff5743774303617d873212e4115255",
+      "size": 772253
+    },
+    "content/modernization/pr16_dex_hof_jp_item_evidence/provenance.json": {
+      "sha256": "f7db3f439d4a41d157951b858a81e337bd32b6319bc31f2ba2cbb4b722b395d6",
+      "size": 2921
+    },
+    "content/modernization/pr16_dex_hof_jp_item_evidence/reference-chain.json": {
+      "sha256": "5756495e9af69dba2f3d59334a33cf93358de233dd93406dddeaf44e7be85f32",
+      "size": 351398
+    },
+    "content/modernization/pr16_dex_hof_jp_item_evidence/tests.json": {
+      "sha256": "ce9166c9b8c17e6456b955fbd6dcae894514294dd68f1cb0b5f58dde1600ea32",
+      "size": 189
+    },
+    "content/modernization/pr16_dex_hof_jp_item_evidence/unknown-frontier.json": {
+      "sha256": "979e3e66c93dce1216931eb74473b9ed5c4c881c01593d67e21703298cb01bcc",
+      "size": 29347
     },
     "content/modernization/pr16_dex_hof_jp_item_sources.json": {
       "sha256": "c8bee047dcdf6ff53f16778b43c7a9b954a82cdb9c7ab799b7f07e20cdb8317c",
@@ -31073,6 +31147,10 @@
       "sha256": "760cc2c47357bc97605599f5da6f67d7f13354677923661ec9320caab04cc0e4",
       "size": 3458
     },
+    "docs/PR16_DEX_HOF_ITEM_ACCEPTED_JA.md": {
+      "sha256": "54d88ae5ee1ac07cdb2d38032f40313338fe5341b2d2822756c712d2bc5033d3",
+      "size": 5213
+    },
     "docs/PR16_DEX_HOF_ITEM_RECOVERY_JA.md": {
       "sha256": "2c61a40075ef20c89276b7849a260baab2fbe98664cbc4c8a7224c7c27810ab8",
       "size": 4671
@@ -36537,6 +36615,10 @@
       "sha256": "cb2a5fe4e46cca6c40c1b0d4c6f8cb54b42f67089e13512889a94ced423ed10a",
       "size": 58745
     },
+    "scripts/pr16_dex_hof_item_receipt.py": {
+      "sha256": "c85a2a10ad7b1f0e66a3478a2e515c646b2d98065f9b030a8cf35d25565394cd",
+      "size": 11970
+    },
     "scripts/pr16_dex_hof_item_recovery_actions.py": {
       "sha256": "ec3bcdf66c844cf8e20c7800c7e4ab06fd2aa9814b66d6a31bf3a5417cf367b3",
       "size": 11221
@@ -40720,6 +40802,10 @@
     "tests/test_pr16_dex_hof_help_roots.py": {
       "sha256": "a9c797a11df767bb2029e370854086b014de6b23e961b84c6445937043c19444",
       "size": 14724
+    },
+    "tests/test_pr16_dex_hof_item_receipt.py": {
+      "sha256": "c28757cb1814286707e891f0ce2c49c31afd10b8dcb8ca83975d4144b8ed0985",
+      "size": 12049
     },
     "tests/test_pr16_dex_hof_item_recovery_validation.py": {
       "sha256": "05ddb6c1adc96be1bcce4ba65b6956b16db905cd59cc745114c8679a92114d27",
@@ -46957,43 +47043,78 @@
         "unknown_frontier": "content/modernization/pr16_dex_hof_jp_field_evidence/unknown-frontier.json"
       },
       "hof_jp_item_text": {
+        "actual_runtime_execution_observed": false,
+        "artifact_id": 11518044429,
         "candidate": {
           "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
           "size": 33554432
         },
+        "checkpoint": "content/modernization/pr16_dex_hof_jp_item_checkpoint.json",
+        "classified": 781,
+        "conditional_minimum_type_only": true,
+        "cumulative_scope_rom_reconstructions": 3,
+        "current_owner_count": 115,
         "current_rom_measured": true,
         "current_rom_reconstructions": 1,
-        "development": "content/modernization/pr16_dex_hof_jp_item_development.json",
+        "delta_identity": {
+          "sha256": "5756495e9af69dba2f3d59334a33cf93358de233dd93406dddeaf44e7be85f32",
+          "size": 351398
+        },
+        "donor_eligible": false,
         "donor_safe_bytes": 0,
-        "formal_classified": 780,
+        "evidence": "content/modernization/pr16_dex_hof_jp_item_evidence",
         "formal_rom_changed": false,
         "formal_save_changed": false,
-        "formal_unclassified": 94,
-        "guide": "docs/PR16_DEX_HOF_JP_ITEM_TEXT_JA.md",
+        "guide": "docs/PR16_DEX_HOF_ITEM_ACCEPTED_JA.md",
         "independent_review_issues_remaining": 0,
-        "job_id": 113065287651,
-        "known_cumulative_scope_rom_reconstructions": 2,
-        "measurement_step_success": true,
+        "inherited_scope_tests": 165,
+        "job_id": 113075243551,
         "new_native_processes": 0,
-        "new_scope_tests": 165,
-        "original_artifact_missing": true,
-        "original_output_hashes_available": false,
-        "planned_cumulative_scope_rom_reconstructions": 3,
-        "previous_recovery_tests": 24,
-        "proposed_new_types": 1,
-        "reconstructed_output_accepted": false,
-        "recovery_error_stage": "prepublication_report_type_validation",
-        "recovery_failed_job": 113071177158,
-        "recovery_failed_run": 37703162164,
-        "recovery_guide": "docs/PR16_DEX_HOF_ITEM_RECOVERY_JA.md",
-        "recovery_source": "scripts/pr16_dex_hof_item_recovery_actions.py",
-        "recovery_source_head": "7b24518c175583cfb1decc33fc5ab1c12b906762",
-        "recovery_tests": 27,
-        "recovery_workflow_conclusion": "failure",
-        "run_id": 37701354400,
-        "source_head": "ea976a497522bbf966d1e0e6ef9f2875d1950d37",
-        "status": "SECOND_OUTPUT_RECOVERY_PREPARED_AFTER_TYPE_BOUNDARY_FAILURE",
-        "workflow_conclusion": "failure"
+        "newly_classified": 1,
+        "old_scope_test_reruns": 0,
+        "original_failed_run": {
+          "artifact_count": 0,
+          "export_step_outcome": "failure",
+          "job_id": 113065287651,
+          "job_log_identity": {
+            "sha256": "6b0e5f7bb670ece6c2753bd2e26ce3b1c069f3b5b6187c3737135e3be050f70c",
+            "size": 24250
+          },
+          "measurement_step_outcome": "success",
+          "old_export_max_bytes": 750000,
+          "original_output_hashes_available": false,
+          "original_output_size_logged": false,
+          "run_conclusion": "failure",
+          "run_id": 37701354400,
+          "scope_tests": 165,
+          "source_head": "ea976a497522bbf966d1e0e6ef9f2875d1950d37"
+        },
+        "prior_failed_recovery": {
+          "current_rom_reconstructions": 1,
+          "error_stage": "prepublication_report_type_validation",
+          "job_id": 113071177158,
+          "job_log_identity": {
+            "sha256": "0cec21b4731020920bfc12fd96a9043a837d754a5b8e575ed590d2257f8fea0c",
+            "size": 25706
+          },
+          "measurement_step": "failure",
+          "old_scope_test_reruns": 0,
+          "original_artifact_missing": true,
+          "run_conclusion": "failure",
+          "run_id": 37703162164,
+          "scope_proof_original_available": false,
+          "source_head": "7b24518c175583cfb1decc33fc5ab1c12b906762",
+          "stage_evidence": "public_exception_source_frames_and_fixed_runner_control_flow",
+          "successful_measurement_claimed": false
+        },
+        "receipt_tests": 22,
+        "reconstructed_text_promoted_as_original": false,
+        "recovery_test_count": 27,
+        "run_id": 37704409163,
+        "source_head": "d7543f17a4de18c731de42e12d3608832555e1da",
+        "status": "ACCEPTED_ONE_JP_ITEM_MINIMUM_TYPE_RECOVERY",
+        "unclassified": 93,
+        "unknown_frontier": "content/modernization/pr16_dex_hof_jp_item_evidence/unknown-frontier.json"
       },
       "hof_jp_symbol_gate": {
         "all8_steps_success": true,

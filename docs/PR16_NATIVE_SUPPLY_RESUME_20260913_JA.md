@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-第1回復7b24518c/run37703162164は24新試験・現0641再構成・2consumer後、raw読取trace40行のtupleと公開JSON listの境界でreport型検査がfailure。失敗2本/原本欠落を保持し、report生成だけJSON正規化。公開validator厳格性を維持し、実producer→serializer→4file読戻しを含む27試験PASS。正式780/94、ROM/Save101、安全0は不変。
+交換/mailbox回復run37704409163/job113075243551は全10step成功。現0641の2root/FD再帰/原文24byte→展開34byteとmailbox38byteを新4原本で照合し、公開前hashと実取得byte完全一致。新27試験/旧165試験継承/receipt22試験PASS。083DE02Bの4byte1件だけ正式780→781分類、94→93未知。元2failureを保持し累積ROM再構成3、native0、安全0、ROM/Save101不変。
 
-**次: 同pr16-dex-hof-item-recoveryの次runを確認する。既知第1回復failureと今回の2runだけを許すgate、元165試験継承、27新影響試験、現0641必要最小2reader再計測。現ROM/proof/deltaのhashを包装前に、生成4filehashをvalidator前にログ保存。公開は全検証後だけ。元測定1＋第1回復1＋今回1＝累積3を明示し、今回の全step/実原本/外側artifactを検証後だけ781/93へ。次候補083DE6ABのminigame拒否/取消は未受入、保存runtime/controller/正式切替後trainer131後半→シオウ回復/保存/coldContinueは別未完。**
+**次: 保存済み781親から083DE6ABのminigame拒否/取消を別正rootで閉じる。menuType11のstate6 SetPartyMonsAllowedInMinigameを旧menuType0早期returnへ転用せず、mode1/partyCount1/非egg・非Dodrioの有限bitflag実producerから不適合枝へ結ぶ。取消は09097AB4の別hook、右起点は083DE6AE。左右21/12byteは現0641未受入で限定設計入力に留める。交換/mailbox成功scopeや新27/旧165は再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528配線と正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 旧780親はjp_item_chain.parentの53保存入力、現781親は保存reference-chainをread_measured→materializeして復元する。成功回復/旧165/新27/consumerを無変更再走しない。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7b24518c175583cfb1decc33fc5ab1c12b906762`。
-第1回復run failureのsource。現候補/2consumer後の包装型境界で停止、artifact0、正式受入ではない。
+証拠のsource HEAD: `d7543f17a4de18c731de42e12d3608832555e1da`。
+交換/mailbox成功回復の実測source。2失敗履歴と独立開発fixtureを分離し、取得4原本から4byte最小型1件のみ正式受入。
 
 ## 最短の再開手順
 
@@ -25,11 +25,14 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_ITEM_RECOVERY_JA.md`
-- `scripts/pr16_dex_hof_item_recovery_actions.py`
-- `scripts/pr16_dex_hof_item_recovery_validation.py`
-- `content/modernization/pr16_dex_hof_jp_item_development.json`
+- `docs/PR16_DEX_HOF_ITEM_ACCEPTED_JA.md`
+- `content/modernization/pr16_dex_hof_jp_item_checkpoint.json`
+- `scripts/pr16_dex_hof_item_receipt.py`
 - `scripts/pr16_dex_hof_jp_item_chain.py`
+- `scripts/pr16_dex_hof_jp_item_roots.py`
+- `scripts/pr16_dex_hof_lifetime_setup.py`
+- `scripts/pr16_dex_hof_choose_limit_roots.py`
+- `content/modernization/pr16_dex_hof_jp_crosswalk_candidates.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -63,6 +66,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 成功回復37704409163は全10step/27新試験/165継承/取得4原本から083DE02Bだけ781/93へ正式受入。元37701354400と37703162164のfailure/原本欠落を保持し、scope累積再構成3を消さない。成功scopeと165/27試験は無変更再走せず次の083DE6ABへ。
 - 第1回復37703162164もfailureで保持。rawproducer tuple→公開JSON正規化の変更影響だけを新27試験で検証。元165suite/Flash/旧受入は再走しない。次回は既知失敗回復＋今回の2run gate、必要最小現ROM測定の累積3を明示し出力hashを包装前から記録する。
 - 元run37701354400の165試験/現計測step成功を消さず、artifact未生成を再構成原本で代用しない。回復は旧165試験継承＋新出力検証＋現0641の必要最小2reader再計測のみ。Flash/旧受入は再走しない。回復workflowはbranch横断run初回gateで累積2の偽装を拒否。
 - 交換/mailbox新165試験は疎fixture開発確認。現0641専用Actionsの初回成功原本を回収してから1件781/93へ。Flashの117試験/producer/全文readerと旧acceptedを再走しない。
@@ -518,6 +522,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-第1回復7b24518c/run37703162164は24新試験・現0641再構成・2consumer後、raw読取trace40行のtupleと公開JSON listの境界でreport型検査がfailure。失敗2本/原本欠落を保持し、report生成だけJSON正規化。公開validator厳格性を維持し、実producer→serializer→4file読戻しを含む27試験PASS。正式780/94、ROM/Save101、安全0は不変。
+交換/mailbox回復run37704409163/job113075243551は全10step成功。現0641の2root/FD再帰/原文24byte→展開34byteとmailbox38byteを新4原本で照合し、公開前hashと実取得byte完全一致。新27試験/旧165試験継承/receipt22試験PASS。083DE02Bの4byte1件だけ正式780→781分類、94→93未知。元2failureを保持し累積ROM再構成3、native0、安全0、ROM/Save101不変。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

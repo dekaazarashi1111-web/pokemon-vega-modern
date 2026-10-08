@@ -11269,3 +11269,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 同pr16-dex-hof-item-recoveryの次runを確認する。既知第1回復failureと今回の2runだけを許すgate、元165試験継承、27新影響試験、現0641必要最小2reader再計測。現ROM/proof/deltaのhashを包装前に、生成4filehashをvalidator前にログ保存。公開は全検証後だけ。元測定1＋第1回復1＋今回1＝累積3を明示し、今回の全step/実原本/外側artifactを検証後だけ781/93へ。次候補083DE6ABのminigame拒否/取消は未受入、保存runtime/controller/正式切替後trainer131後半→シオウ回復/保存/coldContinueは別未完。
 - Commit: parent=7b24518c175583cfb1decc33fc5ab1c12b906762; 同branch非force。private guard既存違反の新規差分0、blob全文LF/tree/remote読戻しを確認。
 - Network: GitHub限定run/job/log read。元ログsize24250/SHA6b0e5f7bb670ece6c2753bd2e26ce3b1c069f3b5b6187c3737135e3be050f70c、第1回復logsize25706/SHA0cec21b4731020920bfc12fd96a9043a837d754a5b8e575ed590d2257f8fea0c。rawROM/save/runtime/credential追加公開0。
+
+## 2026-10-07T23:57:25.654019+00:00
+- Timestamp: 2026-10-07T23:57:25.654019+00:00
+- Task: USER-20261007-JP-ITEM-ACCEPTANCE / 交換原文とmailbox全文consumerの1件受入
+- Version: jp-item-accepted-v1
+- Status: DONE（083DE02Bの条件付き4byte1件。全体製品/残93件は継続）
+- Summary: 交換/mailbox回復run37704409163/job113075243551は全10step成功。現0641の2root/FD再帰/原文24byte→展開34byteとmailbox38byteを新4原本で照合し、公開前hashと実取得byte完全一致。新27試験/旧165試験継承/receipt22試験PASS。083DE02Bの4byte1件だけ正式780→781分類、94→93未知。元2failureを保持し累積ROM再構成3、native0、安全0、ROM/Save101不変。
+- Files changed: 実取得4原本/残93frontier/新checkpoint/receipt validatorと22拒否試験/受入guide/固定MDJSON/両ログ。成功測定source20file不変。
+- Verify: d7543f17/run37704409163/job113075243551全10step SUCCESS。artifact11518044429 ZIP120441bytes/SHA82822cf4a8f5baea0ab8cea42c5bd4c35af54a0bba58580d2009d5340945bbfd、全4fileの生成直後/公開前hashと取得全byte一致。現0641全SHA/115owner/874保存hit、53親入力/27段161変更151witness/他873行全field保持。旧165試験を同source/元successstep/logから継承し再走0、新27回復試験とreceipt22試験PASS。
+- Scope: 交換root83命令7境界/本文4341命令67境界、mailbox root3561命令128境界/本文4347命令73境界。原文24byte FD03/FD02再帰/FC09 copy、展開後34byteとmailbox38byteを全EOSまで。終点08120AF2であり全callback/native/自然play/普遍heap/IRQ未受入。正式ROM/Save101不変、安全0/旧egg15118全域保護。
+- Failed history retained: ea976/run37701354400は計測step成功/公開failure/artifact0、7b245/run37703162164はconsumer後report型検査failure/artifact0。元出力hash無しと参考再構成を区別。成功回復では新原本を現ROMから再計測、当該1回/累積3を明記し、失敗を成功へ書換え0。
+- Actions: 固定再開37704409309/job113075244866全5step成功。汎用CI37704409023/job113075242403ログでqol_production.c既知不一致2件と下流未生成uploadを確認。Stage79 dd6937688855021 in_progress、前7b24537703162176 cancelled、d75437704409103 pendingを独立保持。
+- Next: 保存済み781親から083DE6ABのminigame拒否/取消を別正rootで閉じる。menuType11のstate6 SetPartyMonsAllowedInMinigameを旧menuType0早期returnへ転用せず、mode1/partyCount1/非egg・非Dodrioの有限bitflag実producerから不適合枝へ結ぶ。取消は09097AB4の別hook、右起点は083DE6AE。左右21/12byteは現0641未受入で限定設計入力に留める。交換/mailbox成功scopeや新27/旧165は再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528配線と正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。 旧780親はjp_item_chain.parentの53保存入力、現781親は保存reference-chainをread_measured→materializeして復元する。成功回復/旧165/新27/consumerを無変更再走しない。
+- Commit: parent=d7543f17a4de18c731de42e12d3608832555e1da; 成功測定sourceを変えず新receipt pathで記録。同branch非force、全文LF/blob/tree/remote確認。
+- Network: GitHub Actions/job/log/artifact APIと公式file IDダウンロード。署名URLは一時利用のみ、Gitへ保持なし。ROM/rawhex/save/runtime/credential追加公開0。全体private guard既存違反は不変、新規0を確認。

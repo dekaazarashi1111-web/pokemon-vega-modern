@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "status": "PASS_CURRENT_JP_ITEM_RECOVERY_PROVENANCE",
+  "original_failed_run": {
+    "source_head": "ea976a497522bbf966d1e0e6ef9f2875d1950d37",
+    "run_id": 37701354400,
+    "job_id": 113065287651,
+    "run_conclusion": "failure",
+    "measurement_step_outcome": "success",
+    "export_step_outcome": "failure",
+    "artifact_count": 0,
+    "scope_tests": 165,
+    "old_export_max_bytes": 750000,
+    "original_output_size_logged": false,
+    "original_output_hashes_available": false,
+    "job_log_identity": {
+      "size": 24250,
+      "sha256": "6b0e5f7bb670ece6c2753bd2e26ce3b1c069f3b5b6187c3737135e3be050f70c"
+    }
+  },
+  "prior_failed_recovery": {
+    "source_head": "7b24518c175583cfb1decc33fc5ab1c12b906762",
+    "run_id": 37703162164,
+    "job_id": 113071177158,
+    "run_conclusion": "failure",
+    "measurement_step": "failure",
+    "original_artifact_missing": true,
+    "error_stage": "prepublication_report_type_validation",
+    "current_rom_reconstructions": 1,
+    "old_scope_test_reruns": 0,
+    "job_log_identity": {
+      "size": 25706,
+      "sha256": "0cec21b4731020920bfc12fd96a9043a837d754a5b8e575ed590d2257f8fea0c"
+    },
+    "stage_evidence": "public_exception_source_frames_and_fixed_runner_control_flow",
+    "successful_measurement_claimed": false,
+    "scope_proof_original_available": false
+  },
+  "inherited_scope": {
+    "tests": 165,
+    "reruns": 0,
+    "source_head": "ea976a497522bbf966d1e0e6ef9f2875d1950d37",
+    "run_id": 37701354400,
+    "source_files_unchanged": 14,
+    "basis": "unchanged_sources_and_original_success_step_and_job_log"
+  },
+  "current_remeasurement": {
+    "source_head": "d7543f17a4de18c731de42e12d3608832555e1da",
+    "run_id": 37704409163,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "current_rom_reconstructions": 1,
+    "cumulative_scope_rom_reconstructions": 3,
+    "consumer_remeasurements": 2,
+    "measurement_canonical_identity": {
+      "size": 354441,
+      "sha256": "e95ed6f79e7573ec1e1bb0084a07c4a8737b0092d3631770e7551b09e4e113a3"
+    },
+    "delta_identity": {
+      "size": 351398,
+      "sha256": "5756495e9af69dba2f3d59334a33cf93358de233dd93406dddeaf44e7be85f32"
+    },
+    "origin": "new_current_rom_measurement_not_recovered_original_output"
+  },
+  "independent_development_fixture": {
+    "path": "content/modernization/pr16_dex_hof_item_recovery_development_proof.json",
+    "identity": {
+      "size": 346822,
+      "sha256": "c177bbf108f93787eeffc795a726b8688dd759498423736aefb720cfac386b4a"
+    },
+    "is_current_rom_measurement": false,
+    "is_lost_output_original": false,
+    "reconstructed_measurement_size": 770711,
+    "original_size_logged": false
+  },
+  "original_failed_run_rewritten": false,
+  "reconstructed_text_is_original": false,
+  "reconstructed_text_used_as_current_rom_measurement": false
+}

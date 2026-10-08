@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "classified": 781,
+  "unclassified": 93,
+  "newly_classified": 1,
+  "inherited_classified": 780,
+  "inherited_unclassified": 94,
+  "inherited_scope_tests": 165,
+  "recovery_test_count": 27,
+  "old_scope_test_reruns": 0,
+  "current_rom_reconstructions": 1,
+  "cumulative_scope_rom_reconstructions": 3,
+  "consumer_remeasurements": 2,
+  "current_owner_count": 115,
+  "native_processes": 0,
+  "donor_safe_bytes": 0,
+  "old_full_rom_scan_runs": 0,
+  "old_native_cases_replayed": 0,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "donor_eligible": false,
+  "donor_leased": false,
+  "original_failed_run_rewritten": false,
+  "reconstructed_text_promoted_as_original": false,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "status": "ACCEPTED_ONE_JP_ITEM_MINIMUM_TYPE_RECOVERY",
+  "source_head": "d7543f17a4de18c731de42e12d3608832555e1da",
+  "run_id": 37704409163,
+  "run_attempt": 1,
+  "conclusion": "success",
+  "job": {
+    "id": 113075243551,
+    "name": "item-recovery",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 37704409163,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Same branch and closed source boundary",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Official Ubuntu compiler for current candidate",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Recover two current readers without rerunning 165 inherited tests",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Closed successful text publication guard",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Read-only checkout and task graph",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      }
+    ]
+  },
+  "artifact": {
+    "id": 11518044429,
+    "name": "pr16-jp-item-recovery-text-only",
+    "size_in_bytes": 120441,
+    "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11518044429",
+    "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11518044429/zip",
+    "expired": false,
+    "created_at": "2026-10-07T23:51:01Z",
+    "expires_at": "2027-01-05T23:49:23Z",
+    "updated_at": "2026-10-07T23:51:01Z",
+    "digest": "sha256:82822cf4a8f5baea0ab8cea42c5bd4c35af54a0bba58580d2009d5340945bbfd",
+    "workflow_run": {
+      "id": 37704409163,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "d7543f17a4de18c731de42e12d3608832555e1da"
+    }
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_dex_hof_jp_item_evidence/measurement.json": {
+      "size": 772253,
+      "sha256": "38a63b8ae95597f9c6b428c4fb88199141ff5743774303617d873212e4115255"
+    },
+    "content/modernization/pr16_dex_hof_jp_item_evidence/provenance.json": {
+      "size": 2921,
+      "sha256": "f7db3f439d4a41d157951b858a81e337bd32b6319bc31f2ba2cbb4b722b395d6"
+    },
+    "content/modernization/pr16_dex_hof_jp_item_evidence/reference-chain.json": {
+      "size": 351398,
+      "sha256": "5756495e9af69dba2f3d59334a33cf93358de233dd93406dddeaf44e7be85f32"
+    },
+    "content/modernization/pr16_dex_hof_jp_item_evidence/tests.json": {
+      "size": 189,
+      "sha256": "ce9166c9b8c17e6456b955fbd6dcae894514294dd68f1cb0b5f58dde1600ea32"
+    }
+  },
+  "delta_identity": {
+    "size": 351398,
+    "sha256": "5756495e9af69dba2f3d59334a33cf93358de233dd93406dddeaf44e7be85f32"
+  },
+  "measurement_identity": {
+    "size": 772253,
+    "sha256": "38a63b8ae95597f9c6b428c4fb88199141ff5743774303617d873212e4115255"
+  },
+  "tests_identity": {
+    "size": 189,
+    "sha256": "ce9166c9b8c17e6456b955fbd6dcae894514294dd68f1cb0b5f58dde1600ea32"
+  },
+  "provenance_identity": {
+    "size": 2921,
+    "sha256": "f7db3f439d4a41d157951b858a81e337bd32b6319bc31f2ba2cbb4b722b395d6"
+  },
+  "unknown_identity": {
+    "size": 29347,
+    "sha256": "979e3e66c93dce1216931eb74473b9ed5c4c881c01593d67e21703298cb01bcc"
+  },
+  "original_failed_run": {
+    "source_head": "ea976a497522bbf966d1e0e6ef9f2875d1950d37",
+    "run_id": 37701354400,
+    "job_id": 113065287651,
+    "run_conclusion": "failure",
+    "measurement_step_outcome": "success",
+    "export_step_outcome": "failure",
+    "artifact_count": 0,
+    "scope_tests": 165,
+    "old_export_max_bytes": 750000,
+    "original_output_size_logged": false,
+    "original_output_hashes_available": false,
+    "job_log_identity": {
+      "size": 24250,
+      "sha256": "6b0e5f7bb670ece6c2753bd2e26ce3b1c069f3b5b6187c3737135e3be050f70c"
+    }
+  },
+  "prior_failed_recovery": {
+    "source_head": "7b24518c175583cfb1decc33fc5ab1c12b906762",
+    "run_id": 37703162164,
+    "job_id": 113071177158,
+    "run_conclusion": "failure",
+    "measurement_step": "failure",
+    "original_artifact_missing": true,
+    "error_stage": "prepublication_report_type_validation",
+    "current_rom_reconstructions": 1,
+    "old_scope_test_reruns": 0,
+    "job_log_identity": {
+      "size": 25706,
+      "sha256": "0cec21b4731020920bfc12fd96a9043a837d754a5b8e575ed590d2257f8fea0c"
+    },
+    "stage_evidence": "public_exception_source_frames_and_fixed_runner_control_flow",
+    "successful_measurement_claimed": false,
+    "scope_proof_original_available": false
+  },
+  "guide": "docs/PR16_DEX_HOF_ITEM_ACCEPTED_JA.md",
+  "previous_checkpoint": "content/modernization/pr16_dex_hof_jp_field_checkpoint.json",
+  "next_ja": "保存済み781親から083DE6ABのminigame拒否/取消を別正rootで閉じる。menuType11のstate6 SetPartyMonsAllowedInMinigameを旧menuType0早期returnへ転用せず、mode1/partyCount1/非egg・非Dodrioの有限bitflag実producerから不適合枝へ結ぶ。取消は09097AB4の別hook、右起点は083DE6AE。左右21/12byteは現0641未受入で限定設計入力に留める。交換/mailbox成功scopeや新27/旧165は再走しない。全保存入口ready/退避53300前Free/同期非再入/controller6528配線と正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。"
+}
