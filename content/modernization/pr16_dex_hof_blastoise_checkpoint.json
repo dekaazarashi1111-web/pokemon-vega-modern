@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "classified": 783,
+  "unclassified": 91,
+  "newly_classified": 0,
+  "inherited_classified": 783,
+  "inherited_unclassified": 91,
+  "unit_tests": 184,
+  "old_scope_test_reruns": 0,
+  "current_rom_reconstructions": 1,
+  "current_owner_count": 115,
+  "saved_hit_count": 874,
+  "current_saved_hits_rebound": 874,
+  "inherited_parent_inputs": 62,
+  "inherited_namespaces": 30,
+  "inherited_changes": 164,
+  "inherited_witnesses": 154,
+  "source_file_count": 14,
+  "public_source_file_count": 14,
+  "accepted_namespaces": 30,
+  "accepted_changes": 164,
+  "accepted_witnesses": 154,
+  "diagnostic_namespaces": 1,
+  "materialized_namespaces": 31,
+  "native_processes": 0,
+  "donor_safe_bytes": 0,
+  "old_full_rom_scan_runs": 0,
+  "old_native_cases_replayed": 0,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "donor_eligible": false,
+  "donor_leased": false,
+  "release_ready": false,
+  "conditional_finite_type_only": true,
+  "actual_runtime_execution_observed": false,
+  "actual_bios_cpu_executed": false,
+  "actual_screen_rendered": false,
+  "full_story_reachability_claimed": false,
+  "opaque_callee_effects_proven": false,
+  "universal_heap_or_irq_lifetime_proven": false,
+  "indirect_reference_completeness_claimed": false,
+  "padding_classified": false,
+  "reconstructed_text_promoted_as_original": false,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "status": "DIAGNOSTIC_BLASTOISE_ENDPOINT_NO_NEW_TYPE",
+  "source_head": "f9551f5d345949866a5dedd070da7479299922cd",
+  "run_id": 37722012087,
+  "run_attempt": 1,
+  "conclusion": "success",
+  "job": {
+    "id": 113131584284,
+    "name": "blastoise-asset",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 37722012087,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "First scope across all branches and closed source boundary",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Official Ubuntu compiler for current candidate",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "New Blastoise endpoint diagnostic and actual consumer only",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Closed successful text publication guard",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      }
+    ]
+  },
+  "artifact": {
+    "id": 11525439041,
+    "name": "pr16-blastoise-asset-only",
+    "size_in_bytes": 12207,
+    "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11525439041",
+    "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11525439041/zip",
+    "expired": false,
+    "created_at": "2026-10-08T03:20:16Z",
+    "expires_at": "2027-01-06T03:17:23Z",
+    "updated_at": "2026-10-08T03:20:16Z",
+    "digest": "sha256:d364b3a4a324686421f19afbc370d0469cae7c8bf63a9915dee545d1829c28ec",
+    "workflow_run": {
+      "id": 37722012087,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "f9551f5d345949866a5dedd070da7479299922cd"
+    }
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_dex_hof_blastoise_evidence/measurement.json": {
+      "sha256": "65fe0fd1dab9ae3ee375228ad85884e51a5215f8827e4131edfd8adafc50f3e7",
+      "size": 25968
+    },
+    "content/modernization/pr16_dex_hof_blastoise_evidence/provenance.json": {
+      "sha256": "d413a70ff25e6ce45f61be26e5a087dbf22920b1f0e90abb71a9b996ac7a8f5f",
+      "size": 14357
+    },
+    "content/modernization/pr16_dex_hof_blastoise_evidence/reference-chain.json": {
+      "sha256": "dcef706ce658675552bd36fbb203b3409daa6eee72b4df94b647decf4ad0a31e",
+      "size": 1320
+    },
+    "content/modernization/pr16_dex_hof_blastoise_evidence/tests.json": {
+      "sha256": "14d8c76f2e5a5c56d19132bee13a3538d116b3740f093709256542d4b9e359b4",
+      "size": 143
+    }
+  },
+  "delta_identity": {
+    "sha256": "dcef706ce658675552bd36fbb203b3409daa6eee72b4df94b647decf4ad0a31e",
+    "size": 1320
+  },
+  "measurement_identity": {
+    "sha256": "65fe0fd1dab9ae3ee375228ad85884e51a5215f8827e4131edfd8adafc50f3e7",
+    "size": 25968
+  },
+  "tests_identity": {
+    "sha256": "14d8c76f2e5a5c56d19132bee13a3538d116b3740f093709256542d4b9e359b4",
+    "size": 143
+  },
+  "provenance_identity": {
+    "sha256": "d413a70ff25e6ce45f61be26e5a087dbf22920b1f0e90abb71a9b996ac7a8f5f",
+    "size": 14357
+  },
+  "unknown_frontier": "content/modernization/pr16_dex_hof_diploma_evidence/unknown-frontier.json",
+  "unknown_identity": {
+    "size": 28721,
+    "sha256": "8bf60ad00a74aff3325150d5581be6ff80666dc6a1a14cca6ee885921ffe1c23"
+  },
+  "guide": "docs/PR16_DEX_HOF_BLASTOISE_DIAGNOSTIC_JA.md",
+  "previous_checkpoint": "content/modernization/pr16_dex_hof_diploma_checkpoint.json",
+  "next_ja": "保存783親から次は0838B32Fの1件。固定JP auditのgWeatherBubbleTiles0838B304、公開bubble.png（8x16 indexed4）、sWeatherBubbleSpriteSheet0838D5F4のsize64登録、Bubbles_InitVars0807D034→LoadSpriteSheet08008258→CpuCopy16を独立4bpp全byte・実table/literal/readerへ結ぶ。reference size/近傍距離だけで分類しない。Blastoise083D6B61は実消費終端083D6A63後254byteなのでunknown保持。成功source14/184試験/4原本を無変更再走しない。保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復保存coldContinueは別gate。",
+  "job_log_identity": {
+    "sha256": "fa4f25ca2b65f78cea1803cbc791145d809933930583a75d83aae3b7b30a9dfd",
+    "size": 28092
+  },
+  "generated_file_identities": {
+    "measurement.json": {
+      "sha256": "65fe0fd1dab9ae3ee375228ad85884e51a5215f8827e4131edfd8adafc50f3e7",
+      "size": 25968
+    },
+    "provenance.json": {
+      "sha256": "d413a70ff25e6ce45f61be26e5a087dbf22920b1f0e90abb71a9b996ac7a8f5f",
+      "size": 14357
+    },
+    "reference-chain.json": {
+      "sha256": "dcef706ce658675552bd36fbb203b3409daa6eee72b4df94b647decf4ad0a31e",
+      "size": 1320
+    },
+    "tests.json": {
+      "sha256": "14d8c76f2e5a5c56d19132bee13a3538d116b3740f093709256542d4b9e359b4",
+      "size": 143
+    }
+  },
+  "validated_file_identities": {
+    "measurement.json": {
+      "sha256": "65fe0fd1dab9ae3ee375228ad85884e51a5215f8827e4131edfd8adafc50f3e7",
+      "size": 25968
+    },
+    "provenance.json": {
+      "sha256": "d413a70ff25e6ce45f61be26e5a087dbf22920b1f0e90abb71a9b996ac7a8f5f",
+      "size": 14357
+    },
+    "reference-chain.json": {
+      "sha256": "dcef706ce658675552bd36fbb203b3409daa6eee72b4df94b647decf4ad0a31e",
+      "size": 1320
+    },
+    "tests.json": {
+      "sha256": "14d8c76f2e5a5c56d19132bee13a3538d116b3740f093709256542d4b9e359b4",
+      "size": 143
+    }
+  },
+  "published_file_identities": {
+    "measurement.json": {
+      "sha256": "65fe0fd1dab9ae3ee375228ad85884e51a5215f8827e4131edfd8adafc50f3e7",
+      "size": 25968
+    },
+    "provenance.json": {
+      "sha256": "d413a70ff25e6ce45f61be26e5a087dbf22920b1f0e90abb71a9b996ac7a8f5f",
+      "size": 14357
+    },
+    "reference-chain.json": {
+      "sha256": "dcef706ce658675552bd36fbb203b3409daa6eee72b4df94b647decf4ad0a31e",
+      "size": 1320
+    },
+    "tests.json": {
+      "sha256": "14d8c76f2e5a5c56d19132bee13a3538d116b3740f093709256542d4b9e359b4",
+      "size": 143
+    }
+  }
+}

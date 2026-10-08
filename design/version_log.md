@@ -11373,3 +11373,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 新pr16-dex-hof-blastoise-asset Actionsを初回だけ計測し、現0641全SHA/115owner/874保存hit・圧縮終端・独立公開PNG全hashとの一致/不一致を4成功JSONの実取得と12hashで照合する。取得前に手元6ffの終端反証を正式0641結果にしない。陽性でも今scopeは0件delta、未消費tailや近傍reference sizeを型へしない。旧Diploma168/receipt40/他受入suite/consumer/native/全ROMscan再走なし。保存入口ready/退避53300前Free/同期非再入/controller6528本番配線と正式切替後trainer131後半→シオウ回復保存coldContinueは別gate。
 - Commit: parent=f6b2c40bac541c8ff0ac1856860ea6e1b0936660; 同branch非force。全text/LF/blob読戻し/tree/単親/remote照合と最終indexの既存guard差分0を確認する。
 - Network: 固定pret c75f3523のcredits/PNG/window/gbagfx、固定JP c04a3154 audit/metadata、同repo最新HEAD/Actions。公開はsource/model/identity/textのみ、ROM/rawhex/runtime/入力save/secret追加0。
+
+## 2026-10-08T03:25:00Z
+- Timestamp: 2026-10-08T03:25:00Z
+- Task: USER-20261008-BLASTOISE-DIAGNOSTIC / 現候補の画像圧縮終端を実取得原本から確定
+- Version: blastoise-diagnostic-v1
+- Status: DONE（未消費tail反証の有限診断。型分類0件、製品全体/残91件は継続）
+- Summary: Blastoise初回37722012087/job113131584284は全9step/新184試験成功。実取得4JSONと生成/検証/公開前12hash一致。現0641でも圧縮1287終端083D6A63、対象083D6B61は254byte後に残り、公開PNG1794/decoded3200とも全hash不一致。新receipt45試験PASS、0件診断deltaで正式783分類/91未知と全874hitを保持。今回再構成1/native0、安全0、ROM/Save101不変。
+- Files changed: 実取得4JSON/checkpoint/receipt validatorと45試験/診断guide/固定MDJSON/両ログ。旧unknown91原本は参照のまま複製・改作0、成功測定source14不変。
+- Verify: sourcef9551f5d/run37722012087/job113131584284全9step SUCCESS。artifact11525439041 ZIP12207/SHAd364b3a4a324686421f19afbc370d0469cae7c8bf63a9915dee545d1829c28ec。生成/検証/公開前12hashと取得4file全byte一致。現0641全SHA/115owner/874hit、62親入力/30受入段164変更154witnessと全874行全field保持、31番目は0件診断namespaceだけ。新184成功原本継承、記録時再走0。receipt45/main PASS。
+- Scope: 58実命令/63窓、選択prefix52命令、LoadCreditsMonPic whichMon2→template083D27C8→literal080F52E4/asset083D655C→BL080F52CE→window1,size0,offset0→実gWindows stride12/offset8→BL08004418/SWI11モデル。第一reader帰還080F52D2で止める。実消費1287/decoded3200、終端083D6A63、target254byte後で未消費。独立PNG1794/3200の全hash不一致、source末尾padding2除外。
+- Boundary: InitWindows同期成功/window1容量3200生成とwindow0の2calleeが同資源を保持する条件付き。caller-saved/flags/nonlive消去。BIOSCPU/第二画像/VRAM/DMA/画面/自然到達/allocator実装/全callee/普遍heapIRQは未受入。旧egg15118全域保護、安全donor0。
+- Review: 独立read-onlyレビュー阻害指摘0、測定receipt前のfixture昇格禁止を保持。receiptには実取得scope proof9742/SHA12a331a1b2d640da0641f3aefdfe93e2b8d2ca6e62895ea0edd39335ebb18f90も固定し、原本全reseal後の陽性fixture差替えを拒否。
+- Actions: 固定再開37722012016/job113131583968全5step、forgetting37722012109/37722018545、runtime audit37722012038成功。一般CI37722012060/37722018589はstep14capacityとstep17二次artifact failure。Stage79 37722012090は03:23UTC in_progress。全CI成功とはしない。
+- Next: 保存783親から次は0838B32Fの1件。固定JP auditのgWeatherBubbleTiles0838B304、公開bubble.png（8x16 indexed4）、sWeatherBubbleSpriteSheet0838D5F4のsize64登録、Bubbles_InitVars0807D034→LoadSpriteSheet08008258→CpuCopy16を独立4bpp全byte・実table/literal/readerへ結ぶ。reference size/近傍距離だけで分類しない。Blastoise083D6B61は実消費終端083D6A63後254byteなのでunknown保持。成功source14/184試験/4原本を無変更再走しない。保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復保存coldContinueは別gate。 正式783親はblastoise_chain.parentの62保存入力だけで復元。診断31番目namespaceを次の分類親へ混入しない。今回4JSON/184成功試験/receipt45と測定source14を凍結し、記録commitで同scope再測定しない。
+- Commit: parent=f9551f5d345949866a5dedd070da7479299922cd; 成功測定source14凍結、workflow glob外のendpoint_receiptで記録。同branch非force、全text/LF/blob/tree/単親/remote一致を検証する。
+- Network: GitHub Actions/job/log/artifact APIと返却file_idの正式download_fileでZIP取得。先行の返却一時URL読取はHTTP403で停止し再試行せず、返却file_idの標準materializationは成功。認可拒否・取消・迂回なし。開発保存の大text create_blob保留は元callだけが成功し重複0。ROM/rawhex/runtime/入力save/credential追加公開0。全体private guard既存違反不変・新規0を確認する。
