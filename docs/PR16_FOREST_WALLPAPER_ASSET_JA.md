@@ -70,6 +70,16 @@ Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4by
 
 [有限事実](../content/modernization/pr16_first_origin_evidence/bounded-code-facts.json) / [checkpoint](../content/modernization/pr16_first_origin_checkpoint.json) / [symbol成功Actions受領](../content/modernization/pr16_donor_origins_evidence/actions-completion.json)。新40試験・読取専用byte/mtime・task graph・全旧原本保全。native0、旧受入再走0、正式785/89、安全容量0。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 保存したfirst-origin有限命令/owner事実から0x080A006Fの実型とconsumerを確定する。前後labelや逆アセンブル形だけの分類は禁止。実必要reader/配置元へ閉じる。正式785/89、安全容量0。既受入symbol20試験/今回40試験/有限ROM測定をsource不変なら再走しない。全874scanと旧Forest/Bubbleは再走せず、窓外跨りread/旧owner内origin/間接参照を残す。
+
+## 選定二originの実型reader
+
+先頭は0x00001111上位1byteと0x0809FED5下位3byteのliteral跨りです。実LDRとSetGpuRegのu16 buffer store、SetVBlankCallbackのcallback field書込/帰還を有限解釈しました。0x081C96E9は公開__subsf3の実BLと直後ADDを、同期callee帰還条件で解釈しました。自然入口/IRQ/GPU flush/浮動callee本体/全alias不在は証明していません。
+
+[新3reader](../content/modernization/pr16_typed_origins_evidence/reader-profiles.json) / [checkpoint](../content/modernization/pr16_typed_origins_checkpoint.json) / [直前Actions受領](../content/modernization/pr16_first_origin_evidence/actions-completion.json)。新20試験、候補復元1、native0、旧試験/測定再走0、読取専用byte/mtimeとtask graph。旧GNU形の有限窓末尾BL幅は型証明に用いず、実解釈器の同一範囲内完全命令幅で検証しました。正式785/89・安全容量0は完了受領まで据置。
+
+## 次の未完作業
+
+二originの新3条件付き実readerを保存済み。成功Actions/ZIP全memberとsourceを別受領し、正式785/89親へ二件だけの型分類差分を適用する。literalの上位1byte+callback下位3byteと、__subsf3のBL下位3byte+直後ADD上位ではなく先頭1byteを照合する。自然entry/IRQ/GPU flush/浮動callee/全alias不在は主張しない。安全容量0。今回reader/20試験と旧全scopeの無変更再走を禁止する。

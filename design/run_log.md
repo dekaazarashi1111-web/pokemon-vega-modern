@@ -14295,3 +14295,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴/Actions resultを参照。
 - Network: 同repo PR/ref/Actions/固定private入力、固定公開pret/pokefirered c75f3523のsrc/money.c・src/script_pokemon_util.c・ld_script.ld、ComplexRobot/frlg-sym c04a3154のJP auditをGET。同branch非force push。
 - Sources: https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 ; https://github.com/ComplexRobot/frlg-sym/tree/c04a31542086b20d8c6ee641eaa70b8db6713fd3 。前後関数と配置順/JP対応行を有限範囲と照合。GNU表現確認: https://sourceware.org/pipermail/binutils/2022-October/123296.html （検索語 arm-dis.c UNDEFINED instruction）。
+
+## 2026-10-10T22:40:33.543259+00:00
+- Timestamp: 2026-10-10T22:40:33.543259+00:00
+- Task: USER-20261011-TYPED-ORIGIN-READERS / 選定二originの実型reader
+- Version: typed-origin-readers-v1
+- Status: DONE（新3reader測定。正式受領/退役/保存統合は未完）
+- Summary: 完了済み有限形Actions/ZIPを再走なしで受領。先頭literal二fieldの実LDR→GPU u16 buffer/callback store、次の__subsf3 BL/ADD fetchを有限条件下で検証。
+- Files changed: 新reader/20試験/専用Actions、3profile原本、直前成功receipt、固定引継ぎMD/JSON、両ログ。
+- Verify: 新20 tests、新3profiles、候補全SHA、read-only byte/mtime、旧原本不変、task graph。最終index新規private違反0と全体guard結果はcheckpointへ別記録。
+- Boundary: 自然entry/IRQ/GPU flush/浮動callee本体/全alias不在は非主張。正式785/89・安全容量0、ROM/Save101/R0/baseline不変。新復元1/native0/旧試験と旧測定再走0。旧形の末尾BL幅は受入証明に不使用。
+- Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴/Actions resultを参照。
+- Network: 同repo PR/ref/成功Actions/固定private再構成入力、固定公開source GET、同branch非force push。
+- Sources: https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 (src/main.c、include/main.h、src/gpu_regs.c) と固定ComplexRobot/frlg-sym c04a3154。検索/確認: SetVBlankCallback・SetGpuReg・Main.vblankCallback。callback offset0xCとu16 GPU buffer値を実codeに照合。

@@ -1,0 +1,186 @@
+{
+  "actions_completion_confirmed": false,
+  "actions_run_id": 38092235316,
+  "attempt": {
+    "accepted_measurement_replays": 0,
+    "exact_candidate_bound": true,
+    "native_processes": 0,
+    "new_profiles_completed": 3,
+    "rom_reconstructions_started": 1
+  },
+  "claims": {
+    "accepted_measurement_replays": 0,
+    "accepted_test_reruns": 0,
+    "actual_gpu_flush_or_irq_executed": false,
+    "actual_runtime_execution_observed": false,
+    "all_alternative_readers_excluded": false,
+    "conditional_finite_reader_only": true,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "floating_point_callee_body_executed": false,
+    "formal_classification_accepted": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "indirect_reference_completeness_claimed": false,
+    "native_processes": 0,
+    "natural_entry_reachability_proven": false
+  },
+  "full_index_private_guard": {
+    "executed": true,
+    "exit_code": 1,
+    "historical_violations_not_rewritten": true,
+    "passed": false,
+    "raw_private_log_published": false
+  },
+  "new_profiles": 3,
+  "new_unit_tests": 20,
+  "next_ja": "二originの新3条件付き実readerを保存済み。成功Actions/ZIP全memberとsourceを別受領し、正式785/89親へ二件だけの型分類差分を適用する。literalの上位1byte+callback下位3byteと、__subsf3のBL下位3byte+直後ADD上位ではなく先頭1byteを照合する。自然entry/IRQ/GPU flush/浮動callee/全alias不在は主張しない。安全容量0。今回reader/20試験と旧全scopeの無変更再走を禁止する。",
+  "observed_head_checks": {
+    "all_ci_green_claimed": false,
+    "runs": [
+      {
+        "conclusion": "failure",
+        "event": "pull_request",
+        "head_sha": "85f9700fe8725322eb28c5bb1be8ec3af739c50b",
+        "id": 38092240490,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "85f9700fe8725322eb28c5bb1be8ec3af739c50b",
+        "id": 38092240474,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "85f9700fe8725322eb28c5bb1be8ec3af739c50b",
+        "id": 38092235017,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "85f9700fe8725322eb28c5bb1be8ec3af739c50b",
+        "id": 38092235006,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "85f9700fe8725322eb28c5bb1be8ec3af739c50b",
+        "id": 38092235316,
+        "name": "pr16-typed-origins",
+        "path": ".github/workflows/pr16-typed-origins.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "85f9700fe8725322eb28c5bb1be8ec3af739c50b",
+        "id": 38092235103,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "event": "push",
+        "head_sha": "85f9700fe8725322eb28c5bb1be8ec3af739c50b",
+        "id": 38092234963,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      }
+    ],
+    "source_head": "85f9700fe8725322eb28c5bb1be8ec3af739c50b"
+  },
+  "preserved_inputs": {
+    "CHATGPT_RESUME.md": {
+      "sha256": "563fec8b1ad11b3a80128515c8a4795fb4eca2cfc6407c22e2726a561cee5652",
+      "size": 5102
+    },
+    "content/modernization/pr16_donor_window_evidence/windows.json": {
+      "sha256": "100dd710037fd958db20191a4bffa8590fb0414a2e252705f1111d75e15e9d2c",
+      "size": 9687
+    },
+    "content/modernization/pr16_first_origin_checkpoint.json": {
+      "sha256": "92018330ff8c2d05cfd6497e16ece36ae7739ee1ab6364d8843abac918eb05ed",
+      "size": 7347
+    },
+    "content/modernization/pr16_first_origin_evidence/bounded-code-facts.json": {
+      "sha256": "db5ae67361abaf800c8650b01861bb52524137386002a45f821e06e900abc429",
+      "size": 63212
+    },
+    "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
+      "sha256": "dd200aa3a4e0fa581991c9f3553b042398af691977313d57e44fd088e15fa35d",
+      "size": 20300
+    },
+    "scripts/pr16_dex_hof_lifetime_root.py": {
+      "sha256": "7d1827e12c7261371778d0fb08b0bbc5dcdd8efd2344017310c617a2ebbd650a",
+      "size": 19545
+    },
+    "scripts/pr16_dex_hof_runtime_sprite.py": {
+      "sha256": "e2409be802248a15b143e7590a44aa54f4d1d13a2d14ffb5faeb0a26177dde30",
+      "size": 31951
+    },
+    "scripts/pr16_first_origin.py": {
+      "sha256": "548ac0a3da82c12304b595c3176048a4b5823bbc2f1d1d34fc406a80576fd08a",
+      "size": 8841
+    },
+    "scripts/pr16_first_origin_actions.py": {
+      "sha256": "1933645db5a9d9d3ece9fea5066fb7c887692c0da83b984f3514468efd51e274",
+      "size": 21448
+    },
+    "tests/test_pr16_first_origin.py": {
+      "sha256": "ce44f9982271b0b8eed72ddc404b3ad4c2800c7cfca46f1635a7f307311b7829",
+      "size": 6914
+    }
+  },
+  "prior_actions_receipt_path": "content/modernization/pr16_first_origin_evidence/actions-completion.json",
+  "proof_identity": {
+    "sha256": "761b8488dcdfcdea82373f050356f247297befecf7fee5e4c871029339182303",
+    "size": 19614
+  },
+  "proof_path": "content/modernization/pr16_typed_origins_evidence/reader-profiles.json",
+  "read_only_check_passed": true,
+  "rom_reconstructions": 1,
+  "schema_version": 1,
+  "scoped_final_index_guard": {
+    "historical_guard_pass_claimed": false,
+    "new_private_violations": 0,
+    "status": "PASS"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-typed-origins.yml": {
+      "sha256": "26b2ac743dfdc72d6e6736b8e3f0684092c3751d29a68ba8052e574094825244",
+      "size": 1521
+    },
+    "scripts/pr16_typed_origins.py": {
+      "sha256": "a4118754c1c5c1ada4b40e673748b66e8eab9465c34a93a36434f1090d6e1e02",
+      "size": 10823
+    },
+    "scripts/pr16_typed_origins_actions.py": {
+      "sha256": "93ffa9804e9d7a93d85c298b2002054a3ff735fdaa58a66db3037d7ab2b06433",
+      "size": 18680
+    },
+    "tests/test_pr16_typed_origins.py": {
+      "sha256": "f62107202752f84d7910803b3868db613409ade2e26a0b5db826001a5858619a",
+      "size": 3726
+    }
+  },
+  "source_head": "85f9700fe8725322eb28c5bb1be8ec3af739c50b",
+  "status": "TWO_ORIGINS_CONDITIONAL_TYPED_READERS_MEASURED",
+  "task": "USER-20261011-TYPED-ORIGIN-READERS",
+  "task_graph_passed": true
+}

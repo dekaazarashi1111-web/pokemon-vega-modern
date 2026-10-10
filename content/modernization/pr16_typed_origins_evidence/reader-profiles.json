@@ -1,0 +1,590 @@
+{
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "claims": {
+    "accepted_measurement_replays": 0,
+    "accepted_test_reruns": 0,
+    "actual_gpu_flush_or_irq_executed": false,
+    "actual_runtime_execution_observed": false,
+    "all_alternative_readers_excluded": false,
+    "conditional_finite_reader_only": true,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "floating_point_callee_body_executed": false,
+    "formal_classification_accepted": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "indirect_reference_completeness_claimed": false,
+    "native_processes": 0,
+    "natural_entry_reachability_proven": false
+  },
+  "engine_bindings": {
+    "scripts/pr16_dex_hof_lifetime_root.py": {
+      "sha256": "7d1827e12c7261371778d0fb08b0bbc5dcdd8efd2344017310c617a2ebbd650a",
+      "size": 19545
+    },
+    "scripts/pr16_dex_hof_runtime_sprite.py": {
+      "sha256": "e2409be802248a15b143e7590a44aa54f4d1d13a2d14ffb5faeb0a26177dde30",
+      "size": 31951
+    }
+  },
+  "hits": [
+    {
+      "address": 134873199,
+      "sha256": "34ab26c2eaf2a22455a60b55e8b489ed9a07e9939dd3e68c1bd9007fe5eb8a9d",
+      "size": 4
+    },
+    {
+      "address": 136091369,
+      "sha256": "9bd8fd67ee8be1be8cdeb36dba8bc477c063d5b9956f73eb37da1012b5cd6258",
+      "size": 4
+    }
+  ],
+  "interpretation_ja": [
+    "先頭はu32 literal上位1byteと別のThumb callback field下位3byteの跨り。両aligned fieldの実LDRとtyped storeを検証。",
+    "次の1件は公開__subsf3入口から実BLと復帰直後ADDのinstruction fetch。callee内部の実行証明ではない。"
+  ],
+  "literal_fields": [
+    {
+      "address": 134873196,
+      "sha256": "bef7a913e4007ebdcac3c20bc545a8f4e659bf7196963596fa4f66b42d0bd10f",
+      "size": 4,
+      "value": 4369
+    },
+    {
+      "address": 134873200,
+      "sha256": "18adcb7a162ebb0c39a161c248db06e1ec93ca12f39bb5ea28e6e1816d61b4c8",
+      "size": 4,
+      "value": 134872789
+    }
+  ],
+  "profiles": [
+    {
+      "arguments": [
+        72,
+        4369
+      ],
+      "call": {
+        "address": 134873080,
+        "target": 134220344
+      },
+      "caller_condition": "実argument blockへの直接entry。入口のcaller-saved/NZCVは未定義。自然entryや全初期化処理の証明ではない。",
+      "claims": {
+        "accepted_measurement_replays": 0,
+        "accepted_test_reruns": 0,
+        "actual_gpu_flush_or_irq_executed": false,
+        "actual_runtime_execution_observed": false,
+        "all_alternative_readers_excluded": false,
+        "conditional_finite_reader_only": true,
+        "donor_eligible": false,
+        "donor_leased": false,
+        "donor_safe_bytes": 0,
+        "floating_point_callee_body_executed": false,
+        "formal_classification_accepted": false,
+        "formal_rom_changed": false,
+        "formal_save_changed": false,
+        "indirect_reference_completeness_claimed": false,
+        "native_processes": 0,
+        "natural_entry_reachability_proven": false
+      },
+      "consumer_condition": "固定JP symbolの実API本体を解釈。GPUは最初のu16 buffer storeで打切り、vblankは実帰還まで。IRQ/GPU flushは非実行。",
+      "field_index": 0,
+      "instructions": [
+        {
+          "address": 134873076,
+          "sha256": "0f6a2a68d2421e7f0e75a88cd12dd6132da7dcee655090fc5c425f81111f1b64",
+          "size": 2
+        },
+        {
+          "address": 134873078,
+          "sha256": "ef666e3d289af8ddae6ff73ade335bb206bced1682e8d7c917ab97ebf9e480f3",
+          "size": 2
+        },
+        {
+          "address": 134873080,
+          "sha256": "05a0af5d23258294e441f280da2af334ee2cf2051b7750ea28ddf8f568bc5e9c",
+          "size": 4
+        },
+        {
+          "address": 134220344,
+          "sha256": "0179fa50db01a670ea0d378b606928ed6b7a1f590c3fe52fcfe05a1936a84414",
+          "size": 2
+        },
+        {
+          "address": 134220346,
+          "sha256": "40d88127d4d31a3891f41598eeed41174e5bc89b1eb9bbd66a8cbfc09956a3fd",
+          "size": 2
+        },
+        {
+          "address": 134220348,
+          "sha256": "5a76dbaebb3881519a07ef72d6e3f5ef626cc54eb913322e716ec4f94cc3cbe3",
+          "size": 2
+        },
+        {
+          "address": 134220350,
+          "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+          "size": 2
+        },
+        {
+          "address": 134220352,
+          "sha256": "c62eb9f702c5de92c10120f5ead1fe0fd891b329264aa92ae2799a363da5275b",
+          "size": 2
+        },
+        {
+          "address": 134220354,
+          "sha256": "4a64cd0c65050354d395bfa997a032c03d19f739be4ddf0b328c5b8271ce96b9",
+          "size": 2
+        },
+        {
+          "address": 134220356,
+          "sha256": "cb643c4c5cd66ca72365c68f76dae044258a8ce07020792af05df94d455930e5",
+          "size": 2
+        },
+        {
+          "address": 134220358,
+          "sha256": "0d915a3817397d574d32fdf36d15d0172f9273a2e9f7b59be1fedfc2fd1c77eb",
+          "size": 2
+        },
+        {
+          "address": 134220360,
+          "sha256": "57589bce2c19b8f1fe68accf4e52f3c05102ab7383dbc58ba5191f3484224cdb",
+          "size": 2
+        },
+        {
+          "address": 134220362,
+          "sha256": "3be90d393f91241448d7dceadad32d91c1c94f307805937b46ed01ea669c17c3",
+          "size": 2
+        }
+      ],
+      "literal": {
+        "address": 134873196,
+        "sha256": "bef7a913e4007ebdcac3c20bc545a8f4e659bf7196963596fa4f66b42d0bd10f",
+        "size": 4,
+        "value": 4369
+      },
+      "load": {
+        "entry": 134873076,
+        "load": 134873076,
+        "opcode_identity": {
+          "sha256": "0f6a2a68d2421e7f0e75a88cd12dd6132da7dcee655090fc5c425f81111f1b64",
+          "size": 2
+        },
+        "pool": 134873196,
+        "register": 1
+      },
+      "reads": [
+        {
+          "address": 134873076,
+          "sha256": "0f6a2a68d2421e7f0e75a88cd12dd6132da7dcee655090fc5c425f81111f1b64",
+          "size": 2
+        },
+        {
+          "address": 134873196,
+          "sha256": "bef7a913e4007ebdcac3c20bc545a8f4e659bf7196963596fa4f66b42d0bd10f",
+          "size": 4
+        },
+        {
+          "address": 134873078,
+          "sha256": "ef666e3d289af8ddae6ff73ade335bb206bced1682e8d7c917ab97ebf9e480f3",
+          "size": 2
+        },
+        {
+          "address": 134873080,
+          "sha256": "037e75125021be40f5556e5c16dfac744af0e537b45c93449ee7eda498ecf9c5",
+          "size": 2
+        },
+        {
+          "address": 134873082,
+          "sha256": "5cc54cd0c5b9b47b99572c56d92021a3f6a47159e396bf8c33b5e24601345cfd",
+          "size": 2
+        },
+        {
+          "address": 134220344,
+          "sha256": "0179fa50db01a670ea0d378b606928ed6b7a1f590c3fe52fcfe05a1936a84414",
+          "size": 2
+        },
+        {
+          "address": 134220346,
+          "sha256": "40d88127d4d31a3891f41598eeed41174e5bc89b1eb9bbd66a8cbfc09956a3fd",
+          "size": 2
+        },
+        {
+          "address": 134220348,
+          "sha256": "5a76dbaebb3881519a07ef72d6e3f5ef626cc54eb913322e716ec4f94cc3cbe3",
+          "size": 2
+        },
+        {
+          "address": 134220350,
+          "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+          "size": 2
+        },
+        {
+          "address": 134220352,
+          "sha256": "c62eb9f702c5de92c10120f5ead1fe0fd891b329264aa92ae2799a363da5275b",
+          "size": 2
+        },
+        {
+          "address": 134220354,
+          "sha256": "4a64cd0c65050354d395bfa997a032c03d19f739be4ddf0b328c5b8271ce96b9",
+          "size": 2
+        },
+        {
+          "address": 134220356,
+          "sha256": "cb643c4c5cd66ca72365c68f76dae044258a8ce07020792af05df94d455930e5",
+          "size": 2
+        },
+        {
+          "address": 134220358,
+          "sha256": "0d915a3817397d574d32fdf36d15d0172f9273a2e9f7b59be1fedfc2fd1c77eb",
+          "size": 2
+        },
+        {
+          "address": 134220404,
+          "sha256": "88185d128d9922e0e6bcd32b07b6c7f20f27968eab447a1d8d1cdf250f79f7d3",
+          "size": 4
+        },
+        {
+          "address": 134220360,
+          "sha256": "57589bce2c19b8f1fe68accf4e52f3c05102ab7383dbc58ba5191f3484224cdb",
+          "size": 2
+        },
+        {
+          "address": 134220362,
+          "sha256": "3be90d393f91241448d7dceadad32d91c1c94f307805937b46ed01ea669c17c3",
+          "size": 2
+        }
+      ],
+      "status": "PASS_CONDITIONAL_ACTUAL_LITERAL_READER",
+      "stop": "first_actual_u16_buffer_store",
+      "store": {
+        "address": 50331720,
+        "size": 2,
+        "value": 4369
+      },
+      "store_pc": 134220362
+    },
+    {
+      "arguments": [
+        134872789,
+        null
+      ],
+      "call": {
+        "address": 134873124,
+        "target": 134219508
+      },
+      "caller_condition": "実argument blockへの直接entry。入口のcaller-saved/NZCVは未定義。自然entryや全初期化処理の証明ではない。",
+      "claims": {
+        "accepted_measurement_replays": 0,
+        "accepted_test_reruns": 0,
+        "actual_gpu_flush_or_irq_executed": false,
+        "actual_runtime_execution_observed": false,
+        "all_alternative_readers_excluded": false,
+        "conditional_finite_reader_only": true,
+        "donor_eligible": false,
+        "donor_leased": false,
+        "donor_safe_bytes": 0,
+        "floating_point_callee_body_executed": false,
+        "formal_classification_accepted": false,
+        "formal_rom_changed": false,
+        "formal_save_changed": false,
+        "indirect_reference_completeness_claimed": false,
+        "native_processes": 0,
+        "natural_entry_reachability_proven": false
+      },
+      "consumer_condition": "固定JP symbolの実API本体を解釈。GPUは最初のu16 buffer storeで打切り、vblankは実帰還まで。IRQ/GPU flushは非実行。",
+      "field_index": 1,
+      "instructions": [
+        {
+          "address": 134873122,
+          "sha256": "2c5109c22680819748a895a201189ccb4261f5ff1c7604da4cb698439f6e6a98",
+          "size": 2
+        },
+        {
+          "address": 134873124,
+          "sha256": "d12445daf9bf3ca0a99ee47eda953fc6fbfc823e27a162986c99d5427d574334",
+          "size": 4
+        },
+        {
+          "address": 134219508,
+          "sha256": "d8f074ca183cc2031988d0f4a643d8e6a0ef5d873b0bf87b103e37adf01e8bc5",
+          "size": 2
+        },
+        {
+          "address": 134219510,
+          "sha256": "00127eb41b9ed1b8bffaa65e6598983251a1d3b5edaf5723b2446675657b5e43",
+          "size": 2
+        },
+        {
+          "address": 134219512,
+          "sha256": "c7dfbb7d02759eacb64dbc916c1bb6f21eabaff1c1032ea5c9176abf7fd28df8",
+          "size": 2
+        }
+      ],
+      "literal": {
+        "address": 134873200,
+        "sha256": "18adcb7a162ebb0c39a161c248db06e1ec93ca12f39bb5ea28e6e1816d61b4c8",
+        "size": 4,
+        "value": 134872789
+      },
+      "load": {
+        "entry": 134873122,
+        "load": 134873122,
+        "opcode_identity": {
+          "sha256": "2c5109c22680819748a895a201189ccb4261f5ff1c7604da4cb698439f6e6a98",
+          "size": 2
+        },
+        "pool": 134873200,
+        "register": 0
+      },
+      "reads": [
+        {
+          "address": 134873122,
+          "sha256": "2c5109c22680819748a895a201189ccb4261f5ff1c7604da4cb698439f6e6a98",
+          "size": 2
+        },
+        {
+          "address": 134873200,
+          "sha256": "18adcb7a162ebb0c39a161c248db06e1ec93ca12f39bb5ea28e6e1816d61b4c8",
+          "size": 4
+        },
+        {
+          "address": 134873124,
+          "sha256": "037e75125021be40f5556e5c16dfac744af0e537b45c93449ee7eda498ecf9c5",
+          "size": 2
+        },
+        {
+          "address": 134873126,
+          "sha256": "0d5f2f06c9f2de090ead9adcc2304e3b02a5263e3149fa097f391ed41423e7d7",
+          "size": 2
+        },
+        {
+          "address": 134219508,
+          "sha256": "d8f074ca183cc2031988d0f4a643d8e6a0ef5d873b0bf87b103e37adf01e8bc5",
+          "size": 2
+        },
+        {
+          "address": 134219516,
+          "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8",
+          "size": 4
+        },
+        {
+          "address": 134219510,
+          "sha256": "00127eb41b9ed1b8bffaa65e6598983251a1d3b5edaf5723b2446675657b5e43",
+          "size": 2
+        },
+        {
+          "address": 134219512,
+          "sha256": "c7dfbb7d02759eacb64dbc916c1bb6f21eabaff1c1032ea5c9176abf7fd28df8",
+          "size": 2
+        }
+      ],
+      "status": "PASS_CONDITIONAL_ACTUAL_LITERAL_READER",
+      "stop": "actual_callback_setter_return",
+      "store": {
+        "address": 50344252,
+        "size": 4,
+        "value": 134872789
+      },
+      "store_pc": 134219510
+    },
+    {
+      "call": {
+        "address": 136091368,
+        "target": 136090808
+      },
+      "claims": {
+        "accepted_measurement_replays": 0,
+        "accepted_test_reruns": 0,
+        "actual_gpu_flush_or_irq_executed": false,
+        "actual_runtime_execution_observed": false,
+        "all_alternative_readers_excluded": false,
+        "conditional_finite_reader_only": true,
+        "donor_eligible": false,
+        "donor_leased": false,
+        "donor_safe_bytes": 0,
+        "floating_point_callee_body_executed": false,
+        "formal_classification_accepted": false,
+        "formal_rom_changed": false,
+        "formal_save_changed": false,
+        "indirect_reference_completeness_claimed": false,
+        "native_processes": 0,
+        "natural_entry_reachability_proven": false
+      },
+      "conditions_ja": "公開__subsf3の直接entry。最初のunpack callは同期AAPCS正常帰還条件。callee body/出力は実行せず、復帰後はADD SP,#52直後で停止してRAMも出力も読まない。自然呼出/浮動小数点演算結果を主張しない。",
+      "entry": 136091356,
+      "input_bits": [
+        0,
+        0
+      ],
+      "instructions": [
+        {
+          "address": 136091356,
+          "sha256": "45032905ccc19f93939ffc8a27669cc54ac144bd58ce513681f9320712ed9b2c",
+          "size": 2
+        },
+        {
+          "address": 136091358,
+          "sha256": "ef9e35c9349e5a94e2ea8e6fef5b497282411b958582869ec44b51d50a72dfa6",
+          "size": 2
+        },
+        {
+          "address": 136091360,
+          "sha256": "eaf57136df4f93cc45bda84044675eaae3cbd2a88a7bfc43d38bf4754cf9cb62",
+          "size": 2
+        },
+        {
+          "address": 136091362,
+          "sha256": "585be986d13af93e5375243867ffa815d1afd0b3f602f35cc6e7958ebba16d75",
+          "size": 2
+        },
+        {
+          "address": 136091364,
+          "sha256": "33f59916ce208cabcb9d901a90220606db925ce022801a79885a461750db7ae8",
+          "size": 2
+        },
+        {
+          "address": 136091366,
+          "sha256": "2e57cded62a5a32cb4601ff68cf39773f0e5e4313dc3513401a787ff11384678",
+          "size": 2
+        },
+        {
+          "address": 136091368,
+          "sha256": "08a2c4308fb59a8ccdabae0daa9281a20531b1bd83f7620b5f54f6f11817c7d2",
+          "size": 4
+        },
+        {
+          "address": 136091372,
+          "sha256": "e285fdca633ac14346e948c813e71bdc7a57c9d677e77a40543f87311e57db2c",
+          "size": 2
+        }
+      ],
+      "opaque_call": {
+        "arguments": [
+          50364144,
+          50364096
+        ],
+        "return_pc": 136091372,
+        "sp": 50364096,
+        "target": 136090808
+      },
+      "reads": [
+        {
+          "address": 136091356,
+          "sha256": "45032905ccc19f93939ffc8a27669cc54ac144bd58ce513681f9320712ed9b2c",
+          "size": 2
+        },
+        {
+          "address": 136091358,
+          "sha256": "ef9e35c9349e5a94e2ea8e6fef5b497282411b958582869ec44b51d50a72dfa6",
+          "size": 2
+        },
+        {
+          "address": 136091360,
+          "sha256": "eaf57136df4f93cc45bda84044675eaae3cbd2a88a7bfc43d38bf4754cf9cb62",
+          "size": 2
+        },
+        {
+          "address": 136091362,
+          "sha256": "585be986d13af93e5375243867ffa815d1afd0b3f602f35cc6e7958ebba16d75",
+          "size": 2
+        },
+        {
+          "address": 136091364,
+          "sha256": "33f59916ce208cabcb9d901a90220606db925ce022801a79885a461750db7ae8",
+          "size": 2
+        },
+        {
+          "address": 136091366,
+          "sha256": "2e57cded62a5a32cb4601ff68cf39773f0e5e4313dc3513401a787ff11384678",
+          "size": 2
+        },
+        {
+          "address": 136091368,
+          "sha256": "a39c28b283be82be09a64ed16eca831cf6343a77ad6cf8308f3bc7bf0b58e5d9",
+          "size": 2
+        },
+        {
+          "address": 136091370,
+          "sha256": "d372caa17e6ea8cdd52525e56d9bdab292fc3b3766ec266cc1aa5a6c48baf60d",
+          "size": 2
+        },
+        {
+          "address": 136091372,
+          "sha256": "e285fdca633ac14346e948c813e71bdc7a57c9d677e77a40543f87311e57db2c",
+          "size": 2
+        }
+      ],
+      "status": "PASS_CONDITIONAL_ACTUAL_THUMB_READER",
+      "stop": 136091374
+    }
+  ],
+  "public_sources": {
+    "include/main.h": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "31b22a3faa75409125257396913689a6a37c98ac",
+      "repository": "pret/pokefirered",
+      "sha256": "35f92d00306f7359e825828bb94c1860c43699cbfe108f752f35c0449a06fdd8",
+      "size": 2363
+    },
+    "src/gpu_regs.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "2f52c5be334f90ce41eb52f8d4828e50e6da8e6d",
+      "repository": "pret/pokefirered",
+      "sha256": "c7ab99f608d5d4fbc08e2e6734f2f95c4f514299b7fa51caba5bb6dc2a43962c",
+      "size": 3199
+    },
+    "src/main.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "542b0f5d16dd93107523d11163bfcb70a42b707a",
+      "repository": "pret/pokefirered",
+      "sha256": "0bfa6c662b1cbd49bd31020b6c2509208004611e6701ad64badce22eca371139",
+      "size": 11699
+    }
+  },
+  "public_symbol_rows": {
+    "SetGpuReg": {
+      "address": 134220344,
+      "line": 922,
+      "row_sha256": "cebf63acc8189fa90edf6af7728dafc7a48923a47b84d4e8a1a0a17a1a67b97a"
+    },
+    "SetMainCallback2": {
+      "address": 134219076,
+      "line": 894,
+      "row_sha256": "6a2b0af2a919f5781166e6b42fc245ddb3ba03213aefd50d680bfd93bc0dc722"
+    },
+    "SetVBlankCallback": {
+      "address": 134219508,
+      "line": 902,
+      "row_sha256": "8cb671d60968a24edbe1ad93ba35a3526355ddc9cf1e9b61a1cba3d36f3ed170"
+    },
+    "__subsf3": {
+      "address": 136091356,
+      "line": 24978,
+      "row_sha256": "8eae1dfa38f55b613e9db42b0c75a1c33019454270306563e7243e3e897b4a0a"
+    },
+    "gMain": {
+      "address": 50344240,
+      "line": 705,
+      "row_sha256": "47dd78ca3aef478332a334c18f530704571d2e1e0bee7f958790f9e23d29eb0e"
+    },
+    "sGpuRegBuffer": {
+      "address": 50331648,
+      "line": 584,
+      "row_sha256": "13b358ba59a90b6354aeb946ed3d96162315dc0e48fffe963675e0ad67f0a539"
+    }
+  },
+  "public_symbol_source": {
+    "commit": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+    "git_blob": "53316c0d61da2c6cc22acf3d79f68c61c64c65be",
+    "path": "diagnostics/pokefirered_jp.sym.audit.tsv",
+    "repository": "ComplexRobot/frlg-sym",
+    "sha256": "fc1e4b579b21a592b8e09fa3c36f242833837190401128cd6866c945eff2f44e",
+    "size": 4147002
+  },
+  "remaining_ja": "両起点の正式受領は成功Actionsと保存原本を照合後。窓外跨りread/owner内origin/間接参照・退役/移管/保存統合は未証明。",
+  "schema_version": 1,
+  "status": "TWO_ORIGINS_CONDITIONAL_TYPED_READERS_MEASURED"
+}
