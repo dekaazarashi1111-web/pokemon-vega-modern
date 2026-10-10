@@ -40,7 +40,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev
           python3 -m pip install --disable-pip-version-check Pillow==11.3.0
-      - name: New bubble source, ARM ABI, 27 tests and finite reader only
+      - name: New bubble source, ARM ABI, 32 tests and finite reader only
         id: measurement
         run: python3 -B scripts/pr16_weather_bubble_actions.py run
       - name: Closed successful text publication guard

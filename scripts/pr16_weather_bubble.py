@@ -78,7 +78,7 @@ def pause(machine, pc):
 class Machine(thumb.Machine):
     def __init__(self, raw, weather, tile_start, created):
         super().__init__(raw, CODE, (STACK, (VRAM, VRAM + 0x8000)),
-                         {pc: pause for pc in (FOG, ALLOC, REGISTER, CPU)})
+                         {pc: pause for pc in (FOG, LOAD, ALLOC, REGISTER, CPU)})
         self.weather = weather
         self.ram_reads = []
         self.seed(weather + CREATED_OFFSET, 1, int(created))
@@ -122,6 +122,7 @@ def compose(raw, *, tile_start=7, created=False, invalidated=(), contract=None):
     m = Machine(raw, weather, tile_start, created)
     target = STOP if created else loader_return(raw)
     pc, events, asset_reads = ENTRY, [], []
+    loader_state = None
     while pc != target:
         need(len(m.trace) < 128 and len(events) < 5, '128命令/4callee有限予算')
         try:
@@ -135,6 +136,15 @@ def compose(raw, *, tile_start=7, created=False, invalidated=(), contract=None):
                 need(not events and ENTRY <= site < ENTRY + 0x10, '先頭の実Fog caller')
                 events.append(dict(kind='conditional_fog_return', site=site, target=FOG))
                 pc = opaque_return(m, preserve_weather=True)
+            elif boundary == LOAD:
+                need(loader_state is None and not created and site + 4 == target and
+                     m.r[0] == SHEET and [e['kind'] for e in events] == ['conditional_fog_return'],
+                     '実root BLでsheetを渡してreaderへ入る瞬間だけを記録')
+                need(type(m.r[13]) is int and STACK[0] <= m.r[13] < STACK[1] and m.r[13] % 4 == 0,
+                     '実root stack frameの範囲/alignment')
+                loader_state = (m.r[13], m.r[4:12].copy())
+                del m.hooks[LOAD]
+                pc = LOAD  # 外部ABIで代用せず、ここから実readerの全命令を解釈する。
             elif boundary == ALLOC:
                 need([e['kind'] for e in events] == ['conditional_fog_return'] and m.r[0] == 2,
                      '実size64からAllocSpriteTiles(2)')
@@ -166,10 +176,15 @@ def compose(raw, *, tile_start=7, created=False, invalidated=(), contract=None):
         actual = bytes(m.mem[VRAM + tile_start * 32 + i] for i in range(64))
         need(actual == chunk(raw, ASSET, 64), '全64byteの入力→出力一致')
         need(ASSET <= HIT and HIT + 4 <= ASSET + 64, '4byte全体包含')
-    need(m.r[13] == (STACK[1] if created else STACK[1] - 8), 'root/reader帰還時のstack')
+    need(m.r[13] == (STACK[1] if created else loader_state[0]),
+         'root全帰還または実reader entry/return間の正確なstack保存')
+    if not created:
+        need(m.r[4:12] == loader_state[1], '実readerのcallee-saved r4..r11保存')
     return dict(status='PASS_CONDITIONAL_BUBBLE_READER' if copied else 'PASS_BUBBLE_NO_READ_CONTROL',
         created=created, tile_start=tile_start, root=ENTRY, stop=target, code_steps=len(m.trace),
         calls=m.calls, events=events, code_reads=m.trace,
+        reader_stack_frame=dict(entry_sp=loader_state[0], return_sp=m.r[13],
+            root_frame_bytes=STACK[1] - loader_state[0]) if loader_state else None,
         protected_reads=sorted(m.reads.values(), key=lambda row: (row['address'], row['size'])),
         asset_reads=asset_reads, consumed_bytes=64 if copied else 0,
         output_identity=identity(actual) if copied else None, contract=copy.deepcopy(CONTRACT),

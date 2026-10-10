@@ -196,4 +196,57 @@ class Reader(unittest.TestCase):
         self.assertNotIn(b'base64', encoded_report)
         self.assertFalse(report['claims']['actual_bios_cpu_executed'])
 
+class StackRecovery(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.raw, cls.root, cls.loader = fixture()
+
+    def variant(self, mask):
+        raw=bytearray(self.raw)
+        end=next(i for i in self.root if i.kind=='pop')
+        for at,kind in ((v.ENTRY,'push'),(end.address,'pop')):
+            raw[at-v.BASE:at-v.BASE+2]=encoded(Ins(at,kind,(mask,True)))
+        return bytes(raw)
+
+    def test_actual_caller_frames_4_8_12_16(self):
+        for mask in (0,16,48,112):
+            with self.subTest(mask=mask):
+                for start in (7,-1):
+                    report=v.compose(self.variant(mask),tile_start=start)
+                    frame=report['reader_stack_frame']
+                    self.assertEqual(frame['root_frame_bytes'],4*(mask.bit_count()+1))
+                    self.assertEqual(frame['entry_sp'],frame['return_sp'])
+
+    def test_created_control_caller_frames_restore_root_stack(self):
+        for mask in (0,16,48,112):
+            report=v.compose(self.variant(mask),created=True)
+            self.assertIsNone(report['reader_stack_frame'])
+            self.assertEqual(report['consumed_bytes'],0)
+
+    def test_unbalanced_reader_stack_is_rejected(self):
+        raw=bytearray(self.raw)
+        pop=next(i for i in self.loader if i.kind=='pop')
+        raw[pop.address-v.BASE:pop.address-v.BASE+2]=encoded(Ins(pop.address,'pop',(16,True)))
+        with self.assertRaises(ValueError): v.compose(bytes(raw))
+
+    def history(self):
+        import pr16_weather_bubble_actions as a
+        return a, {'total_count':2,'workflow_runs':[dict(a.FAILED_RUN),
+            dict(id=123,head_sha='1'*40,head_branch=a.BRANCH,run_attempt=1,conclusion=None)]}
+
+    def test_exact_failed_history_and_current_once(self):
+        a,history=self.history()
+        a.validate_history(history,123,'1'*40)
+
+    def test_success_extra_attempt_or_wrong_head_history_rejected(self):
+        a,original=self.history()
+        changes=[(0,'conclusion','success'),(0,'head_sha','0'*40),(0,'run_attempt',True),
+                 (1,'run_attempt',2),(1,'head_branch','main'),(1,'head_sha','2'*40)]
+        for row,key,value in changes:
+            history=copy.deepcopy(original);history['workflow_runs'][row][key]=value
+            with self.assertRaises(ValueError): a.validate_history(history,123,'1'*40)
+        for history in ({'total_count':1,'workflow_runs':original['workflow_runs'][1:]},
+                        {'total_count':3,'workflow_runs':original['workflow_runs']*2}):
+            with self.assertRaises(ValueError): a.validate_history(history,123,'1'*40)
+
 if __name__ == '__main__': unittest.main()

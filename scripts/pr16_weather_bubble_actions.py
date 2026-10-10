@@ -26,7 +26,24 @@ FILES = {'measurement.json', 'parent.json', 'tests.json', 'provenance.json'}
 CODE = {SELF, WF, 'scripts/pr16_weather_bubble.py', 'scripts/pr16_weather_bubble_sources.py',
         'tests/test_pr16_weather_bubble.py', sources.LOCK}
 REPO, BRANCH = 'dekaazarashi1111-web/pokemon-vega-modern', 'codex/modernization-followup-20260908'
-TEST_COUNT = 27
+TEST_COUNT = 32
+FAILED_RUN = dict(id=38039867181, head_sha='6cf13ee2f032862ff97ae55ca62a85d05fbcc800',
+                  head_branch=BRANCH, run_attempt=1, status='completed', conclusion='failure')
+
+
+def validate_history(history, run_id, head):
+    """既知の未受入stack検証失敗1回と今回だけ。成功scopeの再走を許さない。"""
+    need(type(history) is dict and type(history.get('total_count')) is int and
+         history['total_count'] == 2 and type(history.get('workflow_runs')) is list and
+         len(history['workflow_runs']) == 2, '既知失敗と修正後の初回だけ')
+    rows = {row['id']: row for row in history['workflow_runs']}
+    need(len(rows) == 2 and set(rows) == {FAILED_RUN['id'], run_id}, 'runの閉集合')
+    need(all(type(rows[FAILED_RUN['id']].get(k)) is type(v) and
+             rows[FAILED_RUN['id']][k] == v for k,v in FAILED_RUN.items()), '既知失敗の全identity/status')
+    row=rows[run_id]
+    need(type(run_id) is int and row.get('head_sha') == head and row.get('head_branch') == BRANCH and
+         type(row.get('run_attempt')) is int and row['run_attempt'] == 1 and
+         row.get('conclusion') is None, '今回HEAD/branchの未完初回attemptのみ')
 
 
 def git(*args):
@@ -48,8 +65,7 @@ def guard():
     need(pr['state'] == 'open' and pr['draft'] is True and pr['merged'] is False and
          pr['head']['sha'] == os.environ['GITHUB_SHA'], '現HEAD draft/open')
     history = api('actions/workflows/'+Path(WF).name+'/runs?per_page=100')
-    need(history['total_count'] == len(history['workflow_runs']) == 1 and
-         history['workflow_runs'][0]['id'] == int(os.environ['GITHUB_RUN_ID']), 'branch横断の新scope初回のみ')
+    validate_history(history, int(os.environ['GITHUB_RUN_ID']), os.environ['GITHUB_SHA'])
     pr16_resume.validate(ROOT)
     publication.contract(ROOT, WF, PUBLIC, ARTIFACT, SELF)
     need(not OUT.exists() and not PUBLIC.exists(), '新scope出力のみ')
@@ -121,7 +137,7 @@ def run():
             super().__init__(*args, **kwargs); self.names=[]
     result=unittest.TextTestRunner(stream=io.StringIO(), resultclass=Recording).run(
         unittest.defaultTestLoader.loadTestsFromModule(tests))
-    need(result.wasSuccessful() and result.testsRun == TEST_COUNT and not result.skipped, '新27試験のみ')
+    need(result.wasSuccessful() and result.testsRun == TEST_COUNT and not result.skipped, '新32試験のみ。既知の未受入scopeを修正して検証')
     import pr16_dex_hof_capacity_actions as reconstruct
     import pr16_dex_hof_donor as donor
     reconstruct.OUT=OUT/'current'; reconstruct.OUT.mkdir()
@@ -132,6 +148,9 @@ def run():
     parent=parent_chain.parent(*[(ROOT/path).read_bytes() for path in parent_chain.PARENT_INPUTS])
     for hit in parent['hits']:
         donor.signed(raw, hit)
+    print(json.dumps(dict(status='PASS_BUBBLE_PRE_READER_BINDING', tests_run=result.testsRun,
+        current_candidate=identity(raw), current_owners=115, saved_hits=874,
+        independent_asset=sources.ASSET_ID, failed_previous_run=FAILED_RUN), sort_keys=True))
     measurement=model.measure(raw, parent, source)
     target=next(row for row in parent['hits'] if row['address']==model.HIT)
     ancestry=dict(status='PASS_UNCHANGED_783_PARENT_BINDING', saved_inputs=62, classified=783, unclassified=91,
@@ -150,6 +169,8 @@ def run():
         files={name:identity(value) for name,value in files.items()}, abi=abi,header=header,
         public_sources=sources.bind_sources(source),dependency_bindings=dependencies,
         reconstructions=1,new_reader_cases=3,native_processes=0,accepted_scope_test_reruns=0,
+        failed_previous_run=FAILED_RUN, task_total_reconstructions_including_failed_run=2,
+        correction_ja='固定8byteの自己仮定を除去。実BL時のstackとcallee-savedを記録し帰還時に完全照合。', 
         full_rom_scan_runs=0,formal_rom_changed=False,formal_save_changed=False)
     files['provenance.json']=encode(provenance)
     validate(files)
