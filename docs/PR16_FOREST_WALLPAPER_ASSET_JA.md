@@ -80,6 +80,20 @@ Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4by
 
 [新3reader](../content/modernization/pr16_typed_origins_evidence/reader-profiles.json) / [checkpoint](../content/modernization/pr16_typed_origins_checkpoint.json) / [直前Actions受領](../content/modernization/pr16_first_origin_evidence/actions-completion.json)。新20試験、候補復元1、native0、旧試験/測定再走0、読取専用byte/mtimeとtask graph。旧GNU形の有限窓末尾BL幅は型証明に用いず、実解釈器の同一範囲内完全命令幅で検証しました。正式785/89・安全容量0は完了受領まで据置。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 二originの新3条件付き実readerを保存済み。成功Actions/ZIP全memberとsourceを別受領し、正式785/89親へ二件だけの型分類差分を適用する。literalの上位1byte+callback下位3byteと、__subsf3のBL下位3byte+直後ADD上位ではなく先頭1byteを照合する。自然entry/IRQ/GPU flush/浮動callee/全alias不在は主張しない。安全容量0。今回reader/20試験と旧全scopeの無変更再走を禁止する。
+
+## 二originの正式型受領
+
+測定run 38092235316 / job 114330857734 の全9step成功、artifact 11683989837 の全ZIP/9memberと同梱16sourceを公開commitへ照合しました。測定原本のpending表記は改作せず、別receiptで完了を受領しています。
+
+0x080A006Fはaligned literal末尾1byte+Thumb callback先頭3byte、0x081C96E9はBL末尾3byte+ADD先頭1byteです。実LDR/GPU u16 buffer store/callback書込帰還と、同期callee帰還条件のinstruction fetchだけを正式分類へ移しました。自然entry/IRQ/GPU flush/浮動callee本体/全alias不在は受入していません。
+
+[正式receipt](../content/modernization/pr16_typed_origins_receipt.json) / [二件差分](../content/modernization/pr16_typed_origins_receipt_evidence/reference-chain.json) / [未知87行](../content/modernization/pr16_typed_origins_receipt_evidence/unknown-frontier.json) / [選定窓の残8origin](../content/modernization/pr16_typed_origins_receipt_evidence/window-progress.json)。785/89から787/87へ二件だけ追加し、他872行と全旧namespaceを保全。新63受領試験、決定性、保存後読取専用復元、task graphを検証。旧測定/reader/旧試験/native/ROM再構成は0。安全容量0、保存controller/heap/保存接続は未完です。
+
+受領Actions自身の完了は、runが実際に完了した後の外部読戻しで別記録します。生成中のrunを成功と先取りしません。
+
+## 次の未完作業
+
+正式787/87・安全容量0の保存親から、同じ6528byte選定窓の残8origin（次は0x084723AF）を進める。保存symbol-frontierと固定公開source/asset identityから現候補の有限consumer範囲を束縛する。近傍labelだけで型分類しない。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Save/fresh Continueは未完。新二originの3reader/20試験/63受領試験、全874scan、Forest/Bubble/窓最適化をsource不変なら再走しない。

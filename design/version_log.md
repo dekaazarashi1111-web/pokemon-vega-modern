@@ -11563,3 +11563,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴/Actions resultを参照。
 - Network: 同repo PR/ref/成功Actions/固定private再構成入力、固定公開source GET、同branch非force push。
 - Sources: https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 (src/main.c、include/main.h、src/gpu_regs.c) と固定ComplexRobot/frlg-sym c04a3154。検索/確認: SetVBlankCallback・SetGpuReg・Main.vblankCallback。callback offset0xCとu16 GPU buffer値を実codeに照合。
+
+## 2026-10-10T23:10:25.498840+00:00
+- Timestamp: 2026-10-10T23:10:25.498840+00:00
+- Task: USER-20261011-TYPED-ORIGINS-RECEIPT / 二origin正式型受領
+- Version: typed-origins-receipt-v1
+- Status: DONE（限定型受領。保存統合は未完）
+- Summary: 成功測定の全9member/同梱16file/sourceを受領。二件だけ正式785/89→787/87。選定窓は再最適化せず残8件へ射影。
+- Files changed: 二origin受領器/試験/専用Actions、受領証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: 新63 tests PASS、全874行の二件差分/他872行/全旧namespace、決定性、保存後read-only byte/mtime、task graph PASS。全体guardと新規private違反は別記録。
+- Boundary: 正式787分類/87未知・安全容量0。自然entry/IRQ/GPU flush/浮動callee本体/全alias不在は非主張。旧原本/他872行/全旧namespace/R0/ROM/Save101/baseline不変。ROM再構成/native/旧reader/旧試験再走0。
+- Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴とActions resultに保存。
+- Network: 同repo PR/ref/Actions/artifactのGETと同branch非force pushのみ。外部source/ROMの再採取なし。
