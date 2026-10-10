@@ -11512,3 +11512,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 正式785分類/89未知・安全容量0。R0/旧受入/正式ROM/Save101/baseline不変。新native/ROM再構成/旧試験再走0、merge/releaseなし。
 - Commit: この記録を含む同branch単親通常commit。実SHAはActions resultとGit履歴で照合。自己SHAだけのcommitは作らない。
 - Network: 指定repoのPR/ref/Actions GETと公開text artifact受領、同branchへの非force pushのみ。外部入力の再採取なし。
+
+## 2026-10-10T21:41:40.326169+00:00
+- Timestamp: 2026-10-10T21:41:40.326169+00:00
+- Task: USER-20261011-DONOR-WINDOW-RECEIPT / 保存controller候補窓の有限比較
+- Version: donor-window-v1
+- Status: DONE（窓選定/証拠のみ。保存統合は未完）
+- Summary: 窓選定Actionsの全job/8step、独立ZIP hash/全5member/公開commitを受領。測定checkpointは改作せず固定状態の完了flagを同期。
+- Files changed: 窓比較器/新規試験/専用workflow、窓証拠/受領、固定Forest引継ぎMD/状態JSON、両ログ。
+- Verify: run/job/artifact/全公開byte照合 PASS。測定/49試験再走0。最終index/private guardは既存違反と今回差分を分離。
+- Boundary: 正式785分類/89未知・安全容量0。R0/旧受入/正式ROM/Save101/baseline不変。新native/ROM再構成/旧試験再走0、merge/releaseなし。
+- Commit: この記録を含む同branch単親通常commit。実SHAはActions resultとGit履歴で照合。自己SHAだけのcommitは作らない。
+- Network: 指定repoのPR/ref/Actions GETと公開text artifact受領、同branchへの非force pushのみ。外部入力の再採取なし。
