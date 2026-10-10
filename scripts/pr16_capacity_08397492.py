@@ -108,3 +108,20 @@ def bind_symbols(raw):
     blob = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
     need(blob == SYMBOL_SOURCE['git_blob'], '固定公開Git blob')
     return symbol_neighbors(raw)
+
+
+def binding_state(state):
+    """現行nested schemaだけを更新。R0/他lane/未完gateを保全してcopyを返す。"""
+    need(type(state) is dict, '状態JSON object')
+    owner = state.get('owner_execution_plan')
+    need(type(owner) is dict and 'save_capacity' not in owner, 'flatな旧/推測schemaを拒否')
+    need(type(owner.get('wiki')) is dict and owner['wiki'].get('review_ready') is True, 'R0提示受領が先')
+    lanes = owner.get('technical_lanes')
+    need(type(lanes) is dict and type(lanes.get('save_capacity')) is dict, 'technical_lanes.save_capacity必須')
+    need(lanes['save_capacity'].get('status') == 'READY_TO_RESUME_FROM_PRESERVED_FRONTIER', '記録済みscope再走を拒否')
+    need(type(state.get('next_action')) is dict and state['next_action'].get('id') == 'SAVE_CAPACITY_FROM_PRESERVED_08397492_FRONTIER', '現在nextだけを進める')
+    result = copy.deepcopy(state)
+    lane = result['owner_execution_plan']['technical_lanes']['save_capacity']
+    lane['status'] = 'FRONTIER_BOUND_ASSET_READER_PROOF_PENDING'
+    lane['checkpoint_path'] = 'content/modernization/pr16_capacity_08397492_checkpoint.json'
+    return result

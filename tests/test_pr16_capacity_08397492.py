@@ -90,4 +90,29 @@ class SymbolTests(unittest.TestCase):
         self.assertEqual(m.encode(m.symbol_neighbors(self.fixture())),m.encode(m.symbol_neighbors(self.fixture())))
 
 
+class StateTests(unittest.TestCase):
+    def fixture(self):
+        return {'owner_execution_plan':{'wiki':{'review_ready':True,'tree_sha256':'fixed'},
+            'technical_lanes':{'save_capacity':{'status':'READY_TO_RESUME_FROM_PRESERVED_FRONTIER','remaining':['safe-controller']},
+                               'ci_evidence':{'status':'NOT_STARTED'}}},
+            'next_action':{'id':'SAVE_CAPACITY_FROM_PRESERVED_08397492_FRONTIER'}}
+    def test_nested_lane_and_other_state_unchanged(self):
+        state=self.fixture();before=m.encode(state);result=m.binding_state(state)
+        self.assertEqual(m.encode(state),before)
+        self.assertEqual(result['owner_execution_plan']['technical_lanes']['save_capacity']['remaining'],['safe-controller'])
+        self.assertEqual(result['owner_execution_plan']['wiki'],state['owner_execution_plan']['wiki'])
+        self.assertEqual(result['owner_execution_plan']['technical_lanes']['ci_evidence'],{'status':'NOT_STARTED'})
+    def test_flat_schema_is_not_created(self):
+        state=self.fixture();state['owner_execution_plan']['save_capacity']={}
+        with self.assertRaises(ValueError):m.binding_state(state)
+    def test_missing_nested_lane_rejected(self):
+        state=self.fixture();del state['owner_execution_plan']['technical_lanes']
+        with self.assertRaises(ValueError):m.binding_state(state)
+    def test_r0_not_ready_rejected(self):
+        state=self.fixture();state['owner_execution_plan']['wiki']['review_ready']=False
+        with self.assertRaises(ValueError):m.binding_state(state)
+    def test_duplicate_binding_rejected(self):
+        with self.assertRaises(ValueError):m.binding_state(m.binding_state(self.fixture()))
+
+
 if __name__=='__main__':unittest.main()

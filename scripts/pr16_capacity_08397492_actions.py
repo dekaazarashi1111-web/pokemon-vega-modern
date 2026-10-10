@@ -49,6 +49,7 @@ def run():
     tracked = set(a.git('ls-files').decode().splitlines())
     m.need(not relevant & tracked, '追加AGENTSを読む必要がある')
     state = parent.read((ROOT/STATE).read_bytes())
+    advanced_state = m.binding_state(state)
     m.need(state['next_action']['id'] == 'SAVE_CAPACITY_FROM_PRESERVED_08397492_FRONTIER'
            and state['owner_execution_plan']['wiki']['review_ready'] is True, '固定状態の現在scope')
     receipt = parent.read((ROOT/'content/modernization/pr16_wiki_r0_receipt.json').read_bytes())
@@ -61,7 +62,7 @@ def run():
     log = io.StringIO()
     suite = unittest.defaultTestLoader.discover(str(ROOT/'tests'),pattern='test_pr16_capacity_08397492.py')
     result = unittest.TextTestRunner(stream=log,verbosity=2).run(suite)
-    m.need(result.wasSuccessful() and result.testsRun == 23 and not result.skipped, '新focused23試験')
+    m.need(result.wasSuccessful() and result.testsRun == 28 and not result.skipped, '新focused28試験')
     (WORK/'focused-tests.txt').write_text(log.getvalue())
     subprocess.run(['python3','-B','scripts/validate_task_graph.py'],cwd=ROOT,check=True,capture_output=True)
     # 保存原本からの復元だけ。既測定consumer/ROM/受入試験は呼ばない。
@@ -86,15 +87,16 @@ def run():
         'candidate':copy.deepcopy(m.CANDIDATE),'inherited_classified':784,'inherited_unclassified':90,
         'parent_audit_identity':audit_id,'saved_frontier_identity':m.identity(fraw),
         'target':selected,'independent_public_symbol_source':copy.deepcopy(source),
-        'symbol_candidates':hints,'claims':copy.deepcopy(m.CLAIMS),'focused_tests':23,
+        'symbol_candidates':hints,'claims':copy.deepcopy(m.CLAIMS),'focused_tests':28,
         'task_graph_passed':True,'parent_byte_mtime_unchanged':True,'observed_head_checks':observed,
         'code_bindings':{n:m.identity((ROOT/n).read_bytes()) for n in sorted(CODE)},
         'technical_parent_bindings':receipt['technical_resume_bindings'],
+        'prior_attempts':[{'run_id':38064450846,'source_head':'98e771a6b9084a4fdebec6b698fb0d510a71e3a8','conclusion':'failure','completion_commit_created':False,'reason_ja':'nested technical_lanes.save_capacityへの記録adapter欠落を修正。検査条件を緩和せず5境界試験を追加。'}],
         'next_ja':'symbol近傍は候補だけ。独立公開sourceの宣言と全assetを固定し、実ROM table/literal/readerの全4byte消費へ結ぶ。型の証明なしに784/90/安全容量0を変更しない。旧Bubble/Blastoiseの再測定、全クリ走破は行わない。'}
     write(REPORT,report)
     guide = ('# 保存容量08397492：保存親と公開symbolの束縛\n\n'
         '**親の復元・新scopeの検証器は完了。asset/reader型の正式受入は未完です。**\n\n'
-        f'入力HEAD `{head}`。新Actions `{report["actions_run_id"]}`。23境界試験とtask graph PASS。\n\n'
+        f'入力HEAD `{head}`。新Actions `{report["actions_run_id"]}`。28境界試験とtask graph PASS。\n\n'
         'R0は提示・受領済み。Wiki候補6e88a021と容量解析候補0641af70を混同しません。'
         '容量の正式親は784分類/90未知/安全容量0のまま、保存済み原本とsourceをhash照合して復元しました。'
         '既受入のROM・reader・試験を再実行していません。\n\n'
@@ -106,8 +108,7 @@ def run():
         '全クリ走破は対象外でPASSではありません。所有者調整承認0、正式ROM/Save101・baseline不変、merge/releaseなし。'
         '全体private guardと一般CIの既存失敗は、この限定検証のPASSへ読み替えません。\n')
     write(GUIDE,guide.encode())
-    state['owner_execution_plan']['save_capacity']['status']='FRONTIER_BOUND_ASSET_READER_PROOF_PENDING'
-    state['owner_execution_plan']['save_capacity']['checkpoint_path']=REPORT
+    state = advanced_state
     state['next_action']={'id':'SAVE_CAPACITY_08397492_ASSET_AND_READER_PROOF',
         'goal_ja':report['next_ja'],'read_paths':[GUIDE,REPORT,'scripts/pr16_capacity_08397492.py',
             'scripts/pr16_weather_bubble_receipt.py','docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md'],
@@ -115,15 +116,15 @@ def run():
     state['observed_head_checks']=observed
     state['recording']['status']='R0_READY_CAPACITY_FRONTIER_BOUND_READER_PENDING'
     state['recording']['last_execution']={'task':TASK,'source_head':head,'actions_run_id':report['actions_run_id'],
-        'actions_completion_confirmed':False,'focused_tests':23,'task_graph_passed':True,
+        'actions_completion_confirmed':False,'focused_tests':28,'task_graph_passed':True,
         'accepted_tests_rerun':0,'rom_reconstructions':0,'new_native_processes':0}
     write(STATE,state)
     stamp=dt.datetime.now(dt.timezone.utc).isoformat()
     block=(f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / 保存容量の固定親と08397492\n'
         '- Version: capacity-08397492-binding-v1\n- Status: DONE\n'
         '- Summary: 784/90の保存親を全identity照合で復元し08397492の唯一hitを束縛。固定公開symbol全4MiBのSHA/size/blobと有限近傍を別証拠化。型/容量は未受入のまま。\n'
-        '- Files changed: 新しい有限検証器・23境界試験・実行器/workflow、新checkpoint/guide、現行状態JSON、両ログ。旧原本・Wiki・ROM・Save101・baseline不変。\n'
-        '- Verify: 新23 tests/task graph/親byte-mtime/非force競合検査。旧試験・reader・ROM再構成・native各0。全体private guardは既存違反と新規違反を区別。\n'
+        '- Files changed: 新しい有限検証器・28境界試験・実行器/workflow、新checkpoint/guide、現行状態JSON、両ログ。旧原本・Wiki・ROM・Save101・baseline不変。\n'
+        '- Verify: 新28 tests/task graph/親byte-mtime/非force競合検査。旧試験・reader・ROM再構成・native各0。全体private guardは既存違反と新規違反を区別。\n'
         '- Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴とActions resultから照合。\n'
         '- Network: 固定公開symbol、GitHub指定repoのPR/ref/Actions GETと同branch非force push。\n')
     for name in LOGS:
