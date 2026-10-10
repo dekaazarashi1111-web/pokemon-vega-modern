@@ -11488,3 +11488,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 正式784/90・donor安全容量0、native/旧試験/旧reader再走0、新scope候補再構成1。BIOS本体/allocator実装/task/DMA/Free/全story/製品完成を主張しない。
 - Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴とActions resultで照合。
 - Network: 固定公開pret/pokefireredとJP symbol、既存許可済candidate復元、指定repo PR/ref/Actions GET、同branch非force push。
+
+## 2026-10-10T20:58:56.244269+00:00
+- Timestamp: 2026-10-10T20:58:56.244269+00:00
+- Task: USER-20261011-FOREST-RECEIPT / Forest条件付き最小型1件の正式受領
+- Version: forest-receipt-v1
+- Status: DONE（限定型のみ。保存安全性は未完）
+- Summary: 成功run/全step/全ZIPと原本hashを受領。784/90から785/89へ対象4byteの1件だけを追加。他873行/旧namespace/測定原本を保持。
+- Files changed: 受領器・新規試験・専用workflow、正式receipt/singleton/frontier/原本受領記録、固定Forest引継ぎMD、固定状態JSON、両ログ。
+- Verify: 新39 unit tests、13統合境界検査、決定的生成、保存後read-only復元、task graph PASS。最終index新規private違反0を検査し、既存全体guard失敗は別記録。
+- Boundary: donor安全容量0、新native/ROM再構成/旧reader/旧試験再走0。Wiki R0/正式ROM/Save101/baseline不変、merge/releaseなし。
+- Commit: この記録を含む同branch単親通常commit。実SHAとActions完了はcontent/modernization/pr16_forest_wallpaper_receipt_evidence/actions-completion.jsonおよびGit履歴で照合。
+- Network: 指定repo PR/ref/成功測定ActionsのGETとartifact受領、同branch非force pushのみ。ROM/原本の再採取なし。

@@ -17,13 +17,14 @@
   "branch": "codex/modernization-followup-20260908",
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "next_action": {
-    "done_ja": "成功Actions/原本/有限条件・厳格な受領検査に合格した場合だけ正式最小型差分を追加。安全容量/本番保存は未完を保つ。",
-    "goal_ja": "Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4byte消費を読取専用で受領し、条件付き最小型1件だけを正式差分へ追加する。測定済みreader/ROM再構成/33試験と旧assetは再走しない。784/90・安全容量0は正式receiptまで維持。task/DMA/Freeと保存controllerは別gate。",
-    "id": "SAVE_CAPACITY_FOREST_READER_ACCEPTANCE_RECEIPT",
+    "done_ja": "必要な容量窓の根拠を限定し、実owner退役/移管が証明できるまでsafe_bytesを増やさない。",
+    "goal_ja": "正式785分類/89未知・安全容量0の保存親から、保存controller6528byteに必要な候補窓のowner/間接参照を有限範囲で絞る。未知frontier先頭0x0805D12Fを採用する場合もsource/asset identityから開始し、未知削減だけを容量確保としない。Forest測定・受領39試験・旧asset/旧readerを再走しない。必要範囲の退役/移管、heap寿命、保存接続と局所受入は未完。",
+    "id": "SAVE_CAPACITY_POST_FOREST_DONOR_WINDOW",
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
-      "content/modernization/pr16_forest_wallpaper_reader_checkpoint.json",
-      "scripts/pr16_forest_wallpaper_reader.py",
+      "content/modernization/pr16_forest_wallpaper_receipt.json",
+      "content/modernization/pr16_forest_wallpaper_receipt_evidence/unknown-frontier.json",
+      "scripts/pr16_forest_wallpaper_receipt.py",
       "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md"
     ]
   },
@@ -33,68 +34,59 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "948e3773b4909eb7a5baaf77388686a61549e255",
-        "id": 38081583294,
+        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+        "id": 38085809437,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
-        "conclusion": "failure",
+        "conclusion": null,
         "event": "pull_request",
-        "head_sha": "948e3773b4909eb7a5baaf77388686a61549e255",
-        "id": 38081583292,
+        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+        "id": 38085809450,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "948e3773b4909eb7a5baaf77388686a61549e255",
-        "id": 38081577469,
-        "name": "Stage79 mGBA (all)",
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "948e3773b4909eb7a5baaf77388686a61549e255",
-        "id": 38081577392,
-        "name": "pr16-forest-wallpaper-reader",
-        "path": ".github/workflows/pr16-forest-wallpaper-reader.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "948e3773b4909eb7a5baaf77388686a61549e255",
-        "id": 38081577252,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": "failure",
         "event": "push",
-        "head_sha": "948e3773b4909eb7a5baaf77388686a61549e255",
-        "id": 38081577253,
+        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+        "id": 38085803758,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+        "id": 38085803484,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+        "id": 38085803503,
+        "name": "pr16-forest-wallpaper-receipt",
+        "path": ".github/workflows/pr16-forest-wallpaper-receipt.yml",
+        "status": "in_progress"
       },
       {
         "conclusion": "success",
         "event": "push",
-        "head_sha": "948e3773b4909eb7a5baaf77388686a61549e255",
-        "id": 38081577432,
+        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+        "id": 38085803470,
         "name": "Stage79 runtime boundary audit",
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
       }
     ],
-    "source_head": "948e3773b4909eb7a5baaf77388686a61549e255"
+    "source_head": "5addcc0573698317bf6ef0f4d0c4979e22b2d625"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -191,9 +183,11 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_forest_wallpaper_reader_checkpoint.json",
+        "checkpoint_path": "content/modernization/pr16_forest_wallpaper_receipt.json",
+        "classified": 785,
         "completion_evidence_path": null,
-        "next_ja": "Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4byte消費を読取専用で受領し、条件付き最小型1件だけを正式差分へ追加する。測定済みreader/ROM再構成/33試験と旧assetは再走しない。784/90・安全容量0は正式receiptまで維持。task/DMA/Freeと保存controllerは別gate。",
+        "donor_safe_bytes": 0,
+        "next_ja": "正式785分類/89未知・安全容量0の保存親から、保存controller6528byteに必要な候補窓のowner/間接参照を有限範囲で絞る。未知frontier先頭0x0805D12Fを採用する場合もsource/asset identityから開始し、未知削減だけを容量確保としない。Forest測定・受領39試験・旧asset/旧readerを再走しない。必要範囲の退役/移管、heap寿命、保存接続と局所受入は未完。",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
           "保存controller実配置",
@@ -202,7 +196,8 @@
           "heap-ready/同期非再入/退避前Free/全出口Free",
           "必要な局所Save/fresh Continue受入"
         ],
-        "status": "FOREST_READER_MEASURED_FORMAL_RECEIPT_PENDING"
+        "status": "FOREST_MINIMUM_TYPE_ACCEPTED_SAVE_INTEGRATION_PENDING",
+        "unclassified": 89
       }
     },
     "wiki": {
@@ -261,8 +256,10 @@
     "last_execution": {
       "accepted_tests_rerun": 0,
       "actions_completion_confirmed": false,
-      "actions_run_id": 38081577392,
-      "focused_tests": 33,
+      "actions_completion_path": "content/modernization/pr16_forest_wallpaper_receipt_evidence/actions-completion.json",
+      "actions_run_id": 38085803503,
+      "classified": 785,
+      "donor_safe_bytes": 0,
       "full_index_private_guard": {
         "executed": true,
         "exit_code": 1,
@@ -270,25 +267,84 @@
         "passed": false,
         "raw_private_log_published": false
       },
-      "model_tests_executed_this_run": 0,
-      "model_tests_inherited_without_execution": true,
-      "new_native_processes": 0,
-      "new_profiles": 4,
-      "previous_asset_actions": {
+      "measurement_actions": {
+        "artifact_id": 11680930584,
         "conclusion": "success",
-        "id": 38066038086,
-        "observed_at": "2026-10-10T19:54:04.238841+00:00",
-        "required_steps": [
-          "Forest whole asset, current table and LZ token verification",
-          "Run actions/upload-artifact@v4"
+        "job_id": 114299405185,
+        "run_attempt": 1,
+        "run_id": 38081577392,
+        "source_head": "948e3773b4909eb7a5baaf77388686a61549e255",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "New scoped ARM layout and reconstruction tools",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Forest actual reader allocation success and failure",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 13,
+            "status": "completed"
+          }
         ],
-        "source_head": "30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88",
-        "status": "completed"
+        "zip_identity": {
+          "sha256": "0791aff7e2f52357b9aa0224d8cbe67942879248b1434230b519d815ff121b9b",
+          "size": 60837
+        }
       },
-      "rom_reconstructions": 1,
-      "source_head": "948e3773b4909eb7a5baaf77388686a61549e255",
-      "task": "USER-20261011-FOREST-ACTUAL-READER",
-      "task_graph_passed": true
+      "new_integration_checks": 13,
+      "new_native_processes": 0,
+      "new_unit_tests": 39,
+      "rom_reconstructions": 0,
+      "saved_read_only_check_passed": true,
+      "source_head": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+      "task": "USER-20261011-FOREST-RECEIPT",
+      "task_graph_passed": true,
+      "unclassified": 89
     },
     "legacy_generated_md_modified": false,
     "legacy_log_append": {
@@ -323,7 +379,7 @@
     "project_task_graph_check_executed": true,
     "rom_changes": 0,
     "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-    "status": "R0_READY_FOREST_READER_MEASURED_RECEIPT_PENDING",
+    "status": "R0_READY_FOREST_TYPE_ACCEPTED_SAVE_INTEGRATION_PENDING",
     "task": "USER-20261010-WIKI-FIRST-POLICY",
     "wiki_generated": true
   },

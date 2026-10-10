@@ -1,6 +1,6 @@
 # Forest壁紙：全asset・実table・LZ tokenの照合
 
-**全assetの限定検証は完了。実entryからheap/BIOSへ至る条件付きreaderと正式型受入は未完です。**
+**全asset・有限条件付きreader・対象4byteの正式型受領を完了。保存容量と保存controller統合は未完です。**
 
 入力HEAD `30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88`、Actions `38066038086`、新34境界試験とtask graph PASS。先行bindingのActionsはcompleted/successを照合済み。
 
@@ -26,6 +26,20 @@ Forest全asset976byte・実table先頭tuple・LZ消費973byte/展開1696byteは�
 
 [新reader checkpoint](../content/modernization/pr16_forest_wallpaper_reader_checkpoint.json)。正式型受領は未完のため784分類/90未知/安全容量0を維持。旧asset/PNG/受入済みreaderの再走0、新scope候補再構成1、native0。
 
-## 次の未完作業
+## reader測定時の停止点（履歴）
 
 Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4byte消費を読取専用で受領し、条件付き最小型1件だけを正式差分へ追加する。測定済みreader/ROM再構成/33試験と旧assetは再走しない。784/90・安全容量0は正式receiptまで維持。task/DMA/Freeと保存controllerは別gate。
+
+## Forest条件付き最小型の正式受領
+
+測定Actions `38081577392` / job `114299405185` の全9step成功、artifact `11680930584` の全ZIP/3member hash、公開commit `bc10f50ea7e3ce338f63d6ab5823644cd4fbe931` のcheckpoint完全byteを照合。オフセット0/1×確保成功/NULL、実call/table/stack帰還、973byte消費/1696byte展開と対象4byteを原本から受領しました。測定原本のpending表記は履歴として改作していません。
+
+[正式receipt](../content/modernization/pr16_forest_wallpaper_receipt.json) / [singleton差分](../content/modernization/pr16_forest_wallpaper_receipt_evidence/reference-chain.json) / [未知89行](../content/modernization/pr16_forest_wallpaper_receipt_evidence/unknown-frontier.json)。正式784/90から785/89へ対象1件だけを追加し、他873行と全旧受入namespaceを保持。安全容量0、ROM/Save101/Wiki R0/baseline不変です。
+
+新39受領試験と13統合境界検査、決定的差分、保存後read-only復元、task graphを検証。新native/ROM再構成/旧reader/旧試験再走は0。BIOS本体・allocator・task/DMA/Free・自然PC描画・全story・releaseの受入ではありません。
+
+受領処理自身のActions完了は[外部読戻しreceipt](../content/modernization/pr16_forest_wallpaper_receipt_evidence/actions-completion.json)で別記録します。生成中のrunを成功と先取りしません。
+
+## 次の未完作業
+
+正式785分類/89未知・安全容量0の保存親から、保存controller6528byteに必要な候補窓のowner/間接参照を有限範囲で絞る。未知frontier先頭0x0805D12Fを採用する場合もsource/asset identityから開始し、未知削減だけを容量確保としない。Forest測定・受領39試験・旧asset/旧readerを再走しない。必要範囲の退役/移管、heap寿命、保存接続と局所受入は未完。

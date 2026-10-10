@@ -1,0 +1,103 @@
+{
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "changes": [
+    {
+      "accepted": true,
+      "address": 137983122,
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_FOREST_WALLPAPER_LZ10_MINIMUM_ASSET",
+      "evidence": [
+        {
+          "forest_wallpaper_reference_chain_witness": 0
+        }
+      ],
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "owner_candidates": [],
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "sha256": "596fb6d08572fb73f6c9f5d1dc6d33fa1dd8b3226e1b235ca564bee8d87d5a43",
+      "size": 4,
+      "target": 167707392
+    }
+  ],
+  "claims": {
+    "accepted_reader_replays": 0,
+    "accepted_test_reruns": 0,
+    "actual_bios_cpu_executed": false,
+    "actual_runtime_execution_observed": false,
+    "actual_screen_rendered": false,
+    "allocator_implementation_proven": false,
+    "conditional_finite_reader_only": true,
+    "dma_completion_proven": false,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "formal_classification_accepted": true,
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "heap_free_proven": false,
+    "indirect_reference_completeness_claimed": false,
+    "native_processes": 0,
+    "universal_heap_or_irq_lifetime_proven": false
+  },
+  "classified": 785,
+  "donor_safe_bytes": 0,
+  "inherited_candidates": 874,
+  "inherited_classified": 784,
+  "inherited_unclassified": 90,
+  "measurement_identity": {
+    "sha256": "56e6c8d19bc04a1a6b9d3d199344f48426cc55d2b8da444aa5f9b02970b7012e",
+    "size": 603374
+  },
+  "measurement_path": "content/modernization/pr16_forest_wallpaper_reader_checkpoint.json",
+  "measurement_replays": 0,
+  "namespace": "forest_wallpaper_reference_chain",
+  "native_processes": 0,
+  "newly_classified": 1,
+  "old_scope_test_reruns": 0,
+  "parent_audit_identity": {
+    "sha256": "be38da073c9a124de94506091d0ce9fe090c407e4ec85d05037f61d36109d850",
+    "size": 5405033
+  },
+  "rom_reconstructions": 0,
+  "schema_version": 1,
+  "status": "ACCEPTED_ONE_CONDITIONAL_FOREST_MINIMUM_ASSET_TYPE",
+  "unclassified": 89,
+  "witnesses": [
+    {
+      "address": 137983122,
+      "conditions": {
+        "allocation_ja": "Alloc(1696)は非alias heapを同一epochで返すかNULL。allocator実装/IRQ/同期保存controllerのheap寿命は未証明。",
+        "bios_ja": "実LZ77UnCompWramのSWI11/BXを照合し、呼出引数からLZ10仕様モデルを駆動する。BIOS本体CPUではない。",
+        "caller_ja": "boxId=0、direction=0、wallpaperOffset=0/1の直接entry。固定公開headerをARMでコンパイルしたlayoutの非alias storage割当を条件とする。自然進行/実PC画面の証明ではない。",
+        "opaque_ja": "tilemap LZ/DrawWallpaper/CpuSetは指定bufferだけへ作用して正常帰還する条件。caller-savedレジスタとNZCVは未定義化。描画成功stubやnative観測とは扱わない。",
+        "selection_ja": "GetBoxWallpaper(0)がForest ID=0を返し、同期AAPCSでstorage対象fieldとcaller stackを保全する条件。選択helper本体/保存データの実行ではない。",
+        "stop_ja": "成功は実MallocAndDecompress帰還とCreateTask直前、失敗は実DecompressAndLoadBgGfxUsingHeap帰還まで。task/DMA/Freeは別gate。"
+      },
+      "id": 0,
+      "kind": "rooted_forest_wallpaper_lz10_minimum_asset",
+      "profile_identities": [
+        {
+          "sha256": "fbc3fef998424e4a4f07f4d8080e284080c7eb06dfb411eab4535cbd892b308f",
+          "size": 190980
+        },
+        {
+          "sha256": "2382f67ffcd080021aa66ae2c63b32df6fcda6054181160aec92702d5f4a8044",
+          "size": 24907
+        },
+        {
+          "sha256": "85c43a78272c74425ab4731954f5095ccf288ed66134529d779f53a0504a2006",
+          "size": 190980
+        },
+        {
+          "sha256": "d253008207d7852d2220f2b867b24457598ecaa2274caf669428961bc5265009",
+          "size": 24907
+        }
+      ],
+      "run_id": 38081577392,
+      "size": 4,
+      "source_head": "948e3773b4909eb7a5baaf77388686a61549e255"
+    }
+  ]
+}
