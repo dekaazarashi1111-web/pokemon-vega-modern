@@ -1,62 +1,35 @@
 # ChatGPTの固定再開入口
 
-このファイル名を次のセッションでもそのまま指定する。ここには変化する進捗やHEADを複製しない。
+このファイル名を次のセッションでもそのまま指定する。対象はPR #16 / branch `codex/modernization-followup-20260908`。GitHubでbranchの現在HEADとPR状態を取得し、そのrefで読む。default branchや過去SHAへ切り替えない。
 
-対象はPR #16 / branch `codex/modernization-followup-20260908`。
-GitHubでbranchの**現在HEAD**とPR状態を取得し、そのrefで読む。default branchや過去の会話に残るSHAへ勝手に切り替えない。
+## 現行の再開順 — OWNER-20261010-WIKI-FIRST
 
 1. [AGENTS.md](AGENTS.md) — 安全・検証・Gitの規約。
-2. [現在の再開メモ](docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md) — 停止点・次の1手・最小読書順。
-3. [対応する状態JSON](content/modernization/pr16_native_supply_resume_20260913.json) — 証拠・候補・残件・更新契約。
+2. [現在の実行方針と完了条件](docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md) — Wiki先行、全クリ除外、所有者検討中の基盤継続、承認管理。
+3. [現在の状態JSON](content/modernization/pr16_wiki_first_execution_plan.json) — `owner_execution_plan`、`next_action`、保留した技術停止点、記録状況。このJSONが現在の作業選択の唯一の正本。
 
-上のMD/JSONのファイル名にある日付は固定識別子であり、日付ごとの複製は作らない。
-正式受入はcheckpoint、完了条件はP08台帳が引き続き正本。詳細を読むタイミングは再開メモに従う。
-PR本文・古いresume・一般タスクキューを、このPRの最新停止点の代わりにしない。
+従来どおり「最新HEADのCHATGPT_RESUME.mdから指示された正本を読み、未完作業を実装・検証・記録して同branchへ反映」という指示だけで続ける。毎回方針の再確認を求めず、この固定MD/JSONを更新する。別日付のresumeや二重の進捗JSONを作らない。
 
-## 所有者予約済みの次タスク
+**最初に調整基準Wiki R0を整える。** 解析08397492の1件や90未知の全解消、全保存修復、無関係なCI障害の解消を、Wiki第一版の前提にしない。直前の解析成果は保存済みとして保全し、未完を完了へ読み替えない。
 
-候補Wiki生成のGitHub Issue [#18](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/issues/18) は、`docs/wiki/p08-candidate-46487d98/**` を調整前・現状保存スナップショットとして生成済みである。同Wikiを上書きせず履歴として保持する。
+**R0提示後は、所有者がWikiを見て調整案を考える間にも、作業セッションで保存・容量修復、CI整合性、メガ/キョダイマックス/専用Zの技術確認を進める。** 所有者の案待ちだけで停止しない。未承認の対象種、性能、技、特性、解禁条件、追加フォーム仕様は勝手に決めない。承認済みの小単位は依存条件を満たせば全案の完成を待たず実装できる。
 
-clean-ROM独立2生成・配布用BPS固定・`release_ready=true` 判定・PR merge・active baseline切替へ入る前に、GitHub Issue [#19](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/issues/19) `USER-20260921-LEARNSET-BASELINE-RESET` を実行する。
+**ストーリー全クリ走破は完成条件から除外。** ゲーム内ストーリーを削除する意味ではない。Save101以前の原本を保持し、全story PASSと主張しない。保存破損の修復、必要な短い戦闘・習得・進化・Save/fresh Continue等の確認は残す。長期育成soakは別判断の延期項目。シオウや全国図鑑のためだけの長距離プレイへ自動的に戻らない。
 
-Issue #19は、技習得を次のフラットな基準へ復元するタスクである。
+## 旧資料を現在の次作業と取り違えない
 
-- 原作ポケモン: 所有者提供ZIP `Pokemon_Vega_Stage61_技習得品質改善版_v1.3.0_20260905(5).zip`（82,683,251 bytes / SHA-256 `80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb`）の公式Species/Form採用データを基準にする。
-- ベガオリジナル: 原作Vegaの機械可読表または固定ROMからの直接抽出を優先し、`https://w.atwiki.jp/altair1/pages/19.html` のポケモン図鑑Vと各個別ページにあるレベル技・技マシン・教え技・タマゴ技を正本化または独立照合に使う。
-- より再現性が高い別方法を使ってよいが、原作Vega由来をhash/versionで固定し、atwikiとの差分と理由を全件記録する。
-- `CURRENT_PRESERVED`、`V3_ADDED`、V4/Modern後付け、旧ベガ由来499行等は、基準に存在しない限り現役習得から分離する。Move ID・技効果・過去の由来履歴は削除しない。
-- `official_baseline`、`vega_original_baseline`、将来の `owner_approved_overlay` を分離し、本タスク完了時の追加overlayは原則空とする。
-- 変更前Wiki・候補・受入証拠を保持し、新候補ROMと新候補Wikiを別identityで生成する。変更影響台帳に基づき影響範囲だけ再受入する。
+- [保留した技術作業の旧メモ](docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md) と [旧技術状態JSON](content/modernization/pr16_native_supply_resume_20260913.json) は、証拠・受入・解析停止点の参照先として保持する。これらの旧nextは新しい作業選択を上書きしない。
+- [変更前の入口全文](CHATGPT_RESUME_BEFORE_WIKI_FIRST.md) は同一blobの固定履歴。旧Story加速計画・予約時の次作業を再開しない。原本の扱い、Side Change不採用、Vega ROM優先の所有者決定は引き続き維持する。
+- 正式受入は各checkpoint、配布ゲートは [P08台帳](content/modernization/p08_remaining_work.json) を正とする。Wiki第一版だけでIssue18/19やrelease_readyを完了にしない。
+- 旧MDの生成器 `scripts/pr16_resume.py` は旧技術JSON用。新方針を旧作業順へ戻す目的でrender/install-routingしない。旧証拠のhash不一致を安易に再束縛しない。
 
-### 所有者決定: サイドチェンジ
+新しい閲覧版は固定して所有者へ提示するが、開発branchは前進してよい。意味変更が生じたら影響するページと調整案を示す別revision/diffを作り、閲覧中のR0を黙って更新しない。既存Stage61/旧P08/Issue19のWikiを上書きしない。
 
-- 原本の技ID1063 / Side Change / サイドチェンジ相当は、本プロジェクトでは実装・採用しない。battle effect、AI、animation、TM/TR/Tutor、タマゴ・共有タマゴ等を新設しない。
-- 原本159経路・103種は履歴から消さず、非採用理由付きで保持する。active learnsetでは原則として当該経路を除外する。
-- level-up行を単純除外すると表構造・順序・consumerが不必要に複雑になる場合に限り、実装済みの目立つ伝説専用技を一時placeholderとして置いてよい。第一候補は「ときのほうこう」。現行manifestから実key/IDを解決し、仮行を `TEMP_OWNER_PLACEHOLDER_FOR_ALLYSWITCH` 相当で全件台帳化する。
-- 仮技は最終バランスでも所有者承認済み配布でもない。後でWikiを見て、ベガ技または別技へ置換、もしくは削除する。level-up以外へ自動展開せず、後継Wikiで仮置きとして明示する。
-- 詳細な実装・validator条件は `docs/PR16_LEARNSET_BASELINE_RESET_JA.md` を正とする。Side Change自体のnative受入は不要。
+## 毎回の終了と許可境界
 
-### 所有者決定: Vega原本とatwikiの衝突
+新状態JSONへ、今回の実完了・検証・実在するWiki入口と版・所有者の承認・技術レーンの残件・最新Actions・次の具体的作業を残す。`design/run_log.md` / `design/version_log.md` は追記だけ。初回の事務追記未実施分は新JSONの `recording` に明示してあるので、同決定IDの重複を確認して未実施分だけ追記してからWikiへ進む。
 
-- Vegaオリジナルの技習得で固定原作Vega ROMとatwikiが食い違う場合、**固定ROM観測行をactive baselineへ採用する**。atwikiは独立照合・差分履歴として保持するが、単純な不一致だけを理由に採用を停止しない。
-- 現在の3群5行は、リーテイルのLv32「リーフブレード」・Lv46「こうごうせい」、ゴートンの「かみつく」Lv18、ディザソルのTutor「ギガスパーク」「バグノイズ」を固定ROMどおり採用する。
-- `content/modernization/pr16_vega_original_evidence/source_conflicts.json` は採取時点の原本として改作せず、`content/modernization/pr16_vega_original_source_decision.json` を後継adjudication/crosswalkから参照する。
-- 固定ROMの同定、table offset、stride、終端、move crosswalk、抽出器の完全性に疑義がある場合だけfail-closedで停止する。出典差だけでは停止しない。
-- この節は所有者決定の固定履歴であり、未完工程の一覧ではない。台帳適用・非直接egg照合を含む最新受入/次工程は固定再開MD/JSONで確認し、原本182ページや公式1299件を取り直さない。
-
-所有者提供ZIPは `userfile/imports/**` 等のGit管理外・読み取り専用入力として扱い、ZIP本体をcommitしない。入力が未提供またはhash不一致なら、似た名前の別資料や現行ROMを暗黙代用せずfail-closedにする。
-
-Issue #19の完了後、所有者が新Wikiを確認してから、技追加、種族値・特性・夢特性調整、追加メガ、追加専用Zの仕様を別途決める。本タスク中に新しい最終配布を創作しない。上記Side Change用の明示placeholderだけは最終配布ではない仮置きとして例外的に許可する。
-
-<!-- owner-story-acceleration-plan -->
-## 所有者決定: ストーリー走破と自然成長検証を分離
-
-- Save14原本は上書きせず、`story-fast.srm` と `progression.srm` の2作業コピーへ分ける。
-- story-fastはSave14の自己OTを正確に継承したLv100主力で戦闘を短縮し、イベント・warp・trainer勝利・通常Save/fresh Continue・全story接続を確認する。難易度や自然育成の受入にはしない。
-- progressionは通常wild battleを直接開始し、通常入力による撃破からEXP、level-up、技習得、進化、field復帰、通常Save/fresh Continueを検証する。しあわせタマゴとAudino/Chansey/Blissey段階切替によるsoakはitem ABIとbase EXP対照後に行う。
-- 主力、技、持ち物、自己OT、field utility、フラッシュ差替え、相手切替、host-write境界、最初の縦切りは `docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md` と `content/modernization/pr16_story_acceleration_plan.json` を正とする。
-- 次作業は、作業コピー2本の生成、stable key/item ABI再解決、自己OT Lv100服従smoke、Axew第一進化直前からの通常戦闘EXP縦切りである。受入済みSave14以前を再生しない。
-<!-- /owner-story-acceleration-plan -->
+受入済みを変更影響なしに再実行しない。長い作業は小さな区切りで記録し、ユーザーが許可した同branchへ通常commit/non-force pushする。push前後のlive HEADと対象blobを確認し、他者の変更を破棄しない。merge・draft解除・公開release・active baseline切替は別の明示許可なしに行わない。
 
 ## 次回そのまま渡す指示
 
@@ -64,22 +37,7 @@ Issue #19の完了後、所有者が新Wikiを確認してから、技追加、�
 @GitHub dekaazarashi1111-web/pokemon-vega-modern の
 branch codex/modernization-followup-20260908 の最新HEADで
 CHATGPT_RESUME.md を読み、指示された正本と最新Actionsを照合して、
-次の未完作業から続けてください。受入済みは変更影響なしに再実行せず、
-終了時は同じ引継ぎMD/JSON・両ログを更新してください。
+次の未完作業を実装・検証・記録まで進め、同じbranchへ非force反映してください。
+受入済みは変更影響なしに再実行せず、固定の引継ぎMD/JSONと両ログを更新してください。
 merge・release・baseline切替は別途明示指示なしに行わないでください。
 ```
-
-
-## Issue19の実装・検証正本
-
-実装手順は `docs/PR16_LEARNSET_BASELINE_RESET_JA.md`、工程の受入範囲と未完項目は `content/modernization/pr16_learnset_baseline_checkpoint.json`。最新の次工程は固定再開MD/JSONを優先し、予約時点の説明と混同しない。
-
-
-## Vega181種の原本採取・隔離監査checkpoint
-
-`docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md` と `content/modernization/pr16_vega_original_checkpoint.json` を参照。原本9923行/全182ページ/43試験は完了。3群5行は `content/modernization/pr16_vega_original_source_decision.json` により固定ROM優先で所有者決定済み。この記述は採取時点の履歴。以降の台帳適用・採用・consumer工程の完了範囲と次工程は固定再開MD/JSONを参照する。保存原本から再開し、公式隔離やWiki全件採取を繰り返さない。
-
-<!-- story-acceleration-implementation-checkpoint -->
-## Story分離実装の停止点
-
-作業コピー2本と自己OT通常戦smokeは実装済み。進化は全国図鑑未解禁gateで停止。現在の受入範囲・artifact・次工程は固定再開MD/JSONと `docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md` を参照し、上の計画予約説明から再生成しない。
