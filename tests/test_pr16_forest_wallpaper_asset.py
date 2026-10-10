@@ -104,4 +104,14 @@ class LzTests(unittest.TestCase):
         with self.assertRaises(ValueError):m.source_bindings({})
 
 
+class RunnerIntegrationTests(unittest.TestCase):
+    def test_saved_parent_uses_original_chain_serializer(self):
+        # Different legacy serializers exist. Bind the exact API used by the accepted parent receipt.
+        import ast
+        source=Path(m.__file__).with_name('pr16_forest_wallpaper_asset_actions.py').read_text()
+        calls=[ast.unparse(n.func) for n in ast.walk(ast.parse(source)) if isinstance(n,ast.Call)]
+        self.assertEqual(calls.count('parent.previous.canonical'),1)
+        self.assertNotIn('parent.canonical',calls)
+
+
 if __name__=='__main__':unittest.main()

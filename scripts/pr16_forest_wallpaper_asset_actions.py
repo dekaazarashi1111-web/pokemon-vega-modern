@@ -87,7 +87,7 @@ def run():
     m.need(all(m.exact(meta,before[name][1]) for name,meta in inputs.items()),'completed binding/technical originals')
     log=io.StringIO();suite=unittest.defaultTestLoader.discover(str(ROOT/'tests'),pattern='test_pr16_forest_wallpaper_asset.py')
     tests=unittest.TextTestRunner(stream=log,verbosity=2).run(suite)
-    m.need(tests.wasSuccessful() and tests.testsRun==33 and not tests.skipped,'33 new Forest tests only')
+    m.need(tests.wasSuccessful() and tests.testsRun==34 and not tests.skipped,'34 new Forest tests only')
     (PUBLIC/'focused-tests.txt').write_text(log.getvalue())
     subprocess.run(['python3','-B','scripts/validate_task_graph.py'],cwd=ROOT,check=True,capture_output=True)
     sources={name:download('pret/pokefirered',m.COMMIT,name,100000) for name in m.BLOBS}
@@ -102,7 +102,7 @@ def run():
     rows=m.symbol_rows(table_source)
     # Restore evidence and reconstruct the exact candidate only for this NEW asset. No accepted reader/tests.
     audit=parent.restore_parent(ROOT)
-    m.need(m.exact(m.identity(parent.canonical(audit)),previous['parent_audit_identity']),'saved 784/90 full parent')
+    m.need(m.exact(m.identity(parent.previous.canonical(audit)),previous['parent_audit_identity']),'saved 784/90 full parent')
     m.binding.select_target(parent.frontier(audit))
     import pr16_dex_hof_capacity_actions as reconstruction
     import pr16_dex_hof_donor as donor
@@ -113,7 +113,7 @@ def run():
     report=m.measure(raw,sources[m.PNG],rows)
     m.need(before=={name:((ROOT/name).stat().st_mtime_ns,m.identity((ROOT/name).read_bytes())) for name in before},'previous original bytes/mtimes unchanged')
     report.update(schema_version=1,task=TASK,source_head=head,actions_run_id=int(os.environ['GITHUB_RUN_ID']),
-        actions_completion_confirmed=False,completed_previous_binding_actions=completed,focused_tests=33,
+        actions_completion_confirmed=False,completed_previous_binding_actions=completed,focused_tests=34,
         task_graph_passed=True,rom_reconstructions=1,public_png_pixels_crosschecked=True,public_compressor=ccheck,
         public_sources=public_bindings,public_symbol_source=symbol,symbol_rows=rows,
         code_bindings={name:m.identity((ROOT/name).read_bytes()) for name in sorted(CODE)},
@@ -123,11 +123,12 @@ def run():
         if getattr(module,'__file__',None) and str(Path(module.__file__).resolve()).startswith(str(ROOT)+'/scripts/')}
     report['dependency_bindings']={p.relative_to(ROOT).as_posix():m.identity(p.read_bytes()) for p in sorted(dependencies) if p.suffix=='.py'}
     goal='Forest全asset976byte・実table先頭tuple・LZ消費973byte/展開1696byteは保存checkpointから継承し再測定しない。次はLoadWallpaperGfxの実literal/table選択→DecompressAndLoadBgGfxUsingHeap→LZ77境界を有限命令・caller状態・heap成功/失敗で結ぶ。成立するまで正式784/90・安全容量0を保持。全クリ/旧Bubble/Blastoiseの再走は禁止。'
+    report['prior_attempts']=[{'run_id':38065787707,'source_head':'1184a59ed1b801f210ecf2170a84ea7798c56217','conclusion':'failure','rom_reconstructions':0,'completion_commit_created':False,'reason_ja':'保存親のcanonical serializerをreceipt.previous.canonicalへ修正。期待SHAは据置き。依存APIの回帰試験1件を追加。'}]
     report['next_ja']=goal
     write(REPORT,report)
     guide=('# Forest壁紙：全asset・実table・LZ tokenの照合\n\n'
         '**全assetの限定検証は完了。実entryからheap/BIOSへ至る条件付きreaderと正式型受入は未完です。**\n\n'
-        f'入力HEAD `{head}`、Actions `{report["actions_run_id"]}`、新33境界試験とtask graph PASS。先行bindingのActionsはcompleted/successを照合済み。\n\n'
+        f'入力HEAD `{head}`、Actions `{report["actions_run_id"]}`、新34境界試験とtask graph PASS。先行bindingのActionsはcompleted/successを照合済み。\n\n'
         '公開PNGは64×56で56tile相当ですが、固定ビルドルールは`-num_tiles 53`です。最後の空3tileを除いた1696byteから生成し、消費973byte、整列込み976byteを確定しました。Pillow全pixel照合と固定公開C compressorでも同一結果です。\n\n'
         '現候補0641af70…を新scopeのためだけに再構成し、全32MiB SHAと115ownerを照合しました。0x08397188の全976byte、sWallpapers先頭の12byte tuple、保存hit0x08397492の4byteが一致しました。対象はLZ参照2byte・literal1byte・flags1byteで、整列paddingではありません。ROM/PNG/生byte列は公開せずhashとtoken型だけを記録します。\n\n'
         f'[機械可読checkpoint](../{REPORT})に全source/依存/親のidentity、symbol行、tokenごとの範囲と展開位置を保存しました。\n\n'
@@ -142,15 +143,15 @@ def run():
     state['observed_head_checks']=observed
     state['recording']['status']='R0_READY_FOREST_ASSET_BOUND_ACTUAL_READER_PENDING'
     state['recording']['last_execution']={'task':TASK,'source_head':head,'actions_run_id':report['actions_run_id'],
-        'actions_completion_confirmed':False,'completed_previous_binding_actions':completed,'focused_tests':33,
+        'actions_completion_confirmed':False,'completed_previous_binding_actions':completed,'focused_tests':34,
         'task_graph_passed':True,'accepted_tests_rerun':0,'new_native_processes':0,'rom_reconstructions':1}
     write(STATE,state)
     stamp=dt.datetime.now(dt.timezone.utc).isoformat()
     block=(f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / Forest全assetと実table\n'
         '- Version: forest-whole-asset-v1\n- Status: DONE（全asset限定検証。実entry/heap/BIOS型受入は未完）\n'
         '- Summary: 公開PNGと53tile専用ruleから1696byteを独立生成。LZ消費973/整列976をPillowと公開Cで交差検証し、現0641候補全SHA/115ownerと全asset/table/4byte token一致。\n'
-        '- Files changed: 新Forestモデル/33試験/実行器/workflow/MD/JSON、現行状態JSON、両ログ。旧証拠/原本/baselineは不変。\n'
-        '- Verify: 新33 tests/task graph、前binding completed成功、全parent byte/mtime不変、最終index/非force競合/commit読戻し。旧試験/旧reader/ゲームnative各0、新scope ROM復元1。\n'
+        '- Files changed: 新Forestモデル/34試験/実行器/workflow/MD/JSON、現行状態JSON、両ログ。旧証拠/原本/baselineは不変。\n'
+        '- Verify: 新34 tests/task graph、前binding completed成功、全parent byte/mtime不変、最終index/非force競合/commit読戻し。旧試験/旧reader/ゲームnative各0、新scope ROM復元1。\n'
         '- Boundary: 784分類90未知・安全容量0を保持。table近傍やtoken parseを実entry/heap/BIOS実行と混同しない。全体CI/private guardの既存失敗をPASSへ変えない。\n'
         '- Commit: この記録を含む同branch単親commit。実SHAはGit履歴とActions resultから照合。\n'
         '- Network: 固定公開source、既存許可済private候補再構成、指定repo PR/ref/Actions GETと同branch非force push。\n')
