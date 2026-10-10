@@ -98,6 +98,16 @@ Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4by
 
 正式受領run 38094042257 の全job/step成功、公開commit `1903747cac9cbce66fa700b0401b329238da172f`、artifact全memberと同梱sourceを別途照合しました。[完了receipt](../content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json)。63受領試験/旧reader/ROMを再走せず、測定原本も正式receipt原本も改作していません。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 正式787/87・安全容量0の保存親から、同じ6528byte選定窓の残8origin（次は0x084723AF）を進める。保存symbol-frontierと固定公開source/asset identityから現候補の有限consumer範囲を束縛する。近傍labelだけで型分類しない。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Save/fresh Continueは未完。新二originの3reader/20試験/63受領試験、全874scan、Forest/Bubble/窓最適化をsource不変なら再走しない。
+
+## 選定窓の音声asset全体束縛
+
+固定WAVと実audio_rules.mkの非圧縮規則を、独立整数変換と固定C++ wav2agb -bで全byte照合。現候補0641af70の全SHA/配置ownerを照合後、0x08471C78からの全13820byteが一致しました。対象0x084723AFはPCM sample index 1831からの4byteで、header/整列paddingではありません。
+
+[全asset証拠](../content/modernization/pr16_sound_origin_asset_evidence/asset-binding.json) / [checkpoint](../content/modernization/pr16_sound_origin_asset_checkpoint.json)。固定sourceのvoicegroup参照行も記録しましたが、現ROMの実table/実PCM readerは未受入です。unused名を未使用証明にはしません。新32人工境界試験、C++独立対照、全asset/4byte、決定的read-only check、task graph。新scope候補再構成1、native0、旧受入再走0。正式787/87・選定未分類8・安全容量0、全旧原本/R0/ROM/Save101/baselineを維持。
+
+## 次の未完作業
+
+0x084723AFを含む固定音声asset全byteとWAV/C++/独立PCM生成を束縛済み。保存assetを再生成せず、固定voicegroup使用行から現候補の実table/音声channel/有限PCM readerへ結ぶ。unused名を不使用証明にしない。正式787/87・選定未知8件・安全容量0を維持。音声32試験/全asset/旧reader/全874scan/Forest/Bubble/窓最適化の無変更再走は禁止。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。

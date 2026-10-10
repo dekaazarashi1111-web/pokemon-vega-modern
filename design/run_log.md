@@ -14332,3 +14332,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 正式787分類/87未知・安全容量0。自然entry/IRQ/GPU flush/浮動callee本体/全alias不在は非主張。旧原本/他872行/全旧namespace/R0/ROM/Save101/baseline不変。ROM再構成/native/旧reader/旧試験再走0。
 - Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴とActions resultに保存。
 - Network: 同repo PR/ref/Actions/artifactのGETと同branch非force pushのみ。外部source/ROMの再採取なし。
+
+## 2026-10-10T23:36:42.891362+00:00
+- Timestamp: 2026-10-10T23:36:42.891362+00:00
+- Task: USER-20261011-SOUND-ORIGIN-ASSET / 選定窓の音声asset束縛
+- Version: sound-origin-asset-v1
+- Status: DONE（限定asset束縛。実readerと保存統合は未完）
+- Summary: 固定音声全13820byteと対象4byte、WAV/固定C++/独立整数PCMの三者を照合。実consumerは未受入。
+- Files changed: 音声専用照合器/試験/Actions、証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: 新32試験・独立C++全byte・現候補全SHA/owner・限定asset・原本byte/mtime・JSON往復・task graph PASS。新ROM再構成1/native0。
+- Boundary: 正式787分類/87未知、選定窓の未分類8行、安全容量0を保持。assetのunused名は未使用証明でない。自然再生/実mixer/全alias不在/退役/保存統合は非主張。旧受入/R0/ROM/Save101/baseline不変、旧試験再走0。
+- Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴とActions resultへ記録。
+- Network: 同repo PR/ref/Actions/artifactのGETと同branch非force push。公開出典は https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 の固定WAV・audio_rules.mk・wav2agb。検索語 DirectSoundWaveData_unused_sc88pro_unison_slap。音声assetは-b非圧縮規則、名前だけでは未使用と判定しない。

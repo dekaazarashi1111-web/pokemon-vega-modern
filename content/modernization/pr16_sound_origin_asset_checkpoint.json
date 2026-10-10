@@ -1,0 +1,208 @@
+{
+  "accepted_test_reruns": 0,
+  "actions_completion_confirmed": false,
+  "actions_run_id": 38095546359,
+  "actual_consumer_proven": false,
+  "attempt": {
+    "accepted_measurement_replays": 0,
+    "exact_candidate_bound": true,
+    "native_processes": 0,
+    "old_scope_test_reruns": 0,
+    "rom_reconstructions_started": 1
+  },
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "donor_safe_bytes": 0,
+  "evidence_bindings": {
+    "content/modernization/pr16_sound_origin_asset_evidence/asset-binding.json": {
+      "sha256": "71964fbe283cc6bd6e76ea45e5905b7e3cc01b60be524c417fa7db2726acf395",
+      "size": 8543
+    },
+    "content/modernization/pr16_sound_origin_asset_evidence/asset-tests.txt": {
+      "sha256": "2ce39a20ade73042b5cb4e634605a945cd106484970d32a6d2dc882c76952a6e",
+      "size": 3465
+    },
+    "content/modernization/pr16_sound_origin_asset_evidence/prior-actions.json": {
+      "sha256": "343edd0f6845b43207e377d71c94c0b7b171f752da638a1218da9aa757b3b7a3",
+      "size": 479
+    }
+  },
+  "formal_classification_changes": 0,
+  "formal_classified": 787,
+  "formal_unclassified": 87,
+  "full_index_private_guard": {
+    "executed": true,
+    "exit_code": 1,
+    "historical_violations_not_rewritten": true,
+    "passed": false,
+    "raw_private_log_published": false
+  },
+  "native_processes": 0,
+  "new_unit_tests": 32,
+  "next_ja": "0x084723AFを含む固定音声asset全byteとWAV/C++/独立PCM生成を束縛済み。保存assetを再生成せず、固定voicegroup使用行から現候補の実table/音声channel/有限PCM readerへ結ぶ。unused名を不使用証明にしない。正式787/87・選定未知8件・安全容量0を維持。音声32試験/全asset/旧reader/全874scan/Forest/Bubble/窓最適化の無変更再走は禁止。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。",
+  "observed_head_checks": {
+    "all_ci_green_claimed": false,
+    "runs": [
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "45ef40242033f2c0bc00d1f3b189d949fd255b89",
+        "id": 38095551360,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "pull_request",
+        "head_sha": "45ef40242033f2c0bc00d1f3b189d949fd255b89",
+        "id": 38095551453,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "45ef40242033f2c0bc00d1f3b189d949fd255b89",
+        "id": 38095546248,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "45ef40242033f2c0bc00d1f3b189d949fd255b89",
+        "id": 38095546359,
+        "name": "pr16-sound-origin-asset",
+        "path": ".github/workflows/pr16-sound-origin-asset.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "push",
+        "head_sha": "45ef40242033f2c0bc00d1f3b189d949fd255b89",
+        "id": 38095546196,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "45ef40242033f2c0bc00d1f3b189d949fd255b89",
+        "id": 38095545621,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "45ef40242033f2c0bc00d1f3b189d949fd255b89",
+        "id": 38095545944,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      }
+    ],
+    "source_head": "45ef40242033f2c0bc00d1f3b189d949fd255b89"
+  },
+  "preserved_inputs": {
+    "AGENTS.md": {
+      "sha256": "e23282e1b1f6a73bba1641bde90417fb87187dea2dfd8682784419088853c0fc",
+      "size": 17278
+    },
+    "CHATGPT_RESUME.md": {
+      "sha256": "563fec8b1ad11b3a80128515c8a4795fb4eca2cfc6407c22e2726a561cee5652",
+      "size": 5102
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/pr16_donor_origins_evidence/symbol-frontier.json": {
+      "sha256": "3601c1f46ca532efa7d75929fff58736b0a4ceddd648c8be64b6acb718a4108f",
+      "size": 13186
+    },
+    "content/modernization/pr16_donor_window_evidence/windows.json": {
+      "sha256": "100dd710037fd958db20191a4bffa8590fb0414a2e252705f1111d75e15e9d2c",
+      "size": 9687
+    },
+    "content/modernization/pr16_typed_origins_evidence/reader-profiles.json": {
+      "sha256": "761b8488dcdfcdea82373f050356f247297befecf7fee5e4c871029339182303",
+      "size": 19614
+    },
+    "content/modernization/pr16_typed_origins_receipt.json": {
+      "sha256": "58b594ed8c2e04704948495d2cefc4d6eff9f0cb2520030343de342ddc1ac71c",
+      "size": 15728
+    },
+    "content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json": {
+      "sha256": "98cc3bd7d4ef09a93e0eb976841dc43cc46797d6f7ae0d280bf970470bf010f1",
+      "size": 8519
+    },
+    "content/modernization/pr16_typed_origins_receipt_evidence/reference-chain.json": {
+      "sha256": "99be8c45e24dd8e281ee6e77861f04297b65ecc1b5c09f37f91e80aab36e83be",
+      "size": 5763
+    },
+    "content/modernization/pr16_typed_origins_receipt_evidence/unknown-frontier.json": {
+      "sha256": "7eff70285e1de674b77a1be7b9e31f235a158dc26a905421fa6094359c3501b4",
+      "size": 38217
+    },
+    "content/modernization/pr16_typed_origins_receipt_evidence/window-progress.json": {
+      "sha256": "d2064ff07c15e89ed56f99340832872b9b6171f93736b1757a58fcd3e2e341e3",
+      "size": 3155
+    },
+    "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
+      "sha256": "dd200aa3a4e0fa581991c9f3553b042398af691977313d57e44fd088e15fa35d",
+      "size": 20300
+    },
+    "scripts/pr16_dex_hof_capacity_actions.py": {
+      "sha256": "3b3802b7326e68c65267d46bd16c8bb65b8ef80420c9352f1b9932a105c94cef",
+      "size": 16248
+    },
+    "state/source-lock.json": {
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4",
+      "size": 3166
+    }
+  },
+  "proof_identity": {
+    "sha256": "71964fbe283cc6bd6e76ea45e5905b7e3cc01b60be524c417fa7db2726acf395",
+    "size": 8543
+  },
+  "proof_path": "content/modernization/pr16_sound_origin_asset_evidence/asset-binding.json",
+  "read_only_check_passed": true,
+  "remaining_selected_origins": 8,
+  "rom_reconstructions": 1,
+  "schema_version": 1,
+  "scoped_final_index_guard": {
+    "historical_guard_pass_claimed": false,
+    "new_private_violations": 0,
+    "status": "PASS"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-sound-origin-asset.yml": {
+      "sha256": "142415b0cbdf8ae7cc9fb9bb007313f53fe4d26b6c93281037dcf992c9c56f7b",
+      "size": 1569
+    },
+    "scripts/pr16_sound_origin_asset.py": {
+      "sha256": "6d5b71c7c3294e5442ace09149b3dd402ca795b80d48f91babcaa387adaa5675",
+      "size": 8118
+    },
+    "scripts/pr16_sound_origin_asset_actions.py": {
+      "sha256": "8f4c12dde9c6fae7ba7fefaaf67653c04728a578c4a2c284ee427e815495da2e",
+      "size": 17754
+    },
+    "tests/test_pr16_sound_origin_asset.py": {
+      "sha256": "68e2f8eaad5cea12b6d55b507423df33f12dbe08aee31ed5fbd0b09f59652316",
+      "size": 6955
+    }
+  },
+  "source_head": "45ef40242033f2c0bc00d1f3b189d949fd255b89",
+  "status": "EXACT_PCM_ASSET_BOUND_READER_PENDING",
+  "task": "USER-20261011-SOUND-ORIGIN-ASSET",
+  "task_graph_passed": true
+}

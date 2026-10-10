@@ -1,0 +1,245 @@
+{
+  "accepted_test_reruns": 0,
+  "actual_consumer_proven": false,
+  "asset": {
+    "actual_consumer_proven": false,
+    "current_candidate_asset_bound": true,
+    "donor_safe_bytes": 0,
+    "end_exclusive": 138891892,
+    "flags": 1073741824,
+    "formal_classification_changes": 0,
+    "header_samples": 13800,
+    "hit_identity": {
+      "sha256": "eb72d696d22c970b1090b11a8020bfb44f42ecff189aaffc9b47eb75cbeb0993",
+      "size": 4
+    },
+    "loop_start": 11555,
+    "origin": 138879919,
+    "pitch": 13700096,
+    "rom_writes": 0,
+    "sample_count": 4,
+    "sample_index": 1831,
+    "save_writes": 0,
+    "sha256": "0fc8cee0ec0b01d0bc94e62f548638e3739c2179273f77c5dddf42e978acecb7",
+    "size": 13820,
+    "start": 138878072,
+    "unused_name_proves_unreachable": false
+  },
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "conversion": {
+    "asset_identity": {
+      "sha256": "0fc8cee0ec0b01d0bc94e62f548638e3739c2179273f77c5dddf42e978acecb7",
+      "size": 13820
+    },
+    "chunks": [
+      {
+        "id": "fmt ",
+        "offset": 20,
+        "sha256": "e90acd1f170e79f80da68421980b1bc94b023d431e815f0f327de9da4400ef52",
+        "size": 16
+      },
+      {
+        "id": "smpl",
+        "offset": 44,
+        "sha256": "6b414bae1a0ea90da183a050f11f4844f95703ecb8ce05312852a651b4425937",
+        "size": 60
+      },
+      {
+        "id": "agbp",
+        "offset": 112,
+        "sha256": "82c891daedbc02f729802036ce81be8a4b7a51aa6db716d72ed20f522c6398e9",
+        "size": 4
+      },
+      {
+        "id": "agbl",
+        "offset": 124,
+        "sha256": "2614d0dd78877052b6bc54b87f96aab6a259181312bfac6c4195b74be937c344",
+        "size": 4
+      },
+      {
+        "id": "data",
+        "offset": 136,
+        "sha256": "afcde8ff47cdf79fafddfb553df4591a76186a3438ffd198b2f49e470324dd77",
+        "size": 13801
+      }
+    ],
+    "format": "PCM_S8",
+    "header_and_payload_count_match": false,
+    "header_samples": 13800,
+    "input_bits": 8,
+    "input_samples": 13801,
+    "loop_enabled": true,
+    "loop_start": 11555,
+    "padding_bytes": 3,
+    "payload_samples": 13801,
+    "pcm_identity": {
+      "sha256": "29ea33ea2b5a9ddea0f80a12a8ebc090288c8bf0ddf7b2f47a4adf378ae664ce",
+      "size": 13801
+    },
+    "pitch": 13700096,
+    "rate": 13379,
+    "wav_identity": {
+      "sha256": "7fbc9618f3f4923a8fffc3ea316b94c7d87bba926548097f6662d4a13dce2584",
+      "size": 13938
+    }
+  },
+  "donor_safe_bytes": 0,
+  "formal_classified": 787,
+  "formal_unclassified": 87,
+  "full_rom_scans": 0,
+  "independent_cpp_equal": true,
+  "indirect_reference_completeness_claimed": false,
+  "intra_donor_origins_covered": false,
+  "native_processes": 0,
+  "outside_target_excludes_access": false,
+  "public_sources": {
+    "audio_rules.mk": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "6b4e4afda840dbce45892a6b01c5e114deb1fd12",
+      "repository": "pret/pokefirered",
+      "sha256": "23c0e8d835be50608e287101d9c968b61506298e64de6ebfc205b88ab58efbeb",
+      "size": 1708
+    },
+    "sound/direct_sound_data.inc": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "98191db21902a49d9d20a2ec5442786fe41d85c0",
+      "repository": "pret/pokefirered",
+      "sha256": "dff5cf383b7a93e80c3de38099fe3a8cc2aeb856a1c13aab8030e03ba1f74e81",
+      "size": 41909
+    },
+    "sound/direct_sound_samples/unused_sc88pro_unison_slap.wav": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "e9f48d6ff74573550e5815b991d719a0cdf08a05",
+      "repository": "pret/pokefirered",
+      "sha256": "7fbc9618f3f4923a8fffc3ea316b94c7d87bba926548097f6662d4a13dce2584",
+      "size": 13938
+    },
+    "sound/voice_groups.inc": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "13c8090a0670718b9686acc64d90ef844d529d13",
+      "repository": "pret/pokefirered",
+      "sha256": "d9d0e2f962e792362c18f523475b1d0d3c724a7d5adde07e2ad67276a0f2cde7",
+      "size": 350619
+    },
+    "tools/wav2agb/Makefile": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "a38f71758f173b1cff1b87f492477ec3a320a33a",
+      "repository": "pret/pokefirered",
+      "sha256": "b5993ee739e07a96f04bd3aff19153f58c8d88d38d5b8b584a3e7a96ed979299",
+      "size": 322
+    },
+    "tools/wav2agb/converter.cpp": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "c826e0a784bcf673157ca55497bfdc4f5169d416",
+      "repository": "pret/pokefirered",
+      "sha256": "717d3ba8897af54425226104ca2441e2483584b05d15950279667c2950146664",
+      "size": 16069
+    },
+    "tools/wav2agb/converter.h": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "df59ebe2d1206f5dcd0b4bae8c9afd9693462eb5",
+      "repository": "pret/pokefirered",
+      "sha256": "72d74bec972670e347042d04cdc5ded33b8f628a7467db5ebcea244fb6e6a6c7",
+      "size": 584
+    },
+    "tools/wav2agb/wav2agb.cpp": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "2d4a84517e47d42abe3cf472871ad57960a10245",
+      "repository": "pret/pokefirered",
+      "sha256": "84f7ce479d1d97b1d8beadfe3001a81f772684031964edfe2620d8595b7ec195",
+      "size": 9251
+    },
+    "tools/wav2agb/wav_file.cpp": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "79cfed5d79bd39ca03926540d3c25bd0c38773ad",
+      "repository": "pret/pokefirered",
+      "sha256": "a511c1253b854d08052c3a9824f204034e12667f1e67e3175ee881c69df14aa6",
+      "size": 14498
+    },
+    "tools/wav2agb/wav_file.h": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "cea278970de3c7c81a0374401fb84be4dc90e877",
+      "repository": "pret/pokefirered",
+      "sha256": "dd1f48f9effb682504f9ca762d4ca6d6fee1e6d27a6be91c46be674f9784374f",
+      "size": 1547
+    }
+  },
+  "public_symbol_source": {
+    "commit": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+    "git_blob": "53316c0d61da2c6cc22acf3d79f68c61c64c65be",
+    "path": "diagnostics/pokefirered_jp.sym.audit.tsv",
+    "repository": "ComplexRobot/frlg-sym",
+    "sha256": "fc1e4b579b21a592b8e09fa3c36f242833837190401128cd6866c945eff2f44e",
+    "size": 4147002
+  },
+  "retirement_or_transfer_complete": false,
+  "rom_reconstructions": 1,
+  "saved_symbol_neighborhood": {
+    "actual_consumer_proven": false,
+    "current_candidate_bytes_bound": false,
+    "following_label": {
+      "address": 138891892,
+      "labels": [
+        {
+          "line": 39324,
+          "name": "DirectSoundWaveData_unknown_snare",
+          "row_sha256": "17f1250e07cdc65537188c3ee9c16ebdd0c72b5ce4ca2136548581e701b361f4"
+        }
+      ]
+    },
+    "hit": {
+      "accepted": false,
+      "address": 138879919,
+      "classification": "UNCLASSIFIED",
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "sha256": "eb72d696d22c970b1090b11a8020bfb44f42ecff189aaffc9b47eb75cbeb0993",
+      "size": 4,
+      "target": 167699418
+    },
+    "labels_starting_inside_hit": [],
+    "offset_from_preceding": 1847,
+    "preceding_label": {
+      "address": 138878072,
+      "labels": [
+        {
+          "line": 39323,
+          "name": "DirectSoundWaveData_unused_sc88pro_unison_slap",
+          "row_sha256": "455b8622b31207a9c4b0822a9122ecfddc7f76e8288feded18027d66e77f4fe6"
+        }
+      ]
+    },
+    "status": "PUBLIC_SYMBOL_NEIGHBORHOOD_ONLY_CURRENT_OWNER_UNPROVEN"
+  },
+  "schema_version": 1,
+  "selected_unknown_origins": 8,
+  "source_voice_rows": [
+    {
+      "current_table_bound": false,
+      "group": "voicegroup002",
+      "line": 103,
+      "row_sha256": "56f5d7686cbb28d95e53a98bcaaa16d637d37609da9a842c9ee55181a0e22eb0",
+      "slot": 3,
+      "source_text": "voice_directsound 60, 0, DirectSoundWaveData_unused_sc88pro_unison_slap, 255, 165, 206, 127"
+    },
+    {
+      "current_table_bound": false,
+      "group": "voicegroup156",
+      "line": 4168,
+      "row_sha256": "838bd295df15a8031dd1f42998d9a70290d559c9319e3caecd09f3e59c80be8a",
+      "slot": 36,
+      "source_text": "voice_directsound 60, 0, DirectSoundWaveData_unused_sc88pro_unison_slap, 255, 165, 180, 216"
+    },
+    {
+      "current_table_bound": false,
+      "group": "voicegroup157",
+      "line": 4299,
+      "row_sha256": "838bd295df15a8031dd1f42998d9a70290d559c9319e3caecd09f3e59c80be8a",
+      "slot": 36,
+      "source_text": "voice_directsound 60, 0, DirectSoundWaveData_unused_sc88pro_unison_slap, 255, 165, 180, 216"
+    }
+  ],
+  "status": "EXACT_PCM_ASSET_BOUND_READER_PENDING"
+}
