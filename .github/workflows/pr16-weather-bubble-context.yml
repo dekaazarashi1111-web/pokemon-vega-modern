@@ -1,0 +1,83 @@
+name: pr16-weather-bubble-context
+run-name: weather-bubble-tracked-text-context-only
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-weather-bubble-context.yml]
+permissions:
+  contents: read
+concurrency:
+  group: pr16-weather-bubble-context
+  cancel-in-progress: false
+jobs:
+  context:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Exact HEADの対象tracked textのみを取り出す（ROM再構成・旧検証なし）
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import fnmatch, hashlib, json, os, pathlib, subprocess, zipfile
+          root = pathlib.Path('.')
+          patterns = [
+              'AGENTS.md', '*/AGENTS.md', 'CHATGPT_RESUME.md', 'README.md', '.gitignore',
+              'scripts/*.py', 'tests/test_pr16_dex_hof*.py', 'tests/test_pr16_resume*.py',
+              'tests/__init__.py', 'tools/*.py',
+              'content/modernization/pr16_dex_hof*.json',
+              'content/modernization/pr16_dex_hof*/**/*.json',
+              'content/modernization/pr16_dex_hof*/*.json',
+              'content/modernization/pr16_native_supply_resume_20260913.json',
+              'content/modernization/pr16_bp_chooser_checkpoint.json',
+              'content/modernization/p08_remaining_work.json',
+              'docs/PR16_DEX_HOF*.md', 'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
+              'docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md',
+              'design/agent_context_map.md', 'design/current_state.md', 'design/tasks_next.md',
+              'design/run_log.md', 'design/version_log.md', 'design/blockers.md',
+              'design/active_play_baseline.md', 'config/active_play_baseline.json',
+              'config/github_private_environment.json', 'state/source-lock.json',
+              'tasks/task_graph.json', 'state/task_status.json',
+              '.github/workflows/pr16-dex-hof*.yml', '.github/workflows/pr16-resume*.yml',
+              '.github/workflows/pr16-weather-bubble-context.yml'
+          ]
+          entries = subprocess.check_output(['git', 'ls-files', '-s', '-z']).decode().split('\0')
+          head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          assert head == os.environ['GITHUB_SHA']
+          manifest = {'head': head, 'run_id': os.environ['GITHUB_RUN_ID'], 'files': {},
+                      'rom_reconstructions': 0, 'native_processes': 0, 'accepted_test_reruns': 0}
+          out = pathlib.Path('public-weather-bubble-context')
+          out.mkdir()
+          with zipfile.ZipFile(out / 'tracked-text.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for entry in entries:
+                  if not entry:
+                      continue
+                  header, path = entry.split('\t', 1)
+                  mode, blob, stage = header.split()
+                  if not any(fnmatch.fnmatchcase(path, p) for p in patterns):
+                      continue
+                  assert stage == '0' and mode == '100644', path
+                  p = pathlib.PurePosixPath(path)
+                  assert not p.is_absolute() and '..' not in p.parts
+                  assert p.suffix in ('.py', '.json', '.md', '.yml') or path == '.gitignore'
+                  raw = subprocess.check_output(['git', 'show', 'HEAD:' + path])
+                  raw.decode('utf-8')
+                  assert b'\0' not in raw
+                  assert hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest() == blob
+                  archive.writestr(path, raw)
+                  manifest['files'][path] = {'size': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(), 'git_blob': blob}
+              archive.writestr('context-manifest.json', json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
+          raw = (out / 'tracked-text.zip').read_bytes()
+          print(json.dumps({'head': head, 'files': len(manifest['files']), 'zip_size': len(raw),
+                            'zip_sha256': hashlib.sha256(raw).hexdigest(), 'rom_reconstructions': 0,
+                            'native_processes': 0, 'accepted_test_reruns': 0}))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-weather-bubble-tracked-text
+          path: public-weather-bubble-context/tracked-text.zip
+          if-no-files-found: error
+          retention-days: 14
