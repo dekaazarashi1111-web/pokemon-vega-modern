@@ -38,6 +38,11 @@ def block(value):
     return '\n```json\n'+r.encode(value).decode().replace('```','\\u0060\\u0060\\u0060')+'```\n'
 
 
+def output_bytes(name, text):
+    raw=text.encode() if isinstance(text,str) else text
+    return raw.rstrip(b'\r\n')+b'\n' if name.endswith('.md') else raw
+
+
 def table(headers, rows):
     return '| '+' | '.join(headers)+' |\n| '+' | '.join(['---']*len(headers))+' |\n'+''.join('| '+' | '.join(map(str,row))+' |\n' for row in rows)+'\n'
 
@@ -168,7 +173,7 @@ def render(inputs, data, source_head):
     files={};sp=data['species'];moves=data['moves'];abilities=data['abilities'];items=data['items']
     def put(name,text):
         need(name not in files and '..' not in PurePosixPath(name).parts and not name.startswith('/'),'出力重複/path')
-        files[name]=text.encode() if isinstance(text,str) else text
+        files[name]=output_bytes(name,text)
     def numtable(s): return table([v for _,v in STATS],[[s['base_stats'][k] for k,_ in STATS]])
     def abilitylinks(s,depth): return ' / '.join(link('abilities',abilities[a],depth) for a in s['ability_ids'])
     def specieslinks(ids,depth): return '、'.join(link('pokemon',sp[i],depth) for i in sorted(set(ids))) or '該当なし'

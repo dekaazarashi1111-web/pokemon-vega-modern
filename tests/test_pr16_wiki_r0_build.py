@@ -83,5 +83,12 @@ class R0(unittest.TestCase):
             with self.assertRaises(ValueError):b.write_outputs(root,{'sub/bad.md':b'bad'})
             self.assertFalse((root/'elsewhere/bad.md').exists())
 
+    def test_generated_markdown_has_one_eof_newline(self):
+        self.assertEqual(b.output_bytes('README.md','text\n\n'),b'text\n')
+        self.assertEqual(b.output_bytes('conditions/00.md',b'<a id="x"></a>\n\n'),b'<a id="x"></a>\n')
+    def test_generated_normalization_preserves_inner_bytes_and_json(self):
+        self.assertEqual(b.output_bytes('README.md',b'title\n\nbody\n'),b'title\n\nbody\n')
+        self.assertEqual(b.output_bytes('data/x.json',b'{}\n\n'),b'{}\n\n')
+
 
 if __name__=='__main__':unittest.main()
