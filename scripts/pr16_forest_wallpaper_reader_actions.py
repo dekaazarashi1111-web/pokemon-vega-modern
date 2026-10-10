@@ -14,6 +14,7 @@ import sys
 import traceback
 import unittest
 import urllib.request
+import zipfile
 import pr16_forest_wallpaper_reader as m
 import pr16_weather_bubble_receipt as parent
 import pr16_wiki_r0_reconcile_actions as a
@@ -68,15 +69,15 @@ def public_layout():
         m.need(token in helper,'固定source意味: '+token)
     c=WORK/'layout.c';obj=WORK/'layout.o';out=WORK/'layout.bin';dep=WORK/'layout.d'
     values=['sizeof(struct PokemonStorageSystemData)']+['offsetof(struct PokemonStorageSystemData, '+n+')' for n in m.LAYOUT_FIELDS[1:]]
-    c.write_text('#include "global.h"\n#include "gflib.h"\n#include "pokemon_storage_system_internal.h"\n#include <stddef.h>\n'
+    c.write_text('#include "global.h"\n#include "gflib.h"\n#include "event_data.h"\n#include "graphics.h"\n#include "new_menu_helpers.h"\n#include "pokemon_icon.h"\n#include "pokemon_storage_system_internal.h"\n#include <stddef.h>\n'
         'const unsigned int pr16_layout[] __attribute__((section(".pr16_layout"),used)) = {\n'+',\n'.join(values)+'\n};\n')
     command=['arm-none-eabi-gcc','-mcpu=arm7tdmi','-mthumb','-std=gnu11',
-        '-I'+str(source/'include'),'-I'+str(source/'gflib'),'-I'+str(source),
+        '-I'+str(source/'include'),'-I'+str(source/'gflib'),'-I'+str(source),'-isystem','/usr/include/newlib',
         '-MMD','-MF',str(dep),'-c',str(c),'-o',str(obj)]
     compiled=subprocess.run(command,capture_output=True)
     if compiled.returncode:
-        (WORK/'private-layout-errors.txt').write_bytes(compiled.stderr)
-        raise ValueError('公開headerのARM layout compile失敗。private-layout-errorsへ保存')
+        (PUBLIC/'public-layout-errors.txt').write_text(compiled.stderr.decode(errors='replace').replace(str(ROOT),'<workspace>')[:6000])
+        raise ValueError('公開headerのARM layout compile失敗。公開sourceの診断だけを保存')
     subprocess.run(['arm-none-eabi-objcopy','-j','.pr16_layout','-O','binary',str(obj),str(out)],check=True,capture_output=True)
     raw=out.read_bytes();m.need(len(raw)==4*len(m.LAYOUT_FIELDS),'layout全7整数')
     layout=dict(zip(m.LAYOUT_FIELDS,struct.unpack('<'+'I'*len(m.LAYOUT_FIELDS),raw)))
@@ -123,10 +124,26 @@ def main():
     inherited=publication.accepted_run(38066038086,'30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88',
         ['Forest whole asset, current table and LZ token verification','Run actions/upload-artifact@v4'])
     PHASE='new-tests'
-    text=io.StringIO();suite=unittest.defaultTestLoader.discover(str(ROOT/'tests'),pattern='test_pr16_forest_wallpaper_reader.py')
-    result=unittest.TextTestRunner(stream=text,verbosity=2).run(suite)
-    (PUBLIC/'focused-tests.txt').write_text(text.getvalue())
-    m.need(result.wasSuccessful() and result.testsRun==33 and not result.skipped,'33新規model境界試験')
+    frozen_head='d85ac0d20539607bc88bb956b05091a134eb21d9'
+    same_models=all(a.git('show',frozen_head+':'+name)==(ROOT/name).read_bytes() for name in
+        ('scripts/pr16_forest_wallpaper_reader.py','tests/test_pr16_forest_wallpaper_reader.py'))
+    if same_models:
+        # 初回の全runはfailureのまま。layout前に成功した33試験だけを再走せず継承する。
+        archive=subprocess.run(['gh','api','repos/'+a.REPO+'/actions/artifacts/11679908721/zip'],check=True,capture_output=True).stdout
+        m.need(m.identity(archive)=={'size':1124,'sha256':'37d034e59e7fb12cac49d4963a22f91d68bbec8234234ab3591a6777f331f7d6'},'初回artifact固定全hash')
+        with zipfile.ZipFile(io.BytesIO(archive)) as z:
+            m.need(set(z.namelist())=={'failure.json','focused-tests.txt'},'初回の閉2原本')
+            failure=parent.read(z.read('failure.json')); test_text=z.read('focused-tests.txt')
+        m.need(failure['phase']=='public-layout' and failure['status']=='FAILED_NOT_ACCEPTED','reader/ROM未到達の初回')
+        rows=[line for line in test_text.decode().splitlines() if line.startswith('test_')]
+        m.need(len(rows)==33 and len(set(rows))==33 and all(row.endswith(' ... ok') for row in rows)
+            and test_text.decode().endswith('\nOK\n'),'初回の33成功だけを継承')
+        (PUBLIC/'focused-tests.txt').write_bytes(test_text)
+    else:
+        text=io.StringIO();suite=unittest.defaultTestLoader.discover(str(ROOT/'tests'),pattern='test_pr16_forest_wallpaper_reader.py')
+        result=unittest.TextTestRunner(stream=text,verbosity=2).run(suite)
+        (PUBLIC/'focused-tests.txt').write_text(text.getvalue())
+        m.need(result.wasSuccessful() and result.testsRun==33 and not result.skipped,'33新規model境界試験')
     subprocess.run(['python3','-B','scripts/validate_task_graph.py'],cwd=ROOT,check=True,capture_output=True)
     PHASE='public-layout'
     layout,public_binding=public_layout()
@@ -161,6 +178,8 @@ def main():
         'candidate':dict(m.CANDIDATE),'claims':dict(m.CLAIMS),'conditions':dict(m.CONDITIONS),
         'source_binding':public_binding,'symbol_source':symbol,'symbols':sym,
         'profiles':profiles,'focused_tests':33,'new_profiles':len(profiles),'task_graph_passed':True,
+        'model_tests_inherited_without_execution':same_models,'model_tests_executed_this_run':0 if same_models else 33,
+        'prior_attempts':[{'run_id':38080969342,'source_head':frozen_head,'status':'completed','conclusion':'failure','rom_reconstructions':0,'native_processes':0,'reason_ja':'公開headerのARM layout compile。33モデル試験だけ成功。graphics本来のinclude依存を追加し、公開型の診断を限定保存する。'}],
         'rom_reconstructions':1,'classified':784,'unclassified':90,'donor_safe_bytes':0,
         'old_inputs_unchanged':True,'inherited_input_bindings':inputs,
         'code_bindings':{name:m.identity((ROOT/name).read_bytes()) for name in sorted(CODE)},
@@ -192,7 +211,7 @@ def main():
     state['recording']['status']='R0_READY_FOREST_READER_MEASURED_RECEIPT_PENDING'
     state['recording']['last_execution']={'task':TASK,'source_head':head,'actions_run_id':report['actions_run_id'],
         'actions_completion_confirmed':False,'previous_asset_actions':inherited,'focused_tests':33,
-        'new_profiles':4,'task_graph_passed':True,'accepted_tests_rerun':0,'new_native_processes':0,'rom_reconstructions':1}
+        'new_profiles':4,'model_tests_inherited_without_execution':same_models,'model_tests_executed_this_run':0 if same_models else 33,'task_graph_passed':True,'accepted_tests_rerun':0,'new_native_processes':0,'rom_reconstructions':1}
     write(STATE,state)
     stamp=dt.datetime.now(dt.timezone.utc).isoformat()
     block=(f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {TASK} / Forest実readerの有限条件付き検証\n'
