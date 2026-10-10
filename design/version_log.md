@@ -11420,3 +11420,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新23試験、入力hash/ID検査、決定的出力比較、check無書込、task graph、最終index境界。旧受入/旧Wiki生成/ROM/nativeの再実行0。
 - Commit: この記録を含む同branch非force commit。自己SHAはGit履歴/Actions resultで照合。
 - Network: GitHub checkout/ref/PR/Actionsのみ。原本や秘密情報を取得/追加公開しない。全体CI green・R0 READY・保存修復・releaseを主張しない。
+
+## 2026-10-10T12:14:37.677498+00:00
+- Timestamp: 2026-10-10T12:14:37.677498+00:00
+- Task: USER-20261010-WIKI-R0-RECONCILE / Wiki R0数値系譜とregistry対応
+- Version: wiki-r0-reconciliation-v1
+- Status: DONE
+- Summary: 保存link5段の親子SHA、全write、旧数値/参照/資源7013範囲の非交差、現registry1671種族のID/key/base/form対応を照合。旧習得逆引きは現役へ移送しない。R0ページ生成は次作業。
+- Files changed: 新照合器/試験/workflow、原本link text5件、新照合JSON、固定引継ぎMD/JSON、両ログ。旧Wiki/ROM/save/baselineは不変。
+- Verify: 新focused 35試験・task graph PASS。決定的check、byte/mtime無変更、scope index検証をcommit直前に実施。全体private guardは別の既存違反を含むため結果を状態JSONへ区別。旧受入/native/ROM復元0。
+- Commit: この完了記録を含む同branch単親通常commit（Git履歴/Actions resultで照合）。
+- Network: GitHub PR/ref/Actionsと受入済み5artifactのlink.json回収のみ。外部技術調査なし。
