@@ -6,6 +6,8 @@ on:
     paths: [.github/workflows/pr16-weather-bubble-context.yml]
 permissions:
   contents: read
+  actions: read
+  pull-requests: read
 concurrency:
   group: pr16-weather-bubble-context
   cancel-in-progress: false
@@ -18,12 +20,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Exact HEADの対象tracked textのみを取り出す（ROM再構成・旧検証なし）
+      - name: Exact HEADの対象tracked textと固定公開sourceのみ（ROM再構成・旧検証なし）
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           python3 - <<'PY'
-          import fnmatch, hashlib, json, os, pathlib, subprocess, zipfile
-          root = pathlib.Path('.')
+          import fnmatch, hashlib, json, os, pathlib, subprocess, urllib.request, zipfile
           patterns = [
               'AGENTS.md', '*/AGENTS.md', 'CHATGPT_RESUME.md', 'README.md', '.gitignore',
               'scripts/*.py', 'tests/test_pr16_dex_hof*.py', 'tests/test_pr16_resume*.py',
@@ -44,10 +47,18 @@ jobs:
               '.github/workflows/pr16-dex-hof*.yml', '.github/workflows/pr16-resume*.yml',
               '.github/workflows/pr16-weather-bubble-context.yml'
           ]
+          def identity(raw):
+              return {'size': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(),
+                      'git_blob': hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()}
+          def api(path):
+              req = urllib.request.Request('https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/' + path,
+                  headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json'})
+              with urllib.request.urlopen(req, timeout=60) as response:
+                  return json.load(response)
           entries = subprocess.check_output(['git', 'ls-files', '-s', '-z']).decode().split('\0')
           head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
           assert head == os.environ['GITHUB_SHA']
-          manifest = {'head': head, 'run_id': os.environ['GITHUB_RUN_ID'], 'files': {},
+          manifest = {'head': head, 'run_id': os.environ['GITHUB_RUN_ID'], 'files': {}, 'public_sources': {},
                       'rom_reconstructions': 0, 'native_processes': 0, 'accepted_test_reruns': 0}
           out = pathlib.Path('public-weather-bubble-context')
           out.mkdir()
@@ -59,16 +70,41 @@ jobs:
                   mode, blob, stage = header.split()
                   if not any(fnmatch.fnmatchcase(path, p) for p in patterns):
                       continue
-                  assert stage == '0' and mode == '100644', path
+                  assert stage == '0' and mode in ('100644', '100755'), path
                   p = pathlib.PurePosixPath(path)
                   assert not p.is_absolute() and '..' not in p.parts
                   assert p.suffix in ('.py', '.json', '.md', '.yml') or path == '.gitignore'
                   raw = subprocess.check_output(['git', 'show', 'HEAD:' + path])
                   raw.decode('utf-8')
                   assert b'\0' not in raw
-                  assert hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest() == blob
+                  item = identity(raw)
+                  assert item['git_blob'] == blob
                   archive.writestr(path, raw)
-                  manifest['files'][path] = {'size': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(), 'git_blob': blob}
+                  manifest['files'][path] = dict(item, mode=mode)
+              upstream = [
+                  ('pret/pokefirered', 'c75f352304d529f6ba92d4f74b9cf8b5c3810788', [
+                      'Makefile', 'graphics_file_rules.mk', 'graphics/weather/bubble.png',
+                      'src/field_weather.c', 'src/field_weather_effects.c', 'src/sprite.c',
+                      'include/sprite.h', 'include/gba/syscall.h', 'src/libagbsyscall.s',
+                      'tools/gbagfx/gfx.c', 'tools/gbagfx/convert_png.c', 'tools/gbagfx/main.c']),
+                  ('ComplexRobot/frlg-sym', 'c04a31542086b20d8c6ee641eaa70b8db6713fd3', [
+                      'diagnostics/pokefirered_jp.sym.audit.tsv', 'diagnostics/pokefirered_jp.sym.metadata.tsv'])]
+              for repo, commit, paths in upstream:
+                  for path in paths:
+                      url = 'https://raw.githubusercontent.com/' + repo + '/' + commit + '/' + path
+                      with urllib.request.urlopen(url, timeout=60) as response:
+                          raw = response.read()
+                      name = '_public/' + repo + '/' + path
+                      archive.writestr(name, raw)
+                      manifest['public_sources'][name] = dict(identity(raw), repository=repo, commit=commit, path=path, url=url)
+              pr = api('pulls/16')
+              summary = {'pr': {k: pr[k] for k in ('number', 'state', 'draft', 'merged')},
+                         'head': pr['head']['sha'], 'head_ref': pr['head']['ref'], 'runs': []}
+              for sha in ('0b93c3b5a1094089763823c9f0bf7409d88526b2', 'f9551f5d345949866a5dedd070da7479299922cd', head):
+                  runs = api('actions/runs?head_sha=' + sha + '&per_page=100')
+                  for run in runs['workflow_runs']:
+                      summary['runs'].append({k: run[k] for k in ('id', 'name', 'path', 'head_sha', 'event', 'status', 'conclusion', 'created_at', 'updated_at', 'run_attempt')})
+              archive.writestr('actions-summary.json', json.dumps(summary, ensure_ascii=False, indent=2) + '\n')
               archive.writestr('context-manifest.json', json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
           raw = (out / 'tracked-text.zip').read_bytes()
           print(json.dumps({'head': head, 'files': len(manifest['files']), 'zip_size': len(raw),
