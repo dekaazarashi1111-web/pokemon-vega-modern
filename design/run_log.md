@@ -14221,3 +14221,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 784分類90未知・安全容量0を保持。table近傍やtoken parseを実entry/heap/BIOS実行と混同しない。全体CI/private guardの既存失敗をPASSへ変えない。
 - Commit: この記録を含む同branch単親commit。実SHAはGit履歴とActions resultから照合。
 - Network: 固定公開source、既存許可済private候補再構成、指定repo PR/ref/Actions GETと同branch非force push。
+
+## 2026-10-10T19:54:44.318979+00:00
+- Timestamp: 2026-10-10T19:54:44.318979+00:00
+- Task: USER-20261011-FOREST-ACTUAL-READER / Forest実readerの有限条件付き検証
+- Version: forest-reader-v1
+- Status: DONE（新測定のみ。正式型受領/保存安全性は未完）
+- Summary: 実literal/table→heap helper→Malloc→SWI11を4条件で追跡。成功973byte消費/1696byte展開/全4byte被覆、NULL対照は展開なし。実stack/保存レジスタ帰還を束縛。
+- Files changed: 新reader/33試験/実行器/workflow/検証JSON、固定Forest引継ぎMD、現在JSON、両ログ。旧原本/Wiki R0/ROM/save/baselineは不変。
+- Verify: 新33 tests/task graph PASS。前回asset Actions完了成功、旧input byte/mtime不変。最終indexの新規private違反0と既存全体guard失敗を区別。非force競合/commit読戻しを実施。
+- Boundary: 正式784/90・donor安全容量0、native/旧試験/旧reader再走0、新scope候補再構成1。BIOS本体/allocator実装/task/DMA/Free/全story/製品完成を主張しない。
+- Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴とActions resultで照合。
+- Network: 固定公開pret/pokefireredとJP symbol、既存許可済candidate復元、指定repo PR/ref/Actions GET、同branch非force push。
