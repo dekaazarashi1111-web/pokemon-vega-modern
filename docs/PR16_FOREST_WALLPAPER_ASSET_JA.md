@@ -50,6 +50,16 @@ Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4by
 
 [窓計画](../content/modernization/pr16_donor_window_evidence/windows.json) / [検証checkpoint](../content/modernization/pr16_donor_window_checkpoint.json)。新49試験、150組の総当たり対照、実2148窓の独立総当たり、決定的read-only check、task graphを検証。窓外targetからの跨りread、旧inventoryで除外された旧owner内origin、計算参照は未証明として保持。正式785/89/安全容量0、旧受入/R0/ROM/Save101は不変です。
 
-## 次の未完作業
+## 窓選定時の停止点（履歴）
 
 候補窓[0x09FED0C4,0x09FEEA44)の6528byteについて、保存未知target 10行（先頭0x080A006F）のsource/asset identityと実consumerを限定して結ぶ。窓外targetからの跨りread・旧owner内originの除外・間接参照を残し、owner退役/部分移管を証明する。全874scan/Forest/Bubble/49窓試験の無変更再走は禁止。安全容量0を維持し、controller/heap/保存接続は別gate。
+
+## 選定10originの固定公開symbol近傍
+
+入力HEAD `3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65`。保存済み10行と固定公開JP symbol全hashを照合しました。先頭0x080A006Fの直前labelは `HideMoneyBox` です。これは現ROMの関数/asset ownerや命令境界の証明ではありません。
+
+[対応表](../content/modernization/pr16_donor_origins_evidence/symbol-frontier.json) / [checkpoint](../content/modernization/pr16_donor_origins_checkpoint.json)。新20試験、同入力決定性、読取専用byte/mtime、task graphを検証。正式785/89・安全容量0、旧窓計画/reader/R0/ROM/Save101不変。新native/ROM再構成/旧試験再走0。
+
+## 次の未完作業
+
+選定窓10originの公開JP symbol近傍を保存済み。先頭0x080A006Fについてsymbol-frontierの出典/行を読み、固定公開関数sourceと現候補0641af70の有限命令範囲を束縛し、実consumer/命令境界を確認する。近傍labelだけでownerやFALSE_POSITIVEに昇格しない。窓外跨りread/旧owner内origin/間接参照は残す。正式785/89・安全容量0。全874scan/Forest/Bubble/窓49試験/symbol20試験の無変更再走禁止。

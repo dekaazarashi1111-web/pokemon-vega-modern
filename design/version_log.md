@@ -11524,3 +11524,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 正式785分類/89未知・安全容量0。R0/旧受入/正式ROM/Save101/baseline不変。新native/ROM再構成/旧試験再走0、merge/releaseなし。
 - Commit: この記録を含む同branch単親通常commit。実SHAはActions resultとGit履歴で照合。自己SHAだけのcommitは作らない。
 - Network: 指定repoのPR/ref/Actions GETと公開text artifact受領、同branchへの非force pushのみ。外部入力の再採取なし。
+
+## 2026-10-10T21:56:04.960431+00:00
+- Timestamp: 2026-10-10T21:56:04.960431+00:00
+- Task: USER-20261011-DONOR-ORIGIN-SYMBOLS / 選定10originの固定公開symbol束縛
+- Version: donor-origin-symbols-v1
+- Status: DONE（symbol対応付けのみ。実consumer/保存統合は未完）
+- Summary: 保存窓10originと公開JP symbol全identityを束縛。近傍labelをowner/extentへ昇格せず次のsource/consumer確認へ接続。
+- Files changed: 新symbol検証器/20試験/専用Actions実行器、checkpoint/対応表、固定引継ぎMD/JSON、両ログ。
+- Verify: 新20 tests、決定的生成、read-only byte/mtime、旧原本不変、task graph PASS。最終index新規private違反0と全体guard結果を別記録。
+- Boundary: 正式785/89・安全容量0、R0/旧受入/ROM/Save101/baseline不変。新native/ROM再構成/旧試験再走0。
+- Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴/Actions resultを参照。
+- Network: 保存identityに固定した公開JP symbolのGET、指定repo PR/ref/Actions GET、同branch非force pushのみ。

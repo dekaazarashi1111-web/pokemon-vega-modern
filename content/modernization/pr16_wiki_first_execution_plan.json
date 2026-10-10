@@ -17,14 +17,14 @@
   "branch": "codex/modernization-followup-20260908",
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "next_action": {
-    "done_ja": "選定窓の実owner/参照完全性/退役を有限根拠で証明する。target点の減少だけでleaseを発行しない。",
-    "goal_ja": "候補窓[0x09FED0C4,0x09FEEA44)の6528byteについて、保存未知target 10行（先頭0x080A006F）のsource/asset identityと実consumerを限定して結ぶ。窓外targetからの跨りread・旧owner内originの除外・間接参照を残し、owner退役/部分移管を証明する。全874scan/Forest/Bubble/49窓試験の無変更再走は禁止。安全容量0を維持し、controller/heap/保存接続は別gate。",
-    "id": "SAVE_CAPACITY_SELECTED_WINDOW_OWNER_COVERAGE",
+    "done_ja": "最初のoriginの現候補source/命令範囲/実consumerを有限根拠で束縛。symbol近傍だけの受入禁止。",
+    "goal_ja": "選定窓10originの公開JP symbol近傍を保存済み。先頭0x080A006Fについてsymbol-frontierの出典/行を読み、固定公開関数sourceと現候補0641af70の有限命令範囲を束縛し、実consumer/命令境界を確認する。近傍labelだけでownerやFALSE_POSITIVEに昇格しない。窓外跨りread/旧owner内origin/間接参照は残す。正式785/89・安全容量0。全874scan/Forest/Bubble/窓49試験/symbol20試験の無変更再走禁止。",
+    "id": "SAVE_CAPACITY_FIRST_ORIGIN_SOURCE_AND_CONSUMER",
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
-      "content/modernization/pr16_donor_window_checkpoint.json",
-      "content/modernization/pr16_donor_window_evidence/windows.json",
-      "scripts/pr16_donor_window.py",
+      "content/modernization/pr16_donor_origins_checkpoint.json",
+      "content/modernization/pr16_donor_origins_evidence/symbol-frontier.json",
+      "scripts/pr16_donor_origins.py",
       "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md"
     ]
   },
@@ -32,37 +32,28 @@
     "all_ci_green_claimed": false,
     "runs": [
       {
-        "conclusion": "failure",
-        "event": "pull_request",
-        "head_sha": "d40ab7f86a66891e572287341a66b3d99e28579d",
-        "id": 38088573784,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
-      },
-      {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "d40ab7f86a66891e572287341a66b3d99e28579d",
-        "id": 38088573789,
+        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
+        "id": 38089491662,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "event": "push",
-        "head_sha": "d40ab7f86a66891e572287341a66b3d99e28579d",
-        "id": 38088567537,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
+        "event": "pull_request",
+        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
+        "id": 38089491646,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": "success",
         "event": "push",
-        "head_sha": "d40ab7f86a66891e572287341a66b3d99e28579d",
-        "id": 38088567508,
+        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
+        "id": 38089484505,
         "name": "Stage79 runtime boundary audit",
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
@@ -70,8 +61,26 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "d40ab7f86a66891e572287341a66b3d99e28579d",
-        "id": 38088567438,
+        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
+        "id": 38089484705,
+        "name": "pr16-donor-origins",
+        "path": ".github/workflows/pr16-donor-origins.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
+        "id": 38089484460,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
+        "id": 38089484519,
         "name": "Stage79 mGBA (all)",
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "status": "in_progress"
@@ -79,23 +88,14 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "d40ab7f86a66891e572287341a66b3d99e28579d",
-        "id": 38088567335,
-        "name": "pr16-donor-window",
-        "path": ".github/workflows/pr16-donor-window.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": "failure",
-        "event": "push",
-        "head_sha": "d40ab7f86a66891e572287341a66b3d99e28579d",
-        "id": 38088567440,
+        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
+        "id": 38089484507,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
+        "status": "in_progress"
       }
     ],
-    "source_head": "d40ab7f86a66891e572287341a66b3d99e28579d"
+    "source_head": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -192,11 +192,11 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_donor_window_checkpoint.json",
+        "checkpoint_path": "content/modernization/pr16_donor_origins_checkpoint.json",
         "classified": 785,
         "completion_evidence_path": null,
         "donor_safe_bytes": 0,
-        "next_ja": "候補窓[0x09FED0C4,0x09FEEA44)の6528byteについて、保存未知target 10行（先頭0x080A006F）のsource/asset identityと実consumerを限定して結ぶ。窓外targetからの跨りread・旧owner内originの除外・間接参照を残し、owner退役/部分移管を証明する。全874scan/Forest/Bubble/49窓試験の無変更再走は禁止。安全容量0を維持し、controller/heap/保存接続は別gate。",
+        "next_ja": "選定窓10originの公開JP symbol近傍を保存済み。先頭0x080A006Fについてsymbol-frontierの出典/行を読み、固定公開関数sourceと現候補0641af70の有限命令範囲を束縛し、実consumer/命令境界を確認する。近傍labelだけでownerやFALSE_POSITIVEに昇格しない。窓外跨りread/旧owner内origin/間接参照は残す。正式785/89・安全容量0。全874scan/Forest/Bubble/窓49試験/symbol20試験の無変更再走禁止。",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
           "保存controller実配置",
@@ -205,7 +205,7 @@
           "heap-ready/同期非再入/退避前Free/全出口Free",
           "必要な局所Save/fresh Continue受入"
         ],
-        "status": "FINITE_WINDOW_SELECTED_RETIREMENT_UNPROVEN",
+        "status": "SELECTED_ORIGIN_SYMBOLS_BOUND_CONSUMERS_UNPROVEN",
         "unclassified": 89
       }
     },
@@ -264,11 +264,8 @@
     "full_index_private_guard_executed": true,
     "last_execution": {
       "accepted_tests_rerun": 0,
-      "actions_completed_at": "2026-10-10T21:37:51Z",
-      "actions_completion_commit": "dee56487d52bc107e1a3a21ad651a8732d4e17f9",
-      "actions_completion_confirmed": true,
-      "actions_completion_path": "content/modernization/pr16_donor_window_evidence/actions-completion.json",
-      "actions_run_id": 38088235191,
+      "actions_completion_confirmed": false,
+      "actions_run_id": 38089484705,
       "classified": 785,
       "donor_safe_bytes": 0,
       "full_index_private_guard": {
@@ -279,12 +276,11 @@
         "raw_private_log_published": false
       },
       "new_native_processes": 0,
-      "new_unit_tests": 49,
+      "new_unit_tests": 20,
       "read_only_check_passed": true,
-      "real_oracle_windows": 2148,
       "rom_reconstructions": 0,
-      "source_head": "1aa6966db7f6ca647e5c665d6794179aba7a2822",
-      "task": "USER-20261011-DONOR-WINDOW",
+      "source_head": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
+      "task": "USER-20261011-DONOR-ORIGIN-SYMBOLS",
       "task_graph_passed": true,
       "unclassified": 89
     },
@@ -321,7 +317,7 @@
     "project_task_graph_check_executed": true,
     "rom_changes": 0,
     "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-    "status": "R0_READY_WINDOW_SELECTED_SAVE_INTEGRATION_PENDING",
+    "status": "R0_READY_ORIGIN_SYMBOLS_BOUND_SAVE_INTEGRATION_PENDING",
     "task": "USER-20261010-WIKI-FIRST-POLICY",
     "wiki_generated": true
   },
