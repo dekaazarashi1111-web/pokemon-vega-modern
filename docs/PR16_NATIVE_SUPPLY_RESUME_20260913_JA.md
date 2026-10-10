@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Blastoise初回37722012087/job113131584284は全9step/新184試験成功。実取得4JSONと生成/検証/公開前12hash一致。現0641でも圧縮1287終端083D6A63、対象083D6B61は254byte後に残り、公開PNG1794/decoded3200とも全hash不一致。新receipt45試験PASS、0件診断deltaで正式783分類/91未知と全874hitを保持。今回再構成1/native0、安全0、ROM/Save101不変。
+Weather Bubble成功run38040440848/job114179438484の全9step/32試験を原本継承。ZIPと4JSON、生成・検証済み/公開済みの各4hash、6測定source/143依存source/62親原本を照合。独立8x16 indexed4画像の全64byte一致、実sheet/reader38命令・64byte消費・実12byte stack帰還を条件付き最小4byte型へ受入。0838B32Fだけ追加し784分類/90未知/全874hit、旧30段164変更154witness不変。新receipt41試験PASS。今回ROM再構成/旧scope再走/native各0、donor安全容量0、正式ROM/Save101不変。
 
-**次: 保存783親から次は0838B32Fの1件。固定JP auditのgWeatherBubbleTiles0838B304、公開bubble.png（8x16 indexed4）、sWeatherBubbleSpriteSheet0838D5F4のsize64登録、Bubbles_InitVars0807D034→LoadSpriteSheet08008258→CpuCopy16を独立4bpp全byte・実table/literal/readerへ結ぶ。reference size/近傍距離だけで分類しない。Blastoise083D6B61は実消費終端083D6A63後254byteなのでunknown保持。成功source14/184試験/4原本を無変更再走しない。保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復保存coldContinueは別gate。 正式783親はblastoise_chain.parentの62保存入力だけで復元。診断31番目namespaceを次の分類親へ混入しない。今回4JSON/184成功試験/receipt45と測定source14を凍結し、記録commitで同scope再測定しない。**
+**次: 正式784分類/90未知の保存親から次は08397492の1件。pr16_weather_bubble_receipt.restore_parentで62旧原本と今回4原本/差分を復元し、独立公開source・全asset・実table/literal/readerへ結ぶ。近傍名/参考size/距離だけで型へ昇格しない。Bubble成功32試験/実reader/ROM再構成は再走しない。Blastoise083D6B61の既知未消費tail診断も反復しない。保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復保存coldContinueは別gate。**
 
 通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f9551f5d345949866a5dedd070da7479299922cd`。
-現0641のBlastoise第一画像reader圧縮終端を初回実測。取得4原本から未消費tailを確定し、正式型分類は0件。
+証拠のsource HEAD: `3aada9217cc80627496adf33756d8fc2de3b5765`。
+成功測定のsource HEAD。記録workflow HEAD/runはWeather Bubble checkpointへ別記し、測定HEADに偽装しない。
 
 ## 最短の再開手順
 
@@ -25,12 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `docs/PR16_DEX_HOF_BLASTOISE_DIAGNOSTIC_JA.md`
-- `content/modernization/pr16_dex_hof_blastoise_checkpoint.json`
-- `scripts/pr16_dex_hof_endpoint_receipt.py`
-- `scripts/pr16_dex_hof_blastoise_chain.py`
-- `content/modernization/pr16_dex_hof_diploma_evidence/unknown-frontier.json`
-- `scripts/pr16_dex_hof_blastoise_sources.py`
+- `docs/PR16_WEATHER_BUBBLE_ACCEPTANCE_JA.md`
+- `content/modernization/pr16_weather_bubble_checkpoint.json`
+- `scripts/pr16_weather_bubble_receipt.py`
+- `content/modernization/pr16_weather_bubble_evidence/unknown-frontier.json`
+- `scripts/pr16_weather_bubble_sources.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -498,6 +497,7 @@ P08ゲート:
 - JPgate run37674533900の34試験・全文binding受入と、11source/30symbolのcrosswalk候補23試験を区別。新独立候補は2組だけでEOS/現実cell未測定。英語長・隣接差は拒否し、3rdの6B0と強い6AE競合を解消済みにしない。一般CI既知QOL不一致とStage79 cache成功を新受入へ流用しない。
 - JP candidate前2組のsource15件/59合成試験は保存checkpointから再利用。現ROMの字句EOSやCFG観測を実reader/API引数/型受入へ昇格しない。既存083DDEE4のCFRU登録27byte証拠をstock CursorCB_Enterへ置換しない。
 - JP current観測run37688855091の0641再構成1/115owner/14entry/653命令/28窓/2cell/4文EOSと新59試験は保存済み原本を再利用。receipt17拒否試験は記録整合だけ。両境界FC09/EOS/glyph観測をroot/API引数/全文serializer読取/型2件受入へ昇格しない。
+- Weather Bubble成功38040440848の6source/4原本/32試験と実readerを無変更再走しない。今回受領はROM/native0。型1件をdonor安全容量や本番表示へ昇格しない。
 
 ## 次セッションへ残す更新手順
 
@@ -527,6 +527,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-Blastoise初回37722012087/job113131584284は全9step/新184試験成功。実取得4JSONと生成/検証/公開前12hash一致。現0641でも圧縮1287終端083D6A63、対象083D6B61は254byte後に残り、公開PNG1794/decoded3200とも全hash不一致。新receipt45試験PASS、0件診断deltaで正式783分類/91未知と全874hitを保持。今回再構成1/native0、安全0、ROM/Save101不変。
+Weather Bubble成功run38040440848/job114179438484の全9step/32試験を原本継承。ZIPと4JSON、生成・検証済み/公開済みの各4hash、6測定source/143依存source/62親原本を照合。独立8x16 indexed4画像の全64byte一致、実sheet/reader38命令・64byte消費・実12byte stack帰還を条件付き最小4byte型へ受入。0838B32Fだけ追加し784分類/90未知/全874hit、旧30段164変更154witness不変。新receipt41試験PASS。今回ROM再構成/旧scope再走/native各0、donor安全容量0、正式ROM/Save101不変。一般CI既存capacity source不一致は継続。全CI greenではない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

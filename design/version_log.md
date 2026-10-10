@@ -11389,3 +11389,12 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 保存783親から次は0838B32Fの1件。固定JP auditのgWeatherBubbleTiles0838B304、公開bubble.png（8x16 indexed4）、sWeatherBubbleSpriteSheet0838D5F4のsize64登録、Bubbles_InitVars0807D034→LoadSpriteSheet08008258→CpuCopy16を独立4bpp全byte・実table/literal/readerへ結ぶ。reference size/近傍距離だけで分類しない。Blastoise083D6B61は実消費終端083D6A63後254byteなのでunknown保持。成功source14/184試験/4原本を無変更再走しない。保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復保存coldContinueは別gate。 正式783親はblastoise_chain.parentの62保存入力だけで復元。診断31番目namespaceを次の分類親へ混入しない。今回4JSON/184成功試験/receipt45と測定source14を凍結し、記録commitで同scope再測定しない。
 - Commit: parent=f9551f5d345949866a5dedd070da7479299922cd; 成功測定source14凍結、workflow glob外のendpoint_receiptで記録。同branch非force、全text/LF/blob/tree/単親/remote一致を検証する。
 - Network: GitHub Actions/job/log/artifact APIと返却file_idの正式download_fileでZIP取得。先行の返却一時URL読取はHTTP403で停止し再試行せず、返却file_idの標準materializationは成功。認可拒否・取消・迂回なし。開発保存の大text create_blob保留は元callだけが成功し重複0。ROM/rawhex/runtime/入力save/credential追加公開0。全体private guard既存違反不変・新規0を確認する。
+
+## 2026-10-10T18:43:48+09:00 PR16-WEATHER-BUBBLE-784-90
+
+- Timestamp: 2026-10-10T18:43:48+09:00
+- Version: PR16-WEATHER-BUBBLE-784-90
+- Commit: この記録を含むcommit（親 26e024d602650b1776c9d9e0e00de18b047a4efc、非force同branch）
+- Task: USER-20261010-WEATHER-BUBBLE
+- Summary: Weather Bubble成功run38040440848/job114179438484の全9step/32試験を原本継承。ZIPと4JSON、生成・検証済み/公開済みの各4hash、6測定source/143依存source/62親原本を照合。独立8x16 indexed4画像の全64byte一致、実sheet/reader38命令・64byte消費・実12byte stack帰還を条件付き最小4byte型へ受入。0838B32Fだけ追加し784分類/90未知/全874hit、旧30段164変更154witness不変。新receipt41試験PASS。今回ROM再構成/旧scope再走/native各0、donor安全容量0、正式ROM/Save101不変。
+- Verify: 新receipt 41 tests PASS; 保存784親再読完全一致; resume render/check PASS; task graph PASS; 最終index差分guard新規違反0（既存full guard失敗は別計上）; 旧32/184試験・ROM/native再走0
