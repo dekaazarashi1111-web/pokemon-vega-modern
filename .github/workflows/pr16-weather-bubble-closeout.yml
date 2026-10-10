@@ -5,14 +5,14 @@ on:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-weather-bubble-closeout.yml]
 permissions:
-  contents: read
+  contents: write
   actions: read
   pull-requests: read
 concurrency:
   group: pr16-weather-bubble-closeout
   cancel-in-progress: false
 jobs:
-  saved-text-snapshot:
+  saved-evidence-closeout:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -22,64 +22,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 3aada9217cc80627496adf33756d8fc2de3b5765
-          persist-credentials: false
-      - name: 保存成功原本と必要tracked textだけを照合（ROM復元・試験再走なし）
+          ref: ${{ github.sha }}
+          fetch-depth: 8
+          persist-credentials: true
+      - name: 保存4原本・新receipt試験・固定resume・最終index検証後に同branch非force反映
         shell: bash
         run: |
-          mkdir -p /tmp/bubble-closeout
-          gh api repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11665870186/zip > /tmp/bubble-closeout/original.zip
-          gh api repos/dekaazarashi1111-web/pokemon-vega-modern/pulls/16 > /tmp/bubble-closeout/pr.json
-          gh api 'repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs?branch=codex/modernization-followup-20260908&per_page=30' > /tmp/bubble-closeout/runs.json
-          python3 -B - <<'PY'
-          import hashlib, json, pathlib, subprocess, zipfile
-          root=pathlib.Path.cwd(); tmp=pathlib.Path('/tmp/bubble-closeout'); out=tmp/'text'; out.mkdir()
-          def ident(b): return {'size':len(b),'sha256':hashlib.sha256(b).hexdigest()}
-          raw=(tmp/'original.zip').read_bytes()
-          assert ident(raw)=={'size':21420,'sha256':'f3d0cfed7517d5a1c73d6eadf9c1fa0024ccbcd9bc36c915cc07edf099ef681f'}
-          with zipfile.ZipFile(tmp/'original.zip') as z:
-              assert len(z.namelist())==4 and set(z.namelist())=={'measurement.json','parent.json','provenance.json','tests.json'}
-              proof={n:json.loads(z.read(n)) for n in z.namelist()}
-              for n in z.namelist():
-                  dst=out/'received'/n; dst.parent.mkdir(exist_ok=True); dst.write_bytes(z.read(n))
-          pr=json.loads((tmp/'pr.json').read_text())
-          assert pr['state']=='open' and pr['draft'] is True and pr['merged'] is False
-          assert pr['head']['ref']=='codex/modernization-followup-20260908'
-          provenance=proof['provenance.json']
-          assert provenance['context']['source_head']=='3aada9217cc80627496adf33756d8fc2de3b5765'
-          for name,binding in provenance['files'].items():
-              assert ident((out/'received'/name).read_bytes())==binding
-          paths=set(provenance['context']['code_bindings']) | set(provenance['dependency_bindings']) | set(proof['parent.json']['input_bindings'])
-          paths.update(str(p) for p in pathlib.Path('scripts').glob('pr16_dex*.py'))
-          paths.update(['scripts/pr16_resume.py','scripts/taskctl.py','scripts/validate_task_graph.py','scripts/private_file_guard.py',
-              'content/modernization/pr16_native_supply_resume_20260913.json',
-              'content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json',
-              'content/modernization/pr16_dex_hof_blastoise_checkpoint.json',
-              'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','docs/PR16_DEX_HOF_BLASTOISE_DIAGNOSTIC_JA.md',
-              'tests/test_pr16_dex_hof_endpoint_receipt.py','tests/test_pr16_resume.py'])
-          tracked=set(subprocess.check_output(['git','ls-files','-z']).decode().split('\0'))
-          manifest={}; missing=[]
-          for name in sorted(paths):
-              if name not in tracked: missing.append(name); continue
-              p=pathlib.Path(name)
-              assert not p.is_symlink() and p.suffix in ('.py','.json','.md','.yml')
-              assert p.parts[0] in ('scripts','tests','content','docs','.github') and '..' not in p.parts
-              b=p.read_bytes(); b.decode('utf-8'); assert b'\0' not in b
-              if name in provenance['context']['code_bindings']: assert ident(b)==provenance['context']['code_bindings'][name]
-              if name in provenance['dependency_bindings']: assert ident(b)==provenance['dependency_bindings'][name]
-              dst=out/'source'/p; dst.parent.mkdir(parents=True,exist_ok=True); dst.write_bytes(b); manifest[name]=ident(b)
-          runs=json.loads((tmp/'runs.json').read_text())['workflow_runs']
-          summary={'status':'PASS_SAVED_TEXT_SNAPSHOT','source_head':provenance['context']['source_head'],
-              'live_pr':{'state':pr['state'],'draft':pr['draft'],'merged':pr['merged'],'head':pr['head']['sha']},
-              'runs':[{k:r.get(k) for k in ('id','name','head_sha','path','status','conclusion','run_attempt','created_at','updated_at')} for r in runs],
-              'files':manifest,'missing_optional_paths':missing,'rom_reconstructions':0,'native_processes':0,'test_reruns':0}
-          (out/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
-          print(json.dumps({k:v for k,v in summary.items() if k not in ('files','runs')},ensure_ascii=False))
-          print('tracked_text_files='+str(len(manifest)))
-          PY
-      - uses: actions/upload-artifact@v4
+          set -euo pipefail
+          python3 -B scripts/pr16_weather_bubble_closeout.py
+      - name: 確定commitと実検証結果だけを公開
+        uses: actions/upload-artifact@v4
         with:
-          name: pr16-weather-bubble-closeout-saved-text
-          path: /tmp/bubble-closeout/text
-          retention-days: 14
+          name: pr16-weather-bubble-closeout-result
+          path: /tmp/bubble-closeout-result/result.json
+          retention-days: 90
           if-no-files-found: error
