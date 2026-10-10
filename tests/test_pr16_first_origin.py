@@ -24,6 +24,20 @@ class Parse(unittest.TestCase):
         self.assertIsNone(self.parse(' 8000000: .word 0x12345678\n')[0]['operands'])
     def test_undefined_redacted(self):
         self.assertIsNone(self.parse(' 8000000: udf #100 ; undefined\n')[0]['operands'])
+    def test_gnu_comment_undefined(self):
+        for prefix in ('@',';'):
+            row=self.parse(' 8000000: '+prefix+' <UNDEFINED> instruction: 0xffffffff\n')[0]
+            self.assertEqual(row['kind'],'DATA_OR_UNDEFINED_NOT_EXPORTED');self.assertIsNone(row['operands'])
+    def test_gnu_bare_undefined(self):
+        self.assertIsNone(self.parse(' 8000000: <UNDEFINED> instruction: 0xffffffff\n')[0]['operands'])
+    def test_hex_letter_opcode(self):
+        for word in ('b500','f000f800'):
+            with self.assertRaises(ValueError):self.parse(' 8000000: '+word+' movs r0, #1\n')
+    def test_unknown_comment_rejected(self):
+        with self.assertRaises(ValueError):self.parse(' 8000000: @ unsupported comment\n')
+    def test_unpredictable_not_code(self):
+        row=self.parse(' 8000000: movs r0, #1 @ <UNPREDICTABLE>\n')[0]
+        self.assertEqual(row['kind'],'DATA_OR_UNDEFINED_NOT_EXPORTED');self.assertIsNone(row['operands'])
     def test_comment(self):
         rows=self.parse(' 8000000: ldr r0, [pc, #4] ; raw data\n 8000002: bx lr\n')
         self.assertNotIn('data',rows[0]['operands'])

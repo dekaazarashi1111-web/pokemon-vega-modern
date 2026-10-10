@@ -38,6 +38,12 @@ OUTPUTS={REPORT,FACTS,TESTS,RECEIPT,STATE,GUIDE,*LOGS}
 WORK=ROOT/'.local/pr16-first-origin'
 PUBLIC=WORK/'public'
 PHASE='preflight'
+ATTEMPT=dict(rom_reconstructions_started=0,exact_candidate_bound=False,all_ten_origins_bound=False,
+             all_finite_ranges_parsed=False,native_processes=0,accepted_measurement_replays=0)
+FAILED_ATTEMPT=dict(run_id=38090391926,source_head='bf79d177f74f19fc5cb1a183d67ccaf63cb4c68e',
+    artifact_id=11683299497,zip_sha256='63b52fc90065c5cf197b433864f13cb9219321bd67aa7aaeddb3d6922d7a3b77',
+    rom_reconstructions=1,accepted=False,phase='new-candidate-scope',
+    reason_ja='GNU ARMのコメント形式未定義命令を通常mnemonicと解釈して拒否。原本は未受入。出力表現adapterと5境界試験を追加。')
 SOURCE_COMMIT='c75f352304d529f6ba92d4f74b9cf8b5c3810788'
 PUBLIC_BLOBS={'src/money.c':'4a9a4f464f9d1771386d6575faeaaad28b1eda3b',
               'src/script_pokemon_util.c':'bc11dc001b4399ecd25b8699e316816e1ebd8058',
@@ -117,9 +123,10 @@ def main():
     stream=io.StringIO();tests=unittest.TextTestRunner(stream=stream,verbosity=2).run(
         unittest.defaultTestLoader.discover(str(ROOT/'tests'),pattern='test_pr16_first_origin.py'))
     (PUBLIC/'bounds-tests.txt').write_text(stream.getvalue())
-    m.need(tests.wasSuccessful() and tests.testsRun==35 and not tests.skipped,'新35試験')
+    m.need(tests.wasSuccessful() and tests.testsRun==40 and not tests.skipped,'新40試験')
     subprocess.run(['python3','-B','scripts/validate_task_graph.py'],cwd=ROOT,check=True,capture_output=True)
     receipt=receive_symbols()
+    (PUBLIC/'symbol-actions-completion.json').write_bytes(symbols.encode(receipt))
     PHASE='fixed-public-source'
     public={};texts={}
     for path,blob in PUBLIC_BLOBS.items():texts[path],public[path]=source(path,blob)
@@ -143,18 +150,25 @@ def main():
     import pr16_dex_hof_capacity_actions as reconstruction
     import pr16_dex_hof_donor as donor
     reconstruction.OUT=WORK/'candidate';reconstruction.OUT.mkdir()
+    ATTEMPT['rom_reconstructions_started']=1
+    (PUBLIC/'attempt.json').write_bytes(symbols.encode(ATTEMPT))
     with (WORK/'private-reconstruction.log').open('w') as log,contextlib.redirect_stdout(log),contextlib.redirect_stderr(log):
         candidate,checkpoint=reconstruction.reconstruct()
         m.need(m.identity(candidate)==m.CANDIDATE and checkpoint['candidate']==m.CANDIDATE,'現候補全identity')
         owners=donor.bind_owners(candidate,checkpoint)
     m.need(len(owners)==115,'現owner115')
+    ATTEMPT['exact_candidate_bound']=True
     binary=WORK/'candidate.gba';binary.write_bytes(candidate)
     hits=[]
     for item in frontier['origins']:
         hit=item['hit'];data=candidate[hit['address']-m.BASE:hit['address']-m.BASE+4]
         m.need(m.identity(data)=={k:hit[k] for k in ('size','sha256')} and donor.canonical(int.from_bytes(data,'little'))==hit['target'],'保存10originの現候補byte/target')
         hits.append(dict(hit=hit,matching_current_owners=m.overlap_owners(hit,owners),current_four_bytes_bound=True))
+    ATTEMPT['all_ten_origins_bound']=True
+    (PUBLIC/'attempt.json').write_bytes(symbols.encode(ATTEMPT))
     ranges={name:m.disassemble(binary,candidate,address,size) for name,(address,size) in m.SCOPES.items()}
+    ATTEMPT['all_finite_ranges_parsed']=True
+    (PUBLIC/'attempt.json').write_bytes(symbols.encode(ATTEMPT))
     cfg=m.normal_return_cfg(ranges['preceding_public_entry']['instructions'],selected['HideMoneyBox']['address'])
     expected_calls=[selected[name]['address'] for name in m.CALLS]
     cfg['matches_public_money_call_order']=[row['target'] for row in cfg['calls']]==expected_calls
@@ -169,6 +183,7 @@ def main():
                         'CFGは前entryと同期call正常帰還の条件付き。未知control/範囲外/間接分岐を境界として残す。',
                         'このprobeからformal FALSE_POSITIVEを発行しない。窓外read/owner内origin/間接参照・保存統合は未証明。'])
     encoded=symbols.encode(facts);write(FACTS,encoded)
+    (PUBLIC/'bounded-code-facts.json').write_bytes(encoded)
     saved=(read(FACTS),(ROOT/FACTS).stat().st_mtime_ns)
     m.need(read(FACTS)==symbols.encode(json.loads(read(FACTS))) and saved==(read(FACTS),(ROOT/FACTS).stat().st_mtime_ns),'read-only canonical byte/mtime')
     m.need(before=={n:(m.identity(read(n)),(ROOT/n).stat().st_mtime_ns) for n in before},'全旧原本byte/mtime保全')
@@ -176,11 +191,12 @@ def main():
     PHASE='record-and-nonforce-push'
     goal=('保存したfirst-origin有限命令/owner事実から0x080A006Fの実型とconsumerを確定する。'
           '前後labelや逆アセンブル形だけの分類は禁止。実必要reader/配置元へ閉じる。'
-          '正式785/89、安全容量0。既受入symbol20試験/今回35試験/有限ROM測定をsource不変なら再走しない。'
+          '正式785/89、安全容量0。既受入symbol20試験/今回40試験/有限ROM測定をsource不変なら再走しない。'
           '全874scanと旧Forest/Bubbleは再走せず、窓外跨りread/旧owner内origin/間接参照を残す。')
     report=dict(schema_version=1,task=TASK,status=facts['status'],source_head=head,actions_run_id=int(os.environ['GITHUB_RUN_ID']),
         actions_completion_confirmed=False,candidate=m.CANDIDATE,claims=dict(m.CLAIMS),rom_reconstructions=1,
-        new_unit_tests=35,facts_path=FACTS,facts_identity=m.identity(encoded),symbol_actions_receipt_path=RECEIPT,
+        prior_failed_attempts=[FAILED_ATTEMPT],total_task_rom_reconstructions=2,attempt=ATTEMPT,
+        new_unit_tests=40,facts_path=FACTS,facts_identity=m.identity(encoded),symbol_actions_receipt_path=RECEIPT,
         read_only_check_passed=True,protected_inputs_unchanged=True,task_graph_passed=True,
         source_bindings={n:m.identity(read(n)) for n in sorted(CODE)},preserved_inputs={n:v[0] for n,v in sorted(before.items())},
         observed_head_checks=observed,next_ja=goal)
@@ -192,7 +208,7 @@ def main():
     state['observed_head_checks']=observed
     state['recording']['status']='R0_READY_FIRST_ORIGIN_BOUNDED_FACTS_SAVE_INTEGRATION_PENDING'
     state['recording']['last_execution']=dict(task=TASK,source_head=head,actions_run_id=int(os.environ['GITHUB_RUN_ID']),
-        actions_completion_confirmed=False,new_unit_tests=35,accepted_tests_rerun=0,new_native_processes=0,rom_reconstructions=1,
+        actions_completion_confirmed=False,prior_failed_attempts=[FAILED_ATTEMPT],new_unit_tests=40,accepted_tests_rerun=0,new_native_processes=0,rom_reconstructions=1,
         read_only_check_passed=True,task_graph_passed=True,classified=785,unclassified=89,donor_safe_bytes=0)
     write(STATE,state)
     old=read(GUIDE).decode();m.need('## 先頭originの現候補有限範囲' not in old,'guide重複禁止')
@@ -200,21 +216,22 @@ def main():
     old+=(f'\n## 先頭originの現候補有限範囲\n\n新候補復元1回で全SHA/115ownerと保存10originを照合。'
         f'4個の有限範囲、前entryの条件付きCFG、first originと交差する命令形を記録しました。'
         f'前entryの公開money呼出順一致={cfg["matches_public_money_call_order"]}、境界数={len(cfg["boundaries"])}。'
-        '形を実consumer証明には昇格していません。\n\n'
+        '形を実consumer証明には昇格していません。初回run38090391926はGNU未定義命令コメントの表現差で未受入停止。adapterと5試験を追加し、失敗1回を含む本taskの復元は計2回です。\n\n'
         f'[有限事実](../{FACTS}) / [checkpoint](../{REPORT}) / [symbol成功Actions受領](../{RECEIPT})。'
-        '新35試験・読取専用byte/mtime・task graph・全旧原本保全。native0、旧受入再走0、正式785/89、安全容量0。'
+        '新40試験・読取専用byte/mtime・task graph・全旧原本保全。native0、旧受入再走0、正式785/89、安全容量0。'
         '\n\n## 次の未完作業\n\n'+goal+'\n')
     write(GUIDE,old.encode())
     now=dt.datetime.now(dt.timezone.utc).isoformat()
     block=(f'\n## {now}\n- Timestamp: {now}\n- Task: {TASK} / first originの有限現候補証拠\n'
         '- Version: first-origin-bounds-v1\n- Status: DONE（有限測定。実consumer/保存統合は未完）\n'
         '- Summary: 完了symbol Actions/ZIP全5member/公開treeを受領。新候補復元1回で保存10originと115ownerを束縛し、4有限範囲の命令形と前entryの条件付きCFGを保存。\n'
-        '- Files changed: 新有限検証器/35境界試験/専用Actions、有限事実とcheckpoint、symbol成功receipt、固定引継ぎMD/JSON、両ログ。\n'
-        '- Verify: 新35 tests、現候補全SHA、115owner、10origin全4byte/hash/target、read-only byte/mtime、旧原本保全、task graph。最終index新規private違反0と全体guard結果は別記録。\n'
+        '- Files changed: 新有限検証器/40境界試験/専用Actions、有限事実とcheckpoint、symbol成功receipt、固定引継ぎMD/JSON、両ログ。\n'
+        '- Prior failure: run38090391926/bf79d177はGNU未定義命令コメントを拒否して測定未受入。固定上流の表現を確認しadapter/5試験追加。本task復元は失敗1+成功1=計2回。成功済み測定再走なし。\n'
+        '- Verify: 新40 tests、現候補全SHA、115owner、10origin全4byte/hash/target、read-only byte/mtime、旧原本保全、task graph。最終index新規private違反0と全体guard結果は別記録。\n'
         '- Boundary: 逆アセンブル形はowner/実consumerの証明ではない。正式785/89・安全容量0、ROM/Save101/R0/baseline不変。新native0/旧試験再走0。\n'
         '- Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴/Actions resultを参照。\n'
         '- Network: 同repo PR/ref/Actions/固定private入力、固定公開pret/pokefirered c75f3523のsrc/money.c・src/script_pokemon_util.c・ld_script.ld、ComplexRobot/frlg-sym c04a3154のJP auditをGET。同branch非force push。\n'
-        '- Sources: https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 ; https://github.com/ComplexRobot/frlg-sym/tree/c04a31542086b20d8c6ee641eaa70b8db6713fd3 。前後関数と配置順/JP対応行を有限範囲と照合。\n')
+        '- Sources: https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 ; https://github.com/ComplexRobot/frlg-sym/tree/c04a31542086b20d8c6ee641eaa70b8db6713fd3 。前後関数と配置順/JP対応行を有限範囲と照合。GNU表現確認: https://sourceware.org/pipermail/binutils/2022-October/123296.html （検索語 arm-dis.c UNDEFINED instruction）。\n')
     for name in LOGS:
         old=read(name);m.need(('- Task: '+TASK+' /').encode() not in old,'同task重複禁止');write(name,old+block.encode())
     publication.final_index(START,CODE|OUTPUTS,REPORT)
@@ -234,7 +251,7 @@ def main():
     with zipfile.ZipFile(PUBLIC/'scoped-context.zip','w',zipfile.ZIP_DEFLATED) as archive:
         for name in sorted(context):archive.writestr(name,read(name))
     (PUBLIC/'result.json').write_bytes(symbols.encode(dict(status='DONE',task=TASK,commit=pushed,source_head=head,
-        actions_run_id=int(os.environ['GITHUB_RUN_ID']),new_unit_tests=35,rom_reconstructions=1,claims=m.CLAIMS)))
+        actions_run_id=int(os.environ['GITHUB_RUN_ID']),new_unit_tests=40,rom_reconstructions=1,claims=m.CLAIMS)))
     print(f'RESULT=DONE TASK={TASK} VERIFY=PASS COMMIT={pushed}')
 
 
@@ -243,6 +260,8 @@ if __name__=='__main__':
     except Exception as exc:
         if PUBLIC.exists():
             (PUBLIC/'failure.json').write_bytes(symbols.encode(dict(status='FAILED_NOT_ACCEPTED',phase=PHASE,
-                exception_type=type(exc).__name__,frames=[dict(source=Path(f.filename).name,line=f.lineno,function=f.name)
+                exception_type=type(exc).__name__,attempt=ATTEMPT,
+                safe_failure_code={'raw opcode出力を拒否':'DISASSEMBLER_TOKEN','閉じたoperand文字':'DISASSEMBLER_OPERAND',
+                    '命令gap/extent':'DISASSEMBLER_EXTENT','順序/一意/先頭':'DISASSEMBLER_ORDER'}.get(str(exc),'OTHER'),frames=[dict(source=Path(f.filename).name,line=f.lineno,function=f.name)
                     for f in traceback.extract_tb(exc.__traceback__) if '/scripts/' in f.filename])))
         print(f'RESULT=STOPPED TASK={TASK} VERIFY=FAIL COMMIT=- PHASE={PHASE}');sys.exit(1)

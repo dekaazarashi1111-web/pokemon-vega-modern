@@ -47,7 +47,12 @@ def parse_disassembly(text, raw, address):
             continue
         pc=int(match[1],16); mnemonic=match[2].lower(); operands=(match[3] or '').strip()
         need(address <= pc < address + len(raw) and pc % 2 == 0,'範囲外/奇数命令')
-        need(bool(re.fullmatch(r'[a-z.][a-z0-9_.]*',mnemonic)),'raw opcode出力を拒否')
+        if mnemonic in ('@',';') and operands.lower().startswith('<undefined> instruction:'):
+            mnemonic,operands='undefined',''
+        elif mnemonic=='<undefined>':
+            mnemonic,operands='undefined',''
+        need(bool(re.fullmatch(r'[a-z.][a-z0-9_.]*',mnemonic)) and
+             not re.fullmatch(r'(?:[0-9a-f]{4}|[0-9a-f]{8})',mnemonic),'raw opcode出力を拒否')
         rows.append((pc,mnemonic,operands))
     need(bool(rows) and rows[0][0]==address and [r[0] for r in rows]==sorted({r[0] for r in rows}),
          '順序/一意/先頭')
@@ -56,7 +61,7 @@ def parse_disassembly(text, raw, address):
         end=rows[index+1][0] if index+1<len(rows) else address+len(raw)
         size=end-pc;need(size in (2,4),'命令gap/extent')
         kind='INSTRUCTION_SHAPE_ONLY'
-        if mnemonic.startswith('.') or 'undefined' in operands.lower() or mnemonic in ('undefined','udf'):
+        if mnemonic.startswith('.') or any(marker in operands.lower() for marker in ('undefined','unpredictable')) or mnemonic in ('undefined','udf'):
             kind='DATA_OR_UNDEFINED_NOT_EXPORTED';operands=None
         else:
             # GNU comments may print literal raw data; they are never copied to public evidence.
