@@ -1,0 +1,44 @@
+name: pr16-forest-wallpaper-asset
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_forest_wallpaper_asset.py
+      - scripts/pr16_forest_wallpaper_asset_actions.py
+      - tests/test_pr16_forest_wallpaper_asset.py
+      - .github/workflows/pr16-forest-wallpaper-asset.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-forest-wallpaper-asset
+  cancel-in-progress: false
+jobs:
+  forest-asset:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: New scoped reconstruction tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev
+          python -m pip install Pillow==11.3.0
+      - name: Forest whole asset, current table and LZ token verification
+        run: python3 -B scripts/pr16_forest_wallpaper_asset_actions.py
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: pr16-forest-asset-public-text
+          path: .local/pr16-forest-asset/public
+          if-no-files-found: error
