@@ -1,0 +1,75 @@
+{
+  "accepted_generation_reruns": 0,
+  "accepted_test_reruns": 0,
+  "actions_run_id": 38063715046,
+  "completed_build_actions": {
+    "conclusion": "success",
+    "id": 38053550683,
+    "observed_at": "2026-10-10T15:28:22.549770+00:00",
+    "required_steps": [
+      "R0の新しいfocused試験とtask graph",
+      "R0生成または提示receiptを検証して非force反映"
+    ],
+    "source_head": "c935d493c998bc62a6189381085fc9d2bb6c6803",
+    "status": "completed"
+  },
+  "fixed_tree_files": 4514,
+  "full_index_private_guard": {
+    "executed": true,
+    "exit_code": 1,
+    "historical_violations_not_rewritten": true,
+    "passed": false,
+    "raw_private_log_published": false
+  },
+  "new_native_processes": 0,
+  "presentation": {
+    "accepted_generation_reruns": 0,
+    "accepted_test_reruns": 0,
+    "build_run_id": 38053550683,
+    "build_source_head": "c935d493c998bc62a6189381085fc9d2bb6c6803",
+    "entry_path": "docs/wiki/r0-6e88a021/README.md",
+    "owner_approval_granted": false,
+    "presentation_channel": "ChatGPT current task conversation",
+    "presentation_ja": "固定commitのWiki R0入口を会話で提示済み。性能比較と調整案の参照用であり、保存修復・配布受入の完了ではないと明示した。",
+    "presented_at": "2026-10-10T15:26:23Z",
+    "presented_to_owner": true,
+    "schema_version": 1,
+    "scope_ja": "既存receipt分岐で公開tree・生成Actions・提示を照合する。Wiki本文、原本ROM/Save101、旧受入、baselineは変更しない。",
+    "semantic_sha256": "919a95c7ddeb73ee4a03dd0b7fed6d7fe015aeb31d5c8fe71f11545373be0e16",
+    "task": "USER-20261010-WIKI-R0-PRESENTATION",
+    "tree_sha256": "08b0d74dab4b798a6b4a419be6b0fd422c357aa26f779ca5bc6a191165c96b84",
+    "wiki_commit": "473aca371dbfd1d8a041d2ead4326a54759dcda4"
+  },
+  "rom_reconstructions": 0,
+  "schema_version": 1,
+  "scoped_final_index_guard": {
+    "historical_guard_pass_claimed": false,
+    "new_private_violations": 0,
+    "status": "PASS"
+  },
+  "source_head": "c0f03fc3711ea2f2ac6b866735cc8eb6eeaf7432",
+  "status": "PASS_PUBLISHED_PRESENTED_R0",
+  "task": "USER-20261010-WIKI-R0-RECEIPT",
+  "technical_resume_bindings": {
+    "content/modernization/pr16_weather_bubble_checkpoint.json": {
+      "sha256": "2b2c6c227d12b36ad0ae682b3a00d75decbfde137b92b5154af1c068e0c8ad50",
+      "size": 11920
+    },
+    "content/modernization/pr16_weather_bubble_evidence/unknown-frontier.json": {
+      "sha256": "fe22c780ecc5a9c23c61eda3e1384ccf63560936d45d7afecf0686bd0106ba76",
+      "size": 39525
+    },
+    "docs/PR16_WEATHER_BUBBLE_ACCEPTANCE_JA.md": {
+      "sha256": "b69d73faee02ba312922cfaac44d0bd401d6d9aa97c79582d1f481b0245ac18d",
+      "size": 3135
+    },
+    "scripts/pr16_weather_bubble_receipt.py": {
+      "sha256": "101c841322b777b27891567e77f1149f65fc8c952fca384b03289c55e32edce2",
+      "size": 13368
+    },
+    "scripts/pr16_weather_bubble_sources.py": {
+      "sha256": "d5827de8da092c0209003c382b6ab657905bf50ce37fa257021732fe64476070",
+      "size": 6080
+    }
+  }
+}
