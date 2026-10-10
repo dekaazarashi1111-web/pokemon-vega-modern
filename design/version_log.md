@@ -11500,3 +11500,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: donor安全容量0、新native/ROM再構成/旧reader/旧試験再走0。Wiki R0/正式ROM/Save101/baseline不変、merge/releaseなし。
 - Commit: この記録を含む同branch単親通常commit。実SHAとActions完了はcontent/modernization/pr16_forest_wallpaper_receipt_evidence/actions-completion.jsonおよびGit履歴で照合。
 - Network: 指定repo PR/ref/成功測定ActionsのGETとartifact受領、同branch非force pushのみ。ROM/原本の再採取なし。
+
+## 2026-10-10T21:36:31.185187+00:00
+- Timestamp: 2026-10-10T21:36:31.185187+00:00
+- Task: USER-20261011-DONOR-WINDOW / 保存controller候補窓の有限比較
+- Version: donor-window-v1
+- Status: DONE（窓選定/証拠のみ。保存統合は未完）
+- Summary: 2148整列窓を保存親から比較。未知target最小10行の候補窓を固定し、窓外/旧owner内origin/間接参照の未証明を明記。
+- Files changed: 窓比較器/新規試験/専用workflow、窓証拠/受領、固定Forest引継ぎMD/状態JSON、両ログ。
+- Verify: 新49 unit tests、150組対照、実2148窓独立総当たり、read-only byte/mtime、task graph PASS。最終index新規private違反0と既存全体guard失敗を分離。
+- Boundary: 正式785分類/89未知・安全容量0。R0/旧受入/正式ROM/Save101/baseline不変。新native/ROM再構成/旧試験再走0、merge/releaseなし。
+- Commit: この記録を含む同branch単親通常commit。実SHAはActions resultとGit履歴で照合。自己SHAだけのcommitは作らない。
+- Network: 指定repoのPR/ref/Actions GETと公開text artifact受領、同branchへの非force pushのみ。外部入力の再採取なし。

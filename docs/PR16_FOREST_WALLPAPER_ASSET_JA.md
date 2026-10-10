@@ -40,6 +40,16 @@ Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4by
 
 受領処理自身のActions完了は[外部読戻しreceipt](../content/modernization/pr16_forest_wallpaper_receipt_evidence/actions-completion.json)で別記録します。生成中のrunを成功と先取りしません。
 
-## 次の未完作業
+## Forest受領時の停止点（履歴）
 
 正式785分類/89未知・安全容量0の保存親から、保存controller6528byteに必要な候補窓のowner/間接参照を有限範囲で絞る。未知frontier先頭0x0805D12Fを採用する場合もsource/asset identityから開始し、未知削減だけを容量確保としない。Forest測定・受領39試験・旧asset/旧readerを再走しない。必要範囲の退役/移管、heap寿命、保存接続と局所受入は未完。
+
+## 保存controllerの有限候補窓
+
+入力HEAD `1aa6966db7f6ca647e5c665d6794179aba7a2822`。保存785/89親から全2148整列窓を比較し、[0x09FED0C4,0x09FEEA44)の6528byteを調査候補に固定しました。窓内の未知target点は最小10行です。これは安全容量や退役証明ではありません。
+
+[窓計画](../content/modernization/pr16_donor_window_evidence/windows.json) / [検証checkpoint](../content/modernization/pr16_donor_window_checkpoint.json)。新49試験、150組の総当たり対照、実2148窓の独立総当たり、決定的read-only check、task graphを検証。窓外targetからの跨りread、旧inventoryで除外された旧owner内origin、計算参照は未証明として保持。正式785/89/安全容量0、旧受入/R0/ROM/Save101は不変です。
+
+## 次の未完作業
+
+候補窓[0x09FED0C4,0x09FEEA44)の6528byteについて、保存未知target 10行（先頭0x080A006F）のsource/asset identityと実consumerを限定して結ぶ。窓外targetからの跨りread・旧owner内originの除外・間接参照を残し、owner退役/部分移管を証明する。全874scan/Forest/Bubble/49窓試験の無変更再走は禁止。安全容量0を維持し、controller/heap/保存接続は別gate。
