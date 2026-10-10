@@ -141,6 +141,16 @@ def indexed(values, count):
     return [[v['id'], v['key']] for v in values]
 
 
+def successor_index(name, values):
+    field = 'species_key' if name == 'species' else 'move_key'
+    need(name in {'species', 'moves'}, '後継domain不正')
+    normalized = []
+    for row in values:
+        need(field in row and ('key' not in row or row['key'] == row[field]), '後継stable key欠落/競合')
+        normalized.append(dict(row, key=row[field]))
+    return indexed(normalized, COUNTS[name])
+
+
 def protected(provenance, domains, capacity):
     out = []
     def add(label, address, length, digest=None):
@@ -203,7 +213,7 @@ def inspect(root, source_head):
     for name, count in COUNTS.items():
         mapping[name] = indexed(domains[name], count)
     for name in ('species', 'moves'):
-        need(indexed(records(bound(NEW, 'data/'+name+'.jsonl')), COUNTS[name]) == mapping[name], '新旧ID/key対応不一致: '+name)
+        need(successor_index(name, records(bound(NEW, 'data/'+name+'.jsonl'))) == mapping[name], '新旧ID/key対応不一致: '+name)
     from pr16_candidate_wiki_inputs import Inputs, registries, CAPACITY
     inputs = Inputs(root)
     registry = registries(inputs)

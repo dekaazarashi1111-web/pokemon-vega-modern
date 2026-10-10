@@ -107,6 +107,8 @@ def record(report, observed, tests):
         'done_ja':'全必須ページ、リンク、旧Wiki不変、決定性/check無書込を検証して実在する固定R0を提示する。'}
     state['observed_head_checks'] = observed
     state['recording']['status'] = 'NUMERIC_LINEAGE_RECORDED_R0_RENDER_PENDING'
+    state['recording']['project_task_graph_check_executed'] = True
+    state['recording']['prior_reconciliation_attempt'] = {'run_id':38050833671,'source_head':'9de8ba74bf89747d88002edc486d92cb1ad5f1b9','conclusion':'failure','reason_ja':'後継move_key欄のadapter欠落を修正。検査を無効化せずキー競合拒否4試験を追加。','completion_commit_created':False}
     state['recording']['last_execution'] = {'task':m.TASK,'source_head':report['source_head'],'focused_tests':tests,'accepted_tests_rerun':0,'rom_reconstructions':0,'new_native_processes':0,'actions_run_id':int(os.environ['GITHUB_RUN_ID']),'actions_completion_confirmed':False,'task_graph_passed':True,'full_index_private_guard':{'executed':False,'passed':False}}
     changed_write(m.STATE, m.encode(state))
     stamp = dt.datetime.now(dt.timezone.utc).isoformat()
@@ -170,4 +172,16 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception as exc:
+        (WORK/'proof').mkdir(parents=True,exist_ok=True)
+        (WORK/'proof/failure.json').write_bytes(m.encode({'status':'FAIL','error':str(exc).replace(str(m.ROOT),'$REPO'),'source_head':os.environ.get('GITHUB_SHA'),'completion_not_claimed':True}))
+        names=CODE|OUTPUTS|{'AGENTS.md','CHATGPT_RESUME.md','docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md','content/modernization/p04_capacity_allocation_manifest.json','content/modernization/p04_candidate_manifest.json','config/modernization_rockruff_own_tempo_stage75.json'}
+        names|={'manifests/'+n+'_ids.csv' for n in ('species','move','ability','item')}
+        names|={'content/modernization/pr16_learnset_'+s[1]+'_checkpoint.json' for s in m.STEPS}
+        with zipfile.ZipFile(WORK/'context.zip','w',zipfile.ZIP_DEFLATED) as archive:
+            for name in sorted(names-LOGS):
+                if (m.ROOT/name).is_file():
+                    archive.writestr(name,m.read(m.ROOT,name))
+        raise

@@ -78,6 +78,16 @@ class Reconcile(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root=pathlib.Path(tmp);(root/'target').write_text('test');(root/'link').symlink_to('target')
             with self.assertRaises(ValueError):m.read(root,'link')
+    def test_successor_move_field(self):
+        values=[{'id':i,'move_key':'M'+str(i)} for i in range(m.COUNTS['moves'])]
+        self.assertEqual(len(m.successor_index('moves',values)),1063)
+    def test_successor_conflicting_key(self):
+        with self.assertRaises(ValueError):m.successor_index('moves',[{'id':0,'move_key':'A','key':'B'}])
+    def test_successor_missing_key(self):
+        with self.assertRaises(ValueError):m.successor_index('moves',[{'id':0,'key':'A'}])
+    def test_successor_species_field(self):
+        values=[{'id':i,'species_key':'S'+str(i),'key':'S'+str(i)} for i in range(m.COUNTS['species'])]
+        self.assertEqual(len(m.successor_index('species',values)),1671)
     def test_check_encoding_deterministic(self):
         self.assertEqual(m.encode({'z':1,'a':2}),m.encode({'a':2,'z':1}))
 
