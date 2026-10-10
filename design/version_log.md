@@ -11464,3 +11464,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新28 tests/task graph/親byte-mtime/非force競合検査。旧試験・reader・ROM再構成・native各0。全体private guardは既存違反と新規違反を区別。
 - Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴とActions resultから照合。
 - Network: 固定公開symbol、GitHub指定repoのPR/ref/Actions GETと同branch非force push。
+
+## 2026-10-10T16:03:34.443938+00:00
+- Timestamp: 2026-10-10T16:03:34.443938+00:00
+- Task: USER-20261010-FOREST-WHOLE-ASSET / Forest全assetと実table
+- Version: forest-whole-asset-v1
+- Status: DONE（全asset限定検証。実entry/heap/BIOS型受入は未完）
+- Summary: 公開PNGと53tile専用ruleから1696byteを独立生成。LZ消費973/整列976をPillowと公開Cで交差検証し、現0641候補全SHA/115ownerと全asset/table/4byte token一致。
+- Files changed: 新Forestモデル/34試験/実行器/workflow/MD/JSON、現行状態JSON、両ログ。旧証拠/原本/baselineは不変。
+- Verify: 新34 tests/task graph、前binding completed成功、全parent byte/mtime不変、最終index/非force競合/commit読戻し。旧試験/旧reader/ゲームnative各0、新scope ROM復元1。
+- Boundary: 784分類90未知・安全容量0を保持。table近傍やtoken parseを実entry/heap/BIOS実行と混同しない。全体CI/private guardの既存失敗をPASSへ変えない。
+- Commit: この記録を含む同branch単親commit。実SHAはGit履歴とActions resultから照合。
+- Network: 固定公開source、既存許可済private候補再構成、指定repo PR/ref/Actions GETと同branch非force push。

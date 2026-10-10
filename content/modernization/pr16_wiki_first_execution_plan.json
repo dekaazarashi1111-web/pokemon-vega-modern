@@ -17,14 +17,13 @@
   "branch": "codex/modernization-followup-20260908",
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "next_action": {
-    "done_ja": "独立全assetと実consumerが一致する場合だけ最小型を受入。成立しない場合は診断と非主張を記録して次の安全容量手段を選ぶ。",
-    "goal_ja": "symbol近傍は候補だけ。独立公開sourceの宣言と全assetを固定し、実ROM table/literal/readerの全4byte消費へ結ぶ。型の証明なしに784/90/安全容量0を変更しない。旧Bubble/Blastoiseの再測定、全クリ走破は行わない。",
-    "id": "SAVE_CAPACITY_08397492_ASSET_AND_READER_PROOF",
+    "done_ja": "実entry/literal/table/heap/LZ境界の全4byte消費を証明した場合だけ最小型を受入。未証明のまま安全容量や本番保存を有効化しない。",
+    "goal_ja": "Forest全asset976byte・実table先頭tuple・LZ消費973byte/展開1696byteは保存checkpointから継承し再測定しない。次はLoadWallpaperGfxの実literal/table選択→DecompressAndLoadBgGfxUsingHeap→LZ77境界を有限命令・caller状態・heap成功/失敗で結ぶ。成立するまで正式784/90・安全容量0を保持。全クリ/旧Bubble/Blastoiseの再走は禁止。",
+    "id": "SAVE_CAPACITY_FOREST_ACTUAL_ENTRY_READER",
     "read_paths": [
-      "docs/PR16_CAPACITY_08397492_JA.md",
-      "content/modernization/pr16_capacity_08397492_checkpoint.json",
-      "scripts/pr16_capacity_08397492.py",
-      "scripts/pr16_weather_bubble_receipt.py",
+      "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
+      "content/modernization/pr16_forest_wallpaper_asset_checkpoint.json",
+      "scripts/pr16_forest_wallpaper_asset.py",
       "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md"
     ]
   },
@@ -34,8 +33,8 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
-        "id": 38064732589,
+        "head_sha": "30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88",
+        "id": 38066044283,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
@@ -43,8 +42,8 @@
       {
         "conclusion": "failure",
         "event": "pull_request",
-        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
-        "id": 38064732795,
+        "head_sha": "30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88",
+        "id": 38066044314,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
@@ -52,26 +51,26 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
-        "id": 38064726885,
-        "name": "pr16-capacity-08397492",
-        "path": ".github/workflows/pr16-capacity-08397492.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
-        "id": 38064726949,
+        "head_sha": "30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88",
+        "id": 38066038600,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88",
+        "id": 38066038191,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
         "conclusion": "success",
         "event": "push",
-        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
-        "id": 38064726418,
+        "head_sha": "30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88",
+        "id": 38066038553,
         "name": "Stage79 runtime boundary audit",
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
@@ -79,23 +78,23 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
-        "id": 38064726487,
-        "name": "Stage79 mGBA (all)",
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "head_sha": "30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88",
+        "id": 38066038086,
+        "name": "pr16-forest-wallpaper-asset",
+        "path": ".github/workflows/pr16-forest-wallpaper-asset.yml",
         "status": "in_progress"
       },
       {
         "conclusion": "failure",
         "event": "push",
-        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
-        "id": 38064726662,
+        "head_sha": "30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88",
+        "id": 38066037924,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
       }
     ],
-    "source_head": "3d8acf571a6058588f51be3b4a3609f96d5b7194"
+    "source_head": "30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -192,9 +191,9 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_capacity_08397492_checkpoint.json",
+        "checkpoint_path": "content/modernization/pr16_forest_wallpaper_asset_checkpoint.json",
         "completion_evidence_path": null,
-        "next_ja": "R0提示後、保存した解析frontierから必要容量と本番保存接続へ。全クリは再開しない。",
+        "next_ja": "Forest全asset976byte・実table先頭tuple・LZ消費973byte/展開1696byteは保存checkpointから継承し再測定しない。次はLoadWallpaperGfxの実literal/table選択→DecompressAndLoadBgGfxUsingHeap→LZ77境界を有限命令・caller状態・heap成功/失敗で結ぶ。成立するまで正式784/90・安全容量0を保持。全クリ/旧Bubble/Blastoiseの再走は禁止。",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
           "保存controller実配置",
@@ -203,7 +202,7 @@
           "heap-ready/同期非再入/退避前Free/全出口Free",
           "必要な局所Save/fresh Continue受入"
         ],
-        "status": "FRONTIER_BOUND_ASSET_READER_PROOF_PENDING"
+        "status": "FOREST_ASSET_BOUND_ACTUAL_READER_PENDING"
       }
     },
     "wiki": {
@@ -262,8 +261,18 @@
     "last_execution": {
       "accepted_tests_rerun": 0,
       "actions_completion_confirmed": false,
-      "actions_run_id": 38064726885,
-      "focused_tests": 28,
+      "actions_run_id": 38066038086,
+      "completed_previous_binding_actions": {
+        "conclusion": "success",
+        "id": 38064726885,
+        "observed_at": "2026-10-10T16:03:05.991612+00:00",
+        "required_steps": [
+          "New frontier tests, saved parent and public symbol binding"
+        ],
+        "source_head": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "status": "completed"
+      },
+      "focused_tests": 34,
       "full_index_private_guard": {
         "executed": true,
         "exit_code": 1,
@@ -272,9 +281,9 @@
         "raw_private_log_published": false
       },
       "new_native_processes": 0,
-      "rom_reconstructions": 0,
-      "source_head": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
-      "task": "USER-20261010-CAPACITY-08397492-BINDING",
+      "rom_reconstructions": 1,
+      "source_head": "30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88",
+      "task": "USER-20261010-FOREST-WHOLE-ASSET",
       "task_graph_passed": true
     },
     "legacy_generated_md_modified": false,
@@ -310,7 +319,7 @@
     "project_task_graph_check_executed": true,
     "rom_changes": 0,
     "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-    "status": "R0_READY_CAPACITY_FRONTIER_BOUND_READER_PENDING",
+    "status": "R0_READY_FOREST_ASSET_BOUND_ACTUAL_READER_PENDING",
     "task": "USER-20261010-WIKI-FIRST-POLICY",
     "wiki_generated": true
   },

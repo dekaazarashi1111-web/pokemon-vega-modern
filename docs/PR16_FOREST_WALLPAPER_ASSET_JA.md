@@ -1,0 +1,17 @@
+# Forest壁紙：全asset・実table・LZ tokenの照合
+
+**全assetの限定検証は完了。実entryからheap/BIOSへ至る条件付きreaderと正式型受入は未完です。**
+
+入力HEAD `30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88`、Actions `38066038086`、新34境界試験とtask graph PASS。先行bindingのActionsはcompleted/successを照合済み。
+
+公開PNGは64×56で56tile相当ですが、固定ビルドルールは`-num_tiles 53`です。最後の空3tileを除いた1696byteから生成し、消費973byte、整列込み976byteを確定しました。Pillow全pixel照合と固定公開C compressorでも同一結果です。
+
+現候補0641af70…を新scopeのためだけに再構成し、全32MiB SHAと115ownerを照合しました。0x08397188の全976byte、sWallpapers先頭の12byte tuple、保存hit0x08397492の4byteが一致しました。対象はLZ参照2byte・literal1byte・flags1byteで、整列paddingではありません。ROM/PNG/生byte列は公開せずhashとtoken型だけを記録します。
+
+[機械可読checkpoint](../content/modernization/pr16_forest_wallpaper_asset_checkpoint.json)に全source/依存/親のidentity、symbol行、tokenごとの範囲と展開位置を保存しました。
+
+## 次の未完作業
+
+Forest全asset976byte・実table先頭tuple・LZ消費973byte/展開1696byteは保存checkpointから継承し再測定しない。次はLoadWallpaperGfxの実literal/table選択→DecompressAndLoadBgGfxUsingHeap→LZ77境界を有限命令・caller状態・heap成功/失敗で結ぶ。成立するまで正式784/90・安全容量0を保持。全クリ/旧Bubble/Blastoiseの再走は禁止。
+
+このtoken parserはBIOSやゲームentryの実行ではありません。sourceでcallがあることとtable一致だけからreader成立へ昇格しません。controller6528byte配置、同期heap寿命、保存writer/loaderと局所Save/fresh Continueは別gateです。所有者調整承認0、正式ROM/Save101・baseline不変、merge/releaseなし。
