@@ -1,80 +1,195 @@
 {
-  "schema_version": 1,
-  "stable_entrypoint": "CHATGPT_RESUME.md",
-  "branch": "codex/modernization-followup-20260908",
-  "pr_number": 16,
-  "decision_id": "OWNER-20261010-WIKI-FIRST",
-  "active_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
   "active_execution_state": "content/modernization/pr16_wiki_first_execution_plan.json",
+  "active_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
   "authority_ja": "このJSONが現在の作業選択の唯一の正本。旧native_supply_resumeは技術証拠/保留停止点として保持し、古いnextで現在方針を上書きしない。",
+  "bindings": {
+    "CHATGPT_RESUME.md": {
+      "git_blob_sha": "51e5e35669b25c425c1be7263bbe9d391988aca1",
+      "sha256": "563fec8b1ad11b3a80128515c8a4795fb4eca2cfc6407c22e2726a561cee5652",
+      "size": 5102
+    },
+    "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
+      "git_blob_sha": "116c6f1f8ccbed26029de10f31be7c69be75b09f",
+      "sha256": "dd200aa3a4e0fa581991c9f3553b042398af691977313d57e44fd088e15fa35d",
+      "size": 20300
+    }
+  },
+  "branch": "codex/modernization-followup-20260908",
+  "decision_id": "OWNER-20261010-WIKI-FIRST",
   "next_action": {
-    "id": "WIKI_R0_BUILD",
-    "goal_ja": "最初にrecordingの事務追記未実施分を同決定IDで重複なく記録し、調整基準Wiki R0の入力同定・比較可能な第一版を実装/検証/記録する。解析08397492や保存修復全面完了を前提にしない。R0提示後は所有者の検討中に独立技術を継続する。",
+    "done_ja": "能力等の数値と後継習得の同一候補対応を証明後、比較可能なR0を別出力へ生成・検証する。",
+    "goal_ja": "旧能力/技/特性/進化/機構tableと後継候補の非変更rangeまたは同一semantic hashを結合する。",
+    "id": "WIKI_R0_RECONCILE_NUMERIC_SUCCESSOR_IDENTITY",
     "read_paths": [
       "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
-      "docs/wiki/README.md",
-      "docs/wiki/p08-candidate-46487d98/README.md",
-      "docs/wiki/issue19-candidate-6e88a021/README.md",
-      "content/modernization/pr16_candidate_wiki_followup.json",
-      "content/modernization/pr16_learnset_wiki_checkpoint.json"
+      "docs/PR16_WIKI_R0_INPUTS_JA.md",
+      "content/modernization/pr16_wiki_r0_input_manifest.json",
+      "scripts/pr16_wiki_r0_inputs.py"
+    ]
+  },
+  "observed_head_checks": {
+    "all_ci_green_claimed": false,
+    "runs": [
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "a0c9d36342dff35228247391cfeb299d12ed9c79",
+        "id": 38049353981,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "a0c9d36342dff35228247391cfeb299d12ed9c79",
+        "id": 38049353975,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "a0c9d36342dff35228247391cfeb299d12ed9c79",
+        "id": 38049348347,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "a0c9d36342dff35228247391cfeb299d12ed9c79",
+        "id": 38049348464,
+        "name": "pr16-wiki-r0-inputs",
+        "path": ".github/workflows/pr16-wiki-r0-inputs.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "a0c9d36342dff35228247391cfeb299d12ed9c79",
+        "id": 38049348364,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "a0c9d36342dff35228247391cfeb299d12ed9c79",
+        "id": 38049348479,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "a0c9d36342dff35228247391cfeb299d12ed9c79",
+        "id": 38049348509,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      }
     ],
-    "done_ja": "固定R0の実在入口、入力manifest、主要データの対応、機構/供給索引、制限、検証証拠、公開commitを記録し所有者へ提示する。"
+    "source_head": "a0c9d36342dff35228247391cfeb299d12ed9c79"
   },
   "owner_execution_plan": {
-    "schema_version": 1,
+    "balance_batches": [],
     "decision_id": "OWNER-20261010-WIKI-FIRST",
-    "owner_instruction_at": "2026-10-10T10:56:56Z",
     "decision_source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-    "policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
-    "phase": "WIKI_R0",
-    "scope": {
-      "full_story_run": "EXCLUDED_BY_OWNER",
-      "story_pass_claimed": false,
-      "save_safety_required": true,
-      "local_functional_tests_required": true,
-      "long_growth_soak": "DEFERRED_SEPARATE_DECISION",
-      "automatic_background_execution": false,
-      "balance_changes_without_owner_approval": false,
-      "merge_authorized": false,
-      "release_publication_authorized": false,
-      "active_baseline_switch_authorized": false
-    },
-    "wiki": {
-      "revision": "R0",
-      "status": "NOT_STARTED",
-      "review_ready": false,
-      "entry_path": null,
-      "input_manifest_path": null,
-      "source_head": null,
-      "candidate": null,
-      "tree_sha256": null,
-      "semantic_sha256": null,
-      "verification_evidence_path": null,
-      "published_commit": null,
-      "presented_to_owner": false,
-      "limitations": [],
-      "completion_gates": {
-        "identity_bound": false,
-        "core_data_reconciled": false,
-        "comparison_and_details": false,
-        "mechanics_and_supply_index": false,
-        "limitations_explicit": false,
-        "read_only_and_deterministic_check": false,
-        "historical_wikis_preserved": false,
-        "published_and_presented": false
+    "deferred_technical_resume": {
+      "checkpoint": "content/modernization/pr16_weather_bubble_checkpoint.json",
+      "checkpoint_original_unchanged": true,
+      "classified": 784,
+      "donor_safe_bytes": 0,
+      "last_remaining_item_claimed": false,
+      "measurement_source_head": "3aada9217cc80627496adf33756d8fc2de3b5765",
+      "next_target": "0x08397492",
+      "original_resume": {
+        "md_blob_sha": "3c69b57e2bf4ca8d7455884f034f9ec3c8877a13",
+        "md_path": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+        "role": "IMMUTABLE_TECHNICAL_STOP_AND_EVIDENCE_NOT_ACTIVE_PRIORITY",
+        "source_commit": "8abd7cffadb899157a9812d205c5248a9bb760c3",
+        "state_blob_sha": "797205abd2523dbc57570cc0018aaf7b2d567d76",
+        "state_path": "content/modernization/pr16_native_supply_resume_20260913.json"
       },
-      "next_ja": "Wiki優先。docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.mdとowner_execution_planを読み、旧P08能力表とIssue19後継習得表の候補/lineage/意味同値を照合して、調整基準Wiki R0の未完項目を実装・検証・記録する。対象候補を推測せず、ベガ比較・系統/全習得・技/特性逆引き・メガ/Gmax/専用Z・供給条件・確認状態を揃える。実在する固定入口/入力manifest/証拠を提示した後は、所有者の案待ちで停止せず保存容量→CI→追加機構の技術確認へ進む。08397492は次の解析候補であって最後の1件ではなく、R0の前提にしない。全クリ走破は対象外、保存安全性は未完のまま保持。"
+      "previous_current_stop": "Weather Bubbleの成功原本・32試験/受領41試験を保存済み。784分類/90未知・donor安全容量0、正式ROM/Save101不変。",
+      "previous_next_action": {
+        "goal_ja": "正式784分類/90未知の保存親から次は08397492の1件。詳細は変更前の固定MD/JSONを参照。",
+        "id": "BIND_NEXT_08397492_ASSET_FRONTIER",
+        "read_paths": [
+          "docs/PR16_WEATHER_BUBBLE_ACCEPTANCE_JA.md",
+          "content/modernization/pr16_weather_bubble_checkpoint.json",
+          "scripts/pr16_weather_bubble_receipt.py",
+          "content/modernization/pr16_weather_bubble_evidence/unknown-frontier.json",
+          "scripts/pr16_weather_bubble_sources.py"
+        ]
+      },
+      "previous_remaining_sequence_ja": "変更前固定MD/JSONの履歴を参照。現在順序としては採用しない。",
+      "projection_only": true,
+      "status": "PAUSED_NOT_ACCEPTED_AS_COMPLETE",
+      "unclassified": 90
     },
+    "owner_instruction_at": "2026-10-10T10:56:56Z",
     "owner_review": {
-      "status": "NOT_REQUESTED",
-      "reference_revision": "R0",
-      "proposals": [],
       "approvals": [],
+      "proposals": [],
+      "reference_revision": "R0",
+      "status": "NOT_REQUESTED",
       "wait_does_not_block_technical_work": true
     },
+    "phase": "WIKI_R0",
+    "policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
+    "release_gate": {
+      "requires": [
+        "approved_content_integrated",
+        "save_safety_and_impacted_local_acceptance",
+        "final_candidate_evidence_transfer",
+        "clean_two_build_reproducibility",
+        "safe_package_and_separate_owner_decision"
+      ],
+      "status": "NOT_STARTED",
+      "wiki_is_product_acceptance": false
+    },
+    "schema_version": 1,
+    "scope": {
+      "active_baseline_switch_authorized": false,
+      "automatic_background_execution": false,
+      "balance_changes_without_owner_approval": false,
+      "full_story_run": "EXCLUDED_BY_OWNER",
+      "local_functional_tests_required": true,
+      "long_growth_soak": "DEFERRED_SEPARATE_DECISION",
+      "merge_authorized": false,
+      "release_publication_authorized": false,
+      "save_safety_required": true,
+      "story_pass_claimed": false
+    },
     "technical_lanes": {
+      "ci_evidence": {
+        "blocker": null,
+        "completion_evidence_path": null,
+        "next_ja": "capacity証拠と現sourceの不一致、未完CIを原本改作なしに整理。",
+        "remaining": [
+          "旧証拠と現sourceの検証責任の分離",
+          "最新Actionsと必要検査の完了照合"
+        ],
+        "status": "NOT_STARTED"
+      },
+      "form_readiness": {
+        "blocker": null,
+        "completion_evidence_path": null,
+        "next_ja": "メガ/Gmax/専用Zの登録・資源・保存/発動/解除・試験入口を確認。性能や対象種を創作しない。",
+        "remaining": [
+          "ID/フォーム/技/道具/資源の制約",
+          "現行policy/変換/終了/保存互換",
+          "承認後に使う最小試験の設計"
+        ],
+        "status": "NOT_STARTED"
+      },
       "save_capacity": {
-        "status": "PAUSED_FOR_WIKI",
         "blocker": null,
         "completion_evidence_path": null,
         "next_ja": "R0提示後、保存した解析frontierから必要容量と本番保存接続へ。全クリは再開しない。",
@@ -85,138 +200,88 @@
           "species ID幅/保存失敗/復旧",
           "heap-ready/同期非再入/退避前Free/全出口Free",
           "必要な局所Save/fresh Continue受入"
-        ]
-      },
-      "ci_evidence": {
-        "status": "NOT_STARTED",
-        "blocker": null,
-        "completion_evidence_path": null,
-        "next_ja": "capacity証拠と現sourceの不一致、未完CIを原本改作なしに整理。",
-        "remaining": [
-          "旧証拠と現sourceの検証責任の分離",
-          "最新Actionsと必要検査の完了照合"
-        ]
-      },
-      "form_readiness": {
-        "status": "NOT_STARTED",
-        "blocker": null,
-        "completion_evidence_path": null,
-        "next_ja": "メガ/Gmax/専用Zの登録・資源・保存/発動/解除・試験入口を確認。性能や対象種を創作しない。",
-        "remaining": [
-          "ID/フォーム/技/道具/資源の制約",
-          "現行policy/変換/終了/保存互換",
-          "承認後に使う最小試験の設計"
-        ]
+        ],
+        "status": "PAUSED_FOR_WIKI"
       }
     },
-    "balance_batches": [],
-    "deferred_technical_resume": {
-      "status": "PAUSED_NOT_ACCEPTED_AS_COMPLETE",
-      "previous_next_action": {
-        "id": "BIND_NEXT_08397492_ASSET_FRONTIER",
-        "goal_ja": "正式784分類/90未知の保存親から次は08397492の1件。詳細は変更前の固定MD/JSONを参照。",
-        "read_paths": [
-          "docs/PR16_WEATHER_BUBBLE_ACCEPTANCE_JA.md",
-          "content/modernization/pr16_weather_bubble_checkpoint.json",
-          "scripts/pr16_weather_bubble_receipt.py",
-          "content/modernization/pr16_weather_bubble_evidence/unknown-frontier.json",
-          "scripts/pr16_weather_bubble_sources.py"
-        ]
+    "wiki": {
+      "candidate": null,
+      "completion_gates": {
+        "comparison_and_details": false,
+        "core_data_reconciled": false,
+        "historical_wikis_preserved": false,
+        "identity_bound": false,
+        "limitations_explicit": false,
+        "mechanics_and_supply_index": false,
+        "published_and_presented": false,
+        "read_only_and_deterministic_check": false
       },
-      "previous_current_stop": "Weather Bubbleの成功原本・32試験/受領41試験を保存済み。784分類/90未知・donor安全容量0、正式ROM/Save101不変。",
-      "previous_remaining_sequence_ja": "変更前固定MD/JSONの履歴を参照。現在順序としては採用しない。",
-      "measurement_source_head": "3aada9217cc80627496adf33756d8fc2de3b5765",
-      "checkpoint": "content/modernization/pr16_weather_bubble_checkpoint.json",
-      "classified": 784,
-      "unclassified": 90,
-      "donor_safe_bytes": 0,
-      "next_target": "0x08397492",
-      "last_remaining_item_claimed": false,
-      "checkpoint_original_unchanged": true,
-      "projection_only": true,
-      "original_resume": {
-        "source_commit": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-        "state_path": "content/modernization/pr16_native_supply_resume_20260913.json",
-        "state_blob_sha": "797205abd2523dbc57570cc0018aaf7b2d567d76",
-        "md_path": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
-        "md_blob_sha": "3c69b57e2bf4ca8d7455884f034f9ec3c8877a13",
-        "role": "IMMUTABLE_TECHNICAL_STOP_AND_EVIDENCE_NOT_ACTIVE_PRIORITY"
-      }
+      "entry_path": null,
+      "input_manifest_path": "content/modernization/pr16_wiki_r0_input_manifest.json",
+      "limitations": [
+        "旧能力/技/特性/進化/機構tableと後継候補の非変更rangeまたは同一semantic hashを結合する。",
+        "正式registryの1671 ID/stable keyと後継ownerの実対応を照合し、現在の習得経路だけを採用する。",
+        "候補識別子付き別R0へ比較/個別/逆引き/メガ/Gmax/Z/供給/限界を生成し、リンク・決定性・check無書込を検証する。"
+      ],
+      "next_ja": "Wiki優先。docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.mdとowner_execution_planを読み、旧P08能力表とIssue19後継習得表の候補/lineage/意味同値を照合して、調整基準Wiki R0の未完項目を実装・検証・記録する。対象候補を推測せず、ベガ比較・系統/全習得・技/特性逆引き・メガ/Gmax/専用Z・供給条件・確認状態を揃える。実在する固定入口/入力manifest/証拠を提示した後は、所有者の案待ちで停止せず保存容量→CI→追加機構の技術確認へ進む。08397492は次の解析候補であって最後の1件ではなく、R0の前提にしない。全クリ走破は対象外、保存安全性は未完のまま保持。",
+      "presented_to_owner": false,
+      "published_commit": null,
+      "review_ready": false,
+      "revision": "R0",
+      "semantic_sha256": null,
+      "source_head": "a0c9d36342dff35228247391cfeb299d12ed9c79",
+      "status": "INPUTS_BOUND_RECONCILIATION_PENDING",
+      "tree_sha256": null,
+      "verification_evidence_path": "content/modernization/pr16_wiki_r0_input_manifest.json"
     },
     "wiki_policy": {
-      "freeze_review_revision": true,
-      "freeze_development_branch": false,
-      "preserve_historical_snapshots": true,
-      "silent_mixed_candidate_data_allowed": false,
       "all_90_classifications_required_before_wiki": false,
       "all_save_repairs_required_before_wiki": false,
+      "freeze_development_branch": false,
+      "freeze_review_revision": true,
       "full_issue18_19_closure_required_before_wiki": false,
+      "preserve_historical_snapshots": true,
+      "silent_mixed_candidate_data_allowed": false,
       "unrelated_ci_green_required_before_wiki": false
-    },
-    "release_gate": {
-      "status": "NOT_STARTED",
-      "wiki_is_product_acceptance": false,
-      "requires": [
-        "approved_content_integrated",
-        "save_safety_and_impacted_local_acceptance",
-        "final_candidate_evidence_transfer",
-        "clean_two_build_reproducibility",
-        "safe_package_and_separate_owner_decision"
-      ]
     }
   },
-  "routing_rules": [
-    {
-      "when": "wiki.review_ready == false",
-      "action": "WIKI_R0_BUILD_OR_REQUIRED_INPUT_REPAIR"
-    },
-    {
-      "when": "wiki.review_ready and owner-approved batch with evidence-backed prerequisites satisfied",
-      "action": "APPROVED_BALANCE_BATCH"
-    },
-    {
-      "when": "wiki.review_ready and save_capacity not complete and not genuinely blocked",
-      "action": "SAVE_CAPACITY_INTEGRATION"
-    },
-    {
-      "when": "wiki.review_ready and save capacity complete or genuinely blocked; CI has READY work",
-      "action": "CI_EVIDENCE_ALIGNMENT"
-    },
-    {
-      "when": "wiki.review_ready and higher priority work complete or genuinely blocked; mechanism readiness pending",
-      "action": "FORM_TECHNICAL_READINESS"
-    },
-    {
-      "when": "all executable work complete; only owner decisions or explicit release permission missing",
-      "action": "REPORT_SPECIFIC_REMAINING_DECISIONS_NO_INVENTION_OR_RERUN"
-    }
-  ],
-  "update_contract_ja": "同じJSONを更新する。Wiki未完成をreadyにしない。COMPLETE/ACCEPTEDには実在する根拠pathとscopeを必要とする。承認は対象/出典/日時/参照Wiki版/変更前後を記録。prerequisites_metは根拠なしにtrueにしない。次の未完具体作業、最新Actions、技術レーン残件を毎回保存する。チェックポイント原本と古い失敗は改作しない。",
+  "pr_number": 16,
   "recording": {
-    "task": "USER-20261010-WIKI-FIRST-POLICY",
-    "owner_instruction_at": "2026-10-10T10:56:56Z",
-    "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-    "status": "POLICY_ROUTING_RECORDED_LEGACY_LOG_APPEND_PENDING",
-    "mode": "DIRECT_GITHUB_TEXT_AND_JSON_EDIT",
+    "accepted_test_reruns": 0,
+    "all_ci_green_claimed": false,
     "blocked_method_ja": "自動反映用実行コードの送信が安全性チェックで拒否されたため中止。実行コード/workflowは追加しない。",
+    "commit_semantics": "このJSONを含む単親の同branch通常commit。自己SHA追記だけの追加commitを作らない。",
+    "full_index_private_guard_executed": false,
+    "last_execution": {
+      "accepted_tests_rerun": 0,
+      "actions_completion_confirmed": false,
+      "focused_tests": 23,
+      "full_index_private_guard": {
+        "executed": true,
+        "historical_violations_not_rewritten": true,
+        "passed": false
+      },
+      "native_processes": 0,
+      "read_only_check_passed": true,
+      "rom_changes": 0,
+      "run_id": "38049348464",
+      "source_head": "a0c9d36342dff35228247391cfeb299d12ed9c79",
+      "task": "USER-20261010-WIKI-R0-INPUTS",
+      "task_graph_passed": true,
+      "wiki_review_ready": false
+    },
+    "legacy_generated_md_modified": false,
     "legacy_log_append": {
-      "status": "NOT_PERFORMED",
+      "next_ja": "方針決定の追記完了。同taskを重複追記しない。",
       "paths": [
         "design/run_log.md",
         "design/version_log.md"
       ],
-      "next_ja": "次セッションの冒頭で決定IDを検索し、未追記分だけ通常の許可された方法で追記。拒否された自動反映コードを別経路から実行しない。追記後はWikiへ進む。"
+      "recorded_source_head": "a0c9d36342dff35228247391cfeb299d12ed9c79",
+      "status": "DONE",
+      "task": "USER-20261010-WIKI-FIRST-POLICY"
     },
     "legacy_resume_json_modified": false,
-    "legacy_generated_md_modified": false,
-    "wiki_generated": false,
-    "rom_changes": 0,
-    "native_processes": 0,
-    "accepted_test_reruns": 0,
-    "project_resume_check_executed": false,
-    "project_task_graph_check_executed": false,
-    "full_index_private_guard_executed": false,
-    "all_ci_green_claimed": false,
     "local_verification": [
       "新JSONのUTF-8構文/往復一致",
       "Wiki先行・全クリ除外・安全性維持のbool/状態確認",
@@ -224,18 +289,44 @@
       "未承認案/未生成Wikiを完了にしない初期状態",
       "新入口と方針文書への相互参照とblob identityの照合"
     ],
-    "commit_semantics": "このJSONを含む単親の同branch通常commit。自己SHA追記だけの追加commitを作らない。"
+    "mode": "DIRECT_GITHUB_TEXT_AND_JSON_EDIT",
+    "native_processes": 0,
+    "owner_instruction_at": "2026-10-10T10:56:56Z",
+    "project_resume_check_executed": false,
+    "project_task_graph_check_executed": false,
+    "rom_changes": 0,
+    "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
+    "status": "POLICY_LOGS_RECORDED_WIKI_INPUT_INVENTORY_COMPLETE",
+    "task": "USER-20261010-WIKI-FIRST-POLICY",
+    "wiki_generated": false
   },
-  "bindings": {
-    "CHATGPT_RESUME.md": {
-      "size": 5102,
-      "sha256": "563fec8b1ad11b3a80128515c8a4795fb4eca2cfc6407c22e2726a561cee5652",
-      "git_blob_sha": "51e5e35669b25c425c1be7263bbe9d391988aca1"
+  "routing_rules": [
+    {
+      "action": "WIKI_R0_BUILD_OR_REQUIRED_INPUT_REPAIR",
+      "when": "wiki.review_ready == false"
     },
-    "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
-      "size": 20003,
-      "sha256": "0b97a7b7480b442548f7670554d623db2a3058564d820c2a4b97c6b522365936",
-      "git_blob_sha": "d50f5c0e3177f739a5842bc32838e17f705c6fd9"
+    {
+      "action": "APPROVED_BALANCE_BATCH",
+      "when": "wiki.review_ready and owner-approved batch with evidence-backed prerequisites satisfied"
+    },
+    {
+      "action": "SAVE_CAPACITY_INTEGRATION",
+      "when": "wiki.review_ready and save_capacity not complete and not genuinely blocked"
+    },
+    {
+      "action": "CI_EVIDENCE_ALIGNMENT",
+      "when": "wiki.review_ready and save capacity complete or genuinely blocked; CI has READY work"
+    },
+    {
+      "action": "FORM_TECHNICAL_READINESS",
+      "when": "wiki.review_ready and higher priority work complete or genuinely blocked; mechanism readiness pending"
+    },
+    {
+      "action": "REPORT_SPECIFIC_REMAINING_DECISIONS_NO_INVENTION_OR_RERUN",
+      "when": "all executable work complete; only owner decisions or explicit release permission missing"
     }
-  }
+  ],
+  "schema_version": 1,
+  "stable_entrypoint": "CHATGPT_RESUME.md",
+  "update_contract_ja": "同じJSONを更新する。Wiki未完成をreadyにしない。COMPLETE/ACCEPTEDには実在する根拠pathとscopeを必要とする。承認は対象/出典/日時/参照Wiki版/変更前後を記録。prerequisites_metは根拠なしにtrueにしない。次の未完具体作業、最新Actions、技術レーン残件を毎回保存する。チェックポイント原本と古い失敗は改作しない。"
 }

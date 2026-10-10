@@ -11398,3 +11398,25 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Task: USER-20261010-WEATHER-BUBBLE
 - Summary: Weather Bubble成功run38040440848/job114179438484の全9step/32試験を原本継承。ZIPと4JSON、生成・検証済み/公開済みの各4hash、6測定source/143依存source/62親原本を照合。独立8x16 indexed4画像の全64byte一致、実sheet/reader38命令・64byte消費・実12byte stack帰還を条件付き最小4byte型へ受入。0838B32Fだけ追加し784分類/90未知/全874hit、旧30段164変更154witness不変。新receipt41試験PASS。今回ROM再構成/旧scope再走/native各0、donor安全容量0、正式ROM/Save101不変。
 - Verify: 新receipt 41 tests PASS; 保存784親再読完全一致; resume render/check PASS; task graph PASS; 最終index差分guard新規違反0（既存full guard失敗は別計上）; 旧32/184試験・ROM/native再走0
+
+## 2026-10-10T11:42:44.753053+00:00
+- Timestamp: 2026-10-10T11:42:44.753053+00:00
+- Task: USER-20261010-WIKI-FIRST-POLICY / 未実施の両ログ追記
+- Version: wiki-first-policy-record-v1
+- Status: DONE
+- Summary: 決定 OWNER-20261010-WIKI-FIRST（2026-10-10T10:56:56Z）、既反映commit 2e8c649fe3ff4a7e38881cbb7fb6c24cb7acaea9 の記録を重複なく追記。方針は再策定しない。
+- Files changed: design/run_log.md、design/version_log.md、固定状態JSON。
+- Verify: 同task記録の0/1確認、append-only検証。旧受入/native/ROM再構成0。
+- Commit: この追記を含む同branch通常commit。自己SHAはGit履歴/Actions resultで照合。
+- Network: GitHub最新ref/PR/Actions照会。以前中止された自動方針反映コードは使用しない。
+
+## 2026-10-10T11:42:44.753053+00:00
+- Timestamp: 2026-10-10T11:42:44.753053+00:00
+- Task: USER-20261010-WIKI-R0-INPUTS / 旧数値と後継習得の入力監査
+- Version: wiki-r0-inputs-v1
+- Status: DONE（入力監査限定、R0未完成）
+- Summary: 旧/後継Wikiを区別して候補identity・重要入力hash・数値ID/stable key・件数を検証。候補間の意味同値を未証明のまま明示し、実装済み検証器/入力manifest/限定text snapshotを保存。
+- Files changed: R0入力検証器/試験/限定Actions、入力manifest、引継ぎMD/JSON、両ログ。
+- Verify: 新23試験、入力hash/ID検査、決定的出力比較、check無書込、task graph、最終index境界。旧受入/旧Wiki生成/ROM/nativeの再実行0。
+- Commit: この記録を含む同branch非force commit。自己SHAはGit履歴/Actions resultで照合。
+- Network: GitHub checkout/ref/PR/Actionsのみ。原本や秘密情報を取得/追加公開しない。全体CI green・R0 READY・保存修復・releaseを主張しない。

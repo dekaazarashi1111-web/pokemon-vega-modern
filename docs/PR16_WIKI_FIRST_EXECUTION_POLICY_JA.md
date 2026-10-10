@@ -147,3 +147,10 @@ Git: 明示許可された同branchへの通常commit/non-force pushのみ。pus
 このセッションでは、自動反映用の実行コード送信が安全性チェックで拒否されたため、その方式を中止した。実行コードやworkflowを追加せず、GitHubの通常の文書・JSON編集だけで固定入口を新しい正本へ切り替える。旧入口全文は `CHATGPT_RESUME_BEFORE_WIKI_FIRST.md` に同一blobで保存する。旧巨大resume、旧生成MD、両ログは改作しない。
 
 今回の変更記録は新JSONの `recording` に置く。既存 `design/run_log.md` / `design/version_log.md` への追記は未実施として明示する。次の作業セッションでは、この決定IDの記録を先に検索し、未追記分だけ通常の許可された編集で追記する。その際のtaskは本決定の記録継続とし、記録済み方針を再策定したり、拒否された自動反映コードを別経路から実行したりしない。その後はWIKI_R0_BUILDへ進む。今回の新JSON/リンク/送信blob同一性の確認と、未実行の旧resume検査・全体CIを分けて扱う。
+
+
+<!-- wiki-r0-input-progress -->
+## R0入力監査の現在地
+
+入力の固定・検証器は実装済み。[入力監査と次の証明](PR16_WIKI_R0_INPUTS_JA.md)を参照。閲覧版の完成ではなく、現在の選択は固定状態JSONを確認する。
+<!-- /wiki-r0-input-progress -->
