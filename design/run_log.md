@@ -14281,3 +14281,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 正式785/89・安全容量0、R0/旧受入/ROM/Save101/baseline不変。新native/ROM再構成/旧試験再走0。
 - Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴/Actions resultを参照。
 - Network: 保存identityに固定した公開JP symbolのGET、指定repo PR/ref/Actions GET、同branch非force pushのみ。
+
+## 2026-10-10T22:21:39.729016+00:00
+- Timestamp: 2026-10-10T22:21:39.729016+00:00
+- Task: USER-20261011-FIRST-ORIGIN-BOUNDS / first originの有限現候補証拠
+- Version: first-origin-bounds-v1
+- Status: DONE（有限測定。実consumer/保存統合は未完）
+- Summary: 完了symbol Actions/ZIP全5member/公開treeを受領。新候補復元1回で保存10originと115ownerを束縛し、4有限範囲の命令形と前entryの条件付きCFGを保存。
+- Files changed: 新有限検証器/40境界試験/専用Actions、有限事実とcheckpoint、symbol成功receipt、固定引継ぎMD/JSON、両ログ。
+- Prior failure: run38090391926/bf79d177はGNU未定義命令コメントを拒否して測定未受入。固定上流の表現を確認しadapter/5試験追加。本task復元は失敗1+成功1=計2回。成功済み測定再走なし。
+- Verify: 新40 tests、現候補全SHA、115owner、10origin全4byte/hash/target、read-only byte/mtime、旧原本保全、task graph。最終index新規private違反0と全体guard結果は別記録。
+- Boundary: 逆アセンブル形はowner/実consumerの証明ではない。正式785/89・安全容量0、ROM/Save101/R0/baseline不変。新native0/旧試験再走0。
+- Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴/Actions resultを参照。
+- Network: 同repo PR/ref/Actions/固定private入力、固定公開pret/pokefirered c75f3523のsrc/money.c・src/script_pokemon_util.c・ld_script.ld、ComplexRobot/frlg-sym c04a3154のJP auditをGET。同branch非force push。
+- Sources: https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 ; https://github.com/ComplexRobot/frlg-sym/tree/c04a31542086b20d8c6ee641eaa70b8db6713fd3 。前後関数と配置順/JP対応行を有限範囲と照合。GNU表現確認: https://sourceware.org/pipermail/binutils/2022-October/123296.html （検索語 arm-dis.c UNDEFINED instruction）。

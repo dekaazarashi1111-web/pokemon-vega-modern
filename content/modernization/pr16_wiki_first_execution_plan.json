@@ -17,15 +17,15 @@
   "branch": "codex/modernization-followup-20260908",
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "next_action": {
-    "done_ja": "最初のoriginの現候補source/命令範囲/実consumerを有限根拠で束縛。symbol近傍だけの受入禁止。",
-    "goal_ja": "選定窓10originの公開JP symbol近傍を保存済み。先頭0x080A006Fについてsymbol-frontierの出典/行を読み、固定公開関数sourceと現候補0641af70の有限命令範囲を束縛し、実consumer/命令境界を確認する。近傍labelだけでownerやFALSE_POSITIVEに昇格しない。窓外跨りread/旧owner内origin/間接参照は残す。正式785/89・安全容量0。全874scan/Forest/Bubble/窓49試験/symbol20試験の無変更再走禁止。",
-    "id": "SAVE_CAPACITY_FIRST_ORIGIN_SOURCE_AND_CONSUMER",
+    "done_ja": "現候補の実owner/実consumerと対象4byteの解釈を有限証明。形のみのFALSE_POSITIVE化禁止。",
+    "goal_ja": "保存したfirst-origin有限命令/owner事実から0x080A006Fの実型とconsumerを確定する。前後labelや逆アセンブル形だけの分類は禁止。実必要reader/配置元へ閉じる。正式785/89、安全容量0。既受入symbol20試験/今回40試験/有限ROM測定をsource不変なら再走しない。全874scanと旧Forest/Bubbleは再走せず、窓外跨りread/旧owner内origin/間接参照を残す。",
+    "id": "SAVE_CAPACITY_FIRST_ORIGIN_TYPED_CONSUMER",
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
-      "content/modernization/pr16_donor_origins_checkpoint.json",
-      "content/modernization/pr16_donor_origins_evidence/symbol-frontier.json",
-      "scripts/pr16_donor_origins.py",
-      "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md"
+      "content/modernization/pr16_first_origin_checkpoint.json",
+      "content/modernization/pr16_first_origin_evidence/bounded-code-facts.json",
+      "content/modernization/pr16_donor_origins_evidence/actions-completion.json",
+      "scripts/pr16_first_origin.py"
     ]
   },
   "observed_head_checks": {
@@ -34,53 +34,26 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
-        "id": 38089491662,
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091053705,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "event": "pull_request",
-        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
-        "id": 38089491646,
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091053635,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": "success",
-        "event": "push",
-        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
-        "id": 38089484505,
-        "name": "Stage79 runtime boundary audit",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
       },
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
-        "id": 38089484705,
-        "name": "pr16-donor-origins",
-        "path": ".github/workflows/pr16-donor-origins.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
-        "id": 38089484460,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
-        "id": 38089484519,
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091044786,
         "name": "Stage79 mGBA (all)",
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "status": "in_progress"
@@ -88,14 +61,41 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
-        "id": 38089484507,
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091044740,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091044744,
+        "name": "pr16-first-origin",
+        "path": ".github/workflows/pr16-first-origin.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091044800,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "event": "push",
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091044875,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "in_progress"
+        "status": "completed"
       }
     ],
-    "source_head": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65"
+    "source_head": "06563a617a42e960b3e40ce6e6c0634322161e34"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -192,11 +192,11 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_donor_origins_checkpoint.json",
+        "checkpoint_path": "content/modernization/pr16_first_origin_checkpoint.json",
         "classified": 785,
         "completion_evidence_path": null,
         "donor_safe_bytes": 0,
-        "next_ja": "選定窓10originの公開JP symbol近傍を保存済み。先頭0x080A006Fについてsymbol-frontierの出典/行を読み、固定公開関数sourceと現候補0641af70の有限命令範囲を束縛し、実consumer/命令境界を確認する。近傍labelだけでownerやFALSE_POSITIVEに昇格しない。窓外跨りread/旧owner内origin/間接参照は残す。正式785/89・安全容量0。全874scan/Forest/Bubble/窓49試験/symbol20試験の無変更再走禁止。",
+        "next_ja": "保存したfirst-origin有限命令/owner事実から0x080A006Fの実型とconsumerを確定する。前後labelや逆アセンブル形だけの分類は禁止。実必要reader/配置元へ閉じる。正式785/89、安全容量0。既受入symbol20試験/今回40試験/有限ROM測定をsource不変なら再走しない。全874scanと旧Forest/Bubbleは再走せず、窓外跨りread/旧owner内origin/間接参照を残す。",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
           "保存controller実配置",
@@ -205,7 +205,7 @@
           "heap-ready/同期非再入/退避前Free/全出口Free",
           "必要な局所Save/fresh Continue受入"
         ],
-        "status": "SELECTED_ORIGIN_SYMBOLS_BOUND_CONSUMERS_UNPROVEN",
+        "status": "FIRST_ORIGIN_BOUNDED_BYTES_AND_CODE_SHAPES_BOUND_CONSUMER_UNPROVEN",
         "unclassified": 89
       }
     },
@@ -265,7 +265,7 @@
     "last_execution": {
       "accepted_tests_rerun": 0,
       "actions_completion_confirmed": false,
-      "actions_run_id": 38089484705,
+      "actions_run_id": 38091044744,
       "classified": 785,
       "donor_safe_bytes": 0,
       "full_index_private_guard": {
@@ -276,11 +276,23 @@
         "raw_private_log_published": false
       },
       "new_native_processes": 0,
-      "new_unit_tests": 20,
+      "new_unit_tests": 40,
+      "prior_failed_attempts": [
+        {
+          "accepted": false,
+          "artifact_id": 11683299497,
+          "phase": "new-candidate-scope",
+          "reason_ja": "GNU ARMのコメント形式未定義命令を通常mnemonicと解釈して拒否。原本は未受入。出力表現adapterと5境界試験を追加。",
+          "rom_reconstructions": 1,
+          "run_id": 38090391926,
+          "source_head": "bf79d177f74f19fc5cb1a183d67ccaf63cb4c68e",
+          "zip_sha256": "63b52fc90065c5cf197b433864f13cb9219321bd67aa7aaeddb3d6922d7a3b77"
+        }
+      ],
       "read_only_check_passed": true,
-      "rom_reconstructions": 0,
-      "source_head": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
-      "task": "USER-20261011-DONOR-ORIGIN-SYMBOLS",
+      "rom_reconstructions": 1,
+      "source_head": "06563a617a42e960b3e40ce6e6c0634322161e34",
+      "task": "USER-20261011-FIRST-ORIGIN-BOUNDS",
       "task_graph_passed": true,
       "unclassified": 89
     },
@@ -317,7 +329,7 @@
     "project_task_graph_check_executed": true,
     "rom_changes": 0,
     "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-    "status": "R0_READY_ORIGIN_SYMBOLS_BOUND_SAVE_INTEGRATION_PENDING",
+    "status": "R0_READY_FIRST_ORIGIN_BOUNDED_FACTS_SAVE_INTEGRATION_PENDING",
     "task": "USER-20261010-WIKI-FIRST-POLICY",
     "wiki_generated": true
   },

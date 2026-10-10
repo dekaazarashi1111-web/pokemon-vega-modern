@@ -60,6 +60,16 @@ Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4by
 
 [対応表](../content/modernization/pr16_donor_origins_evidence/symbol-frontier.json) / [checkpoint](../content/modernization/pr16_donor_origins_checkpoint.json)。新20試験、同入力決定性、読取専用byte/mtime、task graphを検証。正式785/89・安全容量0、旧窓計画/reader/R0/ROM/Save101不変。新native/ROM再構成/旧試験再走0。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 選定窓10originの公開JP symbol近傍を保存済み。先頭0x080A006Fについてsymbol-frontierの出典/行を読み、固定公開関数sourceと現候補0641af70の有限命令範囲を束縛し、実consumer/命令境界を確認する。近傍labelだけでownerやFALSE_POSITIVEに昇格しない。窓外跨りread/旧owner内origin/間接参照は残す。正式785/89・安全容量0。全874scan/Forest/Bubble/窓49試験/symbol20試験の無変更再走禁止。
+
+## 先頭originの現候補有限範囲
+
+新候補復元1回で全SHA/115ownerと保存10originを照合。4個の有限範囲、前entryの条件付きCFG、first originと交差する命令形を記録しました。前entryの公開money呼出順一致=True、境界数=1。形を実consumer証明には昇格していません。初回run38090391926はGNU未定義命令コメントの表現差で未受入停止。adapterと5試験を追加し、失敗1回を含む本taskの復元は計2回です。
+
+[有限事実](../content/modernization/pr16_first_origin_evidence/bounded-code-facts.json) / [checkpoint](../content/modernization/pr16_first_origin_checkpoint.json) / [symbol成功Actions受領](../content/modernization/pr16_donor_origins_evidence/actions-completion.json)。新40試験・読取専用byte/mtime・task graph・全旧原本保全。native0、旧受入再走0、正式785/89、安全容量0。
+
+## 次の未完作業
+
+保存したfirst-origin有限命令/owner事実から0x080A006Fの実型とconsumerを確定する。前後labelや逆アセンブル形だけの分類は禁止。実必要reader/配置元へ閉じる。正式785/89、安全容量0。既受入symbol20試験/今回40試験/有限ROM測定をsource不変なら再走しない。全874scanと旧Forest/Bubbleは再走せず、窓外跨りread/旧owner内origin/間接参照を残す。

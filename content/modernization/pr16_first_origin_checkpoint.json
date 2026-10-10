@@ -1,0 +1,198 @@
+{
+  "actions_completion_confirmed": false,
+  "actions_run_id": 38091044744,
+  "attempt": {
+    "accepted_measurement_replays": 0,
+    "all_finite_ranges_parsed": true,
+    "all_ten_origins_bound": true,
+    "exact_candidate_bound": true,
+    "native_processes": 0,
+    "rom_reconstructions_started": 1
+  },
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "claims": {
+    "accepted_reader_replays": 0,
+    "accepted_test_reruns": 0,
+    "actual_runtime_execution_observed": false,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "first_origin_consumer_proven": false,
+    "first_origin_owner_proven": false,
+    "formal_classification_changes": 0,
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "indirect_reference_completeness_claimed": false,
+    "native_processes": 0,
+    "old_full_rom_scan_runs": 0
+  },
+  "facts_identity": {
+    "sha256": "db5ae67361abaf800c8650b01861bb52524137386002a45f821e06e900abc429",
+    "size": 63212
+  },
+  "facts_path": "content/modernization/pr16_first_origin_evidence/bounded-code-facts.json",
+  "full_index_private_guard": {
+    "executed": true,
+    "exit_code": 1,
+    "historical_violations_not_rewritten": true,
+    "passed": false,
+    "raw_private_log_published": false
+  },
+  "new_unit_tests": 40,
+  "next_ja": "保存したfirst-origin有限命令/owner事実から0x080A006Fの実型とconsumerを確定する。前後labelや逆アセンブル形だけの分類は禁止。実必要reader/配置元へ閉じる。正式785/89、安全容量0。既受入symbol20試験/今回40試験/有限ROM測定をsource不変なら再走しない。全874scanと旧Forest/Bubbleは再走せず、窓外跨りread/旧owner内origin/間接参照を残す。",
+  "observed_head_checks": {
+    "all_ci_green_claimed": false,
+    "runs": [
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091053705,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "pull_request",
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091053635,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091044786,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091044740,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091044744,
+        "name": "pr16-first-origin",
+        "path": ".github/workflows/pr16-first-origin.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091044800,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "event": "push",
+        "head_sha": "06563a617a42e960b3e40ce6e6c0634322161e34",
+        "id": 38091044875,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      }
+    ],
+    "source_head": "06563a617a42e960b3e40ce6e6c0634322161e34"
+  },
+  "preserved_inputs": {
+    "CHATGPT_RESUME.md": {
+      "sha256": "563fec8b1ad11b3a80128515c8a4795fb4eca2cfc6407c22e2726a561cee5652",
+      "size": 5102
+    },
+    "content/modernization/pr16_donor_origins_checkpoint.json": {
+      "sha256": "4bef5ecf22a6be551db3c62c73cca1318cc3742d0943db64dc176c7ddb1554eb",
+      "size": 6083
+    },
+    "content/modernization/pr16_donor_origins_evidence/symbol-frontier.json": {
+      "sha256": "3601c1f46ca532efa7d75929fff58736b0a4ceddd648c8be64b6acb718a4108f",
+      "size": 13186
+    },
+    "content/modernization/pr16_donor_window_checkpoint.json": {
+      "sha256": "6a27c1740d46c0ac2c0e0c283bff28aa811f54f5d9559b66ced85554ab68eaf9",
+      "size": 8540
+    },
+    "content/modernization/pr16_donor_window_evidence/windows.json": {
+      "sha256": "100dd710037fd958db20191a4bffa8590fb0414a2e252705f1111d75e15e9d2c",
+      "size": 9687
+    },
+    "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
+      "sha256": "dd200aa3a4e0fa581991c9f3553b042398af691977313d57e44fd088e15fa35d",
+      "size": 20300
+    },
+    "scripts/pr16_donor_origins.py": {
+      "sha256": "777468991d159c2b467be43214740667069ac153e5619c9a8845ddcd159d2336",
+      "size": 5924
+    },
+    "scripts/pr16_donor_origins_actions.py": {
+      "sha256": "d099af38f1ca0f400a23c2342b6f10abe9abb186902eba7b3ace13cf24f4b0ff",
+      "size": 11987
+    },
+    "tests/test_pr16_donor_origins.py": {
+      "sha256": "a660d7ad70ae2ae77369120808d57062c8a8b283cdfea692993c62d2c0937f9a",
+      "size": 4181
+    }
+  },
+  "prior_failed_attempts": [
+    {
+      "accepted": false,
+      "artifact_id": 11683299497,
+      "phase": "new-candidate-scope",
+      "reason_ja": "GNU ARMのコメント形式未定義命令を通常mnemonicと解釈して拒否。原本は未受入。出力表現adapterと5境界試験を追加。",
+      "rom_reconstructions": 1,
+      "run_id": 38090391926,
+      "source_head": "bf79d177f74f19fc5cb1a183d67ccaf63cb4c68e",
+      "zip_sha256": "63b52fc90065c5cf197b433864f13cb9219321bd67aa7aaeddb3d6922d7a3b77"
+    }
+  ],
+  "protected_inputs_unchanged": true,
+  "read_only_check_passed": true,
+  "rom_reconstructions": 1,
+  "schema_version": 1,
+  "scoped_final_index_guard": {
+    "historical_guard_pass_claimed": false,
+    "new_private_violations": 0,
+    "status": "PASS"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-first-origin.yml": {
+      "sha256": "7810098615838ccadf73398f84991effcbb4e4df0d64333b54f6ebfd7e20d08c",
+      "size": 1527
+    },
+    "scripts/pr16_first_origin.py": {
+      "sha256": "548ac0a3da82c12304b595c3176048a4b5823bbc2f1d1d34fc406a80576fd08a",
+      "size": 8841
+    },
+    "scripts/pr16_first_origin_actions.py": {
+      "sha256": "1933645db5a9d9d3ece9fea5066fb7c887692c0da83b984f3514468efd51e274",
+      "size": 21448
+    },
+    "tests/test_pr16_first_origin.py": {
+      "sha256": "ce44f9982271b0b8eed72ddc404b3ad4c2800c7cfca46f1635a7f307311b7829",
+      "size": 6914
+    }
+  },
+  "source_head": "06563a617a42e960b3e40ce6e6c0634322161e34",
+  "status": "FIRST_ORIGIN_BOUNDED_BYTES_AND_CODE_SHAPES_BOUND_CONSUMER_UNPROVEN",
+  "symbol_actions_receipt_path": "content/modernization/pr16_donor_origins_evidence/actions-completion.json",
+  "task": "USER-20261011-FIRST-ORIGIN-BOUNDS",
+  "task_graph_passed": true,
+  "total_task_rom_reconstructions": 2
+}
