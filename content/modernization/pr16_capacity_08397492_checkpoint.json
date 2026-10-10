@@ -1,0 +1,269 @@
+{
+  "actions_completion_confirmed": false,
+  "actions_run_id": 38064726885,
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "claims": {
+    "accepted_reader_replays": 0,
+    "accepted_test_reruns": 0,
+    "actual_asset_or_reader_measured": false,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "formal_classification_accepted": false,
+    "full_story_pass_claimed": false,
+    "native_processes": 0,
+    "neighbor_distance_is_asset_size": false,
+    "newly_classified": 0,
+    "rom_reconstructions": 0
+  },
+  "code_bindings": {
+    ".github/workflows/pr16-capacity-08397492.yml": {
+      "sha256": "c2ed9dbb6315d88dccf0654ca592d294fabde9ddd5e5f5e0a25deec6afc229fe",
+      "size": 1274
+    },
+    "scripts/pr16_capacity_08397492.py": {
+      "sha256": "1f141222deeab077f590125b22391b77747acedfb1734c8243256c9568fef810",
+      "size": 6969
+    },
+    "scripts/pr16_capacity_08397492_actions.py": {
+      "sha256": "4d2d41bbac116591ec5d16ef5267d8a6ed394b961c074f538adefa1ab5e41f5c",
+      "size": 11091
+    },
+    "tests/test_pr16_capacity_08397492.py": {
+      "sha256": "d6266bcfb67d1835c9f0b140e7cf043e2b633f96a7bb57d0664d24c20e16f5d4",
+      "size": 6290
+    }
+  },
+  "completed_r0_receipt_actions": {
+    "conclusion": "success",
+    "id": 38063715046,
+    "observed_at": "2026-10-10T15:43:26.822655+00:00",
+    "required_steps": [
+      "R0の新しいfocused試験とtask graph",
+      "R0生成または提示receiptを検証して非force反映"
+    ],
+    "source_head": "c0f03fc3711ea2f2ac6b866735cc8eb6eeaf7432",
+    "status": "completed"
+  },
+  "focused_tests": 28,
+  "full_index_private_guard": {
+    "executed": true,
+    "exit_code": 1,
+    "historical_violations_not_rewritten": true,
+    "passed": false,
+    "raw_private_log_published": false
+  },
+  "independent_public_symbol_source": {
+    "commit": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+    "git_blob": "53316c0d61da2c6cc22acf3d79f68c61c64c65be",
+    "path": "diagnostics/pokefirered_jp.sym.audit.tsv",
+    "repository": "ComplexRobot/frlg-sym",
+    "sha256": "fc1e4b579b21a592b8e09fa3c36f242833837190401128cd6866c945eff2f44e",
+    "size": 4147002
+  },
+  "inherited_classified": 784,
+  "inherited_unclassified": 90,
+  "next_ja": "symbol近傍は候補だけ。独立公開sourceの宣言と全assetを固定し、実ROM table/literal/readerの全4byte消費へ結ぶ。型の証明なしに784/90/安全容量0を変更しない。旧Bubble/Blastoiseの再測定、全クリ走破は行わない。",
+  "observed_head_checks": {
+    "all_ci_green_claimed": false,
+    "runs": [
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064732589,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "pull_request",
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064732795,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064726885,
+        "name": "pr16-capacity-08397492",
+        "path": ".github/workflows/pr16-capacity-08397492.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064726949,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064726418,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064726487,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "push",
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064726662,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      }
+    ],
+    "source_head": "3d8acf571a6058588f51be3b4a3609f96d5b7194"
+  },
+  "parent_audit_identity": {
+    "sha256": "be38da073c9a124de94506091d0ce9fe090c407e4ec85d05037f61d36109d850",
+    "size": 5405033
+  },
+  "parent_byte_mtime_unchanged": true,
+  "prior_attempts": [
+    {
+      "completion_commit_created": false,
+      "conclusion": "failure",
+      "reason_ja": "nested technical_lanes.save_capacityへの記録adapter欠落を修正。検査条件を緩和せず5境界試験を追加。",
+      "run_id": 38064450846,
+      "source_head": "98e771a6b9084a4fdebec6b698fb0d510a71e3a8"
+    }
+  ],
+  "saved_frontier_identity": {
+    "sha256": "fe22c780ecc5a9c23c61eda3e1384ccf63560936d45d7afecf0686bd0106ba76",
+    "size": 39525
+  },
+  "schema_version": 1,
+  "scoped_final_index_guard": {
+    "historical_guard_pass_claimed": false,
+    "new_private_violations": 0,
+    "status": "PASS"
+  },
+  "source_head": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+  "status": "PASS_SAVED_FRONTIER_AND_SYMBOL_BINDING_ONLY",
+  "symbol_candidates": {
+    "header": "reference_address\ttarget_address\tbinding\treference_size\tname\tmethod\tconfidence\trigid",
+    "nearest_following_label": 137983320,
+    "nearest_preceding_label": 137982344,
+    "neighbor_distance_is_asset_size": false,
+    "rows": [
+      {
+        "address": 137982280,
+        "fields": [
+          "083cecb0",
+          "08397148",
+          "l",
+          "00000040",
+          "sWallpaperPalettes_Forest",
+          "unique_normalized_data",
+          "98",
+          "1"
+        ],
+        "line": 32880
+      },
+      {
+        "address": 137982344,
+        "fields": [
+          "083cecf0",
+          "08397188",
+          "l",
+          "000003d0",
+          "sWallpaperTiles_Forest",
+          "unique_normalized_data",
+          "98",
+          "1"
+        ],
+        "line": 32881
+      },
+      {
+        "address": 137983320,
+        "fields": [
+          "083cf0c0",
+          "08397558",
+          "l",
+          "000000dc",
+          "sWallpaperTilemap_Forest",
+          "unique_normalized_data",
+          "98",
+          "1"
+        ],
+        "line": 32882
+      },
+      {
+        "address": 137983540,
+        "fields": [
+          "083cf19c",
+          "08397634",
+          "l",
+          "00000040",
+          "sWallpaperPalettes_City",
+          "unique_normalized_data",
+          "98",
+          "1"
+        ],
+        "line": 32883
+      }
+    ],
+    "scope": "SYMBOL_HINTS_ONLY_NOT_ASSET_EXTENT_OR_CONSUMER_PROOF",
+    "target": 137983122
+  },
+  "target": {
+    "hit": {
+      "accepted": false,
+      "address": 137983122,
+      "classification": "UNCLASSIFIED",
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "owner_candidates": [],
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "sha256": "596fb6d08572fb73f6c9f5d1dc6d33fa1dd8b3226e1b235ca564bee8d87d5a43",
+      "size": 4,
+      "target": 167707392
+    },
+    "owners": []
+  },
+  "task": "USER-20261010-CAPACITY-08397492-BINDING",
+  "task_graph_passed": true,
+  "technical_parent_bindings": {
+    "content/modernization/pr16_weather_bubble_checkpoint.json": {
+      "sha256": "2b2c6c227d12b36ad0ae682b3a00d75decbfde137b92b5154af1c068e0c8ad50",
+      "size": 11920
+    },
+    "content/modernization/pr16_weather_bubble_evidence/unknown-frontier.json": {
+      "sha256": "fe22c780ecc5a9c23c61eda3e1384ccf63560936d45d7afecf0686bd0106ba76",
+      "size": 39525
+    },
+    "docs/PR16_WEATHER_BUBBLE_ACCEPTANCE_JA.md": {
+      "sha256": "b69d73faee02ba312922cfaac44d0bd401d6d9aa97c79582d1f481b0245ac18d",
+      "size": 3135
+    },
+    "scripts/pr16_weather_bubble_receipt.py": {
+      "sha256": "101c841322b777b27891567e77f1149f65fc8c952fca384b03289c55e32edce2",
+      "size": 13368
+    },
+    "scripts/pr16_weather_bubble_sources.py": {
+      "sha256": "d5827de8da092c0209003c382b6ab657905bf50ce37fa257021732fe64476070",
+      "size": 6080
+    }
+  }
+}

@@ -14198,3 +14198,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 公開tree 4514ファイルの集合/hash不変、生成run 38053550683 completed/success、task graph PASS。生成/受入試験の再走0。最終metadata差分のprivate/scope検査後にcommit。
 - Commit: この記録を含む同branchの単親通常commit。実SHAはActions resultとGit履歴から照合する。
 - Network: GitHubの指定PR/ref/受入済みActionsのGETと同branchへの非force pushのみ。元資料の再採取なし。
+
+## 2026-10-10T15:43:37.782575+00:00
+- Timestamp: 2026-10-10T15:43:37.782575+00:00
+- Task: USER-20261010-CAPACITY-08397492-BINDING / 保存容量の固定親と08397492
+- Version: capacity-08397492-binding-v1
+- Status: DONE
+- Summary: 784/90の保存親を全identity照合で復元し08397492の唯一hitを束縛。固定公開symbol全4MiBのSHA/size/blobと有限近傍を別証拠化。型/容量は未受入のまま。
+- Files changed: 新しい有限検証器・28境界試験・実行器/workflow、新checkpoint/guide、現行状態JSON、両ログ。旧原本・Wiki・ROM・Save101・baseline不変。
+- Verify: 新28 tests/task graph/親byte-mtime/非force競合検査。旧試験・reader・ROM再構成・native各0。全体private guardは既存違反と新規違反を区別。
+- Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴とActions resultから照合。
+- Network: 固定公開symbol、GitHub指定repoのPR/ref/Actions GETと同branch非force push。

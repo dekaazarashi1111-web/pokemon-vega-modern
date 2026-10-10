@@ -17,17 +17,15 @@
   "branch": "codex/modernization-followup-20260908",
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "next_action": {
-    "done_ja": "対象の根拠を原本へ束縛し、必要容量と保存統合の残件を更新。最後の1件/安全容量獲得/全story PASSと誤記せず、無変更の成功原本は再走しない。",
-    "goal_ja": "固定R0提示済み。Weather Bubbleの保存原本784分類/90未知/安全容量0から、次の0x08397492と必要な保存controller容量/owner移管の未完を有限範囲で進める。",
-    "id": "SAVE_CAPACITY_FROM_PRESERVED_08397492_FRONTIER",
+    "done_ja": "独立全assetと実consumerが一致する場合だけ最小型を受入。成立しない場合は診断と非主張を記録して次の安全容量手段を選ぶ。",
+    "goal_ja": "symbol近傍は候補だけ。独立公開sourceの宣言と全assetを固定し、実ROM table/literal/readerの全4byte消費へ結ぶ。型の証明なしに784/90/安全容量0を変更しない。旧Bubble/Blastoiseの再測定、全クリ走破は行わない。",
+    "id": "SAVE_CAPACITY_08397492_ASSET_AND_READER_PROOF",
     "read_paths": [
-      "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
-      "docs/PR16_WIKI_R0_INPUTS_JA.md",
-      "docs/PR16_WEATHER_BUBBLE_ACCEPTANCE_JA.md",
-      "content/modernization/pr16_weather_bubble_checkpoint.json",
+      "docs/PR16_CAPACITY_08397492_JA.md",
+      "content/modernization/pr16_capacity_08397492_checkpoint.json",
+      "scripts/pr16_capacity_08397492.py",
       "scripts/pr16_weather_bubble_receipt.py",
-      "content/modernization/pr16_weather_bubble_evidence/unknown-frontier.json",
-      "scripts/pr16_weather_bubble_sources.py"
+      "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md"
     ]
   },
   "observed_head_checks": {
@@ -36,44 +34,35 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "c0f03fc3711ea2f2ac6b866735cc8eb6eeaf7432",
-        "id": 38063720409,
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064732589,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "event": "pull_request",
-        "head_sha": "c0f03fc3711ea2f2ac6b866735cc8eb6eeaf7432",
-        "id": 38063720299,
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064732795,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064726885,
+        "name": "pr16-capacity-08397492",
+        "path": ".github/workflows/pr16-capacity-08397492.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "c0f03fc3711ea2f2ac6b866735cc8eb6eeaf7432",
-        "id": 38063715046,
-        "name": "pr16-wiki-r0-build",
-        "path": ".github/workflows/pr16-wiki-r0-build.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "c0f03fc3711ea2f2ac6b866735cc8eb6eeaf7432",
-        "id": 38063715084,
-        "name": "Stage79 mGBA (all)",
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "c0f03fc3711ea2f2ac6b866735cc8eb6eeaf7432",
-        "id": 38063714898,
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064726949,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
@@ -81,23 +70,32 @@
       {
         "conclusion": "success",
         "event": "push",
-        "head_sha": "c0f03fc3711ea2f2ac6b866735cc8eb6eeaf7432",
-        "id": 38063714807,
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064726418,
         "name": "Stage79 runtime boundary audit",
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
       },
       {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064726487,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
         "conclusion": "failure",
         "event": "push",
-        "head_sha": "c0f03fc3711ea2f2ac6b866735cc8eb6eeaf7432",
-        "id": 38063714845,
+        "head_sha": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+        "id": 38064726662,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
       }
     ],
-    "source_head": "c0f03fc3711ea2f2ac6b866735cc8eb6eeaf7432"
+    "source_head": "3d8acf571a6058588f51be3b4a3609f96d5b7194"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -194,6 +192,7 @@
       },
       "save_capacity": {
         "blocker": null,
+        "checkpoint_path": "content/modernization/pr16_capacity_08397492_checkpoint.json",
         "completion_evidence_path": null,
         "next_ja": "R0提示後、保存した解析frontierから必要容量と本番保存接続へ。全クリは再開しない。",
         "remaining": [
@@ -204,7 +203,7 @@
           "heap-ready/同期非再入/退避前Free/全出口Free",
           "必要な局所Save/fresh Continue受入"
         ],
-        "status": "READY_TO_RESUME_FROM_PRESERVED_FRONTIER"
+        "status": "FRONTIER_BOUND_ASSET_READER_PROOF_PENDING"
       }
     },
     "wiki": {
@@ -261,20 +260,10 @@
     "commit_semantics": "このJSONを含む単親の同branch通常commit。自己SHA追記だけの追加commitを作らない。",
     "full_index_private_guard_executed": true,
     "last_execution": {
-      "accepted_generation_reruns": 0,
       "accepted_tests_rerun": 0,
-      "actions_run_id": 38063715046,
-      "completed_build_actions": {
-        "conclusion": "success",
-        "id": 38053550683,
-        "observed_at": "2026-10-10T15:28:22.549770+00:00",
-        "required_steps": [
-          "R0の新しいfocused試験とtask graph",
-          "R0生成または提示receiptを検証して非force反映"
-        ],
-        "source_head": "c935d493c998bc62a6189381085fc9d2bb6c6803",
-        "status": "completed"
-      },
+      "actions_completion_confirmed": false,
+      "actions_run_id": 38064726885,
+      "focused_tests": 28,
       "full_index_private_guard": {
         "executed": true,
         "exit_code": 1,
@@ -284,8 +273,8 @@
       },
       "new_native_processes": 0,
       "rom_reconstructions": 0,
-      "source_head": "c0f03fc3711ea2f2ac6b866735cc8eb6eeaf7432",
-      "task": "USER-20261010-WIKI-R0-RECEIPT",
+      "source_head": "3d8acf571a6058588f51be3b4a3609f96d5b7194",
+      "task": "USER-20261010-CAPACITY-08397492-BINDING",
       "task_graph_passed": true
     },
     "legacy_generated_md_modified": false,
@@ -321,7 +310,7 @@
     "project_task_graph_check_executed": true,
     "rom_changes": 0,
     "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-    "status": "R0_PUBLISHED_PRESENTED_SAVE_CAPACITY_NEXT",
+    "status": "R0_READY_CAPACITY_FRONTIER_BOUND_READER_PENDING",
     "task": "USER-20261010-WIKI-FIRST-POLICY",
     "wiki_generated": true
   },
