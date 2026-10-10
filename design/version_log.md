@@ -11431,3 +11431,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新focused 35試験・task graph PASS。決定的check、byte/mtime無変更、scope index検証をcommit直前に実施。全体private guardは別の既存違反を含むため結果を状態JSONへ区別。旧受入/native/ROM復元0。
 - Commit: この完了記録を含む同branch単親通常commit（Git履歴/Actions resultで照合）。
 - Network: GitHub PR/ref/Actionsと受入済み5artifactのlink.json回収のみ。外部技術調査なし。
+
+## 2026-10-10T12:53:03.228958+00:00
+- Timestamp: 2026-10-10T12:53:03.228958+00:00
+- Task: USER-20261010-WIKI-R0-RENDER / 固定Wiki R0
+- Version: wiki-r0-6e88a021
+- Status: DONE
+- Summary: R0 4514 textファイル、623386内部リンク、全128389経路/109659条件、ベガ206行/1671種族/1063技/318特性/1044道具/76メガ/34Gmax/31専用Z。数値と現役逆引きを結合、条件付き繁殖と持越しを直接付与から分離。公開提示の受領は別の有限段階。
+- Files changed: R0専用生成/検証と固定引継ぎMD/JSON、Wiki入口、両ログ。旧Wiki/ROM/Save101/baselineは不変。
+- Verify: 新focused 35試験、task graph、決定性/check byte+mtime無変更 PASS。新native/ROM復元/旧受入再走0。最終indexのscope/private検査後だけcommit。
+- Commit: この記録を含む同branchの単親通常commit。実SHAはActions resultとGit履歴から照合する。
+- Network: GitHubの指定PR/ref/受入済みActionsのGETと同branchへの非force pushのみ。元資料の再採取なし。

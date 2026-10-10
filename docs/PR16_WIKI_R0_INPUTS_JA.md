@@ -1,19 +1,17 @@
 # Wiki R0 入力監査と継続点
 
-**数値系譜・registry対応まで完了。R0の閲覧ページ生成は未完です。**
+**R0全ページと検証を生成済み。リモート公開後、実際の提示とActions完了を受領する段階です。**
 
-現在の作業選択は [固定状態JSON](../content/modernization/pr16_wiki_first_execution_plan.json) のみを正とします。
+[固定Wiki R0](wiki/r0-6e88a021/README.md) / [ベガ横比較](wiki/r0-6e88a021/VEGA_BALANCE_INDEX.md) / [現在の作業状態](../content/modernization/pr16_wiki_first_execution_plan.json)。
 
-入力HEAD `0534d2d187bbb04ef4fe1b7b681d3f5930ab7fd7`。候補 `6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2` / 33554432 bytes / CRC32 `00F31AF7`。
+候補SHA `6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2` / 33554432 bytes / CRC32 `00F31AF7`。入力HEAD `c935d493c998bc62a6189381085fc9d2bb6c6803`。意味hash `919a95c7ddeb73ee4a03dd0b7fed6d7fe015aeb31d5c8fe71f11545373be0e16`。
 
-[初回入力manifest](../content/modernization/pr16_wiki_r0_input_manifest.json) は履歴のまま保持。[数値系譜の新検証](../content/modernization/pr16_wiki_r0_reconciliation.json) に5段階のlink原本、非変更範囲、現registry全1671種族のID/stable key/base/form対応を結合しました。
+[全入力・生成hash](wiki/r0-6e88a021/data/index.json) / [数値系譜](../content/modernization/pr16_wiki_r0_reconciliation.json) / [R0検証](../content/modernization/pr16_wiki_r0_verification.json)。数値は受入済み5段・7013範囲の非変更を継承、現役習得128389経路/109659条件だけを結合。持越し35211行・条件付き繁殖5行を無条件の直接付与にしません。
 
-旧P08の19 table/pointerと文字列・メガ資源・Z登録等、計7013観測範囲について、保存済み全writeとの非交差を検証しました。元ROM読取＋受入済み変更範囲の継承証明であり、新ROM読取/nativeの実行ではありません。
+ベガ206行、全1671種族/フォーム、1063技/318特性の逆引き、1044道具、76メガ、34Gmax登録、31専用Z、資源/供給/効果の未確認を掲載。新native/ROM再構成/旧受入再走0。
 
-旧level/TM/tutor tableと旧learner逆引きは現役としません。現役習得はIssue19後継のroutes/conditionsへ結合します。source定義・効果handler・自然供給・同scope nativeの区分を維持します。
+## 次の未完作業
 
-## 次の具体作業
+公開commitの固定R0入口を会話で提示し、presentation JSONにそのcommit/意味hash/生成runを記録する。同じworkflowのreceipt分岐が生成を再走せず、Actions完了・公開tree不変・提示を束縛して固定状態を更新する。
 
-候補識別子付き別R0へ、Vega比較・種族/フォーム個別・全技/特性逆引き・メガ/Gmax/Z・供給/制限・意味差分を生成する。新しいroutesから逆引きと役割補助を計算し、旧Wiki不変・リンク・決定性・check無書込を検証後に閲覧入口を提示する。
-
-保存容量784分類/90未知/安全容量0、全クリ走破対象外（PASSではない）、所有者調整承認0、release未完、baseline不変を維持します。受入済み試験・ROM復元・native再走は0件です。
+全クリ走破は対象外（PASSではない）。保存安全性・局所Save/fresh Continue・容量移管・CI整理は未完。所有者調整承認0、release未完、merge/baseline切替なし。旧native resume/checkpointは保留原本のまま保全する。

@@ -17,14 +17,13 @@
   "branch": "codex/modernization-followup-20260908",
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "next_action": {
-    "done_ja": "全必須ページ、リンク、旧Wiki不変、決定性/check無書込を検証して実在する固定R0を提示する。",
-    "goal_ja": "証明済み旧数値を後継の現役習得へ結合し、候補識別子付き別R0の比較・個別・逆引き・機構/供給/限界を生成する。",
-    "id": "WIKI_R0_BUILD_RECONCILED_COMPARISON_AND_DETAILS",
+    "done_ja": "提示receiptを記録し、次の保存容量laneへ継続点を移す。",
+    "goal_ja": "公開した固定R0を会話で提示し、生成run完了と公開commitをreceiptへ束縛する。受入済み生成は再走しない。",
+    "id": "WIKI_R0_PRESENT_AND_BIND_COMPLETED_ACTIONS",
     "read_paths": [
       "docs/PR16_WIKI_R0_INPUTS_JA.md",
-      "content/modernization/pr16_wiki_r0_reconciliation.json",
-      "scripts/pr16_wiki_r0_reconcile.py",
-      "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md"
+      "content/modernization/pr16_wiki_r0_verification.json",
+      "docs/wiki/r0-6e88a021/data/index.json"
     ]
   },
   "observed_head_checks": {
@@ -33,8 +32,8 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "0534d2d187bbb04ef4fe1b7b681d3f5930ab7fd7",
-        "id": 38051224893,
+        "head_sha": "c935d493c998bc62a6189381085fc9d2bb6c6803",
+        "id": 38053556719,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
@@ -42,8 +41,8 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "0534d2d187bbb04ef4fe1b7b681d3f5930ab7fd7",
-        "id": 38051224906,
+        "head_sha": "c935d493c998bc62a6189381085fc9d2bb6c6803",
+        "id": 38053556730,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "in_progress"
@@ -51,17 +50,26 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "0534d2d187bbb04ef4fe1b7b681d3f5930ab7fd7",
-        "id": 38051218779,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "head_sha": "c935d493c998bc62a6189381085fc9d2bb6c6803",
+        "id": 38053550683,
+        "name": "pr16-wiki-r0-build",
+        "path": ".github/workflows/pr16-wiki-r0-build.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "0534d2d187bbb04ef4fe1b7b681d3f5930ab7fd7",
-        "id": 38051218592,
+        "head_sha": "c935d493c998bc62a6189381085fc9d2bb6c6803",
+        "id": 38053550637,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "c935d493c998bc62a6189381085fc9d2bb6c6803",
+        "id": 38053550820,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
@@ -69,32 +77,23 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "0534d2d187bbb04ef4fe1b7b681d3f5930ab7fd7",
-        "id": 38051218790,
-        "name": "pr16-wiki-r0-reconcile",
-        "path": ".github/workflows/pr16-wiki-r0-reconcile.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "0534d2d187bbb04ef4fe1b7b681d3f5930ab7fd7",
-        "id": 38051218710,
-        "name": "Stage79 mGBA (all)",
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "head_sha": "c935d493c998bc62a6189381085fc9d2bb6c6803",
+        "id": 38053550827,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": "success",
         "event": "push",
-        "head_sha": "0534d2d187bbb04ef4fe1b7b681d3f5930ab7fd7",
-        "id": 38051218824,
+        "head_sha": "c935d493c998bc62a6189381085fc9d2bb6c6803",
+        "id": 38053550676,
         "name": "Stage79 runtime boundary audit",
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
       }
     ],
-    "source_head": "0534d2d187bbb04ef4fe1b7b681d3f5930ab7fd7"
+    "source_head": "c935d493c998bc62a6189381085fc9d2bb6c6803"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -211,30 +210,32 @@
         "size": 33554432
       },
       "completion_gates": {
-        "comparison_and_details": false,
-        "core_data_reconciled": false,
-        "historical_wikis_preserved": false,
+        "comparison_and_details": true,
+        "core_data_reconciled": true,
+        "historical_wikis_preserved": true,
         "identity_bound": true,
-        "limitations_explicit": false,
-        "mechanics_and_supply_index": false,
+        "limitations_explicit": true,
+        "mechanics_and_supply_index": true,
         "published_and_presented": false,
-        "read_only_and_deterministic_check": false
+        "read_only_and_deterministic_check": true
       },
-      "entry_path": null,
-      "input_manifest_path": "content/modernization/pr16_wiki_r0_input_manifest.json",
+      "entry_path": "docs/wiki/r0-6e88a021/README.md",
+      "input_manifest_path": "docs/wiki/r0-6e88a021/data/index.json",
       "limitations": [
-        "数値とregistryの対応は証明済み。現役習得結合・閲覧ページ/逆引き生成と検証が未完。"
+        "数値は範囲非変更の継承。全native/自然供給/保存統合の受入ではない。",
+        "Gmax登録34件の個別資源body/発動/終了は未監査。",
+        "容量784分類/90未知/安全容量0。全クリ対象外、所有者調整承認0。"
       ],
       "next_ja": "Wiki優先。docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.mdとowner_execution_planを読み、旧P08能力表とIssue19後継習得表の候補/lineage/意味同値を照合して、調整基準Wiki R0の未完項目を実装・検証・記録する。対象候補を推測せず、ベガ比較・系統/全習得・技/特性逆引き・メガ/Gmax/専用Z・供給条件・確認状態を揃える。実在する固定入口/入力manifest/証拠を提示した後は、所有者の案待ちで停止せず保存容量→CI→追加機構の技術確認へ進む。08397492は次の解析候補であって最後の1件ではなく、R0の前提にしない。全クリ走破は対象外、保存安全性は未完のまま保持。",
       "presented_to_owner": false,
       "published_commit": null,
       "review_ready": false,
       "revision": "R0",
-      "semantic_sha256": null,
-      "source_head": "0534d2d187bbb04ef4fe1b7b681d3f5930ab7fd7",
-      "status": "NUMERIC_LINEAGE_RECONCILED_RENDER_PENDING",
-      "tree_sha256": null,
-      "verification_evidence_path": "content/modernization/pr16_wiki_r0_reconciliation.json"
+      "semantic_sha256": "919a95c7ddeb73ee4a03dd0b7fed6d7fe015aeb31d5c8fe71f11545373be0e16",
+      "source_head": "c935d493c998bc62a6189381085fc9d2bb6c6803",
+      "status": "GENERATED_VERIFIED_PUBLICATION_RECEIPT_PENDING",
+      "tree_sha256": "08b0d74dab4b798a6b4a419be6b0fd422c357aa26f779ca5bc6a191165c96b84",
+      "verification_evidence_path": "content/modernization/pr16_wiki_r0_verification.json"
     },
     "wiki_policy": {
       "all_90_classifications_required_before_wiki": false,
@@ -257,18 +258,20 @@
     "last_execution": {
       "accepted_tests_rerun": 0,
       "actions_completion_confirmed": false,
-      "actions_run_id": 38051218790,
+      "actions_run_id": 38053550683,
       "focused_tests": 35,
       "full_index_private_guard": {
         "executed": true,
+        "exit_code": 1,
         "historical_violations_not_rewritten": true,
-        "passed": false
+        "passed": false,
+        "raw_private_log_published": false
       },
       "new_native_processes": 0,
       "read_only_check_passed": true,
       "rom_reconstructions": 0,
-      "source_head": "0534d2d187bbb04ef4fe1b7b681d3f5930ab7fd7",
-      "task": "USER-20261010-WIKI-R0-RECONCILE",
+      "source_head": "c935d493c998bc62a6189381085fc9d2bb6c6803",
+      "task": "USER-20261010-WIKI-R0-RENDER",
       "task_graph_passed": true
     },
     "legacy_generated_md_modified": false,
@@ -290,7 +293,7 @@
       "未承認案/未生成Wikiを完了にしない初期状態",
       "新入口と方針文書への相互参照とblob identityの照合"
     ],
-    "mode": "DIRECT_GITHUB_TEXT_AND_JSON_EDIT",
+    "mode": "SCOPED_R0_BUILD_AND_NONFORCE_PUSH",
     "native_processes": 0,
     "owner_instruction_at": "2026-10-10T10:56:56Z",
     "prior_reconciliation_attempt": {
@@ -304,9 +307,9 @@
     "project_task_graph_check_executed": true,
     "rom_changes": 0,
     "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-    "status": "NUMERIC_LINEAGE_RECORDED_R0_RENDER_PENDING",
+    "status": "R0_RENDER_VERIFIED_RECEIPT_PENDING",
     "task": "USER-20261010-WIKI-FIRST-POLICY",
-    "wiki_generated": false
+    "wiki_generated": true
   },
   "routing_rules": [
     {
