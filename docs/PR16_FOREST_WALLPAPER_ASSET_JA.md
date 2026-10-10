@@ -94,6 +94,10 @@ Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4by
 
 受領Actions自身の完了は、runが実際に完了した後の外部読戻しで別記録します。生成中のrunを成功と先取りしません。
 
+## 二origin受領Actionsの完了読戻し
+
+正式受領run 38094042257 の全job/step成功、公開commit `1903747cac9cbce66fa700b0401b329238da172f`、artifact全memberと同梱sourceを別途照合しました。[完了receipt](../content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json)。63受領試験/旧reader/ROMを再走せず、測定原本も正式receipt原本も改作していません。
+
 ## 次の未完作業
 
 正式787/87・安全容量0の保存親から、同じ6528byte選定窓の残8origin（次は0x084723AF）を進める。保存symbol-frontierと固定公開source/asset identityから現候補の有限consumer範囲を束縛する。近傍labelだけで型分類しない。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Save/fresh Continueは未完。新二originの3reader/20試験/63受領試験、全874scan、Forest/Bubble/窓最適化をsource不変なら再走しない。
