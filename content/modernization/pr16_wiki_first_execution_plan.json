@@ -30,63 +30,28 @@
   },
   "observed_head_checks": {
     "all_ci_green_claimed": false,
+    "observation_scope": "pull_request_runs_at_receipt_commit",
     "runs": [
       {
-        "conclusion": null,
+        "conclusion": "action_required",
         "event": "pull_request",
-        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
-        "id": 38085809437,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "pull_request",
-        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
-        "id": 38085809450,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": "failure",
-        "event": "push",
-        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
-        "id": 38085803758,
+        "head_sha": "d25e9e42f31c95bab35a6d1d78e946b6740621a7",
+        "id": 38085995130,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
       },
       {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
-        "id": 38085803484,
+        "conclusion": "action_required",
+        "event": "pull_request",
+        "head_sha": "d25e9e42f31c95bab35a6d1d78e946b6740621a7",
+        "id": 38085995172,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
-        "id": 38085803503,
-        "name": "pr16-forest-wallpaper-receipt",
-        "path": ".github/workflows/pr16-forest-wallpaper-receipt.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": "success",
-        "event": "push",
-        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
-        "id": 38085803470,
-        "name": "Stage79 runtime boundary audit",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
       }
     ],
-    "source_head": "5addcc0573698317bf6ef0f4d0c4979e22b2d625"
+    "source_head": "d25e9e42f31c95bab35a6d1d78e946b6740621a7"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -255,10 +220,24 @@
     "full_index_private_guard_executed": true,
     "last_execution": {
       "accepted_tests_rerun": 0,
-      "actions_completion_confirmed": false,
+      "actions_completed_at": "2026-10-10T21:01:00Z",
+      "actions_completion_commit": "d25e9e42f31c95bab35a6d1d78e946b6740621a7",
+      "actions_completion_confirmed": true,
+      "actions_completion_identity": {
+        "sha256": "291059a95cc4ef0707297aaa77bd2180b38f0922f0ff03bbedba21f1d7163025",
+        "size": 8433
+      },
       "actions_completion_path": "content/modernization/pr16_forest_wallpaper_receipt_evidence/actions-completion.json",
       "actions_run_id": 38085803503,
       "classified": 785,
+      "completion_readback": {
+        "full_index_guard_reexecuted": false,
+        "new_native_processes": 0,
+        "new_rom_reconstructions": 0,
+        "new_test_executions": 0,
+        "scoped_text_only_check_passed": true,
+        "status": "PASS"
+      },
       "donor_safe_bytes": 0,
       "full_index_private_guard": {
         "executed": true,
