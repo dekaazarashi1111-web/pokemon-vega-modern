@@ -38,7 +38,11 @@ def git(*args, env=None):
 
 
 def api(path, binary=False):
-    raw = subprocess.check_output(['gh','api','repos/'+r.REPO+'/'+path],cwd=ROOT)
+    command = ['gh','api','repos/'+r.REPO+'/'+path]
+    if binary and path == 'actions/jobs/'+str(r.JOB)+'/logs':
+        # 固定jobの原logをPIPEへ取得。端末へ出さず、承認済みJSON二行だけを検証する。
+        command.append('--allow-escape-sequences')
+    raw = subprocess.check_output(command,cwd=ROOT)
     return raw if binary else json.loads(raw)
 
 
@@ -119,6 +123,7 @@ def main():
         failed_previous_run=values['provenance.json']['failed_previous_run'],
         measurement_tests_inherited=32,measurement_source_files_frozen=6,dependency_files_frozen=len(values['provenance.json']['dependency_bindings']),
         closeout_source_head=head,closeout_run_id=int(os.environ['GITHUB_RUN_ID']),
+        closeout_recovery=dict(failed_run_id=38042005576,failed_job_id=114183945767,reason='gh refused ANSI in saved log; fixed job PIPE-only --allow-escape-sequences',tests_executed=0,rom_reconstructions=0,commits_created=0),
         general_ci=dict(all_general_ci_success=False,preexisting_run_id=38040440825,preexisting_job_id=114179438028,
             source_mismatch='overlays/qol_production/qol_production.c',capacity_step=14,secondary_missing_upload_step=17,
             unrelated_sources_unchanged=True),release_ready=False,active_baseline_changed=False,merge_performed=False)
@@ -161,6 +166,7 @@ def main():
         '新31番目Bubble差分で165変更/155witness。原本4JSONのformal_classification_accepted=falseは測定時事実のまま保持し、受入は別checkpointで記録する。\n\n'
         '## Actionsと会計\n\n'
         '既知失敗38039867181から実call frame束縛へ修正した成功だけを受領。過去task再構成は失敗込み2、成功runは1、本closeoutは0。'
+        'closeout失敗38042005576は保存logのANSIに対するgh出力拒否。試験・受入・commit前に停止し、固定job原logのPIPE取得だけを修正した。'
         'source-validationの既存38040440825/job114179438028はstep14 capacity証拠のqol_production.c source不一致（2error）、'
         'step17未生成artifact uploadも失敗。これらのsourceと受入条件を変更せず、全CI greenとは記録しない。\n')
     save(r.GUIDE,guide.encode())
