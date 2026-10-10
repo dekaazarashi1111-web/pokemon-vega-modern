@@ -72,7 +72,7 @@ def public_layout():
     c.write_text('#include "global.h"\n#include "gflib.h"\n#include "event_data.h"\n#include "graphics.h"\n#include "new_menu_helpers.h"\n#include "pokemon_icon.h"\n#include "pokemon_storage_system_internal.h"\n#include <stddef.h>\n'
         'const unsigned int pr16_layout[] __attribute__((section(".pr16_layout"),used)) = {\n'+',\n'.join(values)+'\n};\n')
     command=['arm-none-eabi-gcc','-mcpu=arm7tdmi','-mthumb','-std=gnu11',
-        '-I'+str(source/'include'),'-I'+str(source/'gflib'),'-I'+str(source),'-isystem','/usr/include/newlib',
+        '-iquote'+str(source/'include'),'-iquote'+str(source/'gflib'),'-iquote'+str(source),'-isystem','/usr/include/newlib',
         '-MMD','-MF',str(dep),'-c',str(c),'-o',str(obj)]
     compiled=subprocess.run(command,capture_output=True)
     if compiled.returncode:
@@ -179,7 +179,7 @@ def main():
         'source_binding':public_binding,'symbol_source':symbol,'symbols':sym,
         'profiles':profiles,'focused_tests':33,'new_profiles':len(profiles),'task_graph_passed':True,
         'model_tests_inherited_without_execution':same_models,'model_tests_executed_this_run':0 if same_models else 33,
-        'prior_attempts':[{'run_id':38080969342,'source_head':frozen_head,'status':'completed','conclusion':'failure','rom_reconstructions':0,'native_processes':0,'reason_ja':'公開headerのARM layout compile。33モデル試験だけ成功。graphics本来のinclude依存を追加し、公開型の診断を限定保存する。'}],
+        'prior_attempts':[{'run_id':38080969342,'source_head':frozen_head,'status':'completed','conclusion':'failure','rom_reconstructions':0,'native_processes':0,'reason_ja':'公開headerのARM layout compile。33モデル試験だけ成功。graphics本来のinclude依存を追加し、公開型の診断を限定保存する。'}, {'run_id':38081250716,'source_head':'648b6a2763c4f3fd5c4792e0a3c01885ebccf605','status':'completed','conclusion':'failure','rom_reconstructions':0,'native_processes':0,'reason_ja':'ゲームstrings.hと標準strings.hの衝突。-Iを-iquoteへ修正し、固定公開型/判定条件/原本を変更しない。'}],
         'rom_reconstructions':1,'classified':784,'unclassified':90,'donor_safe_bytes':0,
         'old_inputs_unchanged':True,'inherited_input_bindings':inputs,
         'code_bindings':{name:m.identity((ROOT/name).read_bytes()) for name in sorted(CODE)},
