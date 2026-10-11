@@ -1,0 +1,258 @@
+{
+  "actions_completion_confirmed": false,
+  "actions_run_id": 38097726375,
+  "attempt": {
+    "accepted_native_replays": 0,
+    "accepted_tests_rerun": 0,
+    "native_processes": 1,
+    "rom_reconstructions": 1
+  },
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "donor_safe_bytes": 0,
+  "evidence_bindings": {
+    "content/modernization/pr16_sound_origin_reader_evidence/asset-completion.json": {
+      "sha256": "14a84165bee5f1b0d11fe4e9d7dbb0e188da9189dc710d369785d5bb6b90a024",
+      "size": 651
+    },
+    "content/modernization/pr16_sound_origin_reader_evidence/native.json": {
+      "sha256": "e6a24f27560b4053f62c2bacd5fdaaa4c3090f2a47fe890212f8ee0d6aab22dc",
+      "size": 14496
+    },
+    "content/modernization/pr16_sound_origin_reader_evidence/reader-proof.json": {
+      "sha256": "332f0b623f3d909b043037edc777f7b04a60db2059e1d6945dbe58ab196ab142",
+      "size": 23587
+    },
+    "content/modernization/pr16_sound_origin_reader_evidence/reader-tests.txt": {
+      "sha256": "7e7d38c098c4a3b209c997f869d779d0e1ae6b9f0332008143dce4ed41b5703b",
+      "size": 4108
+    }
+  },
+  "formal_classification_changes": 0,
+  "formal_classified": 787,
+  "formal_unclassified": 87,
+  "full_index_private_guard": {
+    "executed": true,
+    "exit_code": 1,
+    "historical_violations_not_rewritten": true,
+    "passed": false,
+    "raw_private_log_published": false
+  },
+  "native_cases": 26,
+  "new_unit_tests": 33,
+  "next_ja": "音声実readerの完了runと公開artifactを一度受領し、保存した787/87と選定8行から0x084723AFだけを正式788/86・残7行へ移す。33試験/26native/asset32試験/既受入reader/ROM全scanは再走しない。安全容量0、自然dispatch/IWRAM通常配置/全alias/退役/保存統合は未完。",
+  "observed_head_checks": {
+    "all_ci_green_claimed": false,
+    "runs": [
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
+        "id": 38097733062,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "pull_request",
+        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
+        "id": 38097733153,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
+        "id": 38097726439,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
+        "id": 38097726375,
+        "name": "pr16-sound-origin-reader",
+        "path": ".github/workflows/pr16-sound-origin-reader.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
+        "id": 38097726619,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "push",
+        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
+        "id": 38097726545,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
+        "id": 38097726397,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      }
+    ],
+    "source_head": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2"
+  },
+  "preserved_inputs": {
+    ".github/workflows/pr16-sound-origin-asset.yml": {
+      "sha256": "142415b0cbdf8ae7cc9fb9bb007313f53fe4d26b6c93281037dcf992c9c56f7b",
+      "size": 1569
+    },
+    "AGENTS.md": {
+      "sha256": "e23282e1b1f6a73bba1641bde90417fb87187dea2dfd8682784419088853c0fc",
+      "size": 17278
+    },
+    "CHATGPT_RESUME.md": {
+      "sha256": "563fec8b1ad11b3a80128515c8a4795fb4eca2cfc6407c22e2726a561cee5652",
+      "size": 5102
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/pr16_donor_origins_evidence/symbol-frontier.json": {
+      "sha256": "3601c1f46ca532efa7d75929fff58736b0a4ceddd648c8be64b6acb718a4108f",
+      "size": 13186
+    },
+    "content/modernization/pr16_donor_window_evidence/windows.json": {
+      "sha256": "100dd710037fd958db20191a4bffa8590fb0414a2e252705f1111d75e15e9d2c",
+      "size": 9687
+    },
+    "content/modernization/pr16_sound_origin_asset_checkpoint.json": {
+      "sha256": "902cf62a5c30204d3ea31198703f14dd2937a7ee803792462e658a54c3aa3230",
+      "size": 7948
+    },
+    "content/modernization/pr16_sound_origin_asset_evidence/asset-binding.json": {
+      "sha256": "71964fbe283cc6bd6e76ea45e5905b7e3cc01b60be524c417fa7db2726acf395",
+      "size": 8543
+    },
+    "content/modernization/pr16_sound_origin_asset_evidence/asset-tests.txt": {
+      "sha256": "2ce39a20ade73042b5cb4e634605a945cd106484970d32a6d2dc882c76952a6e",
+      "size": 3465
+    },
+    "content/modernization/pr16_sound_origin_asset_evidence/prior-actions.json": {
+      "sha256": "343edd0f6845b43207e377d71c94c0b7b171f752da638a1218da9aa757b3b7a3",
+      "size": 479
+    },
+    "content/modernization/pr16_typed_origins_evidence/reader-profiles.json": {
+      "sha256": "761b8488dcdfcdea82373f050356f247297befecf7fee5e4c871029339182303",
+      "size": 19614
+    },
+    "content/modernization/pr16_typed_origins_receipt.json": {
+      "sha256": "58b594ed8c2e04704948495d2cefc4d6eff9f0cb2520030343de342ddc1ac71c",
+      "size": 15728
+    },
+    "content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json": {
+      "sha256": "98cc3bd7d4ef09a93e0eb976841dc43cc46797d6f7ae0d280bf970470bf010f1",
+      "size": 8519
+    },
+    "content/modernization/pr16_typed_origins_receipt_evidence/reference-chain.json": {
+      "sha256": "99be8c45e24dd8e281ee6e77861f04297b65ecc1b5c09f37f91e80aab36e83be",
+      "size": 5763
+    },
+    "content/modernization/pr16_typed_origins_receipt_evidence/unknown-frontier.json": {
+      "sha256": "7eff70285e1de674b77a1be7b9e31f235a158dc26a905421fa6094359c3501b4",
+      "size": 38217
+    },
+    "content/modernization/pr16_typed_origins_receipt_evidence/window-progress.json": {
+      "sha256": "d2064ff07c15e89ed56f99340832872b9b6171f93736b1757a58fcd3e2e341e3",
+      "size": 3155
+    },
+    "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
+      "sha256": "dd200aa3a4e0fa581991c9f3553b042398af691977313d57e44fd088e15fa35d",
+      "size": 20300
+    },
+    "scripts/pr16_dex_hof_capacity_actions.py": {
+      "sha256": "3b3802b7326e68c65267d46bd16c8bb65b8ef80420c9352f1b9932a105c94cef",
+      "size": 16248
+    },
+    "scripts/pr16_sound_origin_asset.py": {
+      "sha256": "6d5b71c7c3294e5442ace09149b3dd402ca795b80d48f91babcaa387adaa5675",
+      "size": 8118
+    },
+    "scripts/pr16_sound_origin_asset_actions.py": {
+      "sha256": "8f4c12dde9c6fae7ba7fefaaf67653c04728a578c4a2c284ee427e815495da2e",
+      "size": 17754
+    },
+    "state/source-lock.json": {
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4",
+      "size": 3166
+    },
+    "tests/test_pr16_sound_origin_asset.py": {
+      "sha256": "68e2f8eaad5cea12b6d55b507423df33f12dbe08aee31ed5fbd0b09f59652316",
+      "size": 6955
+    }
+  },
+  "prior_attempts": [
+    {
+      "artifact_id": 11686771077,
+      "artifact_sha256": "31b11dce77ad32ace79875d79e7eb8ea7f09a6f247d785e7fd12b33686849900",
+      "conclusion": "failure",
+      "native_processes": 0,
+      "phase": "new-fixed-mixer-sources",
+      "reason_ja": "非対象のcompiler-local同名labelまで一意化して停止。必要な5名のみ一意化し、対象の重複/欠落は引き続き拒否。追加3境界試験。",
+      "rom_reconstructions": 0,
+      "run_id": 38097199893,
+      "source_head": "7fdc382275bd5c2a4ea32f892c1dfabd2ce588bc"
+    }
+  ],
+  "proof_identity": {
+    "sha256": "332f0b623f3d909b043037edc777f7b04a60db2059e1d6945dbe58ab196ab142",
+    "size": 23587
+  },
+  "proof_path": "content/modernization/pr16_sound_origin_reader_evidence/reader-proof.json",
+  "read_only_check_passed": true,
+  "received_asset_completion": "content/modernization/pr16_sound_origin_reader_evidence/asset-completion.json",
+  "remaining_selected_origins": 8,
+  "schema_version": 1,
+  "scoped_final_index_guard": {
+    "historical_guard_pass_claimed": false,
+    "new_private_violations": 0,
+    "status": "PASS"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-sound-origin-reader.yml": {
+      "sha256": "4dde1be27abd4122e52133034af300754f46be394b02e950302800ba15eb06e2",
+      "size": 1843
+    },
+    "scripts/pr16_sound_origin_reader.py": {
+      "sha256": "670e1f6ec7dc11573f5824b955ccfef4c5ae964f6ce2e71d055f63445f3e9f4c",
+      "size": 12886
+    },
+    "scripts/pr16_sound_origin_reader_actions.py": {
+      "sha256": "e4d013b4e74f9c89f91d9bfa9b9b4053774ff01f7ac8aad9eda5cb878d8c9a56",
+      "size": 31779
+    },
+    "tests/test_pr16_sound_origin_reader.py": {
+      "sha256": "ee44612d7c757c50b020b232c4a79df4bb36aa598fceb493f8807c8e8f5f638a",
+      "size": 12820
+    },
+    "tools/mgba_pr16_sound_origin_reader.c": {
+      "sha256": "5631f53e67c08ec94dab9c89bc2d9e5e04105284c195b5654c3d348ec10ba679",
+      "size": 10397
+    }
+  },
+  "source_head": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
+  "status": "CONDITIONAL_PCM_READER_VERIFIED_RECEIPT_PENDING",
+  "task": "USER-20261011-SOUND-ORIGIN-READER",
+  "task_graph_passed": true
+}

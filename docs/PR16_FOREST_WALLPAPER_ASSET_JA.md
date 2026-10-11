@@ -108,6 +108,14 @@ Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4by
 
 [全asset証拠](../content/modernization/pr16_sound_origin_asset_evidence/asset-binding.json) / [checkpoint](../content/modernization/pr16_sound_origin_asset_checkpoint.json)。固定sourceのvoicegroup参照行も記録しましたが、現ROMの実table/実PCM readerは未受入です。unused名を未使用証明にはしません。新32人工境界試験、C++独立対照、全asset/4byte、決定的read-only check、task graph。新scope候補再構成1、native0、旧受入再走0。正式787/87・選定未分類8・安全容量0、全旧原本/R0/ROM/Save101/baselineを維持。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 0x084723AFを含む固定音声asset全byteとWAV/C++/独立PCM生成を束縛済み。保存assetを再生成せず、固定voicegroup使用行から現候補の実table/音声channel/有限PCM readerへ結ぶ。unused名を不使用証明にしない。正式787/87・選定未知8件・安全容量0を維持。音声32試験/全asset/旧reader/全874scan/Forest/Bubble/窓最適化の無変更再走は禁止。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。
+
+## 音声実readerの有限検証（完了原本の受領待ち）
+
+保存assetは再生成せず、固定voice macroの3行と現候補の全12byteを束縛。固定SoundMainRAM全bodyをJP配置へリンクして現ROMと全byte一致。実ROM命令をmGBAで26ケース（20 ARM補間・6 Thumb波形初期化）だけ実行し、対象4byteの実LDRSB、全読取順、符号拡張、出力全byte、cursor/count/phase、非所有RAM不変を独立整数modelと比較しました。[reader証拠](../content/modernization/pr16_sound_origin_reader_evidence/reader-proof.json) / [checkpoint](../content/modernization/pr16_sound_origin_reader_checkpoint.json)。これは自然note dispatchや通常IWRAMコピー実行の受入ではありません。新33試験/26ケース、新native1、旧受入再走0。正式分類はrun成功完了の外部受領まで787/87・選定8・安全容量0のままです。
+
+## 次の未完作業
+
+音声実readerの完了runと公開artifactを一度受領し、保存した787/87と選定8行から0x084723AFだけを正式788/86・残7行へ移す。33試験/26native/asset32試験/既受入reader/ROM全scanは再走しない。安全容量0、自然dispatch/IWRAM通常配置/全alias/退役/保存統合は未完。
