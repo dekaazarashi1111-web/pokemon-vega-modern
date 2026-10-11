@@ -218,6 +218,16 @@ run 38177623055の全job/必須step成功、artifact9member/87textと公開commi
 
 [受領JSON](../content/modernization/pr16_selected_map_asset_receipt.json) / [範囲要約](../content/modernization/pr16_selected_map_receipt_evidence/scope-summary.json)。原本checkpointのin-progress記録は測定時点の履歴として保持し、完了は受領JSONを参照する。一般CIや全index既存違反をgreenへ読み替えない。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 0x0880FA64の実asset所有元と全4byteの実readerを特定する。訂正後の旧68 descriptorと実lookup由来128×128有限入力では一致0件。一致したmap候補は保存されていないので、候補がある前提では再開しない。未調査の入力・他asset経路を具体的な参照元から絞る。0件は全map不存在証明ではない。受入済みmap32試験/ARM配置/lookup/probe、旧LZ探索/30試験、Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+
+## 選定assetの対象限定逆参照
+
+対象近傍へ全byte開始/3mirrorの逆参照11件、第2段1件、Thumb literal形0件。全候補SHA/115owner配置、各参照wordのhash、固定JP symbol近傍を束縛。新30境界試験・task graph PASS。新scope復元1回、native/旧inventory/map/LZ/Wiki再走0。pointer形は実reader受入ではない。
+
+[checkpoint](../content/modernization/pr16_selected_asset_xrefs_checkpoint.json) / [逆参照](../content/modernization/pr16_selected_asset_xrefs_evidence/inverse-references.json)。
+
+## 次の未完作業
+
+0x0880FA64の前4096byteから全4byteまでへの逆参照11件、第2段1件、Thumb literal形0件を保存。inverse-references.jsonの具体的なorigin/targetから実table・caller・asset境界を特定し、全4byteのreaderへ結ぶ。pointer形と旧symbol近傍だけではowner/型を確定しない。前4096byte外のasset開始・計算参照は未網羅。今回の逆参照/30試験と受入済みmap/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。

@@ -11782,3 +11782,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 0x0880FA64の実asset所有元と全4byteの実readerを特定する。訂正後の旧68 descriptorと実lookup由来128×128有限入力では一致0件。一致したmap候補は保存されていないので、候補がある前提では再開しない。未調査の入力・他asset経路を具体的な参照元から絞る。0件は全map不存在証明ではない。受入済みmap32試験/ARM配置/lookup/probe、旧LZ探索/30試験、Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
 - Commit: この記録を含む単親通常commit。実SHAはActions result/Git履歴。
 - Network: 同repo PR/ref/Actions/artifact GETと同branch非force push。受領scopeで公開source再取得なし。会話でpret/pokefireredの固定src/text.cとColosseum公開symbolを補助参照したがowner証拠には採用せず、候補復元/測定追試なし。
+
+## 2026-10-11T22:39:23.959880+00:00
+- Timestamp: 2026-10-11T22:39:23.959880+00:00
+- Task: USER-20261012-SELECTED-ASSET-XREFS / 選定assetの具体的逆参照
+- Version: selected-asset-xrefs-v1
+- Status: DONE（新しい逆参照検査を実装・検証。実reader/保存統合は未完）
+- Summary: 対象近傍へ全byte開始/3mirrorの逆参照11件、第2段1件、Thumb literal形0件。全候補SHA/115owner配置、各参照wordのhash、固定JP symbol近傍を束縛。新30境界試験・task graph PASS。新scope復元1回、native/旧inventory/map/LZ/Wiki再走0。pointer形は実reader受入ではない。
+- Files changed: 新検査器/30試験/専用Actions、checkpoint/text証拠、固定MD/JSON、両ログ。
+- Verify: 新30人工境界試験、前回完了run/ZIP全hash/公開97blob、受入原本byte/mtime、task graph、最終index新規private違反0。
+- Boundary: 新しい対象限定逆参照は全32MiBを読む。旧874参照inventory再走ではない。件数上限では部分成功にせず拒否。全体guard/一般CIの既存失敗は未解消。
+- Next: 0x0880FA64の前4096byteから全4byteまでへの逆参照11件、第2段1件、Thumb literal形0件を保存。inverse-references.jsonの具体的なorigin/targetから実table・caller・asset境界を特定し、全4byteのreaderへ結ぶ。pointer形と旧symbol近傍だけではowner/型を確定しない。前4096byte外のasset開始・計算参照は未網羅。今回の逆参照/30試験と受入済みmap/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+- Commit: この記録を含む単親通常commit。実SHAはActions result/Git履歴。
+- Network: 同repo PR/ref/Actions/artifact、固定ComplexRobot/frlg-sym c04a315のJP symbol、既存private入力復元、同branch非force push。会話でgMultiBootProgram_PokemonColosseum_StartをWeb検索したが一次資料を確認できず根拠不採用。固定pret/pokefirered c75f352のsrc/text.cを読んだがglyph所有元証拠には未採用。ROM/save/生byte列を追加公開しない。

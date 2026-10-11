@@ -14,7 +14,7 @@ R0.1は別出力として実装・限定検証・パッケージ生成/展開確
 
 ## 次の未完作業
 
-現在の next_action は SAVE_CAPACITY_SELECTED_ASSET_OWNER_AFTER_MAP_PROBE。0x0880FA64の実asset所有元と全4byteの実readerを特定する。訂正後の旧68 descriptorと実lookup由来128×128有限入力では一致0件。一致したmap候補は保存されていないので、候補がある前提では再開しない。未調査の入力・他asset経路を具体的な参照元から絞る。0件は全map不存在証明ではない。受入済みmap32試験/ARM配置/lookup/probe、旧LZ探索/30試験、Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。 固定JSONのread_pathsを使う。
+現在の next_action は SAVE_CAPACITY_SELECTED_ASSET_XREF_READER。0x0880FA64の前4096byteから全4byteまでへの逆参照11件、第2段1件、Thumb literal形0件を保存。inverse-references.jsonの具体的なorigin/targetから実table・caller・asset境界を特定し、全4byteのreaderへ結ぶ。pointer形と旧symbol近傍だけではowner/型を確定しない。前4096byte外のasset開始・計算参照は未網羅。今回の逆参照/30試験と受入済みmap/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。 固定JSONのread_pathsを使う。
 
 所有者が閲覧版で案を検討する間も、実作業セッションでは保存容量→CI整合→追加機構の技術確認を継続する。未承認バランス案や新メガ/Gmax/Zの対象・性能は決めない。無人バックグラウンド実行の約束ではない。
 
