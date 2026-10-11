@@ -13,7 +13,7 @@ R0.1は別出力として実装・限定検証・パッケージ生成/展開確
 
 ## 次の未完作業
 
-現在の next_action は SAVE_CAPACITY_BERRY_ORIGIN_ACTUAL_OWNER_READER。保存した0x086C51BF近傍の限定identity、公開assetとのlocale差、consumer frontierから現ownerと実readerを有限範囲で結ぶ。固定JSONの read_paths と technical_lanes.save_capacity を参照する。正式788分類/86未知・選定残7・安全容量0。古い784/90や08397492へ戻らない。保留run38099840927は記録済みobserved結果を照合し、成功測定を再起動しない。結果照会と型分類/受入を混同しない。
+現在の next_action は SAVE_CAPACITY_BERRY_BIOS_PAYLOAD_READER。保存した実Task→MultiBootMain→SWI25直前の引数/13profileを再走せず、boot_srcp=0x086C496C、boot_endp=0x086C7D3Cを使うBIOS payload readerまたは子機配置後の実readerへ有限に結ぶ。対象0x086C51BFの全4byteとlabel外tail4byteを区別し、自然リンク/転送成功は未証明。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役移管/controller/heap/局所Save未完。 固定JSONの read_paths とtechnical_lanes.save_capacityが正本。run38099840927は全member受領済みで再起動しない。
 
 所有者が閲覧版で案を検討する間も、実作業セッションでは保存容量→CI整合→追加機構の技術確認を継続する。未承認バランス案や新メガ/Gmax/Zの対象・性能は決めない。無人バックグラウンド実行の約束ではない。
 

@@ -11679,3 +11679,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 新規状態回帰6件/task graph、完了runと全jobのidentity、Wiki Git tree不変、技術停止点/承認/元履歴の意味不変。成功済み生成/28試験/native再走0。
 - Commit: この記録を含む同branchの単親通常commit。実SHAはActions resultとGit履歴で照合。
 - Network: GitHubの指定repo/PR/HEAD/Actions読取と同branchへの非force pushのみ。ROM/native再走0。
+
+## 2026-10-11T03:09:41.876932+00:00
+- Timestamp: 2026-10-11T03:09:41.876932+00:00
+- Task: USER-20261011-BERRY-TRANSFER-BOUNDARY / Berry実TaskからBIOS直前までの有限転送境界
+- Version: berry-transfer-boundary-v1
+- Status: DONE（新しい引数境界。payload reader/容量/保存統合は未完）
+- Summary: 実Taskのstart/size/masterpとMultiBootInit、timer179/180、StartMasterの8境界、client-ready/不成立の2境界を有限解釈。13,260byteを13,264byteへ切上げ、label外4byteを含むboot_endp=0x086C7D3Cを実命令で確認。実MultiBootMain→SWI25直前をmode1で束縛。対象4byteの実readは0なので型分類は増やさない。
+- Files changed: 専用解釈/人工試験/Actions、転送境界・旧run受領text、固定入口/引継ぎMD/JSON、両ログ。
+- Verify: 新26人工試験、実候補13有限profile、固定header ARM layout、旧run全7member/25text、保存後read-only、task graph PASS。
+- Boundary: 新scope候補復元1、native0、旧受入再走0、全ROM参照scan0。正式788/86・選定残7・安全容量0。BIOS/実リンク/子機/対象4byte read未受入。
+- Commit: この記録を含む単親通常commit。実SHAはActions resultとGit履歴で照合。
+- Network: 同repo PR/ref/Actions/artifactのGETと同branch非force push。固定公開source https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 と固定JPsymbol。参照語 Task_BerryFixMain / MultiBootStartMaster / MultiBoot。EN asset再取得・旧測定再実行なし。

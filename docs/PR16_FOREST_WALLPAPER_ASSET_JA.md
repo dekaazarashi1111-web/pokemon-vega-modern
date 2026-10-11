@@ -134,6 +134,16 @@ run 38097726375 の完了success、全job/必須step、公開artifactの全hash�
 
 [限定証拠](../content/modernization/pr16_berry_origin_evidence/bounded-binding.json) / [checkpoint](../content/modernization/pr16_berry_origin_checkpoint.json) / [直前受領Actions完了](../content/modernization/pr16_berry_origin_evidence/prior-actions.json)。新20人工境界試験・task graph・決定的保存後read-only検査・旧原本保全。新scope候補復元1、native0、旧受入再走0。正式788/86・選定残7・安全容量0。公開assetをJP/現候補と盲目的に同一視せず、実owner/readerは未完。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 保存したBerry近傍の限定identity・公開assetとのlocale差・consumer frontierから、0x086C51BFの現ownerと実readerを有限範囲で結ぶ。公開EN assetや近傍JPsymbolを現ownerと同一視しない。今回の候補復元/限定測定/20試験と旧受入は再走せず、実readerの新scopeだけを検証する。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。
+
+## Berry実TaskからBIOS直前の転送境界
+
+実Taskのstart/size/masterpとMultiBootInit、timer179/180、StartMasterの8境界、client-ready/不成立の2境界を有限解釈。13,260byteを13,264byteへ切上げ、label外4byteを含むboot_endp=0x086C7D3Cを実命令で確認。実MultiBootMain→SWI25直前をmode1で束縛。対象4byteの実readは0なので型分類は増やさない。
+
+[有限証拠](../content/modernization/pr16_berry_transfer_evidence/transfer-boundary.json) / [checkpoint](../content/modernization/pr16_berry_transfer_checkpoint.json) / [旧run完了受領](../content/modernization/pr16_berry_transfer_evidence/binding-completion.json)。新26人工試験・13profile・ARM header layout・保存後read-only・task graph。新scope候補復元1、native0、旧受入再走0。SetSceneは明示した同期ABI条件、serial値はfixture。BIOS本体/子機/自然接続/全4byte readは未受入。正式788/86・残7・安全容量0を維持。
+
+## 次の未完作業
+
+保存した実Task→MultiBootMain→SWI25直前の引数/13profileを再走せず、boot_srcp=0x086C496C、boot_endp=0x086C7D3Cを使うBIOS payload readerまたは子機配置後の実readerへ有限に結ぶ。対象0x086C51BFの全4byteとlabel外tail4byteを区別し、自然リンク/転送成功は未証明。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役移管/controller/heap/局所Save未完。
