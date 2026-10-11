@@ -23,20 +23,21 @@ SYMBOL_SOURCE=dict(repository='ComplexRobot/frlg-sym',commit='c04a31542086b20d8c
  size=4147002,sha256='fc1e4b579b21a592b8e09fa3c36f242833837190401128cd6866c945eff2f44e')
 CLASSIFICATION='FALSE_POSITIVE_TYPED_REFERENCE_S8_PCM_VOICE_TABLE_ARM_MIXER'
 NATIVE_STATUS='PASS_CONDITIONAL_ACTUAL_SOUNDMAINRAM_PCM_CONSUMER'
+REQUIRED_SYMBOLS={'SoundMainRAM','SoundMainRAM_Unk1','voicegroup002','voicegroup156','voicegroup157'}
 
 
 def symbol_map(raw):
-    """同一名の複数addressを拒否。公開labelは照合前にはowner証明ではない。"""
+    """使用する5名の曖昧さを拒否。再出現するcompiler-local名は参照対象でない。"""
     need(identity(raw)=={k:SYMBOL_SOURCE[k] for k in ('size','sha256')} and blob(raw)==SYMBOL_SOURCE['git_blob'],'固定symbol全identity')
     out={}
     for line,text in enumerate(raw.decode().splitlines(),1):
         row=text.split('\t')
         if len(row)!=8 or not re.fullmatch(r'(?:0x)?[0-9a-fA-F]{8}',row[1]):continue
         address=int(row[1],16);name=row[4]
-        if not 0x08000000<=address<0x0A000000:continue
+        if not 0x08000000<=address<0x0A000000 or name not in REQUIRED_SYMBOLS:continue
         need(name not in out,'symbol名重複')
         out[name]=dict(address=address,line=line,row_sha256=identity(text.encode())['sha256'])
-    need(bool(out),'空symbol')
+    need(set(out)==REQUIRED_SYMBOLS,'必要な5symbolの欠落')
     return out
 
 

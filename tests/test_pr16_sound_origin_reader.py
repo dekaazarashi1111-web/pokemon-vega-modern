@@ -44,6 +44,29 @@ def parents():
 
 
 class ReaderTests(unittest.TestCase):
+
+    def symbol_fixture(self, duplicate=None, missing=None):
+        names=sorted(m.REQUIRED_SYMBOLS-({missing} if missing else set()))
+        pairs=[(name,0x08001000+i*16) for i,name in enumerate(names)]
+        pairs += [('.gcc2_compiled.',0x08002000),('.gcc2_compiled.',0x08003000)]
+        if duplicate:pairs.append((duplicate,0x08004000))
+        return ('\n'.join('\t'.join(('x',f'{addr:08x}','x','x',name,'x','x','x')) for name,addr in pairs)+'\n').encode()
+
+    def test_symbols_ignore_unselected_compiler_local_duplicates(self):
+        raw=self.symbol_fixture()
+        with patch.dict(m.SYMBOL_SOURCE,{**m.identity(raw),'git_blob':m.blob(raw)}):
+            self.assertEqual(set(m.symbol_map(raw)),m.REQUIRED_SYMBOLS)
+
+    def test_symbols_reject_required_name_duplicate(self):
+        raw=self.symbol_fixture(duplicate='SoundMainRAM')
+        with patch.dict(m.SYMBOL_SOURCE,{**m.identity(raw),'git_blob':m.blob(raw)}),self.assertRaises(ValueError):
+            m.symbol_map(raw)
+
+    def test_symbols_reject_required_name_missing(self):
+        raw=self.symbol_fixture(missing='voicegroup002')
+        with patch.dict(m.SYMBOL_SOURCE,{**m.identity(raw),'git_blob':m.blob(raw)}),self.assertRaises(ValueError):
+            m.symbol_map(raw)
+
     def test_voice_exact_binary(self):
         self.assertEqual(m.voice_bytes(SOURCE,m.asset.START),struct.pack('<BBBBI4B',0,60,0,0,m.asset.START,255,165,206,127))
 

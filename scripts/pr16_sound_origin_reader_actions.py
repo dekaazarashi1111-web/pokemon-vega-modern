@@ -42,6 +42,10 @@ FORMAL_FILES={EVIDENCE+'/'+n for n in ('reference-chain.json','unknown-frontier.
 PARENT_CHAIN='content/modernization/pr16_typed_origins_receipt_evidence/reference-chain.json'
 PARENT_FRONTIER='content/modernization/pr16_typed_origins_receipt_evidence/unknown-frontier.json'
 PARENT_WINDOW='content/modernization/pr16_typed_origins_receipt_evidence/window-progress.json'
+FAILED_ATTEMPTS=[dict(run_id=38097199893,source_head='7fdc382275bd5c2a4ea32f892c1dfabd2ce588bc',
+    artifact_id=11686771077,artifact_sha256='31b11dce77ad32ace79875d79e7eb8ea7f09a6f247d785e7fd12b33686849900',
+    conclusion='failure',phase='new-fixed-mixer-sources',rom_reconstructions=0,native_processes=0,
+    reason_ja='非対象のcompiler-local同名labelまで一意化して停止。必要な5名のみ一意化し、対象の重複/欠落は引き続き拒否。追加3境界試験。')]
 PHASE='preflight'
 ATTEMPT=dict(accepted_tests_rerun=0,accepted_native_replays=0,rom_reconstructions=0,native_processes=0)
 
@@ -204,16 +208,19 @@ def build(head,observed):
     m.need(state['next_action']['id']=='SAVE_CAPACITY_SOUND_ORIGIN_ACTUAL_READER' and
            [lane[k] for k in ('classified','unclassified','donor_safe_bytes')]==[787,87,0],'現行未完readerだけ')
     asset_cp,saved,before=inherited()
+    for attempt in FAILED_ATTEMPTS:
+        failed=a.fetch('actions/runs/'+str(attempt['run_id']))
+        m.need(failed['status']=='completed' and failed['conclusion']=='failure' and failed['head_sha']==attempt['source_head'],'記録した失敗runの実在/全HEAD')
     PHASE='receive-completed-asset-without-replay'
     completed_asset=publication.accepted_run(38095546359,'45ef40242033f2c0bc00d1f3b189d949fd255b89',
         ['Bind fixed sound asset without replaying accepted readers','Run actions/upload-artifact@v4'])
     completed_asset.update(checkpoint=ASSET_CP,checkpoint_identity=m.identity(read(ASSET_CP)),record_commit=BASE,
         accepted_test_reruns=0,asset_regenerations=0)
-    PHASE='new-reader-30-unit-tests'
+    PHASE='new-reader-33-unit-tests'
     stream=io.StringIO();tests=unittest.TextTestRunner(stream=stream,verbosity=2).run(
         unittest.defaultTestLoader.discover(str(ROOT/'tests'),pattern='test_pr16_sound_origin_reader.py'))
     public('reader-tests.txt',stream.getvalue().encode())
-    m.need(tests.wasSuccessful() and tests.testsRun==30 and not tests.skipped,'新reader30境界試験')
+    m.need(tests.wasSuccessful() and tests.testsRun==33 and not tests.skipped,'新reader33境界試験')
     command(['python3','-B','scripts/validate_task_graph.py'])
     PHASE='new-fixed-mixer-sources'
     data,sources,symbols=public_sources()
@@ -241,7 +248,7 @@ def build(head,observed):
         public_sources=sources,mixer=mixer,table_bindings=tables,runtime=runtime,native=native,
         independent_model_equal=True,original_inputs_preserved=True,formal_classification_changes=0,
         formal_classified=787,formal_unclassified=87,selected_unknown_origins=8,donor_safe_bytes=0,
-        new_unit_tests=30,rom_reconstructions=1,native_processes=1,accepted_tests_rerun=0,
+        new_unit_tests=33,rom_reconstructions=1,native_processes=1,accepted_tests_rerun=0,
         accepted_asset_generations=0,accepted_native_replays=0,full_rom_scans=0,
         natural_entry_reachability_proven=False,actual_runtime_iwram_copy_proven=False,
         all_alternative_readers_excluded=False,retirement_or_transfer_complete=False,
@@ -254,12 +261,12 @@ def build(head,observed):
     m.check_native(load(EVIDENCE+'/native.json'),raw[m.HIT-0x08000000:m.HIT-0x08000000+128])
     m.need(stable=={n:(read(n),(ROOT/n).stat().st_mtime_ns) for n in stable},'read-only check byte/mtime不変')
     m.need(before=={n:(m.identity(read(n)),(ROOT/n).stat().st_mtime_ns) for n in before},'受入済み全原本byte/mtime不変')
-    goal='音声実readerの完了runと公開artifactを一度受領し、保存した787/87と選定8行から0x084723AFだけを正式788/86・残7行へ移す。30試験/26native/asset32試験/既受入reader/ROM全scanは再走しない。安全容量0、自然dispatch/IWRAM通常配置/全alias/退役/保存統合は未完。'
+    goal='音声実readerの完了runと公開artifactを一度受領し、保存した787/87と選定8行から0x084723AFだけを正式788/86・残7行へ移す。33試験/26native/asset32試験/既受入reader/ROM全scanは再走しない。安全容量0、自然dispatch/IWRAM通常配置/全alias/退役/保存統合は未完。'
     report=dict(schema_version=1,task=TASK,status=proof['status'],source_head=head,
         actions_run_id=int(os.environ['GITHUB_RUN_ID']),actions_completion_confirmed=False,candidate=m.CANDIDATE,
         proof_path=PROOF,proof_identity=m.identity(read(PROOF)),source_bindings={n:m.identity(read(n)) for n in sorted(CODE)},
         preserved_inputs={n:v[0] for n,v in before.items()},evidence_bindings={n:m.identity(read(n)) for n in sorted(MEASURE_FILES)},
-        attempt=ATTEMPT,new_unit_tests=30,native_cases=26,formal_classified=787,formal_unclassified=87,
+        attempt=ATTEMPT,prior_attempts=FAILED_ATTEMPTS,new_unit_tests=33,native_cases=26,formal_classified=787,formal_unclassified=87,
         remaining_selected_origins=8,donor_safe_bytes=0,formal_classification_changes=0,
         received_asset_completion=EVIDENCE+'/asset-completion.json',read_only_check_passed=True,task_graph_passed=True,
         observed_head_checks=observed,next_ja=goal)
@@ -275,7 +282,7 @@ def build(head,observed):
         pending_sound_reader_run=dict(run_id=int(os.environ['GITHUB_RUN_ID']),source_head=head,report=REPORT,
             status='COMPLETION_NOT_YET_OBSERVED',replay_forbidden=True))
     state['recording']['last_execution']=dict(task=TASK,source_head=head,actions_run_id=int(os.environ['GITHUB_RUN_ID']),
-        actions_completion_confirmed=False,new_unit_tests=30,accepted_tests_rerun=0,new_native_processes=1,
+        actions_completion_confirmed=False,new_unit_tests=33,accepted_tests_rerun=0,new_native_processes=1,
         native_cases=26,rom_reconstructions=1,read_only_check_passed=True,task_graph_passed=True,
         classified=787,unclassified=87,donor_safe_bytes=0)
     write(STATE,state)
@@ -283,13 +290,13 @@ def build(head,observed):
         '保存assetは再生成せず、固定voice macroの3行と現候補の全12byteを束縛。固定SoundMainRAM全bodyをJP配置へリンクして現ROMと全byte一致。'
         '実ROM命令をmGBAで26ケース（20 ARM補間・6 Thumb波形初期化）だけ実行し、対象4byteの実LDRSB、全読取順、符号拡張、出力全byte、cursor/count/phase、非所有RAM不変を独立整数modelと比較しました。'
         f'[reader証拠](../{PROOF}) / [checkpoint](../{REPORT})。'
-        'これは自然note dispatchや通常IWRAMコピー実行の受入ではありません。新30試験/26ケース、新native1、旧受入再走0。'
+        'これは自然note dispatchや通常IWRAMコピー実行の受入ではありません。新33試験/26ケース、新native1、旧受入再走0。'
         '正式分類はrun成功完了の外部受領まで787/87・選定8・安全容量0のままです。',goal)
     log(TASK,'現候補の実voice3行/全mixerを束縛し、対象PCMを26有限ケースで消費。正式分類は成功完了受領まで保留。',
-        '新30境界試験・固定GNU macro/全mixer一致・26 native全出力/読取/状態/非所有RAM・独立Python model・byte/mtime・task graph PASS。新scope再構成1/native1、旧受入再走0。')
+        '新33境界試験・固定GNU macro/全mixer一致・26 native全出力/読取/状態/非所有RAM・独立Python model・byte/mtime・task graph PASS。新scope再構成1/native1、旧受入再走0。初回run38097199893はsymbol adapter境界で停止（再構成/native0）し、必要5名の一意性を保った修正と3追加試験で解消。')
     pushed=publish(BASE,head,CODE|MEASURE_FILES|{REPORT,STATE,GUIDE,*LOGS},REPORT,TASK)
     finish_public(MEASURE_FILES|{REPORT},dict(status='DONE',task=TASK,source_head=head,commit=pushed,
-        actions_run_id=int(os.environ['GITHUB_RUN_ID']),new_unit_tests=30,native_cases=26,rom_reconstructions=1,
+        actions_run_id=int(os.environ['GITHUB_RUN_ID']),new_unit_tests=33,native_cases=26,rom_reconstructions=1,
         native_processes=1,accepted_tests_rerun=0,formal_classification_changes=0,donor_safe_bytes=0))
 
 
@@ -344,7 +351,7 @@ def receipt(head,observed):
     command(['python3','-B','scripts/validate_task_graph.py'])
     next_address=window['next_address']
     goal=(f'残る選定窓7行の先頭0x{next_address:08X}を保存symbol近傍から固定公開asset/現候補へ束縛し、実consumerを有限scopeで検証する。'
-        '正式788分類/86未知・安全容量0。音声asset32試験/reader30試験/26 native・旧受入・全874scan・窓最適化は無変更再走しない。'
+        '正式788分類/86未知・安全容量0。音声asset32試験/reader33試験/26 native・旧受入・全874scan・窓最適化は無変更再走しない。'
         '窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Saveは未完。')
     receipt_value=dict(schema_version=1,task=RECEIPT_TASK,status='SOUND_ORIGIN_FORMALLY_ACCEPTED_788_86',
         source_head=head,accepted_measurement=run,measurement_checkpoint=REPORT,measurement_proof=PROOF,
