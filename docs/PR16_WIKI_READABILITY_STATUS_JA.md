@@ -15,3 +15,7 @@
 参考JSON内の旧repository pathは来歴で、旧機械読取原本/実行環境を資料ZIPへ同梱しない。全習得のMarkdown閲覧導線は内部完結。説明は完全な実効果仕様ではない。
 
 旧R0/原本/受入証拠は不変。全クリ対象外（PASSではない）、保存安全性は未完。正式788分類/86未知・選定残7・安全容量0を保持。全体private guardの既存違反や無関係なCI失敗は解消と主張しない。未承認バランス変更、merge、release、baseline切替なし。
+
+## 完了Actionsと現在状態の照合
+
+生成run 38104885843 と提示受領run 38105312765 は、source HEADと全jobを照合して completed/success を確認。[最終照合記録](../content/modernization/pr16_wiki_readability_closure.json)に保存。旧方針時の拒否理由/古い検証値は状態JSONのhistorical_unscoped_recordingへ原文保持し、追記済みログのpending表示を解消した。成功版・28試験・nativeは再走していない。新規6状態回帰とtask graphのみ実行。現在のnext_action・788/86・選定残7・安全容量0・未承認状態は不変。

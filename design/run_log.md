@@ -14413,3 +14413,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 生成run completed/success、公開member hash/集合・提示manifest/package/外部artifact identity・task graph PASS。生成/28試験/native再走0。
 - Commit: この記録を含む同branchの単親通常commit。実SHAはActions resultとGit履歴で照合。
 - Network: GitHubの指定repo/PR/HEAD/Actions読取と同branchへの非force pushのみ。ROM/native再走0。
+
+## 2026-10-11T02:40:27.461309+00:00
+- Timestamp: 2026-10-11T02:40:27.461309+00:00
+- Task: USER-20261011-WIKI-READABILITY-CLOSE / Wiki閲覧改善
+- Version: wiki-r0.1-6e88a021
+- Status: DONE
+- Summary: 旧方針/R0から混在した未着手・拒否・ログpending表示を履歴へ分離し、完了Actions2件と現在のBerry復帰状態を整合。自己SHAだけの追記ではない。
+- Files changed: 閲覧生成器/限定試験/専用Actions、別出力R0.1、固定入口/引継ぎMD/状態JSON、検証証拠、両ログ。原本・旧Wiki・ゲームは不変。
+- Verify: 新規状態回帰6件/task graph、完了runと全jobのidentity、Wiki Git tree不変、技術停止点/承認/元履歴の意味不変。成功済み生成/28試験/native再走0。
+- Commit: この記録を含む同branchの単親通常commit。実SHAはActions resultとGit履歴で照合。
+- Network: GitHubの指定repo/PR/HEAD/Actions読取と同branchへの非force pushのみ。ROM/native再走0。
