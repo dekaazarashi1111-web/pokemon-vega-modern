@@ -208,6 +208,16 @@ run 38097726375 の完了success、全job/必須step、公開artifactの全hash�
 
 [後継証拠](../content/modernization/pr16_selected_map_asset_evidence/map-asset.json) / [checkpoint](../content/modernization/pr16_selected_map_asset_checkpoint.json)。前回run全8member/77text/公開commitを受領。旧測定原本は不変。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 正しいARM Tileset ABI（callback+0x10/属性+0x14）と保存した実map lookup/descriptor候補から、0x0880FA64の実asset extentとcaller/read全4byteを限定して閉じる。旧0件原本はABI不整合の履歴であり不存在証明ではない。今回のlookup/probe/32試験、旧LZ探索/30試験を無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+
+## map後継測定の完了受領と0件の継続点
+
+run 38177623055の全job/必須step成功、artifact9member/87textと公開commit 290c2d16c45d6cea2617e91216966a2329a5d566を受領。訂正後68 descriptor妥当。実lookup由来の128×128有限入力で678 header/486 layout/110 descriptor、対象一致0。旧decoderの逆offsetは後継で修正済み、原本は不変。一致したmap候補があるかのような停止点を修正。新受領24試験のみ実行し、受入32試験・lookup/probe・ARM compile・ROM再構成・native・旧LZ再走0。
+
+[受領JSON](../content/modernization/pr16_selected_map_asset_receipt.json) / [範囲要約](../content/modernization/pr16_selected_map_receipt_evidence/scope-summary.json)。原本checkpointのin-progress記録は測定時点の履歴として保持し、完了は受領JSONを参照する。一般CIや全index既存違反をgreenへ読み替えない。
+
+## 次の未完作業
+
+0x0880FA64の実asset所有元と全4byteの実readerを特定する。訂正後の旧68 descriptorと実lookup由来128×128有限入力では一致0件。一致したmap候補は保存されていないので、候補がある前提では再開しない。未調査の入力・他asset経路を具体的な参照元から絞る。0件は全map不存在証明ではない。受入済みmap32試験/ARM配置/lookup/probe、旧LZ探索/30試験、Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。

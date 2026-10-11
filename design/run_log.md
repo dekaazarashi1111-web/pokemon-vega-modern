@@ -14514,3 +14514,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 正しいARM Tileset ABI（callback+0x10/属性+0x14）と保存した実map lookup/descriptor候補から、0x0880FA64の実asset extentとcaller/read全4byteを限定して閉じる。旧0件原本はABI不整合の履歴であり不存在証明ではない。今回のlookup/probe/32試験、旧LZ探索/30試験を無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
 - Commit: この記録を含む単親通常commit。実SHAはActions result/Git履歴。
 - Network: 同repo PR/ref/Actions/artifact/既存private入力と同branch非force push。固定pret/pokefirered c75f352304d529f6ba92d4f74b9cf8b5c3810788 のglobal.fieldmap.h/fieldmap.c/overworld.cと固定JPsymbol。参照語 struct Tileset / Overworld_GetMapHeaderByGroupAndId。ROM/save/生byte列の公開なし。
+
+## 2026-10-11T21:57:55.641618+00:00
+- Timestamp: 2026-10-11T21:57:55.641618+00:00
+- Task: USER-20261012-SELECTED-MAP-RECEIPT / map測定の完了受領と0件停止点
+- Version: selected-map-receipt-v1
+- Status: DONE（限定測定を受領。対象asset/保存統合は未完）
+- Summary: run 38177623055の全job/必須step成功、artifact9member/87textと公開commit 290c2d16c45d6cea2617e91216966a2329a5d566を受領。訂正後68 descriptor妥当。実lookup由来の128×128有限入力で678 header/486 layout/110 descriptor、対象一致0。旧decoderの逆offsetは後継で修正済み、原本は不変。一致したmap候補があるかのような停止点を修正。新受領24試験のみ実行し、受入32試験・lookup/probe・ARM compile・ROM再構成・native・旧LZ再走0。
+- Files changed: 受領検査/24試験/専用Actions、受領JSON/text、固定MD/JSON、両ログ。
+- Verify: 新24人工境界試験、成功run/artifact全hash/公開全blob、入力保全/read-only、task graph、最終index新規private違反0。
+- Boundary: 正式789/85・選定残6・安全容量0。0件を全map不存在/asset消費へ昇格しない。一般CIの失敗/全indexの既存違反は未修正のまま記録。
+- Next: 0x0880FA64の実asset所有元と全4byteの実readerを特定する。訂正後の旧68 descriptorと実lookup由来128×128有限入力では一致0件。一致したmap候補は保存されていないので、候補がある前提では再開しない。未調査の入力・他asset経路を具体的な参照元から絞る。0件は全map不存在証明ではない。受入済みmap32試験/ARM配置/lookup/probe、旧LZ探索/30試験、Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+- Commit: この記録を含む単親通常commit。実SHAはActions result/Git履歴。
+- Network: 同repo PR/ref/Actions/artifact GETと同branch非force push。受領scopeで公開source再取得なし。会話でpret/pokefireredの固定src/text.cとColosseum公開symbolを補助参照したがowner証拠には採用せず、候補復元/測定追試なし。
