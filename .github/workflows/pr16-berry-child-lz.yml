@@ -1,0 +1,47 @@
+name: pr16-berry-child-lz
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_berry_child_lz.py
+      - scripts/pr16_berry_child_lz_actions.py
+      - tests/test_pr16_berry_child_lz.py
+      - tools/mgba_pr16_berry_child_lz.c
+      - .github/workflows/pr16-berry-child-lz.yml
+      - content/modernization/pr16_berry_lz_receipt_request.json
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-berry-child-lz
+  cancel-in-progress: false
+jobs:
+  lz-reader:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 新scopeだけの固定nativeツール
+        if: hashFiles('content/modernization/pr16_berry_child_lz_checkpoint.json') == ''
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev libmgba-dev gcc g++ make
+      - name: 保存停止点から実LZ readerだけを検証して記録
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 -B scripts/pr16_berry_child_lz_actions.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-berry-child-lz-public-text
+          path: .local/pr16-berry-child-lz/public/
+          if-no-files-found: error
+          retention-days: 90
