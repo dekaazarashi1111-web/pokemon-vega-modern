@@ -86,6 +86,12 @@ class ReadabilityTests(unittest.TestCase):
 
     def test_escaping_preserves_table_structure(self):
         self.assertEqual(w.esc('a|b\nc[1]'), 'a&#124;b<br>c&#91;1&#93;')
+        for rows in ([], [['name', 46]], [['name', 46], ['other', 47]]):
+            with self.subTest(rows=rows):
+                rendered = w.table(['name', 'level'], rows)
+                self.assertTrue(rendered.endswith('\n'))
+                self.assertFalse(rendered.endswith('\n\n'))
+                self.assertEqual(len(rendered.splitlines()), len(rows)+2)
 
     def test_internal_links_and_explicit_anchor(self):
         files = {'README.md': b'[go](p/3.md#learn)', 'p/3.md': b'<a id="learn"></a>\n[back](../README.md)'}

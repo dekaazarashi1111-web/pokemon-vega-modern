@@ -68,7 +68,7 @@ def esc(value):
 
 
 def table(headers, rows):
-    return '| '+' | '.join(headers)+' |\n| '+' | '.join(['---']*len(headers))+' |\n'+''.join('| '+' | '.join(map(str, row))+' |\n' for row in rows)+'\n'
+    return '| '+' | '.join(headers)+' |\n| '+' | '.join(['---']*len(headers))+' |\n'+''.join('| '+' | '.join(map(str, row))+' |\n' for row in rows)
 
 
 def link(kind, row):
