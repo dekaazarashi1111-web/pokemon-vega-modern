@@ -11,7 +11,7 @@ from pathlib import Path
 import subprocess
 import sys
 import traceback
-import unittest
+from types import SimpleNamespace
 import zipfile
 import pr16_berry_child_lz as m
 import pr16_berry_child_actions as old
@@ -175,11 +175,26 @@ def run():
         for name, expected in cp[key].items():
             m.need(m.identity(read(name)) == expected, '全継承入力hash');protected.add(name)
     before = snapshot(protected)
-    PHASE = 'new-tests'
-    stream = io.StringIO();suite = unittest.defaultTestLoader.discover(str(ROOT / 'tests'), pattern='test_pr16_berry_child_lz.py')
-    result = unittest.TextTestRunner(stream=stream, verbosity=2).run(suite)
-    m.need(result.wasSuccessful() and result.testsRun == 25 and not result.skipped, '新25試験')
-    public('lz-tests.txt', stream.getvalue().encode())
+    PHASE = 'reuse-passed-pure-tests-and-preserve-failed-native-attempt'
+    failed_zip = a.fetch('actions/artifacts/11698727383/zip', binary=True)
+    m.need(m.identity(failed_zip) == {'size': 1173, 'sha256': '50a803ba4ab9fc8d1bfa6a03c5da03714265b8c94361c38e3ce1da3e619b194e'}, '初回失敗ZIP hash')
+    failed = members(failed_zip)
+    m.need(set(failed) == {'failure.json','attempt.json','lz-tests.txt'}, '初回失敗の全member')
+    first_head = '3ca9da928024890c252510116380888c7e419f73'
+    for name in ('scripts/pr16_berry_child_lz.py','tests/test_pr16_berry_child_lz.py'):
+        m.need(a.git('show', first_head + ':' + name) == read(name), '成功25試験のsource無変更')
+    text = failed['lz-tests.txt'].decode()
+    m.need(text.count(' ... ok') == 25 and '\nRan 25 tests in ' in text and text.endswith('\nOK\n'), '保存25試験の全成功')
+    failure = json.loads(failed['failure.json'])
+    m.need(failure['phase'] == 'new-continuation-native' and failure['exception_type'] == 'JSONDecodeError' and
+           failure['attempt']['native_processes'] == 1 and failure['attempt']['rom_reconstructions'] == 1, '未受入初回native1/復元1')
+    failure_receipt = {'run_id':38129501468,'source_head':first_head,'status':'NOT_ACCEPTED',
+        'artifact_id':11698727383,'artifact':m.identity(failed_zip),'failure':failure,
+        'members':{n:m.identity(v) for n,v in failed.items()},
+        'pure_tests_reused':25,'pure_test_replays':0,
+        'correction_ja':'mGBA default loggerはDEBUGもstdoutへ出す。native loggerを明示し数をJSONへ記録、warn/error/stubは拒否。初回のreader証拠は未受入のまま保持。'}
+    stream = io.StringIO(text);result = SimpleNamespace(testsRun=25)
+    public('lz-tests.txt', failed['lz-tests.txt'])
     command(['python3','-B','scripts/validate_task_graph.py'])
     PHASE = 'old-child-completion-without-replay'
     receipt = receive(38108309355, '02d4a37b9def19af9f3f4acc3c8c0a5946381679', 11690471713,
@@ -190,7 +205,8 @@ def run():
     library = Path('/usr/lib/x86_64-linux-gnu/libmgba.so').read_bytes()
     header = Path('/usr/include/mgba/internal/arm/arm.h').read_bytes()
     m.need(version == '0.10.2+dfsg-1.1build3' and m.identity(library) == m.LIBRARY and
-           blob(header) == 'f9eeafdb6dbfbf22b92b5bf3dc481597738512b2', '固定native library/ABI')
+           blob(header) == 'f9eeafdb6dbfbf22b92b5bf3dc481597738512b2' and
+           blob(Path('/usr/include/mgba/core/log.h').read_bytes()) == '9f55ec77231498945ac056b37b5f98990dc85364', '固定native library/ABI')
     binary = WORK / 'native'
     command(['cc','-std=c11','-O2','-Wall','-Wextra','-Werror',ROOT / 'tools/mgba_pr16_berry_child_lz.c','-lmgba','-lm','-o',binary])
     PHASE = 'one-new-scope-reconstruction'
@@ -202,7 +218,7 @@ def run():
     m.need(m.identity(raw) == candidate['candidate'] == m.CANDIDATE, '全候補SHA/配置')
     body = raw[m.START-0x08000000:m.START-0x08000000+m.SIZE]
     m.need(m.identity(body) == m.IMAGE, '転送image不変')
-    m.decode_lz(body[m.STREAM-m.CHILD:])  # native前に出力/参照境界を拒否する。
+    m.decode_lz(body[m.STREAM-m.CHILD:])
     rom = WORK / 'candidate.gba';rom.write_bytes(raw)
     PHASE = 'new-continuation-native'
     ATTEMPT['native_processes'] = 1;public('attempt.json', ATTEMPT)
@@ -210,19 +226,23 @@ def run():
     public('native.json', native)
     m.need(rom.read_bytes() == raw, '全ROM file不変')
     proof = m.bind(raw,native,load(old.EVIDENCE+'/child-reader.json'),(WORK/'expanded.bin').read_bytes())
-    proof.update(library=m.LIBRARY,library_package_version=version,abi_header=m.identity(header),
+    proof.update(pure_tests_reused=25,prior_failed_native_processes=1,total_task_native_processes=2,
+        total_task_rom_reconstructions=2,library=m.LIBRARY,library_package_version=version,abi_header=m.identity(header),
         native_binary=m.identity(binary.read_bytes()), **ATTEMPT)
-    names = {'lz-reader.json':proof,'native.json':native,'child-completion.json':receipt,'lz-tests.txt':stream.getvalue().encode()}
+    names = {'lz-reader.json':proof,'native.json':native,'child-completion.json':receipt,'lz-tests.txt':stream.getvalue().encode(),
+             'first-failure.json':failure_receipt}
     proofs = {EVIDENCE+'/'+name for name in names}
     for name, value in names.items():write(EVIDENCE+'/'+name,value)
     saved = snapshot(proofs);m.need(load(EVIDENCE+'/lz-reader.json') == proof and snapshot(proofs) == saved, '保存後read-only')
     parsed = proof['reader']
     summary = (f'保存PC0x02000120から通信32readを明示fixtureとする新nativeを実行。実ARM caller→SWI11→0x020001D8帰還を{native["steps"]}stepで観測。'
         f'展開元{parsed["consumed_bytes"]}byteを全て1回ずつ実readし、対象0x086C51BF全4byteをLZ tokenとして消費。'
-        f'展開{parsed["output"]["size"]}byteは独立parserと完全一致。親13profile/旧393220stepは再走0。')
+        f'展開{parsed["output"]["size"]}byteは独立parserと完全一致。親13profile/旧393220stepは再走0。'
+        '初回JSON読取失敗の未受入native1/復元1を別保存し、本taskは累計native2/復元2。成功した無変更25試験は原本から再利用。')
     goal = '新LZ測定の完了run/全artifactを再走せず受領し、正式788/86親へ対象1件だけの条件付き圧縮token型差分を適用する。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。'
     report = {'schema_version':1,'status':'LZ_READER_OBSERVED_COMPLETION_PENDING','candidate':m.CANDIDATE,
-        'new_unit_tests':result.testsRun,'source_bindings':{n:m.identity(read(n)) for n in sorted(CODE)},
+        'new_unit_tests':0,'reused_pure_unit_tests':result.testsRun,'prior_failed_native_processes':1,
+        'total_task_native_processes':2,'total_task_rom_reconstructions':2,'source_bindings':{n:m.identity(read(n)) for n in sorted(CODE)},
         'target_bytes_consumed':4,'formal_classified':788,'formal_unclassified':86,'selected_unknown_origins':7,'donor_safe_bytes':0,
         'next_ja':goal}
     record(head,TASK,REPORT,report,summary,goal,proofs,protected,before,CODE)

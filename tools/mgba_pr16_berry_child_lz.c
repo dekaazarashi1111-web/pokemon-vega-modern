@@ -6,6 +6,7 @@
 #include <string.h>
 #include <mgba/core/core.h>
 #include <mgba/core/config.h>
+#include <mgba/core/log.h>
 #include <mgba/internal/arm/arm.h>
 #define ROM 0x086C48ACu
 #define BASE 0x02000000u
@@ -21,6 +22,12 @@ static unsigned reads[SIZE], visits[128], transactions, phase, sio_reads, host_w
 static unsigned output_size, output_writes, swi_count, bios_steps;
 static uint32_t current_instruction;
 static int executing;
+static unsigned log_counts[7];
+static void capture_log(struct mLogger *logger,int category,enum mLogLevel level,const char *format,va_list args){
+ (void)logger;(void)category;(void)format;(void)args;
+ for(unsigned i=0;i<7;i++)if((unsigned)level&(1u<<i))log_counts[i]++;
+}
+static struct mLogger logger={.log=capture_log,.filter=NULL};
 static uint32_t (*load8)(struct ARMCore*,uint32_t,int*);
 static uint32_t (*load16)(struct ARMCore*,uint32_t,int*);
 static uint32_t (*load32)(struct ARMCore*,uint32_t,int*);
@@ -68,7 +75,7 @@ static void tap_store8(struct ARMCore *c,uint32_t a,int8_t v,int *cycles){
  store8(c,a,v,cycles);
 }
 int main(int argc,char **argv){
- need(argc==3,"private candidate and private output paths");core=mCoreFind(argv[1]);need(core&&core->init(core),"core init");
+ need(argc==3,"private candidate and private output paths");mLogSetDefaultLogger(&logger);core=mCoreFind(argv[1]);need(core&&core->init(core),"core init");
  mCoreInitConfig(core,NULL);mCoreConfigSetDefaultValue(&core->config,"idleOptimization","ignore");
  need(mCoreLoadFile(core,argv[1]),"load");core->setVideoBuffer(core,video,240);core->reset(core);cpu=core->cpu;
  for(unsigned i=0;i<SIZE;i++)original[i]=core->busRead8(core,ROM+i);
@@ -98,6 +105,7 @@ int main(int argc,char **argv){
   executing=1;core->step(core);executing=0;
  }
  need(steps<500000u&&!host_writes&&phase==0,"finite completion/no host writes");
+ need(!(log_counts[0]+log_counts[1]+log_counts[2]+log_counts[5]+log_counts[6]),"native warning/error/stub log");
  unsigned total=0,unique=0,max=0,mask=0,first=SIZE,last=0;
  for(unsigned i=0;i<SIZE;i++){
   need(core->busRead8(core,ROM+i)==original[i]&&core->busRead8(core,BASE+i)==original[i],"ROM/mapping unchanged");
@@ -109,5 +117,5 @@ int main(int argc,char **argv){
  need(fclose(out)==0,"close output");
  printf("{\"schema_version\":1,\"status\":\"CONDITIONAL_LZ_READER_OBSERVED\",\"entry\":%u,\"stop_pc\":%u,\"stop_reason\":\"RETURNED_FROM_SWI11\",\"steps\":%u,\"builtin_bios_steps\":%u,\"swi11_count\":%u,\"native_processes\":1,\"child_header_boots\":0,\"mapped_bytes\":%u,\"sio_fixture_transactions\":%u,\"sio_fixture_reads\":%u,\"sio_reads_are_fixture\":true,\"host_write_guards\":7,\"host_writes_after_entry\":0,\"payload_read_first\":%u,\"payload_read_end_exclusive\":%u,\"payload_read_bytes\":%u,\"payload_read_unique\":%u,\"payload_read_max_count\":%u,\"target_read_mask\":%u,\"output_size\":%u,\"output_write_bytes\":%u,\"output_writes_sequential\":true,\"all_issued_code_equal_source\":true,\"all_payload_reads_equal_source\":true,\"full_emulator_checkpoint_restored\":false,\"natural_link_transfer_proven\":false,\"original_bios_cpu_execution_claimed\":false,\"formal_rom_changed\":false,\"formal_save_changed\":false,\"issued_spans\":[",BASE+0x120u,pc(),steps,bios_steps,swi_count,SIZE,transactions,sio_reads,BASE+first,BASE+last,total,unique,max,mask,output_size,output_writes);
  unsigned rows=0;for(unsigned i=0;i<128;i++)if(visits[i]){if(rows++)printf(",");printf("{\"address\":%u,\"visits\":%u}",BASE+i*4u,visits[i]);}
- printf("]}\n");fflush(stdout);mCoreConfigDeinit(&core->config);core->deinit(core);return 0;
+ printf("],\"native_diagnostics\":{\"fatal\":%u,\"error\":%u,\"warn\":%u,\"info\":%u,\"debug\":%u,\"stub\":%u,\"game_error\":%u}}\n",log_counts[0],log_counts[1],log_counts[2],log_counts[3],log_counts[4],log_counts[5],log_counts[6]);fflush(stdout);mCoreConfigDeinit(&core->config);core->deinit(core);return 0;
 }
