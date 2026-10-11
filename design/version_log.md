@@ -11691,3 +11691,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 新scope候補復元1、native0、旧受入再走0、全ROM参照scan0。正式788/86・選定残7・安全容量0。BIOS/実リンク/子機/対象4byte read未受入。
 - Commit: この記録を含む単親通常commit。実SHAはActions resultとGit履歴で照合。
 - Network: 同repo PR/ref/Actions/artifactのGETと同branch非force push。固定公開source https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 と固定JPsymbol。参照語 Task_BerryFixMain / MultiBootStartMaster / MultiBoot。EN asset再取得・旧測定再実行なし。
+
+## 2026-10-11T03:26:42.386573+00:00
+- Timestamp: 2026-10-11T03:26:42.386573+00:00
+- Task: USER-20261011-BERRY-CHILD-ENTRY / Berry子機entryの条件付きnative reader
+- Version: berry-child-entry-v1
+- Status: STOPPED（新しい有限entry観測を保存。正式型受領/実転送/保存統合は別gate）
+- Summary: 現Taskが渡す13456byteを子機RAMへ事前配置し、ARM header entryから393220stepをnativeで有限観測。対象0x086C51BFに対応する0x02000913の0/4byteが実命令発行spanに含まれた。停止理由=REPEATED_PC_BUDGET、PC=0x02000120。entry後host書込7APIを拒否。
+- Files changed: 新しい子機native/validator/20人工試験/Actions、公開text証拠、固定MD/JSON、両ログ。
+- Verify: 新20人工試験、固定mGBA ABI/実行lib hash、native1、候補全SHA不変、保存後read-only、task graph、限定最終index。
+- Boundary: 新scope候補復元1、受入済み26試験/13profile/旧nativeの再走0。現Task転送runの全7member/31textを受領。配置はfixture、実リンク/元BIOS/Ruby実cart/自然画面到達の成功を主張しない。正式788/86・残7・安全容量0。
+- Next: 保存した子機entryの発行span・停止PC/registerを継承し、未発行byteへ続く実callee/配置/入力条件だけを有限に接続する。成功した親13profileと今回の同一entryを再走しない。 実BIOS転送/自然リンク/元cart/全間接参照/容量移管/heap/controller/局所Saveは未完。正式788/86・残7・安全容量0。
+- Commit: この記録を含む同branch単親通常commit。実SHAはActions resultとGit履歴で照合。
+- Network: 同repo PR/ref/Actions/artifact GET、既存再構成入力、同branch非force push。固定ABI参照 https://github.com/mgba-emu/mgba/blob/0.10.2/include/mgba/core/core.h 。source/full image/ROM/saveを新規公開しない。

@@ -144,6 +144,18 @@ run 38097726375 の完了success、全job/必須step、公開artifactの全hash�
 
 [有限証拠](../content/modernization/pr16_berry_transfer_evidence/transfer-boundary.json) / [checkpoint](../content/modernization/pr16_berry_transfer_checkpoint.json) / [旧run完了受領](../content/modernization/pr16_berry_transfer_evidence/binding-completion.json)。新26人工試験・13profile・ARM header layout・保存後read-only・task graph。新scope候補復元1、native0、旧受入再走0。SetSceneは明示した同期ABI条件、serial値はfixture。BIOS本体/子機/自然接続/全4byte readは未受入。正式788/86・残7・安全容量0を維持。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 保存した実Task→MultiBootMain→SWI25直前の引数/13profileを再走せず、boot_srcp=0x086C496C、boot_endp=0x086C7D3Cを使うBIOS payload readerまたは子機配置後の実readerへ有限に結ぶ。対象0x086C51BFの全4byteとlabel外tail4byteを区別し、自然リンク/転送成功は未証明。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役移管/controller/heap/局所Save未完。
+
+## Berry子機entryの条件付きnative
+
+現Taskが渡す13456byteを子機RAMへ事前配置し、ARM header entryから393220stepをnativeで有限観測。対象0x086C51BFに対応する0x02000913の0/4byteが実命令発行spanに含まれた。停止理由=REPEATED_PC_BUDGET、PC=0x02000120。entry後host書込7APIを拒否。
+
+[子機reader証拠](../content/modernization/pr16_berry_child_evidence/child-reader.json) / [checkpoint](../content/modernization/pr16_berry_child_checkpoint.json) / [親転送run受領](../content/modernization/pr16_berry_child_evidence/transfer-completion.json)。
+
+配置はfixture。mGBA builtin BIOSであり、元BIOSや実Ruby/Sapphire cart/自然リンク/実転送成功ではない。新20試験・native1・候補復元1、旧26試験/13profile/native再走0。正式型と安全容量は増やさない。
+
+## 次の未完作業
+
+保存した子機entryの発行span・停止PC/registerを継承し、未発行byteへ続く実callee/配置/入力条件だけを有限に接続する。成功した親13profileと今回の同一entryを再走しない。 実BIOS転送/自然リンク/元cart/全間接参照/容量移管/heap/controller/局所Saveは未完。正式788/86・残7・安全容量0。

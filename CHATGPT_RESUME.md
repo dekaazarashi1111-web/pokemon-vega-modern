@@ -11,9 +11,10 @@
 
 R0.1は別出力として実装・限定検証・パッケージ生成/展開確認・公開・実物提示受領まで完了。旧R0は不変。成功済みの生成/28試験/nativeを変更影響なしに再実行しない。実在入口/公開commit/ZIP hashはwiki_readabilityに保持する。
 
+
 ## 次の未完作業
 
-現在の next_action は SAVE_CAPACITY_BERRY_BIOS_PAYLOAD_READER。保存した実Task→MultiBootMain→SWI25直前の引数/13profileを再走せず、boot_srcp=0x086C496C、boot_endp=0x086C7D3Cを使うBIOS payload readerまたは子機配置後の実readerへ有限に結ぶ。対象0x086C51BFの全4byteとlabel外tail4byteを区別し、自然リンク/転送成功は未証明。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役移管/controller/heap/局所Save未完。 固定JSONの read_paths とtechnical_lanes.save_capacityが正本。run38099840927は全member受領済みで再起動しない。
+現在の next_action は SAVE_CAPACITY_BERRY_CHILD_ENTRY_CONTINUATION。現Taskが渡す13456byteを子機RAMへ事前配置し、ARM header entryから393220stepをnativeで有限観測。対象0x086C51BFに対応する0x02000913の0/4byteが実命令発行spanに含まれた。停止理由=REPEATED_PC_BUDGET、PC=0x02000120。entry後host書込7APIを拒否。 保存した子機entryの発行span・停止PC/registerを継承し、未発行byteへ続く実callee/配置/入力条件だけを有限に接続する。成功した親13profileと今回の同一entryを再走しない。 実BIOS転送/自然リンク/元cart/全間接参照/容量移管/heap/controller/局所Saveは未完。正式788/86・残7・安全容量0。 固定JSONのread_pathsを使う。
 
 所有者が閲覧版で案を検討する間も、実作業セッションでは保存容量→CI整合→追加機構の技術確認を継続する。未承認バランス案や新メガ/Gmax/Zの対象・性能は決めない。無人バックグラウンド実行の約束ではない。
 
