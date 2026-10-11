@@ -1,35 +1,37 @@
 # ChatGPTの固定再開入口
 
-このファイル名を次のセッションでもそのまま指定する。対象はPR #16 / branch `codex/modernization-followup-20260908`。GitHubでbranchの現在HEADとPR状態を取得し、そのrefで読む。default branchや過去SHAへ切り替えない。
+対象は PR #16 / `codex/modernization-followup-20260908`。毎回GitHubの現在HEADとPR状態を確認してそのrefを読む。過去SHAやdefault branchへ切り替えない。
 
-## 現行の再開順 — OWNER-20261010-WIKI-FIRST
+## 現在の最優先 — OWNER-20261011-WIKI-READABILITY-FIRST
 
-1. [AGENTS.md](AGENTS.md) — 安全・検証・Gitの規約。
-2. [現在の実行方針と完了条件](docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md) — Wiki先行、全クリ除外、所有者検討中の基盤継続、承認管理。
-3. [現在の状態JSON](content/modernization/pr16_wiki_first_execution_plan.json) — `owner_execution_plan`、`next_action`、保留した技術停止点、記録状況。このJSONが現在の作業選択の唯一の正本。
+所有者指示: 2026-10-11 10:23:24 JST（01:23:24Z）。**まず閲覧用Wikiの小修正を実装・検証・記録・提示まで完成させる。その前に保存容量の解析を続けない。** 今回の依頼はこの作業順への変更であり、方針変更だけをWiki修正完了と数えない。
 
-従来どおり「最新HEADのCHATGPT_RESUME.mdから指示された正本を読み、未完作業を実装・検証・記録して同branchへ反映」という指示だけで続ける。毎回方針の再確認を求めず、この固定MD/JSONを更新する。別日付のresumeや二重の進捗JSONを作らない。
+1. [AGENTS.md](AGENTS.md) — 安全・検証・Git規約。
+2. [Wiki閲覧改善の優先指示と完成条件](docs/PR16_WIKI_READABILITY_PRIORITY_JA.md) — 今回の範囲・禁止事項・終了条件。競合する旧作業順より優先。
+3. [固定状態JSON](content/modernization/pr16_wiki_first_execution_plan.json) — `next_action` / `owner_execution_plan.wiki_readability` を現在の作業選択の正本とする。
+4. [継続する長期方針](docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md) — 全クリ除外・所有者検討中の技術作業・承認管理。R0完成後に即解析へ戻る旧条件は今回の閲覧改善が完了するまで保留。
 
-**最初に調整基準Wiki R0を整える。** 解析08397492の1件や90未知の全解消、全保存修復、無関係なCI障害の解消を、Wiki第一版の前提にしない。直前の解析成果は保存済みとして保全し、未完を完了へ読み替えない。
+従来の「最新HEADのCHATGPT_RESUME.mdから指示された正本を読み、次の未完作業を実装・検証・記録して同branchへ反映」の指示だけで続ける。新しい方針確認を繰り返さず、同じ状態JSONを更新する。
 
-**R0提示後は、所有者がWikiを見て調整案を考える間にも、作業セッションで保存・容量修復、CI整合性、メガ/キョダイマックス/専用Zの技術確認を進める。** 所有者の案待ちだけで停止しない。未承認の対象種、性能、技、特性、解禁条件、追加フォーム仕様は勝手に決めない。承認済みの小単位は依存条件を満たせば全案の完成を待たず実装できる。
+## いま行うこと
 
-**ストーリー全クリ走破は完成条件から除外。** ゲーム内ストーリーを削除する意味ではない。Save101以前の原本を保持し、全story PASSと主張しない。保存破損の修復、必要な短い戦闘・習得・進化・Save/fresh Continue等の確認は残す。長期育成soakは別判断の延期項目。シオウや全国図鑑のためだけの長距離プレイへ自動的に戻らない。
+現在の `next_action.id` は `WIKI_READABILITY_FIX`。既存R0の比較表・個別ページ・生成処理を読み、誤解を招く役割別要約、主要MD一覧の技術情報過多、閲覧とローカル保存の入口を限定修正する。計画の再説明だけで止めず、修正版を作って限定検証し、実在する入口と保存方法を提示する。
 
-## 旧資料を現在の次作業と取り違えない
+**既存の `wiki.review_ready=true` は固定R0の生成・公開済み記録であり、今回の閲覧改善完了ではない。** R0は不変の入力・履歴として保持する。改善版R0.1（閲覧版）の実在path、入力identity、変更範囲、検証、公開commit、パッケージと提示結果は `wiki_readability` へ別記する。未生成pathや予定ZIPを完了として記録しない。
 
-- [保留した技術作業の旧メモ](docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md) と [旧技術状態JSON](content/modernization/pr16_native_supply_resume_20260913.json) は、証拠・受入・解析停止点の参照先として保持する。これらの旧nextは新しい作業選択を上書きしない。
-- [変更前の入口全文](CHATGPT_RESUME_BEFORE_WIKI_FIRST.md) は同一blobの固定履歴。旧Story加速計画・予約時の次作業を再開しない。原本の扱い、Side Change不採用、Vega ROM優先の所有者決定は引き続き維持する。
-- 正式受入は各checkpoint、配布ゲートは [P08台帳](content/modernization/p08_remaining_work.json) を正とする。Wiki第一版だけでIssue18/19やrelease_readyを完了にしない。
-- 旧MDの生成器 `scripts/pr16_resume.py` は旧技術JSON用。新方針を旧作業順へ戻す目的でrender/install-routingしない。旧証拠のhash不一致を安易に再束縛しない。
+修正は「誤解を防ぎ読みやすくする」範囲。ゲーム本体、種族値、特性割当、技性能、全習得経路、機構対応、原本ROM/Save101は変更しない。バランス案・新メガ・新キョダイマックス・新専用Zの対象や性能を勝手に決めない。全技効果解析・全体Wiki刷新・ストーリー走破・無影響native再実行へ広げない。
 
-新しい閲覧版は固定して所有者へ提示するが、開発branchは前進してよい。意味変更が生じたら影響するページと調整案を示す別revision/diffを作り、閲覧中のR0を黙って更新しない。既存Stage61/旧P08/Issue19のWikiを上書きしない。
+## 保留中の技術作業と復帰先
 
-## 毎回の終了と許可境界
+最新の技術停止点は `owner_execution_plan.technical_lanes.save_capacity` と `wiki_readability.paused_technical_next_action`。Berryの現owner/reader確認、正式788分類/86未知、選定残7、安全容量0の時点を保持する。これは転用・保存統合完了ではない。古い784/90や08397492へ戻って再測定しない。WIPコード・成功/失敗原本を破棄せず、未回収Actionsは状態を照会して保存するだけとし、同じ測定を再起動しない。
 
-新状態JSONへ、今回の実完了・検証・実在するWiki入口と版・所有者の承認・技術レーンの残件・最新Actions・次の具体的作業を残す。`design/run_log.md` / `design/version_log.md` は追記だけ。初回の事務追記未実施分は新JSONの `recording` に明示してあるので、同決定IDの重複を確認して未実施分だけ追記してからWikiへ進む。
+閲覧改善の全条件を満たして固定版とDL方法を提示した後に限り、保存した最新frontierとActionsを再照合して、保存容量→CI整合→追加機構の技術確認へ戻る。所有者が修正版を見て案を考える間も、実作業セッションでは独立技術を継続する。無人バックグラウンド実行の約束ではない。
 
-受入済みを変更影響なしに再実行しない。長い作業は小さな区切りで記録し、ユーザーが許可した同branchへ通常commit/non-force pushする。push前後のlive HEADと対象blobを確認し、他者の変更を破棄しない。merge・draft解除・公開release・active baseline切替は別の明示許可なしに行わない。
+## 毎回の終了
+
+同じ固定状態JSONへ今回の実完了・限定検証・実在する閲覧版/保存先・未完・次の具体的作業・最新Actionsを記録する。完了済み受入は変更影響なしに再実行しない。両ログは追記のみ。今回の記録上の未実施は `recording.wiki_readability_priority_update` に明記し、未追記分だけ重複なく補う。
+
+小さな区切りで通常commitし、明示許可された同branchへ非force反映する。push前後のlive HEADと対象blobを照合し、競合する変更を破棄しない。全クリは対象外（PASSではない）、保存安全性は必須のまま。merge・draft解除・公開release・active baseline切替は別途明示許可なしに行わない。
 
 ## 次回そのまま渡す指示
 
