@@ -156,6 +156,16 @@ run 38097726375 の完了success、全job/必須step、公開artifactの全hash�
 
 配置はfixture。mGBA builtin BIOSであり、元BIOSや実Ruby/Sapphire cart/自然リンク/実転送成功ではない。新20試験・native1・候補復元1、旧26試験/13profile/native再走0。正式型と安全容量は増やさない。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 保存した子機entryの発行span・停止PC/registerを継承し、未発行byteへ続く実callee/配置/入力条件だけを有限に接続する。成功した親13profileと今回の同一entryを再走しない。 実BIOS転送/自然リンク/元cart/全間接参照/容量移管/heap/controller/局所Saveは未完。正式788/86・残7・安全容量0。
+
+## USER-20261011-BERRY-CHILD-LZ
+
+保存PC0x02000120から通信32readを明示fixtureとする新nativeを実行。実ARM caller→SWI11→0x020001D8帰還を287279stepで観測。展開元12698byteを全て1回ずつ実readし、対象0x086C51BF全4byteをLZ tokenとして消費。展開18036byteは独立parserと完全一致。親13profile/旧393220stepは再走0。初回JSON読取失敗の未受入native1/復元1を別保存し、本taskは累計native2/復元2。成功した無変更25試験は原本から再利用。
+
+[checkpoint](../content/modernization/pr16_berry_child_lz_checkpoint.json) / [実reader](../content/modernization/pr16_berry_child_lz_evidence/lz-reader.json)。
+
+## 次の未完作業
+
+新LZ測定の完了run/全artifactを再走せず受領し、正式788/86親へ対象1件だけの条件付き圧縮token型差分を適用する。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。

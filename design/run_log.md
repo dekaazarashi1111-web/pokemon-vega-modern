@@ -14449,3 +14449,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 保存した子機entryの発行span・停止PC/registerを継承し、未発行byteへ続く実callee/配置/入力条件だけを有限に接続する。成功した親13profileと今回の同一entryを再走しない。 実BIOS転送/自然リンク/元cart/全間接参照/容量移管/heap/controller/局所Saveは未完。正式788/86・残7・安全容量0。
 - Commit: この記録を含む同branch単親通常commit。実SHAはActions resultとGit履歴で照合。
 - Network: 同repo PR/ref/Actions/artifact GET、既存再構成入力、同branch非force push。固定ABI参照 https://github.com/mgba-emu/mgba/blob/0.10.2/include/mgba/core/core.h 。source/full image/ROM/saveを新規公開しない。
+
+## 2026-10-11T09:54:12.778841+00:00
+- Timestamp: 2026-10-11T09:54:12.778841+00:00
+- Task: USER-20261011-BERRY-CHILD-LZ / Berry停止点以後のLZ reader
+- Version: berry-child-lz-v1
+- Status: DONE（LZ_READER_OBSERVED_COMPLETION_PENDING。正式型/容量/保存統合は未完）
+- Summary: 保存PC0x02000120から通信32readを明示fixtureとする新nativeを実行。実ARM caller→SWI11→0x020001D8帰還を287279stepで観測。展開元12698byteを全て1回ずつ実readし、対象0x086C51BF全4byteをLZ tokenとして消費。展開18036byteは独立parserと完全一致。親13profile/旧393220stepは再走0。初回JSON読取失敗の未受入native1/復元1を別保存し、本taskは累計native2/復元2。成功した無変更25試験は原本から再利用。
+- Files changed: LZ専用source/試験/native/Actionsと公開text証拠、固定MD/JSON、両ログ。
+- Verify: 新scope=0試験、原本hash/read-only/task graph/限定最終index。native=1、復元=1。受入済み再走0。
+- Boundary: 通信値はfixture、元BIOS/自然リンク/元cartの成功ではない。正式788/86・残7・安全容量0。全体CI greenを推測しない。
+- Next: 新LZ測定の完了run/全artifactを再走せず受領し、正式788/86親へ対象1件だけの条件付き圧縮token型差分を適用する。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。
+- Commit: この記録を含む同branch単親通常commit。実SHAはActions result/Gitで照合。
+- Network: 同repo PR/ref/Actions/artifact GET、既存固定再構成入力、非force push。一次資料 https://github.com/mgba-emu/mgba/blob/0.10.2/src/gba/bios.c と include/mgba/internal/arm/arm.h のSWI11/透過memory APIを確認。検索語: github pret berry fix multiboot crt0 02000120（有用な検索結果なし）。私有原本・展開byteは公開しない。

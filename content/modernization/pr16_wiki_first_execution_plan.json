@@ -4,9 +4,9 @@
   "authority_ja": "このJSONが作業選択の正本。R0.1の全gateと実物提示は完了し、閲覧改善優先条件を充足。現在はnext_actionのBerry現owner/reader未完scopeへ戻る。旧R0のreadyだけで解除したのではない。旧方針・旧解析の記録は履歴として保持する。",
   "bindings": {
     "CHATGPT_RESUME.md": {
-      "git_blob_sha": "9f73a5371f003e6f3a2bb4e38fcc12be72df411e",
-      "sha256": "85d09784ff6ce9e3d77e72d117eeadd0c6dd7b89ebbfd6353c5441a6caf0af64",
-      "size": 2663
+      "git_blob_sha": "79e510692e1d56a00662400a6aead061a27db693",
+      "sha256": "6392a3c8b9e4cb0ebb66e21ca29ca1fdd01a0b17063fd919faa416c118688252",
+      "size": 2713
     },
     "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
       "git_blob_sha": "116c6f1f8ccbed26029de10f31be7c69be75b09f",
@@ -29,50 +29,41 @@
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "long_term_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
   "next_action": {
-    "done_ja": "子機/転送の実readerと対象全4byteを束縛し、完了runを別途受領後だけ型台帳を更新する。",
-    "goal_ja": "保存した子機entryの発行span・停止PC/registerを継承し、未発行byteへ続く実callee/配置/入力条件だけを有限に接続する。成功した親13profileと今回の同一entryを再走しない。 実BIOS転送/自然リンク/元cart/全間接参照/容量移管/heap/controller/局所Saveは未完。正式788/86・残7・安全容量0。",
-    "id": "SAVE_CAPACITY_BERRY_CHILD_ENTRY_CONTINUATION",
+    "done_ja": "完了runと実LZ token全4byteを根拠に、保存親788/86へ対象1件だけの正式型差分を適用する。",
+    "goal_ja": "新LZ測定の完了run/全artifactを再走せず受領し、正式788/86親へ対象1件だけの条件付き圧縮token型差分を適用する。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。",
+    "id": "SAVE_CAPACITY_BERRY_LZ_TYPED_RECEIPT",
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
-      "content/modernization/pr16_berry_child_checkpoint.json",
-      "content/modernization/pr16_berry_child_evidence/child-reader.json"
+      "content/modernization/pr16_berry_child_lz_checkpoint.json",
+      "content/modernization/pr16_berry_child_lz_evidence/lz-reader.json"
     ]
   },
   "observed_head_checks": {
     "all_ci_green_claimed": false,
     "runs": [
       {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "c9b48b04162b13d9203f5b1e6cd287e3cd5ec5b2",
+        "id": 38129933384,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
         "conclusion": "failure",
         "event": "pull_request",
-        "head_sha": "02d4a37b9def19af9f3f4acc3c8c0a5946381679",
-        "id": 38108315992,
+        "head_sha": "c9b48b04162b13d9203f5b1e6cd287e3cd5ec5b2",
+        "id": 38129933416,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
       },
       {
-        "conclusion": "failure",
-        "event": "pull_request",
-        "head_sha": "02d4a37b9def19af9f3f4acc3c8c0a5946381679",
-        "id": 38108315991,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "02d4a37b9def19af9f3f4acc3c8c0a5946381679",
-        "id": 38108309355,
-        "name": "pr16-berry-child",
-        "path": ".github/workflows/pr16-berry-child.yml",
-        "status": "in_progress"
-      },
-      {
         "conclusion": "success",
         "event": "push",
-        "head_sha": "02d4a37b9def19af9f3f4acc3c8c0a5946381679",
-        "id": 38108309365,
+        "head_sha": "c9b48b04162b13d9203f5b1e6cd287e3cd5ec5b2",
+        "id": 38129927022,
         "name": "Stage79 runtime boundary audit",
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
@@ -80,17 +71,26 @@
       {
         "conclusion": "failure",
         "event": "push",
-        "head_sha": "02d4a37b9def19af9f3f4acc3c8c0a5946381679",
-        "id": 38108309349,
+        "head_sha": "c9b48b04162b13d9203f5b1e6cd287e3cd5ec5b2",
+        "id": 38129927350,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
       },
       {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "c9b48b04162b13d9203f5b1e6cd287e3cd5ec5b2",
+        "id": 38129926927,
+        "name": "pr16-berry-child-lz",
+        "path": ".github/workflows/pr16-berry-child-lz.yml",
+        "status": "in_progress"
+      },
+      {
         "conclusion": "failure",
         "event": "push",
-        "head_sha": "02d4a37b9def19af9f3f4acc3c8c0a5946381679",
-        "id": 38108309631,
+        "head_sha": "c9b48b04162b13d9203f5b1e6cd287e3cd5ec5b2",
+        "id": 38129927346,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "completed"
@@ -98,14 +98,14 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "02d4a37b9def19af9f3f4acc3c8c0a5946381679",
-        "id": 38108309425,
+        "head_sha": "c9b48b04162b13d9203f5b1e6cd287e3cd5ec5b2",
+        "id": 38129926788,
         "name": "Stage79 mGBA (all)",
         "path": ".github/workflows/modernization-stage79-mgba.yml",
-        "status": "queued"
+        "status": "in_progress"
       }
     ],
-    "source_head": "02d4a37b9def19af9f3f4acc3c8c0a5946381679"
+    "source_head": "c9b48b04162b13d9203f5b1e6cd287e3cd5ec5b2"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -204,11 +204,11 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_berry_child_checkpoint.json",
+        "checkpoint_path": "content/modernization/pr16_berry_child_lz_checkpoint.json",
         "classified": 788,
         "completion_evidence_path": null,
         "donor_safe_bytes": 0,
-        "next_ja": "保存した子機entryの発行span・停止PC/registerを継承し、未発行byteへ続く実callee/配置/入力条件だけを有限に接続する。成功した親13profileと今回の同一entryを再走しない。 実BIOS転送/自然リンク/元cart/全間接参照/容量移管/heap/controller/局所Saveは未完。正式788/86・残7・安全容量0。",
+        "next_ja": "新LZ測定の完了run/全artifactを再走せず受領し、正式788/86親へ対象1件だけの条件付き圧縮token型差分を適用する。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。",
         "reference_chain_path": "content/modernization/pr16_sound_origin_reader_evidence/reference-chain.json",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
@@ -218,9 +218,9 @@
           "heap-ready/同期非再入/退避前Free/全出口Free",
           "必要な局所Save/fresh Continue受入"
         ],
-        "scheduling_status": "READY_FROM_SAVED_CHILD_ENTRY",
+        "scheduling_status": "READY_FROM_SAVED_LZ_READER",
         "selected_unknown_origins": 7,
-        "status": "BOUNDED_CHILD_FRONTIER",
+        "status": "LZ_READER_OBSERVED_COMPLETION_PENDING",
         "unclassified": 86,
         "unknown_frontier_path": "content/modernization/pr16_sound_origin_reader_evidence/unknown-frontier.json",
         "window_progress_path": "content/modernization/pr16_sound_origin_reader_evidence/window-progress.json"
@@ -366,6 +366,8 @@
   "recording": {
     "accepted_test_reruns": 0,
     "all_ci_green_claimed": false,
+    "berry_lz_checkpoint": "content/modernization/pr16_berry_child_lz_checkpoint.json",
+    "berry_lz_no_replay": true,
     "commit_semantics": "このJSONを含む単親の同branch通常commit。自己SHA追記だけの追加commitを作らない。",
     "completed_wiki_actions": [
       {
@@ -419,7 +421,7 @@
       "accepted_reader_replays": 0,
       "accepted_test_reruns": 0,
       "actions_completion_confirmed": false,
-      "actions_run_id": 38108309355,
+      "actions_run_id": 38129926927,
       "full_index_private_guard": {
         "executed": true,
         "exit_code": 1,
@@ -429,12 +431,10 @@
       },
       "full_rom_scans": 0,
       "native_processes": 1,
-      "new_unit_tests": 20,
       "read_only_check_passed": true,
       "rom_reconstructions": 1,
-      "source_head": "02d4a37b9def19af9f3f4acc3c8c0a5946381679",
-      "target_bytes_issued": 0,
-      "task": "USER-20261011-BERRY-CHILD-ENTRY",
+      "source_head": "c9b48b04162b13d9203f5b1e6cd287e3cd5ec5b2",
+      "task": "USER-20261011-BERRY-CHILD-LZ",
       "task_graph_passed": true
     },
     "legacy_generated_md_modified": false,
@@ -453,11 +453,12 @@
     "native_processes": 0,
     "owner_instruction_at": "2026-10-11T01:44:48Z",
     "pending_berry_child_run": {
+      "completion_evidence_path": "content/modernization/pr16_berry_child_lz_evidence/child-completion.json",
       "output_report": "content/modernization/pr16_berry_child_checkpoint.json",
       "replay_forbidden": true,
       "run_id": 38108309355,
       "source_head": "02d4a37b9def19af9f3f4acc3c8c0a5946381679",
-      "status": "COMPLETION_NOT_YET_OBSERVED"
+      "status": "COMPLETION_BOUND_WITHOUT_REPLAY"
     },
     "pending_berry_origin_run": {
       "acceptance_not_inferred": true,
@@ -497,9 +498,9 @@
     "received_sound_receipt_completion": "content/modernization/pr16_berry_origin_evidence/prior-actions.json",
     "received_typed_origins_completion": "content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json",
     "rom_changes": 0,
-    "source_head": "02d4a37b9def19af9f3f4acc3c8c0a5946381679",
-    "status": "BOUNDED_CHILD_FRONTIER",
-    "task": "USER-20261011-BERRY-CHILD-ENTRY",
+    "source_head": "c9b48b04162b13d9203f5b1e6cd287e3cd5ec5b2",
+    "status": "LZ_READER_OBSERVED_COMPLETION_PENDING",
+    "task": "USER-20261011-BERRY-CHILD-LZ",
     "wiki_generated": true,
     "wiki_readability_execution": {
       "accepted_test_reruns": 0,
