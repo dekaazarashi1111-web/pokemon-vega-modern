@@ -11611,3 +11611,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 自然note dispatch・通常IWRAMコピー実行・全alternative reader不在・退役/移管は非主張。donor/lease/安全容量0、旧受入/R0/ROM/Save101/baseline不変。
 - Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴とActions resultから照合。
 - Network: 固定GitHub PR/ref/Actions原本、同branch非force push。新公開出典は https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 のm4a_1.s/定数/music_voice.incと固定JPsymbol。検索語 SoundMainRAM voice_directsound。非圧縮波形は符号付き1byte補間で消費する。asset生成/既受入native再走なし。
+
+## 2026-10-11T00:20:49.497828+00:00
+- Timestamp: 2026-10-11T00:20:49.497828+00:00
+- Task: USER-20261011-SOUND-ORIGIN-RECEIPT / 選定窓の条件付き音声reader
+- Version: sound-origin-reader-v1
+- Status: DONE（記載の限定scope。保存容量/統合は未完）
+- Summary: 成功済み実readerのrun/artifact/commit/source全byteを受領し単一音声originを追加。正式787/87→788/86、選定8→7、安全容量0。
+- Files changed: 新reader/試験/native/有限Actions、証拠と固定引継ぎMD/JSON、両ログ。
+- Verify: 原本完了success/全必須step・artifact全hash/全測定text・保存原本byte/mtime・canonical JSON・task graph PASS。測定再走/native/ROM再構成0。
+- Boundary: 自然note dispatch・通常IWRAMコピー実行・全alternative reader不在・退役/移管は非主張。donor/lease/安全容量0、旧受入/R0/ROM/Save101/baseline不変。
+- Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴とActions resultから照合。
+- Network: 固定GitHub PR/ref/Actions原本、同branch非force push。新公開出典は https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 のm4a_1.s/定数/music_voice.incと固定JPsymbol。検索語 SoundMainRAM voice_directsound。非圧縮波形は符号付き1byte補間で消費する。asset生成/既受入native再走なし。

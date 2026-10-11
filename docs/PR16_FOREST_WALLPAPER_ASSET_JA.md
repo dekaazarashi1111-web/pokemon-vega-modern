@@ -116,6 +116,14 @@ Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4by
 
 保存assetは再生成せず、固定voice macroの3行と現候補の全12byteを束縛。固定SoundMainRAM全bodyをJP配置へリンクして現ROMと全byte一致。実ROM命令をmGBAで26ケース（20 ARM補間・6 Thumb波形初期化）だけ実行し、対象4byteの実LDRSB、全読取順、符号拡張、出力全byte、cursor/count/phase、非所有RAM不変を独立整数modelと比較しました。[reader証拠](../content/modernization/pr16_sound_origin_reader_evidence/reader-proof.json) / [checkpoint](../content/modernization/pr16_sound_origin_reader_checkpoint.json)。これは自然note dispatchや通常IWRAMコピー実行の受入ではありません。新33試験/26ケース、新native1、旧受入再走0。正式分類はrun成功完了の外部受領まで787/87・選定8・安全容量0のままです。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 音声実readerの完了runと公開artifactを一度受領し、保存した787/87と選定8行から0x084723AFだけを正式788/86・残7行へ移す。33試験/26native/asset32試験/既受入reader/ROM全scanは再走しない。安全容量0、自然dispatch/IWRAM通常配置/全alias/退役/保存統合は未完。
+
+## 音声originの成功原本受領と正式分類
+
+run 38097726375 の完了success、全job/必須step、公開artifactの全hash、測定commitと全textを照合。保存原本を再走せず0x084723AFだけを符号付きPCMの条件付き実readerとして正式追加しました。**正式788分類/86未知、選定窓は残7行、安全容量0**。3voice table→WaveData→有限ARM補間の証拠であり、自然dispatch・通常IWRAM配置・全代替reader不在は主張しません。[受領checkpoint](../content/modernization/pr16_sound_origin_reader_receipt.json) / [reference chain](../content/modernization/pr16_sound_origin_reader_evidence/reference-chain.json) / [次の7行](../content/modernization/pr16_sound_origin_reader_evidence/window-progress.json)。この受領で新native/旧試験/ROM再構成は0。全旧原本/R0/ROM/Save101/baseline不変。
+
+## 次の未完作業
+
+残る選定窓7行の先頭0x086C51BFを保存symbol近傍から固定公開asset/現候補へ束縛し、実consumerを有限scopeで検証する。正式788分類/86未知・安全容量0。音声asset32試験/reader33試験/26 native・旧受入・全874scan・窓最適化は無変更再走しない。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Saveは未完。

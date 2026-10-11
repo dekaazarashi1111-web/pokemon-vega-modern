@@ -17,16 +17,15 @@
   "branch": "codex/modernization-followup-20260908",
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "next_action": {
-    "done_ja": "実在する成功完了run/公開原本/不変sourceへ束縛し、単一originの型分類と次の7行を記録する。",
-    "goal_ja": "音声実readerの完了runと公開artifactを一度受領し、保存した787/87と選定8行から0x084723AFだけを正式788/86・残7行へ移す。33試験/26native/asset32試験/既受入reader/ROM全scanは再走しない。安全容量0、自然dispatch/IWRAM通常配置/全alias/退役/保存統合は未完。",
-    "id": "SAVE_CAPACITY_SOUND_READER_COMPLETION_RECEIPT",
+    "done_ja": "次の未分類originのasset/実readerを根拠に追加し、保存原本を継承して容量と保存安全性へ進む。",
+    "goal_ja": "残る選定窓7行の先頭0x086C51BFを保存symbol近傍から固定公開asset/現候補へ束縛し、実consumerを有限scopeで検証する。正式788分類/86未知・安全容量0。音声asset32試験/reader33試験/26 native・旧受入・全874scan・窓最適化は無変更再走しない。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Saveは未完。",
+    "id": "SAVE_CAPACITY_SELECTED_WINDOW_NEXT_ASSET_BINDING",
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
-      "content/modernization/pr16_sound_origin_reader_checkpoint.json",
-      "content/modernization/pr16_sound_origin_reader_evidence/reader-proof.json",
-      "content/modernization/pr16_typed_origins_receipt_evidence/reference-chain.json",
-      "content/modernization/pr16_typed_origins_receipt_evidence/unknown-frontier.json",
-      "content/modernization/pr16_typed_origins_receipt_evidence/window-progress.json"
+      "content/modernization/pr16_sound_origin_reader_receipt.json",
+      "content/modernization/pr16_sound_origin_reader_evidence/window-progress.json",
+      "content/modernization/pr16_donor_origins_evidence/symbol-frontier.json",
+      "content/modernization/pr16_sound_origin_reader_evidence/reader-proof.json"
     ]
   },
   "observed_head_checks": {
@@ -35,26 +34,17 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
-        "id": 38097733062,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": "failure",
-        "event": "pull_request",
-        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
-        "id": 38097733153,
+        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
+        "id": 38098093626,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
+        "status": "in_progress"
       },
       {
         "conclusion": null,
-        "event": "push",
-        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
-        "id": 38097726439,
+        "event": "pull_request",
+        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
+        "id": 38098093627,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
@@ -62,41 +52,50 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
-        "id": 38097726375,
-        "name": "pr16-sound-origin-reader",
-        "path": ".github/workflows/pr16-sound-origin-reader.yml",
+        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
+        "id": 38098086994,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
-        "id": 38097726619,
+        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
+        "id": 38098087128,
         "name": "Stage79 mGBA (all)",
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "status": "in_progress"
       },
       {
-        "conclusion": "failure",
+        "conclusion": null,
         "event": "push",
-        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
-        "id": 38097726545,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
+        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
+        "id": 38098086975,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
+        "id": 38098087251,
+        "name": "pr16-sound-origin-reader",
+        "path": ".github/workflows/pr16-sound-origin-reader.yml",
+        "status": "in_progress"
       },
       {
         "conclusion": "success",
         "event": "push",
-        "head_sha": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
-        "id": 38097726397,
+        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
+        "id": 38098087155,
         "name": "Stage79 runtime boundary audit",
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
       }
     ],
-    "source_head": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2"
+    "source_head": "491440bf01119783ae6be79a1029c94f8f254ffc"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -193,11 +192,12 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_sound_origin_reader_checkpoint.json",
-        "classified": 787,
+        "checkpoint_path": "content/modernization/pr16_sound_origin_reader_receipt.json",
+        "classified": 788,
         "completion_evidence_path": null,
         "donor_safe_bytes": 0,
-        "next_ja": "音声実readerの完了runと公開artifactを一度受領し、保存した787/87と選定8行から0x084723AFだけを正式788/86・残7行へ移す。33試験/26native/asset32試験/既受入reader/ROM全scanは再走しない。安全容量0、自然dispatch/IWRAM通常配置/全alias/退役/保存統合は未完。",
+        "next_ja": "残る選定窓7行の先頭0x086C51BFを保存symbol近傍から固定公開asset/現候補へ束縛し、実consumerを有限scopeで検証する。正式788分類/86未知・安全容量0。音声asset32試験/reader33試験/26 native・旧受入・全874scan・窓最適化は無変更再走しない。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Saveは未完。",
+        "reference_chain_path": "content/modernization/pr16_sound_origin_reader_evidence/reference-chain.json",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
           "保存controller実配置",
@@ -206,8 +206,11 @@
           "heap-ready/同期非再入/退避前Free/全出口Free",
           "必要な局所Save/fresh Continue受入"
         ],
-        "status": "CONDITIONAL_PCM_READER_VERIFIED_RECEIPT_PENDING",
-        "unclassified": 87
+        "selected_unknown_origins": 7,
+        "status": "SOUND_ORIGIN_FORMALLY_ACCEPTED_788_86",
+        "unclassified": 86,
+        "unknown_frontier_path": "content/modernization/pr16_sound_origin_reader_evidence/unknown-frontier.json",
+        "window_progress_path": "content/modernization/pr16_sound_origin_reader_evidence/window-progress.json"
       }
     },
     "wiki": {
@@ -266,8 +269,8 @@
     "last_execution": {
       "accepted_tests_rerun": 0,
       "actions_completion_confirmed": false,
-      "actions_run_id": 38097726375,
-      "classified": 787,
+      "actions_run_id": 38098087251,
+      "classified": 788,
       "donor_safe_bytes": 0,
       "full_index_private_guard": {
         "executed": true,
@@ -276,15 +279,15 @@
         "passed": false,
         "raw_private_log_published": false
       },
-      "native_cases": 26,
-      "new_native_processes": 1,
-      "new_unit_tests": 33,
+      "new_native_processes": 0,
       "read_only_check_passed": true,
-      "rom_reconstructions": 1,
-      "source_head": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
-      "task": "USER-20261011-SOUND-ORIGIN-READER",
+      "received_completed_run": 38097726375,
+      "received_measurement_completion_confirmed": true,
+      "rom_reconstructions": 0,
+      "source_head": "491440bf01119783ae6be79a1029c94f8f254ffc",
+      "task": "USER-20261011-SOUND-ORIGIN-RECEIPT",
       "task_graph_passed": true,
-      "unclassified": 87
+      "unclassified": 86
     },
     "legacy_generated_md_modified": false,
     "legacy_log_append": {
@@ -308,13 +311,6 @@
     "mode": "SCOPED_R0_BUILD_AND_NONFORCE_PUSH",
     "native_processes": 0,
     "owner_instruction_at": "2026-10-10T10:56:56Z",
-    "pending_sound_reader_run": {
-      "replay_forbidden": true,
-      "report": "content/modernization/pr16_sound_origin_reader_checkpoint.json",
-      "run_id": 38097726375,
-      "source_head": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
-      "status": "COMPLETION_NOT_YET_OBSERVED"
-    },
     "prior_reconciliation_attempt": {
       "completion_commit_created": false,
       "conclusion": "failure",
@@ -325,10 +321,11 @@
     "project_resume_check_executed": false,
     "project_task_graph_check_executed": true,
     "received_sound_asset_completion": "content/modernization/pr16_sound_origin_reader_evidence/asset-completion.json",
+    "received_sound_reader_completion": "content/modernization/pr16_sound_origin_reader_evidence/actions-completion.json",
     "received_typed_origins_completion": "content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json",
     "rom_changes": 0,
     "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-    "status": "R0_READY_SOUND_READER_VERIFIED_RECEIPT_PENDING",
+    "status": "R0_READY_SOUND_ORIGIN_FORMALLY_ACCEPTED_788_86",
     "task": "USER-20261010-WIKI-FIRST-POLICY",
     "wiki_generated": true
   },
