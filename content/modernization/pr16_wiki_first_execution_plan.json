@@ -4,9 +4,9 @@
   "authority_ja": "このJSONが作業選択の正本。R0.1の全gateと実物提示は完了し、閲覧改善優先条件を充足。現在はnext_actionのBerry現owner/reader未完scopeへ戻る。旧R0のreadyだけで解除したのではない。旧方針・旧解析の記録は履歴として保持する。",
   "bindings": {
     "CHATGPT_RESUME.md": {
-      "git_blob_sha": "acb7cbd65510cf8703b080bf946f51c39204a291",
-      "sha256": "38b0950d6de6be0b7516e04b587c53d1372f5776da46d91bba29e9b5b4dfda28",
-      "size": 2558
+      "git_blob_sha": "fa47320356bb8e0430dcba7a919b5e14daec49c0",
+      "sha256": "d7c40535390024e8d7aba56512577dc08577da736f7e6fe1a9666f56cf2ad42d",
+      "size": 2832
     },
     "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
       "git_blob_sha": "116c6f1f8ccbed26029de10f31be7c69be75b09f",
@@ -29,13 +29,14 @@
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "long_term_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
   "next_action": {
-    "done_ja": "完了runと実LZ token全4byteを根拠に、保存親788/86へ対象1件だけの正式型差分を適用する。",
-    "goal_ja": "保存済みLZ readerと完了receiptから、正式788/86のreference-chain/unknown-frontier/window-progressへ対象0x086C51BFの1件だけの型差分を追加し、他873行と原本を保持する。reader/native/25試験は再走しない。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。",
-    "id": "SAVE_CAPACITY_BERRY_LZ_TYPED_RECEIPT",
+    "done_ja": "次のoriginについて保存した証拠から実型/consumerを束縛し、完了した限定検証だけを追加する。安全容量を推測しない。",
+    "goal_ja": "次の選定窓origin 0x0880FA64を保存symbol近傍から固定asset/現候補の実consumerへ限定的に結ぶ。残る選定窓6行・正式789分類/85未知・安全容量0。Berryの親13profile/子機entry/LZ native/25 reader試験/25型差分試験は変更影響がない限り再走しない。全874scan/窓最適化は再走不要。旧owner退役・移管、窓外跨りread/間接参照、heap/controller、局所Save/fresh Continueは未完。",
+    "id": "SAVE_CAPACITY_NEXT_SELECTED_ORIGIN_BINDING",
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
-      "content/modernization/pr16_berry_child_lz_receipt.json",
-      "content/modernization/pr16_berry_child_lz_evidence/lz-reader.json"
+      "content/modernization/pr16_berry_lz_type_checkpoint.json",
+      "content/modernization/pr16_berry_lz_type_evidence/reference-chain.json",
+      "content/modernization/pr16_berry_lz_type_evidence/window-progress.json"
     ]
   },
   "observed_head_checks": {
@@ -44,8 +45,8 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "1e08fd6e68dc2dbbff5c652aeef595f48f42c14c",
-        "id": 38130325804,
+        "head_sha": "0cacf5317bd1ce1209d258129ddff1f24b3b3b03",
+        "id": 38130705628,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
@@ -53,8 +54,8 @@
       {
         "conclusion": "failure",
         "event": "pull_request",
-        "head_sha": "1e08fd6e68dc2dbbff5c652aeef595f48f42c14c",
-        "id": 38130325814,
+        "head_sha": "0cacf5317bd1ce1209d258129ddff1f24b3b3b03",
+        "id": 38130705633,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
@@ -62,50 +63,50 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "1e08fd6e68dc2dbbff5c652aeef595f48f42c14c",
-        "id": 38130319553,
-        "name": "pr16-berry-child-lz",
-        "path": ".github/workflows/pr16-berry-child-lz.yml",
+        "head_sha": "0cacf5317bd1ce1209d258129ddff1f24b3b3b03",
+        "id": 38130698628,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "1e08fd6e68dc2dbbff5c652aeef595f48f42c14c",
-        "id": 38130319423,
+        "head_sha": "0cacf5317bd1ce1209d258129ddff1f24b3b3b03",
+        "id": 38130698728,
         "name": "Stage79 mGBA (all)",
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "status": "in_progress"
       },
       {
-        "conclusion": "failure",
+        "conclusion": null,
         "event": "push",
-        "head_sha": "1e08fd6e68dc2dbbff5c652aeef595f48f42c14c",
-        "id": 38130319333,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
+        "head_sha": "0cacf5317bd1ce1209d258129ddff1f24b3b3b03",
+        "id": 38130698828,
+        "name": "pr16-berry-lz-type",
+        "path": ".github/workflows/pr16-berry-lz-type.yml",
+        "status": "in_progress"
       },
       {
         "conclusion": "success",
         "event": "push",
-        "head_sha": "1e08fd6e68dc2dbbff5c652aeef595f48f42c14c",
-        "id": 38130319595,
+        "head_sha": "0cacf5317bd1ce1209d258129ddff1f24b3b3b03",
+        "id": 38130698911,
         "name": "Stage79 runtime boundary audit",
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "event": "push",
-        "head_sha": "1e08fd6e68dc2dbbff5c652aeef595f48f42c14c",
-        "id": 38130319210,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
+        "head_sha": "0cacf5317bd1ce1209d258129ddff1f24b3b3b03",
+        "id": 38130698830,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
       }
     ],
-    "source_head": "1e08fd6e68dc2dbbff5c652aeef595f48f42c14c"
+    "source_head": "0cacf5317bd1ce1209d258129ddff1f24b3b3b03"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -204,12 +205,12 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_berry_child_lz_receipt.json",
-        "classified": 788,
+        "checkpoint_path": "content/modernization/pr16_berry_lz_type_checkpoint.json",
+        "classified": 789,
         "completion_evidence_path": null,
         "donor_safe_bytes": 0,
-        "next_ja": "保存済みLZ readerと完了receiptから、正式788/86のreference-chain/unknown-frontier/window-progressへ対象0x086C51BFの1件だけの型差分を追加し、他873行と原本を保持する。reader/native/25試験は再走しない。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。",
-        "reference_chain_path": "content/modernization/pr16_sound_origin_reader_evidence/reference-chain.json",
+        "next_ja": "次の選定窓origin 0x0880FA64を保存symbol近傍から固定asset/現候補の実consumerへ限定的に結ぶ。残る選定窓6行・正式789分類/85未知・安全容量0。Berryの親13profile/子機entry/LZ native/25 reader試験/25型差分試験は変更影響がない限り再走しない。全874scan/窓最適化は再走不要。旧owner退役・移管、窓外跨りread/間接参照、heap/controller、局所Save/fresh Continueは未完。",
+        "reference_chain_path": "content/modernization/pr16_berry_lz_type_evidence/reference-chain.json",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
           "保存controller実配置",
@@ -218,12 +219,12 @@
           "heap-ready/同期非再入/退避前Free/全出口Free",
           "必要な局所Save/fresh Continue受入"
         ],
-        "scheduling_status": "READY_FROM_SAVED_LZ_READER",
-        "selected_unknown_origins": 7,
-        "status": "LZ_READER_COMPLETION_BOUND_FORMAL_DELTA_PENDING",
-        "unclassified": 86,
-        "unknown_frontier_path": "content/modernization/pr16_sound_origin_reader_evidence/unknown-frontier.json",
-        "window_progress_path": "content/modernization/pr16_sound_origin_reader_evidence/window-progress.json"
+        "scheduling_status": "READY_FROM_SAVED_SELECTED_ORIGINS",
+        "selected_unknown_origins": 6,
+        "status": "BERRY_LZ_ORIGIN_FORMALLY_ACCEPTED_789_85",
+        "unclassified": 85,
+        "unknown_frontier_path": "content/modernization/pr16_berry_lz_type_evidence/unknown-frontier.json",
+        "window_progress_path": "content/modernization/pr16_berry_lz_type_evidence/window-progress.json"
       }
     },
     "wiki": {
@@ -367,6 +368,7 @@
     "accepted_test_reruns": 0,
     "all_ci_green_claimed": false,
     "berry_lz_checkpoint": "content/modernization/pr16_berry_child_lz_receipt.json",
+    "berry_lz_formal_checkpoint": "content/modernization/pr16_berry_lz_type_checkpoint.json",
     "berry_lz_no_replay": true,
     "commit_semantics": "このJSONを含む単親の同branch通常commit。自己SHA追記だけの追加commitを作らない。",
     "completed_wiki_actions": [
@@ -421,7 +423,10 @@
       "accepted_reader_replays": 0,
       "accepted_test_reruns": 0,
       "actions_completion_confirmed": false,
-      "actions_run_id": 38130319553,
+      "actions_run_id": 38130698828,
+      "donor_safe_bytes": 0,
+      "formal_classified": 789,
+      "formal_unclassified": 85,
       "full_index_private_guard": {
         "executed": true,
         "exit_code": 1,
@@ -431,10 +436,11 @@
       },
       "full_rom_scans": 0,
       "native_processes": 0,
+      "new_unit_tests": 25,
       "read_only_check_passed": true,
       "rom_reconstructions": 0,
-      "source_head": "1e08fd6e68dc2dbbff5c652aeef595f48f42c14c",
-      "task": "USER-20261011-BERRY-CHILD-LZ-RECEIPT",
+      "source_head": "0cacf5317bd1ce1209d258129ddff1f24b3b3b03",
+      "task": "USER-20261011-BERRY-LZ-TYPE",
       "task_graph_passed": true
     },
     "legacy_generated_md_modified": false,
@@ -493,15 +499,16 @@
     "project_task_graph_check_executed": true,
     "received_berry_binding_completion": "content/modernization/pr16_berry_transfer_evidence/binding-completion.json",
     "received_berry_lz_completion": "content/modernization/pr16_berry_child_lz_evidence/actions-completion.json",
+    "received_berry_lz_type_inputs": "content/modernization/pr16_berry_lz_type_evidence/receipt-actions-completion.json",
     "received_berry_transfer_completion": "content/modernization/pr16_berry_child_evidence/transfer-completion.json",
     "received_sound_asset_completion": "content/modernization/pr16_sound_origin_reader_evidence/asset-completion.json",
     "received_sound_reader_completion": "content/modernization/pr16_sound_origin_reader_evidence/actions-completion.json",
     "received_sound_receipt_completion": "content/modernization/pr16_berry_origin_evidence/prior-actions.json",
     "received_typed_origins_completion": "content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json",
     "rom_changes": 0,
-    "source_head": "1e08fd6e68dc2dbbff5c652aeef595f48f42c14c",
-    "status": "LZ_READER_COMPLETION_BOUND_FORMAL_DELTA_PENDING",
-    "task": "USER-20261011-BERRY-CHILD-LZ-RECEIPT",
+    "source_head": "0cacf5317bd1ce1209d258129ddff1f24b3b3b03",
+    "status": "BERRY_LZ_ORIGIN_FORMALLY_ACCEPTED_789_85",
+    "task": "USER-20261011-BERRY-LZ-TYPE",
     "wiki_generated": true,
     "wiki_readability_execution": {
       "accepted_test_reruns": 0,

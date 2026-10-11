@@ -11730,3 +11730,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 保存済みLZ readerと完了receiptから、正式788/86のreference-chain/unknown-frontier/window-progressへ対象0x086C51BFの1件だけの型差分を追加し、他873行と原本を保持する。reader/native/25試験は再走しない。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。
 - Commit: この記録を含む同branch単親通常commit。実SHAはActions result/Gitで照合。
 - Network: 同repo PR/ref/Actions/artifact GET、既存固定再構成入力、非force push。一次資料 https://github.com/mgba-emu/mgba/blob/0.10.2/src/gba/bios.c と include/mgba/internal/arm/arm.h のSWI11/透過memory APIを確認。検索語: github pret berry fix multiboot crt0 02000120（有用な検索結果なし）。私有原本・展開byteは公開しない。
+
+## 2026-10-11T10:06:01.585318+00:00
+- Timestamp: 2026-10-11T10:06:01.585318+00:00
+- Task: USER-20261011-BERRY-LZ-TYPE / Berry単一LZ token型差分
+- Version: berry-lz-type-v1
+- Status: DONE（1件型登録。保存容量/ゲーム統合は未完）
+- Summary: 対象0x086C51BFの4byteを、実子機ARM callerからSWI11が消費する条件付きLZ77 tokenとして正式型登録。旧788/86のreference-chainを原本のまま継承し、1件だけ追加して789/85、選定窓の残り7→6。他の未知85行/選定6行は完全不変。新25型差分試験PASS。新native/候補復元/旧受入再走0、安全容量0。
+- Files changed: 型差分専用source/新25試験/Actions、正式chain/frontier/window、固定引継ぎMD/JSON、両ログ。
+- Verify: 外部成功run/全artifact受領、25人工試験、型差分決定性、他85行/6行と全原本byte/mtime、task graph、限定最終index PASS。新native/復元/旧受入再走0。
+- Boundary: 正式789/85、選定残6、安全容量0。初回LZ JSON失敗は未受入履歴を保全し隠さない。全体CI greenは主張しない。
+- Next: 次の選定窓origin 0x0880FA64を保存symbol近傍から固定asset/現候補の実consumerへ限定的に結ぶ。残る選定窓6行・正式789分類/85未知・安全容量0。Berryの親13profile/子機entry/LZ native/25 reader試験/25型差分試験は変更影響がない限り再走しない。全874scan/窓最適化は再走不要。旧owner退役・移管、窓外跨りread/間接参照、heap/controller、局所Save/fresh Continueは未完。
+- Commit: この記録を含む同branch単親通常commit。実SHAはActions result/Git履歴で照合。
+- Network: 同repo PR/ref/Actions/artifact GETと同branchへの非force pushのみ。新たなROM/外部asset取得なし。私有原本と展開byteは公開しない。

@@ -176,6 +176,18 @@ run 38097726375 の完了success、全job/必須step、公開artifactの全hash�
 
 [checkpoint](../content/modernization/pr16_berry_child_lz_receipt.json) / [実reader](../content/modernization/pr16_berry_child_lz_evidence/lz-reader.json)。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 保存済みLZ readerと完了receiptから、正式788/86のreference-chain/unknown-frontier/window-progressへ対象0x086C51BFの1件だけの型差分を追加し、他873行と原本を保持する。reader/native/25試験は再走しない。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。
+
+## Berry子機LZ tokenの単一正式型登録
+
+対象0x086C51BFの4byteを、実子機ARM callerからSWI11が消費する条件付きLZ77 tokenとして正式型登録。旧788/86のreference-chainを原本のまま継承し、1件だけ追加して789/85、選定窓の残り7→6。他の未知85行/選定6行は完全不変。新25型差分試験PASS。新native/候補復元/旧受入再走0、安全容量0。
+
+[正式型差分](../content/modernization/pr16_berry_lz_type_evidence/reference-chain.json) / [残る選定窓](../content/modernization/pr16_berry_lz_type_evidence/window-progress.json) / [checkpoint](../content/modernization/pr16_berry_lz_type_checkpoint.json)。
+
+通信値は明示fixture、mGBA HLE readerの条件付き証拠です。自然リンク/元BIOS CPU/実cart/代替reader完全排除/領域退役の成功ではありません。
+
+## 次の未完作業
+
+次の選定窓origin 0x0880FA64を保存symbol近傍から固定asset/現候補の実consumerへ限定的に結ぶ。残る選定窓6行・正式789分類/85未知・安全容量0。Berryの親13profile/子機entry/LZ native/25 reader試験/25型差分試験は変更影響がない限り再走しない。全874scan/窓最適化は再走不要。旧owner退役・移管、窓外跨りread/間接参照、heap/controller、局所Save/fresh Continueは未完。
