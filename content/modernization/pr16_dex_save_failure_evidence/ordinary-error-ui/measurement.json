@@ -1,0 +1,151 @@
+{
+  "status": "PASS_EXPLICIT_CRC_NEGATIVE_SAVE_FAILURE_UI",
+  "source_head": "29d97ec41b7739cd5204ba2476569bee082c9178",
+  "run_id": 37236898977,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "d3dcb55ad09a509fa247e65a3ca3db1de4bdd5b5534288b2b03ddbacca65b314"
+  },
+  "parent_isolated_run": 37235903199,
+  "native_processes": 1,
+  "save_attempts": 1,
+  "save_commits": 0,
+  "source_save": {
+    "size": 131088,
+    "sha256": "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
+  },
+  "formal_save_changed": false,
+  "fixture_bytes": 1,
+  "authority_present": true,
+  "authorityless_real_ui_accepted": false,
+  "all_consumers_wired": false,
+  "all_save_modes_accepted": false,
+  "trace": {
+    "end": {
+      "end": "PASS_EXPLICIT_CRC_FIXTURE_SAVE_FAILURE_UI",
+      "frames": 2171,
+      "inputs": 793,
+      "screens": 4,
+      "fixture_calls": 1,
+      "fixture_bytes": 1,
+      "host_write_barriers": 7,
+      "other_host_writes": 0,
+      "register_writes": 0,
+      "save_attempts": 1,
+      "save_commits": 0,
+      "counter": 101,
+      "all_flash_unchanged": true,
+      "authority_present": true,
+      "story_progress_accepted": false,
+      "destructive_save_failed_entered": false,
+      "error_page_advances": 1
+    },
+    "stages": [
+      {
+        "failure_ui_stage": "injected_at_field",
+        "frame": 1390,
+        "active": 0,
+        "state": 0,
+        "attempt": 0,
+        "callback": 0,
+        "delay": 0,
+        "counter": 101,
+        "damaged_mask": 0
+      },
+      {
+        "failure_ui_stage": "ordinary_error_first_page",
+        "frame": 1923,
+        "active": 0,
+        "state": 0,
+        "attempt": 255,
+        "callback": 134672885,
+        "delay": 60,
+        "counter": 101,
+        "damaged_mask": 4
+      },
+      {
+        "failure_ui_stage": "ordinary_save_error",
+        "frame": 1987,
+        "active": 0,
+        "state": 0,
+        "attempt": 255,
+        "callback": 134672925,
+        "delay": 0,
+        "counter": 101,
+        "damaged_mask": 4
+      },
+      {
+        "failure_ui_stage": "field_after_failure",
+        "frame": 2171,
+        "active": 0,
+        "state": 0,
+        "attempt": 255,
+        "callback": 134672925,
+        "delay": 0,
+        "counter": 101,
+        "damaged_mask": 4
+      }
+    ],
+    "fixture": {
+      "fixture_calls": 1,
+      "fixture_bytes": 1,
+      "address": 33807172,
+      "old": 116,
+      "new": 117,
+      "register_writes": 0,
+      "other_host_writes": 0
+    },
+    "screens": [
+      {
+        "screen": 0,
+        "frame": 1390,
+        "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423",
+        "colors": 30
+      },
+      {
+        "screen": 1,
+        "frame": 1923,
+        "sha256": "8e3448981dee027eac4160352eeef676537f14a0b82cee11bad92c6e9a593688",
+        "colors": 32
+      },
+      {
+        "screen": 2,
+        "frame": 1987,
+        "sha256": "53ad6e8e7a6e4c9df71eb6df3e665b98aab56c7a71adc940ac261cbf7b37eea6",
+        "colors": 32
+      },
+      {
+        "screen": 3,
+        "frame": 2171,
+        "sha256": "0bbd98f5f9327c7f4a49728197fe2b924944e1b7d81fb6bf6c6350b9f4bac654",
+        "colors": 30
+      }
+    ]
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-save-failure-ui.yml": {
+      "size": 1999,
+      "sha256": "ba34a068e51d6224f8afe35a68c46b7c86e799f125550ed332f153b3a5add8b2"
+    },
+    "content/modernization/pr16_dex_save_error_text_audit.json": {
+      "size": 1230,
+      "sha256": "49c22e6d7dbead6ccd70c7d3f02a9e2f36228ee9c49e5da45002d4cc5e0a3eca"
+    },
+    "scripts/pr16_dex_save_failure_ui.py": {
+      "size": 12079,
+      "sha256": "f9f31f5a6ab88af3385de7dde74812a61ab1e837954ca00c0ad9ddb2ff21f9a6"
+    },
+    "tests/test_pr16_dex_save_failure_ui.py": {
+      "size": 2524,
+      "sha256": "4543fdabb5de27df2894239e8a63bad60b1de9df1588a9e99d9d14f569a48ca4"
+    },
+    "tools/mgba_pr16_dex_save_failure_ui.h": {
+      "size": 9184,
+      "sha256": "7954f7889592e08dc7f98768595009b9e4abb845978af9c1e0516bddaa071d6e"
+    }
+  }
+}

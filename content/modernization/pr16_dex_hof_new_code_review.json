@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "pret-src-AgbRfu_LinkManager.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "35317ab86d99fb21fe0a68dd25c89ffa8b4f3b4a",
+      "local": "pret-src-AgbRfu_LinkManager.c",
+      "path": "src/AgbRfu_LinkManager.c",
+      "repository": "pret/pokefirered",
+      "sha256": "96b15b35068f7cbc84ba491988d5204af84e56315b8b71a21d6b6ef39976dc9b",
+      "size": 48777
+    },
+    "pret-src-link_rfu_2.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "78087d76fd3b2869b2bedc5b6dc29840e7d7a55a",
+      "local": "pret-src-link_rfu_2.c",
+      "path": "src/link_rfu_2.c",
+      "repository": "pret/pokefirered",
+      "sha256": "a81f75e46ea0114f15317f9b8714352a3ccc4aee8722403e3f2ad184e3719743",
+      "size": 91134
+    }
+  },
+  "hit": {
+    "address": 135250795,
+    "target": 167701494,
+    "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+    "size": 4,
+    "sha256": "df762f32e6c6b2c92e3118f0135e67ecf84a2d317d32558ddc6e45cbaba3f8df",
+    "classification": "UNCLASSIFIED",
+    "accepted": false,
+    "reason": "no_complete_typed_asset_consumer_witness",
+    "owner_candidates": []
+  },
+  "root": {
+    "constructor": 135252968,
+    "group_max": 2,
+    "registered_callback": 135250401,
+    "registration_store": 135259166,
+    "registration_cell": 50355872,
+    "later_conditional_manager_entry": 135260668,
+    "manager_state": 0,
+    "watcher": 135260188,
+    "hardware_watch_call": 135260220,
+    "parameter_stores": [
+      135260240,
+      135260244
+    ],
+    "message": 48,
+    "parameter_count": 2,
+    "occurrence_dispatch": 135264188,
+    "callback_load": 135264200,
+    "interwork": 136084176,
+    "hit": 135250795,
+    "error_writer": 135250244,
+    "stop": 135250820
+  },
+  "windows": [
+    {
+      "label": "leader_constructor",
+      "address": 135252968,
+      "size": 56,
+      "sha256": "75020269493e2269a5c010445f3242de62f5d30e21b8edc7a73338617b9eec48"
+    },
+    {
+      "label": "lman_initializer",
+      "address": 135259132,
+      "size": 54,
+      "sha256": "5c43951fc38ffddff30ddda055c31f943c760504220f24ef2315f71a1842b4fb"
+    },
+    {
+      "label": "lman_initializer_return",
+      "address": 135259206,
+      "size": 8,
+      "sha256": "e78e1529bafda88d66d1a4b4e5b48602bf0b58b0cc28c7a3385f3e3af9c47e02"
+    },
+    {
+      "label": "manager_entry",
+      "address": 135260668,
+      "size": 22,
+      "sha256": "254614e2d21e66931c6c066fb9b8ecb9066e9d4e5e2a3aab2be21484a083e804"
+    },
+    {
+      "label": "manager_ready",
+      "address": 135260696,
+      "size": 24,
+      "sha256": "a6883a5fe04e963045d6d32e7e1241993bc4ff867877fb0fc5c055d63582219f"
+    },
+    {
+      "label": "manager_parent_watch",
+      "address": 135261104,
+      "size": 32,
+      "sha256": "61a98588c5f038ceb82948e90fbd7a41f0d0a8172cc3e89ae85e45c92f329fb4"
+    },
+    {
+      "label": "watcher_input_and_writers",
+      "address": 135260188,
+      "size": 66,
+      "sha256": "f0b042d05b7e3f7567fd23c7b27dcaffff20f55a61eee4b1ac2d5149b306cbcb"
+    },
+    {
+      "label": "watcher_no_recovery",
+      "address": 135260374,
+      "size": 20,
+      "sha256": "a93601f3ffe1a0fc2fac1fd0897def516ea59442b1d1f9e2a328f774b3fa6079"
+    },
+    {
+      "label": "disconnect_wrapper",
+      "address": 135264228,
+      "size": 30,
+      "sha256": "1bd3e0b3ffa65e066b98fba26bf25bc92d71eec1abe41d9cf77c5e8d9810a727"
+    },
+    {
+      "label": "callback_dispatch",
+      "address": 135264188,
+      "size": 34,
+      "sha256": "55fd8cbf5c0da318d2e895b7962fd3e5f36a0fa1c8ba0b049968216e49b17cdb"
+    },
+    {
+      "label": "dispatch_interwork",
+      "address": 136084176,
+      "size": 2,
+      "sha256": "dd9261f0471768edc33bf979649f6297463be423da17c3f881684f5747e163a1"
+    },
+    {
+      "label": "parent_message_switch",
+      "address": 135250400,
+      "size": 30,
+      "sha256": "324575de468417df555ac0a11e6c6d6fd915b78d11aa2869df84225c8a7b68b6"
+    },
+    {
+      "label": "parent_message_48",
+      "address": 135250452,
+      "size": 6,
+      "sha256": "7923ac13fc45fc052b6b452622b629c94eef49a527de12794f42d4febaee1b56"
+    },
+    {
+      "label": "parent_disconnect_hit",
+      "address": 135250752,
+      "size": 48,
+      "sha256": "ddf385b03eac8032f5147e233d893bb72cc49d3c957deae016daf9057676094e"
+    },
+    {
+      "label": "error_parameter_writer",
+      "address": 135250244,
+      "size": 40,
+      "sha256": "e1d70e31498d295d990c4f2725c0ced3cb00cc1f61999bcad3228f443e229404"
+    },
+    {
+      "label": "literal_080fc16c",
+      "address": 135250284,
+      "size": 4,
+      "sha256": "46f96ad9fbf42ead2d90e3fa6eceb6084ad75b8b56ce58063a9e5851ea32e6cd"
+    },
+    {
+      "label": "literal_080fc170",
+      "address": 135250288,
+      "size": 4,
+      "sha256": "fc2db5917c61721b6f2e20408a9b41f7238b7473e404972ca4b0cb7afdde009e"
+    },
+    {
+      "label": "literal_080fc370",
+      "address": 135250800,
+      "size": 4,
+      "sha256": "46f96ad9fbf42ead2d90e3fa6eceb6084ad75b8b56ce58063a9e5851ea32e6cd"
+    },
+    {
+      "label": "literal_080fc374",
+      "address": 135250804,
+      "size": 4,
+      "sha256": "06b97c7277cfff83ec8f8cd43603884e0d15bb29cac28a47a773a73dc2bf250a"
+    },
+    {
+      "label": "literal_080fc378",
+      "address": 135250808,
+      "size": 4,
+      "sha256": "fc2db5917c61721b6f2e20408a9b41f7238b7473e404972ca4b0cb7afdde009e"
+    },
+    {
+      "label": "literal_080fc37c",
+      "address": 135250812,
+      "size": 4,
+      "sha256": "c38bbabc56369606a4da5cb5857c0daf0ac0b47b2cf6c7af4c0ae61afe10137b"
+    },
+    {
+      "label": "literal_080fcc20",
+      "address": 135253024,
+      "size": 4,
+      "sha256": "46f96ad9fbf42ead2d90e3fa6eceb6084ad75b8b56ce58063a9e5851ea32e6cd"
+    },
+    {
+      "label": "literal_080fcc24",
+      "address": 135253028,
+      "size": 4,
+      "sha256": "1cbbe16b4821f8bb838e8535c74602c6c490559993322c988a817560fb3add49"
+    },
+    {
+      "label": "literal_080fcc28",
+      "address": 135253032,
+      "size": 4,
+      "sha256": "78263936a61a530627645dac82beea7f9f5e24fc516404fe93cec0b73934c99f"
+    },
+    {
+      "label": "literal_080fcc2c",
+      "address": 135253036,
+      "size": 4,
+      "sha256": "86bc1c9816ae52a3391f5a33c51bd55ea7dbc201440b927a1747c462d7c7f8db"
+    },
+    {
+      "label": "literal_080fcc30",
+      "address": 135253040,
+      "size": 4,
+      "sha256": "eeeb9ffdb4d387b37e988140a96debc2931ad58c9d7eb60b455220a1e2924ba3"
+    },
+    {
+      "label": "literal_080fe434",
+      "address": 135259188,
+      "size": 4,
+      "sha256": "fc2db5917c61721b6f2e20408a9b41f7238b7473e404972ca4b0cb7afdde009e"
+    },
+    {
+      "label": "literal_080fe438",
+      "address": 135259192,
+      "size": 4,
+      "sha256": "3db555b8fe0b4edf6093397270b34137afda1f69d96d864021a4bd578979462d"
+    },
+    {
+      "label": "literal_080fe43c",
+      "address": 135259196,
+      "size": 4,
+      "sha256": "07ecdabf4ee19cb4c17187ff89f892cf54939b5d6d29785b94dfff394ad61ec6"
+    },
+    {
+      "label": "literal_080fe440",
+      "address": 135259200,
+      "size": 4,
+      "sha256": "6338c0f85bbf6ba902bfe583f6311e6c117ac23ae4f53acf3ef6204f3c1dbe74"
+    },
+    {
+      "label": "literal_080fe8b8",
+      "address": 135260344,
+      "size": 4,
+      "sha256": "fc2db5917c61721b6f2e20408a9b41f7238b7473e404972ca4b0cb7afdde009e"
+    },
+    {
+      "label": "literal_080fea14",
+      "address": 135260692,
+      "size": 4,
+      "sha256": "fc2db5917c61721b6f2e20408a9b41f7238b7473e404972ca4b0cb7afdde009e"
+    },
+    {
+      "label": "literal_080fea4c",
+      "address": 135260748,
+      "size": 4,
+      "sha256": "fc2db5917c61721b6f2e20408a9b41f7238b7473e404972ca4b0cb7afdde009e"
+    },
+    {
+      "label": "literal_080febec",
+      "address": 135261164,
+      "size": 4,
+      "sha256": "fc2db5917c61721b6f2e20408a9b41f7238b7473e404972ca4b0cb7afdde009e"
+    },
+    {
+      "label": "literal_080febf0",
+      "address": 135261168,
+      "size": 4,
+      "sha256": "7435363f4208f84ac32ffab6b1f8031545c326c06ad3faa02283ca333fc89173"
+    },
+    {
+      "label": "literal_080ff7e0",
+      "address": 135264224,
+      "size": 4,
+      "sha256": "fc2db5917c61721b6f2e20408a9b41f7238b7473e404972ca4b0cb7afdde009e"
+    },
+    {
+      "label": "literal_080ff804",
+      "address": 135264260,
+      "size": 4,
+      "sha256": "fc2db5917c61721b6f2e20408a9b41f7238b7473e404972ca4b0cb7afdde009e"
+    },
+    {
+      "label": "configuration_template",
+      "address": 138422360,
+      "size": 24,
+      "sha256": "aa138e6821df2f6c70da376501566de4a2717ffdb8ae0e83cfced8bc4eb372c1"
+    },
+    {
+      "label": "group_two_available_slots",
+      "address": 138422385,
+      "size": 1,
+      "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+    }
+  ],
+  "claims": {
+    "proof_scope": "conditional_initialized_rfu_manager_finite_registered_consumer",
+    "full_story_reachability_claimed": false,
+    "natural_wireless_lifecycle_proven": false,
+    "actual_runtime_execution_observed": false,
+    "universal_irq_lifetime_proven": false,
+    "opaque_callee_effects_proven": false,
+    "source_pointer_interpretation": false,
+    "indirect_reference_completeness_claimed": false,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "complete_manager_execution_claimed": false
+  },
+  "input_contract": {
+    "root": "Actual LinkLeader constructor groupMax2 executes and returns before a separate conditional manager call. Game scheduling and a natural live wireless session are not proved.",
+    "state": "Explicit initial external inputs: parentSlots1, receivedPlayers1, errorState0, bounded link-status object parentChild1. CpuFill16 zeros lman and actual constructor stores callback and MODE_PARENT. No task state is invented to dispatch the hit.",
+    "event": "Actual manager reads constructor-produced state0 and fastSearch0, reads conditional parent status, and calls watcher(0). watchLink conditionally writes lossMask1/reason0/recoveredMask0 to actual stack outputs. Actual watcher stores both lman.params and emits msg48/count2.",
+    "boundaries": "Eight opaque sites require normal Thumb ABI return, r4-r11/SP preservation and concrete future-read-before-write RAM projection. CPU fill and watchLink have explicit finite output contracts. All other RAM is erased at each boundary in a second complete composition.",
+    "lifetime": "Same static lman registry generation from constructor through dispatch: no reinitialization or callback replacement. No universal IRQ or wireless-session lifetime claim.",
+    "consumer": "Actual switch and AND-NOT path reach complete BL; actual RfuSetErrorParams writes parameters and message, returns, and actual successor branch executes. Stop before the subsequent status call.",
+    "geometry": "Only complete BL and next Thumb branch, six bytes, are newly typed; no wider function, literal, configuration or table is classified."
+  }
+}

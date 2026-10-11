@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME",
+  "stage": 74,
+  "status": "STAGE73_IDENTITY_PINNED",
+  "parent_identity": {
+    "stage73_commit": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
+    "rom": {
+      "path": "build/stages/73_modernization_p03_consumer_runtime.gba",
+      "size": 33554432,
+      "sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a"
+    },
+    "metadata": {
+      "path": "build/stages/73_modernization_p03_consumer_runtime.json",
+      "size": 5270,
+      "sha256": "c18fd7a2e3537632b3e13e3d528907d52e4c9c3a9729da6a0ccd539bdbc7b887"
+    },
+    "allocation": {
+      "path": "build/stages/73_modernization_p03_consumer_runtime_allocation.json",
+      "size": 43959,
+      "sha256": "f8dab8da8dadd9163f0b8249b59672d91c4b52a26a472e8392fd508c8934173a"
+    },
+    "checkpoint": {
+      "path": "content/modernization/p03_stage73_consumer_runtime_checkpoint.json",
+      "size": 2857,
+      "sha256": "ea930a0df1d48aba9da9e6ea1bb808b117d3c03d2cdb297752c557b28f0bf82d"
+    },
+    "route_audit": {
+      "path": "content/modernization/p03_stage73_consumer_runtime_route_audit.json",
+      "size": 12992,
+      "sha256": "d3af91e38635c12e0f985ab8f1f2467d81cb1acd8e2716c5dd285eda98044275"
+    },
+    "incremental_bps": {
+      "path": "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
+      "size": 36300,
+      "sha256": "8b901363aedff24d13fa60530dcb1512e02317b6da675e96586ac2dd83af6a61"
+    },
+    "policy": "FAIL_CLOSED_EXACT_STAGE73_COMMIT_AND_SIX_ARTIFACT_IDENTITIES"
+  },
+  "inputs": {
+    "p03_contract": {
+      "path": "content/modernization/p03_learnset_contract.json",
+      "size": 11826,
+      "sha256": "4e421a5c6110ad5b4e2de399d354b058b566815aaf5aa30b8cc445cba38a6033"
+    },
+    "p03_runtime_handoff": {
+      "path": "content/modernization/p03_runtime_handoff.json",
+      "size": 8692,
+      "sha256": "2458a0b3299f318f4a08dc460df6db876ea4f5f2347e6f8c48541d9b8a9f0479"
+    },
+    "p03_compiled_index": {
+      "path": "content/modernization/p03_compiled_index.json",
+      "size": 2327596,
+      "sha256": "a4258048c50df88ecbaf2525e04edaa6f2440da2a79d2f336ccb67e3a2362751"
+    },
+    "learnsets_zip": {
+      "path": "userfile/imports/modernization_p01/Pokemon_Vega_Stage61_技習得品質改善版_v1.3.0_20260905.zip",
+      "size": 82683251,
+      "sha256": "80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb"
+    },
+    "move_memory_metadata": {
+      "path": "build/stages/25_move_memory.json",
+      "size": 25075,
+      "sha256": "ef7f274ab82cc247c7fba043df5893b9b8f56d0dfd651c1a2251d74eeff16042"
+    },
+    "move_memory_parent_rom": {
+      "path": "build/stages/25_move_memory.gba",
+      "size": 33554432,
+      "sha256": "0b1d4d5c0a1aea1befcfb4e956c105dfae77dc755bd8d8172cca2187a44ea981"
+    },
+    "stage73_symbols": {
+      "path": "generated/runtime/modernization_p03_stage73_consumer_runtime_symbols.json",
+      "size": 1692,
+      "sha256": "5a9113d2450a6c1aed5559176faa88a3cea4aac9a8c886e8e72a7546384bec72"
+    },
+    "rom_regions": {
+      "path": "config/rom_regions.csv",
+      "size": 513,
+      "sha256": "f5dcb0ecf2f726bfff1e9c8382204e79b1354ee9071f8d9ac00a83de7a9b3553"
+    },
+    "species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "size": 207095,
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+    }
+  },
+  "supply_contract": {
+    "machine": {
+      "routes": 26279,
+      "species_move_pairs": 26279,
+      "species": 1286,
+      "distinct_moves": 184,
+      "max_rows_per_species": 131,
+      "max_species": 151,
+      "page_size": 40,
+      "max_pages": 4,
+      "set_sha256": "c36479fe7ccca18a2f0861597d7e9667d0f30f2cc1a32d33dc32efea12e107fd"
+    },
+    "tutor": {
+      "routes": 369,
+      "species_move_pairs": 369,
+      "species": 138,
+      "distinct_moves": 31,
+      "max_rows_per_species": 12,
+      "max_species": 762,
+      "page_size": 40,
+      "max_pages": 1,
+      "set_sha256": "085379dc87fb5127e2f8f29d35d4f51805b138c7c86ecc022a68b5979da24f15"
+    },
+    "total_routes": 26648,
+    "total_species_move_pairs": 26648,
+    "duplicate_species_family_move_pairs": 0,
+    "supply_required_set_sha256": "5ef6be8c533e60c07ec1240c3ee8cc1e56c90c505689f3d41436719f338f7968",
+    "cross_family_same_move_id_count": 10,
+    "cross_family_same_move_ids": [173, 264, 304, 340, 352, 395, 700, 701, 702, 793],
+    "same_species_cross_family_pair_count": 0,
+    "existing_slot_projection": {
+      "routes": 29773,
+      "machine": 29033,
+      "tutor": 740,
+      "set_sha256": "f4be2d83dae734c9339b790583d1e8c427daac49c964c87205b2f970b6deb3f1"
+    },
+    "selected_direct_partition": {
+      "total": 56421,
+      "existing": 29773,
+      "new": 26648
+    },
+    "family_adversarial_examples": [
+      {"species": 18, "move": 173, "required_family": "machine"},
+      {"species": 10, "move": 173, "required_family": "tutor"}
+    ],
+    "required_machine_rows_using_existing_tutor_move_ids": 2940,
+    "required_machine_rows_using_existing_tutor_distinct_moves": 24,
+    "required_tutor_rows_using_existing_machine_move_ids": 81,
+    "required_tutor_rows_using_existing_machine_distinct_moves": 9,
+    "completion_claim": "DIRECT_MACHINE_TUTOR_SUPPLY_26648_COMPLETE_CHECKPOINT_NOT_FULL_P03_DONE"
+  },
+  "runtime": {
+    "species_count": 1621,
+    "move_ids": "1..1062",
+    "side_change_project_move_id": 1063,
+    "side_change_source_routes_excluded": 159,
+    "side_change_materialized": 0,
+    "prohibited_species_keys": [
+      "SPECIES_KEY_BROWT",
+      "SPECIES_KEY_POMBON",
+      "SPECIES_KEY_GECQUA"
+    ],
+    "prohibited_species_materialized": 0,
+    "mode_ram": "0x0203EC00",
+    "modes": {
+      "normal": 0,
+      "egg": 1,
+      "machine_probe": 2,
+      "machine_pages": [3, 4, 5, 6],
+      "tutor": 7
+    },
+    "candidate_capacity": 40,
+    "build_learnable_moveset": {
+      "caller_capacity_u16": 429,
+      "maximum_runtime_buffer_entries_after_archive_append": 238,
+      "maximum_unique_entries_after_archive_append": 234,
+      "maximum_species": 151,
+      "runtime_buffer_headroom_u16": 191,
+      "overflow_rows": 0,
+      "preservation_only": {
+        "selected_route_count_checked": 118369,
+        "missing_path_count": 4014,
+        "runtime_target_move_count": 2223,
+        "species_count": 501,
+        "max_rows_per_species": 22,
+        "max_species": 576,
+        "target_move_set_sha256": "0ccf54ee7e2617fefe99f974c1c3451a449c4701fedb6f49be3d8b4dedd02bfb",
+        "ui_supply_routes_added": 0,
+        "route_accounting_added": 0
+      },
+      "purpose": "preserve selected legal P03 moves across battle effect-bank/backup-species restoration"
+    },
+    "unlock": {
+      "entry": "BAG_MOVE_MEMORY_ITEM_ONLY",
+      "required_flag": "0x082C",
+      "required_flag_name": "HALL_OF_FAME",
+      "early_game_archive_available": false
+    },
+    "economy": {
+      "price": 0,
+      "status": "PROVISIONAL_REPLACEABLE",
+      "replacement_contract": "future central config may replace price/NPC without changing the family-separated indexed tables"
+    },
+    "prohibited_coercions": [
+      "MACHINE_TO_EXISTING_TM_SLOT",
+      "TUTOR_TO_EXISTING_TUTOR_SLOT",
+      "MACHINE_OR_TUTOR_TO_LEVEL_ZERO",
+      "MACHINE_OR_TUTOR_TO_EGG",
+      "MACHINE_AND_TUTOR_TABLE_UNION"
+    ]
+  },
+  "parent_abi": {
+    "stage73_get_move_relearner": {
+      "symbol": "Stage73_GetMoveRelearnerMoves",
+      "thumb_address": "0x09534941"
+    },
+    "get_move_relearner_consumers": {
+      "party_probe": {
+        "call_address": "0x09114328",
+        "call_hex": "fff754ff",
+        "buffer_capacity_u16": 40
+      },
+      "teach_ui_rebuild": {
+        "entry": "0x091147AC",
+        "call_address": "0x091147C2",
+        "call_hex": "fff707fd",
+        "candidate_count_store_offset": 26,
+        "upstream_caller": "0x09097EDE",
+        "upstream_caller_hex": "7cf065fc"
+      }
+    },
+    "get_mon_data": "0x0803F355",
+    "player_party": "0x020241E4",
+    "special_var_8004": "0x02036FF4",
+    "special_var_8005": "0x02036FF6",
+    "special_result": "0x02037004",
+    "move_memory": {
+      "allocation_sequence": 33,
+      "allocation_name": "move_memory_runtime",
+      "allocation_start": 19726128,
+      "allocation_size": 2968,
+      "parent_content_sha256": "f62631fbfabd7e1a3af77c0640140a0a27fab2cfe8f9076556aee7cab4cee40a",
+      "parent_rom_content_sha256": "3b0e990853da8e4fa1a1f0c859ab624e7dbced767bf562891820f281bdb317af",
+      "known_parent_declared_effective_diff_spans": [
+        {"start": 19726244, "end_exclusive": 19726246, "size": 2},
+        {"start": 19726366, "end_exclusive": 19726370, "size": 4},
+        {"start": 19726940, "end_exclusive": 19726941, "size": 1},
+        {"start": 19728917, "end_exclusive": 19728921, "size": 4}
+      ],
+      "item_script_pointer_address": "0x092D05B4",
+      "item_script_pointer_parent_hex": "50072d09",
+      "old_script_entries": {
+        "normal": "0x092D07A0",
+        "forget": "0x092D08FC",
+        "egg": "0x092D0818",
+        "context_rejected": "0x092D09F8",
+        "finish": "0x092D0A08"
+      }
+    },
+    "hooks": [
+      {
+        "name": "VegaMoveMemory_GetMoveRelearnerMoves",
+        "address": "0x091141D4",
+        "width": 8,
+        "target": "Stage74_GetMoveRelearnerMoves",
+        "parent_hex": "004b184741495309"
+      },
+      {
+        "name": "BuildLearnableMoveset",
+        "address": "0x091143B8",
+        "width": 8,
+        "target": "Stage74_BuildLearnableMoveset",
+        "parent_hex": "f0b5d6464f464646",
+        "continuation_thumb": "0x091143C1",
+        "continuation_parent_hex": "0022",
+        "unique_caller": "0x090CC382",
+        "unique_caller_hex": "48f019f8",
+        "caller_buffer_capacity_u16": 429
+      }
+    ]
+  },
+  "allocations": [
+    {
+      "name": "modernization_p03_stage74_supply_runtime_payload",
+      "region": "integration_modules",
+      "alignment": 16,
+      "owner": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME",
+      "purpose": "family-separated direct machine/tutor archive tables, BuildLearnable-only preservation table, paged dispatcher, and bag UI scripts"
+    }
+  ],
+  "outputs": {
+    "rom": "build/stages/74_modernization_p03_supply_runtime.gba",
+    "metadata": "build/stages/74_modernization_p03_supply_runtime.json",
+    "allocation": "build/stages/74_modernization_p03_supply_runtime_allocation.json",
+    "incremental_bps": "build/patches/stage73-to-stage74-modernization-p03-supply-runtime.bps",
+    "payload": "generated/runtime/modernization_p03_stage74_supply_runtime.bin",
+    "symbols": "generated/runtime/modernization_p03_stage74_supply_runtime_symbols.json",
+    "audit": "generated/runtime/modernization_p03_stage74_supply_runtime_audit.json",
+    "route_audit": "generated/runtime/modernization_p03_stage74_supply_route_audit.json",
+    "checkpoint": "content/modernization/p03_stage74_supply_runtime_checkpoint.json"
+  }
+}

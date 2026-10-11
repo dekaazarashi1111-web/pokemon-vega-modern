@@ -1,0 +1,138 @@
+{
+  "artifacts": {
+    "pr16-learnset-progress-data": {
+      "id": 10685844498,
+      "sha256": "4eb969d1c88b2154ac2fbb12fb8eb303675537c5bdc19b704d50dab20e01b4e6",
+      "size": 20062
+    },
+    "pr16-learnset-progress-partial-arm": {
+      "id": 10686590044,
+      "sha256": "7539711a244987427e845dba79e45db6b72346f2a005e355e8438a30141d00cd",
+      "size": 40232
+    },
+    "pr16-learnset-progress-proof": {
+      "id": 10686510131,
+      "sha256": "c20d05325343ca45e7bb55d5972980aaf25ac0eee17428d5e7e27886b2accdc6",
+      "size": 26648
+    }
+  },
+  "candidate": {
+    "sha256": "e168c06f7707002e976dceff61ad8b5ad98ccd07be322f4e8d93d2276a206d82",
+    "size": 33554432
+  },
+  "execution_counts": {
+    "new_arm_compiles": 4,
+    "new_arm_links": 2
+  },
+  "native_results": [
+    {
+      "calls": 111,
+      "candidate_sha256": "e168c06f7707002e976dceff61ad8b5ad98ccd07be322f4e8d93d2276a206d82",
+      "duplicate_paths": 12,
+      "full_slot_notifications": 18,
+      "native_create_mon_calls": 9,
+      "new_code_pc_seen_for_every_call": true,
+      "preserved_owner_entries": 4,
+      "real_initial_pp_checked": true,
+      "samples": 9,
+      "scope": "HOST_FIXTURE_DIRECT_ROM_CALL_NOT_GAMEPLAY_E2E",
+      "status": "PASS_INITIAL_AND_NATURAL_ROM_PROBES",
+      "stored_four_moves_unchanged": true
+    },
+    {
+      "calls": 111,
+      "candidate_sha256": "e168c06f7707002e976dceff61ad8b5ad98ccd07be322f4e8d93d2276a206d82",
+      "duplicate_paths": 12,
+      "full_slot_notifications": 18,
+      "native_create_mon_calls": 9,
+      "new_code_pc_seen_for_every_call": true,
+      "preserved_owner_entries": 4,
+      "real_initial_pp_checked": true,
+      "samples": 9,
+      "scope": "HOST_FIXTURE_DIRECT_ROM_CALL_NOT_GAMEPLAY_E2E",
+      "status": "PASS_INITIAL_AND_NATURAL_ROM_PROBES",
+      "stored_four_moves_unchanged": true
+    }
+  ],
+  "preserved_failed_runs": [
+    35707927147,
+    35708647197,
+    35709388462
+  ],
+  "proof_files": {
+    "abi.json": {
+      "sha256": "0d76f86075de94a8e73eb0cb273c6fce482bb8894bce9b1ac66c3c0f8865bc4f",
+      "size": 919
+    },
+    "build11.txt": {
+      "sha256": "f30c4504419e3c3454276cfa274ca78642ac29c920ad78efe391bd3780b49aae",
+      "size": 97
+    },
+    "build29.txt": {
+      "sha256": "f30c4504419e3c3454276cfa274ca78642ac29c920ad78efe391bd3780b49aae",
+      "size": 97
+    },
+    "disassembly.txt": {
+      "sha256": "30b0f292a995f92dd86a1d0668653583e3e4c53a5b5c891e45aad88601496a57",
+      "size": 13572
+    },
+    "host-audit.json": {
+      "sha256": "eb77022e42bb40e37c6db36de860a07ed858209c9b0fce815dcbac8b0d5d1e93",
+      "size": 200
+    },
+    "inherited-host.json": {
+      "sha256": "4b5be5e82e521765e11444d226e82a95f64e6954d141c2b98be421f346c6ed79",
+      "size": 2351
+    },
+    "link.json": {
+      "sha256": "75a3d059be3fd9f18c0c51afcbebd85dfd28863ec50cedf090cc1fd585a90291",
+      "size": 46435
+    },
+    "native-compile.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "native11.json": {
+      "sha256": "b17c3ec79b5a1226670cec80b3718ccf0c3708b2346bc10518aabcb0344df1dd",
+      "size": 426
+    },
+    "native11.txt": {
+      "sha256": "b206bcbf1918c9b7be92509bfa1f6fc28069fcb0bb0dd799c17d6e16573511da",
+      "size": 775
+    },
+    "native29.json": {
+      "sha256": "b17c3ec79b5a1226670cec80b3718ccf0c3708b2346bc10518aabcb0344df1dd",
+      "size": 426
+    },
+    "native29.txt": {
+      "sha256": "b206bcbf1918c9b7be92509bfa1f6fc28069fcb0bb0dd799c17d6e16573511da",
+      "size": 775
+    },
+    "pr16_progress_samples.h": {
+      "sha256": "072c49d33fd53b4321974b6d1253f44ccd97c760165cb250a2efc7bc1318133e",
+      "size": 642
+    },
+    "resume.json": {
+      "sha256": "df9f69096ae2c7d1841176d015e32cd18e15be6a2c1d00d9445f594fdb652d37",
+      "size": 83
+    },
+    "task-graph.txt": {
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a",
+      "size": 77
+    },
+    "tracked-diff.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "unit.txt": {
+      "sha256": "a69a252897231de6bd805399a0504c204bdde9a7badac493da016fdfa09421d3",
+      "size": 3633
+    },
+    "verification.json": {
+      "sha256": "6a4efee3933463481d489e8cc59f2582dd0e68210658fa26719be2c4501ecb29",
+      "size": 5834
+    }
+  },
+  "run_id": 35710087058,
+  "source_head": "d9f92e51826fbda4741c294635442a66cb777b64"
+}

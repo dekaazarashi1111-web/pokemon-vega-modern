@@ -1,0 +1,706 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-EXTERNAL1-CONT-BYTES",
+  "source_head": "951d12949d86f18f77c57b8e51eb9b35c12647c6",
+  "run_id": 35048828662,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "EXTERNAL1_CONTINUATION_BYTES_NOT_ABI_OR_RETURN_PROOF",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "target": 135346377,
+    "graph": {
+      "entry": 135346377,
+      "window": 64,
+      "window_identity": {
+        "size": 64,
+        "sha256": "4b644247477cc75b70ee272a1685ce71d62d5853951b7b4f53c9496193fb719d"
+      },
+      "nodes": [
+        {
+          "address": 135346376,
+          "size": 2,
+          "hex": "0168",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346378
+          ]
+        },
+        {
+          "address": 135346378,
+          "size": 2,
+          "hex": "9800",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346380
+          ]
+        },
+        {
+          "address": 135346380,
+          "size": 2,
+          "hex": "4218",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346382
+          ]
+        },
+        {
+          "address": 135346382,
+          "size": 2,
+          "hex": "1168",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346384
+          ]
+        },
+        {
+          "address": 135346384,
+          "size": 2,
+          "hex": "4804",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346386
+          ]
+        },
+        {
+          "address": 135346386,
+          "size": 2,
+          "hex": "400c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346388
+          ]
+        },
+        {
+          "address": 135346388,
+          "size": 2,
+          "hex": "a842",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346390
+          ]
+        },
+        {
+          "address": 135346390,
+          "size": 2,
+          "hex": "09d1",
+          "kind": "conditional",
+          "target": 135346412,
+          "memory_write": false,
+          "successors": [
+            135346392,
+            135346412
+          ]
+        },
+        {
+          "address": 135346392,
+          "size": 2,
+          "hex": "0804",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346394
+          ]
+        },
+        {
+          "address": 135346394,
+          "size": 2,
+          "hex": "c00f",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346396
+          ]
+        },
+        {
+          "address": 135346396,
+          "size": 2,
+          "hex": "b042",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346398
+          ]
+        },
+        {
+          "address": 135346398,
+          "size": 2,
+          "hex": "05d1",
+          "kind": "conditional",
+          "target": 135346412,
+          "memory_write": false,
+          "successors": [
+            135346400,
+            135346412
+          ]
+        },
+        {
+          "address": 135346400,
+          "size": 2,
+          "hex": "911c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346402
+          ]
+        },
+        {
+          "address": 135346402,
+          "size": 2,
+          "hex": "581c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346404
+          ]
+        },
+        {
+          "address": 135346404,
+          "size": 2,
+          "hex": "2080",
+          "kind": "ordinary",
+          "memory_write": true,
+          "successors": [
+            135346406
+          ]
+        },
+        {
+          "address": 135346406,
+          "size": 2,
+          "hex": "02e0",
+          "kind": "jump",
+          "target": 135346414,
+          "memory_write": false,
+          "successors": [
+            135346414
+          ]
+        },
+        {
+          "address": 135346412,
+          "size": 2,
+          "hex": "0021",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            135346414
+          ]
+        },
+        {
+          "address": 135346414,
+          "size": 2,
+          "hex": "081c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": []
+        }
+      ],
+      "external_edges": [
+        {
+          "site": 135346414,
+          "kind": "window_fallthrough",
+          "target": 135346417,
+          "resolved_to_code_address_only": true,
+          "stop_reason": "SAVED_OR_DEFERRED_OR_WINDOW_BOUNDARY_NOT_DECODED"
+        }
+      ],
+      "memory_write_sites": [
+        135346404
+      ],
+      "deferred_unread_roots": [
+        134647037,
+        134647989,
+        134648233,
+        134648273,
+        134667549,
+        135346165,
+        135346417,
+        135346425,
+        151613701,
+        154152717,
+        154155097,
+        154635157,
+        154635821,
+        154635823,
+        154635825,
+        154639241,
+        154639243,
+        154917233,
+        154917289,
+        154922465,
+        154922573
+      ],
+      "deferred_roots_decoded": 0,
+      "saved_instruction_bytes_redecoded": 0,
+      "side_effects_excluded": false
+    },
+    "sampled_ranges": [
+      {
+        "address": 135346376,
+        "hex": "0168",
+        "size": 2,
+        "sha256": "662fb906c0fb671022f9914d6bba12250ea6adfb12dbae81cebb353b3685083e"
+      },
+      {
+        "address": 135346378,
+        "hex": "9800",
+        "size": 2,
+        "sha256": "261dee5ca4377f70571e7ac8036cc64438420c660d9db3dd6cfe03db99e659d2"
+      },
+      {
+        "address": 135346380,
+        "hex": "4218",
+        "size": 2,
+        "sha256": "c7c5763c0986447603d21b6544b978f849c5b416c1b6d44929648e65a722aa2f"
+      },
+      {
+        "address": 135346382,
+        "hex": "1168",
+        "size": 2,
+        "sha256": "ef547c3037c9f1098630cf92fc5779bd68d5554e498ad9fd270074cdbb6257c2"
+      },
+      {
+        "address": 135346384,
+        "hex": "4804",
+        "size": 2,
+        "sha256": "a9b4d13f8a5156ac17240dfad9e291a4bb65f627d87cd749f725efb3c5a0c732"
+      },
+      {
+        "address": 135346386,
+        "hex": "400c",
+        "size": 2,
+        "sha256": "0f51f7b53c7c0311db416a6b9dab3a3e7aea1f6a7f96ea0306c8c627debe7c46"
+      },
+      {
+        "address": 135346388,
+        "hex": "a842",
+        "size": 2,
+        "sha256": "2e427983ce323f05e4c1961e3aa86cb6c6243a020784bf21fde140e63bd13377"
+      },
+      {
+        "address": 135346390,
+        "hex": "09d1",
+        "size": 2,
+        "sha256": "0e4f03e4434cb92a530c2e42ddc01e0bc556dcddd6543f37820de98cfc5dd94c"
+      },
+      {
+        "address": 135346392,
+        "hex": "0804",
+        "size": 2,
+        "sha256": "0c5490ca2f6d61c2d410e7907be97b3bc36b3e4de614e1f5431278dbccad4c79"
+      },
+      {
+        "address": 135346394,
+        "hex": "c00f",
+        "size": 2,
+        "sha256": "1e2b964996c337d6bb12de3ab5570f55bbe29ebd40668345fb4647f81dce3620"
+      },
+      {
+        "address": 135346396,
+        "hex": "b042",
+        "size": 2,
+        "sha256": "e66b3ba5dfcb79e1d3b5dceb52f313916560dcecbee54fadd24ea060c929ba00"
+      },
+      {
+        "address": 135346398,
+        "hex": "05d1",
+        "size": 2,
+        "sha256": "22edf9c744611703cc0a8a1a4d87ce05f0826bc6735c61d9f73362f873859fae"
+      },
+      {
+        "address": 135346400,
+        "hex": "911c",
+        "size": 2,
+        "sha256": "b0a26cfd08df663d4cf4a2c52443c7f69ad44c55ceefa45d9232ef707dfb4f2b"
+      },
+      {
+        "address": 135346402,
+        "hex": "581c",
+        "size": 2,
+        "sha256": "189383c042edd489c677a2ddd121926937bd43c56fcee2448bf1026a71161008"
+      },
+      {
+        "address": 135346404,
+        "hex": "2080",
+        "size": 2,
+        "sha256": "699a118b37ad69fddf1f707cbd48ca4bf9da5b9d0cd59582bc84750ccee286a7"
+      },
+      {
+        "address": 135346406,
+        "hex": "02e0",
+        "size": 2,
+        "sha256": "570c0f7fa07ebb3c7ad727d0a0f5b7ffacd31fc86459c7cf35cad2c463cd56f8"
+      },
+      {
+        "address": 135346412,
+        "hex": "0021",
+        "size": 2,
+        "sha256": "1321e1ca91757e8c23c934ff4047d69657e9caeed9ce5a29e5fcf94e7e648ca6"
+      },
+      {
+        "address": 135346414,
+        "hex": "081c",
+        "size": 2,
+        "sha256": "e3d1a4cbec6d9cd2ccc33420daff3605e6ea0c871bdb5781df2e8b7b92464adb"
+      }
+    ],
+    "sampled_instruction_bytes": 36,
+    "inherited_prefix_boundary": {
+      "target": 135346377,
+      "r0": 50339884,
+      "r1": "fourth LDRH result",
+      "r3": "fifth independent LDRH result",
+      "r4": 33795990,
+      "r5": "u16(entry_r1)",
+      "r6": "u8(entry_r0)",
+      "frame_bytes_live": 16
+    },
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "old_frontier_removed": false,
+    "remaining_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      134667549,
+      135346165,
+      135346417,
+      135346425,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "known_sampled_boundary_targets": [],
+    "new_unread_targets": [],
+    "unresolved_indirect_edges": [],
+    "next_saved_abi_target": 135346377,
+    "callee_return_proven": false,
+    "callee_return_observed": false,
+    "saved_slot_preservation_proven": false,
+    "return_pointer_non_alias_proven": false,
+    "all_runtime_owners_excluded": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 1,
+    "new_graph_decodes": 1,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_external1_cont_bytes.py": {
+      "size": 4853,
+      "sha256": "87883cc9afb855a27d9e667caface7fba43e77aa3c009443b04dfdba9d4131c0"
+    },
+    "tests/test_pr16_ring_external1_cont_bytes.py": {
+      "size": 3184,
+      "sha256": "51c497cc05f675fc9a616f342254e5babbf096536fbcab3718f113261419a8aa"
+    },
+    ".github/workflows/pr16-ring-external1-cont-bytes.yml": {
+      "size": 1476,
+      "sha256": "90d71d823ab3b9d3a27fb6c22749a81a5a10bf65157a5aebeaacdc24863fb73f"
+    },
+    "content/modernization/pr16_ring_external1_abi.json": {
+      "size": 10768,
+      "sha256": "6b85751600d2ac75f64bd24dc725bbd1b197ca4c99203faa1ee06c74f44be3c4"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_external1_bytes.py": {
+      "size": 7703,
+      "sha256": "b8e18b0a4659ffa738b9c0205a2e1453fbf23b3b2270f7f071ae97ec26e7b671"
+    },
+    "scripts/pr16_ring_epilogue_bytes.py": {
+      "size": 8818,
+      "sha256": "d3926520bc0ada025bd38ba8b2210490ad075c4b605861f60811a12d9e1caaf1"
+    },
+    "scripts/pr16_ring_followup_support.py": {
+      "size": 10781,
+      "sha256": "0bccc5651230aba3199f7b2c2463f684371d568b90e3807f82389a2644fc1751"
+    },
+    "content/modernization/pr16_ring_common_tail_bytes.json": {
+      "size": 15198,
+      "sha256": "d20be32b02bbc9e6e134f3edaa9fdfad467258ab7c9c6211c5993c1758d87745"
+    },
+    "scripts/pr16_ring_common_tail_bytes.py": {
+      "size": 22681,
+      "sha256": "f848158142e23645c9ebdc9aa56e84f1a21a8d886630cdb6998fd4ab8ab2d806"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_callee_bytes.py": {
+      "size": 15678,
+      "sha256": "d15bcb04e4d3ca1d05ad5738f20a96274b4e33a8cae5caca97659ac5d53fa32a"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    },
+    "content/modernization/pr16_ring_epilogue_bytes.json": {
+      "size": 11229,
+      "sha256": "f34fcaa88d03be1ba487ab331e62ef35a5958ce6866101d390a2262842249d61"
+    },
+    "content/modernization/pr16_ring_high_branch_bytes.json": {
+      "size": 14310,
+      "sha256": "8fb4f5a0604393f37ee63676bf411dc4e3c230e4492bb18ff9b1333999f151eb"
+    },
+    "content/modernization/pr16_ring_zero_bytes.json": {
+      "size": 35345,
+      "sha256": "053457495169b5628d8ff3c0c28c8a58e38053ffd66b4bf8547bae2b2cfb5036"
+    },
+    "content/modernization/pr16_ring_nonzero_bytes.json": {
+      "size": 11445,
+      "sha256": "d215da8016b55be5cfbde5c62b144182de6aed6254a0c3bb76ca22852d92a4bc"
+    },
+    "content/modernization/pr16_ring_helper_bytes.json": {
+      "size": 23847,
+      "sha256": "09ba17a7fdb61b327d7a0e18f71c09fbffb7c74b3e58004b72d31ead8de28c1b"
+    },
+    "content/modernization/pr16_ring_callee_bytes.json": {
+      "size": 15364,
+      "sha256": "292bb4f2ccba10bc19fc39e372519dd6cd797d4829b5b726b16ef6a47d359eaa"
+    },
+    "content/modernization/pr16_ring_epilogue_abi.json": {
+      "size": 11160,
+      "sha256": "a336594a386f5b9f69c2832e35646daad5ff8ca33f2ce4d83a219ed36207f5cc"
+    },
+    "content/modernization/pr16_ring_high_branch_abi.json": {
+      "size": 9441,
+      "sha256": "2e9a6c05f49a16d1dd92a3939876436b8e25dc1ec5012c3b527e25fcbd845e78"
+    },
+    "content/modernization/pr16_ring_external1_bytes.json": {
+      "size": 25306,
+      "sha256": "2df5de29ce937a02491b839993edbb631ab0016c09176d6134c9759a1434461c"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 10,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35048669015,
+      "head_sha": "48e81bb4249b6f2b610d93fb20b62dec5f903bfd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35048832637,
+      "name": "source-validation",
+      "head_sha": "951d12949d86f18f77c57b8e51eb9b35c12647c6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35048832570,
+      "name": "p03-forgetting-ci",
+      "head_sha": "951d12949d86f18f77c57b8e51eb9b35c12647c6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35048828662,
+      "name": "未読external1継続1根の採取検証記録・非force push",
+      "head_sha": "951d12949d86f18f77c57b8e51eb9b35c12647c6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35048828612,
+      "name": "p03-forgetting-ci",
+      "head_sha": "951d12949d86f18f77c57b8e51eb9b35c12647c6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35048828615,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "951d12949d86f18f77c57b8e51eb9b35c12647c6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35048828616,
+      "name": "source-validation",
+      "head_sha": "951d12949d86f18f77c57b8e51eb9b35c12647c6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35048828627,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "951d12949d86f18f77c57b8e51eb9b35c12647c6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35048720008,
+      "name": "source-validation",
+      "head_sha": "fb7dc4ce41c06f15b4c781d3aea84d0b31caaae3",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35048720034,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fb7dc4ce41c06f15b4c781d3aea84d0b31caaae3",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35048672580,
+      "name": "p03-forgetting-ci",
+      "head_sha": "48e81bb4249b6f2b610d93fb20b62dec5f903bfd",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35048672575,
+      "name": "source-validation",
+      "head_sha": "48e81bb4249b6f2b610d93fb20b62dec5f903bfd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35048669015,
+      "name": "保存外部callee prefix ABIの検証記録・非force push",
+      "head_sha": "48e81bb4249b6f2b610d93fb20b62dec5f903bfd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35048669023,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "48e81bb4249b6f2b610d93fb20b62dec5f903bfd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35048669004,
+      "name": "p03-forgetting-ci",
+      "head_sha": "48e81bb4249b6f2b610d93fb20b62dec5f903bfd",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35048668990,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "48e81bb4249b6f2b610d93fb20b62dec5f903bfd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35048668987,
+      "name": "source-validation",
+      "head_sha": "48e81bb4249b6f2b610d93fb20b62dec5f903bfd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35013573133,
+      "name": "p03-forgetting-ci",
+      "head_sha": "4ea46b7ba0ca118435b37e708527cd05bc8f41a1",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35013573115,
+      "name": "source-validation",
+      "head_sha": "4ea46b7ba0ca118435b37e708527cd05bc8f41a1",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35013395908,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d8b18f448c5c0db940d5e4f045a602d916e3d171",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35013395996,
+      "name": "source-validation",
+      "head_sha": "d8b18f448c5c0db940d5e4f045a602d916e3d171",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

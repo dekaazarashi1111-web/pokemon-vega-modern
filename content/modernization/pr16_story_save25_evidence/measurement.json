@@ -1,0 +1,175 @@
+{
+  "status": "MEASURED_EAST_FIRST_BOUNDARY_SAVE25_AWAITING_RECORD",
+  "source_head": "61d71820e6df2bc2a16f4fa9102f4aed18c1edaa",
+  "run_id": 37112730069,
+  "input_save": {
+    "size": 131088,
+    "sha256": "42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "4a92a1d2a36c1b74fa7ba211a9b3a815d63c04582fd34b117a5c3af16828a68f"
+  },
+  "route": [
+    [
+      31,
+      5
+    ],
+    [
+      31,
+      6
+    ]
+  ],
+  "battle": {
+    "start": 5,
+    "finish": 31,
+    "trainer": true,
+    "outcome": 1,
+    "used": [
+      0,
+      0,
+      3,
+      0
+    ],
+    "decisions": [
+      {
+        "observation": 11,
+        "move_slot": 2
+      },
+      {
+        "observation": 15,
+        "keep_current": true
+      },
+      {
+        "observation": 18,
+        "move_slot": 2
+      },
+      {
+        "observation": 22,
+        "keep_current": true
+      },
+      {
+        "observation": 25,
+        "move_slot": 2
+      }
+    ]
+  },
+  "final": {
+    "observe": 39,
+    "frame": 7489,
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      31,
+      7
+    ],
+    "live_xy": [
+      38,
+      14
+    ],
+    "facing": 1,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 25,
+    "rp": 0,
+    "battle_flags": 12,
+    "battle_outcome": 1,
+    "party_sha256": "43e3d4ce485bbfd695efdd02d442aa6aaa85bd71a0637ce87837ec6f483cff69",
+    "flash_sha256": "229705ac328d5a4db804aee79d4897a72364db5bc444ddf6f7fcbcea91ce0a09",
+    "ledger_sha256": "2e8fded6a5578df3903c585fc9f9ec232b21ccd7a007a6362b1f56181fe9bca0"
+  },
+  "continued": {
+    "observe": 1,
+    "frame": 1510,
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      31,
+      7
+    ],
+    "live_xy": [
+      38,
+      14
+    ],
+    "facing": 1,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 25,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "43e3d4ce485bbfd695efdd02d442aa6aaa85bd71a0637ce87837ec6f483cff69",
+    "flash_sha256": "229705ac328d5a4db804aee79d4897a72364db5bc444ddf6f7fcbcea91ce0a09",
+    "ledger_sha256": "2e8fded6a5578df3903c585fc9f9ec232b21ccd7a007a6362b1f56181fe9bca0"
+  },
+  "progress": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "4a92a1d2a36c1b74fa7ba211a9b3a815d63c04582fd34b117a5c3af16828a68f"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 7489,
+      "inputs": 94,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 40
+  },
+  "independent_continue": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "4a92a1d2a36c1b74fa7ba211a9b3a815d63c04582fd34b117a5c3af16828a68f"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "4a92a1d2a36c1b74fa7ba211a9b3a815d63c04582fd34b117a5c3af16828a68f"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 1510,
+      "inputs": 13,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 2
+  },
+  "screen_count": 42,
+  "native_processes": 2,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "rom_changes": 0,
+  "fixture_writes": 0,
+  "ordinary_saves": 1,
+  "teleport_accepted": false,
+  "cave_crossing_complete": false,
+  "full_story_accepted": false,
+  "release_ready": false,
+  "artifact_excludes": [
+    "existing ROM",
+    "runner",
+    "runtime",
+    "input Save24"
+  ]
+}

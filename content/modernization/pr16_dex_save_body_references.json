@@ -1,0 +1,405 @@
+{
+  "schema_version": 1,
+  "status": "PASS_ALL_THREE_FALSE_POSITIVE_NONPOINTER_DATA",
+  "scope_ja": "指定3件だけの読取専用監査。正規8entry refsおよびStage61全体のreclaim安全性は別監査。",
+  "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+  "source_branch": "codex/modernization-followup-20260908",
+  "source_ref": "f3464a10c2d54825794ae61c5319e48f65dafa88",
+  "project_tileset_builder_git_blob_sha": "5d78cfb13310523f55c93a16d0e9bd86f3ae81f6",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "original_stage61_code": {
+    "address": "0x09448960",
+    "size": 12568,
+    "end_exclusive": "0x0944BA78",
+    "sha256": "00c052e674a5161df02b467e4a7b1d5a0e75af40bfc49ef45590df531f776131"
+  },
+  "scope_count": 3,
+  "confirmed_true_callers": 0,
+  "confirmed_false_positives": 3,
+  "unresolved": 0,
+  "references": [
+    {
+      "finding": "FALSE_POSITIVE_DPCM_CRY_SAMPLE",
+      "confidence": "HIGH",
+      "scan_kind": "ALIGNED_U32_EQUALS_STAGE61_INTERIOR",
+      "scan_window": {
+        "address": "0x09CEB664",
+        "size": 4,
+        "end_exclusive": "0x09CEB668",
+        "sha256": "955040d6e96f2fd307f4eab10c43d78a1fed21d27b53bdeddea1ec88154914d0"
+      },
+      "syntactic_match_verified": true,
+      "apparent_target": {
+        "address": "0x0944951C",
+        "symbol": "Stage61State_HandleLoadSector",
+        "offset_within_symbol": 224,
+        "symbol_window": {
+          "address": "0x0944943C",
+          "size": 654,
+          "end_exclusive": "0x094496CA",
+          "sha256": "e64101fd682b8e289d00e99b24230a17acbd0286f72d54fdb57abdebed4dbcac"
+        }
+      },
+      "true_caller": false,
+      "needs_retarget": false,
+      "owning_region": "DPE-JP dpe_payload",
+      "typed_roots": [
+        {
+          "table_key": "species_cry",
+          "root": "0x0955FEEC",
+          "row_index": 1490,
+          "stride": 12,
+          "root_sites": [
+            "0x080718B8",
+            "0x080A0A9C"
+          ],
+          "all_root_sites_agree": true,
+          "row": {
+            "address": "0x095644C4",
+            "size": 12,
+            "end_exclusive": "0x095644D0",
+            "sha256": "61648d329a0ca070a242b639498fa0df12b660dbfafe252c3018ae7a6560d7d7"
+          },
+          "asset_pointer_site": "0x095644C8",
+          "asset_pointer": "0x09CEAD30"
+        },
+        {
+          "table_key": "species_cry2",
+          "root": "0x09564D40",
+          "row_index": 1490,
+          "stride": 12,
+          "root_sites": [
+            "0x080718A8",
+            "0x080A0A8C"
+          ],
+          "all_root_sites_agree": true,
+          "row": {
+            "address": "0x09569318",
+            "size": 12,
+            "end_exclusive": "0x09569324",
+            "sha256": "ef635276f7477c59a193a03619beab273645bc211f3846f4dac064a2b3ecb61f"
+          },
+          "asset_pointer_site": "0x0956931C",
+          "asset_pointer": "0x09CEAD30"
+        }
+      ],
+      "audio": {
+        "type": "WaveData compressed DPCM",
+        "header": {
+          "address": "0x09CEAD30",
+          "size": 16,
+          "end_exclusive": "0x09CEAD40",
+          "sha256": "4a4763526262c7ce4fbe4088634b906ecf705a818185c3ae7ef84d32f356241c"
+        },
+        "sample_count": 7781,
+        "decoded_block_samples": 64,
+        "encoded_block_size": 33,
+        "decoded_block_count": 122,
+        "decoder_read_extent": {
+          "address": "0x09CEAD30",
+          "size": 4042,
+          "end_exclusive": "0x09CEBCFA",
+          "sha256": "2b479444c5e6ab79b1da6e5223b822a9d55c8feb4adc429ed287109453d37931"
+        },
+        "decoded_trimmed_sha256": "318ddb92d5155458420f084509a6dab6e0da3d05ab6460e8320efa7beac6d514",
+        "next_wave_root": "0x09CEBCFC",
+        "alignment_gap_to_next_root": 2,
+        "hit_roles": [
+          {
+            "address": "0x09CEB664",
+            "block_index": 70,
+            "offset_within_block": 30,
+            "role": "DPCM_DELTA_NIBBLES"
+          },
+          {
+            "address": "0x09CEB665",
+            "block_index": 70,
+            "offset_within_block": 31,
+            "role": "DPCM_DELTA_NIBBLES"
+          },
+          {
+            "address": "0x09CEB666",
+            "block_index": 70,
+            "offset_within_block": 32,
+            "role": "DPCM_DELTA_NIBBLES"
+          },
+          {
+            "address": "0x09CEB667",
+            "block_index": 71,
+            "offset_within_block": 0,
+            "role": "INITIAL_SAMPLE"
+          }
+        ]
+      },
+      "consumer_evidence": [
+        "dpe_tone_type",
+        "dpe_cry_repoints",
+        "fr_sound",
+        "fr_cry_tone",
+        "fr_wave_type",
+        "fr_dpcm_decoder",
+        "fr_dpcm_encoder"
+      ],
+      "conclusion_ja": "ToneData.wavで到達するDPCM標本列内の偶然一致。4 bytesはblock70末尾の差分符号3 bytesとblock71先頭標本1 byteであり、関数pointerではない。"
+    },
+    {
+      "finding": "FALSE_POSITIVE_LZ77_TILESET_GFX",
+      "confidence": "HIGH",
+      "scan_kind": "THUMB_BL_SHAPED_DATA",
+      "scan_window": {
+        "address": "0x09257080",
+        "size": 4,
+        "end_exclusive": "0x09257084",
+        "sha256": "1f790a84e3a1dcc1ca0d3f1f9bf0871ee33e6d382f496b1049c068429863e040"
+      },
+      "syntactic_match_verified": true,
+      "apparent_target": {
+        "address": "0x09449066",
+        "symbol": "Stage61State_EnsureBackupGeneration",
+        "offset_within_symbol": 86,
+        "symbol_window": {
+          "address": "0x09449010",
+          "size": 176,
+          "end_exclusive": "0x094490C0",
+          "sha256": "18ee44d790bdd54fe0369f0ac70761e84bc3b37188d41821cdec70ff686ee68c"
+        }
+      },
+      "true_caller": false,
+      "needs_retarget": false,
+      "owning_region": "T17 regression_runtime_payload",
+      "tileset": {
+        "type": "struct Tileset; compressed secondary graphics",
+        "header": {
+          "address": "0x09257F08",
+          "size": 24,
+          "end_exclusive": "0x09257F20",
+          "sha256": "ca617a48ad2bc325e06689e6fd2b7e6e47ee4ed212fdff94fe4c515d701797d5"
+        },
+        "tiles_pointer_site": "0x09257F0C",
+        "tiles_root": "0x09256DE4",
+        "palette_root": "0x092576DC",
+        "metatile_root": "0x092578DC",
+        "metatile_attributes_root": "0x09257DCC",
+        "callback_is_null": true,
+        "layout_roots": [
+          {
+            "type": "struct MapLayout",
+            "header": {
+              "address": "0x0928998C",
+              "size": 28,
+              "end_exclusive": "0x092899A8",
+              "sha256": "6b8e576de89e31c377ab7ca8db0765083b3fceb5db2b14cf817e142a2372a26a"
+            },
+            "secondary_tileset_pointer_site": "0x092899A0"
+          },
+          {
+            "type": "struct MapLayout",
+            "header": {
+              "address": "0x092A54D8",
+              "size": 28,
+              "end_exclusive": "0x092A54F4",
+              "sha256": "3bb246d9faafa30e36dec8361a44a9873935708f861521a5da935b357d80355a"
+            },
+            "secondary_tileset_pointer_site": "0x092A54EC"
+          }
+        ]
+      },
+      "compression": {
+        "format": "GBA_LZ77",
+        "strict_decode": "PASS",
+        "compressed_stream": {
+          "address": "0x09256DE4",
+          "size": 2296,
+          "end_exclusive": "0x092576DC",
+          "sha256": "08d07b68fb731302f9d2c441c956dc10395972a0ebc2c6ccbe0a9b0230189f2b"
+        },
+        "decompressed_size": 8960,
+        "decompressed_sha256": "ad5e1e91dc53afb79b90b77046d46bcd20a65d994994b1a5a9cf05c1c9dc4793",
+        "tokens": 1400,
+        "hit_offset_within_stream": 668,
+        "hit_byte_roles": [
+          {
+            "address": "0x09257080",
+            "role": "LZ77_BACKREFERENCE"
+          },
+          {
+            "address": "0x09257081",
+            "role": "LZ77_BACKREFERENCE"
+          },
+          {
+            "address": "0x09257082",
+            "role": "LZ77_BACKREFERENCE"
+          },
+          {
+            "address": "0x09257083",
+            "role": "LZ77_BACKREFERENCE"
+          }
+        ]
+      },
+      "consumer_evidence": [
+        "project_tileset_builder",
+        "project_lz77_size",
+        "fr_tileset_type",
+        "fr_tileset_consumer"
+      ],
+      "conclusion_ja": "MapLayout.secondaryTileset → Tileset.tiles → LZ77 decoderの型付き連鎖が成立。BLに見える4 bytesは圧縮backreferenceであり命令ではない。"
+    },
+    {
+      "finding": "FALSE_POSITIVE_LZ77_SPECIES_FRONT_GFX",
+      "confidence": "HIGH",
+      "scan_kind": "THUMB_BL_SHAPED_DATA",
+      "scan_window": {
+        "address": "0x0983B3E8",
+        "size": 4,
+        "end_exclusive": "0x0983B3EC",
+        "sha256": "2ca07f7e51f03032ca0c8828ab6d52b272a3baeb96645e8643b00f598950ebaa"
+      },
+      "syntactic_match_verified": true,
+      "apparent_target": {
+        "address": "0x0944B26E",
+        "symbol": "stage61_save_normal_copy_on_write",
+        "offset_within_symbol": 1030,
+        "symbol_window": {
+          "address": "0x0944AE68",
+          "size": 1252,
+          "end_exclusive": "0x0944B34C",
+          "sha256": "a9928c18b79d38d0968585d516ed4e8106c8e6393f8ce923de2ac43bcb028860"
+        }
+      },
+      "true_caller": false,
+      "needs_retarget": false,
+      "owning_region": "DPE-JP dpe_payload",
+      "typed_roots": [
+        {
+          "table_key": "species_front",
+          "root": "0x0954B88C",
+          "row_index": 932,
+          "stride": 8,
+          "root_sites": [
+            "0x08000128",
+            "0x0800E65C",
+            "0x0800E6A0",
+            "0x0800E71C",
+            "0x0800E734",
+            "0x0800EAAC",
+            "0x0800EAE4",
+            "0x0800EB60",
+            "0x0800EB78",
+            "0x08033B38",
+            "0x080344D4",
+            "0x080347F0",
+            "0x080464F0",
+            "0x0804F948",
+            "0x0804F990",
+            "0x08051924",
+            "0x08052D80",
+            "0x08076160",
+            "0x08076184",
+            "0x0808EEAC",
+            "0x080CF210",
+            "0x080CF410",
+            "0x080CF5AC",
+            "0x080CF81C",
+            "0x0810C6BC",
+            "0x0810C6C8",
+            "0x0811E114",
+            "0x0814B48C",
+            "0x083B0C8E"
+          ],
+          "all_root_sites_agree": true,
+          "row": {
+            "address": "0x0954D5AC",
+            "size": 8,
+            "end_exclusive": "0x0954D5B4",
+            "sha256": "9ca16dfa254532efa3afb2889abc62299e859db048e400fbd946cbdf424d2c12"
+          },
+          "asset_pointer_site": "0x0954D5AC",
+          "asset_pointer": "0x0983B170"
+        }
+      ],
+      "row_declared_image_size": 2048,
+      "compression": {
+        "format": "GBA_LZ77",
+        "strict_decode": "PASS",
+        "compressed_stream": {
+          "address": "0x0983B170",
+          "size": 714,
+          "end_exclusive": "0x0983B43A",
+          "sha256": "1afc86f634473b167393cbc1cb5efddd6db70012f5e3a8e9ed9c9f805f064155"
+        },
+        "decompressed_size": 2048,
+        "decompressed_sha256": "3e6e7d6ec72faa7012196d501ac37752758f8599b3908458bc6d33151a74d7f7",
+        "tokens": 505,
+        "hit_offset_within_stream": 632,
+        "hit_byte_roles": [
+          {
+            "address": "0x0983B3E8",
+            "role": "LZ77_BACKREFERENCE"
+          },
+          {
+            "address": "0x0983B3E9",
+            "role": "LZ77_BACKREFERENCE"
+          },
+          {
+            "address": "0x0983B3EA",
+            "role": "LZ77_BACKREFERENCE"
+          },
+          {
+            "address": "0x0983B3EB",
+            "role": "LZ77_FLAG"
+          }
+        ]
+      },
+      "consumer_evidence": [
+        "dpe_sprite_type",
+        "dpe_front_consumer",
+        "fr_sprite_consumer"
+      ],
+      "conclusion_ja": "CompressedSpriteSheet.dataで到達するLZ77画像。復元2048 bytesが表のsizeと一致。BL形4 bytesは圧縮token/flagであり命令ではない。"
+    }
+  ],
+  "sources": {
+    "dpe_tone_type": "https://github.com/kapibarasan000/DPE-JP/blob/10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e/include/cries.h#L3-L14",
+    "dpe_cry_repoints": "https://github.com/kapibarasan000/DPE-JP/blob/10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e/repointall#L1",
+    "dpe_sprite_type": "https://github.com/kapibarasan000/DPE-JP/blob/10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e/include/graphics.h#L18-L23",
+    "dpe_front_consumer": "https://github.com/kapibarasan000/DPE-JP/blob/10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e/src/updated_code.c#L173-L202",
+    "fr_sound": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/sound.c#L374-L496",
+    "fr_cry_tone": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/m4a.c#L1660-L1698",
+    "fr_wave_type": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/gba/m4a_internal.h#L39-L68",
+    "fr_dpcm_decoder": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/m4a_1.s#L670-L707",
+    "fr_dpcm_encoder": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/tools/wav2agb/converter.cpp#L213-L278",
+    "fr_tileset_type": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/global.fieldmap.h#L80-L101",
+    "fr_tileset_consumer": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/fieldmap.c#L819-L838",
+    "fr_sprite_consumer": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/decompress.c#L21-L40",
+    "project_tileset_builder": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/f3464a10c2d54825794ae61c5319e48f65dafa88/tools/regression/rom_runtime.py#L1245-L1276",
+    "project_lz77_size": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/f3464a10c2d54825794ae61c5319e48f65dafa88/tools/regression/rom_runtime.py#L650-L675"
+  },
+  "source_inputs": [
+    "state/source-lock.json",
+    "content/modernization/pr16_dex_stage61_relink_inputs.json",
+    "content/modernization/pr16_dex_placement_audit.json",
+    "placement-audit-table-roots.json",
+    "placement-audit-latest-allocation.json"
+  ],
+  "methods_ja": [
+    "candidate全体size/SHAとStage61 code SHA一致を確認。",
+    "aligned32/Thumb BLの見かけtargetを再計算し、symbol内部offsetを検査。",
+    "active tableの全既知root sites一致、指定rowのasset pointerを検証。",
+    "LZ77の全backreference距離と復元長を検証。出力bytesはメモリ内のみでhash化。",
+    "DPCM decoderの64-sample/33-byte strideでsample_count分をメモリ内復元。標本やencoded bytesは保存しない。"
+  ],
+  "caveats_ja": [
+    "この結果は3 scan hitの型分類であり、他のreferenceが存在しないという全域証明ではない。",
+    "consumer ABIはsource-lock固定upstreamとproject builderに基づく。native実行・音声再生・画面出力は行っていない。",
+    "gfx/cryの該当4 bytesはデータとして保全し、Stage61移設時にも書き換えない。"
+  ],
+  "rom_fragments_or_raw_hex_included": false,
+  "encoded_names_included": false,
+  "rom_save_writes": 0,
+  "native_runs": 0,
+  "arm_compiles": 0,
+  "remote_mutations": 0
+}

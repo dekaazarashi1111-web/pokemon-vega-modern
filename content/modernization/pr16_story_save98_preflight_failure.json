@@ -1,0 +1,16 @@
+{
+  "status": "PREFLIGHT_TYPE_FAILURE_PRESERVED",
+  "run_id": 37195440238,
+  "job_id": 111416217704,
+  "source": "cc0cf58afb9824b60d81b80249ad9f6b91232b18",
+  "artifact_id": 11301235609,
+  "archive": {
+    "size": 1627,
+    "sha256": "66c9d187f29ce72688c9d370d2fd4ad930858234c23eec8f848edc9c118177a9"
+  },
+  "native_processes": 0,
+  "ordinary_saves": 0,
+  "controller_affected_tests_passed": 16,
+  "error": "ValueError: bytes required",
+  "repair_ja": "診断用bytearrayをidentityへ渡す前にbytesへ確定。既存identityのbytes-only guardは不変。新しい契約1検査のみ追加し既成功58実行は再走しない。"
+}

@@ -1,0 +1,68 @@
+{
+  "status": "COMPILED_FALLBACK_NOT_PLACED_NOT_ACCEPTED",
+  "source_head": "9e9a7cc6adf6ad80127db56f346f9c9fc3d0c0f0",
+  "run_id": 37258072804,
+  "link": {
+    "base": 167771588,
+    "payload": {
+      "size": 300,
+      "sha256": "454b2758455c7411634bfc4d525f698827bc97df0ebe857946aa391a0063218b"
+    },
+    "symbols": {
+      "VegaDexFallbackQolLoad": {
+        "address": 167771588,
+        "size": 300,
+        "kind": "T"
+      }
+    },
+    "entry": 167771589,
+    "sections": [
+      {
+        "name": ".text",
+        "address": 167771588,
+        "size": 300
+      }
+    ],
+    "compile_units": 1,
+    "arm_links": 1,
+    "new_mutable_owners": 0
+  },
+  "host_cases": 327693,
+  "native_processes": 0,
+  "rom_writes": 0,
+  "save_writes": 0,
+  "source_bindings": {
+    ".github/workflows/pr16-dex-fallback-qol.yml": {
+      "size": 1719,
+      "sha256": "82de96bcda56f59bfc185f5ed067a90c2dcd6a2b0a42699d0eafac73f1eb5020"
+    },
+    "docs/PR16_DEX_FALLBACK_QOL_JA.md": {
+      "size": 1645,
+      "sha256": "40e0f5989a4410979f7e0d6ad69cbd8dabff30a15767a47203335c6fd6f09010"
+    },
+    "overlays/dex_owner/dex_fallback_qol.S": {
+      "size": 2599,
+      "sha256": "af88067e686d373c4dcd0ee43c84358bc68d4941cd66d10b028db791477ee8ed"
+    },
+    "overlays/dex_owner/dex_fallback_qol.c": {
+      "size": 2925,
+      "sha256": "58ef2dd850e712123478dae6b9604d6c5b772bbc0b7a7eabe00fb7cafe4156a1"
+    },
+    "scripts/pr16_dex_fallback_qol.py": {
+      "size": 2960,
+      "sha256": "6f71bdcad019e5a1e4f918a2615f7c5af54d8332a2e0f337673692388002f678"
+    },
+    "scripts/pr16_dex_fallback_qol_actions.py": {
+      "size": 3429,
+      "sha256": "218665029558b5fa1eef8a713c5839edb336854e185fd846e11e8c534e618e56"
+    },
+    "tests/test_pr16_dex_fallback_qol.py": {
+      "size": 3835,
+      "sha256": "c9f8ba5b632b63c4117001423a07c43088d24448fa28214b844882e78f8b2f80"
+    },
+    "tools/mgba_pr16_dex_fallback_qol.h": {
+      "size": 4900,
+      "sha256": "fd12c08abf7aa739c758084314f5d5146755a66dd6cffd341eb526f2640a1522"
+    }
+  }
+}

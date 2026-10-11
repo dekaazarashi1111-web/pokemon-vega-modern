@@ -1,0 +1,42 @@
+name: p03-fullslots-e2e
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p03-fullslots-e2e.yml
+      - tools/modernization_p03_native_pp_repair.py
+      - tools/mgba_modernization_p03_fullslots_e2e.c
+      - scripts/run_modernization_p03_fullslots_e2e.py
+      - tests/test_modernization_p03_fullslots_e2e.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fullslots-save-reload:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Fixed toolchain
+        run: bash infra/setup_github_actions.sh --install
+      - name: Recipe and result-contract regression tests
+        run: python3 -m unittest discover -s tests -p test_modernization_p03_fullslots_e2e.py -v
+      - name: Eight fresh candidate cases and two failing parent controls
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-fullslots-e2e
+          git rev-parse HEAD > .local/p03-fullslots-e2e/tested-head.txt
+          python3 scripts/run_modernization_p03_fullslots_e2e.py \
+            > .local/p03-fullslots-e2e/job.stdout.json \
+            2> .local/p03-fullslots-e2e/job.stderr.log
+      - name: Preserve original logs on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p03-fullslots-e2e
+          path: .local/p03-fullslots-e2e/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

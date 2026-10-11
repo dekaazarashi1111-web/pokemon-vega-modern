@@ -1,0 +1,13 @@
+{
+  "run_id": 37194559112,
+  "job_id": 111413613388,
+  "source": "4b099b9883133ea80829512e7daf78a1a59868f2",
+  "conclusion": "failure",
+  "failed_action": "旧受入宛先guard",
+  "cause_ja": "新受入GUIDEに旧Save96の大文字pathが残っていたため、protected guardが記録開始直後に停止。旧文書への書込み0。新Save97宛先だけへ修正。",
+  "actual_acceptance_cases_executed": 0,
+  "acceptance_cases_never_run": 77,
+  "native_processes": 0,
+  "old_accepted_paths_modified": 0,
+  "additional_pre_run_corrections_ja": "試験数置換で誤変化した未実行FAIL_ARCHIVE hashを固定済みexit_recoveryから読む形へ修正し、未公開guideの画素768を正した。旧guardは緩めない。"
+}

@@ -1,0 +1,94 @@
+name: p08-native-mega-original-integration
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/p08-native-mega-integration.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  verify-record-publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch original success metadata and ZIP
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p08-native-mega-integration
+          gh api repos/${GITHUB_REPOSITORY}/actions/runs/34438575892 > .local/p08-native-mega-integration/run.json
+          gh api repos/${GITHUB_REPOSITORY}/actions/jobs/102748670155 > .local/p08-native-mega-integration/job.json
+          gh api repos/${GITHUB_REPOSITORY}/actions/artifacts/10137176189 > .local/p08-native-mega-integration/artifact.json
+          gh api repos/${GITHUB_REPOSITORY}/actions/artifacts/10137176189/zip > .local/p08-native-mega-integration/original.zip
+      - name: Verify complete original and write scoped P08 supplement
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' | tee .local/p08-native-mega-integration/import.log
+          import pathlib,sys
+          sys.path.insert(0,'scripts')
+          import check_modernization_p08_native_mega as e
+          out=pathlib.Path('.local/p08-native-mega-integration')
+          actions=e.normalize_actions(e.load((out/'run.json').read_bytes()),e.load((out/'job.json').read_bytes()),e.load((out/'artifact.json').read_bytes()))
+          report=e.import_evidence((out/'original.zip').read_bytes(),actions)
+          print(e.stable(report).decode())
+          PY
+          python3 -m unittest discover -s tests -p test_modernization_p05_mega_lifecycle_e2e.py -v > .local/p08-native-mega-integration/runtime-tests.stdout 2> .local/p08-native-mega-integration/runtime-tests.stderr
+          python3 -m unittest discover -s tests -p test_modernization_p08_native_mega.py -v > .local/p08-native-mega-integration/evidence-tests.stdout 2> .local/p08-native-mega-integration/evidence-tests.stderr
+          python3 scripts/check_modernization_p08_native_mega.py > .local/p08-native-mega-integration/check.json
+          python3 scripts/validate_task_graph.py > .local/p08-native-mega-integration/tasks.log
+          git diff --exit-code -- config/active_play_baseline.json design/active_play_baseline.md content/modernization/p08_current_acceptance.json
+      - name: Append verified scope and publish without overwriting concurrent work
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib
+          entry='''\n## 2026-09-10 — USER-P05-NATIVE-MEGA / first-input to cold-save lifecycle\n\nSource Actions run 34438575892 at 96c634134730f0c4f5aed989e7a4ed6b23c2c6d6 completed SUCCESS in fixed GCC 13.3.0 / mGBA 0.10.2. Forty-two fresh processes (48 cores; zero PASS cache) verify six native Mega abilities and 36 nonactivation controls. Active cases use normal Fight/move/START input; native form and ability assignment precedes the first move, both PP decrement exactly once, the next turn is reached, physical Run returns to the field, the engine reverts to the base form, normal Save increments once, and a newly created core Continue restores all 100 party-mon bytes. Seven host-write APIs are denied throughout the observed lifecycle. The 52 runtime contract tests and 14 original-backed evidence mutation tests pass. Original ZIP, Actions identities and source hashes are verified by scripts/check_modernization_p08_native_mega.py and retained under content/modernization/p08_native_mega_evidence/34438575892; P08 progress is in p08_native_mega_acceptance.json. Integration itself performs zero new emulator runs.\n\nThe isolated starting fixture supplies species, gear, policy and opponent; this does not establish natural capture/gear acquisition or physical Battle Circus admission. Base Eelektross already has Levitate, and native Mega stat changes mean the Fire Mane damage contrast is not an ability-only experiment. Other P03/P05 paths, P06/P07 adoption/implementation and final release acceptance remain open. No product ROM changed: Stage82 SHA-256 e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d. Stage62 active baseline, full_p05_acceptance=false and release_ready=false are unchanged.\n'''
+          for name in ('design/run_log.md','design/version_log.md'):
+              p=pathlib.Path(name)
+              assert 'USER-P05-NATIVE-MEGA / first-input to cold-save lifecycle' not in p.read_text()
+              with p.open('a') as f:f.write(entry)
+          doc=pathlib.Path('docs/P08_P05_NATIVE_MEGA_ACCEPTANCE.md')
+          assert not doc.exists()
+          doc.write_text('# P08：P05の通常メガ進化・戦闘終了・保存再起動\n\n通常の操作入力から6特性を取得し、1ターン進行、逃走後の元の姿への復帰、通常保存、新しいcoreでのContinueまでを検証した追補です。特性をRAMへ書き込む旧代表試験とは別の実行です。\n\n原本runは34438575892、対象HEADは96c634134730f0c4f5aed989e7a4ed6b23c2c6d6。6成功経路と、トグルなし・リングなし・石なし・違う石・policy拒否・トグル取消の36対照、合計42プロセス／48cores、キャッシュ再利用0です。全ケースで1ターンの双方PP消費を確認し、成功6経路では保存前後の個体100bytesが一致します。\n\nP08の記録：`content/modernization/p08_native_mega_acceptance.json`。原本ZIPとActions情報：`content/modernization/p08_native_mega_evidence/34438575892/`。検証：`python3 scripts/check_modernization_p08_native_mega.py`。この検証コマンドは読み取り専用で、今回の原本照合を新しいmGBA実行に加算しません。\n\n初期個体・装備・policy・相手は隔離fixtureです。自然な捕獲・装備取得、実際のCircus入場、他のP03/P05経路、P06/P07、最終受入は未完了です。Stage62の実プレイ基準とrelease_ready=falseを維持します。Eelektross通常特性もLevitateのため不在特性対照ではありません。Fire Maneの比較はMegaによる種族値変化も含むため、特性だけの効果と断定しません。\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add content/modernization/p08_native_mega_acceptance.json content/modernization/p08_native_mega_evidence/34438575892/actions.json design/run_log.md design/version_log.md docs/P08_P05_NATIVE_MEGA_ACCEPTANCE.md
+          git add -f content/modernization/p08_native_mega_evidence/34438575892/original.zip
+          python3 - <<'PY'
+          import subprocess,sys,pathlib
+          sys.path.insert(0,'scripts')
+          import check_modernization_p08_native_mega as e
+          names=subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')[:-1]
+          expected={e.REPORT,e.DIRECTORY+'/actions.json',e.DIRECTORY+'/original.zip','design/run_log.md','design/version_log.md','docs/P08_P05_NATIVE_MEGA_ACCEPTANCE.md'}
+          assert set(names)==expected
+          for name in names:
+              assert subprocess.check_output(['git','show',':'+name])==pathlib.Path(name).read_bytes()
+          e.check()
+          PY
+          remote=$(git ls-remote origin "refs/heads/$GITHUB_REF_NAME" | cut -f1)
+          test "$remote" = "$GITHUB_SHA"
+          git commit -m 'USER-P05-NATIVE-MEGA: accept six native lifecycles and 36 controls with P08 originals'
+          git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"
+          git rev-parse HEAD > .local/p08-native-mega-integration/committed-head.txt
+          git show --stat --oneline HEAD > .local/p08-native-mega-integration/commit.txt
+          cp content/modernization/p08_native_mega_acceptance.json .local/p08-native-mega-integration/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p08-native-mega-integration
+          path: .local/p08-native-mega-integration/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

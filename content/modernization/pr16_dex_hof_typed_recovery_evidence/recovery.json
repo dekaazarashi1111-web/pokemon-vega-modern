@@ -1,0 +1,123 @@
+{
+  "status": "PASS_COMMITTED_TYPED_EVIDENCE_COMPACTION_ONLY",
+  "source_head": "07550eb00df33e64c48a04d629ddc1e7fe5c6e6f",
+  "run_id": 37301980128,
+  "original_record_head": "908289942a276fa4f552d96aae4d985f7c6a5156",
+  "original_source": "920cbc492bb8c65ee0364f9420d3a152f1f72e5f",
+  "original_run": {
+    "run": 37300879978,
+    "job": 111733040155,
+    "source": "920cbc492bb8c65ee0364f9420d3a152f1f72e5f",
+    "conclusion": "failure",
+    "measurement_record_push_readback_success": true,
+    "publication_guard": "failure",
+    "artifact_upload": "skipped",
+    "steps": [
+      {
+        "name": "Set up job",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "conclusion": "success"
+      },
+      {
+        "name": "Exact pinned typed source and inherited donor inventory",
+        "conclusion": "success"
+      },
+      {
+        "name": "Official Ubuntu ARM toolchain for exact prior link reconstruction",
+        "conclusion": "success"
+      },
+      {
+        "name": "Current JP engine and rooted typed consumer classification",
+        "conclusion": "success"
+      },
+      {
+        "name": "Record rooted typed consumer evidence",
+        "conclusion": "success"
+      },
+      {
+        "name": "Scoped final index and fixed resume",
+        "conclusion": "success"
+      },
+      {
+        "name": "Lightweight task graph",
+        "conclusion": "success"
+      },
+      {
+        "name": "Commit and nonforce push same branch",
+        "conclusion": "success"
+      },
+      {
+        "name": "Exact committed text readback",
+        "conclusion": "success"
+      },
+      {
+        "name": "Closed text publication guard",
+        "conclusion": "failure"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "conclusion": "success"
+      },
+      {
+        "name": "Complete job",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "original_audit": {
+    "size": 18862653,
+    "sha256": "679b632bb92d98e67b532a74bf3b9a2c0f288c3bd892ec584c7763a99cba7354"
+  },
+  "compact_audit": {
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "compaction": {
+    "original_region_count": 8701,
+    "retained_region_count": 45,
+    "removed_unreferenced_region_count": 8656,
+    "hit_rows_changed": 0,
+    "all_hit_evidence_retained": true,
+    "all_pool_partition_and_source_proof_retained": true
+  },
+  "recovery_unit_tests": 11,
+  "measurement_unit_tests": 168,
+  "classified": 619,
+  "unclassified": 255,
+  "new_classifications": 0,
+  "rom_reconstructions": 0,
+  "arm_compiles": 0,
+  "native_processes": 0,
+  "donor_leased": false,
+  "candidate_changed": false,
+  "formal_save_changed": false,
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-typed-recovery.yml": {
+      "size": 2574,
+      "sha256": "045ded30737d93886cf2091af22d1269b3f1c3e61c54edc987dafedac1bc0f11"
+    },
+    ".github/workflows/pr16-dex-hof-typed.yml": {
+      "size": 2662,
+      "sha256": "6d2515e411c3548a482744f7446ad7311ffc914c26d4bdb28bca80605ac324ff"
+    },
+    "docs/PR16_DEX_HOF_TYPED_RECOVERY_JA.md": {
+      "size": 2368,
+      "sha256": "ec31f3e2eedf38aec1992649e35a7fd0bd28506e90c60cfdd4c260fc2437e6c8"
+    },
+    "scripts/pr16_dex_hof_typed_recovery.py": {
+      "size": 14380,
+      "sha256": "76999f5485455151c598994c1007d28efa0fa8dbcbfb4e64d43ba39c0175b95c"
+    },
+    "tests/test_pr16_dex_hof_typed_recovery.py": {
+      "size": 3310,
+      "sha256": "228e785a2e36661280958c43c0c2f5238614719993ef2c0025512f77ebcadccb"
+    }
+  }
+}

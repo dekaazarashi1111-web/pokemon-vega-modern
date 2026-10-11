@@ -1,0 +1,112 @@
+[
+  {
+    "case": 0,
+    "name": "resolve-legacy",
+    "method": 0,
+    "kind": 2,
+    "expected_return": 0,
+    "host_oracle_full_flash_identity": {
+      "size": 131072,
+      "sha256": "537cb54cf9c5d675acb6f5c0f9741d6f53e35c7d01ccc31e6cb5d1fa8f2ebc60"
+    }
+  },
+  {
+    "case": 1,
+    "name": "commit-shift",
+    "method": 2,
+    "kind": 2,
+    "expected_return": 0,
+    "host_oracle_full_flash_identity": {
+      "size": 131072,
+      "sha256": "b50414bf94c9876e5a2dc79989535d6d1e7292205d0f214c4f5f0c9d57f4e3d2"
+    }
+  },
+  {
+    "case": 2,
+    "name": "normal-token",
+    "method": 3,
+    "kind": 2,
+    "expected_return": 0,
+    "host_oracle_full_flash_identity": {
+      "size": 131072,
+      "sha256": "4f69ee1abe08809cc5cfa3094fbc5ebfe866bcf52345437f9fcc4de662c5e591"
+    }
+  },
+  {
+    "case": 3,
+    "name": "resolve-fixed-old",
+    "method": 0,
+    "kind": 2,
+    "expected_return": 0,
+    "host_oracle_full_flash_identity": {
+      "size": 131072,
+      "sha256": "42e068e85589b849f1d36bef3418591c8889fe1ed46801a85a279851a5cdc84e"
+    }
+  },
+  {
+    "case": 4,
+    "name": "resolve-inverse",
+    "method": 0,
+    "kind": 2,
+    "expected_return": 0,
+    "host_oracle_full_flash_identity": {
+      "size": 131072,
+      "sha256": "a0b3a38203c3ab0529aac4072d6f1bd05c35ac23ce72975214a5a5ceb15ea147"
+    }
+  },
+  {
+    "case": 5,
+    "name": "resolve-scratch",
+    "method": 0,
+    "kind": 2,
+    "expected_return": 0,
+    "host_oracle_full_flash_identity": {
+      "size": 131072,
+      "sha256": "89f770ae961acf272497904755662af141cd185818d53d62cc8f78217630f396"
+    }
+  },
+  {
+    "case": 6,
+    "name": "recover-inverse",
+    "method": 1,
+    "kind": 2,
+    "expected_return": 0,
+    "host_oracle_full_flash_identity": {
+      "size": 131072,
+      "sha256": "0201c19bcabe723198d5cc8935be6831e64d523b2c287891b7ba72042e8ce207"
+    }
+  },
+  {
+    "case": 7,
+    "name": "normal-pending-scratch",
+    "method": 3,
+    "kind": 2,
+    "expected_return": 0,
+    "host_oracle_full_flash_identity": {
+      "size": 131072,
+      "sha256": "8217191fbfcdd8a499a403c1d6a4013b2f426c13260a97e5f0eec8d7b1a08d92"
+    }
+  },
+  {
+    "case": 8,
+    "name": "initial-commit",
+    "method": 2,
+    "kind": 3,
+    "expected_return": 0,
+    "host_oracle_full_flash_identity": {
+      "size": 131072,
+      "sha256": "e4cecf73e550d48dfde33d29c9c8824555f114624dedbba81706cfb546cfd851"
+    }
+  },
+  {
+    "case": 9,
+    "name": "bad-selected-journal",
+    "method": 0,
+    "kind": 2,
+    "expected_return": -4,
+    "host_oracle_full_flash_identity": {
+      "size": 131072,
+      "sha256": "f5970f12aeaf2692d7c3fb7a13b4204f7657d11a6cd9bd0e04b95c1619d5f97d"
+    }
+  }
+]

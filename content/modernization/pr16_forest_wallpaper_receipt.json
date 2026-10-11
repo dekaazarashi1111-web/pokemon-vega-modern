@@ -1,0 +1,277 @@
+{
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "claims": {
+    "accepted_reader_replays": 0,
+    "accepted_test_reruns": 0,
+    "actual_bios_cpu_executed": false,
+    "actual_runtime_execution_observed": false,
+    "actual_screen_rendered": false,
+    "allocator_implementation_proven": false,
+    "conditional_finite_reader_only": true,
+    "dma_completion_proven": false,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "formal_classification_accepted": true,
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "heap_free_proven": false,
+    "indirect_reference_completeness_claimed": false,
+    "native_processes": 0,
+    "universal_heap_or_irq_lifetime_proven": false
+  },
+  "classified": 785,
+  "delta_identity": {
+    "sha256": "46bcdda65a2f9fab6a86ccf76569cf54c4600c916a67bf4f8572714e4eb34a95",
+    "size": 4155
+  },
+  "donor_safe_bytes": 0,
+  "evidence_bindings": {
+    "content/modernization/pr16_forest_wallpaper_receipt_evidence/actions.json": {
+      "sha256": "0c7a24d399360dc08295fc3c7f14c84bbe009596241abd14df3a5d49aa70e30d",
+      "size": 1602
+    },
+    "content/modernization/pr16_forest_wallpaper_receipt_evidence/reader-result.json": {
+      "sha256": "5416550775f857b8af29470faf31bd5902965d51c0541d3d0d1dd4cc1af8a30c",
+      "size": 349
+    },
+    "content/modernization/pr16_forest_wallpaper_receipt_evidence/reader-tests.txt": {
+      "sha256": "9d4fb82df7f219d77c2e20fd75c0166a342ae51e76fc390da6208d15478ba793",
+      "size": 3755
+    },
+    "content/modernization/pr16_forest_wallpaper_receipt_evidence/receipt-tests.json": {
+      "sha256": "efb9dd3f98d32d4a62db8a081296c8e3cab4205981d67f18f27f8b9d88704431",
+      "size": 770
+    },
+    "content/modernization/pr16_forest_wallpaper_receipt_evidence/reference-chain.json": {
+      "sha256": "46bcdda65a2f9fab6a86ccf76569cf54c4600c916a67bf4f8572714e4eb34a95",
+      "size": 4155
+    },
+    "content/modernization/pr16_forest_wallpaper_receipt_evidence/unknown-frontier.json": {
+      "sha256": "f8bebaf76cfa3d0d3de8a78f1354d4fe576de17d6ba29af9f13d262a57c54537",
+      "size": 39089
+    }
+  },
+  "full_audit_identity": {
+    "sha256": "f88d65c235eda330aef618776bff97037d5ca2c4c9fbea53798217dcb5bda669",
+    "size": 5408731
+  },
+  "full_index_private_guard": {
+    "executed": true,
+    "exit_code": 1,
+    "historical_violations_not_rewritten": true,
+    "passed": false,
+    "raw_private_log_published": false
+  },
+  "measurement_actions": {
+    "artifact_id": 11680930584,
+    "conclusion": "success",
+    "job_id": 114299405185,
+    "run_attempt": 1,
+    "run_id": 38081577392,
+    "source_head": "948e3773b4909eb7a5baaf77388686a61549e255",
+    "status": "completed",
+    "steps": [
+      {
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/setup-python@v5",
+        "number": 3,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "New scoped ARM layout and reconstruction tools",
+        "number": 4,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Forest actual reader allocation success and failure",
+        "number": 5,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 6,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Post Run actions/setup-python@v5",
+        "number": 11,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 12,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 13,
+        "status": "completed"
+      }
+    ],
+    "zip_identity": {
+      "sha256": "0791aff7e2f52357b9aa0224d8cbe67942879248b1434230b519d815ff121b9b",
+      "size": 60837
+    }
+  },
+  "measurement_actions_completion_confirmed": true,
+  "measurement_commit": "bc10f50ea7e3ce338f63d6ab5823644cd4fbe931",
+  "measurement_identity": {
+    "sha256": "56e6c8d19bc04a1a6b9d3d199344f48426cc55d2b8da444aa5f9b02970b7012e",
+    "size": 603374
+  },
+  "measurement_path": "content/modernization/pr16_forest_wallpaper_reader_checkpoint.json",
+  "measurement_replays": 0,
+  "measurement_source_head": "948e3773b4909eb7a5baaf77388686a61549e255",
+  "native_processes": 0,
+  "new_integration_checks": [
+    "genuine_784_parent",
+    "singleton_other_873_unchanged",
+    "all_old_namespaces_unchanged",
+    "frontier_89_preserved",
+    "deterministic_delta",
+    "reject_double_application",
+    "reject_counter",
+    "reject_safe_capacity",
+    "reject_claim_promotion",
+    "reject_fifth_byte",
+    "reject_extra_change",
+    "reject_lost_condition",
+    "original_bytes_and_mtime_unchanged"
+  ],
+  "new_unit_tests": 39,
+  "newly_classified": 1,
+  "observed_head_checks": {
+    "all_ci_green_claimed": false,
+    "runs": [
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+        "id": 38085809437,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+        "id": 38085809450,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "push",
+        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+        "id": 38085803758,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+        "id": 38085803484,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+        "id": 38085803503,
+        "name": "pr16-forest-wallpaper-receipt",
+        "path": ".github/workflows/pr16-forest-wallpaper-receipt.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+        "id": 38085803470,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      }
+    ],
+    "source_head": "5addcc0573698317bf6ef0f4d0c4979e22b2d625"
+  },
+  "old_scope_test_reruns": 0,
+  "parent_audit_identity": {
+    "sha256": "be38da073c9a124de94506091d0ce9fe090c407e4ec85d05037f61d36109d850",
+    "size": 5405033
+  },
+  "preserved_input_count": 163,
+  "preserved_inputs_unchanged": true,
+  "receipt_actions_completion_confirmed": false,
+  "receipt_actions_completion_path": "content/modernization/pr16_forest_wallpaper_receipt_evidence/actions-completion.json",
+  "receipt_actions_run_id": 38085803503,
+  "receipt_code_bindings": {
+    ".github/workflows/pr16-forest-wallpaper-receipt.yml": {
+      "sha256": "2b5ecc90c40cfd94681735f923c68462084f22ef0f0da8a732c3b108fe8e6a7e",
+      "size": 1327
+    },
+    "scripts/pr16_forest_wallpaper_receipt.py": {
+      "sha256": "cba0df69e9c13886dd4bf64c5147a21c4402ec09534f9a2a37ccc436eb541bbe",
+      "size": 15041
+    },
+    "scripts/pr16_forest_wallpaper_receipt_actions.py": {
+      "sha256": "1b4468b89a24bee35def56213c72b7c99dd9c9f5d6e6c8d5b249c160b837bd52",
+      "size": 15868
+    },
+    "tests/test_pr16_forest_wallpaper_receipt.py": {
+      "sha256": "c0183094001741e5816a1643721393a6085e4d2b7346195d3952f6679c70b83d",
+      "size": 6538
+    }
+  },
+  "remaining_ja": [
+    "安全なROM容量/owner移管",
+    "保存controller6528byte配置・接続",
+    "同期heap/非再入/全出口Free",
+    "writer/loader/INITIAL/Link/HOF",
+    "必要な局所Save/fresh Continue"
+  ],
+  "rom_reconstructions": 0,
+  "saved_read_only_check_passed": true,
+  "schema_version": 1,
+  "scoped_final_index_guard": {
+    "historical_guard_pass_claimed": false,
+    "new_private_violations": 0,
+    "status": "PASS"
+  },
+  "source_head": "5addcc0573698317bf6ef0f4d0c4979e22b2d625",
+  "status": "ACCEPTED_ONE_CONDITIONAL_FOREST_MINIMUM_ASSET_TYPE",
+  "task": "USER-20261011-FOREST-RECEIPT",
+  "task_graph_passed": true,
+  "unclassified": 89,
+  "unknown_identity": {
+    "sha256": "f8bebaf76cfa3d0d3de8a78f1354d4fe576de17d6ba29af9f13d262a57c54537",
+    "size": 39089
+  }
+}

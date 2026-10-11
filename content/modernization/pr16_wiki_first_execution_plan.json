@@ -1,0 +1,508 @@
+{
+  "active_execution_state": "content/modernization/pr16_wiki_first_execution_plan.json",
+  "active_policy_doc": "docs/PR16_WIKI_READABILITY_PRIORITY_JA.md",
+  "authority_ja": "このJSONが現在の作業選択の唯一の正本。現在はwiki_readabilityを最優先とし、旧R0のreview_readyだけで技術解析へ進まない。旧native_supply_resumeは証拠/保留停止点として保持する。",
+  "bindings": {
+    "CHATGPT_RESUME.md": {
+      "git_blob_sha": "c2ae3ca1c87d47b36ea5f8d5b35f2a821d758d00",
+      "sha256": "3d2db56fbaa33d050d4348903dd594419f5bfd7b5e8018e52059e1e4d23ba220",
+      "size": 5070
+    },
+    "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
+      "git_blob_sha": "116c6f1f8ccbed26029de10f31be7c69be75b09f",
+      "sha256": "dd200aa3a4e0fa581991c9f3553b042398af691977313d57e44fd088e15fa35d",
+      "size": 20300
+    },
+    "docs/PR16_WIKI_READABILITY_PRIORITY_JA.md": {
+      "git_blob_sha": "a078a1eb9543c4b9b43f45d0448ceac1e2f331a1",
+      "sha256": "38803aba5f4e707a1cff361fc630588861a68bba8deb6761460c189de7287888",
+      "size": 12028
+    }
+  },
+  "branch": "codex/modernization-followup-20260908",
+  "current_priority_decision_id": "OWNER-20261011-WIKI-READABILITY-FIRST",
+  "decision_id": "OWNER-20261010-WIKI-FIRST",
+  "long_term_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
+  "next_action": {
+    "done_ja": "wiki_readabilityの全completion_gates、実在entry/manifest/検証/公開commit/package、readyとpresented_to_ownerが揃うこと。R0のreadyや今回の方針commitだけでは完了にしない。",
+    "goal_ja": "まず閲覧用Wiki R0.1を限定修正して完成させる。役割別要約の取りこぼし/空抽出の誤断定、主要MD一覧の技術情報過多、ローカル保存とAI検討の入口を直す。固定R0/ゲーム数値/全習得/原本は不変。実装・限定検証・パッケージ生成/展開確認・記録・固定入口とDL提示まで行い、全条件達成前に保存解析へ戻らない。",
+    "id": "WIKI_READABILITY_FIX",
+    "read_paths": [
+      "docs/PR16_WIKI_READABILITY_PRIORITY_JA.md",
+      "docs/wiki/r0-6e88a021/README.md",
+      "docs/wiki/r0-6e88a021/LIMITATIONS.md",
+      "docs/wiki/r0-6e88a021/VEGA_BALANCE_INDEX.md",
+      "docs/wiki/r0-6e88a021/MOVE_INDEX.md",
+      "docs/wiki/r0-6e88a021/ABILITY_INDEX.md",
+      "docs/wiki/r0-6e88a021/pokemon/3.md",
+      "scripts/pr16_wiki_r0_build.py"
+    ]
+  },
+  "observed_head_checks": {
+    "all_ci_green_claimed": false,
+    "branch_in_progress_count_at_priority_edit": 0,
+    "new_workflow_dispatched": false,
+    "runs": [
+      {
+        "conclusion": "failure",
+        "id": 38100986723,
+        "name": "p03-forgetting-ci",
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "id": 38100986769,
+        "name": "source-validation",
+        "status": "completed"
+      }
+    ],
+    "scope": "PR_TRIGGERED_RUNS_RETURNED_FOR_BASE_HEAD_ONLY",
+    "source_head": "dbb45a0c6ecbbb0c3017d57553dd55032a0708f7"
+  },
+  "owner_execution_plan": {
+    "balance_batches": [],
+    "current_priority_decision_id": "OWNER-20261011-WIKI-READABILITY-FIRST",
+    "decision_id": "OWNER-20261010-WIKI-FIRST",
+    "decision_source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
+    "deferred_technical_resume": {
+      "checkpoint": "content/modernization/pr16_weather_bubble_checkpoint.json",
+      "checkpoint_original_unchanged": true,
+      "classified": 784,
+      "donor_safe_bytes": 0,
+      "last_remaining_item_claimed": false,
+      "measurement_source_head": "3aada9217cc80627496adf33756d8fc2de3b5765",
+      "next_target": "0x08397492",
+      "original_resume": {
+        "md_blob_sha": "3c69b57e2bf4ca8d7455884f034f9ec3c8877a13",
+        "md_path": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+        "role": "IMMUTABLE_TECHNICAL_STOP_AND_EVIDENCE_NOT_ACTIVE_PRIORITY",
+        "source_commit": "8abd7cffadb899157a9812d205c5248a9bb760c3",
+        "state_blob_sha": "797205abd2523dbc57570cc0018aaf7b2d567d76",
+        "state_path": "content/modernization/pr16_native_supply_resume_20260913.json"
+      },
+      "previous_current_stop": "Weather Bubbleの成功原本・32試験/受領41試験を保存済み。784分類/90未知・donor安全容量0、正式ROM/Save101不変。",
+      "previous_next_action": {
+        "goal_ja": "正式784分類/90未知の保存親から次は08397492の1件。詳細は変更前の固定MD/JSONを参照。",
+        "id": "BIND_NEXT_08397492_ASSET_FRONTIER",
+        "read_paths": [
+          "docs/PR16_WEATHER_BUBBLE_ACCEPTANCE_JA.md",
+          "content/modernization/pr16_weather_bubble_checkpoint.json",
+          "scripts/pr16_weather_bubble_receipt.py",
+          "content/modernization/pr16_weather_bubble_evidence/unknown-frontier.json",
+          "scripts/pr16_weather_bubble_sources.py"
+        ]
+      },
+      "previous_remaining_sequence_ja": "変更前固定MD/JSONの履歴を参照。現在順序としては採用しない。",
+      "projection_only": true,
+      "status": "PAUSED_NOT_ACCEPTED_AS_COMPLETE",
+      "unclassified": 90
+    },
+    "long_term_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
+    "owner_instruction_at": "2026-10-10T10:56:56Z",
+    "owner_review": {
+      "approvals": [],
+      "proposals": [],
+      "reference_revision": "R0",
+      "status": "REFERENCE_PRESENTED_NO_APPROVAL",
+      "wait_does_not_block_technical_work": true
+    },
+    "phase": "WIKI_READABILITY_FIX",
+    "policy_doc": "docs/PR16_WIKI_READABILITY_PRIORITY_JA.md",
+    "release_gate": {
+      "requires": [
+        "approved_content_integrated",
+        "save_safety_and_impacted_local_acceptance",
+        "final_candidate_evidence_transfer",
+        "clean_two_build_reproducibility",
+        "safe_package_and_separate_owner_decision"
+      ],
+      "status": "NOT_STARTED",
+      "wiki_is_product_acceptance": false
+    },
+    "schema_version": 1,
+    "scope": {
+      "active_baseline_switch_authorized": false,
+      "automatic_background_execution": false,
+      "balance_changes_without_owner_approval": false,
+      "full_story_run": "EXCLUDED_BY_OWNER",
+      "local_functional_tests_required": true,
+      "long_growth_soak": "DEFERRED_SEPARATE_DECISION",
+      "merge_authorized": false,
+      "release_publication_authorized": false,
+      "save_safety_required": true,
+      "story_pass_claimed": false
+    },
+    "technical_lanes": {
+      "ci_evidence": {
+        "blocker": null,
+        "completion_evidence_path": null,
+        "next_ja": "capacity証拠と現sourceの不一致、未完CIを原本改作なしに整理。",
+        "remaining": [
+          "旧証拠と現sourceの検証責任の分離",
+          "最新Actionsと必要検査の完了照合"
+        ],
+        "status": "NOT_STARTED"
+      },
+      "form_readiness": {
+        "blocker": null,
+        "completion_evidence_path": null,
+        "next_ja": "メガ/Gmax/専用Zの登録・資源・保存/発動/解除・試験入口を確認。性能や対象種を創作しない。",
+        "remaining": [
+          "ID/フォーム/技/道具/資源の制約",
+          "現行policy/変換/終了/保存互換",
+          "承認後に使う最小試験の設計"
+        ],
+        "status": "NOT_STARTED"
+      },
+      "save_capacity": {
+        "blocker": null,
+        "checkpoint_path": "content/modernization/pr16_berry_origin_checkpoint.json",
+        "classified": 788,
+        "completion_evidence_path": null,
+        "donor_safe_bytes": 0,
+        "next_ja": "保存したBerry近傍の限定identity・公開assetとのlocale差・consumer frontierから、0x086C51BFの現ownerと実readerを有限範囲で結ぶ。公開EN assetや近傍JPsymbolを現ownerと同一視しない。今回の候補復元/限定測定/20試験と旧受入は再走せず、実readerの新scopeだけを検証する。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。",
+        "reference_chain_path": "content/modernization/pr16_sound_origin_reader_evidence/reference-chain.json",
+        "remaining": [
+          "安全なROM容量/必要範囲の退役とowner移管",
+          "保存controller実配置",
+          "writer/loader/INITIAL/Link/HOF世代整合",
+          "species ID幅/保存失敗/復旧",
+          "heap-ready/同期非再入/退避前Free/全出口Free",
+          "必要な局所Save/fresh Continue受入"
+        ],
+        "scheduling_status": "PAUSED_FOR_WIKI_READABILITY",
+        "selected_unknown_origins": 7,
+        "status": "BERRY_NEIGHBORHOOD_BOUND_PUBLIC_ASSET_DIFFERS_OWNER_PENDING",
+        "unclassified": 86,
+        "unknown_frontier_path": "content/modernization/pr16_sound_origin_reader_evidence/unknown-frontier.json",
+        "window_progress_path": "content/modernization/pr16_sound_origin_reader_evidence/window-progress.json"
+      }
+    },
+    "wiki": {
+      "candidate": {
+        "crc32": "00F31AF7",
+        "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+        "size": 33554432
+      },
+      "completion_gates": {
+        "comparison_and_details": true,
+        "core_data_reconciled": true,
+        "historical_wikis_preserved": true,
+        "identity_bound": true,
+        "limitations_explicit": true,
+        "mechanics_and_supply_index": true,
+        "published_and_presented": true,
+        "read_only_and_deterministic_check": true
+      },
+      "entry_path": "docs/wiki/r0-6e88a021/README.md",
+      "input_manifest_path": "docs/wiki/r0-6e88a021/data/index.json",
+      "limitations": [
+        "数値は範囲非変更の継承。全native/自然供給/保存統合の受入ではない。",
+        "Gmax登録34件の個別資源body/発動/終了は未監査。",
+        "容量784分類/90未知/安全容量0。全クリ対象外、所有者調整承認0。"
+      ],
+      "next_ja": "Wiki優先。docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.mdとowner_execution_planを読み、旧P08能力表とIssue19後継習得表の候補/lineage/意味同値を照合して、調整基準Wiki R0の未完項目を実装・検証・記録する。対象候補を推測せず、ベガ比較・系統/全習得・技/特性逆引き・メガ/Gmax/専用Z・供給条件・確認状態を揃える。実在する固定入口/入力manifest/証拠を提示した後は、所有者の案待ちで停止せず保存容量→CI→追加機構の技術確認へ進む。08397492は次の解析候補であって最後の1件ではなく、R0の前提にしない。全クリ走破は対象外、保存安全性は未完のまま保持。",
+      "presentation_receipt_path": "content/modernization/pr16_wiki_r0_receipt.json",
+      "presented_to_owner": true,
+      "published_commit": "473aca371dbfd1d8a041d2ead4326a54759dcda4",
+      "review_ready": true,
+      "revision": "R0",
+      "semantic_sha256": "919a95c7ddeb73ee4a03dd0b7fed6d7fe015aeb31d5c8fe71f11545373be0e16",
+      "source_head": "c935d493c998bc62a6189381085fc9d2bb6c6803",
+      "status": "READY_FOR_REVIEW",
+      "tree_sha256": "08b0d74dab4b798a6b4a419be6b0fd422c357aa26f779ca5bc6a191165c96b84",
+      "verification_evidence_path": "content/modernization/pr16_wiki_r0_verification.json"
+    },
+    "wiki_policy": {
+      "all_90_classifications_required_before_wiki": false,
+      "all_save_repairs_required_before_wiki": false,
+      "freeze_development_branch": false,
+      "freeze_review_revision": true,
+      "full_issue18_19_closure_required_before_wiki": false,
+      "preserve_historical_snapshots": true,
+      "silent_mixed_candidate_data_allowed": false,
+      "unrelated_ci_green_required_before_wiki": false
+    },
+    "wiki_readability": {
+      "base_entry_path": "docs/wiki/r0-6e88a021/README.md",
+      "base_revision": "R0",
+      "base_wiki_commit": "473aca371dbfd1d8a041d2ead4326a54759dcda4",
+      "completion_gates": {
+        "core_game_semantics_unchanged": false,
+        "historical_snapshots_preserved": false,
+        "human_md_tables_reviewed": false,
+        "known_hint_problem_resolved": false,
+        "links_and_read_only_determinism": false,
+        "logs_and_state_recorded": false,
+        "offline_package_generated_verified": false,
+        "published_and_presented": false
+      },
+      "decision_id": "OWNER-20261011-WIKI-READABILITY-FIRST",
+      "entry_path": null,
+      "forbidden": [
+        "R0や原本の上書き",
+        "ゲームデータ/数値/全習得経路・条件/機構対応の変更",
+        "未承認のバランス案や追加フォーム仕様の適用",
+        "全技効果解析・新Webサイト・全体Wiki刷新への拡張",
+        "Wiki修正目的のROM/native再実行",
+        "修正版提示前の保存容量解析続行"
+      ],
+      "input_manifest_path": null,
+      "known_regression": {
+        "function": "move_roles",
+        "generator": "scripts/pr16_wiki_r0_build.py",
+        "issue_ja": "Lv46こうごうせいが全習得表に存在するが回復候補から漏れる。検索補助の空/欠落を覚えない証拠にしない。",
+        "source_path": "docs/wiki/r0-6e88a021/pokemon/3.md",
+        "species_id": 3
+      },
+      "next_ja": "まず閲覧用Wiki R0.1を限定修正して完成させる。役割別要約の取りこぼし/空抽出の誤断定、主要MD一覧の技術情報過多、ローカル保存とAI検討の入口を直す。固定R0/ゲーム数値/全習得/原本は不変。実装・限定検証・パッケージ生成/展開確認・記録・固定入口とDL提示まで行い、全条件達成前に保存解析へ戻らない。",
+      "owner_instruction_at": "2026-10-11T01:23:24Z",
+      "package": null,
+      "paused_phase": "SAVE_CAPACITY_INTEGRATION",
+      "paused_technical_next_action": {
+        "done_ja": "現ownerと実readerを証明し、完了runの外部受領後のみ型分類を更新する。",
+        "goal_ja": "保存したBerry近傍の限定identity・公開assetとのlocale差・consumer frontierから、0x086C51BFの現ownerと実readerを有限範囲で結ぶ。公開EN assetや近傍JPsymbolを現ownerと同一視しない。今回の候補復元/限定測定/20試験と旧受入は再走せず、実readerの新scopeだけを検証する。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。",
+        "id": "SAVE_CAPACITY_BERRY_ORIGIN_ACTUAL_OWNER_READER",
+        "read_paths": [
+          "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
+          "content/modernization/pr16_berry_origin_checkpoint.json",
+          "content/modernization/pr16_berry_origin_evidence/bounded-binding.json",
+          "content/modernization/pr16_sound_origin_reader_evidence/window-progress.json",
+          "content/modernization/pr16_donor_origins_evidence/symbol-frontier.json"
+        ]
+      },
+      "paused_technical_state_reference": "owner_execution_plan.technical_lanes.save_capacity",
+      "planned_output_directory": "docs/wiki/r0.1-6e88a021",
+      "presentation_evidence": null,
+      "presented_to_owner": false,
+      "priority": "FIRST_UNTIL_COMPLETED_AND_PRESENTED",
+      "published_commit": null,
+      "ready": false,
+      "required": true,
+      "resume_after_ja": "最新HEAD/Actionsと保留したBerry現owner/readerの原本を照合し、未回収成功は再測定せず受領。最新の未完技術scopeへ戻り、所有者の案待ちだけでは停止しない。",
+      "resume_condition_ja": "全completion_gates=true、実在成果の検証と公開、固定入口/DLの所有者提示後のみ。過去R0のreadyは解除根拠にしない。",
+      "scope": [
+        "誤解を招く役割別要約を修正/明示的に非網羅扱い/主要表から除去",
+        "主要な種族値・特性・技性能MD表の閲覧性",
+        "固定閲覧版・実際のローカル保存パッケージとAI検討用入口"
+      ],
+      "source_head": "dbb45a0c6ecbbb0c3017d57553dd55032a0708f7",
+      "status": "NOT_STARTED",
+      "target_revision": "R0.1",
+      "task": "WIKI_READABILITY_FIX",
+      "verification_evidence_path": null
+    }
+  },
+  "pr_number": 16,
+  "recording": {
+    "accepted_test_reruns": 0,
+    "all_ci_green_claimed": false,
+    "blocked_method_ja": "自動反映用実行コードの送信が安全性チェックで拒否されたため中止。実行コード/workflowは追加しない。",
+    "commit_semantics": "このJSONを含む単親の同branch通常commit。自己SHA追記だけの追加commitを作らない。",
+    "full_index_private_guard_executed": true,
+    "last_execution": {
+      "accepted_test_reruns": 0,
+      "actions_completion_confirmed": false,
+      "actions_run_id": 38099840927,
+      "donor_safe_bytes": 0,
+      "formal_classified": 788,
+      "formal_unclassified": 86,
+      "full_index_private_guard": {
+        "executed": true,
+        "exit_code": 1,
+        "historical_violations_not_rewritten": true,
+        "passed": false,
+        "raw_private_log_published": false
+      },
+      "full_rom_scans": 0,
+      "native_processes": 0,
+      "new_unit_tests": 20,
+      "read_only_check_passed": true,
+      "rom_reconstructions": 1,
+      "source_head": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+      "task": "USER-20261011-BERRY-ORIGIN-BINDING",
+      "task_graph_passed": true
+    },
+    "legacy_generated_md_modified": false,
+    "legacy_log_append": {
+      "next_ja": "方針決定の追記完了。同taskを重複追記しない。",
+      "paths": [
+        "design/run_log.md",
+        "design/version_log.md"
+      ],
+      "recorded_source_head": "a0c9d36342dff35228247391cfeb299d12ed9c79",
+      "status": "DONE",
+      "task": "USER-20261010-WIKI-FIRST-POLICY"
+    },
+    "legacy_resume_json_modified": false,
+    "local_verification": [
+      "新JSONのUTF-8構文/往復一致",
+      "Wiki先行・全クリ除外・安全性維持のbool/状態確認",
+      "元の解析停止点の参照と784/90/0の保全",
+      "未承認案/未生成Wikiを完了にしない初期状態",
+      "新入口と方針文書への相互参照とblob identityの照合"
+    ],
+    "mode": "SCOPED_R0_BUILD_AND_NONFORCE_PUSH",
+    "native_processes": 0,
+    "owner_instruction_at": "2026-10-10T10:56:56Z",
+    "pending_berry_origin_run": {
+      "output_report": "content/modernization/pr16_berry_origin_checkpoint.json",
+      "replay_forbidden": true,
+      "run_id": 38099840927,
+      "source_head": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+      "status": "COMPLETION_NOT_YET_OBSERVED"
+    },
+    "prior_reconciliation_attempt": {
+      "completion_commit_created": false,
+      "conclusion": "failure",
+      "reason_ja": "後継move_key欄のadapter欠落を修正。検査を無効化せずキー競合拒否4試験を追加。",
+      "run_id": 38050833671,
+      "source_head": "9de8ba74bf89747d88002edc486d92cb1ad5f1b9"
+    },
+    "project_resume_check_executed": false,
+    "project_task_graph_check_executed": true,
+    "received_sound_asset_completion": "content/modernization/pr16_sound_origin_reader_evidence/asset-completion.json",
+    "received_sound_reader_completion": "content/modernization/pr16_sound_origin_reader_evidence/actions-completion.json",
+    "received_sound_receipt_completion": "content/modernization/pr16_berry_origin_evidence/prior-actions.json",
+    "received_typed_origins_completion": "content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json",
+    "rom_changes": 0,
+    "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
+    "status": "R0_READY_BERRY_ORIGIN_BOUNDED_IDENTITY_READER_PENDING",
+    "task": "USER-20261010-WIKI-FIRST-POLICY",
+    "wiki_generated": true,
+    "wiki_readability_priority_update": {
+      "accepted_test_reruns": 0,
+      "all_ci_green_claimed": false,
+      "commit_semantics": "このJSONと入口/優先文書を含む単親commitを同branchへ非force反映。自己SHA追記だけのcommitを作らない。",
+      "decision_id": "OWNER-20261011-WIKI-READABILITY-FIRST",
+      "full_index_private_guard_executed": false,
+      "legacy_log_append": {
+        "next_ja": "同Task/決定IDを検索し未追記分だけ通常の許可された作業環境でappend-only記録する。旧ログを切詰めない。そのままWiki閲覧改善の実装へ進む。",
+        "paths": [
+          "design/run_log.md",
+          "design/version_log.md"
+        ],
+        "status": "NOT_PERFORMED"
+      },
+      "local_verification": [
+        "元状態JSONを現在Git blob SHAで完全照合",
+        "変更JSON構文・重複key拒否・UTF-8/LF",
+        "R0成功/所有者承認/技術停止点/安全境界の意味不変",
+        "優先next/phase/routingの整合・未生成成果のnull/false",
+        "入口/優先文書の送信byteとGit blob SHA/size/SHA256一致"
+      ],
+      "mode": "DIRECT_GITHUB_MARKDOWN_JSON_ONLY",
+      "native_processes": 0,
+      "owner_instruction_at": "2026-10-11T01:23:24Z",
+      "previous_observed_head_checks": {
+        "all_ci_green_claimed": false,
+        "runs": [
+          {
+            "conclusion": null,
+            "event": "pull_request",
+            "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+            "id": 38099845979,
+            "name": "source-validation",
+            "path": ".github/workflows/ci.yml",
+            "status": "in_progress"
+          },
+          {
+            "conclusion": "failure",
+            "event": "pull_request",
+            "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+            "id": 38099845984,
+            "name": "p03-forgetting-ci",
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "status": "completed"
+          },
+          {
+            "conclusion": null,
+            "event": "push",
+            "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+            "id": 38099841019,
+            "name": "Stage79 mGBA (all)",
+            "path": ".github/workflows/modernization-stage79-mgba.yml",
+            "status": "in_progress"
+          },
+          {
+            "conclusion": null,
+            "event": "push",
+            "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+            "id": 38099840955,
+            "name": "source-validation",
+            "path": ".github/workflows/ci.yml",
+            "status": "in_progress"
+          },
+          {
+            "conclusion": null,
+            "event": "push",
+            "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+            "id": 38099840927,
+            "name": "pr16-berry-origin",
+            "path": ".github/workflows/pr16-berry-origin.yml",
+            "status": "in_progress"
+          },
+          {
+            "conclusion": "failure",
+            "event": "push",
+            "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+            "id": 38099840985,
+            "name": "p03-forgetting-ci",
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "event": "push",
+            "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+            "id": 38099840891,
+            "name": "Stage79 runtime boundary audit",
+            "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+            "status": "completed"
+          }
+        ],
+        "source_head": "359d3fae20d5d0e25342c0e1b8daac921aa0e646"
+      },
+      "project_task_graph_check_executed": false,
+      "rom_changes": 0,
+      "source_head": "dbb45a0c6ecbbb0c3017d57553dd55032a0708f7",
+      "status": "ROUTING_RECORDED_LEGACY_LOG_APPEND_PENDING",
+      "task": "USER-20261011-WIKI-READABILITY-PRIORITY",
+      "wiki_fixed": false,
+      "wiki_generated": false
+    }
+  },
+  "routing_rules": [
+    {
+      "action": "WIKI_READABILITY_FIX_OR_REQUIRED_INPUT_REPAIR",
+      "when": "wiki_readability.required and not wiki_readability.ready; R0 ready does not bypass this gate"
+    },
+    {
+      "action": "WIKI_R0_BUILD_OR_REQUIRED_INPUT_REPAIR",
+      "when": "wiki_readability.ready and all wiki_readability.completion_gates and wiki_readability.presented_to_owner; wiki.review_ready == false"
+    },
+    {
+      "action": "APPROVED_BALANCE_BATCH",
+      "when": "wiki_readability.ready and all wiki_readability.completion_gates and wiki_readability.presented_to_owner; wiki.review_ready and owner-approved batch with evidence-backed prerequisites satisfied"
+    },
+    {
+      "action": "SAVE_CAPACITY_INTEGRATION",
+      "when": "wiki_readability.ready and all wiki_readability.completion_gates and wiki_readability.presented_to_owner; wiki.review_ready and save_capacity not complete and not genuinely blocked"
+    },
+    {
+      "action": "CI_EVIDENCE_ALIGNMENT",
+      "when": "wiki_readability.ready and all wiki_readability.completion_gates and wiki_readability.presented_to_owner; wiki.review_ready and save capacity complete or genuinely blocked; CI has READY work"
+    },
+    {
+      "action": "FORM_TECHNICAL_READINESS",
+      "when": "wiki_readability.ready and all wiki_readability.completion_gates and wiki_readability.presented_to_owner; wiki.review_ready and higher priority work complete or genuinely blocked; mechanism readiness pending"
+    },
+    {
+      "action": "REPORT_SPECIFIC_REMAINING_DECISIONS_NO_INVENTION_OR_RERUN",
+      "when": "wiki_readability.ready and all wiki_readability.completion_gates and wiki_readability.presented_to_owner; all executable work complete; only owner decisions or explicit release permission missing"
+    }
+  ],
+  "schema_version": 1,
+  "stable_entrypoint": "CHATGPT_RESUME.md",
+  "update_contract_ja": "同じJSONを更新する。Wiki未完成をreadyにしない。COMPLETE/ACCEPTEDには実在する根拠pathとscopeを必要とする。承認は対象/出典/日時/参照Wiki版/変更前後を記録。prerequisites_metは根拠なしにtrueにしない。次の未完具体作業、最新Actions、技術レーン残件を毎回保存する。チェックポイント原本と古い失敗は改作しない。 今回の閲覧改善はwiki_readabilityで進捗管理し、固定R0の成功flagを修正完了へ流用しない。全条件と実在成果/提示が揃うまで解析へ復帰しない。"
+}

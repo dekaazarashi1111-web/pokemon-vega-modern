@@ -1,0 +1,182 @@
+{
+  "binding": {
+    "backgrounds": 155270164,
+    "binding": "map98/3-background0",
+    "events": 155270224,
+    "script": 154927912,
+    "x": 2,
+    "y": 1
+  },
+  "cancel_routes": 2,
+  "candidate_sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+  "case": "shop-two-cancels-save-continue",
+  "eligible_count": 19,
+  "fixture": {
+    "fixture": "stock-warp-only",
+    "guarded_host_writes": 0,
+    "map_group": 98,
+    "map_num": 3,
+    "shop_dispatch_injected": false,
+    "x": 2,
+    "y": 2
+  },
+  "fixture_field_callback_writes": 1,
+  "fixture_warp_calls": 4,
+  "frames_after_warp": 1931,
+  "fresh_cores": 3,
+  "guarded_host_writes": 0,
+  "host_write_barriers": 7,
+  "ledger_observations": [
+    {
+      "checksum_valid": true,
+      "ledger_event": "fixture",
+      "ledger_sha256": "50fba4c73e122f91dd77177ae64e047394d04b6ccca0b418f87bc83cd5be8e16",
+      "migration_dirty": 0,
+      "recovery_blocked": 0,
+      "size": 2048,
+      "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+      "version": 2
+    },
+    {
+      "checksum_valid": true,
+      "ledger_event": "cancel_b",
+      "ledger_sha256": "50fba4c73e122f91dd77177ae64e047394d04b6ccca0b418f87bc83cd5be8e16",
+      "migration_dirty": 0,
+      "recovery_blocked": 0,
+      "size": 2048,
+      "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+      "version": 2
+    },
+    {
+      "checksum_valid": true,
+      "ledger_event": "cancel_row",
+      "ledger_sha256": "50fba4c73e122f91dd77177ae64e047394d04b6ccca0b418f87bc83cd5be8e16",
+      "migration_dirty": 0,
+      "recovery_blocked": 0,
+      "size": 2048,
+      "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+      "version": 2
+    },
+    {
+      "checksum_valid": true,
+      "ledger_event": "saved",
+      "ledger_sha256": "50fba4c73e122f91dd77177ae64e047394d04b6ccca0b418f87bc83cd5be8e16",
+      "migration_dirty": 0,
+      "recovery_blocked": 0,
+      "size": 2048,
+      "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+      "version": 2
+    },
+    {
+      "checksum_valid": true,
+      "ledger_event": "continued",
+      "ledger_sha256": "50fba4c73e122f91dd77177ae64e047394d04b6ccca0b418f87bc83cd5be8e16",
+      "migration_dirty": 0,
+      "recovery_blocked": 0,
+      "size": 2048,
+      "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+      "version": 2
+    },
+    {
+      "checksum_valid": true,
+      "ledger_event": "continued_again",
+      "ledger_sha256": "50fba4c73e122f91dd77177ae64e047394d04b6ccca0b418f87bc83cd5be8e16",
+      "migration_dirty": 0,
+      "recovery_blocked": 0,
+      "size": 2048,
+      "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+      "version": 2
+    }
+  ],
+  "manual_saves": 1,
+  "menu_observations": [
+    {
+      "callback": 154924453,
+      "eligible_count": 19,
+      "native_tasks": 1,
+      "shop_open": "b",
+      "window": 1
+    },
+    {
+      "callback": 154924453,
+      "eligible_count": 19,
+      "native_tasks": 1,
+      "shop_open": "row",
+      "window": 0
+    }
+  ],
+  "natural_progress_accepted": false,
+  "normal_new_game_accepted": false,
+  "observations": [
+    {
+      "counter": 2,
+      "event": "fixture",
+      "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+      "item_quantity": 0,
+      "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+      "owner": "01400000640001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+      "party_count": 6,
+      "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+    },
+    {
+      "counter": 2,
+      "event": "cancel_b",
+      "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+      "item_quantity": 0,
+      "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+      "owner": "01400000640001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+      "party_count": 6,
+      "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+    },
+    {
+      "counter": 2,
+      "event": "cancel_row",
+      "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+      "item_quantity": 0,
+      "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+      "owner": "01400000640001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+      "party_count": 6,
+      "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+    },
+    {
+      "counter": 3,
+      "event": "saved",
+      "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+      "item_quantity": 0,
+      "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+      "owner": "01400000640001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+      "party_count": 6,
+      "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+    },
+    {
+      "counter": 3,
+      "event": "continued",
+      "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+      "item_quantity": 0,
+      "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+      "owner": "01400000640001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+      "party_count": 6,
+      "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+    },
+    {
+      "counter": 3,
+      "event": "continued_again",
+      "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+      "item_quantity": 0,
+      "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+      "owner": "01400000640001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+      "party_count": 6,
+      "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+    }
+  ],
+  "pages": 4,
+  "purchase_accepted": false,
+  "scope": "NATIVE_RESEARCH_SHOP_TWO_CANCELS_AND_SAVE_CONTINUE",
+  "status": "PASS",
+  "stdout": {
+    "sha256": "5496a599b0935829d459c586607ddaf9007d303125830067be7fcdf549148308",
+    "size": 5513
+  },
+  "transaction_saves": 0,
+  "warnings_errors": 0
+}

@@ -1,0 +1,245 @@
+name: stage81-acceptance-closeout
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/stage81-acceptance-closeout.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: stage81-acceptance-closeout
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify successful source runs and exact original CLI artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, io, json, os, pathlib, stat, urllib.parse, urllib.request, zipfile
+          repo = 'dekaazarashi1111-web/pokemon-vega-modern'
+          head = '4a270b8adf9d4946d15b1986540a317f1b9d9f1c'
+          branch = 'codex/modernization-followup-20260908'
+          digest = 'b7e7f6dbe8ff1a6438163709dd37b0d0a49927ee20c54c50906d2abc6b0f4c9c'
+          directory = pathlib.Path('.local/stage81-closeout')
+          directory.mkdir(parents=True, exist_ok=True)
+          def request(path, binary=False):
+              req = urllib.request.Request('https://api.github.com/repos/' + repo + '/' + path)
+              req.add_unredirected_header('Authorization', 'Bearer ' + os.environ['GH_TOKEN'])
+              req.add_header('Accept', 'application/vnd.github+json')
+              with urllib.request.urlopen(req, timeout=60) as response:
+                  raw = response.read()
+              return raw if binary else json.loads(raw)
+          def checked_run(run_id, expected_head):
+              run = request('actions/runs/' + str(run_id))
+              if (run['id'] != run_id or run['head_sha'] != expected_head or
+                  run['head_branch'] != branch or run['head_repository']['full_name'] != repo or
+                  run['status'] != 'completed' or run['conclusion'] != 'success'):
+                  raise SystemExit('Source run identity/status mismatch: ' + str(run_id))
+              jobs = request('actions/runs/' + str(run_id) + '/jobs?per_page=100')
+              if not jobs['jobs'] or jobs['total_count'] != len(jobs['jobs']) or any(
+                  j['status'] != 'completed' or j['conclusion'] != 'success' for j in jobs['jobs']):
+                  raise SystemExit('Incomplete/failed source jobs: ' + str(run_id))
+              return {'run_id': run_id, 'head_sha': expected_head, 'event': run['event'],
+                      'workflow_path': run['path'], 'status': run['status'], 'conclusion': run['conclusion'],
+                      'run_attempt': run['run_attempt'],
+                      'jobs': [{k: j[k] for k in ('id', 'name', 'head_sha', 'status', 'conclusion', 'steps')}
+                               for j in jobs['jobs']]}
+          originals = [checked_run(run, sha) for run, sha in (
+              (34368455589, '40d2e8e49ed79a69c7675de8cd0cbb4a43677334'),
+              (34364100108, 'f1342a81d19f5c26d7f2efdfa7cec0aa05c148fc'),
+              (34374045795, '7ae9f219b7b279bd60053485a63ef2d072edf154'))]
+          normal = []
+          for event in ('push', 'pull_request'):
+              query = urllib.parse.urlencode({'head_sha': head, 'event': event, 'per_page': 100})
+              runs = request('actions/runs?' + query)
+              if runs['total_count'] > len(runs['workflow_runs']):
+                  raise SystemExit('Incomplete source CI listing')
+              selected = [r for r in runs['workflow_runs'] if r['path'] == '.github/workflows/ci.yml']
+              if not selected:
+                  raise SystemExit('Missing source CI: ' + event)
+              verified = checked_run(max(selected, key=lambda r: r['id'])['id'], head)
+              step = [s for j in verified['jobs'] for s in j['steps']
+                      if s['name'] == 'Stage81 real CLI evidence and release boundary']
+              if len(step) != 1 or step[0]['status'] != 'completed' or step[0]['conclusion'] != 'success':
+                  raise SystemExit('Real CLI tests skipped or unsuccessful')
+              normal.append(verified)
+          if normal[1]['run_id'] != 34380153325:
+              raise SystemExit('Unexpected PR CI original')
+          artifact = request('actions/artifacts/10115529505')
+          if (artifact['name'] != 'p08-current-acceptance' or artifact['digest'] != 'sha256:' + digest or
+              artifact['workflow_run']['id'] != 34380153325 or artifact['workflow_run']['head_sha'] != head):
+              raise SystemExit('Artifact metadata mismatch')
+          raw = request('actions/artifacts/10115529505/zip', binary=True)
+          if hashlib.sha256(raw).hexdigest() != digest:
+              raise SystemExit('Original archive SHA mismatch')
+          names = {'report.json', 'tested-checkout.txt', 'tests.log', 'stage81-cli/observations.json', 'stage81-cli/tests.log'}
+          for name in ('check', 'release-gate', 'conflicting-modes', 'unknown-option'):
+              names.update('stage81-cli/' + name + suffix for suffix in ('.stdout', '.stderr'))
+          with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+              rows = archive.infolist()
+              if len(rows) != len(names) or {r.filename for r in rows} != names:
+                  raise SystemExit('Archive member set/uniqueness mismatch')
+              if any(r.is_dir() or stat.S_ISLNK(r.external_attr >> 16) or r.file_size > 2097152 for r in rows):
+                  raise SystemExit('Unsafe archive member')
+              payload = {r.filename: archive.read(r) for r in rows}
+          snapshot = pathlib.Path('content/modernization/p08_current_acceptance.json').read_bytes()
+          observed = json.loads(payload['stage81-cli/observations.json'])
+          if observed['event_source_head_sha'] != head or observed['inputs_unchanged'] is not True or observed['before'] != observed['after']:
+              raise SystemExit('CLI source/unchanged-input mismatch')
+          if type(observed['fresh_mgba_process_runs']) is not int or observed['fresh_mgba_process_runs'] != 0:
+              raise SystemExit('CLI must not claim a fresh product execution')
+          if observed['snapshot_sha256'] != hashlib.sha256(snapshot).hexdigest():
+              raise SystemExit('Snapshot digest mismatch')
+          if payload['report.json'] != snapshot or payload['stage81-cli/check.stdout'] != snapshot or payload['stage81-cli/release-gate.stdout'] != snapshot:
+              raise SystemExit('CLI did not validate the current committed snapshot')
+          for name, code in {'check': 0, 'release-gate': 1, 'conflicting-modes': 2, 'unknown-option': 2}.items():
+              item = observed['commands'][name]
+              if type(item['returncode']) is not int or item['returncode'] != code:
+                  raise SystemExit('Incorrect CLI exit boundary')
+              for stream in ('stdout', 'stderr'):
+                  if hashlib.sha256(payload['stage81-cli/' + name + '.' + stream]).hexdigest() != item[stream + '_sha256']:
+                      raise SystemExit('CLI stream digest mismatch')
+          if payload['stage81-cli/check.stderr'] or payload['stage81-cli/release-gate.stderr']:
+              raise SystemExit('Unexpected successful-check stderr')
+          log = payload['stage81-cli/tests.log'].decode()
+          if '\nRan 10 tests in ' not in log or not log.rstrip().endswith('OK'):
+              raise SystemExit('Missing ten-test success summary')
+          imported = directory / 'imported'
+          imported.mkdir()
+          for name, data in payload.items():
+              target = imported / name
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(data)
+          (imported / 'source.zip').write_bytes(raw)
+          record = {'schema_version': 1, 'source_head': head, 'normal_ci': normal,
+                    'originals': originals, 'artifact_id': 10115529505, 'artifact_sha256': digest,
+                    'source_run_id': 34380153325, 'cli_tests_passed': 10,
+                    'bound_inputs_unchanged': len(observed['before']), 'fresh_mgba_process_runs': 0}
+          (imported / 'verified-actions.json').write_text(json.dumps(record, sort_keys=True, indent=2) + '\n')
+          print(json.dumps({k: v for k, v in record.items() if k not in ('normal_ci', 'originals')}, sort_keys=True))
+          PY
+      - name: Revalidate current Stage81 contracts and the actual release boundary
+        env:
+          STAGE81_CLI_EVIDENCE_DIRECTORY: .local/stage81-closeout/current-cli
+          STAGE81_SOURCE_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          git diff --exit-code 4a270b8adf9d4946d15b1986540a317f1b9d9f1c -- .github/workflows/ci.yml tests/test_modernization_stage81_acceptance_cli.py
+          python3 scripts/run_modernization_stage81_github_domain.py prepare > .local/stage81-closeout/prepare.json
+          python3 -m unittest tests.test_modernization_stage81_github_domain tests.test_modernization_p03_fullslots_e2e tests.test_modernization_p08_stage81_evidence tests.test_modernization_p08_current_acceptance tests.test_modernization_p08_representative_evidence tests.test_modernization_p08_stage79_evidence tests.test_modernization_stage81_acceptance_cli -v 2>&1 | tee .local/stage81-closeout/tests.log
+          python3 scripts/check_modernization_p08_current_acceptance.py --check > .local/stage81-closeout/report.json
+          git diff --exit-code
+      - name: Close the pending CI field and append standard logs without changing originals
+        env:
+          RECORD_RUN_ID: ${{ github.run_id }}
+          TESTED_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import datetime, hashlib, json, os, pathlib, re, shutil
+          root = pathlib.Path('.')
+          work = root / '.local/stage81-closeout'
+          verified = json.loads((work / 'imported/verified-actions.json').read_bytes())
+          log = (work / 'tests.log').read_text()
+          counts = re.findall(r'^Ran (\d+) tests? in ', log, re.M)
+          if len(counts) != 1 or not log.rstrip().endswith('OK'):
+              raise SystemExit('Regression suite did not succeed')
+          path = root / 'content/modernization/p08_stage81_integration_verification.json'
+          document = json.loads(path.read_bytes())
+          if document['integration_run_id'] != 34374045795 or document['release_ready'] is not False:
+              raise SystemExit('Unexpected integration record')
+          target = root / 'content/modernization/p08_stage81_closeout_evidence/34380153325'
+          if target.exists() or target.is_symlink():
+              raise SystemExit('Refuse to replace an existing closeout original')
+          target.parent.mkdir(parents=True, exist_ok=True)
+          shutil.copytree(work / 'imported', target)
+          document['normal_ci_after_committed_head'] = 'SUCCESS'
+          document['normal_ci_verification'] = verified
+          document['closeout_audit'] = {'run_id': int(os.environ['RECORD_RUN_ID']),
+              'validated_checkout': os.environ['TESTED_SHA'], 'regression_tests_passed': int(counts[0]),
+              'snapshot_sha256': hashlib.sha256((work / 'report.json').read_bytes()).hexdigest(),
+              'original_cli_evidence_path': str(target), 'fresh_mgba_process_runs': 0,
+              'release_ready': False}
+          path.write_text(json.dumps(document, sort_keys=True, indent=2) + '\n')
+          marker = '<!-- USER-MODERNIZATION-STAGE81-CLOSEOUT:' + os.environ['TESTED_SHA'] + ' -->'
+          runs = ', '.join(str(r['run_id']) + ' (' + r['event'] + ')' for r in verified['normal_ci'])
+          summary = ('\n\n## ' + datetime.datetime.now(datetime.timezone.utc).isoformat() + '\n' + marker + '\n'
+              '- Task: USER-MODERNIZATION-STAGE81-CLOSEOUT\n'
+              '- Status: DONE（Stage81正式経路・P08追補のCI最終確認。製品全体はBLOCKED）\n'
+              '- Summary: 既存のStage81統合954a597を保持し、統合記録に残っていたCI未確認を実際の成功runで解消。追加10件はmockなしの受入CLI・release境界回帰。\n'
+              '- Verify: ' + counts[0] + ' regression tests PASS; current snapshot --check PASS; check exit=0 / blocked-release exit=1 / usage error exit=2; bound inputs 290 files unchanged.\n'
+              '- Normal CI: ' + runs + '; tested source ' + verified['source_head'] + '\n'
+              '- Originals: Stage81 34368455589 (fresh 7/7), P03 34364100108 (8 successful cases + 2 expected PP-defect controls), P08 integration 34374045795. This closeout executes fresh mGBA=0.\n'
+              '- Evidence: content/modernization/p08_stage81_closeout_evidence/34380153325/; artifact SHA-256 ' + verified['artifact_sha256'] + '\n'
+              '- Commit: 検証対象 ' + os.environ['TESTED_SHA'] + '; this recording commit is in Actions artifact record-head.txt and receives a separate source-validation dispatch.\n'
+              '- Limits: Stage62 unchanged; release_ready=false; Draft/unmerged; P03/P05 full acceptance and P06/P07 adoption are not promoted.\n')
+          for name in ('design/run_log.md', 'design/version_log.md'):
+              output = root / name
+              if marker in output.read_text():
+                  raise SystemExit('Duplicate closeout log')
+              with output.open('a') as stream:
+                  stream.write(summary)
+          doc = root / 'docs/P08_STAGE81_NATIVE_PP.md'
+          with doc.open('a') as stream:
+              stream.write('\n## 統合後CIの確定と実CLI回帰\n\n'
+                  '統合後の通常CI成功は `p08_stage81_integration_verification.json` の '
+                  '`normal_ci_verification` に固定HEADとrun別で記録する。原本ZIPと実コマンドの '
+                  'stdout/stderr/終了コードは `p08_stage81_closeout_evidence/34380153325/` に保持する。\n\n'
+                  '`tests.test_modernization_stage81_acceptance_cli` の10件はmockなしで '
+                  '`--check` の終了0、`--check --require-release-ready` の終了1、引数不正の終了2を区別し、'
+                  '同一スナップショットと290入力のbyte/mtime不変を検証する。通常CIで毎HEAD実行する。'
+                  '受入検証器のPASSを製品のrelease-readyに置き換えず、新規mGBA件数は0と記録する。\n')
+          PY
+          python3 scripts/check_modernization_p08_current_acceptance.py --check > .local/stage81-closeout/after-record-report.json
+          cmp .local/stage81-closeout/report.json .local/stage81-closeout/after-record-report.json
+          git diff --check
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_stage81_evidence content/modernization/stage79_evidence content/modernization/stage79_cumulative_mgba_runtime_gate.json build/stages
+          branch=codex/modernization-followup-20260908
+          git fetch --no-tags --depth=1 origin "$branch"
+          test "$(git rev-parse FETCH_HEAD)" = "$TESTED_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add design/run_log.md design/version_log.md docs/P08_STAGE81_NATIVE_PP.md content/modernization/p08_stage81_integration_verification.json content/modernization/p08_stage81_closeout_evidence/34380153325
+          git commit -m 'docs(p08): close Stage81 CI pending state with verified original receipts'
+          git rev-parse HEAD > .local/stage81-closeout/record-head.txt
+          git push origin "HEAD:refs/heads/$branch"
+      - name: Start source-validation on the recording commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib, urllib.request
+          repo = 'dekaazarashi1111-web/pokemon-vega-modern'
+          branch = 'codex/modernization-followup-20260908'
+          req = urllib.request.Request('https://api.github.com/repos/' + repo + '/actions/workflows/ci.yml/dispatches',
+              data=json.dumps({'ref': branch}).encode(), method='POST')
+          req.add_unredirected_header('Authorization', 'Bearer ' + os.environ['GH_TOKEN'])
+          req.add_header('Accept', 'application/vnd.github+json')
+          req.add_header('Content-Type', 'application/json')
+          with urllib.request.urlopen(req, timeout=60) as response:
+              if response.status != 204:
+                  raise SystemExit('CI dispatch did not return 204')
+          pathlib.Path('.local/stage81-closeout/ci-dispatched.txt').write_text('ci.yml workflow_dispatch requested; completion is verified separately\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage81-acceptance-closeout
+          path: .local/stage81-closeout/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

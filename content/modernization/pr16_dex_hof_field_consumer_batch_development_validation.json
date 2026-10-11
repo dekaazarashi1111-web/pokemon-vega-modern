@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_FIELD_CONSUMER_BATCH_REVIEW",
+  "review_scope": "new_field_consumer_batch_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "initial_head": "5c55881d8ffdec73db319b219b4d73c9b56743be",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-field-consumer-batch.yml": {
+      "size": 3057,
+      "sha256": "b715dea8f34f06162584cda3c7fa5bf058e52729038d44631d601105f70b90e3"
+    },
+    "content/modernization/pr16_dex_hof_bag_sort_roots_review.json": {
+      "size": 7357,
+      "sha256": "b37cbf3304384066ddae117c806a76dea5b5443523f087efac46a09e0e530045"
+    },
+    "content/modernization/pr16_dex_hof_battle_script_roots_review.json": {
+      "size": 47488,
+      "sha256": "45b0b6063616ed27ca7f23c539c09e3c0078aa50bf576734afa53abb2e241659"
+    },
+    "content/modernization/pr16_dex_hof_event_text_roots_review.json": {
+      "size": 20780,
+      "sha256": "65ad1791e68994bc32873ddd854fc9011c37ee54f38fa1ebed8e08a657b86cd7"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_sources.json": {
+      "size": 6014,
+      "sha256": "bd88ef452146bbdbf086291c4364116a306e1f94c6d4d0a4e891fd2f08cf8e5e"
+    },
+    "content/modernization/pr16_dex_hof_field_move_roots_review.json": {
+      "size": 7219,
+      "sha256": "3643a60f229f55f1405ab097e23085bcb988d20a517f46b4cb941555468c1862"
+    },
+    "content/modernization/pr16_dex_hof_fishing_roots_review.json": {
+      "size": 7150,
+      "sha256": "d63eed8013446b0d6aa16f47df8e455bec09fe09ad0199c60e1e8ce901aca9c9"
+    },
+    "docs/PR16_DEX_HOF_FIELD_CONSUMER_BATCH_JA.md": {
+      "size": 7336,
+      "sha256": "9ad88abc135668839d2ed0d710171d2a73e96c96d3bc218c2566d186a23a0934"
+    },
+    "scripts/pr16_dex_hof_bag_sort_roots.py": {
+      "size": 21136,
+      "sha256": "4b2f25f11825cdf0e546b5ff7ce71b42c5e94d93f6ad1caebafd9f1de7061b2d"
+    },
+    "scripts/pr16_dex_hof_battle_script_roots.py": {
+      "size": 21877,
+      "sha256": "278c7e9805c0037a35e726b08793c1bf180befc497b2fb692432e8fd6691c6e1"
+    },
+    "scripts/pr16_dex_hof_event_text_roots.py": {
+      "size": 37060,
+      "sha256": "f312a83a4236ff4fc0e1ab83983d5d74c3d15843a4bd9754b469f9ab10417463"
+    },
+    "scripts/pr16_dex_hof_field_consumer_batch.py": {
+      "size": 7374,
+      "sha256": "715af86c7adc74c9f0fdc25f20321482fe8979cf4b848cca65307c29dc0a7785"
+    },
+    "scripts/pr16_dex_hof_field_consumer_batch_actions.py": {
+      "size": 28668,
+      "sha256": "36be86a65c72d9f0f70c897b06fb5461b203eea8e384912bf22d20421867150d"
+    },
+    "scripts/pr16_dex_hof_field_consumer_batch_capacity.py": {
+      "size": 10500,
+      "sha256": "6c4bbb9efb6f9047558df45ec5c868a21967667243b230e186b4fdbc1a6531f3"
+    },
+    "scripts/pr16_dex_hof_field_consumer_batch_chain.py": {
+      "size": 24954,
+      "sha256": "9bbb09487b7d88b0e675d04e971bbe65d8561e5325a5f46792fb142e963554d1"
+    },
+    "scripts/pr16_dex_hof_field_move_roots.py": {
+      "size": 19374,
+      "sha256": "24b4f876dedd42a4709b1c8706d58f24ec1e7bd91a6705e4fbc01cf3ef4ea71d"
+    },
+    "scripts/pr16_dex_hof_fishing_roots.py": {
+      "size": 30437,
+      "sha256": "1084a375ae61c2a963d5e239038b14663c0c2e0de83eaad158218e69e9c0be25"
+    },
+    "tests/test_pr16_dex_hof_bag_sort_roots.py": {
+      "size": 14214,
+      "sha256": "d9347320d580ce66aa59b63105786a4befc5132c1212a6c4e3d195685abe5f4f"
+    },
+    "tests/test_pr16_dex_hof_battle_script_roots.py": {
+      "size": 8770,
+      "sha256": "168dfe9b10d38a7961e51fea6a405b3bfe4f70def5441c2a08d217bd011c4b7a"
+    },
+    "tests/test_pr16_dex_hof_event_text_roots.py": {
+      "size": 12095,
+      "sha256": "194dfa5503970cc63ac71a52efaba27ded5cca7da9258dccc908cf9b069d133f"
+    },
+    "tests/test_pr16_dex_hof_field_consumer_batch.py": {
+      "size": 8590,
+      "sha256": "fc6b4da18cd633d2e980f03cc72de9878c4b2beb55fa9aefb3af1e500554304d"
+    },
+    "tests/test_pr16_dex_hof_field_consumer_batch_actions.py": {
+      "size": 17372,
+      "sha256": "7365fea5315b89e8b09ec2f547e54df998f448fe720116f66bb5eba9ddda0463"
+    },
+    "tests/test_pr16_dex_hof_field_consumer_batch_capacity.py": {
+      "size": 12650,
+      "sha256": "efd495c4e715e8cd27c72ccc47f68265e3173bf56df6a8f7de9f17e35bb28d75"
+    },
+    "tests/test_pr16_dex_hof_field_consumer_batch_chain.py": {
+      "size": 16497,
+      "sha256": "fcfaa49b4c76953cbb423e4276575f24ed40cb410e11f6ddb2f5b4e650b60d19"
+    },
+    "tests/test_pr16_dex_hof_field_move_roots.py": {
+      "size": 9087,
+      "sha256": "68d04331316b93f32d79fca0887778865989de4aed60a7349085669a0b1c0eaf"
+    },
+    "tests/test_pr16_dex_hof_fishing_roots.py": {
+      "size": 10513,
+      "sha256": "42d3f36d94ccc1e51086d7dc03376f4028d0ba513f49a56e66ec736d9ccca782"
+    }
+  },
+  "diagnostic": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "unit_tests": 351,
+    "classifications": [
+      749,
+      125
+    ],
+    "newly_classified": 3,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "identity_source": "previous_verified_recovery_not_current_measurement"
+    },
+    "delta_identity": {
+      "size": 33137,
+      "sha256": "8c191e7387cfabb6aa6b4754e9dd665a1245a8f5b6f771eb6583e807b9f1bfc2"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false
+  },
+  "diagnostic_test_log": {
+    "size": 49037,
+    "sha256": "6e2e222989e9d2ce3087f8e9195b8dd4df68224bf9d38ebbb68ddd4eea475a60"
+  },
+  "source_only_review": {
+    "status": "PASS",
+    "files": 26,
+    "open_findings": 0,
+    "current_rom_measured": false,
+    "old_independent_final_review_retried": false,
+    "scope": "new_field_consumer_batch_sources_only",
+    "method_ja": "現map登録event text両側consumer、effect231登録battle script境界/operand reader、Bag数量順/Fishing/追加fieldmove未知維持・有限callee/live保存/生成output分離、全15親保持・容量・公開guardを新sourceのみ静的確認。現0641全ROMは別Actions測定。"
+  },
+  "development_history": [
+    {
+      "scope": "field_guards",
+      "detail_ja": "Bag数量順2hit/Fishing timeout/追加fieldmoveの現producer不成立を新guardで固定。有限条件を全未到達へ昇格しない。",
+      "classification_added": 0
+    },
+    {
+      "scope": "event_text",
+      "detail_ja": "prefixのhost context進行を撤去。実map登録とsource構造のみのroot、valid selected command contextを入口条件、実suffix consumer全103byte/EOSを分離。",
+      "new_scoped_tests": 67
+    },
+    {
+      "scope": "battle_script",
+      "detail_ja": "canonical/local source aliasを統一し、既存root consumerが読む末尾BX2byteを新保護窓へ追加。そのsourceで38試験PASS後、test21全124byte+再封印反証へ拡張し変更1test PASS。",
+      "new_scoped_tests": 38,
+      "changed_test_only": 1
+    },
+    {
+      "scope": "fishing_byte_refutation",
+      "detail_ja": "元29試験のsource不変でtest14を全351命令736byte変異/再封印へ強化し変更1test PASS。",
+      "new_scoped_tests": 29,
+      "changed_test_only": 1
+    },
+    {
+      "scope": "source_review",
+      "detail_ja": "BASE転記・source alias・命令高byte反証2件・measurement False/int0別名の計5findingを解消。旧拒否finalreview未実施、別経路再試行なし。",
+      "resolved_findings": 5,
+      "open_findings": 0
+    },
+    {
+      "scope": "final_diagnostic_batch",
+      "detail_ja": "最終26source全size/SHAの開始終了一致を確認。旧診断だけの新scope351試験PASS、749/125、正3data/12byte、3guard4unknown維持。正式current受入は別Actions。",
+      "tests": 351,
+      "current_candidate_measured": false,
+      "old_suite_reruns": 0,
+      "native_processes": 0
+    }
+  ],
+  "publication_budget": {
+    "status": "PRECURRENT_CONSERVATIVE_SIZE_CHECK_NOT_ACCEPTANCE",
+    "files": {
+      "reference-chain.json": 69340,
+      "measurement.json": 173401,
+      "fixed-checkpoint.json": 213401,
+      "fixed-state.json": 3597158,
+      "fixed-resume.md": 169405,
+      "fixed-run-log.md": 2072754,
+      "fixed-version-log.md": 1684152,
+      "field-consumer-batch-tests.txt": 49037,
+      "unknown-frontier.json": 100000,
+      "partial-space.json": 50000,
+      "record.json": 30000
+    },
+    "total": 8208648,
+    "max_file": 4000000,
+    "max_total": 12000000,
+    "state_uses_complete_proof_reference": true
+  },
+  "unchanged_parent": {
+    "classified": 746,
+    "unclassified": 128,
+    "parent_inputs": 29,
+    "retained_proof_families": 15,
+    "changes": 127,
+    "witnesses": 117,
+    "owner_count": 115,
+    "hit_count": 874,
+    "song_models": 133,
+    "assets": 50
+  },
+  "acceptance_boundary": {
+    "current_candidate_verified": false,
+    "current_actions_required": true,
+    "natural_play_reachability_proven": false,
+    "universal_epoch_irq_proven": false,
+    "old_independent_final_source_review_completed": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "controller_runtime_wired": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}

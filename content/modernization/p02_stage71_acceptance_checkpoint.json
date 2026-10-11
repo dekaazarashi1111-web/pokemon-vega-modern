@@ -1,0 +1,424 @@
+{
+  "artifacts_written": [
+    "content/modernization/p02_stage71_acceptance_checkpoint.json"
+  ],
+  "claims": {
+    "condition_method_representatives_reached": true,
+    "full_evolution_acceptance": false,
+    "harness_compiled": true,
+    "normal_bag_item_use": false,
+    "normal_input_cancel": false,
+    "normal_input_evolution_scene": false,
+    "p02_production_runtime_judged": false,
+    "post_scene_identity": false,
+    "six_level_held_item_matrix_reached": true,
+    "stage71_exact_rom_executed": true,
+    "stage71_identity_pinned": true,
+    "stock_save_fresh_core_reload": false
+  },
+  "classification": "STAGE71_EXACT_ROM_TWO_HARNESS_FAILURES_PRODUCTION_RUNTIME_UNJUDGED",
+  "completed_acceptance": [
+    "six_level_held_item_runtime_matrix",
+    "condition_method_representatives"
+  ],
+  "execution": {
+    "additional_mgba_execution_permitted": false,
+    "attempt_sets": [
+      {
+        "attempt_set": 1,
+        "classification": "HARNESS_SYNTHETIC_POST_TRACE_WARP_SOFT_RESET",
+        "diagnosis": "0x080ED8D1 is CB2_Intro after the fixture-only QOL_B_RETURN_WARP",
+        "error": "field baseline cb=080ed8d1 save=0202548c x=0 y=0 party=0 script=0 logs=0",
+        "process_runs_started": 2,
+        "status": "FAIL"
+      },
+      {
+        "attempt_set": 2,
+        "classification": "HARNESS_NORMAL_BAG_PARTY_ENTRY_FAILED",
+        "direct_condition_matrix_passed_before_failure": true,
+        "error": "normal Start/Bag/party input did not reach party menu",
+        "natural_field_trace_passed_before_failure": true,
+        "process_runs_started": 2,
+        "second_process_terminated_after_first_failure": true,
+        "status": "FAIL"
+      }
+    ],
+    "p02_production_runtime_judgment": "UNJUDGED",
+    "structured_runtime_result_emitted": false,
+    "total_attempt_sets_for_stage71_identity": 2
+  },
+  "failure_scope": "HARNESS_UI_NAVIGATION_UNRESOLVED_NOT_ROM_DEFECT",
+  "next_cumulative_run_preparation": {
+    "fresh_core_reload_route": [
+      "stock_TrySavingData_twice",
+      "destroy_original_core",
+      "attach_saved_private_copy_to_fresh_core",
+      "ordinary_title_continue_load",
+      "verify_persisted_species_form_moves_item_and_ability"
+    ],
+    "initial_route": [
+      "attach_private_seed_copy",
+      "ordinary_title_start_and_continue_input",
+      "dismiss_quest_log_recap_by_ordinary_input",
+      "require_120_input_ready_field_frames_at_96/5/20,20",
+      "replace_only_party_and_item_test_fixture_after_field_ready"
+    ],
+    "known_good_continue_save": {
+      "path": ".local/60_wild_species_root_repair.srm",
+      "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+      "size": 131072
+    },
+    "original_seed_never_mutated": true,
+    "per_process_private_copy": true,
+    "stage_diagnostics": [
+      "initial_normal_continue",
+      "fixture_replacement",
+      "rare_candy_cancel_entry",
+      "rare_candy_success_entry",
+      "sun_stone_success_entry",
+      "bag_item_missing_entry",
+      "conditional_form_success_entry",
+      "fresh_core_normal_continue"
+    ],
+    "status": "STATIC_AND_COMPILE_READY_NOT_EXECUTED"
+  },
+  "preflight": {
+    "compilation": {
+      "compile_flags": [
+        "-std=c11",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Itools"
+      ],
+      "compiler": "/usr/bin/cc",
+      "compiler_version": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+      "link_flags": [
+        "-lmgba"
+      ],
+      "status": "PASS"
+    },
+    "config": {
+      "path": "config/modernization_p02_stage71_acceptance_gate.json",
+      "sha256": "90b18fecb127aa3cbea31558f5ffc3d194a9e5f67c7e3b4a94dad4f562f32007",
+      "size": 6632
+    },
+    "historical": {
+      "acceptance_checkpoint": {
+        "path": "content/modernization/p02_acceptance_checkpoint.json",
+        "sha256": "cf2acf56cbe932786c1a610a02b2798098ed0b06dd2c8cd53c2063951ca1d179",
+        "size": 18455
+      },
+      "hidden_ability_readback": true,
+      "historical_full_acceptance": false,
+      "rayquaza_gate": {
+        "path": "content/modernization/p02_stage64_mgba_runtime_gate.json",
+        "sha256": "640c6579365e682c59849392a8d2d15e4061ecbccaaff1094ab997aa91b762ea",
+        "size": 5206
+      },
+      "rayquaza_wish_mega": true,
+      "six_level_held_item_cases": true
+    },
+    "known_good_continue_save": {
+      "identity_verified": true,
+      "path": ".local/60_wild_species_root_repair.srm",
+      "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+      "size": 131072,
+      "source_save_never_mutated": true,
+      "validated_size": 131072
+    },
+    "libmgba": {
+      "path": "/lib/x86_64-linux-gnu/libmgba.so.0.10.2",
+      "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d",
+      "size": 1968536
+    },
+    "reference_rom": {
+      "path": "build/stages/70_modernization_p04_species_runtime.gba",
+      "sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+      "size": 33554432
+    },
+    "repaired_rows": {
+      "representative_rows": {
+        "SPECIES_KEY_TOGETIC": [
+          7,
+          93,
+          20,
+          0
+        ],
+        "SPECIES_KEY_VEGA_001": [
+          4,
+          16,
+          2,
+          0
+        ]
+      },
+      "rows": [
+        {
+          "entry_hex": "04002400f4010000230024008b05c602",
+          "rom_offset": 22078048,
+          "source": "SPECIES_KEY_QUILAVA",
+          "species_id": 499
+        },
+        {
+          "entry_hex": "04002400f8020000230024008e05cf02",
+          "rom_offset": 22111328,
+          "source": "SPECIES_KEY_DEWOTT",
+          "species_id": 759
+        },
+        {
+          "entry_hex": "040036005e030000230036009305cc02",
+          "rom_offset": 22124384,
+          "source": "SPECIES_KEY_RUFFLET",
+          "species_id": 861
+        },
+        {
+          "entry_hex": "04002800e2030000230028009405c702",
+          "rom_offset": 22141280,
+          "source": "SPECIES_KEY_GOOMY",
+          "species_id": 993
+        },
+        {
+          "entry_hex": "04002500ea030000230025009605c402",
+          "rom_offset": 22142304,
+          "source": "SPECIES_KEY_BERGMITE",
+          "species_id": 1001
+        },
+        {
+          "entry_hex": "0400220062040000230022009705c002",
+          "rom_offset": 22157664,
+          "source": "SPECIES_KEY_DARTRIX",
+          "species_id": 1121
+        }
+      ],
+      "species_count": 6,
+      "status": "PASS",
+      "table_address": "0x094FE8E0",
+      "table_extent_inside_rom": true
+    },
+    "sources": [
+      {
+        "path": "scripts/run_modernization_p02_stage71_acceptance.py",
+        "sha256": "33dc497617785713b2d979060b8156f4be0be64abaf8afde5166aa95881484ac",
+        "size": 46050
+      },
+      {
+        "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
+        "sha256": "c7dc8399346b8b1fab85a4c9ef71e7f10674a93096ab22fd86511ec209bde95d",
+        "size": 36731
+      },
+      {
+        "path": "tools/mgba_qol_production_smoke.c",
+        "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+        "size": 149046
+      },
+      {
+        "path": "tools/mgba_battle_core_smoke.c",
+        "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23",
+        "size": 94532
+      },
+      {
+        "path": "tools/mgba_ai_fixture_runner.c",
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+        "size": 36272
+      }
+    ],
+    "stage71_identity_status": "STAGE71_FINAL_IDENTITY_PINNED",
+    "symbols": [
+      {
+        "address": "0x080CEF00",
+        "entry_bytes": "70b50c1c151c1e1c",
+        "name": "BeginEvolutionScene",
+        "thumb_entry": "0x080CEF01"
+      },
+      {
+        "address": "0x090FB774",
+        "entry_bytes": "f0b557464e464546",
+        "name": "GetEvolutionTargetSpecies",
+        "thumb_entry": "0x090FB775"
+      },
+      {
+        "address": "0x090FB630",
+        "entry_bytes": "10b50c4b040082b0",
+        "name": "ItemEvolutionRemoval",
+        "thumb_entry": "0x090FB631"
+      },
+      {
+        "address": "0x090DA23C",
+        "entry_bytes": "f8b500220b21144f",
+        "name": "GetMonAbility",
+        "thumb_entry": "0x090DA23D"
+      },
+      {
+        "address": "0x090D939C",
+        "entry_bytes": "f0b5de4657464e46",
+        "name": "CalculateMonStats",
+        "thumb_entry": "0x090D939D"
+      },
+      {
+        "address": "0x09122C8C",
+        "entry_bytes": "f0b5d6464f464646",
+        "name": "ItemUseCB_EvolutionStone",
+        "thumb_entry": "0x09122C8D"
+      },
+      {
+        "address": "0x080DB34C",
+        "entry_bytes": "004b184761763709",
+        "name": "TrySavingData",
+        "thumb_entry": "0x080DB34D"
+      },
+      {
+        "address": "0x080DB4E4",
+        "entry_bytes": "004b1847815d4009",
+        "name": "Save_LoadGameData",
+        "thumb_entry": "0x080DB4E5"
+      }
+    ]
+  },
+  "release_boundary": "P02_EXACT_UI_ACCEPTANCE_PENDING_OTHER_MODERNIZATION_WORK_CONTINUES",
+  "release_ready": false,
+  "remaining_acceptance": [
+    "normal_evolution_scene_cancel",
+    "normal_evolution_scene_success",
+    "bag_evolution_stone_success",
+    "bag_evolution_stone_missing",
+    "pre_evolution_four_moves_retained",
+    "post_scene_species_and_conditional_form",
+    "post_scene_ability_slot",
+    "post_scene_hidden_ability",
+    "stock_save_fresh_core_reload"
+  ],
+  "schema_version": 1,
+  "stage71": {
+    "allocation": {
+      "path": "build/stages/71_modernization_p04_mega_runtime_allocation.json",
+      "sha256": "814cb27f4a5028ddc9bb544b8f1aca7947ac9ba0fb67d638b70af54b17812cbf"
+    },
+    "allocation_overlap_count": 0,
+    "allocation_row_count_structural": 74,
+    "historical_allocation_content_hashes_not_reinterpreted_as_final_rom": true,
+    "identity_pinned": true,
+    "metadata": {
+      "path": "build/stages/71_modernization_p04_mega_runtime.json",
+      "sha256": "7050385f0609ec61c7356cef2d0f44c92e42ea72e7295a6bc0bf00968896419c"
+    },
+    "metadata_output_bound": true,
+    "repaired_rows": {
+      "representative_rows": {
+        "SPECIES_KEY_TOGETIC": [
+          7,
+          93,
+          20,
+          0
+        ],
+        "SPECIES_KEY_VEGA_001": [
+          4,
+          16,
+          2,
+          0
+        ]
+      },
+      "rows": [
+        {
+          "entry_hex": "04002400f4010000230024008b05c602",
+          "rom_offset": 22078048,
+          "source": "SPECIES_KEY_QUILAVA",
+          "species_id": 499
+        },
+        {
+          "entry_hex": "04002400f8020000230024008e05cf02",
+          "rom_offset": 22111328,
+          "source": "SPECIES_KEY_DEWOTT",
+          "species_id": 759
+        },
+        {
+          "entry_hex": "040036005e030000230036009305cc02",
+          "rom_offset": 22124384,
+          "source": "SPECIES_KEY_RUFFLET",
+          "species_id": 861
+        },
+        {
+          "entry_hex": "04002800e2030000230028009405c702",
+          "rom_offset": 22141280,
+          "source": "SPECIES_KEY_GOOMY",
+          "species_id": 993
+        },
+        {
+          "entry_hex": "04002500ea030000230025009605c402",
+          "rom_offset": 22142304,
+          "source": "SPECIES_KEY_BERGMITE",
+          "species_id": 1001
+        },
+        {
+          "entry_hex": "0400220062040000230022009705c002",
+          "rom_offset": 22157664,
+          "source": "SPECIES_KEY_DARTRIX",
+          "species_id": 1121
+        }
+      ],
+      "species_count": 6,
+      "status": "PASS",
+      "table_address": "0x094FE8E0",
+      "table_extent_inside_rom": true
+    },
+    "rom": {
+      "path": "build/stages/71_modernization_p04_mega_runtime.gba",
+      "sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+      "size": 33554432
+    },
+    "rom_sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+    "stage71_target_allocation_content_hash_verified": true,
+    "symbols": [
+      {
+        "address": "0x080CEF00",
+        "entry_bytes": "70b50c1c151c1e1c",
+        "name": "BeginEvolutionScene",
+        "thumb_entry": "0x080CEF01"
+      },
+      {
+        "address": "0x090FB774",
+        "entry_bytes": "f0b557464e464546",
+        "name": "GetEvolutionTargetSpecies",
+        "thumb_entry": "0x090FB775"
+      },
+      {
+        "address": "0x090FB630",
+        "entry_bytes": "10b50c4b040082b0",
+        "name": "ItemEvolutionRemoval",
+        "thumb_entry": "0x090FB631"
+      },
+      {
+        "address": "0x090DA23C",
+        "entry_bytes": "f8b500220b21144f",
+        "name": "GetMonAbility",
+        "thumb_entry": "0x090DA23D"
+      },
+      {
+        "address": "0x090D939C",
+        "entry_bytes": "f0b5de4657464e46",
+        "name": "CalculateMonStats",
+        "thumb_entry": "0x090D939D"
+      },
+      {
+        "address": "0x09122C8C",
+        "entry_bytes": "f0b5d6464f464646",
+        "name": "ItemUseCB_EvolutionStone",
+        "thumb_entry": "0x09122C8D"
+      },
+      {
+        "address": "0x080DB34C",
+        "entry_bytes": "004b184761763709",
+        "name": "TrySavingData",
+        "thumb_entry": "0x080DB34D"
+      },
+      {
+        "address": "0x080DB4E4",
+        "entry_bytes": "004b1847815d4009",
+        "name": "Save_LoadGameData",
+        "thumb_entry": "0x080DB4E5"
+      }
+    ]
+  },
+  "status": "STOPPED_EXACT_UI_PENDING",
+  "task": "USER-MODERNIZATION-P02-STAGE71-ACCEPTANCE"
+}

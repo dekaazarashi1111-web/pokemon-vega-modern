@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "scope_ja": "21byte UI-only入口（callback/state13＋現在Route506に一致するdynamicWarp8）。元dynamicWarp未設定を自然通信開始と混同せず、作業コピーだけに同一field帰還metadataを用意する。cold process自体は追加fixture0だが入力は当該fixture由来。",
+  "windows": [
+    {
+      "id": "constructor_callbacks",
+      "address": 135433560,
+      "size": 456,
+      "sha256": "87221e9807c5fff6dd8ad161b4a097c3ca78d2f533af58aa6b76a3f900b3be55"
+    },
+    {
+      "id": "display_setup",
+      "address": 135439416,
+      "size": 284,
+      "sha256": "84e0efbbbfb400efad5609ab9001847ef8d3e412cb94814316b8d78190606546"
+    },
+    {
+      "id": "window_templates",
+      "address": 138520240,
+      "size": 40,
+      "sha256": "4dd38c5d7ee2026fcabb141ad61db72bed389db495130a3a1b8bf59a448d6075"
+    },
+    {
+      "id": "sprite_cleanup",
+      "address": 135444152,
+      "size": 24,
+      "sha256": "54ae52a582a43f7093765aef2612fdd7daeaaeaa219e99f85b897cd7c9719d9b"
+    },
+    {
+      "id": "original_help_toggle_lifetime",
+      "address": 135445680,
+      "size": 24,
+      "sha256": "6209f6fed5d58e61601e1e14d522cd5cb0f0b5bffa4b6b4333e253b78fcdba26"
+    },
+    {
+      "id": "map_help_context_enable_call",
+      "address": 135445344,
+      "size": 12,
+      "sha256": "49769dabfd943ab8df15169ce060feeead487560eb64b12395139071e72f8dfc"
+    },
+    {
+      "id": "help_system_enable_caller",
+      "address": 135445648,
+      "size": 20,
+      "sha256": "e8c4500b65e20c35d919c0802bab07f39f837caff9ced1d83c02ed88f7003796"
+    }
+  ],
+  "fixture_contract": {
+    "iwram_callback_bytes": 9,
+    "heap_state_bytes": 4,
+    "saveblock1_dynamic_warp_bytes": 8,
+    "total_bytes": 21,
+    "current_map": [
+      3,
+      24
+    ],
+    "current_xy": [
+      53,
+      13
+    ],
+    "all_other_ram_bytes_preserved": true
+  },
+  "formatter_guard": {
+    "placeholder_owner_address": 33813184,
+    "size": 32,
+    "stack_frame": 48,
+    "transient_lease_only": true,
+    "restore_before_handler_return": true,
+    "deny_irq_fiq_dma_accesses": true,
+    "exact_multiple_transfer_spans": true,
+    "pending_events_before_pc_observations": true
+  },
+  "publication_contract_ja": "producer出力dir・guard対象・upload path・consumer名を機械照合し、成功/診断JSONと非空filesがなければuploadを停止。formatter原本欠落を捏造せず168条件step成功と区別する。",
+  "help_toggle_contract": {
+    "address": 33812713,
+    "pre_ui": 0,
+    "constructor_value": 1,
+    "cleanup_value": 0,
+    "cleanup_instruction": 135445696,
+    "source": "pret/pokefirered@c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/union_room_chat.c: HelpSystem_DisableToggleWithRButton / EnableToggleWithRButton",
+    "guard_ja": "失敗後の固定snapshotとの差分免除ではなく、元UI constructor→cleanupの厳密0→1→0 lifetimeを検証。他20247byteは完全保持。 field再初期化の元HelpSystem2callerによる0→0の冪等書込みは、元PC/typed LR/書込前後0/非IRQ-FIQ-DMAで別検証。解放済みUnion workは読まない。",
+    "first_cleanup_lr": 135437105,
+    "idempotent_map_lrs": [
+      135445351,
+      135445667
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "breeding_source_sha256": "a5af5e8f1bda870c324457289c4b09dc9462e7fb08453add24084c3eb1bd6737",
+  "code": {
+    "tools/pr16_vega_adjudication.py": {
+      "sha256": "c7dcc1275d770a6328a548e7c3485dbce393879e07325ad350f56a547f8debfc",
+      "size": 7639
+    },
+    "tools/pr16_vega_breeding.py": {
+      "sha256": "fad26c736e5bc9664521709208479ed58ecd670e59eb731843c75d1b89d6770f",
+      "size": 12767
+    }
+  },
+  "outputs": {
+    "adopted_vega_original_baseline.jsonl": {
+      "sha256": "9daaea8c97a744c0522afc03c157392b3179b5d0a359df97de2f3b1c0da6524f",
+      "size": 1744195
+    },
+    "breeding_families.json": {
+      "sha256": "c40133e37b9bb7c55af841daadcd913879ee71842a770081867bf8132eda4ec5",
+      "size": 338899
+    },
+    "nondirect_egg.jsonl": {
+      "sha256": "50850de6383731d5c9087f8821e2a4e3c5d5123b7e50ea75556358f654acebd8",
+      "size": 2111990
+    },
+    "source_collisions.json": {
+      "sha256": "7e53ca0d4bddfbaa9b641a635dda562f482250b98fc19a2b3c0226c7d9dd2311",
+      "size": 37030
+    }
+  },
+  "schema_version": 1,
+  "source_receipt_sha256": "3e43a85983ae58eb718cba304d41f7dbf14ace59f65545acc58be63f885021db",
+  "summary": {
+    "issue19_complete": false,
+    "note_scopes": {
+      "HATCH_BASE_REFERENCE": 2336,
+      "NO_BREEDING_NOTE": 1,
+      "SAME_FAMILY_INTERMEDIATE_REFERENCE": 57
+    },
+    "original_consumer_species_checked": 411,
+    "physical_donor_chain_verified": false,
+    "pre_evolution_egg_rows": 2394,
+    "receiver_direct_egg_rows_added": 0,
+    "reference_only_rows": 0,
+    "release_ready": false,
+    "rows": 2394,
+    "runtime_applied": false,
+    "shared_egg_rows_added": 0,
+    "species": 92,
+    "unresolved_rows": 0
+  },
+  "task": "USER-20260921-LEARNSET-BASELINE-RESET"
+}

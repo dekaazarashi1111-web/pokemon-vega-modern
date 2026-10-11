@@ -1,0 +1,35 @@
+name: PR16 Circus streak save-owner context
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_circus_streak_context.py
+      - .github/workflows/pr16-circus-streak-context.yml
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+jobs:
+  context:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: 保存owner限定sourceと最新Actionsを照合（native再実行なし）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_circus_streak_context.py
+          python3 scripts/validate_task_graph.py
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-circus-streak-context
+          path: .local/pr16-circus-streak-context/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

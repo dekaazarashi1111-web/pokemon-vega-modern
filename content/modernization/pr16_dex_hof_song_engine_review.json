@@ -1,0 +1,1404 @@
+{
+  "schema_version": 1,
+  "status": "OLD_FORMAL_STATIC_SEMANTIC_REVIEW_CURRENT_CANDIDATE_NOT_YET_BOUND",
+  "old_formal": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "required_current_sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+  "native_execution": false,
+  "rom_modified": false,
+  "raw_rom_or_disassembly_included": false,
+  "decoder": "capstone5.0.3; bounded ARM/Thumb decoding + independent pinned-source manual semantic comparison",
+  "source_manifest_identity": {
+    "size": 6858,
+    "sha256": "ee616e26dbe0889e0558dde9e35c739ea59142452f5bc1e834ec56dcfc33d01d"
+  },
+  "all15_source_blobs_verified": true,
+  "windows": [
+    {
+      "name": "m4aSongNumStart",
+      "address": 136057008,
+      "end_exclusive": 136057052,
+      "size": 44,
+      "sha256": "3a51e31bf90dec93e8f6d8195e1b9ae49e5b02a3473f5efd2169f8f60d54742a",
+      "source": "pret-m4a.c:107-115; BPRJ.ld:1858",
+      "semantic_ja": "u16 song IDを8倍、Song.msを12倍してplayer.infoを取り、Song.headerとMPlayStartへ渡す。戻りと両literalを含む。"
+    },
+    {
+      "name": "m4aSoundInit",
+      "address": 136056816,
+      "end_exclusive": 136056996,
+      "size": 180,
+      "sha256": "8a32f8b08388062c8466a74b086a98b8d64f4bc91d39d35050e37c9773c4ddc2",
+      "source": "pret-m4a.c:70-100",
+      "semantic_ja": "SoundMainRAMを2048byteコピー、SoundInit→MPlayExtender→SoundMode、4行のplayerを12byte刻みで初期化。別のcry player2個も初期化。"
+    },
+    {
+      "name": "SoundInit",
+      "address": 136057948,
+      "end_exclusive": 136058196,
+      "size": 248,
+      "sha256": "39255797bbbc3f0978864a8506a73605917cfadf840e360f9dddb44a81ec2e05",
+      "source": "pret-m4a.c:353-398",
+      "semantic_ja": "SoundInfo初期化、ply_noteを+0x38、copierでRAM jump table、table pointerを+0x34へ設定。"
+    },
+    {
+      "name": "MPlayExtender",
+      "address": 136057624,
+      "end_exclusive": 136057904,
+      "size": 280,
+      "sha256": "e076651f22d93f10ebc5a095ec4e951be1fac7fb5330b47b9b0fa42bdfe0d83c",
+      "source": "pret-m4a.c:257-326",
+      "semantic_ja": "effective tableのslot8/17/19/28/29/30/31/32/33へ実targetを上書き。"
+    },
+    {
+      "name": "MPlayOpen",
+      "address": 136058780,
+      "end_exclusive": 136058900,
+      "size": 120,
+      "sha256": "43d96fc03d47c622a9242ce0cd0eb659b3eb4806d95402f14bcbd2e5d5608d97",
+      "source": "pret-m4a.c:565-609; BPRJ.ld:1854",
+      "semantic_ja": "容量0で戻り、最大16にclamp。track構造stride80、SoundInfo+0x20へMPlayMainを登録。"
+    },
+    {
+      "name": "MPlayStart",
+      "address": 136058900,
+      "end_exclusive": 136059128,
+      "size": 228,
+      "sha256": "d003418081c4d12afffdfc759f7c90ee0cd92ea4813b1c54e78ead5737dd3833",
+      "source": "pret-m4a.c:611-677; BPRJ.ld:1855",
+      "semantic_ja": "priority等で開始を拒否し得る。受理時header+4→tone、min(header.trackCount,player.trackCount)だけpart+8+4*iをcmdPtrに登録。"
+    },
+    {
+      "name": "MPlayMain",
+      "address": 136055260,
+      "end_exclusive": 136055876,
+      "size": 616,
+      "sha256": "787e881b9b1c3b14048bd35b19f97943237dc8547d493914a8cb56563d0ccfb1",
+      "source": "pret-m4a_1.s:1129-1466",
+      "semantic_ja": "flags/start初期化、running status、49entry clock待機、30slot dispatcher、note dispatcher、wait減算、共有tempo scheduler。補助call_r3と3literalを含む。"
+    },
+    {
+      "name": "ply_note",
+      "address": 136055992,
+      "end_exclusive": 136056508,
+      "size": 516,
+      "sha256": "742361395164b0da3199e4428d3418aacb06fcf6225a1dbc1282f21fe8c43bc9",
+      "source": "pret-m4a_1.s:1538-1816",
+      "semantic_ja": "optional key/velocity/gate、保持keyでSPL/RHYの単一child選択、nested group拒否、CGB判別、channel admission後wave pointer転記。"
+    },
+    {
+      "name": "MPlayJumpTableCopy_and_address_guard",
+      "address": 136054732,
+      "end_exclusive": 136054784,
+      "size": 52,
+      "sha256": "57ec4ea757c64c6cce0c839da95c7c1f8065a4e968dd30fd15adee86b03191a6",
+      "source": "pret-m4a_1.s:779-819",
+      "semantic_ja": "ROM template36wordをRAMへcopy。byte/word readのBIOS範囲guardを含む。"
+    },
+    {
+      "name": "ld_r3_tp_adr_i",
+      "address": 136054784,
+      "end_exclusive": 136054794,
+      "size": 10,
+      "sha256": "02f3f5ffe62fb77516b79c3cc33c0e6f83774d6761442176ab3d7bea336e3414",
+      "source": "pret-m4a_1.s:821-829",
+      "semantic_ja": "cmdPtrを1増やしraw byteを読みguardへtail branch。"
+    },
+    {
+      "name": "ply_fine",
+      "address": 136054684,
+      "end_exclusive": 136054732,
+      "size": 48,
+      "sha256": "767cb12459588832366a031b8088826493705f8746b882354bb470db7bdb62de",
+      "source": "pret-m4a_1.s:751-777",
+      "semantic_ja": "channel停止/chain解除後track.flags=0。"
+    },
+    {
+      "name": "ply_goto",
+      "address": 136054796,
+      "end_exclusive": 136054828,
+      "size": 32,
+      "sha256": "b4c137a9f8b801e7515565fbc485668d66b21ef58290b1d063fc3714543789df",
+      "source": "pret-m4a_1.s:831-849",
+      "semantic_ja": "byte構築のLE u32 targetをcmdPtrへ、fallthroughなし。"
+    },
+    {
+      "name": "ply_patt",
+      "address": 136054828,
+      "end_exclusive": 136054856,
+      "size": 28,
+      "sha256": "642b84f098f37484f3c7651b06cecd4f95177a5dc7748e53460e45ac3fc7f1f3",
+      "source": "pret-m4a_1.s:851-867",
+      "semantic_ja": "深さ3以上はFINE、他はoperand終端をstackへpushしてGOTO。"
+    },
+    {
+      "name": "ply_pend",
+      "address": 136054856,
+      "end_exclusive": 136054876,
+      "size": 20,
+      "sha256": "ef262893b794449af48fcfa195da908bfb53beaa56c74bcf0b4da5ca3747a84b",
+      "source": "pret-m4a_1.s:869-882",
+      "semantic_ja": "深さ0ならそのまま、他はstackをpop。"
+    },
+    {
+      "name": "ply_rept",
+      "address": 136054876,
+      "end_exclusive": 136054924,
+      "size": 48,
+      "sha256": "4285acee22de2593316c9b0d88637718eb0e9fb92721d56b428a7396e4dd01cf",
+      "source": "pret-m4a_1.s:884-910",
+      "semantic_ja": "count0は無条件GOTO、他はrepN+1をbyte保存前の値で比較、完了時repN=0とoperand5byteをskip。"
+    },
+    {
+      "name": "scalar_handlers_and_voice",
+      "address": 136054924,
+      "end_exclusive": 136055184,
+      "size": 260,
+      "sha256": "a235940055d697e6edcaecebe8e9a5684bd5597cd48f64cc32022898a63f181a",
+      "source": "pret-m4a_1.s:912-1068",
+      "semantic_ja": "PRIO/TEMPO/KEYSH/VOICE/VOL/PAN/BEND/BENDR/LFODL/MODT/TUNEは1byte、PORTは2byte。VOICEはu8*12の3word copy。"
+    },
+    {
+      "name": "ply_endtie",
+      "address": 136056508,
+      "end_exclusive": 136056572,
+      "size": 64,
+      "sha256": "3e069790b65fccbf8336f5eea85d29e3fbc9fc91a2d6dcd363df78663584ad9d",
+      "source": "pret-m4a_1.s:1818-1857",
+      "semantic_ja": "optional key<128を保持keyへ反映し、該当channelを停止。"
+    },
+    {
+      "name": "clear_modM_lfos_mod_and_rawbyte",
+      "address": 136056572,
+      "end_exclusive": 136056652,
+      "size": 80,
+      "sha256": "81911c4e3e58d0a9a67536baa7682ef0677fd4758a32882d2b5a4a1c3912ba3b",
+      "source": "pret-m4a_1.s:1859-1910",
+      "semantic_ja": "LFOS/MODはraw1byte読み、ゼロ時modulationをreset。"
+    },
+    {
+      "name": "Clear64byte_indirect_wrapper",
+      "address": 136057928,
+      "end_exclusive": 136057948,
+      "size": 20,
+      "sha256": "92901daaf7d575fd12382afb049a62a684181c6c10edd5ed8d330f1e2436890e",
+      "source": "pret-m4a.c:343-350",
+      "semantic_ja": "RAM table slot35から関数pointerを取りbx r1 trampoline経由で呼ぶ。"
+    },
+    {
+      "name": "SoundMainBTM_Clear64byte",
+      "address": 136054628,
+      "end_exclusive": 136054652,
+      "size": 24,
+      "sha256": "5419bd3c98ab164d43e875108e63059c0cbf03bd8f21994049aecff5588fd52b",
+      "source": "pret-m4a_1.s:711-728",
+      "semantic_ja": "ゼロ4wordのstmを4回、先頭64byteだけclear。cmdPtrとpatternStack領域は別。"
+    },
+    {
+      "name": "SoundMain",
+      "address": 136052700,
+      "end_exclusive": 136052832,
+      "size": 132,
+      "sha256": "180b9e9b296db0ebb76bfcc14eba95c39ac1017975afbfa7ccfae072e1e1dd27",
+      "source": "pret-m4a_1.s:13-91",
+      "semantic_ja": "SoundInfoからMPlayMainHeadを呼び、RAMコピー03002919へbranch。"
+    },
+    {
+      "name": "SoundMainRAM_copied_source",
+      "address": 136052832,
+      "end_exclusive": 136054880,
+      "size": 2048,
+      "sha256": "7e7812b9c7564c2bd707a35812c05ec23ef230db03ef00d4491acaa38ab2cb96",
+      "source": "pret-m4a.c:74; pret-m4a_1.s:93-709",
+      "semantic_ja": "初期化が実際にcopyする全2048byte。Thumb/ARM混在でdecoderとliteralを含む。"
+    },
+    {
+      "name": "SoundMainRAM_special_codec",
+      "address": 136053788,
+      "end_exclusive": 136054488,
+      "size": 700,
+      "sha256": "599e036e4d22b7ad34567d880a75506153905085a96dc11f44b7e2fd8e3deb2c",
+      "source": "pret-m4a_1.s:468-669",
+      "semantic_ja": "CMP/REV経路でWaveData.typeを確認、0はPCM、非0はDPCM。forward/reverseと補間lookaheadあり。"
+    },
+    {
+      "name": "SoundMainRAM_DPCM_block_decoder",
+      "address": 136054488,
+      "end_exclusive": 136054628,
+      "size": 140,
+      "sha256": "c6f1ff032a2ae84b03df3c0ecf85c43b0f38571482c1f97c2c79b65d631bf7c0",
+      "source": "pret-m4a_1.s:670-709",
+      "semantic_ja": "sampleIndex>>6から33byte block、seed+low nibble+31組high/lowで常に64sample展開。buffer/table literalを含む。"
+    },
+    {
+      "name": "gMPlayJumpTableTemplate",
+      "address": 138732968,
+      "end_exclusive": 138733112,
+      "size": 144,
+      "sha256": "896843989a94040e16f1372cd248836c6f6bd961779b92b4fbd9da6e02ed88e4",
+      "source": "pret-m4a_tables.c:6-45",
+      "semantic_ja": "copierのliteralで根付く36slot template。"
+    },
+    {
+      "name": "gDeltaEncodingTable",
+      "address": 138733112,
+      "end_exclusive": 138733128,
+      "size": 16,
+      "sha256": "6b647ce81819efcc994bae9e9493c3d48813225e5951001bf7a43a2f545e128a",
+      "source": "pret-m4a_tables.c:48-67",
+      "semantic_ja": "DPCM decoder literalの16個signed delta。"
+    },
+    {
+      "name": "gClockTable",
+      "address": 138733612,
+      "end_exclusive": 138733661,
+      "size": 49,
+      "sha256": "952d81c712713fc630d9d622d5f79eec8189f2a4cf05a78442857b635f0d23f8",
+      "source": "pret-m4a_tables.c:gClockTable",
+      "semantic_ja": "MPlayMainとply_note両方のliteralで根付く49entry。"
+    },
+    {
+      "name": "gMPlayTable",
+      "address": 138837724,
+      "end_exclusive": 138837772,
+      "size": 48,
+      "sha256": "081f9c064622de0404236cfcb355b899b29995c42992782833b1838c3a7f0887",
+      "source": "pret-m4a.c:83-88,107-114; m4a_internal.h:351-364",
+      "semantic_ja": "initの4行loopとSong.msの12倍indexから根付く。"
+    },
+    {
+      "name": "ply_xcmd_dispatch_rejected",
+      "address": 136062016,
+      "end_exclusive": 136062048,
+      "size": 32,
+      "sha256": "eb711d40ef8f0a549b015ab4de27cee724a5eefd52d1f4c709dc2ca4c91b376b",
+      "source": "pret-m4a.c:1523-1529",
+      "semantic_ja": "minimal parserでは全XCMD拒否。生u8 subcommandを無検査でtable indexに使用する実handler。"
+    },
+    {
+      "name": "cartridge_entry",
+      "address": 134217728,
+      "end_exclusive": 134217732,
+      "size": 4,
+      "sha256": "1e69530c7fbbf50dee8541042a8016af295c4d84435e2764c295a0ce5d18307d",
+      "source": "old-formal actual decoded startup control flow; no upstream startup source acquired",
+      "semantic_ja": "ARM entryの直接branch先は08000204。"
+    },
+    {
+      "name": "startup_to_thumb_main",
+      "address": 134218244,
+      "end_exclusive": 134218312,
+      "size": 68,
+      "sha256": "53a7c5346126157b9056306cdf7dff0f4f8e8c910514a1cb0d1e5f02347c1c64",
+      "source": "old-formal actual decoded startup control flow; no upstream startup source acquired",
+      "semantic_ja": "ARM stack/mode準備後literal08000244の080003A5へBX。"
+    },
+    {
+      "name": "main_prefix_to_sound_init",
+      "address": 134218660,
+      "end_exclusive": 134218706,
+      "size": 46,
+      "sha256": "118ec4d2a0fb802869eb1670a171117de312c976ad6c1c431db145eb45a48f61",
+      "source": "old-formal actual decoded startup control flow; no upstream startup source acquired",
+      "semantic_ja": "Thumb main entryから081C0FF0へのdirect BL site080003CEまでのprefix。途中の他BL先returnや全main挙動は未検証。"
+    }
+  ],
+  "roots": [
+    {
+      "name": "song_table_literal",
+      "address": 136057048,
+      "value": 138837772,
+      "size": 4,
+      "sha256": "dbd0ff40580f2126febfe893917eb0f7b081b2c5cd57216f858e95fd169778c1"
+    },
+    {
+      "name": "mplay_table_literal",
+      "address": 136057044,
+      "value": 138837724,
+      "size": 4,
+      "sha256": "4147127a335a1fcec8ba136400540e00ddefb9ee7f4b42e1383fdb727e04c087"
+    },
+    {
+      "name": "init_mplay_table_literal",
+      "address": 136056972,
+      "value": 138837724,
+      "size": 4,
+      "sha256": "4147127a335a1fcec8ba136400540e00ddefb9ee7f4b42e1383fdb727e04c087"
+    },
+    {
+      "name": "init_player_count",
+      "address": 136056968,
+      "value": 4,
+      "size": 4,
+      "sha256": "fb5e512425fc9449316ec95969ebe71e2d576dbab833d61e2a5b9330fd70ee02"
+    },
+    {
+      "name": "note_target_literal",
+      "address": 136058180,
+      "value": 136055993,
+      "size": 4,
+      "sha256": "c28826c5b40c917154b985dfd241106a26ae26d4f93cd50e4e3b5680810705f4"
+    },
+    {
+      "name": "main_target_literal",
+      "address": 136058896,
+      "value": 136055261,
+      "size": 4,
+      "sha256": "96a0aab8f27ee0e2ba9e8d57be0d533ca79b07a7a1521717c42d903990329d12"
+    },
+    {
+      "name": "template_literal",
+      "address": 136054780,
+      "value": 138732968,
+      "size": 4,
+      "sha256": "8ccf4ee7708e7b0c7079665cb0a32a570906076e2a42d0525bf16b366e592340"
+    },
+    {
+      "name": "jump_ram_literal",
+      "address": 136058188,
+      "value": 50360384,
+      "size": 4,
+      "sha256": "628aeb81ad86cea2daeb97e7e2166d2d4f98795f3be54eefd975098e7633b10a"
+    },
+    {
+      "name": "clock_dispatch_literal",
+      "address": 136055864,
+      "value": 138733612,
+      "size": 4,
+      "sha256": "d1de95969e8b71450f47c857a86ceeee41a7bfc0ea4483c8349f5e622aeca05e"
+    },
+    {
+      "name": "clock_note_literal",
+      "address": 136056504,
+      "value": 138733612,
+      "size": 4,
+      "sha256": "d1de95969e8b71450f47c857a86ceeee41a7bfc0ea4483c8349f5e622aeca05e"
+    },
+    {
+      "name": "ram_copy_source",
+      "address": 136056944,
+      "value": 136052833,
+      "size": 4,
+      "sha256": "5ecfe494d0c6b993e92b772cf3206eb191961189b841363d371fb0ffee993871"
+    },
+    {
+      "name": "ram_copy_destination",
+      "address": 136056948,
+      "value": 50342168,
+      "size": 4,
+      "sha256": "bb3a699e9343739989314d1134365f84ea2fc58ea5dd0fb298ab32ce3451928b"
+    },
+    {
+      "name": "ram_copy_cpusetsize",
+      "address": 136056952,
+      "value": 67109376,
+      "size": 4,
+      "sha256": "572f6a289a69da0087f95cd97bef2376e9c6b575361d95e4ef6c7adbb1902d2b"
+    },
+    {
+      "name": "ram_execution_target",
+      "address": 136052816,
+      "value": 50342169,
+      "size": 4,
+      "sha256": "af3d2c4b108e8447dbb053b7e8f9702f567af90268da970f64d25d26e5fe4e3f"
+    },
+    {
+      "name": "delta_table_literal",
+      "address": 136054624,
+      "value": 138733112,
+      "size": 4,
+      "sha256": "d038ac33dc4f97991fca3e8a641ea1636b9560670dfd56870df970d688745efa"
+    },
+    {
+      "name": "clear64_slot",
+      "address": 136057944,
+      "value": 50360524,
+      "size": 4,
+      "sha256": "ede1841030a529529d709ff50a248dc5f95f4f52721afe03604a6786ec9f5606"
+    }
+  ],
+  "instruction_semantic_check_sites": [
+    136057016,
+    136057020,
+    136057036,
+    136056836,
+    136056842,
+    136056870,
+    136056886,
+    136058106,
+    136058090,
+    136058110,
+    136058872,
+    136058978,
+    136059004,
+    136059010,
+    136059044,
+    136055464,
+    136055468,
+    136055508,
+    136056086,
+    136056090,
+    136056140,
+    136056382
+  ],
+  "instruction_semantic_checks_passed": 22,
+  "effective_jump_table": {
+    "ram_address": 50360384,
+    "template_address": 138732968,
+    "template_targets": [
+      136054685,
+      136054797,
+      136054829,
+      136054857,
+      136054877,
+      136054685,
+      136054685,
+      136054685,
+      136054685,
+      136054925,
+      136054937,
+      136054957,
+      136054977,
+      136055025,
+      136055045,
+      136055065,
+      136055085,
+      136056613,
+      136055105,
+      136056633,
+      136055117,
+      136054685,
+      136054685,
+      136055141,
+      136054685,
+      136054685,
+      136054685,
+      136055161,
+      136054685,
+      136056509,
+      136058197,
+      136055877,
+      136059193,
+      136059393,
+      136054653,
+      136054629
+    ],
+    "extender_patches": [
+      {
+        "slot": 8,
+        "target": 136061673,
+        "literal_site": 136057848
+      },
+      {
+        "slot": 17,
+        "target": 136056613,
+        "literal_site": 136057852
+      },
+      {
+        "slot": 19,
+        "target": 136056633,
+        "literal_site": 136057856
+      },
+      {
+        "slot": 28,
+        "target": 136062017,
+        "literal_site": 136057860
+      },
+      {
+        "slot": 29,
+        "target": 136056509,
+        "literal_site": 136057864
+      },
+      {
+        "slot": 30,
+        "target": 136058197,
+        "literal_site": 136057868
+      },
+      {
+        "slot": 31,
+        "target": 136055877,
+        "literal_site": 136057872
+      },
+      {
+        "slot": 32,
+        "target": 136059193,
+        "literal_site": 136057876
+      },
+      {
+        "slot": 33,
+        "target": 136059393,
+        "literal_site": 136057880
+      }
+    ],
+    "effective_targets": [
+      136054685,
+      136054797,
+      136054829,
+      136054857,
+      136054877,
+      136054685,
+      136054685,
+      136054685,
+      136061673,
+      136054925,
+      136054937,
+      136054957,
+      136054977,
+      136055025,
+      136055045,
+      136055065,
+      136055085,
+      136056613,
+      136055105,
+      136056633,
+      136055117,
+      136054685,
+      136054685,
+      136055141,
+      136054685,
+      136054685,
+      136054685,
+      136055161,
+      136062017,
+      136056509,
+      136058197,
+      136055877,
+      136059193,
+      136059393,
+      136054653,
+      136054629
+    ]
+  },
+  "players": [
+    {
+      "index": 0,
+      "address": 138837724,
+      "size": 12,
+      "sha256": "ed0ddc2e9a2c2494dbc3c8d2f43893385617ace702be3cbeb1f86b29e89007aa",
+      "info": 50361168,
+      "tracks": 50340056,
+      "capacity": 10,
+      "priority_gate": 0
+    },
+    {
+      "index": 1,
+      "address": 138837736,
+      "size": 12,
+      "sha256": "25841829c8c674178523a420afd7b43c1f2562d4f576b311b9c942d2f73c8caf",
+      "info": 50361232,
+      "tracks": 50340856,
+      "capacity": 3,
+      "priority_gate": 1
+    },
+    {
+      "index": 2,
+      "address": 138837748,
+      "size": 12,
+      "sha256": "4d41600e9db85ad4255db47b3cdeafc96efb0fccab11c5198253925da8c36cb4",
+      "info": 50361296,
+      "tracks": 50341096,
+      "capacity": 9,
+      "priority_gate": 1
+    },
+    {
+      "index": 3,
+      "address": 138837760,
+      "size": 12,
+      "sha256": "ba7b60b0da349f2f27e24dab525c08b4433491515b7faab2c566230ed26caccf",
+      "info": 50361376,
+      "tracks": 50341816,
+      "capacity": 1,
+      "priority_gate": 0
+    }
+  ],
+  "clock_table": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    28,
+    30,
+    32,
+    36,
+    40,
+    42,
+    44,
+    48,
+    52,
+    54,
+    56,
+    60,
+    64,
+    66,
+    68,
+    72,
+    76,
+    78,
+    80,
+    84,
+    88,
+    90,
+    92,
+    96
+  ],
+  "song_selection": {
+    "source": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/constants/songs.h",
+    "source_identity": {
+      "size": 8732,
+      "sha256": "55cf54688769cc34f16d60a68c4046853944e220525862463195bf58ef4f97f6"
+    },
+    "policy": "Unconditional numeric object-like defines only. Exclude all conditional branches, aliases and 0xFEFE sentinel. Deduplicate values but retain name/line provenance. Named selection is not full song-table coverage or proof the game invokes every id.",
+    "definitions": [
+      {
+        "name": "BGM_EYE_CREEPY",
+        "id": 283,
+        "source_line": 3
+      },
+      {
+        "name": "BGM_EYE_GIRL",
+        "id": 284,
+        "source_line": 4
+      },
+      {
+        "name": "BGM_EYE_BOY",
+        "id": 285,
+        "source_line": 5
+      },
+      {
+        "name": "BGM_VICTORY_TRAINER_BATTLE",
+        "id": 310,
+        "source_line": 7
+      },
+      {
+        "name": "BGM_VICTORY_SPECIAL",
+        "id": 312,
+        "source_line": 8
+      },
+      {
+        "name": "BGM_BATTLE_RSE_GYM_LEADER",
+        "id": 265,
+        "source_line": 10
+      },
+      {
+        "name": "BGM_BATTLE_RSE_TRAINER",
+        "id": 266,
+        "source_line": 11
+      },
+      {
+        "name": "BGM_CYCLING",
+        "id": 282,
+        "source_line": 12
+      },
+      {
+        "name": "BGM_BATTLE_GYM_LEADER",
+        "id": 296,
+        "source_line": 13
+      },
+      {
+        "name": "BGM_BATTLE_TRAINER",
+        "id": 297,
+        "source_line": 14
+      },
+      {
+        "name": "BGM_BATTLE_WILD",
+        "id": 298,
+        "source_line": 15
+      },
+      {
+        "name": "BGM_BATTLE_CHAMPION",
+        "id": 299,
+        "source_line": 16
+      },
+      {
+        "name": "BGM_SURFS_UP",
+        "id": 305,
+        "source_line": 17
+      },
+      {
+        "name": "BGM_BATTLE_DEOXYS",
+        "id": 339,
+        "source_line": 18
+      },
+      {
+        "name": "BGM_BATTLE_LEGENDARY_BIRDS",
+        "id": 340,
+        "source_line": 19
+      },
+      {
+        "name": "BGM_BATTLE_MEWTWO",
+        "id": 341,
+        "source_line": 20
+      },
+      {
+        "name": "BGM_VICTORY_WILD_POKE",
+        "id": 311,
+        "source_line": 22
+      },
+      {
+        "name": "BGM_VICTORY_GYM",
+        "id": 312,
+        "source_line": 23
+      },
+      {
+        "name": "MUS_DUMMY",
+        "id": 0,
+        "source_line": 27
+      },
+      {
+        "name": "SE_STOP",
+        "id": 0,
+        "source_line": 28
+      },
+      {
+        "name": "SE_USE_ITEM",
+        "id": 1,
+        "source_line": 29
+      },
+      {
+        "name": "SE_PC_LOGON",
+        "id": 2,
+        "source_line": 30
+      },
+      {
+        "name": "SE_PC_OFF",
+        "id": 3,
+        "source_line": 31
+      },
+      {
+        "name": "SE_PC_ON",
+        "id": 4,
+        "source_line": 32
+      },
+      {
+        "name": "SE_SELECT",
+        "id": 5,
+        "source_line": 33
+      },
+      {
+        "name": "SE_WIN_OPEN",
+        "id": 6,
+        "source_line": 34
+      },
+      {
+        "name": "SE_WALL_HIT",
+        "id": 7,
+        "source_line": 35
+      },
+      {
+        "name": "SE_DOOR_OPEN",
+        "id": 8,
+        "source_line": 36
+      },
+      {
+        "name": "SE_EXIT_ROOM",
+        "id": 9,
+        "source_line": 37
+      },
+      {
+        "name": "SE_HOP",
+        "id": 10,
+        "source_line": 38
+      },
+      {
+        "name": "SE_BIKE_BELL",
+        "id": 11,
+        "source_line": 39
+      },
+      {
+        "name": "SE_NOT_VERY_EFFECTIVE",
+        "id": 12,
+        "source_line": 40
+      },
+      {
+        "name": "SE_EFFECTIVE",
+        "id": 13,
+        "source_line": 41
+      },
+      {
+        "name": "SE_SUPER_EFFECTIVE",
+        "id": 14,
+        "source_line": 42
+      },
+      {
+        "name": "SE_POKE_BALL_OPEN",
+        "id": 15,
+        "source_line": 43
+      },
+      {
+        "name": "SE_POKE_BALL_CLOSE",
+        "id": 16,
+        "source_line": 44
+      },
+      {
+        "name": "SE_FLEE",
+        "id": 17,
+        "source_line": 45
+      },
+      {
+        "name": "SE_SLIDING_DOOR_OPEN",
+        "id": 18,
+        "source_line": 46
+      },
+      {
+        "name": "SE_BREAK_DOOR_OPEN",
+        "id": 20,
+        "source_line": 47
+      },
+      {
+        "name": "SE_EXCLAIM",
+        "id": 21,
+        "source_line": 48
+      },
+      {
+        "name": "SE_FALSE",
+        "id": 22,
+        "source_line": 49
+      },
+      {
+        "name": "SE_POKE_BALL_SHAKE",
+        "id": 23,
+        "source_line": 50
+      },
+      {
+        "name": "SE_CASINO_STOP_SLOT_REEL",
+        "id": 24,
+        "source_line": 51
+      },
+      {
+        "name": "SE_CORRECT",
+        "id": 25,
+        "source_line": 52
+      },
+      {
+        "name": "SE_ERROR",
+        "id": 26,
+        "source_line": 53
+      },
+      {
+        "name": "SE_EXP",
+        "id": 27,
+        "source_line": 54
+      },
+      {
+        "name": "SE_HOP_ON_BIKE",
+        "id": 28,
+        "source_line": 55
+      },
+      {
+        "name": "SE_LOCK",
+        "id": 29,
+        "source_line": 56
+      },
+      {
+        "name": "SE_UNLOCK",
+        "id": 30,
+        "source_line": 57
+      },
+      {
+        "name": "SE_LAVARIDGE_GYM_DIG",
+        "id": 33,
+        "source_line": 58
+      },
+      {
+        "name": "SE_ICE_BREAK",
+        "id": 35,
+        "source_line": 59
+      },
+      {
+        "name": "SE_ICE_CRACK",
+        "id": 36,
+        "source_line": 60
+      },
+      {
+        "name": "SE_FALL",
+        "id": 37,
+        "source_line": 61
+      },
+      {
+        "name": "SE_DOOR_SHUT",
+        "id": 38,
+        "source_line": 62
+      },
+      {
+        "name": "SE_WARP_AWAY",
+        "id": 39,
+        "source_line": 63
+      },
+      {
+        "name": "SE_WARP_IN",
+        "id": 40,
+        "source_line": 64
+      },
+      {
+        "name": "SE_SLIDE",
+        "id": 41,
+        "source_line": 65
+      },
+      {
+        "name": "SE_TURN_SWITCH_FLIP",
+        "id": 42,
+        "source_line": 66
+      },
+      {
+        "name": "SE_POKE_BALL_BOUNCE_1",
+        "id": 50,
+        "source_line": 67
+      },
+      {
+        "name": "SE_POKE_BALL_BOUNCE_2",
+        "id": 50,
+        "source_line": 68
+      },
+      {
+        "name": "SE_POKE_BALL_BOUNCE_3",
+        "id": 51,
+        "source_line": 69
+      },
+      {
+        "name": "SE_POKE_BALL_BOUNCE_4",
+        "id": 52,
+        "source_line": 70
+      },
+      {
+        "name": "SE_POKE_BALL_TRADE",
+        "id": 53,
+        "source_line": 71
+      },
+      {
+        "name": "SE_THROW_POKE_BALL",
+        "id": 54,
+        "source_line": 72
+      },
+      {
+        "name": "SE_NOTE_C",
+        "id": 55,
+        "source_line": 73
+      },
+      {
+        "name": "SE_NOTE_D",
+        "id": 56,
+        "source_line": 74
+      },
+      {
+        "name": "SE_NOTE_E",
+        "id": 57,
+        "source_line": 75
+      },
+      {
+        "name": "SE_NOTE_F",
+        "id": 58,
+        "source_line": 76
+      },
+      {
+        "name": "SE_NOTE_G",
+        "id": 59,
+        "source_line": 77
+      },
+      {
+        "name": "SE_NOTE_A",
+        "id": 60,
+        "source_line": 78
+      },
+      {
+        "name": "SE_NOTE_B",
+        "id": 61,
+        "source_line": 79
+      },
+      {
+        "name": "SE_NOTE_C1",
+        "id": 62,
+        "source_line": 80
+      },
+      {
+        "name": "SE_PUDDLE",
+        "id": 63,
+        "source_line": 81
+      },
+      {
+        "name": "SE_BOARDWALK",
+        "id": 64,
+        "source_line": 82
+      },
+      {
+        "name": "SE_SLOTS_CREDITS",
+        "id": 65,
+        "source_line": 83
+      },
+      {
+        "name": "SE_DING_DONG",
+        "id": 66,
+        "source_line": 84
+      },
+      {
+        "name": "SE_RED_BALLOON",
+        "id": 67,
+        "source_line": 85
+      },
+      {
+        "name": "SE_BLUE_BALLOON",
+        "id": 68,
+        "source_line": 86
+      },
+      {
+        "name": "SE_YELLOW_BALLOON",
+        "id": 69,
+        "source_line": 87
+      },
+      {
+        "name": "SE_BREAKABLE_DOOR",
+        "id": 70,
+        "source_line": 88
+      },
+      {
+        "name": "SE_MUD_BALL",
+        "id": 71,
+        "source_line": 89
+      },
+      {
+        "name": "SE_BT_START",
+        "id": 97,
+        "source_line": 90
+      },
+      {
+        "name": "SE_POKENAV_ONE_BEEP",
+        "id": 101,
+        "source_line": 91
+      },
+      {
+        "name": "SE_POKENAV_TWO_BEEPS",
+        "id": 102,
+        "source_line": 92
+      },
+      {
+        "name": "SE_POKENAV_ON",
+        "id": 103,
+        "source_line": 93
+      },
+      {
+        "name": "SE_POKENAV_OFF",
+        "id": 104,
+        "source_line": 94
+      },
+      {
+        "name": "SE_POKENAV_SEARCHING",
+        "id": 105,
+        "source_line": 95
+      },
+      {
+        "name": "SE_FLUTE",
+        "id": 110,
+        "source_line": 96
+      },
+      {
+        "name": "SE_CUT",
+        "id": 121,
+        "source_line": 97
+      },
+      {
+        "name": "SE_ROCK_SMASH",
+        "id": 124,
+        "source_line": 98
+      },
+      {
+        "name": "SE_RECOVER",
+        "id": 133,
+        "source_line": 99
+      },
+      {
+        "name": "SE_CHOMP",
+        "id": 154,
+        "source_line": 100
+      },
+      {
+        "name": "SE_MUD_SLAP",
+        "id": 161,
+        "source_line": 101
+      },
+      {
+        "name": "SE_LEAVES",
+        "id": 162,
+        "source_line": 102
+      },
+      {
+        "name": "SE_EXPLOSION",
+        "id": 170,
+        "source_line": 103
+      },
+      {
+        "name": "SE_M_METRONOME",
+        "id": 179,
+        "source_line": 104
+      },
+      {
+        "name": "SE_GLASS_BREAK",
+        "id": 191,
+        "source_line": 105
+      },
+      {
+        "name": "SE_M_LOCK_ON",
+        "id": 203,
+        "source_line": 106
+      },
+      {
+        "name": "SE_EARTHQUAKE",
+        "id": 227,
+        "source_line": 107
+      },
+      {
+        "name": "SE_M_STAT_INCREASE",
+        "id": 232,
+        "source_line": 108
+      },
+      {
+        "name": "SE_RG_W_DOOR",
+        "id": 241,
+        "source_line": 110
+      },
+      {
+        "name": "SE_RG_CARD1",
+        "id": 242,
+        "source_line": 111
+      },
+      {
+        "name": "SE_RG_CARD2",
+        "id": 243,
+        "source_line": 112
+      },
+      {
+        "name": "SE_RG_CARD3",
+        "id": 244,
+        "source_line": 113
+      },
+      {
+        "name": "SE_RG_BAG1",
+        "id": 245,
+        "source_line": 114
+      },
+      {
+        "name": "SE_RG_BAG2",
+        "id": 246,
+        "source_line": 115
+      },
+      {
+        "name": "SE_RG_GETTING",
+        "id": 247,
+        "source_line": 116
+      },
+      {
+        "name": "SE_MONEY",
+        "id": 248,
+        "source_line": 117
+      },
+      {
+        "name": "SE_SHIP_HORN",
+        "id": 249,
+        "source_line": 118
+      },
+      {
+        "name": "SE_SAND_FOOTSTEP",
+        "id": 250,
+        "source_line": 119
+      },
+      {
+        "name": "SE_GRASS_FOOTSTEP",
+        "id": 251,
+        "source_line": 120
+      },
+      {
+        "name": "SE_RG_HELP_MENU_ERROR",
+        "id": 252,
+        "source_line": 121
+      },
+      {
+        "name": "SE_RG_DEOXYS_MOVE",
+        "id": 253,
+        "source_line": 122
+      },
+      {
+        "name": "SE_RG_EXCELLENT",
+        "id": 254,
+        "source_line": 123
+      },
+      {
+        "name": "SE_CAUGHT_POKEMON",
+        "id": 319,
+        "source_line": 125
+      },
+      {
+        "name": "MUS_FANFA1",
+        "id": 257,
+        "source_line": 126
+      },
+      {
+        "name": "MUS_FANFA2",
+        "id": 269,
+        "source_line": 127
+      }
+    ],
+    "unique_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      33,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      97,
+      101,
+      102,
+      103,
+      104,
+      105,
+      110,
+      121,
+      124,
+      133,
+      154,
+      161,
+      162,
+      170,
+      179,
+      191,
+      203,
+      227,
+      232,
+      241,
+      242,
+      243,
+      244,
+      245,
+      246,
+      247,
+      248,
+      249,
+      250,
+      251,
+      252,
+      253,
+      254,
+      257,
+      265,
+      266,
+      269,
+      282,
+      283,
+      284,
+      285,
+      296,
+      297,
+      298,
+      299,
+      305,
+      310,
+      311,
+      312,
+      319,
+      339,
+      340,
+      341
+    ]
+  },
+  "limitations_ja": [
+    "現候補0641で全ROM identityと各window/rootを再検証するまで分類には使用不可。",
+    "cartridge entry→startup→Thumb main prefix→sound initの直接辺を確認。main prefix途中の他call先がreturnすることや全main実行は未検証。別callsite080A0056はBL形診断のみ。",
+    "sourceとJPのsample mode定数は差がある。旧formal SoundMode引数0x0094CC00（max channels12）で、pret公開sourceの5channelsを転用不可。",
+    "NOTEへの到達、tone selection、channel採用、実sample read、実際のゲーム呼出は異なる主張。今回の窓は意味比較でありnative再生証跡ではない。",
+    "DPCM最小encoded prefixはphysical read extentではない。全33byte block decodeと補間lookahead/reverseを別監査すること。",
+    "MPlayStartは動的priority等で不受理の場合がある。正確な到達判定は受理済みsongの前提を明記すること。"
+  ],
+  "startup_root_edges": [
+    {
+      "source": 134217728,
+      "target": 134218244,
+      "kind": "ARM_B"
+    },
+    {
+      "source": 134218280,
+      "pointer_literal": 134218308,
+      "target": 134218661,
+      "kind": "ARM_LDR_PC_LITERAL_THEN_BX"
+    },
+    {
+      "source": 134218702,
+      "target": 136056816,
+      "kind": "THUMB_BL"
+    }
+  ]
+}

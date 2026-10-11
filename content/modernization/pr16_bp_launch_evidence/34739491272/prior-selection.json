@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "classification": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
+  "run_id": 34734806603,
+  "job_id": 103664191480,
+  "run_conclusion": "success",
+  "tested_head": "c8f5498f58512d2dcb76bf4a9a44e761cfdc2d63",
+  "artifact": {
+    "id": 10310995889,
+    "name": "pr16-bp-selection-native",
+    "size": 723642,
+    "sha256": "370a0404162c6010ae3431e333de1ebede2709e185fb6f977bbbb398d633bd59",
+    "original_zip_committed_by_this_task": false
+  },
+  "verification": {
+    "archive_digest_matches_github": true,
+    "receipt_members_verified": 47,
+    "source_members_verified": 71,
+    "native_stdout_matches_result": true,
+    "new_emulator_processes": 0
+  },
+  "original_members": {
+    "result.json": {
+      "sha256": "1bd649b9a5ae13c6bea21b7ea9bd561323e35e36bd5d0c013ab35479424525d3",
+      "size": 19555
+    },
+    "sources.zip": {
+      "sha256": "45b0e89f6635a53b108053067164cae5107b52170f20bf0122800e4f1e341568",
+      "size": 455456
+    },
+    "three-selection-probe.stdout": {
+      "sha256": "2a854e3ec99db638a3b8502031c8f080b13f8e0d63b61abeac8cf76db85cf47b",
+      "size": 677
+    },
+    "three-selection-probe.stderr": {
+      "sha256": "a1448516b93face9f9d7130eb38f97eb65544d0a2a4259486560e40cc8bcd2da",
+      "size": 44389
+    }
+  },
+  "native_result": {
+    "schema_version": 1,
+    "status": "DIAGNOSTIC_THREE_SELECTED_SECOND_CHOOSER_NOT_BP",
+    "scope": "PR16_P05_THREE_SELECTION_DIAGNOSTIC",
+    "case": "three-selection-probe",
+    "candidate_sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+    "selected_frame": 1440,
+    "second_chooser_frame": 1789,
+    "total_frames": 1789,
+    "selected_count": 3,
+    "party_count": 3,
+    "original_snapshot_bytes_verified": 600,
+    "bp_earned": 0,
+    "battle_started": false,
+    "save_counter": 2,
+    "manual_saves": 0,
+    "fresh_cores": 1,
+    "host_write_barriers": 7,
+    "input_only_after_guard": true,
+    "fixture_same_as_accepted_cancel": true,
+    "native_bp_earning_accepted": false,
+    "p05_native_bp_gap_closed": false,
+    "release_ready": false,
+    "warnings_errors": 0
+  },
+  "interpretation_ja": "native入力で3体選択し、2回目chooserへ到達。battle-active markerは実戦開始の証拠ではない。これは診断結果の照合・抄録でありBP受入を追加しない。元ZIPと全ソースの代替ではない。"
+}

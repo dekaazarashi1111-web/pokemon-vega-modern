@@ -1,0 +1,430 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "scope": "P05_DRAGONIZE_CONTROLLER_TURN_REPRESENTATIVE",
+  "source_bindings": {
+    "tools/mgba_modernization_p05_controller_witness.c": {
+      "size": 11700,
+      "sha256": "8dd2e35ff8ede6ae6287af393b383f7550f3fdb41b07c9e330c423dd21a5d2e7"
+    },
+    "tools/modernization_p05_turn_observer.h": {
+      "size": 6587,
+      "sha256": "abb17308dee87b481c577627e76382b8089c78fd1888fe73d251b9d212a95a4b"
+    },
+    "scripts/run_modernization_p05_controller_witness.py": {
+      "size": 13281,
+      "sha256": "8b07e91a9ba8fd416d76814addf1b73d05d0575b920d1ed3538938b733935b45"
+    },
+    "config/modernization_stage79_cumulative_mgba.json": {
+      "size": 28627,
+      "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6"
+    },
+    "config/active_play_baseline.json": {
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "size": 94688,
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24"
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "size": 36272,
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+    }
+  },
+  "rom": {
+    "size": 33554432,
+    "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3"
+  },
+  "executable": {
+    "size": 43360,
+    "sha256": "a588bb756bb162394f0bcb96e59135219731bd864b54dd62952f46a48b61e294"
+  },
+  "cases": [
+    {
+      "case": "dragonize_ghost",
+      "returncode": 0,
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P05_DRAGONIZE_CONTROLLER_TURN_REPRESENTATIVE",
+        "case": "dragonize_ghost",
+        "rom_sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+        "normal_controller_input": true,
+        "passive_after_fixture": true,
+        "fixture_battle_ram_overrides": true,
+        "native_battle_setup": true,
+        "representative_scheduler_e2e": true,
+        "full_p05_acceptance": false,
+        "species_ability_assignment_e2e": false,
+        "save_reload_e2e": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "initial": {
+          "frame": 0,
+          "battle_flags": 4,
+          "pp": [
+            35,
+            40
+          ],
+          "hp": [
+            1000,
+            1000
+          ],
+          "abilities": [
+            312,
+            0
+          ],
+          "types": [
+            [
+              11,
+              11
+            ],
+            [
+              7,
+              7
+            ]
+          ]
+        },
+        "final": {
+          "frame": 321,
+          "battle_flags": 4,
+          "pp": [
+            34,
+            39
+          ],
+          "hp": [
+            1000,
+            995
+          ],
+          "abilities": [
+            312,
+            0
+          ],
+          "types": [
+            [
+              11,
+              11
+            ],
+            [
+              7,
+              7
+            ]
+          ]
+        },
+        "events": {
+          "action": 1,
+          "move": 9,
+          "player_pp_spent": 46,
+          "enemy_pp_spent": 163,
+          "returned": 320,
+          "hit": 138,
+          "immune": 0
+        },
+        "frames": 321
+      },
+      "stdout": {
+        "size": 836,
+        "sha256": "ea6b492a43a19dad0f0bd295422d56df5600ab985a7369ca8dbaada0c257d615"
+      },
+      "stderr": {
+        "size": 1193,
+        "sha256": "6bfd5e7aad66a036e1db6bbfe2ba335a8b2926b777d701cdd5dcb7a640d306ac"
+      },
+      "process": {
+        "size": 375,
+        "sha256": "7c979106d0a57fe95238509f05b31c7803fe82acd021c10ac3b0419fda07595a"
+      }
+    },
+    {
+      "case": "no_ability_ghost",
+      "returncode": 0,
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P05_DRAGONIZE_CONTROLLER_TURN_REPRESENTATIVE",
+        "case": "no_ability_ghost",
+        "rom_sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+        "normal_controller_input": true,
+        "passive_after_fixture": true,
+        "fixture_battle_ram_overrides": true,
+        "native_battle_setup": true,
+        "representative_scheduler_e2e": true,
+        "full_p05_acceptance": false,
+        "species_ability_assignment_e2e": false,
+        "save_reload_e2e": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "initial": {
+          "frame": 0,
+          "battle_flags": 4,
+          "pp": [
+            35,
+            40
+          ],
+          "hp": [
+            1000,
+            1000
+          ],
+          "abilities": [
+            0,
+            0
+          ],
+          "types": [
+            [
+              11,
+              11
+            ],
+            [
+              7,
+              7
+            ]
+          ]
+        },
+        "final": {
+          "frame": 290,
+          "battle_flags": 4,
+          "pp": [
+            34,
+            39
+          ],
+          "hp": [
+            1000,
+            1000
+          ],
+          "abilities": [
+            0,
+            0
+          ],
+          "types": [
+            [
+              11,
+              11
+            ],
+            [
+              7,
+              7
+            ]
+          ]
+        },
+        "events": {
+          "action": 1,
+          "move": 9,
+          "player_pp_spent": 46,
+          "enemy_pp_spent": 143,
+          "returned": 289,
+          "hit": 0,
+          "immune": 49
+        },
+        "frames": 290
+      },
+      "stdout": {
+        "size": 833,
+        "sha256": "b18f2b22e9ba58ff053b786fa273defd54c17c9b792dfe45e0781bee204cbe1b"
+      },
+      "stderr": {
+        "size": 951,
+        "sha256": "88f42331ec83c602f0523cd406066f7acf751decd10cbadfb1cf55f1ecba7e4a"
+      },
+      "process": {
+        "size": 377,
+        "sha256": "5c2bc0ab7ea1d2cfb9958f971e197d37b54aed45b4b8deda76a2fcb32e36f56a"
+      }
+    },
+    {
+      "case": "no_ability_normal",
+      "returncode": 0,
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P05_DRAGONIZE_CONTROLLER_TURN_REPRESENTATIVE",
+        "case": "no_ability_normal",
+        "rom_sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+        "normal_controller_input": true,
+        "passive_after_fixture": true,
+        "fixture_battle_ram_overrides": true,
+        "native_battle_setup": true,
+        "representative_scheduler_e2e": true,
+        "full_p05_acceptance": false,
+        "species_ability_assignment_e2e": false,
+        "save_reload_e2e": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "initial": {
+          "frame": 0,
+          "battle_flags": 4,
+          "pp": [
+            35,
+            40
+          ],
+          "hp": [
+            1000,
+            1000
+          ],
+          "abilities": [
+            0,
+            0
+          ],
+          "types": [
+            [
+              11,
+              11
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "final": {
+          "frame": 321,
+          "battle_flags": 4,
+          "pp": [
+            34,
+            39
+          ],
+          "hp": [
+            1000,
+            995
+          ],
+          "abilities": [
+            0,
+            0
+          ],
+          "types": [
+            [
+              11,
+              11
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "events": {
+          "action": 1,
+          "move": 9,
+          "player_pp_spent": 46,
+          "enemy_pp_spent": 163,
+          "returned": 320,
+          "hit": 138,
+          "immune": 0
+        },
+        "frames": 321
+      },
+      "stdout": {
+        "size": 834,
+        "sha256": "4e216bf0efb64394f4374cf0f950de3ac0ba05ceab783e6cc5199beea0197134"
+      },
+      "stderr": {
+        "size": 1195,
+        "sha256": "3aba9c5d02cf3a93f13ff415fe865b03e08b38f3b63a1a855c6fa7d88b4fd02f"
+      },
+      "process": {
+        "size": 379,
+        "sha256": "3ac6d8b7b7b902f3b577dac8df00c435ea67a97ed672b781409d3e1cd86cb8b6"
+      }
+    },
+    {
+      "case": "dragonize_normal",
+      "returncode": 0,
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P05_DRAGONIZE_CONTROLLER_TURN_REPRESENTATIVE",
+        "case": "dragonize_normal",
+        "rom_sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+        "normal_controller_input": true,
+        "passive_after_fixture": true,
+        "fixture_battle_ram_overrides": true,
+        "native_battle_setup": true,
+        "representative_scheduler_e2e": true,
+        "full_p05_acceptance": false,
+        "species_ability_assignment_e2e": false,
+        "save_reload_e2e": false,
+        "release_ready": false,
+        "warnings_errors": 0,
+        "initial": {
+          "frame": 0,
+          "battle_flags": 4,
+          "pp": [
+            35,
+            40
+          ],
+          "hp": [
+            1000,
+            1000
+          ],
+          "abilities": [
+            312,
+            0
+          ],
+          "types": [
+            [
+              11,
+              11
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "final": {
+          "frame": 321,
+          "battle_flags": 4,
+          "pp": [
+            34,
+            39
+          ],
+          "hp": [
+            1000,
+            995
+          ],
+          "abilities": [
+            312,
+            0
+          ],
+          "types": [
+            [
+              11,
+              11
+            ],
+            [
+              0,
+              0
+            ]
+          ]
+        },
+        "events": {
+          "action": 1,
+          "move": 9,
+          "player_pp_spent": 46,
+          "enemy_pp_spent": 163,
+          "returned": 320,
+          "hit": 138,
+          "immune": 0
+        },
+        "frames": 321
+      },
+      "stdout": {
+        "size": 837,
+        "sha256": "0521636a7f84c0d0b88ae2c95be0728acb420174bc4e846f29199ad103a0cc12"
+      },
+      "stderr": {
+        "size": 1194,
+        "sha256": "b0a3f6370a7be79190a7fa049d36284b8743659c3dde0f71922b934d2ebcc4d0"
+      },
+      "process": {
+        "size": 377,
+        "sha256": "690c03b47b1cbe4f18d56fa652a0cc8f35e235961e802cafdc8ee68bf092ddbd"
+      }
+    }
+  ],
+  "fresh_process_runs": 4,
+  "cached_results_reused": 0,
+  "full_p05_acceptance": false,
+  "release_ready": false,
+  "active_baseline_changed": false
+}

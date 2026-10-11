@@ -1,0 +1,39 @@
+# 交換原文とmailbox拒否文：現候補1件受入
+
+source d7543f17a4de18c731de42e12d3608832555e1da、回復run37704409163/job113075243551は全10step成功。artifact11518044429の実ダウンロード原本4fileは、モデル確定直後・生成直後・公開前ログの全size/SHAと一致した。外側ZIPは120441bytes、SHA-256 82822cf4a8f5baea0ab8cea42c5bd4c35af54a0bba58580d2009d5340945bbfd。
+
+正式最小型は780→781分類、94→93未知。新たに追加した範囲は083DE02Bの4byteだけ。左交換原文のFC09/EOS3byteと右mailbox拒否文の先頭glyph1byteを、2つの正の登録rootと全文readerで覆う。他873行・27段161変更151witnessを全field保持した。自然play、実画面、全callback正常復帰、普遍heap/IRQ、安全donor容量を受入れたものではない。
+
+## 実際に結んだ別経路
+
+交換はTask_SwitchItemsYesNo081240D8から同task0に実callbackを登録→RunTasks→Yes0/AddBagItem成功/新item2非mail→DisplaySwitchedHeldItemMessage08120D48。原文083DE016の24byteはFD03/FD02の実placeholder table/calleeと再帰を通り、FC09の2byteをcopyし、再帰EOS2個と最終EOSを分けて読む。CopyItemNameの出力は有限条件として明示し、本体のitem table生産まで主張しない。gStringVar4へ展開された全34byteは、原文の読取とは別に実printerでEOSまで読む。
+
+mailboxはChooseMonToGiveMailFromMailbox08127D10のaction7→constructor/state20/CreateTask/RunTasks→現hook09097A80→実action7 cell08120404→非egg→TryGiveMailToSelectedMon08127D3C。held item1の拒否枝から083DE02E/38byteをkeepOpen1で渡し、全glyph/改行/FC09/EOSを読む。拒否枝のmail本体読取/変更はない。
+
+交換rootは83命令/7opaque境界、callback/展開/printerは4341命令/67境界。mailbox rootは3561命令/128境界、callback/printerは4347命令/73境界。各境界でr0-r3/r12/LR/flagsを破棄し、将来必要なRAMだけを残して同結果になることを確認した。有効window6/font2、printer開始時new/heldKeys0、text speed255、FC09待機の正常戻り1、同期通常ABI/必要資源epochは明示条件である。
+
+両方の終点はPartyMenuPrintTextからDisplayPartyMenuMessage内08120AF2への復帰。API後半・全callback復帰・自然画面の受入へ広げない。
+
+## 失敗履歴と回復由来を分離
+
+- 元ea976a49/run37701354400: 165試験/計測stepは成功、公開guard失敗、artifact0。元出力のsize/hashはログにない。独立再構成参考measurementの770711bytesを元runner原本とは呼ばない。
+- 第1回復7b24518c/run37703162164: 新24試験と現候補consumer後、内部tupleとJSON listの包装型境界でfailure。artifact0、原本なし。失敗を測定成功へ書き換えない。
+- 成功回復d7543f17/run37704409163: report生成でscope_proofだけJSON正規化し、公開側の厳密型検査を維持。実producer→包装→4file読戻しの回帰を含む新27試験が成功。元165試験はsource/API/log不変を確認して継承し、再走0。
+
+現ROM再構成はこの成功回復で1回、scope累積は元1＋第1回復1＋成功回復1の3回。失われた出力を疎fixtureで代用せず、最後の回復runで新しく実測した原本から受入れた。native/Flash/旧heap/旧全ROMscan再走は0。
+
+保存4原本:
+- measurement.json: 772253bytes、SHA 38a63b8ae95597f9c6b428c4fb88199141ff5743774303617d873212e4115255
+- reference-chain.json: 351398bytes、SHA 5756495e9af69dba2f3d59334a33cf93358de233dd93406dddeaf44e7be85f32
+- tests.json: 189bytes、SHA ce9166c9b8c17e6456b955fbd6dcae894514294dd68f1cb0b5f58dde1600ea32
+- provenance.json: 2921bytes、SHA f7db3f439d4a41d157951b858a81e337bd32b6319bc31f2ba2cbb4b722b395d6
+
+checkpointはcontent/modernization/pr16_dex_hof_jp_item_checkpoint.json、receiptはscripts/pr16_dex_hof_item_receipt.py。保存53入力で780親を復元し、新保存deltaをread_measured→materializeして現在781親へ進む。現scopeの測定や165/27試験を無変更再走しない。
+
+## 次の1件と残る本番gate
+
+次候補は083DE6AB。ChooseMonForWirelessMinigame081281C0のmenuType11/action13を正rootとし、setup state6のSetPartyMonsAllowedInMinigameを旧menuType0早期returnへ転用しない。mode1/partyCount1/非egg・非Dodrioの有限bitflag producerから不適合枝を閉じ、取消は09097AB4の別hookを実証する。
+
+設計入力は左083DE699/21byte「その ポケモンは さんか できません[FC][09]」、右083DE6AE/12byte「さんかを やめますか？」。旧右6B0候補は使わない。これらは旧手元ROMの限定窓だけで確認したもので、現0641の受入ではない。左keepOpen0/右keepOpen1と各EOSの実readerを新scopeとして確認する。
+
+旧egg15118全域保護、donor安全0、正式ROM/Save101不変。全保存入口ready、退避53300開始前のheap13352 Free、同期非再入、controller6528本番配線は別gate。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinueも未完。汎用Stage79待ちや既知source-validation failureを、この成功専用scopeと混同しない。

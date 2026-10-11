@@ -1,0 +1,2037 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-STATE01-HANDOFF-CONTRACTS",
+  "source_head": "8de46fb5fc5d0c63dc3939a768324affd102d421",
+  "run_id": 35311393786,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "STATE01_SAME_EXPLICIT_RAM_CONTRACT_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "contract_cases": 21,
+    "cases": [
+      {
+        "case": "task0-free",
+        "task_id": 0,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "b7d0eebd562d9c18caf9e662bd95df1b053f1c48c59faebd1a7074acb7362c00"
+        },
+        "state1_input_sha256": "2f909ca5e1c75cb8988d4dff1ad3c40147ba10f281df8a0db8c0835dcc5d7fba",
+        "final_object_sha256": "74f555f4139ac65884f7eb915fb56e524b7f9e89e8fcd1c1350659813001e749",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ],
+        "next_state2_boundary": {
+          "stop": [
+            "未map read",
+            154633614
+          ],
+          "read_fault": {
+            "address": 33804288,
+            "size": 4,
+            "site": 154633614
+          },
+          "nonstack_writes": 0,
+          "config_synthesized": false,
+          "task_deleted": false,
+          "busy_cleared": false
+        }
+      },
+      {
+        "case": "task1-free",
+        "task_id": 1,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "caa0b53a54ef366c0437df16cd10fb85d71daf68142c18155045b087e0a16f47"
+        },
+        "state1_input_sha256": "a51f6e57ac55f851182be156da90b2fb5aa88307b5dfe3ecc65bf304cb08d8a5",
+        "final_object_sha256": "0b0f73a158e61495f48f0df201e8360b9b6261de8c2339d0b0affea68ee7da7b",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task2-free",
+        "task_id": 2,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "e9ac0eb62f0b77395b03fa5f921f38f44e889480df765712a922c55417f62a85"
+        },
+        "state1_input_sha256": "acd8ca1c6e22281eebc3fd9edfc073c258d54f0fa7e4ff6a47b7dfd583c6fa62",
+        "final_object_sha256": "669b2fb0214396d508fb0ba4e2f6b435989b99be682a0b7a0cc64a6cbaa7913f",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task3-free",
+        "task_id": 3,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "62166f477ac8f7b8e6fa33eeda2e9f54ce48aa5eece62216203544a6465f105e"
+        },
+        "state1_input_sha256": "7ca80cbbeaecda6583fe987a9b89a2ed7a6a2f5b0b946c6058c2ca18fc4c5a18",
+        "final_object_sha256": "3410c73d58987144ff6a4eca1f22a973a9487e18ea90b78ca8e9de9413cab272",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task4-free",
+        "task_id": 4,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "46193982178242ab11dd2c0bdf718eed9b66ee707afb701f7f10f8ac677fc7b0"
+        },
+        "state1_input_sha256": "92577a82837da13c7a08aa972b5166ee1717b7f34ca3966b78f2be9cb7f6b047",
+        "final_object_sha256": "5db2fc2dcd6e3568afcf71eae7c66f2653b01cd3921b3afe54d4af5a265c79e7",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task5-free",
+        "task_id": 5,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "1fc74a29ae26a2240865d551443908d6f221a332d3a3e4dc69f05add89b5ebbb"
+        },
+        "state1_input_sha256": "f38f04e1afffbf14f35aa89086b65b40ada41efd01b042a42e9f432f801d157e",
+        "final_object_sha256": "9ddf08a3a45e29400b0caa710b2b5b1408fa4681cdc497a910bb9efa707f3310",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task6-free",
+        "task_id": 6,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "771a2d7aab4562816ce9ecbc0bc2c5d50dac67f04fe1ab85d8238e9d2ef56423"
+        },
+        "state1_input_sha256": "d4bba928eee681d7465b1669405eeae7fbd7b1a0a3fc6c6a0a04dee9740fc158",
+        "final_object_sha256": "963f7cbe54e61c5e3caa3d050ee18611b6774e0df8f87802a2544a9ce113d1d9",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task7-free",
+        "task_id": 7,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "969ef899d8c2cd00907d98c14932e0adc732750aa812018039f9d3e0076b5d3a"
+        },
+        "state1_input_sha256": "b5dafc86991489dd4d2ce0d3308c78d84d8136f80fc0630bd264f34bc2439a14",
+        "final_object_sha256": "2824b65cae8f1be5096a84190eedc502a38841f975457a65ca5a6132e2391772",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task8-free",
+        "task_id": 8,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "3046daefa0fec707fae52861a2e2f78e08ec0a288a80e180cd496d26e0d5abb0"
+        },
+        "state1_input_sha256": "00584c668767f90b64e856e3adbb18e436dae948bc7461012da83dceddf0cb0c",
+        "final_object_sha256": "311c3a5dcff46a0fd2a3f888bd837f9e165136c94679fbc68d931d035e94c16f",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task9-free",
+        "task_id": 9,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "bb7fb4ec0570a436b694475ce4cbd4184a0fba87c1ab418bf4c7a8355e1f0bff"
+        },
+        "state1_input_sha256": "4ce65ab8ed4b138873c58ed30e96e9b415109af726ede9830f52c5c5d4120e7f",
+        "final_object_sha256": "58bf1c1649729721eb9655874cbed72c354344d8a7c3284fe23efc92a2a8fbc4",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task10-free",
+        "task_id": 10,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "e97036d88b780293480711efaccdd4e9d9e1ebbd73bda3a3282cf3c2f031df5d"
+        },
+        "state1_input_sha256": "14f48d6e400ddc4480d8c52d8a53f401c8ce9943d65f23194da0672cced821f2",
+        "final_object_sha256": "7754dc86b2a78ddbc85849f06896105adc2aa7f33f96f5c1331f3be9c0ba4f9a",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task11-free",
+        "task_id": 11,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "30e7121078d30380c2649cc69c4a9ebea20f9dd29488a8e8c47246164d21d9d9"
+        },
+        "state1_input_sha256": "05c906dc047c6c3ce974ac2140f235875f4a6479d9144ed5a337606b994666e2",
+        "final_object_sha256": "5d47b1d0a0c26123ff1ce9204df45356d927ff318a5120d17dc1f4666c6908aa",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task12-free",
+        "task_id": 12,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "1787d40848d53cac877f10269f9480f5b251afafc406f78075e9ffeb5fb5c701"
+        },
+        "state1_input_sha256": "8986ea4adbea3df85c5976d5105f5796abaf71a6b3843bce38ee9eeecf45439a",
+        "final_object_sha256": "d109c591cd3d26b826ad3c16e1764a07f03370840dbc84a1199ba0181e6e38ea",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task13-free",
+        "task_id": 13,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "e78305c527695599667d739c18820e5197cad23397cd70cc7285a1a866e27314"
+        },
+        "state1_input_sha256": "e977642d593d105f8fbbd1faea138edc9ba54f06c110f907ab8a64b571685b48",
+        "final_object_sha256": "a431abae58f4e5a4549b849c6ffdaa3268255524c89b54a18aa1d42e14a63a24",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task14-free",
+        "task_id": 14,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "16a276d8a9a79f5ed692477f68ae9e5f6de69637539a372d20adf0f49da700d5"
+        },
+        "state1_input_sha256": "14bebd25c9f3741dcc6a71981551f1ac433585bf57cd4346beabfcf57d26e1ad",
+        "final_object_sha256": "8bea8360650bb93c6af16fa830e384966279f5019e4f7ceea7c2331af7e0794b",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "task15-free",
+        "task_id": 15,
+        "head": 0,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2,
+          3
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49921,
+          "sha256": "f2c446720ae0ac706613b0645092459ffe5c4a68b357222ba59e3129fd483b40"
+        },
+        "state1_input_sha256": "9e93305a8b5d58f32fdd6f24c568ef18f5189e04f0d59dc2c9f68818bae6c923",
+        "final_object_sha256": "d112502fb3657bfee4f7657191dff786d1a4ead5640616c8dc2d08863027d67b",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "capacity-0",
+        "task_id": 0,
+        "head": 0,
+        "initial_occupied": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "state0_reserved_slots": [],
+        "state1_reserved_slots": [],
+        "state0_write_count": 89,
+        "state1_write_count": 1055,
+        "combined_write_identity": {
+          "size": 49165,
+          "sha256": "cf663cbc8b7acbb187d85fdf015f69ed50d7207dfb6fb32fc578a6913493b78d"
+        },
+        "state1_input_sha256": "0683f6e206059498f3ab34780d91be0b37b0049f08f0ac47852b03b8ec2de6b2",
+        "final_object_sha256": "2d724f418f1e30c2c407653a4924dde8848f8ad1ae5889e5e8458dca73e652af",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "capacity-1",
+        "task_id": 0,
+        "head": 0,
+        "initial_occupied": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          null,
+          null,
+          null
+        ],
+        "state0_reserved_slots": [
+          0
+        ],
+        "state1_reserved_slots": [],
+        "state0_write_count": 94,
+        "state1_write_count": 1055,
+        "combined_write_identity": {
+          "size": 49363,
+          "sha256": "b56c4b988a7613954ee67850548a33679a88054525b2b576de2b527574d5f1a2"
+        },
+        "state1_input_sha256": "9694317c4315dd266ea89ea292b8ca46e0100314891d5cfdfc8121c1af7567d8",
+        "final_object_sha256": "0d9912aacaa1425854a8d60daba179d8f42926faff24f29be848de00fbcbf5ab",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "capacity-2",
+        "task_id": 0,
+        "head": 0,
+        "initial_occupied": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          null,
+          null
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [],
+        "state0_write_count": 99,
+        "state1_write_count": 1055,
+        "combined_write_identity": {
+          "size": 49561,
+          "sha256": "abf3169fbc5cdf55590a143229cc4c256483645464615e6101b0bbc78df1c69b"
+        },
+        "state1_input_sha256": "d3f7a9bdb6a506f00703378bba013c957face21adbdec22a12ef7fb5c79835c1",
+        "final_object_sha256": "f6a06aecc2f007c1c63b1fe28dc6f1cb2bb0477d7944e39b6743dd3b9b63d589",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "capacity-3",
+        "task_id": 0,
+        "head": 0,
+        "initial_occupied": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          0,
+          1,
+          2,
+          null
+        ],
+        "state0_reserved_slots": [
+          0,
+          1
+        ],
+        "state1_reserved_slots": [
+          2
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1060,
+        "combined_write_identity": {
+          "size": 49759,
+          "sha256": "bcf681c9cdfea503ecd112f47bcfff8aa6899881389a6ab74e777f8624c9fbac"
+        },
+        "state1_input_sha256": "78d46d50df04efa45c1bf9bc24fff4ed0ac536c335a1f98fe66af40e7b4073e1",
+        "final_object_sha256": "0f5b4413e48cb294eca387f6a35a968c7f283055120a2b97f0049aa523ef18c0",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      },
+      {
+        "case": "wrap127",
+        "task_id": 0,
+        "head": 127,
+        "initial_occupied": [],
+        "states": [
+          0,
+          1,
+          2
+        ],
+        "queue_plan": [
+          127,
+          0,
+          1,
+          2
+        ],
+        "state0_reserved_slots": [
+          127,
+          0
+        ],
+        "state1_reserved_slots": [
+          1,
+          2
+        ],
+        "state0_write_count": 99,
+        "state1_write_count": 1064,
+        "combined_write_identity": {
+          "size": 49930,
+          "sha256": "c95014ae9685ffbe920414f0e7d0a3f5148585abb6a7f844535553286a5bb118"
+        },
+        "state1_input_sha256": "186fbf1799c69b5bd1cbda1de9352fe432b64eb6b59fc6617f79916c37da2de2",
+        "final_object_sha256": "950e6afc040ebfaa3fee940cb23c5b848af24bed1de16160578c4f336449f145",
+        "return_sp_r4_r11_proven": true,
+        "host_ram_mutations_between_callbacks": 0,
+        "callback_stack_frames_independent": true,
+        "same_explicit_object_ram": true,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false,
+        "native_observation": false,
+        "callback_stack_bytes": [
+          128,
+          252
+        ]
+      }
+    ],
+    "task_state01_complete_proven": true,
+    "proof_scope": "DEFAULT_ROW_EXPLICIT_RAM_FIXED_HLE_NO_IRQ_NO_DMA",
+    "state0_to1_to2_proven": true,
+    "native_scheduler_observed": false,
+    "next_state2_boundary": {
+      "stop": [
+        "未map read",
+        154633614
+      ],
+      "read_fault": {
+        "address": 33804288,
+        "size": 4,
+        "site": 154633614
+      },
+      "nonstack_writes": 0,
+      "config_synthesized": false,
+      "task_deleted": false,
+      "busy_cleared": false
+    },
+    "prior_state0_report": "content/modernization/pr16_ring_state0_completion_contracts.json",
+    "prior_state1_report": "content/modernization/pr16_ring_state1_completion_contracts.json",
+    "task_full_boundary": {
+      "producer_returns": 1,
+      "script_command_returns": 0,
+      "busy_after": 2,
+      "task_allocated": false,
+      "normal_play_reproduction_observed": false,
+      "liveness_proven": false
+    },
+    "same_ram_config_and_text_producer_connected": false,
+    "task_deleted": false,
+    "busy_cleared": false,
+    "rom_changes": 0,
+    "candidate_reconstructions": 0,
+    "new_window_bytes": 0,
+    "new_node_count": 0,
+    "new_emulator_processes": 0,
+    "saved_nodes_redecoded": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "accepted_native_cases_replayed": 0,
+    "successful_callee_stubs": 0,
+    "bios_execution_observed": false,
+    "dma_execution_observed": false,
+    "normal_story_observed": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "boundary_ja": "default選択のstate0→1→2を同一明示object RAMで結合。各callbackのstackは独立call frame。ホストによるstate/queue/palette書換0、queue消費やDMAは未実行。state2はconfig不足でwrite0停止。通常story/producer接続は未受入。",
+    "export_manifest": {
+      "size": 58497,
+      "sha256": "ae9100a053203c4ed9a083f1eae7e07d416bd06f130498351c365ee561504cc6"
+    }
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_bios_record.py": {
+      "size": 11374,
+      "sha256": "448e17fa82fbe031d9202fd6045315e88c590202ae4f3c4f864283052a414ffa"
+    },
+    "scripts/pr16_ring_state01_handoff_contracts.py": {
+      "size": 10280,
+      "sha256": "44731bb0268cf2d948e9be26d7da8acbc30dc79755b9825477d66b2c0408ee4c"
+    },
+    "tests/test_pr16_ring_state01_handoff_contracts.py": {
+      "size": 5217,
+      "sha256": "cd81d3c8fb751eb20beb0dd01f2d6dff0397def5d88f7739b9906f0a699b08e3"
+    },
+    ".github/workflows/pr16-ring-state01-handoff-contracts.yml": {
+      "size": 1766,
+      "sha256": "e5f0f1c2c144b389629b58d35679fd6c76ffc1401dc68232c140de30fa651981"
+    },
+    "content/modernization/pr16_ring_state0_completion_contracts.json": {
+      "size": 339342,
+      "sha256": "ab00896a00af9e079109fc7a10093de42973eb3635941d6ee67fea44fec6181a"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_state0_completion_contracts.py": {
+      "size": 17674,
+      "sha256": "d94d9ff16f9a12acbca836c0039c0d56d26109c29da1f46877d7d78f6f6c222f"
+    },
+    "tests/test_pr16_ring_state0_completion_contracts.py": {
+      "size": 6454,
+      "sha256": "c1b139f68503279239278bb27f443a97c54c97ab41aadab70eca5b3bdaffe318"
+    },
+    "content/modernization/pr16_ring_state1_completion_contracts.json": {
+      "size": 176942,
+      "sha256": "45b37f6952edd7d919468ed57bec976e28e9891081261a799fff650f88885628"
+    },
+    "scripts/pr16_ring_state0_palette_supply.py": {
+      "size": 12006,
+      "sha256": "a1e0935c85579eb210ec708511a889ae5255b66e05c8bd18bd07faa7f8bdb49a"
+    },
+    "tests/test_pr16_ring_state0_palette_supply.py": {
+      "size": 5586,
+      "sha256": "8045eb0078986abf3c147e4d36946049ff01e65d18c914086167a47247691297"
+    },
+    "scripts/pr16_ring_state1_completion_contracts.py": {
+      "size": 12840,
+      "sha256": "e6467bba2ce29f2842d4af0acab2cabcdaf060cf18199eb673899b932899a895"
+    },
+    "tests/test_pr16_ring_state1_completion_contracts.py": {
+      "size": 6288,
+      "sha256": "289f0c71b7c9ce0ce74e5b93d41c075e481a915d6d4f6c00ce8b62712f0e2a72"
+    },
+    "content/modernization/pr16_ring_bios_selector_continuation.json": {
+      "size": 27869,
+      "sha256": "198307e12cf284df360d8a10376201e9cef7d21704f3c4f978ae85801377ad5d"
+    },
+    "content/modernization/pr16_ring_bios_memory_contracts.json": {
+      "size": 63386,
+      "sha256": "dd255b88fc1495361b88e4ec52438cbb1788fc919b8bb6f5a1b06ac104586cef"
+    },
+    "scripts/pr16_ring_bios_selector_continuation.py": {
+      "size": 11026,
+      "sha256": "f38ceb78946b55e67e149f42b04e8124ad6d39caf75672636709bf6a8e03e706"
+    },
+    "tests/test_pr16_ring_bios_selector_continuation.py": {
+      "size": 5993,
+      "sha256": "3bf1ff6fbb61d6dd2bcc1a722f583df7b28bd74bcb16a3879efb500707208c4d"
+    },
+    "scripts/pr16_ring_bios_memory_contracts.py": {
+      "size": 15595,
+      "sha256": "1f38612b3cd565575db321b2488a30334c1d5fd9ac0573295911bb417733a394"
+    },
+    "tests/test_pr16_ring_bios_memory_contracts.py": {
+      "size": 9298,
+      "sha256": "c263f42264dca1ab489175e35e956d078be3235d81df900a6a6229531521716d"
+    },
+    "scripts/pr16_ring_owner_frontier.py": {
+      "size": 12711,
+      "sha256": "e7505577537eba4df7a5ee641836b56f212706473eb99ef139a60d22141b9e65"
+    },
+    "scripts/pr16_ring_message_window_contracts.py": {
+      "size": 28110,
+      "sha256": "2a5d6bfb8db291c35fe7223fb3b080c58eb4511a12a550fed32220ec396f3fad"
+    },
+    "content/modernization/pr16_ring_message_window_contracts.json": {
+      "size": 769261,
+      "sha256": "3b00f06261173520276abd3f19e2cc2b27e7f5e59b26b243c8ab720cd66f5f82"
+    },
+    "scripts/pr16_ring_message_tile_leaves.py": {
+      "size": 7532,
+      "sha256": "4e829bf29e22277f8b0ddd646218361442ba26f42531f96f33f8cda792c91b70"
+    },
+    "content/modernization/pr16_ring_message_window_dependencies.json": {
+      "size": 86186,
+      "sha256": "fd912ea2c0404f78c4ed94513e985d9be5622a49d9f8a2d9b9a298e9bff4f125"
+    },
+    "scripts/pr16_ring_message_window_dependencies.py": {
+      "size": 7764,
+      "sha256": "ff56381bc31e886629716e69074e9439e936ec856cf60fa9f432e4360e0d26cd"
+    },
+    "content/modernization/pr16_ring_message_window_frontier.json": {
+      "size": 27825,
+      "sha256": "5ad35e199622e777624a482def01cc05e4ba468dbcecdd369e3671a95ce90120"
+    },
+    "scripts/pr16_ring_message_window_frontier.py": {
+      "size": 8874,
+      "sha256": "879bde66b1985a483810a00a483636c9bba2ec1c4b8429ba6a42a4b910c07f54"
+    },
+    "content/modernization/pr16_ring_message_task_checkpoint.json": {
+      "size": 11900,
+      "sha256": "cf971cfb7f5bdb597ca832c6e766db5cb168e3094436b9d919e81ab0a05ac10d"
+    },
+    "scripts/pr16_ring_message_task_contracts.py": {
+      "size": 28265,
+      "sha256": "6e575d79e5ec695f3fafc491cfbe13d47b705591bba8df9f57a368fa7f77124f"
+    },
+    "content/modernization/pr16_ring_message_task_contracts.json": {
+      "size": 1547055,
+      "sha256": "e585b13edd9ecb20de1ac313dfb33d7588c97ceec9e358a2b89741150c86a0e6"
+    },
+    "content/modernization/pr16_ring_message_window_bytes.json": {
+      "size": 186628,
+      "sha256": "bb5068bc9259c93982d03d84455cc4281c1d45d7f0bf466cb024cfe60fa13456"
+    },
+    "scripts/pr16_ring_message_window_bytes.py": {
+      "size": 7253,
+      "sha256": "b69191907b394aee845529a709146450ea7ba32677e9c38bb798e27265ff0e32"
+    },
+    "content/modernization/pr16_ring_message_task_callees.json": {
+      "size": 58019,
+      "sha256": "55e198114931889645456a57b2f76d38b6c911dc962ede062e5d2f9dd43c2b07"
+    },
+    "scripts/pr16_ring_message_task_callees.py": {
+      "size": 7920,
+      "sha256": "02b09cc6f87c46891857f465de129d7fe0631677a2ba075f895e22e9db85e79d"
+    },
+    "content/modernization/pr16_ring_message_task_frontier.json": {
+      "size": 36672,
+      "sha256": "14db168d3a2834b7317b07666840f7a53c22dea716f4702a6bf785ee41bd5428"
+    },
+    "scripts/pr16_ring_message_task_frontier.py": {
+      "size": 11023,
+      "sha256": "281514fa091e8a6082a37024fd6aa54869ff39b996ef15517e7132ce750322ee"
+    },
+    "content/modernization/pr16_ring_message_owner_contracts.json": {
+      "size": 1333833,
+      "sha256": "d7e02206e9e83e14ddcbcf8c1b9cd73c2a5b0237fb2f13f3e780f631f56eef89"
+    },
+    "scripts/pr16_ring_message_owner_contracts.py": {
+      "size": 24057,
+      "sha256": "f5822ffa3cbac2bdd9001f12d1cced8f42b2df315ea74e3c57b63eb88c7966d1"
+    },
+    "content/modernization/pr16_ring_message_owner_frontier.json": {
+      "size": 23137,
+      "sha256": "b91103a45857b814871816eb9169d751cbe02c2626e5d3b2712736966057e3a6"
+    },
+    "scripts/pr16_ring_message_owner_frontier.py": {
+      "size": 10397,
+      "sha256": "14d9c4f97f302c216b320c49ecc12920978d0ee7756a9949e64067496b20b068"
+    },
+    "scripts/pr16_ring_text_audio_sequence.py": {
+      "size": 14986,
+      "sha256": "b84b1a14ae199469ff3a35c21d57bedd0b9d49e7a1f9d1cd802020159ecfbc8b"
+    },
+    "scripts/pr16_ring_audio_tail_contracts.py": {
+      "size": 16143,
+      "sha256": "b80b111cefa095b5b361ebdacbf57dc9be9d393c08cfc28a002573ead960f302"
+    },
+    "scripts/pr16_ring_audio_tail_bytes.py": {
+      "size": 8748,
+      "sha256": "715af133808eda28a035eebb0791f92858183529dec8582711a05a7d372a6701"
+    },
+    "scripts/pr16_ring_audio_output_contracts.py": {
+      "size": 17087,
+      "sha256": "8229621c883fa7f9449341a976b58e6d455737b0ba65b1b89038ab368c0a9b2d"
+    },
+    "scripts/pr16_ring_audio_leaf_bytes.py": {
+      "size": 9771,
+      "sha256": "118b073a6b24508e6d2ecfdf4cb685d459ab874c49bb699c8094bb8c10352fca"
+    },
+    "scripts/pr16_ring_audio_boundary_contracts.py": {
+      "size": 15002,
+      "sha256": "78d711fe93798cb2d697aac35106c3fcb27d75dffedc1e6d6376394a3dde4390"
+    },
+    "scripts/pr16_ring_renderer_output_contracts.py": {
+      "size": 12319,
+      "sha256": "6ec0c16f167e0520b423a7c98fad18f194a8b7002b43a196f84ac5344e4fc967"
+    },
+    "scripts/pr16_ring_cursor_scroll_contracts.py": {
+      "size": 18092,
+      "sha256": "1c4cf92fd6fa819bac2a9ae9186e4fd3bcec89c203e38c1114a77d77e73d509a"
+    },
+    "scripts/pr16_ring_glyph_contracts.py": {
+      "size": 17097,
+      "sha256": "31dbf07bae6c11c0a8caf6c7e44e1121551e1193e2b22c9e018ae6e5ec97df7f"
+    },
+    "scripts/pr16_ring_output_leaf_bytes.py": {
+      "size": 7517,
+      "sha256": "22f6b9434ae223842c56ed6dd84347a7b4f548303a6e053230e5e92175a7afc1"
+    },
+    "scripts/pr16_ring_output_frontier.py": {
+      "size": 7759,
+      "sha256": "73675380b1a0f619baa1ffc0fc6abf71581537bdaf0858f62a42293ca171bcc7"
+    },
+    "scripts/pr16_ring_control_contracts.py": {
+      "size": 17075,
+      "sha256": "11c7824b5e2946453581bc812870f723d4aa16962039052c1b96fced027aa875"
+    },
+    "scripts/pr16_ring_control_frontier.py": {
+      "size": 8469,
+      "sha256": "75a81f81b44bf0d543fc1ecbb07a6d99380a9042005fbd5ec88e8b5ae313af32"
+    },
+    "scripts/pr16_ring_text_state_contracts.py": {
+      "size": 16500,
+      "sha256": "1f6be4b834c8d1a08229c72231846aa2faee6fb503ae86c553980aaf26e9efdb"
+    },
+    "scripts/pr16_ring_explicit_text_machine.py": {
+      "size": 3622,
+      "sha256": "a59059be50cb79b0b2bd0d7fe3b0d331fc51127639fc1b2efb369a06693edfed"
+    },
+    "scripts/pr16_ring_character_frontier.py": {
+      "size": 9313,
+      "sha256": "de6180c89376b2a5d121b2734ccdd2b55280322885183d73c0ba4b7cdb666843"
+    },
+    "scripts/pr16_ring_font_states.py": {
+      "size": 12093,
+      "sha256": "60da75307d3fa2e69b7c2c23f668b12b7a64b60d790671f06cbf5496cafa0fe7"
+    },
+    "scripts/pr16_ring_font_frontier.py": {
+      "size": 11134,
+      "sha256": "d7dcbf3732ee6e6f33bae6777320b6b9fa4d2151ced1b9238a6a77115910cda5"
+    },
+    "scripts/pr16_ring_font_bindings.py": {
+      "size": 13242,
+      "sha256": "6693f5bd5fd8d8a070965fc77a66b676b6cf4e7f5e78c04cb0d9a137e2d00983"
+    },
+    "scripts/pr16_ring_font_bytes.py": {
+      "size": 7719,
+      "sha256": "c00b87bd69d6f47cb5c05089b85793b020857955b8ce95965ccef7842cf35e2f"
+    },
+    "scripts/pr16_ring_ui_leaf_contracts.py": {
+      "size": 15732,
+      "sha256": "2ae5cd8caadc44c4ad0b077ee78e564c44d31f13c6600f443a4c6a7ccc23475c"
+    },
+    "scripts/pr16_ring_ui_leaf_bytes.py": {
+      "size": 7112,
+      "sha256": "a0e190b7ac55f3a3e682b5d22b51133a87cc0feb1786f29262b08196df53d2a7"
+    },
+    "scripts/pr16_ring_ui_contracts.py": {
+      "size": 21972,
+      "sha256": "fb1625164a039e270da8b02d3be2081b304c3a98ab533a6043aff7e14eda0529"
+    },
+    "scripts/pr16_ring_ui_runtime_bytes.py": {
+      "size": 7582,
+      "sha256": "dceebb0c07beb1f1248ee710f1d035c01b19237c4fc77123e75e99424627cf8b"
+    },
+    "scripts/pr16_ring_ui_delegates.py": {
+      "size": 8013,
+      "sha256": "df322f8e399d7babccd486072b0c6b02542e868bbae29602e0c6c73da5f18db5"
+    },
+    "scripts/pr16_ring_ui_frontier.py": {
+      "size": 8819,
+      "sha256": "527db74169fb6c50d649898552dfd2ec6301392128d2ea8b482733ae39beee1f"
+    },
+    "scripts/pr16_ring_ui_owners.py": {
+      "size": 12961,
+      "sha256": "6bb82a9057e01845ef1f4efcce8e41d77856f1cf74c5fe601af9b9b509566bbf"
+    },
+    "scripts/pr16_ring_resource_tail.py": {
+      "size": 7535,
+      "sha256": "f4988540601c2eaa63876d6ee981a362e8614d0aaa11ca4a791e68f2b6100b81"
+    },
+    "content/modernization/pr16_ring_resource_tail.json": {
+      "size": 53805,
+      "sha256": "dc74f564a59f4b72a39f7c4a1a6fab0251b6c225ccd4f326b28123407cb618a3"
+    },
+    "scripts/pr16_ring_resource_frontier.py": {
+      "size": 8691,
+      "sha256": "12bad41bba1c269433134d204f4bae896f79b417900b6c70ea56893fa58e4d88"
+    },
+    "scripts/pr16_ring_remaining_frontier.py": {
+      "size": 12375,
+      "sha256": "3aa490bc6a4615a447f996df72e2ea678f41ed585076d3e2ddc3d572cd6f94bd"
+    },
+    "scripts/pr16_ring_effective_frontier.py": {
+      "size": 10560,
+      "sha256": "31303cea8148726c922f40f41231aa588b249796c08e04d9b41225150f25759e"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    },
+    "scripts/pr16_ring_resource_contracts.py": {
+      "size": 20140,
+      "sha256": "c575f1a803acd3c138092487957239e95d9587f20209b5668ed23f293381e700"
+    },
+    "scripts/pr16_ring_dispatch_contracts.py": {
+      "size": 14635,
+      "sha256": "55a743873e6c3409e65813d4a2a474f194827ccb440587595c86bda291d6b2f1"
+    },
+    "scripts/pr16_ring_gate_contracts.py": {
+      "size": 15264,
+      "sha256": "681de11dd4404608122b3069321c60f2f6331b0f04c18d75d87aef208ac383a7"
+    },
+    "scripts/pr16_ring_caller_contracts.py": {
+      "size": 17412,
+      "sha256": "bde459691a9b1fdf1fa239a4df1f12c1ae3e3d16f8405634d46bd88e2290907f"
+    },
+    "scripts/pr16_ring_string_machine.py": {
+      "size": 2000,
+      "sha256": "1db71b3632a95a5a676a4315ccac2dae51ba6a3d80a9d4be42916145703a6581"
+    },
+    "scripts/pr16_ring_contract_machine.py": {
+      "size": 8710,
+      "sha256": "e48dfc6e12913c93efc9ee54d26117fc3082cf7aeb304df90bbae2438a83775b"
+    },
+    "scripts/pr16_ring_saved_contracts.py": {
+      "size": 15079,
+      "sha256": "1fe5c750ebc8be8faf46915f0e172706a35bd4313bb05bfec621af3760e50620"
+    },
+    "scripts/pr16_ring_owner_context.py": {
+      "size": 13828,
+      "sha256": "e4ceb839cb6f9e3676b50549471512ae18698b9d4a4428f5577992758e38c1f0"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    },
+    "scripts/pr16_ring_text_export_recovery.py": {
+      "size": 12559,
+      "sha256": "39156d99a541fe6df74d264df0f08d3f014c3558edff1fa30d576887a97da595"
+    },
+    "scripts/pr16_ring_remaining_contracts.py": {
+      "size": 11862,
+      "sha256": "afb8dda5c8161f8833f4551f299981bdf177b57d4840e2c166945e5e1e4a74bd"
+    },
+    "infra/toolchain_manifest.json": {
+      "size": 33230,
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 24,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35310950944,
+      "head_sha": "76484b07ad64c663af6084bb329700a8a62f2e59",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35311397728,
+      "name": "source-validation",
+      "head_sha": "8de46fb5fc5d0c63dc3939a768324affd102d421",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 35311397720,
+      "name": "p03-forgetting-ci",
+      "head_sha": "8de46fb5fc5d0c63dc3939a768324affd102d421",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 35311393786,
+      "name": "同一RAMのstate0→1→2とqueue引継ぎを検証",
+      "head_sha": "8de46fb5fc5d0c63dc3939a768324affd102d421",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35311393802,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "8de46fb5fc5d0c63dc3939a768324affd102d421",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35311393742,
+      "name": "source-validation",
+      "head_sha": "8de46fb5fc5d0c63dc3939a768324affd102d421",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35311393810,
+      "name": "p03-forgetting-ci",
+      "head_sha": "8de46fb5fc5d0c63dc3939a768324affd102d421",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 35311383035,
+      "name": "source-validation",
+      "head_sha": "82604421a360baead841043dc7fc83cf068b98f2",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35311382812,
+      "name": "p03-forgetting-ci",
+      "head_sha": "82604421a360baead841043dc7fc83cf068b98f2",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 35311378078,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "82604421a360baead841043dc7fc83cf068b98f2",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35311378106,
+      "name": "source-validation",
+      "head_sha": "82604421a360baead841043dc7fc83cf068b98f2",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35311378063,
+      "name": "p03-forgetting-ci",
+      "head_sha": "82604421a360baead841043dc7fc83cf068b98f2",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 35311348624,
+      "name": "source-validation",
+      "head_sha": "e4ec8df18142e1116d046fb9edc828c5e70d7d6a",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35311348686,
+      "name": "p03-forgetting-ci",
+      "head_sha": "e4ec8df18142e1116d046fb9edc828c5e70d7d6a",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35311345833,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "e4ec8df18142e1116d046fb9edc828c5e70d7d6a",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35311345843,
+      "name": "source-validation",
+      "head_sha": "e4ec8df18142e1116d046fb9edc828c5e70d7d6a",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35311345899,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "e4ec8df18142e1116d046fb9edc828c5e70d7d6a",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35311345753,
+      "name": "p03-forgetting-ci",
+      "head_sha": "e4ec8df18142e1116d046fb9edc828c5e70d7d6a",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35311097640,
+      "name": "source-validation",
+      "head_sha": "8346c8b3a27b49ace4e73d53bd82ad2575e86230",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35311097643,
+      "name": "p03-forgetting-ci",
+      "head_sha": "8346c8b3a27b49ace4e73d53bd82ad2575e86230",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35310954508,
+      "name": "p03-forgetting-ci",
+      "head_sha": "76484b07ad64c663af6084bb329700a8a62f2e59",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+# PR16 図鑑battle seenと公式countの候補接続
+
+正式ROM/Save101は保持する。この工程は全consumer、通常battleの自然到達、保存失敗UIや全save modeの受入ではない。
+
+## 接続する範囲
+
+battle entry4窓とswitch-in1窓を、raw SIDがr0に残る変換前から直接VegaDexSpeciesFlagsのSET_SEENへ接続する。14byteの窓はThumb continuationを明示的にr1へ渡し、gatewayがSP%8=0/4双方からC ABI境界だけ整列する。元callerのr4–r11/SPと続行先は保持する。global SpeciesToNationalの挙動は変えない。nativeSID129/addedSID481の衝突、Stage75 SID1670、高owner、未採用/不正SIDを別々に扱う。
+
+CFRU GetNationalPokedexCount入口はVegaDexOfficialCountへ接続する。旧処理がSave1+0x310/+0x3A6のlive Bagを129byte読む誤集計を止め、公式owner maskの1025種だけを集計する。mode0/1以外とinvalid MDXは0で拒否し、bitmapやBagを書き換えない。
+
+## 配置と保全
+
+lifecycle後の監査済み未使用432byte、0x095FFE50..0x09600000内に独立ownerを置く。既存109ownerの全byte、範囲、順序、codec/scheduler/load/newgameを変更しない。新allocator110owner、overlap0。生成器は空きspan全体がFFであることと全既存allocated ownerのbyte同一性、全ROM逆変換を検証する。
+
+初回source9217ffb215923e1794d064037f5c40fd86ac6538 / run37233754843は、隔離consumer180call自体が成功したが配置を受入しない。codecの見かけ上のsuffix0x09FC1D38は既にschedulerのclone等が使用しており、初回候補はそれを上書きした。Actionsのsuccessを保存健全性や候補受入へ読み替えない。レビューで発見し、同一owner内を空きと見なす旧生成器を修正した。正式ROM/saveは変更していない。この再発を拒否するhost試験を追加した。
+
+後継source63b1c819a9e84a1a8b1d0116320a908f26dec9e7は正しい別spanへ配置するため、実アドレス/接続先が変更影響となる。180callを新配置で実行し、旧nativeの無変更再走とは分ける。
+
+## 検証境界
+
+host6suiteは全1670SIDのmanifest owner一致、alias分離、Stage75、invalid-live/SID、公式1025count・不正mode、Thumb続行・同owner内上書き拒否を検査する。
+
+隔離ARMはseen140case＋count40case。5callsite、SP0/4、13SID＋CRC破損、公式全owner集合/Bag0とFF/invalid MDX/modeを含む。各callで全EWRAM262144byteとIWRAM32768byteを対照し、宣言MDX/512byte内stack以外の書込なしを要求する。species変換/legacy getter/Flash writerには到達しない。これは通常battle0、通常Save0の隔離ABI試験である。
+
+## 次工程
+
+最優先でauthorityなしinvalid-liveの保存失敗伝播を修復する。schedulerが255を返してもstock TrySavingDataはdamaged mask0から成功へ変え、QOL sector31保存が走り得る。SaveFailed画面のTryWipeもmask0なら成功表示に戻す。共通TrySavingData後段とTryWipeのinvalid-MDX非破壊guardをセットで閉じ、実失敗画面とA復帰、全FlashRTC不変を別受入する。
+
+active capture/mon登録、native授受/孵化/進化、UI/native count、reward clear、Factory memorial/Codex rollback、DexNavは引き続き未接続。全save modeのHOF/overwrite固有副作用も未受入。これらを満たす前に正式ROM切替やtrainer131後半を進めない。最終milestoneはシオウPokecenter通常回復・Save・coldContinue。通常雑魚ごとのcheckpointは作らない。

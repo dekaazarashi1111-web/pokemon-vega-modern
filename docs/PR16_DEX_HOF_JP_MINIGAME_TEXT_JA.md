@@ -1,0 +1,38 @@
+# 参加拒否と取消文の最小型
+
+正式781分類・93未知の保存済み親から、083DE6ABの4byteだけを次の型候補にする。現0641の専用Actions原本を回収する前は正式受入へ加算しない。旧交換/mailboxの成功原本・失敗履歴・165/27/22試験は保持し、変更影響なしに再走しない。
+
+## 正producerと別経路
+
+ChooseMonForWirelessMinigame081281C0からInitPartyMenu0811F24CへmenuType11/layout0/action13/slot0、msg1/task08120319/exit080561A1を渡す。constructor、全setup状態、state20のCreateTask、同taskのRunTasksを結ぶ。
+
+新しい義務はstate6のSetPartyMonsAllowedInMinigame081210D4。旧menuType0の早期returnを流用しない。mode1、partyCount1、非egg・非Dodrioの有限条件から、Dodrio判定と加算を実命令で通してminigameBitflag0203B022を0として生成する。getterの戻り値は条件であり、monデータ全生産や自然操作での到達を主張しない。
+
+- 拒否: action hook09097A80→action13 cell0812041C→08120524→非egg→TryEnterMonForMinigame081211E4。081211C4が生成した同flagをLDRSH/slot0算術右shift/bit0判定で読む。拒否音26の正常戻り後、LDR0812121A/cell0812123Cから左文をkeepOpen0で渡す。
+- 取消: 入力helperの戻り2(B)→HandleChooseMonCancel08120578の別hook09097AB4→stock08120580→action13→CancelParticipationPrompt08121248。LDR08121250/cell08121274から右文をkeepOpen1で渡す。
+
+取消hookは固定CFRU-JPのgeneral_hooks.sとhooksを全byte/Git blob identityで束縛する。通常action13がaction15専用枝へ入らないことと、stockへの復帰を実命令で検査する。
+
+## 独立serializerと全文reader
+
+左は083DE699の21byte「その ポケモンは さんか できません[FC][09]」、EOS083DE6AD。右は083DE6AEの12byte「さんかを やめますか？」、EOS083DE6B9。以前の右候補083DE6B0は使用しない。
+
+公開固定charmapで日本語を独立serializeし、全byte identityと実ROM起点を照合する。最小4byteは左FC09 operand/EOSの3byteと右先頭glyph1byte。text pointerはhostで設定せず、両実literal/cellとAPIを通して左右全文のLDRBを各EOSまで読む。FD展開を必要とする文ではない。
+
+各ケースはPartyMenuPrintTextからDisplayPartyMenuMessage内08120AF2へ復帰した点で停止する。API後半、全callback復帰、自然画面、取消へのYes/No応答や実際の参加終了までを受入範囲にしない。
+
+各opaque境界ではr0-r3/r12/LR/flagsをUnknownへ破棄し、将来必要なRAMだけを残す。無関係なRAMを消去しても同じ登録・dispatch・読取になることを検査する。有効window6/font2/text speed255、printer開始時new/heldKeys0、左FC09の有限正常戻り1、同party objectと必要資源epoch・同期通常ABIは明示条件。普遍heap/IRQ寿命や全callee効果の証明ではない。
+
+## 保存chainと測定の境界
+
+jp_minigame_chain.parentの55保存入力で正式781親を再構成する。旧28段162変更152witness、全133曲と50sample、874 hit inventory、他873行の全fieldを保持する。新namespaceには083DE6ABの4byte1件だけを置く。疎fixtureの782/92を現候補の実測受入へ置き換えない。
+
+新workflow pr16-dex-hof-jp-minigame-textは同branch/draft PR/初回runだけ。現0641の全ROM SHA、全115owner、保存874hitを照合し、この新2readerだけを一度計測する。旧scopeのsuite・consumer・native・旧heap・全ROMscanは実行しない。ROM再構成は今回scope1回として記録する。
+
+モデルとdeltaのidentityをJSON包装前、生成した4fileのsize/SHAを検証前、再読後のsize/SHAを公開直前に記録する。公開対象は閉じたmeasurement/reference-chain/tests/provenance JSONのみ。内部tupleはreport作成境界でJSON型へ正規化し、公開validatorは型別名・重複key・非有限値・不明file・symlink・CR/NULを拒否する。各file上限は1500000byte inclusive。実producer→report生成→4file書出し→読戻しの開発回帰で公開境界も先に検査する。
+
+4原本はActions artifactを実ダウンロードし、生成時/公開前ログのidentityと一致してから正式受入する。失敗した場合、部分成功を全成功に書換えず、出力欠落を開発fixtureで代用しない。既知失敗の無条件再走は行わない。
+
+## 残る本番gate
+
+donor安全0、旧egg15118全域保護、正式ROM/Save101は不変。全保存入口ready、退避53300開始前のheap13352 Free、同期非再入、controller6528本番配線は別gate。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinueも未完。汎用Stage79待ちや既知source-validation failureを専用scope成功へ混同しない。

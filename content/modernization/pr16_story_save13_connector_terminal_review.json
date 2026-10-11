@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260928-STORY-SAVE13",
+  "status": "PASS_ORIGINAL_READBACK_CANONICAL_TERMINAL_PUBLICATION_PENDING",
+  "source_head": "34d037bc5c56de271aba627a9a001f15b6534123",
+  "measurement_run_id": 36439214540,
+  "measurement_job_id": 108985010946,
+  "measurement_all_steps_success": 11,
+  "completion_head": "e6ed6433459ac5e8c49badc996c7279655e5c838",
+  "artifact": {
+    "id": 10976693019,
+    "name": "pr16-story-save13-checkpoint",
+    "size": 18633620,
+    "sha256": "0ac72978a6c431989f793395976c8c4540d7f39fc4eafe690ca3e1b24a1f726b"
+  },
+  "save13": {
+    "size": 131088,
+    "sha256": "fe238bfa190cecd4111b461424f1e50b42afac8e3381663292717ecb6e25baa0"
+  },
+  "save_rtc_all_bytes_equal_after_continue": true,
+  "all_76_images_equal_to_development_originals": true,
+  "full_image_equal_pairs": 7,
+  "new_formal_tests_pass": 95,
+  "development_tests_pass": 95,
+  "record_evidence_manifest_files_checked": 17,
+  "record_checkpoint_equal_to_artifact": true,
+  "logs_append_only_proof": {
+    "design/run_log.md": {
+      "appended_lines": 12,
+      "previous_bytes_preserved": 1571308,
+      "record_blob_sha": "68e1d9a3b27e1e81dfd54698e654052a7efd1881"
+    },
+    "design/version_log.md": {
+      "appended_lines": 12,
+      "previous_bytes_preserved": 1183817,
+      "record_blob_sha": "abc193ed3d92a84dde995105e7cfe3688781cfdc"
+    }
+  },
+  "readback_native_executions": 0,
+  "readback_test_executions": 0,
+  "accepted_case_reruns": 0,
+  "rom_runner_changed": false,
+  "active_baseline_changed": false,
+  "release_ready": false,
+  "canonical_status": "PASS_STORY_SAVE13_PENDING_TERMINAL",
+  "canonical_actions_completion_confirmed": false,
+  "canonical_next_action": "STORY_SAVE13_TERMINAL_COLLECTION_ONLY",
+  "terminal_workflow_created": false,
+  "terminal_publication_pending": true,
+  "notes_ja": "正式runの全11step・非force pushは成功。原本ZIP/保存131088bytes/76画像/7組一致/95試験原本/記録manifest/両ログ追記を読み取りだけで照合。追加の終端workflow作成はツールの安全性チェックで拒否され、別経路で再作成していない。この文書は補足証拠であって固定引継ぎの代替ではなく、canonicalの終端待ちを完了へ変更しない。",
+  "next_action_ja": "原本artifact10976693019と完了commit e6ed6433から固定引継ぎMD/JSON・checkpoint・working・両ログの終端公開だけを行う。native/95試験/255-cold40入力を再実行しない。その後はSave13から通常育成/マオリへ。"
+}

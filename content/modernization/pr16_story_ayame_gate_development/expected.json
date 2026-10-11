@@ -1,0 +1,69 @@
+{
+  "progress": {
+    "commands": {"size": 4952, "sha256": "6d1c304bb82a336b3233b8a175d6c2c92109eefa6d1f0d0fc8199db37e0c1399"},
+    "stdout": {"size": 96411, "sha256": "892d17da8ba83ab9f286d42da82c976093963f7a0f05ea34d34dd6174514abaa"},
+    "commands_zlib_b85": "c-pm?OOo3l5J2}ng^oZ&1I=|(<wa^1Q^_Q$%I)K^EkFppiSpUmJi66-fUVZc_2(kqmZX=L+edf%;x4bB-mYJNTo<{Iy<<re>?>CH#8zRrj|9K?3R4T!8X9~JT?5h@P+CB&G^S0!JV&e7T8@M?uXM<EXy=L3JY9Lv#m~GxZZK)PRv#)d#`e$?3<G?ZU!k5ACULE^3aB?dS~}419PF{}Zoa1QX6sOwBCj}#-|aK0!DEg0ZR^HM46|-!3{}j<?v^ul=fDvZf}UU?s01UydJOg|Mqjr{s*@%0?XWm)r~Bmg@*m*xJ126#{rWv09Ai3ZflgWo1eIVUm<VQqw0%PXsE*)hsQ(ck1x43E5~L(ZNsvAS`8mw{VxdAiHM_utqa!E;J;89M!l;xg5+tcH6EuRPERnKA$`UC{fgl-5aW<IFtUw}FiBu(0l}S~WZtz5{nJi|qn8{+MeU?wz%w#i@%}h3pY#MDmBV|U)jFcHEGdh|^hKvkZ`LkV9NM0d%h2#~ISM*ecWV4XXLN*K8Eagmv;z*)6LF$nPq>3~mO-S=O0fx!w^opQ7L3x7m1my|JlQ?~pJ?x(9L-jVxKWLU(x70nk|A&T1a1905(Bm3<T*GI}bl5wuUDM{J#b$y+|D(F=T#6rOwYLGAyzw~ie7T>USf4RCZ2dFzb>a=_{x_<BZ?IdD{&htVq>oXnwDhnoM+^STp@T9MX+%2RDS`eFB-m7BxqSKl`P=0e_<<hw"
+  },
+  "continue": {
+    "commands": {"size": 140, "sha256": "a961ea7d32104f36b63136a21e9359a2a0269486a60818287670cc5a59a076b3"},
+    "stdout": {"size": 4202, "sha256": "74d0fc3acd672f424af09a2f42ec85e2431bcd54de10e6364651400dc5200ce4"},
+    "commands_text": "key 8 2\nkey 0 50\nobserve 1\nkey 128 2\nkey 0 4\nkey 1 2\nkey 0 80\nobserve 2\nkey 2 2\nkey 0 90\nobserve 3\nkey 0 30\nkey 2 2\nkey 0 60\nobserve 4\nquit\n"
+  },
+  "visual_review": {
+    "reviewer": "ChatGPT direct pixel inspection",
+    "progress_anchors": [0,19,25,31,37,46,55,57,58,62,78,80,81,86,109,111,112,115,118,122,123,130,132,136,138,139],
+    "cold_anchors": [0,1,2,4],
+    "scope": "ordinary dialog, chained battles, payouts, actual gym entry, heal, partial write versus completed save, cold party UI; success-save text not captured"
+  },
+  "failure": {
+    "status": "REJECTED_PREMATURE_QUIT_DURING_SAVE_WRITE",
+    "first_execution": {
+      "returncode": 0,
+      "initial_save": {"size": 131088, "sha256": "6bd7a37962e31b3c3c553a882903c766b7146f016cdf00a62036273789ab6f2a"},
+      "final_save": {"size": 131088, "sha256": "451ea209cb23593026bf4e8e99f6cea45ed9e13309a379666a94d6b7e5d300a6"},
+      "native_end": {"end": "STORY_INPUT_CHECKPOINT", "frames": 35644, "inputs": 380, "warnings_errors": 0, "host_write_barriers": 7, "guarded_host_writes": 0, "fixture_calls": 0, "natural_research_arrival_accepted": false},
+      "observations": 139
+    },
+    "cold_diagnostic": {
+      "returncode": 0,
+      "initial_save": {"size": 131088, "sha256": "451ea209cb23593026bf4e8e99f6cea45ed9e13309a379666a94d6b7e5d300a6"},
+      "final_save": {"size": 131088, "sha256": "4583da84e2ddfb6e3f8e86072431156d2fafe19a64d9eb57b47c12bbb93c8083"},
+      "native_end": {"end": "STORY_INPUT_CHECKPOINT", "frames": 1634, "inputs": 16, "warnings_errors": 0, "host_write_barriers": 7, "guarded_host_writes": 0, "fixture_calls": 0, "natural_research_arrival_accepted": false},
+      "observations": 1
+    },
+    "failed_commands": {"size": 4930, "sha256": "d1606992b875a4bdae345c5a50b0c7e9f3220114c6ba6e9734932db2406b52c7"},
+    "failed_stdout": {"size": 95806, "sha256": "33ea4014d3f4e661e5326dd7e5a890112923cded979e98494597b064554115c9"},
+    "exact_prefix": {"size": 95617, "sha256": "c8141e9d38e661e33ba8596eadc4bb9be2022efb848eb0a4f9c3d8542a5312b1"},
+    "last_observation": {
+      "observe": 138, "frame": 35644, "map": [5,4], "xy": [7,4], "live_xy": [14,11], "facing": 2, "field": false, "lock": 1,
+      "callback2": 134569589, "party_count": 4, "save_counter": 17, "rp": 0, "battle_flags": 12, "battle_outcome": 1,
+      "party_sha256": "3385eede5f229e69f3aa73f289f3af0d1827c2c1570b07ce6e6b0f0eb3234cc8",
+      "flash_sha256": "201222b68c94adf497ac58eedc5ba67700ec8a67ee05c96c4b9a6a1d71fba995",
+      "ledger_sha256": "847e0b99bded52ce70fbcab4f13accf1ef41ab98a728f4679cff6baeb79aaebb"
+    },
+    "failed_cold_counter": 17,
+    "failed_cold_saved": false,
+    "save18_accepted": false,
+    "old_wip_20260929_0308_recoverable": false,
+    "corrected_extra_frames": 600,
+    "failed_new_interval_replayed_once": true,
+    "accepted_old_case_reruns": 0,
+    "development_native_processes": 4,
+    "development_failed_native": 2,
+    "explanation_ja": "保存書込み中counter17/lock1で開発harnessを早期終了。診断coldは古いSave17へfallback。失敗2processを保存し、未受入の新区間のみ正確な観測prefix一致で1回再実行。600frame待機を追加しcounter18/lock0と独立Continueで完了。旧WIPのHM05受領は継承しない。",
+    "failed_progress_end_line": "{\"end\":\"STORY_INPUT_CHECKPOINT\",\"frames\":35644,\"inputs\":380,\"warnings_errors\":0,\"host_write_barriers\":7,\"guarded_host_writes\":0,\"fixture_calls\":0,\"natural_research_arrival_accepted\":false}\n"
+  },
+  "source_comparison": {
+    "bootstrap_head": "e7e91000395c5412e802e5c4081eb3926700977c",
+    "starting_head": "c0e997047b61ed0c2c405c8949a32d6b44299610",
+    "only_added_path": "content/modernization/pr16_story_ayame_gate_development/wip_20260929_0308.json",
+    "in_progress_runs_at_start": 0,
+    "starting_ci": {"36515870341": "success", "36515870357": "failure at P03 capacity fixed originals and cold-save acceptance"}
+  },
+  "locally_tested_sources": {
+    "scripts/pr16_story_ayame_chain.py": {"size": 3628, "sha256": "326aff8c6e18a17a84dbc76a5952176090af30bfa7550e94b75ca3b89320395d"},
+    "scripts/pr16_story_ayame_accept.py": {"size": 11863, "sha256": "60bdce787d7c2c923a8e1d1effbda5d83c037daffcd594afa5fb2d48ba27519b"},
+    "tests/test_pr16_story_ayame_chain.py": {"size": 3532, "sha256": "d2c18f0d7adbfe9e2f5e5939a6ce3245aeb29b861f6cff68daf12018fead9e02"},
+    "tests/test_pr16_story_ayame_accept.py": {"size": 4853, "sha256": "c511e5fad074a8cf927c021c21c51ec612a7b30ceb178d00fdcf2f3e2eced889"}
+  }
+}

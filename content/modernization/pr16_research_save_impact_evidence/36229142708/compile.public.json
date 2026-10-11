@@ -1,0 +1,100 @@
+{
+  "kind": "PUBLIC_PROJECTION_NOT_ORIGINAL",
+  "original_binding": {
+    "sha256": "82b9e6ae0f9739cb48823447902bbd94304be2532380d4eab9bacf6b9467c86b",
+    "size": 2508
+  },
+  "original_member": "compile.json",
+  "policy": "Only absolute compiler arguments are replaced; original bytes remain in the pinned Actions artifact.",
+  "projection": {
+    "command": [
+      "cc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wno-misleading-indentation",
+      "-Itools",
+      "-I<artifact-absolute-argument-8>",
+      "tools/mgba_pr16_research_save_impact.c",
+      "-L<artifact-absolute-argument-10>",
+      "-lmgba",
+      "-lm",
+      "-Wl,--allow-shlib-undefined",
+      "-o",
+      "<artifact-absolute-argument-15>"
+    ],
+    "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "executable": {
+      "sha256": "3b113624de595c17ac3f6ecd48e1387ba94097ffe594cc7c976d7780fbd6ab56",
+      "size": 56760
+    },
+    "returncode": 0,
+    "source_bindings": {
+      ".github/workflows/pr16-research-save-impact-native-20260926.yml": {
+        "sha256": "f4efa2aa5b39560cdc6e3149cee257506bf69de96ed4d06b896c1964b9809087",
+        "size": 9601
+      },
+      "config/research_economy_v1.json": {
+        "sha256": "7e92079158303a125358ae6fa49c231f6085b2ca0a335d5f0e8bb6c55db2ed8d",
+        "size": 9388
+      },
+      "overlays/research_economy_v1/research_economy_v1.c": {
+        "sha256": "3f71ea1d9f308c652e70dd863b601ad39a9c648ca25bf55932b4966fa4246e62",
+        "size": 63507
+      },
+      "overlays/research_economy_v1/research_economy_v1.h": {
+        "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
+        "size": 3743
+      },
+      "scripts/pr16_research_save_delegate.py": {
+        "sha256": "ed64cc810b7ad05da32b68827d96e54e39eeb04d8eeb65302f07a4ef54676474",
+        "size": 3372
+      },
+      "tools/mgba_ai_fixture_runner.c": {
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+        "size": 36272
+      },
+      "tools/mgba_battle_core_smoke.c": {
+        "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+        "size": 94688
+      },
+      "tools/mgba_pr16_research_save_impact.c": {
+        "sha256": "b57e58a94f208f6f3ce8418b850d9cd03de203c12bb73a0cd0cdf6fb7968b78f",
+        "size": 16977
+      },
+      "tools/mgba_qol_production_smoke.c": {
+        "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+        "size": 149046
+      }
+    }
+  },
+  "redactions": [
+    {
+      "argument_index": 8,
+      "original_utf8": {
+        "sha256": "a984e35f40b2144af548cc3675887bcb1526b52988f84e3a64f6e6f6c2e52e8a",
+        "size": 115
+      },
+      "replacement": "-I<artifact-absolute-argument-8>"
+    },
+    {
+      "argument_index": 10,
+      "original_utf8": {
+        "sha256": "e840f8bc88d4e658e803fe430608c65f455696e869091842e79d6964b36c28c6",
+        "size": 111
+      },
+      "replacement": "-L<artifact-absolute-argument-10>"
+    },
+    {
+      "argument_index": 15,
+      "original_utf8": {
+        "sha256": "6f52738910cdeaecff65337af3e8732a12b6c2ef335d9b02af1713119f7b0d1d",
+        "size": 104
+      },
+      "replacement": "<artifact-absolute-argument-15>"
+    }
+  ],
+  "schema_version": 1
+}

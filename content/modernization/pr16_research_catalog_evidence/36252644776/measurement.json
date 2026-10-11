@@ -1,0 +1,131 @@
+{
+  "counts": {
+    "accepted_case_reruns": 0,
+    "arm_compiles": 0,
+    "arm_links": 0,
+    "guard_processes": 7,
+    "host_compiles": 1,
+    "native_processes": 1,
+    "new_unit_tests": 86,
+    "rom_changes": 0
+  },
+  "failures": [],
+  "local_diagnostics": {
+    "failures": [
+      "19商品はDH未解放fixture。観測前の正規FlagSet1回を追加。",
+      "最初の5画像はvideo reset前接続不足で黒一色。専用起動だけを修正し非空/異なるhashを検査。"
+    ],
+    "final": "全23商品/5画面と86oracleが成功。これを既存保存/購入/取消受入の再実行に数えない。",
+    "host_compiles": 3,
+    "native_processes": 3,
+    "new_unit_tests": 86
+  },
+  "native": {
+    "cancel_reruns": 0,
+    "candidate_sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+    "case": "catalog-all-pages-readonly",
+    "catalog_count": 23,
+    "fresh_cores": 1,
+    "guarded_host_writes": 0,
+    "manual_saves": 0,
+    "menu": {
+      "callback": 154924453,
+      "eligible_count": 23,
+      "native_tasks": 1,
+      "shop_open": "catalog",
+      "window": 1
+    },
+    "natural_progress_accepted": false,
+    "pages": 5,
+    "purchase_reruns": 0,
+    "root": {
+      "backgrounds": 155270164,
+      "binding": "map98/3-background0",
+      "catalog": 0,
+      "events": 155270224,
+      "item": 4,
+      "price": 10,
+      "quantity": 5,
+      "script": 154927912
+    },
+    "screens": [
+      {
+        "catalog_indices": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "frame": 1031,
+        "page": 0,
+        "screen_sha256": "c63bba1e14a0d88958f07345ca68eb72538c2a505db3309f99d70a1ccc8f18dc"
+      },
+      {
+        "catalog_indices": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "frame": 1223,
+        "page": 1,
+        "screen_sha256": "f83d88cc7bd9ba9375cfafdc2946237b4cb3c702b7f63f5885b614ae5c173245"
+      },
+      {
+        "catalog_indices": [
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "frame": 1415,
+        "page": 2,
+        "screen_sha256": "9ffa1ff8b7b4396b14a87263af308f63c39beac1272ce479c8777e2b6ee736ac"
+      },
+      {
+        "catalog_indices": [
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "frame": 1607,
+        "page": 3,
+        "screen_sha256": "1c7fda7f77b36b00c00b808376c5e003f2ed85032d12023eeea4843152fdf764"
+      },
+      {
+        "catalog_indices": [
+          20,
+          21,
+          22
+        ],
+        "frame": 1799,
+        "page": 4,
+        "screen_sha256": "1d226381fcc02a51a02991f9cdb3314b95959cd7699a64aa594771350b09d6f3"
+      }
+    ],
+    "status": "PASS",
+    "stdout": {
+      "sha256": "7cf594af34be84c42ea59ba3ed44029e36787e799c4cce5c52505563d7459756",
+      "size": 1268
+    },
+    "transaction_saves": 0,
+    "warnings_errors": 0
+  },
+  "status": "PASS",
+  "visual_review": {
+    "note_ja": "5ページすべての商品名/価格/つぎ/やめるは正本と一致し、行末欠けなし。数量は商品ABIの照合であり画面表示とは主張しない。35会話のnative全表示は未受入。",
+    "reviewed_sha256": [
+      "c63bba1e14a0d88958f07345ca68eb72538c2a505db3309f99d70a1ccc8f18dc",
+      "f83d88cc7bd9ba9375cfafdc2946237b4cb3c702b7f63f5885b614ae5c173245",
+      "9ffa1ff8b7b4396b14a87263af308f63c39beac1272ce479c8777e2b6ee736ac",
+      "1c7fda7f77b36b00c00b808376c5e003f2ed85032d12023eeea4843152fdf764",
+      "1d226381fcc02a51a02991f9cdb3314b95959cd7699a64aa594771350b09d6f3"
+    ],
+    "status": "PASS"
+  }
+}

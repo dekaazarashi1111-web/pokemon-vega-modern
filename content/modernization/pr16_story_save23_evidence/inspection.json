@@ -1,0 +1,472 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-STORY-SAVE23",
+  "status": "PASS_STATIC_CAVE_OPTIONS_NOT_NATIVE_ACCEPTANCE",
+  "source_head": "7061be3216818a424204761676839e7da289e32e",
+  "run_id": 37090546571,
+  "parent_artifact": {
+    "id": 11076499444,
+    "name": "pr16-story-save22-checkpoint",
+    "size_in_bytes": 17940588,
+    "digest": "sha256:43a9676c164ba2716366dd351ef1f2a973a115e92cce183ac14a8a8f6f1dcbb5",
+    "workflow_run": {
+      "id": 36668710078,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "8c6f51827d3d51a1f2f25b4444f6103496d2ecba"
+    },
+    "expires_at": "2026-12-29T04:24:40Z"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "bb3b6159ab12358fd051b88a592c99807b2bc14b1f9f41e952daf7a4d1a4529e"
+  },
+  "maps": [
+    {
+      "map": [
+        1,
+        36
+      ],
+      "header": 137442996,
+      "layout": 137243716,
+      "scripts": 135682158,
+      "width": 10,
+      "height": 8,
+      "connections": [],
+      "warps": [
+        {
+          "id": 0,
+          "xy": [
+            6,
+            4
+          ],
+          "elevation": 3,
+          "target_warp": 0,
+          "target_map": [
+            1,
+            73
+          ]
+        },
+        {
+          "id": 1,
+          "xy": [
+            4,
+            6
+          ],
+          "elevation": 3,
+          "target_warp": 0,
+          "target_map": [
+            3,
+            21
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "local_id": 1,
+          "xy": [
+            4,
+            4
+          ],
+          "script": 136399955,
+          "flag": 0
+        }
+      ],
+      "collision_grid": [
+        "##########",
+        "##########",
+        "##......##",
+        "##......##",
+        "##..O.W.##",
+        "##......##",
+        "##..W...##",
+        "##########"
+      ],
+      "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+    },
+    {
+      "map": [
+        1,
+        73
+      ],
+      "header": 137444032,
+      "layout": 137190172,
+      "scripts": 135697300,
+      "width": 40,
+      "height": 23,
+      "connections": [],
+      "warps": [
+        {
+          "id": 0,
+          "xy": [
+            20,
+            3
+          ],
+          "elevation": 3,
+          "target_warp": 0,
+          "target_map": [
+            1,
+            36
+          ]
+        },
+        {
+          "id": 1,
+          "xy": [
+            4,
+            19
+          ],
+          "elevation": 3,
+          "target_warp": 1,
+          "target_map": [
+            1,
+            38
+          ]
+        },
+        {
+          "id": 2,
+          "xy": [
+            31,
+            19
+          ],
+          "elevation": 3,
+          "target_warp": 1,
+          "target_map": [
+            1,
+            37
+          ]
+        },
+        {
+          "id": 3,
+          "xy": [
+            1,
+            1
+          ],
+          "elevation": 3,
+          "target_warp": 5,
+          "target_map": [
+            1,
+            72
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "local_id": 1,
+          "xy": [
+            4,
+            11
+          ],
+          "script": 136398832,
+          "flag": 4369
+        },
+        {
+          "local_id": 2,
+          "xy": [
+            2,
+            14
+          ],
+          "script": 136398812,
+          "flag": 4368
+        },
+        {
+          "local_id": 3,
+          "xy": [
+            6,
+            14
+          ],
+          "script": 136398821,
+          "flag": 4368
+        },
+        {
+          "local_id": 4,
+          "xy": [
+            6,
+            17
+          ],
+          "script": 155117740,
+          "flag": 4366
+        },
+        {
+          "local_id": 5,
+          "xy": [
+            33,
+            7
+          ],
+          "script": 154601832,
+          "flag": 4368
+        },
+        {
+          "local_id": 6,
+          "xy": [
+            30,
+            13
+          ],
+          "script": 154601860,
+          "flag": 4368
+        },
+        {
+          "local_id": 7,
+          "xy": [
+            21,
+            17
+          ],
+          "script": 154601888,
+          "flag": 4368
+        },
+        {
+          "local_id": 8,
+          "xy": [
+            19,
+            11
+          ],
+          "script": 154603148,
+          "flag": 4368
+        },
+        {
+          "local_id": 9,
+          "xy": [
+            13,
+            19
+          ],
+          "script": 136399986,
+          "flag": 365
+        },
+        {
+          "local_id": 10,
+          "xy": [
+            9,
+            14
+          ],
+          "script": 136399999,
+          "flag": 366
+        }
+      ],
+      "collision_grid": [
+        "########################################",
+        "#W######################################",
+        "########################.......#########",
+        "#####...#######....#W...........#.######",
+        "####....#####......#.............#######",
+        "####....##..#..#....#.....#..#....######",
+        "####...#.......###............#...######",
+        "####....#.##.....#............#..O######",
+        "####...#.....#...#....#####..##...######",
+        "##.....#.....##########...####....######",
+        "##.....#..#.##.....#.#.............#####",
+        "##..O..#..###......O#.#............#####",
+        "##.....#..#.......#......#.........#####",
+        "##.....##.########.......#....O....#####",
+        "##O...O.#O#......#....#.##.........#####",
+        "######..#.########..###............#####",
+        "######..#.#......#..#........###########",
+        "######O.####.....##.#O......############",
+        "######....#.......###.......#####.######",
+        "####W...#####O#............####W..######",
+        "####....######...#......#######...######",
+        "###############################.########",
+        "########################################"
+      ],
+      "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+    }
+  ],
+  "route_options": [
+    {
+      "warp": {
+        "id": 0,
+        "xy": [
+          6,
+          4
+        ],
+        "elevation": 3,
+        "target_warp": 0,
+        "target_map": [
+          1,
+          73
+        ]
+      },
+      "path": [
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "steps": 4,
+      "scope": "STATIC_OPTION_NOT_NATIVE_REACHABILITY"
+    }
+  ],
+  "prior_record": {
+    "run": {
+      "id": 36672864966,
+      "head_sha": "216ccc6302104238f446230818151552f02b1944",
+      "head_branch": "codex/modernization-followup-20260908",
+      "path": ".github/workflows/pr16-story-save22-record.yml",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    "job": {
+      "id": 109751454013,
+      "run_id": 36672864966,
+      "workflow_name": "pr16-story-save22-record",
+      "head_branch": "codex/modernization-followup-20260908",
+      "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36672864966",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUPNhZs8AAAAZjbJJPQ",
+      "head_sha": "216ccc6302104238f446230818151552f02b1944",
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/109751454013",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36672864966/job/109751454013",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-09-30T05:19:18Z",
+      "started_at": "2026-09-30T05:19:20Z",
+      "completed_at": "2026-09-30T05:19:48Z",
+      "name": "record",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-09-30T05:19:21Z",
+          "completed_at": "2026-09-30T05:19:21Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-09-30T05:19:21Z",
+          "completed_at": "2026-09-30T05:19:34Z"
+        },
+        {
+          "name": "New 22 record gates and scoped source guard only",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-09-30T05:19:34Z",
+          "completed_at": "2026-09-30T05:19:35Z"
+        },
+        {
+          "name": "Record completed Save22 without native or accepted suite reruns",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-09-30T05:19:35Z",
+          "completed_at": "2026-09-30T05:19:41Z"
+        },
+        {
+          "name": "Scoped final index private guard and fixed resume",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-09-30T05:19:41Z",
+          "completed_at": "2026-09-30T05:19:43Z"
+        },
+        {
+          "name": "Lightweight task graph",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-09-30T05:19:43Z",
+          "completed_at": "2026-09-30T05:19:43Z"
+        },
+        {
+          "name": "Commit and nonforce push same branch",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-09-30T05:19:43Z",
+          "completed_at": "2026-09-30T05:19:45Z"
+        },
+        {
+          "name": "Exact committed text readback",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-09-30T05:19:45Z",
+          "completed_at": "2026-09-30T05:19:46Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-09-30T05:19:46Z",
+          "completed_at": "2026-09-30T05:19:46Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-09-30T05:19:46Z",
+          "completed_at": "2026-09-30T05:19:47Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-09-30T05:19:47Z",
+          "completed_at": "2026-09-30T05:19:47Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/109751454013",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000018716,
+      "runner_name": "GitHub Actions 1000018716",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    "reflected_head": "2f731eed9df39c46a4845037246aa88556210c62"
+  },
+  "native_processes": 0,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "rom_changes": 0,
+  "saved_game_changed": false,
+  "inner_cave_arrival_accepted": false,
+  "hm05_resolved": false,
+  "national_dex_unlocked": false,
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "source_bindings": {
+    ".github/workflows/pr16-story-save23-inspect.yml": {
+      "size": 1613,
+      "sha256": "af5cd054d07d3561fefdf0b473cf7109b0246f6c1e89b143b97c1efcd9a8e851"
+    },
+    "scripts/pr16_story_save23_inspect.py": {
+      "size": 7046,
+      "sha256": "99aeda12997d49f6485ddfa0191ad39379ad74932b0705e989518a63d596e0a0"
+    },
+    "tests/test_pr16_story_save23_inspect.py": {
+      "size": 2248,
+      "sha256": "606fec55ce54ecadc9293bb733d8880d961f78bf9398dda24b6411625a8bf604"
+    }
+  },
+  "next_ja": "静的候補と保存画面を読み、新しい通常入力だけで内部warpまで進む。"
+}

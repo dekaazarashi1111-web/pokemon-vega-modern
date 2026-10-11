@@ -1,0 +1,47 @@
+test_all_party_bytes_required (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_all_party_bytes_required) ... ok
+test_cancel_cannot_claim_evolved_species (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_cancel_cannot_claim_evolved_species) ... ok
+test_duplicate_json_key_rejected (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_duplicate_json_key_rejected) ... ok
+test_duplicate_mon_phase_rejected (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_duplicate_mon_phase_rejected) ... ok
+test_evolution_accept_learns_original_gust (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_evolution_accept_learns_original_gust) ... ok
+test_evolution_cancel_retains_metapod (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_evolution_cancel_retains_metapod) ... ok
+test_evolution_not_same_as_regular_metapod_levelup (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_evolution_not_same_as_regular_metapod_levelup) ... ok
+test_fake_save_counter_rejected (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_fake_save_counter_rejected) ... ok
+test_fresh_core_required (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_fresh_core_required) ... ok
+test_hp_over_maximum_rejected (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_hp_over_maximum_rejected) ... ok
+test_native_barriers_never_dispatch_or_write (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_native_barriers_never_dispatch_or_write) ... ok
+test_participation_samples_required (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_participation_samples_required) ... ok
+test_pending_keeps_saved_success_without_native_replay (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_pending_keeps_saved_success_without_native_replay) ... ok
+test_phantom_reserve_is_rejected (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_phantom_reserve_is_rejected) ... ok
+test_reserve_getter_cannot_be_missing (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_reserve_getter_cannot_be_missing) ... ok
+test_reserve_must_never_enter_battle (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_reserve_must_never_enter_battle) ... ok
+test_reserve_pp_may_not_be_spent (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_reserve_pp_may_not_be_spent) ... ok
+test_shared_nonparticipant_learns_and_persists_200bytes (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_shared_nonparticipant_learns_and_persists_200bytes) ... ok
+test_source_oracle_reads_saved_original_not_rom (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_source_oracle_reads_saved_original_not_rom) ... ok
+test_strict_schema_and_scope_reject_bool_or_extra (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_strict_schema_and_scope_reject_bool_or_extra) ... ok
+test_summary_and_host_write_evidence_rejected (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_summary_and_host_write_evidence_rejected) ... ok
+test_unknown_vector_rejected (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_unknown_vector_rejected) ... ok
+test_wrong_cancel_key_is_rejected (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_wrong_cancel_key_is_rejected) ... ok
+test_wrong_japanese_callback_is_rejected (tests.test_pr16_exp_evolution_share.EvolutionShareTests.test_wrong_japanese_callback_is_rejected) ... ok
+test_three_native_contracts_accept_complete_raw_data (tests.test_pr16_exp_evolution_sync.SyncTests.test_three_native_contracts_accept_complete_raw_data) ... ok
+test_raw_species_exp_move_pp_and_bonus_are_independently_checked (tests.test_pr16_exp_evolution_sync.SyncTests.test_raw_species_exp_move_pp_and_bonus_are_independently_checked) ... ok
+test_missing_or_duplicate_fight_evidence_rejected (tests.test_pr16_exp_evolution_sync.SyncTests.test_missing_or_duplicate_fight_evidence_rejected) ... ok
+test_unbounded_or_unordered_fight_key_rejected (tests.test_pr16_exp_evolution_sync.SyncTests.test_unbounded_or_unordered_fight_key_rejected) ... ok
+test_observation_is_read_only_and_all_three_barriers_remain (tests.test_pr16_exp_evolution_sync.SyncTests.test_observation_is_read_only_and_all_three_barriers_remain) ... ok
+test_fight_wait_is_bounded_neutral_then_ordinary_key (tests.test_pr16_exp_evolution_sync.SyncTests.test_fight_wait_is_bounded_neutral_then_ordinary_key) ... ok
+test_absent_update_rejected (tests.test_pr16_exp_evolution_observation.ObservationTests.test_absent_update_rejected) ... ok
+test_cancel_never_learns_target_rows (tests.test_pr16_exp_evolution_observation.ObservationTests.test_cancel_never_learns_target_rows) ... ok
+test_current_level_order_and_no_lower_rows (tests.test_pr16_exp_evolution_observation.ObservationTests.test_current_level_order_and_no_lower_rows) ... ok
+test_duplicate_update_rejected (tests.test_pr16_exp_evolution_observation.ObservationTests.test_duplicate_update_rejected) ... ok
+test_no_begin_still_requires_physical_b (tests.test_pr16_exp_evolution_observation.ObservationTests.test_no_begin_still_requires_physical_b) ... ok
+test_observed_begin_remains_strict (tests.test_pr16_exp_evolution_observation.ObservationTests.test_observed_begin_remains_strict) ... ok
+test_oracle_diagnostic_cannot_be_promoted (tests.test_pr16_exp_evolution_observation.ObservationTests.test_oracle_diagnostic_cannot_be_promoted) ... ok
+test_readiness_is_bounded_neutral_and_before_barrier (tests.test_pr16_exp_evolution_observation.ObservationTests.test_readiness_is_bounded_neutral_and_before_barrier) ... ok
+test_readiness_requires_unique_bounded_original (tests.test_pr16_exp_evolution_observation.ObservationTests.test_readiness_requires_unique_bounded_original) ... ok
+test_repaired_contract (tests.test_pr16_exp_evolution_observation.ObservationTests.test_repaired_contract) ... ok
+test_unobserved_begin_cannot_be_invented (tests.test_pr16_exp_evolution_observation.ObservationTests.test_unobserved_begin_cannot_be_invented) ... ok
+test_zero_update_rejected (tests.test_pr16_exp_evolution_observation.ObservationTests.test_zero_update_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 42 tests in 0.012s
+
+OK

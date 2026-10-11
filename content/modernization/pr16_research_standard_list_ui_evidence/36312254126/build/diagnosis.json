@@ -1,0 +1,18 @@
+{
+  "failed_ui_artifact": 10929392533,
+  "failed_ui_run": 36311562940,
+  "input_fix": "0x08110BF9 -> 0x08110539; former wraps input and deletes sYesNoWindowId at 0x0203AD6B",
+  "new_arm_compiles": 1,
+  "new_host_tests": 18,
+  "new_native_processes": 0,
+  "new_thumb_tests": 8,
+  "old_numeric_boundary_reruns": 0,
+  "previous_unaccepted_native_runs_preserved": [
+    36311122801,
+    36311562940
+  ],
+  "reused_event_tests": 14,
+  "tile_fix": "0x214 is frame tile base, not window pixel base; allocate pixels 0x280..0x2f7, load user frame at 0x214..0x21c",
+  "unchanged_strict_oracle": true,
+  "visual_review": "All22 viewed; native return0 is insufficient: dialogue disappeared and frame used glyph tiles"
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "status": "SIGNED_START_FAILURE_ONLY_NOT_ACCEPTED",
+  "formal_candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "windows": [
+    {
+      "id": "start_save_callback",
+      "address": 134672688,
+      "size": 60,
+      "sha256": "a566c9c0cf5a1f57dd59ec2ea2a333c8ca35e9c3f4cba7d6eba1d167d6bba93c"
+    },
+    {
+      "id": "start_attempt_dispatch",
+      "address": 134672748,
+      "size": 60,
+      "sha256": "4e0c5865d2d477176f8be42dc012c00d1fd9b0127152d5782df82ed7634fdfe0"
+    }
+  ],
+  "callback_slot": 50335652,
+  "callback": 134672689,
+  "modes": [
+    0,
+    4
+  ],
+  "scope_ja": "START実DoSave callbackのみ旧専用SaveFailedを避け通常エラーへ。HOF/link/mystery等の通知を無効化しない。"
+}

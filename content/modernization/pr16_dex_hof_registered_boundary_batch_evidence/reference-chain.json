@@ -1,0 +1,2815 @@
+{
+  "schema_version": 1,
+  "status": "PASS_761_PARENT_BOUND_REGISTERED_BOUNDARY_BATCH_REFERENCE_CHAIN",
+  "baseline": {
+    "path": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent": {
+    "path": "content/modernization/pr16_dex_hof_registered_text_batch_evidence/reference-chain.json",
+    "size": 254445,
+    "sha256": "fa5937c532017d8da6be60c4cc4c4602dc6bbd6bda3c4189484fcefe04badacc"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 761,
+  "inherited_unclassified": 113,
+  "changes": [
+    {
+      "address": 138272255,
+      "target": 167707466,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "3c539d7c2dc8837506c47050905f1e3cb683270ee6a0bef94a1e896afd5ff49b",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_REGISTERED_STAT_CONFIRM_MINIMUM_TEXT",
+      "accepted": true,
+      "witness_ids": [
+        0
+      ]
+    },
+    {
+      "address": 138272508,
+      "target": 167709180,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "f267137302c6bee4b5bebbf3b7f09b9f879c7c5e7d34ce2100e78def5bf442a1",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_REGISTERED_STOCK_CHOOSE_LIMIT_MINIMUM_TEXT",
+      "accepted": true,
+      "witness_ids": [
+        1
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": 0,
+      "address": 138272255,
+      "size": 4,
+      "kind": "registered_stat_confirm_minimum_text",
+      "evidence": {
+        "root": {
+          "left": {
+            "api": 135420348,
+            "effect_call": 135420354,
+            "effect_callee": 135427492,
+            "effect_return": 15,
+            "index": 12,
+            "table": 135420384,
+            "cell": 135420432,
+            "target": 135420700,
+            "literal": 135420724,
+            "text": 138272253,
+            "consumer": 134252800,
+            "byte_read": 134252812,
+            "endpoint": 135420708
+          },
+          "right": {
+            "actual_setup_call": 135394728,
+            "api": 135403752,
+            "choose_multiple": 1,
+            "menu_type": 4,
+            "literal": 135403904,
+            "text": 138272258,
+            "consumer_call": 135403832,
+            "wrapper": 135458220,
+            "printer": 134229232,
+            "hook": 154634800,
+            "byte_read": 134240270,
+            "endpoint": 135403836
+          }
+        },
+        "root_verified": true,
+        "classified_window": {
+          "address": 138272255,
+          "size": 4
+        },
+        "texts": [
+          {
+            "address": 138272253,
+            "size": 5,
+            "sha256": "50362ac0660a445c987d608f5b2158658d419d55a8fd901c3ce996714a3f6065",
+            "text_ja": "とくぼう"
+          },
+          {
+            "address": 138272258,
+            "size": 3,
+            "sha256": "821cc9386da9f27b86bb35d816ddec1544e8649925cd8a11da415bb905624d43",
+            "text_ja": "けっ"
+          }
+        ],
+        "boundary_parts": [
+          {
+            "address": 138272255,
+            "size": 3,
+            "role": "stat最後2glyphとEOS"
+          },
+          {
+            "address": 138272258,
+            "size": 1,
+            "role": "確認text先頭glyph"
+          }
+        ],
+        "actual_byte_consumers": [
+          134252812,
+          134240270
+        ],
+        "all_hit_bytes_consumed": true,
+        "proof_scope": "conditional_registered_stat_confirm_minimum_text",
+        "conditional_api_entry": true,
+        "complete_serializer_boundaries_proven": true,
+        "complete_selected_text_reads_proven": true,
+        "pointer_host_seeded": false,
+        "whole_candidate_identity_checked_by_parent_required": true,
+        "actual_runtime_execution_observed": false,
+        "full_story_reachability_claimed": false,
+        "all_prefix_natural_execution_claimed": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "opaque_callee_effects_proven": false,
+        "whole_string_table_classified": false,
+        "padding_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      },
+      "evidence_identity": {
+        "size": 1720,
+        "sha256": "e5823511ff03dde452f5372c66fe463aaa450195091fe668d8a9e20ec17e44d2"
+      }
+    },
+    {
+      "id": 1,
+      "address": 138272508,
+      "size": 4,
+      "kind": "registered_stock_choose_limit_minimum_text",
+      "evidence": {
+        "root": {
+          "kind": "conditional_cursor_cb_enter_api",
+          "api_entry": 135416112,
+          "hook_literal": 135416116,
+          "actual_entry": 152181904,
+          "table": 152473628,
+          "stride": 4,
+          "declared_entries": 5,
+          "selected_indices": [
+            1,
+            2
+          ],
+          "pointer_load": 152182236,
+          "pointer_stack_store": 152182238,
+          "consumer_call": 152182178,
+          "message_api": 135400168,
+          "party_print": 135407500,
+          "template_wrapper": 135232808,
+          "actual_printer": 134229232,
+          "actual_hook": 154634800,
+          "font_table": 138293480,
+          "font_index": 2,
+          "font_callback": 134239156,
+          "render_text": 134240092,
+          "text_byte_read": 134240270,
+          "control_operand_read": 134240374,
+          "endpoint": 135400178
+        },
+        "root_verified": true,
+        "classified_window": {
+          "address": 138272508,
+          "size": 4
+        },
+        "texts": [
+          {
+            "address": 138272484,
+            "maximum": 3,
+            "size": 27,
+            "sha256": "ac6b97db77c122b6131e23e29fcb1ebbe0c09480bb8ca57b04ba7aaca182e724",
+            "source_label": "gOtherText_NoMoreThreePoke",
+            "text": "さんか できる ポケモンは\\n3びき まで です！[FC][09]"
+          },
+          {
+            "address": 138272511,
+            "maximum": 2,
+            "size": 27,
+            "sha256": "2656947a13326f2f9563249b36c591cdfb61a77eed40af2bdb67628e86c1f8fc",
+            "source_label": "gOtherText_NoMoreTwoPoke",
+            "text": "さんか できる ポケモンは\\n2ひき まで です！[FC][09]"
+          }
+        ],
+        "boundary_parts": [
+          {
+            "address": 138272508,
+            "size": 3,
+            "role": "max3のFC09とEOS"
+          },
+          {
+            "address": 138272511,
+            "size": 1,
+            "role": "max2登録text先頭"
+          }
+        ],
+        "all_hit_bytes_consumed": true,
+        "actual_byte_consumers": [
+          134240270,
+          134240374
+        ],
+        "proof_scope": "conditional_registered_stock_choose_limit_minimum_text",
+        "conditional_api_entry": true,
+        "complete_serializer_boundaries_proven": true,
+        "complete_selected_text_reads_proven": true,
+        "pointer_host_seeded": false,
+        "whole_candidate_identity_checked_by_parent_required": true,
+        "actual_runtime_execution_observed": false,
+        "full_story_reachability_claimed": false,
+        "all_prefix_natural_execution_claimed": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "opaque_callee_effects_proven": false,
+        "whole_string_table_classified": false,
+        "padding_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      },
+      "evidence_identity": {
+        "size": 2003,
+        "sha256": "8c487cfb0c8b08d2a2c104ee901db6b172a22f0a586bf224db0bb08d92c3f807"
+      }
+    }
+  ],
+  "classified": 763,
+  "unclassified": 111,
+  "newly_classified": 2,
+  "proof": {
+    "data": {
+      "status": "PASS_NEW_REGISTERED_BOUNDARY_MINIMUM_FIELDS",
+      "consumers": {
+        "registered_stat_confirm_minimum_text": {
+          "status": "PASS_REGISTERED_STAT_CONFIRM_BOUNDARY",
+          "count": 1,
+          "hits": [
+            138272255
+          ],
+          "composition": {
+            "status": "PASS_TWO_REAL_API_COMPLETE_TEXTS",
+            "cases": [
+              {
+                "case": "left",
+                "steps": 57,
+                "read_bytes": 5,
+                "read_trace_identity": {
+                  "size": 71,
+                  "sha256": "9bd2531a99230e8f26672b6dc7b6ff58e76a3c0d91fbab8e074288d0a13f8a04"
+                },
+                "conditional_call_groups": [
+                  {
+                    "site": 135420354,
+                    "target": 135427492,
+                    "count": 1,
+                    "required_fields": [],
+                    "conditional_outputs": [],
+                    "return_value": 15,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  }
+                ]
+              },
+              {
+                "case": "right",
+                "steps": 519,
+                "read_bytes": 3,
+                "read_trace_identity": {
+                  "size": 43,
+                  "sha256": "7c2b5f4b834c765bd1c8e77c310df0a968faaa54022e9798064e0689e9803a71"
+                },
+                "conditional_call_groups": [
+                  {
+                    "site": 135403784,
+                    "target": 134233264,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360252,
+                        "size": 4
+                      }
+                    ],
+                    "conditional_outputs": [],
+                    "return_value": 0,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 135403798,
+                    "target": 134235176,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360252,
+                        "size": 4
+                      }
+                    ],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134229320,
+                    "target": 134229624,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685550,
+                        "size": 1
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360220,
+                        "size": 20
+                      },
+                      {
+                        "address": 50360244,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360256,
+                        "size": 24
+                      }
+                    ],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241038,
+                    "target": 134243156,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360192,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360244,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360256,
+                        "size": 24
+                      }
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 50347616,
+                        "size": 1,
+                        "value": "unspecified"
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241068,
+                    "target": 134229988,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360192,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360244,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360256,
+                        "size": 24
+                      }
+                    ],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241038,
+                    "target": 134243156,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685541,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360192,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360244,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360256,
+                        "size": 24
+                      }
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 50347616,
+                        "size": 1,
+                        "value": "unspecified"
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241068,
+                    "target": 134229988,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685541,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360192,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360244,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360256,
+                        "size": 24
+                      }
+                    ],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  }
+                ]
+              }
+            ],
+            "complete_consumed_bytes": 8,
+            "all_hit_bytes_consumed": true,
+            "nonlive_ram_erased_at_each_boundary": true,
+            "pointer_host_seeded": false,
+            "actual_runtime_execution_observed": false
+          },
+          "protected_windows": 51,
+          "protected_bytes": 932,
+          "proof_scope": "conditional_registered_stat_confirm_minimum_text",
+          "conditional_api_entry": true,
+          "complete_serializer_boundaries_proven": true,
+          "complete_selected_text_reads_proven": true,
+          "pointer_host_seeded": false,
+          "whole_candidate_identity_checked_by_parent_required": true,
+          "actual_runtime_execution_observed": false,
+          "full_story_reachability_claimed": false,
+          "all_prefix_natural_execution_claimed": false,
+          "universal_heap_or_irq_lifetime_proven": false,
+          "opaque_callee_effects_proven": false,
+          "whole_string_table_classified": false,
+          "padding_classified": false,
+          "indirect_reference_completeness_claimed": false,
+          "donor_eligible": false,
+          "donor_leased": false
+        },
+        "registered_stock_choose_limit_minimum_text": {
+          "status": "PASS_ONE_STOCK_BOUNDARY_TWO_REGISTERED_TEXTS",
+          "count": 1,
+          "hits": [
+            138272508
+          ],
+          "composition": {
+            "status": "PASS_CONDITIONAL_TWO_REGISTERED_STOCK_TEXTS",
+            "cases": [
+              {
+                "maximum": 2,
+                "table_index": 1,
+                "steps": 3229,
+                "complete_consumed_bytes": 27,
+                "boundary_count": 62,
+                "read_trace_identity": {
+                  "size": 379,
+                  "sha256": "3789348fa9cb8c9933d400887f24d60bc8cfc715272c1504862a47dbf9a5f666"
+                },
+                "conditional_call_groups": [
+                  {
+                    "site": 152182210,
+                    "target": 152049448,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33751052,
+                        "size": 2
+                      },
+                      {
+                        "address": 33796112,
+                        "size": 4
+                      },
+                      {
+                        "address": 33801928,
+                        "size": 2
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": 2,
+                    "object_epoch_required": true,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 152182216,
+                    "target": 152201636,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33751052,
+                        "size": 2
+                      },
+                      {
+                        "address": 33796112,
+                        "size": 4
+                      },
+                      {
+                        "address": 33801928,
+                        "size": 2
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": 1,
+                    "object_epoch_required": true,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 152181950,
+                    "target": 135406768,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33751053,
+                        "size": 1
+                      },
+                      {
+                        "address": 33796112,
+                        "size": 4
+                      },
+                      {
+                        "address": 33801928,
+                        "size": 2
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360268,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [
+                      {
+                        "address": 33751052,
+                        "size": 1,
+                        "value": 255
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "object_epoch_required": true,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 152181958,
+                    "target": 135406768,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33801928,
+                        "size": 2
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360268,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [
+                      {
+                        "address": 33751053,
+                        "size": 1,
+                        "value": 255
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "object_epoch_required": true,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 152181968,
+                    "target": 151625238,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33801928,
+                        "size": 2
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360268,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [
+                      {
+                        "address": 50360272,
+                        "size": 1,
+                        "value": 0
+                      },
+                      {
+                        "address": 50360273,
+                        "size": 1,
+                        "value": 0
+                      },
+                      {
+                        "address": 50360274,
+                        "size": 1,
+                        "value": 0
+                      },
+                      {
+                        "address": 50360275,
+                        "size": 1,
+                        "value": 0
+                      },
+                      {
+                        "address": 50360276,
+                        "size": 1,
+                        "value": 0
+                      },
+                      {
+                        "address": 50360277,
+                        "size": 1,
+                        "value": 0
+                      }
+                    ],
+                    "return_value": 50360272,
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 152181992,
+                    "target": 151882592,
+                    "count": 6,
+                    "required_fields": [
+                      {
+                        "address": 33801928,
+                        "size": 2
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360268,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": 1,
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 152182168,
+                    "target": 134683248,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360268,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 135407514,
+                    "target": 135331232,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 135407528,
+                    "target": 135235848,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": 255,
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134229320,
+                    "target": 134229624,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 2
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685550,
+                        "size": 1
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360172,
+                        "size": 20
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241038,
+                    "target": 134243156,
+                    "count": 13,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 2
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      }
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 50347616,
+                        "size": 1,
+                        "value": "unspecified"
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241068,
+                    "target": 134229988,
+                    "count": 13,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 2
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241038,
+                    "target": 134243156,
+                    "count": 9,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      }
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 50347616,
+                        "size": 1,
+                        "value": "unspecified"
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241068,
+                    "target": 134229988,
+                    "count": 9,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241038,
+                    "target": 134243156,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685541,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      }
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 50347616,
+                        "size": 1,
+                        "value": "unspecified"
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241068,
+                    "target": 134229988,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685541,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241098,
+                    "target": 134239820,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685541,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685549,
+                        "size": 2
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": 1,
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  }
+                ]
+              },
+              {
+                "maximum": 3,
+                "table_index": 2,
+                "steps": 3237,
+                "complete_consumed_bytes": 27,
+                "boundary_count": 62,
+                "read_trace_identity": {
+                  "size": 379,
+                  "sha256": "0b4d9c139034b667f96207ddab9e6679c0e28d8af957410f079b22fd0518f862"
+                },
+                "conditional_call_groups": [
+                  {
+                    "site": 152182210,
+                    "target": 152049448,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33751052,
+                        "size": 2
+                      },
+                      {
+                        "address": 33796112,
+                        "size": 4
+                      },
+                      {
+                        "address": 33801928,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": 3,
+                    "object_epoch_required": true,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 152182216,
+                    "target": 152201636,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33751052,
+                        "size": 2
+                      },
+                      {
+                        "address": 33796112,
+                        "size": 4
+                      },
+                      {
+                        "address": 33801928,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": 1,
+                    "object_epoch_required": true,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 152181950,
+                    "target": 135406768,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33751053,
+                        "size": 1
+                      },
+                      {
+                        "address": 33796112,
+                        "size": 4
+                      },
+                      {
+                        "address": 33801928,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360268,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [
+                      {
+                        "address": 33751052,
+                        "size": 1,
+                        "value": 255
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "object_epoch_required": true,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 152181958,
+                    "target": 135406768,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33801928,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360268,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [
+                      {
+                        "address": 33751053,
+                        "size": 1,
+                        "value": 255
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "object_epoch_required": true,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 152181968,
+                    "target": 151625238,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33801928,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360268,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [
+                      {
+                        "address": 50360272,
+                        "size": 1,
+                        "value": 0
+                      },
+                      {
+                        "address": 50360273,
+                        "size": 1,
+                        "value": 0
+                      },
+                      {
+                        "address": 50360274,
+                        "size": 1,
+                        "value": 0
+                      },
+                      {
+                        "address": 50360275,
+                        "size": 1,
+                        "value": 0
+                      },
+                      {
+                        "address": 50360276,
+                        "size": 1,
+                        "value": 0
+                      },
+                      {
+                        "address": 50360277,
+                        "size": 1,
+                        "value": 0
+                      }
+                    ],
+                    "return_value": 50360272,
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 152181992,
+                    "target": 151882592,
+                    "count": 6,
+                    "required_fields": [
+                      {
+                        "address": 33801928,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360268,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": 1,
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 152182168,
+                    "target": 134683248,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360268,
+                        "size": 4
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 135407514,
+                    "target": 135331232,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 135407528,
+                    "target": 135235848,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360204,
+                        "size": 4
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": 255,
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134229320,
+                    "target": 134229624,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 2
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685550,
+                        "size": 1
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360172,
+                        "size": 20
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241038,
+                    "target": 134243156,
+                    "count": 13,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 2
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      }
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 50347616,
+                        "size": 1,
+                        "value": "unspecified"
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241068,
+                    "target": 134229988,
+                    "count": 13,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 2
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241038,
+                    "target": 134243156,
+                    "count": 9,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      }
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 50347616,
+                        "size": 1,
+                        "value": "unspecified"
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241068,
+                    "target": 134229988,
+                    "count": 9,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685540,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241038,
+                    "target": 134243156,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685541,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      }
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 50347616,
+                        "size": 1,
+                        "value": "unspecified"
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241068,
+                    "target": 134229988,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685528,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685530,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685541,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685548,
+                        "size": 3
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347616,
+                        "size": 1
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134241098,
+                    "target": 134239820,
+                    "count": 1,
+                    "required_fields": [
+                      {
+                        "address": 33685520,
+                        "size": 4
+                      },
+                      {
+                        "address": 33685525,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685541,
+                        "size": 1
+                      },
+                      {
+                        "address": 33685549,
+                        "size": 2
+                      },
+                      {
+                        "address": 50344284,
+                        "size": 2
+                      },
+                      {
+                        "address": 50347472,
+                        "size": 4
+                      },
+                      {
+                        "address": 50347664,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360144,
+                        "size": 48
+                      },
+                      {
+                        "address": 50360196,
+                        "size": 1
+                      },
+                      {
+                        "address": 50360208,
+                        "size": 24
+                      },
+                      {
+                        "address": 50360248,
+                        "size": 8
+                      }
+                    ],
+                    "produced_memory_ranges": [],
+                    "conditional_outputs": [],
+                    "return_value": 1,
+                    "object_epoch_required": false,
+                    "window6_epoch_required": true,
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false
+                  }
+                ]
+              }
+            ],
+            "complete_consumed_bytes": 54,
+            "all_two_eos_consumed": true,
+            "all_two_fc09_operands_consumed": true,
+            "printer_return_observed_in_model": true,
+            "root_verified": true,
+            "pointer_host_seeded": false,
+            "nonlive_ram_erased_at_each_boundary": true,
+            "synthetic_contract_execution": true,
+            "actual_runtime_execution_observed": false,
+            "whole_prefix_natural_reachability_proven": false
+          },
+          "protected_windows": 51,
+          "protected_bytes": 1103,
+          "source_bindings": {
+            "cfru-charmap.tbl": {
+              "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+              "git_blob_sha": "b841b842a93f886ee396c9b7f6529bb633964dbb",
+              "local": "cfru-charmap.tbl",
+              "repository": "kapibarasan000/CFRU-JP",
+              "sha256": "35c1b978f7004129679751a79cf4b40d7edd2fcd678bc81a29483b64b75b7ed5",
+              "size": 1639,
+              "source": "charmap.tbl"
+            },
+            "cfru-party_menu.c": {
+              "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+              "git_blob_sha": "b17bef5771a1887496e5cfc9e15ccf545fa18579",
+              "local": "cfru-party_menu.c",
+              "repository": "kapibarasan000/CFRU-JP",
+              "sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+              "size": 83459,
+              "source": "src/party_menu.c"
+            },
+            "cfru-string.py": {
+              "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+              "git_blob_sha": "6f67bd402b7f85c7681d3049f49a956a9a8a78b8",
+              "local": "cfru-string.py",
+              "repository": "kapibarasan000/CFRU-JP",
+              "sha256": "828d3813ed258a318f5d69f3fbabb05c9f0ef0975701f14875668c680a0f312e",
+              "size": 7959,
+              "source": "scripts/string.py"
+            },
+            "pret-party_menu.c": {
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "git_blob_sha": "7f3a881e6c56773aee03da475c9a1adc50530223",
+              "local": "pret-party_menu.c",
+              "repository": "pret/pokefirered",
+              "sha256": "8290dfd5b6444e743029ab76543ed5e4b5b32c1c2f475c686946545f934d5f9b",
+              "size": 211085,
+              "source": "src/party_menu.c"
+            },
+            "pret-text.c": {
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "git_blob_sha": "f3eef07ce6dea8269980a5ecfdd6902c1c9c13d2",
+              "local": "pret-text.c",
+              "repository": "pret/pokefirered",
+              "sha256": "5696f49443eeaaac74b530421ac7f0cbfc71996c557399583788111c322dd80c",
+              "size": 63210,
+              "source": "src/text.c"
+            }
+          },
+          "proof_scope": "conditional_registered_stock_choose_limit_minimum_text",
+          "conditional_api_entry": true,
+          "complete_serializer_boundaries_proven": true,
+          "complete_selected_text_reads_proven": true,
+          "pointer_host_seeded": false,
+          "whole_candidate_identity_checked_by_parent_required": true,
+          "actual_runtime_execution_observed": false,
+          "full_story_reachability_claimed": false,
+          "all_prefix_natural_execution_claimed": false,
+          "universal_heap_or_irq_lifetime_proven": false,
+          "opaque_callee_effects_proven": false,
+          "whole_string_table_classified": false,
+          "padding_classified": false,
+          "indirect_reference_completeness_claimed": false,
+          "donor_eligible": false,
+          "donor_leased": false
+        }
+      },
+      "held_roots": {},
+      "new_data": 2,
+      "new_code": 0,
+      "new_boundary": 0,
+      "natural_gameplay_reachability_claimed": false,
+      "universal_heap_or_irq_lifetime_claimed": false,
+      "independent_old_final_source_review_completed": false,
+      "donor_leased": false,
+      "indirect_reference_completeness_claimed": false
+    },
+    "song": {
+      "status": "PASS_RETAINED_133_MODELS_50_ASSETS_NEW_CONSUMER_INTERSECTION",
+      "combined_song_models": 133,
+      "retained_sample_witnesses": 50,
+      "model_identity": {
+        "size": 213296,
+        "sha256": "71f01cee0a344409445e17fdea268371269a3e622c6b93563d04b35677e0b975"
+      },
+      "sample_identity": {
+        "size": 1121492,
+        "sha256": "9f765e8eee8ad78eaac8902ccafbf9e14c7c694f842e9ae6b2002583181b70ee"
+      },
+      "old_protected_read_windows": 198334,
+      "old_protected_read_identity": {
+        "size": 26409459,
+        "sha256": "26ae440b2d8456747f59e7fd73679a17b6289ef1a733bdd51c1f9ff668fc8914"
+      },
+      "all133_models_exact": true,
+      "all50_sample_identities_exact": true,
+      "old_and_new_root_windows": 7911,
+      "old_and_new_root_identity": {
+        "size": 847354,
+        "sha256": "fdf2741af6c1552f95d1a5cb06e7a759a33609e0ef2d33d84cb749053b57b114"
+      },
+      "new_song_discovery_runs": 0,
+      "new_songs": [],
+      "new_audio_classified": 0,
+      "native_processes": 0,
+      "donor_leased": false
+    },
+    "public_source_bindings": {
+      "BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "pret-charmap.txt": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "charmap.txt",
+        "size": 21853,
+        "sha256": "4da662317b3b5109a52064f9012d85b644d1dbf0f3f24243374aeef4cf25f061",
+        "git_blob_sha": "b9d0ed9de00d05fc303bb987a5aa634b19009b47"
+      },
+      "pret-party_menu.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/party_menu.c",
+        "size": 211085,
+        "sha256": "8290dfd5b6444e743029ab76543ed5e4b5b32c1c2f475c686946545f934d5f9b",
+        "git_blob_sha": "7f3a881e6c56773aee03da475c9a1adc50530223"
+      },
+      "pret-text.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/text.c",
+        "size": 63210,
+        "sha256": "5696f49443eeaaac74b530421ac7f0cbfc71996c557399583788111c322dd80c",
+        "git_blob_sha": "f3eef07ce6dea8269980a5ecfdd6902c1c9c13d2"
+      },
+      "cfru-charmap.tbl": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "charmap.tbl",
+        "size": 1639,
+        "sha256": "35c1b978f7004129679751a79cf4b40d7edd2fcd678bc81a29483b64b75b7ed5",
+        "git_blob_sha": "b841b842a93f886ee396c9b7f6529bb633964dbb"
+      },
+      "cfru-party_menu.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/party_menu.c",
+        "size": 83459,
+        "sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+        "git_blob_sha": "b17bef5771a1887496e5cfc9e15ccf545fa18579"
+      },
+      "cfru-string.py": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "scripts/string.py",
+        "size": 7959,
+        "sha256": "828d3813ed258a318f5d69f3fbabb05c9f0ef0975701f14875668c680a0f312e",
+        "git_blob_sha": "6f67bd402b7f85c7681d3049f49a956a9a8a78b8"
+      }
+    }
+  },
+  "proof_identity": {
+    "size": 31306,
+    "sha256": "ed397a119a0144d3d987fe50ac7a179e10eb8b82266aeec777c6b82a611652c5"
+  },
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "donor_safe_bytes": 0,
+  "controller_runtime_wired": false,
+  "universal_irq_or_heap_lifetime_claimed": false,
+  "natural_play_universal_reachability_claimed": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false
+}

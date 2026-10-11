@@ -1,0 +1,30 @@
+{
+  "accepted_case_reruns": 0,
+  "observed_runs": [
+    {
+      "conclusion": "failure",
+      "head_sha": "d951b8cc7600c5412b9db7c30172e57cf0cb454e",
+      "id": 36079930352,
+      "path": ".github/workflows/pr16-exp-evolution-share.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "7e416efb13b95448355e6bc151eff50aa3c25a3a",
+      "id": 36083695295,
+      "path": ".github/workflows/pr16-exp-evolution-share.yml",
+      "status": "completed"
+    }
+  ],
+  "preflight_failure": {
+    "artifacts": 0,
+    "host_compiles": 0,
+    "missing_path": "tools/mgba_pr16_exp_share_grass.c",
+    "native_processes": 0,
+    "new_unit_tests": 0,
+    "reason": "MISSING_TRACKED_DERIVED_C_BEFORE_SOURCE_BINDINGS",
+    "result_pushes": 0,
+    "run_id": 36083695295
+  },
+  "repair_head": "511e2200fc994e3e3a6bfb089f7e5dfe68681a94"
+}

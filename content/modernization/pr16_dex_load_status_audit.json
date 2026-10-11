@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "status_global": {
+    "address": "0x030053F0",
+    "size": 2,
+    "success": 1,
+    "invalid": 2,
+    "error_or_fallback": 255,
+    "no_flash": 4
+  },
+  "windows": [
+    {
+      "id": "stock_load_status_publish",
+      "address": "0x80db510",
+      "size": 44,
+      "sha256": "593754155dd4f817865cd4d5d928630ea91a2f53d68b4d267cb045bc614e6871"
+    },
+    {
+      "id": "stock_status_literal",
+      "address": "0x80db534",
+      "size": 4,
+      "sha256": "24a4170531efb6702053ac20d84fff9b60de5a432007a5ff49d25f2565c28f1e"
+    },
+    {
+      "id": "main_menu_status_consumer_and_branches",
+      "address": "0x800beb0",
+      "size": 352,
+      "sha256": "58902c709c275239028576fac4569e8b0ce2333304bcb1f164c1754da30704c3"
+    },
+    {
+      "id": "invalid_no_continue",
+      "address": "0x800bf6c",
+      "size": 36,
+      "sha256": "e770cc29df4bc79ea0de9680383446df95ff5c553651ee45da58695d86a77d69"
+    },
+    {
+      "id": "error_allows_continue",
+      "address": "0x800bf90",
+      "size": 56,
+      "sha256": "4f79f180f3c35747fa16ee6302029ef2a0c54d239c7270303a9bed9d4d752346"
+    },
+    {
+      "id": "error_present_and_wait",
+      "address": "0x800c014",
+      "size": 208,
+      "sha256": "c4674aa193612a95b92a897fb0250e04888aa54d427890a082f7cbc6e95c1153"
+    },
+    {
+      "id": "cold_load_return_discard_global_read",
+      "address": "0x80789ec",
+      "size": 108,
+      "sha256": "1c63264a0f6c7d1a47c3fe8c621835c3dca4fd06a6bfc79c0e9fe2253093e456"
+    },
+    {
+      "id": "clear_sav2_and_default_options",
+      "address": "0x80542dc",
+      "size": 16,
+      "sha256": "31dc8d5eb1471e23099e17a9f9ef9364742f7652eb6fdd6f9555a2da66dca32d"
+    }
+  ],
+  "contract_ja": [
+    "返値だけの失敗はstock globalへ届かない。main loadの前にMDXを失効して前sessionのvalidを拒否する。",
+    "返値1または255でMDXがvalidなら保持する。255は片bankからの正常fallbackを含む。",
+    "返値1または255でMDXがinvalidならMDXを失効、globalを2にして既存invalid-save画面へ委譲。1は255へ変更、その他の返値は保持する。",
+    "type3はMDX/globalに触らず、元QOLを一度だけ呼ぶ。status0/2/4は元globalを変更しない。",
+    "stock global2はContinueを消しエラー表示後New Gameだけにする。cold callerはSaveBlock2 RAM/設定を初期化するが、このgateからFlashを消去/Saveしない。",
+    "専用の修復画面は新設しない。無効saveのエラー文言とNew Game動作はstock契約。通常画面到達は別native受入。"
+  ],
+  "rom_fragments_or_raw_hex_included": false
+}

@@ -1,0 +1,147 @@
+{
+  "code": {
+    "sha256": "8f32577308a8c23cd6103e5e591789e8a0954d63005f928a14e5f2fb3e95f50e",
+    "size": 768
+  },
+  "code_hex": "0323f0b53e4a5b4213803e493e4b3f4a87b01879002802d0186888421dd028339342f6d15021374800f046f907000f2813d828254543344bed18ff2302262b81334b0493334b6e8104a8059300f03cf9fe2806d9380000f0c7f807b0f0bc01bc004703041b142b81040600f005f9240ee0220100200000f007f92000112100f0e3f80021200000f027f92000002500f0cbf801233100200000931f4a02950195073300f0c9f811233100200000931b4a02950195093b00f0bff82123310020000093174a02950195193b00f0b5f8032710232a003100009320000f3b0295019700f08af83900200000f0b6f8280000f06bf80123024a5b42138000f08df8ace70470030225a9f409d05000035053000300090114060f8002f7aaf409ecaaf409e8aaf409f8b507000f2814d828244443204be4182379002b0dd022681e4b9a4209d163891b041b14002b07dd6389013b1b041b146381f8bc01bc004700f054f80600831cf7d025892d062d0eff2d0bd00021280000f098f8280000f02df8002000f022f8ff232381380000f02df8052000f082f80223721c05d033061b0e022b06d833041b0c054a138000f05df8d2e7034bf8e7d050000325a9f40904700302fdff0000000000007847fde700c09fe51cff2fe1fd770f087847fde700c09fe51cff2fe1093e00087847fde700c09fe51cff2fe1a16c07087847fde700c09fe51cff2fe10d0311087847fde700c09fe51cff2fe1390511087847fde700c09fe51cff2fe1019206087847fde700c09fe51cff2fe16d3f00087847fde700c09fe51cff2fe1452c00087847fde700c09fe51cff2fe1294400087847fde700c09fe51cff2fe1ed3e00087847fde700c09fe51cff2fe1f59306087847fde700c09fe51cff2fe1cd890f087847fde700c09fe51cff2fe1e13015087847fde700c09fe51cff2fe1711a07087847fde700c09fe51cff2fe1fd7f0f087847fde700c09fe51cff2fe1b56b07087847fde700c09fe51cff2fe1b13c00087847fde700c09fe51cff2fe17d7f0f08052c29ff9f527e64190112220610ff9f527e6414777e58ff",
+  "compiler": "13.2.1",
+  "new_arm_compiles": 1,
+  "open": 167028737,
+  "rows": [
+    [
+      "ポイントとランク",
+      "9f527e6414777e58ff"
+    ],
+    [
+      "ポイントのあつめかた",
+      "9f527e64190112220610ff"
+    ],
+    [
+      "おわる",
+      "052c29ff"
+    ]
+  ],
+  "run_id": 36312100158,
+  "source": {
+    "sha256": "8519a785d67710d79b3c3512c1218fdf4a36cce695f98cb079529037d3c1ac83",
+    "size": 3464
+  },
+  "source_bindings": {
+    "content/modernization/pr16_research_standard_list_ui_edits.json": {
+      "sha256": "37dfe7cc011c8c11329541ae1b9b956e1f2b8188b9a46e0809cab7768e8b2c8f",
+      "size": 2685
+    },
+    "scripts/pr16_research_standard_list.py": {
+      "sha256": "471f6f41a72ab43c36dd313e568705d85c30c981721df070aa331a56e981bb4e",
+      "size": 11572
+    },
+    "tests/test_pr16_research_standard_list.py": {
+      "sha256": "7165d617b672885425535ecbd55ecc301b1cdbd9e0f2c35a75c49225ca0fb840",
+      "size": 10108
+    },
+    "tests/test_pr16_research_standard_list_thumb.py": {
+      "sha256": "3c6140e32bccc950f162a61356d1c5cd9c36c467c7d58cc7fca59df66e34f272",
+      "size": 2064
+    },
+    "tools/pr16_research_standard_list.c": {
+      "sha256": "8519a785d67710d79b3c3512c1218fdf4a36cce695f98cb079529037d3c1ac83",
+      "size": 3464
+    }
+  },
+  "source_head": "ad9b61026eeec84431c43d5cdd493e421ce3cc83",
+  "symbols": "08002c44 A SL_Print\n08003cb0 A SL_AddWindow\n08003e08 A SL_RemoveWindow\n08003eec A SL_CopyWindow\n08003f6c A SL_PutWindow\n08004428 A SL_FillWindow\n08069200 A SL_Suspend\n080693f4 A SL_Resume\n08071a70 A SL_Sound\n08076bb4 A SL_CreateTask\n08076ca0 A SL_DestroyTask\n080f77fc A SL_Schedule\n080f7f7c A SL_DrawFrame\n080f7ffc A SL_ClearFrame\n080f89cc A SL_BaseTile\n0811030c A SL_Cursor\n08110538 A SL_Input\n081530e0 A SL_LoadFrame\n09f4a800 T SL_Open\n09f4a924 T SL_Task\n09f4a9c8 t __SL_Schedule_veneer\n09f4a9d8 t __SL_RemoveWindow_veneer\n09f4a9e8 t __SL_DestroyTask_veneer\n09f4a9f8 t __SL_Cursor_veneer\n09f4aa08 t __SL_Input_veneer\n09f4aa18 t __SL_Suspend_veneer\n09f4aa28 t __SL_PutWindow_veneer\n09f4aa38 t __SL_Print_veneer\n09f4aa48 t __SL_FillWindow_veneer\n09f4aa58 t __SL_CopyWindow_veneer\n09f4aa68 t __SL_Resume_veneer\n09f4aa78 t __SL_BaseTile_veneer\n09f4aa88 t __SL_LoadFrame_veneer\n09f4aa98 t __SL_Sound_veneer\n09f4aaa8 t __SL_ClearFrame_veneer\n09f4aab8 t __SL_CreateTask_veneer\n09f4aac8 t __SL_AddWindow_veneer\n09f4aad8 t __SL_DrawFrame_veneer\n09f4aae8 t SL_ROW_2\n09f4aaec t SL_ROW_1\n09f4aaf7 t SL_ROW_0\n",
+  "task": 167029029,
+  "thumb_symbols": {
+    "SL_AddWindow": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 134233265
+    },
+    "SL_BaseTile": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 135236045
+    },
+    "SL_ClearFrame": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 135233533
+    },
+    "SL_CopyWindow": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 134233837
+    },
+    "SL_CreateTask": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 134704053
+    },
+    "SL_Cursor": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 135332621
+    },
+    "SL_DestroyTask": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 134704289
+    },
+    "SL_DrawFrame": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 135233405
+    },
+    "SL_FillWindow": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 134235177
+    },
+    "SL_Input": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 135333177
+    },
+    "SL_LoadFrame": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 135606497
+    },
+    "SL_Print": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 134229061
+    },
+    "SL_PutWindow": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 134233965
+    },
+    "SL_RemoveWindow": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 134233609
+    },
+    "SL_Resume": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 134648821
+    },
+    "SL_Schedule": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 135231485
+    },
+    "SL_Sound": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 134683249
+    },
+    "SL_Suspend": {
+      "thumb": true,
+      "type": "STT_FUNC",
+      "value": 134648321
+    }
+  },
+  "workflow_head": "597673e7f4163a063593a1157a8f51a4236c3cdd"
+}

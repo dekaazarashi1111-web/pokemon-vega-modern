@@ -1,0 +1,44 @@
+{
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "development_cold_menu_end_accepted": false,
+  "development_native_failures": 0,
+  "development_native_processes": 2,
+  "development_status": "DEVELOPMENT_NOT_ACCEPTED",
+  "development_verification": {
+    "sha256": "f10518f5f07b71508f8e147c43b149d03abb611eb273b362771e8c6c137ca6bb",
+    "size": 18653
+  },
+  "local_verify": "新62試験PASS。全Save差分6988bytes/1783範囲と38目視anchor。cold原本はmenuで終了し正式coldのみ後続入力で閉じる。",
+  "new_tests": 62,
+  "plan_value_binding": {
+    "sha256": "9ab64ea32dec2e04d92f8b44aa39114c1fa5d11099b06566eae6bda8fc70a5cf",
+    "size": 15213
+  },
+  "preflight_correction_ja": "Bag全slot不変の誤仮定を拒否。通常ケース表示に伴うHM05/TM15のslot順序交換だけを許可し個数不変を照合。native自動再試行なし。",
+  "rom_changes": 0,
+  "source_bindings": {
+    "content/modernization/pr16_story_save21_development/expected.json": {
+      "sha256": "09159896706c9631d80c4ba21a610b14c74dff9e61b58e8c44f22318ec1f025a",
+      "size": 16822
+    },
+    "scripts/pr16_story_save21_accept.py": {
+      "sha256": "fbabf34b071d91f38b9ad49b7c4c6215f043e6c36c4b9bda52cfb51bdac61151",
+      "size": 20577
+    },
+    "tests/test_pr16_story_save21_accept.py": {
+      "sha256": "9ff15673c569a8f8bacf9bbf6847dd3f6ee703d471c4d547d7b181d15fe5e78e",
+      "size": 9318
+    }
+  },
+  "task": "USER-20260930-STORY-SAVE21",
+  "unit_stderr": {
+    "sha256": "7a107aef470b4c91e3dff328889b841a208b9561ac3e0d9c39842b173a5f0fd7",
+    "size": 6436
+  },
+  "unit_stdout": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  }
+}

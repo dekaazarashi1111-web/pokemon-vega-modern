@@ -1,0 +1,114 @@
+{
+  "command_argument_count": 5,
+  "compilation": {
+    "compiler": "/usr/bin/cc",
+    "executable_sha256": "67fc0d32695547dd95fb67f9e86abcee30a6ec3289b8cbc56346d6e7298091dc",
+    "executable_size": 56712,
+    "flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "link_flags": [
+      "-lmgba"
+    ]
+  },
+  "id": "p02",
+  "input_rom": {
+    "path": ".local/stage82-archive-ui/candidate.gba",
+    "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+    "size": 33554432
+  },
+  "plan_fingerprint": "38bd14f8f258d23b8b19b4dfb6e5d9e174934a5c03443d70020035fda1009773",
+  "runner": {
+    "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
+    "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+    "size": 39669
+  },
+  "runner_result": {
+    "bag_item_missing": {
+      "item_absent": true,
+      "normal_start_bag_input_attempted": true,
+      "party_not_opened_for_item": true,
+      "species_unchanged": true
+    },
+    "bag_item_use": {
+      "bag_item_consumed": true,
+      "four_moves_retained": true,
+      "normal_start_bag_party_input": true,
+      "scene_callbacks_seen": true,
+      "target_applied": true
+    },
+    "boot_route": "NORMAL_TITLE_CONTINUE_PINNED_SAVE",
+    "classification": "STAGE71_EXACT_ROM_NORMAL_INPUT_AND_FRESH_CORE",
+    "conditional_form_success": {
+      "ability_matches_hidden": true,
+      "condition_item_consumed": true,
+      "exact_form_applied": true,
+      "four_moves_retained": true,
+      "hidden_ability_preserved": true,
+      "normal_bag_party_input": true,
+      "scene_callbacks_seen": true
+    },
+    "direct_conditions": {
+      "friendship": true,
+      "known_move": true,
+      "level": true,
+      "level_held_item_six": {
+        "below_level_rejected": 6,
+        "conditional_item_consumed": 6,
+        "conditional_selected": 6,
+        "hidden_ability_preserved": 24,
+        "payload_pc_seen": true,
+        "species_count": 6,
+        "wrong_or_missing_item_regular": 12
+      },
+      "night_form": true,
+      "trade": true
+    },
+    "fixture_replacement_after_field": true,
+    "initial_normal_continue_field": true,
+    "known_good_seed_sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+    "normal_evolution_cancel": {
+      "ability_slot_retained": true,
+      "four_moves_retained": true,
+      "normal_bag_party_input": true,
+      "physical_b_cancel": true,
+      "scene_callbacks_seen": true,
+      "source_retained": true
+    },
+    "normal_evolution_success": {
+      "ability_matches_slot": true,
+      "ability_slot_retained": true,
+      "four_moves_retained": true,
+      "normal_bag_party_input": true,
+      "scene_callbacks_seen": true,
+      "target_applied": true
+    },
+    "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+    "save_reload": {
+      "ability_matches_hidden": true,
+      "condition_item_still_consumed": true,
+      "exact_form_reloaded": true,
+      "four_moves_reloaded": true,
+      "fresh_core_created": true,
+      "hidden_ability_reloaded": true,
+      "normal_continue_load_succeeded": true,
+      "original_core_destroyed": true,
+      "stock_load_succeeded": true,
+      "stock_save_twice": true
+    },
+    "schema_version": 1,
+    "status": "PASS",
+    "temporary_save_only": true,
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "stage": 79,
+  "status": "PASS",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "task": "USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA"
+}

@@ -1,0 +1,200 @@
+name: pr16-fixed-form-closeout
+run-name: Fixed FORM original-evidence closeout (zero new emulator runs)
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-fixed-form-closeout.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-fixed-form-original-closeout
+  cancel-in-progress: false
+jobs:
+  evidence-closeout:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      EXPECTED_HEAD: ${{ github.sha }}
+      BRANCH: codex/modernization-followup-20260908
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Guard exact branch and unchanged accepted native sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-fixed-form-closeout
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
+          git merge-base --is-ancestor a552361a250ff1a01afb4f328c5bfef8a329775e HEAD
+          git diff --exit-code a552361a250ff1a01afb4f328c5bfef8a329775e HEAD -- \
+            scripts/pr16_fixed_form_acceptance.py tools/mgba_pr16_fixed_form_acceptance.c \
+            tools/mgba_pr16_necrozma_fusion_acceptance.c tests/test_pr16_fixed_form_acceptance.py \
+            content/modernization/pr16_fixed_form_contract.json config/active_play_baseline.json
+          git rev-parse HEAD > .local/pr16-fixed-form-closeout/entry-head.txt
+      - name: Retain only the new exact successful original, without replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_fixed_form_closeout.py --retain-new \
+            > .local/pr16-fixed-form-closeout/retention.stdout 2> .local/pr16-fixed-form-closeout/retention.stderr
+      - name: Reject malformed archives, process results, source binding and scope changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest tests.test_pr16_fixed_form_closeout -v \
+            > .local/pr16-fixed-form-closeout/tests.stdout 2> .local/pr16-fixed-form-closeout/tests.stderr
+          python3 scripts/pr16_fixed_form_originals.py > .local/pr16-fixed-form-closeout/previous-originals.json
+      - name: Synchronize aggregate, receipt, P08 and append-only logs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_fixed_form_closeout.py --apply \
+            > .local/pr16-fixed-form-closeout/apply.stdout 2> .local/pr16-fixed-form-closeout/apply.stderr
+          python3 scripts/validate_task_graph.py > .local/pr16-fixed-form-closeout/task-graph.txt
+          base=content/modernization/pr16_fixed_form_acceptance_evidence/34698120000
+          git add -- content/modernization/pr16_fixed_form_acceptance.json \
+            content/modernization/pr16_fixed_form_acceptance_receipt.json \
+            content/modernization/p08_remaining_work.json design/run_log.md design/version_log.md \
+            "$base/actions.json" "$base/previous_pr16_fixed_form_acceptance.json" \
+            "$base/previous_pr16_fixed_form_acceptance_receipt.json"
+          git add -f -- "$base/original.zip"
+          python3 scripts/pr16_fixed_form_closeout.py --check --surface index \
+            > .local/pr16-fixed-form-closeout/index-check.json
+          # The global guard already failed on unchanged historical payloads.
+          # Compare the exact baseline index with the final index, then reject
+          # every private finding in our changed paths. Do not edit old evidence
+          # or relabel the global failure as a clean repository/release.
+          python3 - <<'PY_GUARD'
+          import hashlib,json,os,pathlib,subprocess,sys,tempfile
+          sys.path.insert(0,'scripts')
+          import guard_private_files as guard
+          root=pathlib.Path('.').resolve();out=root/'.local/pr16-fixed-form-closeout'
+          def run(env):
+              p=subprocess.run([sys.executable,'scripts/guard_private_files.py'],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+              assert p.returncode in (0,1), 'guard execution failed'
+              return p
+          with tempfile.TemporaryDirectory() as d:
+              env=dict(os.environ,GIT_INDEX_FILE=str(pathlib.Path(d)/'index'))
+              subprocess.run(['git','read-tree',os.environ['EXPECTED_HEAD']],env=env,check=True)
+              baseline=run(env)
+          current=run(os.environ.copy())
+          (out/'baseline-private-guard.txt').write_bytes(baseline.stdout)
+          (out/'private-guard.txt').write_bytes(current.stdout)
+          assert current.returncode==baseline.returncode and current.stdout==baseline.stdout, 'new private finding in final index'
+          changed=list(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
+          record=dict(schema_version=1,status='PASS_NO_NEW_PRIVATE_FINDINGS',
+              baseline_global_guard_passed=baseline.returncode==0,final_global_guard_passed=current.returncode==0,
+              unchanged_baseline_findings=True,checked_changed_paths=changed,
+              unchanged_findings_sha256=hashlib.sha256(baseline.stdout).hexdigest(),
+              preceding_failed_closeout_run=34699976579,preceding_artifact=10300241413,
+              preceding_zip_sha256='c4797e355212263ea73c5d20f2676c376a4f3ff238693e184462f7c99710dd96',
+              new_emulator_runs=0,release_ready=False)
+          base=root/'content/modernization/pr16_fixed_form_acceptance_evidence/34698120000'
+          boundary=base/'guard_boundary.json'
+          if not boundary.exists():
+              boundary.write_text(json.dumps(record,sort_keys=True,indent=2)+'\n')
+          else:
+              previous=json.loads(boundary.read_bytes())
+              assert previous['unchanged_findings_sha256']==record['unchanged_findings_sha256'] and previous['release_ready'] is False
+          marker='## USER-MODERNIZATION: inherited private-guard boundary / 2026-09-12'
+          note=('\n\n'+marker+'\n\n'
+            '最初のcloseout run34699976579は14 tests、原本/Git source/index照合までPASSしたが、全体private guardで停止しpush0。'
+            '既存HEADのROM/save3件、BPS入り旧証拠ZIP2件、machine-path入り旧文書の既存違反であり、原本は勝手に削除・書換えしない。'
+            'baselineと最終indexのguard出力/終了コードが完全一致すること、今回変更pathには新規違反0であることを別検査する。'
+            '全体guardが緑になったとは主張せず、RELEASE_DECISIONの既存阻害要因として保持。guard_boundary.jsonを参照。新規emulator実行0。\n')
+          for name in ('design/run_log.md','design/version_log.md'):
+              path=root/name
+              if marker not in path.read_text():
+                  with path.open('a') as f:f.write(note)
+          PY_GUARD
+          git add -- "$base/guard_boundary.json" design/run_log.md design/version_log.md
+          python3 - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path.insert(0,'scripts')
+          import guard_private_files as guard
+          root=pathlib.Path('.').resolve()
+          base='content/modernization/pr16_fixed_form_acceptance_evidence/34698120000/'
+          allowed={
+            'content/modernization/pr16_fixed_form_acceptance.json',
+            'content/modernization/pr16_fixed_form_acceptance_receipt.json',
+            'content/modernization/p08_remaining_work.json','design/run_log.md','design/version_log.md',
+            *(base+n for n in ('actions.json','original.zip','guard_boundary.json','previous_pr16_fixed_form_acceptance.json','previous_pr16_fixed_form_acceptance_receipt.json')),
+          }
+          changed=set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
+          assert changed <= allowed, sorted(changed-allowed)
+          for name in changed:
+              path=pathlib.PurePosixPath(name)
+              assert path.suffix.lower() not in guard.BLOCKED_SUFFIXES
+              assert not any(name==part or name.startswith(part+'/') for part in guard.BLOCKED_PARTS)
+              raw=guard.index_blob(root,name)
+              if path.suffix.lower()=='.zip':assert not guard.blocked_zip_members(raw)
+              if path.suffix.lower() in guard.DOCUMENT_SUFFIXES:assert not guard.document_user_path_lines(raw)
+          assert not subprocess.check_output(['git','diff','--name-only']), 'unstaged tracked changes'
+          for path in ('design/run_log.md','design/version_log.md'):
+              before=subprocess.check_output(['git','show','HEAD:'+path])
+              after=subprocess.check_output(['git','show',':'+path])
+              assert after.startswith(before), 'logs must be append-only'
+          PY
+      - name: Commit once and verify HEAD original bytes before non-force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'USER-MODERNIZATION: close fixed-form physical gap from five verified original native cases; keep P08 release gates open'
+          fi
+          python3 scripts/pr16_fixed_form_closeout.py --check --surface head \
+            > .local/pr16-fixed-form-closeout/head-check.json
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
+          git push origin "HEAD:refs/heads/$BRANCH"
+          git rev-parse HEAD > .local/pr16-fixed-form-closeout/pushed-head.txt
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$(git rev-parse HEAD)"
+      - name: Snapshot bounded tracked sources and canonical results, never ROM or saves
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-fixed-form-closeout';out.mkdir(parents=True,exist_ok=True)
+          names=[
+            'scripts/pr16_fixed_form_closeout.py','tests/test_pr16_fixed_form_closeout.py',
+            'scripts/pr16_fixed_form_originals.py','.github/workflows/pr16-fixed-form-closeout.yml',
+            'docs/PR16_FIXED_FORM_CLOSEOUT_20260912_JA.md',
+            'content/modernization/pr16_fixed_form_acceptance.json',
+            'content/modernization/pr16_fixed_form_acceptance_receipt.json',
+            'content/modernization/p08_remaining_work.json',
+            'scripts/pr16_gear_originals.py','scripts/build_bp_shop_runtime.py',
+            'scripts/pr16_apply_gear_policy_boundary.py','scripts/pr16_p05_root_diagnostics.py',
+            'scripts/build_facility_runtime.py','scripts/build_factory_reward_runtime.py',
+          ]
+          tracked=set(subprocess.check_output(['git','ls-files','-z']).decode().split('\0'))
+          names += [p for p in sorted(tracked) if p.startswith('content/modernization/pr16_') and any(t in p for t in ('supply','root_diagnostic','circus')) and p.endswith('.json') and '/pr16_' not in p[len('content/modernization/'):]]
+          bindings={}
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in dict.fromkeys(names):
+                  if name not in tracked:continue
+                  p=root/name;raw=p.read_bytes()
+                  assert not p.is_symlink() and len(raw)<4000000 and b'\0' not in raw
+                  raw.decode('utf-8')
+                  z.writestr(name,raw);bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'source-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          for p in out.iterdir():
+              assert p.suffix in {'.json','.txt','.stdout','.stderr','.zip'},p
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-fixed-form-closeout
+          path: .local/pr16-fixed-form-closeout/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

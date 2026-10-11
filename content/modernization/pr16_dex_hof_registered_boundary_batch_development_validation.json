@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_REGISTERED_BOUNDARY_BATCH_REVIEW",
+  "review_scope": "new_registered_boundary_batch_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "initial_head": "001cd8430558fce0a03130898e08d24981bfe33a",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-registered-boundary-batch.yml": {
+      "size": 3149,
+      "sha256": "1419722bc0b9882bc5bf0e3586b075d3deef118940a8c6b4680fe8451b6c52dc"
+    },
+    "content/modernization/pr16_dex_hof_registered_boundary_batch_sources.json": {
+      "size": 2340,
+      "sha256": "84ba572d607102f5aa9b0c5f27418f97427dee3ba14e9cf66c62cddc75233eea"
+    },
+    "content/modernization/pr16_dex_hof_stat_confirm_roots_review.json": {
+      "size": 12562,
+      "sha256": "1a7a4680019fb7386c16e194932c7791c3c84c4a0174eac82346ff432b1279a2"
+    },
+    "content/modernization/pr16_dex_hof_stock_limit_roots_review.json": {
+      "size": 13712,
+      "sha256": "96af1a27e31c0e39aca3d4d4191caf7769d3240df5f9c840c7cf4b4d530e5bbc"
+    },
+    "docs/PR16_DEX_HOF_REGISTERED_BOUNDARY_BATCH_JA.md": {
+      "size": 4050,
+      "sha256": "7a8f2f7fbc3c63cf06715146b7b8096ebf3a258606c106018f6042f1ad3963d8"
+    },
+    "scripts/pr16_dex_hof_registered_boundary_batch.py": {
+      "size": 6600,
+      "sha256": "f63dcb3f1c7fcdb29953dac50d09e61e91793db9e47adc336449dbda77cae47b"
+    },
+    "scripts/pr16_dex_hof_registered_boundary_batch_actions.py": {
+      "size": 30373,
+      "sha256": "c3daf3daa4182947fea1ba52dbb61e88561886ede190e39132fd1ca55490f6ea"
+    },
+    "scripts/pr16_dex_hof_registered_boundary_batch_capacity.py": {
+      "size": 11015,
+      "sha256": "21fba492dda2c695a51562607f3f027dfa6f476eb17981253935340b20f0f106"
+    },
+    "scripts/pr16_dex_hof_registered_boundary_batch_chain.py": {
+      "size": 20312,
+      "sha256": "68d8398468660159826698d70a968b966f997bcd2f4112914179ba482cfaa98e"
+    },
+    "scripts/pr16_dex_hof_stat_confirm_roots.py": {
+      "size": 20409,
+      "sha256": "09ac0163bd7bc21fde511f0946365629445c55c1d5e6319d6eafea8b4212be36"
+    },
+    "scripts/pr16_dex_hof_stock_limit_roots.py": {
+      "size": 12331,
+      "sha256": "07580a533b20894a5d1bfa29f1d09295c9f90e6111c7d385949330bbf63cb295"
+    },
+    "tests/test_pr16_dex_hof_registered_boundary_batch.py": {
+      "size": 7742,
+      "sha256": "d1e4ae317e3b35af41c637fcf065251a24f4cf6a1690ff498d1b96f507a6a317"
+    },
+    "tests/test_pr16_dex_hof_registered_boundary_batch_actions.py": {
+      "size": 18945,
+      "sha256": "b40123479c6a0a946f3cb0591d74fac5b3f74d5ece51e5c2cebc9a09cceaefce"
+    },
+    "tests/test_pr16_dex_hof_registered_boundary_batch_capacity.py": {
+      "size": 14366,
+      "sha256": "23d53afb73eccfce41b5592cc1443fb4e1e9e194e7bd11ca71b4d7930ea42d37"
+    },
+    "tests/test_pr16_dex_hof_registered_boundary_batch_chain.py": {
+      "size": 18450,
+      "sha256": "e70f1ea861c9531cf7380469f603cb032c9e9dcbd798f7e1bbcc0e2d8fd94bc1"
+    },
+    "tests/test_pr16_dex_hof_stat_confirm_roots.py": {
+      "size": 9579,
+      "sha256": "65192bd570a683f6900b2a1d1440fde9b29ea780f603084723540225adc07b9d"
+    },
+    "tests/test_pr16_dex_hof_stock_limit_roots.py": {
+      "size": 9989,
+      "sha256": "a7b3153ed5d936586c89022cf986cfd21f8ae7846225dcc98b2d18818576583d"
+    }
+  },
+  "diagnostic": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "unit_tests": 203,
+    "new_integration_tests": 143,
+    "reused_unique_tests": 60,
+    "reused_new_scope_test_logs": [
+      {
+        "path": "adjacent-stock-text-work/stock-limit-tests.txt",
+        "tests": 30,
+        "identity": {
+          "size": 4149,
+          "sha256": "5a0e2cca3c53eca2df7b7f1d7c6f21ebd0175bef862ca9ed7585a794157b316f"
+        },
+        "module": "stock_limit_roots",
+        "source_bindings": {
+          "content/modernization/pr16_dex_hof_stock_limit_roots_review.json": {
+            "size": 13712,
+            "sha256": "96af1a27e31c0e39aca3d4d4191caf7769d3240df5f9c840c7cf4b4d530e5bbc"
+          },
+          "tests/test_pr16_dex_hof_stock_limit_roots.py": {
+            "size": 9989,
+            "sha256": "a7b3153ed5d936586c89022cf986cfd21f8ae7846225dcc98b2d18818576583d"
+          },
+          "scripts/pr16_dex_hof_stock_limit_roots.py": {
+            "size": 12331,
+            "sha256": "07580a533b20894a5d1bfa29f1d09295c9f90e6111c7d385949330bbf63cb295"
+          }
+        }
+      },
+      {
+        "path": "adjacent-stock-text-work/stat-tests.txt",
+        "tests": 30,
+        "identity": {
+          "size": 4211,
+          "sha256": "59a9a2ab18eddc9dd34bf4f01207ee769efaa8dc0ca5e2236c82608a32bb1cd1"
+        },
+        "module": "stat_confirm_roots",
+        "source_bindings": {
+          "content/modernization/pr16_dex_hof_stat_confirm_roots_review.json": {
+            "size": 12562,
+            "sha256": "1a7a4680019fb7386c16e194932c7791c3c84c4a0174eac82346ff432b1279a2"
+          },
+          "tests/test_pr16_dex_hof_stat_confirm_roots.py": {
+            "size": 9579,
+            "sha256": "65192bd570a683f6900b2a1d1440fde9b29ea780f603084723540225adc07b9d"
+          },
+          "scripts/pr16_dex_hof_stat_confirm_roots.py": {
+            "size": 20409,
+            "sha256": "09ac0163bd7bc21fde511f0946365629445c55c1d5e6319d6eafea8b4212be36"
+          }
+        }
+      }
+    ],
+    "classifications": [
+      763,
+      111
+    ],
+    "newly_classified": 2,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "identity_source": "previous_verified_recovery_not_current_measurement"
+    },
+    "delta_identity": {
+      "size": 35283,
+      "sha256": "dd511e5cb7b070543b8577e122ba04f73aa8b05239b6568f4d0c91b50ccf6525"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false
+  },
+  "diagnostic_test_log": {
+    "size": 31648,
+    "sha256": "c25d9915b2154b2f2ab6c47bc92f75e2cef6f2f9a9a35fb591e13c8e6dd0f3f2"
+  },
+  "source_only_review": {
+    "status": "PASS",
+    "files": 17,
+    "open_findings": 0,
+    "current_rom_measured": false,
+    "old_independent_final_review_retried": false,
+    "reports": [
+      {
+        "scope": "new_two_consumer_six_files",
+        "identity": {
+          "size": 9236,
+          "sha256": "c0fb1b80c61250176d6e250afc46f74f8c0398b99e48f593fef2f31e7616365c"
+        }
+      },
+      {
+        "scope": "new_pipeline_eleven_files",
+        "identity": {
+          "size": 13733,
+          "sha256": "f8b96c03109cc6529dd6ca2ff38dd1cd65eeec4152146eb6cfe7aa4e030a8bdf"
+        }
+      }
+    ],
+    "method_ja": "新stock参加制限の両table cellと薬stat/party確認の両literal/実API根、完全serializer/実byte consumerの2境界8byteを独立source-only review。条件付き型を自然play・全prefixcallee・間接reader/退役と分離。全20親・現owner容量・公開/receipt guardを確認。現0641測定は別Actions。"
+  },
+  "development_history": [
+    {
+      "stage": "stat_new_source_binding",
+      "finding": "初期の公開source token名とcallee siteの誤記、および公開charmap取得時の余分LF",
+      "resolution": "固定公開sourceの実token/実instruction siteとGit blob全文を照合して修正。最終sourceで新30試験PASS。旧ROM/sourceを変更せず。"
+    },
+    {
+      "stage": "chain_registry",
+      "finding": "初期新chain registryはstock1moduleのみ",
+      "resolution": "stat moduleを追加後、最終chain/capacity40試験を統合103と一緒に検証。旧suite再実行0。"
+    }
+  ],
+  "publication_budget": {
+    "status": "PRECURRENT_CONSERVATIVE_SIZE_CHECK_NOT_ACCEPTANCE",
+    "files": {
+      "reference-chain.json": 94854,
+      "measurement.json": 195409,
+      "fixed-checkpoint.json": 235409,
+      "fixed-state.json": 3650825,
+      "fixed-resume.md": 186014,
+      "fixed-run-log.md": 2109458,
+      "fixed-version-log.md": 1720856,
+      "registered-boundary-batch-tests.txt": 31648,
+      "unknown-frontier.json": 100000,
+      "partial-space.json": 60000,
+      "record.json": 30000
+    },
+    "total": 8414473,
+    "max_file": 4000000,
+    "max_total": 12000000
+  },
+  "unchanged_parent": {
+    "classified": 761,
+    "unclassified": 113,
+    "parent_inputs": 39,
+    "retained_proof_families": 20,
+    "changes": 142,
+    "witnesses": 132,
+    "owner_count": 115,
+    "hit_count": 874,
+    "song_models": 133,
+    "assets": 50
+  },
+  "acceptance_boundary": {
+    "current_candidate_verified": false,
+    "current_actions_required": true,
+    "natural_play_reachability_proven": false,
+    "universal_epoch_irq_proven": false,
+    "old_independent_final_source_review_completed": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "controller_runtime_wired": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}

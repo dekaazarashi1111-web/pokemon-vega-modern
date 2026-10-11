@@ -1,0 +1,61 @@
+name: pr16-learnset-wiki-closeout
+# Completed Actions reconciliation only: no Wiki generation, accepted tests, ROM, ARM or native reruns.
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-wiki-closeout.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-learnset-wiki-followup
+  cancel-in-progress: false
+jobs:
+  wiki-closeout:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 新しい記録境界14試験だけを実行
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-learnset-wiki-closeout
+          python3 -B -m unittest tests.test_pr16_learnset_wiki_closeout -v >.local/pr16-learnset-wiki-closeout/unit.txt 2>&1
+      - name: 完了run・原本artifact・非force反映commitを照合して記録
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_wiki_closeout.py record | tee .local/pr16-learnset-wiki-closeout/record.txt
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_learnset_wiki_closeout.py paths | while IFS= read -r path; do git add -- "$path"; done
+          python3 -B scripts/pr16_learnset_wiki_closeout.py guard
+      - name: 同branchへ記録を非force commit/pushしrefを照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260923-LEARNSET-WIKI: 完了Actionsと原本証拠を照合し後継Wikiの受入記録を確定'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "RESULT=DONE TASK=USER-20260923-LEARNSET-WIKI VERIFY=PASS COMMIT=$sha SCOPE=LEARNSET_WIKI_NOT_GAMEPLAY" | tee .local/pr16-learnset-wiki-closeout/result.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-wiki-closeout-proof
+          path: .local/pr16-learnset-wiki-closeout/
+          retention-days: 30
+          if-no-files-found: error

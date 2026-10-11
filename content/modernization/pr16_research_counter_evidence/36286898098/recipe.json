@@ -1,0 +1,85 @@
+{
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "base_model": "content/research_economy_v1/canonical_model.json",
+  "candidate": {
+    "sha256": "c3971e83184613a27730eaec6490d203a2c1261c77894b711b0352f487808557",
+    "size": 33554432
+  },
+  "cap_result_preserved": 4,
+  "changed_bytes": 88,
+  "declared_bytes": 147,
+  "display_source": "RP {STR_VAR_1}\\nランク {STR_VAR_2}",
+  "labels": {
+    "cap": 154927890,
+    "end": 154927910,
+    "normal": 154927833,
+    "save_fail": 154927900
+  },
+  "natural_earning_spending_accepted": false,
+  "new_allocations": 0,
+  "outside_declared_changes": 0,
+  "parent": {
+    "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+    "size": 33554432
+  },
+  "patches": [
+    {
+      "after": "ccca00fd02fe777e5800fd03ffffff",
+      "before": "9f527e642dfe0608162e0c1f0dadff",
+      "offset": 20709451
+    },
+    {
+      "after": "6a5a0f003d003c09090423a1e83b09210d8000000601d9023c09210d800400060112033c09210d800d0006011c033c090526033c092333e03b0983000d802357e03b0983010d80160d8000000f004b003c0909040f005a003c0909040f006d003c0909040f008e003c0909046c020f007e003c0909046c020f009e003c0909046c026c02",
+      "before": "6a5a0f003d003c09090423a1e83b09210d8000000601dc023c09210d800400060104033c09210d800d00060114033c090524033c090000000f004b003c0909040f005a003c0909040f006d003c0909040f008e003c0909040524033c090000000f007e003c0909040524033c090000000f009e003c0909040524033c090000006c020000",
+      "offset": 20710052
+    }
+  ],
+  "release_ready": false,
+  "result_restored": 0,
+  "roots": {
+    "buffer_opcode": 131,
+    "get_balance": 154918963,
+    "get_rank": 154918999,
+    "physical_host": 155270044,
+    "result_variable": 32781,
+    "root_hashes": {
+      "0x806933c": {
+        "sha256": "aedd88ea822c1edb9e36fef2b6c4c933a8f28d252e974e03d5c27dc28a08629e",
+        "size": 44
+      },
+      "0x80693bc": {
+        "sha256": "99c5c54e7ce5df848aa4a6e12174872a1cf63e57e5ffbaf8aabc419ea4c5c27a",
+        "size": 40
+      },
+      "0x8069418": {
+        "sha256": "f60a3d3aa9c573237cb339ed97d314f335f391ae9c2faa521a004d49303de59c",
+        "size": 40
+      },
+      "0x806b684": {
+        "sha256": "7ad4eba7ab8630ba0480d9b273f2fc65e07a3e4355e5c8fc49a2b40d228bbb60",
+        "size": 68
+      },
+      "0x8162cc4": {
+        "sha256": "02ec8b5d59392777bf839feb24cbef40e029ab3190a8569f8605785c37ab57f4",
+        "size": 848
+      },
+      "0x93be032": {
+        "sha256": "1a5248b36921d67d6b9d2f4b2c6bd6ee438d766e95db1ffa9afcf4b1fe42e1ad",
+        "size": 36
+      },
+      "0x93be056": {
+        "sha256": "c31639668764f4b7f9c9b2c9129e064f42f876ff0c29e100133c8eae0099b621",
+        "size": 72
+      }
+    },
+    "slot_addresses": [
+      33692748,
+      33692768
+    ]
+  },
+  "save_failure_preserved": 13,
+  "schema_version": 1,
+  "scope": "COUNTER_NUMERIC_TEXT_NOT_STANDARD_LIST",
+  "standard_list_implemented": false
+}

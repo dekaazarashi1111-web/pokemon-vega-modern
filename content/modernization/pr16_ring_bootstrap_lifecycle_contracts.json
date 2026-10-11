@@ -1,0 +1,2365 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-BOOTSTRAP-LIFECYCLE-CONTRACTS",
+  "source_head": "da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c",
+  "run_id": 35313824566,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "EXPLICIT_FONT_POOL_INITIALIZATION_TO_TEXT_END_NOT_STORY_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "contract_cases": 14,
+    "successful_lifecycles": 12,
+    "reset_omission_stops": 2,
+    "cases": [
+      {
+        "case": "font0-speed0-initial0",
+        "font": 4,
+        "speed": 0,
+        "initial_pointer": 0,
+        "initial_pool_byte": 165,
+        "skip_reset_control": false,
+        "initialization_writes": 33,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": true,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1,
+              7,
+              0,
+              8,
+              247
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 0,
+            "busy": 0,
+            "write_count": 1157
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": null,
+        "terminated": true,
+        "busy_cleared": true,
+        "task_deleted": true,
+        "phase_object_sha256": [
+          "4b9c9ec5f3b22691044d979728f570f6f342d9e614181d85c49d4eca6ea140c7",
+          "7695cff8f06d5e4563d172146b19700ee481a5f83dea7bf4220bbdeab71265ce",
+          "a116227c1d7749b31a665c2a0bc947a68d9bca3f8df7e3d32978e48f5d6ade47",
+          "ec8aeb492bd9757f0f1423f7951bfeee8b1fade17cf0d752523e235283d40bb8",
+          "743dcbfc1526df575ea8273bfd9a2c2883c14296ff1e4b84cef8d855c2262ae3",
+          "befe65ebadf46eb495455cb0d6d64468aee909f01c31fb33ec346d2f621d3dbb"
+        ],
+        "combined_write_identity": {
+          "size": 173589,
+          "sha256": "9fb2a5732b7c6a3915ab8dd832fc8381b2ddefcfc9c0abc1e5022ec75d44423d"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "86558cd17de7392546c1f78c8e504ffa244e810af17fd46b3882f01cdb40284f"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "743d14fdda5af3a61402077775feaaa448fc6957c180d33cbf40ddf05c66dd12"
+        },
+        "callback_stack_bytes": [
+          4,
+          4,
+          156,
+          128,
+          252,
+          236
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "font0-speed0-initial3735928559",
+        "font": 4,
+        "speed": 0,
+        "initial_pointer": 3735928559,
+        "initial_pool_byte": 165,
+        "skip_reset_control": false,
+        "initialization_writes": 33,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": true,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1,
+              7,
+              0,
+              8,
+              247
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 0,
+            "busy": 0,
+            "write_count": 1157
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": null,
+        "terminated": true,
+        "busy_cleared": true,
+        "task_deleted": true,
+        "phase_object_sha256": [
+          "4b9c9ec5f3b22691044d979728f570f6f342d9e614181d85c49d4eca6ea140c7",
+          "7695cff8f06d5e4563d172146b19700ee481a5f83dea7bf4220bbdeab71265ce",
+          "a116227c1d7749b31a665c2a0bc947a68d9bca3f8df7e3d32978e48f5d6ade47",
+          "ec8aeb492bd9757f0f1423f7951bfeee8b1fade17cf0d752523e235283d40bb8",
+          "743dcbfc1526df575ea8273bfd9a2c2883c14296ff1e4b84cef8d855c2262ae3",
+          "befe65ebadf46eb495455cb0d6d64468aee909f01c31fb33ec346d2f621d3dbb"
+        ],
+        "combined_write_identity": {
+          "size": 173589,
+          "sha256": "9fb2a5732b7c6a3915ab8dd832fc8381b2ddefcfc9c0abc1e5022ec75d44423d"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "86558cd17de7392546c1f78c8e504ffa244e810af17fd46b3882f01cdb40284f"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "743d14fdda5af3a61402077775feaaa448fc6957c180d33cbf40ddf05c66dd12"
+        },
+        "callback_stack_bytes": [
+          4,
+          4,
+          156,
+          128,
+          252,
+          236
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "font0-speed2-initial0",
+        "font": 4,
+        "speed": 2,
+        "initial_pointer": 0,
+        "initial_pool_byte": 165,
+        "skip_reset_control": false,
+        "initialization_writes": 33,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": true,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 198
+          },
+          {
+            "index": 1,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 2,
+            "characters": [
+              7
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 196
+          },
+          {
+            "index": 3,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 4,
+            "characters": [
+              0
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 514
+          },
+          {
+            "index": 5,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 6,
+            "characters": [
+              8
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 196
+          },
+          {
+            "index": 7,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 8,
+            "characters": [
+              247
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 76
+          },
+          {
+            "index": 9,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 10,
+            "characters": [],
+            "waited": false,
+            "returned": true,
+            "task_active": 0,
+            "busy": 0,
+            "write_count": 5
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": null,
+        "terminated": true,
+        "busy_cleared": true,
+        "task_deleted": true,
+        "phase_object_sha256": [
+          "634cadac860f56dd44d0fd400c1575dc5214301f17f731339977becd38259a9b",
+          "6a57f5978fe0c3278baa1392fe5adf082a544db49da882dbc544a99909ae7997",
+          "3e0068eadb92ea788893305262877fb7f2300d533c59a4f00d02a2eb95990567",
+          "cdf0c54f364b811e44713daa16a567410183b733ffa670f3cb1950f23cbc5a9f",
+          "e289e81ddf5312283610b9f036e1661e70d956dddd430eca130cd2207cc9a014",
+          "48ac17476eb9e674ef8bf6be09ee6adc88a7b9bb5363e6218536c21f23428202",
+          "30004f279533d116a8eb4d90b86d8dcabe3addc6c237aad370bf66007539fb9d",
+          "ca0b9c90a12a39cc47971fa5966c59d55e200fa73476753d87f800f189171091",
+          "f63580a134b0a2ac0b4e182a1d0067bec52f3026dd7a9a980157807a1804bc08",
+          "5a0155699e4b93ef71de72d672602c2a727294970bd8d7e3a6f13578452a6c0c",
+          "65b6e6f900abf29c6bdc34e4c709057afd98e48890c08dbf1aadc51e84449149",
+          "2778263b42f4f214c892547a7fd036f351de33194dcedd738cd1daf61bc3bccb",
+          "b26796192fbed8ecd76afe38a26dfe1c9aa2bde0eba86fa8d7febf1ffbb5ee62",
+          "fe01f14590159bce6f4c4170143315a9f1c063f48cf6045b22bdec7d9859d152",
+          "899c6fc231d259836753d322d77555bedc43e6ff3780f8ec1c283f7369b610f9",
+          "94a2d6ee56561307d4c19c6b85ad9131d4da7005f5dcfe5da7e6d70e80d05f28"
+        ],
+        "combined_write_identity": {
+          "size": 174857,
+          "sha256": "a8154fcfc48181592ff50bf9bca8e7d9e73af66f1c7b5c6b5c93ce3dde6823a6"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "86558cd17de7392546c1f78c8e504ffa244e810af17fd46b3882f01cdb40284f"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "743d14fdda5af3a61402077775feaaa448fc6957c180d33cbf40ddf05c66dd12"
+        },
+        "callback_stack_bytes": [
+          4,
+          4,
+          156,
+          128,
+          252,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          96
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "font0-speed2-initial3735928559",
+        "font": 4,
+        "speed": 2,
+        "initial_pointer": 3735928559,
+        "initial_pool_byte": 165,
+        "skip_reset_control": false,
+        "initialization_writes": 33,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": true,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 198
+          },
+          {
+            "index": 1,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 2,
+            "characters": [
+              7
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 196
+          },
+          {
+            "index": 3,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 4,
+            "characters": [
+              0
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 514
+          },
+          {
+            "index": 5,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 6,
+            "characters": [
+              8
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 196
+          },
+          {
+            "index": 7,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 8,
+            "characters": [
+              247
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 76
+          },
+          {
+            "index": 9,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 10,
+            "characters": [],
+            "waited": false,
+            "returned": true,
+            "task_active": 0,
+            "busy": 0,
+            "write_count": 5
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": null,
+        "terminated": true,
+        "busy_cleared": true,
+        "task_deleted": true,
+        "phase_object_sha256": [
+          "634cadac860f56dd44d0fd400c1575dc5214301f17f731339977becd38259a9b",
+          "6a57f5978fe0c3278baa1392fe5adf082a544db49da882dbc544a99909ae7997",
+          "3e0068eadb92ea788893305262877fb7f2300d533c59a4f00d02a2eb95990567",
+          "cdf0c54f364b811e44713daa16a567410183b733ffa670f3cb1950f23cbc5a9f",
+          "e289e81ddf5312283610b9f036e1661e70d956dddd430eca130cd2207cc9a014",
+          "48ac17476eb9e674ef8bf6be09ee6adc88a7b9bb5363e6218536c21f23428202",
+          "30004f279533d116a8eb4d90b86d8dcabe3addc6c237aad370bf66007539fb9d",
+          "ca0b9c90a12a39cc47971fa5966c59d55e200fa73476753d87f800f189171091",
+          "f63580a134b0a2ac0b4e182a1d0067bec52f3026dd7a9a980157807a1804bc08",
+          "5a0155699e4b93ef71de72d672602c2a727294970bd8d7e3a6f13578452a6c0c",
+          "65b6e6f900abf29c6bdc34e4c709057afd98e48890c08dbf1aadc51e84449149",
+          "2778263b42f4f214c892547a7fd036f351de33194dcedd738cd1daf61bc3bccb",
+          "b26796192fbed8ecd76afe38a26dfe1c9aa2bde0eba86fa8d7febf1ffbb5ee62",
+          "fe01f14590159bce6f4c4170143315a9f1c063f48cf6045b22bdec7d9859d152",
+          "899c6fc231d259836753d322d77555bedc43e6ff3780f8ec1c283f7369b610f9",
+          "94a2d6ee56561307d4c19c6b85ad9131d4da7005f5dcfe5da7e6d70e80d05f28"
+        ],
+        "combined_write_identity": {
+          "size": 174857,
+          "sha256": "a8154fcfc48181592ff50bf9bca8e7d9e73af66f1c7b5c6b5c93ce3dde6823a6"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "86558cd17de7392546c1f78c8e504ffa244e810af17fd46b3882f01cdb40284f"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "743d14fdda5af3a61402077775feaaa448fc6957c180d33cbf40ddf05c66dd12"
+        },
+        "callback_stack_bytes": [
+          4,
+          4,
+          156,
+          128,
+          252,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          96
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "font1-speed0-initial0",
+        "font": 5,
+        "speed": 0,
+        "initial_pointer": 0,
+        "initial_pool_byte": 165,
+        "skip_reset_control": false,
+        "initialization_writes": 33,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": true,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1,
+              7,
+              0,
+              8,
+              247
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 0,
+            "busy": 0,
+            "write_count": 1157
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": null,
+        "terminated": true,
+        "busy_cleared": true,
+        "task_deleted": true,
+        "phase_object_sha256": [
+          "b47733e3aaeb7e3a69cec2b7816afb74fc3f43dc70c15dadf6e14abc3b4cf3f5",
+          "40af1adb1719efe8cda8a119da260ec942460c76ab592d2a2642117cc9156efd",
+          "f61c040b7b0c056bd9dd39ff49e401e5231a5054ac09bb872a346cb9d2f1c47d",
+          "2dbcdd15fc74c6ea2b16506f471d1e44716144a05aa1a4ca8e123c99da96cf62",
+          "a4a3b989cb2b00fd702117391470db0c762dcfb3bc39e24a74994961da22f7ed",
+          "ce84f23d35b58685139693bc9b2f345aa839ae76e5c4017d91c6e3a6ecdccc76"
+        ],
+        "combined_write_identity": {
+          "size": 173587,
+          "sha256": "6cad4847063f654f2eabbbef816aacab37153bb35941ea4de0249430b1e1c0be"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "abc8a6de59a1e35edfad8d04ef424e7df7f7bca20d43e36ac9d4707bc0539b48"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "743d14fdda5af3a61402077775feaaa448fc6957c180d33cbf40ddf05c66dd12"
+        },
+        "callback_stack_bytes": [
+          4,
+          4,
+          156,
+          128,
+          252,
+          236
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "font1-speed0-initial3735928559",
+        "font": 5,
+        "speed": 0,
+        "initial_pointer": 3735928559,
+        "initial_pool_byte": 165,
+        "skip_reset_control": false,
+        "initialization_writes": 33,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": true,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1,
+              7,
+              0,
+              8,
+              247
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 0,
+            "busy": 0,
+            "write_count": 1157
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": null,
+        "terminated": true,
+        "busy_cleared": true,
+        "task_deleted": true,
+        "phase_object_sha256": [
+          "b47733e3aaeb7e3a69cec2b7816afb74fc3f43dc70c15dadf6e14abc3b4cf3f5",
+          "40af1adb1719efe8cda8a119da260ec942460c76ab592d2a2642117cc9156efd",
+          "f61c040b7b0c056bd9dd39ff49e401e5231a5054ac09bb872a346cb9d2f1c47d",
+          "2dbcdd15fc74c6ea2b16506f471d1e44716144a05aa1a4ca8e123c99da96cf62",
+          "a4a3b989cb2b00fd702117391470db0c762dcfb3bc39e24a74994961da22f7ed",
+          "ce84f23d35b58685139693bc9b2f345aa839ae76e5c4017d91c6e3a6ecdccc76"
+        ],
+        "combined_write_identity": {
+          "size": 173587,
+          "sha256": "6cad4847063f654f2eabbbef816aacab37153bb35941ea4de0249430b1e1c0be"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "abc8a6de59a1e35edfad8d04ef424e7df7f7bca20d43e36ac9d4707bc0539b48"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "743d14fdda5af3a61402077775feaaa448fc6957c180d33cbf40ddf05c66dd12"
+        },
+        "callback_stack_bytes": [
+          4,
+          4,
+          156,
+          128,
+          252,
+          236
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "font1-speed2-initial0",
+        "font": 5,
+        "speed": 2,
+        "initial_pointer": 0,
+        "initial_pool_byte": 165,
+        "skip_reset_control": false,
+        "initialization_writes": 33,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": true,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 198
+          },
+          {
+            "index": 1,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 2,
+            "characters": [
+              7
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 196
+          },
+          {
+            "index": 3,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 4,
+            "characters": [
+              0
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 514
+          },
+          {
+            "index": 5,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 6,
+            "characters": [
+              8
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 196
+          },
+          {
+            "index": 7,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 8,
+            "characters": [
+              247
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 76
+          },
+          {
+            "index": 9,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 10,
+            "characters": [],
+            "waited": false,
+            "returned": true,
+            "task_active": 0,
+            "busy": 0,
+            "write_count": 5
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": null,
+        "terminated": true,
+        "busy_cleared": true,
+        "task_deleted": true,
+        "phase_object_sha256": [
+          "c027d020c716a79098f62ce2a25a8aed4803333b6629a454b4d2a998560a93b6",
+          "bc7cc216a753dfd00c145b2c623ba3fed5ed8987251bb1e81532732ac2bce571",
+          "d95ab911121e6be5a2fbe6ab92edbc6bfa45b882c46731cfdbcf183fc159f2ff",
+          "19b67db7a0765a77dec2153b8afd920f03f1c2a98540cd41fa5936e2ab202537",
+          "3c0471416e45b7233fd8e5ee7d55655ccc38f559a2578649d14cdd3dbfea6918",
+          "cd815ea4a408dfc9cfeeac42cdb386eb83e7425e5b383a7f7767c79db78427a5",
+          "1f69d2b1f321b572dd6550d66c7286de827bc004ef059e426b1593c7112bbe62",
+          "ecd79ddaab8ceeb926748fb53bf07a1b3bf3d0cd47668268f16986451ce8f69e",
+          "77d88fbbd584cae76da18a16943f100c8dfcf3ab96639c179ca3476cfc804a29",
+          "07d9a8abba3ebbadf8135d7b390dedb6eaddd1162851e45fe5f9f80c7f84da5f",
+          "be975a622597533875cea939b762ab6e8e9542a36a3f88085fe68ffc80ba912e",
+          "00f2d82880a919eb0d80b7a668a02965065508550cd8a291d083f02f3beb1395",
+          "6870d59fe3925c6220dc77ab1e2a2a1f88146438c5a1aa598b74613f0c8f3ab1",
+          "3bc7151951a0ad5925bd1e84ec6265b71d08071ae8f29048c329cacd8857b0be",
+          "6cacd28b7f1ee348928283c40c8b2dd9a4bc1864ac8ccd180fb5904a364c71b5",
+          "a0cd36e31c0e803c0d32bd0de651e2ea4e1e7387580f11c56375a6abf31a9f86"
+        ],
+        "combined_write_identity": {
+          "size": 174855,
+          "sha256": "b8140c4eefeb688c723403b92b67976893e2e5ea4b49016a0b2a82ae1f9c148c"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "abc8a6de59a1e35edfad8d04ef424e7df7f7bca20d43e36ac9d4707bc0539b48"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "743d14fdda5af3a61402077775feaaa448fc6957c180d33cbf40ddf05c66dd12"
+        },
+        "callback_stack_bytes": [
+          4,
+          4,
+          156,
+          128,
+          252,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          96
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "font1-speed2-initial3735928559",
+        "font": 5,
+        "speed": 2,
+        "initial_pointer": 3735928559,
+        "initial_pool_byte": 165,
+        "skip_reset_control": false,
+        "initialization_writes": 33,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": true,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 198
+          },
+          {
+            "index": 1,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 2,
+            "characters": [
+              7
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 196
+          },
+          {
+            "index": 3,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 4,
+            "characters": [
+              0
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 514
+          },
+          {
+            "index": 5,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 6,
+            "characters": [
+              8
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 196
+          },
+          {
+            "index": 7,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 8,
+            "characters": [
+              247
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 76
+          },
+          {
+            "index": 9,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 10,
+            "characters": [],
+            "waited": false,
+            "returned": true,
+            "task_active": 0,
+            "busy": 0,
+            "write_count": 5
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": null,
+        "terminated": true,
+        "busy_cleared": true,
+        "task_deleted": true,
+        "phase_object_sha256": [
+          "c027d020c716a79098f62ce2a25a8aed4803333b6629a454b4d2a998560a93b6",
+          "bc7cc216a753dfd00c145b2c623ba3fed5ed8987251bb1e81532732ac2bce571",
+          "d95ab911121e6be5a2fbe6ab92edbc6bfa45b882c46731cfdbcf183fc159f2ff",
+          "19b67db7a0765a77dec2153b8afd920f03f1c2a98540cd41fa5936e2ab202537",
+          "3c0471416e45b7233fd8e5ee7d55655ccc38f559a2578649d14cdd3dbfea6918",
+          "cd815ea4a408dfc9cfeeac42cdb386eb83e7425e5b383a7f7767c79db78427a5",
+          "1f69d2b1f321b572dd6550d66c7286de827bc004ef059e426b1593c7112bbe62",
+          "ecd79ddaab8ceeb926748fb53bf07a1b3bf3d0cd47668268f16986451ce8f69e",
+          "77d88fbbd584cae76da18a16943f100c8dfcf3ab96639c179ca3476cfc804a29",
+          "07d9a8abba3ebbadf8135d7b390dedb6eaddd1162851e45fe5f9f80c7f84da5f",
+          "be975a622597533875cea939b762ab6e8e9542a36a3f88085fe68ffc80ba912e",
+          "00f2d82880a919eb0d80b7a668a02965065508550cd8a291d083f02f3beb1395",
+          "6870d59fe3925c6220dc77ab1e2a2a1f88146438c5a1aa598b74613f0c8f3ab1",
+          "3bc7151951a0ad5925bd1e84ec6265b71d08071ae8f29048c329cacd8857b0be",
+          "6cacd28b7f1ee348928283c40c8b2dd9a4bc1864ac8ccd180fb5904a364c71b5",
+          "a0cd36e31c0e803c0d32bd0de651e2ea4e1e7387580f11c56375a6abf31a9f86"
+        ],
+        "combined_write_identity": {
+          "size": 174855,
+          "sha256": "b8140c4eefeb688c723403b92b67976893e2e5ea4b49016a0b2a82ae1f9c148c"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "abc8a6de59a1e35edfad8d04ef424e7df7f7bca20d43e36ac9d4707bc0539b48"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "743d14fdda5af3a61402077775feaaa448fc6957c180d33cbf40ddf05c66dd12"
+        },
+        "callback_stack_bytes": [
+          4,
+          4,
+          156,
+          128,
+          252,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          96
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "font2-speed0-initial0",
+        "font": 2,
+        "speed": 0,
+        "initial_pointer": 0,
+        "initial_pool_byte": 165,
+        "skip_reset_control": false,
+        "initialization_writes": 33,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": true,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1,
+              7,
+              0,
+              8,
+              247
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 0,
+            "busy": 0,
+            "write_count": 1157
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": null,
+        "terminated": true,
+        "busy_cleared": true,
+        "task_deleted": true,
+        "phase_object_sha256": [
+          "3f03b7c9ab4bd78d70bd45631e92a404114a7e73444f73b1030b3945eb6d99c9",
+          "fafea60fa4680f794ad0ab0f83b73234f8e3dca44b2cbca0cc5b5d4215822d6d",
+          "3dcc19174d118c9d7a7857ce10f3109ccb58666d2c97ee98c9b3534909cf221c",
+          "7ae5b13f068c5b50feea799aeb31c68d8684bfccfc8a44e262f2d67bf6be9c31",
+          "7ae49ef993b6e05ae3f5af8e9ea0a0af6ade0a78a255266aca7250f0266ba0e1",
+          "16e39e7a78eaa8e280f3b641ca207f499d46a644d5e29fab843895d9d647348c"
+        ],
+        "combined_write_identity": {
+          "size": 173585,
+          "sha256": "1095d2f15d8d365a0e90d07dc33fc08e2242497b0733f6055c3447784ec3de39"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "d5b7398bcc5cb79f9a068813b487c23dbdd2db300c3d3a77b42fc8eaee5f6827"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "743d14fdda5af3a61402077775feaaa448fc6957c180d33cbf40ddf05c66dd12"
+        },
+        "callback_stack_bytes": [
+          4,
+          4,
+          156,
+          128,
+          252,
+          236
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "font2-speed0-initial3735928559",
+        "font": 2,
+        "speed": 0,
+        "initial_pointer": 3735928559,
+        "initial_pool_byte": 165,
+        "skip_reset_control": false,
+        "initialization_writes": 33,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": true,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1,
+              7,
+              0,
+              8,
+              247
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 0,
+            "busy": 0,
+            "write_count": 1157
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": null,
+        "terminated": true,
+        "busy_cleared": true,
+        "task_deleted": true,
+        "phase_object_sha256": [
+          "3f03b7c9ab4bd78d70bd45631e92a404114a7e73444f73b1030b3945eb6d99c9",
+          "fafea60fa4680f794ad0ab0f83b73234f8e3dca44b2cbca0cc5b5d4215822d6d",
+          "3dcc19174d118c9d7a7857ce10f3109ccb58666d2c97ee98c9b3534909cf221c",
+          "7ae5b13f068c5b50feea799aeb31c68d8684bfccfc8a44e262f2d67bf6be9c31",
+          "7ae49ef993b6e05ae3f5af8e9ea0a0af6ade0a78a255266aca7250f0266ba0e1",
+          "16e39e7a78eaa8e280f3b641ca207f499d46a644d5e29fab843895d9d647348c"
+        ],
+        "combined_write_identity": {
+          "size": 173585,
+          "sha256": "1095d2f15d8d365a0e90d07dc33fc08e2242497b0733f6055c3447784ec3de39"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "d5b7398bcc5cb79f9a068813b487c23dbdd2db300c3d3a77b42fc8eaee5f6827"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "743d14fdda5af3a61402077775feaaa448fc6957c180d33cbf40ddf05c66dd12"
+        },
+        "callback_stack_bytes": [
+          4,
+          4,
+          156,
+          128,
+          252,
+          236
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "font2-speed2-initial0",
+        "font": 2,
+        "speed": 2,
+        "initial_pointer": 0,
+        "initial_pool_byte": 165,
+        "skip_reset_control": false,
+        "initialization_writes": 33,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": true,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 198
+          },
+          {
+            "index": 1,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 2,
+            "characters": [
+              7
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 196
+          },
+          {
+            "index": 3,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 4,
+            "characters": [
+              0
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 514
+          },
+          {
+            "index": 5,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 6,
+            "characters": [
+              8
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 196
+          },
+          {
+            "index": 7,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 8,
+            "characters": [
+              247
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 76
+          },
+          {
+            "index": 9,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 10,
+            "characters": [],
+            "waited": false,
+            "returned": true,
+            "task_active": 0,
+            "busy": 0,
+            "write_count": 5
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": null,
+        "terminated": true,
+        "busy_cleared": true,
+        "task_deleted": true,
+        "phase_object_sha256": [
+          "c3ef6586acbd0bc26dc9a4b8488396d7353fc3cedd63902998fdbc461ba415b9",
+          "f26bf8c2632a1fc3d05bc0bb9c231d734df178842108d2ac77b11dcce3f22e64",
+          "7533b2f418c9b3b8b9c68eb35f6d6fdd7ed2228a1a7acade1596e2a483d64d0c",
+          "faeb5f3d303bd03e9fc609cb04ae8f8a0140815f003ec16cb02818ffff865632",
+          "ed602289c4a239b4243dad5e7accaf102856917a8348fdd7dca0f23d8483f8e5",
+          "3f9e01cd337ce9543f4de6be4e3e6c231dc495edf9808c784676544f5e077344",
+          "82cdae632e52e93e7a003e01ce5408fa75a8ab4c7d19885e96c4fc92801a7bdb",
+          "48d7bc7267aab7d3c7b13709a0c89c97ff256bbfe4c4ebba7ca40d0766caf2a3",
+          "24e18a17b15ed33be5776fca32ec806ac7f3f56e633c33192b307acbd644a023",
+          "df3e31808c2ff2798d6e87c87b1ce561739b89494f613c31158c0f6c2d9fd7de",
+          "6ab8a1787e89326f5d6f24d29a690711dd668e29b6e69b8d1d9e19b3c8f47d90",
+          "5d7a7a79313a71b5c313328027becbd5a0ba8da289cfcd69c2df018c48a2ffd7",
+          "12974bcc2fff43d44a59cbfd4eb62f2fa7b7392e63d14c22612158f2530e9465",
+          "80ffa670ae0e366f4e4ca595096d71234a5271cf359d1209b560e41222ef4a34",
+          "8d8c068ce095d2b7dcec09c7d81353f01c6880f276abca4036d8352cb67ff7be",
+          "f44c7c4cfbcbe4483bd143e1c6282166603c90ccb7d060b0e74cb3706f93d531"
+        ],
+        "combined_write_identity": {
+          "size": 174853,
+          "sha256": "b76304f79b4368295e0f15e4cc1f5bbe5321867e135c1ecc99f627f2b543427d"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "d5b7398bcc5cb79f9a068813b487c23dbdd2db300c3d3a77b42fc8eaee5f6827"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "743d14fdda5af3a61402077775feaaa448fc6957c180d33cbf40ddf05c66dd12"
+        },
+        "callback_stack_bytes": [
+          4,
+          4,
+          156,
+          128,
+          252,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          96
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "font2-speed2-initial3735928559",
+        "font": 2,
+        "speed": 2,
+        "initial_pointer": 3735928559,
+        "initial_pool_byte": 165,
+        "skip_reset_control": false,
+        "initialization_writes": 33,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": true,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 198
+          },
+          {
+            "index": 1,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 2,
+            "characters": [
+              7
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 196
+          },
+          {
+            "index": 3,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 4,
+            "characters": [
+              0
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 514
+          },
+          {
+            "index": 5,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 6,
+            "characters": [
+              8
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 196
+          },
+          {
+            "index": 7,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 8,
+            "characters": [
+              247
+            ],
+            "waited": false,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 76
+          },
+          {
+            "index": 9,
+            "characters": [],
+            "waited": true,
+            "returned": true,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1
+          },
+          {
+            "index": 10,
+            "characters": [],
+            "waited": false,
+            "returned": true,
+            "task_active": 0,
+            "busy": 0,
+            "write_count": 5
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": null,
+        "terminated": true,
+        "busy_cleared": true,
+        "task_deleted": true,
+        "phase_object_sha256": [
+          "c3ef6586acbd0bc26dc9a4b8488396d7353fc3cedd63902998fdbc461ba415b9",
+          "f26bf8c2632a1fc3d05bc0bb9c231d734df178842108d2ac77b11dcce3f22e64",
+          "7533b2f418c9b3b8b9c68eb35f6d6fdd7ed2228a1a7acade1596e2a483d64d0c",
+          "faeb5f3d303bd03e9fc609cb04ae8f8a0140815f003ec16cb02818ffff865632",
+          "ed602289c4a239b4243dad5e7accaf102856917a8348fdd7dca0f23d8483f8e5",
+          "3f9e01cd337ce9543f4de6be4e3e6c231dc495edf9808c784676544f5e077344",
+          "82cdae632e52e93e7a003e01ce5408fa75a8ab4c7d19885e96c4fc92801a7bdb",
+          "48d7bc7267aab7d3c7b13709a0c89c97ff256bbfe4c4ebba7ca40d0766caf2a3",
+          "24e18a17b15ed33be5776fca32ec806ac7f3f56e633c33192b307acbd644a023",
+          "df3e31808c2ff2798d6e87c87b1ce561739b89494f613c31158c0f6c2d9fd7de",
+          "6ab8a1787e89326f5d6f24d29a690711dd668e29b6e69b8d1d9e19b3c8f47d90",
+          "5d7a7a79313a71b5c313328027becbd5a0ba8da289cfcd69c2df018c48a2ffd7",
+          "12974bcc2fff43d44a59cbfd4eb62f2fa7b7392e63d14c22612158f2530e9465",
+          "80ffa670ae0e366f4e4ca595096d71234a5271cf359d1209b560e41222ef4a34",
+          "8d8c068ce095d2b7dcec09c7d81353f01c6880f276abca4036d8352cb67ff7be",
+          "f44c7c4cfbcbe4483bd143e1c6282166603c90ccb7d060b0e74cb3706f93d531"
+        ],
+        "combined_write_identity": {
+          "size": 174853,
+          "sha256": "b76304f79b4368295e0f15e4cc1f5bbe5321867e135c1ecc99f627f2b543427d"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "d5b7398bcc5cb79f9a068813b487c23dbdd2db300c3d3a77b42fc8eaee5f6827"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "743d14fdda5af3a61402077775feaaa448fc6957c180d33cbf40ddf05c66dd12"
+        },
+        "callback_stack_bytes": [
+          4,
+          4,
+          156,
+          128,
+          252,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          236,
+          96,
+          96
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "no-reset-speed0",
+        "font": 4,
+        "speed": 0,
+        "initial_pointer": 0,
+        "initial_pool_byte": 165,
+        "skip_reset_control": true,
+        "initialization_writes": 1,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": false,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1,
+              7,
+              0,
+              8,
+              247
+            ],
+            "waited": false,
+            "returned": false,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 1155
+          }
+        ],
+        "characters": [
+          1,
+          7,
+          0,
+          8,
+          247
+        ],
+        "stop": {
+          "error": "未map read",
+          "read_fault": {
+            "address": 138295460,
+            "size": 4,
+            "site": 134229598
+          }
+        },
+        "terminated": false,
+        "busy_cleared": false,
+        "task_deleted": false,
+        "phase_object_sha256": [
+          "4b9c9ec5f3b22691044d979728f570f6f342d9e614181d85c49d4eca6ea140c7",
+          "dfb4d508febef85c2f164517d7f59665c693fde535a2d66a096ba2f8e51bf42f",
+          "f47a5fed7c6efd0b6a99016b43d598dcc9a80bf7d46fe9a6908b95d9e28e9e9b",
+          "850b029a7b2aa161f4ef0c72f3a60d85a3a15144f7f1c71150abaa25cb13a200",
+          "589d8988e701d04620694f9e31ba228ec44f46107aedecbbc041249259b88665"
+        ],
+        "combined_write_identity": {
+          "size": 172365,
+          "sha256": "34e689e457020d1948c8bbfa02fa7eb5417d55d4d722c1c82fdbe88610d908f0"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "86558cd17de7392546c1f78c8e504ffa244e810af17fd46b3882f01cdb40284f"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "d7df4827282c7d43fc38d40658a405de7b95b13dd209a1e96d0d4e77fc9a0130"
+        },
+        "callback_stack_bytes": [
+          4,
+          156,
+          128,
+          252,
+          236
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      },
+      {
+        "case": "no-reset-speed2",
+        "font": 4,
+        "speed": 2,
+        "initial_pointer": 0,
+        "initial_pool_byte": 165,
+        "skip_reset_control": true,
+        "initialization_writes": 1,
+        "font_pointer_written_by_initializer": true,
+        "all_printers_reset_by_saved_code": false,
+        "host_ram_mutations_between_phases": 0,
+        "explicit_entry_invocations_not_story_scheduler": true,
+        "polls": [
+          {
+            "index": 0,
+            "characters": [
+              1
+            ],
+            "waited": false,
+            "returned": false,
+            "task_active": 1,
+            "busy": 2,
+            "write_count": 198
+          }
+        ],
+        "characters": [
+          1
+        ],
+        "stop": {
+          "error": "未map read",
+          "read_fault": {
+            "address": 138295460,
+            "size": 4,
+            "site": 134229598
+          }
+        },
+        "terminated": false,
+        "busy_cleared": false,
+        "task_deleted": false,
+        "phase_object_sha256": [
+          "634cadac860f56dd44d0fd400c1575dc5214301f17f731339977becd38259a9b",
+          "cc5389b56f94d083d8c011e6b5383a311ce1995a2c014327345baf689d733403",
+          "57f316684afe7644a901876f0f55738bbbcf36f347095f3fe39ca667abcd233f",
+          "88158201f2d78820a9120617f5ddce8d0f7137ae47efe8749957090182310a7a",
+          "d174b16ba8011903fccc32ad9a8794500052bd299364b259bda9d12c8d5041e6"
+        ],
+        "combined_write_identity": {
+          "size": 136535,
+          "sha256": "e76e74b16723707d33a924a0e2b97b4fc7265ea76414144468f7d3d2fde276fe"
+        },
+        "final_pixels": {
+          "size": 3456,
+          "sha256": "46203bd3da902f80565f187ad7e6bc3e2e26a4f09a636b059897c7904dccf93d"
+        },
+        "final_other_printer_bytes": {
+          "size": 992,
+          "sha256": "d7df4827282c7d43fc38d40658a405de7b95b13dd209a1e96d0d4e77fc9a0130"
+        },
+        "callback_stack_bytes": [
+          4,
+          156,
+          128,
+          252,
+          236
+        ],
+        "return_sp_r4_r11_proven_when_returned": true,
+        "native_scheduler_observed": false,
+        "normal_story_observed": false,
+        "ring_acquisition_accepted": false,
+        "bios_execution_observed": false,
+        "dma_execution_observed": false
+      }
+    ],
+    "initialization_signature": {
+      "font_initializer": 135236137,
+      "font_setter": 134229021,
+      "printer_reset": 134229033,
+      "gfonts": 50347472,
+      "table": 138293480,
+      "printer_pool": 33685552,
+      "validated_saved_nodes": 18
+    },
+    "font_pointer_host_initialization_removed": true,
+    "inactive_printer_host_initialization_removed": true,
+    "explicit_font_initializer_executed": true,
+    "explicit_printer_reset_executed": true,
+    "normal_story_initializer_reachability_proven": false,
+    "remaining_initial_input_assumptions": [
+      "config0203D000",
+      "global0300504C->object02010000",
+      "window/resource queue allocation",
+      "script context and literal source entry"
+    ],
+    "task_full_boundary": {
+      "producer_returns": 1,
+      "script_command_returns": 0,
+      "busy_after": 2,
+      "task_allocated": false,
+      "normal_play_reproduction_observed": false,
+      "liveness_proven": false
+    },
+    "rom_changes": 0,
+    "candidate_reconstructions": 0,
+    "new_window_bytes": 0,
+    "new_node_count": 0,
+    "new_emulator_processes": 0,
+    "saved_nodes_redecoded": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "accepted_native_cases_replayed": 0,
+    "bios_execution_observed": false,
+    "dma_execution_observed": false,
+    "native_scheduler_observed": false,
+    "normal_story_observed": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "next_entrypoints": [
+      135236137,
+      134229033,
+      134656205
+    ],
+    "boundary_ja": "2つの明示初期化entryを順に呼び、その出力RAMでproducer/state012/textを実行。入口の通常story到達とconfig/global/window資源の通常供給は未証明。Ring受入ではない。",
+    "export_manifest": {
+      "size": 61607,
+      "sha256": "5c641b7c886f12646f5344934af7312ba317066d8c77ae3b1a2174c753cc22ff"
+    }
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_bios_record.py": {
+      "size": 11374,
+      "sha256": "448e17fa82fbe031d9202fd6045315e88c590202ae4f3c4f864283052a414ffa"
+    },
+    "scripts/pr16_ring_bootstrap_lifecycle_contracts.py": {
+      "size": 12804,
+      "sha256": "3e9afa175d87e5b61070f2545d43ed25931835828517f72d1cc871f0753f0cba"
+    },
+    "tests/test_pr16_ring_bootstrap_lifecycle_contracts.py": {
+      "size": 5149,
+      "sha256": "7c9e92bd167266813c1cf841e011dc1430d4becec6c7387418aa278520face7d"
+    },
+    ".github/workflows/pr16-ring-bootstrap-lifecycle-contracts.yml": {
+      "size": 1768,
+      "sha256": "ddb72924ab7a5d22777770cfa80fd6e91a4e8b9670c8e858f5ca8f69cade2206"
+    },
+    "content/modernization/pr16_ring_text_lifecycle_contracts.json": {
+      "size": 181998,
+      "sha256": "c4c7f441a6eed8e0028aa7bd093250600bb721ccf1608299d3c7d2a9c9a6b4a8"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_text_lifecycle_contracts.py": {
+      "size": 17669,
+      "sha256": "833a3a7ef0db82072558bea01bfd425dad42791078c69fd1a6e5d4c58732ef91"
+    },
+    "tests/test_pr16_ring_text_lifecycle_contracts.py": {
+      "size": 7480,
+      "sha256": "b395928e9e954185fe95d1e6b04a996354fac691a26160d38f825131d894bfc2"
+    },
+    "scripts/pr16_ring_message_lifecycle_contracts.py": {
+      "size": 13382,
+      "sha256": "cd6067288e62d34f25f4c2351f22fd23a78f98cf3eadac618ccc248e92b0de98"
+    },
+    "tests/test_pr16_ring_message_lifecycle_contracts.py": {
+      "size": 6771,
+      "sha256": "4f653f3f62dba1c048fa02211ff7868346c310477e8ea6b76c118aa504223f94"
+    },
+    "scripts/pr16_ring_glyph_contracts.py": {
+      "size": 17097,
+      "sha256": "31dbf07bae6c11c0a8caf6c7e44e1121551e1193e2b22c9e018ae6e5ec97df7f"
+    },
+    "scripts/pr16_ring_state01_handoff_contracts.py": {
+      "size": 10280,
+      "sha256": "44731bb0268cf2d948e9be26d7da8acbc30dc79755b9825477d66b2c0408ee4c"
+    },
+    "tests/test_pr16_ring_state01_handoff_contracts.py": {
+      "size": 5217,
+      "sha256": "cd81d3c8fb751eb20beb0dd01f2d6dff0397def5d88f7739b9906f0a699b08e3"
+    },
+    "scripts/pr16_ring_state0_completion_contracts.py": {
+      "size": 17674,
+      "sha256": "d94d9ff16f9a12acbca836c0039c0d56d26109c29da1f46877d7d78f6f6c222f"
+    },
+    "tests/test_pr16_ring_state0_completion_contracts.py": {
+      "size": 6454,
+      "sha256": "c1b139f68503279239278bb27f443a97c54c97ab41aadab70eca5b3bdaffe318"
+    },
+    "content/modernization/pr16_ring_state1_completion_contracts.json": {
+      "size": 176942,
+      "sha256": "45b37f6952edd7d919468ed57bec976e28e9891081261a799fff650f88885628"
+    },
+    "scripts/pr16_ring_state0_palette_supply.py": {
+      "size": 12006,
+      "sha256": "a1e0935c85579eb210ec708511a889ae5255b66e05c8bd18bd07faa7f8bdb49a"
+    },
+    "tests/test_pr16_ring_state0_palette_supply.py": {
+      "size": 5586,
+      "sha256": "8045eb0078986abf3c147e4d36946049ff01e65d18c914086167a47247691297"
+    },
+    "scripts/pr16_ring_state1_completion_contracts.py": {
+      "size": 12840,
+      "sha256": "e6467bba2ce29f2842d4af0acab2cabcdaf060cf18199eb673899b932899a895"
+    },
+    "tests/test_pr16_ring_state1_completion_contracts.py": {
+      "size": 6288,
+      "sha256": "289f0c71b7c9ce0ce74e5b93d41c075e481a915d6d4f6c00ce8b62712f0e2a72"
+    },
+    "content/modernization/pr16_ring_bios_selector_continuation.json": {
+      "size": 27869,
+      "sha256": "198307e12cf284df360d8a10376201e9cef7d21704f3c4f978ae85801377ad5d"
+    },
+    "content/modernization/pr16_ring_bios_memory_contracts.json": {
+      "size": 63386,
+      "sha256": "dd255b88fc1495361b88e4ec52438cbb1788fc919b8bb6f5a1b06ac104586cef"
+    },
+    "scripts/pr16_ring_bios_selector_continuation.py": {
+      "size": 11026,
+      "sha256": "f38ceb78946b55e67e149f42b04e8124ad6d39caf75672636709bf6a8e03e706"
+    },
+    "tests/test_pr16_ring_bios_selector_continuation.py": {
+      "size": 5993,
+      "sha256": "3bf1ff6fbb61d6dd2bcc1a722f583df7b28bd74bcb16a3879efb500707208c4d"
+    },
+    "scripts/pr16_ring_bios_memory_contracts.py": {
+      "size": 15595,
+      "sha256": "1f38612b3cd565575db321b2488a30334c1d5fd9ac0573295911bb417733a394"
+    },
+    "tests/test_pr16_ring_bios_memory_contracts.py": {
+      "size": 9298,
+      "sha256": "c263f42264dca1ab489175e35e956d078be3235d81df900a6a6229531521716d"
+    },
+    "scripts/pr16_ring_owner_frontier.py": {
+      "size": 12711,
+      "sha256": "e7505577537eba4df7a5ee641836b56f212706473eb99ef139a60d22141b9e65"
+    },
+    "scripts/pr16_ring_message_window_contracts.py": {
+      "size": 28110,
+      "sha256": "2a5d6bfb8db291c35fe7223fb3b080c58eb4511a12a550fed32220ec396f3fad"
+    },
+    "content/modernization/pr16_ring_message_window_contracts.json": {
+      "size": 769261,
+      "sha256": "3b00f06261173520276abd3f19e2cc2b27e7f5e59b26b243c8ab720cd66f5f82"
+    },
+    "scripts/pr16_ring_message_tile_leaves.py": {
+      "size": 7532,
+      "sha256": "4e829bf29e22277f8b0ddd646218361442ba26f42531f96f33f8cda792c91b70"
+    },
+    "content/modernization/pr16_ring_message_window_dependencies.json": {
+      "size": 86186,
+      "sha256": "fd912ea2c0404f78c4ed94513e985d9be5622a49d9f8a2d9b9a298e9bff4f125"
+    },
+    "scripts/pr16_ring_message_window_dependencies.py": {
+      "size": 7764,
+      "sha256": "ff56381bc31e886629716e69074e9439e936ec856cf60fa9f432e4360e0d26cd"
+    },
+    "content/modernization/pr16_ring_message_window_frontier.json": {
+      "size": 27825,
+      "sha256": "5ad35e199622e777624a482def01cc05e4ba468dbcecdd369e3671a95ce90120"
+    },
+    "scripts/pr16_ring_message_window_frontier.py": {
+      "size": 8874,
+      "sha256": "879bde66b1985a483810a00a483636c9bba2ec1c4b8429ba6a42a4b910c07f54"
+    },
+    "content/modernization/pr16_ring_message_task_checkpoint.json": {
+      "size": 11900,
+      "sha256": "cf971cfb7f5bdb597ca832c6e766db5cb168e3094436b9d919e81ab0a05ac10d"
+    },
+    "scripts/pr16_ring_message_task_contracts.py": {
+      "size": 28265,
+      "sha256": "6e575d79e5ec695f3fafc491cfbe13d47b705591bba8df9f57a368fa7f77124f"
+    },
+    "content/modernization/pr16_ring_message_task_contracts.json": {
+      "size": 1547055,
+      "sha256": "e585b13edd9ecb20de1ac313dfb33d7588c97ceec9e358a2b89741150c86a0e6"
+    },
+    "content/modernization/pr16_ring_message_window_bytes.json": {
+      "size": 186628,
+      "sha256": "bb5068bc9259c93982d03d84455cc4281c1d45d7f0bf466cb024cfe60fa13456"
+    },
+    "scripts/pr16_ring_message_window_bytes.py": {
+      "size": 7253,
+      "sha256": "b69191907b394aee845529a709146450ea7ba32677e9c38bb798e27265ff0e32"
+    },
+    "content/modernization/pr16_ring_message_task_callees.json": {
+      "size": 58019,
+      "sha256": "55e198114931889645456a57b2f76d38b6c911dc962ede062e5d2f9dd43c2b07"
+    },
+    "scripts/pr16_ring_message_task_callees.py": {
+      "size": 7920,
+      "sha256": "02b09cc6f87c46891857f465de129d7fe0631677a2ba075f895e22e9db85e79d"
+    },
+    "content/modernization/pr16_ring_message_task_frontier.json": {
+      "size": 36672,
+      "sha256": "14db168d3a2834b7317b07666840f7a53c22dea716f4702a6bf785ee41bd5428"
+    },
+    "scripts/pr16_ring_message_task_frontier.py": {
+      "size": 11023,
+      "sha256": "281514fa091e8a6082a37024fd6aa54869ff39b996ef15517e7132ce750322ee"
+    },
+    "content/modernization/pr16_ring_message_owner_contracts.json": {
+      "size": 1333833,
+      "sha256": "d7e02206e9e83e14ddcbcf8c1b9cd73c2a5b0237fb2f13f3e780f631f56eef89"
+    },
+    "scripts/pr16_ring_message_owner_contracts.py": {
+      "size": 24057,
+      "sha256": "f5822ffa3cbac2bdd9001f12d1cced8f42b2df315ea74e3c57b63eb88c7966d1"
+    },
+    "content/modernization/pr16_ring_message_owner_frontier.json": {
+      "size": 23137,
+      "sha256": "b91103a45857b814871816eb9169d751cbe02c2626e5d3b2712736966057e3a6"
+    },
+    "scripts/pr16_ring_message_owner_frontier.py": {
+      "size": 10397,
+      "sha256": "14d9c4f97f302c216b320c49ecc12920978d0ee7756a9949e64067496b20b068"
+    },
+    "scripts/pr16_ring_text_audio_sequence.py": {
+      "size": 14986,
+      "sha256": "b84b1a14ae199469ff3a35c21d57bedd0b9d49e7a1f9d1cd802020159ecfbc8b"
+    },
+    "scripts/pr16_ring_audio_tail_contracts.py": {
+      "size": 16143,
+      "sha256": "b80b111cefa095b5b361ebdacbf57dc9be9d393c08cfc28a002573ead960f302"
+    },
+    "scripts/pr16_ring_audio_tail_bytes.py": {
+      "size": 8748,
+      "sha256": "715af133808eda28a035eebb0791f92858183529dec8582711a05a7d372a6701"
+    },
+    "scripts/pr16_ring_audio_output_contracts.py": {
+      "size": 17087,
+      "sha256": "8229621c883fa7f9449341a976b58e6d455737b0ba65b1b89038ab368c0a9b2d"
+    },
+    "scripts/pr16_ring_audio_leaf_bytes.py": {
+      "size": 9771,
+      "sha256": "118b073a6b24508e6d2ecfdf4cb685d459ab874c49bb699c8094bb8c10352fca"
+    },
+    "scripts/pr16_ring_audio_boundary_contracts.py": {
+      "size": 15002,
+      "sha256": "78d711fe93798cb2d697aac35106c3fcb27d75dffedc1e6d6376394a3dde4390"
+    },
+    "scripts/pr16_ring_renderer_output_contracts.py": {
+      "size": 12319,
+      "sha256": "6ec0c16f167e0520b423a7c98fad18f194a8b7002b43a196f84ac5344e4fc967"
+    },
+    "scripts/pr16_ring_cursor_scroll_contracts.py": {
+      "size": 18092,
+      "sha256": "1c4cf92fd6fa819bac2a9ae9186e4fd3bcec89c203e38c1114a77d77e73d509a"
+    },
+    "scripts/pr16_ring_output_leaf_bytes.py": {
+      "size": 7517,
+      "sha256": "22f6b9434ae223842c56ed6dd84347a7b4f548303a6e053230e5e92175a7afc1"
+    },
+    "scripts/pr16_ring_output_frontier.py": {
+      "size": 7759,
+      "sha256": "73675380b1a0f619baa1ffc0fc6abf71581537bdaf0858f62a42293ca171bcc7"
+    },
+    "scripts/pr16_ring_control_contracts.py": {
+      "size": 17075,
+      "sha256": "11c7824b5e2946453581bc812870f723d4aa16962039052c1b96fced027aa875"
+    },
+    "scripts/pr16_ring_control_frontier.py": {
+      "size": 8469,
+      "sha256": "75a81f81b44bf0d543fc1ecbb07a6d99380a9042005fbd5ec88e8b5ae313af32"
+    },
+    "scripts/pr16_ring_text_state_contracts.py": {
+      "size": 16500,
+      "sha256": "1f6be4b834c8d1a08229c72231846aa2faee6fb503ae86c553980aaf26e9efdb"
+    },
+    "scripts/pr16_ring_explicit_text_machine.py": {
+      "size": 3622,
+      "sha256": "a59059be50cb79b0b2bd0d7fe3b0d331fc51127639fc1b2efb369a06693edfed"
+    },
+    "scripts/pr16_ring_character_frontier.py": {
+      "size": 9313,
+      "sha256": "de6180c89376b2a5d121b2734ccdd2b55280322885183d73c0ba4b7cdb666843"
+    },
+    "scripts/pr16_ring_font_states.py": {
+      "size": 12093,
+      "sha256": "60da75307d3fa2e69b7c2c23f668b12b7a64b60d790671f06cbf5496cafa0fe7"
+    },
+    "scripts/pr16_ring_font_frontier.py": {
+      "size": 11134,
+      "sha256": "d7dcbf3732ee6e6f33bae6777320b6b9fa4d2151ced1b9238a6a77115910cda5"
+    },
+    "scripts/pr16_ring_font_bindings.py": {
+      "size": 13242,
+      "sha256": "6693f5bd5fd8d8a070965fc77a66b676b6cf4e7f5e78c04cb0d9a137e2d00983"
+    },
+    "scripts/pr16_ring_font_bytes.py": {
+      "size": 7719,
+      "sha256": "c00b87bd69d6f47cb5c05089b85793b020857955b8ce95965ccef7842cf35e2f"
+    },
+    "scripts/pr16_ring_ui_leaf_contracts.py": {
+      "size": 15732,
+      "sha256": "2ae5cd8caadc44c4ad0b077ee78e564c44d31f13c6600f443a4c6a7ccc23475c"
+    },
+    "scripts/pr16_ring_ui_leaf_bytes.py": {
+      "size": 7112,
+      "sha256": "a0e190b7ac55f3a3e682b5d22b51133a87cc0feb1786f29262b08196df53d2a7"
+    },
+    "scripts/pr16_ring_ui_contracts.py": {
+      "size": 21972,
+      "sha256": "fb1625164a039e270da8b02d3be2081b304c3a98ab533a6043aff7e14eda0529"
+    },
+    "scripts/pr16_ring_ui_runtime_bytes.py": {
+      "size": 7582,
+      "sha256": "dceebb0c07beb1f1248ee710f1d035c01b19237c4fc77123e75e99424627cf8b"
+    },
+    "scripts/pr16_ring_ui_delegates.py": {
+      "size": 8013,
+      "sha256": "df322f8e399d7babccd486072b0c6b02542e868bbae29602e0c6c73da5f18db5"
+    },
+    "scripts/pr16_ring_ui_frontier.py": {
+      "size": 8819,
+      "sha256": "527db74169fb6c50d649898552dfd2ec6301392128d2ea8b482733ae39beee1f"
+    },
+    "scripts/pr16_ring_ui_owners.py": {
+      "size": 12961,
+      "sha256": "6bb82a9057e01845ef1f4efcce8e41d77856f1cf74c5fe601af9b9b509566bbf"
+    },
+    "scripts/pr16_ring_resource_tail.py": {
+      "size": 7535,
+      "sha256": "f4988540601c2eaa63876d6ee981a362e8614d0aaa11ca4a791e68f2b6100b81"
+    },
+    "content/modernization/pr16_ring_resource_tail.json": {
+      "size": 53805,
+      "sha256": "dc74f564a59f4b72a39f7c4a1a6fab0251b6c225ccd4f326b28123407cb618a3"
+    },
+    "scripts/pr16_ring_resource_frontier.py": {
+      "size": 8691,
+      "sha256": "12bad41bba1c269433134d204f4bae896f79b417900b6c70ea56893fa58e4d88"
+    },
+    "scripts/pr16_ring_remaining_frontier.py": {
+      "size": 12375,
+      "sha256": "3aa490bc6a4615a447f996df72e2ea678f41ed585076d3e2ddc3d572cd6f94bd"
+    },
+    "scripts/pr16_ring_effective_frontier.py": {
+      "size": 10560,
+      "sha256": "31303cea8148726c922f40f41231aa588b249796c08e04d9b41225150f25759e"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    },
+    "scripts/pr16_ring_resource_contracts.py": {
+      "size": 20140,
+      "sha256": "c575f1a803acd3c138092487957239e95d9587f20209b5668ed23f293381e700"
+    },
+    "scripts/pr16_ring_dispatch_contracts.py": {
+      "size": 14635,
+      "sha256": "55a743873e6c3409e65813d4a2a474f194827ccb440587595c86bda291d6b2f1"
+    },
+    "scripts/pr16_ring_gate_contracts.py": {
+      "size": 15264,
+      "sha256": "681de11dd4404608122b3069321c60f2f6331b0f04c18d75d87aef208ac383a7"
+    },
+    "scripts/pr16_ring_caller_contracts.py": {
+      "size": 17412,
+      "sha256": "bde459691a9b1fdf1fa239a4df1f12c1ae3e3d16f8405634d46bd88e2290907f"
+    },
+    "scripts/pr16_ring_string_machine.py": {
+      "size": 2000,
+      "sha256": "1db71b3632a95a5a676a4315ccac2dae51ba6a3d80a9d4be42916145703a6581"
+    },
+    "scripts/pr16_ring_contract_machine.py": {
+      "size": 8710,
+      "sha256": "e48dfc6e12913c93efc9ee54d26117fc3082cf7aeb304df90bbae2438a83775b"
+    },
+    "scripts/pr16_ring_saved_contracts.py": {
+      "size": 15079,
+      "sha256": "1fe5c750ebc8be8faf46915f0e172706a35bd4313bb05bfec621af3760e50620"
+    },
+    "scripts/pr16_ring_owner_context.py": {
+      "size": 13828,
+      "sha256": "e4ceb839cb6f9e3676b50549471512ae18698b9d4a4428f5577992758e38c1f0"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    },
+    "scripts/pr16_ring_text_export_recovery.py": {
+      "size": 12559,
+      "sha256": "39156d99a541fe6df74d264df0f08d3f014c3558edff1fa30d576887a97da595"
+    },
+    "scripts/pr16_ring_remaining_contracts.py": {
+      "size": 11862,
+      "sha256": "afb8dda5c8161f8833f4551f299981bdf177b57d4840e2c166945e5e1e4a74bd"
+    },
+    "infra/toolchain_manifest.json": {
+      "size": 33230,
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 24,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35313281916,
+      "head_sha": "66cbb6a47e4a4e50ba79b3068164331b5b96de25",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35313827903,
+      "name": "p03-forgetting-ci",
+      "head_sha": "da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35313827902,
+      "name": "source-validation",
+      "head_sha": "da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35313824349,
+      "name": "p03-forgetting-ci",
+      "head_sha": "da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35313824566,
+      "name": "font初期化から非空message終了まで同一RAMを検証",
+      "head_sha": "da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35313824362,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35313824444,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35313824366,
+      "name": "source-validation",
+      "head_sha": "da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35313345509,
+      "name": "source-validation",
+      "head_sha": "a495cf0283f221d4c01c5b346e5614e71c9e2af2",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35313345571,
+      "name": "p03-forgetting-ci",
+      "head_sha": "a495cf0283f221d4c01c5b346e5614e71c9e2af2",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35313285952,
+      "name": "p03-forgetting-ci",
+      "head_sha": "66cbb6a47e4a4e50ba79b3068164331b5b96de25",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35313285985,
+      "name": "source-validation",
+      "head_sha": "66cbb6a47e4a4e50ba79b3068164331b5b96de25",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35313282047,
+      "name": "source-validation",
+      "head_sha": "66cbb6a47e4a4e50ba79b3068164331b5b96de25",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35313281917,
+      "name": "p03-forgetting-ci",
+      "head_sha": "66cbb6a47e4a4e50ba79b3068164331b5b96de25",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35313281893,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "66cbb6a47e4a4e50ba79b3068164331b5b96de25",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35313281916,
+      "name": "producerから非空文字列描画・終了まで同一RAMを検証",
+      "head_sha": "66cbb6a47e4a4e50ba79b3068164331b5b96de25",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35313281854,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "66cbb6a47e4a4e50ba79b3068164331b5b96de25",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35312607076,
+      "name": "source-validation",
+      "head_sha": "12e09aefa55db37d2bd4723bbada21fc3f027972",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35312607084,
+      "name": "p03-forgetting-ci",
+      "head_sha": "12e09aefa55db37d2bd4723bbada21fc3f027972",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35312553482,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ad2f9ee67708d724eadb60da10f90ae34e6fcc51",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35312553404,
+      "name": "source-validation",
+      "head_sha": "ad2f9ee67708d724eadb60da10f90ae34e6fcc51",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

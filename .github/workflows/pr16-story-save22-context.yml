@@ -1,0 +1,67 @@
+name: pr16-story-save22-context
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-save22-context.yml]
+permissions:
+  contents: read
+concurrency:
+  group: pr16-story-save22-context
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  context:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: 限定source guardと軽量task graph
+        run: |
+          set -euo pipefail
+          python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_learnset_runtime_record as g; g.START='98052e7f7671e401124628591e98ea10e91c722e'; g.CODE={'.github/workflows/pr16-story-save22-context.yml'}; g.OWNED=set(); g.guard()"
+          python3 -B scripts/validate_task_graph.py --check
+      - name: tracked textのみを固定HEADで採取（native・ROM生成・既存試験は実行しない）
+        run: |
+          python3 -B - <<'PY'
+          import hashlib, json, os, pathlib, subprocess, zipfile
+          root=pathlib.Path('.')
+          out=root/'.local/pr16-story-save22-context'
+          out.mkdir(parents=True)
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          fixed={'AGENTS.md','CHATGPT_RESUME.md','state/source-lock.json','tasks/task_graph.json','design/tasks_next.md','design/run_log.md','design/version_log.md','design/active_play_baseline.md'}
+          selected=[]
+          for name in names:
+              p=pathlib.PurePosixPath(name)
+              ok=name in fixed or p.name=='AGENTS.md'
+              ok|=name.startswith(('scripts/','tools/','tests/')) and p.suffix in {'.py','.c','.h'}
+              ok|=name.startswith('content/modernization/') and p.suffix=='.json'
+              ok|=name.startswith('config/') and p.suffix=='.json'
+              ok|=name.startswith('docs/PR16') and p.suffix=='.md'
+              ok|=name.startswith('.github/workflows/pr16-') and p.suffix=='.yml'
+              if ok:
+                  file=root/name
+                  if file.is_symlink():
+                      raise ValueError('symlinkは採取しない')
+                  data=file.read_bytes()
+                  data.decode('utf-8')
+                  selected.append((name,data))
+          manifest={name:{'size':len(data),'sha256':hashlib.sha256(data).hexdigest()} for name,data in selected}
+          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name,data in selected:
+                  z.writestr(name,data)
+          receipt={'source_head':os.environ['GITHUB_SHA'],'base_head':'98052e7f7671e401124628591e98ea10e91c722e','scope':'TRACKED_TEXT_CONTEXT_ONLY_NOT_ACCEPTANCE','native_processes':0,'accepted_case_reruns':0,'members':manifest}
+          (out/'receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
+          print('固定source採取:',len(selected),'files; native=0; ROM/save収録=0')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-story-save22-context
+          path: .local/pr16-story-save22-context
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error

@@ -1,0 +1,170 @@
+{
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "changes": [
+    {
+      "accepted": true,
+      "address": 134873199,
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_LITERAL_U32_GPU_AND_THUMB_CALLBACK_CROSS_FIELD",
+      "evidence": [
+        {
+          "typed_origins_reference_chain_witness": 0
+        }
+      ],
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "owner_candidates": [],
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "sha256": "34ab26c2eaf2a22455a60b55e8b489ed9a07e9939dd3e68c1bd9007fe5eb8a9d",
+      "size": 4,
+      "target": 167695616
+    },
+    {
+      "accepted": true,
+      "address": 136091369,
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_THUMB_BL_TAIL_AND_ADD_HEAD",
+      "evidence": [
+        {
+          "typed_origins_reference_chain_witness": 1
+        }
+      ],
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "owner_candidates": [],
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "sha256": "9bd8fd67ee8be1be8cdeb36dba8bc477c063d5b9956f73eb37da1012b5cd6258",
+      "size": 4,
+      "target": 167700214
+    }
+  ],
+  "claims": {
+    "accepted_measurement_replays": 0,
+    "accepted_test_reruns": 0,
+    "actual_gpu_flush_or_irq_executed": false,
+    "actual_runtime_execution_observed": false,
+    "all_alternative_readers_excluded": false,
+    "conditional_finite_reader_only": true,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "floating_point_callee_body_executed": false,
+    "formal_classification_accepted": true,
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "indirect_reference_completeness_claimed": false,
+    "native_processes": 0,
+    "natural_entry_reachability_proven": false
+  },
+  "classified": 787,
+  "donor_safe_bytes": 0,
+  "inherited_candidates": 874,
+  "inherited_classified": 785,
+  "inherited_unclassified": 89,
+  "measurement_identity": {
+    "sha256": "eee0837aa8f925a1b150c687a4124bee91710dc4c9eff03b3e6e6e183f2d30ea",
+    "size": 6878
+  },
+  "measurement_path": "content/modernization/pr16_typed_origins_checkpoint.json",
+  "measurement_replays": 0,
+  "namespace": "typed_origins_reference_chain",
+  "native_processes": 0,
+  "newly_classified": 2,
+  "old_scope_test_reruns": 0,
+  "parent_audit_identity": {
+    "sha256": "f88d65c235eda330aef618776bff97037d5ca2c4c9fbea53798217dcb5bda669",
+    "size": 5408731
+  },
+  "proof_identity": {
+    "sha256": "761b8488dcdfcdea82373f050356f247297befecf7fee5e4c871029339182303",
+    "size": 19614
+  },
+  "proof_path": "content/modernization/pr16_typed_origins_evidence/reader-profiles.json",
+  "rom_reconstructions": 0,
+  "schema_version": 1,
+  "status": "ACCEPTED_TWO_CONDITIONAL_TYPED_ORIGINS",
+  "unclassified": 87,
+  "witnesses": [
+    {
+      "address": 134873199,
+      "conditions": [
+        {
+          "caller_condition": "実argument blockへの直接entry。入口のcaller-saved/NZCVは未定義。自然entryや全初期化処理の証明ではない。",
+          "consumer_condition": "固定JP symbolの実API本体を解釈。GPUは最初のu16 buffer storeで打切り、vblankは実帰還まで。IRQ/GPU flushは非実行。",
+          "stop": "first_actual_u16_buffer_store"
+        },
+        {
+          "caller_condition": "実argument blockへの直接entry。入口のcaller-saved/NZCVは未定義。自然entryや全初期化処理の証明ではない。",
+          "consumer_condition": "固定JP symbolの実API本体を解釈。GPUは最初のu16 buffer storeで打切り、vblankは実帰還まで。IRQ/GPU flushは非実行。",
+          "stop": "actual_callback_setter_return"
+        }
+      ],
+      "coverage": [
+        {
+          "container_address": 134873196,
+          "container_offset": 3,
+          "container_size": 4,
+          "hit_offset": 0,
+          "size": 1
+        },
+        {
+          "container_address": 134873200,
+          "container_offset": 0,
+          "container_size": 4,
+          "hit_offset": 1,
+          "size": 3
+        }
+      ],
+      "id": 0,
+      "kind": "literal_u32_gpu_and_thumb_callback_cross_field",
+      "profile_identities": [
+        {
+          "sha256": "cbaf2c2e83d743e5e721f6af8eecb35ebbc85746a08743d2af5facf4bc7f4cb4",
+          "size": 5834
+        },
+        {
+          "sha256": "dd3c7ff3ee80bdebae5fc9cebdc5710fdb6c99f22a5be3188173bffb7cf721ba",
+          "size": 3595
+        }
+      ],
+      "run_id": 38092235316,
+      "size": 4,
+      "source_head": "85f9700fe8725322eb28c5bb1be8ec3af739c50b"
+    },
+    {
+      "address": 136091369,
+      "conditions": [
+        {
+          "conditions_ja": "公開__subsf3の直接entry。最初のunpack callは同期AAPCS正常帰還条件。callee body/出力は実行せず、復帰後はADD SP,#52直後で停止してRAMも出力も読まない。自然呼出/浮動小数点演算結果を主張しない。",
+          "stop": 136091374
+        }
+      ],
+      "coverage": [
+        {
+          "container_address": 136091368,
+          "container_offset": 1,
+          "container_size": 4,
+          "hit_offset": 0,
+          "size": 3
+        },
+        {
+          "container_address": 136091372,
+          "container_offset": 0,
+          "container_size": 2,
+          "hit_offset": 3,
+          "size": 1
+        }
+      ],
+      "id": 1,
+      "kind": "thumb_bl_tail_and_add_head",
+      "profile_identities": [
+        {
+          "sha256": "d917e71951ea96c90e94871f0e5c7c1db58140fe8a6504eaebff247195d4abea",
+          "size": 3719
+        }
+      ],
+      "run_id": 38092235316,
+      "size": 4,
+      "source_head": "85f9700fe8725322eb28c5bb1be8ec3af739c50b"
+    }
+  ]
+}

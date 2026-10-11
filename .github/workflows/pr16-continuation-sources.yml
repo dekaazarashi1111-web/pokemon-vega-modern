@@ -1,0 +1,60 @@
+name: pr16-continuation-sources
+run-name: PR16 residual implementation source snapshot (no ROM or save)
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-continuation-sources.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sources:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Export only already tracked implementation text for exact-HEAD review
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, pathlib, subprocess, zipfile
+          root = pathlib.Path('.')
+          out = root / '.local/pr16-continuation-sources'
+          out.mkdir(parents=True, exist_ok=True)
+          tracked = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          prefixes = ('scripts/', 'tools/', 'tests/', 'docs/', 'design/', 'src/', 'include/', 'patches/', '.github/workflows/', 'infra/')
+          suffixes = {'.py', '.md', '.txt', '.json', '.yml', '.yaml', '.c', '.h', '.s', '.S', '.inc', '.sh', '.toml', '.ld', '.asm'}
+          special = {'AGENTS.md', 'README.md', 'Makefile', '.gitignore', 'MASTER_PLAN.md'}
+          bindings = {}
+          with zipfile.ZipFile(out / 'source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for name in sorted(filter(None, tracked)):
+                  path = root / name
+                  if name not in special and not (name.startswith(prefixes) and path.suffix in suffixes):
+                      continue
+                  if not path.is_file() or path.is_symlink() or path.stat().st_size > 12000000:
+                      continue
+                  raw = path.read_bytes()
+                  try:
+                      raw.decode('utf-8')
+                  except UnicodeDecodeError:
+                      continue
+                  if b'\0' in raw:
+                      continue
+                  archive.writestr(name, raw)
+                  bindings[name] = {'size': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()}
+          (out / 'bindings.json').write_text(json.dumps(bindings, ensure_ascii=False, sort_keys=True, indent=2) + '\n')
+          (out / 'tested-head.txt').write_text(subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True))
+          (out / 'scope.txt').write_text('Tracked UTF-8 implementation and documentation only. No private environment restored; no ROM/save; no runtime acceptance.\n')
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-continuation-sources
+          path: .local/pr16-continuation-sources/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

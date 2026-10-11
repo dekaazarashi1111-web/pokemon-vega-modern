@@ -1,0 +1,67 @@
+{
+  "status": "PASS_HOST_ONLY_CLOSED_TIME_AND_WALK_ADAPTER",
+  "tests": 47,
+  "passed": 47,
+  "stdout": "",
+  "stderr": "test_cannot_supply_arbitrary_save2_exemption (test_pr16_story_clock.ClockTests.test_cannot_supply_arbitrary_save2_exemption) ... ok\ntest_empty_daycare_counter_wrap (test_pr16_story_clock.ClockTests.test_empty_daycare_counter_wrap) ... ok\ntest_friendship_wrap (test_pr16_story_clock.ClockTests.test_friendship_wrap) ... ok\ntest_ledger_day (test_pr16_story_clock.ClockTests.test_ledger_day) ... ok\ntest_ledger_day_serial_wrap (test_pr16_story_clock.ClockTests.test_ledger_day_serial_wrap) ... ok\ntest_ledger_minute (test_pr16_story_clock.ClockTests.test_ledger_minute) ... ok\ntest_ledger_no_rollover (test_pr16_story_clock.ClockTests.test_ledger_no_rollover) ... ok\ntest_ledger_only_daily_resets (test_pr16_story_clock.ClockTests.test_ledger_only_daily_resets) ... ok\ntest_normal_120_ticks (test_pr16_story_clock.ClockTests.test_normal_120_ticks) ... ok\ntest_observed_transition_step (test_pr16_story_clock.ClockTests.test_observed_transition_step) ... ok\ntest_reject_clock_backwards (test_pr16_story_clock.ClockTests.test_reject_clock_backwards) ... ok\ntest_reject_clock_bad_minute (test_pr16_story_clock.ClockTests.test_reject_clock_bad_minute) ... ok\ntest_reject_clock_bool_frames (test_pr16_story_clock.ClockTests.test_reject_clock_bool_frames) ... ok\ntest_reject_clock_saturation (test_pr16_story_clock.ClockTests.test_reject_clock_saturation) ... ok\ntest_reject_clock_short (test_pr16_story_clock.ClockTests.test_reject_clock_short) ... ok\ntest_reject_clock_too_fast (test_pr16_story_clock.ClockTests.test_reject_clock_too_fast) ... ok\ntest_reject_clock_unrelated_byte (test_pr16_story_clock.ClockTests.test_reject_clock_unrelated_byte) ... ok\ntest_reject_clock_zero_frames (test_pr16_story_clock.ClockTests.test_reject_clock_zero_frames) ... ok\ntest_reject_walk_bad_ledger_checksum (test_pr16_story_clock.ClockTests.test_reject_walk_bad_ledger_checksum) ... ok\ntest_reject_walk_callback (test_pr16_story_clock.ClockTests.test_reject_walk_callback) ... ok\ntest_reject_walk_coins (test_pr16_story_clock.ClockTests.test_reject_walk_coins) ... ok\ntest_reject_walk_counter (test_pr16_story_clock.ClockTests.test_reject_walk_counter) ... ok\ntest_reject_walk_expanded_flag (test_pr16_story_clock.ClockTests.test_reject_walk_expanded_flag) ... ok\ntest_reject_walk_flag (test_pr16_story_clock.ClockTests.test_reject_walk_flag) ... ok\ntest_reject_walk_flash (test_pr16_story_clock.ClockTests.test_reject_walk_flash) ... ok\ntest_reject_walk_friendship_without_wrap (test_pr16_story_clock.ClockTests.test_reject_walk_friendship_without_wrap) ... ok\ntest_reject_walk_hp (test_pr16_story_clock.ClockTests.test_reject_walk_hp) ... ok\ntest_reject_walk_lock (test_pr16_story_clock.ClockTests.test_reject_walk_lock) ... ok\ntest_reject_walk_map (test_pr16_story_clock.ClockTests.test_reject_walk_map) ... ok\ntest_reject_walk_money (test_pr16_story_clock.ClockTests.test_reject_walk_money) ... ok\ntest_reject_walk_occupied_daycare (test_pr16_story_clock.ClockTests.test_reject_walk_occupied_daycare) ... ok\ntest_reject_walk_party_egg (test_pr16_story_clock.ClockTests.test_reject_walk_party_egg) ... ok\ntest_reject_walk_position (test_pr16_story_clock.ClockTests.test_reject_walk_position) ... ok\ntest_reject_walk_save (test_pr16_story_clock.ClockTests.test_reject_walk_save) ... ok\ntest_reject_walk_save2_tail (test_pr16_story_clock.ClockTests.test_reject_walk_save2_tail) ... ok\ntest_reject_walk_storyvar (test_pr16_story_clock.ClockTests.test_reject_walk_storyvar) ... ok\ntest_reject_walk_unchecked_save1_tail (test_pr16_story_clock.ClockTests.test_reject_walk_unchecked_save1_tail) ... ok\ntest_rollover_hour (test_pr16_story_clock.ClockTests.test_rollover_hour) ... ok\ntest_rollover_minute (test_pr16_story_clock.ClockTests.test_rollover_minute) ... ok\ntest_rollover_second (test_pr16_story_clock.ClockTests.test_rollover_second) ... ok\ntest_rotation (test_pr16_story_clock.ClockTests.test_rotation) ... ok\ntest_route_reader_readonly (test_pr16_story_clock.ClockTests.test_route_reader_readonly) ... ok\ntest_route_reader_reject_write (test_pr16_story_clock.ClockTests.test_route_reader_reject_write) ... ok\ntest_sampling_phase_bound (test_pr16_story_clock.ClockTests.test_sampling_phase_bound) ... ok\ntest_stopped_time (test_pr16_story_clock.ClockTests.test_stopped_time) ... ok\ntest_unowned_transition_rejected (test_pr16_story_clock.ClockTests.test_unowned_transition_rejected) ... ok\ntest_walk_step (test_pr16_story_clock.ClockTests.test_walk_step) ... ok\n\n----------------------------------------------------------------------\nRan 47 tests in 0.027s\n\nOK\n",
+  "source_bindings": {
+    ".github/workflows/pr16-story-route-adapter.yml": {
+      "size": 1598,
+      "sha256": "eed295e6eea54e496d98e1f9f83b0ac46fda6cd38157db954c5cfedb6a669911"
+    },
+    "content/modernization/pr16_story_route_owners.json": {
+      "size": 59395,
+      "sha256": "0942a6bf5c8005d88089e6ce0c9083a0935bcf6ccb9ae017819e83780b2e3734"
+    },
+    "docs/PR16_STORY_ROUTE_ADAPTER_JA.md": {
+      "size": 4749,
+      "sha256": "27efae787e76c61b075826ea37f44485903dc49e7c7f7da3a0a8e30272988e75"
+    },
+    "scripts/pr16_story_clock.py": {
+      "size": 6766,
+      "sha256": "6159ed842023c0adca70a81c5c641f22a8aab45f0dda11fc0f169c45f829088c"
+    },
+    "scripts/pr16_story_route_owners.py": {
+      "size": 7612,
+      "sha256": "bb528c92356e351f1c6632b98da290b8b33b59894a21c9ef47e07cf231d16268"
+    },
+    "scripts/pr16_story_route_probe.py": {
+      "size": 7401,
+      "sha256": "b911c1f69be49dcf16da6b1cc7be76dcae0cf39dadf0846efcf2cb462f056125"
+    },
+    "scripts/pr16_story_route_session.py": {
+      "size": 2952,
+      "sha256": "b061fb536b7b26250445170f87b0a31f24a16e6772ee03ff6784336f13ded176"
+    },
+    "tests/test_pr16_story_clock.py": {
+      "size": 8741,
+      "sha256": "c213e44c6382e1bc45dc7a3a3df63f66de7916b3dd149608863645ed0994e55f"
+    },
+    "tools/mgba_pr16_story_route_observer.h": {
+      "size": 1093,
+      "sha256": "f5b20d53afb690457fa1a1d024cb374ca09d4d32a8b905844974e49d6bb79739"
+    }
+  },
+  "saved_native_original": {
+    "run_id": 37205641114,
+    "artifact_id": 11304159006,
+    "measurement": "fc4dc8bee0a10d105abd28b21fed656e0002e993",
+    "old_result": "DIAGNOSTIC_STOP_NOT_MILESTONE",
+    "reason": "new_route_event_observation",
+    "retained_step40": {
+      "walking_steps": 1,
+      "friendship_wrap": false,
+      "friendship": [],
+      "clock": {
+        "ticks": 52,
+        "minute_rollovers": 0,
+        "frame_budget": 56
+      },
+      "save_requested": false,
+      "milestone_reached": false
+    },
+    "native_reruns": 0
+  },
+  "runtime_battle_accepted": false,
+  "milestone_reached": false
+}

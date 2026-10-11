@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source_base_head": "76be98e3c13726db6d71797a6fef98dbfa243893",
+  "documentation_head": "8ab63c2465aabf6dd4e1ae0281ade439741092f3",
+  "measurement_origin": "local fixed artifact runtime, development only; formal Actions acceptance is separate",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842"
+  },
+  "runtime_archive": {
+    "id": 10898620034,
+    "size": 102586759,
+    "sha256": "a6aeccb72fa15411d956b418ca5f030aa5020a466303a25e0f8814ba2eeb5c4d"
+  },
+  "library": {
+    "size": 1968536,
+    "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d"
+  },
+  "local_development_executable": {
+    "size": 69856,
+    "sha256": "01b3af6e6862ff5cb4ef19eb8988dea6bdf518ebace9d9fc7c8a02cb3a66a27b"
+  },
+  "generated": {
+    "size": 34464,
+    "sha256": "26f78620f2f559fb392d878cce7406e0eff3daee1aa045ead9548d8f3da07c5f"
+  },
+  "unit_tests": 59,
+  "source_bindings": {
+    "tools/mgba_pr16_research_story.c": {
+      "size": 6485,
+      "sha256": "fe53e9fd5f7c00eade3ea0cba654d7e86aa35bced617510de4dd3aebc4c9f30a"
+    },
+    "scripts/pr16_research_story.py": {
+      "size": 9890,
+      "sha256": "0a034a82c6e1639de662191e5c4482ffc0ad9ae5ebb4bac5fcfd36f8cdd7db79"
+    },
+    "tests/test_pr16_research_story.py": {
+      "size": 5064,
+      "sha256": "48e3bd404336a608b53edbb8ff04ed778d99efe515111cfe017fc7f4353cd757"
+    }
+  },
+  "counts": {
+    "local_native_cores": 2,
+    "local_host_compile_attempts": 3,
+    "local_successful_host_compiles": 2,
+    "loader_failure_before_native": 1,
+    "local_arm_compiles": 0,
+    "local_production_rom_changes": 0,
+    "local_accepted_test_reruns": 0
+  },
+  "local_save": {
+    "size": 131088,
+    "sha256": "113f04e9e5222360687e28868fb78f394650aa5c85b357675737544d49ad346b"
+  },
+  "failures_preserved": [
+    "black-video.stdout.txt",
+    "black-video.stderr.txt",
+    "loader-failure.stderr.txt"
+  ],
+  "pre_execution_setup_observations": [
+    "First compile failed at generated.c:187: missing overlays/research_economy_v1/research_economy_v1.h. The exact tracked header was then fetched and Git-blob-SHA verified (8f98426943b06d5331ab88df2ff15d967d44451f); compile succeeded. The first stderr file was not retained.",
+    "PTY tool unavailable and executable/directory permission setup errors occurred before emulator execution.",
+    "Runtime ZIP has libmgba.so but no SONAME symlink; libmgba.so.0.10 -> libmgba.so restored without modifying library bytes."
+  ],
+  "upcoming_formal_native_reason": "Publish the complete new source, independently confirm this unaccepted story route and persist the generated Save in an Actions artifact. Do not rerun the old party0 first-Save/two-Continue acceptance or any RP/UI/BP matrix."
+}

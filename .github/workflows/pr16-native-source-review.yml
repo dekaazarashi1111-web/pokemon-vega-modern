@@ -1,0 +1,51 @@
+name: pr16-native-source-review
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-native-source-review.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Recover only exact UTF-8 source members, never restore ROM or saves
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-native-sources .local/pr16-inputs
+          gh release download private-environment-v1 --pattern pokemon-vega-private-env-v1-state.zip --dir .local/pr16-inputs
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-native-sources'
+          name='pokemon-vega-private-env-v1-state.zip'
+          expected=next(a for a in json.loads((root/'config/github_private_environment.json').read_text())['archives'] if a['name']==name)
+          path=root/'.local/pr16-inputs'/name;raw=path.read_bytes()
+          assert len(raw)==expected['size'] and hashlib.sha256(raw).hexdigest()==expected['sha256']
+          members=['src/learn_move.c','src/evolution.c','src/party_menu.c','src/pokemon_summary_screen.c','src/frontier.c','src/overworld.c','src/build_pokemon.c','src/defines.h','include/new/learn_move.h','include/new/frontier.h','include/new/build_pokemon.h','assembly/hooks/pokemon_data_hooks.s']
+          bindings={}
+          with zipfile.ZipFile(path) as z,zipfile.ZipFile(out/'source-members.zip','w',zipfile.ZIP_DEFLATED) as target:
+              for member in members:
+                  p='vendor/upstream/CFRU-JP/'+member
+                  data=z.read(p);data.decode('utf-8')
+                  bindings[p]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()};target.writestr(p,data)
+          report={'status':'SOURCE_ONLY_NOT_ACCEPTANCE','tested_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'archive':{'name':name,'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()},'members':bindings,'rom_save_restored':False}
+          (out/'manifest.json').write_text(json.dumps(report,sort_keys=True,indent=2)+'\n')
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-native-source-review
+          path: .local/pr16-native-sources/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

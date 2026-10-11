@@ -1,0 +1,989 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260918-CIRCUS-FIRST-BATTLE",
+  "classification": "CIRCUS_FIRST_TURN_VERIFIED_RENTAL_IDENTITY_AND_STREAK_OPEN",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b"
+  },
+  "tested_head": "c847b700d5b3af983c08a44d2278ab86d409eeb9",
+  "native_run_id": 35367721416,
+  "record_head": "c6043b8c58a99f2687cdf8126274db1eeec5460f",
+  "record_run_id": 35369023056,
+  "verified_actions": {
+    "run": {
+      "id": 35367721416,
+      "head_sha": "c847b700d5b3af983c08a44d2278ab86d409eeb9",
+      "path": ".github/workflows/pr16-circus-native.yml",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    "job": {
+      "id": 105674099808,
+      "run_id": 35367721416,
+      "head_sha": "c847b700d5b3af983c08a44d2278ab86d409eeb9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "artifact": {
+      "id": 10557022177,
+      "name": "pr16-circus-native",
+      "digest": "sha256:2d20f873c45ac26d8cd65d26b6b7a0fe18786be464f3a25b0c46d948aebc64cc",
+      "size_in_bytes": 258578,
+      "expired": false
+    },
+    "required_steps": [
+      "新SHA結果契約と未完1件の選択16件のみを検証",
+      "固定Thumb修復候補をnative入力用に再構成（受入ケース再実行なし）",
+      "受入済み2ケースは再実行せずThumb修復Circus初戦のみ検証",
+      "ROM save ELFを除外しnative原本と限定sourceを保持",
+      "Run actions/upload-artifact@v4"
+    ]
+  },
+  "artifact_spec": {
+    "run_id": 35367721416,
+    "job_id": 105674099808,
+    "tested_head": "c847b700d5b3af983c08a44d2278ab86d409eeb9",
+    "workflow": ".github/workflows/pr16-circus-native.yml",
+    "conclusion": "success",
+    "artifact_id": 10557022177,
+    "name": "pr16-circus-native",
+    "with_manifest": true,
+    "artifact_identity": {
+      "size": 258578,
+      "sha256": "2d20f873c45ac26d8cd65d26b6b7a0fe18786be464f3a25b0c46d948aebc64cc"
+    },
+    "required_success_steps": [
+      "新SHA結果契約と未完1件の選択16件のみを検証",
+      "固定Thumb修復候補をnative入力用に再構成（受入ケース再実行なし）",
+      "受入済み2ケースは再実行せずThumb修復Circus初戦のみ検証",
+      "ROM save ELFを除外しnative原本と限定sourceを保持",
+      "Run actions/upload-artifact@v4"
+    ]
+  },
+  "member_manifest": {
+    "pr16-circus-native-run/apt-mgba.log": {
+      "size": 213,
+      "sha256": "f12ab941a3077b2a5d73f698bf9dcf4b464bb1e103155ec5c53b45bafe516d3f"
+    },
+    "pr16-circus-native-run/apt-update.log": {
+      "size": 491,
+      "sha256": "693f6f832d7e6b0cb8673662b3a8deb3f8e7e4cdcdb8077e486f4c232dea2168"
+    },
+    "pr16-circus-native-run/build.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native-run/build.stdout": {
+      "size": 4529,
+      "sha256": "dfd216208eaf3c4e245d4bcaa204092a0e91592788bb6df90c1736b1dd82a821"
+    },
+    "pr16-circus-native-run/native.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native-run/native.stdout": {
+      "size": 112,
+      "sha256": "6c8c9e26d6332bcafb888da66a4240c9c9311a0dfda3a95b25037cbefd912487"
+    },
+    "pr16-circus-native-run/p07.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native-run/p07.stdout": {
+      "size": 591,
+      "sha256": "61b1327cce12789ee9f06f5944f5dacbbf097ca1d72b1abea0725c2835cf3293"
+    },
+    "pr16-circus-native-run/private-restore.json": {
+      "size": 228,
+      "sha256": "02ad0f577bd29a770c67979bc976b4f918b7a73592525330b03c3fe6bc0965a0"
+    },
+    "pr16-circus-native-run/repair.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native-run/repair.stdout": {
+      "size": 42856,
+      "sha256": "f191856fe4da91b0e7b716a1daf703173597a6af95f8fde1ec8a14afe71ef72c"
+    },
+    "pr16-circus-native-run/resume-before.json": {
+      "size": 83,
+      "sha256": "df9f69096ae2c7d1841176d015e32cd18e15be6a2c1d00d9445f594fdb652d37"
+    },
+    "pr16-circus-native-run/stage84.json": {
+      "size": 412,
+      "sha256": "4a79800bf5314f031ea22489e38091d9e0d6b3bf0e0ac500d027530753e47251"
+    },
+    "pr16-circus-native-run/stage84.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native-run/tests.stderr": {
+      "size": 2209,
+      "sha256": "8efb92a28cdb7b77257eca1f9c0582710a759effee6526b88b7ae815dcca0ef2"
+    },
+    "pr16-circus-native-run/tests.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native-run/toolchain.log": {
+      "size": 41476,
+      "sha256": "4b19785a31a38c433715f86671911d9af7ed0f9017eb84a4901e706998154c01"
+    },
+    "pr16-circus-native/chooser-bindings.json": {
+      "size": 2530,
+      "sha256": "e65dc62413e959b0da8db9ee5e39d46a293fdbd36dec179c441a1714ea09dc98"
+    },
+    "pr16-circus-native/circus-first-battle-circus-action.ppm": {
+      "size": 115215,
+      "sha256": "0d53c70d7b3b094e9cbc62e3b35eddc525635a5f435ed8ab55e1a9b2363b8aa7"
+    },
+    "pr16-circus-native/circus-first-battle-circus-draw.ppm": {
+      "size": 115215,
+      "sha256": "ab02b737b86a87f3d76fdaae1c89f1c788fdbc2082918809be8b8039f3414eef"
+    },
+    "pr16-circus-native/circus-first-battle-circus-question.ppm": {
+      "size": 115215,
+      "sha256": "cbc12cc0e5a8eaf70aa8ed6035124b7ef2ad9774c02079175dad7850a8deee32"
+    },
+    "pr16-circus-native/circus-first-battle-circus-rentals.ppm": {
+      "size": 115215,
+      "sha256": "160b5500454d55292f736ce1fbaeb85e79166cace72b53b574b7b0f4bbef59a0"
+    },
+    "pr16-circus-native/circus-first-battle-circus-second-confirm.ppm": {
+      "size": 115215,
+      "sha256": "99fdaad1b7c721550f072a62e12183655f2f9da770c35f7c7a57560bdb897520"
+    },
+    "pr16-circus-native/circus-first-battle-codex-gateway.ppm": {
+      "size": 115215,
+      "sha256": "a9709805b4ec7a7ca9ae17393fcfbb8b22b96384438995c9518ef94ef9fdbc2d"
+    },
+    "pr16-circus-native/circus-first-battle-entry-menu-1.ppm": {
+      "size": 115215,
+      "sha256": "065613dbaf2a2abf5fe1a4cef2e1415f10f745724829e7309b80a41aa1dacdff"
+    },
+    "pr16-circus-native/circus-first-battle-entry-menu-2.ppm": {
+      "size": 115215,
+      "sha256": "492c4972dcc2acd956c144675d5dc32fc2cca98ce4c3e19ca6e53a28eed18087"
+    },
+    "pr16-circus-native/circus-first-battle-entry-menu-3.ppm": {
+      "size": 115215,
+      "sha256": "71f42d9c9e405dc643614166e858a654fa3c5252a75765d4311d033f52ee89f2"
+    },
+    "pr16-circus-native/circus-first-battle-first-move-menu.ppm": {
+      "size": 115215,
+      "sha256": "e3d3804be4c1e3ff222e187c213437d693c4d2268a680c6e9002ef45c7029017"
+    },
+    "pr16-circus-native/circus-first-battle-first-move-pp-spent.ppm": {
+      "size": 115215,
+      "sha256": "8b97e19a201b470d37aaf3ef87605e7d4eaa1a2d748341d0b9dfa1191e378b50"
+    },
+    "pr16-circus-native/circus-first-battle-first-turn-return.ppm": {
+      "size": 115215,
+      "sha256": "22e920750272a8e55e0a4d3455db15546dc1c1af9d2e05f39744bc91b65ca3c0"
+    },
+    "pr16-circus-native/circus-first-battle-fixture.ppm": {
+      "size": 115215,
+      "sha256": "91746c5414ad2bf2ce73ada44134ee0fe3549437b463ee4b9948c4e97088fab7"
+    },
+    "pr16-circus-native/circus-first-battle-selected-1.ppm": {
+      "size": 115215,
+      "sha256": "aac596e260d0300b0317f6bd607ff042ed80a7595caae102a1cf33f5a47f5d03"
+    },
+    "pr16-circus-native/circus-first-battle-selected-2.ppm": {
+      "size": 115215,
+      "sha256": "1125a4f92b13765b740f432bedfbd7a720d02ce112516d572b0f284290b9e371"
+    },
+    "pr16-circus-native/circus-first-battle-selected-3.ppm": {
+      "size": 115215,
+      "sha256": "4055300bfc54f412c9f4ba6c615c61a676c72fd586c97c61c59692329d75bc7b"
+    },
+    "pr16-circus-native/circus-first-battle.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "pr16-circus-native/circus-first-battle.stderr": {
+      "size": 41472,
+      "sha256": "a790621a10611e43aaceecb693eefcfc5afdffc9babed76f310c57fbdeb37b14"
+    },
+    "pr16-circus-native/circus-first-battle.stdout": {
+      "size": 813,
+      "sha256": "2417066c6d21ceba5325013bbf793a31c31409e392782f5dc5d5612d3ac6b169"
+    },
+    "pr16-circus-native/compile.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "pr16-circus-native/compile.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native/compile.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native/generated/controller.c": {
+      "size": 11730,
+      "sha256": "6267e2bbd682198d79998ac250b52aef63e337db7eb96bb8f3921bc96a39e885"
+    },
+    "pr16-circus-native/generated/p03_learning_embedded.c": {
+      "size": 7996,
+      "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+    },
+    "pr16-circus-native/generated/p03_p02_embedded.c": {
+      "size": 39678,
+      "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+    },
+    "pr16-circus-native/generated/p03a_fullslots_embedded.c": {
+      "size": 12877,
+      "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+    },
+    "pr16-circus-native/generated/p03b_archive_embedded.c": {
+      "size": 20163,
+      "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+    },
+    "pr16-circus-native/generated/pr16_bp_control_embedded.c": {
+      "size": 11463,
+      "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+    },
+    "pr16-circus-native/generated/pr16_bp_native_helpers.c": {
+      "size": 16314,
+      "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+    },
+    "pr16-circus-native/generated/pr16_capture_shop_helpers.c": {
+      "size": 10007,
+      "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+    },
+    "pr16-circus-native/generated/pr16_circus_addresses.h": {
+      "size": 87,
+      "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+    },
+    "pr16-circus-native/generated/pr16_circus_selection_helpers.c": {
+      "size": 10511,
+      "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+    },
+    "pr16-circus-native/generated/pr16_circus_turn_helpers.c": {
+      "size": 3939,
+      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+    },
+    "pr16-circus-native/generated/pr16_gear_capture_helpers.c": {
+      "size": 9640,
+      "sha256": "857941b30943798a36a9d20a22612f455476c07d38bcf21ba6685ba628302561"
+    },
+    "pr16-circus-native/generated/pr16_gear_route.h": {
+      "size": 518,
+      "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+    },
+    "pr16-circus-native/generated/pr16_shop_breeding_helpers.c": {
+      "size": 19625,
+      "sha256": "fa420d273a80b8423d001b123e7eaeebd1a29717c52b8d24b7d5f32efc1095b3"
+    },
+    "pr16-circus-native/guard-bus16.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-circus-native/guard-bus16.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-circus-native/guard-bus16.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native/guard-bus32.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-circus-native/guard-bus32.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-circus-native/guard-bus32.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native/guard-bus8.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-circus-native/guard-bus8.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-circus-native/guard-bus8.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native/guard-raw16.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-circus-native/guard-raw16.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-circus-native/guard-raw16.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native/guard-raw32.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-circus-native/guard-raw32.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-circus-native/guard-raw32.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native/guard-raw8.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-circus-native/guard-raw8.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-circus-native/guard-raw8.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native/guard-register.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "pr16-circus-native/guard-register.stderr": {
+      "size": 50,
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+    },
+    "pr16-circus-native/guard-register.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-native/report.json": {
+      "size": 86559,
+      "sha256": "19a687b2d004454dbd1f0a9b553de4ab623bf799096611b7a492f0ab99c5423b"
+    },
+    "pr16-circus-entry/compile-1/circus.ld": {
+      "size": 217,
+      "sha256": "9f0457384672a12afc12839cbd6919cb924267dfef4415238d29709e1ac15d6b"
+    },
+    "pr16-circus-entry/compile-1/compile.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-entry/compile-1/compile.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-entry/compile-1/disassembly.txt": {
+      "size": 6198,
+      "sha256": "79664822ab9c83f769d63bbb219745a414561e1c89d4f2ea156f6b638b1151cd"
+    },
+    "pr16-circus-entry/compile-1/elf-symbols.txt": {
+      "size": 1432,
+      "sha256": "6f7f04b7b22359be5454dfed7985ca132eaa7ef74c9f4762dcb9d409be06271a"
+    },
+    "pr16-circus-entry/compile-1/owners.S": {
+      "size": 711,
+      "sha256": "c7e7a98072761ac69a61215289acc72d38ef348e391a395086591bbed65e5ff7"
+    },
+    "pr16-circus-entry/compile-1/symbols.txt": {
+      "size": 230,
+      "sha256": "b6f081badadbc4b59f8e02744648e3f0b1aef69d652fc23656ceb2d24fcccd84"
+    },
+    "pr16-circus-entry/compile-2/circus.ld": {
+      "size": 217,
+      "sha256": "9f0457384672a12afc12839cbd6919cb924267dfef4415238d29709e1ac15d6b"
+    },
+    "pr16-circus-entry/compile-2/compile.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-entry/compile-2/compile.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr16-circus-entry/compile-2/disassembly.txt": {
+      "size": 6198,
+      "sha256": "79664822ab9c83f769d63bbb219745a414561e1c89d4f2ea156f6b638b1151cd"
+    },
+    "pr16-circus-entry/compile-2/elf-symbols.txt": {
+      "size": 1432,
+      "sha256": "89cfce8acb03a367bc788b6f9e0982b3394f9bbb3c6e5bb28c8b1009680f6d75"
+    },
+    "pr16-circus-entry/compile-2/owners.S": {
+      "size": 711,
+      "sha256": "c7e7a98072761ac69a61215289acc72d38ef348e391a395086591bbed65e5ff7"
+    },
+    "pr16-circus-entry/compile-2/symbols.txt": {
+      "size": 230,
+      "sha256": "b6f081badadbc4b59f8e02744648e3f0b1aef69d652fc23656ceb2d24fcccd84"
+    },
+    "pr16-circus-entry/facility-symbols.json": {
+      "size": 1887,
+      "sha256": "1e18014b8629f43047ec032940d4a505b6abd6268dad48b16e4bbbea86ac706e"
+    },
+    "pr16-circus-entry/parent-graphs.json": {
+      "size": 51735,
+      "sha256": "838f4da9c3729f831937ee3035813e6e2dd7767b8a34690db04f912fecf1b770"
+    },
+    "pr16-circus-entry/report.json": {
+      "size": 59955,
+      "sha256": "eb8762eb5e93adf1f7fac60140e5e2708292fcc6e19e89448a2d8a1353296984"
+    },
+    "source/scripts/pr16_circus_native.py": {
+      "size": 12188,
+      "sha256": "2415beb758d0f682e191cf3a1aa48b2430d029561d6884b7d545dd905d03f665"
+    },
+    "source/tools/mgba_pr16_circus_native.c": {
+      "size": 11730,
+      "sha256": "6267e2bbd682198d79998ac250b52aef63e337db7eb96bb8f3921bc96a39e885"
+    },
+    "source/tests/test_pr16_circus_native.py": {
+      "size": 5648,
+      "sha256": "90072b0d76805e049c04122cb77e7c68d2a93e99810c115a292562c2f5ca42b0"
+    },
+    "source/.github/workflows/pr16-circus-native.yml": {
+      "size": 6257,
+      "sha256": "4fb8bd67d1a99772ce1242c2c7a26702812d4232f0cff918dc9b6f1d706262a9"
+    },
+    "source/scripts/pr16_circus_entry.py": {
+      "size": 15402,
+      "sha256": "a026633b218686fa8c440f6b9d8954f8eb29f1cae39ae17ee9f65be19105a79f"
+    },
+    "source/scripts/pr16_circus_thumb.py": {
+      "size": 8472,
+      "sha256": "320c65e9a40f590dd37d9d57606b05c56fbe095b59051b1181e70dc0c8a92a78"
+    },
+    "source/scripts/pr16_circus_thumb_record.py": {
+      "size": 16392,
+      "sha256": "d45286f1813d4e7087bfa68aba2bdf756ca7142a7224d12d0bfab02116d125b4"
+    }
+  },
+  "native_report_identity": {
+    "size": 86559,
+    "sha256": "19a687b2d004454dbd1f0a9b553de4ab623bf799096611b7a492f0ab99c5423b"
+  },
+  "original_result": {
+    "schema_version": 1,
+    "status": "PASS_CIRCUS_SCOPED_NATIVE",
+    "case": "circus-first-battle",
+    "candidate_sha256": "99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b",
+    "new_circus_question": true,
+    "factory_fallback": false,
+    "rental_entry": true,
+    "battle_started": true,
+    "cancelled": false,
+    "effect_flags": 128,
+    "party_bytes_verified": 600,
+    "save_counter_before": 2,
+    "save_counter_after": 2,
+    "manual_saves": 0,
+    "fresh_cores": 1,
+    "total_frames": 4229,
+    "witness": {
+      "gateway": 426,
+      "rentals": 815,
+      "cancel": 0,
+      "field": 0,
+      "saved": 0,
+      "reloaded": 0,
+      "selected": 1311,
+      "second": 1658,
+      "confirm": 1783,
+      "draw": 1837,
+      "action": 3336,
+      "turn": 4229
+    },
+    "host_write_barriers": 7,
+    "input_only_after_guard": true,
+    "initial_fixture_is_not_admission": true,
+    "bp_earned": 0,
+    "physical_admission_accepted": false,
+    "suppression_accepted": false,
+    "release_ready": false,
+    "warnings_errors": 0
+  },
+  "original_process": {
+    "schema_version": 1,
+    "returncode": 0,
+    "timed_out": false,
+    "spawn_error": null
+  },
+  "original_sources": {
+    ".github/workflows/pr16-circus-native.yml": {
+      "size": 6257,
+      "sha256": "4fb8bd67d1a99772ce1242c2c7a26702812d4232f0cff918dc9b6f1d706262a9"
+    },
+    "config/active_play_baseline.json": {
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    },
+    "config/modernization_stage79_cumulative_mgba.json": {
+      "size": 28627,
+      "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6"
+    },
+    "design/active_play_baseline.md": {
+      "size": 5551,
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8"
+    },
+    "overlays/factory_high_modes_v2/factory_high_modes_v2.h": {
+      "size": 6051,
+      "sha256": "290c4f9ea7f274121273f5b43f736b5c598a6b50d412e0a85c320d0e1765622b"
+    },
+    "overlays/save_migration/save_migration.h": {
+      "size": 12497,
+      "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67"
+    },
+    "scripts/build_qol_production.py": {
+      "size": 79738,
+      "sha256": "3719afca8f1a9385d8da073faba369c3994e98d848b65c01fec7c5832d062ea1"
+    },
+    "scripts/build_trainer_v5_stage32.py": {
+      "size": 65989,
+      "sha256": "1e51f0b33a9e19680b6e6523dbaf1c0adcc1245c673d43baf8764932de93bc23"
+    },
+    "scripts/pr16_bp_chooser_native.py": {
+      "size": 14590,
+      "sha256": "8d6a4ad35a34bc52a0ccb664eb1c950b54b98dd783e7bd755285f6d9590e218d"
+    },
+    "scripts/pr16_bp_chooser_successor.py": {
+      "size": 6745,
+      "sha256": "cc99efe99d0eeb805bd23d54441297501f83cd7f21225b0a7bbb496ca1213e07"
+    },
+    "scripts/pr16_bp_chooser_trace.py": {
+      "size": 4435,
+      "sha256": "7202c93528d8b12401963925805b349b48dc435053054574d0707a9d89a62f2a"
+    },
+    "scripts/pr16_bp_native_controls.py": {
+      "size": 12756,
+      "sha256": "4282aa8a78e50d33837578846e531a32a517ae4a872db2271cff329993f67d93"
+    },
+    "scripts/pr16_bp_trial_route.py": {
+      "size": 10549,
+      "sha256": "1ca98928f7ab1f21c57276e02100ad95a17f0c204e82987e1aa60f81c45d37df"
+    },
+    "scripts/pr16_bp_trial_successor.py": {
+      "size": 5475,
+      "sha256": "6ec1b5ff0003a03533c20e325d53101bdf95b8650a1def270b5d4b25d888d158"
+    },
+    "scripts/pr16_breeding_delta.py": {
+      "size": 10002,
+      "sha256": "96ca917dbe4466d201cfd42dbac96541058ffa3e6362dab50a41956404deb857"
+    },
+    "scripts/pr16_capture_geometry.py": {
+      "size": 3346,
+      "sha256": "c4e1bd692944020fee552077705e7d86884530d525fbafba095e746bd00b157c"
+    },
+    "scripts/pr16_circus_entry.py": {
+      "size": 15402,
+      "sha256": "a026633b218686fa8c440f6b9d8954f8eb29f1cae39ae17ee9f65be19105a79f"
+    },
+    "scripts/pr16_circus_native.py": {
+      "size": 12188,
+      "sha256": "2415beb758d0f682e191cf3a1aa48b2430d029561d6884b7d545dd905d03f665"
+    },
+    "scripts/pr16_circus_thumb.py": {
+      "size": 8472,
+      "sha256": "320c65e9a40f590dd37d9d57606b05c56fbe095b59051b1181e70dc0c8a92a78"
+    },
+    "scripts/pr16_circus_thumb_record.py": {
+      "size": 16392,
+      "sha256": "d45286f1813d4e7087bfa68aba2bdf756ca7142a7224d12d0bfab02116d125b4"
+    },
+    "scripts/pr16_evolution_learning_repair.py": {
+      "size": 7072,
+      "sha256": "66d8ccb0be6c320f70c1dc5e803625c95d410decac5533a24fe395e8052a98bd"
+    },
+    "scripts/pr16_fixed_form_acceptance.py": {
+      "size": 22320,
+      "sha256": "3c2888d1f1e3cb7ba083b49875251ff7642e046de4ba75003766a922f3fef6c8"
+    },
+    "scripts/pr16_gear_route_probe.py": {
+      "size": 4099,
+      "sha256": "420397c9467fa99f2da458439b836b94fe809671ec1f2d5f79c2e68a2628b714"
+    },
+    "scripts/pr16_integration_continuation.py": {
+      "size": 11216,
+      "sha256": "b2b73d80af2da5862b076cd09768d28ad175ead5ad0522bff4fec9a98abbfce9"
+    },
+    "scripts/pr16_natural_capture.py": {
+      "size": 9937,
+      "sha256": "99371140f7424806b25205f2b86e922bbbbfe50bd91c967cb478c804d91c26ef"
+    },
+    "scripts/pr16_p05_root_diagnostics.py": {
+      "size": 8880,
+      "sha256": "1aece44ba87988435c5316d56cd8aa143ea5739ef7bda35103578b93a8c50018"
+    },
+    "scripts/pr16_p07_preserved_layer.py": {
+      "size": 14916,
+      "sha256": "d1f79d72582ce27095cf14993ef597ae633f751ff2a35c3ed23fd59fba308271"
+    },
+    "scripts/pr16_purchased_gear.py": {
+      "size": 13172,
+      "sha256": "da0878109e346e1454ac3f47b8e6d75247deb9a9c4f4b5fd2881a86458007a6d"
+    },
+    "scripts/pr16_purchased_gear_evidence.py": {
+      "size": 5104,
+      "sha256": "7a3e58c672ff8d2a864283fc5c6f90e67c6968f6f9b21b7868ef38bd2442d191"
+    },
+    "scripts/pr16_receiver_audit.py": {
+      "size": 8490,
+      "sha256": "7b3dcd3e9d93619fe21aca66501f5045279090ab25b87a38b8f19d10dd6c80d1"
+    },
+    "scripts/pr16_repaired_acceptance.py": {
+      "size": 6470,
+      "sha256": "e83d17663ffaacfca99fe77df7cd28031671dcd20a83abad1a634a31ed603ba5"
+    },
+    "scripts/pr16_shop_display_probe.py": {
+      "size": 11632,
+      "sha256": "f437cde2972089dc4dab757ab6f18a44b80ae2b2a8da16a0177331382a29f677"
+    },
+    "scripts/pr16_shop_display_repair.py": {
+      "size": 8170,
+      "sha256": "ec320b5e9b440afec7351767e44e0777b7ffcbb5435aa200a19b8d0790f20343"
+    },
+    "scripts/pr16_shop_routes.py": {
+      "size": 9771,
+      "sha256": "29ef07ef51bd2564f443844cdd859fffb5fa182c02b4260d16f1abbae302b338"
+    },
+    "scripts/pr16_source_acceptance.py": {
+      "size": 5341,
+      "sha256": "d8f89c40f0c64bc10c5058d46aa92635e936eb74b20fc1f8ffdefbcf082d68a6"
+    },
+    "scripts/run_modernization_p03_fullslots_e2e.py": {
+      "size": 13940,
+      "sha256": "439db2906617448e7e46ce76bbcdc44fad6c2dbb4b4aede436bd7385a2b282ea"
+    },
+    "tests/test_pr16_circus_native.py": {
+      "size": 5648,
+      "sha256": "90072b0d76805e049c04122cb77e7c68d2a93e99810c115a292562c2f5ca42b0"
+    },
+    "tools/interaction_ownership_repair.py": {
+      "size": 35123,
+      "sha256": "4fd4054e2c882dedcffd2e53fca460303d78472dcfe6586c3ad6ebd1f6dddd8c"
+    },
+    "tools/map_import/__init__.py": {
+      "size": 134,
+      "sha256": "1eaf45524b269813a18b9934674a35c03e1d1978e52e4e7be203a8e7cd41d862"
+    },
+    "tools/map_import/full_kanto_import.py": {
+      "size": 20657,
+      "sha256": "85d13607a3f8b2822fac67af4a3cb3c3ec751e663491084bbdbfa9496c1c68d7"
+    },
+    "tools/map_import/kanto_importer.py": {
+      "size": 15633,
+      "sha256": "edc4d7c98549e67ba6a9b279bd647c268fab95abfdf7b42a54d9f4f75ab5c12b"
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "size": 36272,
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "size": 94688,
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24"
+    },
+    "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+      "size": 39669,
+      "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b"
+    },
+    "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+      "size": 20154,
+      "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467"
+    },
+    "tools/mgba_modernization_p03_breeding_e2e.c": {
+      "size": 19614,
+      "sha256": "a99cafd942f958c932709bed6099695f067dc292401b3bfb91e60afe4d6823de"
+    },
+    "tools/mgba_modernization_p03_fullslots_e2e.c": {
+      "size": 12868,
+      "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa"
+    },
+    "tools/mgba_modernization_p03_learning_e2e.c": {
+      "size": 7987,
+      "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d"
+    },
+    "tools/mgba_pr16_bp_battle_progress.c": {
+      "size": 3939,
+      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+    },
+    "tools/mgba_pr16_bp_native_controls.c": {
+      "size": 10327,
+      "sha256": "44e28abe05a7dcad0d430b8c48b5046cbf89c246f7235158a2e5451b29bb0f56"
+    },
+    "tools/mgba_pr16_bp_selection_native.c": {
+      "size": 10488,
+      "sha256": "7815a29617038dfcd3fd57d9a5a7e61eed0a88c9d4ba7c9b45ec2d1fbc3de690"
+    },
+    "tools/mgba_pr16_circus_native.c": {
+      "size": 11730,
+      "sha256": "6267e2bbd682198d79998ac250b52aef63e337db7eb96bb8f3921bc96a39e885"
+    },
+    "tools/mgba_pr16_natural_capture.c": {
+      "size": 9630,
+      "sha256": "cd09b0ad480403b0e76239196415656c36b26abe18f12bcc946c4f9f9c9d2e6e"
+    },
+    "tools/mgba_pr16_purchased_gear.c": {
+      "size": 16307,
+      "sha256": "ba8a7994d25bf7d5d95fdf9fb35bace671f4b1625f5cee96df235a92bbdac9aa"
+    },
+    "tools/mgba_pr16_shop_routes.c": {
+      "size": 10000,
+      "sha256": "16eda36fade0e8ef0ec3dc0b45b22c9776969f557aedc6ac25f1b65ffc09848c"
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "size": 149046,
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85"
+    },
+    "tools/modernization_identity.py": {
+      "size": 41461,
+      "sha256": "92f8dbb900c9b9988a4e00b2f3d0c94692c7b45ff1b47e9531959d14d7a7b0a9"
+    },
+    "tools/modernization_mega_shop.py": {
+      "size": 63275,
+      "sha256": "b2e0cf9d107551a04d7f589b982afc6c587729a504deaa395f9b9f7643caeb35"
+    },
+    "tools/modernization_p03_archive_ui_repair.py": {
+      "size": 9187,
+      "sha256": "174d08673f9d28fc63b5bdc46e2503a9525b84527391fb4e2f96271df3f9207d"
+    },
+    "tools/modernization_p03_native_pp_repair.py": {
+      "size": 5164,
+      "sha256": "bfa4a1f2c8d470bafdb705d57fdd73a55a7885cfacb1dca6c392576a38f51e17"
+    },
+    "tools/modernization_p07_learnsets.py": {
+      "size": 41866,
+      "sha256": "87fb7e902dae8549dd1a301f6b4b3d8fea800d89bd338527a3aa3a18639de5bd"
+    },
+    "tools/regression/__init__.py": {
+      "size": 179,
+      "sha256": "e7d343cd8f1109ecb77e0a3cb75c2c9a5b818589e056c4d86219e4bc76a33f01"
+    },
+    "tools/regression/rom_runtime.py": {
+      "size": 101835,
+      "sha256": "8110772b2df98115e4efd353547150171204270965fd7b0f723a8b9b3aa4c7ba"
+    },
+    "tools/release/__init__.py": {
+      "size": 137,
+      "sha256": "93ada871fd6e282d2d36cb47040167dfa287e4d3465424f2d8fbb0644102b36f"
+    },
+    "tools/release/bps.py": {
+      "size": 8606,
+      "sha256": "49818ca722499ce508a9caa3578ef42081c53235d92ecdcd0d6df05b8604c054"
+    },
+    "tools/rom_allocator.py": {
+      "size": 22314,
+      "sha256": "65b26fe7339c8be19fe9c13973157cb90157ab4a28838afb93d43d2c5e6668e8"
+    },
+    "tools/stage57_debug_suite.py": {
+      "size": 35254,
+      "sha256": "7ff408e03e1049e5df02f2fd4d78677a2650a47a2222a768a6770e7ab7d4f0c2"
+    },
+    "tools/t02/__init__.py": {
+      "size": 61,
+      "sha256": "b26705d5e73f714f78a2ccac9408de042fa2457500a8b234c7e24fe165996156"
+    },
+    "tools/t02/rom_inventory.py": {
+      "size": 72914,
+      "sha256": "81da45044db9b79496cac2a585d2651613b300e55e5442c505e7680f30bf042f"
+    },
+    "tools/trainer_final/kanto_events.py": {
+      "size": 66506,
+      "sha256": "8dad7d1ab4786d3e991d00266fee96498b551b13a4ec167896e7549f004cf78c"
+    },
+    "tools/world_final_state.py": {
+      "size": 21949,
+      "sha256": "70eb7295021f2ffb1b87931137a499592538e7db4e0ce2add85d3a8b44973ec6"
+    },
+    "tools/world_item_recovery.py": {
+      "size": 24208,
+      "sha256": "63e2fbc1933bc64c18e982c15dcd13d20c7b8d1e6f1f330c5136cd09345da7a6"
+    },
+    "tools/world_runtime_e2e_repair.py": {
+      "size": 58982,
+      "sha256": "ca141c2a4e32679fbfc107d613a2860eaa3161c4ec363167bd40d5d683530442"
+    }
+  },
+  "original_generated": {
+    "p03b_archive_embedded.c": {
+      "size": 20163,
+      "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+    },
+    "p03a_fullslots_embedded.c": {
+      "size": 12877,
+      "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+    },
+    "p03_learning_embedded.c": {
+      "size": 7996,
+      "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+    },
+    "p03_p02_embedded.c": {
+      "size": 39678,
+      "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+    },
+    "pr16_shop_breeding_helpers.c": {
+      "size": 19625,
+      "sha256": "fa420d273a80b8423d001b123e7eaeebd1a29717c52b8d24b7d5f32efc1095b3"
+    },
+    "pr16_capture_shop_helpers.c": {
+      "size": 10007,
+      "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+    },
+    "pr16_gear_capture_helpers.c": {
+      "size": 9640,
+      "sha256": "857941b30943798a36a9d20a22612f455476c07d38bcf21ba6685ba628302561"
+    },
+    "pr16_bp_native_helpers.c": {
+      "size": 16314,
+      "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+    },
+    "pr16_bp_control_embedded.c": {
+      "size": 11463,
+      "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+    },
+    "pr16_circus_selection_helpers.c": {
+      "size": 10511,
+      "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+    },
+    "pr16_circus_turn_helpers.c": {
+      "size": 3939,
+      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+    },
+    "pr16_gear_route.h": {
+      "size": 518,
+      "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+    },
+    "pr16_circus_addresses.h": {
+      "size": 87,
+      "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+    },
+    "controller.c": {
+      "size": 11730,
+      "sha256": "6267e2bbd682198d79998ac250b52aef63e337db7eb96bb8f3921bc96a39e885"
+    }
+  },
+  "original_text": {
+    "evidence/pr16_circus_first_native/original.stdout.txt": {
+      "size": 813,
+      "sha256": "2417066c6d21ceba5325013bbf793a31c31409e392782f5dc5d5612d3ac6b169"
+    },
+    "evidence/pr16_circus_first_native/original.stderr.txt": {
+      "size": 41472,
+      "sha256": "a790621a10611e43aaceecb693eefcfc5afdffc9babed76f310c57fbdeb37b14"
+    }
+  },
+  "visual_review": {
+    "reviewed": true,
+    "reviewer": "ChatGPT image inspection",
+    "reviewed_screens": {
+      "circus-first-battle-circus-action.ppm": {
+        "size": 115215,
+        "sha256": "0d53c70d7b3b094e9cbc62e3b35eddc525635a5f435ed8ab55e1a9b2363b8aa7"
+      },
+      "circus-first-battle-circus-draw.ppm": {
+        "size": 115215,
+        "sha256": "ab02b737b86a87f3d76fdaae1c89f1c788fdbc2082918809be8b8039f3414eef"
+      },
+      "circus-first-battle-circus-question.ppm": {
+        "size": 115215,
+        "sha256": "cbc12cc0e5a8eaf70aa8ed6035124b7ef2ad9774c02079175dad7850a8deee32"
+      },
+      "circus-first-battle-circus-rentals.ppm": {
+        "size": 115215,
+        "sha256": "160b5500454d55292f736ce1fbaeb85e79166cace72b53b574b7b0f4bbef59a0"
+      },
+      "circus-first-battle-circus-second-confirm.ppm": {
+        "size": 115215,
+        "sha256": "99fdaad1b7c721550f072a62e12183655f2f9da770c35f7c7a57560bdb897520"
+      },
+      "circus-first-battle-codex-gateway.ppm": {
+        "size": 115215,
+        "sha256": "a9709805b4ec7a7ca9ae17393fcfbb8b22b96384438995c9518ef94ef9fdbc2d"
+      },
+      "circus-first-battle-entry-menu-1.ppm": {
+        "size": 115215,
+        "sha256": "065613dbaf2a2abf5fe1a4cef2e1415f10f745724829e7309b80a41aa1dacdff"
+      },
+      "circus-first-battle-entry-menu-2.ppm": {
+        "size": 115215,
+        "sha256": "492c4972dcc2acd956c144675d5dc32fc2cca98ce4c3e19ca6e53a28eed18087"
+      },
+      "circus-first-battle-entry-menu-3.ppm": {
+        "size": 115215,
+        "sha256": "71f42d9c9e405dc643614166e858a654fa3c5252a75765d4311d033f52ee89f2"
+      },
+      "circus-first-battle-first-move-menu.ppm": {
+        "size": 115215,
+        "sha256": "e3d3804be4c1e3ff222e187c213437d693c4d2268a680c6e9002ef45c7029017"
+      },
+      "circus-first-battle-first-move-pp-spent.ppm": {
+        "size": 115215,
+        "sha256": "8b97e19a201b470d37aaf3ef87605e7d4eaa1a2d748341d0b9dfa1191e378b50"
+      },
+      "circus-first-battle-first-turn-return.ppm": {
+        "size": 115215,
+        "sha256": "22e920750272a8e55e0a4d3455db15546dc1c1af9d2e05f39744bc91b65ca3c0"
+      },
+      "circus-first-battle-fixture.ppm": {
+        "size": 115215,
+        "sha256": "91746c5414ad2bf2ce73ada44134ee0fe3549437b463ee4b9948c4e97088fab7"
+      },
+      "circus-first-battle-selected-1.ppm": {
+        "size": 115215,
+        "sha256": "aac596e260d0300b0317f6bd607ff042ed80a7595caae102a1cf33f5a47f5d03"
+      },
+      "circus-first-battle-selected-2.ppm": {
+        "size": 115215,
+        "sha256": "1125a4f92b13765b740f432bedfbd7a720d02ce112516d572b0f284290b9e371"
+      },
+      "circus-first-battle-selected-3.ppm": {
+        "size": 115215,
+        "sha256": "4055300bfc54f412c9f4ba6c615c61a676c72fd586c97c61c59692329d75bc7b"
+      }
+    },
+    "scope_ja": "原本PPM16枚を全て画像として確認。新Circus質問、6体→3体選択、戦闘、技メニュー、PP消費と1ターン復帰を確認。",
+    "issue_ja": "第2選択画面の先頭名はゴース、実戦先頭名はポリゴン。表示/再生成/個体選択経路の原因は未確定。選択個体保持の受入はしない。",
+    "selected_party_identity_verified": false,
+    "original_result_unchanged": true
+  },
+  "inherited_prefix_proof": {
+    "accepted_native_cases_replayed": 0,
+    "allowed_range": [
+      33508112,
+      33508416
+    ],
+    "candidate": {
+      "sha256": "99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b",
+      "size": 33554432
+    },
+    "changed_bytes": 43,
+    "inherited_cases": [
+      "circus-cancel-save-continue",
+      "factory-fallback-cancel"
+    ],
+    "physical_admission_accepted": false,
+    "previous": {
+      "sha256": "022bd5e6383f5513f7b43fd00923f8ed66908b18a07f7be252b8ce7a011c5c72",
+      "size": 33554432
+    },
+    "restored_whole_rom_sha256": "022bd5e6383f5513f7b43fd00923f8ed66908b18a07f7be252b8ce7a011c5c72",
+    "status": "PASS_ADAPTER_ONLY_PREFIX_INHERITANCE",
+    "suppression_accepted": false
+  },
+  "inherited_failed_run": 35363580877,
+  "inherited_failed_run_relabelled": false,
+  "first_turn_verified": true,
+  "rental_identity_verified": false,
+  "circus_streak_verified": false,
+  "physical_admission_accepted": false,
+  "suppression_accepted": false,
+  "release_ready": false,
+  "native_processes_in_tested_run": 1,
+  "new_emulator_processes_in_record": 0,
+  "accepted_native_cases_replayed": 0,
+  "next_ja": "保存した初戦成功・Thumb非影響証明を再利用し、まず第2選択→戦闘間の個体継承を限定追跡する。表示名だけで原因を断定せず、選択個体のspecies/personality/party bytesと既存prepare/retention ownerを照合し、必要な場合だけCircus専用経路を修復する。その後、固有streakの正規勝敗更新・保存復帰と30連勝以上の来歴、正規sp072の特性抑制を実装・検証する。Factory連勝を代用せず、効果/施設番号/連勝/PC/LRをhost注入しない。無変更の取消保存/Factory入口/初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。"
+}

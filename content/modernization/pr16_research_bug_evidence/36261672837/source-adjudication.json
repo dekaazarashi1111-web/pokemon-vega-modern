@@ -1,0 +1,29 @@
+{
+  "accepted_test_reexecutions": 0,
+  "model_after": {
+    "sha256": "c71d37aaff27720257f82c0920197dfbbdd0e22d52eed53def872781266c64df",
+    "size": 8465
+  },
+  "model_before": {
+    "sha256": "1380b65345c4b347a158f3a646ae7e085c30dc828df3ddf554440e56c34e6a65",
+    "size": 8471
+  },
+  "model_only_replacement": {
+    "after": "RAW = 'content/modernization/pr16_research_bug_measurement.json'",
+    "before": "RAW = 'content/modernization/pr16_research_bug_local_measurement.json'"
+  },
+  "native_reexecutions": 0,
+  "reason_ja": "失われた旧ローカルJSONの初回失敗1件を創作しない。新Actions実測2成功/0失敗と過去件数unknownを区別。oracleと生成Cは不変。",
+  "test_changes": [
+    "欠落した過去failureの参照を、欠落/件数unknown/新2成功の検査へ置換",
+    "現在Actionsのfailed_native_processesを1から0へ訂正"
+  ],
+  "tests_after": {
+    "sha256": "70e56383cb72742cad1fb205564c7773bc46d408d2df86d92e5be21812dd940c",
+    "size": 6250
+  },
+  "tests_before": {
+    "sha256": "987caba2f2481811cdf01f0dc3d9fc78e19de39ddec8176f079ffaea2a7b8e8a",
+    "size": 6085
+  }
+}

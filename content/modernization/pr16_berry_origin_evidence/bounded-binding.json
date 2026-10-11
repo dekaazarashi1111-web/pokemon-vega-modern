@@ -1,0 +1,327 @@
+{
+  "accepted_test_reruns": 0,
+  "actual_consumer_proven": false,
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "comparison": {
+    "actual_consumer_proven": false,
+    "context_identity": {
+      "sha256": "aa0062fc6cc79acc309578678bfb0885b38aa18f3af66c5b916bbcf1df111e43",
+      "size": 24
+    },
+    "context_match_is_owner_proof": false,
+    "context_offset": 2314,
+    "current_region_identity": {
+      "sha256": "06acf5c00490ccbaaf8bf57a4d53d36d7df80495f894576f2acd3b9f1e9da052",
+      "size": 13452
+    },
+    "equal_bytes_at_same_offsets": 1595,
+    "equal_prefix_bytes": 753,
+    "equal_suffix_bytes": 5,
+    "header_192_equal": true,
+    "public_asset_identity": {
+      "sha256": "f3d87e14688faf0190b33e071607887c7783462b45f92f1cb7135eec56260740",
+      "size": 15348
+    },
+    "public_exact_context_offsets": [],
+    "same_size": false,
+    "whole_asset_equal": false
+  },
+  "consumer_frontier": {
+    "CB2_InitBerryFixProgram": {
+      "actual_consumer_proven": false,
+      "bounded_region_measured": true,
+      "current_function_owner_proven": false,
+      "literal_shapes": [],
+      "region_end_exclusive": 135670516,
+      "region_identity": {
+        "sha256": "816b6acb5446fdbb71ccbfa0c4de28af2f5eb70788b2a2906fb373d1c0270172",
+        "size": 152
+      },
+      "region_start": 135670364,
+      "symbol": {
+        "address": 135670364,
+        "following_distinct_address": 135670516,
+        "line": 12789,
+        "row_sha256": "9a931cbf46e3c4a9882f883af8941e1645a91f3a65de08dcc32df7152cd54bb9"
+      }
+    },
+    "MultiBootInit": {
+      "actual_consumer_proven": false,
+      "bounded_region_measured": true,
+      "current_function_owner_proven": false,
+      "literal_shapes": [],
+      "region_end_exclusive": 134264380,
+      "region_identity": {
+        "sha256": "f618c9f477e57c39d99c17f21e74750a2eddf5d008a8cc95d16c01217f79b9f1",
+        "size": 60
+      },
+      "region_start": 134264320,
+      "symbol": {
+        "address": 134264320,
+        "following_distinct_address": 134264380,
+        "line": 1332,
+        "row_sha256": "ef72c0344a18331d08da7be2cfcb249d09d6f9c915d617eb11cbf6186fa81c06"
+      }
+    },
+    "MultiBootMain": {
+      "actual_consumer_proven": false,
+      "bounded_region_measured": true,
+      "current_function_owner_proven": false,
+      "literal_shapes": [],
+      "region_end_exclusive": 134265388,
+      "region_identity": {
+        "sha256": "e65fb115f175055b38fe96acc0ab0d3659124bd52eb9503aab33ca233b3dc4bc",
+        "size": 1008
+      },
+      "region_start": 134264380,
+      "symbol": {
+        "address": 134264380,
+        "following_distinct_address": 134265388,
+        "line": 1334,
+        "row_sha256": "84e159f3fe890be0bdf2d7ae16e39afec3213ca22f479ab1a761d68a42920063"
+      }
+    },
+    "MultiBootStartMaster": {
+      "actual_consumer_proven": false,
+      "bounded_region_measured": true,
+      "current_function_owner_proven": false,
+      "literal_shapes": [],
+      "region_end_exclusive": 134265696,
+      "region_identity": {
+        "sha256": "1db51f5786da5cc2960f261583d39f9ef38705d44fee9afc857b6c563a3d6f87",
+        "size": 196
+      },
+      "region_start": 134265500,
+      "symbol": {
+        "address": 134265500,
+        "following_distinct_address": 134265696,
+        "line": 1337,
+        "row_sha256": "f181b9da6abf94496932f093ccde13d34189bc3a006d2ca0108ebf799679c0f4"
+      }
+    },
+    "Task_BerryFixMain": {
+      "actual_consumer_proven": false,
+      "bounded_region_measured": true,
+      "current_function_owner_proven": false,
+      "literal_shapes": [
+        {
+          "actual_ldr_consumer_proven": false,
+          "address": 135670728,
+          "value_labels": [
+            "asset_start"
+          ]
+        },
+        {
+          "actual_ldr_consumer_proven": false,
+          "address": 135670736,
+          "value_labels": [
+            "asset_end"
+          ]
+        }
+      ],
+      "region_end_exclusive": 135670980,
+      "region_identity": {
+        "sha256": "e31403fa9ec78edec88925dbadc62e4dff8738ffaff45ce7b576cc1f590aefd1",
+        "size": 452
+      },
+      "region_start": 135670528,
+      "symbol": {
+        "address": 135670528,
+        "following_distinct_address": 135670980,
+        "line": 12791,
+        "row_sha256": "479a2b9f4d3b39cc401d47a073c4576aaaa1df0a923dec24f48168a6d8251be6"
+      }
+    }
+  },
+  "current_header_shape": {
+    "entry_inside_region": true,
+    "natural_boot_executed": false,
+    "relative_entry_if_arm": 256,
+    "runtime_mapping_proven": false,
+    "unconditional_arm_branch_shape": true
+  },
+  "donor_safe_bytes": 0,
+  "formal_classification_changes": 0,
+  "formal_classified": 788,
+  "formal_unclassified": 86,
+  "full_rom_scans": 0,
+  "indirect_reference_completeness_claimed": false,
+  "native_processes": 0,
+  "origin": {
+    "address": 141316543,
+    "sha256": "169f39595db6c1ad1cf83234441b8a0ec54dc2a94afab2cc05d80713fb0a0a41",
+    "size": 4
+  },
+  "overlapping_thumb_shapes": [
+    {
+      "actual_instruction_fetch_proven": false,
+      "address": 141316542,
+      "conditional_target_if_executed_at_rom_address": 141324176,
+      "hit_overlap_size": 3,
+      "hit_overlap_start": 141316543,
+      "reachability_proven": false,
+      "shape": "THUMB1_BL",
+      "size": 4
+    }
+  ],
+  "placement_identity": {
+    "sha256": "4aa2ac0de3933b90c246591c7a01f89f641c7038f280b31e1f09ae8a2a8f99cf",
+    "size": 113550
+  },
+  "public_header_shape": {
+    "entry_inside_region": true,
+    "natural_boot_executed": false,
+    "relative_entry_if_arm": 256,
+    "runtime_mapping_proven": false,
+    "unconditional_arm_branch_shape": true
+  },
+  "public_sources": {
+    "data/mb_berry_fix.gba": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "0afff07f5d2314e2bd35d99de518cbc114009b5e",
+      "path": "data/mb_berry_fix.gba",
+      "repository": "pret/pokefirered",
+      "sha256": "f3d87e14688faf0190b33e071607887c7783462b45f92f1cb7135eec56260740",
+      "size": 15348
+    },
+    "data/multiboot_berry_glitch_fix.s": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "d0d54d5502762431a8cfef4c4eed5201138c3108",
+      "path": "data/multiboot_berry_glitch_fix.s",
+      "repository": "pret/pokefirered",
+      "sha256": "e1d4517b35cc2effb04e97ab8115fb0a5a8adc5eae9f4d03c9271067471731e3",
+      "size": 132
+    },
+    "src/berry_fix_program.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "4ef103aecaf43c2409ed9f8e9d872561b1772716",
+      "path": "src/berry_fix_program.c",
+      "repository": "pret/pokefirered",
+      "sha256": "7ba2a44f4dfd30003061a0d31d68997f6c78a68df2672d2089064920c9c8ef4d",
+      "size": 5546
+    },
+    "src/multiboot.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "b44c421dc565ad1750c30f60afb5b5c61a10fee8",
+      "path": "src/multiboot.c",
+      "repository": "pret/pokefirered",
+      "sha256": "c3e20beebee761e7757f26194823923635937b23f566974d738ad1b901d8c898",
+      "size": 10870
+    }
+  },
+  "public_symbol_source": {
+    "commit": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+    "git_blob": "53316c0d61da2c6cc22acf3d79f68c61c64c65be",
+    "path": "diagnostics/pokefirered_jp.sym.audit.tsv",
+    "repository": "ComplexRobot/frlg-sym",
+    "sha256": "fc1e4b579b21a592b8e09fa3c36f242833837190401128cd6866c945eff2f44e",
+    "size": 4147002
+  },
+  "region": {
+    "end_exclusive": 141327672,
+    "sha256": "06acf5c00490ccbaaf8bf57a4d53d36d7df80495f894576f2acd3b9f1e9da052",
+    "size": 13452,
+    "start": 141314220
+  },
+  "retirement_or_transfer_complete": false,
+  "rom_reconstructions": 1,
+  "saved_symbol_neighborhood": {
+    "actual_consumer_proven": false,
+    "current_candidate_bytes_bound": false,
+    "following_label": {
+      "address": 141327672,
+      "labels": [
+        {
+          "line": 43373,
+          "name": "gMultiBootProgram_BerryGlitchFix_End",
+          "row_sha256": "8ac2eef0df42a7c3c0579cc973a092e29367f1251af9ed0f41f10d0a40b7c630"
+        },
+        {
+          "line": 43374,
+          "name": "gMultiBootProgram_PokemonColosseum_Start",
+          "row_sha256": "d35cad12f8a980c7f47cabcacbab2897a71f071b40c7e3f43fe448991004f165"
+        }
+      ]
+    },
+    "hit": {
+      "accepted": false,
+      "address": 141316543,
+      "classification": "UNCLASSIFIED",
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "sha256": "169f39595db6c1ad1cf83234441b8a0ec54dc2a94afab2cc05d80713fb0a0a41",
+      "size": 4,
+      "target": 167700464
+    },
+    "labels_starting_inside_hit": [],
+    "offset_from_preceding": 2323,
+    "preceding_label": {
+      "address": 141314220,
+      "labels": [
+        {
+          "line": 43371,
+          "name": "gMultiBootProgram_BerryGlitchFix_Start",
+          "row_sha256": "2bab0708dd422a5cd21023d5b46378efa2983f8e6aeb359bc292c35a37afde69"
+        },
+        {
+          "line": 43372,
+          "name": "gMultiBootProgram_EReader_End",
+          "row_sha256": "208a74432289cb7dc16c42424d4977fa847732e9a62964f37f8565fd78bbbba0"
+        }
+      ]
+    },
+    "status": "PUBLIC_SYMBOL_NEIGHBORHOOD_ONLY_CURRENT_OWNER_UNPROVEN"
+  },
+  "schema_version": 1,
+  "selected_unknown_origins": 7,
+  "status": "BERRY_NEIGHBORHOOD_BOUND_PUBLIC_ASSET_DIFFERS_OWNER_PENDING",
+  "symbols": {
+    "found": {
+      "CB2_InitBerryFixProgram": {
+        "address": 135670364,
+        "following_distinct_address": 135670516,
+        "line": 12789,
+        "row_sha256": "9a931cbf46e3c4a9882f883af8941e1645a91f3a65de08dcc32df7152cd54bb9"
+      },
+      "MultiBootInit": {
+        "address": 134264320,
+        "following_distinct_address": 134264380,
+        "line": 1332,
+        "row_sha256": "ef72c0344a18331d08da7be2cfcb249d09d6f9c915d617eb11cbf6186fa81c06"
+      },
+      "MultiBootMain": {
+        "address": 134264380,
+        "following_distinct_address": 134265388,
+        "line": 1334,
+        "row_sha256": "84e159f3fe890be0bdf2d7ae16e39afec3213ca22f479ab1a761d68a42920063"
+      },
+      "MultiBootStartMaster": {
+        "address": 134265500,
+        "following_distinct_address": 134265696,
+        "line": 1337,
+        "row_sha256": "f181b9da6abf94496932f093ccde13d34189bc3a006d2ca0108ebf799679c0f4"
+      },
+      "Task_BerryFixMain": {
+        "address": 135670528,
+        "following_distinct_address": 135670980,
+        "line": 12791,
+        "row_sha256": "479a2b9f4d3b39cc401d47a073c4576aaaa1df0a923dec24f48168a6d8251be6"
+      },
+      "gMultiBootProgram_BerryGlitchFix_End": {
+        "address": 141327672,
+        "following_distinct_address": 146801880,
+        "line": 43373,
+        "row_sha256": "8ac2eef0df42a7c3c0579cc973a092e29367f1251af9ed0f41f10d0a40b7c630"
+      },
+      "gMultiBootProgram_BerryGlitchFix_Start": {
+        "address": 141314220,
+        "following_distinct_address": 141327672,
+        "line": 43371,
+        "row_sha256": "2bab0708dd422a5cd21023d5b46378efa2983f8e6aeb359bc292c35a37afde69"
+      }
+    },
+    "missing": []
+  }
+}

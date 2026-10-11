@@ -1,0 +1,1032 @@
+{
+  "schema_version": 1,
+  "status": "OLD_FORMAL_ADDITIONAL_JP_ROOT_STATIC_REVIEW_CURRENT_NOT_BOUND",
+  "old_formal": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "required_current_sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+  "parent_review": {
+    "path": "content/modernization/pr16_dex_hof_reference_song_review.json",
+    "size": 25500,
+    "sha256": "754bb9e4f4af3d33e9ff9724bf394f34ee12ff02a1e95f0052082350ef658b2c"
+  },
+  "sources": [
+    {
+      "local": "BPRJ.ld",
+      "source": "BPRJ.ld",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "repository": "kapibarasan000/CFRU-JP",
+      "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/BPRJ.ld",
+      "size": 68505,
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a"
+    },
+    {
+      "local": "repoints",
+      "source": "repoints",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "repository": "kapibarasan000/CFRU-JP",
+      "git_blob_sha": "e56ff804cca49e38aa7d18466dceb54e776cc662",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/repoints",
+      "size": 7547,
+      "sha256": "b387e4239d00a59698407b1837b5573504bcb172fb41cae6afb7265c1008a12d"
+    },
+    {
+      "local": "pret-sound.c",
+      "source": "src/sound.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "repository": "pret/pokefirered",
+      "git_blob_sha": "9060aa513d2946d5a59c34f24658da96e0ab6a8e",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/sound.c",
+      "size": 15232,
+      "sha256": "851313931ebdbf2f0933b52295707f82e948735813fac84fdba74c0446ada958"
+    },
+    {
+      "local": "pret-battle_anim.c",
+      "repository": "pret/pokefirered",
+      "source": "src/battle_anim.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "30f9a7ad2482d1767f5c70ee30a3c85528605bb3",
+      "size": 46944,
+      "sha256": "5883d9ee0483120ef67461952f5880499f322fb1c706cc213ca13c0c2b0e88c5"
+    },
+    {
+      "local": "pret-battle_anim_script.inc",
+      "repository": "pret/pokefirered",
+      "source": "asm/macros/battle_anim_script.inc",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "15c48c39f5860efe132e782c22a6cedb0f8d5ac3",
+      "size": 4279,
+      "sha256": "cb193c567289983c26ed8acaa8dd64501c64c7e088e28995c49439333b52b27c"
+    },
+    {
+      "local": "cfru-battle_anims.c",
+      "repository": "kapibarasan000/CFRU-JP",
+      "source": "src/battle_anims.c",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "096a8763a4260052566ed029f841bc68e561d269",
+      "size": 192535,
+      "sha256": "4893fda793e75356672e8b1be3bca4bd54fe562774fd8b07ed9f8f9ba501aff3"
+    },
+    {
+      "local": "cfru-hooks.txt",
+      "repository": "kapibarasan000/CFRU-JP",
+      "source": "hooks",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "51a0f10dd4cccad235b476edd534a0e3e7e612ad",
+      "size": 21787,
+      "sha256": "19c730e12bcc8ee614b43745a1a6478429c1876a025fdce23b80a49599d8deb5"
+    },
+    {
+      "local": "cfru-moves.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "source": "include/constants/moves.h",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "444712bfec68c13fabffd3e167d380b6c23770ba",
+      "size": 30601,
+      "sha256": "bc2ae17e444625fa2e1727d42c50a24f6758da26e44229a6f12a3afa3a275d79"
+    },
+    {
+      "local": "pret-task.c",
+      "repository": "pret/pokefirered",
+      "source": "src/task.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "size": 5029,
+      "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+      "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+    },
+    {
+      "local": "pret-sprite.c",
+      "repository": "pret/pokefirered",
+      "source": "src/sprite.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "size": 48783,
+      "sha256": "2a804302eb5a89d31c3ec2f33dc645a80a0c645113d4b33b9bd571064c0286ae",
+      "git_blob_sha": "d0198d53004775c8664dcccf57833e178833776e"
+    },
+    {
+      "local": "pret-battle_anim_mons.c",
+      "repository": "pret/pokefirered",
+      "source": "src/battle_anim_mons.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "size": 70676,
+      "sha256": "fcb002acc48b8cd6b8cf8b7eddcb3034d721ff5887eb6bdeedfe183b7b3908bb",
+      "git_blob_sha": "87e71d0ad627009e68574cbe1a7ec5008dd6d098"
+    },
+    {
+      "local": "pret-battle_anim_utility_funcs.c",
+      "repository": "pret/pokefirered",
+      "source": "src/battle_anim_utility_funcs.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "size": 34923,
+      "sha256": "8dbf0d05319980658ac1f698b1fed5a9dba02d1bda5aba487fec42d9ae16d297",
+      "git_blob_sha": "896c6411ac00b7c0cb8cd447813624b6ea70de00"
+    }
+  ],
+  "windows": [
+    {
+      "address": 134685652,
+      "size": 448,
+      "sha256": "96f3f43744bb86eb1b253181953d0f4a2bc0c5aa9414bb5416fc06eeb11c1850",
+      "name": "Cmd_monbg"
+    },
+    {
+      "address": 134688132,
+      "size": 56,
+      "sha256": "18eef564924435d6b41ee3b52d261ca62482f3aac07182ab633b44bf00458ed6",
+      "name": "Cmd_setalpha"
+    },
+    {
+      "address": 134684864,
+      "size": 244,
+      "sha256": "4d810549a6421c7b82e8032949d20ceb675c02d77548e653cf671bcdf656fa9a",
+      "name": "Cmd_createsprite"
+    },
+    {
+      "address": 134685108,
+      "size": 124,
+      "sha256": "784ce40cea5ef8a9f1031ee2cc5a96ecea261e466106fdcbba298d0f9a53547b",
+      "name": "Cmd_createvisualtask"
+    },
+    {
+      "address": 134704052,
+      "size": 84,
+      "sha256": "06d50315d29d5d8aa93b8a869ada8c8ab2563d16865f517847b3a92b89a1f1de",
+      "name": "CreateTask"
+    },
+    {
+      "address": 134704136,
+      "size": 152,
+      "sha256": "266dbeef7a1fd64d2e4c1f00d20a68eaef00b512b2f18cb8f1064bd7b44cb436",
+      "name": "InsertTask"
+    },
+    {
+      "address": 134245736,
+      "size": 148,
+      "sha256": "b6715c0caf5b5506a0ae137f186b07cd22e1348ac0a4276b8a1536d60ef762d1",
+      "name": "CreateSpriteAndAnimate"
+    },
+    {
+      "address": 134986424,
+      "size": 68,
+      "sha256": "c614ebe63de91c682811f2cea24be6429102d4baff3828ccf7fa40cbd7949ee8",
+      "name": "AnimTask_BlendBattleAnimPal"
+    },
+    {
+      "address": 134982868,
+      "size": 72,
+      "sha256": "1397386d20b449dc55ce8ecb7c8699560a56dd58c99ea87e9881b23ebd8bf96d",
+      "name": "UnpackSelectedBattleAnimPalettes"
+    },
+    {
+      "address": 134697868,
+      "size": 208,
+      "sha256": "c2dedddfd1c18da83a26d075a5ab8e3706d0f426d50dafd5094b27c068ea30fd",
+      "name": "GetBattlePalettesMask"
+    },
+    {
+      "address": 134698076,
+      "size": 200,
+      "sha256": "7bb4f8322bfaea1a0d2f307aaa4db4f148a82f5dd0ca294e58d829e9e258cd1d",
+      "name": "GetBattleMonSpritePalettesMask"
+    },
+    {
+      "address": 134987020,
+      "size": 68,
+      "sha256": "4cc2436525a464506a49e07d66ad73a3b970c3c15d8ea31a780caad7fb067e95",
+      "name": "StartBlendAnimSpriteColor"
+    },
+    {
+      "address": 134987088,
+      "size": 42,
+      "sha256": "e0f5df18babfe95fe47833648d9fbb88aaa26d14a135516d9645c5303b8fa996",
+      "name": "BlendSpriteColor_Step2_initial_comparison"
+    },
+    {
+      "address": 134987216,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4",
+      "name": "BlendSpriteColor_Step2_tasks_literal"
+    },
+    {
+      "address": 134987238,
+      "size": 18,
+      "sha256": "812172fe087fc50d5b41c4e89ddbde6c16668331f74af1168e015f4db7ee92b7",
+      "name": "BlendSpriteColor_Step2_initial_else"
+    },
+    {
+      "address": 136084192,
+      "size": 2,
+      "sha256": "8726ef5c42206476b80835e7e75d7377ac67a1d964a577f875d20c9dcc98dd97",
+      "name": "dispatch_r6_trampoline"
+    },
+    {
+      "address": 136084172,
+      "size": 2,
+      "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5",
+      "name": "dispatch_r1_trampoline"
+    },
+    {
+      "address": 136093176,
+      "size": 84,
+      "sha256": "082024106dafc0d4943c25c05f1e2704df0b2ea1dd5876929b97384e3179abff",
+      "name": "memset_actual_bounded32"
+    },
+    {
+      "address": 134704448,
+      "size": 60,
+      "sha256": "16e85c148660b2c08c0982cca1b4e2f2b06a676f356c9ecef2d06c90b2870976",
+      "name": "FindFirstActiveTask_read_only"
+    }
+  ],
+  "roots": [
+    {
+      "address": 137830324,
+      "size": 4,
+      "sha256": "50a81bb6e9159a335fa1490a90c81559d1c2fb798a20fe972482388a2081b554",
+      "name": "dispatch_slot10_monbg",
+      "value": 134685653
+    },
+    {
+      "address": 137830332,
+      "size": 4,
+      "sha256": "3d325163cfcc6122add7622a6e47f6a06a84db829a1a42fc33e88a479b6f1cde",
+      "name": "dispatch_slot12_setalpha",
+      "value": 134688133
+    },
+    {
+      "address": 134685672,
+      "size": 4,
+      "sha256": "4b1d5702b44c2e900c6dabd4d0411ff12bfa3710a48b50c3294c1af108accb8d",
+      "name": "Cmd_monbg_script_pointer_start",
+      "value": 33783304
+    },
+    {
+      "address": 134686096,
+      "size": 4,
+      "sha256": "4b1d5702b44c2e900c6dabd4d0411ff12bfa3710a48b50c3294c1af108accb8d",
+      "name": "Cmd_monbg_script_pointer_end",
+      "value": 33783304
+    },
+    {
+      "address": 134688184,
+      "size": 4,
+      "sha256": "4b1d5702b44c2e900c6dabd4d0411ff12bfa3710a48b50c3294c1af108accb8d",
+      "name": "Cmd_setalpha_script_pointer",
+      "value": 33783304
+    },
+    {
+      "address": 137830292,
+      "size": 4,
+      "sha256": "84596398433684bfcdc89981b47f8b229d1380919114c84679d89e9db144a979",
+      "name": "dispatch_slot2_createsprite",
+      "value": 134684865
+    },
+    {
+      "address": 137830296,
+      "size": 4,
+      "sha256": "89e7266a897cbf23985422ffb746eaee44c6425840f9df08e6164e2d34fabace",
+      "name": "dispatch_slot3_createvisualtask",
+      "value": 134685109
+    },
+    {
+      "address": 134684968,
+      "size": 4,
+      "sha256": "4b1d5702b44c2e900c6dabd4d0411ff12bfa3710a48b50c3294c1af108accb8d",
+      "name": "Cmd_createsprite_script_pointer",
+      "value": 33783304
+    },
+    {
+      "address": 134684972,
+      "size": 4,
+      "sha256": "fe60b1e1c30b772193f87c0f58eb81844460c228ac50247647557e074a2c89df",
+      "name": "Cmd_createsprite_args",
+      "value": 33783350
+    },
+    {
+      "address": 134685220,
+      "size": 4,
+      "sha256": "4b1d5702b44c2e900c6dabd4d0411ff12bfa3710a48b50c3294c1af108accb8d",
+      "name": "Cmd_createvisualtask_script_pointer",
+      "value": 33783304
+    },
+    {
+      "address": 134685224,
+      "size": 4,
+      "sha256": "fe60b1e1c30b772193f87c0f58eb81844460c228ac50247647557e074a2c89df",
+      "name": "Cmd_createvisualtask_args",
+      "value": 33783350
+    },
+    {
+      "address": 134704112,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4",
+      "name": "CreateTask_tasks",
+      "value": 50352336
+    },
+    {
+      "address": 134245848,
+      "size": 4,
+      "sha256": "c0a4fa5fdba77979fbe25f646ecf58a71ceed31722dbf5a1c3088b2d920d0cec",
+      "name": "CreateSpriteAndAnimate_sprites",
+      "value": 33686968
+    },
+    {
+      "address": 134986488,
+      "size": 4,
+      "sha256": "fe60b1e1c30b772193f87c0f58eb81844460c228ac50247647557e074a2c89df",
+      "name": "AnimTask_BlendBattleAnimPal_args",
+      "value": 33783350
+    },
+    {
+      "address": 134987076,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4",
+      "name": "StartBlendAnimSpriteColor_tasks",
+      "value": 50352336
+    },
+    {
+      "address": 134987080,
+      "size": 4,
+      "sha256": "fe60b1e1c30b772193f87c0f58eb81844460c228ac50247647557e074a2c89df",
+      "name": "StartBlendAnimSpriteColor_args",
+      "value": 33783350
+    },
+    {
+      "address": 134987084,
+      "size": 4,
+      "sha256": "8e3eccbc00e4522781a7d62a1408486cd3f06f80bdff6bcde0c5406ab72694d1",
+      "name": "StartBlendAnimSpriteColor_callback",
+      "value": 134987089
+    },
+    {
+      "address": 134704504,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4",
+      "name": "FindFirstActiveTask_tasks",
+      "value": 50352336
+    }
+  ],
+  "selected_song_roots": [
+    {
+      "move_id": 662,
+      "source_line": 667,
+      "table_row": {
+        "address": 151302444,
+        "size": 4,
+        "sha256": "12e68aa723172a6acbc8e5ac8195c48f11f4c8673ceaadc794fac3a384a62abd"
+      },
+      "song_id": 86,
+      "source": "cfru-moves.h",
+      "source_define": "MOVE_PHOTONGEYSER",
+      "kind": "FINITE_EXPLICIT_MOVE_SOURCE_ID_TO_JP_ANIMATION_SCRIPT",
+      "script_prefix": {
+        "address": 151115348,
+        "size": 42,
+        "sha256": "5b70d30dd7e63e33ee831b970fc88dbffe2a918aaf73c9a43d5a9da288933d94"
+      },
+      "commands": [
+        {
+          "opcode": 0,
+          "kind": "loadspritegfx",
+          "address": 151115348,
+          "size": 3,
+          "sha256": "341233a199a67672dd798389f083d7314c174b6fb47e50d35833257d1c16d8a9"
+        },
+        {
+          "opcode": 0,
+          "kind": "loadspritegfx",
+          "address": 151115351,
+          "size": 3,
+          "sha256": "c713fe26c31960a3596637d966a9f1ff62f8f4f80ffd16d36258626249a9df67"
+        },
+        {
+          "opcode": 3,
+          "kind": "createvisualtask",
+          "address": 151115354,
+          "size": 17,
+          "sha256": "15af7ed0601b740dce0fec43585e18c168a8d31883edbe630bdc8ab002385c31",
+          "task_callback": 134986425,
+          "priority": 10,
+          "argc": 5,
+          "args": [
+            2,
+            2,
+            0,
+            9,
+            923
+          ]
+        },
+        {
+          "opcode": 2,
+          "kind": "createsprite",
+          "address": 151115371,
+          "size": 15,
+          "sha256": "aabb81a6fd9130a75f7f7d29125770a785e570ad8da77dec8598c98845393b3f",
+          "template": 151115880,
+          "argc": 4,
+          "args": [
+            0,
+            65512,
+            8,
+            140
+          ]
+        },
+        {
+          "opcode": 25,
+          "kind": "playsewithpan",
+          "address": 151115386,
+          "size": 4,
+          "sha256": "3c89d8f3742743c3505e4bf451dd5a35be06ec33bfeee0bbb40689013bd5fe4f",
+          "song_id": 86
+        }
+      ],
+      "semantics_ja": "固定source MOVE_PHOTONGEYSER=662。先頭42byteの5命令はloadspritegfx×2, createvisualtask, createsprite, playsewithpan86。task callbackとCreateSpriteAndAnimateの無空きslot分岐に束縛して先行callbackによるscript pointer破壊を排除する有限静的consumer。動的到達・実再生は主張しない。成功したsprite割当経路の完全なAnimateSprite call closureは未検証であり採用根拠に使わない。"
+    },
+    {
+      "song_id": 123,
+      "kind": "FINITE_EXPLICIT_MOVE_SOURCE_ID_TO_JP_ANIMATION_SCRIPT",
+      "source": "cfru-moves.h",
+      "source_line": 732,
+      "source_define": "MOVE_POLTERGEIST",
+      "move_id": 725,
+      "table_row": {
+        "address": 151302696,
+        "size": 4,
+        "sha256": "8e8c3dadcdeee96c27bfbe57f17293fa1e3b45ed4ac5f9943aed4e994b46a469"
+      },
+      "script_prefix": {
+        "address": 151138660,
+        "size": 21,
+        "sha256": "40947584a5f214921cc8e7be5cf53c843069c3b06bbc0725bf7d46b483f9035a"
+      },
+      "commands": [
+        {
+          "opcode": 0,
+          "kind": "loadspritegfx",
+          "address": 151138660,
+          "size": 3,
+          "sha256": "315686f2808a16ab260d83f2bc8fbe77835d7a74c506e72453f1f046778e3500"
+        },
+        {
+          "opcode": 0,
+          "kind": "loadspritegfx",
+          "address": 151138663,
+          "size": 3,
+          "sha256": "f1c3144c2f0af0a27e0b5002dc51961daaa0cd8efc654866f218339f45896407"
+        },
+        {
+          "opcode": 0,
+          "kind": "loadspritegfx",
+          "address": 151138666,
+          "size": 3,
+          "sha256": "3172821c73315f3943d464bf859bedd46e242cc2278fcb57a7e9d26c0de51cb9"
+        },
+        {
+          "opcode": 0,
+          "kind": "loadspritegfx",
+          "address": 151138669,
+          "size": 3,
+          "sha256": "42032899a214750283f3ef32071541b8f89557f122650cff2ea0dbf540f1095f"
+        },
+        {
+          "opcode": 10,
+          "kind": "monbg",
+          "address": 151138672,
+          "size": 2,
+          "sha256": "426e75c2b5c719ae46005abc57144fde1b70294c0d2adf82a36a4de6e0578830"
+        },
+        {
+          "opcode": 12,
+          "kind": "setalpha",
+          "address": 151138674,
+          "size": 3,
+          "sha256": "be3ec265913102f0c2c05f00a2a26940b330fce38f027d365ca6bd455c3168fa"
+        },
+        {
+          "opcode": 25,
+          "kind": "playsewithpan",
+          "address": 151138677,
+          "size": 4,
+          "sha256": "88050224ade5aba8a5f27864fd36dffe394cf693bc027e8998b63c8ac4cca33f",
+          "song_id": 123
+        }
+      ],
+      "semantics_ja": "固定source MOVE_POLTERGEIST=725のJP script先頭7命令。既受入のDoMoveAnim/LaunchBattleAnimation/RunAnimScriptCommand/loadspritegfx/WaitAnimFrameCountを再束縛する。loadspritegfx4回は各3byte、monbgは2byte、setalphaは3byteを消費し、offset17のplaysewithpanはu16 song123を読む。monbgは背景taskを予約するが、そのtaskを同期実行せずscript pointerを計2byte進める。setalphaはGPU register設定だけを行い計3byte進める。callback指定command、waitforvisualfinish、条件分岐はprefixにない。通常engine helper returnを前提とする静的consumerで、実到達・演奏・全曲表長を主張しない。"
+    }
+  ],
+  "instruction_assertions": [
+    {
+      "address": 134685658,
+      "size": 2,
+      "sha256": "f0ab23c008eff582adbf0c728030be1a241d8a3bb6bc66d8efc89ff417886c5b"
+    },
+    {
+      "address": 134685660,
+      "size": 2,
+      "sha256": "cbcaf5c8e65193d0481411b9f202ad6223374b17ea7d7451ccb6d4d7ab022949"
+    },
+    {
+      "address": 134685662,
+      "size": 2,
+      "sha256": "0bb404b255c8235d6d5113cc3e49262a99c374b16f16cd6bf2380052b091c876"
+    },
+    {
+      "address": 134686070,
+      "size": 2,
+      "sha256": "44c808fd166dbb8961fb795587e5ee0082f8a2dc781ff06a3f02223dcc06a7da"
+    },
+    {
+      "address": 134686072,
+      "size": 2,
+      "sha256": "e8f7d826fb40da643926254863f544b6b28d06e41bd46b74b876bd4e3419ed85"
+    },
+    {
+      "address": 134688138,
+      "size": 2,
+      "sha256": "79ce23d915454362559ee2d8ae42a16afcdd68f3f26d9a09f9a07af7d2b01676"
+    },
+    {
+      "address": 134688142,
+      "size": 2,
+      "sha256": "12974c598966dd7ffc8723df005a08ff5e03f6886dcc7309700e774b72ba1ab4"
+    },
+    {
+      "address": 134688144,
+      "size": 2,
+      "sha256": "e363549dd58ccc9edb63b471aa7805a2e6bf2376d2e6178801d12ce5eae1c77e"
+    },
+    {
+      "address": 134688148,
+      "size": 2,
+      "sha256": "600b6c0f983fa9d6137457919ea526c149521f144a6dbf23eedee7dff98df251"
+    },
+    {
+      "address": 134688152,
+      "size": 2,
+      "sha256": "44c808fd166dbb8961fb795587e5ee0082f8a2dc781ff06a3f02223dcc06a7da"
+    },
+    {
+      "address": 134688154,
+      "size": 2,
+      "sha256": "4494c7b70db21c198832fe182c6812cd6b61ad0f6a00146ed09528dc06b8f7ee"
+    },
+    {
+      "address": 134685148,
+      "size": 2,
+      "sha256": "0cc788cee3b2267d36b3daff36537085eb0eaf93e76142ed55bab71e60068280"
+    },
+    {
+      "address": 134685150,
+      "size": 2,
+      "sha256": "17e7fe4d67334a873221dd617b7fb976651145a0f4a0fb6316264b423fd42da7"
+    },
+    {
+      "address": 134685176,
+      "size": 2,
+      "sha256": "79f277a9e2ae3f68fec86bec359310859c766561915a37a9b5b519c23321d949"
+    },
+    {
+      "address": 134685178,
+      "size": 2,
+      "sha256": "600eadda1d49b6f51065a526dbf33392bcc06436aea91f3de93b8123aed614fd"
+    },
+    {
+      "address": 134684904,
+      "size": 2,
+      "sha256": "0cc788cee3b2267d36b3daff36537085eb0eaf93e76142ed55bab71e60068280"
+    },
+    {
+      "address": 134684906,
+      "size": 2,
+      "sha256": "17e7fe4d67334a873221dd617b7fb976651145a0f4a0fb6316264b423fd42da7"
+    },
+    {
+      "address": 134684932,
+      "size": 2,
+      "sha256": "79f277a9e2ae3f68fec86bec359310859c766561915a37a9b5b519c23321d949"
+    },
+    {
+      "address": 134684934,
+      "size": 2,
+      "sha256": "27a410193d7d498354c337469ff90747d1ae7b4d26e76df02e3426c153cdf11f"
+    },
+    {
+      "address": 134704094,
+      "size": 2,
+      "sha256": "1321e1ca91757e8c23c934ff4047d69657e9caeed9ce5a29e5fcf94e7e648ca6"
+    },
+    {
+      "address": 134704096,
+      "size": 2,
+      "sha256": "0c2e4902423d482c95ef4724f6345a633877642276f0655f940f1669bf91b1b5"
+    },
+    {
+      "address": 134987046,
+      "size": 2,
+      "sha256": "f32f4822f4e53dcddc922284169ab6265aaf831d2d9d975eb546252db0b69094"
+    },
+    {
+      "address": 134987128,
+      "size": 2,
+      "sha256": "3f521ec0d4c1fb109b78e72bf8c3d90e84cc579ea6197ba86213e4eaaf0476bc"
+    },
+    {
+      "address": 134987242,
+      "size": 2,
+      "sha256": "3d335bd4a26bf8bbd3f6940b67a30aefc797067f7df243459baf50308433e7c2"
+    },
+    {
+      "address": 134245786,
+      "size": 2,
+      "sha256": "4a08c1413ccafa11c7752bf7f45c7102a0acbce2a636b61166a73c7cc299e65a"
+    },
+    {
+      "address": 134245856,
+      "size": 2,
+      "sha256": "189383c042edd489c677a2ddd121926937bd43c56fcee2448bf1026a71161008"
+    },
+    {
+      "address": 134245862,
+      "size": 2,
+      "sha256": "29a3224168c9831f821878d3a50eba6675221622f1ec83d76a8c3fbfc9b3adf8"
+    },
+    {
+      "address": 134245864,
+      "size": 2,
+      "sha256": "399fd21463a4b2c4add2cb66a01f344fa8f951a4a5191e843659fd9576b5c022"
+    },
+    {
+      "address": 134245866,
+      "size": 2,
+      "sha256": "f705d7dda431c792f308e8fe73a5aa4123965d538d6e9645819fbc4009e619f4"
+    },
+    {
+      "address": 134704088,
+      "size": 2,
+      "sha256": "727743bae59dc11c98ff14739b4566068312115d339ec2ceed3bcd3f7fd1721c"
+    },
+    {
+      "address": 134704090,
+      "size": 2,
+      "sha256": "cdb0b8492b7eda62b983f4ff5b3070174af30478936da7c599bf033b727e8ebb"
+    },
+    {
+      "address": 134704092,
+      "size": 2,
+      "sha256": "0674cb150f72112d640056bae6913beb405ad2a5b473efb9104f915b81700278"
+    },
+    {
+      "address": 134704064,
+      "size": 2,
+      "sha256": "46cc6a8cb5bcc0120f98b84c71699b2ac5b90cb34a781ae2a83305fa98cd8e67"
+    },
+    {
+      "address": 134704066,
+      "size": 2,
+      "sha256": "cea3c17e0d6cdfbfb7c5ab0e5b0bea12ba3e642790d6dd7bfb770e84956a06c0"
+    },
+    {
+      "address": 134704068,
+      "size": 2,
+      "sha256": "77286c4dc998431ad9318a57b6e3b817716b62dc581c381f7deb6eec595df3bc"
+    },
+    {
+      "address": 134704122,
+      "size": 2,
+      "sha256": "aed78e72844b359e47203377ea134d9bae80f49b77898a41bf65f7bebe6ff742"
+    },
+    {
+      "address": 136093178,
+      "size": 2,
+      "sha256": "85f9939add16376680d73ff4ed96a587fc5dfd61c0170c488c3ef872730f5dd4"
+    },
+    {
+      "address": 136093180,
+      "size": 2,
+      "sha256": "4ff41ff56dd37f40c7b22378b826a11e2083b9e8662412343b9ef3cda27ed2fb"
+    },
+    {
+      "address": 136093196,
+      "size": 2,
+      "sha256": "9c50af9ad938986f57ae38d5444f4623f3191bda41f47f38ca78ed3ccba9fdc0"
+    },
+    {
+      "address": 136093214,
+      "size": 2,
+      "sha256": "06c51007ff579c871b1880b86d9c9197f7e9c3cca2116ff922e4afe029eae98b"
+    },
+    {
+      "address": 136093216,
+      "size": 2,
+      "sha256": "06c51007ff579c871b1880b86d9c9197f7e9c3cca2116ff922e4afe029eae98b"
+    },
+    {
+      "address": 136093218,
+      "size": 2,
+      "sha256": "06c51007ff579c871b1880b86d9c9197f7e9c3cca2116ff922e4afe029eae98b"
+    },
+    {
+      "address": 136093220,
+      "size": 2,
+      "sha256": "06c51007ff579c871b1880b86d9c9197f7e9c3cca2116ff922e4afe029eae98b"
+    },
+    {
+      "address": 136093222,
+      "size": 2,
+      "sha256": "129cc4ce525dd1b22b5dc2beb70de970aa0fe7eee65ca77bf8b1e14df8c72aac"
+    },
+    {
+      "address": 136093224,
+      "size": 2,
+      "sha256": "d12e6cf4ca280710761498197a060de553719d929deed840fc105f471a7be6ef"
+    },
+    {
+      "address": 136093226,
+      "size": 2,
+      "sha256": "91d6824546d844cf5825a1b4459015e6ea43e54d4ba89c0de85d926844dfdefd"
+    },
+    {
+      "address": 136093250,
+      "size": 2,
+      "sha256": "2ee788372518190a6ab539cbb20331df1040f21846e3ba836c269aee907c894c"
+    },
+    {
+      "address": 136093252,
+      "size": 2,
+      "sha256": "b04f431ccc01d8e8c30bd9ba279c3ce1f21dd3732c2d7036c2f95637e54fab37"
+    },
+    {
+      "address": 136093254,
+      "size": 2,
+      "sha256": "8d67cc42f3f83c9411fc6df4cb1362acfc47d4bf190d58c8dbef442a395c9c76"
+    }
+  ],
+  "source_semantics": [
+    {
+      "source": "pret-battle_anim.c",
+      "function": "Cmd_monbg",
+      "start_line": 531,
+      "end_line": 626
+    },
+    {
+      "source": "pret-battle_anim.c",
+      "function": "Cmd_setalpha",
+      "start_line": 933,
+      "end_line": 952
+    },
+    {
+      "source": "pret-task.c",
+      "function": "CreateTask",
+      "start_line": 30,
+      "end_line": 49
+    },
+    {
+      "source": "pret-sprite.c",
+      "function": "CreateSpriteAndAnimate",
+      "start_line": 583,
+      "end_line": 610
+    },
+    {
+      "source": "pret-battle_anim_utility_funcs.c",
+      "function": "AnimTask_BlendBattleAnimPal/StartBlendAnimSpriteColor/Step2",
+      "start_line": 53,
+      "end_line": 215
+    },
+    {
+      "source": "pret-battle_anim_mons.c",
+      "function": "GetBattlePalettesMask/GetBattleMonSpritePalettesMask",
+      "start_line": 1316,
+      "end_line": 1396
+    }
+  ],
+  "limitations_ja": [
+    "旧formalの窓reviewである。現0641全ROM identityと同一窓再束縛が別途必要。",
+    "sample全体役割競合と旧644受入・旧sample asset identities全件保持を必須とする。"
+  ],
+  "edges": [
+    {
+      "address": 134685192,
+      "size": 4,
+      "sha256": "d81fcc07a9d465cc0eeee4c9dd3e8a30981d23df54865b12135301ee87dd4770",
+      "kind": "THUMB_BL",
+      "target": 134704052
+    },
+    {
+      "address": 134685200,
+      "size": 4,
+      "sha256": "89eea8d3b58cd8218ce1ef5382053fd7dcf1027294ca002807c031d7d5a3acb8",
+      "kind": "THUMB_BL",
+      "target": 136084192
+    },
+    {
+      "address": 134685078,
+      "size": 4,
+      "sha256": "bbb58bb7427114ffaf72d73f1cd9e2e7965dba2e03883039672d94a3444a0cd2",
+      "kind": "THUMB_BL",
+      "target": 134245736
+    },
+    {
+      "address": 134986438,
+      "size": 4,
+      "sha256": "daa09769847b1024e375f5421b16cf7413e638954c2b66d3dcd599d50c4f5ef6",
+      "kind": "THUMB_BL",
+      "target": 134982868
+    },
+    {
+      "address": 134986466,
+      "size": 4,
+      "sha256": "223aed3989707e7eac764d2dc11c4a16ebcfe4fdc26fa84cdce95acef5ec90f6",
+      "kind": "THUMB_BL",
+      "target": 134698076
+    },
+    {
+      "address": 134986476,
+      "size": 4,
+      "sha256": "96b91558182927d84f17ac91eba60b9caf59c7a017128137848ed9cdb3f568a0",
+      "kind": "THUMB_BL",
+      "target": 134987020
+    },
+    {
+      "address": 134982924,
+      "size": 4,
+      "sha256": "b6c9809687b4ffa6d54d3d856d337b8ead94f66dd684fbb31f6d9e00016cf53c",
+      "kind": "THUMB_BL",
+      "target": 134697868
+    },
+    {
+      "address": 134987068,
+      "size": 4,
+      "sha256": "8f1d0e4d78960da33ac74be5bca273b63ae4d6b20584be688531c85858c44983",
+      "kind": "THUMB_BL",
+      "target": 136084172
+    },
+    {
+      "address": 134704098,
+      "size": 4,
+      "sha256": "15f6fce5700e3753a8294b7916e792c77e736cea023517a1b53d76cced3f21c7",
+      "kind": "THUMB_BL",
+      "target": 136093176
+    },
+    {
+      "address": 134704084,
+      "size": 4,
+      "sha256": "c6aa39a9c507b99247b3992e274ae02ae5f80fd8b559d14788779f84c5776d18",
+      "kind": "THUMB_BL",
+      "target": 134704136
+    },
+    {
+      "address": 134704146,
+      "size": 4,
+      "sha256": "bc9f60233ec34e2a1a004497346e0c7d18a60c8f9327f8c1e21ac699a866bb50",
+      "kind": "THUMB_BL",
+      "target": 134704448
+    }
+  ],
+  "callback_noninterference": {
+    "script_pointer": 33783304,
+    "args": {
+      "address": 33783350,
+      "size": 16
+    },
+    "tasks": {
+      "address": 50352336,
+      "stride": 40,
+      "count": 16
+    },
+    "sprites": {
+      "address": 33686968,
+      "stride": 68,
+      "count": 64
+    },
+    "finite_path_preconditions_ja": [
+      "CreateTaskの空きtask slotが存在する。CreateTaskはtask.data32byteをzero clearする。",
+      "createvisualtaskのargc5はargs範囲内。固定args[0]=2からpalette選択を(0,1,0,0,0,0,0)と展開するGetBattlePalettesMaskはattackerIDを読みbit演算するだけ。GetBattleMonSpritePalettesMaskの4引数は全0で即returnし副作用なし。",
+      "StartBlendAnimSpriteColorはtask rowだけ更新しdata2=2、初回data9=0。初回Step2は不一致elseでtask.data9を1にするだけでpalette mutation経路に入らない。",
+      "createvisualtask/createspriteとも最大arg_countが8以下。script pointerはそれぞれ7+2*argcだけ進む。",
+      "続くCreateSpriteAndAnimateはsprite全64slot.isActiveが非zeroの有限分岐を採る。この分岐ではCreateSpriteAt・sprite callback・AnimateSpriteを呼ばず64をreturn。Cmd_createspriteは戻り値を検査せずgAnimVisualTaskCountをincrementしてreturnしplaysewithpanに進む。"
+    ],
+    "coverage_ja": "構造上存在する上記有限分岐だけを根にする。実ゲームでtask確保/全sprite使用状態が発生する、またはその状態がここへ動的到達することは主張しない。"
+  },
+  "memset_noninterference": {
+    "sources": [
+      {
+        "local": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      {
+        "local": "pret-task.c",
+        "size": 5029,
+        "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+        "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+      }
+    ],
+    "bprj_fixed_symbol": {
+      "source": "BPRJ.ld",
+      "line": 1216,
+      "name": "memset_",
+      "thumb_address": 136093177
+    },
+    "source_call": {
+      "source": "pret-task.c",
+      "function": "CreateTask",
+      "line": 41,
+      "expression": "memset(gTasks[i].data, 0, sizeof(gTasks[i].data));"
+    },
+    "callsite": 134704098,
+    "register_contract": {
+      "r0": "0x030050D0 + 40 * task_id + 8",
+      "r1": 0,
+      "r2": 32
+    },
+    "task_id_min": 0,
+    "task_id_max": 15,
+    "destination_ranges": [
+      {
+        "task_id": 0,
+        "start": 50352344,
+        "end_exclusive": 50352376
+      },
+      {
+        "task_id": 1,
+        "start": 50352384,
+        "end_exclusive": 50352416
+      },
+      {
+        "task_id": 2,
+        "start": 50352424,
+        "end_exclusive": 50352456
+      },
+      {
+        "task_id": 3,
+        "start": 50352464,
+        "end_exclusive": 50352496
+      },
+      {
+        "task_id": 4,
+        "start": 50352504,
+        "end_exclusive": 50352536
+      },
+      {
+        "task_id": 5,
+        "start": 50352544,
+        "end_exclusive": 50352576
+      },
+      {
+        "task_id": 6,
+        "start": 50352584,
+        "end_exclusive": 50352616
+      },
+      {
+        "task_id": 7,
+        "start": 50352624,
+        "end_exclusive": 50352656
+      },
+      {
+        "task_id": 8,
+        "start": 50352664,
+        "end_exclusive": 50352696
+      },
+      {
+        "task_id": 9,
+        "start": 50352704,
+        "end_exclusive": 50352736
+      },
+      {
+        "task_id": 10,
+        "start": 50352744,
+        "end_exclusive": 50352776
+      },
+      {
+        "task_id": 11,
+        "start": 50352784,
+        "end_exclusive": 50352816
+      },
+      {
+        "task_id": 12,
+        "start": 50352824,
+        "end_exclusive": 50352856
+      },
+      {
+        "task_id": 13,
+        "start": 50352864,
+        "end_exclusive": 50352896
+      },
+      {
+        "task_id": 14,
+        "start": 50352904,
+        "end_exclusive": 50352936
+      },
+      {
+        "task_id": 15,
+        "start": 50352944,
+        "end_exclusive": 50352976
+      }
+    ],
+    "return_contract": "r0 = original destination; r4/r5 restored; return through saved pc",
+    "semantics_ja": "空きtask slotだけの成功分岐。CreateTaskのr6は0..15、r5は40*r6、r7は固定gTasks。r0へtask+8、r1へ0、r2へ32を渡す。実calleeはdest4byte整列を確認し、zero byteを32bit zeroへ展開、4回のSTMで16byteを埋めるloopを2回実行する。r2=0となりword/tail byte storeは実行されず、元destを返す。書込は各task.data[0..15]の32byteだけでscript pointer/argsとは別領域。FindFirstActiveTaskはtaskリストを読むだけ、InsertTaskは同gTasksのprev/nextだけを更新しscript pointerに書かない。"
+  }
+}

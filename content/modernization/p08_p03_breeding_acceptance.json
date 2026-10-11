@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "status": "VERIFIED_WITH_DECLARED_LIMITS",
+  "source_run_id": 34434453733,
+  "tested_code_commit": "8a2919f390902a3b991e13f3e252f47bd3d93261",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+  },
+  "evidence_root": "content/modernization/p08_breeding_evidence/34434453733",
+  "physical_breeding_cases": [
+    "lightball-father",
+    "lightball-mother",
+    "both-parents",
+    "father-only",
+    "mother-only",
+    "no-eligible-moves",
+    "same-move-both",
+    "lightball-only"
+  ],
+  "fresh_mgba_processes_in_original": 8,
+  "fresh_core_instances_in_original": 24,
+  "cached_passes_in_original": 0,
+  "new_mgba_processes_during_integration": 0,
+  "closed_conditions": [
+    "Two parents deposited through the real daycare dialogue and party menu",
+    "Physical walking generates an egg; real outdoor NPC dialogue claims it",
+    "Father-only, mother-only, both-parent and no-eligible-move inheritance",
+    "Duplicate inherited moves are not added twice",
+    "Light Ball on either parent grants Volt Tackle; absent item does not",
+    "Egg and hatched individual each survive normal Save and fresh-core Continue",
+    "Native unaccelerated hatching, nickname refusal, species and canonical PP"
+  ],
+  "remaining_conditions": [
+    "Other breeding species/form/incense/Ditto combinations and full-party rejection",
+    "Other untested P03 acquisition routes and final archive economy adoption",
+    "Full P05 acceptance including natural ability acquisition, Mega and Circus",
+    "Explicit P06/P07 adopted deltas, implementation and acceptance",
+    "Final release acceptance and play-baseline promotion"
+  ],
+  "parent_fixture_only": true,
+  "all_breeding_paths_accepted": false,
+  "full_p03_acceptance": false,
+  "release_ready": false,
+  "active_stage62_baseline_changed": false,
+  "files": {
+    "actions-artifact.json": {
+      "size": 839,
+      "sha256": "76821b1cd6dce1eea548c942837d650e4056c5daeb540a52f666dd08a6de0e38"
+    },
+    "actions-jobs.json": {
+      "size": 3210,
+      "sha256": "f93a7fada4c2ac99e7a8bbd3f6bf4067bc5c284bdef7282f7d9c64ca919b605a"
+    },
+    "actions-run.json": {
+      "size": 16771,
+      "sha256": "bd8e7a0719d1eb348e9bfcf61bcc0a639cb30800bbedb500b377fed9a09c84dc"
+    },
+    "original.zip": {
+      "size": 31334,
+      "sha256": "79d6fd81c5f63d0dfb165a7db9e6f1875030c3422c46fab93f82c0db553a1ff7"
+    }
+  }
+}

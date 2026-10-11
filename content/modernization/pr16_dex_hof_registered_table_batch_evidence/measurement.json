@@ -1,0 +1,3104 @@
+{
+  "status": "PASS_CURRENT_766_PARENT_REGISTERED_TABLE_BATCH_AND_PARTIAL_SPACE_REFUSAL",
+  "source_head": "772d7b045736aded02a2a6c11617b2f09f207bf5",
+  "run_id": 37440966985,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "candidate_changed": false,
+  "unit_tests": 275,
+  "classified": 771,
+  "unclassified": 103,
+  "newly_classified": 5,
+  "new_data": 5,
+  "new_code": 0,
+  "new_boundary": 0,
+  "new_song": 0,
+  "old_inventory_candidates": 874,
+  "previous_classified": 766,
+  "previous_unknown": 108,
+  "owner_unknown": 0,
+  "unowned_unknown": 103,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "old_full_rom_inventory_reused": true,
+  "delta_identity": {
+    "size": 140344,
+    "sha256": "7328376dd49647f52a4c01a6167343bd6570a4b05b93323bbedb1bc6f309fef8"
+  },
+  "baseline_identity": {
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent_identity": {
+    "size": 229898,
+    "sha256": "87d249a19a81c83560d660c623a6fdc3866c219d2143450809c12395353cfd70"
+  },
+  "earlier_identity": {
+    "size": 149772,
+    "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+  },
+  "unknown_identity": {
+    "size": 45195,
+    "sha256": "ae614c3bc9897c84efee3837b361f0f8e2fce252762b9a1d732f7b3d09646d13"
+  },
+  "capacity_identity": {
+    "size": 42385,
+    "sha256": "85e1c215defd1fe4015da522ae1ec415a9b5371382e6f4d0f7d5fe2cbffcf033"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-registered-table-batch.yml": {
+      "size": 3122,
+      "sha256": "443bdc3eaf81cd5966d894612d56cb02defddee5b35becb7748f992287763938"
+    },
+    "content/modernization/pr16_dex_hof_animation_background_roots_review.json": {
+      "size": 21343,
+      "sha256": "498b67e1cf310a59dcaefcf116400dbed1c1d09cb4c5c8419b812dd209409cfa"
+    },
+    "content/modernization/pr16_dex_hof_critical_move_list_roots_review.json": {
+      "size": 12096,
+      "sha256": "37cf0c104a0fda69bd0ad5ebd90a8ceb6dea4584f921463669dfe037834f2c1a"
+    },
+    "content/modernization/pr16_dex_hof_registered_table_batch_development_validation.json": {
+      "size": 7338,
+      "sha256": "16e7ff07c1654eebd5923a472e232865b873d1dcb6a7785b22a48bff3be0d79b"
+    },
+    "content/modernization/pr16_dex_hof_registered_table_batch_sources.json": {
+      "size": 11550,
+      "sha256": "c639d6b0757ef111dabecd21a64012e2d4313cddaf1cd8c1c8fbcc95944b6426"
+    },
+    "docs/PR16_DEX_HOF_REGISTERED_TABLE_BATCH_JA.md": {
+      "size": 3375,
+      "sha256": "139a1099f8b24c374d28c5dab4d8b84055a3fd7df44d002a12b4bfb04328fe6b"
+    },
+    "scripts/pr16_dex_hof_animation_background_roots.py": {
+      "size": 42767,
+      "sha256": "560c2665e14e33c221311a9918edf6633f7937c154a2859d6c976ce285f35bf5"
+    },
+    "scripts/pr16_dex_hof_critical_move_ids.py": {
+      "size": 12338,
+      "sha256": "32fc9f9fe11b076851f84d504b50aff115a8d386e8af58c261e3aa15f0e6e33f"
+    },
+    "scripts/pr16_dex_hof_critical_move_list_roots.py": {
+      "size": 24690,
+      "sha256": "e8cb943f82b3f5d0349df13812195063293ce5ec3ffa8b26944e40d698866498"
+    },
+    "scripts/pr16_dex_hof_registered_table_batch.py": {
+      "size": 6799,
+      "sha256": "92dcaaf988f0a02716dbb408a501d1ff0244b69678a319add9ae1adb72f71764"
+    },
+    "scripts/pr16_dex_hof_registered_table_batch_actions.py": {
+      "size": 29561,
+      "sha256": "83d0734c5387aebec8b4125f1a66af771230b1db49e4155af22e02f3ddeedb1a"
+    },
+    "scripts/pr16_dex_hof_registered_table_batch_capacity.py": {
+      "size": 11407,
+      "sha256": "3d08e43d927b700b0a47b51f1fdca57e38bd47884f6378990f83a781f176d257"
+    },
+    "scripts/pr16_dex_hof_registered_table_batch_chain.py": {
+      "size": 20452,
+      "sha256": "aba14f90475947e33c061bf647105d507ceb2665891cb14c6b36de4fd50fb92e"
+    },
+    "tests/test_pr16_dex_hof_animation_background_roots.py": {
+      "size": 13052,
+      "sha256": "d69f198b55ee4b034f1ca15a9c51c8164bb0cd4ee1b936c1062ff8477daff03a"
+    },
+    "tests/test_pr16_dex_hof_critical_move_ids.py": {
+      "size": 4122,
+      "sha256": "1fc7821ccb5f9453e5c06518e97ef73b97ce679855c9e252e6f8cee510833354"
+    },
+    "tests/test_pr16_dex_hof_critical_move_list_roots.py": {
+      "size": 11698,
+      "sha256": "45c8d44fa0e9de5e65cf751743bd2033cfb8829811d0e1c2e81c2d5d5eaa488e"
+    },
+    "tests/test_pr16_dex_hof_registered_table_batch.py": {
+      "size": 7739,
+      "sha256": "0792f30cbf16edb94130706d69d6a50bb6e9374695741f45df2f7613282fa5ef"
+    },
+    "tests/test_pr16_dex_hof_registered_table_batch_actions.py": {
+      "size": 18897,
+      "sha256": "919d58a5094960230dd90b75d983d9eef2c2b4b2e4f955f1d32a9d3ab381a611"
+    },
+    "tests/test_pr16_dex_hof_registered_table_batch_capacity.py": {
+      "size": 16235,
+      "sha256": "a8c2191988723d9e3a4170ae2178e08e289fe1d9d93396026e4bb0395db21bc8"
+    },
+    "tests/test_pr16_dex_hof_registered_table_batch_chain.py": {
+      "size": 22509,
+      "sha256": "929ccf06bdd7f3af18a4bbb527fcffdbe3f5e5e6ac772e49e854fe45cd2ca82c"
+    }
+  },
+  "inherited_bindings": {
+    "content/modernization/pr16_dex_hof_boundary_references_checkpoint.json": {
+      "size": 14687,
+      "sha256": "d97afe368fecf0b369e3630180dc1f579501ac6a2d276cfcbe5647a973703f7a"
+    },
+    "content/modernization/pr16_dex_hof_boundary_references_evidence/reference-chain.json": {
+      "size": 13165,
+      "sha256": "5b9ff2600caec75c226e720010e772725c76ec52da2391024176d01f19892eb7"
+    },
+    "content/modernization/pr16_dex_hof_boundary_references_evidence/unknown-frontier.json": {
+      "size": 61763,
+      "sha256": "ef91033ce77034dffa6b1155011bbe7df86f26df79c5ea8f630288cae8462a1f"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_checkpoint.json": {
+      "size": 52637,
+      "sha256": "974f9bc2cb87f30112a40e6c5df29ad4734336216a2e64f3568aeddb5150705a"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/reference-chain.json": {
+      "size": 60153,
+      "sha256": "06595ebf5830e45334dbb83ec1fb96658d40879f6f4a0126e3718a8d5ae6100a"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/unknown-frontier.json": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_checkpoint.json": {
+      "size": 10439,
+      "sha256": "f6530690ae80c432d94aef8288273eb8f5a1bbf7b4c80115146a9cac9329e464"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_evidence/reference-chain.json": {
+      "size": 22816,
+      "sha256": "c49c05072bb5dcf19de4620440bfde82ad66e3c1269566a9b6184ebc9870bbc6"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_evidence/unknown-frontier.json": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_checkpoint.json": {
+      "size": 11195,
+      "sha256": "660b6dc8b99c0005e8804998ad962772358233338eb2876d12853d75507342b9"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/reference-chain.json": {
+      "size": 28406,
+      "sha256": "20a394e6ce825113bbfd833989c18528a44f665f79eaf1c91f1ab6899a796dc7"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/unknown-frontier.json": {
+      "size": 64815,
+      "sha256": "435ae082b4cba009029f452e0bffcc365a73c66a439241842dd12107f54bab06"
+    },
+    "content/modernization/pr16_dex_hof_controller_evidence/controller-footprint.json": {
+      "size": 9353,
+      "sha256": "5ec5d9b72d25dcd249c3d6cf8af75544749748a8bdcee6da2092c3e583223d6c"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_checkpoint.json": {
+      "size": 9621,
+      "sha256": "a81a17085d98690f9e397c02f6334680e8064f76e0e7e24cc9f9fabb520ef631"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_evidence/reference-chain.json": {
+      "size": 23481,
+      "sha256": "1ede9031a30c4c5f52ec2b6cbf47ad177c4117931fb72796ce597c2786c01476"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_evidence/unknown-frontier.json": {
+      "size": 63943,
+      "sha256": "9a58057a3d7d8c18661270902c00c478da298ba65f0b637cc99a1d09a32df85f"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_checkpoint.json": {
+      "size": 30849,
+      "sha256": "8ca9d8a8a014761a478b10da7e5818058106d0247585b9ff446457135fd78c05"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_evidence/partial-space.json": {
+      "size": 27710,
+      "sha256": "927af5f2ccd60e78b3a953e2e47ad84a63537079796e528427aa9f9955efc3ea"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_evidence/reference-chain.json": {
+      "size": 26093,
+      "sha256": "b93206ff3a84d498746a571e9e874441ee2e0397d030baa7f46c9b283b0ac0fb"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_evidence/unknown-frontier.json": {
+      "size": 53915,
+      "sha256": "65c28b232f6c658dec0fc653e97ebfacd07e3dcd378c513f920aae1cc1c55b94"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_checkpoint.json": {
+      "size": 75332,
+      "sha256": "608c5faa5f2f2b8ff988ef25dbbf77ad5fffbcafc4da4aee8809a521251f098f"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/partial-space.json": {
+      "size": 25234,
+      "sha256": "dd198330e486045d12e8d554e787c0614d795f72b2b0fc443f0c4962d4a39164"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/reference-chain.json": {
+      "size": 75712,
+      "sha256": "f2b07ad37d428bb4d1be56da6fb65b3a9086a6957c60056697c32ecfc38d8fb3"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/unknown-frontier.json": {
+      "size": 54787,
+      "sha256": "036a9bd87ea101d84fada4d1fbd65f29bec00cf6ab1a6c00f6d16226d27e931d"
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_checkpoint.json": {
+      "size": 69329,
+      "sha256": "610234656db9b5ea8304bd7f56219fe697d47254252bd99f243bf548b8fee069"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_evidence/partial-space.json": {
+      "size": 32590,
+      "sha256": "1c42ce891cecb5d280c41dcc06fa13181510ca84438df59b87acf73592d00655"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_evidence/reference-chain.json": {
+      "size": 67352,
+      "sha256": "0833d5c4f8fc3f7aad4c7bac812ee1dc2c811f1b753deb8505f1d999b9f26869"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_evidence/unknown-frontier.json": {
+      "size": 51735,
+      "sha256": "e5a2559bdfa94c4be9b8ec07fd8d9d178083ac2035858298dcf3ec648b641f28"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_checkpoint.json": {
+      "size": 335169,
+      "sha256": "dff4dcab9cd7fadce44cbc6456d00ade32b724f9553455e3d66acfe9850e547f"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_evidence/partial-space.json": {
+      "size": 19893,
+      "sha256": "52a352d391906df2fbbc8eec3abce5be00087a9947b55216e7234fdcc69c24f1"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_evidence/reference-chain.json": {
+      "size": 352753,
+      "sha256": "53f4789fb532d93791fa7e0962b7feea9f74003d342f5175d00e1b07de7aa5d0"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_evidence/unknown-frontier.json": {
+      "size": 57403,
+      "sha256": "50358bbd4cc7b0a5bdd7d4e85bb0f57a79b038d35f5394734e85a4d9c9271e8e"
+    },
+    "content/modernization/pr16_dex_hof_party_references_checkpoint.json": {
+      "size": 349521,
+      "sha256": "5236fec1ccd849b4110093ba2587885913a3f0eb767759d21a6932ef21ba8cda"
+    },
+    "content/modernization/pr16_dex_hof_party_references_evidence/reference-chain.json": {
+      "size": 375903,
+      "sha256": "55bc39b3b22ad61654fa24dbf37e5c44b33aae16357acf70e823af5baf4a748c"
+    },
+    "content/modernization/pr16_dex_hof_party_references_evidence/unknown-frontier.json": {
+      "size": 60891,
+      "sha256": "acb5cbea26a6eaba403dd3fc3e3215f54a9ad7dde440b8dfd3636dd697241621"
+    },
+    "content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json": {
+      "size": 149772,
+      "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json": {
+      "size": 95619,
+      "sha256": "c38d8e67a6718cacc17a3999922dca9edd9977734711b3cf5a74f85c1b76bb32"
+    },
+    "content/modernization/pr16_dex_hof_registered_boundary_batch_checkpoint.json": {
+      "size": 101375,
+      "sha256": "4d0c4108edcc85e109e44ea1f198dd8a717b7e3b902d603c3269b41d7fa1c0bf"
+    },
+    "content/modernization/pr16_dex_hof_registered_boundary_batch_evidence/partial-space.json": {
+      "size": 37468,
+      "sha256": "9b34728e2610f2168107f39fece5f00d9499ce40f6b7c72052c1d09296af650b"
+    },
+    "content/modernization/pr16_dex_hof_registered_boundary_batch_evidence/reference-chain.json": {
+      "size": 97362,
+      "sha256": "1918d7b42f9fe0a44bf11ecec37ebaffc9234a3369c7e801efe606a7939a344b"
+    },
+    "content/modernization/pr16_dex_hof_registered_boundary_batch_evidence/unknown-frontier.json": {
+      "size": 48683,
+      "sha256": "cf8047c1fb6e93e5f04eebd759c661b83ceb071c7fa6f7b0848a376094111224"
+    },
+    "content/modernization/pr16_dex_hof_registered_callback_batch_checkpoint.json": {
+      "size": 217004,
+      "sha256": "6709faeae5a78913b943ae199aecc8b878acffe6c5422e72aa7b48a94811998d"
+    },
+    "content/modernization/pr16_dex_hof_registered_callback_batch_evidence/partial-space.json": {
+      "size": 39936,
+      "sha256": "b0fcd8c21852cc3b796f001f12b74c90295b42543089be1c305a6ef9400959b1"
+    },
+    "content/modernization/pr16_dex_hof_registered_callback_batch_evidence/reference-chain.json": {
+      "size": 229898,
+      "sha256": "87d249a19a81c83560d660c623a6fdc3866c219d2143450809c12395353cfd70"
+    },
+    "content/modernization/pr16_dex_hof_registered_callback_batch_evidence/unknown-frontier.json": {
+      "size": 47375,
+      "sha256": "84bfbd7856596ae7028bdfad6259e1e300d36b41268c61212f5fc1e3e7209b73"
+    },
+    "content/modernization/pr16_dex_hof_registered_text_batch_checkpoint.json": {
+      "size": 236992,
+      "sha256": "601684b4c0589220b6198b8b2cd128abaa14dce699537e5bdd3fb88b8f237af6"
+    },
+    "content/modernization/pr16_dex_hof_registered_text_batch_evidence/partial-space.json": {
+      "size": 35011,
+      "sha256": "7005742a1da72107a75ccee29740a2939187883ab65f4deb33e98d8d2f022da9"
+    },
+    "content/modernization/pr16_dex_hof_registered_text_batch_evidence/reference-chain.json": {
+      "size": 254445,
+      "sha256": "fa5937c532017d8da6be60c4cc4c4602dc6bbd6bda3c4189484fcefe04badacc"
+    },
+    "content/modernization/pr16_dex_hof_registered_text_batch_evidence/unknown-frontier.json": {
+      "size": 49555,
+      "sha256": "0c0e84a7e4cc3474394efdcf8eff6434c9a784ffdf041d7657d16f03043d6a89"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_checkpoint.json": {
+      "size": 809502,
+      "sha256": "55cfbf03e124c26f78ed00b52b9d2da7604642c892dc8c85f0754b3e1a82aca3"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_evidence/partial-space.json": {
+      "size": 17993,
+      "sha256": "dea8c62dfb5e9b608ead9ade52bf1a907e29920d946990146f15ba4e58094115"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_evidence/reference-chain.json": {
+      "size": 875373,
+      "sha256": "1fb58b88ac19198de7ef29fc0728908c1fb720915bfa53d265b78994252a6917"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_evidence/unknown-frontier.json": {
+      "size": 58275,
+      "sha256": "55bee1d2fbe5f830cd23acb58ec0f09d56ac0e4d2fe7af9ea798894a14c13adf"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_checkpoint.json": {
+      "size": 8001,
+      "sha256": "62411cded366aa43cb449af76b13166e2df6476532b3997664c22baa00e1d226"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_evidence/reference-chain.json": {
+      "size": 71138,
+      "sha256": "185e66b6e93eb94a6d1850b7f29b4ccfd00dfd3b3a5668a6021dbf5059fd3bd2"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_checkpoint.json": {
+      "size": 444776,
+      "sha256": "5fadebac1cd15e645ce5cb047148e1e59fa193af735518138fc8373beb565d55"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_evidence/partial-space.json": {
+      "size": 22817,
+      "sha256": "895250c668b17b8063c23fd87871c4e6a464f0885fe559eb37d9cf581e4184df"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_evidence/reference-chain.json": {
+      "size": 478118,
+      "sha256": "2089134cff6c3f920bea3476e8c0b9e883901eff42eb7f933fd86c91e71f485e"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_evidence/unknown-frontier.json": {
+      "size": 56095,
+      "sha256": "8e463394c3ff6160d15f4d89d8b97153766e7c1b5af13d51d323abdb1ad5e2c0"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_checkpoint.json": {
+      "size": 55238,
+      "sha256": "b9252156201ab5c7506396270d9757522240767a3a781a7330237b1c9ba50927"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_evidence/reference-chain.json": {
+      "size": 68925,
+      "sha256": "7fdc8ed846f529fd7dfd5b35b322ddf8bd1eb46e18f5fd45239e21e998adae8e"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_evidence/unknown-frontier.json": {
+      "size": 62199,
+      "sha256": "53ea3d2a47a3066f72278de164c8cbc19ba5a6ebf3ec815cde921db50a65aa6d"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_checkpoint.json": {
+      "size": 188864,
+      "sha256": "9c103fcdd3158dd7e91cee7a3c84fdc395cb5142d6ac0aa41d9e35b368d8c46d"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_evidence/partial-space.json": {
+      "size": 30148,
+      "sha256": "3f040cd811b9ef39ae507799c1a2c2b8f480dc94c1e0a9b2aaaf562abe0fd228"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_evidence/reference-chain.json": {
+      "size": 194298,
+      "sha256": "a5447e696153e276597a94f090fdb602d13762a486719c53c4b56b0186bbfbd9"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_evidence/unknown-frontier.json": {
+      "size": 53043,
+      "sha256": "ec81c12a713e407c669f2fe39ba1f34f86b9da2b78029db55aca49ce24e503fc"
+    },
+    "content/modernization/pr16_dex_hof_script_references_checkpoint.json": {
+      "size": 8864,
+      "sha256": "026944a1ae8d2bfeca0eb3105868d9ebe3fc1b8f0d7669fc18b7fb69fddc58ff"
+    },
+    "content/modernization/pr16_dex_hof_script_references_evidence/reference-chain.json": {
+      "size": 134951,
+      "sha256": "da105fd05e4ddb51bd7648af890db509c9b8f1e7e79112dbc1b295ce15b51279"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_checkpoint.json": {
+      "size": 627652,
+      "sha256": "e63d3dfda20758d9a2f120a06bfc870183adf1cd997d887462babdae9af6529a"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_evidence/partial-space.json": {
+      "size": 15194,
+      "sha256": "0c02f86656a4bfc4f16a73e09c9eff9ae0f382989b89deeed99bfcc81f6c2da7"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_evidence/reference-chain.json": {
+      "size": 681669,
+      "sha256": "c11d71495d60fda8fed98464eb6962f7b57be75dc39e8b479be3d57903d68586"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_evidence/unknown-frontier.json": {
+      "size": 60019,
+      "sha256": "8e9a910b72b855ae7115a28b279abeddf82612f8f975e6085b6bb17fafd1093d"
+    },
+    "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json": {
+      "size": 4063919,
+      "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+    },
+    "content/modernization/pr16_story_route_adapter_checkpoint.json": {
+      "size": 45222,
+      "sha256": "ff7094f278de5502b40bca5ceaccb1a29ba6776b9b5eedc5ccdcb5ea03be19c7"
+    },
+    "state/source-lock.json": {
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    }
+  },
+  "current_owner_count": 115,
+  "current_rom_reconstructions": 1,
+  "historical_rom_reconstructions": 0,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "accepted_heap_reruns": 0,
+  "independent_final_source_review_completed": false,
+  "new_registered_table_batch_source_review_completed": true,
+  "development_validation": {
+    "size": 7338,
+    "sha256": "16e7ff07c1654eebd5923a472e232865b873d1dcb6a7785b22a48bff3be0d79b"
+  },
+  "validation_scope": "新scope専用unit、現候補全SHA/115actual owner/874hit/新critical表/animation背景の独立IDと有限登録pointer/serializer・実reader/展開consumer最小型・保存容量原本の機械検証。旧最終song/battle/Surf独立再レビュー未実施を保持。",
+  "combined_song_models": 133,
+  "retained_sample_witnesses": 50,
+  "old_models_reused_for_new_cross_song_role_safety": true,
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "controller_runtime_wired": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "registered_table_batch_diagnostics": {
+    "status": "PASS_NEW_REGISTERED_TABLE_MINIMUM_FIELDS",
+    "consumers": {
+      "registered_critical_move_list_boundary": {
+        "status": "PASS_REGISTERED_CRITICAL_MOVE_LIST",
+        "count": 1,
+        "hits": [
+          151258537
+        ],
+        "serialization": {
+          "status": "PASS_SOURCE_CURRENT_ID_SERIALIZATION",
+          "tables": [
+            {
+              "label": "gHighCriticalChanceMoves",
+              "address": 151258488,
+              "size": 52,
+              "sha256": "082c43d940efef0ca2fc346f1eafd6f038e1f0e34057ced738aead600b89211a",
+              "halfword_count": 26,
+              "final_terminator_address": 151258538,
+              "source_symbols": [
+                "MOVE_KARATECHOP",
+                "MOVE_RAZORWIND",
+                "MOVE_RAZORLEAF",
+                "MOVE_SKYATTACK",
+                "MOVE_CRABHAMMER",
+                "MOVE_SLASH",
+                "MOVE_AEROBLAST",
+                "MOVE_CROSSCHOP",
+                "MOVE_BLAZEKICK",
+                "MOVE_AIRCUTTER",
+                "MOVE_POISONTAIL",
+                "MOVE_LEAFBLADE",
+                "MOVE_NIGHTSLASH",
+                "MOVE_SHADOWCLAW",
+                "MOVE_PSYCHOCUT",
+                "MOVE_CROSSPOISON",
+                "MOVE_STONEEDGE",
+                "MOVE_ATTACKORDER",
+                "MOVE_SPACIALREND",
+                "MOVE_DRILLRUN",
+                "MOVE_SNIPESHOT",
+                "MOVE_ESPERWING",
+                "MOVE_TRIPLEARROWS",
+                "MOVE_AQUACUTTER",
+                "MOVE_IVYCUDGEL",
+                "MOVE_TABLES_TERMIN"
+              ],
+              "independent_current_ids": true,
+              "only_final_terminator": true,
+              "move1_not_member": true
+            },
+            {
+              "label": "gAlwaysCriticalMoves",
+              "address": 151258540,
+              "size": 12,
+              "sha256": "cd67506878b499dd68829033f4870bc18e4520c0767f93a86fbaab7d4266b137",
+              "halfword_count": 6,
+              "final_terminator_address": 151258550,
+              "source_symbols": [
+                "MOVE_STORMTHROW",
+                "MOVE_FROSTBREATH",
+                "MOVE_SURGINGSTRIKES",
+                "MOVE_WICKEDBLOW",
+                "MOVE_FLOWERTRICK",
+                "MOVE_TABLES_TERMIN"
+              ],
+              "independent_current_ids": true,
+              "only_final_terminator": true,
+              "move1_not_member": true
+            }
+          ],
+          "instruction_count": 133,
+          "instruction_bytes": 282,
+          "table_bytes": 64,
+          "public_upstream_id_substitution": false,
+          "observed_value_input": false,
+          "uniform_id_offset_used": false
+        },
+        "composition": {
+          "status": "PASS_CONDITIONAL_CRITICAL_LIST_CONSUMER",
+          "instruction_steps": 340,
+          "endpoint": 151930332,
+          "reader_calls": [
+            [
+              151930280,
+              1,
+              151258540
+            ],
+            [
+              151930328,
+              1,
+              151258488
+            ]
+          ],
+          "conditional_call_groups": [
+            {
+              "site": 151929912,
+              "target": 151863276,
+              "source_role": "GetBattlerItemEffect",
+              "return_value": 0,
+              "required_fields": [
+                {
+                  "address": 33619986,
+                  "size": 1
+                },
+                {
+                  "address": 33620136,
+                  "size": 1
+                },
+                {
+                  "address": 33696428,
+                  "size": 4
+                },
+                {
+                  "address": 33700652,
+                  "size": 1
+                },
+                {
+                  "address": 33700756,
+                  "size": 4
+                },
+                {
+                  "address": 33700820,
+                  "size": 2
+                },
+                {
+                  "address": 33701034,
+                  "size": 2
+                },
+                {
+                  "address": 33701067,
+                  "size": 2
+                },
+                {
+                  "address": 33808304,
+                  "size": 4
+                },
+                {
+                  "address": 50360228,
+                  "size": 4
+                },
+                {
+                  "address": 50360244,
+                  "size": 4
+                }
+              ],
+              "normal_abi_return_required": true,
+              "same_battle_context_epoch_required": true,
+              "same_stack_epoch_required": true,
+              "effects_discharged": false
+            },
+            {
+              "site": 151929926,
+              "target": 151867412,
+              "source_role": "GetBaseMoveTarget",
+              "return_value": 0,
+              "required_fields": [
+                {
+                  "address": 33619986,
+                  "size": 1
+                },
+                {
+                  "address": 33620136,
+                  "size": 1
+                },
+                {
+                  "address": 33696428,
+                  "size": 4
+                },
+                {
+                  "address": 33700652,
+                  "size": 1
+                },
+                {
+                  "address": 33700756,
+                  "size": 4
+                },
+                {
+                  "address": 33700820,
+                  "size": 2
+                },
+                {
+                  "address": 33701034,
+                  "size": 2
+                },
+                {
+                  "address": 33701067,
+                  "size": 2
+                },
+                {
+                  "address": 33808304,
+                  "size": 4
+                },
+                {
+                  "address": 50360228,
+                  "size": 4
+                },
+                {
+                  "address": 50360244,
+                  "size": 8
+                }
+              ],
+              "normal_abi_return_required": true,
+              "same_battle_context_epoch_required": true,
+              "same_stack_epoch_required": true,
+              "effects_discharged": false
+            },
+            {
+              "site": 151930014,
+              "target": 151878620,
+              "source_role": "CantScoreACrit",
+              "return_value": 0,
+              "required_fields": [
+                {
+                  "address": 33619986,
+                  "size": 1
+                },
+                {
+                  "address": 33620136,
+                  "size": 1
+                },
+                {
+                  "address": 33696428,
+                  "size": 4
+                },
+                {
+                  "address": 33700756,
+                  "size": 4
+                },
+                {
+                  "address": 33701034,
+                  "size": 2
+                },
+                {
+                  "address": 33701067,
+                  "size": 1
+                },
+                {
+                  "address": 33808304,
+                  "size": 4
+                },
+                {
+                  "address": 50360228,
+                  "size": 8
+                },
+                {
+                  "address": 50360244,
+                  "size": 8
+                }
+              ],
+              "normal_abi_return_required": true,
+              "same_battle_context_epoch_required": true,
+              "same_stack_epoch_required": true,
+              "effects_discharged": false
+            },
+            {
+              "site": 151930222,
+              "target": 151955338,
+              "source_role": "SIDE_GetBattlerSide_veneer",
+              "return_value": 1,
+              "required_fields": [
+                {
+                  "address": 33619986,
+                  "size": 1
+                },
+                {
+                  "address": 33620136,
+                  "size": 1
+                },
+                {
+                  "address": 33700756,
+                  "size": 4
+                },
+                {
+                  "address": 33701034,
+                  "size": 2
+                },
+                {
+                  "address": 33701067,
+                  "size": 1
+                },
+                {
+                  "address": 33808304,
+                  "size": 4
+                },
+                {
+                  "address": 50360228,
+                  "size": 4
+                },
+                {
+                  "address": 50360240,
+                  "size": 12
+                }
+              ],
+              "normal_abi_return_required": true,
+              "same_battle_context_epoch_required": true,
+              "same_stack_epoch_required": true,
+              "effects_discharged": false
+            },
+            {
+              "site": 151930256,
+              "target": 151878528,
+              "source_role": "IsLaserFocused",
+              "return_value": 0,
+              "required_fields": [
+                {
+                  "address": 33620136,
+                  "size": 1
+                },
+                {
+                  "address": 33700756,
+                  "size": 4
+                },
+                {
+                  "address": 33701034,
+                  "size": 2
+                },
+                {
+                  "address": 33701067,
+                  "size": 1
+                },
+                {
+                  "address": 33808304,
+                  "size": 4
+                },
+                {
+                  "address": 50360228,
+                  "size": 4
+                },
+                {
+                  "address": 50360248,
+                  "size": 4
+                }
+              ],
+              "normal_abi_return_required": true,
+              "same_battle_context_epoch_required": true,
+              "same_stack_epoch_required": true,
+              "effects_discharged": false
+            },
+            {
+              "site": 151930302,
+              "target": 151878756,
+              "source_role": "GetCriticalRank",
+              "return_value": 0,
+              "required_fields": [
+                {
+                  "address": 33620136,
+                  "size": 1
+                },
+                {
+                  "address": 33701034,
+                  "size": 2
+                },
+                {
+                  "address": 33701067,
+                  "size": 1
+                },
+                {
+                  "address": 33808304,
+                  "size": 4
+                },
+                {
+                  "address": 50360228,
+                  "size": 4
+                },
+                {
+                  "address": 50360248,
+                  "size": 4
+                }
+              ],
+              "normal_abi_return_required": true,
+              "same_battle_context_epoch_required": true,
+              "same_stack_epoch_required": true,
+              "effects_discharged": false
+            }
+          ],
+          "current_move_loads": [
+            [
+              151929922,
+              33701034,
+              2,
+              1
+            ],
+            [
+              151930278,
+              33701034,
+              2,
+              1
+            ],
+            [
+              151930326,
+              33701034,
+              2,
+              1
+            ]
+          ],
+          "complete_halfword_reads": 32,
+          "consumed_bytes": 64,
+          "includes_both_final_terminators": true,
+          "reader_trace_identity": {
+            "size": 899,
+            "sha256": "5c68171de932c4f5de1a781650dd4796d96da2101eb69b73404689e9ba871e4e"
+          },
+          "nonlive_ram_erased_at_each_boundary": true,
+          "internal_reader_arguments_host_seeded": false,
+          "actual_runtime_execution_observed": false
+        },
+        "protected_windows": 12,
+        "protected_bytes": 406,
+        "proof_scope": "conditional_registered_critical_move_lists",
+        "conditional_registered_api_entry": true,
+        "actual_opcode_dispatch_executed": false,
+        "whole_candidate_identity_checked_by_parent_required": true,
+        "actual_runtime_execution_observed": false,
+        "full_story_reachability_claimed": false,
+        "full_battle_script_prefix_executed": false,
+        "opaque_callee_effects_proven": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "whole_table_classified": false,
+        "pointer_interpretation_claimed": false,
+        "retirement_proven": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      },
+      "registered_animation_background_minimum_lz_payload": {
+        "status": "PASS_REGISTERED_BACKGROUND_MINIMUM_PAYLOADS",
+        "count": 4,
+        "hits": [
+          152560537,
+          152616403,
+          152632226,
+          152633310
+        ],
+        "serialization": {
+          "blocks": [
+            {
+              "label": "ANIM_SHADOWBONE",
+              "address": 151123008,
+              "size": 9,
+              "command_count": 4,
+              "commands": [
+                {
+                  "address": 151123008,
+                  "size": 3,
+                  "sha256": "960928cb1fe202194a31632ef30c8d4eb4faa65ef81dca5e3c4a53ef9affe40e",
+                  "source": "loadparticle ANIM_TAG_BONE",
+                  "macro": "loadparticle",
+                  "fields": [
+                    {
+                      "address": 151123008,
+                      "size": 1,
+                      "source_expression": "0x0",
+                      "source_macro_field": "0x0",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                    },
+                    {
+                      "address": 151123009,
+                      "size": 2,
+                      "source_expression": "ANIM_TAG_BONE",
+                      "source_macro_field": "loadparticleID",
+                      "value": 10000,
+                      "derivation": "source_equ",
+                      "sha256": "68df2a4ef366e1ab463246d151397840c34e3e02471ca3179b31a9f270dc4d54"
+                    }
+                  ]
+                },
+                {
+                  "address": 151123011,
+                  "size": 3,
+                  "sha256": "1caaade4820a0f6969e9d6abf19c5309be02ef8e4fba4c3d7d83a2810356e07a",
+                  "source": "loadparticle ANIM_TAG_IMPACT",
+                  "macro": "loadparticle",
+                  "fields": [
+                    {
+                      "address": 151123011,
+                      "size": 1,
+                      "source_expression": "0x0",
+                      "source_macro_field": "0x0",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                    },
+                    {
+                      "address": 151123012,
+                      "size": 2,
+                      "source_expression": "ANIM_TAG_IMPACT",
+                      "source_macro_field": "loadparticleID",
+                      "value": 10135,
+                      "derivation": "source_equ",
+                      "sha256": "7fffe0b8b488ed1839d67e0b01be5db07d3d77a716a1e0227db4d662aa9b28e2"
+                    }
+                  ]
+                },
+                {
+                  "address": 151123014,
+                  "size": 2,
+                  "sha256": "cf8435d55f37385edef46d09a7bcfa40518816a308258ab0753d7db0da3c2482",
+                  "source": "loadBG1 BG_NIGHTMARE",
+                  "macro": "loadBG1",
+                  "fields": [
+                    {
+                      "address": 151123014,
+                      "size": 1,
+                      "source_expression": "0x14",
+                      "source_macro_field": "0x14",
+                      "value": 20,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "83891d7fe85c33e52c8b4e5814c92fb6a3b9467299200538a6babaa8b452d879"
+                    },
+                    {
+                      "address": 151123015,
+                      "size": 1,
+                      "source_expression": "BG_NIGHTMARE",
+                      "source_macro_field": "loadBG1ID",
+                      "value": 29,
+                      "derivation": "source_equ",
+                      "sha256": "1f18d650d205d71d934c3646ff5fac1c096ba52eba4cf758b865364f4167d3cd"
+                    }
+                  ]
+                },
+                {
+                  "address": 151123016,
+                  "size": 1,
+                  "sha256": "8f11b05da785e43e713d03774c6bd3405d99cd3024af334ffd68db663aa37034",
+                  "source": "waitbgfadein",
+                  "macro": "waitbgfadein",
+                  "fields": [
+                    {
+                      "address": 151123016,
+                      "size": 1,
+                      "source_expression": "0x17",
+                      "source_macro_field": "0x17",
+                      "value": 23,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "8f11b05da785e43e713d03774c6bd3405d99cd3024af334ffd68db663aa37034"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "ANIM_GIGAIMPACT",
+              "address": 151057536,
+              "size": 32,
+              "command_count": 8,
+              "commands": [
+                {
+                  "address": 151057536,
+                  "size": 3,
+                  "sha256": "1caaade4820a0f6969e9d6abf19c5309be02ef8e4fba4c3d7d83a2810356e07a",
+                  "source": "loadparticle ANIM_TAG_IMPACT",
+                  "macro": "loadparticle",
+                  "fields": [
+                    {
+                      "address": 151057536,
+                      "size": 1,
+                      "source_expression": "0x0",
+                      "source_macro_field": "0x0",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                    },
+                    {
+                      "address": 151057537,
+                      "size": 2,
+                      "source_expression": "ANIM_TAG_IMPACT",
+                      "source_macro_field": "loadparticleID",
+                      "value": 10135,
+                      "derivation": "source_equ",
+                      "sha256": "7fffe0b8b488ed1839d67e0b01be5db07d3d77a716a1e0227db4d662aa9b28e2"
+                    }
+                  ]
+                },
+                {
+                  "address": 151057539,
+                  "size": 2,
+                  "sha256": "f5ced90fd1be73a76a86323730da48d6206631af07b5e73cccc92a9f5288de8b",
+                  "source": "pokespritetoBG target_partner",
+                  "macro": "pokespritetoBG",
+                  "fields": [
+                    {
+                      "address": 151057539,
+                      "size": 1,
+                      "source_expression": "0xA",
+                      "source_macro_field": "0xA",
+                      "value": 10,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+                    },
+                    {
+                      "address": 151057540,
+                      "size": 1,
+                      "source_expression": "target_partner",
+                      "source_macro_field": "animABank",
+                      "value": 3,
+                      "derivation": "source_equ",
+                      "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+                    }
+                  ]
+                },
+                {
+                  "address": 151057541,
+                  "size": 3,
+                  "sha256": "45bd35273b4ecbce883c73a8a92ffce04f6356821b2be227edae32fd9d4a8512",
+                  "source": "setblends 0x80c",
+                  "macro": "setblends",
+                  "fields": [
+                    {
+                      "address": 151057541,
+                      "size": 1,
+                      "source_expression": "0xC",
+                      "source_macro_field": "0xC",
+                      "value": 12,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "ef6cbd2161eaea7943ce8693b9824d23d1793ffb1c0fca05b600d3899b44c977"
+                    },
+                    {
+                      "address": 151057542,
+                      "size": 2,
+                      "source_expression": "0x80c",
+                      "source_macro_field": "setblends_value",
+                      "value": 2060,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "9c9ab1903bd128857c6fee15716de2b3c734e67c37148ef4bde0e56386168e63"
+                    }
+                  ]
+                },
+                {
+                  "address": 151057544,
+                  "size": 4,
+                  "sha256": "482baef399f5cc20de9c1cdac7732a6d65127821975d3805d90fc7bcac6501f7",
+                  "source": "playsound2 0x91 SOUND_PAN_ATTACKER",
+                  "macro": "playsound2",
+                  "fields": [
+                    {
+                      "address": 151057544,
+                      "size": 1,
+                      "source_expression": "0x19",
+                      "source_macro_field": "0x19",
+                      "value": 25,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "68aa2e2ee5dff96e3355e6c7ee373e3d6a4e17f75f9518d843709c0c9bc3e3d4"
+                    },
+                    {
+                      "address": 151057545,
+                      "size": 2,
+                      "source_expression": "0x91",
+                      "source_macro_field": "playsound2ID",
+                      "value": 145,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "1d25d76040a1e986b1d60f2cf3209a81bfbf32007d63ff461535a9d73d90ebf4"
+                    },
+                    {
+                      "address": 151057547,
+                      "size": 1,
+                      "source_expression": "SOUND_PAN_ATTACKER",
+                      "source_macro_field": "playsound2Unkown",
+                      "value": 192,
+                      "derivation": "source_equ",
+                      "sha256": "e4ff5e7d7a7f08e9800a3e25cb774533cb20040df30b6ba10f956f9acd0eb3f7"
+                    }
+                  ]
+                },
+                {
+                  "address": 151057548,
+                  "size": 13,
+                  "sha256": "6545e2b019749e7107025b65c15620fa03e796357c8e1fd03c40328ec87f02ed",
+                  "source": "launchtemplate Template_VerticalDip 0x2 0x3 0x6 0x1 0x0",
+                  "macro": "launchtemplate",
+                  "fields": [
+                    {
+                      "address": 151057548,
+                      "size": 1,
+                      "source_expression": "0x2",
+                      "source_macro_field": "0x2",
+                      "value": 2,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                    },
+                    {
+                      "address": 151057549,
+                      "size": 4,
+                      "source_expression": "Template_VerticalDip",
+                      "source_macro_field": "launchtemplatePtr",
+                      "value": 138007412,
+                      "derivation": "source_equ",
+                      "sha256": "a50e3169c97222a06e4b15c1c1df36ab5f6a0c002b5cb433e0e2756856d15667"
+                    },
+                    {
+                      "address": 151057553,
+                      "size": 1,
+                      "source_expression": "0x2",
+                      "source_macro_field": "launchtemplatePriority",
+                      "value": 2,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                    },
+                    {
+                      "address": 151057554,
+                      "size": 1,
+                      "source_expression": "0x3",
+                      "source_macro_field": "launchtemplateArgsNo",
+                      "value": 3,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+                    },
+                    {
+                      "address": 151057555,
+                      "size": 2,
+                      "source_expression": "0x6",
+                      "source_macro_field": "launchtemplatearg0",
+                      "value": 6,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "ceb827ad3d3884fd4d50ae6099d6d50c09a21e72ebd309708e8b69d93df19e55"
+                    },
+                    {
+                      "address": 151057557,
+                      "size": 2,
+                      "source_expression": "0x1",
+                      "source_macro_field": "launchtemplatearg1",
+                      "value": 1,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "47dc540c94ceb704a23875c11273e16bb0b8a87aed84de911f2133568115f254"
+                    },
+                    {
+                      "address": 151057559,
+                      "size": 2,
+                      "source_expression": "0x0",
+                      "source_macro_field": "launchtemplatearg2",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                    }
+                  ]
+                },
+                {
+                  "address": 151057561,
+                  "size": 1,
+                  "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db",
+                  "source": "waitanimation",
+                  "macro": "waitanimation",
+                  "fields": [
+                    {
+                      "address": 151057561,
+                      "size": 1,
+                      "source_expression": "0x5",
+                      "source_macro_field": "0x5",
+                      "value": 5,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db"
+                    }
+                  ]
+                },
+                {
+                  "address": 151057562,
+                  "size": 4,
+                  "sha256": "71cf59e3d177f5ddab98c6a96999f9206398de481119404ded00dc41d1206931",
+                  "source": "chooseBG BG_GIGA_IMPACT_ON_OPPONENT, BG_GIGA_IMPACT_ON_PLAYER, BG_GIGA_IMPACT_ON_OPPONENT",
+                  "macro": "chooseBG",
+                  "fields": [
+                    {
+                      "address": 151057562,
+                      "size": 1,
+                      "source_expression": "0x25",
+                      "source_macro_field": "0x25",
+                      "value": 37,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "bbf3f11cb5b43e700273a78d12de55e4a7eab741ed2abf13787a4d2dc832b8ec"
+                    },
+                    {
+                      "address": 151057563,
+                      "size": 1,
+                      "source_expression": "BG_GIGA_IMPACT_ON_OPPONENT",
+                      "source_macro_field": "chooseBG1",
+                      "value": 33,
+                      "derivation": "source_equ",
+                      "sha256": "bb7208bc9b5d7c04f1236a82a0093a5e33f40423d5ba8d4266f7092c3ba43b62"
+                    },
+                    {
+                      "address": 151057564,
+                      "size": 1,
+                      "source_expression": "BG_GIGA_IMPACT_ON_PLAYER",
+                      "source_macro_field": "chooseBG2",
+                      "value": 34,
+                      "derivation": "source_equ",
+                      "sha256": "8a331fdde7032f33a71e1b2e257d80166e348e00fcb17914f48bdb57a1c63007"
+                    },
+                    {
+                      "address": 151057565,
+                      "size": 1,
+                      "source_expression": "BG_GIGA_IMPACT_ON_OPPONENT",
+                      "source_macro_field": "chooseBG3",
+                      "value": 33,
+                      "derivation": "source_equ",
+                      "sha256": "bb7208bc9b5d7c04f1236a82a0093a5e33f40423d5ba8d4266f7092c3ba43b62"
+                    }
+                  ]
+                },
+                {
+                  "address": 151057566,
+                  "size": 2,
+                  "sha256": "8553b42f632bfb7fa1f436ce6f697bf238fcb5c11ef90100138459639a6e57d3",
+                  "source": "pause 0xb",
+                  "macro": "pause",
+                  "fields": [
+                    {
+                      "address": 151057566,
+                      "size": 1,
+                      "source_expression": "0x4",
+                      "source_macro_field": "0x4",
+                      "value": 4,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "e52d9c508c502347344d8c07ad91cbd6068afc75ff6292f062a09ca381c89e71"
+                    },
+                    {
+                      "address": 151057567,
+                      "size": 1,
+                      "source_expression": "0xb",
+                      "source_macro_field": "pause_cmdToWait",
+                      "value": 11,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "e7cf46a078fed4fafd0b5e3aff144802b853f8ae459a4f0c14add3314b7cc3a6"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "ANIM_CATASTROPIKA",
+              "address": 151191088,
+              "size": 126,
+              "command_count": 22,
+              "commands": [
+                {
+                  "address": 151191088,
+                  "size": 3,
+                  "sha256": "caa64221caddb0e02a3d76e8a26efa2c44c305accad8bc386159f17aa8174c72",
+                  "source": "loadparticle ANIM_TAG_FOCUS_ENERGY",
+                  "macro": "loadparticle",
+                  "fields": [
+                    {
+                      "address": 151191088,
+                      "size": 1,
+                      "source_expression": "0x0",
+                      "source_macro_field": "0x0",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                    },
+                    {
+                      "address": 151191089,
+                      "size": 2,
+                      "source_expression": "ANIM_TAG_FOCUS_ENERGY",
+                      "source_macro_field": "loadparticleID",
+                      "value": 10184,
+                      "derivation": "source_equ",
+                      "sha256": "fb444b80035d005b35c3873ab68f9560a594fcb31e128c6f3df586673dbb3c46"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191091,
+                  "size": 3,
+                  "sha256": "972ba45ca1d0810c2ef75f9e7b303de81d9f23ae9a05fe31749b816d9f09ad89",
+                  "source": "loadparticle ANIM_TAG_ROUND_SHADOW",
+                  "macro": "loadparticle",
+                  "fields": [
+                    {
+                      "address": 151191091,
+                      "size": 1,
+                      "source_expression": "0x0",
+                      "source_macro_field": "0x0",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                    },
+                    {
+                      "address": 151191092,
+                      "size": 2,
+                      "source_expression": "ANIM_TAG_ROUND_SHADOW",
+                      "source_macro_field": "loadparticleID",
+                      "value": 10156,
+                      "derivation": "source_equ",
+                      "sha256": "5fdf347859611a1beac8d4ba0e61b5d0ba90ec05604e881c3ac66f110d4be0e3"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191094,
+                  "size": 2,
+                  "sha256": "26eab3ff86cd372176af888295f9a99aa62e92ae233a741c5e26aeed365ad5b3",
+                  "source": "makebankinvisible bank_target",
+                  "macro": "makebankinvisible",
+                  "fields": [
+                    {
+                      "address": 151191094,
+                      "size": 1,
+                      "source_expression": "0x2B",
+                      "source_macro_field": "0x2B",
+                      "value": 43,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "a318c24216defe206feeb73ef5be00033fa9c4a74d0b967f6532a26ca5906d3b"
+                    },
+                    {
+                      "address": 151191095,
+                      "size": 1,
+                      "source_expression": "bank_target",
+                      "source_macro_field": "makebankinvisibleBank",
+                      "value": 1,
+                      "derivation": "source_equ",
+                      "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191096,
+                  "size": 7,
+                  "sha256": "ece576abde24c686405ea8afb9bcd25efee398d03b46ea68fe0a743c7acba905",
+                  "source": "launchtask AnimTask_AllBanksInvisibleExceptAttackerAndTarget 0xA 0x0",
+                  "macro": "launchtask",
+                  "fields": [
+                    {
+                      "address": 151191096,
+                      "size": 1,
+                      "source_expression": "0x3",
+                      "source_macro_field": "0x3",
+                      "value": 3,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+                    },
+                    {
+                      "address": 151191097,
+                      "size": 4,
+                      "source_expression": "AnimTask_AllBanksInvisibleExceptAttackerAndTarget",
+                      "source_macro_field": "launchtaskPtr",
+                      "value": 151804045,
+                      "derivation": "actual_registered_pointer_field",
+                      "sha256": "b4861991166b4f486f6a1d705bc060e584e62803f73c7b304cdd3eeda94ad288"
+                    },
+                    {
+                      "address": 151191101,
+                      "size": 1,
+                      "source_expression": "0xA",
+                      "source_macro_field": "launchtaskPriority",
+                      "value": 10,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+                    },
+                    {
+                      "address": 151191102,
+                      "size": 1,
+                      "source_expression": "0x0",
+                      "source_macro_field": "launchtaskArgsNo",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191103,
+                  "size": 1,
+                  "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db",
+                  "source": "waitanimation",
+                  "macro": "waitanimation",
+                  "fields": [
+                    {
+                      "address": 151191103,
+                      "size": 1,
+                      "source_expression": "0x5",
+                      "source_macro_field": "0x5",
+                      "value": 5,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191104,
+                  "size": 4,
+                  "sha256": "7bc7411b7eddd0d4cb0a530a81268f8980af3f7827e6b93dd414967cf2176e15",
+                  "source": "playsound2 0xa4 SOUND_PAN_ATTACKER",
+                  "macro": "playsound2",
+                  "fields": [
+                    {
+                      "address": 151191104,
+                      "size": 1,
+                      "source_expression": "0x19",
+                      "source_macro_field": "0x19",
+                      "value": 25,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "68aa2e2ee5dff96e3355e6c7ee373e3d6a4e17f75f9518d843709c0c9bc3e3d4"
+                    },
+                    {
+                      "address": 151191105,
+                      "size": 2,
+                      "source_expression": "0xa4",
+                      "source_macro_field": "playsound2ID",
+                      "value": 164,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "a756c2a0de4a80c7e6edc29be63096505d892092751334cac92cf5d7f62b255b"
+                    },
+                    {
+                      "address": 151191107,
+                      "size": 1,
+                      "source_expression": "SOUND_PAN_ATTACKER",
+                      "source_macro_field": "playsound2Unkown",
+                      "value": 192,
+                      "derivation": "source_equ",
+                      "sha256": "e4ff5e7d7a7f08e9800a3e25cb774533cb20040df30b6ba10f956f9acd0eb3f7"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191108,
+                  "size": 5,
+                  "sha256": "233b617979ec4478366771aae038570203d9208220110aa76f3514d3b5c6c355",
+                  "source": "call BUFF_EFFECT",
+                  "macro": "call",
+                  "fields": [
+                    {
+                      "address": 151191108,
+                      "size": 1,
+                      "source_expression": "0xE",
+                      "source_macro_field": "0xE",
+                      "value": 14,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "4d7b3ef7300acf70c892d8327db8272f54434adbc61a4e130a563cb59a0d0f47"
+                    },
+                    {
+                      "address": 151191109,
+                      "size": 4,
+                      "source_expression": "BUFF_EFFECT",
+                      "source_macro_field": "call_cmd_ptr",
+                      "value": 135983651,
+                      "derivation": "source_equ",
+                      "sha256": "c2e6eaac921c0b2053dfdc016bdf7d8a72a1b8bbd5391f35b2d7b965d8990809"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191113,
+                  "size": 2,
+                  "sha256": "d6eb61185349af5834ca3f40c31b06cd74bcb64cb16feece4cc369b7c31245ec",
+                  "source": "pause 0x8",
+                  "macro": "pause",
+                  "fields": [
+                    {
+                      "address": 151191113,
+                      "size": 1,
+                      "source_expression": "0x4",
+                      "source_macro_field": "0x4",
+                      "value": 4,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "e52d9c508c502347344d8c07ad91cbd6068afc75ff6292f062a09ca381c89e71"
+                    },
+                    {
+                      "address": 151191114,
+                      "size": 1,
+                      "source_expression": "0x8",
+                      "source_macro_field": "pause_cmdToWait",
+                      "value": 8,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191115,
+                  "size": 19,
+                  "sha256": "97dc441344180d7a48199d9d66d8101b87c7ef0f6e29f2c4a417f23eb9486084",
+                  "source": "launchtask AnimTask_pal_fade_complex 0x2 0x6 0x2 0x2 0x2 0x0 0xb 0x5bff",
+                  "macro": "launchtask",
+                  "fields": [
+                    {
+                      "address": 151191115,
+                      "size": 1,
+                      "source_expression": "0x3",
+                      "source_macro_field": "0x3",
+                      "value": 3,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+                    },
+                    {
+                      "address": 151191116,
+                      "size": 4,
+                      "source_expression": "AnimTask_pal_fade_complex",
+                      "source_macro_field": "launchtaskPtr",
+                      "value": 134983325,
+                      "derivation": "source_equ",
+                      "sha256": "0c6b491453ef439bb5d91f4de2a682815e4c88b72b1e0959cfa1dcb80e2a2de0"
+                    },
+                    {
+                      "address": 151191120,
+                      "size": 1,
+                      "source_expression": "0x2",
+                      "source_macro_field": "launchtaskPriority",
+                      "value": 2,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                    },
+                    {
+                      "address": 151191121,
+                      "size": 1,
+                      "source_expression": "0x6",
+                      "source_macro_field": "launchtaskArgsNo",
+                      "value": 6,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "67586e98fad27da0b9968bc039a1ef34c939b9b8e523a8bef89d478608c5ecf6"
+                    },
+                    {
+                      "address": 151191122,
+                      "size": 2,
+                      "source_expression": "0x2",
+                      "source_macro_field": "launchtaskarg0",
+                      "value": 2,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "99be5efb88ca2013bd8e4eb035fd42d5245468fe9afa70d8ba9c1c419a48c4e8"
+                    },
+                    {
+                      "address": 151191124,
+                      "size": 2,
+                      "source_expression": "0x2",
+                      "source_macro_field": "launchtaskarg1",
+                      "value": 2,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "99be5efb88ca2013bd8e4eb035fd42d5245468fe9afa70d8ba9c1c419a48c4e8"
+                    },
+                    {
+                      "address": 151191126,
+                      "size": 2,
+                      "source_expression": "0x2",
+                      "source_macro_field": "launchtaskarg2",
+                      "value": 2,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "99be5efb88ca2013bd8e4eb035fd42d5245468fe9afa70d8ba9c1c419a48c4e8"
+                    },
+                    {
+                      "address": 151191128,
+                      "size": 2,
+                      "source_expression": "0x0",
+                      "source_macro_field": "launchtaskarg3",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                    },
+                    {
+                      "address": 151191130,
+                      "size": 2,
+                      "source_expression": "0xb",
+                      "source_macro_field": "launchtaskarg4",
+                      "value": 11,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "cbe2268747c9c8072c7f9926f2288f270637dc55bb9d14d3368361d5e47d25be"
+                    },
+                    {
+                      "address": 151191132,
+                      "size": 2,
+                      "source_expression": "0x5bff",
+                      "source_macro_field": "launchtaskarg5",
+                      "value": 23551,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "30c5a38fd5abf6bc399a87881778809d07cb13b1cd0219d4e3a6e418b9b922e6"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191134,
+                  "size": 17,
+                  "sha256": "fd1be28384106b497702406ea69d6e4d276b70a4dbbc0465799b5bb84d365709",
+                  "source": "launchtask AnimTask_move_bank_2 0x2 0x5 0x0 0x1 0x0 0x20 0x1",
+                  "macro": "launchtask",
+                  "fields": [
+                    {
+                      "address": 151191134,
+                      "size": 1,
+                      "source_expression": "0x3",
+                      "source_macro_field": "0x3",
+                      "value": 3,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+                    },
+                    {
+                      "address": 151191135,
+                      "size": 4,
+                      "source_expression": "AnimTask_move_bank_2",
+                      "source_macro_field": "launchtaskPtr",
+                      "value": 134841637,
+                      "derivation": "source_equ",
+                      "sha256": "c8432033fba5ab7d83a68d19cb13be75374cf8011a74d1d417c968be5136ca90"
+                    },
+                    {
+                      "address": 151191139,
+                      "size": 1,
+                      "source_expression": "0x2",
+                      "source_macro_field": "launchtaskPriority",
+                      "value": 2,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                    },
+                    {
+                      "address": 151191140,
+                      "size": 1,
+                      "source_expression": "0x5",
+                      "source_macro_field": "launchtaskArgsNo",
+                      "value": 5,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db"
+                    },
+                    {
+                      "address": 151191141,
+                      "size": 2,
+                      "source_expression": "0x0",
+                      "source_macro_field": "launchtaskarg0",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                    },
+                    {
+                      "address": 151191143,
+                      "size": 2,
+                      "source_expression": "0x1",
+                      "source_macro_field": "launchtaskarg1",
+                      "value": 1,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "47dc540c94ceb704a23875c11273e16bb0b8a87aed84de911f2133568115f254"
+                    },
+                    {
+                      "address": 151191145,
+                      "size": 2,
+                      "source_expression": "0x0",
+                      "source_macro_field": "launchtaskarg2",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                    },
+                    {
+                      "address": 151191147,
+                      "size": 2,
+                      "source_expression": "0x20",
+                      "source_macro_field": "launchtaskarg3",
+                      "value": 32,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "869f1dfb999a452f497a4cf7f44db2d6ee661f74a9e7e05251bc1420e50672d4"
+                    },
+                    {
+                      "address": 151191149,
+                      "size": 2,
+                      "source_expression": "0x1",
+                      "source_macro_field": "launchtaskarg4",
+                      "value": 1,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "47dc540c94ceb704a23875c11273e16bb0b8a87aed84de911f2133568115f254"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191151,
+                  "size": 5,
+                  "sha256": "233b617979ec4478366771aae038570203d9208220110aa76f3514d3b5c6c355",
+                  "source": "call BUFF_EFFECT",
+                  "macro": "call",
+                  "fields": [
+                    {
+                      "address": 151191151,
+                      "size": 1,
+                      "source_expression": "0xE",
+                      "source_macro_field": "0xE",
+                      "value": 14,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "4d7b3ef7300acf70c892d8327db8272f54434adbc61a4e130a563cb59a0d0f47"
+                    },
+                    {
+                      "address": 151191152,
+                      "size": 4,
+                      "source_expression": "BUFF_EFFECT",
+                      "source_macro_field": "call_cmd_ptr",
+                      "value": 135983651,
+                      "derivation": "source_equ",
+                      "sha256": "c2e6eaac921c0b2053dfdc016bdf7d8a72a1b8bbd5391f35b2d7b965d8990809"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191156,
+                  "size": 2,
+                  "sha256": "d6eb61185349af5834ca3f40c31b06cd74bcb64cb16feece4cc369b7c31245ec",
+                  "source": "pause 0x8",
+                  "macro": "pause",
+                  "fields": [
+                    {
+                      "address": 151191156,
+                      "size": 1,
+                      "source_expression": "0x4",
+                      "source_macro_field": "0x4",
+                      "value": 4,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "e52d9c508c502347344d8c07ad91cbd6068afc75ff6292f062a09ca381c89e71"
+                    },
+                    {
+                      "address": 151191157,
+                      "size": 1,
+                      "source_expression": "0x8",
+                      "source_macro_field": "pause_cmdToWait",
+                      "value": 8,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191158,
+                  "size": 5,
+                  "sha256": "233b617979ec4478366771aae038570203d9208220110aa76f3514d3b5c6c355",
+                  "source": "call BUFF_EFFECT",
+                  "macro": "call",
+                  "fields": [
+                    {
+                      "address": 151191158,
+                      "size": 1,
+                      "source_expression": "0xE",
+                      "source_macro_field": "0xE",
+                      "value": 14,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "4d7b3ef7300acf70c892d8327db8272f54434adbc61a4e130a563cb59a0d0f47"
+                    },
+                    {
+                      "address": 151191159,
+                      "size": 4,
+                      "source_expression": "BUFF_EFFECT",
+                      "source_macro_field": "call_cmd_ptr",
+                      "value": 135983651,
+                      "derivation": "source_equ",
+                      "sha256": "c2e6eaac921c0b2053dfdc016bdf7d8a72a1b8bbd5391f35b2d7b965d8990809"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191163,
+                  "size": 2,
+                  "sha256": "d6eb61185349af5834ca3f40c31b06cd74bcb64cb16feece4cc369b7c31245ec",
+                  "source": "pause 0x8",
+                  "macro": "pause",
+                  "fields": [
+                    {
+                      "address": 151191163,
+                      "size": 1,
+                      "source_expression": "0x4",
+                      "source_macro_field": "0x4",
+                      "value": 4,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "e52d9c508c502347344d8c07ad91cbd6068afc75ff6292f062a09ca381c89e71"
+                    },
+                    {
+                      "address": 151191164,
+                      "size": 1,
+                      "source_expression": "0x8",
+                      "source_macro_field": "pause_cmdToWait",
+                      "value": 8,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191165,
+                  "size": 4,
+                  "sha256": "6c628c3ab2c4158ed5b8594c36415b672c98434d9be0d7d676fb1651a6a085d7",
+                  "source": "playsound2 0x97 SOUND_PAN_ATTACKER",
+                  "macro": "playsound2",
+                  "fields": [
+                    {
+                      "address": 151191165,
+                      "size": 1,
+                      "source_expression": "0x19",
+                      "source_macro_field": "0x19",
+                      "value": 25,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "68aa2e2ee5dff96e3355e6c7ee373e3d6a4e17f75f9518d843709c0c9bc3e3d4"
+                    },
+                    {
+                      "address": 151191166,
+                      "size": 2,
+                      "source_expression": "0x97",
+                      "source_macro_field": "playsound2ID",
+                      "value": 151,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "8c087a101de6d78e4c367a5c6a21c1b25deafece410837e75b892e9b6c6bbb4e"
+                    },
+                    {
+                      "address": 151191168,
+                      "size": 1,
+                      "source_expression": "SOUND_PAN_ATTACKER",
+                      "source_macro_field": "playsound2Unkown",
+                      "value": 192,
+                      "derivation": "source_equ",
+                      "sha256": "e4ff5e7d7a7f08e9800a3e25cb774533cb20040df30b6ba10f956f9acd0eb3f7"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191169,
+                  "size": 15,
+                  "sha256": "34b564fa08dae1c71a0301a6b184be0cbbc8d7611a41dd215232e61a3584f53b",
+                  "source": "launchtemplate 0x83AE0FC 0x2 0x4 0x0 0x0 0xd 0x150",
+                  "macro": "launchtemplate",
+                  "fields": [
+                    {
+                      "address": 151191169,
+                      "size": 1,
+                      "source_expression": "0x2",
+                      "source_macro_field": "0x2",
+                      "value": 2,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                    },
+                    {
+                      "address": 151191170,
+                      "size": 4,
+                      "source_expression": "0x83AE0FC",
+                      "source_macro_field": "launchtemplatePtr",
+                      "value": 138076412,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "5bc5dadfe9184af9ecc7d6783d29923995c29c08c3142ae2188cf91adc7ce9d2"
+                    },
+                    {
+                      "address": 151191174,
+                      "size": 1,
+                      "source_expression": "0x2",
+                      "source_macro_field": "launchtemplatePriority",
+                      "value": 2,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                    },
+                    {
+                      "address": 151191175,
+                      "size": 1,
+                      "source_expression": "0x4",
+                      "source_macro_field": "launchtemplateArgsNo",
+                      "value": 4,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "e52d9c508c502347344d8c07ad91cbd6068afc75ff6292f062a09ca381c89e71"
+                    },
+                    {
+                      "address": 151191176,
+                      "size": 2,
+                      "source_expression": "0x0",
+                      "source_macro_field": "launchtemplatearg0",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                    },
+                    {
+                      "address": 151191178,
+                      "size": 2,
+                      "source_expression": "0x0",
+                      "source_macro_field": "launchtemplatearg1",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                    },
+                    {
+                      "address": 151191180,
+                      "size": 2,
+                      "source_expression": "0xd",
+                      "source_macro_field": "launchtemplatearg2",
+                      "value": 13,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "f566cc6fccc657365c0197accf3a7d6f80f85209ff666ff774f4dcbc524aa842"
+                    },
+                    {
+                      "address": 151191182,
+                      "size": 2,
+                      "source_expression": "0x150",
+                      "source_macro_field": "launchtemplatearg3",
+                      "value": 336,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "5be9f96cecf3f618a6be49e939858b1638b3f57b76a3b10028af9189921808ea"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191184,
+                  "size": 1,
+                  "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db",
+                  "source": "waitanimation",
+                  "macro": "waitanimation",
+                  "fields": [
+                    {
+                      "address": 151191184,
+                      "size": 1,
+                      "source_expression": "0x5",
+                      "source_macro_field": "0x5",
+                      "value": 5,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191185,
+                  "size": 3,
+                  "sha256": "99b0eefa77b6e1d297a00b17abc0a6a8ae4af89d2621490ff6652000d5d39893",
+                  "source": "unloadparticle ANIM_TAG_FOCUS_ENERGY",
+                  "macro": "unloadparticle",
+                  "fields": [
+                    {
+                      "address": 151191185,
+                      "size": 1,
+                      "source_expression": "0x1",
+                      "source_macro_field": "0x1",
+                      "value": 1,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+                    },
+                    {
+                      "address": 151191186,
+                      "size": 2,
+                      "source_expression": "ANIM_TAG_FOCUS_ENERGY",
+                      "source_macro_field": "unloadparticleID",
+                      "value": 10184,
+                      "derivation": "source_equ",
+                      "sha256": "fb444b80035d005b35c3873ab68f9560a594fcb31e128c6f3df586673dbb3c46"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191188,
+                  "size": 3,
+                  "sha256": "8b7e01b546f1936d3e63779e7e9e6c105cf9c43cfbb478e9834ed854147c37be",
+                  "source": "unloadparticle ANIM_TAG_ROUND_SHADOW",
+                  "macro": "unloadparticle",
+                  "fields": [
+                    {
+                      "address": 151191188,
+                      "size": 1,
+                      "source_expression": "0x1",
+                      "source_macro_field": "0x1",
+                      "value": 1,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+                    },
+                    {
+                      "address": 151191189,
+                      "size": 2,
+                      "source_expression": "ANIM_TAG_ROUND_SHADOW",
+                      "source_macro_field": "unloadparticleID",
+                      "value": 10156,
+                      "derivation": "source_equ",
+                      "sha256": "5fdf347859611a1beac8d4ba0e61b5d0ba90ec05604e881c3ac66f110d4be0e3"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191191,
+                  "size": 7,
+                  "sha256": "a4e97780b32e2938280c3f34120828de19c69fd4eccb944aef39500141b286c2",
+                  "source": "launchtask AnimTask_GetTimeOfDay 0x2 0x0",
+                  "macro": "launchtask",
+                  "fields": [
+                    {
+                      "address": 151191191,
+                      "size": 1,
+                      "source_expression": "0x3",
+                      "source_macro_field": "0x3",
+                      "value": 3,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+                    },
+                    {
+                      "address": 151191192,
+                      "size": 4,
+                      "source_expression": "AnimTask_GetTimeOfDay",
+                      "source_macro_field": "launchtaskPtr",
+                      "value": 151799085,
+                      "derivation": "actual_registered_pointer_field",
+                      "sha256": "dea18eeab8d6cb4f243223b675b836956d12acfe0534d6724f8e5aad65836690"
+                    },
+                    {
+                      "address": 151191196,
+                      "size": 1,
+                      "source_expression": "0x2",
+                      "source_macro_field": "launchtaskPriority",
+                      "value": 2,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                    },
+                    {
+                      "address": 151191197,
+                      "size": 1,
+                      "source_expression": "0x0",
+                      "source_macro_field": "launchtaskArgsNo",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191198,
+                  "size": 8,
+                  "sha256": "547d2f53beb20f25c93f4f12d968e1f10c18e0c98509304b5c9634e0a77acd10",
+                  "source": "jumpifargmatches 0x0 0x0 CATASTROPIKA_DAY",
+                  "macro": "jumpifargmatches",
+                  "fields": [
+                    {
+                      "address": 151191198,
+                      "size": 1,
+                      "source_expression": "0x21",
+                      "source_macro_field": "0x21",
+                      "value": 33,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "bb7208bc9b5d7c04f1236a82a0093a5e33f40423d5ba8d4266f7092c3ba43b62"
+                    },
+                    {
+                      "address": 151191199,
+                      "size": 1,
+                      "source_expression": "0x0",
+                      "source_macro_field": "jumpifargmatchesargID",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                    },
+                    {
+                      "address": 151191200,
+                      "size": 2,
+                      "source_expression": "0x0",
+                      "source_macro_field": "jumpifargmatchesValue",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                    },
+                    {
+                      "address": 151191202,
+                      "size": 4,
+                      "source_expression": "CATASTROPIKA_DAY",
+                      "source_macro_field": "jumpifargmatchesPtr",
+                      "value": 151191221,
+                      "derivation": "actual_registered_pointer_field",
+                      "sha256": "980abd152ddc7826dca3555d1c3a5dd3b2df21b4139fdd497e1dab655b35b254"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191206,
+                  "size": 8,
+                  "sha256": "a2dff7e332679645224517aca730a0e9d6f8f8dc5a37f24648dadd1bb3821ccb",
+                  "source": "jumpifargmatches 0x0 0x2 CATASTROPIKA_AFTERNOON",
+                  "macro": "jumpifargmatches",
+                  "fields": [
+                    {
+                      "address": 151191206,
+                      "size": 1,
+                      "source_expression": "0x21",
+                      "source_macro_field": "0x21",
+                      "value": 33,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "bb7208bc9b5d7c04f1236a82a0093a5e33f40423d5ba8d4266f7092c3ba43b62"
+                    },
+                    {
+                      "address": 151191207,
+                      "size": 1,
+                      "source_expression": "0x0",
+                      "source_macro_field": "jumpifargmatchesargID",
+                      "value": 0,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                    },
+                    {
+                      "address": 151191208,
+                      "size": 2,
+                      "source_expression": "0x2",
+                      "source_macro_field": "jumpifargmatchesValue",
+                      "value": 2,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "99be5efb88ca2013bd8e4eb035fd42d5245468fe9afa70d8ba9c1c419a48c4e8"
+                    },
+                    {
+                      "address": 151191210,
+                      "size": 4,
+                      "source_expression": "CATASTROPIKA_AFTERNOON",
+                      "source_macro_field": "jumpifargmatchesPtr",
+                      "value": 151191228,
+                      "derivation": "actual_registered_pointer_field",
+                      "sha256": "05f6888eebcbe26dcd1f97aed7ef56c32bac72b83497309150969a07f555a2c9"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "CATASTROPIKA_NIGHT",
+              "address": 151191214,
+              "size": 7,
+              "command_count": 2,
+              "commands": [
+                {
+                  "address": 151191214,
+                  "size": 2,
+                  "sha256": "8153421a5be49b9b927cfd9ee8d3ae1a7c10c816c4e1aff84d6f4cb5c3165665",
+                  "source": "loadBG1 BG_BLUE_SKY_NIGHT",
+                  "macro": "loadBG1",
+                  "fields": [
+                    {
+                      "address": 151191214,
+                      "size": 1,
+                      "source_expression": "0x14",
+                      "source_macro_field": "0x14",
+                      "value": 20,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "83891d7fe85c33e52c8b4e5814c92fb6a3b9467299200538a6babaa8b452d879"
+                    },
+                    {
+                      "address": 151191215,
+                      "size": 1,
+                      "source_expression": "BG_BLUE_SKY_NIGHT",
+                      "source_macro_field": "loadBG1ID",
+                      "value": 58,
+                      "derivation": "source_equ",
+                      "sha256": "e7ac0786668e0ff0f02b62bd04f45ff636fd82db63b1104601c975dc005f3a67"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191216,
+                  "size": 5,
+                  "sha256": "cabe6d3830641e0db8b8d2b3d95877ba7c4630a9d716bcabc585e89921ed1de0",
+                  "source": "goto FINISH_CATASTROPIKA",
+                  "macro": "goto",
+                  "fields": [
+                    {
+                      "address": 151191216,
+                      "size": 1,
+                      "source_expression": "0x13",
+                      "source_macro_field": "0x13",
+                      "value": 19,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "ab897fbdedfa502b2d839b6a56100887dccdc507555c282e59589e06300a62e2"
+                    },
+                    {
+                      "address": 151191217,
+                      "size": 4,
+                      "source_expression": "FINISH_CATASTROPIKA",
+                      "source_macro_field": "goto_cmdPtr",
+                      "value": 151191230,
+                      "derivation": "actual_registered_pointer_field",
+                      "sha256": "8b1bbc141947d427ec26f017af3b0b76587d6c0a08954ff35691b9b8e710af75"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "CATASTROPIKA_DAY",
+              "address": 151191221,
+              "size": 7,
+              "command_count": 2,
+              "commands": [
+                {
+                  "address": 151191221,
+                  "size": 2,
+                  "sha256": "795b1e69387de33773fa449ed9ab3e1c5819bed4880c9f23ffbd475a2f6b0645",
+                  "source": "loadBG1 BG_BLUE_SKY_DAY",
+                  "macro": "loadBG1",
+                  "fields": [
+                    {
+                      "address": 151191221,
+                      "size": 1,
+                      "source_expression": "0x14",
+                      "source_macro_field": "0x14",
+                      "value": 20,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "83891d7fe85c33e52c8b4e5814c92fb6a3b9467299200538a6babaa8b452d879"
+                    },
+                    {
+                      "address": 151191222,
+                      "size": 1,
+                      "source_expression": "BG_BLUE_SKY_DAY",
+                      "source_macro_field": "loadBG1ID",
+                      "value": 56,
+                      "derivation": "source_equ",
+                      "sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+                    }
+                  ]
+                },
+                {
+                  "address": 151191223,
+                  "size": 5,
+                  "sha256": "cabe6d3830641e0db8b8d2b3d95877ba7c4630a9d716bcabc585e89921ed1de0",
+                  "source": "goto FINISH_CATASTROPIKA",
+                  "macro": "goto",
+                  "fields": [
+                    {
+                      "address": 151191223,
+                      "size": 1,
+                      "source_expression": "0x13",
+                      "source_macro_field": "0x13",
+                      "value": 19,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "ab897fbdedfa502b2d839b6a56100887dccdc507555c282e59589e06300a62e2"
+                    },
+                    {
+                      "address": 151191224,
+                      "size": 4,
+                      "source_expression": "FINISH_CATASTROPIKA",
+                      "source_macro_field": "goto_cmdPtr",
+                      "value": 151191230,
+                      "derivation": "actual_registered_pointer_field",
+                      "sha256": "8b1bbc141947d427ec26f017af3b0b76587d6c0a08954ff35691b9b8e710af75"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "CATASTROPIKA_AFTERNOON",
+              "address": 151191228,
+              "size": 2,
+              "command_count": 1,
+              "commands": [
+                {
+                  "address": 151191228,
+                  "size": 2,
+                  "sha256": "a19bd0444027c6ac5b1c2a37b2bf910f2b0d07a8807b927c9198bb04366a2767",
+                  "source": "loadBG1 BG_BLUE_SKY_AFTERNOON",
+                  "macro": "loadBG1",
+                  "fields": [
+                    {
+                      "address": 151191228,
+                      "size": 1,
+                      "source_expression": "0x14",
+                      "source_macro_field": "0x14",
+                      "value": 20,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "83891d7fe85c33e52c8b4e5814c92fb6a3b9467299200538a6babaa8b452d879"
+                    },
+                    {
+                      "address": 151191229,
+                      "size": 1,
+                      "source_expression": "BG_BLUE_SKY_AFTERNOON",
+                      "source_macro_field": "loadBG1ID",
+                      "value": 57,
+                      "derivation": "source_equ",
+                      "sha256": "19581e27de7ced00ff1ce50b2047e7a567c76b1cbaebabe5ef03f7c3017bb5b7"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "FINISH_CATASTROPIKA",
+              "address": 151191230,
+              "size": 1,
+              "command_count": 1,
+              "commands": [
+                {
+                  "address": 151191230,
+                  "size": 1,
+                  "sha256": "7cb7c4547cf2653590d7a9ace60cc623d25148adfbc88a89aeb0ef88da7839ba",
+                  "source": "waitbgfadeout",
+                  "macro": "waitbgfadeout",
+                  "fields": [
+                    {
+                      "address": 151191230,
+                      "size": 1,
+                      "source_expression": "0x16",
+                      "source_macro_field": "0x16",
+                      "value": 22,
+                      "derivation": "source_numeric_expression",
+                      "sha256": "7cb7c4547cf2653590d7a9ace60cc623d25148adfbc88a89aeb0ef88da7839ba"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "name": "giga",
+              "source_png": "Giga_Impact_Opponent.png",
+              "asset": {
+                "address": 152557028,
+                "size": 3811,
+                "sha256": "7003087ccf3155a3f3b871e8ff38fb2e363930961be4eab38ca27f843dca3eca"
+              },
+              "decoded": {
+                "sha256": "c4ad2f3057ab14f69e4ea2969a1c9b7b26e011f53953ae9c5ddffd82394e7b64",
+                "size": 8928
+              },
+              "source_tile_count": 279,
+              "whole_decoded_equal": true,
+              "padding_excluded": true
+            },
+            {
+              "name": "nightmare",
+              "source_png": "Nightmare.png",
+              "asset": {
+                "address": 152613208,
+                "size": 4015,
+                "sha256": "4188ccccf0c25a7b7202a62dd095c6a84e470552711d05f9a3af57299e1a348f"
+              },
+              "decoded": {
+                "sha256": "35b583bf59cb860e6604ce269984165e3e9fdece4e71319b125d4341690627fc",
+                "size": 9664
+              },
+              "source_tile_count": 302,
+              "whole_decoded_equal": true,
+              "padding_excluded": true
+            },
+            {
+              "name": "sky",
+              "source_png": "Sky_Day.png",
+              "asset": {
+                "address": 152625300,
+                "size": 9558,
+                "sha256": "a630ddc5f934a5b31963f51f39fbbd658e93792830c55b39fb9474e5e9c2516f"
+              },
+              "decoded": {
+                "sha256": "c528c7385cec1c2c60631c5b1964ff92bfd748281abe466e56298652f991f92f",
+                "size": 14304
+              },
+              "source_tile_count": 447,
+              "whole_decoded_equal": true,
+              "padding_excluded": true
+            }
+          ],
+          "full_source_serialized_bytes": 184,
+          "public_move_index_translation_used": false
+        },
+        "composition": {
+          "status": "PASS_THREE_REGISTERED_BACKGROUND_CONSUMERS",
+          "cases": [
+            {
+              "case": "giga",
+              "endpoint": 136084108,
+              "instruction_steps": 604,
+              "scheduler_invocations": 3,
+              "real_task_registration": true,
+              "nonlive_ram_erased_at_every_boundary": true,
+              "callback_or_bg_host_seeded": false,
+              "reads": [
+                [
+                  134688658,
+                  151057563,
+                  1,
+                  33
+                ],
+                [
+                  134688660,
+                  151057564,
+                  1,
+                  34
+                ],
+                [
+                  134704424,
+                  50352336,
+                  4,
+                  134688757
+                ],
+                [
+                  134704424,
+                  50352336,
+                  4,
+                  134688757
+                ],
+                [
+                  134704424,
+                  50352336,
+                  4,
+                  134688757
+                ],
+                [
+                  134688852,
+                  50352344,
+                  2,
+                  33
+                ],
+                [
+                  134688988,
+                  151036156,
+                  4,
+                  152560840
+                ],
+                [
+                  134688998,
+                  151036148,
+                  4,
+                  152557028
+                ]
+              ],
+              "writes": [
+                [
+                  134704078,
+                  50352336,
+                  4,
+                  134688757
+                ],
+                [
+                  134688734,
+                  50352344,
+                  2,
+                  33
+                ],
+                [
+                  134688804,
+                  50352364,
+                  2,
+                  1
+                ],
+                [
+                  134688830,
+                  50352364,
+                  2,
+                  2
+                ]
+              ],
+              "conditional_call_groups": [
+                {
+                  "site": 134688682,
+                  "target": 134695272,
+                  "required_fields": [
+                    [
+                      33783304,
+                      4
+                    ],
+                    [
+                      33783316,
+                      2
+                    ],
+                    [
+                      50352336,
+                      8
+                    ],
+                    [
+                      50352364,
+                      2
+                    ],
+                    [
+                      50360296,
+                      24
+                    ]
+                  ],
+                  "conditional_outputs": [],
+                  "return_value": 1,
+                  "normal_abi_return_required": true,
+                  "frame_interval_completion_condition": false,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 0,
+                  "target": 0,
+                  "required_fields": [
+                    [
+                      50352336,
+                      7
+                    ],
+                    [
+                      50352344,
+                      2
+                    ],
+                    [
+                      50352364,
+                      2
+                    ]
+                  ],
+                  "conditional_outputs": [],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": false,
+                  "frame_interval_completion_condition": true,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 134688796,
+                  "target": 134679048,
+                  "required_fields": [
+                    [
+                      50352336,
+                      7
+                    ],
+                    [
+                      50352344,
+                      2
+                    ],
+                    [
+                      50352364,
+                      2
+                    ],
+                    [
+                      50360288,
+                      32
+                    ]
+                  ],
+                  "conditional_outputs": [
+                    {
+                      "address": 33782259,
+                      "size": 1,
+                      "value": 128
+                    }
+                  ],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": true,
+                  "frame_interval_completion_condition": false,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 0,
+                  "target": 0,
+                  "required_fields": [
+                    [
+                      50352336,
+                      7
+                    ],
+                    [
+                      50352344,
+                      2
+                    ],
+                    [
+                      50352364,
+                      2
+                    ]
+                  ],
+                  "conditional_outputs": [
+                    {
+                      "address": 33782259,
+                      "size": 1,
+                      "value": 0
+                    }
+                  ],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": false,
+                  "frame_interval_completion_condition": true,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 0,
+                  "target": 0,
+                  "required_fields": [
+                    [
+                      33782259,
+                      1
+                    ],
+                    [
+                      50352336,
+                      6
+                    ],
+                    [
+                      50352344,
+                      2
+                    ],
+                    [
+                      50352364,
+                      2
+                    ]
+                  ],
+                  "conditional_outputs": [],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": false,
+                  "frame_interval_completion_condition": true,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 134688992,
+                  "target": 134276468,
+                  "required_fields": [],
+                  "conditional_outputs": [],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": true,
+                  "frame_interval_completion_condition": false,
+                  "task_epoch_required": false,
+                  "effects_discharged": false
+                }
+              ],
+              "trace_identity": {
+                "size": 3824,
+                "sha256": "bcb2d3f02fd83f995d7b9bc2c54b1db7e4726d43424ba1e94ed50d9f0c53f35f"
+              }
+            },
+            {
+              "case": "nightmare",
+              "endpoint": 136084108,
+              "instruction_steps": 588,
+              "scheduler_invocations": 3,
+              "real_task_registration": true,
+              "nonlive_ram_erased_at_every_boundary": true,
+              "callback_or_bg_host_seeded": false,
+              "reads": [
+                [
+                  134688590,
+                  151123015,
+                  1,
+                  29
+                ],
+                [
+                  134704424,
+                  50352336,
+                  4,
+                  134688757
+                ],
+                [
+                  134704424,
+                  50352336,
+                  4,
+                  134688757
+                ],
+                [
+                  134704424,
+                  50352336,
+                  4,
+                  134688757
+                ],
+                [
+                  134688852,
+                  50352344,
+                  2,
+                  29
+                ],
+                [
+                  134688988,
+                  151036108,
+                  4,
+                  152617224
+                ],
+                [
+                  134688998,
+                  151036100,
+                  4,
+                  152613208
+                ]
+              ],
+              "writes": [
+                [
+                  134704078,
+                  50352336,
+                  4,
+                  134688757
+                ],
+                [
+                  134688618,
+                  50352344,
+                  2,
+                  29
+                ],
+                [
+                  134688804,
+                  50352364,
+                  2,
+                  1
+                ],
+                [
+                  134688830,
+                  50352364,
+                  2,
+                  2
+                ]
+              ],
+              "conditional_call_groups": [
+                {
+                  "site": 0,
+                  "target": 0,
+                  "required_fields": [
+                    [
+                      50352336,
+                      7
+                    ],
+                    [
+                      50352344,
+                      2
+                    ],
+                    [
+                      50352364,
+                      2
+                    ]
+                  ],
+                  "conditional_outputs": [],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": false,
+                  "frame_interval_completion_condition": true,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 134688796,
+                  "target": 134679048,
+                  "required_fields": [
+                    [
+                      50352336,
+                      7
+                    ],
+                    [
+                      50352344,
+                      2
+                    ],
+                    [
+                      50352364,
+                      2
+                    ],
+                    [
+                      50360288,
+                      32
+                    ]
+                  ],
+                  "conditional_outputs": [
+                    {
+                      "address": 33782259,
+                      "size": 1,
+                      "value": 128
+                    }
+                  ],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": true,
+                  "frame_interval_completion_condition": false,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 0,
+                  "target": 0,
+                  "required_fields": [
+                    [
+                      50352336,
+                      7
+                    ],
+                    [
+                      50352344,
+                      2
+                    ],
+                    [
+                      50352364,
+                      2
+                    ]
+                  ],
+                  "conditional_outputs": [
+                    {
+                      "address": 33782259,
+                      "size": 1,
+                      "value": 0
+                    }
+                  ],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": false,
+                  "frame_interval_completion_condition": true,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 0,
+                  "target": 0,
+                  "required_fields": [
+                    [
+                      33782259,
+                      1
+                    ],
+                    [
+                      50352336,
+                      6
+                    ],
+                    [
+                      50352344,
+                      2
+                    ],
+                    [
+                      50352364,
+                      2
+                    ]
+                  ],
+                  "conditional_outputs": [],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": false,
+                  "frame_interval_completion_condition": true,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 134688992,
+                  "target": 134276468,
+                  "required_fields": [],
+                  "conditional_outputs": [],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": true,
+                  "frame_interval_completion_condition": false,
+                  "task_epoch_required": false,
+                  "effects_discharged": false
+                }
+              ],
+              "trace_identity": {
+                "size": 3601,
+                "sha256": "0329cddc0024859fe9bab5d6fd3663ade8c78f46293b738acd750344be922d98"
+              }
+            },
+            {
+              "case": "sky",
+              "endpoint": 136084108,
+              "instruction_steps": 622,
+              "scheduler_invocations": 3,
+              "real_task_registration": true,
+              "nonlive_ram_erased_at_every_boundary": true,
+              "callback_or_bg_host_seeded": false,
+              "reads": [
+                [
+                  134688590,
+                  151191215,
+                  1,
+                  58
+                ],
+                [
+                  134704424,
+                  50352336,
+                  4,
+                  134688757
+                ],
+                [
+                  134704424,
+                  50352336,
+                  4,
+                  134688757
+                ],
+                [
+                  134704424,
+                  50352336,
+                  4,
+                  134688757
+                ],
+                [
+                  134688852,
+                  50352344,
+                  2,
+                  58
+                ],
+                [
+                  134688988,
+                  151036456,
+                  4,
+                  152634860
+                ],
+                [
+                  134688998,
+                  151036448,
+                  4,
+                  152625300
+                ]
+              ],
+              "writes": [
+                [
+                  134704078,
+                  50352336,
+                  4,
+                  134688757
+                ],
+                [
+                  134688618,
+                  50352344,
+                  2,
+                  58
+                ],
+                [
+                  134688804,
+                  50352364,
+                  2,
+                  1
+                ],
+                [
+                  134688830,
+                  50352364,
+                  2,
+                  2
+                ]
+              ],
+              "conditional_call_groups": [
+                {
+                  "site": 0,
+                  "target": 0,
+                  "required_fields": [
+                    [
+                      50352336,
+                      7
+                    ],
+                    [
+                      50352344,
+                      2
+                    ],
+                    [
+                      50352364,
+                      2
+                    ]
+                  ],
+                  "conditional_outputs": [],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": false,
+                  "frame_interval_completion_condition": true,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 134688796,
+                  "target": 134679048,
+                  "required_fields": [
+                    [
+                      50352336,
+                      7
+                    ],
+                    [
+                      50352344,
+                      2
+                    ],
+                    [
+                      50352364,
+                      2
+                    ],
+                    [
+                      50360288,
+                      32
+                    ]
+                  ],
+                  "conditional_outputs": [
+                    {
+                      "address": 33782259,
+                      "size": 1,
+                      "value": 128
+                    }
+                  ],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": true,
+                  "frame_interval_completion_condition": false,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 0,
+                  "target": 0,
+                  "required_fields": [
+                    [
+                      50352336,
+                      7
+                    ],
+                    [
+                      50352344,
+                      2
+                    ],
+                    [
+                      50352364,
+                      2
+                    ]
+                  ],
+                  "conditional_outputs": [
+                    {
+                      "address": 33782259,
+                      "size": 1,
+                      "value": 0
+                    }
+                  ],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": false,
+                  "frame_interval_completion_condition": true,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 0,
+                  "target": 0,
+                  "required_fields": [
+                    [
+                      33782259,
+                      1
+                    ],
+                    [
+                      50352336,
+                      6
+                    ],
+                    [
+                      50352344,
+                      2
+                    ],
+                    [
+                      50352364,
+                      2
+                    ]
+                  ],
+                  "conditional_outputs": [],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": false,
+                  "frame_interval_completion_condition": true,
+                  "task_epoch_required": true,
+                  "effects_discharged": false
+                },
+                {
+                  "site": 134688992,
+                  "target": 134276468,
+                  "required_fields": [],
+                  "conditional_outputs": [],
+                  "return_value": "unspecified",
+                  "normal_abi_return_required": true,
+                  "frame_interval_completion_condition": false,
+                  "task_epoch_required": false,
+                  "effects_discharged": false
+                }
+              ],
+              "trace_identity": {
+                "size": 3723,
+                "sha256": "60972005dc030369a61f745c4bc275ef45d1dd1fa5805ac43e8a5f93fce341ab"
+              }
+            }
+          ],
+          "actual_runtime_execution_observed": false
+        },
+        "protected_windows": 58,
+        "protected_bytes": 18528,
+        "proof_scope": "conditional_registered_background_minimum_payload",
+        "conditional_api_entry": true,
+        "complete_selected_source_serializer": true,
+        "actual_command_task_and_bg_reader": true,
+        "asset_source_pixels_independently_serialized": true,
+        "source_asset_full_decoded_match": true,
+        "whole_candidate_identity_checked_by_parent_required": true,
+        "actual_runtime_execution_observed": false,
+        "full_animation_prefix_executed": false,
+        "natural_battle_reachability_claimed": false,
+        "graphics_rendering_success_claimed": false,
+        "opaque_callee_effects_proven": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "whole_asset_classified": false,
+        "padding_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      }
+    },
+    "held_roots": {},
+    "new_data": 5,
+    "new_code": 0,
+    "new_boundary": 0,
+    "natural_gameplay_reachability_claimed": false,
+    "universal_heap_or_irq_lifetime_claimed": false,
+    "independent_old_final_source_review_completed": false,
+    "donor_leased": false,
+    "indirect_reference_completeness_claimed": false
+  }
+}

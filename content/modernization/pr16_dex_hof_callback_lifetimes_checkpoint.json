@@ -1,0 +1,1641 @@
+{
+  "schema_version": 1,
+  "status": "PASS_CURRENT_729_PARENT_LIFETIMES_AND_PARTIAL_SPACE_REFUSAL",
+  "source_head": "7dc8201fe5ab718e5a9290a4e53ab7a59096b94c",
+  "run_id": 37359322292,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "candidate_changed": false,
+  "unit_tests": 224,
+  "classified": 729,
+  "unclassified": 145,
+  "newly_classified": 0,
+  "new_data": 0,
+  "new_code": 0,
+  "new_song": 0,
+  "old_inventory_candidates": 874,
+  "previous_classified": 729,
+  "previous_unknown": 145,
+  "owner_unknown": 0,
+  "unowned_unknown": 145,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "old_full_rom_inventory_reused": true,
+  "delta_identity": {
+    "size": 60153,
+    "sha256": "06595ebf5830e45334dbb83ec1fb96658d40879f6f4a0126e3718a8d5ae6100a"
+  },
+  "baseline_identity": {
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent_identity": {
+    "size": 22816,
+    "sha256": "c49c05072bb5dcf19de4620440bfde82ad66e3c1269566a9b6184ebc9870bbc6"
+  },
+  "earlier_identity": {
+    "size": 149772,
+    "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+  },
+  "unknown_identity": {
+    "size": 63507,
+    "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+  },
+  "capacity_identity": {
+    "size": 10321,
+    "sha256": "c0bcb9b78b412b46e73e7e80bcd75188f74a671968dbfe26c2f3479ba7519b85"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-callback-lifetimes.yml": {
+      "size": 3012,
+      "sha256": "638db3f0de826e5386da3d34fee3af125df4a574a06e367b1e0119512c9db5a3"
+    },
+    "content/modernization/pr16_dex_hof_lifetime_menu_review.json": {
+      "size": 21519,
+      "sha256": "47d5a00dce7d7ee200bd4a4fe3cf6b90a280a5514efcbfbc3c5b47bbcc2fa973"
+    },
+    "content/modernization/pr16_dex_hof_lifetime_root_review.json": {
+      "size": 233251,
+      "sha256": "3c9545a21593a7d1fd2d4dc41a20f737b8abfb58fc7f40fd721ab89dfff9497a"
+    },
+    "content/modernization/pr16_dex_hof_lifetime_setup_review.json": {
+      "size": 33229,
+      "sha256": "2a39c2c125df3a0b23d3bb6048deee5fb4a1911028e6153ac513bd45a6a9eba5"
+    },
+    "content/modernization/pr16_dex_hof_lifetime_sources.json": {
+      "size": 10873,
+      "sha256": "12b8255954574d722ffc4e7fdc87bb45886f6d62f02195369d850f8736f70d33"
+    },
+    "docs/PR16_DEX_HOF_CALLBACK_LIFETIMES_JA.md": {
+      "size": 5281,
+      "sha256": "abdd78c1adc3241190ca4055741792ee28cef90c9af98db37c53e2942c18768d"
+    },
+    "scripts/pr16_dex_hof_callback_lifetimes.py": {
+      "size": 4132,
+      "sha256": "7957e559d973aad009630c2b4e5b3e9546405a6e59ec9459adb9068740cbd3c7"
+    },
+    "scripts/pr16_dex_hof_callback_lifetimes_actions.py": {
+      "size": 25644,
+      "sha256": "0ce72940843ae3108a060b5452116d7555bd041496052dbba8214960ad13e511"
+    },
+    "scripts/pr16_dex_hof_lifetime_capacity.py": {
+      "size": 3279,
+      "sha256": "cb450b321776af65dfeb3bd30362b3907e2e7ca861e3c83a7633e638d66a9fb8"
+    },
+    "scripts/pr16_dex_hof_lifetime_chain.py": {
+      "size": 10548,
+      "sha256": "c8ea5be8b817ce8c86d87957bb0ebaef4943c7688483f1c5df7c28ccd5366a71"
+    },
+    "scripts/pr16_dex_hof_lifetime_menu.py": {
+      "size": 47996,
+      "sha256": "16bc23bd565c732e08c79fd55b16f25d1256ee54a429b113514aa395641cf02f"
+    },
+    "scripts/pr16_dex_hof_lifetime_root.py": {
+      "size": 19545,
+      "sha256": "7d1827e12c7261371778d0fb08b0bbc5dcdd8efd2344017310c617a2ebbd650a"
+    },
+    "scripts/pr16_dex_hof_lifetime_setup.py": {
+      "size": 63155,
+      "sha256": "573c194e0b1709e56c125fcf63b1ea1794506adea8892592c756526e123560ff"
+    },
+    "tests/test_pr16_dex_hof_callback_lifetimes.py": {
+      "size": 2406,
+      "sha256": "5a572ba3d2794ac0c8f52b5f7bb94d9e15a62545fddf3ee5280156e577b60ba2"
+    },
+    "tests/test_pr16_dex_hof_callback_lifetimes_actions.py": {
+      "size": 9729,
+      "sha256": "7f0a25e4b25907699370fcbc22c47014a749821f283810fb9edaa58f604896c9"
+    },
+    "tests/test_pr16_dex_hof_lifetime_capacity.py": {
+      "size": 3582,
+      "sha256": "95dcb48f31cd7b7a16a60e38cf077d0164f0d98f4efb1c9db13ee97e24013d8b"
+    },
+    "tests/test_pr16_dex_hof_lifetime_chain.py": {
+      "size": 6759,
+      "sha256": "23e139a3410ab9cf3ce03dea5ebe775e943e6480c8c842ec0be85840edb17e3b"
+    },
+    "tests/test_pr16_dex_hof_lifetime_menu.py": {
+      "size": 8446,
+      "sha256": "3512790de846c682301a3be4da04b255033ca083c76fa0a6fd08bcaffbf7357d"
+    },
+    "tests/test_pr16_dex_hof_lifetime_root.py": {
+      "size": 12520,
+      "sha256": "4fbc48e13a5c0f06c6c37eb3b6b2966feffd1a455642376bcacdf7aa12a31256"
+    },
+    "tests/test_pr16_dex_hof_lifetime_setup.py": {
+      "size": 10776,
+      "sha256": "915caa8233e5caa161ce1510b57ed3607f6dbfd804083fcffec9ef61025801ba"
+    }
+  },
+  "inherited_bindings": {
+    "content/modernization/pr16_dex_hof_callback_references_checkpoint.json": {
+      "size": 10439,
+      "sha256": "f6530690ae80c432d94aef8288273eb8f5a1bbf7b4c80115146a9cac9329e464"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_evidence/reference-chain.json": {
+      "size": 22816,
+      "sha256": "c49c05072bb5dcf19de4620440bfde82ad66e3c1269566a9b6184ebc9870bbc6"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_evidence/unknown-frontier.json": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_checkpoint.json": {
+      "size": 11195,
+      "sha256": "660b6dc8b99c0005e8804998ad962772358233338eb2876d12853d75507342b9"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/reference-chain.json": {
+      "size": 28406,
+      "sha256": "20a394e6ce825113bbfd833989c18528a44f665f79eaf1c91f1ab6899a796dc7"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_checkpoint.json": {
+      "size": 9621,
+      "sha256": "a81a17085d98690f9e397c02f6334680e8064f76e0e7e24cc9f9fabb520ef631"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_evidence/reference-chain.json": {
+      "size": 23481,
+      "sha256": "1ede9031a30c4c5f52ec2b6cbf47ad177c4117931fb72796ce597c2786c01476"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_evidence/unknown-frontier.json": {
+      "size": 63943,
+      "sha256": "9a58057a3d7d8c18661270902c00c478da298ba65f0b637cc99a1d09a32df85f"
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json": {
+      "size": 149772,
+      "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json": {
+      "size": 95619,
+      "sha256": "c38d8e67a6718cacc17a3999922dca9edd9977734711b3cf5a74f85c1b76bb32"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_checkpoint.json": {
+      "size": 8001,
+      "sha256": "62411cded366aa43cb449af76b13166e2df6476532b3997664c22baa00e1d226"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_evidence/reference-chain.json": {
+      "size": 71138,
+      "sha256": "185e66b6e93eb94a6d1850b7f29b4ccfd00dfd3b3a5668a6021dbf5059fd3bd2"
+    },
+    "content/modernization/pr16_dex_hof_script_references_checkpoint.json": {
+      "size": 8864,
+      "sha256": "026944a1ae8d2bfeca0eb3105868d9ebe3fc1b8f0d7669fc18b7fb69fddc58ff"
+    },
+    "content/modernization/pr16_dex_hof_script_references_evidence/reference-chain.json": {
+      "size": 134951,
+      "sha256": "da105fd05e4ddb51bd7648af890db509c9b8f1e7e79112dbc1b295ce15b51279"
+    },
+    "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json": {
+      "size": 4063919,
+      "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+    },
+    "content/modernization/pr16_story_route_adapter_checkpoint.json": {
+      "size": 45222,
+      "sha256": "ff7094f278de5502b40bca5ceaccb1a29ba6776b9b5eedc5ccdcb5ea03be19c7"
+    },
+    "state/source-lock.json": {
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    }
+  },
+  "current_owner_count": 115,
+  "current_rom_reconstructions": 1,
+  "historical_rom_reconstructions": 0,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "accepted_heap_reruns": 0,
+  "independent_final_source_review_completed": false,
+  "validation_scope": "新scope専用unit、現候補全SHA/115actual owner/874hit/新有限consumerと保存容量原本の機械検証。旧最終song/battle/Surf独立再レビュー未実施を保持。",
+  "combined_song_models": 133,
+  "retained_sample_witnesses": 50,
+  "old_models_reused_for_new_cross_song_role_safety": true,
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "controller_runtime_wired": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "party_lifetime_diagnostics": {
+    "status": "PASS_NEW_COMPLETE_SETUP_AND_MENU_LOCAL_DIAGNOSTICS_NOT_ACCEPTED",
+    "setup": {
+      "status": "PASS_COMPLETE_DIRECT_SETUP_CFG_LOCAL_CALLEE_EFFECTS_NOT_ACCEPTED",
+      "cfg": {
+        "whole_constructor_bytes": 348,
+        "whole_setup_bytes": 570,
+        "state_count": 23,
+        "direct_branch_count": 117,
+        "instruction_count": 922
+      },
+      "effects": {
+        "status": "PASS_BOUNDED_CALLEE_EFFECTS",
+        "closed_effects": [
+          {
+            "callee": 134219076,
+            "role": "set_main",
+            "write_regions": [
+              {
+                "address": 50344244,
+                "size": 4
+              },
+              {
+                "address": 50345320,
+                "size": 1
+              }
+            ],
+            "steps": 8
+          },
+          {
+            "callee": 134219508,
+            "role": "set_vblank",
+            "write_regions": [
+              {
+                "address": 50344252,
+                "size": 4
+              }
+            ],
+            "steps": 3
+          },
+          {
+            "callee": 134219520,
+            "role": "set_hblank",
+            "write_regions": [
+              {
+                "address": 50344256,
+                "size": 4
+              }
+            ],
+            "steps": 3
+          },
+          {
+            "callee": 135006520,
+            "role": "null_callbacks",
+            "write_regions": [
+              {
+                "address": 50344252,
+                "size": 4
+              },
+              {
+                "address": 50344256,
+                "size": 4
+              }
+            ],
+            "steps": 13
+          },
+          {
+            "callee": 135231464,
+            "role": "clear_bg_schedule",
+            "write_regions": [
+              {
+                "address": 33794768,
+                "size": 4
+              }
+            ],
+            "steps": 40
+          },
+          {
+            "callee": 134703956,
+            "role": "reset_tasks",
+            "write_regions": [
+              {
+                "address": 50352336,
+                "size": 640
+              }
+            ],
+            "steps": 1104
+          },
+          {
+            "callee": 134251628,
+            "role": "free_sprite_palettes",
+            "write_regions": [
+              {
+                "address": 50347672,
+                "size": 1
+              },
+              {
+                "address": 50335208,
+                "size": 32
+              }
+            ],
+            "steps": 171
+          },
+          {
+            "callee": 135401684,
+            "role": "ordinary_minigame_helper",
+            "write_regions": [],
+            "steps": 10
+          },
+          {
+            "callee": 135444980,
+            "role": "set_help_context_input5",
+            "write_regions": [
+              {
+                "address": 33796192,
+                "size": 2
+              }
+            ],
+            "symbolic_paths": 3
+          },
+          {
+            "callee": 134480688,
+            "role": "calculate_party_count_species11",
+            "write_regions": [
+              {
+                "address": 33701769,
+                "size": 1
+              },
+              {
+                "address": 33702372,
+                "size": 600
+              }
+            ],
+            "symbolic_paths": 127,
+            "return_values": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          }
+        ],
+        "reset_then_uninterrupted_task_calls": [
+          {
+            "call_index": 1,
+            "result": 0,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 2,
+            "result": 1,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 3,
+            "result": 2,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 4,
+            "result": 3,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 5,
+            "result": 4,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 6,
+            "result": 5,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 7,
+            "result": 6,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 8,
+            "result": 7,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 9,
+            "result": 8,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 10,
+            "result": 9,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 11,
+            "result": 10,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 12,
+            "result": 11,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 13,
+            "result": 12,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 14,
+            "result": 13,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 15,
+            "result": 14,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 16,
+            "result": 15,
+            "new_task_registered": true
+          },
+          {
+            "call_index": 17,
+            "result": 0,
+            "new_task_registered": false
+          }
+        ],
+        "task_slot_guarantee_across_setup_helpers": false,
+        "allocation_range_precondition_proven": false,
+        "contract_ja": "caller stackが対象allocationと非alias、SPが有効、同期実行中にIRQ等の介入なしという局所callee契約。未知loadは未知値を維持。task列は無介入の17回であり実setup経路の成功を主張しない。"
+      },
+      "pokemon_data_effects": {
+        "status": "PASS_SPECIES11_EGG45_BOUNDED_PARTY_CALLEES",
+        "contracts": [
+          {
+            "field": 11,
+            "party_slot": 0,
+            "argument_pointer": 33702372,
+            "write_region": {
+              "address": 33702404,
+              "size": 48
+            },
+            "symbolic_paths": 2
+          },
+          {
+            "field": 11,
+            "party_slot": 1,
+            "argument_pointer": 33702472,
+            "write_region": {
+              "address": 33702504,
+              "size": 48
+            },
+            "symbolic_paths": 2
+          },
+          {
+            "field": 11,
+            "party_slot": 2,
+            "argument_pointer": 33702572,
+            "write_region": {
+              "address": 33702604,
+              "size": 48
+            },
+            "symbolic_paths": 2
+          },
+          {
+            "field": 11,
+            "party_slot": 3,
+            "argument_pointer": 33702672,
+            "write_region": {
+              "address": 33702704,
+              "size": 48
+            },
+            "symbolic_paths": 2
+          },
+          {
+            "field": 11,
+            "party_slot": 4,
+            "argument_pointer": 33702772,
+            "write_region": {
+              "address": 33702804,
+              "size": 48
+            },
+            "symbolic_paths": 2
+          },
+          {
+            "field": 11,
+            "party_slot": 5,
+            "argument_pointer": 33702872,
+            "write_region": {
+              "address": 33702904,
+              "size": 48
+            },
+            "symbolic_paths": 2
+          },
+          {
+            "field": 45,
+            "party_slot": 0,
+            "argument_pointer": 33702372,
+            "write_region": {
+              "address": 33702404,
+              "size": 48
+            },
+            "symbolic_paths": 1
+          },
+          {
+            "field": 45,
+            "party_slot": 1,
+            "argument_pointer": 33702472,
+            "write_region": {
+              "address": 33702504,
+              "size": 48
+            },
+            "symbolic_paths": 1
+          },
+          {
+            "field": 45,
+            "party_slot": 2,
+            "argument_pointer": 33702572,
+            "write_region": {
+              "address": 33702604,
+              "size": 48
+            },
+            "symbolic_paths": 1
+          },
+          {
+            "field": 45,
+            "party_slot": 3,
+            "argument_pointer": 33702672,
+            "write_region": {
+              "address": 33702704,
+              "size": 48
+            },
+            "symbolic_paths": 1
+          },
+          {
+            "field": 45,
+            "party_slot": 4,
+            "argument_pointer": 33702772,
+            "write_region": {
+              "address": 33702804,
+              "size": 48
+            },
+            "symbolic_paths": 1
+          },
+          {
+            "field": 45,
+            "party_slot": 5,
+            "argument_pointer": 33702872,
+            "write_region": {
+              "address": 33702904,
+              "size": 48
+            },
+            "symbolic_paths": 1
+          }
+        ],
+        "heap_cell_written": false,
+        "task_array_written": false,
+        "allocation_nonalias_precondition_proven": false,
+        "preconditions_ja": "pointerはgPlayerPartyの0..5slot。caller stackは有効でpointer/globalと非alias。同期callee内のIRQ等介入を対象外とする。任意heapポインタや任意fieldへ一般化しない。"
+      },
+      "new_instruction_windows": 43,
+      "new_literal_words": 38,
+      "inherited_windows_reused": 13,
+      "whole_input_identity": {
+        "size": 33554432,
+        "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+      },
+      "current_acceptance_claimed": false,
+      "newly_classified": 0,
+      "root_to_hit_lifetime_proven": false,
+      "allocation_same_lifetime_proven": false,
+      "unresolved_obligations": [
+        "allocator_return_range_liveness_and_aliasing_not_bound",
+        "retained_cursor_signed_slot_domain_not_bound_except_keepCursorPos_zero",
+        "remaining_setup_helper_return_and_memory_effects_not_closed",
+        "setup_task_slot_preservation_between_reset_and_state20_not_closed",
+        "irq_link_wait_and_scheduler_memory_effects_not_closed",
+        "outer_menu_and_post_setup_input_to_hit_lifetime_delegated_not_proven_here"
+      ],
+      "call_obligations": [
+        {
+          "address": 134476966,
+          "target": 134476976,
+          "status": "locally_bound_but_transitive_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 134477012,
+          "target": 134475948,
+          "status": "locally_bound_but_transitive_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 134477024,
+          "target": 134475948,
+          "status": "locally_bound_but_transitive_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 134477038,
+          "target": 134475948,
+          "status": "locally_bound_but_transitive_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 134477050,
+          "target": 134475948,
+          "status": "locally_bound_but_transitive_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 134478424,
+          "target": 134475876,
+          "status": "locally_bound_but_transitive_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 134480734,
+          "target": 134476628,
+          "status": "locally_bound_but_transitive_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 134704004,
+          "target": 136093176,
+          "status": "memset_fixed_4_or_32_byte_context_only",
+          "required_context": [
+            "destination and size are the fixed clear-bg or task-array call contexts",
+            "size is 4 or 32",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 134704084,
+          "target": 134704136,
+          "status": "reset_then_uninterrupted_priority0_only",
+          "required_context": [
+            "ResetTasks completed before this trace",
+            "only zero-priority CreateTask calls intervene",
+            "no other task write or scheduler dispatch intervenes",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 134704098,
+          "target": 136093176,
+          "status": "memset_fixed_4_or_32_byte_context_only",
+          "required_context": [
+            "destination and size are the fixed clear-bg or task-array call contexts",
+            "size is 4 or 32",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 134704146,
+          "target": 134704448,
+          "status": "reset_then_uninterrupted_priority0_only",
+          "required_context": [
+            "ResetTasks completed before this trace",
+            "only zero-priority CreateTask calls intervene",
+            "no other task write or scheduler dispatch intervenes",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135006524,
+          "target": 134219508,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135006530,
+          "target": 134219520,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135231472,
+          "target": 136093176,
+          "status": "memset_fixed_4_or_32_byte_context_only",
+          "required_context": [
+            "destination and size are the fixed clear-bg or task-array call contexts",
+            "size is 4 or 32",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135393910,
+          "target": 135394992,
+          "status": "locally_bound_but_transitive_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135393920,
+          "target": 134228892,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135393934,
+          "target": 134219076,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394150,
+          "target": 134476628,
+          "status": "locally_bound_but_transitive_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394174,
+          "target": 134480688,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394180,
+          "target": 134219076,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394218,
+          "target": 134704400,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394222,
+          "target": 134244056,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394226,
+          "target": 134244132,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394230,
+          "target": 135231504,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394234,
+          "target": 134675572,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394246,
+          "target": 134246044,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394250,
+          "target": 134246796,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394254,
+          "target": 134675480,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394266,
+          "target": 135006488,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394278,
+          "target": 135394308,
+          "status": "locally_bound_but_transitive_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394290,
+          "target": 135006424,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394440,
+          "target": 135006520,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394444,
+          "target": 135006540,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394448,
+          "target": 135231464,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394454,
+          "target": 134773320,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394460,
+          "target": 134675660,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394480,
+          "target": 134243980,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394486,
+          "target": 134251628,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394492,
+          "target": 135006424,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394504,
+          "target": 134703956,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394510,
+          "target": 135401684,
+          "status": "conditional_menu_type_zero",
+          "required_context": [
+            "(gPartyMenu.menuType & 15) == 0",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394516,
+          "target": 135395028,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394526,
+          "target": 135394880,
+          "status": "locally_bound_but_transitive_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394556,
+          "target": 135395148,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394578,
+          "target": 135403600,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394596,
+          "target": 135395524,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394624,
+          "target": 135408940,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394630,
+          "target": 135409724,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394636,
+          "target": 135410012,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394642,
+          "target": 134834856,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394648,
+          "target": 135397168,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394680,
+          "target": 135396828,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394712,
+          "target": 135397220,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394728,
+          "target": 135403752,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394742,
+          "target": 135444980,
+          "status": "help_context_input5_only",
+          "required_context": [
+            "r0 input is 5",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394756,
+          "target": 134704052,
+          "status": "reset_then_uninterrupted_priority0_only",
+          "required_context": [
+            "ResetTasks completed before this trace",
+            "only zero-priority CreateTask calls intervene",
+            "no other task write or scheduler dispatch intervenes",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394766,
+          "target": 135406808,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394784,
+          "target": 134679672,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394806,
+          "target": 134675756,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394846,
+          "target": 134219508,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394852,
+          "target": 134219076,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394898,
+          "target": 134675756,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394906,
+          "target": 134704052,
+          "status": "reset_then_uninterrupted_priority0_only",
+          "required_context": [
+            "ResetTasks completed before this trace",
+            "only zero-priority CreateTask calls intervene",
+            "no other task write or scheduler dispatch intervenes",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394912,
+          "target": 134219508,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394918,
+          "target": 134219076,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394962,
+          "target": 134219076,
+          "status": "bounded_callee_contract_requires_context",
+          "required_context": [
+            "only checked fixed call contexts and argument domains",
+            "valid disjoint caller stack",
+            "no asynchronous intervention"
+          ],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394966,
+          "target": 135395448,
+          "status": "locally_bound_but_transitive_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135394972,
+          "target": 134704288,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135395458,
+          "target": 134228932,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135395470,
+          "target": 134228932,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135395482,
+          "target": 134228932,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135395494,
+          "target": 134228932,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        },
+        {
+          "address": 135395498,
+          "target": 134233752,
+          "status": "opaque_effect_open",
+          "required_context": [],
+          "actual_setup_context_discharged": false
+        }
+      ],
+      "donor_eligible": false
+    },
+    "menu": {
+      "status": "PASS_LOCAL_MENU_ROOT_AND_INPUT_CONTRACTS_NOT_ACCEPTED",
+      "instruction_windows": 53,
+      "semantic_instructions": 1159,
+      "ordinary_tutor_adapter_local_frames": {
+        "functions": {
+          "ordinary_adapter": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 400
+          },
+          "ordinary_slot": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 16
+          },
+          "owned": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 40
+          },
+          "bit_leaf": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 12
+          },
+          "compact_reader": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 48
+          },
+          "compact_get32": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 0
+          },
+          "compact_resolver": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 12
+          }
+        },
+        "direct_store_targets": "own stack frames or the bounded incoming view/owner outputs",
+        "compact_reader_output_offsets": [
+          0,
+          4,
+          6
+        ],
+        "compact_reader_output_size": 8,
+        "compact_resolver_output_size": 2,
+        "compact_resolver_output_is_reader_stack_offset": 22,
+        "compact_reader_transitive_effects_bound": true,
+        "native_stack_offsets": [
+          24,
+          46,
+          20
+        ],
+        "owned_stack_offsets": [
+          12,
+          0
+        ],
+        "slot_view_is_local_stack_bytes": [
+          0,
+          8
+        ],
+        "bit_reader_leaf_has_no_non_stack_stores": true,
+        "conditional_on_tutor_id_at_most": 63,
+        "conditional_on_callee_abi_return": true,
+        "unresolved_external_callees": [
+          134476628
+        ],
+        "transitive_noninterference_proven": false
+      },
+      "outer_pokemon_callback_registered": true,
+      "outer_start_menu_full_reachability_proven": false,
+      "inherited_party_action_hook_evidence_required": true,
+      "mail_input_domain_conditional": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "cursor_preservation_across_callees_proven": false,
+      "installed_tutor_helper_hooks_bound": true,
+      "tutor_supply_adapter_hook_bound": true,
+      "task_destroy_field4_and_text_wait_condition_bound": true,
+      "task_full_lifetime_proven": false,
+      "full_root_to_hit_lifetime_proven": false,
+      "newly_classified": 0,
+      "donor_eligible": false,
+      "current_acceptance_claimed": false,
+      "unresolved_obligations": [
+        "start_menu_item_order_availability_and_outer_scheduler_reachability_unproven",
+        "constructor_and_all_setup_states_must_be_composed_with_separate_evidence",
+        "all_callees_and_async_writers_preserve_allocation_cursor_and_task_lifetime_unproven",
+        "setup_task_capacity_and_task_identity_across_frames_unproven",
+        "tutor_get_mon_data_transitive_effects_and_frame_noninterference_unproven",
+        "whole_current_candidate_acceptance_delegated_to_parent"
+      ]
+    },
+    "ordinary_tutor_composition": {
+      "status": "PASS_ORDINARY_TUTOR_LOCAL_EFFECT_COMPOSITION_NOT_LIFETIME",
+      "scope": "installed compatibility hook 09110228 through ordinary supply adapter 09FFF6D0",
+      "ordinary_tutor_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63
+      ],
+      "getter_fields": [
+        11,
+        45
+      ],
+      "getter_party_slots": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "no_writes_outside_stack_and_selected_mon": true,
+      "ordinary_supply_adapter_subtree_opaque_calls_remaining": [],
+      "local_adapter_effects": {
+        "functions": {
+          "ordinary_adapter": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 400
+          },
+          "ordinary_slot": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 16
+          },
+          "owned": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 40
+          },
+          "bit_leaf": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 12
+          },
+          "compact_reader": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 48
+          },
+          "compact_get32": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 0
+          },
+          "compact_resolver": {
+            "local_stack_balanced": true,
+            "maximum_local_stack_bytes": 12
+          }
+        },
+        "direct_store_targets": "own stack frames or the bounded incoming view/owner outputs",
+        "compact_reader_output_offsets": [
+          0,
+          4,
+          6
+        ],
+        "compact_reader_output_size": 8,
+        "compact_resolver_output_size": 2,
+        "compact_resolver_output_is_reader_stack_offset": 22,
+        "compact_reader_transitive_effects_bound": true,
+        "native_stack_offsets": [
+          24,
+          46,
+          20
+        ],
+        "owned_stack_offsets": [
+          12,
+          0
+        ],
+        "slot_view_is_local_stack_bytes": [
+          0,
+          8
+        ],
+        "bit_reader_leaf_has_no_non_stack_stores": true,
+        "conditional_on_tutor_id_at_most": 63,
+        "conditional_on_callee_abi_return": true,
+        "unresolved_external_callees": [
+          134476628
+        ],
+        "transitive_noninterference_proven": false
+      },
+      "getter_contracts": {
+        "status": "PASS_SPECIES11_EGG45_BOUNDED_PARTY_CALLEES",
+        "contracts": [
+          {
+            "field": 11,
+            "party_slot": 0,
+            "argument_pointer": 33702372,
+            "write_region": {
+              "address": 33702404,
+              "size": 48
+            },
+            "symbolic_paths": 2
+          },
+          {
+            "field": 11,
+            "party_slot": 1,
+            "argument_pointer": 33702472,
+            "write_region": {
+              "address": 33702504,
+              "size": 48
+            },
+            "symbolic_paths": 2
+          },
+          {
+            "field": 11,
+            "party_slot": 2,
+            "argument_pointer": 33702572,
+            "write_region": {
+              "address": 33702604,
+              "size": 48
+            },
+            "symbolic_paths": 2
+          },
+          {
+            "field": 11,
+            "party_slot": 3,
+            "argument_pointer": 33702672,
+            "write_region": {
+              "address": 33702704,
+              "size": 48
+            },
+            "symbolic_paths": 2
+          },
+          {
+            "field": 11,
+            "party_slot": 4,
+            "argument_pointer": 33702772,
+            "write_region": {
+              "address": 33702804,
+              "size": 48
+            },
+            "symbolic_paths": 2
+          },
+          {
+            "field": 11,
+            "party_slot": 5,
+            "argument_pointer": 33702872,
+            "write_region": {
+              "address": 33702904,
+              "size": 48
+            },
+            "symbolic_paths": 2
+          },
+          {
+            "field": 45,
+            "party_slot": 0,
+            "argument_pointer": 33702372,
+            "write_region": {
+              "address": 33702404,
+              "size": 48
+            },
+            "symbolic_paths": 1
+          },
+          {
+            "field": 45,
+            "party_slot": 1,
+            "argument_pointer": 33702472,
+            "write_region": {
+              "address": 33702504,
+              "size": 48
+            },
+            "symbolic_paths": 1
+          },
+          {
+            "field": 45,
+            "party_slot": 2,
+            "argument_pointer": 33702572,
+            "write_region": {
+              "address": 33702604,
+              "size": 48
+            },
+            "symbolic_paths": 1
+          },
+          {
+            "field": 45,
+            "party_slot": 3,
+            "argument_pointer": 33702672,
+            "write_region": {
+              "address": 33702704,
+              "size": 48
+            },
+            "symbolic_paths": 1
+          },
+          {
+            "field": 45,
+            "party_slot": 4,
+            "argument_pointer": 33702772,
+            "write_region": {
+              "address": 33702804,
+              "size": 48
+            },
+            "symbolic_paths": 1
+          },
+          {
+            "field": 45,
+            "party_slot": 5,
+            "argument_pointer": 33702872,
+            "write_region": {
+              "address": 33702904,
+              "size": 48
+            },
+            "symbolic_paths": 1
+          }
+        ],
+        "heap_cell_written": false,
+        "task_array_written": false,
+        "allocation_nonalias_precondition_proven": false,
+        "preconditions_ja": "pointerはgPlayerPartyの0..5slot。caller stackは有効でpointer/globalと非alias。同期callee内のIRQ等介入を対象外とする。任意heapポインタや任意fieldへ一般化しない。"
+      },
+      "caller_stack_valid_and_nonalias_required": true,
+      "selected_mon_in_party_six_slots_required": true,
+      "synchronous_no_irq_interleaving_required": true,
+      "selection_domain_reachability_proven": false,
+      "allocation_nonalias_proven": false,
+      "full_root_to_hit_lifetime_proven": false,
+      "newly_classified": 0,
+      "donor_eligible": false,
+      "current_acceptance_claimed": false
+    },
+    "checked_unknown_hits": [
+      135415155,
+      135424779
+    ],
+    "newly_classified": 0,
+    "full_root_to_hit_lifetime_proven": false,
+    "donor_eligible": false,
+    "current_acceptance_claimed": false
+  },
+  "guide": "docs/PR16_DEX_HOF_CALLBACK_LIFETIMES_JA.md",
+  "evidence_bindings": {
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/callback-lifetimes-tests.txt": {
+      "size": 28691,
+      "sha256": "e578da860650dd122d2847d4ff21cdbdd496cedfa923ec9d625cd9505d6228b2"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/measurement.json": {
+      "size": 50995,
+      "sha256": "494dce5fa40d30a5c74c8309c6a9f896fa8fa5ea90f5a8feaf3cfd58cad5251a"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/partial-space.json": {
+      "size": 10321,
+      "sha256": "c0bcb9b78b412b46e73e7e80bcd75188f74a671968dbfe26c2f3479ba7519b85"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/reference-chain.json": {
+      "size": 60153,
+      "sha256": "06595ebf5830e45334dbb83ec1fb96658d40879f6f4a0126e3718a8d5ae6100a"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/unknown-frontier.json": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    }
+  },
+  "previous_checkpoint": "content/modernization/pr16_dex_hof_callback_references_checkpoint.json",
+  "current_owner_checkpoint": "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
+  "record_source": "7dc8201fe5ab718e5a9290a4e53ab7a59096b94c",
+  "record_run": 37359322292,
+  "reference_baseline": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+  "reference_parent": "content/modernization/pr16_dex_hof_callback_references_evidence/reference-chain.json"
+}

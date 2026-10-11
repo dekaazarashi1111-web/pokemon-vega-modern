@@ -1,0 +1,324 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-CAVE-EAST-SAVE24",
+  "status": "PASS_EAST_CORRIDOR_SAVE24_PERSISTENCE_SCOPED",
+  "measurement_source": "d983562695f17ecac20e1ede1a6916dc04392468",
+  "run_id": 37093559410,
+  "job_id": 111118784339,
+  "artifact": {
+    "id": 11263343138,
+    "name": "pr16-story-save24-detour-checkpoint",
+    "size_in_bytes": 17559812,
+    "digest": "sha256:6a0cff0cd7a5d4118fd090bd8588c9076f1525d689b7e53802cbea9bbe9d49b0",
+    "workflow_run": {
+      "id": 37093559410,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "d983562695f17ecac20e1ede1a6916dc04392468"
+    },
+    "expires_at": "2027-01-01T03:32:48Z"
+  },
+  "measurement_conclusion": "success",
+  "record_source": "1a842ee45ca361522fd4e6f6cee766df6534428e",
+  "record_run_id": 37094105840,
+  "save24_accepted": true,
+  "teleport_accepted": false,
+  "verification": {
+    "status": "PASS_EAST_CORRIDOR_SAVE24_PERSISTENCE_SCOPED",
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      31,
+      4
+    ],
+    "facing": 1,
+    "save_counter": 24,
+    "ordinary_saves": 1,
+    "party_count": 4,
+    "rp": 0,
+    "arrival_observation": 13,
+    "stable_save_observation": 19,
+    "partial_write_observations": [
+      17,
+      18
+    ],
+    "save_success_wording_observed": false,
+    "save_acceptance_basis": "NORMAL_SAVE_UI_THEN_STABLE_FIELD_COUNTER24_AND_INDEPENDENT_COMPLETE_SAVE_RTC",
+    "trainer_victories": 0,
+    "wild_victories": 0,
+    "escapes": 0,
+    "captures": 0,
+    "fixture_writes": 0,
+    "teleport_accepted": false,
+    "cave_crossing_complete": false,
+    "national_dex_unlocked": false,
+    "hm05_taught_or_used": false,
+    "natural_growth_accepted": false,
+    "natural_evolution_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "active_baseline_changed": false,
+    "boundary": {
+      "auxiliary_flag_deltas": [],
+      "auxiliary_var_deltas": [
+        [
+          16417,
+          26,
+          38
+        ],
+        [
+          16418,
+          1,
+          3
+        ]
+      ],
+      "national_dex_magic": 0,
+      "national_var404e": 0,
+      "national_flag840": 0,
+      "story_vars": {
+        "4071": 6,
+        "4072": 1
+      },
+      "auxiliary_runtime_owners_resolved": false,
+      "party_bytes_preserved": 600,
+      "bag_unchanged": true,
+      "money": 12296,
+      "hm05_owned": true,
+      "hm05_taught_or_used": false,
+      "sector_checksums": 42,
+      "pc_and_s61e_sections_unchanged": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "s61e_crc_and_inverse_checked": true,
+      "save23_bank_preserved_bytes": 57344,
+      "complete_save_rtc_cold_identical": true,
+      "changed_bytes": 6937,
+      "changed_ranges": 1754
+    },
+    "input_save": {
+      "size": 131088,
+      "sha256": "728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    },
+    "progress_inputs": 56,
+    "continue_inputs": 13,
+    "progress_frames": 2782,
+    "continue_frames": 1510,
+    "screen_count": 22,
+    "measurement_native_processes": 2,
+    "record_native_processes": 0,
+    "accepted_case_reruns": 0,
+    "accepted_test_reruns": 0,
+    "compiles": 0,
+    "rom_changes": 0
+  },
+  "visual_review": "content/modernization/pr16_story_save24_visual_review.json",
+  "source_bindings": {
+    ".github/workflows/pr16-story-save24-detour.yml": {
+      "size": 1623,
+      "sha256": "82ebf44e2dd11a1be097aca4a346e42b8af18a2f6c186d540a4741593373f1aa"
+    },
+    ".github/workflows/pr16-story-save24-record.yml": {
+      "size": 2554,
+      "sha256": "df9d8e95c51150908f75ceb1c1f656b2f79838ed41ba0361b7b0889dfae94972"
+    },
+    ".github/workflows/pr16-story-save24.yml": {
+      "size": 1609,
+      "sha256": "6040506ab8380825aa78e2a498eaaaa17271f95b43ad892125fb7de05b6dcaa0"
+    },
+    "content/modernization/pr16_story_save24_visual_review.json": {
+      "size": 2001,
+      "sha256": "58d3a2a19c531332e391f56c66b43f95f9ca6b18159adb9be950ee9a95adbfd4"
+    },
+    "scripts/pr16_story_save24_accept.py": {
+      "size": 5704,
+      "sha256": "0edf007cf67bd6058afe497ad171759641e38944a51d28021b65571a6682b247"
+    },
+    "scripts/pr16_story_save24_detour.py": {
+      "size": 9633,
+      "sha256": "464acb08be8703de45f6efc24974f320010cacff88634705528c0d672dad54f3"
+    },
+    "scripts/pr16_story_save24_measure.py": {
+      "size": 12999,
+      "sha256": "fcc24825cfbfcbbf139df4621df2992158a198e3235c58350510fe9067fb6df1"
+    },
+    "scripts/pr16_story_save24_record.py": {
+      "size": 17866,
+      "sha256": "bdb63bd33322e33bedbe79ee451fdc50f9852d95c7fdb7809a9b34c1e1518382"
+    },
+    "tests/test_pr16_story_save24_accept.py": {
+      "size": 2944,
+      "sha256": "18545275427a9cc5d947d78e2744a3c6b756665e1d3b20aa0923146dc12d94b6"
+    },
+    "tests/test_pr16_story_save24_detour.py": {
+      "size": 1911,
+      "sha256": "84f3a90b1ac152a9bf29800c95270f3dad9e7ba51e399712abff4ac7362e59f6"
+    },
+    "tests/test_pr16_story_save24_measure.py": {
+      "size": 4812,
+      "sha256": "6e0c6a402bd39f2fa117dd8c2822fad0ff3f84f848e760edec62e48748f0c7cd"
+    },
+    "tests/test_pr16_story_save24_terrain.py": {
+      "size": 1029,
+      "sha256": "9a901ac9e80652c8e87a97611a9efba363a171ed6ebf7b4fe2e27039dc64dfaa"
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_save24_evidence/cave-route-terminal.json": {
+      "size": 4175,
+      "sha256": "8f37c4b3e9f10cc7aecd4088aeadd5bf7d458cc73d72ca8ac3bea1563ea07bb4"
+    },
+    "content/modernization/pr16_story_save24_evidence/continue/commands.txt": {
+      "size": 25,
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3"
+    },
+    "content/modernization/pr16_story_save24_evidence/continue/execution.json": {
+      "size": 548,
+      "sha256": "222bb25c23d491f42357ef8c8e0c3ad2eadebf7264f1909026477a695873b441"
+    },
+    "content/modernization/pr16_story_save24_evidence/continue/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save24_evidence/continue/stdout.txt": {
+      "size": 2101,
+      "sha256": "5f4072f8d50131cf8fd5c1aee253ff6e105bd8007dbe4cf38a0fdf0f39e081da"
+    },
+    "content/modernization/pr16_story_save24_evidence/controller-test-receipts.json": {
+      "size": 5363,
+      "sha256": "a7935b46f9c4065eb6a00891b3fae3bdf547271607526506a19aca6f6cb2e221"
+    },
+    "content/modernization/pr16_story_save24_evidence/failed-attempt-receipt.json": {
+      "size": 4386,
+      "sha256": "143724b94cb2b9cada1a80bc14fd942e251a6a97084c60970d40c92ee9552877"
+    },
+    "content/modernization/pr16_story_save24_evidence/failed-attempt/failure.json": {
+      "size": 205,
+      "sha256": "03dc8b55de900c44995dbbac0831809eafc09e9393610fb222d7cd076aafc342"
+    },
+    "content/modernization/pr16_story_save24_evidence/failed-attempt/manifest.json": {
+      "size": 3070,
+      "sha256": "6c36fbd5e3076133fab21a351788ab650ea53545f0ae7b3287c9311e14ab25f1"
+    },
+    "content/modernization/pr16_story_save24_evidence/failed-attempt/progress/commands.txt": {
+      "size": 349,
+      "sha256": "5376b6ee1ddf36a9d2a772980ec64dbbd41c0695700825dc0d727318b660650c"
+    },
+    "content/modernization/pr16_story_save24_evidence/failed-attempt/progress/execution.json": {
+      "size": 549,
+      "sha256": "6be737eab77e7be5207632ccc0effaaafdd112745e02e1be10d1855fb34be339"
+    },
+    "content/modernization/pr16_story_save24_evidence/failed-attempt/progress/stdout.txt": {
+      "size": 9230,
+      "sha256": "6d1e2a7ba3afa0dbff3386252054856f16575a5085503c7cee1a0181ffdd433c"
+    },
+    "content/modernization/pr16_story_save24_evidence/manifest.json": {
+      "size": 6343,
+      "sha256": "77ab2fb2676d9103f488377c6abfb221f35d002f6cc8f5854ded940f8f0d266e"
+    },
+    "content/modernization/pr16_story_save24_evidence/measurement.json": {
+      "size": 15600,
+      "sha256": "02b04516e74cf3dd7a6714b09e00b21dd179c3fe458d7e8d2b77b600376d1033"
+    },
+    "content/modernization/pr16_story_save24_evidence/parent.json": {
+      "size": 460,
+      "sha256": "0317af36682d58fdc4148c34648d4144235cd526bcbb4fa3e5b84c11173e0fdc"
+    },
+    "content/modernization/pr16_story_save24_evidence/preflight-failure.json": {
+      "size": 4654,
+      "sha256": "4cfa880edfd7c04c527e36ff3e8cc8f2cba34b2b8ac417bd415951fc45b145ea"
+    },
+    "content/modernization/pr16_story_save24_evidence/progress/commands.txt": {
+      "size": 602,
+      "sha256": "7030303ee36a784b39eabad35a3d0880eaff016e423f4e2f90a1cd3134e231ba"
+    },
+    "content/modernization/pr16_story_save24_evidence/progress/execution.json": {
+      "size": 549,
+      "sha256": "7a48868cd995ee418f072de791af613ac735ec4bdcca35048d414e35bd8be48f"
+    },
+    "content/modernization/pr16_story_save24_evidence/progress/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save24_evidence/progress/stdout.txt": {
+      "size": 14022,
+      "sha256": "db50ae253d42d5307b9a6bb0c9557d396723c45033b8a91965f67ed8cc4e8086"
+    },
+    "content/modernization/pr16_story_save24_evidence/terminal.json": {
+      "size": 3435,
+      "sha256": "88dbb9a08673f172c2e90a1c4e643a74ea08104b8c6b81e0bab4ef6673860c0a"
+    },
+    "content/modernization/pr16_story_save24_evidence/terrain.json": {
+      "size": 2784,
+      "sha256": "e24bf7b622cbd66f863befb55b76a49c9a16137cd88815500f59f0762dc728de"
+    },
+    "content/modernization/pr16_story_save24_evidence/unit.stderr.txt": {
+      "size": 2151,
+      "sha256": "0ae9a16acbeff972d9e36e294de224acca5d308ae6a78a72ab65e5743012b0f2"
+    },
+    "content/modernization/pr16_story_save24_evidence/unit.stdout.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save24_evidence/verification.json": {
+      "size": 2418,
+      "sha256": "13c735fa610f5130ddfa8c9d95c2918960b6ff5fe273180205a5927954433f79"
+    },
+    "content/modernization/pr16_story_save24_evidence/visual-review.json": {
+      "size": 2001,
+      "sha256": "58d3a2a19c531332e391f56c66b43f95f9ca6b18159adb9be950ee9a95adbfd4"
+    }
+  },
+  "save_byte_ledger": {
+    "binding": {
+      "size": 204775,
+      "sha256": "8ba5b56e308758d60f179fd09a54de9089db3b899273547e28a91f0bee32dba1"
+    },
+    "changed_bytes": 6937,
+    "ranges": 1754,
+    "artifact_only": true
+  },
+  "prior_wall_failure": {
+    "run_id": 37092974275,
+    "artifact_id": 11263731555,
+    "native_processes": 1,
+    "ordinary_saves": 0,
+    "conclusion": "failure"
+  },
+  "prior_preflight_failure": {
+    "run_id": 37093437062,
+    "artifact_id": 11263278045,
+    "native_processes": 0,
+    "conclusion": "failure"
+  },
+  "new_measurement_native_processes": 2,
+  "record_native_processes": 0,
+  "original_controller_tests": [
+    32,
+    12,
+    7
+  ],
+  "new_acceptance_tests": 24,
+  "next_goal_ja": "Save24 artifact11263343138のstory-fast.srm（42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0、131088bytes）だけから再開。map1/73・31,4南・party4/RP0・12296円・badge1・var4071=6/4072=1。次は東側通路を南へ通常入力で進み、NPC/野生戦は通常UIで対処し次のSave/独立Continue境界へ。27,4→27,5は高さ3→4/北側進入不可なので旧11歩候補を再試行しない。岩階段23,14へ回り込む候補は未実測、19,14のcoordはflag4367で27,7/8,10へ分岐する。静的座標ownerは再利用し、敵trainer/script/進路と手持ちPPを保存候補から照合して入力を計画する。当回56/cold13入力・32+12+7/新24試験・Save1〜23/旧BP/P08は無影響に再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。hostによるstory/flag/var解禁禁止。",
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "general_ci_all_success_claimed": false
+}

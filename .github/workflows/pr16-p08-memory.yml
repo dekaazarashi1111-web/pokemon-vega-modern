@@ -1,0 +1,55 @@
+name: PR16 P08 shared memory save representative
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_p08_memory_representative.py
+      - tools/mgba_pr16_p08_memory_observer.h
+      - tests/test_pr16_p08_memory_representative.py
+      - .github/workflows/pr16-p08-memory.yml
+      - content/modernization/pr16_p08_memory_case.json
+      - scripts/pr16_p08_bp_acceptance.py
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-suppression
+  cancel-in-progress: false
+jobs:
+  representative:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 固定原本と新契約を照合し開始checkpointを非force保存
+        run: python3 scripts/pr16_p08_memory_representative.py prepare
+      - name: Host mGBA dependency only
+        run: |
+          sudo apt-get update > .local/pr16-p08-memory/apt-update.txt 2>&1
+          sudo apt-get install -y libmgba-dev > .local/pr16-p08-memory/apt-install.txt 2>&1
+      - name: わざメモリー満杯置換と保存再開の影響代表1件だけ実行
+        run: python3 scripts/pr16_p08_memory_representative.py native
+      - name: 実行原本と停止点を非force保存
+        if: always()
+        run: python3 scripts/pr16_p08_memory_representative.py finish
+      - name: Pack text and bounded screens only
+        if: always()
+        run: python3 scripts/pr16_p08_memory_representative.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-p08-memory
+          path: .local/pr16-p08-memory/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: Native result
+        if: always()
+        run: python3 scripts/pr16_p08_memory_representative.py result

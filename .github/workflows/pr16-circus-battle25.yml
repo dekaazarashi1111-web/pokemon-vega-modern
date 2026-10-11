@@ -1,0 +1,83 @@
+name: PR16 Circus battle25 ordinary-input continuation
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_circus_battle25.py
+      - scripts/pr16_circus_battle25_policy.py
+      - tools/mgba_pr16_circus_battle25.h
+      - tests/test_pr16_circus_battle25.py
+      - .github/workflows/pr16-circus-battle25.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-battle25-ordinary-input
+  cancel-in-progress: false
+jobs:
+  battle25:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 可変台帳を新規固定しない既存記録規約へ合わせる
+        run: |
+          python3 - <<'PY'
+          import hashlib,pathlib,subprocess,sys
+          sys.path.insert(0,'scripts')
+          import pr16_circus_battle25 as b
+          head=b.scope();state=b.resume.validate(b.ROOT)
+          prior=b.api('actions/runs/35468065354')
+          assert prior['status']=='completed' and prior['conclusion']=='failure' and prior['head_sha']=='fcb8ac8ffa73c1523d93187f48f90453a7d39cdd'
+          assert not pathlib.Path(b.REPORT).exists() and b.resume.BACKLOG not in state['source_bindings']
+          name='scripts/pr16_circus_battle25.py';p=pathlib.Path(name);raw=p.read_bytes()
+          assert hashlib.sha256(raw).hexdigest()=='814e4496dc2944bcbc879d6c1db366e1d54a980fbdece8da1ad05507124c7a91'
+          text=b.policy.replace_once(raw.decode(),"for name in (*FILES,REPORT,resume.BACKLOG,*evidence):state['source_bindings'][name]=identity((ROOT/name).read_bytes())", "for name in (*FILES,REPORT,*evidence):state['source_bindings'][name]=identity((ROOT/name).read_bytes())\n    # 台帳は次段の再開routingも更新する可変状態。既存bindingだけを同期し、新規固定しない。\n    if resume.BACKLOG in state['source_bindings']:\n        state['source_bindings'][resume.BACKLOG]=identity((ROOT/resume.BACKLOG).read_bytes())")
+          text=b.policy.replace_once(text,"checkpoint(value,'START')", "value['prior_setup_failures'].append(dict(run_id=35468065354,job_id=105963925331,source_head='fcb8ac8ffa73c1523d93187f48f90453a7d39cdd',original_conclusion='failure',native_processes=0,artifact_id=10591801735,archive=dict(size=141358,sha256='b5730cc0cfb1f9b466aa5da77ea27594670fd02bf216ca0a54cc99ad5b95dbc6'),reason_ja='可変P08台帳を新規source固定したため旧install_routingの意図した更新でhash不一致。既存記録器と同じ条件付きbindingへ修正。台帳の意味検査は維持。'))\n    checkpoint(value,'START')")
+          compile(text,name,'exec');p.write_text(text)
+          subprocess.run(['git','add','--',name],check=True)
+          subprocess.run(['git','diff','--cached','--check'],check=True)
+          assert b.command('git','diff','--cached','--name-only',head)==name
+          b.scope()
+          subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
+          subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
+          subprocess.run(['git','commit','-m',b.TASK+': WIP 可変台帳のbindingを既存規約へ復元'],check=True)
+          subprocess.run(['git','push','origin','HEAD:refs/heads/'+b.BRANCH],check=True)
+          b.scope()
+          PY
+      - name: 固定原本と7契約を照合し実装・引継ぎ・両ログを先に保存
+        id: prepare
+        run: |
+          mkdir -p .local/pr16-circus-battle25
+          python3 scripts/pr16_circus_battle25.py prepare > .local/pr16-circus-battle25/prepare.stdout 2> .local/pr16-circus-battle25/prepare.stderr
+      - name: host native依存だけを用意し旧ARM builderを呼ばない
+        run: |
+          set -euo pipefail
+          sudo apt-get update > .local/pr16-circus-battle25/apt-update.log 2>&1
+          sudo apt-get install -y libmgba-dev > .local/pr16-circus-battle25/apt-install.log 2>&1
+      - name: 同一候補で24勝prefixと25戦目以降を一続きに検証
+        run: python3 scripts/pr16_circus_battle25.py native
+      - name: 実停止・成功失敗・原本・引継ぎと両ログを非force記録
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_battle25.py finish
+      - name: ROM save private入力を除きtextと画面だけ保存
+        if: always()
+        run: python3 scripts/pr16_circus_battle25.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-battle25
+          path: .local/pr16-circus-battle25/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: scoped完走と真正30勝を混同しない
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_battle25.py result

@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "BPRJ.ld": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+      "local": "BPRJ.ld",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+      "size": 68505,
+      "source": "BPRJ.ld",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/BPRJ.ld"
+    },
+    "cfru-anim_defines.s": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "fc4168cbc9f43ef084afb04ff4ec8c81f9390592",
+      "local": "cfru-anim_defines.s",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "166cbae334e3c45cb0d694fb483b8ac13b9cc84dc4bd64eb8d04ee696c1e84e4",
+      "size": 33164,
+      "source": "anim_defines.s",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/anim_defines.s"
+    },
+    "cfru-attack-anim-table.s": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "2049efe7d416113b0b5be496e6a9c5ed6b305d1a",
+      "local": "cfru-attack-anim-table.s",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "9c5ef07b85c3a0cbf809ad18cfeddf59d548a970d2df12f480ea93b6de9febb2",
+      "size": 1232828,
+      "source": "assembly/data/attack_anim_table.s",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/assembly/data/attack_anim_table.s"
+    },
+    "cfru-battle-anims.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "096a8763a4260052566ed029f841bc68e561d269",
+      "local": "cfru-battle-anims.c",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "4893fda793e75356672e8b1be3bca4bd54fe562774fd8b07ed9f8f9ba501aff3",
+      "size": 192535,
+      "source": "src/battle_anims.c",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/src/battle_anims.c"
+    },
+    "pret-battle-anim-data.h": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "ec8dc3de772056de958bba1227e7172b500a0380",
+      "line_range": [
+        352,
+        364
+      ],
+      "local": "pret-battle-anim-data.h",
+      "repository": "pret/pokefirered",
+      "sha256": "c4cfe40d12623423e80d72946c4554783fc06b0d8cd80b48309295c475508ec1",
+      "size": 61792,
+      "source": "src/data/battle_anim.h",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/data/battle_anim.h#L352-L364"
+    },
+    "pret-battle_anim.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "30f9a7ad2482d1767f5c70ee30a3c85528605bb3",
+      "local": "pret-battle_anim.c",
+      "repository": "pret/pokefirered",
+      "sha256": "5883d9ee0483120ef67461952f5880499f322fb1c706cc213ca13c0c2b0e88c5",
+      "size": 46944,
+      "source": "src/battle_anim.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/battle_anim.c"
+    },
+    "pret-gba-types.h": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "35d02e26391d872b486ca051d51f8485f3a7a0e5",
+      "line_range": [
+        55,
+        118
+      ],
+      "local": "pret-gba-types.h",
+      "repository": "pret/pokefirered",
+      "sha256": "d83a5cb845180b881f3de081ef9c2694b2da017a406fd3d6b0830329cc64ed93",
+      "size": 4213,
+      "source": "include/gba/types.h",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/gba/types.h#L55-L118"
+    },
+    "pret-sprite.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "d0198d53004775c8664dcccf57833e178833776e",
+      "line_range": [
+        532,
+        610
+      ],
+      "local": "pret-sprite.c",
+      "repository": "pret/pokefirered",
+      "sha256": "2a804302eb5a89d31c3ec2f33dc645a80a0c645113d4b33b9bd571064c0286ae",
+      "size": 48783,
+      "source": "src/sprite.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/sprite.c#L532-L610"
+    },
+    "pret-sprite.h": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "6a1b272119ce6e3a8dcf45adf2eef8923a6d5175",
+      "line_range": [
+        181,
+        242
+      ],
+      "local": "pret-sprite.h",
+      "repository": "pret/pokefirered",
+      "sha256": "a77aa1c837dfb58cf60b3eac299c7cc29a23ce27735ba710b9e8eeed102bf773",
+      "size": 9368,
+      "source": "include/sprite.h",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/sprite.h#L181-L242"
+    }
+  },
+  "hits": [
+    {
+      "address": 151800769,
+      "target": 167709168,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "8bc8a2a29d457999ad631317c6163f12c090bc56797b56d2d3826058fd22ba3c",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    },
+    {
+      "address": 151804923,
+      "target": 167700976,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "2f22efc9b11c66c1aebe703c152c6822f524aaa05118bcd1d87f489c9cebc8e9",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    }
+  ],
+  "roots": {
+    "single": {
+      "hit": 151804923,
+      "script": 151200184,
+      "table_indices": [
+        879
+      ],
+      "table_cells": [
+        151303312
+      ],
+      "command": 151200308,
+      "opcode": 3,
+      "handler": 134685108,
+      "callback": 151804864,
+      "callback_field": 151200309,
+      "argument_index": 0,
+      "stop": 151804922,
+      "static_successor": 151804926
+    },
+    "star": {
+      "hit": 151800769,
+      "script": 151225252,
+      "table_indices": [
+        926,
+        927
+      ],
+      "table_cells": [
+        151303500,
+        151303504
+      ],
+      "call_field": 151225309,
+      "command": 151225490,
+      "opcode": 2,
+      "handler": 134684864,
+      "template": 151226096,
+      "callback": 151800720,
+      "callback_field": 151226116,
+      "argument_index": 2,
+      "stop": 151800768,
+      "static_successor": 151800772,
+      "callback_writer": 134245512,
+      "callback_reader": 134245822,
+      "callback_bx": 136084172
+    }
+  },
+  "windows": [
+    {
+      "address": 134245392,
+      "size": 156,
+      "sha256": "7a47e1ba68a1c89710bdd877deea08a038276152e2be387e96ec672d179928f6"
+    },
+    {
+      "address": 134245588,
+      "size": 8,
+      "sha256": "9db8ea797c40665b2e1564582f0addd38488c92f82557563d672e95696d1e257"
+    },
+    {
+      "address": 134245644,
+      "size": 86,
+      "sha256": "05d269c678b48b86566dbaa85b956a7a8d32350492bc1561ad0d8dea8eef2eb9"
+    },
+    {
+      "address": 134245732,
+      "size": 98,
+      "sha256": "f848c2a89f30f2edf175c5fe48cdad1fbbddf2788d91f15895229f72aded9620"
+    },
+    {
+      "address": 134245848,
+      "size": 18,
+      "sha256": "3ee2e7f22d7f5595d0e65404b0d93010c6009ae304318bd4f7b5ed610bcad9b9"
+    },
+    {
+      "address": 134684020,
+      "size": 4,
+      "sha256": "e4f60993ecb18f7008ffec660be5e9e5a8a8351852d24d1ecfb53887359e7798"
+    },
+    {
+      "address": 134684620,
+      "size": 20,
+      "sha256": "cad6c71810acacfe2175ad484a1f27b25c2db12016a96676c50f290f38feca67"
+    },
+    {
+      "address": 134684668,
+      "size": 8,
+      "sha256": "2f21eded49d64c1312a4da7f618a74ee033fed98091c8907b34a9e7d15bec090"
+    },
+    {
+      "address": 134684864,
+      "size": 96,
+      "sha256": "347163f29b8305044d71ca48a6399878784eadd24ec8882cc877ea40fd2e22ac"
+    },
+    {
+      "address": 134684968,
+      "size": 18,
+      "sha256": "a984be1e732b46d5ba91ccd5f8e8331a60c4176b1aa85db5fa738ee8dfe912bb"
+    },
+    {
+      "address": 134684988,
+      "size": 4,
+      "sha256": "50d5afb27703dfff81beda58bf586f629e9f393eae1561491a6b4143c3084ba6"
+    },
+    {
+      "address": 134685010,
+      "size": 72,
+      "sha256": "b0c360154e1699cdfd916151d3c3515b00211e3e608124e981e792e487cef35f"
+    },
+    {
+      "address": 134685100,
+      "size": 4,
+      "sha256": "50d5afb27703dfff81beda58bf586f629e9f393eae1561491a6b4143c3084ba6"
+    },
+    {
+      "address": 134685108,
+      "size": 96,
+      "sha256": "84c9a06301581ad259d15dec74646fef4ec09fea18c8516679e3a65e9e4aeeef"
+    },
+    {
+      "address": 134685220,
+      "size": 8,
+      "sha256": "9c7b79d32e7f50eb614eedafef4291fa9f321b60751d7f7037032eb305eeea0f"
+    },
+    {
+      "address": 136084168,
+      "size": 2,
+      "sha256": "81904e68a8b9a2427e9e87e2c61b1098057608d18357d70d9281e8513941cf53"
+    },
+    {
+      "address": 136084172,
+      "size": 2,
+      "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5"
+    },
+    {
+      "address": 136084192,
+      "size": 2,
+      "sha256": "8726ef5c42206476b80835e7e75d7377ac67a1d964a577f875d20c9dcc98dd97"
+    },
+    {
+      "address": 137824960,
+      "sha256": "ebe53f21c7afb5dc412bc181ef678b38639f59d32e31a0446bb907ec63fe13df",
+      "size": 8
+    },
+    {
+      "address": 137830292,
+      "size": 8,
+      "sha256": "33aa06080b6876c41e026fc7b815534015fb9e8fb12f030e472a69c8b5db1ead"
+    },
+    {
+      "address": 151200184,
+      "size": 133,
+      "sha256": "6e91175aa8e15add0d3c5f4fd4ffd0369600796439a848b8532f01e873a61edf"
+    },
+    {
+      "address": 151225252,
+      "size": 144,
+      "sha256": "709908b853ec82671db687fb455c2ff8e669974b1ce54db501de1f5b6edd0677"
+    },
+    {
+      "address": 151225490,
+      "size": 19,
+      "sha256": "5f7174295d2dc72cd43c13987c0d439f684c0cdd9ccef7439be0f077fdb5eef8"
+    },
+    {
+      "address": 151226096,
+      "size": 24,
+      "sha256": "5065561fa4a075284920794de14c00014969b8efa5e2c3b6a9e6394e2ff6c33f"
+    },
+    {
+      "address": 151303312,
+      "size": 4,
+      "sha256": "0f5696161afcd57d9b3cf9f97d2f559ccd65f8b6a501df7b62fea6232f426df6"
+    },
+    {
+      "address": 151303500,
+      "size": 4,
+      "sha256": "6a0b47773dbb13bcf13af1e09a661fa19a7775a80475f86b6a4e20f139ff9cc8"
+    },
+    {
+      "address": 151303504,
+      "size": 4,
+      "sha256": "6a0b47773dbb13bcf13af1e09a661fa19a7775a80475f86b6a4e20f139ff9cc8"
+    },
+    {
+      "address": 151779204,
+      "size": 62,
+      "sha256": "e98c240cbdb9640005206079ca03ae59a5a8a59659fb7fdb6ff844f6a2fc6845"
+    },
+    {
+      "address": 151779268,
+      "size": 16,
+      "sha256": "bf595bf83c797a8e10cf6123f0e1c30b4afbe2a2dfb923eb5dcb5a0f02751f3f"
+    },
+    {
+      "address": 151800720,
+      "size": 54,
+      "sha256": "e0ddcc6d331faeb75acf9523d9c7c4c19997cea27859447bb5fc6f1d73ab98fc"
+    },
+    {
+      "address": 151800816,
+      "size": 16,
+      "sha256": "d5f89d376aecf7625fe7cee2662d740702d602917d7042a58064b299c121e73c"
+    },
+    {
+      "address": 151804864,
+      "size": 64,
+      "sha256": "d2adacfcdf7b02d20723f796fbe94ca8d7a4d8e5dd80bef305e93613ac6d6493"
+    },
+    {
+      "address": 151804956,
+      "size": 20,
+      "sha256": "ce83d07a91a2ce7441fb18aa52e2969172325119421e6d71dc3070e0259c8865"
+    },
+    {
+      "address": 151808464,
+      "size": 2,
+      "sha256": "477db9ac7ca5efc12e37f882656b8fe5a363ffeb99b2e565a953d10c3c91ab21"
+    },
+    {
+      "address": 151808470,
+      "size": 2,
+      "sha256": "8726ef5c42206476b80835e7e75d7377ac67a1d964a577f875d20c9dcc98dd97"
+    }
+  ],
+  "claims": {
+    "proof_scope": "conditional_source_registered_animation_minimum_thumb",
+    "conditional_api_entry": true,
+    "complete_serializer_boundaries_proven": true,
+    "actual_opcode_consumer_proven": true,
+    "callback_pointer_host_seeded": false,
+    "complete_minimum_instruction_encoding_proven": true,
+    "whole_candidate_identity_checked_by_parent_required": true,
+    "actual_runtime_execution_observed": false,
+    "full_story_reachability_claimed": false,
+    "full_animation_prefix_executed": false,
+    "universal_heap_or_irq_lifetime_proven": false,
+    "opaque_callee_effects_proven": false,
+    "hit_callee_executed": false,
+    "hit_callee_return_required": false,
+    "static_successor_executed": false,
+    "whole_function_range_classified": false,
+    "padding_classified": false,
+    "indirect_reference_completeness_claimed": false,
+    "donor_eligible": false,
+    "donor_leased": false
+  },
+  "input_contract": {
+    "entry_ja": "実table cell879/926/927と完全source serializerから特定したcommandの処理時を条件付き入口にする。実opcode dispatcherから開始し完全callback/templateと全argを実byte readerで読む。公開index808/855/856や一律offsetを現在rootへ代用しない。先行command実行や自然move選択は未証明。",
+    "single_ja": "CreateTaskはcallback/priorityを受け正常ABIで有効taskId0を返す有限条件。task callbackをRAMへhost seedしない。実r6/BXから即時callbackへ入り、実LoadBattleAnimTarget(0)が実arg0/attackerを読む。visible=1、position=0の十分条件でhit BL直前に達する。",
+    "star_ja": "実commandの6argとtemplateをCreateSpriteAndAnimateへ渡す。最初のfree slot0、登録graphics資源とconstructor leafの有限成功を条件に、実InitSpriteのtemplate+20→同slot+28 writerと同期load/BXを実行。同slot epochを最終useまで保持。全constructor leaf effectsや自然資源準備は未証明。",
+    "context_ja": "有限single-battle flags0、attacker0/target1。これらはsave観測でなく通常APIの有効入力条件。visibility=1、座標/priorityは有限正常戻り。LoadBattleAnimTargetは実source対応命令を通す。",
+    "memory_ja": "各opaque境界は通常ABIのcallee-saved/SP/LRを保存。future read-before-write RAMと必要資源epochだけを条件化し、他のRAMはreplayでUnknownへ消去。未知site/余剰条件/必要live field破壊/同slot再利用は拒否、非live書換は許可する。",
+    "minimum_ja": "各4byte hitを覆う完全BL4byteと静的successor LDR2byteだけを分類。hit BLを実行せず、そのcallee成功/描画/復帰を要求しない。隣接literal/function全域やdonor安全性は未分類。"
+  },
+  "finite_profile": {
+    "battle_flags": 0,
+    "attacker": 0,
+    "target": 1,
+    "task_id": 0,
+    "visibility": 1,
+    "position": 0,
+    "sprite_slot": 0,
+    "normal_abi_returns": true,
+    "resources_valid": true
+  },
+  "serializer_layout": [
+    {
+      "label": "ANIM_GENESIS_SUPERNOVA",
+      "address": 151200184,
+      "command_count": 22,
+      "size": 133,
+      "extent": "prefix"
+    },
+    {
+      "label": "ANIM_MAX_STARFALL",
+      "address": 151225252,
+      "command_count": 23,
+      "size": 144,
+      "extent": "full"
+    },
+    {
+      "label": "STARFALL_BEAMS_UP",
+      "address": 151225490,
+      "command_count": 1,
+      "size": 19,
+      "extent": "prefix"
+    },
+    {
+      "label": "STARFALL_BEAM",
+      "address": 151226096,
+      "command_count": 1,
+      "size": 24,
+      "extent": "inline"
+    }
+  ]
+}

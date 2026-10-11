@@ -1,0 +1,9 @@
+# P08：P05の通常メガ進化・戦闘終了・保存再起動
+
+通常の操作入力から6特性を取得し、1ターン進行、逃走後の元の姿への復帰、通常保存、新しいcoreでのContinueまでを検証した追補です。特性をRAMへ書き込む旧代表試験とは別の実行です。
+
+原本runは34438575892、対象HEADは96c634134730f0c4f5aed989e7a4ed6b23c2c6d6。6成功経路と、トグルなし・リングなし・石なし・違う石・policy拒否・トグル取消の36対照、合計42プロセス／48cores、キャッシュ再利用0です。全ケースで1ターンの双方PP消費を確認し、成功6経路では保存前後の個体100bytesが一致します。
+
+P08の記録：`content/modernization/p08_native_mega_acceptance.json`。原本ZIPとActions情報：`content/modernization/p08_native_mega_evidence/34438575892/`。検証：`python3 scripts/check_modernization_p08_native_mega.py`。この検証コマンドは読み取り専用で、今回の原本照合を新しいmGBA実行に加算しません。
+
+初期個体・装備・policy・相手は隔離fixtureです。自然な捕獲・装備取得、実際のCircus入場、他のP03/P05経路、P06/P07、最終受入は未完了です。Stage62の実プレイ基準とrelease_ready=falseを維持します。Eelektross通常特性もLevitateのため不在特性対照ではありません。Fire Maneの比較はMegaによる種族値変化も含むため、特性だけの効果と断定しません。

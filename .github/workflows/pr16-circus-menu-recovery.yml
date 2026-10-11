@@ -1,0 +1,72 @@
+name: PR16 Circus menu identity and recovery trace
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-menu-recovery.yml
+      - scripts/pr16_circus_menu_recovery.py
+      - tools/mgba_pr16_circus_menu_identity.h
+      - tools/mgba_pr16_circus_recovery_trace.c
+      - tests/test_pr16_circus_menu_recovery.py
+      - tests/fixtures/circus_menu_identity_fixture.c
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-three-win
+  cancel-in-progress: false
+jobs:
+  circus-menu-recovery:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: メニュー実個体の再解決と失敗原本を保存
+        id: prepare
+        run: python3 scripts/pr16_circus_menu_recovery.py prepare
+      - name: 同一候補の未完3勝を検証
+        run: python3 scripts/pr16_circus_menu_recovery.py pipeline
+      - name: 3勝原本と両ログを非force保存
+        id: record
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_menu_recovery.py finish
+      - name: 3勝原本を別ZIPへ分離
+        if: always() && steps.record.outcome == 'success'
+        run: |
+          python3 scripts/pr16_circus_menu_recovery.py pack
+          mv .local/pr16-three-win-evidence .local/pr16-menu-evidence
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.record.outcome == 'success'
+        with:
+          name: pr16-circus-menu-identity
+          path: .local/pr16-menu-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: 中断traceの入力不変契約と引継ぎを保存
+        id: trace
+        if: always() && steps.record.outcome == 'success'
+        run: python3 scripts/pr16_circus_menu_recovery.py prepare-trace
+      - name: 同一候補を再構築せず中断ownerを観測
+        if: always() && steps.trace.outcome == 'success'
+        run: python3 scripts/pr16_circus_menu_recovery.py native-trace
+      - name: 中断原本と両ログを非force保存
+        if: always() && steps.trace.outcome == 'success'
+        run: python3 scripts/pr16_circus_menu_recovery.py finish-trace
+      - name: ROMとsaveを除いた中断証拠を保存
+        if: always() && steps.trace.outcome == 'success'
+        run: python3 scripts/pr16_circus_menu_recovery.py pack-trace
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.trace.outcome == 'success'
+        with:
+          name: pr16-circus-recovery-trace
+          path: .local/pr16-three-win-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

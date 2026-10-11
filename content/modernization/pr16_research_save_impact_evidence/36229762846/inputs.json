@@ -1,0 +1,86 @@
+{
+  "artifacts": [
+    {
+      "binding": {
+        "sha256": "a6aeccb72fa15411d956b418ca5f030aa5020a466303a25e0f8814ba2eeb5c4d",
+        "size": 102586759
+      },
+      "id": 10898620034,
+      "name": "pr16-special-wild-gameplay-runtime",
+      "source_head": "8660fe70f4354333cf7647186663cacafa04451b"
+    },
+    {
+      "binding": {
+        "sha256": "7d3de78d4e852583eb35551076021630c1343aa623e91fe1529d73f4cf1471ed",
+        "size": 17366330
+      },
+      "id": 10898510128,
+      "name": "pr16-special-wild-gameplay-data",
+      "source_head": "8660fe70f4354333cf7647186663cacafa04451b"
+    }
+  ],
+  "candidate": {
+    "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
+    "size": 33554432
+  },
+  "canonical_source_after": {
+    "sha256": "88a14bd79e1c7247b80102c76b48023b8de67dc7cdc6fb526cd1c155393e93c3",
+    "size": 63507
+  },
+  "generated_harness": {
+    "sha256": "13f960c35388f0528e1744b2e992f18a65c06457a9b453efdfa89ab26553eceb",
+    "size": 17816
+  },
+  "run_id": 36229762846,
+  "seed": {
+    "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+    "size": 131072
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-research-bag-native-20260926.yml": {
+      "sha256": "43988c73c108cec3caa77d453636a090e424c41ee3ee6e0d066953b14623c20a",
+      "size": 1068
+    },
+    "config/research_economy_v1.json": {
+      "sha256": "7e92079158303a125358ae6fa49c231f6085b2ca0a335d5f0e8bb6c55db2ed8d",
+      "size": 9388
+    },
+    "overlays/research_economy_v1/research_economy_v1.c": {
+      "sha256": "3f71ea1d9f308c652e70dd863b601ad39a9c648ca25bf55932b4966fa4246e62",
+      "size": 63507
+    },
+    "overlays/research_economy_v1/research_economy_v1.h": {
+      "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
+      "size": 3743
+    },
+    "scripts/pr16_research_bag_actions.py": {
+      "sha256": "785b1ec81ede3e50e673eb9f1a0861e6240048e7409f29d30d5331351527f5b8",
+      "size": 8168
+    },
+    "scripts/pr16_research_bag_delegate.py": {
+      "sha256": "9964a15ebf2fcb8a14145766fd9c89157ef98a525362832537a12774ecfaf7ad",
+      "size": 6509
+    },
+    "scripts/pr16_research_save_delegate.py": {
+      "sha256": "ed64cc810b7ad05da32b68827d96e54e39eeb04d8eeb65302f07a4ef54676474",
+      "size": 3372
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_research_save_impact.c": {
+      "sha256": "b57e58a94f208f6f3ce8418b850d9cd03de203c12bb73a0cd0cdf6fb7968b78f",
+      "size": 16977
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "source_head": "9cb7ca0a7699fd49f1e217cf8204fea682d5dbb8"
+}

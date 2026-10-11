@@ -1,0 +1,2501 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-AUDIO-LEAF-BYTES",
+  "source_head": "3cd1000abcdb1639be66da957d8f92092982f73e",
+  "run_id": 35251583296,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "state_table": {
+      "address": 134240124,
+      "count": 7,
+      "stride": 4,
+      "state_offset": 28,
+      "site": 134240116,
+      "binding": "SAVED_LDRB_CMP6_BLS_LSL2_LITERAL_LDR_MOV_PC",
+      "runtime_observed": false,
+      "hex": "98570008485b00085a5b0008845b0008bc5b0008305c0008425c0008",
+      "identity": {
+        "size": 28,
+        "sha256": "92e6eda217bc486761406dca6cf0b304b169871458305aa7e8f28d06c99bd916"
+      },
+      "targets": [
+        134240152,
+        134241096,
+        134241114,
+        134241156,
+        134241212,
+        134241328,
+        134241346
+      ],
+      "roots": [
+        134240153,
+        134241097,
+        134241115,
+        134241157,
+        134241213,
+        134241329,
+        134241347
+      ],
+      "actual_font_table_length_proven": false
+    },
+    "dispatch_tables": [
+      {
+        "name": "character",
+        "address": 134240300,
+        "count": 8,
+        "selected_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "site": 134240294,
+        "hex": "a45a0008925a0008845a0008805a000874580008785a00084c580008545c0008",
+        "identity": {
+          "size": 32,
+          "sha256": "350d6a418994eeb720ad028fb6cfc69b3b198d06079cb565f4eb0ed8188b71d0"
+        },
+        "targets": [
+          134240932,
+          134240914,
+          134240900,
+          134240896,
+          134240372,
+          134240888,
+          134240332,
+          134241364
+        ],
+        "roots": [
+          134240333,
+          134240373,
+          134240889,
+          134240897,
+          134240901,
+          134240915,
+          134240933,
+          134241365
+        ]
+      },
+      {
+        "name": "selected_glyph",
+        "address": 134240996,
+        "count": 6,
+        "selected_indices": [
+          2,
+          4,
+          5
+        ],
+        "site": 134240990,
+        "hex": "fc5a0008045b00080c5b0008145b00081c5b0008245b0008",
+        "identity": {
+          "size": 24,
+          "sha256": "bbdac18a063edefe10af60d4f513a04136a1b51101b7661295ab3c048e867210"
+        },
+        "targets": [
+          134241020,
+          134241028,
+          134241036,
+          134241044,
+          134241052,
+          134241060
+        ],
+        "roots": [
+          134241037,
+          134241053,
+          134241061
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "address": 138293480,
+        "size": 192,
+        "hex": "49530008080c0002203100007d530008080c000220310000b55300080a0c000220310000ed5300080a0c010220310000255400080a0c0000203100005d5400080a0c0000203100004d2915080810000220310000000000000808000010f20000080c0810060c060c060c060c081000000001000100020001000100020002000280008000000100010002000200040004ff2fdb7b934b0e3ba535ab3ef836322e8d25d9635673ef666b520846de7fa414ff2fde7f893d5a6b0000000000000000",
+        "identity": {
+          "size": 192,
+          "sha256": "6e8b3370f070a2b7a5277305207881bfbf71618c6361dbdbf9c254b126b793ae"
+        },
+        "supplier_callsites": [
+          135236140
+        ],
+        "sampled_records": 16,
+        "record_stride": 12,
+        "actual_table_length_proven": false,
+        "initializer_runtime_observed": false
+      }
+    ],
+    "selected_fonts": [
+      {
+        "selector": 2,
+        "record_address": 138293504,
+        "hex": "b55300080a0c000220310000",
+        "callback": 134239157,
+        "selected_by_saved_message": true,
+        "runtime_selection_observed": false
+      },
+      {
+        "selector": 4,
+        "record_address": 138293528,
+        "hex": "255400080a0c000020310000",
+        "callback": 134239269,
+        "selected_by_saved_message": true,
+        "runtime_selection_observed": false
+      },
+      {
+        "selector": 5,
+        "record_address": 138293540,
+        "hex": "5d5400080a0c000020310000",
+        "callback": 134239325,
+        "selected_by_saved_message": true,
+        "runtime_selection_observed": false
+      }
+    ],
+    "control_table": {
+      "address": 134240404,
+      "count": 24,
+      "size": 96,
+      "selector_min": 1,
+      "selector_max": 24,
+      "hex": "f4580008165900083a59000854590008785a0008a05900086a580008b6590008c6590008da590008de590008265a0008305a00083c5a00084c5a00080c5a0008785a0008785a0008785a0008785a00086a5800086a5800085e5a00086c5a0008",
+      "identity": {
+        "size": 96,
+        "sha256": "39fc730cbbe24ff9a853d5ad853101a68cbbb57ff9258d8201d5e4daf086ef5a"
+      },
+      "targets": [
+        134240500,
+        134240534,
+        134240570,
+        134240596,
+        134240888,
+        134240672,
+        134240362,
+        134240694,
+        134240710,
+        134240730,
+        134240734,
+        134240806,
+        134240816,
+        134240828,
+        134240844,
+        134240780,
+        134240888,
+        134240888,
+        134240888,
+        134240888,
+        134240362,
+        134240362,
+        134240862,
+        134240876
+      ],
+      "roots": [
+        134240363,
+        134240501,
+        134240535,
+        134240571,
+        134240597,
+        134240673,
+        134240695,
+        134240711,
+        134240731,
+        134240735,
+        134240781,
+        134240807,
+        134240817,
+        134240829,
+        134240845,
+        134240863,
+        134240877,
+        134240889
+      ]
+    },
+    "scroll_table": {
+      "address": 136111436,
+      "size": 8,
+      "mask": 7,
+      "hex": "0102040000000000",
+      "identity": {
+        "size": 8,
+        "sha256": "3a50f8d081b2da1ecf7497b3a3b59db6d2192d88803a7d130bb18e165f5a1158"
+      }
+    },
+    "output_data": [
+      {
+        "name": "font2-char1-left",
+        "start": 136146452,
+        "length": 32,
+        "hex": "ffffffffbffd55d5aae956f599d96a6900f000f000f000b000b000f000b00060",
+        "identity": {
+          "size": 32,
+          "sha256": "ef15854879f1963eec2a67a2322d438cb0ef594d4a7eae9ccf4c17d3d46e3b6c"
+        }
+      },
+      {
+        "name": "font2-char1-right",
+        "start": 136146708,
+        "length": 32,
+        "hex": "af65bd9ad6ebeaff0000000000000000006000a000b000f00000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "723911371ca19456e53954aa56045098c499f72682559d6d41de262e0419ff93"
+        }
+      },
+      {
+        "name": "font2-char1-width",
+        "start": 136179189,
+        "length": 1,
+        "hex": "0a",
+        "identity": {
+          "size": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        }
+      },
+      {
+        "name": "font2-char7-left",
+        "start": 136146644,
+        "length": 32,
+        "hex": "ffffffffbffd55d56aea5555a6aa55f500f000f000f000b000b0006000a000b0",
+        "identity": {
+          "size": 32,
+          "sha256": "0852daec9e680d71a285451bf1a78203ce606b4b8b391a70ed7810bf7c7169e6"
+        }
+      },
+      {
+        "name": "font2-char7-right",
+        "start": 136146900,
+        "length": 32,
+        "hex": "aadaffdb56e5aafa000000000000000000b000f000f000f00000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "c6a23e86c0f18cea2d69f1716e7ba2cc8fe21fc9e9662844ed172a66e0fba39a"
+        }
+      },
+      {
+        "name": "font2-char7-width",
+        "start": 136179195,
+        "length": 1,
+        "hex": "0a",
+        "identity": {
+          "size": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        }
+      },
+      {
+        "name": "font2-char8-left",
+        "start": 136146932,
+        "length": 32,
+        "hex": "fffffffffdfff6ff5affabf5bfdaffe500f000f000b000b000f000f000f000f0",
+        "identity": {
+          "size": 32,
+          "sha256": "4cdeac603be612187446bbf13e38140848f4cfafd343a90c548f1bea8bd8c263"
+        }
+      },
+      {
+        "name": "font2-char8-right",
+        "start": 136147188,
+        "length": 32,
+        "hex": "5bfaa6fff9fffeff000000000000000000f000f000b000b00000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "39565420bb33d528bf822a5111979fd23060fdcc45ef358695c895adfbbdf78f"
+        }
+      },
+      {
+        "name": "font2-char8-width",
+        "start": 136179196,
+        "length": 1,
+        "hex": "0a",
+        "identity": {
+          "size": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        }
+      },
+      {
+        "name": "font2-char247-left",
+        "start": 136162004,
+        "length": 32,
+        "hex": "0000000000000000000000000000000000000000000000000000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925"
+        }
+      },
+      {
+        "name": "font2-char247-right",
+        "start": 136162260,
+        "length": 32,
+        "hex": "0000000000000000000000000000000000000000000000000000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925"
+        }
+      },
+      {
+        "name": "font2-char247-width",
+        "start": 136179435,
+        "length": 1,
+        "hex": "00",
+        "identity": {
+          "size": 1,
+          "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+        }
+      },
+      {
+        "name": "font4-char1-left",
+        "start": 136179500,
+        "length": 32,
+        "hex": "ffffffffbffd5555aaa656f569d66e6600f000f000f000b000b000f000b00060",
+        "identity": {
+          "size": 32,
+          "sha256": "47e25c6fecf69f73ac3813cd048cb9be23a8338c3c9b45abd3e623170d8051b4"
+        }
+      },
+      {
+        "name": "font4-char1-right",
+        "start": 136179756,
+        "length": 32,
+        "hex": "6f66af69b596faea00000000000000000060006000a000b00000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "aee51281f2c7ddd4462a0e39e7fb5c8b2b677219c9a536ba69aea5b2f7bc9c89"
+        }
+      },
+      {
+        "name": "font4-char1-width",
+        "start": 136212237,
+        "length": 1,
+        "hex": "0a",
+        "identity": {
+          "size": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        }
+      },
+      {
+        "name": "font4-char7-left",
+        "start": 136179692,
+        "length": 32,
+        "hex": "ffffffff6fff55559aaa55d5a6eaf9db00f000f000f000b000b0006000a000b0",
+        "identity": {
+          "size": 32,
+          "sha256": "12a0af236ad4bce5e2c41c413efb6a116bb9db9a4e54b2a1f9494fc6e0b4586d"
+        }
+      },
+      {
+        "name": "font4-char7-right",
+        "start": 136179948,
+        "length": 32,
+        "hex": "fe6fff6f5595aaea000000000000000000b000f000b000b00000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "5c7517692ffc1c04c463532178038253779e3ef9cf9c8dda386d6038d927e029"
+        }
+      },
+      {
+        "name": "font4-char7-width",
+        "start": 136212243,
+        "length": 1,
+        "hex": "0a",
+        "identity": {
+          "size": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        }
+      },
+      {
+        "name": "font4-char8-left",
+        "start": 136179980,
+        "length": 32,
+        "hex": "fffffffffdffd6ff6afdafd6ff5aff9600f000f0006000a000f000f000f000f0",
+        "identity": {
+          "size": 32,
+          "sha256": "2c26f41f92e3ba6c323443fa9d2fb3cf9012e884f7135dfb617f887320f9378f"
+        }
+      },
+      {
+        "name": "font4-char8-right",
+        "start": 136180236,
+        "length": 32,
+        "hex": "7fe996fee9fffeff000000000000000000f000f0006000a00000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "dcab189ec87895ef7f9989f4ca5d0b6d820fbe9609015fd2547b5804bc25af21"
+        }
+      },
+      {
+        "name": "font4-char8-width",
+        "start": 136212244,
+        "length": 1,
+        "hex": "0a",
+        "identity": {
+          "size": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        }
+      },
+      {
+        "name": "font4-char247-left",
+        "start": 136195052,
+        "length": 32,
+        "hex": "0000000000000000000000000000000000000000000000000000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925"
+        }
+      },
+      {
+        "name": "font4-char247-right",
+        "start": 136195308,
+        "length": 32,
+        "hex": "0000000000000000000000000000000000000000000000000000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925"
+        }
+      },
+      {
+        "name": "font4-char247-width",
+        "start": 136212483,
+        "length": 1,
+        "hex": "00",
+        "identity": {
+          "size": 1,
+          "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+        }
+      },
+      {
+        "name": "font5-char1-left",
+        "start": 136212548,
+        "length": 32,
+        "hex": "ffffffffbffd5555aaa9b6fd56d5a56900f000f000f000b000b000f000f000b0",
+        "identity": {
+          "size": 32,
+          "sha256": "b84339fb80d1a0ae08d67504424c663cb1710272c92a9f3c4e18db1aae99df9c"
+        }
+      },
+      {
+        "name": "font5-char1-right",
+        "start": 136212804,
+        "length": 32,
+        "hex": "9a6d6b6dad96feea00000000000000000060006000a000b00000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "bea72ca58a0356438f0a068cc1fe76b3f275eeb9d986bd97c63576425d42b845"
+        }
+      },
+      {
+        "name": "font5-char1-width",
+        "start": 136245285,
+        "length": 1,
+        "hex": "0a",
+        "identity": {
+          "size": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        }
+      },
+      {
+        "name": "font5-char7-left",
+        "start": 136212740,
+        "length": 32,
+        "hex": "ffffffff6fff55559aaa55d5a6eaf9ff00f000f000f000b000b0006000a000b0",
+        "identity": {
+          "size": 32,
+          "sha256": "76cae62ba8412e3bbd84ea5afeae632faa2301041a006dc5e24bff1db6b015e0"
+        }
+      },
+      {
+        "name": "font5-char7-right",
+        "start": 136212996,
+        "length": 32,
+        "hex": "fe6fbf9556eaaaff000000000000000000b000f000f000f00000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "5d24c7b436c850f8beff55b49107705a7045b223c163cd4c331930ffd37cbd24"
+        }
+      },
+      {
+        "name": "font5-char7-width",
+        "start": 136245291,
+        "length": 1,
+        "hex": "0a",
+        "identity": {
+          "size": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        }
+      },
+      {
+        "name": "font5-char8-left",
+        "start": 136213028,
+        "length": 32,
+        "hex": "fffffffffdffd6ff6afdafd6ff5aff9600f000f0006000a000f000f000f000f0",
+        "identity": {
+          "size": 32,
+          "sha256": "2c26f41f92e3ba6c323443fa9d2fb3cf9012e884f7135dfb617f887320f9378f"
+        }
+      },
+      {
+        "name": "font5-char8-right",
+        "start": 136213284,
+        "length": 32,
+        "hex": "6fe996fee9fffeff000000000000000000f000f0006000a00000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "4436c3f9741d4d657cd41c71252268ae186420680148a624b4c07338fda337b5"
+        }
+      },
+      {
+        "name": "font5-char8-width",
+        "start": 136245292,
+        "length": 1,
+        "hex": "0a",
+        "identity": {
+          "size": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        }
+      },
+      {
+        "name": "font5-char247-left",
+        "start": 136228100,
+        "length": 32,
+        "hex": "0000000000000000000000000000000000000000000000000000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925"
+        }
+      },
+      {
+        "name": "font5-char247-right",
+        "start": 136228356,
+        "length": 32,
+        "hex": "0000000000000000000000000000000000000000000000000000000000000000",
+        "identity": {
+          "size": 32,
+          "sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925"
+        }
+      },
+      {
+        "name": "font5-char247-width",
+        "start": 136245531,
+        "length": 1,
+        "hex": "00",
+        "identity": {
+          "size": 1,
+          "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+        }
+      },
+      {
+        "name": "cursor-two-sources-window",
+        "start": 136110152,
+        "length": 1280,
+        "hex": "0000000000000000444444444244444420444424004244220020240200002200000000000000000024000000220000000200000000000000000000000000000000000000000000000000000044444444424444442044442400424422002024020000000000000000000000002400000022000000020000000000000000000000000000000000000000000000000000004444444442444444204444240042442200000000000000000000000000000000240000002200000002000000000000000000000000000000000000000000000000000000444444444244444420444424000000000000000000000000000000000000000024000000220000000200000000000000000000002222222229222222902222920029229900909209000099000000000000000000920000009900000009000000000000000000000000000000000000000000000000000000222222222922222290222292002922990090920900000000000000000000000092000000990000000900000000000000000000000000000000000000000000000000000022222222292222229022229200292299000000000000000000000000000000009200000099000000090000000000000000000000000000000000000000000000000000002222222229222222902222920000000000000000000000000000000000000000920000009900000009000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000202402000022000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004244220020240200002200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009092090000990000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000029229900909209000099000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000044444444424444442044442400424422002024020000000000000000000000002400000022000000020000000000000000000000000022000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002222222229222222902222920029229900909209000000000000000000000000920000009900000009000000000000000000000000009900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "identity": {
+          "size": 1280,
+          "sha256": "c54df0b3f0adc41bd6722fefdbc90b5e8c819d15e33eb9775fc27bb1376cc809"
+        }
+      },
+      {
+        "name": "cursor-animation",
+        "start": 136111432,
+        "length": 4,
+        "hex": "00102010",
+        "identity": {
+          "size": 4,
+          "sha256": "d39f7ef70107ad3ca9b199f2a49284eb7b18d4379e2f8b96288b33f00cfda745"
+        }
+      },
+      {
+        "name": "symbol-descriptor-window",
+        "start": 136111552,
+        "length": 52,
+        "hex": "0000080c0100080c0200100c0400100c0600180c0900180c0c00080c0d00080c0e00080c0f00080c2000080c2100080c2200080c",
+        "identity": {
+          "size": 52,
+          "sha256": "19cb58466dce75acc240700740349c5493045f3b55a718c040c1969eb84ea51a"
+        }
+      },
+      {
+        "name": "symbol-pixels-window",
+        "start": 136111604,
+        "length": 1024,
+        "hex": "00000000000000000000000000000000101111021121112111121221111212210000000000000000000000000000000010111102112213211112122111221321000000000000000000000000000000000011111110111112101111121011111200000000000000000000000000000000111111021111112111111121111111210000000000000000000000000000000000111111101111221011111210111122000000000000000000000000000000001111110212111121211111211211112100000000000000000000000000000000001111111021122210211121102112210000000000000000000000000000000011111111122212221112121211221222000000000000000000000000000000001111110212221221122111211121112100000000000000000000000000000000001111111021122210211112102112220000000000000000000000000000000011111111211122212111122121112221000000000000000000000000000000001111110212221221112111211121112100000000000000000000000000000000001121000041210011111121111111210000000000000000000000000000000000112100001121001111112111111121000000000000000000000000000000000011210000112100111111214111112100000000000000000000000000000000001121000011210011111121111141211122122111121221121111022022220000000000000000000000000000000000111212211122132112111102202222000000000000000000000000000000000010111112101111222011111100222222000000000000000000000000000000001111112122111121111111222222220200000000000000000000000000000000101111121011111220111111002222220000000000000000000000000000000021111121211111211111112222222202000000000000000000000000000000001011122110211221201111110022222200000000000000000000000000000000111212121112121211111111222222220000000000000000000000000000000012211121122111211111112222222202000000000000000000000000000000001011121210211222201111110022222200000000000000000000000000000000211112212112222111111111222222220000000000000000000000000000000011211121122111211111112222222202000000000000000000000000000000001111112122112122001121000022220000000000000000000000000000000000111111212241212200112100002222000000000000000000000000000000000011111121221121220011210000222200000000000000000000000000000000001111112122112122001121000022220000000000000000000000000000000000",
+        "identity": {
+          "size": 1024,
+          "sha256": "cad8a8efefd0fbf2f390a22cc4bdb68c07b09c09855f94399a19d8fd2eae805e"
+        }
+      },
+      {
+        "name": "audio-player-window",
+        "start": 138837724,
+        "length": 48,
+        "hex": "50730003d82000030a00000090730003f823000303000100d0730003e82400030900010020740003b827000301000000",
+        "identity": {
+          "size": 48,
+          "sha256": "081f9c064622de0404236cfcb355b899b29995c42992782833b1838c3a7f0887"
+        }
+      },
+      {
+        "name": "audio-song-0",
+        "start": 138837772,
+        "length": 8,
+        "hex": "80a2670800000000",
+        "identity": {
+          "size": 8,
+          "sha256": "7b95444ac54892b94f9e12a5cafd9ecc80ebdf2c4dd56ffa86d03bbf8663455e"
+        }
+      },
+      {
+        "name": "audio-song-5",
+        "start": 138837812,
+        "length": 8,
+        "hex": "60a3670802000200",
+        "identity": {
+          "size": 8,
+          "sha256": "0c4fc1a2d1f00bbccf3abf034394be413603ca62c1745870d266a34ee6ab233f"
+        }
+      },
+      {
+        "name": "audio-song-291",
+        "start": 138840100,
+        "length": 8,
+        "hex": "146a690800000000",
+        "identity": {
+          "size": 8,
+          "sha256": "d9e8639311262c14057b4bdf6e665e7d4cb3287393ffebe8f597d4713cb3f9b6"
+        }
+      }
+    ],
+    "selected_glyphs": [
+      1,
+      7,
+      8,
+      247
+    ],
+    "font_data_bases": {
+      "2": [
+        136146420,
+        136179188
+      ],
+      "4": [
+        136179468,
+        136212236
+      ],
+      "5": [
+        136212516,
+        136245284
+      ]
+    },
+    "glyph_translation": {
+      "start": 136109888,
+      "length": 256,
+      "hex": "00010200030405030607080600010200090a0b090c0d0e0c0f10110f090a0b09121314121516171518191a1812131412000102000304050306070806000102001b1c1d1b1e1f201e212223211b1c1d1b24252624272829272a2b2c2a242526242d2e2f2d30313230333435332d2e2f2d1b1c1d1b1e1f201e212223211b1c1d1b36373836393a3b393c3d3e3c363738363f40413f42434442454647453f40413f48494a484b4c4d4b4e4f504e48494a4836373836393a3b393c3d3e3c3637383600010200030405030607080600010200090a0b090c0d0e0c0f10110f090a0b09121314121516171518191a181213141200010200030405030607080600010200",
+      "identity": {
+        "size": 256,
+        "sha256": "5041a793832396574b60743afac2f3c02ff8cb5f1ccb3ef24ca5f43443cd51a0"
+      }
+    },
+    "stack_residue_contract": {
+      "bytes": 4,
+      "allowed_offsets_from_entry_sp": [
+        48,
+        72,
+        100
+      ],
+      "prefix_sites": [
+        134235022,
+        134235024,
+        134235026,
+        134235028,
+        134235030,
+        134235032,
+        134235034,
+        134235036,
+        134235038,
+        134235040,
+        134235042
+      ],
+      "dimensions_formula": "(width*8) | (height*8 << 16)",
+      "symbolic_elimination": "((u32 & 0xffff0000) | width*8) & 0xffff removes all residue bits",
+      "zero_unmapped_stack_permitted": false,
+      "initial_live_stack_universal_proven": false
+    },
+    "fill_neighbor_nibble_effect_preserved": true,
+    "zero_step_scroll_indices": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "roots": [
+      {
+        "entry": 136055861,
+        "window": [
+          136055860,
+          136055988
+        ],
+        "new_node_addresses": [
+          136055860
+        ],
+        "boundaries": [
+          {
+            "site": 136055860,
+            "kind": "indirect_boundary",
+            "register": 3
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 136058197,
+        "window": [
+          136058196,
+          136058324
+        ],
+        "new_node_addresses": [
+          136058196,
+          136058198,
+          136058200,
+          136058202,
+          136058204,
+          136058206,
+          136058208,
+          136058210,
+          136058212,
+          136058214,
+          136058216,
+          136058218,
+          136058220,
+          136058222,
+          136058224,
+          136058226,
+          136058228,
+          136058230,
+          136058232,
+          136058234,
+          136058238,
+          136058240,
+          136058242,
+          136058244,
+          136058246,
+          136058248,
+          136058250,
+          136058254,
+          136058256,
+          136058258,
+          136058260,
+          136058262,
+          136058266,
+          136058268,
+          136058270,
+          136058272,
+          136058274,
+          136058276,
+          136058278,
+          136058280,
+          136058282,
+          136058286,
+          136058288,
+          136058290,
+          136058294,
+          136058296,
+          136058298,
+          136058300,
+          136058302,
+          136058304,
+          136058306,
+          136058308,
+          136058310,
+          136058312,
+          136058314,
+          136058316,
+          136058318,
+          136058320
+        ],
+        "boundaries": [
+          {
+            "site": 136058234,
+            "kind": "unread_call",
+            "target": 136085305
+          },
+          {
+            "site": 136058250,
+            "kind": "unread_call",
+            "target": 136085305
+          },
+          {
+            "site": 136058262,
+            "kind": "unread_call",
+            "target": 136085305
+          },
+          {
+            "site": 136058282,
+            "kind": "unread_call",
+            "target": 136085305
+          },
+          {
+            "site": 136058290,
+            "kind": "unread_call",
+            "target": 136058721
+          },
+          {
+            "site": 136058296,
+            "kind": "revisited_node_boundary",
+            "target": 136058297
+          },
+          {
+            "site": 136058304,
+            "kind": "revisited_node_boundary",
+            "target": 136058305
+          },
+          {
+            "site": 136058320,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 136058597,
+        "window": [
+          136058596,
+          136058724
+        ],
+        "new_node_addresses": [
+          136058596,
+          136058598,
+          136058600,
+          136058602,
+          136058604,
+          136058606,
+          136058608,
+          136058610,
+          136058612,
+          136058614,
+          136058616,
+          136058618,
+          136058620,
+          136058622,
+          136058624,
+          136058626,
+          136058628,
+          136058630,
+          136058632,
+          136058634,
+          136058636,
+          136058638,
+          136058640,
+          136058642,
+          136058644,
+          136058646,
+          136058648,
+          136058650,
+          136058652,
+          136058654,
+          136058656,
+          136058658,
+          136058660,
+          136058662,
+          136058664,
+          136058666,
+          136058668,
+          136058670,
+          136058672,
+          136058674,
+          136058676,
+          136058678,
+          136058680,
+          136058684,
+          136058686,
+          136058688
+        ],
+        "boundaries": [
+          {
+            "site": 136058638,
+            "kind": "revisited_node_boundary",
+            "target": 136058639
+          },
+          {
+            "site": 136058652,
+            "kind": "revisited_node_boundary",
+            "target": 136058653
+          },
+          {
+            "site": 136058680,
+            "kind": "unread_call",
+            "target": 136084105
+          },
+          {
+            "site": 136058684,
+            "kind": "revisited_node_boundary",
+            "target": 136058685
+          },
+          {
+            "site": 136058688,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 136084101,
+        "window": [
+          136084100,
+          136084228
+        ],
+        "new_node_addresses": [],
+        "boundaries": [
+          {
+            "site": 136084100,
+            "kind": "decoder_rejection",
+            "encoded": "0cdf",
+            "reason": "SWI/undefined Thumb control boundary"
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      }
+    ],
+    "new_nodes": [
+      {
+        "address": 136055860,
+        "size": 2,
+        "hex": "1847",
+        "kind": "indirect",
+        "register": 3,
+        "memory_write": false
+      },
+      {
+        "address": 136058196,
+        "size": 2,
+        "hex": "70b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058198,
+        "size": 2,
+        "hex": "021c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058200,
+        "size": 2,
+        "hex": "1e48",
+        "kind": "ordinary",
+        "literal_address": 136058324,
+        "literal_value": 50364400,
+        "memory_write": false
+      },
+      {
+        "address": 136058202,
+        "size": 2,
+        "hex": "0468",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058204,
+        "size": 2,
+        "hex": "f020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058206,
+        "size": 2,
+        "hex": "0003",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058208,
+        "size": 2,
+        "hex": "1040",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058210,
+        "size": 2,
+        "hex": "020c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058212,
+        "size": 2,
+        "hex": "0026",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058214,
+        "size": 2,
+        "hex": "2272",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058216,
+        "size": 2,
+        "hex": "1b49",
+        "kind": "ordinary",
+        "literal_address": 136058328,
+        "literal_value": 138733356,
+        "memory_write": false
+      },
+      {
+        "address": 136058218,
+        "size": 2,
+        "hex": "501e",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058220,
+        "size": 2,
+        "hex": "4000",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058222,
+        "size": 2,
+        "hex": "4018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058224,
+        "size": 2,
+        "hex": "0588",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058226,
+        "size": 2,
+        "hex": "2561",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058228,
+        "size": 2,
+        "hex": "c620",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058230,
+        "size": 2,
+        "hex": "c000",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058232,
+        "size": 2,
+        "hex": "291c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058234,
+        "size": 4,
+        "hex": "06f0ddfc",
+        "kind": "call",
+        "target": 136085304,
+        "memory_write": false
+      },
+      {
+        "address": 136058238,
+        "size": 2,
+        "hex": "e072",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058240,
+        "size": 2,
+        "hex": "1648",
+        "kind": "ordinary",
+        "literal_address": 136058332,
+        "literal_value": 597275,
+        "memory_write": false
+      },
+      {
+        "address": 136058242,
+        "size": 2,
+        "hex": "6843",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058244,
+        "size": 2,
+        "hex": "1649",
+        "kind": "ordinary",
+        "literal_address": 136058336,
+        "literal_value": 5000,
+        "memory_write": false
+      },
+      {
+        "address": 136058246,
+        "size": 2,
+        "hex": "4018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058248,
+        "size": 2,
+        "hex": "1649",
+        "kind": "ordinary",
+        "literal_address": 136058340,
+        "literal_value": 10000,
+        "memory_write": false
+      },
+      {
+        "address": 136058250,
+        "size": 4,
+        "hex": "06f0d5fc",
+        "kind": "call",
+        "target": 136085304,
+        "memory_write": false
+      },
+      {
+        "address": 136058254,
+        "size": 2,
+        "hex": "011c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058256,
+        "size": 2,
+        "hex": "6161",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058258,
+        "size": 2,
+        "hex": "8020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058260,
+        "size": 2,
+        "hex": "4004",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058262,
+        "size": 4,
+        "hex": "06f0cffc",
+        "kind": "call",
+        "target": 136085304,
+        "memory_write": false
+      },
+      {
+        "address": 136058266,
+        "size": 2,
+        "hex": "0130",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058268,
+        "size": 2,
+        "hex": "4010",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058270,
+        "size": 2,
+        "hex": "a061",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058272,
+        "size": 2,
+        "hex": "1148",
+        "kind": "ordinary",
+        "literal_address": 136058344,
+        "literal_value": 67109122,
+        "memory_write": false
+      },
+      {
+        "address": 136058274,
+        "size": 2,
+        "hex": "0680",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058276,
+        "size": 2,
+        "hex": "114c",
+        "kind": "ordinary",
+        "literal_address": 136058348,
+        "literal_value": 67109120,
+        "memory_write": false
+      },
+      {
+        "address": 136058278,
+        "size": 2,
+        "hex": "1248",
+        "kind": "ordinary",
+        "literal_address": 136058352,
+        "literal_value": 280896,
+        "memory_write": false
+      },
+      {
+        "address": 136058280,
+        "size": 2,
+        "hex": "291c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058282,
+        "size": 4,
+        "hex": "06f0c5fc",
+        "kind": "call",
+        "target": 136085304,
+        "memory_write": false
+      },
+      {
+        "address": 136058286,
+        "size": 2,
+        "hex": "4042",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058288,
+        "size": 2,
+        "hex": "2080",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058290,
+        "size": 4,
+        "hex": "00f0d5f8",
+        "kind": "call",
+        "target": 136058720,
+        "memory_write": false
+      },
+      {
+        "address": 136058294,
+        "size": 2,
+        "hex": "0f49",
+        "kind": "ordinary",
+        "literal_address": 136058356,
+        "literal_value": 67108870,
+        "memory_write": false
+      },
+      {
+        "address": 136058296,
+        "size": 2,
+        "hex": "0878",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058298,
+        "size": 2,
+        "hex": "9f28",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058300,
+        "size": 2,
+        "hex": "fcd0",
+        "kind": "conditional",
+        "target": 136058296,
+        "memory_write": false
+      },
+      {
+        "address": 136058302,
+        "size": 2,
+        "hex": "0d49",
+        "kind": "ordinary",
+        "literal_address": 136058356,
+        "literal_value": 67108870,
+        "memory_write": false
+      },
+      {
+        "address": 136058304,
+        "size": 2,
+        "hex": "0878",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058306,
+        "size": 2,
+        "hex": "9f28",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058308,
+        "size": 2,
+        "hex": "fcd1",
+        "kind": "conditional",
+        "target": 136058304,
+        "memory_write": false
+      },
+      {
+        "address": 136058310,
+        "size": 2,
+        "hex": "0849",
+        "kind": "ordinary",
+        "literal_address": 136058344,
+        "literal_value": 67109122,
+        "memory_write": false
+      },
+      {
+        "address": 136058312,
+        "size": 2,
+        "hex": "8020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058314,
+        "size": 2,
+        "hex": "0880",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058316,
+        "size": 2,
+        "hex": "70bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058318,
+        "size": 2,
+        "hex": "01bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058320,
+        "size": 2,
+        "hex": "0047",
+        "kind": "indirect",
+        "register": 0,
+        "memory_write": false
+      },
+      {
+        "address": 136058596,
+        "size": 2,
+        "hex": "00b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058598,
+        "size": 2,
+        "hex": "81b0",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058600,
+        "size": 2,
+        "hex": "1648",
+        "kind": "ordinary",
+        "literal_address": 136058692,
+        "literal_value": 50364400,
+        "memory_write": false
+      },
+      {
+        "address": 136058602,
+        "size": 2,
+        "hex": "0268",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058604,
+        "size": 2,
+        "hex": "1168",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058606,
+        "size": 2,
+        "hex": "164b",
+        "kind": "ordinary",
+        "literal_address": 136058696,
+        "literal_value": 2542572205,
+        "memory_write": false
+      },
+      {
+        "address": 136058608,
+        "size": 2,
+        "hex": "c818",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058610,
+        "size": 2,
+        "hex": "0128",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058612,
+        "size": 2,
+        "hex": "22d8",
+        "kind": "conditional",
+        "target": 136058684,
+        "memory_write": false
+      },
+      {
+        "address": 136058614,
+        "size": 2,
+        "hex": "081c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058616,
+        "size": 2,
+        "hex": "0a30",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058618,
+        "size": 2,
+        "hex": "1060",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058620,
+        "size": 2,
+        "hex": "1349",
+        "kind": "ordinary",
+        "literal_address": 136058700,
+        "literal_value": 67109060,
+        "memory_write": false
+      },
+      {
+        "address": 136058622,
+        "size": 2,
+        "hex": "0868",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058624,
+        "size": 2,
+        "hex": "8023",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058626,
+        "size": 2,
+        "hex": "9b04",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058628,
+        "size": 2,
+        "hex": "1840",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058630,
+        "size": 2,
+        "hex": "0028",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058632,
+        "size": 2,
+        "hex": "01d0",
+        "kind": "conditional",
+        "target": 136058638,
+        "memory_write": false
+      },
+      {
+        "address": 136058634,
+        "size": 2,
+        "hex": "1148",
+        "kind": "ordinary",
+        "literal_address": 136058704,
+        "literal_value": 2218786820,
+        "memory_write": false
+      },
+      {
+        "address": 136058636,
+        "size": 2,
+        "hex": "0860",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058638,
+        "size": 2,
+        "hex": "1149",
+        "kind": "ordinary",
+        "literal_address": 136058708,
+        "literal_value": 67109072,
+        "memory_write": false
+      },
+      {
+        "address": 136058640,
+        "size": 2,
+        "hex": "0868",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058642,
+        "size": 2,
+        "hex": "1840",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058644,
+        "size": 2,
+        "hex": "0028",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058646,
+        "size": 2,
+        "hex": "01d0",
+        "kind": "conditional",
+        "target": 136058652,
+        "memory_write": false
+      },
+      {
+        "address": 136058648,
+        "size": 2,
+        "hex": "0d48",
+        "kind": "ordinary",
+        "literal_address": 136058704,
+        "literal_value": 2218786820,
+        "memory_write": false
+      },
+      {
+        "address": 136058650,
+        "size": 2,
+        "hex": "0860",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058652,
+        "size": 2,
+        "hex": "0e48",
+        "kind": "ordinary",
+        "literal_address": 136058712,
+        "literal_value": 67109062,
+        "memory_write": false
+      },
+      {
+        "address": 136058654,
+        "size": 2,
+        "hex": "8023",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058656,
+        "size": 2,
+        "hex": "db00",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058658,
+        "size": 2,
+        "hex": "191c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058660,
+        "size": 2,
+        "hex": "0180",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058662,
+        "size": 2,
+        "hex": "0c30",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058664,
+        "size": 2,
+        "hex": "0180",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058666,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058668,
+        "size": 2,
+        "hex": "0090",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136058670,
+        "size": 2,
+        "hex": "d420",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058672,
+        "size": 2,
+        "hex": "8000",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058674,
+        "size": 2,
+        "hex": "1118",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058676,
+        "size": 2,
+        "hex": "094a",
+        "kind": "ordinary",
+        "literal_address": 136058716,
+        "literal_value": 83886872,
+        "memory_write": false
+      },
+      {
+        "address": 136058678,
+        "size": 2,
+        "hex": "6846",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058680,
+        "size": 4,
+        "hex": "06f0a6f9",
+        "kind": "call",
+        "target": 136084104,
+        "memory_write": false
+      },
+      {
+        "address": 136058684,
+        "size": 2,
+        "hex": "01b0",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058686,
+        "size": 2,
+        "hex": "01bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136058688,
+        "size": 2,
+        "hex": "0047",
+        "kind": "indirect",
+        "register": 0,
+        "memory_write": false
+      }
+    ],
+    "waves": [
+      {
+        "index": 0,
+        "entries": [
+          136055861,
+          136058197,
+          136058597,
+          136084101
+        ],
+        "new_nodes": 105,
+        "next_continuations": []
+      }
+    ],
+    "initial_roots": [
+      136055861,
+      136058197,
+      136058597,
+      136084101
+    ],
+    "saved_roots_reused": [],
+    "deferred_by_wave_limit": [],
+    "wave_limit_reached": false,
+    "direct_calls_recursively_expanded": 0,
+    "saved_nodes_redecoded": 0,
+    "saved_boundary_links": [
+      {
+        "root": 136058197,
+        "site": 136058296,
+        "kind": "revisited_node_boundary",
+        "target": 136058297,
+        "effective_target": 136058297,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 136058197,
+        "site": 136058304,
+        "kind": "revisited_node_boundary",
+        "target": 136058305,
+        "effective_target": 136058305,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 136058597,
+        "site": 136058638,
+        "kind": "revisited_node_boundary",
+        "target": 136058639,
+        "effective_target": 136058639,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 136058597,
+        "site": 136058652,
+        "kind": "revisited_node_boundary",
+        "target": 136058653,
+        "effective_target": 136058653,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 136058597,
+        "site": 136058684,
+        "kind": "revisited_node_boundary",
+        "target": 136058685,
+        "effective_target": 136058685,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      }
+    ],
+    "pending_boundaries": [
+      {
+        "root": 136055877,
+        "site": 136055936,
+        "kind": "indirect_boundary",
+        "register": 0
+      },
+      {
+        "root": 136058487,
+        "site": 136058498,
+        "kind": "indirect_boundary",
+        "register": 0
+      },
+      {
+        "root": 136055861,
+        "site": 136055860,
+        "kind": "indirect_boundary",
+        "register": 3
+      },
+      {
+        "root": 136058197,
+        "site": 136058234,
+        "kind": "unread_call",
+        "target": 136085305,
+        "effective_target": 136085305
+      },
+      {
+        "root": 136058197,
+        "site": 136058250,
+        "kind": "unread_call",
+        "target": 136085305,
+        "effective_target": 136085305
+      },
+      {
+        "root": 136058197,
+        "site": 136058262,
+        "kind": "unread_call",
+        "target": 136085305,
+        "effective_target": 136085305
+      },
+      {
+        "root": 136058197,
+        "site": 136058282,
+        "kind": "unread_call",
+        "target": 136085305,
+        "effective_target": 136085305
+      },
+      {
+        "root": 136058197,
+        "site": 136058290,
+        "kind": "unread_call",
+        "target": 136058721,
+        "effective_target": 136058721
+      },
+      {
+        "root": 136058197,
+        "site": 136058320,
+        "kind": "indirect_boundary",
+        "register": 0
+      },
+      {
+        "root": 136058597,
+        "site": 136058680,
+        "kind": "unread_call",
+        "target": 136084105,
+        "effective_target": 136084105
+      },
+      {
+        "root": 136058597,
+        "site": 136058688,
+        "kind": "indirect_boundary",
+        "register": 0
+      },
+      {
+        "root": 136084101,
+        "site": 136084100,
+        "kind": "decoder_rejection",
+        "encoded": "0cdf",
+        "reason": "SWI/undefined Thumb control boundary"
+      }
+    ],
+    "pending_direct_callees": [
+      136058721,
+      136084105,
+      136085305
+    ],
+    "pending_continuations": [],
+    "classification": "FINITE_AUDIO_LEAVES_BIOS_PREFIX_SONG_HEADERS_NOT_NATIVE_ACCEPTANCE",
+    "saved_node_count": 7196,
+    "cached_node_count": 7091,
+    "new_node_count": 105,
+    "new_windows": [
+      {
+        "start": 136055860,
+        "end": 136055862,
+        "hex": "1847",
+        "identity": {
+          "size": 2,
+          "sha256": "477db9ac7ca5efc12e37f882656b8fe5a363ffeb99b2e565a953d10c3c91ab21"
+        }
+      },
+      {
+        "start": 136058196,
+        "end": 136058322,
+        "hex": "70b5021c1e480468f02000031040020c002622721b49501e4000401805882561c620c000291c06f0ddfce0721648684316494018164906f0d5fc011c61618020400406f0cffc01304010a06111480680114c1248291c06f0c5fc4042208000f0d5f80f4908789f28fcd00d4908789f28fcd108498020088070bc01bc0047",
+        "identity": {
+          "size": 126,
+          "sha256": "1bdee9e381a253f1f17363ff2776595a8108d60cf2b0f89ce92efded9aeca79b"
+        }
+      },
+      {
+        "start": 136058324,
+        "end": 136058360,
+        "hex": "f07f00032ce744081b1d0900881300001027000002010004000100044049040006000004",
+        "identity": {
+          "size": 36,
+          "sha256": "a89f0f5905d896d1813e36e3b2ff1cfe16a59a45ba1258dc5cee1cf6bc7878f0"
+        }
+      },
+      {
+        "start": 136058596,
+        "end": 136058690,
+        "hex": "00b581b0164802681168164bc818012822d8081c0a3010601349086880239b041840002801d011480860114908681840002801d00d4808600e488023db00191c01800c30018000200090d42080001118094a684606f0a6f901b001bc0047",
+        "identity": {
+          "size": 94,
+          "sha256": "ebc43f4f409e299ff5bdb23f8f371babd570d5773339b8fb5225e504f5a8f49b"
+        }
+      },
+      {
+        "start": 136058692,
+        "end": 136058720,
+        "hex": "f07f0003ad928c97c400000404004084d0000004c600000418030005",
+        "identity": {
+          "size": 28,
+          "sha256": "bb65928a5c1873e84c8ee8e1e60a7a275d5289ac6bbc944ddc6144a1069d818b"
+        }
+      },
+      {
+        "start": 136084102,
+        "end": 136084104,
+        "hex": "7047",
+        "identity": {
+          "size": 2,
+          "sha256": "c7dfbb7d02759eacb64dbc916c1bb6f21eabaff1c1032ea5c9176abf7fd28df8"
+        }
+      },
+      {
+        "start": 141009536,
+        "end": 141009544,
+        "hex": "000000a8cce84408",
+        "identity": {
+          "size": 8,
+          "sha256": "09ec13eb8bba312de8cd2e71b2a29b33c63928b758504adc371df1fc83ef686c"
+        }
+      },
+      {
+        "start": 141009760,
+        "end": 141009772,
+        "hex": "010005b25409450840a36708",
+        "identity": {
+          "size": 12,
+          "sha256": "ec1311fe1c757e42a7b2e134d728c2ab19d019a7e343727c9a2e57ac11b8efd9"
+        }
+      },
+      {
+        "start": 141126164,
+        "end": 141126212,
+        "hex": "0a0000b220a08b08104a8c08864b8c08c24c8c08364e8c08ca508c083c528c08a6538c0879578c083f598c08385a8c08",
+        "identity": {
+          "size": 48,
+          "sha256": "3fb6d210223defccb9c9a7ee79828350dc77b60c274d5b57ba13abeaa6feffdd"
+        }
+      }
+    ],
+    "new_window_bytes": 356,
+    "saved_bytes_reused": 2,
+    "song_headers": [
+      {
+        "song": 0,
+        "start": 141009536,
+        "length": 8,
+        "hex": "000000a8cce84408",
+        "identity": {
+          "size": 8,
+          "sha256": "09ec13eb8bba312de8cd2e71b2a29b33c63928b758504adc371df1fc83ef686c"
+        },
+        "track_count": 0,
+        "track_pointers": [],
+        "priority_byte": 0,
+        "bank_pointer": 138733772,
+        "track_streams_sampled": false,
+        "playback_accepted": false
+      },
+      {
+        "song": 5,
+        "start": 141009760,
+        "length": 12,
+        "hex": "010005b25409450840a36708",
+        "identity": {
+          "size": 12,
+          "sha256": "ec1311fe1c757e42a7b2e134d728c2ab19d019a7e343727c9a2e57ac11b8efd9"
+        },
+        "track_count": 1,
+        "track_pointers": [
+          141009728
+        ],
+        "priority_byte": 5,
+        "bank_pointer": 138742100,
+        "track_streams_sampled": false,
+        "playback_accepted": false
+      },
+      {
+        "song": 291,
+        "start": 141126164,
+        "length": 48,
+        "hex": "0a0000b220a08b08104a8c08864b8c08c24c8c08364e8c08ca508c083c528c08a6538c0879578c083f598c08385a8c08",
+        "identity": {
+          "size": 48,
+          "sha256": "3fb6d210223defccb9c9a7ee79828350dc77b60c274d5b57ba13abeaa6feffdd"
+        },
+        "track_count": 10,
+        "track_pointers": [
+          143411728,
+          143412102,
+          143412418,
+          143412790,
+          143413450,
+          143413820,
+          143414182,
+          143415161,
+          143415615,
+          143415864
+        ],
+        "priority_byte": 0,
+        "bank_pointer": 143368224,
+        "track_streams_sampled": false,
+        "playback_accepted": false
+      }
+    ],
+    "bios_prefix": {
+      "start": 136084100,
+      "length": 4,
+      "hex": "0cdf7047",
+      "identity": {
+        "size": 4,
+        "sha256": "dedc152a89df8aadc9dc9526881c29e92f681504cf9bf438bbac1c6362fd9b42"
+      },
+      "first_is_swi": true,
+      "swi_number": 12,
+      "second_is_bx_lr": true,
+      "executed": false,
+      "return_proven": false
+    },
+    "inherited_pending_boundaries": [
+      {
+        "root": 136055877,
+        "site": 136055916,
+        "kind": "unread_call",
+        "target": 136055861,
+        "effective_target": 136055861
+      },
+      {
+        "root": 136055877,
+        "site": 136055936,
+        "kind": "indirect_boundary",
+        "register": 0
+      },
+      {
+        "root": 136058361,
+        "site": 136058480,
+        "kind": "unread_call",
+        "target": 136058597,
+        "effective_target": 136058597
+      },
+      {
+        "root": 136058487,
+        "site": 136058486,
+        "kind": "unread_call",
+        "target": 136058197,
+        "effective_target": 136058197
+      },
+      {
+        "root": 136058487,
+        "site": 136058498,
+        "kind": "indirect_boundary",
+        "register": 0
+      }
+    ],
+    "dma_execution_observed": false,
+    "audio_hardware_observed": false,
+    "bios_execution_observed": false,
+    "actual_callback_table_observed": false,
+    "initializer_runtime_observed": false,
+    "all_live_slot_bounds_proven": false,
+    "all_dispatch_returns_proven": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 1,
+    "accepted_native_cases_replayed": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "full_rom_scans": 0,
+    "boundary_ja": "未読音声3calleeとBIOS4byte入口・選択3曲headerだけ。SWI/間接辺/track streamは未結合、実音声やnative Ring受入ではない。"
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_audio_leaf_bytes.py": {
+      "size": 9771,
+      "sha256": "118b073a6b24508e6d2ecfdf4cb685d459ab874c49bb699c8094bb8c10352fca"
+    },
+    "tests/test_pr16_ring_audio_leaf_bytes.py": {
+      "size": 6394,
+      "sha256": "8dbfd33866717e8b7375e88b1e045106aae633fde2ad0ecd58e5c5ba198495ae"
+    },
+    ".github/workflows/pr16-ring-audio-leaf-bytes.yml": {
+      "size": 1936,
+      "sha256": "e37bc05d1f5124c72f5c5837198b034678457ae3bf3a90701f29e263f9326214"
+    },
+    "content/modernization/pr16_ring_audio_boundary_contracts.json": {
+      "size": 412258,
+      "sha256": "61de96a6afd25c699b0dcb3cbd27d2b113b540ba53b609f641aea34434ac09d2"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_audio_boundary_contracts.py": {
+      "size": 15002,
+      "sha256": "78d711fe93798cb2d697aac35106c3fcb27d75dffedc1e6d6376394a3dde4390"
+    },
+    "scripts/pr16_ring_renderer_output_contracts.py": {
+      "size": 12319,
+      "sha256": "6ec0c16f167e0520b423a7c98fad18f194a8b7002b43a196f84ac5344e4fc967"
+    },
+    "scripts/pr16_ring_cursor_scroll_contracts.py": {
+      "size": 18092,
+      "sha256": "1c4cf92fd6fa819bac2a9ae9186e4fd3bcec89c203e38c1114a77d77e73d509a"
+    },
+    "scripts/pr16_ring_glyph_contracts.py": {
+      "size": 17097,
+      "sha256": "31dbf07bae6c11c0a8caf6c7e44e1121551e1193e2b22c9e018ae6e5ec97df7f"
+    },
+    "scripts/pr16_ring_output_leaf_bytes.py": {
+      "size": 7517,
+      "sha256": "22f6b9434ae223842c56ed6dd84347a7b4f548303a6e053230e5e92175a7afc1"
+    },
+    "scripts/pr16_ring_output_frontier.py": {
+      "size": 7759,
+      "sha256": "73675380b1a0f619baa1ffc0fc6abf71581537bdaf0858f62a42293ca171bcc7"
+    },
+    "scripts/pr16_ring_control_contracts.py": {
+      "size": 17075,
+      "sha256": "11c7824b5e2946453581bc812870f723d4aa16962039052c1b96fced027aa875"
+    },
+    "scripts/pr16_ring_control_frontier.py": {
+      "size": 8469,
+      "sha256": "75a81f81b44bf0d543fc1ecbb07a6d99380a9042005fbd5ec88e8b5ae313af32"
+    },
+    "scripts/pr16_ring_text_state_contracts.py": {
+      "size": 16500,
+      "sha256": "1f6be4b834c8d1a08229c72231846aa2faee6fb503ae86c553980aaf26e9efdb"
+    },
+    "scripts/pr16_ring_explicit_text_machine.py": {
+      "size": 3622,
+      "sha256": "a59059be50cb79b0b2bd0d7fe3b0d331fc51127639fc1b2efb369a06693edfed"
+    },
+    "scripts/pr16_ring_character_frontier.py": {
+      "size": 9313,
+      "sha256": "de6180c89376b2a5d121b2734ccdd2b55280322885183d73c0ba4b7cdb666843"
+    },
+    "scripts/pr16_ring_font_states.py": {
+      "size": 12093,
+      "sha256": "60da75307d3fa2e69b7c2c23f668b12b7a64b60d790671f06cbf5496cafa0fe7"
+    },
+    "scripts/pr16_ring_font_frontier.py": {
+      "size": 11134,
+      "sha256": "d7dcbf3732ee6e6f33bae6777320b6b9fa4d2151ced1b9238a6a77115910cda5"
+    },
+    "scripts/pr16_ring_font_bindings.py": {
+      "size": 13242,
+      "sha256": "6693f5bd5fd8d8a070965fc77a66b676b6cf4e7f5e78c04cb0d9a137e2d00983"
+    },
+    "scripts/pr16_ring_font_bytes.py": {
+      "size": 7719,
+      "sha256": "c00b87bd69d6f47cb5c05089b85793b020857955b8ce95965ccef7842cf35e2f"
+    },
+    "scripts/pr16_ring_ui_leaf_contracts.py": {
+      "size": 15732,
+      "sha256": "2ae5cd8caadc44c4ad0b077ee78e564c44d31f13c6600f443a4c6a7ccc23475c"
+    },
+    "scripts/pr16_ring_ui_leaf_bytes.py": {
+      "size": 7112,
+      "sha256": "a0e190b7ac55f3a3e682b5d22b51133a87cc0feb1786f29262b08196df53d2a7"
+    },
+    "scripts/pr16_ring_ui_contracts.py": {
+      "size": 21972,
+      "sha256": "fb1625164a039e270da8b02d3be2081b304c3a98ab533a6043aff7e14eda0529"
+    },
+    "scripts/pr16_ring_ui_runtime_bytes.py": {
+      "size": 7582,
+      "sha256": "dceebb0c07beb1f1248ee710f1d035c01b19237c4fc77123e75e99424627cf8b"
+    },
+    "scripts/pr16_ring_ui_delegates.py": {
+      "size": 8013,
+      "sha256": "df322f8e399d7babccd486072b0c6b02542e868bbae29602e0c6c73da5f18db5"
+    },
+    "scripts/pr16_ring_ui_frontier.py": {
+      "size": 8819,
+      "sha256": "527db74169fb6c50d649898552dfd2ec6301392128d2ea8b482733ae39beee1f"
+    },
+    "scripts/pr16_ring_ui_owners.py": {
+      "size": 12961,
+      "sha256": "6bb82a9057e01845ef1f4efcce8e41d77856f1cf74c5fe601af9b9b509566bbf"
+    },
+    "scripts/pr16_ring_resource_tail.py": {
+      "size": 7535,
+      "sha256": "f4988540601c2eaa63876d6ee981a362e8614d0aaa11ca4a791e68f2b6100b81"
+    },
+    "content/modernization/pr16_ring_resource_tail.json": {
+      "size": 53805,
+      "sha256": "dc74f564a59f4b72a39f7c4a1a6fab0251b6c225ccd4f326b28123407cb618a3"
+    },
+    "scripts/pr16_ring_resource_frontier.py": {
+      "size": 8691,
+      "sha256": "12bad41bba1c269433134d204f4bae896f79b417900b6c70ea56893fa58e4d88"
+    },
+    "scripts/pr16_ring_remaining_frontier.py": {
+      "size": 12375,
+      "sha256": "3aa490bc6a4615a447f996df72e2ea678f41ed585076d3e2ddc3d572cd6f94bd"
+    },
+    "scripts/pr16_ring_owner_frontier.py": {
+      "size": 12711,
+      "sha256": "e7505577537eba4df7a5ee641836b56f212706473eb99ef139a60d22141b9e65"
+    },
+    "scripts/pr16_ring_effective_frontier.py": {
+      "size": 10560,
+      "sha256": "31303cea8148726c922f40f41231aa588b249796c08e04d9b41225150f25759e"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    },
+    "scripts/pr16_ring_resource_contracts.py": {
+      "size": 20140,
+      "sha256": "c575f1a803acd3c138092487957239e95d9587f20209b5668ed23f293381e700"
+    },
+    "scripts/pr16_ring_dispatch_contracts.py": {
+      "size": 14635,
+      "sha256": "55a743873e6c3409e65813d4a2a474f194827ccb440587595c86bda291d6b2f1"
+    },
+    "scripts/pr16_ring_gate_contracts.py": {
+      "size": 15264,
+      "sha256": "681de11dd4404608122b3069321c60f2f6331b0f04c18d75d87aef208ac383a7"
+    },
+    "scripts/pr16_ring_caller_contracts.py": {
+      "size": 17412,
+      "sha256": "bde459691a9b1fdf1fa239a4df1f12c1ae3e3d16f8405634d46bd88e2290907f"
+    },
+    "scripts/pr16_ring_string_machine.py": {
+      "size": 2000,
+      "sha256": "1db71b3632a95a5a676a4315ccac2dae51ba6a3d80a9d4be42916145703a6581"
+    },
+    "scripts/pr16_ring_contract_machine.py": {
+      "size": 8710,
+      "sha256": "e48dfc6e12913c93efc9ee54d26117fc3082cf7aeb304df90bbae2438a83775b"
+    },
+    "scripts/pr16_ring_saved_contracts.py": {
+      "size": 15079,
+      "sha256": "1fe5c750ebc8be8faf46915f0e172706a35bd4313bb05bfec621af3760e50620"
+    },
+    "scripts/pr16_ring_owner_context.py": {
+      "size": 13828,
+      "sha256": "e4ceb839cb6f9e3676b50549471512ae18698b9d4a4428f5577992758e38c1f0"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 34,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35250913296,
+      "head_sha": "7e15e6ae16fa51d3d229111ba76a5129e94c23de",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35251588536,
+      "name": "source-validation",
+      "head_sha": "3cd1000abcdb1639be66da957d8f92092982f73e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35251588566,
+      "name": "p03-forgetting-ci",
+      "head_sha": "3cd1000abcdb1639be66da957d8f92092982f73e",
+      "status": "pending",
+      "conclusion": null
+    },
+    {
+      "id": 35251583200,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "3cd1000abcdb1639be66da957d8f92092982f73e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35251583254,
+      "name": "source-validation",
+      "head_sha": "3cd1000abcdb1639be66da957d8f92092982f73e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35251583296,
+      "name": "音声未読3callee・BIOS入口・選択曲headerの有限採取",
+      "head_sha": "3cd1000abcdb1639be66da957d8f92092982f73e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35251583317,
+      "name": "p03-forgetting-ci",
+      "head_sha": "3cd1000abcdb1639be66da957d8f92092982f73e",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35251568541,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1073bb684df0d47b68d0cb1cafafb84af304788c",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35251568619,
+      "name": "source-validation",
+      "head_sha": "1073bb684df0d47b68d0cb1cafafb84af304788c",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35251565602,
+      "name": "source-validation",
+      "head_sha": "1073bb684df0d47b68d0cb1cafafb84af304788c",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35251566149,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "1073bb684df0d47b68d0cb1cafafb84af304788c",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35251565596,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1073bb684df0d47b68d0cb1cafafb84af304788c",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 35251524287,
+      "name": "source-validation",
+      "head_sha": "ba41769ffb7eb582954dde53543bea66f1fa5ef3",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35251524282,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ba41769ffb7eb582954dde53543bea66f1fa5ef3",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 35251519373,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "ba41769ffb7eb582954dde53543bea66f1fa5ef3",
+      "status": "pending",
+      "conclusion": null
+    },
+    {
+      "id": 35251519433,
+      "name": "source-validation",
+      "head_sha": "ba41769ffb7eb582954dde53543bea66f1fa5ef3",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35251519375,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ba41769ffb7eb582954dde53543bea66f1fa5ef3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35251519593,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "ba41769ffb7eb582954dde53543bea66f1fa5ef3",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35251439513,
+      "name": "p03-forgetting-ci",
+      "head_sha": "a39c3d4ce830c335bdd85b807897fa0a24145901",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35251439515,
+      "name": "source-validation",
+      "head_sha": "a39c3d4ce830c335bdd85b807897fa0a24145901",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35251435020,
+      "name": "p03-forgetting-ci",
+      "head_sha": "a39c3d4ce830c335bdd85b807897fa0a24145901",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

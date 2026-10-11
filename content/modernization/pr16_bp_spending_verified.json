@@ -1,0 +1,597 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260915-BP-SPENDING-ACCEPTANCE",
+  "classification": "SCOPED_ACCEPTANCE",
+  "status": "PASS_NATIVE_BP_SPENDING_SAVE_CONTINUE",
+  "scope": "PR16_P05_NATIVE_BP_SPENDING_PHYSICAL",
+  "branch": "codex/modernization-followup-20260908",
+  "run_id": 34946969126,
+  "job_id": 104308573084,
+  "tested_head": "0b7497b575a3180a045f2be377386490f192a012",
+  "workflow": ".github/workflows/pr16-bp-spending-native.yml",
+  "workflow_conclusion": "success",
+  "artifact": {
+    "id": 10386754174,
+    "name": "pr16-bp-spending-native",
+    "size": 859444,
+    "sha256": "7f2443cfcf43402e3f00952f7ab9f6a4487acd3c976dd5fd487a418dfc6085b0",
+    "expires_at": "2026-12-14T08:26:31Z"
+  },
+  "candidate": {
+    "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+    "size": 33554432,
+    "crc32": "3EB17B36"
+  },
+  "accepted_prefix": {
+    "same_candidate": true,
+    "accepted_native_cases_replayed": 0,
+    "three_win_run": 34854927678,
+    "retained_earning_evidence": "content/modernization/pr16_bp_three_win_reward_verified.json",
+    "extended_in_same_process_not_separate_replay": true
+  },
+  "process": {
+    "schema_version": 1,
+    "returncode": 0,
+    "timed_out": false,
+    "spawn_error": null,
+    "actual_new_processes": 1,
+    "successful_fresh_cores": 1,
+    "raw_native_fresh_cores": 2,
+    "counter_semantics_ja": "legacy report successful_fresh_cores=1は成功case数。原stdout fresh_cores=2は実core数。改作せず併記。"
+  },
+  "native_result": {
+    "schema_version": 1,
+    "status": "PASS_NATIVE_BP_SPENDING_SAVE_CONTINUE",
+    "scope": "PR16_P05_NATIVE_BP_SPENDING_PHYSICAL",
+    "case": "native-bp-spending-save-continue",
+    "candidate_sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+    "selected_frame": 1936,
+    "second_chooser_frame": 2283,
+    "total_frames": 51832,
+    "selected_count": 3,
+    "party_count": 3,
+    "original_snapshot_bytes_verified": 600,
+    "confirm_frame": 2408,
+    "script_advance_frame": 2461,
+    "battle_struct_frame": 2545,
+    "action_frame": 3779,
+    "pending_script_pointer": 153941608,
+    "script_pointer_after_advance": 153941609,
+    "pending_opcode": 93,
+    "battle_callback2": 134285761,
+    "battle_main_callback": 134297697,
+    "new_battle_struct": 33650228,
+    "enemy_party_count_raw": 0,
+    "enemy_party_count": 3,
+    "enemy_battle_species": 63,
+    "enemy_party_changed": true,
+    "script_context_resumed": true,
+    "move_id": 182,
+    "move_slot": 3,
+    "pp_before": 16,
+    "pp_after": 15,
+    "move_menu_frame": 3931,
+    "move_selected_frame": 3960,
+    "pp_spent_frame": 3973,
+    "action_return_frame": 4313,
+    "player_hp_before": 106,
+    "player_hp_after": 106,
+    "enemy_hp_before": 106,
+    "enemy_hp_after": 106,
+    "native_turn_completed": true,
+    "return_start_frame": 4313,
+    "additional_turns": 12,
+    "forced_switches": 2,
+    "additional_pp_events": 11,
+    "battle_outcome": 1,
+    "outcome_frame": 16234,
+    "facility_return_frame": 16457,
+    "final_party_count": 3,
+    "final_marker": 2,
+    "final_snapshot_valid": 1,
+    "final_reward_pending": 1,
+    "final_streak": 1,
+    "final_script_pointer": 153941614,
+    "final_callback2": 134569589,
+    "native_afterbattle_observed": true,
+    "original_party_or_snapshot_bytes_verified": 600,
+    "exchange_menu_frame": 16573,
+    "exchange_selected_frame": 17001,
+    "exchange_confirm_frame": 17250,
+    "exchange_commit_frame": 17345,
+    "next_battle_struct_frame": 17755,
+    "next_battle_action_frame": 18987,
+    "exchange_slot": 2,
+    "exchange_selected_order": 3,
+    "exchange_preserved_bytes": 500,
+    "exchange_replaced_bytes": 100,
+    "opening_native_switches": 1,
+    "native_exchange_observed": true,
+    "native_exchange_accepted": false,
+    "forced_identity_checks": 2,
+    "second_battle_start_frame": 18987,
+    "second_battle_turns": 9,
+    "second_forced_switches": 2,
+    "second_pp_events": 9,
+    "second_battle_outcome": 1,
+    "second_outcome_frame": 27851,
+    "second_afterbattle_frame": 28071,
+    "second_reward_pending": 2,
+    "second_streak": 2,
+    "second_bp": 0,
+    "second_exchange_menu_frame": 28187,
+    "second_exchange_selected_frame": 28491,
+    "second_exchange_confirm_frame": 28616,
+    "second_exchange_commit_frame": 28711,
+    "third_battle_struct_frame": 29120,
+    "third_battle_action_frame": 30329,
+    "second_exchange_slot": 0,
+    "third_battle_start_frame": 30329,
+    "third_battle_turns": 15,
+    "third_forced_switches": 2,
+    "third_pp_events": 13,
+    "third_battle_outcome": 1,
+    "third_outcome_frame": 45044,
+    "third_afterbattle_frame": 45263,
+    "third_reward_pending": 3,
+    "third_streak": 3,
+    "third_bp_before_complete": 0,
+    "reward_complete_frame": 45322,
+    "bp_before_reward": 0,
+    "bp_after_reward": 9,
+    "bp_delta": 9,
+    "reward_final_pending": 0,
+    "reward_final_streak": 3,
+    "reward_final_marker": 0,
+    "reward_final_snapshot_valid": 0,
+    "reward_final_party_count": 1,
+    "special_result": 9,
+    "original_party_restored_bytes": 600,
+    "third_afterbattle_script_pointer": 153941734,
+    "reward_complete_script_pointer": 153941909,
+    "reward_complete_callback2": 134569589,
+    "native_three_win_reward_accepted": true,
+    "reward_settled_frame": 46889,
+    "reward_field_frame": 46950,
+    "base_reward_bp": 9,
+    "active_repeat_reward_bp": 3,
+    "reward_wrapper_saves": 3,
+    "shop_interaction_frame": 47139,
+    "shop_menu_frame": 47320,
+    "purchase_frame": 47857,
+    "manual_save_frame": 49410,
+    "continue_frame": 51832,
+    "bp_before_purchase": 12,
+    "bp_after_purchase": 8,
+    "bp_after_continue": 8,
+    "item_id": 195,
+    "catalog_index": 0,
+    "price_bp": 4,
+    "item_count_before": 0,
+    "item_count_after_purchase": 1,
+    "item_count_after_continue": 1,
+    "purchase_result": 0,
+    "physical_shop_local_id": 3,
+    "save_counter_before_purchase": 5,
+    "save_counter_after_purchase": 6,
+    "save_counter_after_manual": 7,
+    "save_counter_after_continue": 7,
+    "native_bp_spending_accepted": true,
+    "p05_native_bp_spending_closed": true,
+    "bp_earned": 9,
+    "battle_started": true,
+    "save_counter": 2,
+    "automatic_saves": 1,
+    "manual_saves": 1,
+    "fresh_cores": 2,
+    "host_write_barriers": 7,
+    "input_only_after_guard": true,
+    "fixture_same_as_accepted_cancel": true,
+    "native_bp_earning_accepted": true,
+    "p05_native_bp_gap_closed": true,
+    "release_ready": false,
+    "warnings_errors": 0,
+    "first_battle_outcome": 1,
+    "native_battle_wins_observed": 3
+  },
+  "verification": {
+    "receipt_members_verified": 75,
+    "tracked_sources_verified": 85,
+    "generated_text_members": 11,
+    "source_bindings": {
+      ".github/workflows/pr16-bp-spending-native.yml": {
+        "size": 6706,
+        "sha256": "3ed7d0f556dc40bfd6102d45a7c93631800be2084f8d82a1c66e8c4636d25f98"
+      },
+      "config/active_play_baseline.json": {
+        "size": 394,
+        "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+      },
+      "config/factory_high_modes_v2.json": {
+        "size": 5741,
+        "sha256": "58cb98afb685d7f0d9c41071872ed3c59d7771f8437d793b5b4eebd1f977863f"
+      },
+      "config/modernization_stage79_cumulative_mgba.json": {
+        "size": 28627,
+        "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6"
+      },
+      "design/active_play_baseline.md": {
+        "size": 5551,
+        "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8"
+      },
+      "overlays/facility_runtime/facility_runtime.c": {
+        "size": 18139,
+        "sha256": "28603b55a0573dd376e1acdc4310591c017d158c69ade92393020781271e7cb0"
+      },
+      "overlays/factory_high_modes_v2/factory_high_modes_v2.c": {
+        "size": 76769,
+        "sha256": "681b53d6199ab8ec3dc03a47f4a1a6457412603dc032679930111e18e738268b"
+      },
+      "overlays/factory_high_modes_v2/factory_high_modes_v2.h": {
+        "size": 6051,
+        "sha256": "290c4f9ea7f274121273f5b43f736b5c598a6b50d412e0a85c320d0e1765622b"
+      },
+      "overlays/save_migration/save_migration.c": {
+        "size": 25098,
+        "sha256": "78e6a74c05ecf652d82e43c1e7ce196de3f6694731bbbabeeead76eef27b6320"
+      },
+      "overlays/save_migration/save_migration.h": {
+        "size": 12497,
+        "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67"
+      },
+      "scripts/build_qol_production.py": {
+        "size": 79738,
+        "sha256": "3719afca8f1a9385d8da073faba369c3994e98d848b65c01fec7c5832d062ea1"
+      },
+      "scripts/build_trainer_v5_stage32.py": {
+        "size": 65989,
+        "sha256": "1e51f0b33a9e19680b6e6523dbaf1c0adcc1245c673d43baf8764932de93bc23"
+      },
+      "scripts/pr16_bp_battle_progress.py": {
+        "size": 5955,
+        "sha256": "59f7716a2eee46df96190f0e6511ca180aea11aac28f7c6efe529b19f7c1b24c"
+      },
+      "scripts/pr16_bp_battle_return.py": {
+        "size": 6457,
+        "sha256": "f279ef18c9cde54ed46ffd35bcbcaf51ce6f14edf09f23e22113a811818c25ba"
+      },
+      "scripts/pr16_bp_chooser_native.py": {
+        "size": 14590,
+        "sha256": "8d6a4ad35a34bc52a0ccb664eb1c950b54b98dd783e7bd755285f6d9590e218d"
+      },
+      "scripts/pr16_bp_chooser_successor.py": {
+        "size": 6745,
+        "sha256": "cc99efe99d0eeb805bd23d54441297501f83cd7f21225b0a7bbb496ca1213e07"
+      },
+      "scripts/pr16_bp_chooser_trace.py": {
+        "size": 4435,
+        "sha256": "7202c93528d8b12401963925805b349b48dc435053054574d0707a9d89a62f2a"
+      },
+      "scripts/pr16_bp_loss_return_successor.py": {
+        "size": 9156,
+        "sha256": "dc40605928ff25c70f0a66bd9fb947de238b0444c78108488d65722aa4d97af8"
+      },
+      "scripts/pr16_bp_native_controls.py": {
+        "size": 12756,
+        "sha256": "4282aa8a78e50d33837578846e531a32a517ae4a872db2271cff329993f67d93"
+      },
+      "scripts/pr16_bp_party_retention_successor.py": {
+        "size": 15003,
+        "sha256": "bf9e7c426c27f002f54fb7887a92cf141762672891bf13767aabcdcec4dae931"
+      },
+      "scripts/pr16_bp_selection_native.py": {
+        "size": 10458,
+        "sha256": "2995799b4e1ac755566f98bee77f01db3ce2439fe931394cf99fc3b5a8d9250c"
+      },
+      "scripts/pr16_bp_spending_native.py": {
+        "size": 1772,
+        "sha256": "820a142ee9aea14e1dd154fba3951064bb9f22719d19a3e1bb7766402f6331c7"
+      },
+      "scripts/pr16_bp_three_win_reward_native.py": {
+        "size": 18848,
+        "sha256": "8f1872f962e4f84b2124ff86527bb256d5c89c7db9814da25bcb01e20c9fe23b"
+      },
+      "scripts/pr16_bp_trial_route.py": {
+        "size": 10549,
+        "sha256": "1ca98928f7ab1f21c57276e02100ad95a17f0c204e82987e1aa60f81c45d37df"
+      },
+      "scripts/pr16_bp_trial_successor.py": {
+        "size": 5475,
+        "sha256": "6ec1b5ff0003a03533c20e325d53101bdf95b8650a1def270b5d4b25d888d158"
+      },
+      "scripts/pr16_bp_win_exchange.py": {
+        "size": 13259,
+        "sha256": "3b906fc8b5e2d7da996297c08166725a148a780ec4ca6153f6b79b10118063cc"
+      },
+      "scripts/pr16_breeding_delta.py": {
+        "size": 10002,
+        "sha256": "96ca917dbe4466d201cfd42dbac96541058ffa3e6362dab50a41956404deb857"
+      },
+      "scripts/pr16_capture_geometry.py": {
+        "size": 3346,
+        "sha256": "c4e1bd692944020fee552077705e7d86884530d525fbafba095e746bd00b157c"
+      },
+      "scripts/pr16_evolution_learning_repair.py": {
+        "size": 7072,
+        "sha256": "66d8ccb0be6c320f70c1dc5e803625c95d410decac5533a24fe395e8052a98bd"
+      },
+      "scripts/pr16_fixed_form_acceptance.py": {
+        "size": 22320,
+        "sha256": "3c2888d1f1e3cb7ba083b49875251ff7642e046de4ba75003766a922f3fef6c8"
+      },
+      "scripts/pr16_gear_route_probe.py": {
+        "size": 4099,
+        "sha256": "420397c9467fa99f2da458439b836b94fe809671ec1f2d5f79c2e68a2628b714"
+      },
+      "scripts/pr16_integration_continuation.py": {
+        "size": 11216,
+        "sha256": "b2b73d80af2da5862b076cd09768d28ad175ead5ad0522bff4fec9a98abbfce9"
+      },
+      "scripts/pr16_natural_capture.py": {
+        "size": 9937,
+        "sha256": "99371140f7424806b25205f2b86e922bbbbfe50bd91c967cb478c804d91c26ef"
+      },
+      "scripts/pr16_p05_root_diagnostics.py": {
+        "size": 8880,
+        "sha256": "1aece44ba87988435c5316d56cd8aa143ea5739ef7bda35103578b93a8c50018"
+      },
+      "scripts/pr16_p07_preserved_layer.py": {
+        "size": 14916,
+        "sha256": "d1f79d72582ce27095cf14993ef597ae633f751ff2a35c3ed23fd59fba308271"
+      },
+      "scripts/pr16_purchased_gear.py": {
+        "size": 13172,
+        "sha256": "da0878109e346e1454ac3f47b8e6d75247deb9a9c4f4b5fd2881a86458007a6d"
+      },
+      "scripts/pr16_purchased_gear_evidence.py": {
+        "size": 5104,
+        "sha256": "7a3e58c672ff8d2a864283fc5c6f90e67c6968f6f9b21b7868ef38bd2442d191"
+      },
+      "scripts/pr16_receiver_audit.py": {
+        "size": 8490,
+        "sha256": "7b3dcd3e9d93619fe21aca66501f5045279090ab25b87a38b8f19d10dd6c80d1"
+      },
+      "scripts/pr16_repaired_acceptance.py": {
+        "size": 6470,
+        "sha256": "e83d17663ffaacfca99fe77df7cd28031671dcd20a83abad1a634a31ed603ba5"
+      },
+      "scripts/pr16_shop_display_probe.py": {
+        "size": 11632,
+        "sha256": "f437cde2972089dc4dab757ab6f18a44b80ae2b2a8da16a0177331382a29f677"
+      },
+      "scripts/pr16_shop_display_repair.py": {
+        "size": 8170,
+        "sha256": "ec320b5e9b440afec7351767e44e0777b7ffcbb5435aa200a19b8d0790f20343"
+      },
+      "scripts/pr16_shop_routes.py": {
+        "size": 9771,
+        "sha256": "29ef07ef51bd2564f443844cdd859fffb5fa182c02b4260d16f1abbae302b338"
+      },
+      "scripts/pr16_source_acceptance.py": {
+        "size": 5341,
+        "sha256": "d8f89c40f0c64bc10c5058d46aa92635e936eb74b20fc1f8ffdefbcf082d68a6"
+      },
+      "scripts/run_modernization_p03_fullslots_e2e.py": {
+        "size": 13940,
+        "sha256": "439db2906617448e7e46ce76bbcdc44fad6c2dbb4b4aede436bd7385a2b282ea"
+      },
+      "tests/test_pr16_bp_selection_native.py": {
+        "size": 4831,
+        "sha256": "e816d2198d50817082fb3bb3f3819534e4ff814850da8441a32d6302df0f5eb4"
+      },
+      "tests/test_pr16_bp_spending_native.py": {
+        "size": 3112,
+        "sha256": "022ca8801bd27cb768e94ff323b06195799234d5d20732ef6083ae35d0afab05"
+      },
+      "tools/interaction_ownership_repair.py": {
+        "size": 35123,
+        "sha256": "4fd4054e2c882dedcffd2e53fca460303d78472dcfe6586c3ad6ebd1f6dddd8c"
+      },
+      "tools/map_import/__init__.py": {
+        "size": 134,
+        "sha256": "1eaf45524b269813a18b9934674a35c03e1d1978e52e4e7be203a8e7cd41d862"
+      },
+      "tools/map_import/full_kanto_import.py": {
+        "size": 20657,
+        "sha256": "85d13607a3f8b2822fac67af4a3cb3c3ec751e663491084bbdbfa9496c1c68d7"
+      },
+      "tools/map_import/kanto_importer.py": {
+        "size": 15633,
+        "sha256": "edc4d7c98549e67ba6a9b279bd647c268fab95abfdf7b42a54d9f4f75ab5c12b"
+      },
+      "tools/mgba_ai_fixture_runner.c": {
+        "size": 36272,
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+      },
+      "tools/mgba_battle_core_smoke.c": {
+        "size": 94688,
+        "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24"
+      },
+      "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+        "size": 39669,
+        "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b"
+      },
+      "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+        "size": 20154,
+        "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467"
+      },
+      "tools/mgba_modernization_p03_breeding_e2e.c": {
+        "size": 19614,
+        "sha256": "a99cafd942f958c932709bed6099695f067dc292401b3bfb91e60afe4d6823de"
+      },
+      "tools/mgba_modernization_p03_fullslots_e2e.c": {
+        "size": 12868,
+        "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa"
+      },
+      "tools/mgba_modernization_p03_learning_e2e.c": {
+        "size": 7987,
+        "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d"
+      },
+      "tools/mgba_pr16_bp_battle_progress.c": {
+        "size": 3939,
+        "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+      },
+      "tools/mgba_pr16_bp_battle_return.c": {
+        "size": 8320,
+        "sha256": "286e2cccc1b5dcf5fffc2063664a45194f9902452d7d805229582cc7e9050a17"
+      },
+      "tools/mgba_pr16_bp_native_controls.c": {
+        "size": 10327,
+        "sha256": "44e28abe05a7dcad0d430b8c48b5046cbf89c246f7235158a2e5451b29bb0f56"
+      },
+      "tools/mgba_pr16_bp_selection_native.c": {
+        "size": 10488,
+        "sha256": "7815a29617038dfcd3fd57d9a5a7e61eed0a88c9d4ba7c9b45ec2d1fbc3de690"
+      },
+      "tools/mgba_pr16_bp_spending.c": {
+        "size": 10973,
+        "sha256": "530172a04f0460e93337a17140630fac6d7e10a0e3de219a21ac65569b87768a"
+      },
+      "tools/mgba_pr16_bp_three_win_reward.c": {
+        "size": 18524,
+        "sha256": "1eb743c55861177c1c1c3e0f1ce4aff45f45b1af4448f36b8a6f4cb51840c021"
+      },
+      "tools/mgba_pr16_bp_win_exchange.c": {
+        "size": 15394,
+        "sha256": "95f1e9e3044df165190dc879c47b98251ecbbcc48de0b8f588ff6ec5af94480c"
+      },
+      "tools/mgba_pr16_natural_capture.c": {
+        "size": 9630,
+        "sha256": "cd09b0ad480403b0e76239196415656c36b26abe18f12bcc946c4f9f9c9d2e6e"
+      },
+      "tools/mgba_pr16_purchased_gear.c": {
+        "size": 16307,
+        "sha256": "ba8a7994d25bf7d5d95fdf9fb35bace671f4b1625f5cee96df235a92bbdac9aa"
+      },
+      "tools/mgba_pr16_shop_routes.c": {
+        "size": 10000,
+        "sha256": "16eda36fade0e8ef0ec3dc0b45b22c9776969f557aedc6ac25f1b65ffc09848c"
+      },
+      "tools/mgba_qol_production_smoke.c": {
+        "size": 149046,
+        "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85"
+      },
+      "tools/modernization_identity.py": {
+        "size": 41461,
+        "sha256": "92f8dbb900c9b9988a4e00b2f3d0c94692c7b45ff1b47e9531959d14d7a7b0a9"
+      },
+      "tools/modernization_mega_shop.py": {
+        "size": 63275,
+        "sha256": "b2e0cf9d107551a04d7f589b982afc6c587729a504deaa395f9b9f7643caeb35"
+      },
+      "tools/modernization_p03_archive_ui_repair.py": {
+        "size": 9187,
+        "sha256": "174d08673f9d28fc63b5bdc46e2503a9525b84527391fb4e2f96271df3f9207d"
+      },
+      "tools/modernization_p03_native_pp_repair.py": {
+        "size": 5164,
+        "sha256": "bfa4a1f2c8d470bafdb705d57fdd73a55a7885cfacb1dca6c392576a38f51e17"
+      },
+      "tools/modernization_p07_learnsets.py": {
+        "size": 41866,
+        "sha256": "87fb7e902dae8549dd1a301f6b4b3d8fea800d89bd338527a3aa3a18639de5bd"
+      },
+      "tools/regression/__init__.py": {
+        "size": 179,
+        "sha256": "e7d343cd8f1109ecb77e0a3cb75c2c9a5b818589e056c4d86219e4bc76a33f01"
+      },
+      "tools/regression/rom_runtime.py": {
+        "size": 101835,
+        "sha256": "8110772b2df98115e4efd353547150171204270965fd7b0f723a8b9b3aa4c7ba"
+      },
+      "tools/release/__init__.py": {
+        "size": 137,
+        "sha256": "93ada871fd6e282d2d36cb47040167dfa287e4d3465424f2d8fbb0644102b36f"
+      },
+      "tools/release/bps.py": {
+        "size": 8606,
+        "sha256": "49818ca722499ce508a9caa3578ef42081c53235d92ecdcd0d6df05b8604c054"
+      },
+      "tools/rom_allocator.py": {
+        "size": 22314,
+        "sha256": "65b26fe7339c8be19fe9c13973157cb90157ab4a28838afb93d43d2c5e6668e8"
+      },
+      "tools/stage57_debug_suite.py": {
+        "size": 35254,
+        "sha256": "7ff408e03e1049e5df02f2fd4d78677a2650a47a2222a768a6770e7ab7d4f0c2"
+      },
+      "tools/t02/__init__.py": {
+        "size": 61,
+        "sha256": "b26705d5e73f714f78a2ccac9408de042fa2457500a8b234c7e24fe165996156"
+      },
+      "tools/t02/rom_inventory.py": {
+        "size": 72914,
+        "sha256": "81da45044db9b79496cac2a585d2651613b300e55e5442c505e7680f30bf042f"
+      },
+      "tools/trainer_final/kanto_events.py": {
+        "size": 66506,
+        "sha256": "8dad7d1ab4786d3e991d00266fee96498b551b13a4ec167896e7549f004cf78c"
+      },
+      "tools/world_final_state.py": {
+        "size": 21949,
+        "sha256": "70eb7295021f2ffb1b87931137a499592538e7db4e0ce2add85d3a8b44973ec6"
+      },
+      "tools/world_item_recovery.py": {
+        "size": 24208,
+        "sha256": "63e2fbc1933bc64c18e982c15dcd13d20c7b8d1e6f1f330c5136cd09345da7a6"
+      },
+      "tools/world_runtime_e2e_repair.py": {
+        "size": 58982,
+        "sha256": "ca141c2a4e32679fbfc107d613a2860eaa3161c4ec363167bd40d5d683530442"
+      }
+    },
+    "native_validator_passed": true,
+    "git_at_tested_head_verified": true,
+    "current_native_sources_unchanged": true,
+    "artifact_guard": {
+      "tracked_snapshot_utf8_only": true,
+      "credential_pattern_hits": 0,
+      "rom_save_patch_bytes_published": false
+    },
+    "host_write_barriers_verified": 7,
+    "new_emulator_processes": 0,
+    "raw_result": {
+      "size": 4102,
+      "sha256": "0ccfd53b107cb9e34e73f736c827f8d342d448c136f49be1c3a9b61950e29b83",
+      "path": "content/modernization/pr16_bp_spending_evidence/34946969126/original-result.stdout.json"
+    },
+    "original_full_trace": {
+      "size": 183201,
+      "sha256": "0c620b8f7af01c4895f3d006b7d316325ccf4fef57da0a96cc0e35be3ba28466"
+    },
+    "raw_projection_derived_fields": {
+      "first_battle_outcome": "battle_outcome",
+      "native_battle_wins_observed": "count of three raw native battle outcomes == 1"
+    },
+    "visual_review": {
+      "completed": true,
+      "reviewer": "ChatGPT",
+      "date": "2026-09-15",
+      "scope_ja": "原本menuは12 BPとかわらずのいし4 BP、購入後とfresh Continueは同じ受付field。所持数と残高保持はnative readsで照合。",
+      "screens": {
+        "bp-shop-menu": {
+          "size": 115215,
+          "sha256": "23b04fc73f941c0da75f5f987cfc1b0b10374b6e6594db869a06ea4ee805ee96"
+        },
+        "bp-shop-purchased": {
+          "size": 115215,
+          "sha256": "a9c3135b23ab22d8ef017ed7aa63eb653507885c97b2d867028dd919881c64bc"
+        },
+        "bp-shop-fresh-continue": {
+          "size": 115215,
+          "sha256": "a9c3135b23ab22d8ef017ed7aa63eb653507885c97b2d867028dd919881c64bc"
+        }
+      }
+    }
+  },
+  "native_three_win_reward_accepted": true,
+  "native_bp_earning_accepted": true,
+  "native_bp_spending_accepted": true,
+  "native_exchange_accepted": false,
+  "p05_native_bp_gap_closed": true,
+  "p05_native_bp_spending_closed": true,
+  "release_ready": false,
+  "merge_performed": false,
+  "active_baseline_changed": false,
+  "next_step_ja": "同じcandidateでRingの正規story取得ownerを追い、通常取得から装備・実戦・保存再開までの未受入経路を検証する。"
+}

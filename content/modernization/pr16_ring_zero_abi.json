@@ -1,0 +1,502 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-ZERO-ABI",
+  "source_head": "884db03b5e9436d67545e1cf43bf03f86acd33c1",
+  "run_id": 35002458426,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "ZERO_CONTINUATION_PREFIX_WITH_CONDITIONAL_STORES_NOT_RETURN_PROOF",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "target": 134667709,
+    "instructions_verified": 54,
+    "instruction_bytes_verified": 114,
+    "literal_bytes_verified": 20,
+    "verification": {
+      "new_zero_dispatch_inputs_checked": 51456,
+      "dispatch_counts": {
+        "zero": 1,
+        "low": 2303,
+        "high": 49152
+      },
+      "selector_values_checked": 256,
+      "conditional_model_cases": 13818,
+      "instructions_covered": 54,
+      "helper_domain_reexecuted": false,
+      "external_callees_executed": false,
+      "external_returns_are_explicit_assumptions_not_observations": true
+    },
+    "zero_input_to_epilogue": {
+      "input": 0,
+      "boundary": 134667875,
+      "r0": 0,
+      "callee_return_proven": false
+    },
+    "high_input_to_special_path": {
+      "input_first": 16384,
+      "input_last": 65535,
+      "boundary": 134667857,
+      "r0": 16383
+    },
+    "low_input_scope": {
+      "input_first": 1,
+      "input_last": 2303,
+      "selector_address": 50355928,
+      "selector_width": 1,
+      "selector_1_call": 135346313,
+      "selector_2_call": 134667549,
+      "other_selectors": [
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          255
+        ]
+      ],
+      "common_boundary": 134667837,
+      "common_boundary_registers_under_preserving_call_assumption": {
+        "r0": 50352200,
+        "r1": "id >> 3"
+      }
+    },
+    "conditional_stores": [
+      {
+        "site": 134667778,
+        "width": 1,
+        "condition": "selector=1 and call1 returns p!=0, with preserving ABI/readable memory",
+        "destination": "(mem32[0x03005048] + 0xEE0 + (id >> 3)) mod 2^32",
+        "value": "mem8[p]"
+      },
+      {
+        "site": 134667806,
+        "width": 2,
+        "condition": "selector=2 and (call2_result & 0xff)==1, with preserving ABI",
+        "destination": "0x030050BC",
+        "value": "id"
+      }
+    ],
+    "external_calls": [
+      {
+        "site": 134667752,
+        "target": 135346313,
+        "args": [
+          "1",
+          "id"
+        ],
+        "return_thumb": 134667757
+      },
+      {
+        "site": 134667792,
+        "target": 134667549,
+        "args": [
+          "id",
+          "0"
+        ],
+        "return_thumb": 134667797
+      },
+      {
+        "site": 134667828,
+        "target": 135346425,
+        "args": [
+          "1",
+          "id",
+          "mem8[mem32[0x03005048]+0xEE0+(id>>3)]"
+        ],
+        "return_thumb": 134667833
+      }
+    ],
+    "local_stack_operations": 0,
+    "local_sp_delta": 0,
+    "flagset_entry_sp_offset_at_boundaries": -24,
+    "local_r4_r5_r6_restoration_instructions": 0,
+    "saved_slots_consumed_by_local_instructions": [],
+    "conditional_frame_assumption": "External returns must preserve SP/r4-r11 and slots; sampled stores must not alias slots. Neither premise is established for all paths.",
+    "saved_slot_preservation_proven": false,
+    "saved_slot_alias_counterexamples": [
+      {
+        "condition": "selector=1, call1 returns a readable nonzero pointer with otherwise preserving ABI",
+        "id": 1,
+        "save_base_value": 33616160,
+        "flagset_entry_sp": 33619992,
+        "write_address": 33619968,
+        "write_width": 1,
+        "saved_slot_offset": -24
+      },
+      {
+        "condition": "selector=2, low byte of call2 result is 1 with otherwise preserving ABI",
+        "id": 1,
+        "flagset_entry_sp": 50352340,
+        "write_address": 50352316,
+        "write_width": 2,
+        "saved_slot_offset": -24
+      }
+    ],
+    "counterexamples_are_hypothetical_not_observed_corruption": true,
+    "zero_callee_return_proven": false,
+    "zero_callee_return_observed": false,
+    "callee_return_proven": false,
+    "stack_integrity_proven": false,
+    "return_pointer_non_alias_proven": false,
+    "nonzero_callee_return_proof_reused": true,
+    "sampled_root_still_transitively_unresolved": 134667709,
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "old_frontier_removed": false,
+    "additional_unread_targets": [
+      134667549,
+      134667837,
+      134667857,
+      134667875,
+      135346313,
+      135346425
+    ],
+    "priority_unread_targets": [
+      134667837
+    ],
+    "remaining_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      134667549,
+      134667837,
+      134667857,
+      134667875,
+      135346165,
+      135346313,
+      135346425,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "all_callers_resolved": false,
+    "all_runtime_owners_excluded": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 0,
+    "new_graph_decodes": 0,
+    "prior_abi_classifications_replayed": 0,
+    "accepted_native_cases_replayed": 0
+  },
+  "focused_tests": {
+    "tests_run": 36,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_zero_abi.py": {
+      "size": 23532,
+      "sha256": "605261f5e5e44dcbeca24e7fdbf68dc0dd8a5af554e9f124c1e617e9536023eb"
+    },
+    "scripts/pr16_ring_zero_model.py": {
+      "size": 5995,
+      "sha256": "d15a13b18e26fdd8d81ea2dd1f796d2b20f821bb5aa7647f6982e9161b9dfa16"
+    },
+    "tests/test_pr16_ring_zero_abi.py": {
+      "size": 7575,
+      "sha256": "22eb3f177f40e3b74532c615c650310dd85ccb7c3ca8a467d85444651a53643a"
+    },
+    ".github/workflows/pr16-ring-zero-abi.yml": {
+      "size": 4313,
+      "sha256": "57fde0901d6891ce63fbbbc55b626d7ba9ed3bb70cdfda7e42bd1e374403564d"
+    },
+    "content/modernization/pr16_ring_zero_bytes.json": {
+      "size": 35345,
+      "sha256": "053457495169b5628d8ff3c0c28c8a58e38053ffd66b4bf8547bae2b2cfb5036"
+    },
+    "content/modernization/pr16_ring_nonzero_abi.json": {
+      "size": 14128,
+      "sha256": "d9a12d15b936d850bf1a59371bafef92ca8efa718c24bcdae72b516634092d40"
+    },
+    "content/modernization/pr16_ring_helper_abi.json": {
+      "size": 14158,
+      "sha256": "01e1428282d2271d352f8cb1644603d260a496f9e0861c976ed52b2232d2b928"
+    },
+    "content/modernization/pr16_ring_callee_abi.json": {
+      "size": 12915,
+      "sha256": "ec45ae731bee3d124e5c7fa1bf9919f4f03520d526af3906e34623da3bf92ac8"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    }
+  },
+  "reused_successful_actions": [
+    {
+      "id": 35000269301,
+      "name": "Ring未読zero継続一根の保存・既読graphとnative再実行なし",
+      "head_sha": "9df0a6c7fd9fcf34ee307346afcea209e8323817",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34990811278,
+      "name": "Ring保存非0継続POPの条件付き帰還検証・記録／ROMとnativeなし",
+      "head_sha": "558ed9e28ca9318c2a3d8d9829775850d15f3a2c",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "instruction_reference": "https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html",
+  "actions_observed_before_record": [
+    {
+      "id": 35002465723,
+      "name": "source-validation",
+      "head_sha": "884db03b5e9436d67545e1cf43bf03f86acd33c1",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 35002465828,
+      "name": "p03-forgetting-ci",
+      "head_sha": "884db03b5e9436d67545e1cf43bf03f86acd33c1",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35002458583,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "884db03b5e9436d67545e1cf43bf03f86acd33c1",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 35002458426,
+      "name": "保存zero継続の限定ABI・条件付き書込みと未解決帰還を検証",
+      "head_sha": "884db03b5e9436d67545e1cf43bf03f86acd33c1",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35002458517,
+      "name": "p03-forgetting-ci",
+      "head_sha": "884db03b5e9436d67545e1cf43bf03f86acd33c1",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35002458498,
+      "name": "source-validation",
+      "head_sha": "884db03b5e9436d67545e1cf43bf03f86acd33c1",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35002458681,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "884db03b5e9436d67545e1cf43bf03f86acd33c1",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35000523173,
+      "name": "p03-forgetting-ci",
+      "head_sha": "7d5e22c800dd84c95c7fa515578948a2494b128a",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35000523232,
+      "name": "source-validation",
+      "head_sha": "7d5e22c800dd84c95c7fa515578948a2494b128a",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35000279263,
+      "name": "p03-forgetting-ci",
+      "head_sha": "9df0a6c7fd9fcf34ee307346afcea209e8323817",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35000279212,
+      "name": "source-validation",
+      "head_sha": "9df0a6c7fd9fcf34ee307346afcea209e8323817",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35000269301,
+      "name": "Ring未読zero継続一根の保存・既読graphとnative再実行なし",
+      "head_sha": "9df0a6c7fd9fcf34ee307346afcea209e8323817",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35000269236,
+      "name": "p03-forgetting-ci",
+      "head_sha": "9df0a6c7fd9fcf34ee307346afcea209e8323817",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35000269233,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "9df0a6c7fd9fcf34ee307346afcea209e8323817",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35000269220,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "9df0a6c7fd9fcf34ee307346afcea209e8323817",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35000269254,
+      "name": "source-validation",
+      "head_sha": "9df0a6c7fd9fcf34ee307346afcea209e8323817",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34990953020,
+      "name": "p03-forgetting-ci",
+      "head_sha": "878fdf65995378a97493dcee86872616aaea1236",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34990953299,
+      "name": "source-validation",
+      "head_sha": "878fdf65995378a97493dcee86872616aaea1236",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34990818419,
+      "name": "p03-forgetting-ci",
+      "head_sha": "558ed9e28ca9318c2a3d8d9829775850d15f3a2c",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34990818435,
+      "name": "source-validation",
+      "head_sha": "558ed9e28ca9318c2a3d8d9829775850d15f3a2c",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34990811168,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "558ed9e28ca9318c2a3d8d9829775850d15f3a2c",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34990811052,
+      "name": "p03-forgetting-ci",
+      "head_sha": "558ed9e28ca9318c2a3d8d9829775850d15f3a2c",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34990811071,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "558ed9e28ca9318c2a3d8d9829775850d15f3a2c",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34990811278,
+      "name": "Ring保存非0継続POPの条件付き帰還検証・記録／ROMとnativeなし",
+      "head_sha": "558ed9e28ca9318c2a3d8d9829775850d15f3a2c",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34990811047,
+      "name": "source-validation",
+      "head_sha": "558ed9e28ca9318c2a3d8d9829775850d15f3a2c",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34989236630,
+      "name": "source-validation",
+      "head_sha": "944c3ee1d6c82954e19a12fcb93907c81a7d6e42",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34989236908,
+      "name": "p03-forgetting-ci",
+      "head_sha": "944c3ee1d6c82954e19a12fcb93907c81a7d6e42",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34989006483,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0ebf9eb94cc5a73eb7fb65f3b91691dcf5a14fcd",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34989006479,
+      "name": "source-validation",
+      "head_sha": "0ebf9eb94cc5a73eb7fb65f3b91691dcf5a14fcd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34988999991,
+      "name": "Ring未読非0継続14byteの保存・既読calleeとnative再実行なし",
+      "head_sha": "0ebf9eb94cc5a73eb7fb65f3b91691dcf5a14fcd",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

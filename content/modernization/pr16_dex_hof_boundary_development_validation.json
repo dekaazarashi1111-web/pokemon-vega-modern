@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_BOUNDARY_REVIEW",
+  "review_scope": "new_boundary_sources_only",
+  "old_independent_final_review_retried": false,
+  "initial_head": "8efe38d3fc7fc42aada878f278a06b3131003f5e",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-boundary-references.yml": {
+      "size": 3036,
+      "sha256": "98fdd53b7a08278d1f256e01d54012dd545eb96d1938ab7730144094b53e6617"
+    },
+    "content/modernization/pr16_dex_hof_boundary_mystery_review.json": {
+      "size": 16781,
+      "sha256": "513341f3e7dbe763717251567459b0d431640a69d996ce9a3da3e31f0bacf3f7"
+    },
+    "content/modernization/pr16_dex_hof_boundary_sources.json": {
+      "size": 1428,
+      "sha256": "10b6bcf235099ed96522226ef87e9ae32b17080ed121980e688e5c1d0bfa5ae2"
+    },
+    "docs/PR16_DEX_HOF_BOUNDARY_REFERENCES_JA.md": {
+      "size": 4937,
+      "sha256": "7d42d321a03b40c5e3a5c2da4b88fc9d4cc5898435d7fba795da4d1e2b69f3d5"
+    },
+    "scripts/pr16_dex_hof_boundary_capacity.py": {
+      "size": 5003,
+      "sha256": "4a1a7351fe7ab2c450645cae4a577dba360ebd9be63360a850d20fa922b8182b"
+    },
+    "scripts/pr16_dex_hof_boundary_chain.py": {
+      "size": 11951,
+      "sha256": "af107bf416e87df128ed16d987d4f4f27ef361d3de7f6d44df6da594745af6f0"
+    },
+    "scripts/pr16_dex_hof_boundary_mystery.py": {
+      "size": 23013,
+      "sha256": "f2d93f99a51f736cdb661da221531be76db66eb1baa1081ac56d7d95ab21810b"
+    },
+    "scripts/pr16_dex_hof_boundary_references.py": {
+      "size": 2927,
+      "sha256": "04d5c56780ff7d28313f44c3fcff1e641c0e0d5f759f5beec62d4692323c61f8"
+    },
+    "scripts/pr16_dex_hof_boundary_references_actions.py": {
+      "size": 26422,
+      "sha256": "ff9182b7542915842753b5e2d29cd90c2cc5c41302444b3ca0da4c4bcf960d36"
+    },
+    "tests/test_pr16_dex_hof_boundary_capacity.py": {
+      "size": 9817,
+      "sha256": "44aa291497daab9f552f40ff83481645232d35d521ba013f2295c3470311e01d"
+    },
+    "tests/test_pr16_dex_hof_boundary_chain.py": {
+      "size": 13882,
+      "sha256": "142734c1a244be357495c1ea66fb37156318b4220c0cbba1efcbb92e1915bde7"
+    },
+    "tests/test_pr16_dex_hof_boundary_mystery.py": {
+      "size": 12055,
+      "sha256": "aa105640dfcc4ba2da7d07e5a8271f12e2cdbf9781adfc89a278551f614e885b"
+    },
+    "tests/test_pr16_dex_hof_boundary_references.py": {
+      "size": 3238,
+      "sha256": "2cb301468f3488d1aba06d2017c29ed26cfbaa954d84993ab297878665db8e96"
+    },
+    "tests/test_pr16_dex_hof_boundary_references_actions.py": {
+      "size": 11558,
+      "sha256": "93a5709b79d626210c49ac200ac64380e182dd45f10170b96ea87a1c711bbcaf"
+    }
+  },
+  "diagnostic": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "unit_tests": 198,
+    "classifications": [
+      733,
+      141
+    ],
+    "newly_classified": 1,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    },
+    "delta_identity": {
+      "size": 9053,
+      "sha256": "d83bc087d5f1a87437a41228028e092120d1ba8f30aa0b66dc819d6e2c9424b1"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false
+  },
+  "diagnostic_test_log": {
+    "size": 25916,
+    "sha256": "bd855aef8065ea4c636db759f0bc4b7c6f430d1a06dc8589fc606bf0940c3bdb"
+  },
+  "source_only_review": {
+    "status": "PASS",
+    "scope": "new_boundary_sources_only",
+    "files": 14,
+    "method_ja": "新sourceの構文・型根・geometry・親保持・公開契約を全identity固定で確認。現ROM測定は別のActionsで行う。",
+    "resolved_ja": "developmentのsource集合をCODEから自身を除いた全14fileへ固定。空・欠落・余分・自己hash・差替え等を新9testで拒否。",
+    "open_findings": 0,
+    "current_rom_measured": false,
+    "old_independent_final_review_retried": false
+  },
+  "development_history": [
+    {
+      "stage": "fixture_resolution",
+      "tests_started": false,
+      "status": "STOPPED_BEFORE_TESTS",
+      "reason_ja": "固定public sourceのcache filenameを解決し、同3原本のidentity照合後に再開。source再取得やprivate入力代替なし。"
+    },
+    {
+      "stage": "pre_freeze_integration",
+      "unit_tests": 189,
+      "failed_tests": 0,
+      "skips": 0,
+      "post_suite": "STOPPED_AT_WHOLE_REVIEW_IDENTITY",
+      "reason_ja": "CB2復帰16byte追加中に旧review identityで開始した統合診断は、suite全PASS後のfullchain生成時に全文hashで停止。source freeze後のwrapper再束縛と全新scope検証で解消。正式受入なし。",
+      "test_log": {
+        "size": 24670,
+        "sha256": "fbe8a0159a2c1c2d8ce6d6bad3bce48bdf7710e9a9d84ceb0e2515bb193fcf56"
+      }
+    }
+  ],
+  "unchanged_parent": {
+    "classified": 732,
+    "unclassified": 142,
+    "parent_inputs": 17,
+    "retained_proof_families": 9,
+    "changes": 113,
+    "witnesses": 103,
+    "owner_count": 115,
+    "hit_count": 874,
+    "song_models": 133,
+    "assets": 50
+  },
+  "acceptance_boundary": {
+    "current_candidate_verified": false,
+    "current_actions_required": true,
+    "natural_play_reachability_proven": false,
+    "universal_epoch_irq_proven": false,
+    "old_independent_final_source_review_completed": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "controller_runtime_wired": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}

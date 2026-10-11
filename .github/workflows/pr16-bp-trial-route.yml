@@ -1,0 +1,109 @@
+name: pr16-bp-trial-route
+run-name: BP Trial rooted predecessor verification (zero emulator replay)
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-trial-route.yml
+      - scripts/pr16_bp_trial_route.py
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-bp-trial-route
+  cancel-in-progress: false
+jobs:
+  inspect:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Validate bounded diagnostic source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-bp-trial-route
+          git rev-parse HEAD > .local/pr16-bp-trial-route/tested-head.txt
+          python3 -m py_compile scripts/pr16_bp_trial_route.py
+          python3 scripts/validate_task_graph.py > .local/pr16-bp-trial-route/task-graph.txt
+      - name: Restore pinned compiler and unchanged Stage84 build input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-trial-route
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore pinned inputs and character map
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-trial-route
+          assets=.local/pr16-bp-trial-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.'); cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip'; bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-trial-inputs'/name; raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z: data=z.read(member)
+          path=root/member; assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists(): assert path.read_bytes()==data
+          else: path.parent.mkdir(parents=True,exist_ok=True); path.write_bytes(data); path.chmod(0o444)
+          (root/'.local/pr16-bp-trial-route/charmap-binding.json').write_text(json.dumps({'archive_sha256':bound['sha256'],'member':member,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()},sort_keys=True)+'\n')
+          PY
+      - name: Rebuild exact parent and decode only four documented Trial roots
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-trial-route
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+          python3 scripts/pr16_bp_trial_route.py > "$out/route.stdout" 2> "$out/route.stderr"
+          git diff --exit-code
+      - name: Bound source-only artifact and preserve original failure when present
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,stat,zipfile
+          out=pathlib.Path('.local/pr16-bp-trial-route'); rows={}
+          forbidden={'.gba','.gb','.gbc','.sav','.srm','.bps','.ips','.ups','.bin','.exe'}
+          for path in out.iterdir():
+              assert path.is_file() and not path.is_symlink() and path.suffix.lower() not in forbidden
+              raw=path.read_bytes()
+              if path.suffix=='.zip':
+                  assert path.name=='sources.zip'
+                  with zipfile.ZipFile(path) as z:
+                      assert len(z.namelist())==len(set(z.namelist()))<=64
+                      assert sum(i.file_size for i in z.infolist())<=24000000
+                      for i in z.infolist():
+                          p=pathlib.PurePosixPath(i.filename)
+                          assert not p.is_absolute() and '..' not in p.parts and '\\' not in i.filename
+                          assert not stat.S_ISLNK(i.external_attr>>16) and p.suffix.lower() not in forbidden|{'.zip'}
+                          data=z.read(i); data.decode('utf-8'); assert b'\0' not in data
+              else: raw.decode('utf-8'); assert b'\0' not in raw and len(raw)<8000000
+              rows[path.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'artifact-members.json').write_text(json.dumps(rows,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-trial-route
+          path: .local/pr16-bp-trial-route/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

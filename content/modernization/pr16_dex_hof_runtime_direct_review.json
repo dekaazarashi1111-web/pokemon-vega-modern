@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "pret-quest_log_events.c": {
+      "local": "pret-quest_log_events.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/quest_log_events.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/quest_log_events.c",
+      "size": 88060,
+      "sha256": "e6cade44e4c41d0c2a0b27a718ffaee16a9485d36e7f09d6adc9da752b7b7e36",
+      "git_blob_sha": "7714d887a13be5ab9ca3b4e75edfc5f412e993f8"
+    },
+    "pret-quest_log.h": {
+      "local": "pret-quest_log.h",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "include/quest_log.h",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/quest_log.h",
+      "size": 6648,
+      "sha256": "0bfe5b360ea2a888534d25c00a0084781821b975fd01475b0d1074021c89ffb5",
+      "git_blob_sha": "279786985a6b79d76b78dcd745056087645e7d1b"
+    },
+    "pret-quest_log_constants.h": {
+      "local": "pret-quest_log_constants.h",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "include/constants/quest_log.h",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/constants/quest_log.h",
+      "size": 6408,
+      "sha256": "90cceec5883201c3d3d2bdb420d1f7b3ebef21f4716eef0760bba507559be2dc",
+      "git_blob_sha": "fe284ba133ccc28053515c501979741b3960212f"
+    }
+  },
+  "hit": {
+    "address": 135356907,
+    "target": 167704566,
+    "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+    "size": 4,
+    "sha256": "431c093c1d2a589a22829ebc967deda4925286ff9072f45082c4892eb0eab829",
+    "classification": "UNCLASSIFIED",
+    "accepted": false,
+    "reason": "no_complete_typed_asset_consumer_witness",
+    "owner_candidates": []
+  },
+  "root": {
+    "kind": "actual_quest_log_event_dispatch",
+    "dispatcher": 135349772,
+    "event_id": 40,
+    "event_mask": 4095,
+    "table": 138505868,
+    "slot": 138506028,
+    "entry": 135356888,
+    "synchronous_indirect_consumer": 136084172,
+    "instruction_typing_only": true
+  },
+  "windows": [
+    {
+      "label": "dispatcher_null_and_action_guard",
+      "address": 135349772,
+      "size": 22,
+      "sha256": "f17afa65ea7e5c7bb48517d2134a650644eb5dfab32abc823b49ac02ae02ca63"
+    },
+    {
+      "label": "dispatcher_guard_global",
+      "address": 135349796,
+      "size": 4,
+      "sha256": "a9be9e6da8bc0135ccf2a76524f3392537b54d63b7a4c1b3accaa431c6d52b7c"
+    },
+    {
+      "label": "dispatcher_selector_and_indirect_call",
+      "address": 135349800,
+      "size": 20,
+      "sha256": "60b84eb498f29080727be5ba03fd5fcab21878fe934231d5865c4d0ff62b65b8"
+    },
+    {
+      "label": "dispatcher_failure_return",
+      "address": 135349846,
+      "size": 6,
+      "sha256": "adf2ebef69b1c796d19387667cd48616ad0c1656e33c5e31eb2f946d0a65f93c"
+    },
+    {
+      "label": "dispatcher_table_and_event_mask",
+      "address": 135349852,
+      "size": 8,
+      "sha256": "cbc59ea6154a8bb7cd1c9b2efcebab483eaff4d08dded645bcfc37ae7c30a274"
+    },
+    {
+      "label": "event40_function_slot",
+      "address": 138506028,
+      "size": 4,
+      "sha256": "118236484f14dbd500761e06ae7d71232d7c4fcac7437bb900de00c5b1d07a9e"
+    },
+    {
+      "label": "indirect_bx_r1",
+      "address": 136084172,
+      "size": 2,
+      "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5"
+    },
+    {
+      "label": "event_payload_reader",
+      "address": 135350700,
+      "size": 26,
+      "sha256": "a3bae1a5aa55d957b7f35b92b299bb2779765bb858ce9b0f80fd0d38f457272e"
+    },
+    {
+      "label": "event_payload_reader_literals",
+      "address": 135350728,
+      "size": 8,
+      "sha256": "374e6a6fa1b5a73e5cee0270741a1b33ceef9e4306c2bc02d6d24bb69c19d7a4"
+    },
+    {
+      "label": "event40_size_slot",
+      "address": 138506080,
+      "size": 1,
+      "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+    },
+    {
+      "label": "handler_entry_to_hit",
+      "address": 135356888,
+      "size": 18,
+      "sha256": "ef7a01a5f1d6320209d46dfbd8324feb8ab16e27328d1cb99c034ad4a914f48d"
+    },
+    {
+      "label": "hit_instruction_window",
+      "address": 135356906,
+      "size": 6,
+      "sha256": "e67ef211ac57b1ac0a361cfecd3ad5490d9bb51ac05f2a084e59fdfe935cd03a"
+    },
+    {
+      "label": "handler_text_destinations",
+      "address": 135356944,
+      "size": 8,
+      "sha256": "039bf6102bad18615bb65b643f6a68f334e83d30b6cf47cdf4fdc68dad3277fc"
+    }
+  ],
+  "claims": {
+    "proof_scope": "static_actual_dispatch_and_complete_instruction_roles",
+    "full_story_reachability_claimed": false,
+    "runtime_execution_observed": false,
+    "all_entry_states_safe_claimed": false,
+    "get_map_name_return_proven": false,
+    "BL_return_successor_is_static_code_role_only": true,
+    "literal_pool_included": false,
+    "whole_function_range_classified": false,
+    "indirect_reference_completeness_claimed": false,
+    "donor_eligible": false,
+    "donor_leased": false
+  }
+}

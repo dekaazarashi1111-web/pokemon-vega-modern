@@ -1,0 +1,62 @@
+name: pr16-learnset-wiki-followup
+# v3: connect the accepted 1621+49+1 registry; preserve the failed v2 proof without acceptance promotion.
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-wiki-followup.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-learnset-wiki-followup
+  cancel-in-progress: false
+jobs:
+  learnset-wiki:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 保存原本・修復候補・正式拡張registryを照合（旧生成・nativeなし）
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_learnset_wiki_registry_followup.py prepare
+      - name: 別Wiki独立2生成・全原本結合・新36試験・純読取check
+        run: python3 -B scripts/pr16_learnset_wiki_registry_followup.py verify
+      - name: 新Wiki・固定引継ぎ・両ログ・text証拠を記録
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_wiki_registry_followup.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_learnset_wiki_registry_followup.py paths | while IFS= read -r path; do git add -- "$path"; done
+          python3 -B scripts/pr16_learnset_wiki_registry_followup.py guard
+      - name: 同branchへ非force commit/pushし最新refを照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260923-LEARNSET-WIKI: 修復候補の技習得Wiki・原本結合・新36試験・固定引継ぎを確定'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "RESULT=DONE TASK=USER-20260923-LEARNSET-WIKI VERIFY=PASS COMMIT=$sha SCOPE=LEARNSET_WIKI_NOT_GAMEPLAY" | tee .local/pr16-learnset-wiki/proof/result.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-wiki-proof
+          path: .local/pr16-learnset-wiki/proof/
+          retention-days: 30
+          if-no-files-found: error

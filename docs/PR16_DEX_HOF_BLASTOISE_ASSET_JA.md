@@ -1,0 +1,23 @@
+# Blastoise第一画像の圧縮終端を限定診断
+
+正式783分類/91未知を保持する新scope。target083D6B61の4byteを、JP auditのsBlastoise1_Tiles083D655Cへ近傍距離だけで結び付けない。
+
+## 独立sourceと有限reader
+
+pret/pokefirered c75f352304d529f6ba92d4f74b9cf8b5c3810788のgraphics/credits/blastoise_1.pngは80x80 indexed4。新stdlib PNG decoder/4bpp tile serializerと固定gbagfx greedy LZから3200 decoded/1794 consumed/1796 paddedを得る。padding2は除外。14公開source全hash/semantic tokens、JP exact10行、window.h ABIを独立固定する。
+
+登録は画像tableではなくcredits.cの直接INCBIN/実literal。独立JP LoadCreditsMonPic080F5208へwhichMon2で入り、実literal080F52E0からwindow template083D27C8、第一画像literal080F52E4から083D655Cを得る。実BL080F52CEがCopyToWindowPixelBuffer080043D0へwindow1/size0/tileOffset0を渡し、実stride12/offset8のgWindowsからbufferを取得、BL08004418→081C7A90/SWI11へ。
+
+58命令/63保護窓の意味を照合し、選択経路52命令を実行する有限model。InitWindowsの同期成功とwindow1の3200byte disjoint buffer生成、window0用Fill/LoadMonPicがwindow1 epochを保存する条件付き。caller-saved/flags/nonlive RAM消去後も同じ消費を確認。第一reader帰還080F52D2で終了する。InitWindows/Alloc実装、BIOS本体CPU、第二画像、残関数、VRAM/DMA、画面、自然story、全callee/heap/IRQは未証明。
+
+## 陰性の開発観察を保持
+
+手元診断ROMの全SHAは6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3で、正式0641ではない。この別ROMでは同起点からLZ消費1287、終端083D6A63、decoded3200。対象4byteは終端254byte後で、公開PNGの全compressed/decodedとも不一致。対象4byteの保存hash一致だけでsource asset全体一致や型包含にしない。
+
+開発proof JSONは公開PNG陽性fixtureと別ROM陰性fixtureを明確に分離。どちらも現0641測定ではなく、今scopeは0件deltaのみを公開する。現0641が陽性と一致しても次の正式receipt/型変更を自動許可しない。どちらとも違えばfail-closed。
+
+## 初回Actions
+
+新workflow pr16-dex-hof-blastoise-assetは全branch通算初回1run/attempt1/同branch draft HEADに限定。0641候補を1回再構成し全SHA/115owner/保存874hitを再束縛後、今回のconsumerだけを計測する。旧62保存入力から783親を復元し、0件delta/新実測/新suite/由来の閉4JSONを生成時・検証時・公開直前のhash付きで公開する。raw ROM/PNG/圧縮解凍byte/runtime/save/秘密は公開しない。
+
+旧Diploma168/receipt40、minigame152、credits37、旧consumer、旧native、全ROMscanは再走しない。正式ROM/Save101不変、donor0、旧egg15118全域保護、release未受入。

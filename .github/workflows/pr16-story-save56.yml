@@ -1,0 +1,56 @@
+name: pr16-story-save56
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-save56.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-save56
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  continuation:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 4
+      - name: New mansion entrance and unread-floor boundary checks
+        run: |
+          set -euo pipefail
+          # 旧22試験のうち影響ある2件と新規1件だけ。残り20件は原log継承。
+          python3 -B - <<'PYTEST'
+          import subprocess,sys,re
+          names=['test_frontier','test_entry_spawn','test_wild_terrain']
+          p=subprocess.run([sys.executable,'-B','-m','unittest','-v']+['tests.test_pr16_story_save56_measure.Controller.'+n for n in names],capture_output=True)
+          sys.stdout.buffer.write(p.stdout);sys.stderr.buffer.write(p.stderr)
+          lines=[x for x in p.stderr.decode().splitlines()if x.startswith('test_')]
+          assert p.returncode==0 and not p.stdout and len(lines)==3 and all(x.endswith(' ... ok')for x in lines)
+          assert re.search(rb'\nRan 3 tests in [0-9.]+s\n\nOK\n\Z',p.stderr)
+          PYTEST
+          python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save56_measure as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
+      - name: New ordinary mansion traversal and Save56 with independent Continue
+        run: python3 -B scripts/pr16_story_save56_measure.py
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-save56-checkpoint
+          path: .local/pr16-story-save56/artifact
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error
+
+

@@ -1,0 +1,202 @@
+{
+  "accepted_test_reruns": 0,
+  "actions_completion_confirmed": false,
+  "actions_run_id": 38099840927,
+  "actual_consumer_proven": false,
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "donor_safe_bytes": 0,
+  "evidence_bindings": {
+    "content/modernization/pr16_berry_origin_evidence/binding-tests.txt": {
+      "sha256": "3d9e801c682d394f57f480daf8ad019e310ef0bf156c7c32756fa26d99c64bf0",
+      "size": 2433
+    },
+    "content/modernization/pr16_berry_origin_evidence/bounded-binding.json": {
+      "sha256": "f716b57e73c9f0eb51c607752f4b8ef1f35451d1562f6ceed596fc2575a72312",
+      "size": 11034
+    },
+    "content/modernization/pr16_berry_origin_evidence/prior-actions.json": {
+      "sha256": "102ad4eceed6cb8913e7974856c4b578815b30f131a53ebcce457e942be94812",
+      "size": 4801
+    }
+  },
+  "formal_classification_changes": 0,
+  "formal_classified": 788,
+  "formal_unclassified": 86,
+  "full_index_private_guard": {
+    "executed": true,
+    "exit_code": 1,
+    "historical_violations_not_rewritten": true,
+    "passed": false,
+    "raw_private_log_published": false
+  },
+  "full_rom_scans": 0,
+  "native_processes": 0,
+  "new_unit_tests": 20,
+  "next_ja": "保存したBerry近傍の限定identity・公開assetとのlocale差・consumer frontierから、0x086C51BFの現ownerと実readerを有限範囲で結ぶ。公開EN assetや近傍JPsymbolを現ownerと同一視しない。今回の候補復元/限定測定/20試験と旧受入は再走せず、実readerの新scopeだけを検証する。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。",
+  "observed_head_checks": {
+    "all_ci_green_claimed": false,
+    "runs": [
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099845979,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "pull_request",
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099845984,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099841019,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099840955,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099840927,
+        "name": "pr16-berry-origin",
+        "path": ".github/workflows/pr16-berry-origin.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "push",
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099840985,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099840891,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      }
+    ],
+    "source_head": "359d3fae20d5d0e25342c0e1b8daac921aa0e646"
+  },
+  "preserved_inputs": {
+    "AGENTS.md": {
+      "sha256": "e23282e1b1f6a73bba1641bde90417fb87187dea2dfd8682784419088853c0fc",
+      "size": 17278
+    },
+    "CHATGPT_RESUME.md": {
+      "sha256": "563fec8b1ad11b3a80128515c8a4795fb4eca2cfc6407c22e2726a561cee5652",
+      "size": 5102
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/pr16_donor_origins_evidence/symbol-frontier.json": {
+      "sha256": "3601c1f46ca532efa7d75929fff58736b0a4ceddd648c8be64b6acb718a4108f",
+      "size": 13186
+    },
+    "content/modernization/pr16_donor_window_evidence/windows.json": {
+      "sha256": "100dd710037fd958db20191a4bffa8590fb0414a2e252705f1111d75e15e9d2c",
+      "size": 9687
+    },
+    "content/modernization/pr16_sound_origin_reader_checkpoint.json": {
+      "sha256": "dc143165ed8eb918c9890c2aa88bad895536e8e8696ccfb92c1da7ebdec7e074",
+      "size": 10070
+    },
+    "content/modernization/pr16_sound_origin_reader_evidence/actions-completion.json": {
+      "sha256": "512c320accb47fa1414dbc735adc27971a10b5e11e1cc67c53b158b2fc4ab5aa",
+      "size": 874
+    },
+    "content/modernization/pr16_sound_origin_reader_evidence/reader-proof.json": {
+      "sha256": "332f0b623f3d909b043037edc777f7b04a60db2059e1d6945dbe58ab196ab142",
+      "size": 23587
+    },
+    "content/modernization/pr16_sound_origin_reader_evidence/reference-chain.json": {
+      "sha256": "efe463863e51372e43d217cee6585ffc1a759f9f4c2bc33684c6935fe9158bfd",
+      "size": 8515
+    },
+    "content/modernization/pr16_sound_origin_reader_evidence/unknown-frontier.json": {
+      "sha256": "b79a490a8252d505cc6cd2a39976ba81a83f2c9dd59b3c3ce6795e126010cfc1",
+      "size": 37781
+    },
+    "content/modernization/pr16_sound_origin_reader_evidence/window-progress.json": {
+      "sha256": "ec3ba8cf025abab845552f4771391b0f2ed82288f5b93f40abe65e4316cd9ddd",
+      "size": 3093
+    },
+    "content/modernization/pr16_sound_origin_reader_receipt.json": {
+      "sha256": "e5cebf348f1db13318002856a378bbf3ed764d4433d7d7284d7a2cad2b42d20e",
+      "size": 5559
+    },
+    "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
+      "sha256": "dd200aa3a4e0fa581991c9f3553b042398af691977313d57e44fd088e15fa35d",
+      "size": 20300
+    },
+    "scripts/pr16_dex_hof_capacity_actions.py": {
+      "sha256": "3b3802b7326e68c65267d46bd16c8bb65b8ef80420c9352f1b9932a105c94cef",
+      "size": 16248
+    },
+    "state/source-lock.json": {
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4",
+      "size": 3166
+    }
+  },
+  "read_only_check_passed": true,
+  "received_prior_run": 38098087251,
+  "rom_reconstructions": 1,
+  "schema_version": 1,
+  "scoped_final_index_guard": {
+    "historical_guard_pass_claimed": false,
+    "new_private_violations": 0,
+    "status": "PASS"
+  },
+  "selected_unknown_origins": 7,
+  "source_bindings": {
+    ".github/workflows/pr16-berry-origin.yml": {
+      "sha256": "a55a9cd733a3b3778556e0857d8b7445eb99bf6e22fa0f1a3d348244f7ca945f",
+      "size": 1517
+    },
+    "scripts/pr16_berry_origin.py": {
+      "sha256": "8c35d08c0226c034ea216360dbe73267f1a89b238e10f1cc978be1841760b678",
+      "size": 7489
+    },
+    "scripts/pr16_berry_origin_actions.py": {
+      "sha256": "0e67b8699a5e5ac2cff2ed4ab8c3c8e0ab9814e71c3299c3aa35152cd4aa45ca",
+      "size": 20805
+    },
+    "tests/test_pr16_berry_origin.py": {
+      "sha256": "d307b78c69302076d75f4e274ec69b0cc7af733b2a4b3a0cba7080c5e96403e5",
+      "size": 5787
+    }
+  },
+  "source_head": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+  "status": "BERRY_NEIGHBORHOOD_BOUND_PUBLIC_ASSET_DIFFERS_OWNER_PENDING",
+  "task": "USER-20261011-BERRY-ORIGIN-BINDING",
+  "task_graph_passed": true
+}

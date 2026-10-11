@@ -1,0 +1,710 @@
+{
+  "accepted": {
+    "butterfree-exp-first-refuse": {
+      "result": {
+        "all_owners_accepted": false,
+        "boundary": 863,
+        "candidate_sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+        "case": "butterfree-exp-first-refuse",
+        "denied_host_write_apis": 7,
+        "eligible_original_moves": [
+          497
+        ],
+        "encounter": 1964,
+        "enemy_hp_before": 193,
+        "enemy_hp_min": 0,
+        "enemy_level": 76,
+        "enemy_species": 838,
+        "first_question_events": [
+          [
+            2777,
+            136038888,
+            90,
+            2,
+            497
+          ],
+          [
+            2837,
+            136038903,
+            91,
+            1,
+            497
+          ]
+        ],
+        "first_refusal_frame": 2777,
+        "first_refusal_pulses": 1,
+        "fixture": {
+          "level": 43,
+          "min_delta": 1,
+          "mode": 1,
+          "moves": [
+            53,
+            89,
+            33,
+            45
+          ],
+          "name": "butterfree-exp-first-refuse",
+          "points": [
+            15,
+            8,
+            9,
+            10
+          ],
+          "slot": 1
+        },
+        "fresh_cores": 2,
+        "guarded_phases": 3,
+        "initial_party": {
+          "sha256": "e505cd47cd6def8e787c8f840a32553fc2156325f92350fcb4e68248b5bbf2ce",
+          "size": 100
+        },
+        "initial_party_exp_stats_progress_are_fixtures": true,
+        "issue19_complete": false,
+        "level_after": 44,
+        "level_before": 43,
+        "level_frame": 2436,
+        "moves_after": [
+          53,
+          89,
+          33,
+          45
+        ],
+        "native_health": {
+          "phases": {
+            "continued": {
+              "hp": 106,
+              "level": 44,
+              "maximum_hp": 106
+            },
+            "fixture": {
+              "hp": 104,
+              "level": 43,
+              "maximum_hp": 104
+            },
+            "returned": {
+              "hp": 106,
+              "level": 44,
+              "maximum_hp": 106
+            },
+            "saved": {
+              "hp": 106,
+              "level": 44,
+              "maximum_hp": 106
+            }
+          },
+          "source": {
+            "sha256": "25f966c33e868c0d2e928e5e909e87e7f559a9934399738639f33fb9e11d801b",
+            "size": 3013
+          },
+          "status": "PASS"
+        },
+        "outcome": 1,
+        "party_preserved_bytes": 100,
+        "persisted_party": {
+          "sha256": "489a7bc5be4b549c587bfe4f556dd0c141a48bcf1b0fbf3bbfa75c97549099f9",
+          "size": 100
+        },
+        "pp_after": [
+          14,
+          8,
+          9,
+          10
+        ],
+        "pp_spent": 2045,
+        "refusal_opcode": 90,
+        "release_ready": false,
+        "returned": 3069,
+        "save_counters": [
+          2,
+          3,
+          3
+        ],
+        "schema_version": 1,
+        "selection_frame": 0,
+        "selections": 0,
+        "status": "PASS",
+        "stop_confirmation_frame": 2837,
+        "stop_confirmation_pulses": 1,
+        "stop_opcode": 91,
+        "summaries": 0,
+        "summary_frame": 0,
+        "summary_never_opened": true,
+        "turns": 1,
+        "walking_steps": 48,
+        "warnings_errors": 0,
+        "xp_after": 86720,
+        "xp_before": 85183,
+        "xp_threshold": 85184
+      },
+      "run_id": 36071876126,
+      "source_head": "f99b97530b25e11e71ee5d89363d33ca585a8af8"
+    }
+  },
+  "accepted_case_reruns": 0,
+  "actions_completion_confirmed": false,
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+    "size": 33554432
+  },
+  "compiled_sources": {
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_learnset_first_refuse.c": {
+      "sha256": "7fd49871dc952c40bd68cd9d354f63bbe0a863dfd9ba92fc40e14ca2772a1d00",
+      "size": 10270
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    },
+    "tools/pr16_exp_multilevel_trace.h": {
+      "sha256": "aefdffa269bba6cf5c360d2a6944f122bc423d327ceeaf4a45d59584f024eaa6",
+      "size": 2763
+    }
+  },
+  "failures": {},
+  "generated_sources": {
+    "p03_learning_embedded.c": {
+      "sha256": "5a8816ac247919b41d2f7ac1fe22f56642981719535dd346fa35926a3fb32737",
+      "size": 7997
+    },
+    "p03_p02_embedded.c": {
+      "sha256": "82240f4efffe4669285a9cee8fbbb9f02f206829d9ffc24e708b3d4d0c06ae11",
+      "size": 39679
+    },
+    "p03a_fullslots_embedded.c": {
+      "sha256": "9a2cf9482f44669e602937671ae0078bb26e373a83ef0f0311b746420ea5c936",
+      "size": 12878
+    },
+    "pr16_boundaries_helpers.h": {
+      "sha256": "9035465e103796d20edddcf0f083579ffb60c970f279b7cd279653089fbc75cc",
+      "size": 2088
+    },
+    "pr16_boundaries_vectors.h": {
+      "sha256": "50b2e209bb0ff2f6b0af4b6540589f11e167f76bd99bcd5cc1347423a70d675e",
+      "size": 106
+    },
+    "pr16_natural_vectors.h": {
+      "sha256": "87c3de7b8dd531497fe853998015edc2f25005732e64282da0955b3eb145b6ab",
+      "size": 197002
+    },
+    "pr16_natural_walking.h": {
+      "sha256": "b66fd13ddbecf428eb1eb7dd75b9744f3fb418b251b0080b83a1044f197d49d3",
+      "size": 7090
+    },
+    "pr16_progression_archive.c": {
+      "sha256": "c4d683286bde3645140b913ecd542b4b887d8a70c786930471a14a6b027b10d6",
+      "size": 20164
+    }
+  },
+  "host_compiles": 1,
+  "inherited_boundary_checkpoint": {
+    "accepted_cases": [
+      "butterfree-exp-known",
+      "butterfree-exp-multilevel",
+      "butterfree-exp-replace",
+      "butterfree-exp-summary-refuse"
+    ],
+    "identity": {
+      "sha256": "8368e8f7d1657ec685b147d96713e566f377b5aee3536822abfed37eca93ccfa",
+      "size": 46927
+    },
+    "native_reruns": 0,
+    "path": "content/modernization/pr16_learnset_boundaries_checkpoint.json"
+  },
+  "issue19_complete": false,
+  "native_processes": 1,
+  "new_unit_tests": 5,
+  "observed_recent_actions": [
+    {
+      "conclusion": "success",
+      "head_sha": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+      "id": 36071884536,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+      "id": 36071884657,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+      "id": 36071876048,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+      "id": 36071876121,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+      "id": 36071876126,
+      "name": "pr16-learnset-first-refuse",
+      "path": ".github/workflows/pr16-learnset-first-refuse.yml",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+      "id": 36071876065,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "cancelled",
+      "head_sha": "c017c324ef141120434e977cd521d7ec43862ef6",
+      "id": 36071850239,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "c017c324ef141120434e977cd521d7ec43862ef6",
+      "id": 36071850277,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "c017c324ef141120434e977cd521d7ec43862ef6",
+      "id": 36071843929,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "cancelled",
+      "head_sha": "c017c324ef141120434e977cd521d7ec43862ef6",
+      "id": 36071843836,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "c017c324ef141120434e977cd521d7ec43862ef6",
+      "id": 36071843828,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "cancelled",
+      "head_sha": "161a6f07dd3081547b763b74f5c4a2d6c681a063",
+      "id": 36071826847,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "161a6f07dd3081547b763b74f5c4a2d6c681a063",
+      "id": 36071826839,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "cancelled",
+      "head_sha": "161a6f07dd3081547b763b74f5c4a2d6c681a063",
+      "id": 36071818569,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "161a6f07dd3081547b763b74f5c4a2d6c681a063",
+      "id": 36071818591,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "161a6f07dd3081547b763b74f5c4a2d6c681a063",
+      "id": 36071818676,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "161a6f07dd3081547b763b74f5c4a2d6c681a063",
+      "id": 36071818693,
+      "name": "Stage79 mGBA (all)",
+      "path": ".github/workflows/modernization-stage79-mgba.yml",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "e9f9531be7f29ce4f1144fbddb627151b61a34b3",
+      "id": 36071783026,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "e9f9531be7f29ce4f1144fbddb627151b61a34b3",
+      "id": 36071783042,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "e9f9531be7f29ce4f1144fbddb627151b61a34b3",
+      "id": 36071775564,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    }
+  ],
+  "proof_bindings": {
+    "butterfree-exp-first-refuse.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "butterfree-exp-first-refuse.stderr.txt": {
+      "sha256": "25f966c33e868c0d2e928e5e909e87e7f559a9934399738639f33fb9e11d801b",
+      "size": 3013
+    },
+    "butterfree-exp-first-refuse.stdout.txt": {
+      "sha256": "030cc3cf5bab152e555047507a3ebb99dc98c1616ee9e8362e977369e146ddc6",
+      "size": 1008
+    },
+    "compile.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "geometry.json": {
+      "sha256": "cce7d5aa97dfa5776f2ef2dcc45de3eb6db30f971b3b10c0659b943ccefc964c",
+      "size": 1937
+    },
+    "original-source.json": {
+      "sha256": "f8bf5251cc7d27938c81c32ec77874897ff7240341922000e3a8f96584d6feb6",
+      "size": 1324
+    },
+    "recipe.json": {
+      "sha256": "f90867542da84fd00ef3a8f274a0bba873e4b1ef6cb501b3d4bed111d55e05f1",
+      "size": 71099
+    },
+    "unit-reuse.json": {
+      "sha256": "41b0fda4579c5e13853e08dd3f63e09ee82045282c210932d4d3bd4d95e0bd83",
+      "size": 702
+    },
+    "unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "unit.stderr.txt": {
+      "sha256": "d1b5e3dcc0b97843aae4a1b3e98f07763ea157194873625d2f4d0f06d6fe405c",
+      "size": 899
+    },
+    "unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "vectors.json": {
+      "sha256": "51ffa3437da1f5e2377d2df11fa603efe1311755f4656627877786d5707f3294",
+      "size": 352
+    }
+  },
+  "protected_bindings": {
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_learnset_battle_checkpoint.json": {
+      "sha256": "a1f99fae7693dd5f51d34e774d9c6bf43985b7e9515226f747ec3230c24b8b59",
+      "size": 17707
+    },
+    "content/modernization/pr16_learnset_boundaries_checkpoint.json": {
+      "sha256": "8368e8f7d1657ec685b147d96713e566f377b5aee3536822abfed37eca93ccfa",
+      "size": 46927
+    },
+    "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json": {
+      "sha256": "7623c9b5eca00c5a96669815eaa320c9afb4c783279f359ba4268477bdc06143",
+      "size": 32995
+    },
+    "content/modernization/pr16_learnset_entry_repair_checkpoint.json": {
+      "sha256": "8dee3523f709fdc663cf03e617a15c550454658c3d462fba421eb075313a24b6",
+      "size": 69331
+    },
+    "content/modernization/pr16_learnset_natural_checkpoint.json": {
+      "sha256": "f15336e39b840f21bcd7ef30a0b1989421a0516ffd80a7a527266186e69fdf69",
+      "size": 93858
+    },
+    "content/modernization/pr16_learnset_progression_checkpoint.json": {
+      "sha256": "be5a1684a51e9bcced727139e5a243edab6c806a76f3518ccbc3f72e7ca3b412",
+      "size": 45167
+    },
+    "content/modernization/pr16_learnset_supply_native_checkpoint.json": {
+      "sha256": "75f6fd498056a7b2c60822fb99f2d36a47fd8eab0b8d0422e12dda58efc22dd8",
+      "size": 57961
+    },
+    "content/modernization/pr16_learnset_wiki_checkpoint.json": {
+      "sha256": "71b538f186b03ca3a725a84cd87baa41d72ca2ef0fb43ce22dec0e198cdefbe7",
+      "size": 45627
+    },
+    "content/modernization/pr16_learnset_wiki_completed_actions.json": {
+      "sha256": "4c200406ab0a3895a44a82cb81d71dde1f99aaa1a281eba1da3e851062bf1808",
+      "size": 9673
+    },
+    "docs/PR16_LEARNSET_BOUNDARIES_JA.md": {
+      "sha256": "da589edbd6d572b57840863578610afb5f0f1d045332122c72ec00bcb49b46d0",
+      "size": 2919
+    },
+    "docs/PR16_LEARNSET_ENTRY_REPAIR_JA.md": {
+      "sha256": "ae50455ee1ed588ecc331a2fc8bf4c9be54d774239c99c1bb81c38e22375697b",
+      "size": 2422
+    },
+    "docs/PR16_LEARNSET_NATURAL_JA.md": {
+      "sha256": "9a44a35c566df54043d9ab4558c7b3773145af6cf00a0e0402d3cdc4d4fe60f8",
+      "size": 2586
+    },
+    "docs/PR16_LEARNSET_PROGRESSION_JA.md": {
+      "sha256": "2d185c6a03df18aa63e7bb587095266dea2033eff0e5e3061e3d61d06277d4f5",
+      "size": 1640
+    },
+    "tools/mgba_pr16_learnset_boundaries.c": {
+      "sha256": "a11747ba2ebffb5d780afb7feb87535f18a20dea8ef3dce28b47009e65b3a241",
+      "size": 9467
+    }
+  },
+  "release_ready": false,
+  "results": [
+    {
+      "all_owners_accepted": false,
+      "boundary": 863,
+      "candidate_sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+      "case": "butterfree-exp-first-refuse",
+      "denied_host_write_apis": 7,
+      "eligible_original_moves": [
+        497
+      ],
+      "encounter": 1964,
+      "enemy_hp_before": 193,
+      "enemy_hp_min": 0,
+      "enemy_level": 76,
+      "enemy_species": 838,
+      "first_question_events": [
+        [
+          2777,
+          136038888,
+          90,
+          2,
+          497
+        ],
+        [
+          2837,
+          136038903,
+          91,
+          1,
+          497
+        ]
+      ],
+      "first_refusal_frame": 2777,
+      "first_refusal_pulses": 1,
+      "fixture": {
+        "level": 43,
+        "min_delta": 1,
+        "mode": 1,
+        "moves": [
+          53,
+          89,
+          33,
+          45
+        ],
+        "name": "butterfree-exp-first-refuse",
+        "points": [
+          15,
+          8,
+          9,
+          10
+        ],
+        "slot": 1
+      },
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_party": {
+        "sha256": "e505cd47cd6def8e787c8f840a32553fc2156325f92350fcb4e68248b5bbf2ce",
+        "size": 100
+      },
+      "initial_party_exp_stats_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 44,
+      "level_before": 43,
+      "level_frame": 2436,
+      "moves_after": [
+        53,
+        89,
+        33,
+        45
+      ],
+      "native_health": {
+        "phases": {
+          "continued": {
+            "hp": 106,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "fixture": {
+            "hp": 104,
+            "level": 43,
+            "maximum_hp": 104
+          },
+          "returned": {
+            "hp": 106,
+            "level": 44,
+            "maximum_hp": 106
+          },
+          "saved": {
+            "hp": 106,
+            "level": 44,
+            "maximum_hp": 106
+          }
+        },
+        "source": {
+          "sha256": "25f966c33e868c0d2e928e5e909e87e7f559a9934399738639f33fb9e11d801b",
+          "size": 3013
+        },
+        "status": "PASS"
+      },
+      "outcome": 1,
+      "party_preserved_bytes": 100,
+      "persisted_party": {
+        "sha256": "489a7bc5be4b549c587bfe4f556dd0c141a48bcf1b0fbf3bbfa75c97549099f9",
+        "size": 100
+      },
+      "pp_after": [
+        14,
+        8,
+        9,
+        10
+      ],
+      "pp_spent": 2045,
+      "refusal_opcode": 90,
+      "release_ready": false,
+      "returned": 3069,
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "selection_frame": 0,
+      "selections": 0,
+      "status": "PASS",
+      "stop_confirmation_frame": 2837,
+      "stop_confirmation_pulses": 1,
+      "stop_opcode": 91,
+      "summaries": 0,
+      "summary_frame": 0,
+      "summary_never_opened": true,
+      "turns": 1,
+      "walking_steps": 48,
+      "warnings_errors": 0,
+      "xp_after": 86720,
+      "xp_before": 85183,
+      "xp_threshold": 85184
+    }
+  ],
+  "rom_changes_from_accepted_candidate": 0,
+  "run_id": 36071876126,
+  "schema_version": 1,
+  "selected_cases": [
+    "butterfree-exp-first-refuse"
+  ],
+  "source_bindings": {
+    ".github/workflows/pr16-learnset-first-refuse.yml": {
+      "sha256": "8f0a83eb1effbb394e9815cca8b4528dd8d0ae9d38b7589920b7668d5daea7aa",
+      "size": 3632
+    },
+    "scripts/pr16_exp_health_policy.py": {
+      "sha256": "e42f9b4283494b33c87e4339ecc733d42dcf8652c362add17dae1a8d7c14dc47",
+      "size": 9913
+    },
+    "scripts/pr16_exp_multilevel.py": {
+      "sha256": "f4ee5e21a9a181ec75a1551ae9a601500825e442622207a9f387bb88f260349e",
+      "size": 3756
+    },
+    "scripts/pr16_first_refuse_jp.py": {
+      "sha256": "bd87b1257773b587e1c563cc89fb2b2486f56b078c912f0052dd9e4c4ec36d08",
+      "size": 4117
+    },
+    "scripts/pr16_learnset_boundaries.py": {
+      "sha256": "930ac803c21f637112d43009981a818e3d8076cf0e8a5fcfbc9fc376f2b0f44a",
+      "size": 21207
+    },
+    "scripts/pr16_learnset_first_refuse.py": {
+      "sha256": "0e143e468f73fa6207cbc4a694389e5e64dd7dd11acdeb60d9cedbc9663d9258",
+      "size": 16128
+    },
+    "tests/test_pr16_first_refuse_jp.py": {
+      "sha256": "a35f845cdb75dc733cff523a1b545d296958de66bb2ca41d31580c1c3965bfa2",
+      "size": 1730
+    },
+    "tests/test_pr16_learnset_first_refuse.py": {
+      "sha256": "77dd88f258919b4d217cf58c9cb1e5c7cc416d88cef2b20ae22286685d3ca4b8",
+      "size": 8700
+    },
+    "tools/mgba_pr16_learnset_boundaries.c": {
+      "sha256": "a11747ba2ebffb5d780afb7feb87535f18a20dea8ef3dce28b47009e65b3a241",
+      "size": 9467
+    },
+    "tools/mgba_pr16_learnset_first_refuse.c": {
+      "sha256": "7fd49871dc952c40bd68cd9d354f63bbe0a863dfd9ba92fc40e14ca2772a1d00",
+      "size": 10270
+    },
+    "tools/pr16_exp_multilevel_trace.h": {
+      "sha256": "aefdffa269bba6cf5c360d2a6944f122bc423d327ceeaf4a45d59584f024eaa6",
+      "size": 2763
+    }
+  },
+  "source_head": "f99b97530b25e11e71ee5d89363d33ca585a8af8",
+  "status": "PASS_BATTLE_EXP_FIRST_REFUSAL",
+  "task": "USER-20260925-LEARNSET-FIRST-REFUSE",
+  "wiki_generations": 0
+}

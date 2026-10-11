@@ -1,0 +1,58 @@
+{
+  "accepted_case_reruns": 0,
+  "actions_completion_confirmed": true,
+  "actions_conclusion": "success",
+  "candidate": {
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+    "size": 33554432
+  },
+  "compiles": 0,
+  "completed_record_head": "4aa8fbb84f33439ad438c37e8c3b158700a44fd0",
+  "completion_record": "content/modernization/pr16_story_followup_20260929_completion.json",
+  "current_save": {
+    "bytes_changed": 0,
+    "identity": {
+      "sha256": "5c4a03b9d92f7be54250d565162b03b5b85a2f221c3873d26d894b74b76778ce",
+      "size": 131088
+    },
+    "national_magic": 0
+  },
+  "evidence": "content/modernization/pr16_national_dex_owner_evidence/audit.json",
+  "evolution_accepted": false,
+  "maori_record_completed_head": "3af810957b9d86578c595b11b0a8a67a0276a289",
+  "maori_record_completed_run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "598c5a7b0fd5202fdee4a8fde519aab268ac3114",
+    "id": 36504857429,
+    "path": ".github/workflows/pr16-story-fast-maori-record.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "measurement_complete": true,
+  "national_dex_gameplay_unlock_accepted": false,
+  "native_processes": 0,
+  "new_tests": 14,
+  "next_goal_ja": "マオリSave16と全国図鑑grant ownerの限定照合は完了。story-fastはartifact11006311891のstory-fast.srm、map3/19(53,10)から通常storyを続ける。全国図鑑のVega側経路はmap3/0のvar0x4072=9→10→map4/3へwarp、同研究所のvar10イベント→special367→var11の保存状態。var9に至る通常進行と有効化後の自然進化は未受入。legacy var0x4055=7経路を序盤で到達済みと扱わず、flag/var注入やgate緩和はしない。元progression戦闘前Axewを保全し、正規解禁後の別境界で成長/進化/Lucky Egg対照/12ケース/Lv100soakへ進む。旧受入入力・44試験・このowner走査の無影響再実行は禁止。",
+  "release_ready": false,
+  "rom_changes": 0,
+  "run_id": 36505642387,
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-national-dex-owner.yml": {
+      "sha256": "74a25d733fe3f04319e5f9c8429d7e1a763c0bff104127aa7ff31bfd92ecdc40",
+      "size": 2080
+    },
+    "scripts/pr16_national_dex_owner.py": {
+      "sha256": "edd6710bb8815e16b11c5c39557a27c27ebeb5e89ad78d77f0eb8b425363258e",
+      "size": 14466
+    },
+    "tests/test_pr16_national_dex_owner.py": {
+      "sha256": "77ea9af96f197a5e3384753ed26fce222aadac8d3cd67c6bab99044068c2ec2e",
+      "size": 2151
+    }
+  },
+  "source_head": "e86a3c81ca07886739d94404b6c2bc7df39e5255",
+  "status": "PASS_NATIONAL_DEX_GRANT_OWNER_SCOPED",
+  "task": "USER-20260929-NATIONAL-DEX-OWNER"
+}

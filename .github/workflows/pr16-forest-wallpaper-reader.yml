@@ -1,0 +1,43 @@
+name: pr16-forest-wallpaper-reader
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_forest_wallpaper_reader.py
+      - scripts/pr16_forest_wallpaper_reader_actions.py
+      - tests/test_pr16_forest_wallpaper_reader.py
+      - .github/workflows/pr16-forest-wallpaper-reader.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-forest-wallpaper-reader
+  cancel-in-progress: false
+jobs:
+  forest-reader:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: New scoped ARM layout and reconstruction tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev
+      - name: Forest actual reader allocation success and failure
+        run: python3 -B scripts/pr16_forest_wallpaper_reader_actions.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-forest-reader-public-text
+          path: .local/pr16-forest-reader/public
+          if-no-files-found: ignore

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "artifacts": {
+    "source": {
+      "run_id": 35351832671,
+      "job_id": 105621561133,
+      "artifact_id": 10550280062,
+      "tested_head": "fc1d13e5e793566db1ce0b7a9e2353af402d3302",
+      "name": "pr16-circus-source",
+      "workflow": ".github/workflows/pr16-circus-source.yml",
+      "artifact_identity": {
+        "size": 175368,
+        "sha256": "77df3fa629c57c74a57bc702ccfb730ef8998922e63aa0c83026afea52abc29b"
+      },
+      "conclusion": "success",
+      "with_manifest": true,
+      "required_success_steps": [
+        "新しいCircus pending実装だけを現行CFRU APIと検証",
+        "固定compilerを検証し新コードを独立compile",
+        "固定sourceとlink metadataだけを採取"
+      ]
+    },
+    "link": {
+      "run_id": 35353620141,
+      "job_id": 105627467136,
+      "artifact_id": 10550587542,
+      "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a",
+      "name": "pr16-circus-link",
+      "workflow": ".github/workflows/pr16-circus-link.yml",
+      "artifact_identity": {
+        "size": 195387,
+        "sha256": "2e371907b9d2e3c2daa7c1b0daeb43bda5ace63e671caac5de0d020c974152cf"
+      },
+      "conclusion": "success",
+      "with_manifest": true,
+      "required_success_steps": [
+        "新規ELF異常境界のみ",
+        "新しいCircus ARMを実ownerへlinkし受付rootを照合"
+      ]
+    },
+    "ci": {
+      "run_id": 35353620112,
+      "job_id": 105627466619,
+      "artifact_id": 10550417336,
+      "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a",
+      "name": "p03-forgetting-ci-push",
+      "workflow": ".github/workflows/p03-forgetting-ci.yml",
+      "artifact_identity": {
+        "size": 2170,
+        "sha256": "39406946273db6068bcba1b48797f08fe9c43c535e41c49d8efd40da4ed79cc3"
+      },
+      "conclusion": "success",
+      "with_manifest": false,
+      "required_success_steps": [
+        "Restore exact pinned integration originals for current acceptance",
+        "Forty regression checks and exact accepted originals"
+      ]
+    },
+    "failed_link": {
+      "run_id": 35352684227,
+      "job_id": 105624349047,
+      "artifact_id": 10550731943,
+      "tested_head": "70e30fe6199c900042cfac09426583adea68a451",
+      "name": "pr16-circus-link",
+      "workflow": ".github/workflows/pr16-circus-link.yml",
+      "artifact_identity": {
+        "size": 25986,
+        "sha256": "f01118e0fe1d40c6aa7de60ed9401ea8ffdfb1e80df3949e33ed05059b7e66b0"
+      },
+      "conclusion": "failure",
+      "with_manifest": true,
+      "required_success_steps": [
+        "新規ELF異常境界のみ"
+      ]
+    }
+  },
+  "ci_sources": {
+    "tests/test_modernization_p08_forgetting_evidence.py": {
+      "size": 14085,
+      "sha256": "ac711e9b7d83e54d0863c9c9eeeedbe41211aa8c95e9dd89a156147a3dc2e052"
+    },
+    "scripts/record_modernization_p03_forgetting.py": {
+      "size": 19545,
+      "sha256": "6b8111884e783ba256632878c97fc45d588da74b36de16cf864b1416e6110c9e"
+    },
+    "tests/test_modernization_remaining_routes.py": {
+      "size": 9594,
+      "sha256": "e0ea428efc542c335e6b0823d1b1ec085cb536ed6d398383fe8cb5d42a48e4c2"
+    },
+    ".github/workflows/p03-forgetting-ci.yml": {
+      "size": 1967,
+      "sha256": "f4fc8c1adb74b496bf670a36b0d8719a0c893721984d4be5514d0d4bdc650044"
+    }
+  }
+}

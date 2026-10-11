@@ -1,0 +1,59 @@
+name: pr16-wiki-r0-build
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_wiki_r0_build.py
+      - scripts/pr16_wiki_r0_publish.py
+      - tests/test_pr16_wiki_r0_build.py
+      - .github/workflows/pr16-wiki-r0-build.yml
+      - content/modernization/pr16_wiki_r0_presentation.json
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-wiki-r0-build
+  cancel-in-progress: false
+jobs:
+  wiki-r0:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: R0の新しいfocused試験とtask graph
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-wiki-r0-build/proof
+          if [ ! -f content/modernization/pr16_wiki_r0_presentation.json ]; then
+            python3 -B -m unittest discover -s tests -p test_pr16_wiki_r0_build.py -v >.local/pr16-wiki-r0-build/proof/unit.txt 2>&1
+          else
+            printf 'R0生成とfocused試験は完了原本を継承。提示receiptだけを照合。\n' >.local/pr16-wiki-r0-build/proof/unit-inherited.txt
+          fi
+          python3 -B scripts/validate_task_graph.py >.local/pr16-wiki-r0-build/proof/task-graph.txt
+      - name: R0生成または提示receiptを検証して非force反映
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_wiki_r0_publish.py --tests 35
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-wiki-r0-build-proof
+          path: .local/pr16-wiki-r0-build/proof/
+          include-hidden-files: true
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-wiki-r0-build-context
+          path: .local/pr16-wiki-r0-build/context.zip
+          include-hidden-files: true
+          if-no-files-found: warn

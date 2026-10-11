@@ -1,0 +1,686 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-CLOCK-CONTRACTS",
+  "source_head": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+  "run_id": 35091501711,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "SAVED_GPIO_MONTH_TABLE_AND_THUNK_CONTRACTS_NOT_HARDWARE_OR_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "prior_original_verified": {
+      "archive": {
+        "id": 10443871750,
+        "size": 5484,
+        "sha256": "b2a7fa32c327583ef9fdc066a9a679764bc1578fb3c19b5d959c646437f9a71c"
+      },
+      "receipt": {
+        "status": "PASS_RECORDED_NONFORCE_PUSHED",
+        "task": "PR-P08-7-RING-UNREAD-FRONTIER",
+        "source_head": "d202443b94604ebffa1396104eec495611480e46",
+        "commit": "e0ecbcda36b6cbd27af9ae04dd4a20162ba44285",
+        "run_id": 35090180714,
+        "tests": {
+          "tests_run": 42,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "successful": true
+        },
+        "outputs": [
+          "content/modernization/pr16_ring_unread_frontier.json",
+          "content/modernization/pr16_native_supply_resume_20260913.json",
+          "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+          "content/modernization/p08_remaining_work.json",
+          "design/run_log.md",
+          "design/version_log.md"
+        ],
+        "new_emulator_processes": 0,
+        "ring_acquisition_accepted": false,
+        "release_ready": false
+      },
+      "guard": {
+        "base": "04a56ac7d3c499ae0d63ebf09c9e119ee90d23df",
+        "changed_paths": [
+          ".github/workflows/pr16-ring-unread-frontier.yml",
+          "content/modernization/p08_remaining_work.json",
+          "content/modernization/pr16_native_supply_resume_20260913.json",
+          "content/modernization/pr16_ring_unread_frontier.json",
+          "design/run_log.md",
+          "design/version_log.md",
+          "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+          "scripts/pr16_ring_unread_frontier.py",
+          "tests/test_pr16_ring_unread_frontier.py"
+        ],
+        "new_violations": 0,
+        "full_guard_before": 1,
+        "full_guard_after": 1,
+        "exact_output_match": true,
+        "full_guard_pass_claimed": false
+      },
+      "original_failure": {
+        "id": 35090013920,
+        "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      "failure_stage": "missing_preflight_before_candidate_restore"
+    },
+    "counts": {
+      "read_vectors": 1024,
+      "write_vectors": 1792,
+      "valid_month_day_vectors": 2816,
+      "month_extent_vectors": 765
+    },
+    "byte_bindings": {
+      "0x0912C4A8": {
+        "size": 172,
+        "sha256": "abbd2f4c9961acceeea01cb167036abe17285368aad88f167b09c09bad8be20e"
+      },
+      "0x0912C554": {
+        "size": 168,
+        "sha256": "bd0cd5ebbad96e7cca6ad5ab95703e008f3d1a54d93fadbe36aa86ce64a5edea"
+      },
+      "0x09099E04": {
+        "size": 14,
+        "sha256": "977383a5ac7e225071545010308a27d3bf0de21000770a0ef62b5f0fdbea5530"
+      },
+      "0x09099E5C": {
+        "size": 4,
+        "sha256": "1f73cdedf6e1b8759299d2351cd563d95a873c799fcdaff7883a8002947d168a"
+      },
+      "0x09169530": {
+        "size": 48,
+        "sha256": "8d37c81b9a47c1b878313f8a5fa9a3f69ed9eb4dfcb83e949037e3fa5b4f9eb3"
+      },
+      "0x09126EFC": {
+        "size": 356,
+        "sha256": "585bca349893446b98ae29c53ef52a48803da3363e4cd0d4104c774a3f1a7cc5"
+      }
+    },
+    "gpio_read": {
+      "entry": 152224936,
+      "command": 99,
+      "serial_bit_order": "LSB_FIRST",
+      "buffer_written_offset": 7,
+      "result_bits": "input bits 7,6 retained; input bits 5,3,1 become output bits 2,1,0",
+      "returns": 1,
+      "busy_read": false,
+      "busy_after": 0,
+      "buffer_0_to_6_preserved": true,
+      "supplied_io_stream_only": true
+    },
+    "gpio_write": {
+      "entry": 152225108,
+      "command": 98,
+      "payload_forced_bit": 64,
+      "payload_bits": "input bits 2,1,0 become payload bits 5,3,1; all other input bits ignored",
+      "command_order": "MSB_FIRST",
+      "payload_order": "LSB_FIRST",
+      "returns": 1,
+      "busy_read": false,
+      "busy_after": 0
+    },
+    "date": {
+      "month_table": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
+      "valid_months_tested": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "day_bytes_per_month": 256,
+      "day_zero_accepted": true,
+      "february_prefix_replayed": false,
+      "invalid_month_values": 244,
+      "invalid_month_outside_table_reads": {
+        "0x00": 152474924,
+        "0x0A": 152475944,
+        "0x0B": 152475944,
+        "0x0C": 152475944,
+        "0x0D": 152475944,
+        "0x0E": 152475944,
+        "0x0F": 152475944,
+        "0x13": 152474976,
+        "0x14": 152474980,
+        "0x15": 152474984,
+        "0x16": 152474988,
+        "0x17": 152474992,
+        "0x18": 152474996,
+        "0x19": 152475000,
+        "0x1A": 152475944,
+        "0x1B": 152475944,
+        "0x1C": 152475944,
+        "0x1D": 152475944,
+        "0x1E": 152475944,
+        "0x1F": 152475944,
+        "0x20": 152475004,
+        "0x21": 152475008,
+        "0x22": 152475012,
+        "0x23": 152475016,
+        "0x24": 152475020,
+        "0x25": 152475024,
+        "0x26": 152475028,
+        "0x27": 152475032,
+        "0x28": 152475036,
+        "0x29": 152475040,
+        "0x2A": 152475944,
+        "0x2B": 152475944,
+        "0x2C": 152475944,
+        "0x2D": 152475944,
+        "0x2E": 152475944,
+        "0x2F": 152475944,
+        "0x30": 152475044,
+        "0x31": 152475048,
+        "0x32": 152475052,
+        "0x33": 152475056,
+        "0x34": 152475060,
+        "0x35": 152475064,
+        "0x36": 152475068,
+        "0x37": 152475072,
+        "0x38": 152475076,
+        "0x39": 152475080,
+        "0x3A": 152475944,
+        "0x3B": 152475944,
+        "0x3C": 152475944,
+        "0x3D": 152475944,
+        "0x3E": 152475944,
+        "0x3F": 152475944,
+        "0x40": 152475084,
+        "0x41": 152475088,
+        "0x42": 152475092,
+        "0x43": 152475096,
+        "0x44": 152475100,
+        "0x45": 152475104,
+        "0x46": 152475108,
+        "0x47": 152475112,
+        "0x48": 152475116,
+        "0x49": 152475120,
+        "0x4A": 152475944,
+        "0x4B": 152475944,
+        "0x4C": 152475944,
+        "0x4D": 152475944,
+        "0x4E": 152475944,
+        "0x4F": 152475944,
+        "0x50": 152475124,
+        "0x51": 152475128,
+        "0x52": 152475132,
+        "0x53": 152475136,
+        "0x54": 152475140,
+        "0x55": 152475144,
+        "0x56": 152475148,
+        "0x57": 152475152,
+        "0x58": 152475156,
+        "0x59": 152475160,
+        "0x5A": 152475944,
+        "0x5B": 152475944,
+        "0x5C": 152475944,
+        "0x5D": 152475944,
+        "0x5E": 152475944,
+        "0x5F": 152475944,
+        "0x60": 152475164,
+        "0x61": 152475168,
+        "0x62": 152475172,
+        "0x63": 152475176,
+        "0x64": 152475180,
+        "0x65": 152475184,
+        "0x66": 152475188,
+        "0x67": 152475192,
+        "0x68": 152475196,
+        "0x69": 152475200,
+        "0x6A": 152475944,
+        "0x6B": 152475944,
+        "0x6C": 152475944,
+        "0x6D": 152475944,
+        "0x6E": 152475944,
+        "0x6F": 152475944,
+        "0x70": 152475204,
+        "0x71": 152475208,
+        "0x72": 152475212,
+        "0x73": 152475216,
+        "0x74": 152475220,
+        "0x75": 152475224,
+        "0x76": 152475228,
+        "0x77": 152475232,
+        "0x78": 152475236,
+        "0x79": 152475240,
+        "0x7A": 152475944,
+        "0x7B": 152475944,
+        "0x7C": 152475944,
+        "0x7D": 152475944,
+        "0x7E": 152475944,
+        "0x7F": 152475944,
+        "0x80": 152475244,
+        "0x81": 152475248,
+        "0x82": 152475252,
+        "0x83": 152475256,
+        "0x84": 152475260,
+        "0x85": 152475264,
+        "0x86": 152475268,
+        "0x87": 152475272,
+        "0x88": 152475276,
+        "0x89": 152475280,
+        "0x8A": 152475944,
+        "0x8B": 152475944,
+        "0x8C": 152475944,
+        "0x8D": 152475944,
+        "0x8E": 152475944,
+        "0x8F": 152475944,
+        "0x90": 152475284,
+        "0x91": 152475288,
+        "0x92": 152475292,
+        "0x93": 152475296,
+        "0x94": 152475300,
+        "0x95": 152475304,
+        "0x96": 152475308,
+        "0x97": 152475312,
+        "0x98": 152475316,
+        "0x99": 152475320,
+        "0x9A": 152475944,
+        "0x9B": 152475944,
+        "0x9C": 152475944,
+        "0x9D": 152475944,
+        "0x9E": 152475944,
+        "0x9F": 152475944,
+        "0xA0": 152475944,
+        "0xA1": 152475944,
+        "0xA2": 152475944,
+        "0xA3": 152475944,
+        "0xA4": 152475944,
+        "0xA5": 152475944,
+        "0xA6": 152475944,
+        "0xA7": 152475944,
+        "0xA8": 152475944,
+        "0xA9": 152475944,
+        "0xAA": 152475944,
+        "0xAB": 152475944,
+        "0xAC": 152475944,
+        "0xAD": 152475944,
+        "0xAE": 152475944,
+        "0xAF": 152475944,
+        "0xB0": 152475944,
+        "0xB1": 152475944,
+        "0xB2": 152475944,
+        "0xB3": 152475944,
+        "0xB4": 152475944,
+        "0xB5": 152475944,
+        "0xB6": 152475944,
+        "0xB7": 152475944,
+        "0xB8": 152475944,
+        "0xB9": 152475944,
+        "0xBA": 152475944,
+        "0xBB": 152475944,
+        "0xBC": 152475944,
+        "0xBD": 152475944,
+        "0xBE": 152475944,
+        "0xBF": 152475944,
+        "0xC0": 152475944,
+        "0xC1": 152475944,
+        "0xC2": 152475944,
+        "0xC3": 152475944,
+        "0xC4": 152475944,
+        "0xC5": 152475944,
+        "0xC6": 152475944,
+        "0xC7": 152475944,
+        "0xC8": 152475944,
+        "0xC9": 152475944,
+        "0xCA": 152475944,
+        "0xCB": 152475944,
+        "0xCC": 152475944,
+        "0xCD": 152475944,
+        "0xCE": 152475944,
+        "0xCF": 152475944,
+        "0xD0": 152475944,
+        "0xD1": 152475944,
+        "0xD2": 152475944,
+        "0xD3": 152475944,
+        "0xD4": 152475944,
+        "0xD5": 152475944,
+        "0xD6": 152475944,
+        "0xD7": 152475944,
+        "0xD8": 152475944,
+        "0xD9": 152475944,
+        "0xDA": 152475944,
+        "0xDB": 152475944,
+        "0xDC": 152475944,
+        "0xDD": 152475944,
+        "0xDE": 152475944,
+        "0xDF": 152475944,
+        "0xE0": 152475944,
+        "0xE1": 152475944,
+        "0xE2": 152475944,
+        "0xE3": 152475944,
+        "0xE4": 152475944,
+        "0xE5": 152475944,
+        "0xE6": 152475944,
+        "0xE7": 152475944,
+        "0xE8": 152475944,
+        "0xE9": 152475944,
+        "0xEA": 152475944,
+        "0xEB": 152475944,
+        "0xEC": 152475944,
+        "0xED": 152475944,
+        "0xEE": 152475944,
+        "0xEF": 152475944,
+        "0xF0": 152475944,
+        "0xF1": 152475944,
+        "0xF2": 152475944,
+        "0xF3": 152475944,
+        "0xF4": 152475944,
+        "0xF5": 152475944,
+        "0xF6": 152475944,
+        "0xF7": 152475944,
+        "0xF8": 152475944,
+        "0xF9": 152475944,
+        "0xFA": 152475944,
+        "0xFB": 152475944,
+        "0xFC": 152475944,
+        "0xFD": 152475944,
+        "0xFE": 152475944,
+        "0xFF": 152475944
+      },
+      "outside_stop_is_model_boundary_not_hardware_fault": true,
+      "out_of_table_values_or_runtime_outcomes_proven": false
+    },
+    "thunk": {
+      "entry": 151625220,
+      "bl_site": 151625222,
+      "local_target": 151625230,
+      "literal_address": 151625308,
+      "unread_tail_target": 136086949,
+      "saved_lr_bytes": 4,
+      "callee_entry_sp_mod8_delta": 4,
+      "conditional_suffix_ja": "外部calleeがSPと保存LRを保持して戻る場合だけ、r1=r0の後に保存LRへ帰還。",
+      "external_return_or_abi_proven": false,
+      "remainder_semantics_proven": false,
+      "leap_year_suffix_proven": false
+    },
+    "unread_external_targets": [
+      136086949
+    ],
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "old_frontier_removed": false,
+    "all_callers_resolved": false,
+    "all_runtime_owners_excluded": false,
+    "caller_pointer_size_limit_proven": false,
+    "physical_hardware_behavior_proven": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0,
+    "candidate_reconstructions": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_clock_contracts.py": {
+      "size": 17570,
+      "sha256": "383c1c1425559f24aa73180a44747044555ce1a9ff65a4948fc2ce873bf35acf"
+    },
+    "tests/test_pr16_ring_clock_contracts.py": {
+      "size": 8697,
+      "sha256": "8e5bc302d5757969b353fcab168c44e271330a08807f2e8a0a6b1a24bdd28450"
+    },
+    ".github/workflows/pr16-ring-clock-contracts.yml": {
+      "size": 1937,
+      "sha256": "95aad4330f99994c1f7d1e50d0b1639c54862ff45507983e58dd1a2f5ec2226a"
+    },
+    "content/modernization/pr16_ring_unread_frontier.json": {
+      "size": 13830,
+      "sha256": "1b7e08195d8c2d3f7d326e79102d760d6801eb9274ebf3e3131cc963b041a7df"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "content/modernization/pr16_ring_branch_frontier.json": {
+      "size": 18753,
+      "sha256": "3c1ea4c589af430f115a0a6ed02c330e41e609fb14fdc6f60e9c01090a80861b"
+    },
+    "content/modernization/pr16_ring_delegate_contracts.json": {
+      "size": 11904,
+      "sha256": "3423377b57a598d22e36a1f1447e44172a8bf65bdb73a0d3c269877b918df77d"
+    },
+    "scripts/pr16_ring_delegate_contracts.py": {
+      "size": 22642,
+      "sha256": "df3016656c40b1a46b2926405c4fc520e5d5637408fa4b9de94dfd3dcad5c3d7"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "content/modernization/pr16_ring_selector_owners.json": {
+      "size": 1704471,
+      "sha256": "64e746c4b085f85afb180bbf03299c84ae7efebd1e72964f5f0195e97d553727"
+    },
+    "content/modernization/pr16_ring_record_callers.json": {
+      "size": 102561,
+      "sha256": "622b9d69ef96fc0d975fc4e1bec5e08c4d07e85ee0ddea5a4f8fe538fa65d77a"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 36,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35090180714,
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35091504833,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 35091504807,
+      "name": "source-validation",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35091501705,
+      "name": "source-validation",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35091501646,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35091501711,
+      "name": "保存GPIO2delegate・月表境界・中継契約",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35091501635,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35091501692,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35090375597,
+      "name": "source-validation",
+      "head_sha": "e0ecbcda36b6cbd27af9ae04dd4a20162ba44285",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35090375744,
+      "name": "p03-forgetting-ci",
+      "head_sha": "e0ecbcda36b6cbd27af9ae04dd4a20162ba44285",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35090185281,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090185334,
+      "name": "source-validation",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090180713,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090180684,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090180714,
+      "name": "未読3delegate・月表・mirrored-PC限定追跡",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090180696,
+      "name": "source-validation",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090020747,
+      "name": "p03-forgetting-ci",
+      "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090020665,
+      "name": "source-validation",
+      "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090013785,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090013891,
+      "name": "p03-forgetting-ci",
+      "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090013920,
+      "name": "未読3delegate・月表・mirrored-PC限定追跡",
+      "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ]
+}

@@ -1,0 +1,452 @@
+{
+  "active_baseline_changed": false,
+  "artifacts": {
+    "pr16-learnset-progress-data": {
+      "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10685844498/zip",
+      "created_at": "2026-09-22T09:24:08Z",
+      "digest": "sha256:4eb969d1c88b2154ac2fbb12fb8eb303675537c5bdc19b704d50dab20e01b4e6",
+      "expired": false,
+      "expires_at": "2026-10-22T09:24:07Z",
+      "id": 10685844498,
+      "name": "pr16-learnset-progress-data",
+      "node_id": "MDg6QXJ0aWZhY3QxMDY4NTg0NDQ5OA==",
+      "size_in_bytes": 20062,
+      "updated_at": "2026-09-22T09:24:08Z",
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10685844498",
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "d9f92e51826fbda4741c294635442a66cb777b64",
+        "id": 35710087058,
+        "repository_id": 1358127462
+      }
+    },
+    "pr16-learnset-progress-partial-arm": {
+      "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10686590044/zip",
+      "created_at": "2026-09-22T09:24:09Z",
+      "digest": "sha256:7539711a244987427e845dba79e45db6b72346f2a005e355e8438a30141d00cd",
+      "expired": false,
+      "expires_at": "2026-10-22T09:24:08Z",
+      "id": 10686590044,
+      "name": "pr16-learnset-progress-partial-arm",
+      "node_id": "MDg6QXJ0aWZhY3QxMDY4NjU5MDA0NA==",
+      "size_in_bytes": 40232,
+      "updated_at": "2026-09-22T09:24:09Z",
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10686590044",
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "d9f92e51826fbda4741c294635442a66cb777b64",
+        "id": 35710087058,
+        "repository_id": 1358127462
+      }
+    },
+    "pr16-learnset-progress-proof": {
+      "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10686510131/zip",
+      "created_at": "2026-09-22T09:24:07Z",
+      "digest": "sha256:c20d05325343ca45e7bb55d5972980aaf25ac0eee17428d5e7e27886b2accdc6",
+      "expired": false,
+      "expires_at": "2026-10-22T09:24:06Z",
+      "id": 10686510131,
+      "name": "pr16-learnset-progress-proof",
+      "node_id": "MDg6QXJ0aWZhY3QxMDY4NjUxMDEzMQ==",
+      "size_in_bytes": 26648,
+      "updated_at": "2026-09-22T09:24:07Z",
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10686510131",
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "d9f92e51826fbda4741c294635442a66cb777b64",
+        "id": 35710087058,
+        "repository_id": 1358127462
+      }
+    }
+  },
+  "candidate": {
+    "sha256": "e168c06f7707002e976dceff61ad8b5ad98ccd07be322f4e8d93d2276a206d82",
+    "size": 33554432
+  },
+  "candidate_crc32": "1D2DBFE7",
+  "completed_actions": {
+    "conclusion": "success",
+    "head_sha": "d9f92e51826fbda4741c294635442a66cb777b64",
+    "id": 35710087058,
+    "jobs": [
+      {
+        "conclusion": "success",
+        "id": 106688310583,
+        "name": "progress-boundary",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "新規ARMとnative限定依存",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "固定PLR1を再利用し初期技と自然level-upだけ検証",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "status": "completed"
+          }
+        ]
+      }
+    ],
+    "path": ".github/workflows/pr16-learnset-progress.yml",
+    "status": "completed"
+  },
+  "gameplay_e2e_accepted": false,
+  "issue19_complete": false,
+  "preserved_failed_runs": [
+    {
+      "conclusion": "failure",
+      "head_sha": "e2211b4a449fcb892b70a95a0772e66d64d3d0d8",
+      "id": 35707927147,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "5b718f3bbcfd66d71226b6d61f427157e69a6511",
+      "id": 35708647197,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "81c597ec89f145eae6a4b76641e92f88fce87ffb",
+      "id": 35709388462,
+      "status": "completed"
+    }
+  ],
+  "proof_bindings": {
+    "abi.json": {
+      "sha256": "0d76f86075de94a8e73eb0cb273c6fce482bb8894bce9b1ac66c3c0f8865bc4f",
+      "size": 919
+    },
+    "build11.txt": {
+      "sha256": "f30c4504419e3c3454276cfa274ca78642ac29c920ad78efe391bd3780b49aae",
+      "size": 97
+    },
+    "build29.txt": {
+      "sha256": "f30c4504419e3c3454276cfa274ca78642ac29c920ad78efe391bd3780b49aae",
+      "size": 97
+    },
+    "disassembly.txt": {
+      "sha256": "30b0f292a995f92dd86a1d0668653583e3e4c53a5b5c891e45aad88601496a57",
+      "size": 13572
+    },
+    "host-audit.json": {
+      "sha256": "eb77022e42bb40e37c6db36de860a07ed858209c9b0fce815dcbac8b0d5d1e93",
+      "size": 200
+    },
+    "inherited-host.json": {
+      "sha256": "4b5be5e82e521765e11444d226e82a95f64e6954d141c2b98be421f346c6ed79",
+      "size": 2351
+    },
+    "link.json": {
+      "sha256": "75a3d059be3fd9f18c0c51afcbebd85dfd28863ec50cedf090cc1fd585a90291",
+      "size": 46435
+    },
+    "native-compile.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "native11.json": {
+      "sha256": "b17c3ec79b5a1226670cec80b3718ccf0c3708b2346bc10518aabcb0344df1dd",
+      "size": 426
+    },
+    "native11.txt": {
+      "sha256": "b206bcbf1918c9b7be92509bfa1f6fc28069fcb0bb0dd799c17d6e16573511da",
+      "size": 775
+    },
+    "native29.json": {
+      "sha256": "b17c3ec79b5a1226670cec80b3718ccf0c3708b2346bc10518aabcb0344df1dd",
+      "size": 426
+    },
+    "native29.txt": {
+      "sha256": "b206bcbf1918c9b7be92509bfa1f6fc28069fcb0bb0dd799c17d6e16573511da",
+      "size": 775
+    },
+    "pr16_progress_samples.h": {
+      "sha256": "072c49d33fd53b4321974b6d1253f44ccd97c760165cb250a2efc7bc1318133e",
+      "size": 642
+    },
+    "resume.json": {
+      "sha256": "df9f69096ae2c7d1841176d015e32cd18e15be6a2c1d00d9445f594fdb652d37",
+      "size": 83
+    },
+    "task-graph.txt": {
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a",
+      "size": 77
+    },
+    "tracked-diff.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "unit.txt": {
+      "sha256": "a69a252897231de6bd805399a0504c204bdde9a7badac493da016fdfa09421d3",
+      "size": 3633
+    },
+    "verification.json": {
+      "sha256": "6a4efee3933463481d489e8cc59f2582dd0e68210658fa26719be2c4501ecb29",
+      "size": 5834
+    }
+  },
+  "record_source_head": "1e1994e94da1cb1b701620219cee5ddbe06832c2",
+  "release_ready": false,
+  "run_id": 35710087058,
+  "source_head": "d9f92e51826fbda4741c294635442a66cb777b64",
+  "status": "ACCEPTED_INITIAL_AND_NATURAL_DIRECT_ROM_PROBES_GAMEPLAY_PENDING",
+  "task": "USER-20260922-LEARNSET-PROGRESS",
+  "verification": {
+    "accepted_native_reruns": 0,
+    "accepted_payload_regenerations": 0,
+    "accepted_source_regenerations": 0,
+    "active_baseline_changed": false,
+    "candidate": {
+      "sha256": "e168c06f7707002e976dceff61ad8b5ad98ccd07be322f4e8d93d2276a206d82",
+      "size": 33554432
+    },
+    "candidate_crc32": "1D2DBFE7",
+    "code_bindings": {
+      ".github/workflows/pr16-learnset-progress.yml": {
+        "sha256": "a1c971b2618081a1abdc6794eb0797db78045f07b48e4ad67e2936b2d7f626b4",
+        "size": 2257
+      },
+      "scripts/pr16_learnset_progress_reuse.py": {
+        "sha256": "a0a13946eb0c35fb8a15b1db83a2fb29675aab2ff5ddad8231e3cce75a0a9bbf",
+        "size": 3700
+      },
+      "scripts/pr16_learnset_progress_verify.py": {
+        "sha256": "bb8c839b5922d064605f5a1c7f4fa212a48b761aeb9e4c37eb3aa12b37261513",
+        "size": 21374
+      },
+      "src/modernization/pr16_learnset_progress.c": {
+        "sha256": "de92fbd4612a855c72be290939feb1d9270d46fea4aec8c3550cb830f51bbea3",
+        "size": 1877
+      },
+      "src/modernization/pr16_learnset_progress.h": {
+        "sha256": "97d5b56acf38a99e9d4750721b1ab5be0e117d933c80ccda700520a3007cc7a1",
+        "size": 819
+      },
+      "src/modernization/pr16_learnset_progress_game.c": {
+        "sha256": "6fbe2b663ca4959ac6f046aad29b5edb645599eb8240679ea6aad5dd52d00c4c",
+        "size": 1939
+      },
+      "tests/fixtures/pr16_learnset_progress_bindings.h": {
+        "sha256": "d3b0952cf55fda5571aaea60884cb922244f8a6b618dd2b71a601249c4b4f089",
+        "size": 896
+      },
+      "tests/fixtures/pr16_learnset_progress_fixture.c": {
+        "sha256": "93509fc181db19a5402556633109a78d07ecad7d7e15908e4d333594959f6f3e",
+        "size": 1050
+      },
+      "tests/test_pr16_learnset_progress.py": {
+        "sha256": "1b73b6bc305539e7dc96f2931a8cb0bc97f83ce8674851f2d385e6ffb01d8603",
+        "size": 10346
+      },
+      "tools/mgba_pr16_learnset_progress.c": {
+        "sha256": "c0ac43e637182c9cecf644be41663480f65b3d08e8b07f2d161b7f05214ba589",
+        "size": 7243
+      }
+    },
+    "conditional_consumers_connected": false,
+    "data_files": {
+      "checkpoint.json": {
+        "sha256": "89fe5112a5dc56e90f20fc9dadefd3e38cfef46a206eb1de4c18fccf7aed6606",
+        "size": 2053
+      },
+      "disassembly.txt": {
+        "sha256": "30b0f292a995f92dd86a1d0668653583e3e4c53a5b5c891e45aad88601496a57",
+        "size": 13572
+      },
+      "link.json": {
+        "sha256": "75a3d059be3fd9f18c0c51afcbebd85dfd28863ec50cedf090cc1fd585a90291",
+        "size": 46435
+      },
+      "pr16_learnset_progress_bindings.h": {
+        "sha256": "c8c4ad2b74cd29f818b873f1fd7d10bbdf1a6d5f26602719ddf7827ffa3af66f",
+        "size": 733
+      },
+      "progress.bin": {
+        "sha256": "680a798efac2c03f7eb643aaa7f5dce0e8dd89bd1a5bed93f55db8eeabdcc2ff",
+        "size": 676
+      }
+    },
+    "focused_tests": 30,
+    "focused_tests_executed": 0,
+    "gameplay_e2e_accepted": false,
+    "host_audit": {
+      "accepted_tests_rerun": 0,
+      "identity_only_excluded": 188,
+      "input_image_unchanged": true,
+      "levels": 100,
+      "old_machine_queries": 0,
+      "owners": 1483,
+      "queries": 318186,
+      "status": "PASS_ALL_LEARNING_OWNERS_100_LEVELS"
+    },
+    "host_queries_executed": 0,
+    "independent_candidate_hashes_match": true,
+    "inherited_host_run": 35709388462,
+    "initial_and_natural_connected": true,
+    "input_byte_mtime_unchanged": true,
+    "issue19_complete": false,
+    "native_processes": 2,
+    "native_results": [
+      {
+        "calls": 111,
+        "candidate_sha256": "e168c06f7707002e976dceff61ad8b5ad98ccd07be322f4e8d93d2276a206d82",
+        "duplicate_paths": 12,
+        "full_slot_notifications": 18,
+        "native_create_mon_calls": 9,
+        "new_code_pc_seen_for_every_call": true,
+        "preserved_owner_entries": 4,
+        "real_initial_pp_checked": true,
+        "samples": 9,
+        "scope": "HOST_FIXTURE_DIRECT_ROM_CALL_NOT_GAMEPLAY_E2E",
+        "status": "PASS_INITIAL_AND_NATURAL_ROM_PROBES",
+        "stored_four_moves_unchanged": true
+      },
+      {
+        "calls": 111,
+        "candidate_sha256": "e168c06f7707002e976dceff61ad8b5ad98ccd07be322f4e8d93d2276a206d82",
+        "duplicate_paths": 12,
+        "full_slot_notifications": 18,
+        "native_create_mon_calls": 9,
+        "new_code_pc_seen_for_every_call": true,
+        "preserved_owner_entries": 4,
+        "real_initial_pp_checked": true,
+        "samples": 9,
+        "scope": "HOST_FIXTURE_DIRECT_ROM_CALL_NOT_GAMEPLAY_E2E",
+        "status": "PASS_INITIAL_AND_NATURAL_ROM_PROBES",
+        "stored_four_moves_unchanged": true
+      }
+    ],
+    "new_arm_compiles": 4,
+    "new_arm_links": 2,
+    "old_arm_compiles": 0,
+    "p03_evolution_dispatch_unchanged": true,
+    "prior_two_entrypoints_unchanged": true,
+    "proof_files": {
+      "abi.json": {
+        "sha256": "0d76f86075de94a8e73eb0cb273c6fce482bb8894bce9b1ac66c3c0f8865bc4f",
+        "size": 919
+      },
+      "build11.txt": {
+        "sha256": "f30c4504419e3c3454276cfa274ca78642ac29c920ad78efe391bd3780b49aae",
+        "size": 97
+      },
+      "build29.txt": {
+        "sha256": "f30c4504419e3c3454276cfa274ca78642ac29c920ad78efe391bd3780b49aae",
+        "size": 97
+      },
+      "disassembly.txt": {
+        "sha256": "30b0f292a995f92dd86a1d0668653583e3e4c53a5b5c891e45aad88601496a57",
+        "size": 13572
+      },
+      "host-audit.json": {
+        "sha256": "eb77022e42bb40e37c6db36de860a07ed858209c9b0fce815dcbac8b0d5d1e93",
+        "size": 200
+      },
+      "inherited-host.json": {
+        "sha256": "4b5be5e82e521765e11444d226e82a95f64e6954d141c2b98be421f346c6ed79",
+        "size": 2351
+      },
+      "link.json": {
+        "sha256": "75a3d059be3fd9f18c0c51afcbebd85dfd28863ec50cedf090cc1fd585a90291",
+        "size": 46435
+      },
+      "native-compile.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "native11.json": {
+        "sha256": "b17c3ec79b5a1226670cec80b3718ccf0c3708b2346bc10518aabcb0344df1dd",
+        "size": 426
+      },
+      "native11.txt": {
+        "sha256": "b206bcbf1918c9b7be92509bfa1f6fc28069fcb0bb0dd799c17d6e16573511da",
+        "size": 775
+      },
+      "native29.json": {
+        "sha256": "b17c3ec79b5a1226670cec80b3718ccf0c3708b2346bc10518aabcb0344df1dd",
+        "size": 426
+      },
+      "native29.txt": {
+        "sha256": "b206bcbf1918c9b7be92509bfa1f6fc28069fcb0bb0dd799c17d6e16573511da",
+        "size": 775
+      },
+      "pr16_progress_samples.h": {
+        "sha256": "072c49d33fd53b4321974b6d1253f44ccd97c760165cb250a2efc7bc1318133e",
+        "size": 642
+      },
+      "resume.json": {
+        "sha256": "df9f69096ae2c7d1841176d015e32cd18e15be6a2c1d00d9445f594fdb652d37",
+        "size": 83
+      },
+      "task-graph.txt": {
+        "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a",
+        "size": 77
+      },
+      "tracked-diff.txt": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "unit.txt": {
+        "sha256": "a69a252897231de6bd805399a0504c204bdde9a7badac493da016fdfa09421d3",
+        "size": 3633
+      }
+    },
+    "release_ready": false,
+    "run_id": 35710087058,
+    "scope": "HOST_FIXTURE_DIRECT_ROM_CALL_NOT_GAMEPLAY_E2E",
+    "source_head": "d9f92e51826fbda4741c294635442a66cb777b64",
+    "status": "PASS_INITIAL_AND_NATURAL_ROM_PROBES",
+    "task": "USER-20260922-LEARNSET-PROGRESS",
+    "tracked_tree_unchanged": true
+  }
+}

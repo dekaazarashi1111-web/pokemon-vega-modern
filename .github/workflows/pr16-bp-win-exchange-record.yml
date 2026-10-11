@@ -1,0 +1,59 @@
+name: pr16-bp-win-exchange-record
+run-name: 初勝利・交換・次戦原本を固定引継ぎ/両ログへ記録（native再実行なし）
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-win-exchange-record.yml
+      - scripts/pr16_bp_win_exchange_record.py
+      - tests/test_pr16_bp_win_exchange_record.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-bp-win-exchange-record
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 成功原本と失敗2原本・全source/生成Cを照合して固定MD/JSON/両ログへ保存
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-bp-win-exchange-record
+          sha256sum -c <<'PINS'
+          282238a89b834e8c37c3e920e7a5e9c3fa025db88de9fa703dd533af76cb4386  scripts/pr16_bp_win_exchange_record.py
+          b6f21bc1e601dcf8eb0c97f155f25580c9581ddbf35a876cbbe0f60ab68d1342  tests/test_pr16_bp_win_exchange_record.py
+          70d20a5a7618c48208f7c0a25f121f612b7bc6986977f907d123fbaae396d896  tests/test_pr16_bp_exchange_navigation.py
+          95f1e9e3044df165190dc879c47b98251ecbbcc48de0b8f588ff6ec5af94480c  tools/mgba_pr16_bp_win_exchange.c
+          PINS
+          python3 scripts/pr16_bp_win_exchange_record.py record
+      - name: 新規C境界4・記録8・引継ぎ18testsとsource-only checks（原本14tests再利用）
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_pr16_bp_exchange_navigation.py -v 2>&1 | tee .local/pr16-bp-win-exchange-record/navigation-tests.txt
+          python3 -m unittest discover -s tests -p test_pr16_bp_win_exchange_record.py -v 2>&1 | tee .local/pr16-bp-win-exchange-record/record-tests.txt
+          python3 -m unittest discover -s tests -p test_pr16_resume.py -v 2>&1 | tee .local/pr16-bp-win-exchange-record/resume-tests.txt
+          python3 scripts/pr16_bp_win_exchange_record.py check
+          python3 scripts/pr16_resume.py check
+          python3 scripts/validate_task_graph.py
+          git diff --check
+      - name: 最終indexの既存guard差分・allowlist・非force commit/push・remote読戻し
+        run: python3 scripts/pr16_bp_win_exchange_record.py publish
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-win-exchange-record
+          path: .local/pr16-bp-win-exchange-record/
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error

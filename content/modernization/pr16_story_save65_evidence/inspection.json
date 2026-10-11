@@ -1,0 +1,45 @@
+{
+  "status": "STATIC_SAVE65_ADJACENT_NPC_A_ONCE_ONLY",
+  "route": [
+    [
+      26,
+      6
+    ]
+  ],
+  "neighbor": {
+    "status": "STATIC_ADJACENT_TRAINER155_CANDIDATE_NOT_NATIVE_ID",
+    "map": [
+      1,
+      60
+    ],
+    "player_xy": [
+      26,
+      6
+    ],
+    "facing": 3,
+    "object": {
+      "local_id": 7,
+      "xy": [
+        25,
+        6
+      ],
+      "script": 154587024,
+      "flag": 0
+    },
+    "instruction": {
+      "address": 154587024,
+      "opcode": 92,
+      "size": 14,
+      "hex": "5c009b000000549869086c986908",
+      "node": 154587024
+    },
+    "trainer_id": 155,
+    "next_ordinary_input": "A once, then stop at the first new event or battle and save",
+    "runtime_identity_resolved": false,
+    "new_rom_reads": 0
+  },
+  "new_terrain_cells": 0,
+  "new_map_views": 0,
+  "new_script_nodes": 0,
+  "native_route_accepted": false
+}

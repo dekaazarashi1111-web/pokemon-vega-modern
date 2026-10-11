@@ -1,0 +1,56 @@
+name: pr16-story-followup
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-followup.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-story-followup
+  cancel-in-progress: false
+jobs:
+  source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Check fixed resume without replaying acceptance
+        run: python3 -B scripts/pr16_resume.py check
+      - name: Export exact tracked text for scoped offline development
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,zipfile
+          out=pathlib.Path('build/pr16-story-followup');out.mkdir(parents=True,exist_ok=True)
+          roots={'scripts','tools','tests','src','include','asm','data','patches','config','state','infra','content','design','docs','.github','tasks'}
+          suffixes={'.py','.c','.h','.s','.S','.inc','.json','.md','.yml','.yaml','.toml','.txt','.sh','.csv','.ld','.patch','.in'}
+          manifest={}
+          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in subprocess.check_output(['git','ls-files','-z']).decode().split('\0'):
+                  if not name:continue
+                  p=pathlib.Path(name)
+                  if p.parts[0] not in roots and name not in {'AGENTS.md','CHATGPT_RESUME.md','Makefile','.gitignore'}:continue
+                  if name.startswith(('docs/wiki/','design/imported/','content/modernization/pr16_candidate_wiki')):continue
+                  if p.suffix not in suffixes and name not in {'Makefile','.gitignore'}:continue
+                  if p.is_symlink() or not p.is_file():continue
+                  raw=p.read_bytes()
+                  if b'\0' in raw:continue
+                  try:raw.decode('utf-8')
+                  except UnicodeDecodeError:continue
+                  z.writestr(name,raw)
+                  manifest[name]={'sha256':hashlib.sha256(raw).hexdigest(),'size':len(raw)}
+          (out/'manifest.json').write_text(json.dumps({'head':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],'files':manifest},ensure_ascii=False,indent=2)+'\n')
+          print('TRACKED_TEXT_FILES='+str(len(manifest))+' ACCEPTED_NATIVE_RERUNS=0 ROM_CHANGES=0')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-story-followup-source-${{ github.run_id }}
+          path: build/pr16-story-followup/
+          if-no-files-found: error
+          retention-days: 30

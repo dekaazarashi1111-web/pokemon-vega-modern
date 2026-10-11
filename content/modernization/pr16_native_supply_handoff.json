@@ -1,0 +1,123 @@
+{
+  "active_baseline_changed": false,
+  "ci_correction_commit": "2d82b2a57646a49ff0149dec57ad98ac396cef4b",
+  "ci_fix": "Require evidence-backed fixed-form5/5 completion while preserving full_p03_acceptance=false and other owners.",
+  "ci_originals": [
+    {
+      "artifact_id": 10301137817,
+      "conclusion": "failure",
+      "job_id": 103581320808,
+      "members": {
+        "checkout-head.txt": {
+          "sha256": "63bc7f0cb04b870e2dc7cf3a75000889ea75fd2ff2a7f5921686f6682ba8a494",
+          "size": 41
+        },
+        "original-mutations.log": {
+          "sha256": "0fb0a972fe07cb61e619e85a4f9aac1a9d5d9c3c5d1d69334094ee3cb617c989",
+          "size": 4087
+        },
+        "runtime-contracts.log": {
+          "sha256": "e3c53e2981059ed87a2baeb3c9c1f7aaf39901564f03b69728e94076229cff1a",
+          "size": 3624
+        },
+        "source-head.txt": {
+          "sha256": "63bc7f0cb04b870e2dc7cf3a75000889ea75fd2ff2a7f5921686f6682ba8a494",
+          "size": 41
+        }
+      },
+      "original": {
+        "path": "content/modernization/pr16_native_supply_handoff_evidence/34704254858/original.zip",
+        "sha256": "3d63e44a638e8f29f683e6a7c9e5f6a9fdef2ece788ee01b13c0325bae02fa24",
+        "size": 2171
+      },
+      "run_id": 34704254858,
+      "tested_head": "60146f8819c8fdc716bd15e3a32946225d612a1e"
+    },
+    {
+      "artifact_id": 10300613009,
+      "conclusion": "success",
+      "job_id": 103581943332,
+      "members": {
+        "check.json": {
+          "sha256": "7391cb4cf469266044ca7d05608a10d38a5e4f18ad90066bace7d617b8f6b067",
+          "size": 158
+        },
+        "checkout-head.txt": {
+          "sha256": "c28a976aa90545e075346fd4fa49756336f4016886c70673a28124997e6d2161",
+          "size": 41
+        },
+        "original-mutations.log": {
+          "sha256": "d57ff589ba9b67e3b5e897db0a9425840d403d253fd7bd87b483c0bb6ef83f4a",
+          "size": 3295
+        },
+        "runtime-contracts.log": {
+          "sha256": "e2adc2d93bf29e0a0d74fb5661055b05c4c7ca2025a339823f6e18280c1f2dd5",
+          "size": 3624
+        },
+        "source-head.txt": {
+          "sha256": "c28a976aa90545e075346fd4fa49756336f4016886c70673a28124997e6d2161",
+          "size": 41
+        }
+      },
+      "original": {
+        "path": "content/modernization/pr16_native_supply_handoff_evidence/34704480513/original.zip",
+        "sha256": "1d39e755492ea3e6c7252a67451766b7242dd01c02ec824ce222debbed77d2ef",
+        "size": 2167
+      },
+      "run_id": 34704480513,
+      "tested_head": "2d82b2a57646a49ff0149dec57ad98ac396cef4b"
+    }
+  ],
+  "ci_regression": "Later fixed-form completion contradicted a historical ownership-test expectation, not native forgetting behavior.",
+  "corrected_source_tests_passed": 44,
+  "global_private_guard_boundary": "content/modernization/pr16_fixed_form_acceptance_evidence/34698120000/guard_boundary.json",
+  "global_private_guard_passed": false,
+  "native_bp_earning_accepted": false,
+  "new_emulator_runs_during_handoff": 0,
+  "new_native_case": "reception-cancel-unchanged",
+  "new_native_processes_during_session": 1,
+  "new_rom_changes_during_session": 0,
+  "original_forgetting_cases_preserved": 12,
+  "release_ready": false,
+  "remaining_p08_gates": [
+    "FINAL_NATIVE_ACCEPTANCE",
+    "RELEASE_DECISION"
+  ],
+  "remaining_physical_gap_ids": [
+    "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+    "P05_NATIVE_BP_EARNING_PHYSICAL",
+    "P05_ORDINARY_POLICY_SELECTION_PHYSICAL",
+    "PHYSICAL_CIRCUS_ADMISSION"
+  ],
+  "resume_document": "docs/PR16_NATIVE_SUPPLY_RESUME_20260912_JA.md",
+  "revalidated_checkpoint_results": {
+    "bp-control": {
+      "accepted_controls": 1,
+      "new_emulator_runs": 0,
+      "p05_native_bp_gap_closed": false,
+      "release_ready": false,
+      "status": "PASS_RETAINED_NATIVE_BP_RECEPTION_CONTROL",
+      "surface": "head"
+    },
+    "fixed-form": {
+      "accepted_cases": 5,
+      "checked_git_surface": "head",
+      "full_p03_acceptance": false,
+      "new_emulator_runs": 0,
+      "p03_fixed_form_gap_closed": true,
+      "release_ready": false,
+      "status": "PASS_FIVE_CASE_CLOSEOUT",
+      "successful_original_fresh_cores": 11
+    },
+    "supply-owner": {
+      "new_emulator_runs": 0,
+      "physical_gaps_closed": 0,
+      "release_ready": false,
+      "status": "PASS_RETAINED_SUPPLY_OWNER_CLASSIFICATION",
+      "surface": "head"
+    }
+  },
+  "schema_version": 1,
+  "source_head": "7768d5c3f4f89e2a5296802d89605cc9c0501d3f",
+  "status": "PASS_SCOPED_PROGRESS_HANDOFF_PRODUCT_INCOMPLETE"
+}

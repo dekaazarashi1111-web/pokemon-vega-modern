@@ -1,0 +1,70 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "actions_reconciled": [
+    {
+      "conclusion": "success",
+      "head_sha": "e28d620a5c42a29395bf340bacdb0ce8e3f73425",
+      "id": 35433308048,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "c7c28f4cd20d16dfe3ec90b492798a0e34b35323",
+      "id": 35434401185,
+      "status": "completed"
+    }
+  ],
+  "classification": "CIRCUS_DROUGHT_NATIVE_REPAIR_PREPARED",
+  "diagnosis": {
+    "cause_ja": "Drought initAllはstate2のpalette loaderをbusy-loop。FRLG由来loaderは空実装でcursor1が32へ進まず、weather完了もtask再開も来ない。",
+    "empty_loader": 134718289,
+    "init_all": 134720777,
+    "observed_frames": 600,
+    "observed_points": 21,
+    "ready_zero_hypothesis_rejected": true,
+    "state": 2,
+    "step": 134720825,
+    "upstream_reference": {
+      "blob_sha": "56cf6505bd381fde0aaa9a704cc4e997b5f934d2",
+      "note_ja": "上流は空loaderと本来のterminal32をコメントで明示。実候補のBX LR preimageと呼出し/初期化命令もbuild前に照合し、上流同名だけではpatchしない。",
+      "path": "src/field_weather.c",
+      "repository": "pret/pokefirered",
+      "symbols": [
+        "LoadDroughtWeatherPalette",
+        "ResetDroughtWeatherPaletteLoading",
+        "LoadDroughtWeatherPalettes"
+      ]
+    },
+    "weather": 12
+  },
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 11,
+      "pattern": "test_pr16_circus_drought.py",
+      "success": true
+    }
+  ],
+  "independent_old_arm_links_replayed": 0,
+  "parent": {
+    "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+    "size": 33554432
+  },
+  "physical_admission_accepted": false,
+  "preparation_failures": [
+    {
+      "arm_links": 0,
+      "job_id": 105874514732,
+      "native_processes": 0,
+      "original_conclusion": "failure",
+      "reason_ja": "CPU原本はarrayだがobject専用resume.loadを呼びprepare停止。listのままJSON decodeし、prepare経路を回帰検査。",
+      "run_id": 35434401185
+    }
+  ],
+  "release_ready": false,
+  "schema_version": 1,
+  "suppression_accepted": false,
+  "unavoidable_prefix_battles": 17,
+  "visual_review_completed": false,
+  "win_return_native_verified": false
+}

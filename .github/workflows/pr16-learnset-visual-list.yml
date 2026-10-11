@@ -1,0 +1,70 @@
+name: pr16-learnset-visual-list
+# Only the rejected Floette list image; preserve three good images and all native acceptance.
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-visual-list.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-learnset-visual-list
+  cancel-in-progress: false
+jobs:
+  visual-list:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 撮影用host libraryのみ導入
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+      - name: 新規8境界試験とフラエッテ一覧1枚のみ
+        id: capture
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_learnset_visual_list.py execute
+      - name: 修復原本と目視未完を区別して記録
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_visual_list.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_learnset_visual_list.py paths | tr '\n' '\0' >.local/pr16-learnset-visual-list/paths.z
+          git add --pathspec-from-file=.local/pr16-learnset-visual-list/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_learnset_visual_list.py guard
+      - name: 同branchへ非force commit/pushし最新refを照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260923-LEARNSET-VISUAL-LIST: 一覧cursorの安定待ちを修復し1枚の原本・固定引継ぎ・両ログを記録'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-learnset-visual-list/proof/reflected-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-visual-list-proof
+          path: .local/pr16-learnset-visual-list/proof/
+          retention-days: 30
+          if-no-files-found: error
+      - name: 失敗をrun終端へ反映
+        if: steps.capture.outcome != 'success'
+        run: exit 1

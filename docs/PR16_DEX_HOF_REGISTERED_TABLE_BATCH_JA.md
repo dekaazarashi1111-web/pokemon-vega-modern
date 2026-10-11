@@ -1,0 +1,28 @@
+# PR16 critical表・animation背景登録consumerの最小型batch
+
+## 目的と境界
+
+既766分類/108未知を全保持し、実critical判定move-list境界1件とanimation背景asset4件だけを新規検証する。旧consumer/native/heap/全ROMscanは再実行しない。
+
+- 090405A9: primary battle opcode4 slot0903F460→handler090E4419→実call090E45A8/090E45D8→CheckTableForMove09130F38を結合。独立manifestの30memberとFEFE終端からhigh52byte/always12byteをserializer化し、実halfword readerの全消費へ結ぶ。型は境界の元4byteだけ。
+- 0917E399、0918BDD3、0918FBA2、0918FFDE: 実登録animation scriptのBG ID producerから背景tableとloader/LZ readerへ結合。固定公開PNGの独立8x8/4bpp/flip/zero-tile serializerを完全展開内容と比較する。型は各元4byteだけで、画像全体を分類しない。
+
+旧CFRU IDからの一律offsetやROMで観測した値をsource定義へ置換しない。現PRの固定manifest、生成器、header alias注入と公開table宣言を独立固定し、上流IDとの差18fieldを履歴として保持する。表の同じbyte数だけでは型の根にしない。
+
+現0641全SHAと最新115actual ownerを一度照合する。calleeの正常ABI戻り、future-live RAM、同一epochを明示した条件付き有限APIから最小型を導出する。自然playの全到達、opaque callee全効果や描画成功、全IRQ/heap寿命は別義務。
+
+## 継承契約
+
+全43親入力、22namespace/147changes/137witness、874hitのidentity、既acceptedと残unknown全field、133曲/50assetを保持する。独立measurement envelopeから新deltaだけを記録し、既原本を複製しない。旧egg15118byteは全域保護、安全容量0。最大access幅、間接参照/退役完全性、owner移管は別未完gate。
+
+最新115actual owner、52save owner、804byte、単一controller6528byteは不変。heap13352の普遍寿命・同期非再入・全保存入口heap-readyは未証明。stock保存退避53300の入口0804B85Cへ跨ぐ保持を許可しない。正式ROM/Save101/donorを変更せず、controllerは未配線。
+
+## 検証と公開
+
+新scope専用testsでsource/window/命令spec/serializer/登録root/epoch/live/主張の変異を反証する。旧06c5診断fixtureとActionsの現0641測定を区別する。旧拒否済み最終song/battle/Surfレビューの再試行は行わない。
+
+producer/guard/upload/recordのpathを一致させ、非空・size・SHA・LF・closed extension・hidden/symlink拒否を適用する。公開物はsourceとaddress-size-SHA、最小text証拠のみ。ROM/rawhex/ROM断片/runtime/入力save/runner/credentialを公開しない。公開source画像は取得元identityだけを証拠へ保存する。全receipt本文を実commit済measurement/snapshot/stateへ結合し、全5snapshotと最終refの実blobを全文照合する。
+
+## 次工程
+
+受入後も残未知の実登録UI/script/asset根を限定調査する。LZ table101だけでは正のcommand根が足りず、命名EOS後も未知を維持する。全unknownと間接退役/owner移管を閉じて安全容量を確保してから単一controllerを各保存入口へ接続する。最終図鑑修復後はtrainer131後半からシオウ通常回復・保存・独立coldContinueへ進み、全雑魚checkpointは行わない。

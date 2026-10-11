@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "status": "SIGNED_MODE3_COW_BOUNDARY_NOT_NATIVE_ACCEPTED",
+  "formal_candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "parent_candidate": {
+    "size": 33554432,
+    "sha256": "d773a1232c31fcb5629785278c2ad6e6d46208dbc62a55d66167fba7a2a38670"
+  },
+  "windows": [
+    {
+      "id": "stock_mode_dispatch",
+      "address": 135115312,
+      "size": 284,
+      "sha256": "4fea80399bae2aa77d66ddc1b20793bbc3ca9000d78cf2255a155cb312a8c4ec"
+    },
+    {
+      "id": "mode3_row",
+      "address": 135115364,
+      "size": 4,
+      "sha256": "2aeb48062c6c63bca4c14aff52a4b3f5bd60bb826a16e92b1bab35d20f8caef7"
+    },
+    {
+      "id": "hof_writer",
+      "address": 135113032,
+      "size": 120,
+      "sha256": "2d7dfbfa7e0393902355431d3ed6b492bb7e432d5fcfcf38ca06a8b9f96d66fc"
+    },
+    {
+      "id": "update_save_addresses",
+      "address": 135115196,
+      "size": 116,
+      "sha256": "5f3a0d570622c6b89c87d8520dff38b8478ff531b54622524a8be96ce5f78789"
+    },
+    {
+      "id": "stat10_getter",
+      "address": 134563716,
+      "size": 60,
+      "sha256": "20b680cd5bf3b169d754454f822e5a2b5b0679e80abc0abffe9d15ba08023dd3"
+    },
+    {
+      "id": "stat10_increment",
+      "address": 134563664,
+      "size": 176,
+      "sha256": "f11c05c1e67f5bc8cb0b2b5a013dff5354eb61ccb1b30ac97392480805f84bcb"
+    }
+  ],
+  "subowner_preimages": [
+    {
+      "id": ".text.hof_cow_entry",
+      "address": 155488232,
+      "size": 38,
+      "sha256": "ee452eda9b591d5e75475218892d58397ec7f62d6fed8e2ab0885c9e61a2a978",
+      "section": ".text.hof_cow_entry"
+    },
+    {
+      "id": ".text.hof_cow_return",
+      "address": 155489160,
+      "size": 22,
+      "sha256": "4ba9d0739220b746245dbca9ef9258c6e0f719a4e5935b2436fb8a9333b3e4ac",
+      "section": ".text.hof_cow_return"
+    },
+    {
+      "id": ".text.hof_cow_second",
+      "address": 155494016,
+      "size": 32,
+      "sha256": "004cc95160a5ff120f9e34f4e50cc083078ed93d2c094bfc9bd7ea8353e1fea2",
+      "section": ".text.hof_cow_second"
+    },
+    {
+      "id": ".text.hof_cow_prepare",
+      "address": 155494900,
+      "size": 50,
+      "sha256": "345f3b94b8ac4c18999996ca45c3d0a409774760e979c34bc2cd5a7b81092835",
+      "section": ".text.hof_cow_prepare"
+    },
+    {
+      "id": ".text.hof_cow_first",
+      "address": 155495024,
+      "size": 48,
+      "sha256": "af092f6aacb38128a459324e56551529bc0b71c88c0e85c09e828c1c2e96a2de",
+      "section": ".text.hof_cow_first"
+    }
+  ],
+  "source_bindings": {
+    "content/modernization/pr16_dex_scheduler_checkpoint.json": {
+      "size": 86021,
+      "sha256": "b17a4decc849843081c0f2633c62069436aece9c56f5f9f37cfa932f371e237e"
+    },
+    "content/modernization/pr16_dex_stage61_relink_inputs.json": {
+      "size": 32743,
+      "sha256": "1d9aeb880c178ea05facf5aa8b4487dd83dd462054d7089f0f8dc22567a304a2"
+    },
+    "overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c": {
+      "size": 129221,
+      "sha256": "7ad33b6b00aacb30088b7a0cc528a7fb41c947a709bb4006ab225d82d4e271bf"
+    },
+    "scripts/pr16_dex_scheduler.py": {
+      "size": 24289,
+      "sha256": "5a099e95f45328dcaeffae7ab0d6039b581a7ba5865ac4ee5fb46358e8dcf8b2"
+    },
+    "overlays/dex_owner/dex_stage61_scheduler.h": {
+      "size": 2224,
+      "sha256": "c2fc2dc938a9571b5d84b010beb726c8d6a4297dc3e3f0d38a357670fd7a643d"
+    }
+  },
+  "contract": {
+    "mode": 3,
+    "dispatch_target_even": 155488232,
+    "stock_frame_bytes": 16,
+    "saved_registers": [
+      4,
+      5,
+      6
+    ],
+    "vblank_saved_register": 6,
+    "vblank_slot": 50344272,
+    "main_entry": 155489185,
+    "main_mode": 0,
+    "hof_success": 1,
+    "hof_failure": 255,
+    "hof_payload": 33669120,
+    "hof_sector_payload_bytes": 3968,
+    "serialize_calls": 1,
+    "initial_hof_atomicity": false
+  },
+  "allocation_policy_ja": "最新scheduler実sectionを除いた既存save-only donor窓。旧source残留byteの全SHAを検査し、現在実section・他owner・全未宣言byteを保持する。新tailや旧suffix表記は使用しない。"
+}

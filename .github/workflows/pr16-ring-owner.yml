@@ -1,0 +1,130 @@
+name: pr16-ring-owner
+run-name: Ring誤入口修正・既受入BP保全・非force記録
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-owner.yml
+      - scripts/pr16_ring_owner.py
+      - tests/test_pr16_ring_owner.py
+      - scripts/pr16_p05_native_supply_evidence_map.py
+      - tests/test_pr16_p05_native_supply_evidence_map.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-owner
+  cancel-in-progress: false
+jobs:
+  verify-and-record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Confirm exact open draft PR and prepare only Ring records; no emulator
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-ring-owner
+          python3 - <<'PY'
+          import json,os,subprocess
+          pr=json.loads(subprocess.check_output(['gh','api','repos/'+os.environ['GITHUB_REPOSITORY']+'/pulls/16']))
+          assert pr['state']=='open' and pr['draft'] and not pr['merged']
+          assert pr['head']['sha']==os.environ['GITHUB_SHA']
+          assert pr['head']['ref']=='codex/modernization-followup-20260908'
+          assert pr['head']['repo']['full_name']==os.environ['GITHUB_REPOSITORY']
+          PY
+          python3 scripts/pr16_ring_owner.py prepare
+      - name: Focused regression and read-only handoff checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-ring-owner
+          python3 tests/test_pr16_ring_owner.py --focused > "$out/tests.stdout" 2> "$out/tests.stderr"
+          python3 scripts/pr16_ring_owner.py check
+          python3 scripts/pr16_resume.py check
+          python3 scripts/validate_task_graph.py > "$out/task-graph.stdout" 2> "$out/task-graph.stderr"
+          git diff --check
+      - name: Record current Actions separately, append both logs, guard final index
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import datetime,json,os,pathlib,subprocess
+          url='repos/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=20'
+          data=json.loads(subprocess.check_output(['gh','api',url]))
+          value={'observed_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                 'own_run_id':int(os.environ['GITHUB_RUN_ID']),
+                 'own_status_at_record':'in_progress',
+                 'runs':[{k:r[k] for k in ('id','name','head_sha','status','conclusion')} for r in data['workflow_runs']]}
+          pathlib.Path('.local/pr16-ring-owner/actions-observed.json').write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
+          PY
+          python3 scripts/pr16_ring_owner.py logs
+          python3 scripts/pr16_ring_owner.py check
+          python3 - <<'PY'
+          import subprocess,sys
+          sys.path.insert(0,'scripts')
+          import pr16_ring_owner as r
+          subprocess.run(['git','add','--',*r.OUTPUTS],check=True)
+          PY
+          git diff --cached --check
+          python3 scripts/pr16_ring_owner.py guard
+      - name: Commit and non-force push only the same unchanged branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          python3 - <<'PY'
+          import json,os,subprocess
+          pr=json.loads(subprocess.check_output(['gh','api','repos/'+os.environ['GITHUB_REPOSITORY']+'/pulls/16']))
+          assert pr['state']=='open' and pr['draft'] and not pr['merged']
+          assert pr['head']['sha']==os.environ['GITHUB_SHA']
+          assert pr['head']['ref']=='codex/modernization-followup-20260908'
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'PR-P08-7: Ring誤入口とBP再openを防止し限定検証・引継ぎを記録'
+          git push origin "HEAD:refs/heads/$branch"
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess,sys,zipfile
+          sys.path.insert(0,'scripts')
+          import pr16_ring_owner as r
+          out=pathlib.Path('.local/pr16-ring-owner')
+          result={'status':'PASS_SOURCE_REPAIR_RECORDED_NONFORCE_PUSHED',
+                  'source_head':os.environ['GITHUB_SHA'],
+                  'commit':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),
+                  'branch':r.BRANCH,'run_id':int(os.environ['GITHUB_RUN_ID']),
+                  'tests':json.loads((out/'tests.json').read_text()),
+                  'guard':json.loads((out/'guard.json').read_text()),
+                  'new_emulator_processes':0,'rom_changes':0,
+                  'ring_acquisition_accepted':False,'release_ready':False,'merge_performed':False}
+          (out/'result.json').write_bytes(r.stable(result))
+          with zipfile.ZipFile(out/'recorded-text.zip','w',zipfile.ZIP_DEFLATED) as archive:
+              for name in sorted(r.ALLOWED):archive.write(name,name)
+          print(json.dumps(result))
+          print('RESULT=DONE TASK='+r.TASK+' VERIFY=PASS COMMIT='+result['commit'])
+          PY
+      - name: Export focused verification and recorded text; no private runtime
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-ring-owner
+          path: |
+            .local/pr16-ring-owner/*.json
+            .local/pr16-ring-owner/*.stdout
+            .local/pr16-ring-owner/*.stderr
+            .local/pr16-ring-owner/recorded-text.zip
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

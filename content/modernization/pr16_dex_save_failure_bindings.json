@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "status": "SIGNED_SAVE_FAILURE_BOUNDARIES_NOT_ACCEPTED",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "windows": [
+    {
+      "id": "try_save_result_gate",
+      "address": 135115616,
+      "size": 8,
+      "sha256": "0cadeca144754c6b20191d180b43631bce875d67dd82062eb382f91e6f09faed"
+    },
+    {
+      "id": "try_save_continuations",
+      "address": 135115624,
+      "size": 40,
+      "sha256": "0e9be8b613e282564df78c17dd6766ef8798b2e70a5719fa34a7e4a843b2ebbe"
+    },
+    {
+      "id": "save_failed_wipe",
+      "address": 135226536,
+      "size": 72,
+      "sha256": "2e2bc9f0ed7a9cdf724b5cb60ddc9418a369b47a008704972b8b01e7dd8abdea"
+    },
+    {
+      "id": "save_failed_state5",
+      "address": 135226000,
+      "size": 18,
+      "sha256": "6d8002ac14e8011d4e3f83ae221fbf8723c6700a835dfdd6f46e130adea8491c"
+    },
+    {
+      "id": "save_failed_state6",
+      "address": 135226032,
+      "size": 52,
+      "sha256": "fc5ced7ade458c0df9d7a5eadaf6d3c725e7ec342357f10e4cfe84346ad85fce"
+    },
+    {
+      "id": "save_failed_tiles_backup",
+      "address": 135512924,
+      "size": 28,
+      "sha256": "3a0f08bee200e5f7dbdbca78a513efd6c21a38db8fa06153c4a2dfc3db5774a8"
+    },
+    {
+      "id": "save_failed_tiles_restore",
+      "address": 135513052,
+      "size": 28,
+      "sha256": "ee31b152ebeaacee1156c3457821e08ecabe4e8e0ed49421c2e4582ffcd2d6cb"
+    },
+    {
+      "id": "save_failed_video_state",
+      "address": 135512852,
+      "size": 72,
+      "sha256": "2480f0a74d2a77688500f89c65503cde53d51e7d3b68c60b325a13e25e5ed2ca"
+    }
+  ],
+  "save_failed_owner_collision": {
+    "tiles_backup_start": 33796328,
+    "tiles_backup_size": 16384,
+    "video_state_start": 33812716,
+    "known_video_state_end_exclusive": 33812737,
+    "mdx_start": 33807168,
+    "mdx_size": 522,
+    "research_volatile_start": 33812640,
+    "research_volatile_end_exclusive": 33812736,
+    "scope_ja": "invalid-live保存拒否だけ専用SaveFailedを避け通常エラー文へ返す。valid-liveのFlash実失敗のtiles/video-state衝突は未修復・未受入。"
+  }
+}

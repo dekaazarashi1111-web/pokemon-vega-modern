@@ -1,0 +1,49 @@
+name: pr16-story-route-adapter
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-route-adapter.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-route-adapter
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  route:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 8
+      - name: Restore identical official headers
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev=0.10.2+dfsg-1.1build3 libmgba0.10t64=0.10.2+dfsg-1.1build3
+      - name: Check exact route owners and changed live adapter
+        run: python3 -B scripts/pr16_story_route_probe.py
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-route-adapter-save101
+          path: public-story-route-evidence
+          retention-days: 90
+          if-no-files-found: error
+# owner repair: empty daycare step counter only; first diagnostic retained.
+# changed interval: observe600 no-input frames at the exact unaccepted grass transition.
+# continuation impact: exact first-wild commands and closed rekey/postbattle adapter.
+# bounded post-victory field fade: complete state guard before each no-input wait.
+# Only prevalidated .json/.txt/.ppm are copied into this non-hidden public directory.
+# ROM/input saves/runtime/runner stay outside it; no hidden-file collection.

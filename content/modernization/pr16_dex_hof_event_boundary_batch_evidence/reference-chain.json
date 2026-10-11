@@ -1,0 +1,685 @@
+{
+  "schema_version": 1,
+  "status": "PASS_749_PARENT_BOUND_EVENT_BOUNDARY_BATCH_REFERENCE_CHAIN",
+  "baseline": {
+    "path": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent": {
+    "path": "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/reference-chain.json",
+    "size": 75712,
+    "sha256": "f2b07ad37d428bb4d1be56da6fb65b3a9086a6957c60056697c32ecfc38d8fb3"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 749,
+  "inherited_unclassified": 125,
+  "changes": [
+    {
+      "address": 151018900,
+      "target": 167708698,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "18ef76b290714a374b93d046cd3c65db21739f4c57ba34221bc20e7b9daf7787",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_BATTLE_TAIL_MINIMUM_CROSS_FIELD",
+      "accepted": true,
+      "witness_ids": [
+        0
+      ]
+    },
+    {
+      "address": 151024241,
+      "target": 167708698,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "18ef76b290714a374b93d046cd3c65db21739f4c57ba34221bc20e7b9daf7787",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_BATTLE_TAIL_MINIMUM_CROSS_FIELD",
+      "accepted": true,
+      "witness_ids": [
+        1
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": 0,
+      "address": 151018900,
+      "size": 4,
+      "kind": "rooted_battle_tail_minimum_cross_field",
+      "evidence": {
+        "hit": 151018900,
+        "kind": "rooted_battle_tail_minimum_cross_field",
+        "root": 151018879,
+        "effect": 184,
+        "left_command": {
+          "address": 151018897,
+          "size": 5,
+          "opcode": 40
+        },
+        "right_command": {
+          "address": 151018902,
+          "size": 10,
+          "opcode": 65289
+        },
+        "whole_pointers": [
+          {
+            "address": 151018898,
+            "size": 4,
+            "value": 136030435
+          },
+          {
+            "address": 151018908,
+            "size": 4,
+            "value": 151031313
+          }
+        ],
+        "byte_roles": [
+          "left_script_pointer_byte2",
+          "left_script_pointer_byte3",
+          "right_primary_opcode",
+          "right_secondary_opcode"
+        ],
+        "claims": {
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "callasm_success_proven": false,
+          "goto_fallthrough_claimed": false,
+          "all_prefix_execution_claimed": false,
+          "owner_transfer_proven": false
+        }
+      },
+      "evidence_identity": {
+        "size": 853,
+        "sha256": "0d6ad832a4ecf1ffd57ffa3643cdb4564b9599b7bc00b6acf456d00e5e795ad6"
+      }
+    },
+    {
+      "id": 1,
+      "address": 151024241,
+      "size": 4,
+      "kind": "rooted_battle_tail_minimum_cross_field",
+      "evidence": {
+        "hit": 151024241,
+        "kind": "rooted_battle_tail_minimum_cross_field",
+        "root": 151024058,
+        "effect": 231,
+        "left_command": {
+          "address": 151024238,
+          "size": 5,
+          "opcode": 40
+        },
+        "right_command": {
+          "address": 151024243,
+          "size": 10,
+          "opcode": 65289
+        },
+        "whole_pointers": [
+          {
+            "address": 151024239,
+            "size": 4,
+            "value": 136030474
+          },
+          {
+            "address": 151024249,
+            "size": 4,
+            "value": 151031313
+          }
+        ],
+        "byte_roles": [
+          "left_script_pointer_byte2",
+          "left_script_pointer_byte3",
+          "right_primary_opcode",
+          "right_secondary_opcode"
+        ],
+        "claims": {
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "callasm_success_proven": false,
+          "goto_fallthrough_claimed": false,
+          "all_prefix_execution_claimed": false,
+          "owner_transfer_proven": false
+        }
+      },
+      "evidence_identity": {
+        "size": 853,
+        "sha256": "c3f6f9457a7a0b1d0a222dce2e3646bcdc45d8c8c26da430f63462e3206f5231"
+      }
+    }
+  ],
+  "classified": 751,
+  "unclassified": 123,
+  "newly_classified": 2,
+  "proof": {
+    "data": {
+      "status": "PASS_NEW_REGISTERED_BATTLE_BOUNDARIES_AND_HELD_EVENT_ROOT",
+      "consumers": {
+        "rooted_battle_tail_minimum_cross_field": {
+          "status": "PASS_TWO_SOURCE_ROOTED_BATTLE_TAIL_TYPES",
+          "count": 2,
+          "hits": [
+            151018900,
+            151024241
+          ],
+          "typed_bytes": 8,
+          "embargo_commands": 13,
+          "embargo_serialized_bytes": 61,
+          "recycle_prefix_serialized_bytes": 23,
+          "source_serialized_root": true,
+          "native_pointer_read_proofs": [
+            {
+              "command": 151024243,
+              "handler": 152153960,
+              "stop": 152154004,
+              "pointer": 151031313,
+              "pointer_bytes": 4,
+              "bank_operand": 0,
+              "resolver_slot": 152441872,
+              "bank_read_address": 33701068,
+              "actual_resolver_table": true,
+              "distinct_bank_value_cases": 4
+            },
+            {
+              "command": 151018902,
+              "handler": 152153960,
+              "stop": 152154004,
+              "pointer": 151031313,
+              "pointer_bytes": 4,
+              "bank_operand": 1,
+              "resolver_slot": 152441876,
+              "bank_read_address": 33701067,
+              "actual_resolver_table": true,
+              "distinct_bank_value_cases": 4
+            }
+          ],
+          "native_selector_models": [
+            {
+              "command": 151024059,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151024358
+            },
+            {
+              "command": 151024059,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151024071
+            },
+            {
+              "command": 151024071,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151024182
+            },
+            {
+              "command": 151024071,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151024083
+            },
+            {
+              "command": 151024083,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151024243
+            },
+            {
+              "command": 151024083,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151024095
+            },
+            {
+              "command": 151024095,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151024301
+            },
+            {
+              "command": 151024095,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151024107
+            },
+            {
+              "command": 151024107,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151024409
+            },
+            {
+              "command": 151024107,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151024119
+            },
+            {
+              "command": 151024238,
+              "opcode": 40,
+              "edge": "taken",
+              "entry": 134356560,
+              "next_cursor": 136030474
+            },
+            {
+              "command": 151018880,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151018902
+            },
+            {
+              "command": 151018880,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151018892
+            },
+            {
+              "command": 151018897,
+              "opcode": 40,
+              "edge": "taken",
+              "entry": 134356560,
+              "next_cursor": 136030435
+            }
+          ],
+          "protected_windows": 247,
+          "protected_bytes": 718,
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "callasm_success_proven": false,
+          "goto_fallthrough_claimed": false,
+          "all_prefix_execution_claimed": false,
+          "owner_transfer_proven": false
+        }
+      },
+      "held_roots": {
+        "held_event_placeholder_unbound_roots": {
+          "status": "PASS_EVENT_PLACEHOLDER_ONE_HIT_REMAINS_UNKNOWN",
+          "count": 0,
+          "hits": [],
+          "held_hits": [
+            135847261
+          ],
+          "new_classified_bytes": 0,
+          "source_bindings": {
+            "pret-std_msgbox.inc": {
+              "local": "pret-std_msgbox.inc",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "data/scripts/std_msgbox.inc",
+              "size": 1040,
+              "sha256": "090541cfc3a47272ea8203f0f6c18f19f8062d407388a23fcf103e93b196b431",
+              "git_blob_sha": "18ad553c85b66975e0c05763c6145082c8c13dde"
+            },
+            "pret-script.c": {
+              "local": "pret-script.c",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "src/script.c",
+              "size": 13713,
+              "sha256": "1cc4aade1f821e5f218ba7c191b1217e5a3cf942d0bfd0f32f775ce1f808437c",
+              "git_blob_sha": "d0433bdda062b138e53d1a1d3184b4566ad7d9dc"
+            },
+            "pret-event_scripts.s": {
+              "local": "pret-event_scripts.s",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "data/event_scripts.s",
+              "size": 55643,
+              "sha256": "3b1bd10d26c0a74fb3452ab42fc9d14dfca785f8b71389db06c71f5dfdd50a27",
+              "git_blob_sha": "88d75946a7300ccf952f4a36c283966c6aebf5c0"
+            },
+            "pret-string_util.c": {
+              "local": "pret-string_util.c",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "src/string_util.c",
+              "size": 14320,
+              "sha256": "ed9519d4eaf51ed660a522915366dc0ebf2916d592a91a1d7fc2a012e4f3f17e",
+              "git_blob_sha": "5c26d151a61274caac3a16c3b9c4eb73bf9a9e26"
+            },
+            "pret-characters.h": {
+              "local": "pret-characters.h",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "include/characters.h",
+              "size": 12798,
+              "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98",
+              "git_blob_sha": "d00ecf0a3afcd9fc1fa9534c00f4b74793d5f06f"
+            },
+            "pret-scrcmd.c": {
+              "local": "pret-scrcmd.c",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "src/scrcmd.c",
+              "size": 56954,
+              "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+              "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814"
+            },
+            "BPRJ.ld": {
+              "local": "BPRJ.ld",
+              "repository": "kapibarasan000/CFRU-JP",
+              "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+              "path": "BPRJ.ld",
+              "size": 68505,
+              "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+              "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+            }
+          },
+          "root": {
+            "kind": "two_current_object_roots_end_after_other_message",
+            "registration_scope": "only_OBJECT_3_10_0_and_OBJECT_23_0_0",
+            "map_literal": 134564620,
+            "dispatch": 134648088,
+            "standard2": 135867792,
+            "standard2_slot": 135673696,
+            "end_handler": 134649752,
+            "return_handler": 134649992,
+            "stop_script": 134647996
+          },
+          "registration_paths": [
+            {
+              "owner_id": "OBJECT:3/10:0",
+              "script": 135845930,
+              "registration_bound": true
+            },
+            {
+              "owner_id": "OBJECT:23/0:0",
+              "script": 135845874,
+              "registration_bound": true
+            }
+          ],
+          "conditional_root_probes": [
+            {
+              "owner_id": "OBJECT:3/10:0",
+              "script": 135845930,
+              "text_pointer": 141172340,
+              "standard_index": 2,
+              "standard_script": 135867792,
+              "return_address": 135845938,
+              "prefix_machine_instructions": 237,
+              "conditional_terminal_machine_instructions": 50,
+              "standard_script_structural_commands": 7,
+              "standard_handlers_executed": false,
+              "terminal_probe_entry": "direct_return_handler_with_prefix_stack_preserved_after_assumed_standard_completion",
+              "actual_end_dispatch_executed": true,
+              "terminal_mode": 0,
+              "terminal_script_pointer": 0,
+              "target_text_bytes_consumed": 0,
+              "valid_target_suffix_context_established": false,
+              "root_to_target_structural_path_found": false,
+              "all_other_roots_excluded": false
+            },
+            {
+              "owner_id": "OBJECT:23/0:0",
+              "script": 135845874,
+              "text_pointer": 141172985,
+              "standard_index": 2,
+              "standard_script": 135867792,
+              "return_address": 135845882,
+              "prefix_machine_instructions": 237,
+              "conditional_terminal_machine_instructions": 50,
+              "standard_script_structural_commands": 7,
+              "standard_handlers_executed": false,
+              "terminal_probe_entry": "direct_return_handler_with_prefix_stack_preserved_after_assumed_standard_completion",
+              "actual_end_dispatch_executed": true,
+              "terminal_mode": 0,
+              "terminal_script_pointer": 0,
+              "target_text_bytes_consumed": 0,
+              "valid_target_suffix_context_established": false,
+              "root_to_target_structural_path_found": false,
+              "all_other_roots_excluded": false
+            }
+          ],
+          "placeholder": {
+            "text": 135847204,
+            "offset": 8,
+            "id": 3,
+            "source_meaning": "gStringVar2",
+            "public_jp_symbol": 33692768,
+            "source_role": "public_semantic_only_not_actual_branch_or_source_extent_proof",
+            "actual_branch_bound": false,
+            "replacement_extent_bound": false,
+            "replacement_eos_bound": false,
+            "replacement_producer_bound": false,
+            "replacement_source_byte_consumer_executed": false
+          },
+          "required_obligations": [
+            "両対象LOADWORDへ接続する別の現登録rootと完全な有限script path。候補2根の近傍だけでは代用しない。",
+            "左FD03の現GetExpandedPlaceholder分岐、gStringVar2生成元、有限置換元extent/EOS、実source-byte consumer。",
+            "valid suffix contextを自然到達・special/flag効果と区別し、左右の完全消費が閉じるまで4byteも分類しない。",
+            "全root不達・間接参照完全性・未使用・退役・owner移管・普遍lifetimeは別義務。"
+          ],
+          "protected_windows": 35,
+          "protected_bytes": 619,
+          "all_inherited_fields_unchanged": true,
+          "current_candidate_measured": false,
+          "proof_scope": "two_registered_roots_and_conditional_terminal_probes_only",
+          "registration_bound": true,
+          "structural_prefix_only": true,
+          "registered_loadword_callstd_prefix_machine_executed": true,
+          "standard2_handler_runtime_effects_proven": false,
+          "conditional_return_probe_requires_standard2_completion_and_stack_preservation": true,
+          "conditional_return_and_end_machine_executed": true,
+          "selected_target_root_paths_bound": false,
+          "selected_target_consumer_executed": false,
+          "placeholder_branch_and_replacement_source_bound": false,
+          "all_roots_unreachable_claimed": false,
+          "whole_script_unreachable_claimed": false,
+          "full_story_reachability_claimed": false,
+          "actual_runtime_execution_observed": false,
+          "opaque_callee_effects_proven": false,
+          "universal_heap_or_irq_lifetime_proven": false,
+          "source_pointer_interpretation": false,
+          "whole_text_classified": false,
+          "indirect_reference_completeness_claimed": false,
+          "donor_eligible": false,
+          "donor_leased": false
+        }
+      },
+      "new_data": 2,
+      "new_code": 0,
+      "new_boundary": 0,
+      "natural_gameplay_reachability_claimed": false,
+      "universal_heap_or_irq_lifetime_claimed": false,
+      "independent_old_final_source_review_completed": false,
+      "donor_leased": false,
+      "indirect_reference_completeness_claimed": false
+    },
+    "song": {
+      "status": "PASS_RETAINED_133_MODELS_50_ASSETS_NEW_CONSUMER_INTERSECTION",
+      "combined_song_models": 133,
+      "retained_sample_witnesses": 50,
+      "model_identity": {
+        "size": 213296,
+        "sha256": "71f01cee0a344409445e17fdea268371269a3e622c6b93563d04b35677e0b975"
+      },
+      "sample_identity": {
+        "size": 1121492,
+        "sha256": "9f765e8eee8ad78eaac8902ccafbf9e14c7c694f842e9ae6b2002583181b70ee"
+      },
+      "old_protected_read_windows": 198334,
+      "old_protected_read_identity": {
+        "size": 26409459,
+        "sha256": "26ae440b2d8456747f59e7fd73679a17b6289ef1a733bdd51c1f9ff668fc8914"
+      },
+      "all133_models_exact": true,
+      "all50_sample_identities_exact": true,
+      "old_and_new_root_windows": 7657,
+      "old_and_new_root_identity": {
+        "size": 820094,
+        "sha256": "042075c1318485bb47d62b42f65dfcb2440179eda91c08fa9e553be555446a07"
+      },
+      "new_song_discovery_runs": 0,
+      "new_songs": [],
+      "new_audio_classified": 0,
+      "native_processes": 0,
+      "donor_leased": false
+    },
+    "public_source_bindings": {
+      "battle-BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "battle-asm_defines.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "asm_defines.s",
+        "size": 131732,
+        "sha256": "1beb8b1cce26e302eb17b6907951fc4ae0a1a0ae94cffb168a12c648ca45c8a7",
+        "git_blob_sha": "67f802d777e348e74c0f2d6c7ae2227fdf849f6f"
+      },
+      "battle-assembly--battle_scripts--general_attack_battle_scripts.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/battle_scripts/general_attack_battle_scripts.s",
+        "size": 178625,
+        "sha256": "8ce944c4bc85f2827eb806a3ba1f046e332429ceadd2b55bbc79f900a6a7bd11",
+        "git_blob_sha": "f0a04c0f348555a82aa861ccb62b9cc046699a48"
+      },
+      "battle-assembly--data--battle_script_commands_table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/battle_script_commands_table.s",
+        "size": 11083,
+        "sha256": "ef6615d20d0768e23828b941fcd2a4f04ba06507a7ed498ab51b8db10e71f5f6",
+        "git_blob_sha": "10e8cf9821e5be79798b3ab1d02ea3e44ce44f05"
+      },
+      "battle-assembly--data--move_effect_table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/move_effect_table.s",
+        "size": 8052,
+        "sha256": "6200094d2df850f70121a981c89e776a8419cc71423b44ea4773f609ca39a7ee",
+        "git_blob_sha": "8a80d63f814e97b353416a73e2be7c82c453b244"
+      },
+      "battle-battle_script_macros.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "battle_script_macros.s",
+        "size": 28316,
+        "sha256": "203f55037871e670401692a2a08ba282745a442fc84fca0615fbe1b136f8f317",
+        "git_blob_sha": "bc62b1a589d0569980bd723d8da6272f40f12817"
+      },
+      "battle-src--general_bs_commands.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/general_bs_commands.c",
+        "size": 170849,
+        "sha256": "ee23f75ab32b0f453128a9e5f9c7e77aba4a0de646e762a5fe821b61c1b20643",
+        "git_blob_sha": "476cbdd3ee2cfe3ce2ccca51b609560b1f1a4282"
+      },
+      "battle-src--new_bs_commands.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/new_bs_commands.c",
+        "size": 63964,
+        "sha256": "203c32caf217965e468bc2efee45809b05289c51201412250b2352e17643688b",
+        "git_blob_sha": "78614276ea045eaa06781210d588dd6ea6995bf3"
+      },
+      "pret-std_msgbox.inc": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "data/scripts/std_msgbox.inc",
+        "size": 1040,
+        "sha256": "090541cfc3a47272ea8203f0f6c18f19f8062d407388a23fcf103e93b196b431",
+        "git_blob_sha": "18ad553c85b66975e0c05763c6145082c8c13dde"
+      },
+      "pret-script.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/script.c",
+        "size": 13713,
+        "sha256": "1cc4aade1f821e5f218ba7c191b1217e5a3cf942d0bfd0f32f775ce1f808437c",
+        "git_blob_sha": "d0433bdda062b138e53d1a1d3184b4566ad7d9dc"
+      },
+      "pret-event_scripts.s": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "data/event_scripts.s",
+        "size": 55643,
+        "sha256": "3b1bd10d26c0a74fb3452ab42fc9d14dfca785f8b71389db06c71f5dfdd50a27",
+        "git_blob_sha": "88d75946a7300ccf952f4a36c283966c6aebf5c0"
+      },
+      "pret-string_util.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/string_util.c",
+        "size": 14320,
+        "sha256": "ed9519d4eaf51ed660a522915366dc0ebf2916d592a91a1d7fc2a012e4f3f17e",
+        "git_blob_sha": "5c26d151a61274caac3a16c3b9c4eb73bf9a9e26"
+      },
+      "pret-characters.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "include/characters.h",
+        "size": 12798,
+        "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98",
+        "git_blob_sha": "d00ecf0a3afcd9fc1fa9534c00f4b74793d5f06f"
+      },
+      "pret-scrcmd.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/scrcmd.c",
+        "size": 56954,
+        "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+        "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814"
+      },
+      "BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      }
+    }
+  },
+  "proof_identity": {
+    "size": 14274,
+    "sha256": "5da80fea30bba6113157d715ffdd3a4cfce857ddd65ac84d128c414a10feb1ff"
+  },
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "donor_safe_bytes": 0,
+  "controller_runtime_wired": false,
+  "universal_irq_or_heap_lifetime_claimed": false,
+  "natural_play_universal_reachability_claimed": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false
+}

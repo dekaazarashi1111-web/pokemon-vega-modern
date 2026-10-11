@@ -1,0 +1,91 @@
+{
+  "accepted_scope": {
+    "all_61_rows_individually_executed": false,
+    "cancel_state_unchanged": true,
+    "four_move_slots_preserved": true,
+    "generic_owner_route_count": 61,
+    "generic_owner_rows_sha256": "66cd203079d2a6d8ef1eb0fca6b5156c7bccbc1c720786df4953311491b5592e",
+    "generic_owner_species_count": 10,
+    "menu_cursor": 1,
+    "menu_discovery": "input-only-native-menu-probe",
+    "menu_page": 1,
+    "normal_save_and_fresh_continue": true,
+    "owner": "generic_form_change_service",
+    "pages_scanned": 2,
+    "probe_count": 7,
+    "representative_native_acceptance": true,
+    "representative_route_ids": [
+      "bca6fe62e4b8925d73c8238a",
+      "830d0124e9ca952d41d4a7f0",
+      "57e91d3ffeb04c9795a8b6a1"
+    ],
+    "representative_species": [
+      749,
+      900
+    ]
+  },
+  "active_baseline_changed": false,
+  "candidate": {
+    "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+    "size": 33554432
+  },
+  "clean_rom_regeneration_verified": false,
+  "condition_id": "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
+  "emulator_runs_by_this_verifier": 0,
+  "evidence": {
+    "artifact_id": 10292791318,
+    "artifact_name": "pr16-generic-form-carry-acceptance",
+    "artifact_path": "content/modernization/pr16_generic_form_evidence/34675976411/original.zip",
+    "artifact_sha256": "f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b",
+    "artifact_size": 372130,
+    "job_id": 103505793891,
+    "run_id": 34675976411,
+    "source_binding_count": 17,
+    "source_snapshot_sha256": "f7f14da4ef4907ab97e7edd47708ef87bfa0dba8efd907fe8cc2c7b5f901637d",
+    "tested_head": "92db3605070c65206696b03f8ab6bd596ae7d729",
+    "workflow": ".github/workflows/pr16-generic-form-carry.yml"
+  },
+  "fixed_form_transition_physical_accepted": false,
+  "full_p03_acceptance": false,
+  "generic_form_carry_physical_accepted": true,
+  "native_execution": {
+    "acceptance_fresh_cores": 5,
+    "acceptance_processes": 2,
+    "cases": [
+      {
+        "automatic_saves": 2,
+        "fresh_cores": 3,
+        "manual_saves": 2,
+        "name": "shaymin-four-slot-roundtrip",
+        "result": 0,
+        "rounds": 2
+      },
+      {
+        "automatic_saves": 0,
+        "fresh_cores": 2,
+        "manual_saves": 1,
+        "name": "shaymin-party-cancel",
+        "result": 20,
+        "rounds": 1
+      }
+    ],
+    "diagnostic_fresh_cores": 14,
+    "diagnostic_processes": 14,
+    "diagnostics_are_acceptance": false,
+    "rendered_witnesses": 44,
+    "write_guard_checks": [
+      "bus8",
+      "bus16",
+      "bus32",
+      "raw8",
+      "raw16",
+      "raw32",
+      "register"
+    ]
+  },
+  "old_runs_relabelled": 0,
+  "release_ready": false,
+  "schema_version": 1,
+  "status": "PASS_GENERIC_FORM_CARRY_ON_PARENT_PENDING_FIXED_AND_P08_TRANSFER",
+  "successor_transfer_complete": false
+}

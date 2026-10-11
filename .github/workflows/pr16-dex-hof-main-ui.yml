@@ -1,0 +1,47 @@
+name: pr16-dex-hof-main-ui
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-dex-hof-main-ui
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  hof:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 24
+      - name: Exact HOF UI sources and terminal isolation
+        run: python3 -B scripts/pr16_dex_hof_main_ui.py guard
+      - name: Official Ubuntu ARM compiler
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev libmgba-dev
+      - name: Actual HOF failure success display and independent cold
+        run: python3 -B scripts/pr16_dex_hof_main_ui.py run
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - name: Closed HOF text publication guard
+        id: publication_guard
+        if: always()
+        run: python3 -B scripts/pr16_dex_hof_main_ui.py export
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.publication_guard.outcome == 'success' }}
+        with:
+          name: pr16-dex-hof-main-ui-text-only
+          path: public-dex-hof-main-ui
+          retention-days: 90
+          if-no-files-found: error

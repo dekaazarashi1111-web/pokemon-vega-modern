@@ -1,0 +1,380 @@
+{
+  "schema_version": 1,
+  "status": "PASS_COMPACT_C_AND_ARM_FOOTPRINT_ROM_UNWIRED",
+  "source_head": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+  "run_id": 37219630045,
+  "host_tests": 51,
+  "c_mapping_comparisons": 262144,
+  "host_compiles": 1,
+  "arm_translation_units": 4,
+  "arm_links": 1,
+  "toolchain": {
+    "arm-none-eabi-gcc": {
+      "version": "arm-none-eabi-gcc (15:13.2.rel1-2) 13.2.1 20231009"
+    },
+    "arm-none-eabi-ld": {
+      "version": "GNU ld (2.42-1ubuntu1+23) 2.42"
+    },
+    "arm-none-eabi-nm": {
+      "version": "GNU nm (2.42-1ubuntu1+23) 2.42"
+    },
+    "arm-none-eabi-objcopy": {
+      "version": "GNU objcopy (2.42-1ubuntu1+23) 2.42"
+    }
+  },
+  "compile_flags": [
+    "-mthumb",
+    "-mcpu=arm7tdmi",
+    "-mthumb-interwork",
+    "-Os",
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-unwind-tables",
+    "-fno-asynchronous-unwind-tables",
+    "-fdata-sections",
+    "-ffunction-sections",
+    "-fno-common"
+  ],
+  "footprint": {
+    "size": 4638,
+    "sha256": "2276f459265b5cf79523e411660cbee3cddcd806343f6bb8d35de15f8d41d05f"
+  },
+  "symbols": [
+    {
+      "name": "overlaps",
+      "offset": 0,
+      "size": 42,
+      "kind": "t"
+    },
+    {
+      "name": "VegaDexChecksum",
+      "offset": 44,
+      "size": 88,
+      "kind": "T"
+    },
+    {
+      "name": "finalize",
+      "offset": 132,
+      "size": 36,
+      "kind": "t"
+    },
+    {
+      "name": "VegaDexValidate",
+      "offset": 168,
+      "size": 196,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexInitNew",
+      "offset": 364,
+      "size": 72,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexInitLegacy",
+      "offset": 436,
+      "size": 96,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexAccess",
+      "offset": 532,
+      "size": 188,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexCount",
+      "offset": 720,
+      "size": 108,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexLoad",
+      "offset": 828,
+      "size": 156,
+      "kind": "T"
+    },
+    {
+      "name": "alias",
+      "offset": 984,
+      "size": 46,
+      "kind": "t"
+    },
+    {
+      "name": "seal",
+      "offset": 1032,
+      "size": 36,
+      "kind": "t"
+    },
+    {
+      "name": "VegaDexSpeciesFlags",
+      "offset": 1068,
+      "size": 36,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexOfficialFlags",
+      "offset": 1104,
+      "size": 36,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexOfficialRepresentative",
+      "offset": 1140,
+      "size": 44,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexOfficialCount",
+      "offset": 1184,
+      "size": 116,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexSnapshotSpecies",
+      "offset": 1300,
+      "size": 128,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexRestoreSpecies",
+      "offset": 1428,
+      "size": 196,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexSnapshotSeen",
+      "offset": 1624,
+      "size": 68,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexRestoreSeen",
+      "offset": 1692,
+      "size": 108,
+      "kind": "T"
+    },
+    {
+      "name": "lookup",
+      "offset": 1800,
+      "size": 88,
+      "kind": "t"
+    },
+    {
+      "name": "VegaDexCompactSpeciesOwner",
+      "offset": 1888,
+      "size": 28,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexCompactOfficialOwner",
+      "offset": 1916,
+      "size": 28,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexCompactOwnerRepresentative",
+      "offset": 1944,
+      "size": 24,
+      "kind": "T"
+    },
+    {
+      "name": "overlap",
+      "offset": 1968,
+      "size": 46,
+      "kind": "t"
+    },
+    {
+      "name": "sector_parent.part.0",
+      "offset": 2016,
+      "size": 116,
+      "kind": "t"
+    },
+    {
+      "name": "VegaDexClassifyRecord",
+      "offset": 2132,
+      "size": 88,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexCheckSector",
+      "offset": 2220,
+      "size": 80,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexInjectSector",
+      "offset": 2300,
+      "size": 108,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexTailMatches",
+      "offset": 2408,
+      "size": 140,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexLoadSelected",
+      "offset": 2548,
+      "size": 248,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexInvalidateSession",
+      "offset": 2796,
+      "size": 40,
+      "kind": "T"
+    },
+    {
+      "name": "VegaDexCompactOfficialMask",
+      "offset": 2836,
+      "size": 151,
+      "kind": "T"
+    },
+    {
+      "name": "sCompactRepresentative",
+      "offset": 2988,
+      "size": 112,
+      "kind": "t"
+    },
+    {
+      "name": "sCompactOfficialLiterals",
+      "offset": 3100,
+      "size": 298,
+      "kind": "t"
+    },
+    {
+      "name": "sCompactOfficial",
+      "offset": 3398,
+      "size": 456,
+      "kind": "t"
+    },
+    {
+      "name": "sCompactSpeciesLiterals",
+      "offset": 3854,
+      "size": 360,
+      "kind": "t"
+    },
+    {
+      "name": "sCompactSpecies",
+      "offset": 4214,
+      "size": 424,
+      "kind": "t"
+    }
+  ],
+  "compact_mapping": {
+    "schema_version": 1,
+    "status": "COMPACT_MAPPING_HOST_AND_ARM_REQUIRED_ROM_UNWIRED",
+    "namespace_version": 1,
+    "owner_count": 1206,
+    "species_slots": 1671,
+    "stage75_owner": 925,
+    "reference_adapter": {
+      "path": "overlays/dex_owner/dex_adapter.c",
+      "sha256": "aa4ac552bcb0b4cb768c54b840240822db4e5038e1e7577558bbc34c86c361f2"
+    },
+    "maps": {
+      "Species": {
+        "keys": 1671,
+        "records": 106,
+        "literal_values": 180,
+        "logical_bytes": 784,
+        "decoded_u16_le_sha256": "7be37cb316355c051fd12684408d6bdca983892bbc9d7388b56044acdf5fb6f5"
+      },
+      "Official": {
+        "keys": 1026,
+        "records": 114,
+        "literal_values": 149,
+        "logical_bytes": 754,
+        "decoded_u16_le_sha256": "20da2eb5ed48fd5c1053c05caf8ec3bea16b71e4029148f77a3db09e0b66b95b"
+      },
+      "Representative": {
+        "keys": 1207,
+        "records": 28,
+        "literal_values": 0,
+        "logical_bytes": 112,
+        "decoded_u16_le_sha256": "466e6cb6beacf9521f834fdd900dd51cf22b4590364398f8453e217d205fff77"
+      }
+    },
+    "mask_bytes": 151,
+    "reference_logical_bytes": 7597,
+    "compact_logical_bytes": 1801,
+    "arm_layout_padding_included": false,
+    "save_layout_changed": false,
+    "rom_wired": false
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-capacity.yml": {
+      "size": 1599,
+      "sha256": "2295164d75b1d377ef2860809c5600611e77c6058ed6ca362ae27ac810b434ae"
+    },
+    "content/modernization/pr16_dex_compact_mapping.json": {
+      "size": 1215,
+      "sha256": "f181cec3401a07739f87317bf482202ce62e8aaf2ad553c918e691cbb032bd43"
+    },
+    "docs/PR16_DEX_COMPACT_CAPACITY_JA.md": {
+      "size": 2382,
+      "sha256": "ed314695c61d9be1ecee6e80bda8333bfb42066ddf7a7e2e2f8645b8d9f7bfd9"
+    },
+    "overlays/dex_owner/dex_adapter.h": {
+      "size": 1232,
+      "sha256": "7a59d170571f07a595000fc7c1eedf56b7c2f3ce9a909948ab7cd0d2c447a140"
+    },
+    "overlays/dex_owner/dex_compact_adapter.c": {
+      "size": 4735,
+      "sha256": "e45926d8d2efde9b13055636e0b3378f0104bae515f9e26424a798600b5c4ffb"
+    },
+    "overlays/dex_owner/dex_compact_map.c": {
+      "size": 1249,
+      "sha256": "52097452309c3b80427d1883e9d57f693f5fc1fe97d82618d8bf0db665e76e3b"
+    },
+    "overlays/dex_owner/dex_compact_map.h": {
+      "size": 333,
+      "sha256": "4447599dcc405e77df078aaa36b37429195e3885f345e030583cce07ade9a42f"
+    },
+    "overlays/dex_owner/dex_compact_tables.h": {
+      "size": 8232,
+      "sha256": "3127563d5d5786ff88dfee26d376f37624d29a3936076345ba6cd14de782f901"
+    },
+    "overlays/dex_owner/dex_owner.c": {
+      "size": 7563,
+      "sha256": "d3442445141d8724b6ba36d34619ce955d17923935d832d328222e0906da6bd4"
+    },
+    "overlays/dex_owner/dex_owner.h": {
+      "size": 2130,
+      "sha256": "9b6458882cfa70129fbc4e0a489b0dfacdfa587dcde6272e0d0c3c80a6d8a2d9"
+    },
+    "overlays/dex_owner/dex_save_bridge.c": {
+      "size": 4305,
+      "sha256": "e95477302ac5ff1f6dc34f47d2a8d2a5d6ae17aa3115427f260bdac5c0847975"
+    },
+    "overlays/dex_owner/dex_save_bridge.h": {
+      "size": 1651,
+      "sha256": "c365ee5d69958497361d59f634fd56cf647181a02336f0e2ab14dea14a887373"
+    },
+    "scripts/pr16_dex_capacity.py": {
+      "size": 6379,
+      "sha256": "bb17a9d961c6d14209b5c77e397b9759e312e2a3432576039a80b29dc4d78fb9"
+    },
+    "scripts/pr16_dex_compact.py": {
+      "size": 6551,
+      "sha256": "0d3120196dc04daa18002b5a761eb7c4766912f31cf24f5b8cd47406d7c566f9"
+    },
+    "tests/test_pr16_dex_compact.py": {
+      "size": 4621,
+      "sha256": "76efc77f27637fe71869e198f89ce064fa67551274246b9effa9f90216d1a7cc"
+    }
+  },
+  "native_processes": 0,
+  "rom_changed": false,
+  "save_changed": false,
+  "runtime_wired": false,
+  "lease_accepted": false,
+  "formal_save": 101,
+  "public_binary_included": false
+}

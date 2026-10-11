@@ -1,0 +1,2200 @@
+{
+  "schema_version": 1,
+  "status": "PASS_746_PARENT_BOUND_FIELD_CONSUMER_BATCH_REFERENCE_CHAIN",
+  "baseline": {
+    "path": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent": {
+    "path": "content/modernization/pr16_dex_hof_root_batch_evidence/reference-chain.json",
+    "size": 478118,
+    "sha256": "2089134cff6c3f920bea3476e8c0b9e883901eff42eb7f933fd86c91e71f485e"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 746,
+  "inherited_unclassified": 128,
+  "changes": [
+    {
+      "address": 135791439,
+      "target": 167707188,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "ee6178805d8e8c97f3ee2a63daf1f8664adc53e374cbb838dda85e157aeed7ee",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_EVENT_ADJACENT_TEXT_CONSUMPTION",
+      "accepted": true,
+      "witness_ids": [
+        0
+      ]
+    },
+    {
+      "address": 151024127,
+      "target": 167708928,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "b051ab905f98b659f46894b8e949588274f231f0265c8af6c23d1f1a162e1d4a",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_BATTLE_SCRIPT_MINIMUM_CROSS_FIELD",
+      "accepted": true,
+      "witness_ids": [
+        1
+      ]
+    },
+    {
+      "address": 151024190,
+      "target": 167708928,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "b051ab905f98b659f46894b8e949588274f231f0265c8af6c23d1f1a162e1d4a",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_BATTLE_SCRIPT_MINIMUM_CROSS_FIELD",
+      "accepted": true,
+      "witness_ids": [
+        2
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": 0,
+      "address": 135791439,
+      "size": 4,
+      "kind": "rooted_event_adjacent_text_consumption",
+      "evidence": {
+        "root": {
+          "kind": "current_map_object_registered_conditional_script_text",
+          "group": 7,
+          "map": 0,
+          "object": 0,
+          "script": 135790913,
+          "map_literal": 134564620,
+          "dispatch": 134648088,
+          "loadword": 134650740,
+          "callstd": 134650432,
+          "message": 134656204,
+          "byte_consumer": 134253390,
+          "stop_after_eos": 134647186
+        },
+        "classified_window": {
+          "address": 135791439,
+          "size": 4
+        },
+        "texts": [
+          {
+            "address": 135791417,
+            "size": 25,
+            "sha256": "76a0778a7185be0db018cfdc27ccef1c543ca89818c7d74633ceab80ac0e5f78"
+          },
+          {
+            "address": 135791442,
+            "size": 78,
+            "sha256": "66cc1204dce7df3f36beec31468577d6d8d7bd3a7b3235f6cbcd9fe0795cda36"
+          }
+        ],
+        "all_hit_bytes_consumed": true,
+        "includes_complete_eos": true,
+        "proof_scope": "conditional_registered_event_script_to_actual_text_byte_reads",
+        "root_verified": true,
+        "root_verification_scope": "current_registration_and_script_structure_only",
+        "registered_root_runtime_execution_proven": false,
+        "valid_suffix_context_is_entry_condition": true,
+        "structural_prefix_only": true,
+        "prefix_handler_runtime_effects_proven": false,
+        "selected_producer_consumer_machine_executed": true,
+        "full_story_reachability_claimed": false,
+        "actual_runtime_execution_observed": false,
+        "full_renderer_claimed": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "opaque_callee_effects_proven": false,
+        "source_pointer_interpretation": false,
+        "whole_text_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      },
+      "evidence_identity": {
+        "size": 1369,
+        "sha256": "f4590ce29d7c42106127a71c1a3b29d92577f6bdb29f77748f1e570517d0b255"
+      }
+    },
+    {
+      "id": 1,
+      "address": 151024127,
+      "size": 4,
+      "kind": "rooted_battle_script_minimum_cross_field",
+      "evidence": {
+        "hit": 151024127,
+        "kind": "rooted_battle_script_minimum_cross_field",
+        "root": 151024058,
+        "left_command": {
+          "address": 151024119,
+          "size": 10,
+          "opcode": 29
+        },
+        "right_command": {
+          "address": 151024129,
+          "size": 10,
+          "opcode": 65289
+        },
+        "whole_pointers": [
+          {
+            "address": 151024125,
+            "size": 4,
+            "value": 151031313
+          },
+          {
+            "address": 151024135,
+            "size": 4,
+            "value": 151031313
+          }
+        ],
+        "byte_roles": [
+          "left_script_pointer_byte2",
+          "left_script_pointer_byte3",
+          "right_primary_opcode",
+          "right_secondary_opcode"
+        ],
+        "claims": {
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false
+        }
+      },
+      "evidence_identity": {
+        "size": 712,
+        "sha256": "be449b8c45199d28e7de40b3b8e7e88ba854c57f1fa0afc6bfbdfdb22db12990"
+      }
+    },
+    {
+      "id": 2,
+      "address": 151024190,
+      "size": 4,
+      "kind": "rooted_battle_script_minimum_cross_field",
+      "evidence": {
+        "hit": 151024190,
+        "kind": "rooted_battle_script_minimum_cross_field",
+        "root": 151024058,
+        "left_command": {
+          "address": 151024182,
+          "size": 10,
+          "opcode": 29
+        },
+        "right_command": {
+          "address": 151024192,
+          "size": 10,
+          "opcode": 65289
+        },
+        "whole_pointers": [
+          {
+            "address": 151024188,
+            "size": 4,
+            "value": 151031313
+          },
+          {
+            "address": 151024198,
+            "size": 4,
+            "value": 151031313
+          }
+        ],
+        "byte_roles": [
+          "left_script_pointer_byte2",
+          "left_script_pointer_byte3",
+          "right_primary_opcode",
+          "right_secondary_opcode"
+        ],
+        "claims": {
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false
+        }
+      },
+      "evidence_identity": {
+        "size": 712,
+        "sha256": "151c393571daf2ee9814d8a54f193b733060575fdc823eb2c20121e9be05b767"
+      }
+    }
+  ],
+  "classified": 749,
+  "unclassified": 125,
+  "newly_classified": 3,
+  "proof": {
+    "data": {
+      "status": "PASS_NEW_REGISTERED_FIELD_CONSUMERS_AND_HELD_GUARDS",
+      "consumers": {
+        "rooted_event_adjacent_text_consumption": {
+          "status": "PASS_ONE_CONDITIONAL_ROOTED_EVENT_TEXT_WINDOW",
+          "count": 1,
+          "hits": [
+            135791439
+          ],
+          "root_paths": [
+            {
+              "instructions": 29,
+              "source_root": 135790913,
+              "consumer": {
+                "address": 135791292,
+                "size": 8,
+                "sha256": "47daa67a8ce0c8a0f2af34cffda52f0beaa8882069a99f68f199fb2eac18ba8b",
+                "pointer": 135791417
+              }
+            },
+            {
+              "instructions": 13,
+              "source_root": 135790913,
+              "consumer": {
+                "address": 135791180,
+                "size": 8,
+                "sha256": "671650288496167955c6959088ba9830198a2939b7fdae5acb36f267f9472e65",
+                "pointer": 135791442
+              }
+            }
+          ],
+          "composition": {
+            "status": "PASS_TWO_CONDITIONAL_REGISTERED_EVENT_TEXT_CONSUMERS",
+            "invocations": [
+              {
+                "source_structural_prefix": {
+                  "instructions": 28,
+                  "source_condition_result": 8,
+                  "selected_pc": 135791292,
+                  "branch_count": 9,
+                  "context_writes": 0,
+                  "runtime_reachability_proven": false
+                },
+                "valid_command_context_assumed": true,
+                "registered_root_runtime_execution_proven": false,
+                "executed_instructions": 534,
+                "byte_reads": 25,
+                "read_trace_identity": {
+                  "size": 351,
+                  "sha256": "849d2b929d20853abc95eab596bbc65b4169b0f6ebf718b01fa3288358f543b6"
+                },
+                "includes_eos": true,
+                "stopped_before_display_helpers": true
+              },
+              {
+                "source_structural_prefix": {
+                  "instructions": 12,
+                  "source_condition_result": 0,
+                  "selected_pc": 135791180,
+                  "branch_count": 1,
+                  "context_writes": 0,
+                  "runtime_reachability_proven": false
+                },
+                "valid_command_context_assumed": true,
+                "registered_root_runtime_execution_proven": false,
+                "executed_instructions": 1031,
+                "byte_reads": 78,
+                "read_trace_identity": {
+                  "size": 1093,
+                  "sha256": "1b00b7c11350cd6cf24053ec1aa178185b157e1b5e368fdcce6c4afbe32dcdc2"
+                },
+                "includes_eos": true,
+                "stopped_before_display_helpers": true
+              }
+            ],
+            "complete_consumed_bytes": 103,
+            "classified_bytes": 4,
+            "actual_byte_consumer": 134253390,
+            "source_prefix_conditions": [
+              8,
+              0
+            ],
+            "actual_runtime_execution_observed": false
+          },
+          "protected_windows": 34,
+          "protected_bytes": 756,
+          "source_bindings": {
+            "BPRJ.ld": {
+              "local": "BPRJ.ld",
+              "repository": "kapibarasan000/CFRU-JP",
+              "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+              "path": "BPRJ.ld",
+              "size": 68505,
+              "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+              "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+            },
+            "pret-scrcmd.c": {
+              "local": "pret-scrcmd.c",
+              "repository": "pret/pokefirered",
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "path": "src/scrcmd.c",
+              "size": 56954,
+              "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+              "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814"
+            }
+          },
+          "proof_scope": "conditional_registered_event_script_to_actual_text_byte_reads",
+          "root_verified": true,
+          "root_verification_scope": "current_registration_and_script_structure_only",
+          "registered_root_runtime_execution_proven": false,
+          "valid_suffix_context_is_entry_condition": true,
+          "structural_prefix_only": true,
+          "prefix_handler_runtime_effects_proven": false,
+          "selected_producer_consumer_machine_executed": true,
+          "full_story_reachability_claimed": false,
+          "actual_runtime_execution_observed": false,
+          "full_renderer_claimed": false,
+          "universal_heap_or_irq_lifetime_proven": false,
+          "opaque_callee_effects_proven": false,
+          "source_pointer_interpretation": false,
+          "whole_text_classified": false,
+          "indirect_reference_completeness_claimed": false,
+          "donor_eligible": false,
+          "donor_leased": false
+        },
+        "rooted_battle_script_minimum_cross_field": {
+          "status": "PASS_TWO_SOURCE_ROOTED_BATTLE_SCRIPT_TYPES",
+          "count": 2,
+          "hits": [
+            151024127,
+            151024190
+          ],
+          "typed_bytes": 8,
+          "source_serialized_root": true,
+          "native_pointer_read_proofs": [
+            {
+              "command": 151024119,
+              "handler": 152073428,
+              "stop": 152073486,
+              "pointer": 151031313,
+              "pointer_bytes": 4,
+              "actual_resolver_table": true,
+              "steps": 39
+            },
+            {
+              "command": 151024129,
+              "handler": 152153960,
+              "stop": 152154004,
+              "pointer": 151031313,
+              "pointer_bytes": 4,
+              "actual_resolver_table": true,
+              "steps": 32
+            },
+            {
+              "command": 151024182,
+              "handler": 152073428,
+              "stop": 152073486,
+              "pointer": 151031313,
+              "pointer_bytes": 4,
+              "actual_resolver_table": true,
+              "steps": 39
+            },
+            {
+              "command": 151024192,
+              "handler": 152153960,
+              "stop": 152154004,
+              "pointer": 151031313,
+              "pointer_bytes": 4,
+              "actual_resolver_table": true,
+              "steps": 32
+            }
+          ],
+          "native_selector_models": [
+            {
+              "command": 151024059,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151024358
+            },
+            {
+              "command": 151024059,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151024071
+            },
+            {
+              "command": 151024071,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151024182
+            },
+            {
+              "command": 151024071,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151024083
+            },
+            {
+              "command": 151024083,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151024243
+            },
+            {
+              "command": 151024083,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151024095
+            },
+            {
+              "command": 151024095,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151024301
+            },
+            {
+              "command": 151024095,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151024107
+            },
+            {
+              "command": 151024107,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151024409
+            },
+            {
+              "command": 151024107,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151024119
+            }
+          ],
+          "protected_windows": 270,
+          "protected_bytes": 722,
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false
+        }
+      },
+      "held_roots": {
+        "held_bag_sort_excluded_action_producer": {
+          "status": "PASS_BAG_SORT_TWO_HITS_REMAIN_UNKNOWN",
+          "count": 0,
+          "hits": [],
+          "held_hits": [
+            152343152,
+            152343174
+          ],
+          "source_bindings": {
+            "cfru-item.c": {
+              "local": "cfru-item.c",
+              "repository": "kapibarasan000/CFRU-JP",
+              "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+              "path": "src/item.c",
+              "size": 55431,
+              "sha256": "885c2ae9fa78d145eec1eca4333104b6fdd90a1d5afbbe191e0bc3398e740922",
+              "git_blob_sha": "ea5302c0dc2bb9fc92e665aab6015a27ff4275d7"
+            }
+          },
+          "root": {
+            "kind": "unrooted_local_producer_guard",
+            "entry": 152115548,
+            "candidate_input_hook": 152115436,
+            "hook_caller_bound": false,
+            "context_pointer_writer": 152115568,
+            "context_count_writer": 152115572,
+            "parent_accepted_context_table": 138493280,
+            "candidate_extended_table": 152467464,
+            "extended_table_dispatch_bound": false,
+            "excluded_actions": [
+              14,
+              15
+            ],
+            "excluded_confirmation_modes": [
+              2,
+              3
+            ]
+          },
+          "producer_cases": [
+            {
+              "pocket": 0,
+              "pocket_class": 0,
+              "pointer": 152467460,
+              "count": 4,
+              "actions": [
+                12,
+                13,
+                16,
+                4
+              ],
+              "semantic_steps": 15,
+              "actual_writes": [
+                {
+                  "instruction": 152115568,
+                  "address": 33795228,
+                  "size": 4
+                },
+                {
+                  "instruction": 152115572,
+                  "address": 33795232,
+                  "size": 1
+                }
+              ],
+              "required_initial_fields": [
+                {
+                  "address": 33795194,
+                  "size": 2
+                }
+              ],
+              "opaque_boundaries": 0,
+              "registered_root_bound": false,
+              "text_consumer_executed": false
+            },
+            {
+              "pocket": 1,
+              "pocket_class": 1,
+              "pointer": 152467452,
+              "count": 2,
+              "actions": [
+                12,
+                4
+              ],
+              "semantic_steps": 13,
+              "actual_writes": [
+                {
+                  "instruction": 152115568,
+                  "address": 33795228,
+                  "size": 4
+                },
+                {
+                  "instruction": 152115572,
+                  "address": 33795232,
+                  "size": 1
+                }
+              ],
+              "required_initial_fields": [
+                {
+                  "address": 33795194,
+                  "size": 2
+                }
+              ],
+              "opaque_boundaries": 0,
+              "registered_root_bound": false,
+              "text_consumer_executed": false
+            },
+            {
+              "pocket": 2,
+              "pocket_class": 2,
+              "pointer": 152467456,
+              "count": 3,
+              "actions": [
+                12,
+                16,
+                4
+              ],
+              "semantic_steps": 14,
+              "actual_writes": [
+                {
+                  "instruction": 152115568,
+                  "address": 33795228,
+                  "size": 4
+                },
+                {
+                  "instruction": 152115572,
+                  "address": 33795232,
+                  "size": 1
+                }
+              ],
+              "required_initial_fields": [
+                {
+                  "address": 33795194,
+                  "size": 2
+                }
+              ],
+              "opaque_boundaries": 0,
+              "registered_root_bound": false,
+              "text_consumer_executed": false
+            }
+          ],
+          "callback_mode_prefixes": [
+            {
+              "action": 12,
+              "entry": 152108216,
+              "task_id": 0,
+              "mode": 0,
+              "mode_writer": 152108232,
+              "source": "unrooted_actual_callback_prefix",
+              "registered_root_bound": false,
+              "text_consumer_executed": false,
+              "semantic_steps": 9
+            },
+            {
+              "action": 13,
+              "entry": 152108164,
+              "task_id": 0,
+              "mode": 1,
+              "mode_writer": 152108180,
+              "source": "unrooted_actual_callback_prefix",
+              "registered_root_bound": false,
+              "text_consumer_executed": false,
+              "semantic_steps": 9
+            },
+            {
+              "action": 14,
+              "entry": 152108112,
+              "task_id": 0,
+              "mode": 3,
+              "mode_writer": 152108128,
+              "source": "unrooted_actual_callback_prefix",
+              "registered_root_bound": false,
+              "text_consumer_executed": false,
+              "semantic_steps": 9
+            },
+            {
+              "action": 15,
+              "entry": 152108060,
+              "task_id": 0,
+              "mode": 2,
+              "mode_writer": 152108076,
+              "source": "unrooted_actual_callback_prefix",
+              "registered_root_bound": false,
+              "text_consumer_executed": false,
+              "semantic_steps": 9
+            },
+            {
+              "action": 16,
+              "entry": 152108008,
+              "task_id": 0,
+              "mode": 4,
+              "mode_writer": 152108024,
+              "source": "unrooted_actual_callback_prefix",
+              "registered_root_bound": false,
+              "text_consumer_executed": false,
+              "semantic_steps": 9
+            }
+          ],
+          "partition": {
+            "domain": "u16 pocket read",
+            "classes": [
+              "==1",
+              "==2",
+              "otherwise"
+            ],
+            "exhaustive_for_local_equalities": true,
+            "natural_input_validity_claimed": false
+          },
+          "selected_confirmation_modes": [
+            0,
+            1,
+            4
+          ],
+          "excluded_confirmation_modes": [
+            2,
+            3
+          ],
+          "required_obligations": [
+            "現ROMの登録根からTrySetupSortBag、context producer、extended action table消費への実経路を束縛する。",
+            "対象ID14/15を生成する別の正当なwriterを実証するか、全参照/間接参照と退役を別に証明する。",
+            "09149270と09149286の両側textをEOS込みで実consumerへ結合してから最小型を判断する。",
+            "有限guardを全caller到達不能、自然play、owner移管、donor容量へ昇格させない。"
+          ],
+          "protected_windows": 18,
+          "protected_bytes": 269,
+          "current_candidate_measured": false,
+          "all_inherited_fields_unchanged": true,
+          "proof_scope": "conditional_local_sort_producer_unknown_retention",
+          "root_verified": false,
+          "full_story_reachability_claimed": false,
+          "actual_runtime_execution_observed": false,
+          "global_unreachability_proven": false,
+          "all_other_writers_excluded": false,
+          "indirect_reference_completeness_claimed": false,
+          "retired_or_reusable_proven": false,
+          "donor_eligible": false,
+          "donor_leased": false,
+          "opaque_callee_effects_proven": false,
+          "universal_heap_or_irq_lifetime_proven": false,
+          "padding_classified": false,
+          "all_hit_bytes_consumed": false
+        },
+        "unresolved_fishing_timeout_root": {
+          "status": "PASS_FISHING_HELD_UNKNOWN",
+          "count": 0,
+          "hits": [],
+          "held_hits": [
+            134598959
+          ],
+          "protected_windows": 20,
+          "protected_bytes": 874,
+          "composition": {
+            "status": "PASS_DIAGNOSTIC_FISHING_ROOT_GAP_HELD",
+            "cases": [
+              {
+                "rod": 0,
+                "timeout": 36,
+                "scheduler_frames": 37,
+                "stopped_at": 134598958,
+                "initial_step_produced": 1,
+                "isolated_bypass_input": 6,
+                "isolated_bypass_output": 9,
+                "injected_timeout_state": 7,
+                "injected_timeout_counter": 0,
+                "initial_free_task_data_poisoned": true,
+                "real_create_task_executed": true,
+                "real_timeout_memcpy_executed": true,
+                "nonlive_ram_erased_at_every_boundary": true,
+                "boundary_count": 78,
+                "semantic_instruction_count": 289,
+                "trace_identity": {
+                  "size": 39027,
+                  "sha256": "5a6768cf34f00c38da9020b5c56ce5f702b2390950d8abbd5685f443d1a050f8"
+                },
+                "boundary_identity": {
+                  "size": 22772,
+                  "sha256": "2a1e102da248b6d77227e2df8a5b944b09f0ed423047de6265fb291f9ccb8004"
+                },
+                "events_identity": {
+                  "size": 1256,
+                  "sha256": "58e611a27b4b1871a09115830b846060a877237fde1a4ed8967908ea21c3b71e"
+                },
+                "conditional_call_catalog": [
+                  {
+                    "site": 134597628,
+                    "target": 134648320,
+                    "phase": "constructor",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [],
+                    "required_fields": [
+                      [
+                        50352336,
+                        12
+                      ],
+                      [
+                        50352374,
+                        2
+                      ],
+                      [
+                        50360288,
+                        20
+                      ],
+                      [
+                        50360316,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134597540,
+                    "target": 135607608,
+                    "phase": "constructor",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": 0,
+                    "required_resource_epochs": [],
+                    "required_fields": [
+                      [
+                        50352336,
+                        12
+                      ],
+                      [
+                        50352374,
+                        2
+                      ],
+                      [
+                        50360316,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50344286,
+                        2
+                      ],
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        4
+                      ],
+                      [
+                        50352374,
+                        2
+                      ]
+                    ],
+                    "occurrences": 35
+                  },
+                  {
+                    "site": 134598238,
+                    "target": 134599300,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50344286,
+                        2
+                      ],
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        4
+                      ],
+                      [
+                        50352374,
+                        2
+                      ],
+                      [
+                        50360280,
+                        2
+                      ],
+                      [
+                        50360288,
+                        20
+                      ],
+                      [
+                        50360316,
+                        4
+                      ]
+                    ],
+                    "occurrences": 35
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        4
+                      ],
+                      [
+                        50352374,
+                        2
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134598238,
+                    "target": 134599300,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352346,
+                        2
+                      ],
+                      [
+                        50352374,
+                        2
+                      ],
+                      [
+                        50360280,
+                        2
+                      ],
+                      [
+                        50360288,
+                        20
+                      ],
+                      [
+                        50360316,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50352336,
+                        6
+                      ],
+                      [
+                        50352344,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134598924,
+                    "target": 134599300,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50352344,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134598938,
+                    "target": 134594432,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": 1,
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        50352344,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134598946,
+                    "target": 134622656,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": 1,
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        50352344,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  }
+                ]
+              },
+              {
+                "rod": 1,
+                "timeout": 33,
+                "scheduler_frames": 34,
+                "stopped_at": 134598958,
+                "initial_step_produced": 1,
+                "isolated_bypass_input": 6,
+                "isolated_bypass_output": 9,
+                "injected_timeout_state": 7,
+                "injected_timeout_counter": 0,
+                "initial_free_task_data_poisoned": true,
+                "real_create_task_executed": true,
+                "real_timeout_memcpy_executed": true,
+                "nonlive_ram_erased_at_every_boundary": true,
+                "boundary_count": 72,
+                "semantic_instruction_count": 289,
+                "trace_identity": {
+                  "size": 36003,
+                  "sha256": "a8fb2959f0ba550ebccfeafd9a0f892ed3cfa122f4b684c232dc7df36042c285"
+                },
+                "boundary_identity": {
+                  "size": 20990,
+                  "sha256": "b11f21b5aae496ed14bc46583e1ff8a82d95d793fbcaa568f19014ea8df4f795"
+                },
+                "events_identity": {
+                  "size": 1163,
+                  "sha256": "5d0b40cb52243dc2025b393aee0ffe428d14b423a73da21977b73a14b1eafd52"
+                },
+                "conditional_call_catalog": [
+                  {
+                    "site": 134597628,
+                    "target": 134648320,
+                    "phase": "constructor",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [],
+                    "required_fields": [
+                      [
+                        50352336,
+                        12
+                      ],
+                      [
+                        50352374,
+                        2
+                      ],
+                      [
+                        50360288,
+                        20
+                      ],
+                      [
+                        50360316,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134597540,
+                    "target": 135607608,
+                    "phase": "constructor",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": 0,
+                    "required_resource_epochs": [],
+                    "required_fields": [
+                      [
+                        50352336,
+                        12
+                      ],
+                      [
+                        50352374,
+                        2
+                      ],
+                      [
+                        50360316,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50344286,
+                        2
+                      ],
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        4
+                      ],
+                      [
+                        50352374,
+                        2
+                      ]
+                    ],
+                    "occurrences": 32
+                  },
+                  {
+                    "site": 134598238,
+                    "target": 134599300,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50344286,
+                        2
+                      ],
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        4
+                      ],
+                      [
+                        50352374,
+                        2
+                      ],
+                      [
+                        50360282,
+                        2
+                      ],
+                      [
+                        50360288,
+                        20
+                      ],
+                      [
+                        50360316,
+                        4
+                      ]
+                    ],
+                    "occurrences": 32
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        4
+                      ],
+                      [
+                        50352374,
+                        2
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134598238,
+                    "target": 134599300,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352346,
+                        2
+                      ],
+                      [
+                        50352374,
+                        2
+                      ],
+                      [
+                        50360282,
+                        2
+                      ],
+                      [
+                        50360288,
+                        20
+                      ],
+                      [
+                        50360316,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50352336,
+                        6
+                      ],
+                      [
+                        50352344,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134598924,
+                    "target": 134599300,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50352344,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134598938,
+                    "target": 134594432,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": 1,
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        50352344,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134598946,
+                    "target": 134622656,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": 1,
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        50352344,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  }
+                ]
+              },
+              {
+                "rod": 2,
+                "timeout": 30,
+                "scheduler_frames": 31,
+                "stopped_at": 134598958,
+                "initial_step_produced": 1,
+                "isolated_bypass_input": 6,
+                "isolated_bypass_output": 9,
+                "injected_timeout_state": 7,
+                "injected_timeout_counter": 0,
+                "initial_free_task_data_poisoned": true,
+                "real_create_task_executed": true,
+                "real_timeout_memcpy_executed": true,
+                "nonlive_ram_erased_at_every_boundary": true,
+                "boundary_count": 66,
+                "semantic_instruction_count": 289,
+                "trace_identity": {
+                  "size": 32979,
+                  "sha256": "1b8014e7e0cbabe8e210e5ffe60ffb8922e6ef39f907d464b48a02ca8bdd079a"
+                },
+                "boundary_identity": {
+                  "size": 19208,
+                  "sha256": "fdc96066c2b921670314f974789ff63346b01ccf34659d79c9d123aa71f2a296"
+                },
+                "events_identity": {
+                  "size": 1070,
+                  "sha256": "934abba3cddc1ac802d048755e62d0bed74188be8a672c0e0c4bcc2fbf3feb99"
+                },
+                "conditional_call_catalog": [
+                  {
+                    "site": 134597628,
+                    "target": 134648320,
+                    "phase": "constructor",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [],
+                    "required_fields": [
+                      [
+                        50352336,
+                        12
+                      ],
+                      [
+                        50352374,
+                        2
+                      ],
+                      [
+                        50360288,
+                        20
+                      ],
+                      [
+                        50360316,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134597540,
+                    "target": 135607608,
+                    "phase": "constructor",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": 0,
+                    "required_resource_epochs": [],
+                    "required_fields": [
+                      [
+                        50352336,
+                        12
+                      ],
+                      [
+                        50352374,
+                        2
+                      ],
+                      [
+                        50360316,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50344286,
+                        2
+                      ],
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        4
+                      ],
+                      [
+                        50352374,
+                        2
+                      ]
+                    ],
+                    "occurrences": 29
+                  },
+                  {
+                    "site": 134598238,
+                    "target": 134599300,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50344286,
+                        2
+                      ],
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        4
+                      ],
+                      [
+                        50352374,
+                        2
+                      ],
+                      [
+                        50360284,
+                        2
+                      ],
+                      [
+                        50360288,
+                        20
+                      ],
+                      [
+                        50360316,
+                        4
+                      ]
+                    ],
+                    "occurrences": 29
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        4
+                      ],
+                      [
+                        50352374,
+                        2
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134598238,
+                    "target": 134599300,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352346,
+                        2
+                      ],
+                      [
+                        50352374,
+                        2
+                      ],
+                      [
+                        50360284,
+                        2
+                      ],
+                      [
+                        50360288,
+                        20
+                      ],
+                      [
+                        50360316,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50352336,
+                        6
+                      ],
+                      [
+                        50352344,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134598924,
+                    "target": 134599300,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": "unspecified",
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        33779632,
+                        1
+                      ],
+                      [
+                        50352344,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134598938,
+                    "target": 134594432,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": 1,
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        50352344,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  },
+                  {
+                    "site": 134598946,
+                    "target": 134622656,
+                    "phase": "injected_timeout",
+                    "normal_abi_return_required": true,
+                    "effects_discharged": false,
+                    "return_value": 1,
+                    "required_resource_epochs": [
+                      "avatar_sprite"
+                    ],
+                    "required_fields": [
+                      [
+                        50352344,
+                        4
+                      ]
+                    ],
+                    "occurrences": 1
+                  }
+                ]
+              }
+            ],
+            "proof_scope": "diagnostic_actual_registration_and_unconnected_timeout_consumer",
+            "root_context_is_precondition": true,
+            "root_to_timeout_composed": false,
+            "full_story_reachability_claimed": false,
+            "unreachable_in_all_gameplay_proven": false,
+            "actual_runtime_execution_observed": false,
+            "universal_heap_or_irq_lifetime_proven": false,
+            "opaque_callee_effects_proven": false,
+            "hit_callee_executed": false,
+            "type_classification_only": false,
+            "classifications_added": 0,
+            "donor_eligible": false,
+            "donor_leased": false
+          },
+          "source_bindings": {
+            "pret-field_player_avatar.c": {
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "git_blob_sha": "ef086dda3a6bf2d175861d6a7be1831790208ecb",
+              "local": "pret-field_player_avatar.c",
+              "path": "src/field_player_avatar.c",
+              "repository": "pret/pokefirered",
+              "sha256": "d36588c4d02385393a5e8dc74d78f907944ca556700b5c67b39f8304f4dde08e",
+              "size": 67969
+            },
+            "pret-task.c": {
+              "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+              "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944",
+              "local": "pret-task.c",
+              "path": "src/task.c",
+              "repository": "pret/pokefirered",
+              "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+              "size": 5029
+            }
+          },
+          "all_inherited_fields_unchanged": true,
+          "current_candidate_measured": false,
+          "proof_scope": "diagnostic_actual_registration_and_unconnected_timeout_consumer",
+          "root_context_is_precondition": true,
+          "root_to_timeout_composed": false,
+          "full_story_reachability_claimed": false,
+          "unreachable_in_all_gameplay_proven": false,
+          "actual_runtime_execution_observed": false,
+          "universal_heap_or_irq_lifetime_proven": false,
+          "opaque_callee_effects_proven": false,
+          "hit_callee_executed": false,
+          "type_classification_only": false,
+          "classifications_added": 0,
+          "donor_eligible": false,
+          "donor_leased": false
+        },
+        "held_unconnected_extended_field_move_text": {
+          "status": "PASS_HELD_UNCONNECTED_FIELD_MOVE_ROOT",
+          "count": 0,
+          "hits": [],
+          "held_hits": [
+            152343786
+          ],
+          "retained_unknown_hits": [
+            152343786
+          ],
+          "root_findings": {
+            "stock_producer_entry": 135410136,
+            "stock_move_literal": 135410264,
+            "stock_move_table": 138518270,
+            "stock_move_count": 12,
+            "stock_terminator": 12,
+            "action_base": 18,
+            "stock_action_range": [
+              18,
+              29
+            ],
+            "description_consumer_entry": 135407876,
+            "description_literal": 135408044,
+            "actual_description_table": 138517260,
+            "extended_description_table": 152473700,
+            "defog_index": 13,
+            "dive_index": 14,
+            "required_extended_actions": [
+              31,
+              32
+            ],
+            "defog_pointer_cell": 152473752,
+            "dive_pointer_cell": 152473756,
+            "root_gap": "actual stock producer cannot append indices13/14; actual description literal still selects stock12 table",
+            "text_boundary": {
+              "address": 152343786,
+              "size": 4,
+              "parts": [
+                {
+                  "address": 152343786,
+                  "size": 3
+                },
+                {
+                  "address": 152343789,
+                  "size": 1
+                }
+              ]
+            }
+          },
+          "producer_projection": {
+            "kind": "bound_stock_equality_loop_projection",
+            "classes": [
+              {
+                "move": 148,
+                "indices": [
+                  0
+                ],
+                "actions": [
+                  18
+                ]
+              },
+              {
+                "move": 15,
+                "indices": [
+                  1
+                ],
+                "actions": [
+                  19
+                ]
+              },
+              {
+                "move": 19,
+                "indices": [
+                  2
+                ],
+                "actions": [
+                  20
+                ]
+              },
+              {
+                "move": 70,
+                "indices": [
+                  3
+                ],
+                "actions": [
+                  21
+                ]
+              },
+              {
+                "move": 57,
+                "indices": [
+                  4
+                ],
+                "actions": [
+                  22
+                ]
+              },
+              {
+                "move": 249,
+                "indices": [
+                  5
+                ],
+                "actions": [
+                  23
+                ]
+              },
+              {
+                "move": 127,
+                "indices": [
+                  6
+                ],
+                "actions": [
+                  24
+                ]
+              },
+              {
+                "move": 100,
+                "indices": [
+                  7
+                ],
+                "actions": [
+                  25
+                ]
+              },
+              {
+                "move": 91,
+                "indices": [
+                  8
+                ],
+                "actions": [
+                  26
+                ]
+              },
+              {
+                "move": 208,
+                "indices": [
+                  9
+                ],
+                "actions": [
+                  27
+                ]
+              },
+              {
+                "move": 135,
+                "indices": [
+                  10
+                ],
+                "actions": [
+                  28
+                ]
+              },
+              {
+                "move": 230,
+                "indices": [
+                  11
+                ],
+                "actions": [
+                  29
+                ]
+              },
+              {
+                "move": "all_other_uint16_values",
+                "indices": [],
+                "actions": []
+              }
+            ],
+            "domain_size": 65536,
+            "other_class_size": 65524,
+            "independent_move_slots": 4,
+            "possible_actions": [
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29
+            ],
+            "required_extended_actions": [
+              31,
+              32
+            ],
+            "required_actions_generated": false,
+            "runtime_execution_observed": false,
+            "all_external_writers_analyzed": false
+          },
+          "protected_windows": 15,
+          "protected_bytes": 355,
+          "source_bindings": {
+            "cfru-hooks": {
+              "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+              "git_blob_sha": "51a0f10dd4cccad235b476edd534a0e3e7e612ad",
+              "local": "cfru-hooks",
+              "path": "hooks",
+              "repository": "kapibarasan000/CFRU-JP",
+              "sha256": "19c730e12bcc8ee614b43745a1a6478429c1876a025fdce23b80a49599d8deb5",
+              "size": 21787
+            },
+            "cfru-party_menu.c": {
+              "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+              "git_blob_sha": "b17bef5771a1887496e5cfc9e15ccf545fa18579",
+              "local": "cfru-party_menu.c",
+              "path": "src/party_menu.c",
+              "repository": "kapibarasan000/CFRU-JP",
+              "sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+              "size": 83459
+            },
+            "cfru-repoints": {
+              "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+              "git_blob_sha": "e56ff804cca49e38aa7d18466dceb54e776cc662",
+              "local": "cfru-repoints",
+              "path": "repoints",
+              "repository": "kapibarasan000/CFRU-JP",
+              "sha256": "b387e4239d00a59698407b1837b5573504bcb172fb41cae6afb7265c1008a12d",
+              "size": 7547
+            },
+            "cfru-strings_party_menu.string": {
+              "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+              "git_blob_sha": "a33a010d7ed77ca465dda2a634813af6c112ca49",
+              "local": "cfru-strings_party_menu.string",
+              "path": "strings/party_menu.string",
+              "repository": "kapibarasan000/CFRU-JP",
+              "sha256": "7a24ce4901b43ab3ca4c13de292b26372b98be5b6d03d4f0130d30a207f8231c",
+              "size": 2361
+            }
+          },
+          "limits": {
+            "scope_ja": "根不成立の限定反証。新consumerへの到達・文字消費・解放域は証明しない。",
+            "contract_ja": "公開sourceの名前や追加tableの存在を現ROMの登録根とみなさない。既存stock loopが示す候補indexの射影だけを確認。",
+            "lifetime_ja": "正の到達合成を行わないため、新RAM保存契約・heap epoch契約を仮定しない。追加producer接続後に別途必要。",
+            "input_ja": "診断入力と正式候補を分離。正式候補の分類数は増やさない。",
+            "remaining_ja": "追加IDの実producer・追加tableへの実登録根・両textの実byte consumer・生存契約が未結合。別経路不存在や全到達を主張しない。"
+          },
+          "all_inherited_fields_unchanged": true,
+          "current_candidate_measured": false,
+          "classification": "UNKNOWN_HELD",
+          "newly_classified": 0,
+          "emits_typed_regions": false,
+          "root_verified": false,
+          "bounded_stock_producer_projection_only": true,
+          "extended_table_presence_proven": true,
+          "complete_consumer_byte_reads_proven": false,
+          "synthetic_contract_execution": false,
+          "actual_runtime_execution_observed": false,
+          "full_story_reachability_claimed": false,
+          "all_possible_roots_absent_proven": false,
+          "extended_code_globally_unreachable_proven": false,
+          "universal_allocation_epoch_proven": false,
+          "all_opaque_effects_proven": false,
+          "irq_noninterference_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "donor_eligible": false,
+          "donor_leased": false
+        }
+      },
+      "new_data": 3,
+      "new_code": 0,
+      "new_boundary": 0,
+      "natural_gameplay_reachability_claimed": false,
+      "universal_heap_or_irq_lifetime_claimed": false,
+      "independent_old_final_source_review_completed": false,
+      "donor_leased": false,
+      "indirect_reference_completeness_claimed": false
+    },
+    "song": {
+      "status": "PASS_RETAINED_133_MODELS_50_ASSETS_NEW_CONSUMER_INTERSECTION",
+      "combined_song_models": 133,
+      "retained_sample_witnesses": 50,
+      "model_identity": {
+        "size": 213296,
+        "sha256": "71f01cee0a344409445e17fdea268371269a3e622c6b93563d04b35677e0b975"
+      },
+      "sample_identity": {
+        "size": 1121492,
+        "sha256": "9f765e8eee8ad78eaac8902ccafbf9e14c7c694f842e9ae6b2002583181b70ee"
+      },
+      "old_protected_read_windows": 198334,
+      "old_protected_read_identity": {
+        "size": 26409459,
+        "sha256": "26ae440b2d8456747f59e7fd73679a17b6289ef1a733bdd51c1f9ff668fc8914"
+      },
+      "all133_models_exact": true,
+      "all50_sample_identities_exact": true,
+      "old_and_new_root_windows": 7608,
+      "old_and_new_root_identity": {
+        "size": 814840,
+        "sha256": "b7d49cf4b77cbd8089f76ed72977dd03d9124a66fd6e828d842af4d020279d2a"
+      },
+      "new_song_discovery_runs": 0,
+      "new_songs": [],
+      "new_audio_classified": 0,
+      "native_processes": 0,
+      "donor_leased": false
+    },
+    "public_source_bindings": {
+      "BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "pret-scrcmd.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/scrcmd.c",
+        "size": 56954,
+        "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+        "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814"
+      },
+      "battle-BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "battle-asm_defines.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "asm_defines.s",
+        "size": 131732,
+        "sha256": "1beb8b1cce26e302eb17b6907951fc4ae0a1a0ae94cffb168a12c648ca45c8a7",
+        "git_blob_sha": "67f802d777e348e74c0f2d6c7ae2227fdf849f6f"
+      },
+      "battle-assembly--battle_scripts--general_attack_battle_scripts.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/battle_scripts/general_attack_battle_scripts.s",
+        "size": 178625,
+        "sha256": "8ce944c4bc85f2827eb806a3ba1f046e332429ceadd2b55bbc79f900a6a7bd11",
+        "git_blob_sha": "f0a04c0f348555a82aa861ccb62b9cc046699a48"
+      },
+      "battle-assembly--data--battle_script_commands_table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/battle_script_commands_table.s",
+        "size": 11083,
+        "sha256": "ef6615d20d0768e23828b941fcd2a4f04ba06507a7ed498ab51b8db10e71f5f6",
+        "git_blob_sha": "10e8cf9821e5be79798b3ab1d02ea3e44ce44f05"
+      },
+      "battle-assembly--data--move_effect_table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/move_effect_table.s",
+        "size": 8052,
+        "sha256": "6200094d2df850f70121a981c89e776a8419cc71423b44ea4773f609ca39a7ee",
+        "git_blob_sha": "8a80d63f814e97b353416a73e2be7c82c453b244"
+      },
+      "battle-battle_script_macros.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "battle_script_macros.s",
+        "size": 28316,
+        "sha256": "203f55037871e670401692a2a08ba282745a442fc84fca0615fbe1b136f8f317",
+        "git_blob_sha": "bc62b1a589d0569980bd723d8da6272f40f12817"
+      },
+      "battle-src--general_bs_commands.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/general_bs_commands.c",
+        "size": 170849,
+        "sha256": "ee23f75ab32b0f453128a9e5f9c7e77aba4a0de646e762a5fe821b61c1b20643",
+        "git_blob_sha": "476cbdd3ee2cfe3ce2ccca51b609560b1f1a4282"
+      },
+      "battle-src--new_bs_commands.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/new_bs_commands.c",
+        "size": 63964,
+        "sha256": "203c32caf217965e468bc2efee45809b05289c51201412250b2352e17643688b",
+        "git_blob_sha": "78614276ea045eaa06781210d588dd6ea6995bf3"
+      },
+      "cfru-item.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/item.c",
+        "size": 55431,
+        "sha256": "885c2ae9fa78d145eec1eca4333104b6fdd90a1d5afbbe191e0bc3398e740922",
+        "git_blob_sha": "ea5302c0dc2bb9fc92e665aab6015a27ff4275d7"
+      },
+      "pret-field_player_avatar.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/field_player_avatar.c",
+        "size": 67969,
+        "sha256": "d36588c4d02385393a5e8dc74d78f907944ca556700b5c67b39f8304f4dde08e",
+        "git_blob_sha": "ef086dda3a6bf2d175861d6a7be1831790208ecb"
+      },
+      "pret-task.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/task.c",
+        "size": 5029,
+        "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+        "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+      },
+      "cfru-hooks": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "hooks",
+        "size": 21787,
+        "sha256": "19c730e12bcc8ee614b43745a1a6478429c1876a025fdce23b80a49599d8deb5",
+        "git_blob_sha": "51a0f10dd4cccad235b476edd534a0e3e7e612ad"
+      },
+      "cfru-party_menu.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/party_menu.c",
+        "size": 83459,
+        "sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+        "git_blob_sha": "b17bef5771a1887496e5cfc9e15ccf545fa18579"
+      },
+      "cfru-repoints": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "repoints",
+        "size": 7547,
+        "sha256": "b387e4239d00a59698407b1837b5573504bcb172fb41cae6afb7265c1008a12d",
+        "git_blob_sha": "e56ff804cca49e38aa7d18466dceb54e776cc662"
+      },
+      "cfru-strings_party_menu.string": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "strings/party_menu.string",
+        "size": 2361,
+        "sha256": "7a24ce4901b43ab3ca4c13de292b26372b98be5b6d03d4f0130d30a207f8231c",
+        "git_blob_sha": "a33a010d7ed77ca465dda2a634813af6c112ca49"
+      }
+    }
+  },
+  "proof_identity": {
+    "size": 32718,
+    "sha256": "68004b791556db841bd33d55fe33f9a2514e079deadb39483c52c146badf37d4"
+  },
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "donor_safe_bytes": 0,
+  "controller_runtime_wired": false,
+  "universal_irq_or_heap_lifetime_claimed": false,
+  "natural_play_universal_reachability_claimed": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false
+}

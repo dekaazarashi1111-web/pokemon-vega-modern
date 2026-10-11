@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "status": "NEGATIVE_DIAGNOSTIC_ONLY_NO_ROOT_CLOSURE",
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "prior_unknown": 151,
+  "newly_classified": 0,
+  "accepted_root_ids": [],
+  "accepted_regions": [],
+  "sources": [
+    {
+      "local": "tanoby-key-scripts.inc",
+      "source": "data/maps/SevenIsland_SevaultCanyon_TanobyKey/scripts.inc",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "55777e307fba0a308d15e6a6deab9a075cbf34ee",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/data/maps/SevenIsland_SevaultCanyon_TanobyKey/scripts.inc",
+      "size": 4636,
+      "sha256": "b049d0009685686732941369e62a9c04d345d5325035e463c28505804b600e1b"
+    },
+    {
+      "local": "pret-songs.h",
+      "source": "include/constants/songs.h",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "4f5fc3cc6fda1aee6585a0944378be934fc10ded",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/constants/songs.h",
+      "size": 17891,
+      "sha256": "ae4166b40bdde0bc014657636f63b49ebe0d3e00f7fb61531c99bf714eba36b4"
+    }
+  ],
+  "event_probe": {
+    "source_identity": {
+      "size": 5630,
+      "sha256": "b04ac2e683c1668c8a4ec850483ed7d05e418facba72ea1121a98672a026e986"
+    },
+    "diagnostic_identity": {
+      "size": 920818,
+      "sha256": "faa52b403d1c9c6821b001e3f94144f21389f534a79ad9f4ca368c13ed783753"
+    },
+    "maps": 545,
+    "event_roots": 3350,
+    "instruction_addresses": 42472,
+    "target_song_ids": [
+      43,
+      44,
+      85
+    ],
+    "target_selections_found": 0,
+    "errors": {
+      "map_oob": 1,
+      "unsupported_0x5c": 1010,
+      "unsupported_0xd1": 2,
+      "dynamic_warp_sentinel": 4,
+      "script_oob": 3,
+      "unsupported_0xf3": 1
+    }
+  },
+  "nominal_cgb_wave3": {
+    "status": "LAST_VOICE_COPY_DIAGNOSTIC_NOT_FINAL_MUTABLE_TONE_PROOF",
+    "diagnostic_records": 23,
+    "tone_count": 14,
+    "wave_count": 7,
+    "unresolved_non_rom_origin_records": 1,
+    "tone_windows": [
+      {
+        "address": 138738692,
+        "size": 12,
+        "sha256": "e1b32bf2e2af4f8308bae690a2060c1dee2a041ddb39cdf6a65dcece81d274e2"
+      },
+      {
+        "address": 138738704,
+        "size": 12,
+        "sha256": "0aeee19c29fb355fc0034a14f7bbc17885bd813456950c3f8ed39b2d0aa30c17"
+      },
+      {
+        "address": 138741956,
+        "size": 12,
+        "sha256": "a81dfe6d5eef35fa6c9b86008aa08a7bbc9349e21f19ca122f246edc4deabb34"
+      },
+      {
+        "address": 138811064,
+        "size": 12,
+        "sha256": "7a696b4d0f859e36de985633a9e8559f8bba60ac303a0650bfca20c5e124e370"
+      },
+      {
+        "address": 138812672,
+        "size": 12,
+        "sha256": "c29d532ffbcac33fe460a5ade5e572d2e915f98b3322c133e397d61ab4356309"
+      },
+      {
+        "address": 138813680,
+        "size": 12,
+        "sha256": "0a0f3d4d3f693be4ee9994fb2f0b4a29ee9a73855793f997942aca63df92b1b1"
+      },
+      {
+        "address": 138813776,
+        "size": 12,
+        "sha256": "afc32335634d1bbe0e47f6da3c556f7fb60a1db39614b982e1012fa8f4f7b332"
+      },
+      {
+        "address": 138813788,
+        "size": 12,
+        "sha256": "9dc3aa5e99bc04c6bbe3be352cec552861709326c2424067559c13f5c50a516b"
+      },
+      {
+        "address": 138819800,
+        "size": 12,
+        "sha256": "ec274642509e94eacf448700be09e3b400d3327145b66dd74b74ebdab0bf13dd"
+      },
+      {
+        "address": 138823136,
+        "size": 12,
+        "sha256": "ec274642509e94eacf448700be09e3b400d3327145b66dd74b74ebdab0bf13dd"
+      },
+      {
+        "address": 138829880,
+        "size": 12,
+        "sha256": "f38dc41ac8d26961e58d46877c83d9bcf2fafb3c829577d63b5f698b007993f5"
+      },
+      {
+        "address": 138829892,
+        "size": 12,
+        "sha256": "dc09810c9ef4b26324512395d20edcd09478dc3266520f89a8af7a200586caa5"
+      },
+      {
+        "address": 138829916,
+        "size": 12,
+        "sha256": "a35a520831459f15bdf108149acfb57096cc7c5a5a61c9af80cac18269f90045"
+      },
+      {
+        "address": 142271912,
+        "size": 12,
+        "sha256": "8bb3002379a710462e7230b03a340c96c1f640bf1a3af51702c3edc5d3e7d91d"
+      }
+    ],
+    "wave_windows": [
+      {
+        "address": 138837548,
+        "size": 16,
+        "sha256": "85edeb4416944af34b6ba35476463fea79e588e09a1bb888e63b9a0a7faf4fd6"
+      },
+      {
+        "address": 138837564,
+        "size": 16,
+        "sha256": "bc378d4953d577df728e2ba4d2cc1de23de77faca2b7d7e9ab030a9c6b30ebab"
+      },
+      {
+        "address": 138837612,
+        "size": 16,
+        "sha256": "da1521b308885a54d58a627e8b201ceef092c90c986260b1177b3229ea4ed49e"
+      },
+      {
+        "address": 138837628,
+        "size": 16,
+        "sha256": "b6a9c29beef4283ec7a5543977d9cb8f4e0034c4f9b222fbcb89c8800b7f276e"
+      },
+      {
+        "address": 138837644,
+        "size": 16,
+        "sha256": "116dc30321c2a2b10ef08ce88c80be11f15c45f8a7092ba8689ee5fde6199dc7"
+      },
+      {
+        "address": 138837692,
+        "size": 16,
+        "sha256": "1c8c2b3ea2dcba0d609a7c8046e3c284fb1970343938bc36b424162e977a7fca"
+      },
+      {
+        "address": 138837708,
+        "size": 16,
+        "sha256": "1df940c6fdcafcfa27aab9db83f9ddf29e731503c094dd9fac0db1d8914a95bd"
+      }
+    ],
+    "unknown_hits_in_nominal_waves": []
+  },
+  "boundaries": {
+    "old133_song_models_rerun": 0,
+    "new_song_models": 0,
+    "current_rom_reconstructions": 0,
+    "rom_writes": 0,
+    "save_reads": 0,
+    "save_writes": 0,
+    "native_processes": 0,
+    "old_full_rom_reference_scan_runs": 0,
+    "jp_index_equivalence_claimed": false,
+    "global_audio_absence_claimed": false,
+    "indirect_reference_completeness_claimed": false,
+    "actual_playback_claimed": false,
+    "donor_leased": false
+  }
+}

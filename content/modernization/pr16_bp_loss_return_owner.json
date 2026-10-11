@@ -1,0 +1,281 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "candidate_rom_changed": false,
+  "candidate_rom_owner_verified": false,
+  "classification": "SOURCE_GATE_REPAIRED_NATIVE_RETURN_PENDING",
+  "corrected_summary": {
+    "accepted_native_cases_replayed": 0,
+    "callback_owner_candidates": [],
+    "candidate_rom_changed": false,
+    "candidate_rom_owner_verified": false,
+    "end_lifecycle_paths": [
+      "scripts/build_battle_core.py",
+      "vendor/upstream/CFRU-JP/include/new/end_battle.h",
+      "vendor/upstream/CFRU-JP/src/end_battle.c"
+    ],
+    "field_return_owner_paths": [],
+    "field_return_reference_paths": [
+      "vendor/upstream/CFRU-JP/include/overworld.h",
+      "vendor/upstream/CFRU-JP/src/dexnav.c",
+      "vendor/upstream/CFRU-JP/src/em_mining.c",
+      "vendor/upstream/CFRU-JP/src/frontier_records.c",
+      "vendor/upstream/CFRU-JP/src/party_menu.c",
+      "vendor/upstream/CFRU-JP/src/raid_intro.c",
+      "vendor/upstream/CFRU-JP/src/read_keys.c",
+      "vendor/upstream/CFRU-JP/src/scripting.c"
+    ],
+    "new_emulator_processes": 0,
+    "next_boundary": "CANDIDATE_ROM_CALLBACK_BYTES_REQUIRED",
+    "owner_resolved": false,
+    "reference_only_overlap_paths": [
+      "vendor/upstream/CFRU-JP/include/overworld.h"
+    ],
+    "source_scan_complete": true,
+    "whiteout_and_return_overlap_paths": [],
+    "whiteout_owner_paths": [],
+    "whiteout_reference_paths": [
+      "vendor/upstream/CFRU-JP/include/overworld.h"
+    ]
+  },
+  "entry_head_actions": [
+    {
+      "conclusion": null,
+      "created_at": "2026-09-13T12:47:20Z",
+      "event": "pull_request",
+      "head_sha": "fcb1d024fdf5aad2cdc48b9665fb605b3aea49fa",
+      "id": 34758049021,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "in_progress",
+      "updated_at": "2026-09-13T12:47:23Z"
+    },
+    {
+      "conclusion": null,
+      "created_at": "2026-09-13T12:47:20Z",
+      "event": "pull_request",
+      "head_sha": "fcb1d024fdf5aad2cdc48b9665fb605b3aea49fa",
+      "id": 34758049023,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "queued",
+      "updated_at": "2026-09-13T12:47:20Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-09-13T12:47:17Z",
+      "event": "push",
+      "head_sha": "fcb1d024fdf5aad2cdc48b9665fb605b3aea49fa",
+      "id": 34758046924,
+      "name": "PR16 fixed handoff source-only verification",
+      "path": ".github/workflows/pr16-resume-maintenance.yml",
+      "status": "completed",
+      "updated_at": "2026-09-13T12:47:30Z"
+    },
+    {
+      "conclusion": null,
+      "created_at": "2026-09-13T12:47:17Z",
+      "event": "push",
+      "head_sha": "fcb1d024fdf5aad2cdc48b9665fb605b3aea49fa",
+      "id": 34758046848,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "in_progress",
+      "updated_at": "2026-09-13T12:47:20Z"
+    },
+    {
+      "conclusion": null,
+      "created_at": "2026-09-13T12:47:17Z",
+      "event": "push",
+      "head_sha": "fcb1d024fdf5aad2cdc48b9665fb605b3aea49fa",
+      "id": 34758046871,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "in_progress",
+      "updated_at": "2026-09-13T12:47:20Z"
+    },
+    {
+      "conclusion": null,
+      "created_at": "2026-09-13T12:47:17Z",
+      "event": "push",
+      "head_sha": "fcb1d024fdf5aad2cdc48b9665fb605b3aea49fa",
+      "id": 34758046842,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "in_progress",
+      "updated_at": "2026-09-13T12:47:21Z"
+    },
+    {
+      "conclusion": null,
+      "created_at": "2026-09-13T12:47:17Z",
+      "event": "push",
+      "head_sha": "fcb1d024fdf5aad2cdc48b9665fb605b3aea49fa",
+      "id": 34758046865,
+      "name": "Stage79 mGBA (all)",
+      "path": ".github/workflows/modernization-stage79-mgba.yml",
+      "status": "in_progress",
+      "updated_at": "2026-09-13T12:47:21Z"
+    },
+    {
+      "conclusion": null,
+      "created_at": "2026-09-13T12:47:17Z",
+      "event": "push",
+      "head_sha": "fcb1d024fdf5aad2cdc48b9665fb605b3aea49fa",
+      "id": 34758046888,
+      "name": "Record repaired source audit without claiming native loss return",
+      "path": ".github/workflows/pr16-bp-owner-closeout.yml",
+      "status": "in_progress",
+      "updated_at": "2026-09-13T12:47:22Z"
+    }
+  ],
+  "failed_preflight_runs": [
+    {
+      "conclusion": "failure",
+      "created_at": "2026-09-13T10:39:40Z",
+      "event": "push",
+      "head_sha": "5a9d2f89461c286625581a5e7a1ef9344b0e647a",
+      "id": 34752431199,
+      "name": "Source-only audit of native loss WhiteOut and field-return owner",
+      "path": ".github/workflows/pr16-bp-loss-return-owner.yml",
+      "status": "completed",
+      "updated_at": "2026-09-13T10:40:03Z"
+    },
+    {
+      "conclusion": "failure",
+      "created_at": "2026-09-13T12:21:02Z",
+      "event": "push",
+      "head_sha": "b3eae25bb84e72753f9d1d7fc616797ac734a343",
+      "id": 34756846108,
+      "name": "Source-only audit of native loss WhiteOut and field-return owner",
+      "path": ".github/workflows/pr16-bp-loss-return-owner.yml",
+      "status": "completed",
+      "updated_at": "2026-09-13T12:21:23Z"
+    },
+    {
+      "conclusion": "failure",
+      "created_at": "2026-09-13T12:24:31Z",
+      "event": "push",
+      "head_sha": "901c204b5d43e9751de0e1640a4f7dfee878d6cc",
+      "id": 34757003759,
+      "name": "Source-only audit of native loss WhiteOut and field-return owner",
+      "path": ".github/workflows/pr16-bp-loss-return-owner.yml",
+      "status": "completed",
+      "updated_at": "2026-09-13T12:24:47Z"
+    }
+  ],
+  "final_record_commit_checks_claimed": false,
+  "finding_ja": "CFRU固定commitの独立復元・fsck/clean検証と19件のsource testsはPASS。WhiteOut参照はinclude/overworld.h:97の宣言1件のみ。旧schema1のowner_resolved=trueは宣言同居による誤判定で不採用。schema2はowner_resolved=false、候補ROM上ownerの固定とnative敗北復帰修復は未完。",
+  "guard_report": "content/modernization/pr16_bp_loss_return_owner_evidence/guard-boundary.json",
+  "historical_native_run": 34749370272,
+  "native_bp_earning_accepted": false,
+  "native_return_fix_complete": false,
+  "new_emulator_processes": 0,
+  "record_source_head": "fcb1d024fdf5aad2cdc48b9665fb605b3aea49fa",
+  "record_workflow_run": 34758046888,
+  "release_ready": false,
+  "retention_policy": "9 raw text members plus lossless UTF-8 JSON wrapper for owner-excerpts.txt; original ZIP digests preserved",
+  "rows": [
+    {
+      "actions": {
+        "conclusion": "success",
+        "created_at": "2026-09-13T12:28:24Z",
+        "event": "push",
+        "head_sha": "9251be475789df8b4ae2e8bba3dd8ff62d226a1f",
+        "id": 34757179781,
+        "name": "Source-only audit of native loss WhiteOut and field-return owner",
+        "path": ".github/workflows/pr16-bp-loss-return-owner.yml",
+        "status": "completed",
+        "updated_at": "2026-09-13T12:28:44Z"
+      },
+      "artifact_id": 10317907932,
+      "job_id": 103723457110,
+      "original_conclusion": "success",
+      "originals": "content/modernization/pr16_bp_loss_return_owner_evidence/34757179781",
+      "owner_claim_accepted": false,
+      "raw_owner_resolved": true,
+      "run_id": 34757179781,
+      "schema_version": 1,
+      "tested_head": "9251be475789df8b4ae2e8bba3dd8ff62d226a1f",
+      "unit_tests": 16,
+      "zip": {
+        "sha256": "a2b6b24c7060f27c495cc9c7828249c37374fe0898ac7caf1732950fd497731d",
+        "size": 100282
+      }
+    },
+    {
+      "actions": {
+        "conclusion": "success",
+        "created_at": "2026-09-13T12:38:19Z",
+        "event": "push",
+        "head_sha": "9e435e551598c2b99046c7aaff1bff6da1721da3",
+        "id": 34757633314,
+        "name": "Source-only audit of native loss WhiteOut and field-return owner",
+        "path": ".github/workflows/pr16-bp-loss-return-owner.yml",
+        "status": "completed",
+        "updated_at": "2026-09-13T12:38:41Z"
+      },
+      "artifact_id": 10318013148,
+      "job_id": 103724666041,
+      "original_conclusion": "success",
+      "originals": "content/modernization/pr16_bp_loss_return_owner_evidence/34757633314",
+      "owner_claim_accepted": false,
+      "raw_owner_resolved": false,
+      "run_id": 34757633314,
+      "schema_version": 2,
+      "tested_head": "9e435e551598c2b99046c7aaff1bff6da1721da3",
+      "unit_tests": 19,
+      "zip": {
+        "sha256": "457a2d32eccd649e44de711cf1ccba95053d8643afa7c8e9aa5f0fc499deb90d",
+        "size": 100623
+      }
+    }
+  ],
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-bp-loss-return-owner.yml": {
+      "sha256": "5cbd21e4d033a615ebc5c0255768615d222cea1ae8f4b9bae0a269362e4811c9",
+      "size": 6801
+    },
+    "scripts/pr16_bp_loss_return_owner.py": {
+      "sha256": "6d3461687aef2a77380681c4b1516620ecf9aa5e7fb9d146b5615e87956b5574",
+      "size": 8855
+    },
+    "scripts/pr16_restore_cfru_snapshot.py": {
+      "sha256": "5b8bc2069f12fd6513ed2b8424de48043a71515e419d208087885d7066c2a202",
+      "size": 8213
+    },
+    "tests/test_pr16_bp_loss_return_owner.py": {
+      "sha256": "95c5ddb2f38d0ee21a4430fede332cc168ccffb3d78e2fb4bdb8409cdbb2ec40",
+      "size": 4255
+    },
+    "tests/test_pr16_restore_cfru_snapshot.py": {
+      "sha256": "b0b743783966fe8af3b6a058ef367bf86560fa3a8728dbdc7e0cd44d38a14771",
+      "size": 6311
+    }
+  },
+  "source_restoration_and_classifier_fix_complete": true,
+  "source_restore": {
+    "accepted_native_cases_replayed": 0,
+    "archive": "pokemon-vega-private-env-v1-state.zip",
+    "archive_sha256": "b878134dc4a00b7de1e028f178c329db638b0304096b96c84c6776ddfb0983af",
+    "archive_size": 218929898,
+    "archived_git_config_used": false,
+    "archived_worktree_used": false,
+    "candidate_rom_changed": false,
+    "clean_source_verified": true,
+    "fsck_verified": true,
+    "ignored_object_metadata": [
+      "pack/pack-7e664d15401a511d2b87c4dfde2283592c1584a9.rev"
+    ],
+    "locked_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "locked_tree": "f4424af017abd01afe2d2deb833fb67275f03804",
+    "manifest_sha256": "77f80d2e83e98250433567748d4c16e416aa128440113cbbe4bfaab6f756c9f2",
+    "new_emulator_processes": 0,
+    "object_members": 2,
+    "restoration": "LOCKED_GIT_OBJECTS_NOT_ARCHIVED_WORKTREE",
+    "rom_extracted": false,
+    "shallow_boundaries": 1,
+    "source_bytes": 88676952,
+    "source_files": 1408
+  },
+  "task": "USER-20260913-BP-LOSS-RETURN-OWNER"
+}

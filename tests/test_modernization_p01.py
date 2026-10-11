@@ -3,8 +3,12 @@ from __future__ import annotations
 import copy
 import struct
 import unittest
+from pathlib import Path
 
 from scripts import build_modernization_p01 as p01
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 class ModernizationP01Tests(unittest.TestCase):
@@ -50,6 +54,12 @@ class ModernizationP01Tests(unittest.TestCase):
                 {"start": 6, "end_exclusive": 7, "size": 1},
             ],
         )
+
+    def test_p01_mgba_remains_bound_to_stage63_after_cumulative_candidate_advances(self) -> None:
+        source = (ROOT / "scripts/run_modernization_p01_mgba.py").read_text(encoding="utf-8")
+        self.assertNotIn("config/modernization_candidate.json", source)
+        self.assertIn('runtime_config["outputs"]["rom"]', source)
+        self.assertIn('runtime_config["outputs"]["metadata"]', source)
 
 
 if __name__ == "__main__":

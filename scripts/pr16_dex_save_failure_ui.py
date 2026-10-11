@@ -1,0 +1,102 @@
+#!/usr/bin/env python3
+"""CRC1byte negative fixtureによる実保存失敗UI。正式入力は不変。"""
+from __future__ import annotations
+import json,os,re,subprocess,sys
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT/'scripts'),str(ROOT)]
+import pr16_dex_save_failure_actions as isolated
+import pr16_dex_gameplay as game
+need,identity,write=isolated.need,isolated.identity,isolated.write
+BASE='82912f7db7b805ffb8af04785c0ae397a8df6bbf'
+MEASURE=(11315776017,37235903199,17586,'210866095da2dabe37cfa41fa50ba790298ca0690f8bcb0a2aaaafbefe44c0f7')
+HEADER='tools/mgba_pr16_dex_save_failure_ui.h'
+TEXT_AUDIT='content/modernization/pr16_dex_save_error_text_audit.json'
+CODE={TEXT_AUDIT,HEADER,'scripts/pr16_dex_save_failure_ui.py','tests/test_pr16_dex_save_failure_ui.py','.github/workflows/pr16-dex-save-failure-ui.yml'}
+OUT=ROOT/'.local/pr16-dex-save-failure-ui';PUBLIC=ROOT/'public-dex-save-failure-ui'
+def validate_header(source):
+ stripped=re.sub(r'/\*.*?\*/|//[^\n]*','',source,flags=re.S)
+ need(stripped.count('sf_fixture_write8(c,')==1 and stripped.count('sf_fixture_write8=c->busWrite8;')==1,'one declared saved write pointer and one byte exception')
+ for bad in ('si_restore(','si_open(','si_call(','si_transaction(','write_register(','busWrite16(','busWrite32(','rawWrite8(','rawWrite16(','rawWrite32(','writeRegister('):need(bad not in stripped,'no extra fixture or barrier removal '+bad)
+ main=stripped.split('int main(int argc,char**argv)',1)[1]
+ need(main.index('si_guard(c);')<main.index('st_keys(c,'),'all seven barriers before first frame')
+ need('VEGA_DEX_OWNER_RAM+4,(uint8_t)(old^1)'in stripped and 'sf_injected=1;'in stripped,'exact CRC byte only')
+ return identity(source.encode())
+def generate(candidate):
+ source=(ROOT/HEADER).read_text();validate_header(source);old=game.CANDIDATE
+ try:game.CANDIDATE=candidate;generated=game.generate().decode()
+ finally:game.CANDIDATE=old
+ token='int main(int argc,char**argv){';need(generated.count(token)==1,'one prior key-only main');return(generated.replace(token,'int accepted_story_main_not_called(int argc,char**argv){')+'\n'+source).encode()
+def guard():
+ import pr16_story_live_probe as t
+ need(os.environ['GITHUB_REPOSITORY']=='dekaazarashi1111-web/pokemon-vega-modern'and os.environ['GITHUB_REF_NAME']=='codex/modernization-followup-20260908'and os.environ['GITHUB_RUN_ATTEMPT']=='1','authorized UI attempt')
+ p=t.api('pulls/16');need(p['state']=='open'and p['draft']and not p['merged']and p['head']['sha']==os.environ['GITHUB_SHA'],'sole current draft HEAD')
+ changed=set(subprocess.check_output(['git','diff','--name-only',BASE,'HEAD'],cwd=ROOT,text=True).splitlines());need(changed==CODE,'negative UI source only')
+ cp=isolated.f.checkpoint()
+ for path,b in cp['source_bindings'].items():need(identity((ROOT/path).read_bytes())==b,'accepted battle code retained')
+ for path in isolated.CODE:need((ROOT/path).read_bytes()==subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT),'isolated gates retained')
+def validate(raw,folder,expected_candidate):
+ rows=[json.loads(x)for x in raw.splitlines()];end=rows[-1]
+ need(set(end)=={'end','frames','inputs','screens','fixture_calls','fixture_bytes','host_write_barriers','other_host_writes','register_writes','save_attempts','save_commits','counter','all_flash_unchanged','authority_present','story_progress_accepted','destructive_save_failed_entered','error_page_advances'}and end['error_page_advances']==1 and end['save_attempts']==1,'closed terminal schema')
+ need(end['end']=='PASS_EXPLICIT_CRC_FIXTURE_SAVE_FAILURE_UI'and end['fixture_calls']==1 and end['fixture_bytes']==1 and end['host_write_barriers']==7 and end['other_host_writes']==end['register_writes']==end['save_commits']==0 and end['counter']==101 and end['all_flash_unchanged']is True and end['authority_present']is True and end['story_progress_accepted']is False,'exact negative terminal')
+ begin=rows[0];need(set(begin)=={'begin','candidate_sha256','host_write_barriers','formal_save_changed'}and begin['begin']=='EXPLICIT_CRC_NEGATIVE_SAVE_FAILURE_UI'and re.fullmatch('[a-f0-9]{64}',begin['candidate_sha256'])and begin['candidate_sha256']==expected_candidate and begin['host_write_barriers']==7 and begin['formal_save_changed']is False,'closed begin schema')
+ frame=0;inputs=0;pending=False;screen_index=0;fixture_count=0
+ for row in rows[1:-1]:
+  if 'screen'in row:
+   need(pending and set(row)=={'screen','frame','sha256'}and row['screen']==screen_index and row['frame']==frame,'unique immediate same-frame screen');screen_index+=1;pending=False
+  elif 'input'in row:
+   need(not pending and set(row)=={'input','frame','key','frames'}and row['input']==inputs and row['frame']==frame and row['key']in(0,1,2,8,16,32,64,128)and type(row['frames'])is int and 0<row['frames']<=600,'ordered bounded key trace');inputs+=1;frame+=row['frames']
+  elif 'fixture_calls'in row:
+   need(not pending and fixture_count==0 and set(row)=={'fixture_calls','fixture_bytes','address','old','new','register_writes','other_host_writes'}and row['fixture_calls']==row['fixture_bytes']==1 and row['register_writes']==row['other_host_writes']==0 and 0<=row['old']<=255 and 0<=row['new']<=255,'one exact fixture schema');fixture_count+=1
+  elif 'failure_ui_stage'in row:
+   need(not pending and fixture_count==1 and set(row)=={'failure_ui_stage','frame','active','state','attempt','callback','delay','counter','damaged_mask'}and row['frame']==frame and row['counter']==101 and row['active']==0 and row['state']==0,'paired non-destructive real UI stage');pending=True
+  else:raise ValueError('unexpected negative trace row')
+ need(not pending and frame==end['frames']and inputs==end['inputs']and screen_index==4 and fixture_count==1,'complete bounded negative trace')
+ stages=[r for r in rows if 'failure_ui_stage'in r];need([r['failure_ui_stage']for r in stages]==['injected_at_field','ordinary_error_first_page','ordinary_save_error','field_after_failure'],'four ordered error-page and field UI stages')
+ need(stages[1]['callback']==0x0806F1F5 and stages[1]['attempt']==255 and stages[2]['callback']==0x0806F21D and stages[2]['delay']==0 and stages[3]['active']==0 and stages[3]['state']==0,'page advance and separate error A field recovery')
+ states=[r['save_failed_state']for r in rows if 'save_failed_state'in r];need(states==[]and end['destructive_save_failed_entered']is False,'unsafe SaveFailed never entered')
+ fixtures=[r for r in rows if 'fixture_calls'in r and 'address'in r];need(len(fixtures)==1 and fixtures[0]['address']==0x0203DB44 and fixtures[0]['new']==fixtures[0]['old']^1,'exact one-byte CRC fixture')
+ screens=[]
+ for row in rows:
+  if 'screen'not in row:continue
+  image=(folder/('screen-'+str(row['screen']).zfill(4)+'.ppm')).read_bytes();need(len(image)==115215 and image.startswith(b'P6\n240 160\n255\n')and identity(image)['sha256']==row['sha256'],'complete original screen')
+  px=image[15:];colors=len(set(px[i:i+3]for i in range(0,len(px),3)));need(colors>1,'nonblank actual renderer');screens.append(dict(**row,colors=colors))
+ need(len(screens)==end['screens']==4,'all4 screens');return dict(end=end,stages=stages,fixture=fixtures[0],screens=screens)
+def run():
+ import pr16_story_live_probe as t
+ need(not OUT.exists()and not PUBLIC.exists(),'fresh UI negative run');OUT.mkdir(parents=True);PUBLIC.mkdir()
+ try:
+  unit=subprocess.run([sys.executable,'-B','-m','unittest','discover','-s','tests','-p','test_pr16_dex_save_failure_ui.py','-v'],cwd=ROOT,capture_output=True);need(unit.returncode==0 and not unit.stdout and unit.stderr.count(b' ... ok\n')==4,'four driver confinement and trace suites');(PUBLIC/'host-tests.txt').write_bytes(unit.stderr)
+  r=t.api('actions/runs/'+str(MEASURE[1]));need(r['head_sha']==BASE and r['status']=='completed'and r['conclusion']=='success','isolated source terminal success')
+  z,_=t.archive(MEASURE)
+  with z:proof=json.loads(z.read('measurement.json'))
+  need(proof['native']['cases']==108 and proof['native']['new_result_gate_cases']==48,'modified result gate and extra oracle measurement')
+  isolated.OUT=OUT;candidate,before,after,linked,placed=isolated.reconstruct();need(identity(after)==proof['candidate']and linked==proof['link']and placed==proof['placement'],'whole candidate matches isolated gates')
+  package=subprocess.check_output(['dpkg-query','-W','-f=${Version}','libmgba-dev'],text=True).strip();library=identity(Path('/usr/lib/x86_64-linux-gnu/libmgba.so').read_bytes());need(package=='0.10.2+dfsg-1.1build3'and library==dict(size=1968536,sha256='0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d'),'fixed verified mGBA runtime');write(PUBLIC/'runtime-identity.json',dict(package=package,library=library))
+  audit=json.loads((ROOT/TEXT_AUDIT).read_bytes())
+  for window in audit['windows']:
+   at=window['address']-0x08000000;need(identity(after[at:at+window['size']])==dict(size=window['size'],sha256=window['sha256']),'signed error text and printer ABI')
+  source=OUT/'ui.c';source.write_bytes(generate(identity(after)));exe=OUT/'ui'
+  cmd=['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-I'+str(ROOT/'tools'),'-I'+str(ROOT),str(source),str(ROOT/'overlays/dex_owner/dex_owner.c'),'-lmgba','-lm','-o',str(exe)]
+  compiled=subprocess.run(cmd,capture_output=True,text=True);need(compiled.returncode==0 and not compiled.stdout and not compiled.stderr,'strict negative UI build: '+compiled.stderr[-2000:])
+  z,_=t.archive(t.SAVE101)
+  with z:seed=z.read('story-fast.srm')
+  need(identity(seed)==t.SEED,'exact unchanged formal Save101 input');save=OUT/'negative-copy.srm';save.write_bytes(seed)
+  write(PUBLIC/'native-attempt.json',dict(status='ATTEMPT_STARTED_NOT_ACCEPTED',native_processes=1,fixture_bytes_authorized_for_test=1))
+  with(PUBLIC/'stdout.txt').open('wb')as out,(PUBLIC/'stderr.txt').open('wb')as err:
+   completed=subprocess.run([str(exe),str(candidate),str(save)],cwd=PUBLIC,stdout=out,stderr=err,timeout=300)
+  need(completed.returncode==0 and not(PUBLIC/'stderr.txt').read_bytes(),'UI rc='+str(completed.returncode)+' '+(PUBLIC/'stderr.txt').read_text()[-1500:])
+  trace=validate((PUBLIC/'stdout.txt').read_bytes(),PUBLIC,identity(after)['sha256']);need(save.read_bytes()==seed,'full131088byte FlashRTC remains original after close/process exit');need(candidate.read_bytes()==after,'private candidate unchanged')
+  write(PUBLIC/'measurement.json',dict(status='PASS_EXPLICIT_CRC_NEGATIVE_SAVE_FAILURE_UI',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=identity(after),parent_isolated_run=MEASURE[1],native_processes=1,save_attempts=1,save_commits=0,source_save=identity(seed),output_save=identity(save.read_bytes()),formal_save_changed=False,fixture_bytes=1,authority_present=True,authorityless_real_ui_accepted=False,all_consumers_wired=False,all_save_modes_accepted=False,trace=trace,source_bindings={p:identity((ROOT/p).read_bytes())for p in sorted(CODE)}))
+ except Exception as e:
+  write(PUBLIC/'failure.json',dict(status='DIAGNOSTIC_NOT_ACCEPTED',type=type(e).__name__,message=str(e),native_processes=int((PUBLIC/'native-attempt.json').exists()),formal_rom_changed=False,formal_save_changed=False));raise
+
+def export():
+ if not PUBLIC.exists():return
+ need(PUBLIC.is_dir()and not PUBLIC.is_symlink(),'dedicated public UI directory')
+ for p in PUBLIC.iterdir():
+  need(p.is_file()and not p.is_symlink()and(p.name in{'host-tests.txt','measurement.json','native-attempt.json','failure.json','stdout.txt','stderr.txt','runtime-identity.json'}or re.fullmatch(r'screen-000[0-3]\.ppm',p.name)),'only explicit text/screens; never inputsave/ROM/runner')
+  raw=p.read_bytes()
+  if p.suffix=='.ppm':need(len(raw)==115215 and raw.startswith(b'P6\n240 160\n255\n'),'fixed real PPM');continue
+  need(len(raw)<1500000 and b'\0'not in raw and(not raw or raw.endswith(b'\n')),'bounded complete UTF8');raw.decode('utf8')
+  if p.suffix=='.json':json.loads(raw)
+if __name__=='__main__':need(len(sys.argv)==2 and sys.argv[1]in('guard','run','export'),'closed action');globals()[sys.argv[1]]()

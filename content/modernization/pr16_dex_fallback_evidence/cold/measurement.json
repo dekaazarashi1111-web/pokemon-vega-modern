@@ -1,0 +1,352 @@
+{
+  "status": "PASS_FALLBACK_IDLE_LEDGER_COLD_AND_INVALID_BLOCK",
+  "source_head": "8b11cbc5575954c445d8599d60a857bb797f815c",
+  "run_id": 37261066891,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "d773a1232c31fcb5629785278c2ad6e6d46208dbc62a55d66167fba7a2a38670"
+  },
+  "isolated_run": 37258786462,
+  "isolated_candidate": {
+    "size": 33554432,
+    "sha256": "d773a1232c31fcb5629785278c2ad6e6d46208dbc62a55d66167fba7a2a38670"
+  },
+  "formal_seed": {
+    "size": 131088,
+    "sha256": "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
+  },
+  "physical_ledger": {
+    "size": 2048,
+    "sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+  },
+  "cases": [
+    {
+      "name": "healthy",
+      "fixture": {
+        "kind": "healthy",
+        "changed_byte_offsets": [],
+        "changed_bytes": 0,
+        "input": {
+          "size": 131088,
+          "sha256": "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
+        },
+        "output": {
+          "size": 131088,
+          "sha256": "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
+        },
+        "selected_bank1_aux_and_RTC_unchanged": true,
+        "ram_fixture_writes": 0
+      },
+      "trace": {
+        "metadata": {
+          "fallback_cold": true,
+          "frame": 1390,
+          "entries": 2,
+          "save_calls": 0,
+          "status": 1,
+          "counter": 101,
+          "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229",
+          "blocked": 0,
+          "ledger_physical_exact": true,
+          "flash_all_bytes_unchanged": true
+        },
+        "observation": {
+          "observe": 0,
+          "frame": 1390,
+          "map": [
+            3,
+            24
+          ],
+          "xy": [
+            53,
+            13
+          ],
+          "live_xy": [
+            60,
+            20
+          ],
+          "facing": 3,
+          "field": true,
+          "lock": 0,
+          "callback2": 134569589,
+          "party_count": 4,
+          "save_counter": 101,
+          "rp": 0,
+          "battle_flags": 0,
+          "battle_outcome": 0,
+          "party_sha256": "a889748859f118b98c42e9ef5f0fd2847466d07383f5743946453c961261580d",
+          "flash_sha256": "8b44629f94877b5aac2e23ff15a903e66e19b74e236aa89e1f590849ed509b4d",
+          "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+        },
+        "mdx": {
+          "mdx": 0,
+          "frame": 1390,
+          "valid": true,
+          "legacy_snapshot": 1,
+          "seen_count": 0,
+          "caught_count": 0,
+          "live_sha256": "b33d6d7b257485bcac6dea92b43fe403abd2626eeaca74903fcb0e5b8c9014af",
+          "legacy_sha256": "4c776b05231ba21fb86ca53e28e2e1e395702d6788b64338d4381c628d34cc3e",
+          "stock_flags_vars_sha256": "25724aa725e0584036a780a30a55d7775bb4cf6c4aaa567b158028f6f2fce43a",
+          "bag_sha256": "5e7d314e869058d1330233cbb3833e10b41aed3f5dc0c4314dec1290d370946e",
+          "legacy_snapshot_matches_current_stock": true,
+          "physical_matches_current_generation": 0,
+          "save_file_status": 1,
+          "stock_byte_deltas": []
+        },
+        "screens": [
+          {
+            "screen": 0,
+            "frame": 1390,
+            "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+          }
+        ],
+        "end": {
+          "end": "PASS_FALLBACK_QOL_COLD",
+          "frames": 1390,
+          "inputs": 12,
+          "blocked": 0,
+          "host_write_barriers": 7,
+          "ram_fixture_writes": 0,
+          "register_writes": 0,
+          "native_processes": 1
+        }
+      },
+      "save": {
+        "size": 131088,
+        "sha256": "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
+      },
+      "output": {
+        "size": 131088,
+        "sha256": "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
+      },
+      "source_run": 37259333246,
+      "reused_raw": true
+    },
+    {
+      "name": "fallback",
+      "fixture": {
+        "kind": "fallback",
+        "changed_byte_offsets": [
+          4088
+        ],
+        "changed_bytes": 1,
+        "input": {
+          "size": 131088,
+          "sha256": "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
+        },
+        "output": {
+          "size": 131088,
+          "sha256": "409daabae35f91d3c91fb5e864d7d1a2b8e6079bf88f986712cc978a1943e4f5"
+        },
+        "selected_bank1_aux_and_RTC_unchanged": true,
+        "ram_fixture_writes": 0
+      },
+      "trace": {
+        "metadata": {
+          "fallback_cold": true,
+          "frame": 1634,
+          "entries": 2,
+          "save_calls": 0,
+          "status": 255,
+          "counter": 101,
+          "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229",
+          "blocked": 0,
+          "ledger_physical_exact": true,
+          "flash_all_bytes_unchanged": true
+        },
+        "observation": {
+          "observe": 0,
+          "frame": 1634,
+          "map": [
+            3,
+            24
+          ],
+          "xy": [
+            53,
+            13
+          ],
+          "live_xy": [
+            60,
+            20
+          ],
+          "facing": 3,
+          "field": true,
+          "lock": 0,
+          "callback2": 134569589,
+          "party_count": 4,
+          "save_counter": 101,
+          "rp": 0,
+          "battle_flags": 0,
+          "battle_outcome": 0,
+          "party_sha256": "a889748859f118b98c42e9ef5f0fd2847466d07383f5743946453c961261580d",
+          "flash_sha256": "8102de9dc831002c114ee034f5d0f75dc464df94e07384f00c6002a64abfa58c",
+          "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+        },
+        "mdx": {
+          "mdx": 0,
+          "frame": 1634,
+          "valid": true,
+          "legacy_snapshot": 1,
+          "seen_count": 0,
+          "caught_count": 0,
+          "live_sha256": "b33d6d7b257485bcac6dea92b43fe403abd2626eeaca74903fcb0e5b8c9014af",
+          "legacy_sha256": "4c776b05231ba21fb86ca53e28e2e1e395702d6788b64338d4381c628d34cc3e",
+          "stock_flags_vars_sha256": "25724aa725e0584036a780a30a55d7775bb4cf6c4aaa567b158028f6f2fce43a",
+          "bag_sha256": "5e7d314e869058d1330233cbb3833e10b41aed3f5dc0c4314dec1290d370946e",
+          "legacy_snapshot_matches_current_stock": true,
+          "physical_matches_current_generation": 0,
+          "save_file_status": 255,
+          "stock_byte_deltas": []
+        },
+        "screens": [
+          {
+            "screen": 0,
+            "frame": 1634,
+            "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+          }
+        ],
+        "end": {
+          "end": "PASS_FALLBACK_QOL_COLD",
+          "frames": 1634,
+          "inputs": 16,
+          "blocked": 0,
+          "host_write_barriers": 7,
+          "ram_fixture_writes": 0,
+          "register_writes": 0,
+          "native_processes": 1
+        }
+      },
+      "save": {
+        "size": 131088,
+        "sha256": "409daabae35f91d3c91fb5e864d7d1a2b8e6079bf88f986712cc978a1943e4f5"
+      },
+      "output": {
+        "size": 131088,
+        "sha256": "409daabae35f91d3c91fb5e864d7d1a2b8e6079bf88f986712cc978a1943e4f5"
+      },
+      "source_run": 37259333246,
+      "reused_raw": true
+    },
+    {
+      "name": "corrupt-ledger",
+      "fixture": {
+        "kind": "corrupt-ledger",
+        "changed_byte_offsets": [
+          4088,
+          127084
+        ],
+        "changed_bytes": 2,
+        "input": {
+          "size": 131088,
+          "sha256": "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
+        },
+        "output": {
+          "size": 131088,
+          "sha256": "56abeaee93422c98a56dcd491fb57b3557d9d613d78c1d4433f93fcf54c33b83"
+        },
+        "selected_bank1_aux_and_RTC_unchanged": false,
+        "ram_fixture_writes": 0
+      },
+      "trace": {
+        "metadata": {
+          "fallback_cold": true,
+          "frame": 2584,
+          "entries": 2,
+          "save_calls": 0,
+          "status": 2,
+          "counter": 101,
+          "ledger_sha256": "e5a00aa9991ac8a5ee3109844d84a55583bd20572ad3ffcd42792f3c36b183ad",
+          "blocked": 1,
+          "ledger_physical_exact": false,
+          "flash_all_bytes_unchanged": true
+        },
+        "observation": {
+          "blocked_observe": true,
+          "frame": 2584,
+          "field": false,
+          "save_file_status": 2,
+          "counter": 101,
+          "ledger_sha256": "e5a00aa9991ac8a5ee3109844d84a55583bd20572ad3ffcd42792f3c36b183ad",
+          "mdx_sha256": "884138dd0d700d20de1a817df6cc127ef28e570cb4ed2ac50f14cf73494a6084",
+          "mdx_all_zero": true,
+          "callback2": 134266037
+        },
+        "mdx": {
+          "valid": false,
+          "save_file_status": 2,
+          "live_sha256": "884138dd0d700d20de1a817df6cc127ef28e570cb4ed2ac50f14cf73494a6084"
+        },
+        "screens": [
+          {
+            "screen": 0,
+            "frame": 2584,
+            "sha256": "43336136c12166bda19b8dd9cb67398baca6b31578f675ff89496b3f67138464"
+          }
+        ],
+        "end": {
+          "end": "PASS_FALLBACK_QOL_COLD",
+          "frames": 2584,
+          "inputs": 7,
+          "blocked": 1,
+          "host_write_barriers": 7,
+          "ram_fixture_writes": 0,
+          "register_writes": 0,
+          "native_processes": 1
+        }
+      },
+      "save": {
+        "size": 131088,
+        "sha256": "56abeaee93422c98a56dcd491fb57b3557d9d613d78c1d4433f93fcf54c33b83"
+      },
+      "output": {
+        "size": 131088,
+        "sha256": "56abeaee93422c98a56dcd491fb57b3557d9d613d78c1d4433f93fcf54c33b83"
+      },
+      "source_run": 37261066891,
+      "reused_raw": false
+    }
+  ],
+  "native_processes": 1,
+  "reused_native_processes": 2,
+  "reused_run": 37259333246,
+  "reused_archive": [
+    11323448524,
+    37259333246,
+    14254,
+    "2bf44c77c4c0a14d885ef2f931d9aa4787d3a1780270289d4641346ce229a42a"
+  ],
+  "prior_diagnostic_native_processes": 1,
+  "host_tests": 3,
+  "old_native_reruns": 0,
+  "ram_fixture_writes": 0,
+  "register_writes": 0,
+  "physical_copy_fixture": true,
+  "all_cold_owners_preserved": false,
+  "sector31_atomicity": false,
+  "hof_initial_atomicity": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "source_bindings": {
+    ".github/workflows/pr16-dex-fallback-cold.yml": {
+      "size": 1727,
+      "sha256": "14a9cc2f300fadf8624c3e02310e1702f489f5defcd843cbeab287c449178cfe"
+    },
+    ".github/workflows/pr16-dex-fallback-qol.yml": {
+      "size": 1637,
+      "sha256": "50ca559e6d33ab1de240479e578265a5d4a138eaae6e7da41cf71c9b41babcca"
+    },
+    "scripts/pr16_dex_fallback_cold.py": {
+      "size": 13961,
+      "sha256": "32c41426e3553f2d614c6d0025b2af43c9fa2b7583fe1aaa09e90f561d8b33a6"
+    },
+    "tests/test_pr16_dex_fallback_cold.py": {
+      "size": 928,
+      "sha256": "52d73960226b585c7be0011603c9b314f0e6a955fbd595b01f505da9885b78b8"
+    },
+    "tools/mgba_pr16_dex_fallback_cold.h": {
+      "size": 3710,
+      "sha256": "146b8182f8385df6d7aee883e779d9b69d7269489b697738823e94ae3c8e3644"
+    }
+  }
+}

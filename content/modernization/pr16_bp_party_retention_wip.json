@@ -1,0 +1,467 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "artifact_digest": "sha256:87166f621187c87fd19579b59aec89c56b2804ae6c8add010401c4f9db98f91f",
+  "artifact_id": 10339976783,
+  "blocker": null,
+  "candidate": {
+    "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+    "size": 33554432
+  },
+  "candidate_changed": true,
+  "candidate_crc32": "3EB17B36",
+  "classification": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
+  "followup_attempts": [
+    {
+      "accepted_native_cases_replayed": 0,
+      "actions_before": {
+        "active_runs": [
+          {
+            "conclusion": null,
+            "event": "pull_request",
+            "head_sha": "d4e1d94f3e34622136c126d3002307c009362fef",
+            "id": 34797745824,
+            "name": "source-validation",
+            "path": ".github/workflows/ci.yml",
+            "status": "in_progress"
+          },
+          {
+            "conclusion": null,
+            "event": "push",
+            "head_sha": "d4e1d94f3e34622136c126d3002307c009362fef",
+            "id": 34797741565,
+            "name": "source-validation",
+            "path": ".github/workflows/ci.yml",
+            "status": "in_progress"
+          },
+          {
+            "conclusion": null,
+            "event": "push",
+            "head_sha": "d4e1d94f3e34622136c126d3002307c009362fef",
+            "id": 34797741572,
+            "name": "未反映ABI案・ツール停止の引継ぎ記録だけ（ROM解析/nativeなし）",
+            "path": ".github/workflows/pr16-bp-retention-session-note.yml",
+            "status": "in_progress"
+          },
+          {
+            "conclusion": null,
+            "event": "push",
+            "head_sha": "d4e1d94f3e34622136c126d3002307c009362fef",
+            "id": 34797741542,
+            "name": "Stage79 mGBA (all)",
+            "path": ".github/workflows/modernization-stage79-mgba.yml",
+            "status": "in_progress"
+          }
+        ],
+        "entry_head_runs": [
+          {
+            "conclusion": "action_required",
+            "event": "pull_request",
+            "head_sha": "aece42964c1ff7b9c2bfd3d3c10bdd863d95febd",
+            "id": 34785846301,
+            "name": "source-validation",
+            "path": ".github/workflows/ci.yml",
+            "status": "completed"
+          },
+          {
+            "conclusion": "action_required",
+            "event": "pull_request",
+            "head_sha": "aece42964c1ff7b9c2bfd3d3c10bdd863d95febd",
+            "id": 34785846366,
+            "name": "p03-forgetting-ci",
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "status": "completed"
+          }
+        ],
+        "latest": {
+          "pr16-bp-exchange-identity.yml": {
+            "conclusion": "success",
+            "event": "push",
+            "head_sha": "e9793dfda49ec3044b662aefd7bb0093182dce3a",
+            "id": 34774194505,
+            "name": "7f32交換個体の次戦までの読取専用追跡（同一prefix・既受入再実行なし）",
+            "path": ".github/workflows/pr16-bp-exchange-identity.yml",
+            "status": "completed"
+          },
+          "pr16-bp-party-retention.yml": {
+            "conclusion": "success",
+            "event": "push",
+            "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+            "id": 34785149994,
+            "name": "交換個体保持修復のowner照合・限定検証",
+            "path": ".github/workflows/pr16-bp-party-retention.yml",
+            "status": "completed"
+          }
+        },
+        "pr_open_draft": true,
+        "recording_run_id": 34797741572
+      },
+      "blocker": {
+        "attempts_this_session": 1,
+        "excerpt": "このツールの呼び出しは、OpenAI の安全性チェックによってブロックされました。送信内容を再度確認してください。",
+        "github_permission_missing": false,
+        "kind": "OPENAI_TOOL_SAFETY_BLOCK",
+        "tool": "GitHub.create_tree"
+      },
+      "candidate_changed": false,
+      "entry_head": "aece42964c1ff7b9c2bfd3d3c10bdd863d95febd",
+      "local_draft_sources": {
+        ".github/workflows/pr16-bp-retention-abi.yml": {
+          "sha256": "070f761f712a7478286cfa43dd7380b2ff53052941314f0e246125a97adaa7a3",
+          "size": 7285
+        },
+        "scripts/pr16_bp_party_retention_abi.py": {
+          "sha256": "5dfa9c74d483a793ba41884366b63c7c54916ce813016ea1fa4acecc8d9deacd",
+          "size": 9684
+        },
+        "tests/test_pr16_bp_party_retention_abi.py": {
+          "sha256": "0c785bde0bf07e1612688b528ea7cdb3c6f52e2563c374e1f423b81415ae13a4",
+          "size": 3250
+        }
+      },
+      "local_draft_test_count": 8,
+      "local_draft_test_result": "PASS_LOCAL_ONLY_NOT_TARGET_VERIFICATION",
+      "native_retention_verified": false,
+      "new_native_processes": 0,
+      "recording_source_head": "d4e1d94f3e34622136c126d3002307c009362fef",
+      "release_ready": false,
+      "remote_implementation_applied": false,
+      "runtime_connected": false,
+      "task": "USER-20260914-BP-RETENTION-RESUME-NOTE",
+      "task_status": "BLOCKED"
+    },
+    {
+      "accepted_native_cases_replayed": 0,
+      "actions_job_id": 103846389011,
+      "actions_run_id": 34802013676,
+      "artifact_id": 10331807964,
+      "candidate_changed": false,
+      "implementation_parent": "66b08fe8d50676e8a90cc798185d19720f3a53e7",
+      "native_bp_earning_accepted": false,
+      "native_retention_verified": false,
+      "new_emulator_processes": 0,
+      "release_ready": false,
+      "remote_implementation_applied": true,
+      "runtime_connected": false,
+      "target_abi_verified": true,
+      "target_callsite_verified": true,
+      "task": "USER-20260914-BP-RETENTION-ABI",
+      "task_status": "PASS_SCOPED_STATIC_AUDIT",
+      "tested_head": "7bfbaeae42005ec6c133f316f07fb75dce438cad"
+    },
+    {
+      "accepted_native_cases_replayed": 0,
+      "actions_conclusion": "failure",
+      "actions_job_id": 103915172830,
+      "actions_run_id": 34825059791,
+      "artifact_digest": "sha256:87166f621187c87fd19579b59aec89c56b2804ae6c8add010401c4f9db98f91f",
+      "artifact_id": 10339976783,
+      "candidate": {
+        "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+        "size": 33554432
+      },
+      "candidate_crc32": "3EB17B36",
+      "evidence": "content/modernization/pr16_bp_party_retention_verified.json",
+      "native_bp_earning_accepted": false,
+      "native_retention_verified": true,
+      "native_verification_steps_conclusion": "success",
+      "new_emulator_processes": 1,
+      "record_step_conclusion": "failure_before_commit",
+      "release_ready": false,
+      "runtime_connected": true,
+      "task": "USER-20260914-BP-RETENTION-RUNTIME",
+      "task_status": "PASS_NATIVE_PARTY_RETENTION_NOT_BP",
+      "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
+    }
+  ],
+  "latest_evidence": "content/modernization/pr16_bp_party_retention_verified.json",
+  "native_bp_earning_accepted": false,
+  "native_retention_verified": true,
+  "new_emulator_processes": 1,
+  "new_native_processes": 1,
+  "owner_artifact_id": 10325794218,
+  "owner_artifact_zip": {
+    "sha256": "e25867d0a3167922e51d87b3e2767a7f61c614ffc8a92d174a825db38ce582f2",
+    "size": 216630
+  },
+  "owner_evidence": {
+    "actions_before": {
+      "active_runs": [
+        {
+          "conclusion": null,
+          "event": "pull_request",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785152676,
+          "name": "source-validation",
+          "path": ".github/workflows/ci.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "pull_request",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785152631,
+          "name": "p03-forgetting-ci",
+          "path": ".github/workflows/p03-forgetting-ci.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785149994,
+          "name": "交換個体保持修復のowner照合・限定検証",
+          "path": ".github/workflows/pr16-bp-party-retention.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785150057,
+          "name": "p03-forgetting-ci",
+          "path": ".github/workflows/p03-forgetting-ci.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785149998,
+          "name": "Stage79 mGBA (all)",
+          "path": ".github/workflows/modernization-stage79-mgba.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785150075,
+          "name": "Stage79 runtime boundary audit",
+          "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785149966,
+          "name": "source-validation",
+          "path": ".github/workflows/ci.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785149996,
+          "name": "PR16 fixed handoff source-only verification",
+          "path": ".github/workflows/pr16-resume-maintenance.yml",
+          "status": "in_progress"
+        }
+      ],
+      "entry_head_runs": [
+        {
+          "conclusion": "action_required",
+          "event": "pull_request",
+          "head_sha": "c0dc2ccee1e0253a0c8d8604c6a7312f04a133a3",
+          "id": 34774623910,
+          "name": "p03-forgetting-ci",
+          "path": ".github/workflows/p03-forgetting-ci.yml",
+          "status": "completed"
+        },
+        {
+          "conclusion": "action_required",
+          "event": "pull_request",
+          "head_sha": "c0dc2ccee1e0253a0c8d8604c6a7312f04a133a3",
+          "id": 34774623984,
+          "name": "source-validation",
+          "path": ".github/workflows/ci.yml",
+          "status": "completed"
+        }
+      ],
+      "latest_identity": {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "e9793dfda49ec3044b662aefd7bb0093182dce3a",
+        "id": 34774194505,
+        "name": "7f32交換個体の次戦までの読取専用追跡（同一prefix・既受入再実行なし）",
+        "path": ".github/workflows/pr16-bp-exchange-identity.yml",
+        "status": "completed"
+      },
+      "pr_open_draft": true,
+      "tested_head": "48a36caf3361b1d167c302174eb2c4c4121c7508"
+    },
+    "candidate": {
+      "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd",
+      "size": 33554432
+    },
+    "host_tests": {
+      "count": 4,
+      "result": "PASS",
+      "transcript": "test_all_invalid_ledger_markers_and_counts_fall_through (test_pr16_bp_party_retention.RetentionScopeTests.test_all_invalid_ledger_markers_and_counts_fall_through) ... ok\ntest_first_battle_ordinary_scripts_and_mismatched_reward_untouched (test_pr16_bp_party_retention.RetentionScopeTests.test_first_battle_ordinary_scripts_and_mismatched_reward_untouched) ... ok\ntest_only_second_and_third_bound_continuations (test_pr16_bp_party_retention.RetentionScopeTests.test_only_second_and_third_bound_continuations) ... ok\ntest_runtime_has_no_party_or_ledger_write (test_pr16_bp_party_retention.RetentionScopeTests.test_runtime_has_no_party_or_ledger_write) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.118s\n\nOK\n"
+    },
+    "member_hashes": {
+      "actions-before.json": {
+        "sha256": "1a7c00d08d052f1b2fd13d153118573f871ef5121d6d05b1e3f15c9fcc737bff",
+        "size": 3466
+      },
+      "charmap-binding.json": {
+        "sha256": "d5955438ed689a5bc8969155c83f140e0e8c6772735a51e663a98a1312e13f2f",
+        "size": 228
+      },
+      "owner.json": {
+        "sha256": "bb46bf0f64cbef4b9730d48e030f81be11180f6d0ff5da9a5c83bfd61eba5982",
+        "size": 45479
+      },
+      "owner.stdout": {
+        "sha256": "9f0ccb2c4b52c037dd0813599c41052876b70f5237323db4b329e781738e8d19",
+        "size": 466
+      },
+      "p07.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "p07.stdout": {
+        "sha256": "61b1327cce12789ee9f06f5944f5dacbbf097ca1d72b1abea0725c2835cf3293",
+        "size": 591
+      },
+      "private-restore.json": {
+        "sha256": "02ad0f577bd29a770c67979bc976b4f918b7a73592525330b03c3fe6bc0965a0",
+        "size": 228
+      },
+      "repair.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "repair.stdout": {
+        "sha256": "f191856fe4da91b0e7b716a1daf703173597a6af95f8fde1ec8a14afe71ef72c",
+        "size": 42856
+      },
+      "resume-before.json": {
+        "sha256": "df9f69096ae2c7d1841176d015e32cd18e15be6a2c1d00d9445f594fdb652d37",
+        "size": 83
+      },
+      "stage84.json": {
+        "sha256": "4a79800bf5314f031ea22489e38091d9e0d6b3bf0e0ac500d027530753e47251",
+        "size": 412
+      },
+      "stage84.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "toolchain.log": {
+        "sha256": "8ac252c596e3726126f03bc72ca3df5ac5c6005e1af8ad9aea686a60cd52d4c7",
+        "size": 40717
+      },
+      "tracked-snapshot.json": {
+        "sha256": "8153d5841233791d579b61b3ec4eb2360fa95ca1ab7fd9ba78cff6891209d39d",
+        "size": 512478
+      },
+      "unit.stderr": {
+        "sha256": "61402506b3dbb88c5f2a137068587d3cecfba58cb61aacbec3456a1c7af0ae31",
+        "size": 754
+      },
+      "unit.stdout": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "upstream-source.json": {
+        "sha256": "251c85cdff87af7cdee87641db6d8c0ed42d61f5f9df308b3cde41a90328bd14",
+        "size": 228219
+      }
+    },
+    "owner_status": "OWNER_ABI_AUDIT_NOT_NATIVE_ACCEPTANCE"
+  },
+  "owner_run": {
+    "conclusion": "success",
+    "event": "push",
+    "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+    "id": 34785149994,
+    "name": "交換個体保持修復のowner照合・限定検証",
+    "path": ".github/workflows/pr16-bp-party-retention.yml",
+    "status": "completed"
+  },
+  "release_ready": false,
+  "runtime_connected": true,
+  "schema_version": 2,
+  "sources": {
+    ".github/workflows/pr16-bp-party-retention-native.yml": {
+      "sha256": "905a042ad83225009f99515057520f7781b45d57883b22e624b773f919f3cdd9",
+      "size": 23629
+    },
+    "content/modernization/pr16_bp_party_retention_verified.json": {
+      "sha256": "960b73018090f10993090feb7ae038b0f36eb99a886dff7f2bdc42c467949f00",
+      "size": 9131
+    },
+    "overlays/facility_party_retention/facility_party_retention.c": {
+      "sha256": "71ceef74208bda989debb45986b973c63b9f4e8c0114037f233bb3c95a452c13",
+      "size": 2015
+    },
+    "scripts/pr16_bp_party_retention_native.py": {
+      "sha256": "00309c9c9f2578c38b68e920286b127a2fc30e9163cb601cc81620270a7668b6",
+      "size": 8628
+    },
+    "scripts/pr16_bp_party_retention_successor.py": {
+      "sha256": "bf9e7c426c27f002f54fb7887a92cf141762672891bf13767aabcdcec4dae931",
+      "size": 15003
+    },
+    "tests/test_pr16_bp_party_retention_native.py": {
+      "sha256": "20d8623112f151b614ebb99211ef42b8e962b5ac34b6c22fa4431face311b013",
+      "size": 3526
+    },
+    "tests/test_pr16_bp_party_retention_successor.py": {
+      "sha256": "d2bcf2869bd7c5fa3f396b2755c7997837620c43c72c4442dc083f1e7f4d2d08",
+      "size": 2215
+    }
+  },
+  "summary_ja": "run34825059791/job103915172830で保持wrapperを0x090DD51Cのplayer predicateへ限定接続。交換確定時の600byte party、3個体identity、交換個体が次戦chooser/actionまで一致。新規emulator 1、受入済み取消/Save/Continue再実行0。2/3戦目・BP報酬は未受入。",
+  "superseded_blocker": {
+    "attempts": 2,
+    "excerpt": "リクエストの安全性を確認できなかったため、このツールの呼び出しは OpenAI によってブロックされました。",
+    "github_permission_missing": false,
+    "kind": "OPENAI_TOOL_SAFETY_BLOCK",
+    "response": "追加解析/接続を停止。別経路で再試行せず、成功済み証拠とWIPのみを記録。"
+  },
+  "target_abi_evidence": {
+    "actions_test_count": 12,
+    "artifact_digest": "sha256:d09f9593ca715af1a0f0700d3888101e2b9f8254b4a06210905426781d7c27af",
+    "artifact_id": 10331807964,
+    "job_id": 103846389011,
+    "linked_cache_aliases": 2,
+    "linked_objects_byte_identical": true,
+    "path": "content/modernization/pr16_bp_retention_abi_verified.json",
+    "player_build_callsite": "0x090DD538",
+    "predicate_callsite": "0x090DD51C",
+    "run_id": 34802013676,
+    "tested_head": "7bfbaeae42005ec6c133f316f07fb75dce438cad",
+    "true_false_rejoin": "0x090DD2E6"
+  },
+  "target_abi_verified": true,
+  "target_callsite_verified": true,
+  "task": "USER-20260914-BP-RETENTION-RUNTIME",
+  "task_status": "PASS_NATIVE_PARTY_RETENTION_NOT_BP",
+  "tested_head": "10e535a046441dd3b797918106259b5c57b69716",
+  "tested_head_checks": [
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "7bfbaeae42005ec6c133f316f07fb75dce438cad",
+      "id": 34802013676,
+      "job_id": 103846389011,
+      "name": "交換個体保持target callsite・ABIのbuild-cache照合",
+      "path": ".github/workflows/pr16-bp-retention-abi-cache.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "event": "push",
+      "head_sha": "10e535a046441dd3b797918106259b5c57b69716",
+      "id": 34825059791,
+      "job_id": 103915172830,
+      "name": "pr16-bp-party-retention-native",
+      "native_verification_steps_conclusion": "success",
+      "path": ".github/workflows/pr16-bp-party-retention-native.yml",
+      "record_step_conclusion": "failure_before_commit"
+    }
+  ]
+}

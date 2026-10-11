@@ -1,0 +1,398 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-UNREAD-FRONTIER",
+  "source_head": "d202443b94604ebffa1396104eec495611480e46",
+  "run_id": 35090180714,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "UNREAD_DELEGATES_MONTH_TABLE_AND_MIRROR_CANDIDATES_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "target": 135346564,
+    "execution_pc_bases": [
+      167772160,
+      201326592
+    ],
+    "references": [],
+    "unread_external_targets_sampled": [
+      152224937,
+      152225109,
+      151625221
+    ],
+    "focus_ranges": [
+      [
+        152224936,
+        152225276
+      ],
+      [
+        151625220,
+        151626244
+      ],
+      [
+        152474928,
+        152474976
+      ]
+    ],
+    "new_windows": [
+      {
+        "start": 151625220,
+        "end": 151625238,
+        "hex": "00b500f002f8011c00bd134b1847134b1847",
+        "identity": {
+          "size": 18,
+          "sha256": "f12a17949830616c9c2517f226bef22ac42c020783e6596d722d938d62a536e0"
+        }
+      },
+      {
+        "start": 151625368,
+        "end": 151625772,
+        "hex": "1b480068530018182188018061884180021c4032a18811804230e18801801548006818182189018061894180021c4032a18911804230e18901800f4800681b18208a1880608a5880191c4031a08a08804233e08a188009480047c04628a3050828a30508c8a20508989e09098aa205085c50000354500003585000037ba30508f0b5c6460d0000b5010082b00700280016f0e8fd0600280016f0faf8041e2ad1002e04d1200002b080bcb846f0bd2a003900012016f060f800281ed13900280016f0e4fd002816d158237b43164ce418238d98463a00012300902900300019f0affa4246a38d101a01249b08834219da2406240ed6e70124d4e701233a0029000094300019f09cfa58227a43064b9b18998d04008908012096f0a8ff8442a4416442bfe70024e3e7443b0202f8b557464e464546de46e0b558254d4399466e4f0aab1b787d199a462b8f04000e0090466e2b40d0200016f04dfb002847d10122664b1b6813425bd01300a3439b4658215b464b43fb181b8d002b3fd1023363404b43fb181b8d002b4ad003252240ad1a2d062d0e",
+        "identity": {
+          "size": 404,
+          "sha256": "0e6f43b48016eadc9574c4796047728041403857bd1b2236b413646980fee6d2"
+        }
+      },
+      {
+        "start": 151625776,
+        "end": 151626244,
+        "hex": "6b43fb181b8d002b00d190e021002a00404615f0e5ff2100002800d189e028001af090f8002816d118236643be194e44f3560120534544da0006000e0ce0010049483cf071fa0028b8d1210047483cf06bfa0028b2d10020f0bcbb46b246a946a046f8bd2240032513006b401b061b0e4b43fb181b8d002b3ed102336340594379180b8d002b37d121003200404615f0a7ff2100002818d030001af053f80028d9d1334bb600f258324b1a423fd158236343fb184b441b7e1b0601201b165345badb00200006000ec6e7300016f040fd00282cd14b46032b07d155336343fb18db7e1b061b16534521db2100300019f0abff0028dbd0aee72100ad1a40465a4615f06eff2d0621002d0e002821d058461af018f800289ed158236343fb184b441b7e1b061b16534500da67e793e7012092e7280019f088ff002800d08be718236643bf194f44fb560120534500da73e7b7e7584619f078ff0028ddd07be7c046443b0202ac2a020233020000a10200005c3d0202c0800413f0b5de464e4645465746e0b587b01600050088463af008f8070028003af028f80400280039f00eff7300bf4a9b199b009b5c81465b2b00d1efe032d8202b00d1cae000d99be0032b02d0082b00d0c0e0b64b9e4200d112e100234246",
+        "identity": {
+          "size": 468,
+          "sha256": "c46a4b3a32db474b2d42950ccc7f0c469900ebd5df2ebe8858267e274069e156"
+        }
+      },
+      {
+        "start": 152224936,
+        "end": 152225276,
+        "hex": "01230721f0b584466327012604250524234a138004331380224b19803b000b4133405b0018002343284300041b04000c1b0c10801080108013800139eed20522184b08261a80042400230525144a14801480148014801480158011884908c9015b080b43013e1b0631061b0e0e0e0029edd1dc100431214002249d102c40180021433f24a04301245b10014323400b436146cb71044b1480012014801e70f0bdc4000008c6000008d1df0302012320222549f0b500060b8004330b8043151a400223c41523401a430823801503401a43402307201a431d4b188005236227012604259c46120612163b00034133405b001c002c432404240c0c800c800c80644623431b041b0c0b800138edd200240125042705260c48130023412b405b0019003343394309041b04090c1b0c01340180018001800380082cedd10022044b0580058001201a70f0bdc4000008c6000008d1df0302",
+        "identity": {
+          "size": 340,
+          "sha256": "c5252d9476bc47fac7696e5d27bed725d02a59ac83e37723e6b88bd08d5dbc17"
+        }
+      },
+      {
+        "start": 152474928,
+        "end": 152474976,
+        "hex": "1f0000001c0000001f0000001e0000001f0000001e0000001f0000001f0000001e0000001f0000001e0000001f000000",
+        "identity": {
+          "size": 48,
+          "sha256": "8d37c81b9a47c1b878313f8a5fa9a3f69ed9eb4dfcb83e949037e3fa5b4f9eb3"
+        }
+      }
+    ],
+    "new_window_bytes": 1278,
+    "saved_byte_ranges_reused": [
+      [
+        151625238,
+        151625368
+      ],
+      [
+        151625772,
+        151625776
+      ]
+    ],
+    "saved_bytes_reused": 134,
+    "month_table": {
+      "start": 152474928,
+      "end": 152474976,
+      "identity": {
+        "size": 48,
+        "sha256": "8d37c81b9a47c1b878313f8a5fa9a3f69ed9eb4dfcb83e949037e3fa5b4f9eb3"
+      },
+      "u32_le_values": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
+      "validated_as_calendar": false
+    },
+    "searched_forms": [
+      "mirrored Thumb B/Bcond/BL/ADR/literal",
+      "mirrored ARM B/BL/immediate ADR/literal"
+    ],
+    "unsearched_forms": [
+      "register-computed/table-dispatched targets",
+      "nonliteral loads",
+      "execution from RAM"
+    ],
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "old_frontier_removed": false,
+    "all_callers_resolved": false,
+    "all_runtime_owners_excluded": false,
+    "caller_pointer_size_limit_proven": false,
+    "selector1_runtime_observed": false,
+    "selector2_runtime_observed": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0,
+    "candidate_reconstructions": 1,
+    "boundary_ja": "二つのROM alias帯に置いたPCの命令候補だけ。実行可否/実到達/RAM caller/全owner除外は未証明。"
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_unread_frontier.py": {
+      "size": 11482,
+      "sha256": "88c24bba3aedacf2918cd5a06d948474825bdf1a9cb5abbcc6c7b48d8be99da6"
+    },
+    "tests/test_pr16_ring_unread_frontier.py": {
+      "size": 7990,
+      "sha256": "2165d29304000c7b829ac55af2cbae7eeb6b5e8928c57676eeee336928ea30bb"
+    },
+    ".github/workflows/pr16-ring-unread-frontier.yml": {
+      "size": 2566,
+      "sha256": "b2ee8a06f5ece6e2140364ea9c51ac5d3295b8aa26bc515fb7553a9be0437b06"
+    },
+    "content/modernization/pr16_ring_session_closeout.json": {
+      "size": 31280,
+      "sha256": "bb5ccd138a95418c724b1cf388c98d3e2527e0000e1cd3fee9fe30a1b72795c1"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "content/modernization/pr16_ring_branch_frontier.json": {
+      "size": 18753,
+      "sha256": "3c1ea4c589af430f115a0a6ed02c330e41e609fb14fdc6f60e9c01090a80861b"
+    },
+    "content/modernization/pr16_ring_delegate_contracts.json": {
+      "size": 11904,
+      "sha256": "3423377b57a598d22e36a1f1447e44172a8bf65bdb73a0d3c269877b918df77d"
+    },
+    "content/modernization/pr16_ring_selector_owners.json": {
+      "size": 1704471,
+      "sha256": "64e746c4b085f85afb180bbf03299c84ae7efebd1e72964f5f0195e97d553727"
+    },
+    "content/modernization/pr16_ring_record_callers.json": {
+      "size": 102561,
+      "sha256": "622b9d69ef96fc0d975fc4e1bec5e08c4d07e85ee0ddea5a4f8fe538fa65d77a"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 42,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35087956576,
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35090185334,
+      "name": "source-validation",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35090185281,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35090180684,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35090180696,
+      "name": "source-validation",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35090180714,
+      "name": "未読3delegate・月表・mirrored-PC限定追跡",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35090180713,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "d202443b94604ebffa1396104eec495611480e46",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090020747,
+      "name": "p03-forgetting-ci",
+      "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090020665,
+      "name": "source-validation",
+      "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090013785,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090013891,
+      "name": "p03-forgetting-ci",
+      "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090013920,
+      "name": "未読3delegate・月表・mirrored-PC限定追跡",
+      "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35090013769,
+      "name": "source-validation",
+      "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35090013791,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "2aebb6d75cad48cc26b83645b675121b6a31c8fd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35088032830,
+      "name": "p03-forgetting-ci",
+      "head_sha": "04a56ac7d3c499ae0d63ebf09c9e119ee90d23df",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35088032832,
+      "name": "source-validation",
+      "head_sha": "04a56ac7d3c499ae0d63ebf09c9e119ee90d23df",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35087957236,
+      "name": "source-validation",
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35087956555,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35087956508,
+      "name": "p03-forgetting-ci",
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35087957216,
+      "name": "p03-forgetting-ci",
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35087956576,
+      "name": "分岐frontierと7delegateの成功原本・記録照合",
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

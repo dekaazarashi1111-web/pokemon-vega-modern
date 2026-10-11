@@ -1,0 +1,711 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-CALLER-SNAPSHOT",
+  "source_head": "88292386bad501bfc08e5a71fd96c9d621d95896",
+  "run_id": 35060189419,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "BOUNDED_BOOT_CALLER_OBSERVATION_NOT_RING_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "trace_identity": {
+      "size": 58670,
+      "sha256": "111e79f54cf721458ba1f5ec2bbdc5d40fe049fb7cef03345678326a2cabb861"
+    },
+    "observed_calls": 8,
+    "bound_calls": 8,
+    "bindings": [
+      {
+        "ordinal": 1,
+        "scope": "ONE_OBSERVED_BOOT_CALL_NOT_RING_ROUTE",
+        "snapshot": {
+          "id": 2104,
+          "selector": 0,
+          "sp": 50363880,
+          "lr": 154629581,
+          "save_base": 33707192,
+          "record_base": 0,
+          "count": 0,
+          "limit": 0,
+          "index": 0,
+          "capacity": 0,
+          "record_word": 0,
+          "flag_byte": 0
+        },
+        "route": {
+          "kind": "low_other",
+          "calls": [],
+          "peak": 24
+        },
+        "trace_return_consistent": true,
+        "runtime_provenance_bound": true,
+        "return_target": 154629580,
+        "observed_instructions": 81,
+        "observed_minimum_sp": 50363856,
+        "conditional_frame": [
+          50363856,
+          50363880
+        ],
+        "conditional_predictions_match_observation": true,
+        "conditional_assumptions_not_discharged": [
+          "normal_mapping_stable",
+          "synchronous"
+        ],
+        "hardware_samples": {
+          "memory_control": 0,
+          "ime": 1,
+          "ie": 5,
+          "dma_enable": 32768
+        },
+        "hardware_sample_summary": {
+          "cpu_mode_stable": true,
+          "memory_control_stable": true,
+          "dma_disabled_at_step_boundaries": false
+        },
+        "allocated_storage_extent_proven": false,
+        "synchrony_proven": false,
+        "all_callers_resolved": false,
+        "all_runtime_owners_excluded": false,
+        "ring_acquisition_accepted": false,
+        "release_ready": false,
+        "actual_return_observed": true
+      },
+      {
+        "ordinal": 2,
+        "scope": "ONE_OBSERVED_BOOT_CALL_NOT_RING_ROUTE",
+        "snapshot": {
+          "id": 1153,
+          "selector": 0,
+          "sp": 50363852,
+          "lr": 154629581,
+          "save_base": 33707192,
+          "record_base": 0,
+          "count": 0,
+          "limit": 0,
+          "index": 0,
+          "capacity": 0,
+          "record_word": 0,
+          "flag_byte": 0
+        },
+        "route": {
+          "kind": "low_other",
+          "calls": [],
+          "peak": 24
+        },
+        "trace_return_consistent": true,
+        "runtime_provenance_bound": true,
+        "return_target": 154629580,
+        "observed_instructions": 81,
+        "observed_minimum_sp": 50363828,
+        "conditional_frame": [
+          50363828,
+          50363852
+        ],
+        "conditional_predictions_match_observation": true,
+        "conditional_assumptions_not_discharged": [
+          "normal_mapping_stable",
+          "synchronous"
+        ],
+        "hardware_samples": {
+          "memory_control": 0,
+          "ime": 1,
+          "ie": 5,
+          "dma_enable": 32768
+        },
+        "hardware_sample_summary": {
+          "cpu_mode_stable": true,
+          "memory_control_stable": true,
+          "dma_disabled_at_step_boundaries": false
+        },
+        "allocated_storage_extent_proven": false,
+        "synchrony_proven": false,
+        "all_callers_resolved": false,
+        "all_runtime_owners_excluded": false,
+        "ring_acquisition_accepted": false,
+        "release_ready": false,
+        "actual_return_observed": true
+      },
+      {
+        "ordinal": 3,
+        "scope": "ONE_OBSERVED_BOOT_CALL_NOT_RING_ROUTE",
+        "snapshot": {
+          "id": 1154,
+          "selector": 0,
+          "sp": 50363852,
+          "lr": 154629581,
+          "save_base": 33707192,
+          "record_base": 0,
+          "count": 0,
+          "limit": 0,
+          "index": 0,
+          "capacity": 0,
+          "record_word": 0,
+          "flag_byte": 2
+        },
+        "route": {
+          "kind": "low_other",
+          "calls": [],
+          "peak": 24
+        },
+        "trace_return_consistent": true,
+        "runtime_provenance_bound": true,
+        "return_target": 154629580,
+        "observed_instructions": 81,
+        "observed_minimum_sp": 50363828,
+        "conditional_frame": [
+          50363828,
+          50363852
+        ],
+        "conditional_predictions_match_observation": true,
+        "conditional_assumptions_not_discharged": [
+          "normal_mapping_stable",
+          "synchronous"
+        ],
+        "hardware_samples": {
+          "memory_control": 0,
+          "ime": 1,
+          "ie": 5,
+          "dma_enable": 32768
+        },
+        "hardware_sample_summary": {
+          "cpu_mode_stable": true,
+          "memory_control_stable": true,
+          "dma_disabled_at_step_boundaries": false
+        },
+        "allocated_storage_extent_proven": false,
+        "synchrony_proven": false,
+        "all_callers_resolved": false,
+        "all_runtime_owners_excluded": false,
+        "ring_acquisition_accepted": false,
+        "release_ready": false,
+        "actual_return_observed": true
+      },
+      {
+        "ordinal": 4,
+        "scope": "ONE_OBSERVED_BOOT_CALL_NOT_RING_ROUTE",
+        "snapshot": {
+          "id": 1076,
+          "selector": 0,
+          "sp": 50363852,
+          "lr": 154629581,
+          "save_base": 33707192,
+          "record_base": 0,
+          "count": 0,
+          "limit": 0,
+          "index": 0,
+          "capacity": 0,
+          "record_word": 0,
+          "flag_byte": 0
+        },
+        "route": {
+          "kind": "low_other",
+          "calls": [],
+          "peak": 24
+        },
+        "trace_return_consistent": true,
+        "runtime_provenance_bound": true,
+        "return_target": 154629580,
+        "observed_instructions": 81,
+        "observed_minimum_sp": 50363828,
+        "conditional_frame": [
+          50363828,
+          50363852
+        ],
+        "conditional_predictions_match_observation": true,
+        "conditional_assumptions_not_discharged": [
+          "normal_mapping_stable",
+          "synchronous"
+        ],
+        "hardware_samples": {
+          "memory_control": 0,
+          "ime": 1,
+          "ie": 5,
+          "dma_enable": 32768
+        },
+        "hardware_sample_summary": {
+          "cpu_mode_stable": true,
+          "memory_control_stable": true,
+          "dma_disabled_at_step_boundaries": false
+        },
+        "allocated_storage_extent_proven": false,
+        "synchrony_proven": false,
+        "all_callers_resolved": false,
+        "all_runtime_owners_excluded": false,
+        "ring_acquisition_accepted": false,
+        "release_ready": false,
+        "actual_return_observed": true
+      },
+      {
+        "ordinal": 5,
+        "scope": "ONE_OBSERVED_BOOT_CALL_NOT_RING_ROUTE",
+        "snapshot": {
+          "id": 1070,
+          "selector": 0,
+          "sp": 50363852,
+          "lr": 154629581,
+          "save_base": 33707192,
+          "record_base": 0,
+          "count": 0,
+          "limit": 0,
+          "index": 0,
+          "capacity": 0,
+          "record_word": 0,
+          "flag_byte": 0
+        },
+        "route": {
+          "kind": "low_other",
+          "calls": [],
+          "peak": 24
+        },
+        "trace_return_consistent": true,
+        "runtime_provenance_bound": true,
+        "return_target": 154629580,
+        "observed_instructions": 81,
+        "observed_minimum_sp": 50363828,
+        "conditional_frame": [
+          50363828,
+          50363852
+        ],
+        "conditional_predictions_match_observation": true,
+        "conditional_assumptions_not_discharged": [
+          "normal_mapping_stable",
+          "synchronous"
+        ],
+        "hardware_samples": {
+          "memory_control": 0,
+          "ime": 1,
+          "ie": 5,
+          "dma_enable": 32768
+        },
+        "hardware_sample_summary": {
+          "cpu_mode_stable": true,
+          "memory_control_stable": true,
+          "dma_disabled_at_step_boundaries": false
+        },
+        "allocated_storage_extent_proven": false,
+        "synchrony_proven": false,
+        "all_callers_resolved": false,
+        "all_runtime_owners_excluded": false,
+        "ring_acquisition_accepted": false,
+        "release_ready": false,
+        "actual_return_observed": true
+      },
+      {
+        "ordinal": 6,
+        "scope": "ONE_OBSERVED_BOOT_CALL_NOT_RING_ROUTE",
+        "snapshot": {
+          "id": 1071,
+          "selector": 0,
+          "sp": 50363852,
+          "lr": 154629581,
+          "save_base": 33707192,
+          "record_base": 0,
+          "count": 0,
+          "limit": 0,
+          "index": 0,
+          "capacity": 0,
+          "record_word": 0,
+          "flag_byte": 64
+        },
+        "route": {
+          "kind": "low_other",
+          "calls": [],
+          "peak": 24
+        },
+        "trace_return_consistent": true,
+        "runtime_provenance_bound": true,
+        "return_target": 154629580,
+        "observed_instructions": 81,
+        "observed_minimum_sp": 50363828,
+        "conditional_frame": [
+          50363828,
+          50363852
+        ],
+        "conditional_predictions_match_observation": true,
+        "conditional_assumptions_not_discharged": [
+          "normal_mapping_stable",
+          "synchronous"
+        ],
+        "hardware_samples": {
+          "memory_control": 0,
+          "ime": 1,
+          "ie": 5,
+          "dma_enable": 32768
+        },
+        "hardware_sample_summary": {
+          "cpu_mode_stable": true,
+          "memory_control_stable": true,
+          "dma_disabled_at_step_boundaries": false
+        },
+        "allocated_storage_extent_proven": false,
+        "synchrony_proven": false,
+        "all_callers_resolved": false,
+        "all_runtime_owners_excluded": false,
+        "ring_acquisition_accepted": false,
+        "release_ready": false,
+        "actual_return_observed": true
+      },
+      {
+        "ordinal": 7,
+        "scope": "ONE_OBSERVED_BOOT_CALL_NOT_RING_ROUTE",
+        "snapshot": {
+          "id": 1072,
+          "selector": 0,
+          "sp": 50363852,
+          "lr": 154629581,
+          "save_base": 33707192,
+          "record_base": 0,
+          "count": 0,
+          "limit": 0,
+          "index": 0,
+          "capacity": 0,
+          "record_word": 0,
+          "flag_byte": 16
+        },
+        "route": {
+          "kind": "low_other",
+          "calls": [],
+          "peak": 24
+        },
+        "trace_return_consistent": true,
+        "runtime_provenance_bound": true,
+        "return_target": 154629580,
+        "observed_instructions": 81,
+        "observed_minimum_sp": 50363828,
+        "conditional_frame": [
+          50363828,
+          50363852
+        ],
+        "conditional_predictions_match_observation": true,
+        "conditional_assumptions_not_discharged": [
+          "normal_mapping_stable",
+          "synchronous"
+        ],
+        "hardware_samples": {
+          "memory_control": 0,
+          "ime": 1,
+          "ie": 5,
+          "dma_enable": 32768
+        },
+        "hardware_sample_summary": {
+          "cpu_mode_stable": true,
+          "memory_control_stable": true,
+          "dma_disabled_at_step_boundaries": false
+        },
+        "allocated_storage_extent_proven": false,
+        "synchrony_proven": false,
+        "all_callers_resolved": false,
+        "all_runtime_owners_excluded": false,
+        "ring_acquisition_accepted": false,
+        "release_ready": false,
+        "actual_return_observed": true
+      },
+      {
+        "ordinal": 8,
+        "scope": "ONE_OBSERVED_BOOT_CALL_NOT_RING_ROUTE",
+        "snapshot": {
+          "id": 1073,
+          "selector": 0,
+          "sp": 50363852,
+          "lr": 154629581,
+          "save_base": 33707192,
+          "record_base": 0,
+          "count": 0,
+          "limit": 0,
+          "index": 0,
+          "capacity": 0,
+          "record_word": 0,
+          "flag_byte": 17
+        },
+        "route": {
+          "kind": "low_other",
+          "calls": [],
+          "peak": 24
+        },
+        "trace_return_consistent": true,
+        "runtime_provenance_bound": true,
+        "return_target": 154629580,
+        "observed_instructions": 81,
+        "observed_minimum_sp": 50363828,
+        "conditional_frame": [
+          50363828,
+          50363852
+        ],
+        "conditional_predictions_match_observation": true,
+        "conditional_assumptions_not_discharged": [
+          "normal_mapping_stable",
+          "synchronous"
+        ],
+        "hardware_samples": {
+          "memory_control": 0,
+          "ime": 1,
+          "ie": 5,
+          "dma_enable": 32768
+        },
+        "hardware_sample_summary": {
+          "cpu_mode_stable": true,
+          "memory_control_stable": true,
+          "dma_disabled_at_step_boundaries": false
+        },
+        "allocated_storage_extent_proven": false,
+        "synchrony_proven": false,
+        "all_callers_resolved": false,
+        "all_runtime_owners_excluded": false,
+        "ring_acquisition_accepted": false,
+        "release_ready": false,
+        "actual_return_observed": true
+      }
+    ],
+    "rejected_calls": [],
+    "search": {
+      "kind": "summary",
+      "hits": 8,
+      "search_steps": 470480020,
+      "search_limit": 480000000,
+      "unobserved_title_frames": 0,
+      "host_memory_writes": 0,
+      "host_register_writes": 0,
+      "host_function_calls": 0,
+      "savestate_loads": 0,
+      "ring_acquisition_accepted": false,
+      "log_problems": 0
+    },
+    "status": "OBSERVED_CALLS_BOUND_CONDITIONALLY",
+    "runtime_provenance_bound": true,
+    "new_emulator_processes": 1,
+    "fresh_cores": 1,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0,
+    "rom_changes": 0,
+    "candidate_reconstructions": 1,
+    "allocated_storage_extent_proven": false,
+    "synchrony_proven": false,
+    "all_runtime_owners_excluded": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "observer_identity": {
+      "size": 7367,
+      "sha256": "5984c597aafedbe2a4da2ce5efdf6ed5108e699a5af3a8c8df79d1c779d3ea68"
+    },
+    "binary_identity": {
+      "size": 21064,
+      "sha256": "9eda02018a5da7b565712243cff2369718d7d17a2b4df8aa58022ba65cc31a2b"
+    },
+    "process": {
+      "actual_new_processes": 1,
+      "fresh_cores_started": 1,
+      "timed_out": false,
+      "returncode": 0,
+      "elapsed_seconds": 11.182,
+      "rom_before": {
+        "size": 33554432,
+        "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b"
+      },
+      "rom_after": {
+        "size": 33554432,
+        "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b"
+      }
+    },
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ]
+  },
+  "previous_failed_attempt": {
+    "path": "content/modernization/pr16_ring_caller_snapshot_evidence/attempt1.json",
+    "run_id": 35059235641
+  },
+  "session_execution": {
+    "new_emulator_processes": 2,
+    "fresh_cores": 2,
+    "candidate_reconstructions": 2,
+    "accepted_native_cases_replayed": 0,
+    "rom_changes": 0
+  },
+  "raw_trace": {
+    "path": "content/modernization/pr16_ring_caller_snapshot_evidence/trace.jsonl",
+    "size": 58670,
+    "sha256": "111e79f54cf721458ba1f5ec2bbdc5d40fe049fb7cef03345678326a2cabb861"
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_snapshot_record.py": {
+      "size": 17187,
+      "sha256": "5c6de5f90f5bcc55f156e8e3f1fcf0282867cd4a61e4f3117417d8a3cbb8e09e"
+    },
+    "scripts/pr16_ring_caller_snapshot.py": {
+      "size": 12323,
+      "sha256": "0c86213c751f516e14774fc0b6c070eaad1f26242944469e539886face083778"
+    },
+    "tools/mgba_pr16_ring_caller_snapshot.c": {
+      "size": 7367,
+      "sha256": "5984c597aafedbe2a4da2ce5efdf6ed5108e699a5af3a8c8df79d1c779d3ea68"
+    },
+    "tests/test_pr16_ring_caller_snapshot.py": {
+      "size": 7878,
+      "sha256": "4d2315be320c2d46dc821c918aa3e8788529afb4377a37240f29576c48905be3"
+    },
+    ".github/workflows/pr16-ring-caller-snapshot.yml": {
+      "size": 2341,
+      "sha256": "5e60ff516f562bbedae8a25b2f027015514e5cda7f76bd9f09687a3cf235e117"
+    },
+    "content/modernization/pr16_ring_caller_compose.json": {
+      "size": 22501,
+      "sha256": "654a5101e5f53670604ddea7e75878fd091161cef3c918020fad180ac9cbce25"
+    },
+    "scripts/pr16_ring_caller_compose.py": {
+      "size": 20785,
+      "sha256": "d3eb3d6419aa2c7004f925245d3408fbd15c5c042ec683785b8a4f9ef3760d95"
+    },
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_common_tail_bytes.py": {
+      "size": 22681,
+      "sha256": "f848158142e23645c9ebdc9aa56e84f1a21a8d886630cdb6998fd4ab8ab2d806"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    },
+    "infra/toolchain_manifest.json": {
+      "size": 33230,
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff"
+    },
+    "config/github_private_environment.json": {
+      "size": 5007,
+      "sha256": "33ff93eb2a1183ccdc3fea5c08b986271d75e9a8e349627072b36dd4c6abb56a"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 46,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35057073533,
+      "head_sha": "fc985116e19073345ac2f4f3511d76f9f40daa84",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35060191708,
+      "name": "p03-forgetting-ci",
+      "head_sha": "88292386bad501bfc08e5a71fd96c9d621d95896",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35060191679,
+      "name": "source-validation",
+      "head_sha": "88292386bad501bfc08e5a71fd96c9d621d95896",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35060189387,
+      "name": "p03-forgetting-ci",
+      "head_sha": "88292386bad501bfc08e5a71fd96c9d621d95896",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35060189372,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "88292386bad501bfc08e5a71fd96c9d621d95896",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35060189419,
+      "name": "Read-only boot FlagSet caller snapshot (not Ring acquisition)",
+      "head_sha": "88292386bad501bfc08e5a71fd96c9d621d95896",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35060189388,
+      "name": "source-validation",
+      "head_sha": "88292386bad501bfc08e5a71fd96c9d621d95896",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35060189429,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "88292386bad501bfc08e5a71fd96c9d621d95896",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35059239346,
+      "name": "p03-forgetting-ci",
+      "head_sha": "80019e2ba09342a642abbabb592245a7a98bb905",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35059239469,
+      "name": "source-validation",
+      "head_sha": "80019e2ba09342a642abbabb592245a7a98bb905",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35059235641,
+      "name": "Read-only boot FlagSet caller snapshot (not Ring acquisition)",
+      "head_sha": "80019e2ba09342a642abbabb592245a7a98bb905",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ]
+}

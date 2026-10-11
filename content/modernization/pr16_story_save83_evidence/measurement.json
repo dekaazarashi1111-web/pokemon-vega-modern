@@ -1,0 +1,471 @@
+{
+  "status": "MEASURED_SAVE83_AWAITING_VISUAL_AND_INDEPENDENT_ACCEPTANCE",
+  "source_head": "73ed1d12284202767179653e77e642a92c2dbaf6",
+  "run_id": 37177597798,
+  "input_save": {
+    "size": 131088,
+    "sha256": "ba090d0e6efe1f7d3effba4991973bd956574f18780fa7843ccf4910748ec8e9"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "157a945e7bdb3287b519c235ef95c12ddcefb14a62d479cf3a5f753e4f009523"
+  },
+  "inspection": {
+    "status": "STATIC_SAVE83_SIXTH_DIGLETT_ONLY",
+    "preparation": {
+      "size": 17120,
+      "sha256": "eabbbf34b37bae39a4719117021793f20204f85e785e1fd88d5dc0dd89b0d27a"
+    },
+    "route": [
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        7
+      ],
+      [
+        9,
+        7
+      ],
+      [
+        10,
+        7
+      ],
+      [
+        11,
+        7
+      ],
+      [
+        11,
+        6
+      ],
+      [
+        11,
+        5
+      ],
+      [
+        11,
+        4
+      ],
+      [
+        11,
+        3
+      ]
+    ],
+    "terrain": [
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          6,
+          7
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          7,
+          7
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          8,
+          7
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          9,
+          7
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          10,
+          7
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          11,
+          7
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          11,
+          6
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          11,
+          5
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          11,
+          4
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          11,
+          3
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      }
+    ],
+    "interaction": {
+      "local_id": 11,
+      "target": [
+        10,
+        3
+      ],
+      "script": 136400416,
+      "visibility_flag": 4377,
+      "button": "A",
+      "from_xy": [
+        11,
+        3
+      ],
+      "facing": 3,
+      "object_address": 155169828,
+      "object_hex": "0b8100000a0003000308110000000000204e210819110000"
+    },
+    "initial_flags": {
+      "4372": 0,
+      "4373": 0,
+      "4374": 0,
+      "4375": 0,
+      "4376": 1,
+      "4377": 0,
+      "4378": 1
+    },
+    "expected_flag_changes": [
+      [
+        4374,
+        0,
+        1
+      ],
+      [
+        4376,
+        1,
+        0
+      ]
+    ],
+    "expected_object_changes": [
+      {
+        "local_id": 8,
+        "operation": "removeobject"
+      },
+      {
+        "local_id": 10,
+        "operation": "addobject"
+      }
+    ],
+    "instruction_count": 39,
+    "text_count": 2,
+    "native_route_accepted": false
+  },
+  "route": [
+    [
+      6,
+      7
+    ],
+    [
+      7,
+      7
+    ],
+    [
+      8,
+      7
+    ],
+    [
+      9,
+      7
+    ],
+    [
+      10,
+      7
+    ],
+    [
+      11,
+      7
+    ]
+  ],
+  "battle": {
+    "start": 9,
+    "finish": 45,
+    "trainer": true,
+    "outcome": 1,
+    "move_commands": [
+      2,
+      0,
+      2,
+      0
+    ],
+    "target_confirmations": 0,
+    "actual_pp_uses_not_inferred": true,
+    "decisions": [
+      {
+        "observation": 15,
+        "move_slot": 0
+      },
+      {
+        "observation": 19,
+        "keep_current": true
+      },
+      {
+        "observation": 22,
+        "move_slot": 0
+      },
+      {
+        "observation": 28,
+        "keep_current": true
+      },
+      {
+        "observation": 32,
+        "move_slot": 2
+      },
+      {
+        "observation": 36,
+        "keep_current": true
+      },
+      {
+        "observation": 39,
+        "move_slot": 2
+      }
+    ]
+  },
+  "teleport": [],
+  "frontier": {
+    "kind": "new_battle",
+    "trigger": [
+      11,
+      7
+    ],
+    "map": [
+      10,
+      16
+    ],
+    "xy": [
+      11,
+      7
+    ],
+    "observation": 45
+  },
+  "final": {
+    "observe": 67,
+    "frame": 9771,
+    "map": [
+      10,
+      16
+    ],
+    "xy": [
+      11,
+      7
+    ],
+    "live_xy": [
+      18,
+      14
+    ],
+    "facing": 4,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 83,
+    "rp": 0,
+    "battle_flags": 12,
+    "battle_outcome": 1,
+    "party_sha256": "28ca40b7dc0c1dae14aa85904af5ecb6eb427a233ed2ae82f24a5392a1294975",
+    "flash_sha256": "086d90a506d60b09c21b3c24bf3ccb0bbeafe2928ddbf390ed8b6876c2d69ac2",
+    "ledger_sha256": "e382ce75f68b45a15b115e180061d194a24c0697fd7824204bd61eea61ecd84d"
+  },
+  "continued": {
+    "observe": 1,
+    "frame": 1510,
+    "map": [
+      10,
+      16
+    ],
+    "xy": [
+      11,
+      7
+    ],
+    "live_xy": [
+      18,
+      14
+    ],
+    "facing": 4,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 83,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "28ca40b7dc0c1dae14aa85904af5ecb6eb427a233ed2ae82f24a5392a1294975",
+    "flash_sha256": "086d90a506d60b09c21b3c24bf3ccb0bbeafe2928ddbf390ed8b6876c2d69ac2",
+    "ledger_sha256": "e382ce75f68b45a15b115e180061d194a24c0697fd7824204bd61eea61ecd84d"
+  },
+  "progress": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "ba090d0e6efe1f7d3effba4991973bd956574f18780fa7843ccf4910748ec8e9"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "157a945e7bdb3287b519c235ef95c12ddcefb14a62d479cf3a5f753e4f009523"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 9771,
+      "inputs": 132,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 68
+  },
+  "independent_continue": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "157a945e7bdb3287b519c235ef95c12ddcefb14a62d479cf3a5f753e4f009523"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "157a945e7bdb3287b519c235ef95c12ddcefb14a62d479cf3a5f753e4f009523"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 1510,
+      "inputs": 13,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 2
+  },
+  "screen_count": 70,
+  "native_processes": 2,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "rom_changes": 0,
+  "fixture_writes": 0,
+  "ordinary_saves": 1,
+  "cave_crossing_complete": true,
+  "outside_route503_reached": true,
+  "inner_floor_entered": true,
+  "hole_descent_observed": false,
+  "hole_descent_previously_accepted": true,
+  "mansion_exit_previously_accepted": true,
+  "gym_entry_previously_accepted": true,
+  "first_diglett_previously_accepted": true,
+  "second_diglett_previously_accepted": true,
+  "third_diglett_previously_accepted": true,
+  "fourth_diglett_previously_accepted": true,
+  "fifth_diglett_previously_accepted": true,
+  "trainer132_previously_accepted": true,
+  "sixth_diglett_interacted": false,
+  "gym_entered": true,
+  "letter_consumer_resolved": true,
+  "letter_handoff_requires_badge": true,
+  "statue_paper_observed": true,
+  "paper_obtained": true,
+  "paper_consumed_or_delivered": false,
+  "paper_acceptance_pending": false,
+  "normal_recovery_required": false,
+  "pp_recovery_accepted": true,
+  "full_story_accepted": false,
+  "release_ready": false,
+  "artifact_excludes": [
+    "existing ROM",
+    "runner",
+    "runtime",
+    "input Save82"
+  ]
+}

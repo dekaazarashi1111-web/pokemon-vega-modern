@@ -1,0 +1,194 @@
+name: Bind P05 native supply gaps to source and evidence
+run-name: P05 source mapの読取専用検証
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_p05_native_supply_evidence_map.py
+      - tests/test_pr16_p05_native_supply_evidence_map.py
+      - .github/workflows/pr16-p05-native-supply-evidence-map.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-p05-native-supply-recorders
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Check unresolved Ring and preserve live accepted BP; never regenerate historical records
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-p05-map-readonly
+          python3 scripts/run_module_tests.py tests/test_pr16_p05_native_supply_evidence_map.py > .local/pr16-p05-map-readonly/tests.stdout 2> .local/pr16-p05-map-readonly/tests.stderr
+          python3 scripts/pr16_p05_native_supply_evidence_map.py --print > .local/pr16-p05-map-readonly/map.json
+          python3 - <<'PY'
+          import json,pathlib
+          out=pathlib.Path('.local/pr16-p05-map-readonly')
+          assert len((out/'tests.stdout').read_text().splitlines())==9
+          data=json.loads((out/'map.json').read_text())
+          ring=data['bindings']['P05_NATIVE_RING_ACQUISITION_PHYSICAL']
+          assert ring['preferred_entry_candidate'] is None and ring['runtime_owner_verified'] is False
+          assert data['physical_acceptance_complete'] is False and data['emulator_runs_by_this_checkpoint']==0
+          (out/'result.json').write_text(json.dumps({'status':'PASS_READ_ONLY_MAP_COMPATIBILITY','tests':9,'new_emulator_processes':0,'historical_records_written':0})+'\n')
+          PY
+          python3 scripts/pr16_ring_owner.py check
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-p05-map-readonly
+          path: .local/pr16-p05-map-readonly/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
+  record-transition:
+    # 一度だけの移行記録。以後のpush/dispatchは上のread-only jobのみ。
+    if: >-
+      github.event_name == 'push' && github.event.head_commit.message == 'PR-P08-7: WIP 旧供給map workflowを読取専用へ移行'
+    needs: check
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      actions: read
+      pull-requests: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: pr16-p05-map-readonly
+          path: .local/pr16-p05-map-readonly
+      - name: Record verified compatibility, append logs, and guard exact text index
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import collections,datetime,hashlib,io,json,os,pathlib,subprocess,sys,tempfile,zipfile
+          sys.path.insert(0,'scripts')
+          import pr16_resume as r
+          import pr16_ring_owner as ring
+          import guard_private_files as g
+          root=pathlib.Path.cwd(); out=root/'.local/pr16-p05-map-readonly'
+          base='1860b26949ce3ddf4d2db68506c8251977db2b03'
+          wf='.github/workflows/pr16-p05-native-supply-evidence-map.yml'
+          receipt='content/modernization/pr16_ring_owner_workflow_compatibility.json'
+          task='PR-P08-7-RING-WORKFLOW-COMPAT'
+          def git(*args,env=None):return subprocess.check_output(['git',*args],env=env)
+          assert git('rev-parse','HEAD^').decode().strip()==base
+          assert git('diff','--name-only',base,'HEAD').decode().splitlines()==[wf]
+          def api(path):return subprocess.check_output(['gh','api','repos/'+os.environ['GITHUB_REPOSITORY']+'/'+path])
+          prior=json.loads(api('actions/runs/34953511304')); rejected=json.loads(api('actions/runs/34953511256'))
+          assert prior['head_sha']==rejected['head_sha']=='9537666ffac4fb96a22d0f832ad7d36429ace630'
+          assert prior['status']==rejected['status']=='completed'
+          assert prior['conclusion']=='success' and rejected['conclusion']=='failure'
+          original=api('actions/artifacts/10390282494/zip')
+          assert hashlib.sha256(original).hexdigest()=='50744685b34e19c16bd9d87c1014d183b143b9a936e85cda8814d11d13edb8ca'
+          with zipfile.ZipFile(io.BytesIO(original)) as z:proof=json.loads(z.read('result.json'))
+          assert proof['commit']==base and proof['tests']=={'tests_run':48,'failures':0,'errors':0,'skips':0,'successful':True}
+          assert proof['status']=='PASS_SOURCE_REPAIR_RECORDED_NONFORCE_PUSHED'
+          current=json.loads((out/'result.json').read_text())
+          assert current['status']=='PASS_READ_ONLY_MAP_COMPATIBILITY' and current['tests']==9
+          value={'schema_version':1,'classification':'SOURCE_ONLY_NOT_NATIVE_ACCEPTANCE','task':task,
+                 'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),
+                 'parent':base,'legacy_failure_run':rejected['id'],'legacy_failure_preserved':True,
+                 'prior_source_run':prior['id'],'prior_artifact_id':10390282494,
+                 'prior_artifact_sha256':hashlib.sha256(original).hexdigest(),
+                 'prior_result':proof,'current_check':current,'ring_acquisition_accepted':False,'release_ready':False}
+          pathlib.Path(receipt).write_bytes(ring.stable(value))
+          state=r.validate(root)
+          state['ring_owner_resolution']['recording_status']='SUCCESS_VERIFIED_RUN_34953511304'
+          state['ring_owner_resolution']['workflow_compatibility']={'path':receipt,'run_id':value['run_id'],'source_head':value['source_head']}
+          state['bp']['current_stop']+=' 旧供給map workflowも候補nullを許容するread-only検査へ移行。旧failure run34953511256は保持し、過去receiptやBP受入状態を自動再生成しない。'
+          for name in (wf,receipt):state['source_bindings'][name]=ring.identity(name)
+          pathlib.Path(r.STATE).write_bytes(ring.stable(state))
+          pathlib.Path(r.DOC).write_text(r.render(state),encoding='utf-8')
+          ring.check()
+          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          entry=(f'\n\n## {stamp} — {task}\n- Timestamp: {stamp}\n- Task: {task}\n'
+                 '- Status: DONE / Ring誤入口修正のworkflow互換追補。Ring native受入は未完。\n'
+                 '- Version: PR16 Ring source-only workflow compatibility\n'
+                 '- Summary: 旧writerの候補非null前提がrun34953511256で失敗。履歴JSON/MD/P08自動再生成とPRコメント更新を廃し、exact HEADのread-only検証へ移行。失敗を成功へ読み替えない。\n'
+                 '- Verify: 修正後mapper9 tests PASS、Ring/resume check、tracked diff不変。既存source実装48 testsと非force記録run34953511304の成功原本をdigest照合で再利用。native再実行0。\n'
+                 f'- Evidence: {receipt}; current run{value["run_id"]}; input HEAD={value["source_head"]}。\n'
+                 '- Files changed: 旧map workflow、互換receipt、固定引継ぎMD/JSON、両ログ。受入済みBP原本・ROM/runtime不変。\n'
+                 '- Commit: この記録を含む同branchへの非force commit。最終index標準guard前後完全一致・追加違反0をgateとする。既存全体guard failureは残す。\n'
+                 '- Network: GitHub Actions metadata/原本artifactのみ。private入力なし。merge/release/baseline変更なし。\n'
+                 '- Next: 同candidate map97/80 compiled ownerを確認し、Ring正規取得・装備実戦・保存再開へ進む。source-onlyで受入しない。\n')
+          for name in ring.LOGS:
+              p=pathlib.Path(name);assert task not in p.read_text()
+              with p.open('a',encoding='utf-8') as stream:stream.write(entry)
+          outputs=[receipt,r.STATE,r.DOC,*ring.LOGS]
+          subprocess.run(['git','add','--',*outputs],check=True)
+          changed=git('diff','--cached','--name-only',base).decode().splitlines()
+          assert set(changed)==set([wf,*outputs])
+          for name in changed:
+              raw=git('show',':'+name);assert raw==pathlib.Path(name).read_bytes()
+              raw.decode('utf-8');assert b'\0' not in raw
+              assert pathlib.Path(name).suffix not in g.BLOCKED_SUFFIXES
+              assert not any(name==p or name.startswith(p+'/') for p in g.BLOCKED_PARTS)
+              before=subprocess.run(['git','show',base+':'+name],capture_output=True).stdout
+              def bad(data):
+                  lines=data.decode('utf-8',errors='replace').splitlines()
+                  return collections.Counter(lines[n-1] for n in g.document_user_path_lines(data))
+              assert not (bad(raw)-bad(before))
+          with tempfile.TemporaryDirectory(dir=out) as temp:
+              env=dict(os.environ,GIT_INDEX_FILE=str(pathlib.Path(temp)/'baseline.index'))
+              git('read-tree',base,env=env)
+              command=[sys.executable,'scripts/guard_private_files.py']
+              before=subprocess.run(command,env=env,capture_output=True);after=subprocess.run(command,capture_output=True)
+          assert before.returncode in (0,1) and (before.returncode,before.stdout,before.stderr)==(after.returncode,after.stdout,after.stderr)
+          guard={'base':base,'changed_paths':changed,'new_violations':0,'full_guard_before':before.returncode,'full_guard_after':after.returncode,'exact_output_match':True,'full_guard_pass_claimed':after.returncode==0}
+          (out/'guard.json').write_bytes(ring.stable(guard))
+          PY
+          python3 scripts/pr16_resume.py check
+          python3 scripts/validate_task_graph.py
+          git diff --cached --check
+      - name: Commit and non-force push guarded transition records
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          python3 - <<'PY'
+          import json,os,subprocess
+          pr=json.loads(subprocess.check_output(['gh','api','repos/'+os.environ['GITHUB_REPOSITORY']+'/pulls/16']))
+          assert pr['state']=='open' and pr['draft'] and not pr['merged']
+          assert pr['head']['sha']==os.environ['GITHUB_SHA']
+          assert pr['head']['ref']=='codex/modernization-followup-20260908'
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'PR-P08-7: 旧map writerのread-only移行を検証し引継ぎへ追記'
+          git push origin "HEAD:refs/heads/$branch"
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess,sys,zipfile
+          sys.path.insert(0,'scripts');import pr16_ring_owner as r
+          out=pathlib.Path('.local/pr16-p05-map-readonly')
+          value={'status':'PASS_COMPATIBILITY_RECORDED_NONFORCE_PUSHED','commit':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'guard':json.loads((out/'guard.json').read_text()),'new_emulator_processes':0,'ring_acquisition_accepted':False,'release_ready':False}
+          (out/'recorded-result.json').write_bytes(r.stable(value))
+          with zipfile.ZipFile(out/'recorded-text.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in value['guard']['changed_paths']:z.write(name,name)
+          print(json.dumps(value))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-workflow-compatibility
+          path: .local/pr16-p05-map-readonly/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

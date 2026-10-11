@@ -1,0 +1,64 @@
+{
+  "accepted_case_reruns": 0,
+  "command": "cc -std=c11 -O2 -Wall -Wextra -Werror -Wno-misleading-indentation -DRT_PARENT_DIAGNOSTIC -Itools -I. -I.local/pr16-research-lifecycle/runtime/include .local/pr16-research-lifecycle/retry.c -L.local/pr16-research-lifecycle/runtime/lib -lmgba -lm -Wl,--allow-shlib-undefined -o .local/pr16-research-lifecycle/parent-diagnostic",
+  "compiler": "cc (Debian 14.2.0-19) 14.2.0",
+  "entire_private_flash_after": {
+    "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+    "size": 131072
+  },
+  "environment": "ChatGPT container / fixed mGBA artifact 10898620034; Actionsではない",
+  "executable": {
+    "sha256": "37c65e5f5c3b942756c72a00a29b2fdb3f90b985067f229c215882d693d07bb7",
+    "size": 65240
+  },
+  "fresh_cores": 1,
+  "generated": {
+    "sha256": "7d7910206f55e24f0ded5e0412caaaec1a94a44069dbd73ce8305347bc708032",
+    "size": 30406
+  },
+  "host_compiles": 1,
+  "native_processes": 1,
+  "parent": {
+    "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
+    "size": 33554432
+  },
+  "physical_flash_fault_accepted": false,
+  "retry_c": {
+    "sha256": "256da46b1114c77b066e2bfcb63943eaff67c85632659669e2543eadaadd8c33",
+    "size": 7644
+  },
+  "returncode": 0,
+  "same_core_calls": 2,
+  "schema_version": 1,
+  "seed": {
+    "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+    "size": 131072
+  },
+  "source_bindings": {
+    "overlays/research_economy_v1/research_economy_v1.h": {
+      "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
+      "size": 3743
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "source_head": "53854a66d0d39eac0811d2606cc782bb85e35c40",
+  "status": "BUG_REPRODUCED_NOT_ACCEPTANCE",
+  "stderr_utf8": "",
+  "stdout": {
+    "sha256": "c9deeb06f29eab6cb3b18d9beb3d1e6e283d5b9b776609e82dcac4be94ad1f50",
+    "size": 3508
+  },
+  "stdout_utf8": "{\"event\":\"baseline\",\"counter\":2,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430\",\"party_count\":6,\"owner\":\"01400000000001020000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"baseline\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"6a1c65f95fe23cbf299067d5c8739f7c39a33524683b9cce1b07e48bee2637db\",\"unrelated_ledger_sha256\":\"aa62322eb87374578352232b1f84deed7f287a46cb6fe6d8005275f9d4826bba\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"event\":\"fixture\",\"counter\":2,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430\",\"party_count\":6,\"owner\":\"00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"fixture\",\"version\":0,\"size\":0,\"checksum_valid\":false,\"ledger_sha256\":\"e5a00aa9991ac8a5ee3109844d84a55583bd20572ad3ffcd42792f3c36b183ad\",\"unrelated_ledger_sha256\":\"e5a00aa9991ac8a5ee3109844d84a55583bd20572ad3ffcd42792f3c36b183ad\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"event\":\"failed_first\",\"counter\":2,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430\",\"party_count\":6,\"owner\":\"01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"failed_first\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"db4a2a34c134a47e9de926163d976f0c4c40a27012f3c4359a26b0df27bea817\",\"unrelated_ledger_sha256\":\"aa62322eb87374578352232b1f84deed7f287a46cb6fe6d8005275f9d4826bba\",\"migration_dirty\":0,\"recovery_blocked\":1}\n{\"call\":1,\"result\":7,\"saves\":1,\"loads\":0,\"phase0\":1,\"phase1\":0,\"phase2\":0,\"native_returns\":1,\"native_result\":255,\"counter_delta\":0,\"destroy_calls\":1,\"host_task_writes_during_observation\":0}\n{\"event\":\"failed_second\",\"counter\":2,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430\",\"party_count\":6,\"owner\":\"01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"failed_second\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"db4a2a34c134a47e9de926163d976f0c4c40a27012f3c4359a26b0df27bea817\",\"unrelated_ledger_sha256\":\"aa62322eb87374578352232b1f84deed7f287a46cb6fe6d8005275f9d4826bba\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"call\":2,\"result\":5,\"saves\":0,\"loads\":0,\"phase0\":0,\"phase1\":0,\"phase2\":0,\"native_returns\":0,\"native_result\":0,\"counter_delta\":0,\"destroy_calls\":1,\"host_task_writes_during_observation\":0}\n{\"status\":\"BUG_REPRODUCED\",\"scope\":\"PARENT_EMPTY_RETRY_NO_PERSIST\",\"same_core_calls\":2}\n",
+  "task": "USER-20260926-RESEARCH-RETRY"
+}

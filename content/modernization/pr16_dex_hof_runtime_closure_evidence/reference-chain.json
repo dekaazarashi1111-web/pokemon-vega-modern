@@ -1,0 +1,1529 @@
+{
+  "schema_version": 1,
+  "status": "PASS_729_PARENT_BOUND_RUNTIME_REFERENCE_CHAIN",
+  "baseline": {
+    "path": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent": {
+    "path": "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/reference-chain.json",
+    "size": 60153,
+    "sha256": "06595ebf5830e45334dbb83ec1fb96658d40879f6f4a0126e3718a8d5ae6100a"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 729,
+  "inherited_unclassified": 145,
+  "changes": [
+    {
+      "address": 135133577,
+      "target": 167703286,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "35efc734f16a539e16136d7f854a30b4839ac671edcb17ca5bf34d4fc64ca84e",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_THUMB_INSTRUCTION_STREAM",
+      "accepted": true,
+      "witness_ids": [
+        0
+      ]
+    },
+    {
+      "address": 135356907,
+      "target": 167704566,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "431c093c1d2a589a22829ebc967deda4925286ff9072f45082c4892eb0eab829",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_THUMB_INSTRUCTION_STREAM",
+      "accepted": true,
+      "witness_ids": [
+        1
+      ]
+    },
+    {
+      "address": 135415155,
+      "target": 167702518,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "804e249a91b1d9a67a993ecf33cac804a9a5d06758a3d8a9a7aa909d18e9dce9",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_THUMB_INSTRUCTION_STREAM",
+      "accepted": true,
+      "witness_ids": [
+        2
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": 0,
+      "address": 135133576,
+      "size": 6,
+      "kind": "rooted_thumb_instruction_stream",
+      "evidence": {
+        "root": "installed_MOVE_LEER_conditional_sprite_callback",
+        "root_verified": true,
+        "instruction_window": {
+          "address": 135133576,
+          "size": 6,
+          "sha256": "49c270268615c3f03be67515993744bdfbce9aad079e92d73f854830f1b3be44"
+        },
+        "instructions": [
+          {
+            "address": 135133576,
+            "size": 4
+          },
+          {
+            "address": 135133580,
+            "size": 2
+          }
+        ],
+        "claims": {
+          "finite_conditional_root_to_instruction_consumer_proven": true,
+          "actual_move_table_dispatch_and_template_bound": true,
+          "actual_sprite_resource_registry_producers_executed": true,
+          "actual_wait_callback_registration_and_two_returns_executed": true,
+          "same_slot_synchronous_callback_lifetime_proven": true,
+          "abstract_environment_contracts_explicit": true,
+          "all_callees_concretely_executed": false,
+          "natural_battle_reachability_claimed": false,
+          "universal_lifetime_or_irq_safety_claimed": false,
+          "whole_animation_or_indirect_reference_completeness_claimed": false,
+          "current_acceptance_claimed": false,
+          "newly_classified": 1,
+          "donor_eligible": false,
+          "safe_capacity_bytes": 0
+        },
+        "review_identity": {
+          "size": 264694,
+          "sha256": "e87845750f0af232e235b89447190a349c351af9c744cab6b3fb95d84c93d864"
+        },
+        "preconditions_identity": {
+          "size": 2015,
+          "sha256": "34831b135e58e6e30d7c56e26bbb97c1982eaf5c44e9faceaa7922b8770ccf51"
+        },
+        "contracts_identity": {
+          "size": 3145,
+          "sha256": "8ac68fbe870a60cd699ce8e1d060b40dc95b76152d5691adce571839ca902bd3"
+        },
+        "literal_pool_included": false,
+        "full_story_reachability_claimed": false
+      },
+      "evidence_identity": {
+        "size": 1347,
+        "sha256": "180bc0fc8535edb2e9ece46d66a9c49b2bcaf80bc8fb5f7c5cd87c4bd8d6d440"
+      }
+    },
+    {
+      "id": 1,
+      "address": 135356906,
+      "size": 6,
+      "kind": "rooted_thumb_instruction_stream",
+      "evidence": {
+        "root": {
+          "kind": "actual_quest_log_event_dispatch",
+          "dispatcher": 135349772,
+          "event_id": 40,
+          "event_mask": 4095,
+          "table": 138505868,
+          "slot": 138506028,
+          "entry": 135356888,
+          "synchronous_indirect_consumer": 136084172,
+          "instruction_typing_only": true
+        },
+        "instruction_window": {
+          "address": 135356906,
+          "size": 6,
+          "sha256": "e67ef211ac57b1ac0a361cfecd3ad5490d9bb51ac05f2a084e59fdfe935cd03a"
+        },
+        "instructions": [
+          {
+            "address": 135356906,
+            "size": 4
+          },
+          {
+            "address": 135356910,
+            "size": 2
+          }
+        ],
+        "root_verified": true,
+        "literal_pool_included": false,
+        "proof_scope": "static_actual_dispatch_and_complete_instruction_roles",
+        "full_story_reachability_claimed": false,
+        "runtime_execution_observed": false,
+        "all_entry_states_safe_claimed": false,
+        "get_map_name_return_proven": false,
+        "BL_return_successor_is_static_code_role_only": true,
+        "whole_function_range_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false,
+        "local_payload_formula": "event + 4 + (8 - 4) * u16_repeat_counter",
+        "input_contract": "non-null readable event40 header; action<=current action; enough payload bytes; valid nonalias ABI stack",
+        "asynchronous_lifetime_edge": false
+      },
+      "evidence_identity": {
+        "size": 1119,
+        "sha256": "878f9f61af80c3d8aa5a54dd2752870fa6bfa056daf57bd00ec77f17a163245d"
+      }
+    },
+    {
+      "id": 2,
+      "address": 135415154,
+      "size": 6,
+      "kind": "rooted_thumb_instruction_stream",
+      "evidence": {
+        "root": {
+          "kind": "party_start_menu_action",
+          "table_slot": {
+            "address": 137802624,
+            "size": 4,
+            "sha256": "7aafbff9341eb309be0148b112c4211f2dffc5c1a317a4864bde5868f54f07d9"
+          },
+          "entry": 134671420
+        },
+        "instruction_window": {
+          "address": 135415154,
+          "size": 6,
+          "sha256": "c5b222b0ed8c9437c6066b251ee117e8afed9944119a453d26f4cfd8c43c7ad2"
+        },
+        "instructions": [
+          {
+            "address": 135415154,
+            "size": 4
+          },
+          {
+            "address": 135415158,
+            "size": 2
+          }
+        ],
+        "root_verified": true,
+        "literal_pool_included": false,
+        "whole_function_range_classified": false,
+        "bl_return_observed": false,
+        "successor_type": "static BL return successor",
+        "successor_boundary_ja": "0x08124576のLDRはBL0x08124572の静的return successorとして型付けする。GetMonDataの復帰をこの実行で観測した意味ではない。",
+        "conditional_registration_type_proven": true,
+        "condition": "successful ordinary party and mail selection using the registered callback/task fields",
+        "registration_chain": [
+          {
+            "role": "start_menu_action_table",
+            "address": 137802624,
+            "target": 134671421
+          },
+          {
+            "role": "field_party_main_callback",
+            "address": 134671458,
+            "target": 135428073
+          },
+          {
+            "role": "field_party_constructor",
+            "address": 135428096,
+            "target": 135393868
+          },
+          {
+            "role": "constructor_alloc",
+            "address": 135393920,
+            "target": 134228892
+          },
+          {
+            "role": "constructor_main_callback",
+            "address": 135394180,
+            "target": 135394265
+          },
+          {
+            "role": "setup_task",
+            "address": 135394756,
+            "target": 135398169
+          },
+          {
+            "role": "setup_main_callback",
+            "address": 135394852,
+            "target": 135394217
+          },
+          {
+            "role": "ordinary_action_hook_default",
+            "address": 151616168,
+            "target": 135398715
+          },
+          {
+            "role": "outer_menu_task",
+            "address": 135410728,
+            "target": 135410745
+          },
+          {
+            "role": "mail_action6_table",
+            "address": 138517980,
+            "target": 135414993
+          },
+          {
+            "role": "read_action8_table",
+            "address": 138517996,
+            "target": 135415093
+          },
+          {
+            "role": "exit_callback_field4",
+            "address": 135415132,
+            "target": 135415137
+          },
+          {
+            "role": "close_task_field0",
+            "address": 135398048,
+            "target": 135398053
+          },
+          {
+            "role": "copy_before_free",
+            "address": 135398096,
+            "target": 134219076
+          },
+          {
+            "role": "next_main_dispatch",
+            "address": 134219062,
+            "target": 136084168
+          }
+        ],
+        "minimal_conditioned_ja": [
+          "well-formed successful568byte constructor allocation",
+          "setup/helper正常returnと各phaseの必要field保存",
+          "有効なparty/mail cursorとmail入力選択",
+          "CreateTask直前のvalid task list＋1free slotと登録taskのdispatch",
+          "copyまで同一object epoch、copy以後gMain.callback2と選択cursor保存"
+        ],
+        "full_story_reachability_claimed": false,
+        "universal_allocation_epoch_proven": false,
+        "all_opaque_effects_proven": false,
+        "old_allocation_required_at_hit": false,
+        "maximum_target_access_width_proven": false,
+        "indirect_reference_complete": false,
+        "donor_eligible": false,
+        "scope_ja": "既受入storage/assetと同じ登録型に限る条件付き命令stream。任意PC seedではなく実StartMenu table→constructor/setup→mail action8→field4→gMain consumer。全動作・生存保証・領域退役の証明とは独立。"
+      },
+      "evidence_identity": {
+        "size": 2817,
+        "sha256": "b0305a5871688b18e9a96ecc5f2598713e4d4e8dd5e54d926b79183764c584bd"
+      }
+    }
+  ],
+  "classified": 732,
+  "unclassified": 142,
+  "newly_classified": 3,
+  "proof": {
+    "data": {
+      "status": "PASS_MINIMUM_ROOTED_RUNTIME_CONSUMER_TYPES",
+      "party": {
+        "status": "PASS_ONE_CONDITIONAL_REGISTERED_READ_MAIL_TYPE",
+        "cfg": {
+          "instructions": 227,
+          "windows": 13,
+          "literals": 21,
+          "closed_direct_branches": 25,
+          "assertion_calls_excluded_from_success_contract": true
+        },
+        "allocator": {
+          "status": "PASS_CONDITIONAL_ALLOCATOR_568",
+          "actual_machine_cases": 13,
+          "exhaustive_selected_payloads": false,
+          "writes_ja": "選択/分割/nextのheader、02020004..02020010 scratch、callee自身stackのみ。既存live payload・party/task globalには書かない。",
+          "geometry": {
+            "payload_sizes_checked": 28527,
+            "requested_size": 568,
+            "header_size": 16,
+            "arena_base": 33554432,
+            "arena_size": 114688,
+            "return_alignment": 4,
+            "return_min": 33554448,
+            "return_max": 33668552,
+            "proof_ja": "任意block base BについてBを両辺から除いた同一の加減算を検査。well-formed chain内ならB+16+N<=heapEndでwrapなし。scanは有限なnext列を進め、最初のflag0かつN>=568のみ成功。",
+            "preconditions": [
+              "root cell equals ordinary arena base",
+              "entire header chain is well formed at call entry",
+              "one fitting free block exists",
+              "stack valid and nonalias",
+              "no concurrent allocator reentry or header/scratch mutation during the call"
+            ],
+            "actual_constructor_entry_preconditions_proven": false
+          },
+          "natural_boot_reachability": false,
+          "current_heap_validity_proven": false,
+          "whole_runtime_epoch_proven": false
+        },
+        "epoch": {
+          "status": "PASS_ACTUAL_MACHINE_ABA_COUNTEREXAMPLE",
+          "same_pointer": true,
+          "same_header": true,
+          "same_callback_fields": true,
+          "same_epoch": false,
+          "minimal_temporal_condition_ja": "constructor成功から最後のobject readまで、このallocationへのFree・heap再初期化/保存退避・header破壊を禁止する。任意の他allocationや非干渉IRQを禁止する必要はない。"
+        },
+        "mail_phase": {
+          "status": "PASS_CONDITIONAL_READ_MAIL_PHASE_COMPOSITION",
+          "root_table_slot": 138517996,
+          "root_entry": 135415092,
+          "object_exit_writer": 135415112,
+          "copy_call": 135398096,
+          "last_object_read": 135398090,
+          "free_call_after_copy": 135398122,
+          "main_dispatch_call": 134219062,
+          "main_callback": 135415137,
+          "old_hit": 135415155,
+          "complete_instruction_window": {
+            "address": 135415154,
+            "size": 6
+          },
+          "freed_object_needed_at_hit": false,
+          "actual_free_executed": true,
+          "selected_party_slot": 0,
+          "getmondata_field_at_hit": 64,
+          "source_byte_is_instruction_encoding": true,
+          "maximum_target_access_width_proven": false,
+          "donor_eligible": false,
+          "conditional_calls": [
+            {
+              "callee": 134683248,
+              "phase": "writer_to_close_task",
+              "required": "normal return, ABI, preserve object pointer/epoch and chosen task identity",
+              "discharged": false
+            },
+            {
+              "callee": 134675756,
+              "phase": "writer_to_close_task",
+              "required": "normal return, ABI, preserve object pointer/epoch and chosen task identity",
+              "discharged": false
+            },
+            {
+              "callee": 135225704,
+              "phase": "main_dispatch",
+              "required": "return zero, ABI, preserve copied callback and cursor",
+              "discharged": false
+            },
+            {
+              "callee": 135512116,
+              "phase": "main_dispatch",
+              "required": "return zero, ABI, preserve copied callback and cursor",
+              "discharged": false
+            }
+          ],
+          "unclosed_intervals": [
+            "selected action8 table dispatch requires constructed menu/valid cursor",
+            "between writer close-task registration and its scheduler dispatch",
+            "remaining FreePartyPointers/DestroyTask/party scheduler tail/main-loop callbacks after copy before next dispatch"
+          ],
+          "natural_play_reachability": false,
+          "emits_typed_regions": false,
+          "universal_runtime_ready": false
+        },
+        "task_admission": {
+          "status": "PASS_CONTEXTUAL_TASK_ADMISSION",
+          "cases": 17,
+          "one_free_slot_is_sufficient": true,
+          "reset_tasks_required": false,
+          "zero_return_alone_is_success": false,
+          "actual_state20_snapshot_admitted": false,
+          "preconditions": [
+            "well formed task list at state20",
+            "one free task slot at state20",
+            "no task mutation during CreateTask"
+          ],
+          "inherited_instruction_binding_checked": true
+        },
+        "frontier": {
+          "setup_success_calls": [
+            {
+              "state": 0,
+              "address": 135394440,
+              "target": 135006520,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "bounded_existing_contract",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 0,
+              "address": 135394444,
+              "target": 135006540,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 0,
+              "address": 135394448,
+              "target": 135231464,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "bounded_existing_contract",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 1,
+              "address": 135394454,
+              "target": 134773320,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 2,
+              "address": 135394460,
+              "target": 134675660,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 3,
+              "address": 135394480,
+              "target": 134243980,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 4,
+              "address": 135394486,
+              "target": 134251628,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "bounded_existing_contract",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 5,
+              "address": 135394492,
+              "target": 135006424,
+              "return_condition": "link inactive / r0 low byte zero",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 5,
+              "address": 135394504,
+              "target": 134703956,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "bounded_existing_contract",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 6,
+              "address": 135394510,
+              "target": 135401684,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "bounded_existing_contract",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 7,
+              "address": 135394516,
+              "target": 135395028,
+              "return_condition": "low byte nonzero on eventual success; zero may wait",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 8,
+              "address": 135394556,
+              "target": 135395148,
+              "return_condition": "low byte nonzero on eventual success; zero may wait",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 9,
+              "address": 135394578,
+              "target": 135403600,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 10,
+              "address": 135394596,
+              "target": 135395524,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 11,
+              "address": 135394624,
+              "target": 135408940,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 12,
+              "address": 135394630,
+              "target": 135409724,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 13,
+              "address": 135394636,
+              "target": 135410012,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 14,
+              "address": 135394642,
+              "target": 134834856,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 15,
+              "address": 135394648,
+              "target": 135397168,
+              "return_condition": "low byte nonzero on eventual success; zero may wait",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 16,
+              "address": 135394680,
+              "target": 135396828,
+              "return_condition": "low byte nonzero on eventual success; zero may wait",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 17,
+              "address": 135394712,
+              "target": 135397220,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 18,
+              "address": 135394728,
+              "target": 135403752,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 19,
+              "address": 135394742,
+              "target": 135444980,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "bounded_existing_contract",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 20,
+              "address": 135394756,
+              "target": 134704052,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "bounded_existing_contract",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 20,
+              "address": 135394766,
+              "target": 135406808,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 21,
+              "address": 135394784,
+              "target": 134679672,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            },
+            {
+              "state": 22,
+              "address": 135394806,
+              "target": 134675756,
+              "return_condition": "normal return only",
+              "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+              "status": "conditional_callee_frontier",
+              "actual_effect_discharged": false
+            }
+          ],
+          "task_admission_ja": "state20の直前に有効なlinked task listと1個以上のfree slotがあれば十分。ResetTasksから全task bytes不変や全16空slotは不要。満杯戻り0を成功扱いしない。",
+          "task_lifetime_ja": "選択taskのactive=1、正しいfunction、RunTasksからのlist所属だけを保持。他task全体やそのdataを凍結しない。",
+          "irq_condition_ja": "IRQ禁止ではなく、必要field・allocator scratch実行区間・現在のtask/cursor制約への非干渉が必要。実IRQ handlerの全保証は本scopeでは未証明。",
+          "return_condition_ja": "成功する有限continuationのみに制限し、待機helperの一般的なeventual returnや全入力での終了を要求しない。",
+          "mail_release_boundary_ja": "SetMainCallback2がobject+4をgMain.callback2へコピーした後にFreePartyPointersが呼ばれる。ReadMail本体の最初の旧hitまでobjectをliveと仮定し続ける必要はない。コピー後はmain callback/cursor/選択monだけを守る。",
+          "branch_input_ja": "普通party menuType0/keepCursor0/有効party slot/適切なmailまたはtutor選択は有限success条件。全入力domainの到達証明へ拡張しない。",
+          "classification_boundary_ja": "既受入assetのallocation-success条件は自然battle到達を不要とする。一方、未知calleeを全て非干渉と置くだけでは実caller間の型継承根拠にならない。親は他workerの実menu/consumer閉鎖と合成して判断する。",
+          "whole_runtime_lifetime_proven": false,
+          "classification_ready_here": false
+        },
+        "whole_input_identity": {
+          "size": 33554432,
+          "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+        },
+        "newly_classified": 1,
+        "donor_eligible": false,
+        "whole_runtime_lifetime_proven": false,
+        "current_acceptance_claimed": false,
+        "composition": {
+          "status": "PASS_INHERITED_BOUNDARIES_COMPOSED_NO_DUPLICATED_PROOF",
+          "inherited_reviews": {
+            "party_review": {
+              "path": "content/modernization/pr16_dex_hof_callback_party_review.json",
+              "size": 30492,
+              "sha256": "9aab39682b78ac5199357955cd634ef2ce14d0c4f0b60643dba944f5b7a31691"
+            },
+            "setup_review": {
+              "path": "content/modernization/pr16_dex_hof_lifetime_setup_review.json",
+              "size": 33229,
+              "sha256": "2a39c2c125df3a0b23d3bb6048deee5fb4a1911028e6153ac513bd45a6a9eba5"
+            },
+            "menu_review": {
+              "path": "content/modernization/pr16_dex_hof_lifetime_menu_review.json",
+              "size": 21519,
+              "sha256": "47d5a00dce7d7ee200bd4a4fe3cf6b90a280a5514efcbfbc3c5b47bbcc2fa973"
+            }
+          },
+          "rooted_registration_chain": [
+            {
+              "role": "start_menu_action_table",
+              "address": 137802624,
+              "target": 134671421
+            },
+            {
+              "role": "field_party_main_callback",
+              "address": 134671458,
+              "target": 135428073
+            },
+            {
+              "role": "field_party_constructor",
+              "address": 135428096,
+              "target": 135393868
+            },
+            {
+              "role": "constructor_alloc",
+              "address": 135393920,
+              "target": 134228892
+            },
+            {
+              "role": "constructor_main_callback",
+              "address": 135394180,
+              "target": 135394265
+            },
+            {
+              "role": "setup_task",
+              "address": 135394756,
+              "target": 135398169
+            },
+            {
+              "role": "setup_main_callback",
+              "address": 135394852,
+              "target": 135394217
+            },
+            {
+              "role": "ordinary_action_hook_default",
+              "address": 151616168,
+              "target": 135398715
+            },
+            {
+              "role": "outer_menu_task",
+              "address": 135410728,
+              "target": 135410745
+            },
+            {
+              "role": "mail_action6_table",
+              "address": 138517980,
+              "target": 135414993
+            },
+            {
+              "role": "read_action8_table",
+              "address": 138517996,
+              "target": 135415093
+            },
+            {
+              "role": "exit_callback_field4",
+              "address": 135415132,
+              "target": 135415137
+            },
+            {
+              "role": "close_task_field0",
+              "address": 135398048,
+              "target": 135398053
+            },
+            {
+              "role": "copy_before_free",
+              "address": 135398096,
+              "target": 134219076
+            },
+            {
+              "role": "next_main_dispatch",
+              "address": 134219062,
+              "target": 136084168
+            }
+          ],
+          "mail": {
+            "status": "PASS_CONDITIONAL_READ_MAIL_PHASE_COMPOSITION",
+            "root_table_slot": 138517996,
+            "root_entry": 135415092,
+            "object_exit_writer": 135415112,
+            "copy_call": 135398096,
+            "last_object_read": 135398090,
+            "free_call_after_copy": 135398122,
+            "main_dispatch_call": 134219062,
+            "main_callback": 135415137,
+            "old_hit": 135415155,
+            "complete_instruction_window": {
+              "address": 135415154,
+              "size": 6
+            },
+            "freed_object_needed_at_hit": false,
+            "actual_free_executed": true,
+            "selected_party_slot": 0,
+            "getmondata_field_at_hit": 64,
+            "source_byte_is_instruction_encoding": true,
+            "maximum_target_access_width_proven": false,
+            "donor_eligible": false,
+            "conditional_calls": [
+              {
+                "callee": 134683248,
+                "phase": "writer_to_close_task",
+                "required": "normal return, ABI, preserve object pointer/epoch and chosen task identity",
+                "discharged": false
+              },
+              {
+                "callee": 134675756,
+                "phase": "writer_to_close_task",
+                "required": "normal return, ABI, preserve object pointer/epoch and chosen task identity",
+                "discharged": false
+              },
+              {
+                "callee": 135225704,
+                "phase": "main_dispatch",
+                "required": "return zero, ABI, preserve copied callback and cursor",
+                "discharged": false
+              },
+              {
+                "callee": 135512116,
+                "phase": "main_dispatch",
+                "required": "return zero, ABI, preserve copied callback and cursor",
+                "discharged": false
+              }
+            ],
+            "unclosed_intervals": [
+              "selected action8 table dispatch requires constructed menu/valid cursor",
+              "between writer close-task registration and its scheduler dispatch",
+              "remaining FreePartyPointers/DestroyTask/party scheduler tail/main-loop callbacks after copy before next dispatch"
+            ],
+            "natural_play_reachability": false,
+            "emits_typed_regions": false,
+            "universal_runtime_ready": false
+          },
+          "frontier": {
+            "setup_success_calls": [
+              {
+                "state": 0,
+                "address": 135394440,
+                "target": 135006520,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "bounded_existing_contract",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 0,
+                "address": 135394444,
+                "target": 135006540,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 0,
+                "address": 135394448,
+                "target": 135231464,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "bounded_existing_contract",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 1,
+                "address": 135394454,
+                "target": 134773320,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 2,
+                "address": 135394460,
+                "target": 134675660,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 3,
+                "address": 135394480,
+                "target": 134243980,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 4,
+                "address": 135394486,
+                "target": 134251628,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "bounded_existing_contract",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 5,
+                "address": 135394492,
+                "target": 135006424,
+                "return_condition": "link inactive / r0 low byte zero",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 5,
+                "address": 135394504,
+                "target": 134703956,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "bounded_existing_contract",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 6,
+                "address": 135394510,
+                "target": 135401684,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "bounded_existing_contract",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 7,
+                "address": 135394516,
+                "target": 135395028,
+                "return_condition": "low byte nonzero on eventual success; zero may wait",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 8,
+                "address": 135394556,
+                "target": 135395148,
+                "return_condition": "low byte nonzero on eventual success; zero may wait",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 9,
+                "address": 135394578,
+                "target": 135403600,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 10,
+                "address": 135394596,
+                "target": 135395524,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 11,
+                "address": 135394624,
+                "target": 135408940,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 12,
+                "address": 135394630,
+                "target": 135409724,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 13,
+                "address": 135394636,
+                "target": 135410012,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 14,
+                "address": 135394642,
+                "target": 134834856,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 15,
+                "address": 135394648,
+                "target": 135397168,
+                "return_condition": "low byte nonzero on eventual success; zero may wait",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 16,
+                "address": 135394680,
+                "target": 135396828,
+                "return_condition": "low byte nonzero on eventual success; zero may wait",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 17,
+                "address": 135394712,
+                "target": 135397220,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 18,
+                "address": 135394728,
+                "target": 135403752,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 19,
+                "address": 135394742,
+                "target": 135444980,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "bounded_existing_contract",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 20,
+                "address": 135394756,
+                "target": 134704052,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "bounded_existing_contract",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 20,
+                "address": 135394766,
+                "target": 135406808,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 21,
+                "address": 135394784,
+                "target": 134679672,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              },
+              {
+                "state": 22,
+                "address": 135394806,
+                "target": 134675756,
+                "return_condition": "normal return only",
+                "effect_condition": "preserve allocation epoch, object pointer and currently live callback/control fields; task admission at state20 separately",
+                "status": "conditional_callee_frontier",
+                "actual_effect_discharged": false
+              }
+            ],
+            "task_admission_ja": "state20の直前に有効なlinked task listと1個以上のfree slotがあれば十分。ResetTasksから全task bytes不変や全16空slotは不要。満杯戻り0を成功扱いしない。",
+            "task_lifetime_ja": "選択taskのactive=1、正しいfunction、RunTasksからのlist所属だけを保持。他task全体やそのdataを凍結しない。",
+            "irq_condition_ja": "IRQ禁止ではなく、必要field・allocator scratch実行区間・現在のtask/cursor制約への非干渉が必要。実IRQ handlerの全保証は本scopeでは未証明。",
+            "return_condition_ja": "成功する有限continuationのみに制限し、待機helperの一般的なeventual returnや全入力での終了を要求しない。",
+            "mail_release_boundary_ja": "SetMainCallback2がobject+4をgMain.callback2へコピーした後にFreePartyPointersが呼ばれる。ReadMail本体の最初の旧hitまでobjectをliveと仮定し続ける必要はない。コピー後はmain callback/cursor/選択monだけを守る。",
+            "branch_input_ja": "普通party menuType0/keepCursor0/有効party slot/適切なmailまたはtutor選択は有限success条件。全入力domainの到達証明へ拡張しない。",
+            "classification_boundary_ja": "既受入assetのallocation-success条件は自然battle到達を不要とする。一方、未知calleeを全て非干渉と置くだけでは実caller間の型継承根拠にならない。親は他workerの実menu/consumer閉鎖と合成して判断する。",
+            "whole_runtime_lifetime_proven": false,
+            "classification_ready_here": false
+          },
+          "emits_typed_regions": false,
+          "unclosed_minimal_ja": [
+            "setup成功continuation中のobject/callback field射影とepoch保存",
+            "mail選択taskのactive/list所属と有効cursorを各dispatchまで維持",
+            "copy後の残destructor/描画/main-loop callerがgMain.callback2と選択cursorを維持"
+          ],
+          "excluded_overrequirements_ja": [
+            "全ゲーム自然到達",
+            "全23helperの任意入力に対する停止性",
+            "heap全体不変",
+            "全16task空の保持",
+            "IRQ全禁止",
+            "ReadMail hitまで旧party allocationを生存保持"
+          ],
+          "universal_runtime_ready": false
+        },
+        "checked_unknown_hits": [
+          135415155,
+          135424779
+        ],
+        "newly_typed_hits": [
+          135415155
+        ],
+        "retained_unknown_hits": [
+          135424779
+        ],
+        "conditional_registration_type_proven": true,
+        "universal_allocation_epoch_proven": false,
+        "maximum_target_access_width_proven": false,
+        "indirect_reference_complete": false
+      },
+      "sprite": {
+        "status": "PASS_FINITE_CONDITIONAL_LEER_INSTRUCTION_CONSUMER",
+        "count": 1,
+        "hit": 135133577,
+        "instruction_window": {
+          "address": 135133576,
+          "size": 6,
+          "sha256": "49c270268615c3f03be67515993744bdfbce9aad079e92d73f854830f1b3be44"
+        },
+        "models": 1,
+        "instruction_count": 6194,
+        "protected_read_window_count": 2348,
+        "protected_read_identity": {
+          "size": 251243,
+          "sha256": "bb33c6127270151a3dc5be3c75cd62f4728ba547ccf62690b39061142669c056"
+        },
+        "review_identity": {
+          "size": 264694,
+          "sha256": "e87845750f0af232e235b89447190a349c351af9c744cab6b3fb95d84c93d864"
+        },
+        "claims": {
+          "finite_conditional_root_to_instruction_consumer_proven": true,
+          "actual_move_table_dispatch_and_template_bound": true,
+          "actual_sprite_resource_registry_producers_executed": true,
+          "actual_wait_callback_registration_and_two_returns_executed": true,
+          "same_slot_synchronous_callback_lifetime_proven": true,
+          "abstract_environment_contracts_explicit": true,
+          "all_callees_concretely_executed": false,
+          "natural_battle_reachability_claimed": false,
+          "universal_lifetime_or_irq_safety_claimed": false,
+          "whole_animation_or_indirect_reference_completeness_claimed": false,
+          "current_acceptance_claimed": false,
+          "newly_classified": 1,
+          "donor_eligible": false,
+          "safe_capacity_bytes": 0
+        },
+        "preconditions_identity": {
+          "size": 2015,
+          "sha256": "34831b135e58e6e30d7c56e26bbb97c1982eaf5c44e9faceaa7922b8770ccf51"
+        },
+        "contracts_identity": {
+          "size": 3145,
+          "sha256": "8ac68fbe870a60cd699ce8e1d060b40dc95b76152d5691adce571839ca902bd3"
+        },
+        "prior_models_rerun": 0
+      },
+      "direct": {
+        "status": "PASS_ONE_DIRECT_QUEST_LOG_CODE_ROLE",
+        "count": 1,
+        "hit": 135356907,
+        "protected_windows": 13,
+        "protected_bytes": 133,
+        "source_bindings": {
+          "pret-quest_log_events.c": {
+            "local": "pret-quest_log_events.c",
+            "repository": "pret/pokefirered",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "path": "src/quest_log_events.c",
+            "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/quest_log_events.c",
+            "size": 88060,
+            "sha256": "e6cade44e4c41d0c2a0b27a718ffaee16a9485d36e7f09d6adc9da752b7b7e36",
+            "git_blob_sha": "7714d887a13be5ab9ca3b4e75edfc5f412e993f8"
+          },
+          "pret-quest_log.h": {
+            "local": "pret-quest_log.h",
+            "repository": "pret/pokefirered",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "path": "include/quest_log.h",
+            "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/quest_log.h",
+            "size": 6648,
+            "sha256": "0bfe5b360ea2a888534d25c00a0084781821b975fd01475b0d1074021c89ffb5",
+            "git_blob_sha": "279786985a6b79d76b78dcd745056087645e7d1b"
+          },
+          "pret-quest_log_constants.h": {
+            "local": "pret-quest_log_constants.h",
+            "repository": "pret/pokefirered",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "path": "include/constants/quest_log.h",
+            "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/constants/quest_log.h",
+            "size": 6408,
+            "sha256": "90cceec5883201c3d3d2bdb420d1f7b3ebef21f4716eef0760bba507559be2dc",
+            "git_blob_sha": "fe284ba133ccc28053515c501979741b3960212f"
+          }
+        },
+        "proof_scope": "static_actual_dispatch_and_complete_instruction_roles",
+        "full_story_reachability_claimed": false,
+        "runtime_execution_observed": false,
+        "all_entry_states_safe_claimed": false,
+        "get_map_name_return_proven": false,
+        "BL_return_successor_is_static_code_role_only": true,
+        "literal_pool_included": false,
+        "whole_function_range_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      },
+      "new_data": 0,
+      "new_code": 3,
+      "natural_gameplay_reachability_claimed": false,
+      "universal_heap_or_irq_lifetime_claimed": false,
+      "independent_old_final_source_review_completed": false,
+      "donor_leased": false,
+      "indirect_reference_completeness_claimed": false
+    },
+    "song": {
+      "status": "PASS_RETAINED_133_MODELS_50_ASSETS_NEW_CONSUMER_INTERSECTION",
+      "combined_song_models": 133,
+      "retained_sample_witnesses": 50,
+      "model_identity": {
+        "size": 213296,
+        "sha256": "71f01cee0a344409445e17fdea268371269a3e622c6b93563d04b35677e0b975"
+      },
+      "sample_identity": {
+        "size": 1121492,
+        "sha256": "9f765e8eee8ad78eaac8902ccafbf9e14c7c694f842e9ae6b2002583181b70ee"
+      },
+      "old_protected_read_windows": 198334,
+      "old_protected_read_identity": {
+        "size": 26409459,
+        "sha256": "26ae440b2d8456747f59e7fd73679a17b6289ef1a733bdd51c1f9ff668fc8914"
+      },
+      "all133_models_exact": true,
+      "all50_sample_identities_exact": true,
+      "old_and_new_root_windows": 6569,
+      "old_and_new_root_identity": {
+        "size": 703249,
+        "sha256": "3c05310437970fb4280325da01861e873eb476cfd3049a34edba91d3af8878a3"
+      },
+      "new_song_discovery_runs": 0,
+      "new_songs": [],
+      "new_audio_classified": 0,
+      "native_processes": 0,
+      "donor_leased": false
+    },
+    "public_source_bindings": {
+      "BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "gaps-pret-scrcmd.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/scrcmd.c",
+        "size": 56954,
+        "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+        "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814"
+      },
+      "pret-task.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/task.c",
+        "size": 5029,
+        "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+        "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+      },
+      "pret-main.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/main.c",
+        "size": 11699,
+        "sha256": "0bfa6c662b1cbd49bd31020b6c2509208004611e6701ad64badce22eca371139",
+        "git_blob_sha": "542b0f5d16dd93107523d11163bfcb70a42b707a"
+      },
+      "pret-crt0.s": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/crt0.s",
+        "size": 2573,
+        "sha256": "a13a09dab32f5f073387183ca5072e009e997223c7eba16d65dd6ecf2d575d73",
+        "git_blob_sha": "a0d8a4b55237b38afc5b69d4e9aad0c2df232e14"
+      },
+      "pret-hall_of_fame.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/hall_of_fame.c",
+        "size": 36837,
+        "sha256": "00dd00b63f3edf8e0ee617a09936d1a51306cc9dc33e6021da8f1042af5dd4ab",
+        "git_blob_sha": "05c7d75384c2ad8481b6819f71faaf089f683bbf"
+      },
+      "pret-intro.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/intro.c",
+        "size": 85302,
+        "sha256": "b34890d753fe07cb471084c6935ef029c300cbd48b3139943dd6d124c8b7e8c2",
+        "git_blob_sha": "bec0f3144ece4167b27dd2eccc0fd12546bf95c4"
+      },
+      "pret-title_screen.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/title_screen.c",
+        "size": 37011,
+        "sha256": "c2521f842e2f7385f429465330c50c663a88b24da7d419e6dbe77362643f56d5",
+        "git_blob_sha": "75f0e6743a2a84c906090df230bac7accb8dbe84"
+      },
+      "pret-berry_fix_program.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/berry_fix_program.c",
+        "size": 5546,
+        "sha256": "7ba2a44f4dfd30003061a0d31d68997f6c78a68df2672d2089064920c9c8ef4d",
+        "git_blob_sha": "4ef103aecaf43c2409ed9f8e9d872561b1772716"
+      },
+      "pret-party_menu.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/party_menu.c",
+        "size": 211085,
+        "sha256": "8290dfd5b6444e743029ab76543ed5e4b5b32c1c2f475c686946545f934d5f9b",
+        "git_blob_sha": "7f3a881e6c56773aee03da475c9a1adc50530223"
+      },
+      "src__modernization__pr16_learnset_supply_native.c": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "7de5350ac48c1d6c8ae64a7657da9583132e3aaa",
+        "source": "src/modernization/pr16_learnset_supply_native.c",
+        "size": 2182,
+        "sha256": "84382b1baedae0198623afe4f411ac1e32c74b40fd0960e7c8dd8bc972dd1a52",
+        "git_blob_sha": "20ae6007bd47309cd3b2275360a0d7004143c7a0"
+      },
+      "src__modernization__pr16_learnset_supply_game.c": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "7de5350ac48c1d6c8ae64a7657da9583132e3aaa",
+        "source": "src/modernization/pr16_learnset_supply_game.c",
+        "size": 1884,
+        "sha256": "c64e50f2809180b7e0ee5a6f0ef72d71c0350a29f122d819162109af1736c081",
+        "git_blob_sha": "88dd6e064a0025a44b54b2c3dae1bd7c18be1ded"
+      },
+      "src__modernization__pr16_learnset_supply.c": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "7de5350ac48c1d6c8ae64a7657da9583132e3aaa",
+        "source": "src/modernization/pr16_learnset_supply.c",
+        "size": 4203,
+        "sha256": "6824cd34dee8e10bc017fde5d6b4d7eece0661de6b9fcf5a4e187a9fcf90a17b",
+        "git_blob_sha": "77f3a301f2939e0af0fa23b48d186dce4377c4c3"
+      },
+      "scripts__pr16_learnset_supply_link.py": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "7de5350ac48c1d6c8ae64a7657da9583132e3aaa",
+        "source": "scripts/pr16_learnset_supply_link.py",
+        "size": 15515,
+        "sha256": "6d61bb42fefccdd03a7b83d243ed953714b7473179f02d6550e8f05b8def3424",
+        "git_blob_sha": "67a83321352047ce8734317307058e20b181a72f"
+      },
+      "src__modernization__pr16_learnset_compact.c": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "7de5350ac48c1d6c8ae64a7657da9583132e3aaa",
+        "source": "src/modernization/pr16_learnset_compact.c",
+        "size": 2812,
+        "sha256": "f7d2a9bd81bed08cd46ddbd932f834ac7548ee2ad5fa0ec938cb3081f6c97b56",
+        "git_blob_sha": "a96f852aec3e9492337d90b9d481c5ddd3012be8"
+      },
+      "src__modernization__pr16_learnset_owner.c": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "7de5350ac48c1d6c8ae64a7657da9583132e3aaa",
+        "source": "src/modernization/pr16_learnset_owner.c",
+        "size": 1140,
+        "sha256": "af89f80026c6de83b7430fbcb352a8a3d2faec97454747eb29bdf67535e81965",
+        "git_blob_sha": "7307a763cfb72f8cc251f834e892dadaac26ecb1"
+      },
+      "pret-sprite.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/sprite.c",
+        "size": 48783,
+        "sha256": "2a804302eb5a89d31c3ec2f33dc645a80a0c645113d4b33b9bd571064c0286ae",
+        "git_blob_sha": "d0198d53004775c8664dcccf57833e178833776e"
+      },
+      "pret-sprite.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "include/sprite.h",
+        "size": 9368,
+        "sha256": "a77aa1c837dfb58cf60b3eac299c7cc29a23ce27735ba710b9e8eeed102bf773",
+        "git_blob_sha": "6a1b272119ce6e3a8dcf45adf2eef8923a6d5175"
+      },
+      "pret-battle-anim.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/battle_anim.c",
+        "size": 46944,
+        "sha256": "5883d9ee0483120ef67461952f5880499f322fb1c706cc213ca13c0c2b0e88c5",
+        "git_blob_sha": "30f9a7ad2482d1767f5c70ee30a3c85528605bb3"
+      },
+      "pret-battle-anim-script.inc": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "asm/macros/battle_anim_script.inc",
+        "size": 4279,
+        "sha256": "cb193c567289983c26ed8acaa8dd64501c64c7e088e28995c49439333b52b27c",
+        "git_blob_sha": "15c48c39f5860efe132e782c22a6cedb0f8d5ac3"
+      },
+      "cfru-moves.h": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "include/constants/moves.h",
+        "size": 30601,
+        "sha256": "bc2ae17e444625fa2e1727d42c50a24f6758da26e44229a6f12a3afa3a275d79",
+        "git_blob_sha": "444712bfec68c13fabffd3e167d380b6c23770ba"
+      },
+      "cfru-anim-defines.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "anim_defines.s",
+        "size": 33164,
+        "sha256": "166cbae334e3c45cb0d694fb483b8ac13b9cc84dc4bd64eb8d04ee696c1e84e4",
+        "git_blob_sha": "fc4168cbc9f43ef084afb04ff4ec8c81f9390592"
+      },
+      "cfru-BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "pret-malloc.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/malloc.c",
+        "size": 6256,
+        "sha256": "a81ff86e81b72f4a57d5c891e3f50d93e0c2a75a3e3ec37a48bdb84041ad369e",
+        "git_blob_sha": "260c41d0d9f80afbf75fe3fdfbf11393e004bb14"
+      },
+      "cfru-battle-anims.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/battle_anims.c",
+        "size": 192535,
+        "sha256": "4893fda793e75356672e8b1be3bca4bd54fe562774fd8b07ed9f8f9ba501aff3",
+        "git_blob_sha": "096a8763a4260052566ed029f841bc68e561d269"
+      },
+      "cfru-include_battle_anim.h": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "include/battle_anim.h",
+        "size": 28504,
+        "sha256": "fd80eac8342c2452e9cb62f7b86b6db651d8136c25c9a6eb1369c1a92e4afb98",
+        "git_blob_sha": "68822edced83efcff0dc1893ec5052ba59875750"
+      },
+      "cfru-particle-table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/anim_particle_table.s",
+        "size": 39352,
+        "sha256": "ee2d106484b531e17c52d9edb2d966ed1a214685c19fbf6d186328e67372d9fa",
+        "git_blob_sha": "814f613a56d1314a462d5a4aebcca8bb3cdf9010"
+      },
+      "pret-decompress.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/decompress.c",
+        "size": 11157,
+        "sha256": "f190145b3948c1c22213e1a540f261aba89592ed9f30b6d13fa25b78ac417c7f",
+        "git_blob_sha": "f4740f917ed9ae7e0fd967107e1e63733bb8c66a"
+      },
+      "pret-quest_log_events.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/quest_log_events.c",
+        "size": 88060,
+        "sha256": "e6cade44e4c41d0c2a0b27a718ffaee16a9485d36e7f09d6adc9da752b7b7e36",
+        "git_blob_sha": "7714d887a13be5ab9ca3b4e75edfc5f412e993f8"
+      },
+      "pret-quest_log.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "include/quest_log.h",
+        "size": 6648,
+        "sha256": "0bfe5b360ea2a888534d25c00a0084781821b975fd01475b0d1074021c89ffb5",
+        "git_blob_sha": "279786985a6b79d76b78dcd745056087645e7d1b"
+      },
+      "pret-quest_log_constants.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "include/constants/quest_log.h",
+        "size": 6408,
+        "sha256": "90cceec5883201c3d3d2bdb420d1f7b3ebef21f4716eef0760bba507559be2dc",
+        "git_blob_sha": "fe284ba133ccc28053515c501979741b3960212f"
+      }
+    }
+  },
+  "proof_identity": {
+    "size": 41813,
+    "sha256": "6e5e732534312f1054268ee423295caabba898ee86fc4c3a0f2de294cc9fc7d6"
+  },
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0
+}

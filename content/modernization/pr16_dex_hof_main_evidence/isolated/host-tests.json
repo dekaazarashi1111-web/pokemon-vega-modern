@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_MODE3_SOURCE_CONTRACTS",
+  "observed_utc": "2026-10-05T04:50:22Z",
+  "command": "python3 -B -m unittest discover -s tests -p test_pr16_dex_hof_main_cow.py -v",
+  "tests": 7,
+  "exit_code": 0,
+  "test_names": [
+    "test_actual_reserved_gaps_only",
+    "test_changed_native_coverage",
+    "test_closed_publication",
+    "test_current_candidate_and_all_owners",
+    "test_current_source_bindings",
+    "test_exact_mode3_signature",
+    "test_frame_and_short_circuit_source"
+  ],
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-main-cow.yml": {
+      "size": 1726,
+      "sha256": "b76eeb6490fbbb182a2ae8831da0202ef3c2d9e662a9b0eb2df9c060df4d7657"
+    },
+    "content/modernization/pr16_dex_fallback_checkpoint.json": {
+      "size": 270449,
+      "sha256": "ac9c715f1114981b926d8f8f59d3a4657e8b4ed85038bb0110c80b1fae61e339"
+    },
+    "content/modernization/pr16_dex_hof_main_cow_bindings.json": {
+      "size": 4115,
+      "sha256": "1ebe302c6f7aa5933af2a717b609b9b3c49f20dc05a549dfef71e84ce096df86"
+    },
+    "content/modernization/pr16_dex_scheduler_checkpoint.json": {
+      "size": 86021,
+      "sha256": "b17a4decc849843081c0f2633c62069436aece9c56f5f9f37cfa932f371e237e"
+    },
+    "content/modernization/pr16_dex_stage61_relink_inputs.json": {
+      "size": 32743,
+      "sha256": "1d9aeb880c178ea05facf5aa8b4487dd83dd462054d7089f0f8dc22567a304a2"
+    },
+    "docs/PR16_DEX_HOF_MAIN_COW_JA.md": {
+      "size": 2273,
+      "sha256": "2c856fa59d787dd35d0e23477186046fd614be7c0e2775435b3045062eb07df8"
+    },
+    "overlays/dex_owner/dex_hof_main_cow.S": {
+      "size": 2551,
+      "sha256": "816604eeff1f28914c7646d5776910d1c9c5f66d84d44bcbd0201f8aef5701e8"
+    },
+    "overlays/dex_owner/dex_stage61_scheduler.h": {
+      "size": 2224,
+      "sha256": "c2fc2dc938a9571b5d84b010beb726c8d6a4297dc3e3f0d38a357670fd7a643d"
+    },
+    "overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c": {
+      "size": 129221,
+      "sha256": "7ad33b6b00aacb30088b7a0cc528a7fb41c947a709bb4006ab225d82d4e271bf"
+    },
+    "scripts/pr16_dex_fallback_qol.py": {
+      "size": 6127,
+      "sha256": "35d544c2f0868a2d748e767b01e74614b8c539bfcd9093bd96d731f2253bd6c9"
+    },
+    "scripts/pr16_dex_hof_failure.py": {
+      "size": 5438,
+      "sha256": "b15e706167429a63e3a856b7ad1fcca6e7c006bfbfb44d633c66616e297771c9"
+    },
+    "scripts/pr16_dex_hof_main_cow.py": {
+      "size": 7051,
+      "sha256": "f77ab22c0af18c93e83d577b188521a0e3f8acdf267fd88d11e1b6f6fbd12a50"
+    },
+    "scripts/pr16_dex_publication.py": {
+      "size": 1986,
+      "sha256": "c8cb5004d90cb5f1ac890c67c751053b41d2b0cbf1389c4da1a0489c89f42e7b"
+    },
+    "scripts/pr16_dex_scheduler.py": {
+      "size": 24289,
+      "sha256": "5a099e95f45328dcaeffae7ab0d6039b581a7ba5865ac4ee5fb46358e8dcf8b2"
+    },
+    "tests/test_pr16_dex_hof_main_cow.py": {
+      "size": 2441,
+      "sha256": "3574840b3c8ff4b765102239dadc6a9f85b3f72909c6a51e4b3901d57501cddf"
+    },
+    "tools/mgba_pr16_dex_hof_main_cow.h": {
+      "size": 8731,
+      "sha256": "57536d26aed521d1cd1dd9ad5d9a4f58a3a3b7d111b2ed0b4df176594cfe01a9"
+    }
+  },
+  "native_processes": 0,
+  "scope_ja": "新mode3専用source契約7試験。Actionsでは同一入力hashを照合し成功試験を重複実行しない。ARM/実Flash/画面は未受入。",
+  "prior_observer_bindings": {
+    "tools/mgba_pr16_dex_hof_main_cow.h": {
+      "size": 8701,
+      "sha256": "c33d7a2c5de515fd70791bd90fda2960f2ac3a80029e5774199c88b334bc9c98"
+    },
+    "tests/test_pr16_dex_hof_main_cow.py": {
+      "size": 2402,
+      "sha256": "901e6938a05b6a1e3c88513245679b8c2571cfb990b13140b363ac33faf02627"
+    }
+  },
+  "changed_test_rerun": {
+    "test": "test_changed_native_coverage",
+    "exit_code": 0,
+    "observed_utc": "2026-10-05T04:55Z",
+    "reason_ja": "increment内の既存GetGameStat呼出しを別計上する新observerの期待回数を修正。他6試験は不変sourceから再利用。"
+  },
+  "test_invocations": 8
+}

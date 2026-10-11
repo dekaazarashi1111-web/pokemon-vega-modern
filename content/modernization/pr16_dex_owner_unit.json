@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "tests": 40,
+  "passed": 40,
+  "host_c_compiles": 1,
+  "arm_compiles": 0,
+  "native_processes": 0,
+  "test_ids": [
+    "test_alias_audit_rejects_other_rom (test_pr16_dex_owner.DexOwner.test_alias_audit_rejects_other_rom)",
+    "test_alias_audit_rejects_out_of_domain (test_pr16_dex_owner.DexOwner.test_alias_audit_rejects_out_of_domain)",
+    "test_alias_audit_rejects_short_table (test_pr16_dex_owner.DexOwner.test_alias_audit_rejects_short_table)",
+    "test_all_byte_corruption_rejected (test_pr16_dex_owner.DexOwner.test_all_byte_corruption_rejected)",
+    "test_audit_atomic_replace_preserves_other_output_links (test_pr16_dex_owner.DexOwner.test_audit_atomic_replace_preserves_other_output_links)",
+    "test_audit_output_hardlink_rejected (test_pr16_dex_owner.DexOwner.test_audit_output_hardlink_rejected)",
+    "test_audit_output_symlink_rejected (test_pr16_dex_owner.DexOwner.test_audit_output_symlink_rejected)",
+    "test_bad_flags_rejected (test_pr16_dex_owner.DexOwner.test_bad_flags_rejected)",
+    "test_bad_sizes_leave_output_unchanged (test_pr16_dex_owner.DexOwner.test_bad_sizes_leave_output_unchanged)",
+    "test_caught_without_seen_rejected (test_pr16_dex_owner.DexOwner.test_caught_without_seen_rejected)",
+    "test_clear_caught_preserves_seen (test_pr16_dex_owner.DexOwner.test_clear_caught_preserves_seen)",
+    "test_clear_seen_clears_caught (test_pr16_dex_owner.DexOwner.test_clear_seen_clears_caught)",
+    "test_corrupt_access_does_not_repair_crc (test_pr16_dex_owner.DexOwner.test_corrupt_access_does_not_repair_crc)",
+    "test_deterministic_generated_namespace (test_pr16_dex_owner.DexOwner.test_deterministic_generated_namespace)",
+    "test_egg_swap_uses_stable_key (test_pr16_dex_owner.DexOwner.test_egg_swap_uses_stable_key)",
+    "test_exact_serialized_roundtrip_fresh_buffer (test_pr16_dex_owner.DexOwner.test_exact_serialized_roundtrip_fresh_buffer)",
+    "test_full_owner_boundaries (test_pr16_dex_owner.DexOwner.test_full_owner_boundaries)",
+    "test_last_slot_and_count_complete (test_pr16_dex_owner.DexOwner.test_last_slot_and_count_complete)",
+    "test_legacy_copies_immutable_uninterpreted (test_pr16_dex_owner.DexOwner.test_legacy_copies_immutable_uninterpreted)",
+    "test_legacy_evidence_without_flag_rejected (test_pr16_dex_owner.DexOwner.test_legacy_evidence_without_flag_rejected)",
+    "test_legacy_overlap_rejected_before_clear (test_pr16_dex_owner.DexOwner.test_legacy_overlap_rejected_before_clear)",
+    "test_missing_companion_migrates_only_verified_parent (test_pr16_dex_owner.DexOwner.test_missing_companion_migrates_only_verified_parent)",
+    "test_namespace_registry_owner_swap_rejected (test_pr16_dex_owner.DexOwner.test_namespace_registry_owner_swap_rejected)",
+    "test_namespace_source_order_locked (test_pr16_dex_owner.DexOwner.test_namespace_source_order_locked)",
+    "test_new_crc_and_empty_counts (test_pr16_dex_owner.DexOwner.test_new_crc_and_empty_counts)",
+    "test_nonempty_corrupt_not_migrated (test_pr16_dex_owner.DexOwner.test_nonempty_corrupt_not_migrated)",
+    "test_null_inputs (test_pr16_dex_owner.DexOwner.test_null_inputs)",
+    "test_official_and_form_same_owner (test_pr16_dex_owner.DexOwner.test_official_and_form_same_owner)",
+    "test_official_representative_is_base (test_pr16_dex_owner.DexOwner.test_official_representative_is_base)",
+    "test_output_count_overlap_including_edges_rejected (test_pr16_dex_owner.DexOwner.test_output_count_overlap_including_edges_rejected)",
+    "test_output_value_alias_rejected_before_set (test_pr16_dex_owner.DexOwner.test_output_value_alias_rejected_before_set)",
+    "test_partial_load_overlap_rejected_for_zero_erased_and_valid (test_pr16_dex_owner.DexOwner.test_partial_load_overlap_rejected_for_zero_erased_and_valid)",
+    "test_reject_invalid_modes_unchanged (test_pr16_dex_owner.DexOwner.test_reject_invalid_modes_unchanged)",
+    "test_reject_invalid_owner_unchanged (test_pr16_dex_owner.DexOwner.test_reject_invalid_owner_unchanged)",
+    "test_same_buffer_valid_load_allowed (test_pr16_dex_owner.DexOwner.test_same_buffer_valid_load_allowed)",
+    "test_species_and_national_boundaries (test_pr16_dex_owner.DexOwner.test_species_and_national_boundaries)",
+    "test_species_namespace_alias_separated (test_pr16_dex_owner.DexOwner.test_species_namespace_alias_separated)",
+    "test_unaligned_owner_supported (test_pr16_dex_owner.DexOwner.test_unaligned_owner_supported)",
+    "test_unknown_version_rejected (test_pr16_dex_owner.DexOwner.test_unknown_version_rejected)",
+    "test_unused_bitmap_bits_rejected (test_pr16_dex_owner.DexOwner.test_unused_bitmap_bits_rejected)"
+  ],
+  "source_bindings": {
+    ".github/workflows/pr16-dex-owner-foundation.yml": {
+      "size": 2295,
+      "sha256": "283074a142bbc3435538f554a01e69feebec9b1e754565b225260579eb838468"
+    },
+    "content/modernization/pr16_dex_alias_audit.json": {
+      "size": 1445,
+      "sha256": "3b2955d62716c35a051a4d91c390a4dea8572b54e785e15643dd02e5cfe0f8ad"
+    },
+    "content/modernization/pr16_dex_consumer_audit.json": {
+      "size": 92166,
+      "sha256": "d9c022b41c15b14a16cbdf19af322771b570a65faa2a3e5b9ca83832f4a2c123"
+    },
+    "content/modernization/pr16_dex_namespace.json": {
+      "size": 277412,
+      "sha256": "910671fa4345bc4522657a1fdebb5a7fc686c8146ad9623d5d973f3ead42d009"
+    },
+    "content/modernization/pr16_dex_storage_audit.json": {
+      "size": 1492,
+      "sha256": "a21526808be34928098119fd3bec57185e1ce1edc1663a21608ee37eec3568f7"
+    },
+    "docs/PR16_DEX_CONSUMERS_JA.md": {
+      "size": 12934,
+      "sha256": "cf60a3a0506690156a88877e53df2f14a742d51138ff86a9db4cbbab3e0f4286"
+    },
+    "docs/PR16_DEX_OWNER_IMPLEMENTATION_JA.md": {
+      "size": 6214,
+      "sha256": "f5772f0c9e796abd584b417208ea13ec6b2b17b7f38484b950830fecf0907e44"
+    },
+    "overlays/dex_owner/dex_owner.c": {
+      "size": 7563,
+      "sha256": "d3442445141d8724b6ba36d34619ce955d17923935d832d328222e0906da6bd4"
+    },
+    "overlays/dex_owner/dex_owner.h": {
+      "size": 2130,
+      "sha256": "9b6458882cfa70129fbc4e0a489b0dfacdfa587dcde6272e0d0c3c80a6d8a2d9"
+    },
+    "scripts/pr16_dex_alias_audit.py": {
+      "size": 4353,
+      "sha256": "d31429f0b02d94d86fc921757452a9d48207e17ba36ecc35de34ac896e95e354"
+    },
+    "scripts/pr16_dex_namespace.py": {
+      "size": 7804,
+      "sha256": "dcb1882a1be0be0053422117af66d06051c65e7ca026875bee1046f58f78e6a6"
+    },
+    "scripts/pr16_dex_owner_record.py": {
+      "size": 9477,
+      "sha256": "53fd66aac8419e0f6b86fc6d24676fccdd383a3a077d57128c77d2d0d2135b23"
+    },
+    "tests/test_pr16_dex_owner.py": {
+      "size": 14346,
+      "sha256": "e9717c584ee58e5ccddfae5719ecf48e0ab7389c4e7ff99033a464b11071b1be"
+    }
+  },
+  "scope": "HOST_C_CODEC_AND_NAMESPACE_ONLY"
+}

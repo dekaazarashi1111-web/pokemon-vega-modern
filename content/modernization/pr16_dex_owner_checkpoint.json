@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261004-DEX-OWNER",
+  "status": "PASS_HOST_CODEC_NAMESPACE_RUNTIME_UNWIRED",
+  "source_head": "d1230b07103cd1790849ba6fb390ede089052a1f",
+  "record_run": 37214351222,
+  "source_bindings": {
+    ".github/workflows/pr16-dex-owner-foundation.yml": {
+      "size": 2295,
+      "sha256": "283074a142bbc3435538f554a01e69feebec9b1e754565b225260579eb838468"
+    },
+    "content/modernization/pr16_dex_alias_audit.json": {
+      "size": 1445,
+      "sha256": "3b2955d62716c35a051a4d91c390a4dea8572b54e785e15643dd02e5cfe0f8ad"
+    },
+    "content/modernization/pr16_dex_consumer_audit.json": {
+      "size": 92166,
+      "sha256": "d9c022b41c15b14a16cbdf19af322771b570a65faa2a3e5b9ca83832f4a2c123"
+    },
+    "content/modernization/pr16_dex_namespace.json": {
+      "size": 277412,
+      "sha256": "910671fa4345bc4522657a1fdebb5a7fc686c8146ad9623d5d973f3ead42d009"
+    },
+    "content/modernization/pr16_dex_owner_unit.json": {
+      "size": 6776,
+      "sha256": "1e40dbe2b8dd3fbd69b63372ca043bf2c06001a4fe0d63cf4050c654206fc366"
+    },
+    "content/modernization/pr16_dex_storage_audit.json": {
+      "size": 1492,
+      "sha256": "a21526808be34928098119fd3bec57185e1ce1edc1663a21608ee37eec3568f7"
+    },
+    "docs/PR16_DEX_CONSUMERS_JA.md": {
+      "size": 12934,
+      "sha256": "cf60a3a0506690156a88877e53df2f14a742d51138ff86a9db4cbbab3e0f4286"
+    },
+    "docs/PR16_DEX_OWNER_IMPLEMENTATION_JA.md": {
+      "size": 6214,
+      "sha256": "f5772f0c9e796abd584b417208ea13ec6b2b17b7f38484b950830fecf0907e44"
+    },
+    "overlays/dex_owner/dex_owner.c": {
+      "size": 7563,
+      "sha256": "d3442445141d8724b6ba36d34619ce955d17923935d832d328222e0906da6bd4"
+    },
+    "overlays/dex_owner/dex_owner.h": {
+      "size": 2130,
+      "sha256": "9b6458882cfa70129fbc4e0a489b0dfacdfa587dcde6272e0d0c3c80a6d8a2d9"
+    },
+    "scripts/pr16_dex_alias_audit.py": {
+      "size": 4353,
+      "sha256": "d31429f0b02d94d86fc921757452a9d48207e17ba36ecc35de34ac896e95e354"
+    },
+    "scripts/pr16_dex_namespace.py": {
+      "size": 7804,
+      "sha256": "dcb1882a1be0be0053422117af66d06051c65e7ca026875bee1046f58f78e6a6"
+    },
+    "scripts/pr16_dex_owner_record.py": {
+      "size": 9477,
+      "sha256": "53fd66aac8419e0f6b86fc6d24676fccdd383a3a077d57128c77d2d0d2135b23"
+    },
+    "tests/test_pr16_dex_owner.py": {
+      "size": 14346,
+      "sha256": "e9717c584ee58e5ccddfae5719ecf48e0ab7389c4e7ff99033a464b11071b1be"
+    }
+  },
+  "namespace_version": 1,
+  "owner_count": 1206,
+  "runtime_species_slots": 1670,
+  "legacy_snapshot_bytes": 208,
+  "serialized_bytes": 522,
+  "host_tests": 40,
+  "host_c_compiles": 1,
+  "arm_compiles": 0,
+  "native_processes": 0,
+  "formal_story_save": 101,
+  "rom_changed": false,
+  "save_changed": false,
+  "runtime_wired": false,
+  "repair_native_accepted": false,
+  "pc_lifetime_verified": false,
+  "milestone_reached": false,
+  "release_ready": false,
+  "unresolved": [
+    "PC/UI未保存RAM保持",
+    "全save mode/CRC bank fallback接続",
+    "全SID/official/nativeUI consumer接続",
+    "旧履歴の根拠付き昇格",
+    "候補normal Save/cold Continue限定native",
+    "シオウ回復milestone"
+  ],
+  "review_fixes": [
+    "namespace意味固定",
+    "C出力pointer/部分overlap拒否",
+    "監査出力hardlink拒否とatomic replace"
+  ]
+}

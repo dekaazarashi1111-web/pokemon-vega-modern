@@ -1,0 +1,532 @@
+# PR #16 固定再開メモ
+
+> 入口は常に `CHATGPT_RESUME.md`。この文書と対応JSONだけが最新の再開点。
+> ファイル名の日付は固定識別子。セッションごとに別名コピーを作らない。
+> この文書は `python3 scripts/pr16_resume.py render` で生成する。直接二重編集しない。
+
+## いまの停止点と次の1手
+
+Weather Bubble成功run38040440848/job114179438484の全9step/32試験を原本継承。ZIPと4JSON、生成・検証済み/公開済みの各4hash、6測定source/143依存source/62親原本を照合。独立8x16 indexed4画像の全64byte一致、実sheet/reader38命令・64byte消費・実12byte stack帰還を条件付き最小4byte型へ受入。0838B32Fだけ追加し784分類/90未知/全874hit、旧30段164変更154witness不変。新receipt41試験PASS。今回ROM再構成/旧scope再走/native各0、donor安全容量0、正式ROM/Save101不変。
+
+**次: 正式784分類/90未知の保存親から次は08397492の1件。pr16_weather_bubble_receipt.restore_parentで62旧原本と今回4原本/差分を復元し、独立公開source・全asset・実table/literal/readerへ結ぶ。近傍名/参考size/距離だけで型へ昇格しない。Bubble成功32試験/実reader/ROM再構成は再走しない。Blastoise083D6B61の既知未消費tail診断も反復しない。保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復保存coldContinueは別gate。**
+
+通常戦ごとの保存を廃止し宣言済milestoneまで継続。未知owner/callback/event/warp/UI、観測不一致、資源不足は診断停止。診断frontierを完了扱いしない。実行前に全tile/戦闘observer/回復counterを解決。
+
+branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
+
+証拠のsource HEAD: `3aada9217cc80627496adf33756d8fc2de3b5765`。
+成功測定のsource HEAD。記録workflow HEAD/runはWeather Bubble checkpointへ別記し、測定HEADに偽装しない。
+
+## 最短の再開手順
+
+PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。観測headとの差分を対象pathだけ確認。本文にある旧SHAへresetせず、同一repo/branch・未mergeを確認。
+
+まず `AGENTS.md` → この文書 → `content/modernization/pr16_native_supply_resume_20260913.json` を読む。
+受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
+次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
+
+- `docs/PR16_WEATHER_BUBBLE_ACCEPTANCE_JA.md`
+- `content/modernization/pr16_weather_bubble_checkpoint.json`
+- `scripts/pr16_weather_bubble_receipt.py`
+- `content/modernization/pr16_weather_bubble_evidence/unknown-frontier.json`
+- `scripts/pr16_weather_bubble_sources.py`
+
+checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
+
+候補/上流source/runner/fixture/契約が同じ結果を再利用。文書だけのcommitではROMを再生成しない。live HEADが違うだけで全回帰しない。
+
+## 正式受入と診断を混同しない
+
+正式BP checkpoint: run `34946969126` / HEAD `0b7497b575a3180a045f2be377386490f192a012`。
+取消/元party復元/保存再開と3勝基礎9 BPを保持し、稼得BP通常購入・保存再開を追加受入。
+
+最新scoped受入: run `34946969126` / job `104308573084` / HEAD `0b7497b575a3180a045f2be377386490f192a012`。
+照合抄録: `content/modernization/pr16_bp_spending_verified.json`。
+2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。
+
+受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。
+
+## 候補identityと残件
+
+SHA-256 `ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b` / 33554432 bytes / CRC32 `3EB17B36`。この欄は正式BP親候補の歴史的identity。現在のP08移送候補は46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38 / CRCCC068B4A。current_p08_candidateとcontent/modernization/pr16_p08_candidate_transfer.jsonをWiki入力の正とする。製品SHA固定・配布判定ではない。
+
+正式physical残件（台帳から照合）:
+
+
+P08ゲート:
+
+- `RELEASE_DECISION`
+
+2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
+
+原本隔離/裁定済み → 後継9consumer表・旧候補差分検証済み → 未選択Species/Form/孵化差分の明示binding → binary consumer接続 → 後継ROM・別Wiki/影響native → Issue18限定監査 → 別承認release。
+
+## 再実行・過大主張の禁止
+
+- Blastoise初回37722012087は全9step/184試験/取得4原本12hash一致。現0641のLZ終端083D6A63より254byte後の083D6B61は未消費でunknownを保持。0件診断/783分類91未知。成功source14/184試験/consumerとreceipt45を変更影響なしに再走しない。次0838B32Fは独立PNG64byte/登録sheet/実readerが揃うまでunknown。
+- Blastoise新184試験は独立PNG1794/3200陽性と別ROM6ffの消費1287陰性を分離した開発。現0641の初回4JSON取得前に正式反証や型受入にせず783/91を保持。今scopeは0件deltaのみ、旧Diploma/credits/minigame/受入consumer/native/全ROMscanを再走しない。
+- Diploma初回37718308112は全9step/168試験/取得4原本の12hash一致から083DCAEDだけ783/91へ正式受入。成功source14/168試験/consumerは変更影響なしに再走しない。終端padding2は型やdonorへ含めず、次083D6B61は独立source/登録/実readerが得られるまでunknown維持。
+- Diploma新168試験は独立公開PNG→LZ→疎fixture開発確認。現0641初回Actionsの4成功JSON取得/hash照合前に正式783/91へ昇格しない。3366byteのconsumed streamと3368byteの末尾padding2byteを分離。旧credits37/minigame152/受入consumer/native/全ROMscanは再走しない。
+- 083E239Bのcredits正table/caller候補は得たが、左最初EOS083E239A後1byteが未被覆。右全文だけ・ALIGNED(4)・英語長・隣接距離で型へ昇格しない。旧手元6窓のhash固定は現0641測定ではない。正式782/92とminigame成功原本は保持し、次は別DiplomaGfx候補を有限調査。
+- minigame初回37713083180は全10step/152試験/取得4原本の12hash一致から083DE6ABだけ782/92へ正式受入。source14/成功scope/152試験は変更影響なしに再走しない。近隣083DE68EのUnused左文と083DF94Fの最初EOS後3byteを、右隣の正consumerだけで分類しない。
+- minigame新152試験は独立疎fixture開発確認。現0641初回Actionsの4成功原本を実取得/hash照合してから083DE6ABだけ782/92へ。交換/mailboxの成功回復・旧165/27/22・consumer・nativeは変更影響なしに再走しない。
+- 成功回復37704409163は全10step/27新試験/165継承/取得4原本から083DE02Bだけ781/93へ正式受入。元37701354400と37703162164のfailure/原本欠落を保持し、scope累積再構成3を消さない。成功scopeと165/27試験は無変更再走せず次の083DE6ABへ。
+- 第1回復37703162164もfailureで保持。rawproducer tuple→公開JSON正規化の変更影響だけを新27試験で検証。元165suite/Flash/旧受入は再走しない。次回は既知失敗回復＋今回の2run gate、必要最小現ROM測定の累積3を明示し出力hashを包装前から記録する。
+- 元run37701354400の165試験/現計測step成功を消さず、artifact未生成を再構成原本で代用しない。回復は旧165試験継承＋新出力検証＋現0641の必要最小2reader再計測のみ。Flash/旧受入は再走しない。回復workflowはbranch横断run初回gateで累積2の偽装を拒否。
+- 交換/mailbox新165試験は疎fixture開発確認。現0641専用Actionsの初回成功原本を回収してから1件781/93へ。Flashの117試験/producer/全文readerと旧acceptedを再走しない。
+- Flash現candidate初回run37697774244は全10step成功、117試験・30byte全文・右27byte原本再利用で083DDEE1の1件だけ780/94へ受入済み。scope/source/候補不変の再実行をせず保存原本から次の083DE02Bへ。receipt20試験と型受入をnative/全callee/普遍heap lifetimeへ昇格しない。
+- JP field新117試験は独立疎fixtureで開発確認済み。正式現候補を代用せず専用Actionsで一度だけ照合し、成功なら原本回収から次へ。旧TakeItem count3/no-wrapや旧max3 consumerを受入代用・再走しない。
+- 所有者決定後はSave14原本から自然育成を漫然と継続しない。story-fastは自己OT Lv100作業コピー、成長受入は別progression fixtureの通常戦闘EXPで行い、両レーンの主張を混同しない。
+- Save14の303/cold40入力・97画面・110試験は保存原本から照合するだけ。ひんしツツケラのEXP80は不変、リープンEXP516、両個体回復済み。勝利残留を再計上せず、coldのRAM時刻差と全Save/RTC不変を分離。次はSave14から先だけ。
+- Save13の255/cold40入力と76画面・95検査は保存原本から照合するだけ。ツツケラ先頭Lv4/EXP80とリープンEXP479、全回復済み。勝利残留flags4/outcome1・wire field:falseを追加勝利や未復帰にしない。次はSave13から先だけ。
+- Save12の153/cold40入力と57画面・69検査は保存原本から照合するだけ。母親で2体全回復済み。次はSave12から育成を進め、同じ回復/保存区間を再生しない。
+- Save11の176/cold50入力と83画面・68検査は保存原本から照合し、通常進行再開では再実行しない。初投失敗/名前UI/捕獲outcome7を区別。次はHP16/26と4/15の2体を通常回復してから先へ。
+- Save10の218/cold62と77画面・32検査は保存原本から照合し、通常進行の再開時に再実行しない。28境界検査も影響なしに再実行しない。前回未保存WIPの敗北は保持。
+- Save10の前回WIPに通常Save/独立Continue終端はない。回収できる正式親はSave9 artifact10963436148。WIPの敗北を勝利とせず、観測境界28検査をゲーム進行受入と混同しない。
+- Save8後継の新区間363入力/独立34入力は content/modernization/pr16_story_save9_checkpoint.json。Save9/EXP450/Lv9のtraining.srmから先だけ進める。通常逃走2回を勝利と区別。捕獲0/マオリ勝利未完。
+- Save7後継の野生育成316入力/独立34入力は content/modernization/pr16_story_safe_training_checkpoint.json。Save8/EXP331/Lv8のtraining.srmから先だけ進める。捕獲0/ボールポケット空、マオリ勝利未完。
+- 回復後の270入力/独立34入力は content/modernization/pr16_story_after_home_checkpoint.json に保存。Save7/EXP270から先だけ進む。マオリ敗北/全滅帰宅を勝利扱いせず、育成不足を補う。
+- 母親回復は content/modernization/pr16_home_recovery_native_checkpoint.json。新候補でSave counter6。回復81/cold34入力は完走済み、次は終端回収またはrecovery.srmから新しい進行のみ。
+- 母親回復は content/modernization/pr16_home_recovery_native_checkpoint.json。新候補でSave counter6。回復81/cold34入力は完走済み、次は終端回収またはrecovery.srmから新しい進行のみ。
+- 原本owner照合と母親15byte source修正は content/modernization/pr16_home_recovery_checkpoint.json。52専用試験はこのsource runで測定済み。次は回復の新native区間だけ。旧完走入力は再生しない。
+- 自然習得保存の完走194入力は content/modernization/pr16_research_story_training_checkpoint.json。次はtraining.srmのmap3/0(4,27)/Lv7/経験値245/HP13/23・麻痺/道具0からだけ。旧受入は再生しない。
+- 自然習得開発原本 content/modernization/pr16_research_story_training_development/verification.json を保持。194入力/56画面/native2/新86検査。正式runができた後は新たな入力をtraining.srmから行い、成功した区間を再生しない。
+- 成長保存の完走367入力は content/modernization/pr16_research_story_growth_checkpoint.json。次はgrowth.srmのmap3/0(4,27)/Lv6/経験値204/道具0からだけ。旧受入は再生しない。
+- 成長開発原本 content/modernization/pr16_research_story_growth_development/verification.json を保持。367入力/92画面/native2/新118検査。正式runができた後は新たな入力をgrowth.srmから行い、成功した区間を再生しない。
+- 一般CIの旧容量原本source不一致は content/modernization/pr16_research_story_route_ci_limit.json。開始HEADから全依存不変で今回story変更に起因しない。旧受入を緩和/書換え/再実行せず、後継potion.srm以降を進める。
+- 道路通常進行は content/modernization/pr16_research_story_route_checkpoint.json。敗北2回/回復/キズぐすり1個/Save counter3まで完走301入力を保持し、次はpotion.srmだけ。旧受入区間を再生しない。
+- 道路道具取得の開発原本 content/modernization/pr16_research_story_route_development/verification.json を保持。native2/74新検査。元Saveからの301入力を正式測定したrunがあれば原本回収だけにして重複しない。
+- 新規道路保存は content/modernization/pr16_research_story_continue_checkpoint.json。次はroute.srmからContinueだけ。旧starterと今回完走114入力/12012framesを再生しない。RP0の研究活動施設未到達。
+- 継続開発原本 content/modernization/pr16_research_story_continue_development/verification.json はnative2/新oracle59。新Actions原本が既に存在する場合は先に回収し、正常に完走した入力の再実行を禁止。初期化/スターターは再生不要。
+- 自然starterは content/modernization/pr16_research_story_checkpoint.json。元の通常NewGame保存試験を再オープンしない。次回はartifact starter.srmのContinueのみ。RP0/party1/map4/3保存をRP研究活動到達へ昇格しない。
+- 自然RP支出の記録run36317871935終端と全必須stepはsuccess確定。24f8bbebの120検証/23patch/5開発native/最終12画面を再実行せず次の通常進行境界へ進む。
+- 自然稼得RP支出は content/modernization/pr16_research_natural_spending_checkpoint.json。実稼得入力1回だけを保持し、10RPから5個交換/0RP/Continueを受入。最後の表示1byte変更はUI-only・追加稼得/購入/保存0で受入。最終candidate e1efb100、12画面。旧数値/標準リスト/旧稼得/BP/P08を無変更で再実行しない。
+- STANDARD_LIST run36312254126/59ac6688の22画面/3訪問/選択2/B取消2/終了1を限定受入。独立受入によるnative/ARM/host/guard/旧試験の再実行0。原本27oracle、18host/8ELF/14eventを再利用。自然RP支出/通常進行へ昇格しない。
+- STANDARD_LIST原本 content/modernization/pr16_research_standard_list_ui_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。
+- STANDARD_LIST原本 content/modernization/pr16_research_standard_list_thumb_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。
+- STANDARD_LIST原本 content/modernization/pr16_research_standard_list_checkpoint.json を先に照合。同じARM生成/host30検査/成功した物理入力を再実行しない。
+- 受付数値0RP/rank1・9999RP/rank7はcheckpointと18画面で限定受入。元run36286898098のfailureを保持し、回復でnative再実行0。旧negative60件は受入せず陽性前提付き63件へ置換。不変event15件/compile1/guard7/実測2processを再実行しない。
+- 研究接続4入口はcontent/modernization/pr16_research_connection_acceptance.jsonで限定受入済み。原本/33画面/独立oracleを再利用し、未表示の受付数値/rankと自然RP支出の変更影響だけ実測。全活動/通常ストーリーへ昇格禁止。
+- 研究接続の新規MEASURED原本を先に照合。旧GAME_CORNER/写真/虫取り/採掘/釣り/生態の稼得nativeは再実行しない。今回の入口3成功計測は独立oracle/画面確認へ進み、未観測の生態ガイドだけ診断する。
+- GAME_CORNERの実300枚配当923→1223コイン/0→3RP・2取引保存・別core Continueを限定受入。小4枚無RP、終了後の未保存賭け1188と保存値1223を区別。native5=実稼得1+Continue1+計測器失敗3、guard7、117PASS+変更loader2PASS、ROM/ARM0、受入済み再実行0。Start配当/日内cap/自然到達/通常接続/ガイド文言は未完。
+- 釣りlocal#2/生態local#5、候補26dac23cの実稼得4/10RP・逃走・取引保存だけのfresh Continueを限定受入。T24 typed credit1save+T23研究2save、全ledger/Bag/party/Flash、65新検査・10画像。無変更native/旧unit再実行禁止。ゲームコーナー/自然到達/受付接続/未確認native文言は未完。
+- 採掘run36267515706/source8fdda1bb/26dac23cを限定受入。0→10RP・条件不足/取消・取引保存2・独立Continue・fixture再入場cap・4文言、3process/5cores/新64検査。無変更再実行禁止。wild tail/自然再到達/通常接続/全活動は未受入。
+- 虫取りrun36261672837/26dac23cは実NPC0→8RP・取消・条件不足・重複拒否・取引保存2・独立Continue・4文言を受入。新規51検査、2process/3cores、ROM/ARM0。旧ローカル未保存原本の件数はunknown。無変更再実行禁止、自然到達/全活動へ昇格しない。
+- 保存view修復26dac23cは513空判定/clear512byteと写真cold地形/台詞を専用checkpointで受入。54unitは初回53成功+訂正1成功。無変更再実行禁止。旧5d1fc9c4の青背景記録は歴史原本で、後継受入と混同しない。
+- 写真のcold ContinueはRP/claim/保存counterのみ受入。青い反復背景は未受入。稼得成功ケースを無変更で再実行せず、map layout/tileset/fixture境界だけを診断する。
+- 写真の0→6RP/取消/同日重複拒否/取引保存/独立Continueと3文言は専用原本を再利用。全活動/自然到達/通常ショップ接続に昇格しない。
+- catalog23商品/5画面・35会話ROM byteは専用checkpointを参照。native全会話/自然RP/通常進行とは分離し、受入済み保存/購入/取消を再実行しない。
+- 研究保存の今回受入: 購入/不足run36249587919（42oracle原本再利用）、通常new-game/初回Save/独立Continue2回run36250444503（新52oracle）。両checkpointと不変source/candidateから継承し、旧取消/旧host/phase0/V1/retry/ARMを反復しない。購入失敗run36248750283とdriver向き診断は履歴のまま保持。次は実RP稼得・通常進行と全catalog監査。
+- P08の21層432patch全ROM監査はpr16_p08_candidate_impact.jsonに保存。同じ入力のARM/旧builder/旧nativeは再実行せず、未完4代表境界へ。
+- Circus正式scoped受入はpr16_circus_acceptance.json。35504302893の29画面/3勝/Save、35503514936の自然getter/抑制を再実行しない。旧failureの意味は維持。
+- run35503514936のgetter30/正規抑制は再観測不要。Fairy Lockは0x4000、任意交代を控える。次はlifecycle reportのみ。
+- getter field repair runを最優先確認。APIは0..10 index、旧Var IDではない。真正Save30限定、30勝prefix/旧ARM/64抽選反復禁止。
+- getter followupの先行runを先に照合。真正Save30 cache以外から再開しない。30勝prefix/旧builder/ARM再compile/旧64抽選の反復禁止。
+- USER-20260920-CIRCUS-SUPPRESSION run35494023398の完了状況と原本を先に読む。真正Save30 cacheが検証済みなら30戦を再実行しない。抑制flag/乱数/特性/owner/PCへのhost書込みは禁止。
+- USER-20260920-CIRCUS-BATTLE30-PP run35479503528の新原本を先に読む。run35478473681のfailureを改作しない。30戦目PP同点/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。
+- USER-20260920-CIRCUS-RESERVE run35478473681の新原本を先に読む。run35477541574のfailureを改作しない。控え方策/通常入力のみ。旧ARM/受入単体/Ring host再実行は禁止。
+- USER-20260920-CIRCUS-BATTLE29-RECHECK run35477541574の新原本を先に読む。旧run35473090294の28勝/29戦目実敗北を30勝へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。
+- USER-20260920-CIRCUS-BATTLE29 run35473090294の新原本を先に読む。旧run35471833294の28勝/29戦目実敗北を30勝へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。
+- USER-20260920-CIRCUS-BATTLE28 run35471833294の新原本を先に読む。旧run35468164696の27勝/28戦目瀕死停止を成功へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。
+- USER-20260920-CIRCUS-BATTLE25 run35468164696の原本と実停止を先に読む。旧run35457636604を30勝成功へ改作しない。保存JSON/固定生成Cを使用し旧親builder/ARM/Ring hostを呼ばない。
+- run35465528252で旧親20層425差分の保存byte復元・全ROMrollbackを検証済み。保存レシピと核が不変ならnormalize/旧builder/compiler/既受入Ring hostを再実行しない。通常再開は固定JSONのreconstructのみ。履歴bootstrap全体のARM数unknownを0へ改作しない。
+- run35457636604/job105935643398は同候補2b107e7eで実24勝/72BP・25戦目敗北、元party600/owner64/通常Save counter2→3/fresh Continueをscoped検証。121events/1process/2fresh cores、既受入100eventsは同一意味。30勝未達でfailure維持。旧親再compileとRing host testsの重複を発見したため、総ARM0とした旧記述は撤回し原本と訂正を保持。次は再compileしない親復元→25戦目の通常入力改善。
+- run35457143420/job105934337378は候補2b107e7eの受付/launch契約復元・再構築成功後、policy includeがsc_events定義より先でC compile失敗/native0。旧失敗を保持し、host counter前方定義だけを追加した後継で未実行nativeへ進む。旧ARM再link0。
+- run35456028016/job105931324175は候補2b107e7eの独立2link/rollback成功後、runner契約reception欠落でnative0停止。失敗原本と候補は不変。親の受付/launch metadataを継承して未実行nativeだけを再開し、旧ARM再link・旧境界診断・受入単体は再実行しない。
+- run35452739116/job105922614423は新candidate7a5676f9の実21勝/63BP/元party600復元後、READY/6体/script09ff4cb5/Drought state2 cursor1で600frame停止したreadonly原本。旧21勝受入単体・旧ARM link・同じ境界診断は再実行せず後継だけを検証する。
+- run35451609631/job105919631301: 新候補7a5676f9の18戦目起動と実21勝/63BP/7回原party600復元を確認。22戦目6体選出後に停止、通常Save/fresh Continueなし。元人数1/現在3の読取実測も一致。成功prefixを独立再実行せず、新停止のreadonlyだけを進める。
+- run35450725433/job105917285879は保存candidate a2c612a2不変/旧ARM再link0の1process。81eventsと境界9行を採取したがscript0 endpoint前提が誤りnative未完。元party1/選出3の混同を修復し、同じ境界診断は再実行しない。
+- run35450224019/job105915967201: binding保存c96d14fは成功、旧タグ再利用のprepareは失敗/native0。既存ログ削除・成功binding単独再実行・旧ARM再linkをせず、run固有タグで未採取境界のみ進める。
+- run35439014239/job105886489666は前処理失敗/native0。source binding/生成MDは整合したが、親loss JSONに参照を結び付けず不変だったためcheckpoint必須差分検査で停止。commit/push/native/artifactなし。 同一失敗は再実行しない。
+- run35438845025/job105886059983は前処理失敗/native0。source binding更新後に生成MDを先に同期せず厳格resume.validateを実行し、Markdown driftで停止。native/pipeline/finish/pack/artifactは未実行。 同一失敗は再実行しない。
+- run35438563815/job105885315243は前処理失敗/native0。正本source_bindingsが意図した診断script変更を旧fingerprintとして検知し、prepareで停止。native/pipeline/finish/pack/artifactは未実行。 同一失敗は再実行しない。
+- run35437062974/job105881419750は17勝prefixと18戦目確認まで到達後、action/Saveなしでfield callback・script0へ落ちた。新候補の最初の停止として保持し、同じ18,000frame失敗待ちは再実行しない。
+- run35436330902/job105879496730はROM98b9eea4不変・ARM再link0で18戦目のCPU21点/600frame診断SUCCESS。outcome0/script09ff4dad・weather12/state2/empty cursor1/1・native busy loopを確認。診断を保存/30勝受入に変えず、同一診断は再実行しない。
+- run35435801505/job105878112448: candidate98b9eea4の独立2link/rollback成功。17勝後Drought native state5/complete1/cursor32/32、settled17と18戦目確認は観測。次launch黒画面でfailure、Save未到達。記録/両ログ/差分guard成功。17勝保存受入や30勝へ昇格せず、18戦目の未完部分だけ診断。
+- run35434591898/job105875004261は独立2link一致だが実17勝後timeout。生成entryの条件分岐/復帰が消失し、記録もstack-usageのrunner絶対pathで停止。native受入/Save/30勝ではない。原artifact10582003357を保持し、失敗の同一nativeと旧2linkは再実行しない。
+- run35434401185/job105874514732はCPU JSON arrayをobject専用readerへ渡してprepare停止。ARM link0/native0。array reader修復後の未実行build/nativeだけを進め、旧failureは保持。
+- run35433308048/job105871614193はCPU21点/600frameの読取診断SUCCESS。native受入ではない。weather12のinitAll0807ad09/state2/空loader0807a350に停止を特定。同候補の17戦診断は再実行せず、後継ROMの新検証だけを行う。
+- run35432359547/job105869102983: host9と修正wrapper5はPASS、実17戦目WINまで80events完全一致。新readonly13点はready1/palette1/両waiter/先頭080f7abdを観測しready0仮説を反証。native受入/Save/30勝ではなくActions failureを保持。同候補の同じ診断は再実行しない。
+- run35431539401/job105866926442はconfigure後の診断module再import testでprepare停止、native0。wrapperのSELF置換を修復して未実行readonly診断へ進む。旧failureを成功へ読み替えない。
+- run35431388329は固定resumeの旧source hashでprepare停止、native0。3ファイルの旧commit照合だけで更新し、ゲームの受入を変えない。
+- run35430246002/job105863397028は15勝prefix不変・実16戦目WIN/settled16・17戦目WIN後black画面/phase2のまま停止。saved/reloadedなし、16勝保存成功や30勝へ昇格しない。actions failure原本を保持し、直後のreadonly traceだけを追加する。
+- run35429677248/job105861895032は実15勝/45BP/16戦目敗北。79events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達でActions failureを保持。新caseでは15勝後returnまで71events完全一致を要求し、受入単体を独立再実行しない。
+- run35428983641/job105859956663は実15勝/45BP/16戦目敗北。79events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達でActions failureを保持。新caseでは16戦目actionまで74events完全一致を要求し、受入単体を独立再実行しない。
+- run35427693324/job105856400152は実8勝/18BP/9戦目敗北。45events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達なのでActions failureを保持。新caseは第9戦actionまで40events完全一致を要求し、独立再実行しない。
+- run35427049942/job105854709530は4勝後敗北だが正規LOSS/ABORT/owner64/原party600/9BP/通常Save/fresh Continueのscoped validatorはPASS。30勝ゲート未達なのでActions failureを維持。旧入力fallbackの独立再実行は禁止。
+- run35426278164/job105852678835は実4勝→5戦目敗北→LOSS/End(0)→ABORT/current0/best4/9BP/owner64/原party600/Save/別coreの27イベントを保存。旧validator誤拒否は新host世代検査で照合し、旧Actions failureを変更しない。独立native再実行不要。
+- run35425903083/job105851668685はprepare内hostテストで停止しnative0。configure後の再importによるヘッダー重複を修復した後継だけを実行し、旧failureを成功に読み替えない。
+- run35425237415/job105849912664: 実3勝・9BP・第2第3launch個体保持・owner64/party600・通常Save/fresh Continue・5画面を受入。残り3入力方策は未実行。新連続caseの不可避prefix3戦を独立受入caseの再実行と混同しない。
+- run35422605107/job105842901422の実1勝→第2戦中断/ABORT一度/best1/owner64/原party600/自動Save2+通常Save1/3coreは成功原本で継承。次の3勝ケースを中断の再実行に戻さない。
+- 旧3f377dbcの敗北run35391760500はmarker=2に対しguard=1でWhiteOutへ落ちた失敗原本。無変更再実行せず、battle-active enumへ修復した後継候補を使う。
+- 3f377dbc構築run35389993775の21 host契約/独立ARM2/全rollbackは固定証拠を再利用。compile/contextだけを繰返さず、未受入の実勝敗と保存復帰へ進む。
+- 3554dc42初戦保持run35379705280は300bytes完全一致/20events/3128framesで受入。旧99cc置換診断run35378203102とともに再実行せず保持証拠を再利用。3script対応のうち後続戦はhost/static確認までで、継続戦の新しい通し検証に含める。
+- run35378203102の個体追跡は35event/3336framesで完了。初回選択→第2確認300bytes一致、1936fの戦闘初期化で全3枠を消去/再抽選。旧候補の同一診断を再実行せず、保持修復した後継候補へ進む。初戦ターンは再実行していない。
+- run35367721416の初戦1ターン成功は同SHA/controllerなら再実行しない。画像16枚の選択ゴース/実戦ポリゴン差は未解決で、元party600byte退避検査と選択個体保持を混同しない。取消/Factory入口2件は旧失敗run内の成功原本とThumb全ROM非影響証明から継承する。
+- run35363580877は取消保存・Factory入口の2成功とThumb初戦失敗の混在原本。run全体をsuccessへ読み替えない。304byte adapter以外の全ROM一致証明がある間は成功2ケースを再実行しない。run35365722696のbridge停止は既存全体private guardであり、認可不足やpatch不成立ではない。
+- Circus実受付候補の23件/独立2link/限定2patchと原本を再利用。失敗run35359098745のmetadata名誤仮定とrun35359681701のveneer整列を再発させない。無変更の旧7関数/link/5335root/nativeは再実行しない。
+- Circus source run35351832671/actual-owner link run35353620141を再利用。C/契約/7実関数/候補SHAに影響がなければ10+10件/独立link/5335 rootsを再実行しない。保存ELFはlinked.oであり拡張子.elf限定探索を再発させない。
+- 通常戦闘Ring5件はcontent/modernization/pr16_ring_policy_acceptance.jsonの固定候補/原本から継承。旧NPC3件・BP/P03/P06/P07を影響なしに再実行しない。旧cold-policy-resetの不成立を新候補の結果へ読み替えない。
+- NPC配布3件はcontent/modernization/pr16_ring_npc_gift_checkpoint_20260918.jsonのrun35339382576で成功。配布/配置/saveに変更影響がなければ原本を継承し、次は通常戦闘のリング再判定と既存UI。
+- 2026-09-18所有者方針: 次作業はNPC配布と既存メガUI/所持判定の接続。以下の履歴にある「次の未読callee」や全owner不存在証明は既定の再開指示ではない。保存済み低level解析は破棄せず、正規NPC経路で再現した不具合の切分けに必要な箇所だけ参照する。合成RAM/fixture成功を通常取得に読み替えず、文書更新だけでROM/nativeを再実行しない。
+- run34762342982の交換ABI source/host検証と2operand修正は完了。9tests・二重限定生成をnative交換/BP受入と混同せず、次は未観測の勝利後区間へ進む。
+- run34759726061のnative敗北帰還は原stdout/traceの再検証で完了。原Actions failureをsuccessへ改作しない。同一fcda敗北/同一bffd失敗/完了source監査/候補byte採取を再実行しない。取消・Save・Continue受入原本は無変更。
+- 履歴: run34757633314の固定CFRU source監査は19tests PASS、宣言1件のみでsource側ownerは未解決だった。旧schema1 owner=trueは不採用のまま保持。その後run34758866475のcandidate bytesで実分岐を特定し、今回のnative敗北帰還修復を完了。固定source再scan・byte採取・受入取消/Save/Continueは繰り返さない。
+- run34749370272の旧bffd敗北→WhiteOut→party未復元はfailure原本で保持。その修復影響区間はrun34759726061のfcda native原本とsource-only判定で検証済み。同一条件を再実行しない。
+- 取消・元party600bytes復元・通常Save/fresh Continueの受入を変更影響なしに再実行しない。
+- special 0x2F→0x29の最初のchooser原因調査と3体選択診断を、同一入力で単独再実行しない。次の停止点まで延長する。
+- run34739491272の2回目確定→5D→battle struct→敵3体→実action到達を変更影響なしに単独再実行しない。次の未観測区間へ延長する。
+- run34741232621の技選択・PP消費・次action callback3925fは、source影響なしに単独再実行しない。失敗run34741024241はfailureのまま保持する。
+- P03 fixed-form5件、generic FORM、P06、P07ほか完了済み領域は変更影響台帳で必要性が出るまで再オープンしない。
+- CircusのF0はbacksprite table誤読。decoder追加やraw403A直接書込みを入場証拠にしない。
+- Ring未発見を不存在と断定せず、fixtureやtrainer-authored policyを通常供給/UI受入へ読み替えない。
+- ROM/save/private入力/credentialを新規追加しない。既存公開方針と過去guard失敗は保持し、秘密情報の検査を無効化しない。
+- run34770280751の単体交換＋次戦開始は診断原本を再利用。次戦個体同一性とBP報酬まで受入済みと読まない。
+- 個体追跡run34774194505の原本を再利用。追跡完了と個体保持/BP受入を混同しない。
+- WIP48a36ca/owner run34785149994を再利用。host predicate PASSはruntime修復やnative保持成功を意味しない。対象コード変更時だけ対応回帰を再実行。
+- run34802013676のtarget callsite/ABI限定監査（12tests、cache alias 2件、linked.o byte-identical、predicate 0x090DD51C、player build 0x090DD538、0x090DD2E6再合流）は完了。runtime/保持/BP受入とは混同せず、対象source・candidate・cache契約の変更なしに再実行しない。
+- run34825059791の限定runtime接続・交換個体保持（600byte/3個体/次戦action）は完了。同一candidate/sourceで単独再実行せず、run34854927678の3勝9BP受入prefixとして再利用する。
+- run34854927678の同一playthrough native 3勝・BP 0→9・元party600bytes復元はscoped受入済み。変更影響なしに単独再実行せず、BP購入suffixもrun34946969126で完了。
+- run34946969126の通常購入12→8 BP・かわらずのいし0→1・Save/fresh Continueは正式受入。source/候補/契約変更影響なしに再実行しない。失敗run34933733445と34945660762をsuccessに読み替えない。
+- Ring source graphと誤入口選択の修正は完了。同一sourceで再scanせず、map97/80 compiled ownerの未観測区間へ進む。source-onlyをRing通常取得や全ROMのgiver不在証明にしない。
+- Ring compiled監査の成功原本とsource hashが同じなら再compile/再scanしない。記録された未解決外部ownerだけを進め、受入済みBPを再実行しない。
+- run34960361700の34 tests/callstd4/6入口はsource不変なら再実行しない。patch先の未観測実体と未解決辺だけを進める。BP受入原本は不変。
+- run34964225479の18 tests・24 graph/366命令は同一source/candidateなら再実行しない。残る18target/15間接辺だけを進める。Ring通常取得受入や全owner不存在へ読み替えない。
+- 15間接辺のABI分類12return/2callsite trampoline/1live-frame branchを同一入力で再実行しない。旧18未読targetと新1target、全caller/CFG/stack-integrityの仮定を保持し、Ring受入や全owner不存在へ昇格しない。
+- 0x0806DE7Dの1根byte採取は完了。同一candidate/sourceで再採取せず、保存した継続graphを再利用する。継承8byte frame・旧18未読target・全owner未除外を保持し、Ring通常取得の受入へ読み替えない。
+- FlagSet継続の継承frame結合は条件付きで完了。opaque callee 0x09097105のreturn/SP/r4/保存slotと返却pointer非aliasは未証明。結合を全owner除外やRing受入へ昇格せず、同一入力で単独再実行しない。
+- 0x09097105の限定byte採取は保存済み。保存graphを再利用し、同一candidateから再採取しない。帰還/SP/r4/非alias検証は別工程。
+- 0x09097105の10命令/22byteと追加16byte live-frameの限定検証は完了。helper091281D1・非0継続090970F7・0継続0806DDBDは未読。callee return/SP/r4/返却pointer非aliasを受入せず、literal code pointerを返却bufferへ読み替えない。同一prefixを再採取しない。
+- 0x091281D1のhelper byte採取は保存済み。同一candidateから再採取せず、保存byteでreturn/stackを限定検証する。
+- 0x091281D1の保存29命令/全u16 return・SP/r4-r11/LR/保存slot非変更検証は完了。source不変なら再採取/単独再実行せず0x090970F7へ進む。callee全体帰還/非alias/Ring受入とは区別する。
+- 0x090970F7の限定byte採取は保存済み。保存byteを再利用し、同一candidateを再構築/再採取しない。
+- 0x090970F7の保存POP1命令2byte・非0側SP/r4-r6/保存slot結合は完了。同一入力を再採取/単独再実行せず未読0x0806DDBDへ進む。callee全体/非alias/Ring受入とは区別。
+- 0x0806DDBDの限定byte採取は保存済み。同一candidateを再構築/再採取せず、保存byteでABI検証する。
+- 保存zero54命令/114byteの採取・限定モデルは完了。次の採取は新規未読targetのみ。仮想call契約を実帰還や保存slot不変へ昇格しない。
+- 0x0806DE3Dの共通末尾1根は採取保存済み。同一candidateを復元/再採取せず、保存byteのABI検証へ進む。
+- 共通末尾0x0806DE3Dの保存6命令/12byteの限定ABIは完了。再採取/単独再実行せず、新規未読0x0806DE63へ進む。局所store/POP/return0をcallee全体の保存/帰還証明へ昇格しない。
+- 0x0806DE63帰還末尾1根は採取保存済み。同一candidateで再採取せず保存byteだけでABIを検証する。既読prefix/BP再実行0を保持。
+- 保存末尾0x0806DE63の3命令は条件付き局所ABI検証済み。再採取・単独再実行しない。全callee帰還/保存slot不変/非aliasは未証明。
+- 0x0806DE51高域分岐は採取済み。同一candidateの再採取をせず保存byteのABIへ進む。保存共通末尾/帰還末尾/既受入BPは再実行しない。
+- 高域0x0806DE51の保存8命令は算術ABI検証済み。再採取・既読ABIの単独再実行をせず、次は外部callee0x08113889を1根だけ進める。
+- 外部callee0x08113889の限定byteは保存済み。同一candidateから再採取せず保存graphのABIを検証する。他callee/旧18targetを解決済みへ変えない。
+- 0x08113889の保存prefix ABIは完了。再採取/単独ABI再実行をせず、未読0x081138C9/0x081138F1のみを進める。局所stack書込を全副作用なし/帰還/owner除外に昇格しない。
+- 0x081138C9の1根継続byteは保存済み。prefix/継続を再採取せず保存継続ABIへ。0x081138F1末尾、他callee、旧18ownerの未証明範囲を保持する。
+- external1保存継続18命令のpointer/条件付きcounter STRHは検証済み。再採取・単独ABI再実行をせず末尾0x081138F1へ。counter/返却pointerの保存slot非aliasと格納域サイズは未証明。
+- external1帰還末尾0x081138F1のbyteは採取保存済み。再採取せず保存末尾ABIだけを検証し、prefix/継続は保存結果を再利用する。全帰還/保存slot非alias/owner除外は未受入。
+- 本セッションのexternal1 prefix ABI/継続採取・ABI/末尾採取・ABIの5工程は完了。保存証拠と原Actions/commitを再利用し単独再実行しない。次は0x0806DD1Dの1根。全callee帰還・counter/返却pointer非alias・Ring通常取得は未受入。
+- 外部callee0x0806DD1Dの限定byte採取は完了。保存graphだけでABIと副作用を検証し、同一candidateから再採取しない。external1の5工程・BPを再実行せず、0x081138F9・旧18owner・保存slot/返却pointer非alias・Ring通常取得は未証明のまま保持する。
+- external2 0x0806DD1Dの保存28命令/56byteは全u16×2mode分類と局所stack帰還ABIを検証済み。同一入力の再採取/単独ABI再実行をしない。外側callee・保存slot/返却pointer非alias・Ring通常取得の受入へ昇格せず、次は0x081138F9の1根だけ進める。
+- external3 0x081138F9の1根byte採取は完了。同一candidateで再採取せず保存byteのABI/副作用を検証する。external1/2とBPは再実行しない。新規未読継続・旧18owner・外側callee帰還/保存slot/返却pointer非alias・Ring通常取得は未証明として保持する。
+- external3保存前半32命令/64byteのABIは完了。3条件・正規化引数・20byte frameを保存契約として再利用し、再採取/単独ABI再実行しない。次は未読継続0x08113939だけ。末尾0x08113961・旧18owner・外側帰還/非alias・Ring通常取得は未受入。
+- external3継続0x08113939の1根byte採取は完了。同一candidateで再採取せず保存byteのABI/副作用を検証する。external1/2とBPは再実行しない。未読末尾0x08113961・旧18owner・外側callee帰還/保存slot/返却pointer非alias・Ring通常取得は未証明として保持する。
+- external3継続20命令/40byteのABIは完了。4書込の順序とcounter/baseの再読取を保存契約として再利用し、再採取/単独ABI再実行しない。次は未読末尾0x08113961だけ。record/counter/base/frame非alias・外側帰還・旧18owner・Ring通常取得は未証明。
+- external3末尾0x08113961の1根byte採取は完了。同一candidateで再採取せず保存byteの帰還ABIを検証する。prefix/bodyは保存契約だけで合成し、既読ABI/BPを再実行しない。旧18owner・帰還先/保存frame非alias・Ring通常取得は未証明。
+- external3末尾3命令/6byteと保存prefix/bodyの条件付き帰還合成は完了。末尾r0は保存LRで上書きされbodyのindex+1ではない。160単一bit破壊診断はnative観測ではない。同一入力の末尾再採取・先行ABI/BP再実行を避け、callerの実frame/record/global非aliasと旧18ownerだけを進める。
+- run35054868301の末尾43testsと条件付き合成は保存原本で成功照合済み。P05所有権テストの旧3件期待をBP受入原本に結び直した。旧failure run35054872496はfailureのまま保持。BP/P03 native、末尾ABI、prefix/bodyを再実行せず実caller非aliasと旧18ownerへ進む。
+- 保存external1/2/3とFlagSet callerの契約結合は完了。selector2のexternal3到達域は560..2047/2080..2303、最大frame44byte。新checkerのfixture PASSは実SP/base/LR/割込み状態の観測ではない。旧ABI/受入native/本工程同一fixtureを再実行せず、実caller snapshotとallocation/帰還先証拠、旧18ownerを進める。Ring通常取得は未受入。
+- boot FlagSet caller snapshotは保存原本を再利用。同一観測器・同一candidateの無変更再実行をしない。fixture/bootをRing物理受入へ昇格しない。
+- selector/record制御変数8件の限定literal参照採取は保存原本を再利用する。既知命令は再decodeせず、未検証のThumb解釈候補を実行可能owner/通常取得へ昇格しない。次は保存したwriter候補からselector1/2の到達条件とrecord割当契約を結合する。
+- 保存0x08113984初期化の局所Thumb契約・容量差・別callsiteの制御域alias候補は検証済み。候補再復元/同一初期化ABI/BP/nativeを再実行せず、実callerのpointer/size/limitと0x09126CB4/0x09127060/0x09099E16の実作用・実到達条件を次に照合する。
+- selector採取・record初期化と今回closeoutの保存原本を再利用。受入済みnative/BP/既読ABIを再実行しない。
+- initializer/外部callee6根のBL・pointer参照と不足byteは保存原本を再利用する。selectorの既存literal採取/initializer ABI/BP/nativeは再実行しない。採取されたcall候補は実到達やRing取得受入を意味しない。
+- 保存BCD変換2048vector・I/O wrapper条件モデル・tick/init prefix・veneerは完了。0x09099E16は0x081C9DF9へのtail veneerで、memset効果/帰還保存を証明していない。同じ局所ABI/byte採取を繰り返さず、保存された未読delegateと実到達だけを進める。
+- run35082799310のcaller採取20testsとrun35084187651のrole35testsは成功原本/保存commitまで照合済み。今回closeoutを含め保存原本を再利用し、同条件のbyte採取/ABI/nativeを再実行しない。
+- 未検索Thumb短分岐/ADR・ARM B/BL/ADR・PC相対literal参照の探索と6delegateの不足byte採取は保存原本を再利用。canonical実行addressに限定した候補探索で、computed pointer/実到達/全caller不存在は未証明。
+- branch-frontier採取と7delegateの局所契約は保存原本を再利用。memsetの限定ベクトル、reset、I/O readerの供給bit列モデル、gate、date validatorを通常story/hardware受入へ昇格しない。0x0912C4A8/0x0912C554/0x09099E04とmonth table/間接callerが次の未読境界。
+- 今回frontier30testsと7delegate36testsは成功Actions・原artifact・保存commitまで照合済み。新規66tests/限定8191vectorの実装成果を再利用し、同一探索・byte採取・ABI・受入BP/nativeを繰り返さない。
+- 未読3delegate/月表の不足byteとmirrored-PC命令候補は保存原本を再利用する。canonical-PC探索、7delegate局所契約、BP/nativeを再実行しない。実caller/pointer/size/LIMITは未証明。
+- GPIO2関数/月表11か月/無効monthの表範囲超過/09099E04中継は保存結果を再利用。同じbyte採取、mirrored探索、旧7delegate/BP/nativeを再実行しない。081C85A5の戻値・ABIと閏年suffix、実caller/pointer/size/LIMITは未証明。
+- 081C85A5の限定512byte窓は保存結果を再利用。同一candidateから再採取しない。GPIO/月表/既読ABI/mirrored探索/BPは再実行せず、保存命令の剰余・閏年契約へ進む。
+- 保存081C85A5の非0除数剰余・中継ABI・二月suffixを再利用。除数0の未読helperや実年offset、caller/pointer/size/LIMITの証明へ昇格しない。同じbyte採取/候補復元/GPIO/月表/BPを単独再実行しない。
+- 旧18targetの今回保存命令/境界を再利用。保存nodeへ合流した先や未読calleeを再帰探索しない。cohort内共有node・operand/literal/未知命令/資源上限は受入に昇格しない。BP/GPIO/閏年/候補の同一採取は再実行しない。
+- 保存18targetのcallsite結合を再利用。中継先の定数とcallee帰還/SP/保存register仮定を区別する。ROM/native再採取や受入済みBPを単独再実行しない。未解決caller・jump table・calleeを残す。
+- 保存callback/cursor/copy2048/checksum/LE32/runtime metadata初期化とvalidator prefixの合成契約を再利用。synthetic frameをlive frame・Ring取得と同一視しない。新規byte採取0、既読ABI/nativeを単独再実行しない。
+- 実callsiteからの新規7入口・5要素jump表と合流先を再利用。今回保存したnodeを再採取/再解読しない。定数targetや分岐表をnative到達・全callee ABI・Ring受入に読み替えず、未知/窓外/共有境界を残す。
+- 保存pop+cursor復帰、mode全256値、中継先2件、validator version/size/hash/reservedの合成契約を再利用。10090d4以後の新規境界以外を採取せず、既読ABI/BPを単独再実行しない。低level成否とRing通常取得・装備実戦・保存の受入は別。
+- 残る4callee/中継先/validator正常継続の有限wave採取は保存原本を再利用。既存nodeと新規共有nodeを再解読せず、未知callee/間接辺/資源境界は未証明で保持。次は保存byteの契約結合だけを進め、BP/nativeや同じ採取を単独再実行しない。
+- 445保存命令によるversion1/VACQ正常・CRC拒否、version2初期化、flash4byte書込の合成契約を再利用。既読採取/native/BPを再実行せず、未読6calleeと3data範囲だけを次の有限結合へ渡す。合成I/O書込を実flash操作やstory到達と同一視しない。
+- 残る6callee/3data表とtable先の有限採取は今回保存原本を再利用。次はv2正常/実buffer copy/string分岐を合成契約として結合。旧445命令・280単独契約・BP/nativeは再実行しない。
+- v2正常/規則境界・v1 owner copyとv2 copyなし・有限string契約は今回原本を再利用。旧採取/単独280契約/BP/nativeを再実行せず、残る6calleeとstring subtype21要素表84byteへ進む。長さ0のcopyは安全なno-opでなく未map停止として保持。native取得とは別の合成契約。
+- 未読6callee/string252の21要素84byte表とその有限継続は今回保存原本を再利用。同一採取・既存94契約・BP/nativeを再実行せず、保存nodeでstring253/252とcallee境界を結合する。表の分岐先同定は帰還/SP/実callerやRing正規取得の証明ではない。
+- FC全21subtype有限契約・memset0/正長/整列・selector範囲/合成nibble表・null gateは今回原本を再利用。旧94契約/採取/BP/nativeを再実行せず、3callee・1実中継先・未読data133byteへ進む。合成表の値を候補ROM値に、null gate成功を非null帰還やRing取得に読み替えない。
+- 3callee/非null中継先/placeholder等133byteと表候補先の有限採取は今回保存原本を再利用。同じ採取・旧716契約・FC/memset/BP/nativeを単独再実行しない。表word候補と保存命令の結合を実callbackの帰還/SPやRing正規取得の証明にしない。
+- placeholder14参照/実nibble/16slot task挿入と非nullprefixは保存原本を再利用。正常な有限task列と不正slot255のframe外write診断を混同しない。旧716契約・FC/memset・同じ採取・BP/nativeを単独再実行せず、1callee/1継続と11文字列の限定窓へ進む。
+- 未読2入口と11文字列83byteの有限採取は保存原本を再利用する。同じcandidate復元・既読命令再解読・旧795/716契約・BP/nativeを単独再実行しない。保存文字列終端とcallee候補を実callerのbuffer/task境界やRing正規取得へ昇格しない。
+- CreateTask保存callerの0..15探索・正常task列/満杯と11実文字列の容量境界・非nullコピーprefixを再利用。特定callerの範囲証明を全live caller/割込み状態やRing正規取得へ昇格しない。同じ採取・旧795/716・task挿入/memset/BP/native単独試験を再実行しない。
+- 3callee/VarGet中継先の有限採取を保存原本から再利用する。同じ候補復元、1935既読命令、11文字列、CreateTask caller265契約、旧795/716/BPを単独再実行しない。新callee・table・callbackは未証明境界を明記し、全live frameやRing取得へ昇格しない。
+- 保存2107命令による81要素展開・非null caller帰還/32byte保存・resource/callback停止契約を再利用する。11文字列/265caller/旧795/716/BP/nativeを単独再実行しない。非null限定帰還をdispatch callback帰還・全live slot境界やRing取得へ昇格しない。
+- 4calleeとVarGetの2継続の有限採取は保存原本を再利用する。既読2107命令・81要素展開・非null帰還・265caller・11文字列・BP/nativeの単独再実行は禁止。未読callee/間接callbackと実allocation条件は未証明のまま、次は保存byteの契約結合へ進む。
+- VarGet helper全65536値・保存caller帰還・明示slot不足拒否・callback/resource停止契約を再利用。同じ候補復元/採取/既読2330命令/81要素/非null帰還/265caller/11文字列/BP/nativeを単独再実行しない。special pointer表と拡張/通常変数領域の合成allocationを実callerの有効範囲やRing取得へ昇格しない。
+- 保存external1/2/3の7byte graphを現在の2330命令へ再利用結合した。今回2工程の成功Actions/原ZIP/保存commitを照合済み。採取・旧ABI・VarGet全u16/1337帰還・BP/nativeを単独再実行しない。既知nodeへの再結合はselector callerの全帰還や実allocation/Ring取得の証明ではない。
+- VarGet selector1/2の全通常256変数・record key/mode・count/limit/capacity境界と外側帰還の新規結合は保存結果を再利用する。旧external ABI/7graph・旧VarGet65536/1337・既読2457命令・81要素/265caller/11文字列・BP/nativeを単独再実行しない。明示合成allocationの帰還を実caller/Ring通常取得へ昇格しない。
+- 未読resource 8calleeの有限採取は保存原本を再利用する。既読2457命令/VarGet selector縦結合/旧external ABI/BP/nativeを単独再実行しない。新規calleeや間接辺はstubで補わず、保存命令からresource/callback/出力slotの条件付き帰還とallocationを結合する。
+- resource追加3callee/8要素32byte表と表先の有限採取は保存結果を再利用する。既読2850命令・先の8callee・VarGet/旧external ABI/BP/nativeを単独再実行しない。保存table targetを実callback選択・実allocation・Ring通常取得の証明へ昇格しない。
+- 保存2970命令のresource属性/queue/転送/bitmap/12byte caller帰還と不足時部分書込は今回原本を再利用する。同じbyte採取/旧VarGet/旧external ABI/BP/nativeを単独再実行しない。queue予約をDMA実行・描画・Ring通常取得と同一視しない。cursor>=128の配列外初回参照、size0再利用、bitmap検索count0/1拒否、実allocation未証明を保持する。
+- 固定source-lockのJP symbolと描画owner/ヘッダABI照合を再利用。保存32byte text slotとCFRU36byte TextPrinterの差を保持し、ヘッダだけでlive allocationやRing取得を受入しない。先行resource1752契約・2970命令採取・BP/nativeを単独再実行しない。
+- JP text/windowの7入口の有限採取は今回保存nodeを再利用。旧2970命令/1752resource契約/固定JPsource取得/BP/nativeは再実行しない。保存initializerの存在を通常入場・実allocation成功・callback実行と同一視しない。
+- 実RunTextPrinters転送先0x09378A43とwindow6callee・dummy template採取は保存原本を再利用。旧3496命令/7入口/旧resource契約/BP/nativeを単独再実行しない。allocatorや間接辺を成功stubへ置換しない。
+- heap2入口・実描画本体・復帰と属性10要素表の採取は保存原本を再利用。旧3595命令や既読UI/属性/resource/nativeを単独再実行せず、保存pool/heap/callbackの契約へ進む。
+- 保存3918命令のUI pool/heap/実RunTextPrinters有界契約は今回原本を再利用。heap不足/null freeのassert呼出前とsplit初期化前の部分書込を保持する。未読3callee/実gFontsを成功stubにせず、旧byte採取/旧resource/受入済みBP/nativeを単独再実行しない。
+- heap split/assert/render thunkの未読3入口採取は今回原本を再利用。旧3918命令・pool/heap契約・旧resource/BP/nativeを単独再実行しない。実gFonts callback table/実allocationは未観測のままで、未読辺を成功stubに置換しない。
+- 保存3955命令のheap分割・window連結・実renderの有界契約は今回原本を再利用。heap不足/assertは未読診断callee前、active描画は実gFontsとcallback未結合のまま保持。旧733条件・今回37命令採取・resource/BP/nativeを単独再実行しない。
+- gFonts reader隣接の初期化窓と有限literal依存は保存結果を再利用する。同じcandidate復元/採取・旧3955命令/609条件・BP/nativeを単独再実行しない。literal表候補の有限窓を実table長・通常初期化到達・Ring取得へ昇格しない。
+- gFonts setterの3保存命令と新規caller literal/table有限採取・描画lookup結合を再利用。同じsetter caller探索/候補復元/byte採取/旧3955命令契約/BP/nativeを単独再実行しない。候補表のoffset lookupを実table全長・live初期化・callback帰還・Ring通常取得へ昇格しない。
+- 保存messageのfont2/4/5だけで絞ったcallbackと直接1段、default initializer帰還を再利用。候補表の他offsetを有効fontとして採取しない。同じ復元/採取/初期化契約/旧140条件/BP/nativeを単独再実行しない。callbackの保存命令・分岐表境界をlive初期化/描画完了/Ring通常取得へ昇格しない。
+- font2/4/5のstate7分岐表と直接1段を保存。無効state帰還/未map表境界を再利用し、次は保存state/終端/遅延・window書込を契約結合する。既読命令/default初期化/旧font契約/BP/nativeを再実行しない。
+- 文字8分岐・選択font2/4/5の字形分岐と待機5calleeの有限byteを再利用。次は明示RAM/狭いstackでstate/終端/遅延/queue結合を検証し、音声globalを暗黙stackゼロで代用しない。既読採取/受入済みfont・BP/nativeは再実行しない。
+- 保存text状態/終端/遅延/通常高速描画の明示RAM契約を再利用。音声globalと512byte live stackを分離。未読control24表・字形callee・cursor/audio/BIOS境界を成功stubにしない。今回契約/既読byte採取/旧font初期化/BP/nativeは単独再実行しない。
+- control24表と字形/出力/prompt/音声8calleeの有限採取は保存原本を再利用。旧5891命令・627text契約・受入済みfont/BP/nativeは単独再実行しない。次は保存命令のcontrol/prompt/字形を明示RAMで結合し、未読data/音声/BIOSを成功stubにしない。
+- 保存control24分岐・色81要素展開・prompt初期化とpayload不足の部分write契約を再利用。字形/音声/BIOS未読境界は成功stubにしない。同じ採取・旧627text契約・font/BP/nativeを単独再実行しない。
+- 保存7calleeと字形4文字/font2・4・5、cursor画像/animation、symbolと音声表の限定窓を再利用。旧6534命令・636control/627text契約・font/BP/nativeを単独再実行しない。字形/cursor/scrollと音声/BIOSの実効果は保存命令と明示RAMから結合し、未読辺をstubにしない。
+- 字形256byte変換表と音声3calleeの不足採取は保存原本を再利用する。旧6983命令/3212byte・636control/627text・受入済みfont/BP/nativeを単独再実行しない。次は保存字形/cursor/scrollの明示RAM効果を検証し、未読音声/BIOSを成功stubにしない。
+- 保存字形4文字/font2・4・5とspaceの展開、透明pixel、clipと通常callbackの明示RAM契約は本原本を再利用。全文字/live allocation/実画面の受入ではない。既読byte・636control/627text・font/BP/nativeを単独再実行しない。
+- 保存cursor/scrollのpixel・queue・state2/3/4は本原本を再利用する。4byte旧stack残値の明示条件とfillの隣接nibble効果、speed3..7の進捗0を保持。同じcursor/scroll・1122glyph・636control/627text・font/BP/nativeは単独再実行しない。
+- RunTextPrintersの色制御+字形4文字/space有限streamは通常6呼出し・高速1呼出しと終了後無変更を保存原本で再利用。pixel最終像の一致とqueue予約回数の違いを保持。全文法/全caller/実DMA/nativeの受入ではない。同じrenderer・591cursor/scroll・1122glyph・636control/627text・font/BP/nativeは単独再実行しない。
+- 保存音声停止/再開/設定とtext callerの限定RAM契約は本原本を再利用。合成音声object/IO byteの変化を実音声やBIOS実行へ昇格しない。未読3callee・song header・BIOS entryをstubにせず、同じaudio/renderer/cursor/glyph/BP/nativeを単独再実行しない。
+- 音声未読3callee・BIOS入口・song0/5/291 headerの有限採取は保存原本を再利用。既読7091命令・audio164/renderer/cursor/glyph/BP/nativeは単独再実行しない。SWIを成功stubにせず、track pointerを再生完了やlive音声の受入へ昇格しない。
+- 選択曲0/5/291のheader・優先度・track容量・text16の初期化契約と音声末端の部分writeは保存原本を再利用。初期化を再生完了へ、明示IO byteを実DMA/音声へ昇格しない。同じaudio出力/旧164・renderer/cursor/glyph/BP/nativeを単独再実行せず、残る3callee/周波数表とlive callerの未証明境界へ進む。
+- 音声末端3入口/周波数15index参照窓の有限採取を保存原本で再利用。既知SWIは未実行BIOS境界であって未読再採取対象ではない。15要素を本来の表長/有効mode全域と断定せず、index0の表前参照を保持。同じ採取・audio342/164・renderer/cursor/glyph/BP/nativeは単独再実行しない。
+- 保存除算/音声再開/周波数と有限VCOUNT入力の契約は保存原本を再利用。BIOS11/12を実行済み・未読再採取へ読み替えない。15index参照窓は合法mode一覧ではない。ゼロ除算例外先0x081c7fcdは不足時停止として保持。同じ末端/音声342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。次は未結合text/live ownerの到達・allocation/callback。
+- 混在textの選択3曲・色・4文字・停止/再開は本原本を再利用。通常5呼出し/高速1呼出しの最終画素/音声一致、queue要求4対1を保持。音声初期化後のglyph不足、track pointer不足の部分writeを破棄しない。同じ混在列/音声末端439・342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。
+- run35255462365は49tests/333条件と非force記録が成功した後のexport失敗。原Actions failureを保持し、記録commit a5573a9を独立照合。混在列は再実行しない。分割exportは各member 2MB以下・全体hash照合。次は未結合text/live owner。
+- message実callerのslot0/font2/4/5供給と速度delegate一根を保存。同じ採取・混在列333/旧renderer/audio/glyph/BP/nativeを単独再実行しない。次は保存速度byteとmessage callerの設定/不足/slot書込/callback選択を一体検証。
+- 保存7309命令によるmessage生成→設定検証→slot0→task割当とfont callback結合は保存原本を再利用。設定byte256値、stack LR由来残留、task満杯/null fontの部分成功を通常story受入へ昇格しない。次は登録task callback08068C31とその上流実到達・window初期化を限定する。本工程/速度採取/混在333/音声/renderer/BP/nativeは単独再実行しない。
+- 登録message task08068C31の限定採取と保存caller照合は保存原本を再利用。次は保存taskの状態遷移/終了/不足境界を上流と結合。登録を実行、初期化表をlive初期化へ読み替えない。旧391条件/速度採取/renderer/audio/BP/nativeを単独再実行しない。
+- 保存task08068C31の七callee採取は原本を再利用。新規callは再帰採取せず未読境界を保持。次は保存命令で待機/終了/task削除/window分岐/不足を結合。今回採取/前回62命令/旧391条件/BP/nativeは単独再実行しない。
+- task終了判定/未読window8calleeとliteral由来frame callbackの採取は保存原本を再利用。次は保存命令だけで上流script/busy・task待機/終了/削除/window不足を結合。今回/旧採取/旧391条件/BP/nativeは単独再実行しない。
+- message taskと上流scriptの結合・busy全byte・待機/終了/削除/不足の条件は本原本を再利用。task満杯でもbusy2となる部分成功を正常受入へ昇格しない。今回結合/七callee採取/旧391条件/BP/nativeは単独再実行しない。
+- 55tests/1231条件の原本run35301261393と完了5a489a17はこの軽量checkpointから再利用。大きなJSON本文が空なら権限不足/内容不在と推測せず、記載artifactと分割exportをhash照合して読む。今回記録だけで契約/native/byte採取を再実行しない。次はwindow状態0/1の未読境界。
+- window属性selector0の一word/選択body・palette0806FB91・frame thunk081C7AE9は保存原本を再利用。次は状態0/1の条件付き効果/帰還/不足を保存命令で検証。今回採取・旧1231条件/391条件/BP/nativeは単独再実行しない。
+- 状態0/1の残存5callee採取は本原本とhash付きexportを再利用。次は属性0・palette・r8 frame・queueの明示RAM結合。今回/旧29命令78byte/旧1231条件/BP/nativeは再実行しない。
+- 矩形index計算/値書込2leafは本原本とexportを再利用。次は状態0/1の明示RAM結合。BIOS SWI0B/0Cを成功stubにしない。今回/旧5callee/29命令/1231条件/BP/nativeは再実行しない。
+- 属性0・mode2状態0進行・frame矩形書込・BIOS停止の今回結合原本を再利用。queue失敗でもstate1に進むことを描画成功へ昇格しない。BIOS0B/0Cの保存prefixも再採取不要。今回/旧68命令/280命令/29命令/1231条件/391条件/BP/nativeは単独再実行しない。
+- 成功724条件/50testsの原本はこの軽量checkpointとhash付きartifactから再利用。今回checkpointはbyte採取/契約/nativeを実行しない。次は既知BIOS0B/0Cの根拠付き供給/効果境界。prefix/旧377命令836byte/724条件/1231条件/BP/nativeを重複実行しない。
+- BIOS0B/0Cの今回メモリ効果・短い供給/readonly部分書込・palette20byte・state1 fill後の12byte window転送を保存原本から再利用。prefix/724条件/旧1231条件/候補再構築/BP/nativeを単独再実行しない。次は保存した属性表不足の正確なread境界。条件付きHLE契約を実BIOS実行/通常story/Ring受入に昇格しない。
+- 本工程の2属性slot/新規分岐先byte/結合traceは保存原本から再利用。BIOS契約32tests/26条件・palette20byte・724条件・1231条件・BP/nativeを単独再実行しない。次はcaseごとに保存した不足memory/未知nodeを対象にし、候補再構築を不要にできる保存byteを先に確認。
+- state1→2の今回独立write oracle/保存レジスタ/queue満杯対照/新suffix部分停止を保存原本から再利用。state2の旧poll/delete受入を再実行しない。state0の次の未供給32byteは0843FA24、コピー先0203730C/0203770C。palette20byte・2属性slot・8628旧node・BIOS/724/1231条件・BP/native再実行禁止。state1のRAM/queue条件付き完了をDMA描画・実BIOS・通常story/Ringへ昇格しない。
+- state0の0843FA24の32byteと両コピー99契約・21caller suffixを保存原本から再利用。次は0300504Cのpointerと+14の選択byte、その保存callee継続。state1→2/旧state2/BIOS単独/BP/nativeは再実行しない。通常story/Ring/実BIOSは未受入。
+- state0のoption全256値・default行/実palette・独立write oracleによるstate0→1を保存原本から再利用。state1→2は先行受入の継承のみ。次は通常story/live pointer初期化・task入場と保存callerの接続。option index0..31の算術は全32行有効証明ではない。BP/旧BIOS/native/同一候補再構築を単独再実行しない。
+- state0→1→2の同一RAM/queue予約引継ぎ21条件とstate2の明示config不足停止を保存原本から再利用。旧state0/1単独・option263・paletteコピー99・BP/native再実行禁止。次は保存producerのconfig/text pool/task初期化を今回RAMに衝突なく接続する。hostからstate/busyを書き換えて終了させない。
+- producer→script即値/fallback→state0/1/2→busy解除/task削除の同一RAM32条件を保存原本から再利用。終端のみの合成text/default行/明示初期RAM/HLE条件付きであり通常story取得ではない。旧単独producer/state/poll・BP/nativeを再実行せず、通常storyのpointer初期化・非空text・script実到達との接続だけを進める。
+- producer→state012→5文字描画→busy解除/task削除の同一RAM原本を再利用。通常/高速の画素一致、遅延pollとqueue差、入力不足の部分writeを保持。合成text/初期RAMの限定証明であり通常storyのscript実到達/Ring取得ではない。旧単独producer/state/renderer/glyph/BP/nativeの再実行は禁止。
+- font initializer080F8A29→setter08002C1Dとprinter reset08002C29からproducer/state012/非空text終了までの同一RAM原本を再利用。初期pointer/poolのhost準備を2点除去した条件付きモデル証明で、これらentryの通常story到達は未証明。旧setter/font/state/glyph/BP/nativeの単独再実行禁止。
+- 保存8628命令の3入口inbound照合と固定reference限定caller索引を再利用。未保存caller不存在やJP candidate実到達とは読まない。次は索引の未読caller/tableのcandidate byteを限定し、bootstrap/text/BP/nativeを単独再実行しない。
+- 保存script setupのtable08162CC4/end08163010、message/waitmessage実slotと有限field/script caller採取を再利用。保存8K命令/bootstrap/text/BP/nativeの単独再実行禁止。間接dispatchとstory側state/window供給は到達証明ではない。
+- 保存script/field dispatch全u8境界、実66/67slot、初期化とglobal statusの条件付き契約は原本再利用。synthetic RAM/任意callbackの帰還を通常story供給と同一視しない。次は080565B0の5slotと08068DDD待機callbackの未読byteだけ。旧text/bootstrap/BP/native再実行禁止。
+- 080565B0の5slotと08068DDDの実callback、field未読接続は今回保存byteを再利用。全u8旧script契約、旧text/bootstrap/BP/nativeの単独再実行禁止。命令採取をfield初期化やRing通常取得のruntime受入へ昇格しない。
+- 実wait全u8/連続3tick・field1/4とstate0/2/3停止境界は保存原本を再利用。待機解除byteのhost書込0だがbusy=0/非0は明示初期条件。通常message表示/取得を受入にしない。次は08055B71/08055EAD/080555F1の未読calleeだけ。旧1037条件/今回786条件/BP/native単独再実行禁止。
+- field初期化3calleeとwindow/printer may-call接続の保存byteを再利用。call後のfallthroughはcallee帰還を仮定する静的到達で通常初期化実行ではない。旧wait786/script1037/text/bootstrap/BP/nativeを単独再実行しない。
+- flash全u8、field callbackの優先順位/false待機/true消去/拒否時部分書込、state3→4連続RAM、初期化資源停止の540条件は原本を再利用。callbackに渡した保存getterは合成初期条件で通常登録の証拠ではない。次はheap reset0804B85DとBG供給/default callbackの未解決owner。旧byte/1037+786+540条件/BP/native単独再実行禁止。
+- heap/save・BG・画面初期化12入口と保存caller指定template2表の限定byteを再利用。未読依存を成功stubにせず、次は保存命令の実write/return/不足条件。旧540/1037/786条件、採取済byte、BP/nativeは単独再実行しない。default callbackとfield2 ownerは別未完。
+- memcpy/heap/GPU供給とBG定数・属性7slotは本原本を再利用し、次はその保存命令によるreset→template→window連続RAMを検証。候補復元・旧870命令・旧540/1037/786条件・受入済BP/native単独再実行禁止。通常story/IO効果/未読save暗号化ownerは未証明。
+- 保存実BG定数・templateからheap初期化→BG reset/config→属性→通常window→fonts setterの連続明示RAMを本原本から再利用。save3block退避後のRandom停止・callocのCpuSet未読を成功stubにしない。今回条件/旧採取/受入済BP/nativeは単独再実行禁止。次は未読save relocation/暗号化・CpuSet/画面転送・InitFieldMessageBoxの実caller供給。
+- Issue19公式隔離: source/code hash不変なら39試験・CSV全件照合・二重生成は完了artifactを再利用。旧P07履歴1572件を新baseline/空overlayへ再投入しない。
+- Vega181種: 原本9923行/182ページ/43試験、衝突5行/5試験、非直接egg2394行/13試験は保存証拠を再利用。原本採取・公式1299件の再生成・入力不変の単独再検証をしない。3群/92種を未裁定へ戻さず、次はruntime全consumer。
+- 後継9consumer表v1: 128288採用/159明示除外、39新試験、独立2生成・純読取・原本128447行独立監査は保存済み。入力/生成器が同じなら再生成/単独再試験しない。未完は191枠binding/孵化531差分/binary接続と後継ROM・Wiki・影響native。
+- learnset binding: 受入9consumer表はartifact10653200020を再利用。531孵化差分は非付与として全行照合済み。旧原本/39受入試験/nativeを再実行せず、未選択191枠の明示bindingから続行。
+- learnset payload: 191 binding、531孵化差分、64明示経路、33321 slot補正は証拠固定済み。配置前payload artifactを再利用。受入54/24試験・原本生成は影響変更がない限り再実行せず、1029採用裁定とruntime接続から続行。
+- Eternal採用/host owner gate: run 35663067820 の44試験・15039実owner C query・37原本経路/差分全byte・独立2プロセスは受入済み。親artifactとEternal差分を再利用。原本1299件/182ページ/531孵化差分/54旧payload試験は影響なしに再実行しない。
+- run35704908254の2入口直接ROM call3382件/2processを再実行しない。19host試験/全owner queryはrun35703376221、独立ARM8compile/2linkはrun35703851133の成功部分を継承。過去3failureは保持。保存aabd52a0/固定link artifactから再開。
+- 初期技/通常level-up: run35710087058の2process直接ROM probeと独立配置を再実行しない。30試験/318186 host照合はrun35709388462の成功部分を継承。途中失敗runは保持し、保存candidate/bundle/linkから再開。
+- 四条件入口: run35721669287の2独立ARM配置/2native processを再実行しない。run35715106357の41試験/622669照合、run35716683381の成功18試験、run35720010554の成功25試験/15039照合とrun35720416968の成功6 compiler-option試験を継承。旧failureを成功へ改作せず、固定2segmentと親e168c06fから再開。
+- PLA1供給host: run35726123952/source09847331130d1b6764733f09bb8d09bb2bbe6c16の30試験・145878照合・独立2生成は保存原本を継承する。archive-image.bin SHA256 499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13、21383 bytes。同値圧縮を原本/payload再生成へ読み替えない。次は保存dataを取得し、未実行の新ARM/実ROM ABI接続のみ。
+- 供給ARM: run35732715452/abc3218f56f4の8compile/2linkと候補ec5992aaの同値性は受入済み。保存supply.bin/PLA1/link.jsonを再利用し、旧ARM/PLA1/初回14試験を再実行しない。run35731723699のmemset未解決failureは成功へ改作しない。
+- run35748601580: 6e88a021の新4hook/21392call/2processと新16配置試験を受入。旧14+10試験は保存原本を継承し再実行0。run35738895606の失敗原本は保持。次は新Wiki/通常操作のみ。
+- 供給native完了照合: run35748601580は28owner/21392call/2process成功。配置16試験はrun35747048291、旧入力24試験も保存原本継承で再実行0。run35747886574はhost compile失敗のみ・native未起動。closeoutは新12件の証拠拒否試験だけでROM生成/native/既受入試験0。
+- closeoutの12証拠拒否試験はrun35749269393でPASSを継承し再実行0。このrunは新しい実branch ref/PR同一repo・branch・祖先境界6試験だけ。PR head表示遅延をlive branch ref完全一致とb464a4d以降の記録専用祖先で照合。
+- run35756623313の36試験/独立2Wiki生成/純読取checkは受入済み成功step。全体failureは公開ログguardのみ。同一tree b153f51d26db955427ce4f29df341556ee0ea02143394a64b9ae4d8d430f53fe を1回復元して反映。以降このtreeと証拠は継承し再生成・再試験しない。
+- 後継Wikiの完了Actions照合は content/modernization/pr16_learnset_wiki_completed_actions.json に保存。36 Wiki試験/2生成/候補復元は当回再実行0。次は未受入の通常操作だけを対象にする。
+- run35830398856: 通常操作の成功0件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。
+- run35831256129: 通常操作の成功23件を保存。最新checkpointのvector/source/ROM影響を確認し、無関係な成功ケース・Wiki・旧4hook・ARMを再実行しない。
+- Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35832603358の状態FAILと原本から次工程を判断し、無関係な受入を再実行しない。
+- Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35833129256の状態FAILと原本から次工程を判断し、無関係な受入を再実行しない。
+- Bag run35831256129 completed/success固定、23ケース/46core/32unitを継承。battle run35833647521の状態PASS_SCOPEDと原本から次工程を判断し、無関係な受入を再実行しない。
+- run35850873307のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。
+- run35852260342のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。
+- run35852603289のprogression成功caseを保存し、後継は失敗caseだけ。新候補変更なしのBag23/戦闘/タマゴ8/代表画像/ARM/旧hostは再実行しない。
+- CFRU入口修復run35853901025の成功caseを再実行しない。候補変更は8byteで、無関係な既存受入は保持。
+- 自然初期技/戦闘EXP run36039653256の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
+- 自然初期技/戦闘EXP run36040259713の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
+- 自然初期技/戦闘EXP run36040704821の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
+- 自然初期技/戦闘EXP run36041199782の成功caseは再実行しない。開始fixtureと自然生成enemyを区別し、元の失敗原本を保持する。
+- V4野生修復run36042409576成功部分は再実行しない。原本候補/未成功traceと新adapterの実測を区別。
+- EXP境界の保存成功caseは再実行しない。checkpoint acceptedと原本hashを照合し、失敗/未実施だけ選択する。
+- 旧EXP4境界と最初の質問での拒否は各checkpointの保存成功を再実行しない。未受入の戦闘EXP進化/共有以降だけ追加する。
+- 戦闘EXP進化/共有の保存成功を再実行しない。未受入caseのみ選び、全成功後のcompleteは記録だけ。
+- run36213386688の19unit、run36213677615のheader8unit・特殊野生7process/8callは保存原本を継承。2callsite修復候補0205af9bを同じ親b7790902からrecipeで再現し、直接診断を繰り返さず通常UI/capture/Saveの未完だけへ。
+- Save19 run36559147649の464/cold34入力・73試験・2勝/badge1/通常報酬/回復保存Continueは受入済み。無影響の再走禁止。Save18以前も不変。
+- Save20 run36572961114の248/cold59入力・60試験・通常HM05/2勝/2離脱/PC回復/保存Continueは受入済み。無影響の再走禁止。Save19以前も不変。
+- Save21 run36662466133の181/cold33入力・62試験・HM05拒否観測/トシヒデ1勝/電話イベント/保存Continueは記録済み。無影響の再走禁止。Save20以前も不変。
+- Save22 run36668710078の397/cold35入力・58+10試験・503新5勝/6040円/洞窟北入口/保存Continueは記録済み。無影響の再走禁止。Save21以前も不変。
+- Save23の45/cold13入力・内部warp/保存/Continueは原本から限定受入。run37090970832 failureを保持しnative再走0で回収。静的14/入力17/原本24試験は無影響に反復しない。
+- Save23後の座標teleport静的owner4root/5node・11歩候補はpr16_story_cave_route_checkpoint.jsonから再利用。native到達へ昇格しない。
+- Save24の56/cold13入力・32+12+7/新24試験は原本を継承。27,4→27,5の壁3試行と旧11歩候補を反復せず、31,4から先だけ。
+- Save25の94/cold13入力・16+7/新18試験を無影響再走しない。準備3root6node/33点は静的だけ。runtime404のnative0 failureを成功へ改作しない。
+- Save26の84/cold13入力・15controller/新20受入試験を無影響再走しない。37画面/全51memberを保持。野生1勝をtrainer勝利や自然成長へ昇格しない。
+- Save27の86/cold13入力・12controller/新20受入試験を無影響再走しない。38画面/全52memberを保持。岩階段/野生1勝をteleportやtrainer勝利へ昇格しない。
+- Save28の40/cold13入力・17画面・新20受入試験を無影響再走しない。全36memberとnative0 preflight失敗2回を保持。19,14→27,7の一方向だけを受入。8,10枝/洞窟走破へ昇格しない。
+- Save29の88/cold13入力・39画面・16controller+4owner/新20受入試験を無影響再走しない。全55memberとnative0 preflight失敗を保持。岩階段/flag4367解禁/8,10枝へ昇格しない。
+- Save30の46/cold13入力・18画面・新12controller/20受入試験を無影響再走しない。全33memberと既存失敗原本を保持。flag4367/洞窟走破へ昇格しない。
+- Save31の52/cold13入力・22画面・新12controller/24受入試験を無影響再走しない。全37memberと既存失敗原本を保持。flag4367解禁を洞窟走破/全国図鑑へ昇格しない。
+- Save32の138/cold13入力・64画面・新12controller/24受入試験を無影響再走しない。全79memberと既存失敗原本を保持。trainer353勝利を東階段/teleport/洞窟走破へ昇格しない。
+- Save33の69/cold13入力・31画面・新15controller/24受入試験を無影響再走しない。全46memberを保持。解禁後teleportを次event/洞窟走破へ昇格しない。
+- Save34の50/cold13入力・20画面・新14controller/24受入試験を無影響再走しない。北辺9,7→9,6の3回未通過を保持し反復しない。保存文言は未採取。全35member/独立Continueを保持。
+- Save35の115/cold13入力・60画面・28controller総数/新26受入を無影響再走しない。失敗2run合計native2と成功native2を分離。はどうだん選択2/ひるみ1/実PP消費1。西階段/8,5未到達。
+- Save36の227/cold13入力・114画面・13+4controller/34受入を無影響再走しない。run37125324369はnative正常保存後trace failureを保持し原本だけ回収。先行未保存native1と合計native3。4選択/Pressure実5PP消費、正規event4071=8/flag4368/4369だけ。
+- Save37の63/cold13入力・33画面・12controller/26受入を無影響再走しない。24Flash一時一致/counter36→25再差分→26安定/成功文言→30fieldを区別。本区画南出口は受入、外503接続/全story未完。
+- Save38の122/cold13入力・62画面・16controller/28受入を無影響再走しない。初回矢印出口待機停止の未保存原本を保持。外503番道路の通常接続は受入、全story未完。
+- Save39の67/cold13入力39画面/15controller26受入を無影響再走しない。30Flash一時一致→31再差分→32安定/成功文言→36fieldを区別。cold RAM ledger差はowner未解決、全SaveRTC一致。通常Saveは毎行menu cursor0→4を画像検証。
+- Save40の156/cold13入力83画面/13controller32受入を無影響再走しない。元run37129549744は保存Continue完了後の旧parser failureを保持しnative0で回収。30〜55はカメラ/live差を限定解釈、75counter40でも部分write→76成功/安定→80field。静的1440地形/11node再採取0。
+- Save41の77/cold13入力44画面/14controller26受入を無影響再走しない。58,10→56,10西段差は通過、48,11→47,11は3回未通過。17〜21実menu0→4、36counter41部分write→37成功/安定→41field。全SaveRTC/cold ledger一致。静的1440地形再採取0。
+- Save42の103/cold13入力57画面/16controller30受入を無影響再走しない。橋下→54,15階段→上段→橋上48,13→西47,13を通過。旧48,11→47,11は未通過のまま再試行0。30〜34実menu0→4、49最終Flash一時一致/50counter42再変化→51成功/安定→54field。全SaveRTC/cold ledger一致。静的1440地形再採取0。
+- Save43の170/cold13入力90画面/16controller34受入を無影響再走しない。39,12でtrainer114の4体へ1勝/468円/flag1394のみ。全PP0、次は通常回復優先。64〜68実menu0→4、71〜82部分write→83counter43/安定Flash/空白→84成功文言→87field。全SaveRTC/cold ledger一致。38,12以西/下り階段未到達。
+- Save44の78/cold13入力45画面・16controller32受入を無影響再走しない。通常並替だけで費用/道具消費/移動/戦闘0。オノノクスPP[15,10,15,20]、ミュウツーPP0保持。37counter44は部分write、38成功文言/安定Flash→42field。全SaveRTC/最終cold ledger一致。13並替選択のRAM ledger owner未解明。
+- Save45の98/cold13入力55画面・20controller32受入を無影響再走しない。19歩/7方向転換・26,11下り階段/26,12下段、戦闘0。party/Bag/14264円不変。46最終Flashはcounter44/書込中、47counter45→48成功文言→52field。全SaveRTC/全RAM ledger一致。新オノノクス実技UI未観測、PP回復未完。
+- Save46の109/cold13入力60画面・12controller36受入を無影響再走しない。27歩/5方向転換/戦闘0。HP/PP/Bag/14264円不変だがparty141=7→8/241=105→106と途中RAM ledger差を保持。40〜52部分write、53counter46/最終Flash→54成功文言→57field。回復/オノノクス実技UI未完。
+- Save47の170/cold13入力90画面・12controller44受入を無影響再走しない。北迂回19歩/8turn、ジュネ4体勝利、960円、slot0ドラゴンクロー4回/PP15→11。原controller used0は誤陰性で改作しない。71〜82部分write、83counter47/安定Flash→84成功文言→87field。実技UI4画面検証済、4slot native/回復は未受入。
+- Save47 cold原画の右隣NPC12,5へ直進しない。次は11,5→11,4→12,4→13,4で北迂回へ合流。69vertexの静的候補であり到達未証明。47測定170/cold13と12+44成功試験は再走0。
+- Save48の224/cold13入力118画面・18controller34受入を無影響再走しない。北迂回68歩/21turnで17,19南、戦闘0/party不変。97〜110部分write、110counter48は未完→111成功/安定→115field。南接続/回復と新classifierのbattle実証は未完。
+- Save49の47/cold13入力29画面・12controller34受入を無影響再走しない。504から505へ南1接続で33,0南、戦闘0/party/ledger不変。20Flash一時一致/counter48→21counter49再差分→22成功/安定→26field。回復と新classifierのbattle実証は未完。
+- Save50の296/cold13入力153画面・20controller44受入を無影響再走しない。57歩/セナラナ1勝/Save50、raw used6は実PP2+選択targetの限界を保持。party byte41/ledger owner未解明、反動HP314→50を回復としない。146安定/counter→147成功→150field。
+- Save51の184/cold13入力97画面・22controller44受入を無影響再走しない。27歩/ワタミ1勝/Save51、選択4/target0/実PP4。ダブルtarget分離native未実証。RAMledger42/63とaux4021owner未解明。90安定/counter→91成功→94field。
+- Save52の94/cold13入力52画面・18controller39受入を無影響再走しない。20歩+ミルシティ接続、戦闘0。party/HP/PP不変。新接続flag2194/vars3件とcold RAMledger差owner未解明。43一時Flash一致→44counter/再差分→45成功→49field。
+- Save53の108/cold13入力60画面・20controller39受入を無影響再走しない。26歩/通常入館、戦闘0。全party不変。今回RAM台帳不変、旧Save52 cold差ownerは未解明のまま。新flag0/aux2件、respawn通常更新。
+- Save54の66/cold13入力39画面・21controller43受入を無影響再走しない。室内4歩/通常受付/回復、戦闘0。party回復8byteのみ。RAM台帳は会話終了で変化しowner未解明、保存S61E不変。旧Save52 cold差ownerも未解明。
+- Save55の268/cold13入力139画面・21controller47受入を無影響再走しない。レンジャー331の6体/864円/がくしゅうそうち/flag4381。131counterは部分write、132安定でも保存中→133成功→136field。RAM台帳差とoffset41三件/aux40acのowner未解明。
+- Save56の70/cold13入力41画面57member/65受入を無影響再走しない。入館初回20,32推測は実20,33で停止21入力6画面、影響3試験だけ訂正。32/33最終似hashでも34再変化→35成功→38field。2056/aux3varと過去RAM/offset41のowner未解明。
+- Save57の93/cold13入力53画面69member/51受入を無影響再走しない。warp8の誤仮定は未保存16入力3画面/native1、影響3試験だけ訂正。野生1勝/PP14→13、45counter部分write→46成功→50field。紙/上階未到達、RAM台帳/aux owner未解明。
+- Save58の95/cold13入力54画面69member/26controller/51受入を無影響再走しない。新14歩/バーニン♂Lv12へ1勝/PP13→12、46counter部分write→47成功→51field。上階/紙未到達、RAM台帳観測19/aux4021owner未解明。
+- Save59の95/cold13入力54画面69member/26controller/51受入を無影響再走しない。新14歩/オタクン♂Lv9へ1勝/PP12→11、46counter部分write→47成功→51field。上階/紙未到達、RAM台帳保存menu観測27/aux4021owner未解明。
+- Save60の75/cold13入力44画面59member/26controller/51受入を無影響再走しない。新10歩/新戦闘0/全party不変。15,6東3回は不通、同じ入力の盲目的再生をしない。35最終hash一致だが保存中→36counter部分write→37成功→41field。coldのNPC211pixel差/aux4021owner未解明。
+- Save61の101/cold13入力57画面72member/27controller/55受入を無影響再走しない。北迂回13歩/野生1勝/選択1と実PP2を区別。49counter61部分write→50成功→54field、全SaveRTC/field画面同一。RAM台帳観測25変化/aux4021owner未解明。
+- Save62の101/cold13入力56画面71member/27controller/58受入を無影響再走しない。新1歩/コレクター210新1勝/敵3体/PP3/840円/1490bitだけ。48counter62部分write→49成功→53field、全SaveRTC/field画面同一。RAM台帳観測17変化owner未解明。静的92edgeをnative受入にしない。
+- Save63の69/cold13入力41画面56member/27controller/50受入を無影響再走しない。新8歩/転換2/北東階段warp1/戦闘0。32一時最終Flash→33counter63部分write→34成功→38field、全SaveRTC/最終field画面一致。RAM台帳36変化owner未解明。穴/紙の接続をnative受入にしない。
+- Save64の95/cold13入力54画面69member/27controller/53受入を無影響再走しない。上階新14歩/転換2/野生バーニン1勝/実PP1。46counter64部分write→47成功→51field、全SaveRTC/field画面一致。勝利残留fieldfalse/flags4/outcome1を未復帰や追加勝利にしない。隣接trainer155はstatic候補、穴/紙未到達。
+- Save65の99/cold13入力55画面70member/27controller/58受入を無影響再走しない。A1回/歩行0/りかけい155新1勝/実PP3/360円/1435bit。47counter65部分write→48成功→52field、全SaveRTC/field画面一致。RAM台帳6/27変化owner未解明。北迂回28歩は静的候補、穴/紙未到達。
+- Save66の97/cold13入力55画面70member/27controller/55受入を無影響再走しない。NPC北迂回新13歩/転換5/オタクン1勝/DragonClaw実PP1、つばめがえし残2。46最終hash一致でも保存中→47counter66で再変化→48成功→52field。全SaveRTC/field画像一致。残り15歩/穴/紙未受入。
+- Save67の93/cold13入力53画面68member/27controller/56受入を無影響再走しない。上階新14歩/転換2/オタクン1勝/DragonClaw実PP1。party4体offset41+1とRAM観測3変化owner未解明。45counter67部分write→46成功→50field。全SaveRTC/field画像一致。穴まで1歩、落下/紙未受入。
+- Save68の47/cold13入力29画面44member/27controller/53受入を無影響再走しない。上階31,20→穴31,21へ新1歩/入口階31,22へ通常落下。戦闘0/party600byte/全PP/RAM保持。physical2056:0→1 owner未解明。21最終hash一時一致→22counter68再変化→23成功→26field。全SaveRTC/最終field画像一致。南東階段/紙未受入。
+- Save69の127/cold13入力69画面84member/27controller/62受入を無影響再走しない。入口階新11歩/転換2/リオンtrainer165に1勝、DragonClaw3回/交代取消2/賞金312円。slot0PPだけ13→10、physical1445/aux4021差。RAM5/31owner未解明。61counter69も部分write→62成功→66field。全SaveRTC/全field画像一致。南隣NPC迂回/南東階段/紙未受入。
+- Save70の77/cold13入力45画面60member/27controller/59受入を無影響再走しない。南隣NPC迂回新9歩/転換5/南東階段初接続で上階33,29東。戦闘0/全party600byte・HP・PP10,10,15,2/Bag19416円保持。physical2056反転/aux2変数/RAM22owner未解明。37counter70も部分write→38成功→42field。全SaveRTC/最終field画像一致、到着15のみbannerあり。紙未到達。
+- Save71の93/cold13入力53画面68member/29controller/62受入を無影響再走しない。上階南側新14歩/転換2/野生バーニン♂Lv13新1勝。23,31西/HP288保持/PP9,10,15,2/Bag19416円保持。legacy flag不変/aux2変数owner未解明/RAM台帳不変。44最終hashでも保存中→45counter71/部分write→46成功→50field。全SaveRTC/field4画像一致、勝利残留/wire falseを追加勝利や未復帰にしない。紙未到達。
+- Save72の73/cold13入力43画面58member/29controller/55受入を無影響再走しない。残り新11歩/転換2で像北隣16,27西に初到着、新戦闘0/全party600byte・HP288/PP9,10,15,2/Bag19416円保持。legacy flag不変/aux2変数/RAM10変化owner未解明。35counter72も部分write→36成功→40field。全SaveRTC/像側field4画像一致。像は見えるが紙を調べる操作/取得未完。
+- Save73の53/cold13入力32画面47member/32controller/62受入を無影響再走しない。像の紙274/flag4383は取得済み。新戦闘/歩行0、全party/他Bag/19416円/PC/legacy flags-vars/RAM台帳保持。24一時最終hash→25counterも保存中→26成功→29field。全SaveRTC/field5画像一致。次は新しい復路/hole下降だけ。
+- Save74の78/cold13入力46画面61member/30controller/60受入を無影響再走しない。紙274/flag4383保持の新9歩/転換6/上階hole5→下階warp8。新戦闘0、全party/Bag19416円/PC/S61E/RAM保持。2056/aux2変数owner未解明。37一時最終hash→38counterも保存中→39成功→43field。全SaveRTC/最終field3画像一致。次は南9歩と館退出だけ。
+- Save75の63/cold13入力36画面51member/31controller/63受入を無影響再走しない。新南9歩+出口南1入力、ミルシティ15,20自動南1歩。新戦闘0、全party/Bag19416円/PC/S61E/紙274/flag4383保持。2056解除/aux2変数/40ac解除/RAM7変化owner未解明。27/28部分hash安定→29counter/最終hashも文言未完→30成功→33field。全SaveRTC/player建物crop一致、NPC/水面差あり。次は紙の後続consumer限定照合。
+- Save76の77/cold13入力43画面58member/28controller/50受入を無影響再走しない。封書consumer博物館2階local2/required badge0x823、現1badgeで未解禁。新ジム6,18北/紙/全party/全RAM保持。34最終hash先行→35counter76別hashも保存中→36成功→40field。全SaveRTC/全pixel一致。次は北3歩/初ディグダ。ROM-rooted紙consumer参照indexと選択ownerは再採取不要。
+- Save77の54/cold13入力31画面46member/26controller/51受入を無影響再走しない。初local5で4372/4378 set、紙/全party保持。23最終hash先行→24counter77別hashも保存中→25成功→28field。全SaveRTC/全pixel一致だがcold1のRAM hash変化owner未解明。次はlocal6へ新4歩。旧gym graphを再採取しない。
+- Save78の60/cold13入力34画面49member/29controller/56受入を無影響再走しない。local6で4372 clear/4375 set、紙/全party保持。27counter78/最終hash/成功→31field。全SaveRTC/全pixel一致だがprogress2のRAM hash変化owner未解明。Save78 cold0は60276271。次はlocal8へ東5歩。旧gym graphを再採取しない。
+- Save79の62/cold13入力35画面50member/29controller/56受入を無影響再走しない。local8で4372/4374 set・4375 clear、紙/全party保持。27最終hashはcounter78/保存中→28counter79/成功→32field。全SaveRTC/全pixel/今回RAM台帳保持。過去RAM差分owner未解明。次はlocal9へ新10歩。旧gym graph再採取0。
+- Save80の74/cold13入力41画面56member/31controller計32実行/56受入を無影響再走しない。local9で4375 set・4372/4374 clear。34counter80でも保存中/未finalhash→35最終hash/成功→38field。全SaveRTC/全pixel/全party保持。menu19RAM台帳差分owner未解明。初回native0/30成功1失敗→失敗1件だけ再検証、既成功30再走0。次はlocal10へ新東3歩。旧gym graph再採取0。
+- Save81の58/cold13入力33画面48member/31controller/56受入を無影響再走しない。local10で4376 set・4375 clear。25最終hashでも保存中/counter80→26counter81/成功→30field。全SaveRTC/全pixel/全party/RAM保持。過去RAM差分ownerは未解明。次は北2歩6,7のlocal1/trainer132視線候補。旧gym graph再採取0。
+- Save82の118/cold13入力63画面78member/36controller/66受入を無影響再走しない。trainer132新1勝864円/1412set。55counter82でも保存中→56最終hash/成功→60field。全SaveRTC/全pixel/紙/S61E保持、PP2byteのみ。今回/過去RAM差分owner未解明。次は新東5/北4歩と第6local11。旧gym graph再採取0。
+- Save83の132/cold13入力70画面85member/31controller/67受入を無影響再走しない。trainer160新1勝384円/1440set。62counter83でも保存中→63最終hash/成功→67field。全SaveRTC/全pixel/紙/S61E保持、PP2byteとHP1byteだけ。今回/過去RAM差分owner未解明。次は新北4歩と第6local11。旧gym graph再採取0。
+- Save84の60/cold13入力34画面49member/31controller/59受入を無影響再走しない。第6local11で4374set/4376clear、26最終hashでも保存中→27counter84/成功→31field。全SaveRTC/全pixel/party/今回RAM保持、aux4021/4022と過去差分owner未解明。次は第7local10の4374truebranch。旧第5の4375truebranch再走0。
+- Save85の72/cold13入力40画面55member/31controller/63受入を無影響再走しない。第7local10で4372set/4374clear。33counter85でも保存中→34最終hash/成功→37field。全SaveRTC/全pixel/coldRAM保持。party598byte保持/2byteと観測11RAM、aux4021/4022、過去差分owner未解明。次は同位置第8local10の4372truebranch。
+- Save86の48/cold13入力28画面43member/31controller/59受入を無影響再走しない。第8local10で4373/4377set/4372clear、local11除去。20最終hash/21counterとtext空白/22成功/25field。全SaveRTC/全pixel/今回party600byteとRAM保持。旧Save85と過去差分owner未解明。次はleader前13歩/新A、trainer417/type1は静的確認のみ。
+- Save87の216/cold13入力112画面127member/37controller/65受入を無影響再走しない。leader417の実6体に1勝/バッジ2083/TM37/賞金2500円。原本残存3体preparationはactive_trainer.jsonの24consumer/後継6体で訂正し、旧原本は保持。105counterと最終hash/text空白→106成功→109field、全SaveRTC/全pixel保持。raw41系列/RAM/auxvarsと旧差分owner未解明。次は退出用local10の未入力4373true分岐。
+- Save88の82/cold13入力45画面60member/33controller/62受入を無影響再走しない。退出用第9local10で4373/4377clear・4376set。37最終hash/counter87→38counter88/一時別hash/保存中→39成功文言→42field。全SaveRTC/全pixel/party600byte/今回RAM保持。aux4021/4022と旧Save87/raw41系列/RAM/過去差分owner未解明。次は退出用local8の未入力4376true分岐。
+- Save89の82/cold13入力45画面60member/33controller/62受入を無影響再走しない。第10local8で4375set/4376clear。28〜38部分hash/38counter89でも保存中→39成功文言/最終hash→42field。全SaveRTC/全pixel/party600byte保持。14のRAM変化/aux4021/4022と過去raw41/RAM差分owner未解明。次はlocal8の未入力4375true分岐。
+- Save90の48/cold13入力28画面43member/31controller/62受入を無影響再走しない。第11local8で4372/4374set・4375clear。11〜19部分hash、20最終hashでも保存中/counter89、21counter90空欄→22成功文言→25field。全SaveRTC/全pixel/party600byte/今回RAM/全legacy変数保持。過去Save89RAM14やraw41/aux差分owner未解明。次はジム退出の新10歩。
+- Save91の69/cold13入力39画面55member/原33controller+binding2/63受入を無影響再走しない。初回pre-native hash失敗はnative0。新10歩/旋回2/warp1。町type3でジム4372〜4378clear。30/31最終hash保存中、32counter91空欄→33成功文言→36field。全SaveRTC/party600byte/今回RAM/9216pixel保持、全pixelはNPC花animationで異なる。physical2056/5varsと過去raw41/RAM/aux差分owner未解明。次は博物館入口の新23歩。
+- Save92の98/cold13入力55画面70member/controller36/受入63を無影響再走しない。新23歩/旋回3/warp1、6/0・14,9北で自動北1歩なし。35〜47保存中/46,47途中同hash、48最終hashと成功文言、52field。全SaveRTC/party600byte/S61E/全38400pixel保持。町20,16観測5のRAM差分とphysical2056/3vars、過去raw41/RAM等owner未解明。次は2階への新13歩。
+- Save93の60/cold13入力36画面52member/原38controller+新影響15/受入63を無影響再走しない。50円受付/4061=1/23114円、全party/今回RAM/S61E/legacyflags保持。28最終hash先行、29counter別hash、30成功→33field。初回未保存失敗native1をfailureのまま保持。4001/4061 owner一致、4021/4022と過去差分owner未解明。次は2階への新9歩。
+- Save94の70/cold13入力41画面56member、controller最終41case/43実行42成功1失敗、受入67を無影響再走しない。西6南3+東方向階段、6/1・11,8東。34counter途中hash、35成功/最終hash、38unlockだが画像にoverlay残留。coldNPC263pixel差分を全画面一致にしない。RAM観測10/2056/3varsと過去owner未解明。初回pre-native1/未保存native1はfailure保持。次はlocal2紙引渡し。
+- Save95の118/cold13入力66画面81member、controller39+影響9=48成功実行/最終46case、受入69を無影響再走しない。新13歩/旋回5/障害待ち1、移動local2をsprite128pixelで2回確認して封書274消費/4382set。59counter途中hash保存中→60成功最終hash→63clearfield。cold3人NPC1023pixel差/全SaveRTC保持。RAM32/aux2varsと過去owner未解明。初回未保存native1/Save94全保持はfailure。次は新復路13歩と西方向下降。
+- Save96の83/cold13入力47画面62member、新復路13歩/5旋回/西初下降、controller40/独立受入72を無影響再走しない。39一時finalhash保存中/counter95→40別hash/counter96→41成功最終hash→44clearfield。coldNPC1人142pixel差/全SaveRTC保持。今回RAM保持でもphysical2056set/aux2varsと過去owner未解明。次は新復路12歩で博物館退出。
+- Save97の80/cold13入力46画面61member、新13歩/3旋回/0x65南矢印/町自動南1歩、controller最終48case(69実行68成功1失敗)/新受入79を無影響再走しない。初回controllerfixture失敗、通常床13,9の失敗native1/58入力24画面/Save96保持を歴史保存。次は町北35歩の新区間。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。
+- Save98の128/cold13入力69画面84member、新35歩/6旋回/通常北connection、controller最終46case/59成功、新受入79を無影響再走しない。partyguard失敗1/9画面/Save97保持とpreflight型失敗1/native0を保存。歩行friendship/4021/4022共通機構はSave98 walk_ownerを参照。旧原本は保持。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。
+- Save99の197/cold13入力104画面119member、61歩15旋回/ROCK_STAIRS2か所、40controller/67新受入を無影響再走しない。会話未達で動的Rangerの位置を次回確認。ROM/runtime非再配布。warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。
+- Save100の95/cold13入力54画面69member、動的Ranger正面A/町解放/通常2歩/自動2歩、39controller/62新受入を無影響再走しない。初回binding失敗原本はnative0。JSON/text fixtureのSHAはGit正本の最終改行を含むbyte列から算出し、次commitをbranchへ反映する前にremote blob全byteを送信元と一致確認。改行正規化で差分を消さず、失敗原本は保持。受入済みunit/nativeは再走しない。
+- Save101の58/cold13入力35画面50member/63controller/47受入/native2を無影響再走しない。Save25〜100証拠は保持し、当時のfirst-battle stopを一般方針にしない。
+- run37203041912のSave101 observer probe（13入力/2画面/native1/compile1）と49host試験は原本再利用。歩行・戦闘・Saveは未実行。hash-only資源推測/全雑魚戦保存へ戻らない。
+- route adapter原本5run/80host証拠は保持。正式Save101以前を再走せず、新しい未保存失敗区間だけ変更影響に応じて再開。時計/再暗号化/seen/QOL provenanceを全byte免除にしない。通常戦ごとのSaveを復活させない。
+- trainer131原本2run/48hostを保持。正式Save101と未保存entryを区別。seen高nationalをtrainerRematches/FameChecker等の許可差分にしない。固定ROMの保存ABIを修復・限定回帰する前にtrainer戦闘を続けない。DPE/CFRUのBag衝突パッチを直貼りせず、通常戦ごとのSaveも復活させない。
+- 図鑑owner namespace1206/slot1670と522byte codecのhost証拠を再利用。runtime未接続を修復済みにしない。旧bit、VACQ、別field破壊を根拠なしに昇格しない。PC未保存RAM保持と全save/consumer接続から続ける。
+- MDX候補RAMの5UI寿命はrun37217077790の原本から再利用（Bagは37216583954から再利用）。正式Save101不変。Stage75 internal1670は明示adapterでbase1142/owner925へ結合し、namespace owner数1206は不変。全save/consumer未接続とROM空き容量3151byteを隠さず先に解決。
+- 図鑑compact51host/262144比較/ARM4compileはrun37219630045の原本を再利用。旧T09 pointer表6484byteはStage39退役のhash-bound契約のみ。元DATA81885byte/sentinel6参照保持、実owner移管/ROM配置/Stage61全clone/nativeを完了扱いしない。
+- 図鑑実配置run37223181964の24API/24veneer隔離nativeを再実行しない。全107allocator中退役ownerだけ移管、payload5022/残1462。正式ROM/Save101不変。元Stage61 metadataはhash固定24macro/99sized symbol/4aliasを再利用し旧source再compile・元payload全体復元をしない。
+- 図鑑保存scheduler run37228557062の隔離ARM19caseはsource/配置不変なら再実行しない。通常game Save/ContinueとHOF/overwrite受入へ昇格しない。8つのbuild診断failureはnative0のまま保持。
+- 図鑑load/newgame隔離run37230810454の52caseと通常lifecycle run37231996230の4process/2保存をsource/候補不変で再実行しない。候補内のSave102/新規Save1を正式Save101へ昇格せず、全consumer/全mode/失敗UIの未完を保持。
+- 図鑑battle consumer run37233960024のhost6suite/隔離ARM180callはsourceと候補不変で再実行しない。初回run37233754843はActions成功でもscheduler配置衝突により候補不受入。保存/通常battle/全consumerへ昇格しない。
+- 保存失敗: old152case run37234821383、新gate48＋追加oracle60 run37235903199、実通常エラーUI run37236898977の原本を使用。候補/源不変でnative再走しない。DMA破壊とUI driver診断failureを保持。valid-live専用SaveFailedのowner衝突/全mode/全consumerへ受入拡張禁止。
+- START valid失敗: gate run37238699272は1120case必須assert成功だがupload path誤記によりraw measurementなし。原本欠落を隠さず再走0。run37239138134の192byte gate全再構成/同candidate、1Flash故障/818入力/5画面とcold101の16入力/cold102の12入力、計3process7画面を無変更再走しない。全mode/outerQOL/非STARTへ受入拡張しない。
+- outerQOL run37241791183隔離outer7680＋retry288＋移設wipe16case、START末尾physical131071故障の5画面＋cold102/103の2画面、全4process原本は無変更再走しない。旧run37241038917はhistorical allocation hash誤仮定/native0でfailure保持。全mode sweepはABIだけ、末尾故障をearly位置/sector31原子性/非START通知へ昇格しない。
+- Mystery Gift隔離run37243703968 menu96/gate720、UI run37244619223 main故障/outer末尾故障/正常と各coldの6process15画像を無変更再走しない。11byte UI fixtureであり通信/受信/削除/自然入場やHOF/全非STARTへ昇格しない。旧37244205003のnative1/setup後template誤oracle停止はfailure保持。
+- 旧Mystery3bb4c51b配置受入はscheduler衝突で撤回。旧余り1462/1332を空き扱いせずcurrent subowner計算を使用。後継0180c180は前段1851条件の原本/未変更1755条件再利用、formatter168条件のstep成功/raw欠落、UI21/11byte由来12process30画面の変更影響のみ受入。formatter168条件はstep成功/raw欠落を区別し重複native再走0。全mode/自然通信へ昇格しない。
+- HOF40ad8237候補の局所通知は隔離2880条件＋UI-only9byte/3条件/各cold6process15画像。旧SaveFailed回避と初回stat10一度・payload保全まで。初回mode3原子性/全mode/自然殿堂入りへ広げず、同じnativeを影響なしに再走しない。
+- d773a123のfallback QOLはhost327907/ARM508と正常・片bank故障・破損cold計3成功caseで限定受入。初回coldの成功2原本を再利用し観測器だけの陰性1を修正。変更影響なしに再走せず、全cold owner/初回HOF原子性へ拡大しない。
+- 88be8811のmode3 main COWは隔離554条件とUI5条件＋各cold10process/25画像を原本再利用。main0の3callはsynthetic入力bank生成で通常Save再受入ではない。既存115owner中114保持、新180byteはStage61内5窓。次は実subownerを差引いた186byteを優先し、旧366byteや古いsuffixを空き扱いしない。HOF/main世代結合は未完。
+- HOF世代contractのhost参照実装21suiteは専用checkpointを再利用。34sector合成形式を32sector実Saveへ適用しない。現候補88be8811、全115owner/43subowner/186byte、正式ROM/Save101は不変。旧HOF/main/nativeを変更影響なしに再走せず、次は実永続表現の容量・ABI・ownerと全consumerへの接続。
+- HOF32sector storageの16host/新228ABIを専用checkpointから再利用。候補88be8811不変。50履歴/1936byte suffixを削減せず非選択mainの一時scratchを使う。Ccodecとhost schedulerを実ROM接続済みにしない。species9bitとINITIAL移行は未修復。次は現ownerへの配置・全writer/load接続。
+- HOF controller12host/6528ARM/新10RAM隔離caseとsave後継183hostdiff・実保存8入口22case/ROMjournal257caseは新専用checkpointから再利用。候補12ab27e4・115owner/53save subowner/残292byteが次の基準。CcontrollerはROM未配置、workspace/全writer/load/INITIAL/Link統合未完。失敗runは失敗として保持し、旧gameplayを再走しない。
+- 下位generation writer run37282589643の183host全媒体差分・全8入口22ARMcase・移設HJ257caseを候補/source不変なら再走しない。旧egg参照形は未分類/lease0、heap10窓はbindingのみ/実arena0。正式ROM/Save101・HOF世代結合未完。
+- HOF容量/heap専用checkpointの型分類と新isolated allocator試験をsource/候補不変なら再走しない。donor0/本番lease0。heap退避は0804B85C入口から既に危険で、MallocInit直前解放では遅い。全入口heap-ready/非再入/全出口Free未完。
+- PLR1数値分類12件は原本bundle・image・poolを独立署名し、全1483ownerと行境界を検査。現source/candidate不変なら旧874全ROM走査・heap/native・習得原本生成を再走しない。455分類/419未知、donor0。
+- 現候補0641af70の旧egg874参照に根付きJP song interpreterを実装。114個の明示ID、89曲の完全モデル、39sample witnessから105件を追加し、560分類/314未知。footstep MIDIと現Song250/251の不一致も保持。新63tests、現候補の新read用再構成1回、旧inventory/native0。donor/正式ROM/Save101不変。候補/source不変なら旧全ROM走査/heap/native/習得原本生成を再走しない。
+- 現候補0641af70の旧egg874参照に根付きnumericと拡張JP song consumer分類を追加。新numeric39/palette6/song14、619分類/255未知。旧560受入と全874inventoryを保持。新168tests、現候補の新read用再構成1回、旧inventory/native0。donor/正式ROM/Save101不変。候補/source不変で旧全ROM走査/heap/native/習得原本生成を再走しない。
+- 現候補0641の残参照59件（level39/palette6/song14）を追加し619分類/255未知、168tests PASS。全874行と旧560受入保持。原runは記録push成功後に冗長18.9MB証拠が公開上限で拒否されfailure。保存済みGit原本を保持し、hit非参照の重複regionだけ除いた後継証拠へ回復。分類/ROM/native再実行0、donor/正式ROM/Save101不変。
+- 現0641の旧egg874参照にtrainer15/archive2/命令跨ぎ1/有限JP音声7の25件を追加し、644分類/230未知。新122試験と新旧130曲の役割競合を検証。T09上位wordは別PLC2consumerとの混同を拒否し未知保持。原本4.1MBは再複製せず共有delta 149772byteへ。全旧619受入不変、donor/正式ROM/Save101不変。旧型分類/heap/nativeは変更影響なしに再実行しない。次回はbaseline＋deltaをmaterializeして継承する。
+- 現0641の旧egg874参照について、regression trainer2/tilesetLZ3、Stage61 TEXT3/sprite1、flagmap1/SharedIndex1、命令3、有限JP音声3の新17件を分類し、661分類/213未知（owner内5/外208）。新146試験と新旧132曲/旧47sample保持を検証。644親delta全25行/22witnessを固定chainで継承し、原本4.1MBと旧149772byteを複製しない。donor/正式ROM/Save101不変。旧型分類/heap/nativeは変更影響なしに再実行しない。次回は619baseline＋644parent delta＋本chainを各全identityでmaterializeし、旧25行を落とさない。
+- 現0641の旧egg874参照へ実root/consumerから新33件を分類し、694分類/180未知（owner内1/外179）。新161試験、全115actual owner/874hit、旧661全行・644delta25行22witness・661chain17行16witnessを保持。donor/正式ROM/Save101不変。原本4.1MB/旧delta/旧chainを複製・改変しない。全親をidentity照合してmaterializeし、旧42追加を落とさない。影響なしheap/native再走禁止。
+- 現0641の旧egg874参照へ実root/consumerから新29件を分類し、723分類/151未知（owner内1/外150）。新277試験、全115actual owner/874hit、旧694全行・644delta25行22witness・661chain17行16witness・694chain33行33witnessを保持。donor/正式ROM/Save101不変。原本4.1MB/旧delta/旧chainを複製・改変しない。全親をidentity照合してmaterializeし、旧75追加を落とさない。影響なしheap/native再走禁止。
+- 現0641の旧egg874参照へ実root/consumerから新3件を分類し、726分類/148未知（owner内0/外148）。新193試験、全115actual owner/874hit、旧723全行・旧25/17/33/29 changesと22/16/33/23 witnessesを保持。donor/正式ROM/Save101不変。原本4.1MB/旧delta/旧chainを複製・改変しない。全親をidentity照合してmaterializeし、旧104追加を落とさない。影響なしheap/native再走禁止。
+- 現0641の旧egg874参照へ新2件を追加し、728分類/146未知（owner内0）。新201試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。全親changes25/17/33/29/3、witness22/16/33/23/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の旧egg874参照へ新1件を追加し、729分類/145未知（owner内0）。新218試験と全115actual ownerを照合。部分leaseは未知pointer最大アクセス範囲未証明のため15118byte全域保護/安全容量0。既知global511＋save804の容量上限1315byteもcontroller6528byte未満。donor/正式ROM/Save101不変。ReadMail/MoveTutorの2局所callbackはroot/全setup/lifetime未閉鎖として0件の診断を記録し未知維持。タイトル560命令/60unitの有限root。party局所2consumerの不足は残す。全親changes25/17/33/29/3/2、witness22/16/33/23/3/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641でReadMail/MoveTutorのconstructor・全23setup状態・実menu/Tutor hookと条件付きcallee非干渉を新224試験で検証。分類は729/未知145を維持。sprite全64slotの同期callbackとcommand経路も有限入力条件だけで確認し、完全根未閉鎖の分類を増やさない。全115ownerを照合。allocation同一寿命・残setup helper・task/IRQ非干渉は未閉鎖で、全egg15118byte保護/安全容量0。正式ROM/Save101/donor不変。新scopeの実根/全setup診断を以前の局所証拠と分離。未閉鎖lifetimeを採用せずunknownを保持。全親changes25/17/33/29/3/2/1、witness22/16/33/23/3/2/1、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の旧egg874参照へReadMail・Leer・QuestLogの実consumer型3件を追加し、732分類/未知142。新237試験と全115actual ownerを照合。ReadMailの必要寿命はcallbackのmainコピーまで、Leerは実前置commandから同slotへ、QuestLogは実event40の同期table dispatchへ束縛。自然到達・全epoch/IRQ保証と型分類を分離。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの条件付き実consumer型を以前の未採用診断と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0、witness22/16/33/23/3/2/1/0、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の旧egg874参照にMystery Giftのmask literal/Thumb命令境界1件を追加し、733分類/未知141。新198試験、全115actual ownerと全9親deltaを照合。実CB2登録→CreateTask/RunTasks→38state表slot11/23→helperの相互排他的2経路を専用boundary witnessへ結合し、左literal4byteと右命令2byteを完全partition。自然play到達・普遍IRQ寿命・退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの異種2要素boundary型を同kind instruction-streamや以前の未採用診断と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3、witness22/16/33/23/3/2/1/0/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の旧egg874参照にTakeItem/MoveTutorの必要最小Thumb型2件をまとめて追加し、735分類/未知139。新276試験、全115actual ownerと全10親deltaを照合。実party根から同task・action producer/selector・成功return/質問入力の有限条件を結合し各完全BL＋静的LDR successorの6byteだけ型付け。自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型を自然全到達と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1、witness22/16/33/23/3/2/1/0/3/1、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の旧egg874参照にSummary実taskとNature文字列の必要最小型2件をまとめて追加し、737分類/未知137。新250試験、全115actual ownerと全11親deltaを照合。実registered hook・有限条件と最小consumed型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型を自然全到達と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2、witness22/16/33/23/3/2/1/0/3/1/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の旧egg874参照に実登録consumerの必要最小型4件をまとめて追加し、741分類/未知133。新348試験、全115actual ownerと全12親deltaを照合。実registered callback・有限条件と最小consumed型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型を自然全到達と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2、witness22/16/33/23/3/2/1/0/3/1/2/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の旧egg874参照に実Help consumerの必要最小型2件をまとめて追加し、743分類/未知131。新306試験、全115actual ownerと全13親deltaを照合。実Help context/topic producer・有限条件と最小consumed型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型を自然全到達と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4、witness22/16/33/23/3/2/1/0/3/1/2/2/4、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の旧egg874参照に新実consumerの必要最小型3件をまとめて追加し、746分類/未知128。新376試験、全115actual ownerと全14親deltaを照合。Bag実登録とSeagallop API・登録ShockWave command処理contextを根に、有限producer/consumer最小型だけを受入れ、自然play全到達・普遍IRQ/heap寿命・間接参照/退役安全は別義務。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型を自然全到達と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641のBag数量順2件・Fishing timeout・追加field-move説明の計4hitに新producer guardを実装。同4hitは実producerから未到達またはconsumer未接続のため未知維持。別の現map登録event text1件とeffect231登録battle script2件の最小4byteを各分類し、新分類3、749分類/未知125を保持。新351試験、全115actual ownerと全15親deltaを照合。有限producerだけの否定証拠であり全caller/全writerの不在や普遍未到達は主張しない。全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの有限producer guardを全caller/全writer未到達と分離。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641のeffect231/184登録battle script境界2件の各4byteを新分類し、event placeholder境界1件は実候補根から未接続のため未知維持。751分類/未知123。新282試験、全115actual ownerと全16親deltaを照合。既field4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641のeffect233のopcode field群とeffect234末尾境界の各4byteを新分類し、event placeholder境界1件は実候補根から未接続のため未知維持。753分類/未知121。新284試験、全115actual ownerと全17親deltaを照合。既field4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641のeffect65/AuroraVeilとeffect32/LifeDew・JungleHealingの各4byte、計3件を登録slot/Moveと有限serializer・E3/goto/FF09 consumerから新分類。756分類/未知118。新207試験、全115actual ownerと全18親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の条件付き登録text APIから実table pointer/完全serializer境界とconsumerを結合し、各4byteの計5件を新分類。761分類/未知113。新241試験、全115actual ownerと全19親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の条件付きstock text APIから実table/literal pointerと完全serializer境界とconsumerを結合し、各4byteの計2件を新分類。763分類/未知111。新203試験、全115actual ownerと全20親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の実animation登録command/callbackとchat keyboard constructor/stateを条件付きconsumerへ結合し、Thumb各6byteとtext4byteの計3件を新分類。766分類/未知108。新240試験、全115actual ownerと全21親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の実critical command表とanimation背景の登録serializerを条件付きconsumerへ結合し、各4byteの計5件を新分類。771分類/未知103。新275試験、全115actual ownerと全22親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 現0641の実登録callerから吸収特性・moveend抑制wrapper・Toxic Orbを有限consumerへ結合し、最小各6byte、計18byteの3件を新分類。774分類/未知100。新308試験、全115actual ownerと全23親deltaを照合。既event placeholderとfield4hitの未結合guard結果は再測定せず未知保持。最小型と自然play全到達・普遍IRQ/heap寿命・間接参照/退役/owner移管を分離し、全egg15118byte保護/安全容量0、正式ROM/Save101/donor不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 実special072/登録opcode49からDancerの既存state有限contextと実partner/Target HP二枝、登録opcode5D完全caller/hookからMultiMoneyCalcの最小Thumbを結合。自然初期state producer・全play/全callee効果は別義務。 新2件・最小計12byte。776分類/未知98。全774親・47入力・24namespace155changes145witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5/3、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5/3、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 実special057のtask/main登録・state0→7からCurrent/Max15byte、実ChooseMove公開hookとQoL/BattleUI wrapperからL/Z/Max選択枝の57byte/EOSを読み、3つの文字境界を最小各4byteへ結合。必要future read/write資源epochと非live消去を限定合成し、自然全play・全callee効果とは分離。 新3件・最小計12byte。779分類/未知95。全776親・49入力・25namespace157changes147witnessと133曲50assetを保持。新scopeの最小型と自然全play/IRQ/heap/間接完全性/退役/owner移管を分離し、egg15118保護・安全0・正式ROM/Save101不変。新scopeの必要最小型と自然play全到達を分離。既guardの単一producer不達を全caller/全writer不達へ一般化しない。普遍runtime寿命保証や自然到達を未完のまま保持。全親changes25/17/33/29/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5/3/2、witness22/16/33/23/3/2/1/0/3/1/2/2/4/2/3/3/2/2/3/5/2/3/5/3/2、133曲/50assetを保持。未知word size4を参照先のread幅へ誤用しない。無影響heap/native再走禁止。
+- 旧未commit JPgateの30試験・8blobは保存済み証拠へ流用しない。2026-10-07 source-only gateの31試験は新実行。住所のみの言語overrideの英語長や隣接差を日本語EOS extentへ昇格しない。779分類・95未知、ROM/native再走0を保持。
+- JPgate run37674533900の34試験・全文binding受入と、11source/30symbolのcrosswalk候補23試験を区別。新独立候補は2組だけでEOS/現実cell未測定。英語長・隣接差は拒否し、3rdの6B0と強い6AE競合を解消済みにしない。一般CI既知QOL不一致とStage79 cache成功を新受入へ流用しない。
+- JP candidate前2組のsource15件/59合成試験は保存checkpointから再利用。現ROMの字句EOSやCFG観測を実reader/API引数/型受入へ昇格しない。既存083DDEE4のCFRU登録27byte証拠をstock CursorCB_Enterへ置換しない。
+- JP current観測run37688855091の0641再構成1/115owner/14entry/653命令/28窓/2cell/4文EOSと新59試験は保存済み原本を再利用。receipt17拒否試験は記録整合だけ。両境界FC09/EOS/glyph観測をroot/API引数/全文serializer読取/型2件受入へ昇格しない。
+- Weather Bubble成功38040440848の6source/4原本/32試験と実readerを無変更再走しない。今回受領はROM/native0。型1件をdonor安全容量や本番表示へ昇格しない。
+
+## 次セッションへ残す更新手順
+
+正本receipt/台帳を必要時だけ更新→このJSONの観測/受入/次の1手を更新→python3 scripts/pr16_resume.py render→checkとfocused tests→両ログへ追記→同一commitで保存する。
+
+```bash
+python3 scripts/pr16_resume.py render
+python3 scripts/pr16_resume.py check
+python3 -m unittest discover -s tests -p test_pr16_resume.py -v
+```
+
+`check`は読取専用。hashの変更だけで証拠を追認しない。対象sourceが変わった場合は適用範囲を再評価する。
+push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。
+
+実行したこと、観測できたこと、正式受入、未完、次の1手、run/job、検証結果を分離して記録。実行中runがあればID/対象HEAD/次の確認を記録し、完了を推測しない。
+
+## 履歴の位置づけ
+
+履歴は根拠が必要な箇所だけ読む。PR本文・日付・一般キュー・会話の記憶から最新停止点を上書きしない。
+
+- `docs/PR16_BP_TRIAL_RESUME_20260913_JA.md`
+- `docs/PR16_NATIVE_SUPPLY_RESUME_20260912_JA.md`
+- `content/modernization/pr16_native_supply_handoff.json`
+- `PR body`
+
+PR本文は更新失敗の履歴があり、再開入口に使わない。受付取消checkpointの `next` も受入時点の履歴であり、次の作業順はこの文書を優先する。
+
+## Checks・releaseの境界
+
+Weather Bubble成功run38040440848/job114179438484の全9step/32試験を原本継承。ZIPと4JSON、生成・検証済み/公開済みの各4hash、6測定source/143依存source/62親原本を照合。独立8x16 indexed4画像の全64byte一致、実sheet/reader38命令・64byte消費・実12byte stack帰還を条件付き最小4byte型へ受入。0838B32Fだけ追加し784分類/90未知/全874hit、旧30段164変更154witness不変。新receipt41試験PASS。今回ROM再構成/旧scope再走/native各0、donor安全容量0、正式ROM/Save101不変。一般CI既存capacity source不一致は継続。全CI greenではない。
+
+merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

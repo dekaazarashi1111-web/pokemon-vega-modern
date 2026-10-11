@@ -1,0 +1,120 @@
+{
+  "artifact": {
+    "digest": "sha256:e36742829c0b1f1d1424a26aeffd0c03d3cb651da0bf72882db2520c717e9560",
+    "expires_at": "2026-12-27T12:12:39Z",
+    "id": 10969625772,
+    "name": "pr16-story-journey-sequence",
+    "size_in_bytes": 809496,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "35ce64a857cbff3690f37c3a1caafa07e5daf300",
+      "id": 36420363480,
+      "repository_id": 1358127462
+    }
+  },
+  "completion_head": "6bbab5cb0c70b53b9a8fd3e3d1e764e83bab06fc",
+  "job": {
+    "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/108921328939",
+    "completed_at": "2026-09-28T12:13:04Z",
+    "conclusion": "success",
+    "created_at": "2026-09-28T12:12:39Z",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "35ce64a857cbff3690f37c3a1caafa07e5daf300",
+    "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36420363480/job/108921328939",
+    "id": 108921328939,
+    "labels": [
+      "ubuntu-24.04"
+    ],
+    "name": "boundary",
+    "node_id": "CR_kwDOUPNhZs8AAAAZXDeVKw",
+    "run_attempt": 1,
+    "run_id": 36420363480,
+    "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36420363480",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions",
+    "runner_id": 1000017721,
+    "runner_name": "GitHub Actions 1000017721",
+    "started_at": "2026-09-28T12:12:41Z",
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-28T12:12:43Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-28T12:12:42Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T12:12:54Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-28T12:12:43Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T12:12:55Z",
+        "conclusion": "success",
+        "name": "Changed boundary only and immutable acceptance context",
+        "number": 3,
+        "started_at": "2026-09-28T12:12:54Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T12:12:57Z",
+        "conclusion": "success",
+        "name": "Record 28 source checks without replaying native cases",
+        "number": 4,
+        "started_at": "2026-09-28T12:12:55Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T12:13:00Z",
+        "conclusion": "success",
+        "name": "Non-force commit and readback",
+        "number": 5,
+        "started_at": "2026-09-28T12:12:57Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T12:13:01Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 6,
+        "started_at": "2026-09-28T12:13:00Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T12:13:01Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 12,
+        "started_at": "2026-09-28T12:13:01Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T12:13:02Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 13,
+        "started_at": "2026-09-28T12:13:01Z",
+        "status": "completed"
+      }
+    ],
+    "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/108921328939",
+    "workflow_name": "pr16-story-journey-sequence"
+  },
+  "new_native_processes": 0,
+  "new_test_executions": 0,
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "35ce64a857cbff3690f37c3a1caafa07e5daf300",
+    "id": 36420363480,
+    "path": ".github/workflows/pr16-story-journey-sequence.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  }
+}

@@ -1,0 +1,68 @@
+name: pr16-learnset-binding
+run-name: PR16 explicit learnset binding ${{ github.sha }}
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - tools/pr16_learnset_binding.py
+      - tests/test_pr16_learnset_binding.py
+      - scripts/pr16_learnset_binding_verify.py
+      - .github/workflows/pr16-learnset-binding.yml
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-learnset-binding
+  cancel-in-progress: false
+jobs:
+  binding-verify:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 受入artifactを再利用しbindingの新規範囲だけを検証
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_binding_verify.py
+          python3 -B scripts/pr16_resume.py check
+          git diff --check
+          git add content/modernization/pr16_learnset_binding_evidence content/modernization/pr16_learnset_binding_checkpoint.json docs/PR16_LEARNSET_BINDING_JA.md content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md design/run_log.md design/version_log.md
+          git diff --cached --check
+          python3 -B scripts/pr16_learnset_binding_verify.py guard | tee .local/pr16-learnset-binding/guard.json
+          git diff --exit-code
+      - name: 同一branchへcheckpointを非forceで保存
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          git fetch origin "$branch"
+          test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260921-LEARNSET-BASELINE-RESET: 孵化531差分の非付与処理と191枠binding入力を検証記録'
+          git push origin "HEAD:refs/heads/$branch"
+          new=$(git rev-parse HEAD)
+          test "$new" = "$(git ls-remote origin "refs/heads/$branch" | cut -f1)"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          printf 'RESULT=DONE TASK=USER-20260921-LEARNSET-BASELINE-RESET VERIFY=PASS COMMIT=%s\n' "$new" | tee .local/pr16-learnset-binding/result.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-binding-verification
+          path: |
+            .local/pr16-learnset-binding/unit.txt
+            .local/pr16-learnset-binding/guard.json
+            .local/pr16-learnset-binding/result.txt
+          retention-days: 30
+          if-no-files-found: warn

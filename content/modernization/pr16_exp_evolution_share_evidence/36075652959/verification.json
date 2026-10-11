@@ -1,0 +1,482 @@
+{
+  "accepted": {},
+  "accepted_case_reruns": 0,
+  "actions_completion_confirmed": false,
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+    "size": 33554432
+  },
+  "compiled_sources": {
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_exp_evolution_share.c": {
+      "sha256": "006956a135451fb50d3a5a8ffcb4e40787d5a00d2aa831bb1144bfb0c3129b5c",
+      "size": 13541
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    },
+    "tools/pr16_exp_multilevel_trace.h": {
+      "sha256": "aefdffa269bba6cf5c360d2a6944f122bc423d327ceeaf4a45d59584f024eaa6",
+      "size": 2763
+    }
+  },
+  "error": "native failures retained individually",
+  "error_type": "ValueError",
+  "failures": {
+    "butterfree-exp-share": {
+      "error": "command failure: butterfree-exp-share",
+      "type": "ValueError"
+    },
+    "metapod-exp-cancel": {
+      "error": "command failure: metapod-exp-cancel",
+      "type": "ValueError"
+    },
+    "metapod-exp-evolve": {
+      "error": "command failure: metapod-exp-evolve",
+      "type": "ValueError"
+    }
+  },
+  "generated_sources": {
+    "p03_learning_embedded.c": {
+      "sha256": "5a8816ac247919b41d2f7ac1fe22f56642981719535dd346fa35926a3fb32737",
+      "size": 7997
+    },
+    "p03_p02_embedded.c": {
+      "sha256": "82240f4efffe4669285a9cee8fbbb9f02f206829d9ffc24e708b3d4d0c06ae11",
+      "size": 39679
+    },
+    "p03a_fullslots_embedded.c": {
+      "sha256": "9a2cf9482f44669e602937671ae0078bb26e373a83ef0f0311b746420ea5c936",
+      "size": 12878
+    },
+    "pr16_boundaries_helpers.h": {
+      "sha256": "9035465e103796d20edddcf0f083579ffb60c970f279b7cd279653089fbc75cc",
+      "size": 2088
+    },
+    "pr16_boundaries_vectors.h": {
+      "sha256": "c65bd574eb400cae3daaed19ee4ad668843e45bdce9a416a024ffda2142359c2",
+      "size": 206
+    },
+    "pr16_natural_vectors.h": {
+      "sha256": "87c3de7b8dd531497fe853998015edc2f25005732e64282da0955b3eb145b6ab",
+      "size": 197002
+    },
+    "pr16_natural_walking.h": {
+      "sha256": "b66fd13ddbecf428eb1eb7dd75b9744f3fb418b251b0080b83a1044f197d49d3",
+      "size": 7090
+    },
+    "pr16_progression_archive.c": {
+      "sha256": "c4d683286bde3645140b913ecd542b4b887d8a70c786930471a14a6b027b10d6",
+      "size": 20164
+    }
+  },
+  "host_compiles": 1,
+  "inherited_acceptances": {
+    "content/modernization/pr16_learnset_boundaries_checkpoint.json": {
+      "accepted_cases": [
+        "butterfree-exp-known",
+        "butterfree-exp-multilevel",
+        "butterfree-exp-replace",
+        "butterfree-exp-summary-refuse"
+      ],
+      "identity": {
+        "sha256": "8368e8f7d1657ec685b147d96713e566f377b5aee3536822abfed37eca93ccfa",
+        "size": 46927
+      },
+      "native_reruns": 0
+    },
+    "content/modernization/pr16_learnset_first_refuse_checkpoint.json": {
+      "accepted_cases": [
+        "butterfree-exp-first-refuse"
+      ],
+      "identity": {
+        "sha256": "94456a12c66f1d854dfb9ae7be2a560fcb039b34e19c697fa9d7f2657d2aa5a5",
+        "size": 24292
+      },
+      "native_reruns": 0
+    }
+  },
+  "issue19_complete": false,
+  "native_processes": 3,
+  "new_unit_tests": 24,
+  "observed_recent_actions": [
+    {
+      "conclusion": "success",
+      "head_sha": "6b69b8d48644d255962d218dcce81ff01c4904a7",
+      "id": 36075658094,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "6b69b8d48644d255962d218dcce81ff01c4904a7",
+      "id": 36075658099,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "6b69b8d48644d255962d218dcce81ff01c4904a7",
+      "id": 36075652999,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": null,
+      "head_sha": "6b69b8d48644d255962d218dcce81ff01c4904a7",
+      "id": 36075652959,
+      "name": "pr16-exp-evolution-share",
+      "path": ".github/workflows/pr16-exp-evolution-share.yml",
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "6b69b8d48644d255962d218dcce81ff01c4904a7",
+      "id": 36075652912,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "6b69b8d48644d255962d218dcce81ff01c4904a7",
+      "id": 36075652860,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_sha": "daaae87a4dcf59f327137b04ddbdc7351619d1fa",
+      "id": 36075595933,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_sha": "daaae87a4dcf59f327137b04ddbdc7351619d1fa",
+      "id": 36075595926,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "7767d49ba6b39970a77e4af840b7dcccaa801d95",
+      "id": 36075571545,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "7767d49ba6b39970a77e4af840b7dcccaa801d95",
+      "id": 36075571421,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "7767d49ba6b39970a77e4af840b7dcccaa801d95",
+      "id": 36075564529,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "7767d49ba6b39970a77e4af840b7dcccaa801d95",
+      "id": 36075564562,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "7767d49ba6b39970a77e4af840b7dcccaa801d95",
+      "id": 36075564603,
+      "name": "pr16-exp-evolution-share",
+      "path": ".github/workflows/pr16-exp-evolution-share.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "7767d49ba6b39970a77e4af840b7dcccaa801d95",
+      "id": 36075564533,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "9137a296d79263c58706cea1c1941566cd873032",
+      "id": 36075505179,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "9137a296d79263c58706cea1c1941566cd873032",
+      "id": 36075505172,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "9137a296d79263c58706cea1c1941566cd873032",
+      "id": 36075496041,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "9137a296d79263c58706cea1c1941566cd873032",
+      "id": 36075496001,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "9137a296d79263c58706cea1c1941566cd873032",
+      "id": 36075496025,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "9137a296d79263c58706cea1c1941566cd873032",
+      "id": 36075496009,
+      "name": "Stage79 mGBA (all)",
+      "path": ".github/workflows/modernization-stage79-mgba.yml",
+      "status": "completed"
+    }
+  ],
+  "proof_bindings": {
+    "butterfree-exp-share.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "butterfree-exp-share.stderr.txt": {
+      "sha256": "a6e93a35c5cad62d9bdc4efe70acfc4b2c2a99fbdc6c051a1eceb19606dc937b",
+      "size": 738
+    },
+    "butterfree-exp-share.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "compile.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "geometry.json": {
+      "sha256": "cce7d5aa97dfa5776f2ef2dcc45de3eb6db30f971b3b10c0659b943ccefc964c",
+      "size": 1937
+    },
+    "metapod-exp-cancel.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "metapod-exp-cancel.stderr.txt": {
+      "sha256": "83f605a7a3fc870218a9fe782cfefa0ca7704c19b05f03fe58cf05a61647a7e8",
+      "size": 565
+    },
+    "metapod-exp-cancel.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "metapod-exp-evolve.process.json": {
+      "sha256": "182b1f564fcb386958d2a1d35aa5085633c1d294f3080b2ff2d4f29be34238a3",
+      "size": 44
+    },
+    "metapod-exp-evolve.stderr.txt": {
+      "sha256": "83f605a7a3fc870218a9fe782cfefa0ca7704c19b05f03fe58cf05a61647a7e8",
+      "size": 565
+    },
+    "metapod-exp-evolve.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "original-source.json": {
+      "sha256": "a6cfe63bec1365e5dfec9136b60a8a5492dd6002d26671f5aa587c92ec5303ff",
+      "size": 2577
+    },
+    "recipe.json": {
+      "sha256": "f90867542da84fd00ef3a8f274a0bba873e4b1ef6cb501b3d4bed111d55e05f1",
+      "size": 71099
+    },
+    "unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "unit.stderr.txt": {
+      "sha256": "2c6ec3f79f63be9a64805490834ad310b37993bc2f263b806c8fc8f4c4790f31",
+      "size": 3535
+    },
+    "unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "vectors.json": {
+      "sha256": "695f06c723532e5604433ada2858a6ad78b33a47960ae6e41795bd16df0add5f",
+      "size": 917
+    }
+  },
+  "protected_bindings": {
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_learnset_battle_checkpoint.json": {
+      "sha256": "a1f99fae7693dd5f51d34e774d9c6bf43985b7e9515226f747ec3230c24b8b59",
+      "size": 17707
+    },
+    "content/modernization/pr16_learnset_boundaries_checkpoint.json": {
+      "sha256": "8368e8f7d1657ec685b147d96713e566f377b5aee3536822abfed37eca93ccfa",
+      "size": 46927
+    },
+    "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json": {
+      "sha256": "7623c9b5eca00c5a96669815eaa320c9afb4c783279f359ba4268477bdc06143",
+      "size": 32995
+    },
+    "content/modernization/pr16_learnset_entry_repair_checkpoint.json": {
+      "sha256": "8dee3523f709fdc663cf03e617a15c550454658c3d462fba421eb075313a24b6",
+      "size": 69331
+    },
+    "content/modernization/pr16_learnset_first_refuse_checkpoint.json": {
+      "sha256": "94456a12c66f1d854dfb9ae7be2a560fcb039b34e19c697fa9d7f2657d2aa5a5",
+      "size": 24292
+    },
+    "content/modernization/pr16_learnset_natural_checkpoint.json": {
+      "sha256": "f15336e39b840f21bcd7ef30a0b1989421a0516ffd80a7a527266186e69fdf69",
+      "size": 93858
+    },
+    "content/modernization/pr16_learnset_progression_checkpoint.json": {
+      "sha256": "be5a1684a51e9bcced727139e5a243edab6c806a76f3518ccbc3f72e7ca3b412",
+      "size": 45167
+    },
+    "content/modernization/pr16_learnset_supply_native_checkpoint.json": {
+      "sha256": "75f6fd498056a7b2c60822fb99f2d36a47fd8eab0b8d0422e12dda58efc22dd8",
+      "size": 57961
+    },
+    "content/modernization/pr16_learnset_wiki_checkpoint.json": {
+      "sha256": "71b538f186b03ca3a725a84cd87baa41d72ca2ef0fb43ce22dec0e198cdefbe7",
+      "size": 45627
+    },
+    "content/modernization/pr16_learnset_wiki_completed_actions.json": {
+      "sha256": "4c200406ab0a3895a44a82cb81d71dde1f99aaa1a281eba1da3e851062bf1808",
+      "size": 9673
+    },
+    "docs/PR16_LEARNSET_BOUNDARIES_JA.md": {
+      "sha256": "da589edbd6d572b57840863578610afb5f0f1d045332122c72ec00bcb49b46d0",
+      "size": 2919
+    },
+    "docs/PR16_LEARNSET_ENTRY_REPAIR_JA.md": {
+      "sha256": "ae50455ee1ed588ecc331a2fc8bf4c9be54d774239c99c1bb81c38e22375697b",
+      "size": 2422
+    },
+    "docs/PR16_LEARNSET_FIRST_REFUSE_JA.md": {
+      "sha256": "d666c57e27d16f0b554eb31a13267f337290e3f117f69fe8174d374008309e0f",
+      "size": 2085
+    },
+    "docs/PR16_LEARNSET_NATURAL_JA.md": {
+      "sha256": "9a44a35c566df54043d9ab4558c7b3773145af6cf00a0e0402d3cdc4d4fe60f8",
+      "size": 2586
+    },
+    "docs/PR16_LEARNSET_PROGRESSION_JA.md": {
+      "sha256": "2d185c6a03df18aa63e7bb587095266dea2033eff0e5e3061e3d61d06277d4f5",
+      "size": 1640
+    },
+    "tools/mgba_pr16_learnset_boundaries.c": {
+      "sha256": "a11747ba2ebffb5d780afb7feb87535f18a20dea8ef3dce28b47009e65b3a241",
+      "size": 9467
+    },
+    "tools/mgba_pr16_learnset_first_refuse.c": {
+      "sha256": "7fd49871dc952c40bd68cd9d354f63bbe0a863dfd9ba92fc40e14ca2772a1d00",
+      "size": 10270
+    }
+  },
+  "release_ready": false,
+  "results": [],
+  "rom_changes_from_accepted_candidate": 0,
+  "run_id": 36075652959,
+  "schema_version": 1,
+  "selected_cases": [
+    "metapod-exp-evolve",
+    "metapod-exp-cancel",
+    "butterfree-exp-share"
+  ],
+  "source_bindings": {
+    ".github/workflows/pr16-exp-evolution-share.yml": {
+      "sha256": "42ebbda3157b04c271e7059f344f5e9a6440d6a8d1f0a9915446db865f40a061",
+      "size": 4199
+    },
+    "scripts/pr16_exp_evolution_share.py": {
+      "sha256": "ff62b0ebf666b49aae4c705661d620a3ea210b04ebf590f113dafb61e059e04f",
+      "size": 20997
+    },
+    "scripts/pr16_learnset_boundaries.py": {
+      "sha256": "930ac803c21f637112d43009981a818e3d8076cf0e8a5fcfbc9fc376f2b0f44a",
+      "size": 21207
+    },
+    "scripts/pr16_learnset_natural.py": {
+      "sha256": "4a47c6c84ee1c158942268abc4c185147ccfc629934426487460b2a1143b402c",
+      "size": 21990
+    },
+    "scripts/pr16_learnset_progression.py": {
+      "sha256": "ec84a181bbcf06ebb44d6273ae2abc4878c60ceded7adf7b69214f70c2138243",
+      "size": 24221
+    },
+    "tests/test_pr16_exp_evolution_share.py": {
+      "sha256": "04a194760ee2805d68ed0e19f811e51b3d6e90c4c82d2839127518344e315598",
+      "size": 8665
+    },
+    "tools/mgba_pr16_exp_evolution_share.c": {
+      "sha256": "006956a135451fb50d3a5a8ffcb4e40787d5a00d2aa831bb1144bfb0c3129b5c",
+      "size": 13541
+    },
+    "tools/pr16_exp_multilevel_trace.h": {
+      "sha256": "aefdffa269bba6cf5c360d2a6944f122bc423d327ceeaf4a45d59584f024eaa6",
+      "size": 2763
+    }
+  },
+  "source_head": "6b69b8d48644d255962d218dcce81ff01c4904a7",
+  "status": "PARTIAL_BATTLE_EXP_EVOLUTION_SHARE",
+  "task": "USER-20260925-LEARNSET-EXP-EVOLUTION-SHARE",
+  "wiki_generations": 0
+}

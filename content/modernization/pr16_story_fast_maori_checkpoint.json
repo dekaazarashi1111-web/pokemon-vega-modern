@@ -1,0 +1,368 @@
+{
+  "actions_completion_confirmed": true,
+  "actions_conclusion": "success",
+  "active_baseline_changed": false,
+  "artifact": {
+    "digest": "sha256:304cae07573563abfb93e4bd7f1bfd5bc7e8348b374380fa487ffe20fd382d1d",
+    "expires_at": "2026-12-28T00:37:59Z",
+    "id": 11006311891,
+    "name": "pr16-story-fast-maori-checkpoint",
+    "size_in_bytes": 17717828,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
+      "id": 36504040292,
+      "repository_id": 1358127462
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_fast_maori_evidence/continue/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_fast_maori_evidence/continue/stdout.txt": {
+      "sha256": "f1b16675293b471ef63a270cbfbb6d041178767eaa25dffad540aac0701c6582",
+      "size": 3530
+    },
+    "content/modernization/pr16_story_fast_maori_evidence/manifest.json": {
+      "sha256": "0c8b225fa0d6c9b40545de13cc6169b322019db689eb74e0613209b245a6722d",
+      "size": 9877
+    },
+    "content/modernization/pr16_story_fast_maori_evidence/measurement.json": {
+      "sha256": "64870a58e83ec40f34d7dc3a16a1b295ba07832854fb25957cae3880a467cae3",
+      "size": 7380
+    },
+    "content/modernization/pr16_story_fast_maori_evidence/progress/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_fast_maori_evidence/progress/stdout.txt": {
+      "sha256": "f482252fd6710dbb895cbe6d67bfd30653cb327ad52a0620042b0b7fe40cd579",
+      "size": 33151
+    },
+    "content/modernization/pr16_story_fast_maori_evidence/terminal.json": {
+      "sha256": "24253d5404f60566c008d70ddca57d4bcfeab66edbd41dbed648e51910e4e6d0",
+      "size": 3114
+    },
+    "content/modernization/pr16_story_fast_maori_evidence/unit.stderr.txt": {
+      "sha256": "329cd64c2d37e83c48acad9ec5e3f45679ac48b41dc94d270a8ec7f8918c1054",
+      "size": 4977
+    },
+    "content/modernization/pr16_story_fast_maori_evidence/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_fast_maori_evidence/verification.json": {
+      "sha256": "c3ad3ef1a95f246f3aa5e0df33e2d689d0b10fe569da0c82dbea51b0386dc464",
+      "size": 5260
+    }
+  },
+  "general_ci_all_success_claimed": false,
+  "next_goal_ja": "マオリ通常勝利・story-fast Save16・独立Continueは受入済み。次はartifact11006311891のstory-fast.srm（map3/19、53,10、北向き）から先へ進む。176/cold20入力とSave1〜14・分離smokeを再生しない。progression.srmは元の戦闘前Axew Lv37/EXP68589を保持。全国図鑑の正規解禁ownerと進化gateを照合し、自然解禁境界または影響台帳付きsource修正/後継候補へ進む。flag注入で進化成功扱いしない。Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
+  "record_accepted_case_reruns": 0,
+  "record_native_processes": 0,
+  "record_run_id": 36504857429,
+  "record_source_head": "598c5a7b0fd5202fdee4a8fde519aab268ac3114",
+  "release_ready": false,
+  "run_id": 36504040292,
+  "save_byte_ledger": {
+    "artifact_only": true,
+    "binding": {
+      "sha256": "c55298c9c21b3eb989e294f353121e184b5b5e53f9e375856373ef9b374f421d",
+      "size": 185286
+    },
+    "changed_bytes": 6418,
+    "ranges": 1757
+  },
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-story-fast-maori.yml": {
+      "sha256": "49044cadede6adf9aa6a466ef682a89a6c32316b3335c6cfcd1361d6df58967c",
+      "size": 1239
+    },
+    "content/modernization/pr16_story_fast_maori_development/commands.txt": {
+      "sha256": "8607ce50ef3e719e89db3263a17d60f807c65ef978da19cdd3bb1f2a9d6c98c5",
+      "size": 2024
+    },
+    "content/modernization/pr16_story_fast_maori_development/continue-commands.txt": {
+      "sha256": "47f99a27da17c99fe62b0cd7d4b1af585a7b9bb62b99cde80a0c113da69d0593",
+      "size": 107
+    },
+    "content/modernization/pr16_story_fast_maori_development/measurement.json": {
+      "sha256": "597cd42bf3321347306350a859d892c0db3afc4a81dcd8e39f8c095c4de6b63f",
+      "size": 3313
+    },
+    "scripts/pr16_story_fast_maori.py": {
+      "sha256": "3add6d4ff7d2a0840085a398cfa3164bc4c11d11ceb5ef92caa26ab11c4bfa80",
+      "size": 12364
+    },
+    "scripts/pr16_story_fast_maori_measure.py": {
+      "sha256": "0f2b88d4e0fdeb06af69598b02334eb76dfd75b28f2ac0abb7034a840bdf0907",
+      "size": 7041
+    },
+    "tests/test_pr16_story_fast_maori.py": {
+      "sha256": "020fd8cbe7d465949740fa200dfcfee20aefa3587ce2b744c07816f5bb203f8b",
+      "size": 8337
+    }
+  },
+  "source_head": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
+  "status": "PASS_STORY_FAST_MAORI_SAVE16_SCOPED",
+  "task": "USER-20260929-STORY-FAST-MAORI",
+  "terminal_evidence": "content/modernization/pr16_story_fast_maori_evidence/terminal.json",
+  "verification": {
+    "accepted_case_reruns": 0,
+    "active_baseline_changed": false,
+    "afterbattle_dialogue_end": {
+      "battle_flags": 0,
+      "battle_outcome": 0,
+      "callback2": 134569589,
+      "facing": 4,
+      "field": true,
+      "flash_sha256": "d56f4d4cefbc1ec5d9be68062372ba6f08b165443092558e2d0d11bc8c0e008d",
+      "frame": 1848,
+      "ledger_sha256": "f93c14a115f662300e0054d7da8adcdd282bcdd982749a24332c5be5da965d6b",
+      "live_xy": [
+        60,
+        17
+      ],
+      "lock": 0,
+      "map": [
+        3,
+        19
+      ],
+      "observe": 3,
+      "party_count": 4,
+      "party_sha256": "417f5ba944b0d0006a0f87686fdd18bac5a99629cf9c52d4778aab29cabe31dc",
+      "rp": 0,
+      "save_counter": 16,
+      "xy": [
+        53,
+        10
+      ]
+    },
+    "all_five_bag_pockets_unchanged": true,
+    "all_save_rtc_preserved_after_continue": true,
+    "arm_compiles": 0,
+    "candidate": {
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "size": 33554432
+    },
+    "captures": 0,
+    "continued": {
+      "battle_flags": 0,
+      "battle_outcome": 0,
+      "callback2": 134569589,
+      "facing": 2,
+      "field": true,
+      "flash_sha256": "d56f4d4cefbc1ec5d9be68062372ba6f08b165443092558e2d0d11bc8c0e008d",
+      "frame": 1390,
+      "ledger_sha256": "f93c14a115f662300e0054d7da8adcdd282bcdd982749a24332c5be5da965d6b",
+      "live_xy": [
+        60,
+        17
+      ],
+      "lock": 0,
+      "map": [
+        3,
+        19
+      ],
+      "observe": 0,
+      "party_count": 4,
+      "party_sha256": "417f5ba944b0d0006a0f87686fdd18bac5a99629cf9c52d4778aab29cabe31dc",
+      "rp": 0,
+      "save_counter": 16,
+      "xy": [
+        53,
+        10
+      ]
+    },
+    "development_native_processes": 2,
+    "escape_episode": {
+      "locked_tail": 14,
+      "outcome": 13,
+      "start": 9,
+      "unlocked_field": 15
+    },
+    "escapes": 1,
+    "evolution_accepted": false,
+    "first_save": {
+      "battle_flags": 12,
+      "battle_outcome": 1,
+      "callback2": 134569589,
+      "facing": 2,
+      "field": false,
+      "flash_sha256": "d56f4d4cefbc1ec5d9be68062372ba6f08b165443092558e2d0d11bc8c0e008d",
+      "frame": 14924,
+      "ledger_sha256": "f93c14a115f662300e0054d7da8adcdd282bcdd982749a24332c5be5da965d6b",
+      "live_xy": [
+        60,
+        17
+      ],
+      "lock": 0,
+      "map": [
+        3,
+        19
+      ],
+      "observe": 42,
+      "party_count": 4,
+      "party_sha256": "417f5ba944b0d0006a0f87686fdd18bac5a99629cf9c52d4778aab29cabe31dc",
+      "rp": 0,
+      "save_counter": 16,
+      "xy": [
+        53,
+        10
+      ]
+    },
+    "full_story_accepted": false,
+    "general_sector_checksum_acceptance_claimed": false,
+    "host_compiles": 0,
+    "input_save": {
+      "sha256": "fa2bb585eeeec1c81f0b8498438001b72d010ead2b9091f8f2b87744be1c6e97",
+      "size": 131088
+    },
+    "losses": 0,
+    "money": 2936,
+    "money_after": 2936,
+    "money_before": 2776,
+    "national_dex_magic": 0,
+    "natural_difficulty_accepted": false,
+    "natural_growth_accepted": false,
+    "new_native_processes": 2,
+    "ordinary_saves": 1,
+    "output_save": {
+      "sha256": "5c4a03b9d92f7be54250d565162b03b5b85a2f221c3873d26d894b74b76778ce",
+      "size": 131088
+    },
+    "party_changed_bytes": [
+      {
+        "after": 6,
+        "before": 9,
+        "offset": 52
+      },
+      {
+        "after": 36,
+        "before": 35,
+        "offset": 141
+      }
+    ],
+    "party_count": 4,
+    "pc_sections_preserved": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "previous_bank_preserved_bytes": 57344,
+    "prize_money": 160,
+    "progress_field": {
+      "battle_flags": 12,
+      "battle_outcome": 1,
+      "callback2": 134569589,
+      "facing": 2,
+      "field": false,
+      "flash_sha256": "d56f4d4cefbc1ec5d9be68062372ba6f08b165443092558e2d0d11bc8c0e008d",
+      "frame": 15106,
+      "ledger_sha256": "f93c14a115f662300e0054d7da8adcdd282bcdd982749a24332c5be5da965d6b",
+      "live_xy": [
+        60,
+        17
+      ],
+      "lock": 0,
+      "map": [
+        3,
+        19
+      ],
+      "observe": 43,
+      "party_count": 4,
+      "party_sha256": "417f5ba944b0d0006a0f87686fdd18bac5a99629cf9c52d4778aab29cabe31dc",
+      "rp": 0,
+      "save_counter": 16,
+      "xy": [
+        53,
+        10
+      ]
+    },
+    "progress_wire_field_flag": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "rom_owner": {
+      "local_id": 3,
+      "map": [
+        3,
+        19
+      ],
+      "object_record": 155155892,
+      "rooted_trainer_references": [
+        {
+          "access": "battle",
+          "battle_type": 5,
+          "category": "trainer",
+          "command": "trainerbattle",
+          "instruction_address": 154626515,
+          "opcode": 92,
+          "roots": [
+            "Maori"
+          ],
+          "script_address": 154626515,
+          "value": 1359
+        },
+        {
+          "access": "battle",
+          "battle_type": 0,
+          "category": "trainer",
+          "command": "trainerbattle",
+          "instruction_address": 154626451,
+          "opcode": 92,
+          "roots": [
+            "Maori"
+          ],
+          "script_address": 154626451,
+          "value": 93
+        }
+      ],
+      "scope": "native story trainer 93; rematch 1359 is not the measured battle",
+      "script": 154626451
+    },
+    "rp": 0,
+    "save_counter": 16,
+    "save_success_text_frame_captured": false,
+    "screen_count": 48,
+    "trainer_episode": {
+      "last_faint": 32,
+      "outcome": 33,
+      "start": 18,
+      "unlocked_field": 36
+    },
+    "trainer_victories": 1,
+    "unused_party_bytes_preserved": 200,
+    "wild_victories": 0
+  },
+  "visual_review": {
+    "anchors": {
+      "continue/0": "独立Continue、party600/Flash全体保持。",
+      "continue/1": "戦闘後台詞1。",
+      "continue/2": "戦闘後台詞2。",
+      "continue/3": "会話終了field。再戦0。",
+      "progress/13": "エネコ雌Lv2から通常逃走。outcome4は勝利ではない。",
+      "progress/18": "じゅくがえりマオリの戦闘開始。",
+      "progress/19": "パモ雌Lv4。",
+      "progress/25": "パピモッチ雌Lv6。",
+      "progress/30": "コフキムシ雄Lv8。",
+      "progress/33": "マオリとのしょうぶにかった。",
+      "progress/35": "賞金160円。",
+      "progress/36": "勝利後field復帰、lock0。wire field:falseは残留battle_flags12のため。",
+      "progress/41": "通常Save書込中、counter15の途中。",
+      "progress/42": "counter16とfield復帰。"
+    },
+    "continue_screens": 4,
+    "method": "DIRECT_PIXEL_REVIEW_NO_OCR",
+    "progress_screens": 44,
+    "save_success_text_frame_captured": false
+  }
+}

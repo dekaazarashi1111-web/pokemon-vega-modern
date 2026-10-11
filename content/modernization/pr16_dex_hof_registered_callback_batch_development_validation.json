@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_REGISTERED_CALLBACK_BATCH_REVIEW",
+  "review_scope": "new_registered_callback_batch_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "initial_head": "eff0e4afd74e5f21f0f6a77e1eaa65b920843563",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-registered-callback-batch.yml": {
+      "size": 3150,
+      "sha256": "ba9a084cdf8fef8fc23fadfc3355eac0c3286209c7696582927ef162c6bd472e"
+    },
+    "content/modernization/pr16_dex_hof_animation_registered_roots_review.json": {
+      "size": 15428,
+      "sha256": "6bc669368bae0e9be250161650749ab9ffc03457d1363e39b70f1ab48547a36a"
+    },
+    "content/modernization/pr16_dex_hof_chat_keyboard_roots_review.json": {
+      "size": 24418,
+      "sha256": "6d9bf0cbede528f4e27677b2a5aa046314e1c21c7213934564b3b0945634a734"
+    },
+    "content/modernization/pr16_dex_hof_registered_callback_batch_sources.json": {
+      "size": 6535,
+      "sha256": "3904d82745af056a504d55a4bc5442b99baeb369744d5f8c11c60d413731c997"
+    },
+    "docs/PR16_DEX_HOF_REGISTERED_CALLBACK_BATCH_JA.md": {
+      "size": 3149,
+      "sha256": "f465590ed28358e71ca3b825920191c67cd1110ff912a96c177fd65db346bf94"
+    },
+    "scripts/pr16_dex_hof_animation_registered_roots.py": {
+      "size": 56212,
+      "sha256": "22691f91118c95db13eb0216ec559eddd3ff26d91134eb8a192a4f4fefc3b943"
+    },
+    "scripts/pr16_dex_hof_chat_keyboard_roots.py": {
+      "size": 57110,
+      "sha256": "e036583f49949b5998f592194b606a4e4c82b16830d10adb2937a837fc9186a9"
+    },
+    "scripts/pr16_dex_hof_registered_callback_batch.py": {
+      "size": 6672,
+      "sha256": "eacb2fafba51a4eea7636def44f2538930cbbfc61867a177e1c7d6fa4f606492"
+    },
+    "scripts/pr16_dex_hof_registered_callback_batch_actions.py": {
+      "size": 29641,
+      "sha256": "726bdee2e024cf344a833be5709a64c9cbf623cf3271a70666111327c91dfc0a"
+    },
+    "scripts/pr16_dex_hof_registered_callback_batch_capacity.py": {
+      "size": 11315,
+      "sha256": "6898b7aa74a294d66dda86e99f789e4a2b64fa1282d72d50a262c757bdcbb382"
+    },
+    "scripts/pr16_dex_hof_registered_callback_batch_chain.py": {
+      "size": 20396,
+      "sha256": "bda8791180d07e3099fb7341f2ec66b3aef51bbe8c2bdcdcfc3611a2320864ca"
+    },
+    "tests/test_pr16_dex_hof_animation_registered_roots.py": {
+      "size": 15919,
+      "sha256": "40c8cee36d013cbab07a8c2cf0d94c750180c3d92f87d06ffce453f1788f25c5"
+    },
+    "tests/test_pr16_dex_hof_chat_keyboard_roots.py": {
+      "size": 12291,
+      "sha256": "43cd5e9d9487d8e2916402bcb646ac5af63b723af39ead59f6f29948dbbf62f7"
+    },
+    "tests/test_pr16_dex_hof_registered_callback_batch.py": {
+      "size": 7742,
+      "sha256": "a4d6fb455bfe21b4b01b3408c3a7e6b9349fd7b0ba9656f00500d8433c013c52"
+    },
+    "tests/test_pr16_dex_hof_registered_callback_batch_actions.py": {
+      "size": 18945,
+      "sha256": "7d5330351a9335d06b70ab977dbd3ed5a51a54997a48ae0598e445ea6a7c7619"
+    },
+    "tests/test_pr16_dex_hof_registered_callback_batch_capacity.py": {
+      "size": 16225,
+      "sha256": "65fc96ce4f6e8841f58766584ffed05d0646a25a9db2065d1d17957200c8ba58"
+    },
+    "tests/test_pr16_dex_hof_registered_callback_batch_chain.py": {
+      "size": 22569,
+      "sha256": "fcde479e8a4f1db5742d957558c7f2af47ecb0df2259f180a8a97bf9539e4246"
+    }
+  },
+  "diagnostic": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "new_integration_tests": 103,
+    "classifications": [
+      766,
+      108
+    ],
+    "newly_classified": 3,
+    "minimum_type_bytes": 16,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "identity_source": "previous_verified_recovery_not_current_measurement"
+    },
+    "delta_identity": {
+      "size": 99034,
+      "sha256": "6834b2f0fd0318efa0f95828a08d74c25f86fe4ba30de22958b870800606f757"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false,
+    "unit_tests": 240,
+    "test_records": [
+      {
+        "scope": "chat",
+        "tests": 42,
+        "log_identity": {
+          "size": 5801,
+          "sha256": "01518cf46ca6d6e741b0fc78ccfebb692c1cbc4eac926f340f28bf9540cbd4c6"
+        },
+        "source_bindings": {
+          "content/modernization/pr16_dex_hof_chat_keyboard_roots_review.json": {
+            "size": 24418,
+            "sha256": "6d9bf0cbede528f4e27677b2a5aa046314e1c21c7213934564b3b0945634a734"
+          },
+          "scripts/pr16_dex_hof_chat_keyboard_roots.py": {
+            "size": 57110,
+            "sha256": "e036583f49949b5998f592194b606a4e4c82b16830d10adb2937a837fc9186a9"
+          },
+          "tests/test_pr16_dex_hof_chat_keyboard_roots.py": {
+            "size": 12291,
+            "sha256": "43cd5e9d9487d8e2916402bcb646ac5af63b723af39ead59f6f29948dbbf62f7"
+          }
+        }
+      },
+      {
+        "scope": "animation",
+        "tests": 49,
+        "log_identity": {
+          "size": 7835,
+          "sha256": "47c7ea0964882b0a9aad65f7e19d5290b0288e0dfa2cb27c5b8af7bf311f2fb7"
+        },
+        "source_bindings": {
+          "content/modernization/pr16_dex_hof_animation_registered_roots_review.json": {
+            "size": 15428,
+            "sha256": "6bc669368bae0e9be250161650749ab9ffc03457d1363e39b70f1ab48547a36a"
+          },
+          "scripts/pr16_dex_hof_animation_registered_roots.py": {
+            "size": 56212,
+            "sha256": "22691f91118c95db13eb0216ec559eddd3ff26d91134eb8a192a4f4fefc3b943"
+          },
+          "tests/test_pr16_dex_hof_animation_registered_roots.py": {
+            "size": 15919,
+            "sha256": "40c8cee36d013cbab07a8c2cf0d94c750180c3d92f87d06ffce453f1788f25c5"
+          }
+        }
+      },
+      {
+        "scope": "integration",
+        "tests": 103,
+        "log_identity": {
+          "size": 14822,
+          "sha256": "8d405511a1fdfec81fecdf8df715ad990bcac8011613d5bb77baed8bc70639c7"
+        },
+        "source_bindings": {
+          "content/modernization/pr16_dex_hof_registered_callback_batch_sources.json": {
+            "size": 6535,
+            "sha256": "3904d82745af056a504d55a4bc5442b99baeb369744d5f8c11c60d413731c997"
+          },
+          "scripts/pr16_dex_hof_registered_callback_batch.py": {
+            "size": 6672,
+            "sha256": "eacb2fafba51a4eea7636def44f2538930cbbfc61867a177e1c7d6fa4f606492"
+          },
+          "scripts/pr16_dex_hof_registered_callback_batch_actions.py": {
+            "size": 29641,
+            "sha256": "726bdee2e024cf344a833be5709a64c9cbf623cf3271a70666111327c91dfc0a"
+          },
+          "scripts/pr16_dex_hof_registered_callback_batch_capacity.py": {
+            "size": 11315,
+            "sha256": "6898b7aa74a294d66dda86e99f789e4a2b64fa1282d72d50a262c757bdcbb382"
+          },
+          "scripts/pr16_dex_hof_registered_callback_batch_chain.py": {
+            "size": 20396,
+            "sha256": "bda8791180d07e3099fb7341f2ec66b3aef51bbe8c2bdcdcfc3611a2320864ca"
+          },
+          "tests/test_pr16_dex_hof_registered_callback_batch.py": {
+            "size": 7742,
+            "sha256": "a4d6fb455bfe21b4b01b3408c3a7e6b9349fd7b0ba9656f00500d8433c013c52"
+          },
+          "tests/test_pr16_dex_hof_registered_callback_batch_actions.py": {
+            "size": 18945,
+            "sha256": "7d5330351a9335d06b70ab977dbd3ed5a51a54997a48ae0598e445ea6a7c7619"
+          },
+          "tests/test_pr16_dex_hof_registered_callback_batch_capacity.py": {
+            "size": 16225,
+            "sha256": "65fc96ce4f6e8841f58766584ffed05d0646a25a9db2065d1d17957200c8ba58"
+          },
+          "tests/test_pr16_dex_hof_registered_callback_batch_chain.py": {
+            "size": 22569,
+            "sha256": "fcde479e8a4f1db5742d957558c7f2af47ecb0df2259f180a8a97bf9539e4246"
+          }
+        }
+      },
+      {
+        "scope": "chain",
+        "tests": 46,
+        "log_identity": {
+          "size": 9959,
+          "sha256": "8088bbd2c2c17618b59a5952fbc1d1d64b505df96becbcf24ae9627fd8eba99e"
+        },
+        "source_bindings": {
+          "scripts/pr16_dex_hof_registered_callback_batch_capacity.py": {
+            "size": 11315,
+            "sha256": "6898b7aa74a294d66dda86e99f789e4a2b64fa1282d72d50a262c757bdcbb382"
+          },
+          "scripts/pr16_dex_hof_registered_callback_batch_chain.py": {
+            "size": 20396,
+            "sha256": "bda8791180d07e3099fb7341f2ec66b3aef51bbe8c2bdcdcfc3611a2320864ca"
+          },
+          "tests/test_pr16_dex_hof_registered_callback_batch_capacity.py": {
+            "size": 16225,
+            "sha256": "65fc96ce4f6e8841f58766584ffed05d0646a25a9db2065d1d17957200c8ba58"
+          },
+          "tests/test_pr16_dex_hof_registered_callback_batch_chain.py": {
+            "size": 22569,
+            "sha256": "fcde479e8a4f1db5742d957558c7f2af47ecb0df2259f180a8a97bf9539e4246"
+          }
+        }
+      }
+    ]
+  },
+  "diagnostic_test_log": {
+    "size": 38420,
+    "sha256": "eaf14e89bf7462ce057d999e0e9bcf098aeafa0284d6cc4f970928891ad8f45c"
+  },
+  "source_only_review": {
+    "status": "PASS",
+    "files": 17,
+    "open_findings": 0,
+    "current_rom_measured": false,
+    "old_independent_final_review_retried": false,
+    "reports": [
+      {
+        "scope": "chat",
+        "identity": {
+          "size": 9086,
+          "sha256": "da5e389135803b589dac84758181c16534c9c3eafae54cbc3f9193c1a474076f"
+        },
+        "file_count": 3
+      },
+      {
+        "scope": "animation",
+        "identity": {
+          "size": 6808,
+          "sha256": "534ec91b4b417bd5c1108a8757595b3cf3c7f00ae1299f1bed9d7d9086fdee16"
+        },
+        "file_count": 3
+      },
+      {
+        "scope": "pipeline",
+        "identity": {
+          "size": 9299,
+          "sha256": "897eb5763260ef3b2857a56e8dbb1ee6e5634ab2e0e189b6d25df9d789b4a6c4"
+        },
+        "file_count": 11
+      }
+    ],
+    "method_ja": "新animation2件の実command serializer/引数/同slot callback writer-read-BXとLoadBattleAnimTarget、およびchat constructor/page0/subtask/state5/JP直接printerの完全12byte消費を独立source-only review。条件付き最小型16byteを自然play全到達・全opaque効果・間接参照完全性/退役・owner移管と分離。41全原本と最新owner/安全0、公開/receipt guardを確認。現0641は別Actionsで測定。"
+  },
+  "publication_budget": {
+    "status": "PRECURRENT_CONSERVATIVE_SIZE_CHECK_NOT_ACCEPTANCE",
+    "files": {
+      "reference-chain.json": 224815,
+      "measurement.json": 333678,
+      "fixed-checkpoint.json": 383678,
+      "fixed-state.json": 3691435,
+      "fixed-resume.md": 177282,
+      "fixed-run-log.md": 2128299,
+      "fixed-version-log.md": 1739697,
+      "registered-callback-batch-tests.txt": 100000,
+      "unknown-frontier.json": 100000,
+      "partial-space.json": 80000,
+      "record.json": 30000
+    },
+    "total": 8988884,
+    "max_file": 4000000,
+    "max_total": 12000000
+  },
+  "unchanged_parent": {
+    "classified": 763,
+    "unclassified": 111,
+    "parent_inputs": 41,
+    "retained_proof_families": 21,
+    "changes": 144,
+    "witnesses": 134,
+    "owner_count": 115,
+    "hit_count": 874,
+    "song_models": 133,
+    "assets": 50
+  },
+  "acceptance_boundary": {
+    "current_candidate_verified": false,
+    "current_actions_required": true,
+    "natural_play_reachability_proven": false,
+    "universal_epoch_irq_proven": false,
+    "old_independent_final_source_review_completed": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "controller_runtime_wired": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}

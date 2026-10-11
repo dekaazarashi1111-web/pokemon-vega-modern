@@ -1,0 +1,356 @@
+{
+  "accepted_cases": {
+    "bug-earn-duplicate-cold": {
+      "accepted_case_reruns": 0,
+      "all_activities_accepted": false,
+      "candidate_sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+      "case": "bug-earn-duplicate-cold",
+      "earned_rp": 8,
+      "fresh_cores": 2,
+      "guarded_host_writes": 0,
+      "ledger_observations": [
+        {
+          "checksum_valid": true,
+          "ledger_event": "fixture",
+          "ledger_sha256": "bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "declined",
+          "ledger_sha256": "bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "earned",
+          "ledger_sha256": "8e0b80cf4c77cb4a2abea07a01e82f9ec6011330003c3aa99899ba7c0a29abc5",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "duplicate",
+          "ledger_sha256": "8e0b80cf4c77cb4a2abea07a01e82f9ec6011330003c3aa99899ba7c0a29abc5",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "continued",
+          "ledger_sha256": "8e0b80cf4c77cb4a2abea07a01e82f9ec6011330003c3aa99899ba7c0a29abc5",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "cold_duplicate",
+          "ledger_sha256": "8e0b80cf4c77cb4a2abea07a01e82f9ec6011330003c3aa99899ba7c0a29abc5",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        }
+      ],
+      "manual_saves": 0,
+      "natural_arrival_accepted": false,
+      "observations": [
+        {
+          "counter": 2,
+          "event": "fixture",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d9ea926f94efa66d166cebc959320a2ba49844469d4dc86d895b47f8a9a6aa0a"
+        },
+        {
+          "counter": 2,
+          "event": "declined",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d9ea926f94efa66d166cebc959320a2ba49844469d4dc86d895b47f8a9a6aa0a"
+        },
+        {
+          "counter": 4,
+          "event": "earned",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000080001010000080000000000000000000800000000000001000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d9ea926f94efa66d166cebc959320a2ba49844469d4dc86d895b47f8a9a6aa0a"
+        },
+        {
+          "counter": 4,
+          "event": "duplicate",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000080001010000080000000000000000000800000000000001000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d9ea926f94efa66d166cebc959320a2ba49844469d4dc86d895b47f8a9a6aa0a"
+        },
+        {
+          "counter": 4,
+          "event": "continued",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000080001010000080000000000000000000800000000000001000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d9ea926f94efa66d166cebc959320a2ba49844469d4dc86d895b47f8a9a6aa0a"
+        },
+        {
+          "counter": 4,
+          "event": "cold_duplicate",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000080001010000080000000000000000000800000000000001000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d9ea926f94efa66d166cebc959320a2ba49844469d4dc86d895b47f8a9a6aa0a"
+        }
+      ],
+      "screens": [
+        {
+          "screen": "bug-fixture-field.ppm",
+          "sha256": "bb80ac0ad5087bcb7a1649028774db491260cbd878ecaa90dd6bf09ac5db19dd"
+        },
+        {
+          "screen": "bug-decline-prompt.ppm",
+          "sha256": "17cf28de2d43489a99a1403b4a429cb484a3b90e7ef5c2614eb8d0d53bd09979"
+        },
+        {
+          "screen": "bug-earn-prompt.ppm",
+          "sha256": "17cf28de2d43489a99a1403b4a429cb484a3b90e7ef5c2614eb8d0d53bd09979"
+        },
+        {
+          "screen": "bug-earn-outcome.ppm",
+          "sha256": "15e649906e0d9887ee2bf437114d92f1e81522624ab4375d8747730515528437"
+        },
+        {
+          "screen": "bug-duplicate-prompt.ppm",
+          "sha256": "17cf28de2d43489a99a1403b4a429cb484a3b90e7ef5c2614eb8d0d53bd09979"
+        },
+        {
+          "screen": "bug-duplicate-outcome.ppm",
+          "sha256": "b6118da2d12d7f3ae43ffdf9f06315429045c20de01a41ed4b296b4f676c68af"
+        },
+        {
+          "screen": "bug-continued-field.ppm",
+          "sha256": "762524118ccf2705c63c171510b932a8b1749862934d19e9e83344c17c800c30"
+        },
+        {
+          "screen": "bug-cold_duplicate-prompt.ppm",
+          "sha256": "17cf28de2d43489a99a1403b4a429cb484a3b90e7ef5c2614eb8d0d53bd09979"
+        },
+        {
+          "screen": "bug-cold_duplicate-outcome.ppm",
+          "sha256": "b6118da2d12d7f3ae43ffdf9f06315429045c20de01a41ed4b296b4f676c68af"
+        }
+      ],
+      "status": "PASS",
+      "stdout": {
+        "sha256": "522f4833de73b6eeb758f2240917a3145adaabbbadd898f5798fdb11718a8c2a",
+        "size": 6414
+      },
+      "transaction_saves": 2,
+      "visits": [
+        {
+          "confirmed": false,
+          "counter": 2,
+          "frame": 1118,
+          "result": 0,
+          "rp": 0,
+          "visit": "decline"
+        },
+        {
+          "confirmed": true,
+          "counter": 4,
+          "frame": 2476,
+          "result": 0,
+          "rp": 8,
+          "visit": "earn"
+        },
+        {
+          "confirmed": true,
+          "counter": 4,
+          "frame": 2874,
+          "result": 4,
+          "rp": 8,
+          "visit": "duplicate"
+        },
+        {
+          "confirmed": true,
+          "counter": 4,
+          "frame": 3272,
+          "result": 4,
+          "rp": 8,
+          "visit": "cold_duplicate"
+        }
+      ],
+      "warnings_errors": 0
+    },
+    "bug-missing-type-rejected": {
+      "accepted_case_reruns": 0,
+      "all_activities_accepted": false,
+      "candidate_sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+      "case": "bug-missing-type-rejected",
+      "earned_rp": 0,
+      "fresh_cores": 1,
+      "guarded_host_writes": 0,
+      "ledger_observations": [
+        {
+          "checksum_valid": true,
+          "ledger_event": "fixture",
+          "ledger_sha256": "bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "rejected",
+          "ledger_sha256": "bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        }
+      ],
+      "manual_saves": 0,
+      "natural_arrival_accepted": false,
+      "observations": [
+        {
+          "counter": 2,
+          "event": "fixture",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "76b3ec7e9dbf2fa0291f2eb5435d614c195c48d24ca957023bec32d8418eedbb"
+        },
+        {
+          "counter": 2,
+          "event": "rejected",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "76b3ec7e9dbf2fa0291f2eb5435d614c195c48d24ca957023bec32d8418eedbb"
+        }
+      ],
+      "screens": [
+        {
+          "screen": "bug-fixture-field.ppm",
+          "sha256": "bb80ac0ad5087bcb7a1649028774db491260cbd878ecaa90dd6bf09ac5db19dd"
+        },
+        {
+          "screen": "bug-missing-prompt.ppm",
+          "sha256": "17cf28de2d43489a99a1403b4a429cb484a3b90e7ef5c2614eb8d0d53bd09979"
+        },
+        {
+          "screen": "bug-missing-outcome.ppm",
+          "sha256": "dd1ebc4de9b91f40d4a4d036b03b88421ba80d18216a47811aeb7de996bd4c70"
+        }
+      ],
+      "status": "PASS",
+      "stdout": {
+        "sha256": "fbe481499e38bf4f71aec3ee7e7ab7ea3c80442e879e7766f637afd3fd6dfcc7",
+        "size": 2443
+      },
+      "transaction_saves": 0,
+      "visits": [
+        {
+          "confirmed": true,
+          "counter": 2,
+          "frame": 1330,
+          "result": 3,
+          "rp": 0,
+          "visit": "missing"
+        }
+      ],
+      "warnings_errors": 0
+    }
+  },
+  "candidate": {
+    "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+    "size": 33554432
+  },
+  "counts": {
+    "accepted_case_reruns": 0,
+    "accepted_native_processes": 2,
+    "arm_compiles": 0,
+    "failed_native_processes": 0,
+    "host_compiles": 1,
+    "native_processes": 2,
+    "rom_changes": 0
+  },
+  "guard_reuse_ja": "既受入の7API書込拒否は同一helper/生成依存から継承。今回barrier後は実キーと読取のみ。",
+  "new_scoped_tests": 51,
+  "original": {
+    "sha256": "4ba05aea906c2a0f9b3c1da8aa4c62bbb05900630435b21ee733e576740aa832",
+    "size": 42379
+  },
+  "parent_inheritance_exclusion": ".github/workflows/pr16-research-photo-visual-20260927.yml",
+  "record_compiles": 0,
+  "record_native_runs": 0,
+  "source_adjudication": {
+    "accepted_test_reexecutions": 0,
+    "model_after": {
+      "sha256": "c71d37aaff27720257f82c0920197dfbbdd0e22d52eed53def872781266c64df",
+      "size": 8465
+    },
+    "model_before": {
+      "sha256": "1380b65345c4b347a158f3a646ae7e085c30dc828df3ddf554440e56c34e6a65",
+      "size": 8471
+    },
+    "model_only_replacement": {
+      "after": "RAW = 'content/modernization/pr16_research_bug_measurement.json'",
+      "before": "RAW = 'content/modernization/pr16_research_bug_local_measurement.json'"
+    },
+    "native_reexecutions": 0,
+    "reason_ja": "失われた旧ローカルJSONの初回失敗1件を創作しない。新Actions実測2成功/0失敗と過去件数unknownを区別。oracleと生成Cは不変。",
+    "test_changes": [
+      "欠落した過去failureの参照を、欠落/件数unknown/新2成功の検査へ置換",
+      "現在Actionsのfailed_native_processesを1から0へ訂正"
+    ],
+    "tests_after": {
+      "sha256": "70e56383cb72742cad1fb205564c7773bc46d408d2df86d92e5be21812dd940c",
+      "size": 6250
+    },
+    "tests_before": {
+      "sha256": "987caba2f2481811cdf01f0dc3d9fc78e19de39ddec8176f079ffaea2a7b8e8a",
+      "size": 6085
+    }
+  },
+  "status": "PASS_BUG_ACTIONS_SOURCE_AND_EVIDENCE"
+}

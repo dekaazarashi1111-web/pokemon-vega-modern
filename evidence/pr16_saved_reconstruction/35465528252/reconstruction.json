@@ -1,0 +1,410 @@
+{
+  "accepted_host_tests_replayed": 0,
+  "accepted_native_cases_replayed": 0,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "candidate": {
+    "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183",
+    "size": 33554432
+  },
+  "classification": "SAVED_BYTE_CHAIN_VERIFIED_NO_RECOMPILE",
+  "genuine_30_wins_verified": false,
+  "new_emulator_processes": 0,
+  "normalized_recipe": {
+    "sha256": "80d93a1de6175eaffb391baf1d38a0de8ec647c90b837863e2703868e33d1bd5",
+    "size": 1249360
+  },
+  "original_members": {
+    "bp-loss/pr16-bp-loss-return-run/successor-candidate.json": {
+      "sha256": "1be2f156da2d7f47a56e951e0eb06bb6244913b68ae4eed7d20d9a1334d6bdab",
+      "size": 55450
+    },
+    "bp-loss/pr16-bp-loss-return-run/successor-compile-1-runtime-disassembly.txt": {
+      "sha256": "ff1323460a1de5c49f03d2ee379e8527920441eb9e2a4746d32df364b9f4bae4",
+      "size": 3818
+    },
+    "bp-retention/pr16-bp-party-retention-native-run/successor-candidate.json": {
+      "sha256": "37f4c4f9ee34ec88dca46ec767d6bb68281dfceb975273e368db8148c6ebb987",
+      "size": 57496
+    },
+    "entry/pr16-circus-entry/compile-1/disassembly.txt": {
+      "sha256": "79664822ab9c83f769d63bbb219745a414561e1c89d4f2ea156f6b638b1151cd",
+      "size": 6198
+    },
+    "entry/pr16-circus-entry/facility-symbols.json": {
+      "sha256": "1e18014b8629f43047ec032940d4a505b6abd6268dad48b16e4bbbea86ac706e",
+      "size": 1887
+    },
+    "entry/pr16-circus-entry/parent-graphs.json": {
+      "sha256": "838f4da9c3729f831937ee3035813e6e2dd7767b8a34690db04f912fecf1b770",
+      "size": 51735
+    },
+    "entry/pr16-circus-entry/report.json": {
+      "sha256": "ffba4cdef5ac0599072a28597f5cc8d8e8a544dcf7579a8a6fc495d52507cc55",
+      "size": 59955
+    },
+    "evolution/candidate.json": {
+      "sha256": "910a790440f701a8ca7d9d0c3046882cf7026ea1c45164ae29e80f4d71e622f0",
+      "size": 54406
+    },
+    "evolution/evolution-repaired-to-integrated-p07.bps": {
+      "sha256": "0ae9b92ebb55d6b774bc6d6e71f27746e3f72cccf6520a5d3b4cfe7411d4e7ff",
+      "size": 49
+    },
+    "evolution/integrated-p07-to-evolution-repaired.bps": {
+      "sha256": "4c4fd8e79cc770cdf3e9b2b90f49bfff68b3b41637627ab0b182f7d424e3103a",
+      "size": 82
+    },
+    "gift/pr16-ring-npc-successor/candidate.json": {
+      "sha256": "b5a6b75bc1edf053915cd8118d0f654810b5dedc0263d9b93e28a1247fafc8cd",
+      "size": 58790
+    },
+    "gift/pr16-ring-npc-successor/compile-1/disassembly.txt": {
+      "sha256": "dbc56fad24d0221911aea3393d78db5f625f4fd60c6ffc54bf18ab77a076db78",
+      "size": 2448
+    },
+    "p07/candidate.json": {
+      "sha256": "7c568111ed72dc985bdaffdde472b8cdeff4e1249638e008a209a7cc9c49ae7b",
+      "size": 105389
+    },
+    "p07/integrated-p07-to-stage84.bps": {
+      "sha256": "b928410bf53a4ae54885537d13558f807b01e22dff7e7c1c8df80120a75c583d",
+      "size": 88
+    },
+    "p07/stage84-to-integrated-p07.bps": {
+      "sha256": "daf0382a949486e195cab2939c42ed906f9579bf584fe2716b4c4e55c225adb5",
+      "size": 32016
+    },
+    "policy/pr16-ring-policy-successor/candidate.json": {
+      "sha256": "55afd9d7dc0059f750e2c1306eda52e360a1a276ddc3057ec1aaa4ddd5f3d6ff",
+      "size": 58072
+    },
+    "policy/pr16-ring-policy-successor/compile-1/disassembly.txt": {
+      "sha256": "5f6271a350f46ae67d5cbbde9f2b77746bd3524d4e27ada92c9c45453b061fc5",
+      "size": 2447
+    },
+    "retention/pr16-circus-retention-build/compile-1/disassembly.txt": {
+      "sha256": "8ad93b6d1f8c84c5acc3ffe9e3a742fc5d693f7ea8e1147c3f2555113703e674",
+      "size": 5905
+    },
+    "retention/pr16-circus-retention-build/report.json": {
+      "sha256": "3b3557c3ed3c5e345c37ff50795fe5c4c821b6c3ec3c2586793d20c962fbc7e3",
+      "size": 123341
+    },
+    "shop/pr16-shop-display-repair-evidence/candidate.json": {
+      "sha256": "e9db6aca3b6610a134074087e68339d9a78f273cd92f836f50b69badd7262b75",
+      "size": 59675
+    },
+    "shop/pr16-shop-display-repair-evidence/parent-to-shop-display-repaired.bps": {
+      "sha256": "70fc23b599322b1ecffb481f17bd4a7c5a11ea4834b05c355a6747eeb749ae7b",
+      "size": 4564
+    },
+    "shop/pr16-shop-display-repair-evidence/shop-display-repaired-to-parent.bps": {
+      "sha256": "4a0cff130fcfd8402e1576ff979b33d853a686684e38394a25d86de37fedff15",
+      "size": 55
+    }
+  },
+  "physical_admission_accepted": false,
+  "process_barrier_active": true,
+  "process_spawns": 0,
+  "reconstruction": {
+    "accepted_native_cases_replayed": 0,
+    "arm_compiles": 0,
+    "candidate": {
+      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183",
+      "size": 33554432
+    },
+    "layers": [
+      {
+        "allocations": 0,
+        "candidate": {
+          "sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+          "size": 33554432
+        },
+        "patches": 5,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 0,
+        "candidate": {
+          "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+          "size": 33554432
+        },
+        "patches": 6,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 0,
+        "candidate": {
+          "sha256": "09e9d8cf085d175299b58e93347e3beb2467c3c09016130f7d35ce033fa50096",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+          "size": 33554432
+        },
+        "patches": 3,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 0,
+        "candidate": {
+          "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "09e9d8cf085d175299b58e93347e3beb2467c3c09016130f7d35ce033fa50096",
+          "size": 33554432
+        },
+        "patches": 1,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 85,
+        "candidate": {
+          "sha256": "beef0d6aaf5b9e1be04b3075a7e9a4f388110776763fa11c6a74fdc6a38310c7",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+          "size": 33554432
+        },
+        "patches": 237,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 86,
+        "candidate": {
+          "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "beef0d6aaf5b9e1be04b3075a7e9a4f388110776763fa11c6a74fdc6a38310c7",
+          "size": 33554432
+        },
+        "patches": 2,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 87,
+        "candidate": {
+          "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+          "size": 33554432
+        },
+        "patches": 122,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 0,
+        "candidate": {
+          "sha256": "df8a15c3b464854ca84a5c0533177cfa3187b5eef252d20248f7654edb72887c",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+          "size": 33554432
+        },
+        "patches": 1,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 0,
+        "candidate": {
+          "sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "df8a15c3b464854ca84a5c0533177cfa3187b5eef252d20248f7654edb72887c",
+          "size": 33554432
+        },
+        "patches": 1,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 88,
+        "candidate": {
+          "sha256": "fcda15075a586d59f4f9da5f7f55a294765f826ab1453a576e74192df822d879",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+          "size": 33554432
+        },
+        "patches": 2,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 0,
+        "candidate": {
+          "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "fcda15075a586d59f4f9da5f7f55a294765f826ab1453a576e74192df822d879",
+          "size": 33554432
+        },
+        "patches": 2,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 90,
+        "candidate": {
+          "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd",
+          "size": 33554432
+        },
+        "patches": 3,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 91,
+        "candidate": {
+          "sha256": "72fbca91cd6ee1082198678ccaed76bcb76dfd19ce9f6f3c26309745b2f09ac0",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+          "size": 33554432
+        },
+        "patches": 2,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 92,
+        "candidate": {
+          "sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "72fbca91cd6ee1082198678ccaed76bcb76dfd19ce9f6f3c26309745b2f09ac0",
+          "size": 33554432
+        },
+        "patches": 2,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 93,
+        "candidate": {
+          "sha256": "99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+          "size": 33554432
+        },
+        "patches": 2,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 94,
+        "candidate": {
+          "sha256": "3554dc42923bf426332f25c5776d4e213ab0d89a9d2ad6d3861be8d93b9e2cc1",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b",
+          "size": 33554432
+        },
+        "patches": 2,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 96,
+        "candidate": {
+          "sha256": "3b5f919958bf72bad9aa5b466215f33311f9c8c19e1f7f409303416eab952d5d",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "3554dc42923bf426332f25c5776d4e213ab0d89a9d2ad6d3861be8d93b9e2cc1",
+          "size": 33554432
+        },
+        "patches": 26,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 97,
+        "candidate": {
+          "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "3b5f919958bf72bad9aa5b466215f33311f9c8c19e1f7f409303416eab952d5d",
+          "size": 33554432
+        },
+        "patches": 2,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 98,
+        "candidate": {
+          "sha256": "7a5676f9f330a7718baa18ff86d825d718041f47c5356eb029ea819930cc9dc5",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+          "size": 33554432
+        },
+        "patches": 2,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "allocations": 99,
+        "candidate": {
+          "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183",
+          "size": 33554432
+        },
+        "parent": {
+          "sha256": "7a5676f9f330a7718baa18ff86d825d718041f47c5356eb029ea819930cc9dc5",
+          "size": 33554432
+        },
+        "patches": 2,
+        "whole_rom_rollback_matches_parent": true
+      }
+    ],
+    "native_processes": 0,
+    "parent": {
+      "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+      "size": 33554432
+    },
+    "whole_chain_rollback_matches_parent": true
+  },
+  "release_ready": false,
+  "rom_changes": 0,
+  "run_id": 35465528252,
+  "schema_version": 1,
+  "seed": {
+    "sha256": "5ef0bf9b5c4c2702f85fe5745cd243846b81720ed29aea1fbd77ca08e9c543e4",
+    "size": 9422
+  },
+  "source_bindings": {
+    "content/modernization/pr16_saved_reconstruction_seed.json": {
+      "sha256": "5ef0bf9b5c4c2702f85fe5745cd243846b81720ed29aea1fbd77ca08e9c543e4",
+      "size": 9422
+    },
+    "scripts/pr16_saved_recipe.py": {
+      "sha256": "efc59531e7d657c4e16b66fb73b17e68bc1f754b85f95d1473bae32f4ea962df",
+      "size": 7437
+    },
+    "scripts/pr16_saved_reconstruction.py": {
+      "sha256": "c938d3a445463e25a296a8f6f9657411a18cbd4b91373af066a490a8afd0d2d4",
+      "size": 19950
+    }
+  },
+  "suppression_accepted": false,
+  "tested_head": "c2737e1b57ff28909d43c13ad4223d0380c0029a"
+}

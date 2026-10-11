@@ -1,0 +1,47 @@
+# Save101後継 live route adapter
+
+所有者指定の意味ある到達点は506→519→シオウPokecenterの通常回復・Save・fresh Continue。通常戦ごとのSaveは作らず、未知owner/UIは未保存診断停止する。
+
+## 時計の限定owner
+
+固定ROM main loop 0x0800049E→0x0837BE9C→0x093BE9F8→0x08054130。SaveBlock2 offsets0x0E/0x0Fはhours、0x10はminutes、0x11はseconds、0x12はVBlanks。1秒60tick、各fieldのrange、単調性、観測frame予算＋位相差最大1tickを検査。0x13以降や残り全byteを時計扱いしない。飽和999:59:59:59は別ownerが必要なので停止。
+
+実際のhookはseconds59→0ごとにResearchEconomy_MinuteTickも実行する。ledger offset0x746のminute、60minute rollover時だけday serial・daily counters・daily shop・simple claimsを正確に更新し、外側FNV1a checksumを再計算する。全2048byteを予測像と比較する。RP、lifetime、once、story flagを可変のまま許可しない。Save/RTCは不変を要求する。
+
+## 歩行と現在trainer
+
+same-map通常1tile/旋回について、位置、4021 modulo128、4022 modulo5、暗号化GAME_STAT_STEPS（cap0xFFFFFF）、周期時だけfriendshipの0/+1、残る全SaveBlock1/party/save2/拡張領域を検査する。friendship乱数は結果の有界ownerを照合し、個々の分岐PC採取とは呼ばない。
+
+trainer131/128/1065は現在24consumerのtable0x09329070から各4体、物理flag1411/1408/1416を解決。rewardは旧vanilla経路がhookで置換されているため、0x091191CCの実敵party末尾levelと実class/fallbackを優先。通常single/moneyMultiplier1の候補額は448/1700/504。class42は現在tableにないため、実calculatorの先頭class倍率25へのfallbackを明示する。未観測の倍率・賞金を受入済みにしない。
+
+全215歩のterrain、両mapのland tableも固定ROMから照合。native戦闘UI、postbattle dex/統計owner、map transition、nurse会話は引続き解決対象。本stageは新route readerと厳格guardを実装し、最初の未対応eventを同一frameで診断する。未知eventへのA fallbackはない。診断を施設到達・戦闘勝利・保存達成と呼ばない。
+
+既存49試験/native probeは再利用。新41host試験と保存済みprobe2観測に対する時計adapter照合は別記録。旧observer/runner/受入証拠を書き換えない。ROM/入力Save/runtime/新runnerは再配布しない。
+
+## 最初の未保存診断と閉じた補正
+
+run37205259977/source933249c02e55bc7f71c1d3e0586e2605f0a631f8は全8step成功だが、通常歩行の受入は失敗。最初の1歩でSaveBlock1+0x309Aが226→227になり停止。14入力/2画面・Save101全byte保持。artifact11304301923/28032bytes/SHA256 c71ba57f19d9600a01c10b4f9c4ceb5bfa52c6868b054ffa4339dc1f547043bfを失敗原本として保持。
+
+固定ROMのstep hook→QOL wrapper→ShouldEggHatch0x0804594C→0x080458C8を照合し、空のdaycareでも毎歩進むu8 stepCounterと確認。daycare/Route5 daycare全空・party非タマゴの場合だけ+1 modulo256を許可し、隣接byteや預けポケモン/タマゴは別owner要求。新3拒否/rollover試験を追加、変更影響を含む44host検査と保存済み最初の1歩を照合してから未完区間だけ再開する。
+
+## 次の未保存観測
+
+run37205641114/sourcefc4dc8bee0a10d105abd28b21fed656e0002e993は全8step成功。50区間の39歩/11旋回、minute rollover1回、friendship周期1回（主力49→50）を全byte guardへ照合。次の40歩目32,10で既知transition callback0x08055E69/lock1を観測し、A等を一切送らず停止。114入力/52画面、全Save101保持。artifact11304159006/461241bytes/SHA256 5e61d622016e1f24f601429ec9b01134f0f9abb58757d7cb2eb37afb21264224。
+
+次の変更影響runはこの未受入草地transitionの位置・callback・enemy/trainer未設定値と40歩目の全persistent ownerを固定照合し、無入力600framesだけ進めて実battle UIを観測する。未知UIへのA fallbackは引き続き0。任意のSaveBlock2 byte免除引数も削除し、時計5byte以外の差分を常に拒否する。施設・勝利・Saveの受入はまだ0。
+
+40歩目には通常歩数に加えGAME_STAT_TOTAL_BATTLES/WILD_BATTLES各+1と、QOL standard-wild provenance stateだけが変わる。raw expanded-var backingの後半はQolStateが重なっているため、index429等を無条件にstory variableとみなさない。実敵species32/Lv13/moves40,43,64,116/PIDと、QolState magic/inverse、armed消費、battle eligibility1、二つのPIDを閉じて照合。残る1024byteは一致必須。旧dataや既知一般CIのQOL source期待hashは変更しない。
+
+## 通常battle entryのrekey owner
+
+run37206318654/source da0624bc098904c785a346f5531cf9847e6b0aa0、全8step成功。115入力/53画面、40歩/11旋回＋無入力600framesでニドラン♂Lv13出現文言を確認。実controller0x0802FD91/command0x10/main0x08012F05。技UIはまだ未観測であり旧host-only controller値を流用しない。artifact11305345112/469071bytes/SHA256 77acfa83bbce04a210c02fa3b1de2fc868a7010e479ba92a1679a25e76480b91。
+
+通常battle initはSaveBlock relocationと再暗号化を行い、raw SaveBlock1は641byte変化した。0x0800F758→0x0804B85C→0x0804BD5Cを確認。新旧keyを使いmoney/coins/186 Bag数量/64 stats/TrainerTower bestTime/berry powderの平文保存を全byte比較し、data変更を許可しない。さらに通常entryの4022=0、固定相手national32のseen bitをSave2とSave1両コピーへ正確に反映して、残る全byteを検査する。任意byte除外は導入しない。
+
+次はこの実wild32/Lv13に通常Earthquakeを1回選ぶ限定adapter。実battle HP/PP/species/types/party indexを確認し、既知printstringだけA、既知Fight/move controllerだけcursor操作、選択を伴わないcommandは無入力待機。未知UI・別相手・2ターン必要・異常差は未保存停止。勝利/field/全persistent平文/PP1消費が一致すればcompact ledgerに書いて宣言済みシオウ施設へ継続する。通常戦を独立Save milestoneにしない。26新host試験と既存47試験を分離し、47の原本は改作/再走しない。
+
+## 初wildの勝利outcomeとfield fade
+
+run37207201375/sourcecf93d4cd70963aa587802ac7e305830029ff802e、全8step成功。実Fight→move UIを確認してEarthquake89を1回選択。PP9→8、HP277/294と残りparty全byte保持、通常outcome1を観測した。field callback復帰時のlock1/暗転中を未対応UIとして止めたため、通常field復帰完了・継続は未受入。135入力/68画面、Save101全byte保持。artifact11305616098/585893bytes/SHA256 e534eca67b4ffa648dd6a082454aa84c2303d1a3e0a827e140ae5ca128a1b1d8。
+
+保存原本だけでpostbattle全平文/rekey/時計/QOL token clear/PP1消費を照合済み。次はfield callback/outcome1/同座標/全persistent ownerが既に一致するlock1に限り、無入力60framesを最大6回。解除後だけledger確定し次tileへ継続。別callback/結果/party差や解除失敗は診断停止。26→29host checksはこの変更影響、47旧clock試験は再走しない。

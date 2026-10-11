@@ -1,0 +1,142 @@
+{
+  "terminal": {
+    "run": {
+      "id": 37152779196,
+      "head_sha": "5bad5bee97dc0059e901984c7f35d936e65c0351",
+      "head_branch": "codex/modernization-followup-20260908",
+      "path": ".github/workflows/pr16-story-save56.yml",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1
+    },
+    "job": {
+      "id": 111289893097,
+      "run_id": 37152779196,
+      "workflow_name": "pr16-story-save56",
+      "head_branch": "codex/modernization-followup-20260908",
+      "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37152779196",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUPNhZs8AAAAZ6WUA6Q",
+      "head_sha": "5bad5bee97dc0059e901984c7f35d936e65c0351",
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111289893097",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37152779196/job/111289893097",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-03T20:47:09Z",
+      "started_at": "2026-10-03T20:47:11Z",
+      "completed_at": "2026-10-03T20:47:37Z",
+      "name": "continuation",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-03T20:47:11Z",
+          "completed_at": "2026-10-03T20:47:12Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-03T20:47:12Z",
+          "completed_at": "2026-10-03T20:47:25Z"
+        },
+        {
+          "name": "New mansion entrance and unread-floor boundary checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-03T20:47:25Z",
+          "completed_at": "2026-10-03T20:47:26Z"
+        },
+        {
+          "name": "New ordinary mansion traversal and Save56 with independent Continue",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 4,
+          "started_at": "2026-10-03T20:47:26Z",
+          "completed_at": "2026-10-03T20:47:35Z"
+        },
+        {
+          "name": "Lightweight task graph",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5,
+          "started_at": "2026-10-03T20:47:35Z",
+          "completed_at": "2026-10-03T20:47:35Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-03T20:47:35Z",
+          "completed_at": "2026-10-03T20:47:35Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-03T20:47:35Z",
+          "completed_at": "2026-10-03T20:47:36Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-03T20:47:36Z",
+          "completed_at": "2026-10-03T20:47:36Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111289893097",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000020312,
+      "runner_name": "GitHub Actions 1000020312",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  },
+  "artifact_id": 11285040773,
+  "archive": {
+    "size": 22439,
+    "sha256": "f9858e046713149ace288c6f1ad1fdbadec6d0db401ee5ae5dfe17501796f235"
+  },
+  "failure": {
+    "status": "NOT_ACCEPTED_PRESERVE_NO_AUTOMATIC_REPLAY",
+    "type": "ValueError",
+    "message": "館warp1入口だけ",
+    "native_processes": 1,
+    "source_head": "5bad5bee97dc0059e901984c7f35d936e65c0351",
+    "run_id": 37152779196
+  },
+  "execution": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "f9f9638a49aa4b0f0553c3bfcbaeb736f49d4ae42e5b5ca2509c8aaad9f515a2"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "f9f9638a49aa4b0f0553c3bfcbaeb736f49d4ae42e5b5ca2509c8aaad9f515a2"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 1794,
+      "inputs": 21,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 6
+  },
+  "reason_ja": "warp1から自動1歩進む推測を置いたが実際は20,33の出口arrowで停止。初期21入力/6画面の未保存失敗を保持し、実観測位置から8歩の新廊下へ修正。回復/レンジャー/受入済native再走なし。",
+  "accepted_case_reruns": 0
+}

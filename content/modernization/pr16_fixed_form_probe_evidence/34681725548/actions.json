@@ -1,0 +1,446 @@
+{
+  "artifact_created_at": "2026-09-12T07:50:56Z",
+  "artifact_expires_at": "2026-10-12T07:50:56Z",
+  "artifact_head": "d308bf867ff04fba8cca7f08500cfc6e0972dd82",
+  "artifact_id": 10294094459,
+  "artifact_name": "pr16-fixed-form-native-probe",
+  "artifact_sha256": "4b7606ab66dfd57a6cd0b4c5c301f34f63dd5f90a9374b543f889152217def5e",
+  "artifact_size": 221634,
+  "claims": {
+    "native_acceptance_claimed": false,
+    "new_emulator_runs": 0,
+    "p03_fixed_form_gap_closed": false,
+    "release_ready": false
+  },
+  "entries": [
+    {
+      "path": "pr16-fixed-form-evidence/candidate.json",
+      "sha256": "910a790440f701a8ca7d9d0c3046882cf7026ea1c45164ae29e80f4d71e622f0",
+      "size": 54406
+    },
+    {
+      "path": "pr16-fixed-form-evidence/contract.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-evidence/contract.stdout",
+      "sha256": "42e229c61fab1b9f34319edbf1a7e8ce7945f488f981c6fa4c55e8ca124f80e7",
+      "size": 4713
+    },
+    {
+      "path": "pr16-fixed-form-evidence/native.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-evidence/native.stdout",
+      "sha256": "70f988c2ad0d46fe58d0a9236261522336ac65e35a40229ba98612a003b8fcef",
+      "size": 14479
+    },
+    {
+      "path": "pr16-fixed-form-evidence/p07.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-evidence/p07.stdout",
+      "sha256": "61b1327cce12789ee9f06f5944f5dacbbf097ca1d72b1abea0725c2835cf3293",
+      "size": 591
+    },
+    {
+      "path": "pr16-fixed-form-evidence/private-restore.json",
+      "sha256": "02ad0f577bd29a770c67979bc976b4f918b7a73592525330b03c3fe6bc0965a0",
+      "size": 228
+    },
+    {
+      "path": "pr16-fixed-form-evidence/regenerated-contract.json",
+      "sha256": "42e229c61fab1b9f34319edbf1a7e8ce7945f488f981c6fa4c55e8ca124f80e7",
+      "size": 4713
+    },
+    {
+      "path": "pr16-fixed-form-evidence/repair.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-evidence/repair.stdout",
+      "sha256": "f191856fe4da91b0e7b716a1daf703173597a6af95f8fde1ec8a14afe71ef72c",
+      "size": 42856
+    },
+    {
+      "path": "pr16-fixed-form-evidence/source-bindings.json",
+      "sha256": "eedaf194ce4daeaef35147fc83d71457342de6160746fa461b55832c6f20ade3",
+      "size": 3204
+    },
+    {
+      "nested_entries": [
+        {
+          "path": "scripts/pr16_fixed_form_probe.py",
+          "sha256": "ffd8c2b8dadf2a743e54f58e9a9fe8703f995a9a9a64d9b0277ae91f89e08198",
+          "size": 15827
+        },
+        {
+          "path": "tools/mgba_pr16_fixed_form_probe.c",
+          "sha256": "4bc208162bc9675c5c77ba7ba71a0598a63742377f453105819636ffd37078f6",
+          "size": 14622
+        },
+        {
+          "path": "tests/test_pr16_fixed_form_probe.py",
+          "sha256": "4e8b409d0475609623a62397dbd6709b762dde9f0da609a46561bd6625984de2",
+          "size": 8698
+        },
+        {
+          "path": ".github/workflows/pr16-fixed-form-probe.yml",
+          "sha256": "75b6a181e8d0dea16cdd744e84effe495124cab69b685138b171f6b295d094d4",
+          "size": 7038
+        },
+        {
+          "path": "scripts/pr16_fixed_form_contract.py",
+          "sha256": "145a0a44b7d2c290976fc194a855dfc700eb6161127af0bcca0db46e8dce8297",
+          "size": 10758
+        },
+        {
+          "path": "tests/test_pr16_fixed_form_contract.py",
+          "sha256": "ca88cc8702e79793dd60a700293510382796f572cd9ac7bb6da285bb7b20b895",
+          "size": 3762
+        },
+        {
+          "path": "content/modernization/pr16_fixed_form_contract.json",
+          "sha256": "42e229c61fab1b9f34319edbf1a7e8ce7945f488f981c6fa4c55e8ca124f80e7",
+          "size": 4713
+        },
+        {
+          "path": "content/modernization/pr16_fixed_form_contract_receipt.json",
+          "sha256": "cebe3e1835cd28e7119dd7cf9070a1bd238cf901131a3b952f6c1db48862e4a3",
+          "size": 1001
+        },
+        {
+          "path": "scripts/pr16_generic_form_carry.py",
+          "sha256": "972200a1209dfcd05353093469eace148de1c263988f3835235f0433307c5338",
+          "size": 25740
+        },
+        {
+          "path": "tools/mgba_pr16_generic_form_carry.c",
+          "sha256": "24955152d2866a7b83011cfc8a9ed1386c0901ecda86637dbc684cc717a73d89",
+          "size": 24628
+        },
+        {
+          "path": "scripts/pr16_p03_form_gap_inventory.py",
+          "sha256": "81565ad71b26ddf1d08c32c5d1f732d19dc670771415735c132d7c9f142abccb",
+          "size": 8093
+        },
+        {
+          "path": "content/collection_supply_v1/canonical_model.json",
+          "sha256": "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0",
+          "size": 899889
+        },
+        {
+          "path": "scripts/pr16_breeding_delta.py",
+          "sha256": "96ca917dbe4466d201cfd42dbac96541058ffa3e6362dab50a41956404deb857",
+          "size": 10002
+        },
+        {
+          "path": "scripts/pr16_repaired_acceptance.py",
+          "sha256": "e83d17663ffaacfca99fe77df7cd28031671dcd20a83abad1a634a31ed603ba5",
+          "size": 6470
+        },
+        {
+          "path": "scripts/pr16_p07_preserved_layer.py",
+          "sha256": "d1f79d72582ce27095cf14993ef597ae633f751ff2a35c3ed23fd59fba308271",
+          "size": 14916
+        },
+        {
+          "path": "scripts/pr16_evolution_learning_repair.py",
+          "sha256": "66d8ccb0be6c320f70c1dc5e803625c95d410decac5533a24fe395e8052a98bd",
+          "size": 7072
+        },
+        {
+          "path": "scripts/run_modernization_p03_breeding_e2e.py",
+          "sha256": "c293ceec2e3a72094300bbf0d6764c5a4017f6db4a1cf138d8ccf647cbbc9e75",
+          "size": 14073
+        },
+        {
+          "path": "tools/mgba_modernization_p03_breeding_e2e.c",
+          "sha256": "a99cafd942f958c932709bed6099695f067dc292401b3bfb91e60afe4d6823de",
+          "size": 19614
+        },
+        {
+          "path": "tools/modernization_learnsets.py",
+          "sha256": "fc2503f98a38a07899dd28adcb98faba755f571497184183d27ca457a4bb3698",
+          "size": 65067
+        },
+        {
+          "path": "tools/modernization_p03_stage73_consumers.py",
+          "sha256": "ae4541b6bc1f8d64c4dfdd8cdb19a9fff3faacb095850636d3f47b2cd19ae9ac",
+          "size": 13268
+        },
+        {
+          "path": "config/modernization_p03_stage73_consumers.json",
+          "sha256": "61d53ed8059c2fbad935885d995c4a406b9e4b19b8e3035d688742188f4f0b27",
+          "size": 5064
+        }
+      ],
+      "path": "pr16-fixed-form-evidence/sources.zip",
+      "sha256": "6474623246b20dfd8cd9ac619f63d05ad25cf08d460c1ed3dff78e105595c700",
+      "size": 135740
+    },
+    {
+      "path": "pr16-fixed-form-evidence/stage84.json",
+      "sha256": "4a79800bf5314f031ea22489e38091d9e0d6b3bf0e0ac500d027530753e47251",
+      "size": 412
+    },
+    {
+      "path": "pr16-fixed-form-evidence/stage84.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-evidence/tested-head.txt",
+      "sha256": "20c859c74707c32256d2979e568067427a910f1db6980c6b93351c8120835a8f",
+      "size": 41
+    },
+    {
+      "path": "pr16-fixed-form-evidence/toolchain.log",
+      "sha256": "3a3f8f697907c62d866cb21b78f6d91e154c4b3b4b5c3a2227bbc2cca1ca0d15",
+      "size": 40717
+    },
+    {
+      "path": "pr16-fixed-form-evidence/unit.log",
+      "sha256": "cff5416090c2e2da794a358dbf5d728e788d2940eca5f469c6b2962a3bf1fc8b",
+      "size": 1436
+    },
+    {
+      "path": "pr16-fixed-form-probe/compile.process.json",
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    {
+      "path": "pr16-fixed-form-probe/compile.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-probe/compile.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-bus16.process.json",
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-bus16.stderr",
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-bus16.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-bus32.process.json",
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-bus32.stderr",
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-bus32.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-bus8.process.json",
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-bus8.stderr",
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-bus8.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-raw16.process.json",
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-raw16.stderr",
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-raw16.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-raw32.process.json",
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-raw32.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-raw32.stderr",
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-raw8.process.json",
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-raw8.stderr",
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-raw8.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-register.stderr",
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-register.process.json",
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    {
+      "path": "pr16-fixed-form-probe/guard-register.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "pr16-fixed-form-probe/necrozma-dawn-wings-native-probe-observed.ppm",
+      "sha256": "119f50230324ac44de1eb927f7e58b1c1029fd724587e018b0fb7409846d079c",
+      "size": 115215
+    },
+    {
+      "path": "pr16-fixed-form-probe/necrozma-dawn-wings-native-probe-predicted-row.ppm",
+      "sha256": "a37c842063443ee7169922cbc5d8a91321d4900485ad19274455c58eadf924ca",
+      "size": 115215
+    },
+    {
+      "path": "pr16-fixed-form-probe/necrozma-dawn-wings-native-probe.process.json",
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    {
+      "path": "pr16-fixed-form-probe/necrozma-dawn-wings-native-probe.stderr",
+      "sha256": "309548039c85f9d9d4d26a350403d85ee825480a62fe73d4c4899b35790a8f5d",
+      "size": 440
+    },
+    {
+      "path": "pr16-fixed-form-probe/necrozma-dawn-wings-native-probe.stdout",
+      "sha256": "91b31cc2d32167d6dcdcc357c668bc5c7a4c0252d44a15f5b326dcbe4b489c50",
+      "size": 1168
+    },
+    {
+      "path": "pr16-fixed-form-probe/necrozma-dusk-mane-native-probe-predicted-row.ppm",
+      "sha256": "bccec3dea43e8d3bc9a3bce75b598b789c1d89e740a7f627ccf1ea7109fdd7be",
+      "size": 115215
+    },
+    {
+      "path": "pr16-fixed-form-probe/necrozma-dusk-mane-native-probe.process.json",
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    {
+      "path": "pr16-fixed-form-probe/necrozma-dusk-mane-native-probe-observed.ppm",
+      "sha256": "119f50230324ac44de1eb927f7e58b1c1029fd724587e018b0fb7409846d079c",
+      "size": 115215
+    },
+    {
+      "path": "pr16-fixed-form-probe/necrozma-dusk-mane-native-probe.stderr",
+      "sha256": "f2d9268764d9d2eb7e97d9b8f067da84469437341c59b1f0224e2babc067a99e",
+      "size": 440
+    },
+    {
+      "path": "pr16-fixed-form-probe/necrozma-dusk-mane-native-probe.stdout",
+      "sha256": "4c9c6973d636d17b196c97f261eb1c8b7831f66465136a4303a9df05bd3c526d",
+      "size": 1167
+    },
+    {
+      "path": "pr16-fixed-form-probe/result.json",
+      "sha256": "8faa32f99adb77060d7eb331397823b545f90593c268eeef086b04e47a4a8cbe",
+      "size": 18611
+    },
+    {
+      "path": "pr16-fixed-form-probe/zacian-crowned-native-probe-observed.ppm",
+      "sha256": "119f50230324ac44de1eb927f7e58b1c1029fd724587e018b0fb7409846d079c",
+      "size": 115215
+    },
+    {
+      "path": "pr16-fixed-form-probe/zacian-crowned-native-probe-predicted-row.ppm",
+      "sha256": "24be93a957e6c3e12f438ee7419995a758ffe9750a2264cecc5d0ce45b8e8c53",
+      "size": 115215
+    },
+    {
+      "path": "pr16-fixed-form-probe/zacian-crowned-native-probe.stderr",
+      "sha256": "741d1271d0e5e869e9fe98472e19df0ba710ee7a198166fb129f42d0c27bf7b5",
+      "size": 440
+    },
+    {
+      "path": "pr16-fixed-form-probe/zacian-crowned-native-probe.process.json",
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    {
+      "path": "pr16-fixed-form-probe/zacian-crowned-native-probe.stdout",
+      "sha256": "e8ceb52ef859ada560f6af4d10b550497e2eb59bc5932a0b2eb71ae12411dccd",
+      "size": 1163
+    },
+    {
+      "path": "pr16-fixed-form-probe/zamazenta-crowned-native-probe-observed.ppm",
+      "sha256": "119f50230324ac44de1eb927f7e58b1c1029fd724587e018b0fb7409846d079c",
+      "size": 115215
+    },
+    {
+      "path": "pr16-fixed-form-probe/zamazenta-crowned-native-probe-predicted-row.ppm",
+      "sha256": "9ef8641cb2c2f9ff86e2b71a4709facfe48bb8e4f42f31377980753354ff8e3c",
+      "size": 115215
+    },
+    {
+      "path": "pr16-fixed-form-probe/zamazenta-crowned-native-probe.process.json",
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    {
+      "path": "pr16-fixed-form-probe/zamazenta-crowned-native-probe.stderr",
+      "sha256": "8008cd4b6984ce8be906511386a63612fc35cad6f1acb24c6bed96cb00974667",
+      "size": 440
+    },
+    {
+      "path": "pr16-fixed-form-probe/zamazenta-crowned-native-probe.stdout",
+      "sha256": "b978f9161ef652250b29f591d7d596bb1bdec8aaf588f900453275c028f266cd",
+      "size": 1166
+    }
+  ],
+  "entry_count": 63,
+  "job_id": 103521455738,
+  "repository_path": "content/modernization/pr16_fixed_form_probe_evidence/34681725548/original.zip",
+  "run_id": 34681725548,
+  "schema_version": 1,
+  "scope": "PR16_P03_FIXED_FORM_TRANSITION_NATIVE_PROBE_RETENTION",
+  "status": "PASS_ORIGINAL_ARTIFACT_RETAINED"
+}

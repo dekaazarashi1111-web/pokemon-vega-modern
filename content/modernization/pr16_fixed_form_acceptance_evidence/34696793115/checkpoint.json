@@ -1,0 +1,44 @@
+{
+  "artifact_id": 10299126927,
+  "job_id": 103561540443,
+  "kind": "preflight",
+  "new_emulator_runs_during_retention": 0,
+  "original": {
+    "path": "content/modernization/pr16_fixed_form_acceptance_evidence/34696793115/original.zip",
+    "sha256": "e3c7584d6eb3066df6d3ae2bf53a3d14deec6552a73e0c9fd89a433602b4df5d",
+    "size": 211354
+  },
+  "p03_fixed_form_gap_closed": false,
+  "release_ready": false,
+  "result": {
+    "actual_new_processes": 0,
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "failures": [
+      {
+        "error": "'cfru_symbol'",
+        "stage": "setup-or-execution"
+      }
+    ],
+    "full_p03_acceptance": false,
+    "guard_checks": [],
+    "native_acceptance_claimed": false,
+    "old_runs_relabelled": 0,
+    "p03_fixed_form_gap_closed": false,
+    "release_ready": false,
+    "requested_cases": [
+      "necrozma-dusk-mane-four-slot-roundtrip",
+      "necrozma-dawn-wings-four-slot-roundtrip"
+    ],
+    "results": [],
+    "schema_version": 1,
+    "scope": "PR16_P03_FIXED_FORM_TRANSITION_PHYSICAL",
+    "status": "FAIL",
+    "successful_fresh_cores": 0
+  },
+  "run_id": 34696793115,
+  "schema_version": 1,
+  "tested_head": "e78550ef8d98e0bf2c486a50594ca54e25789e85"
+}

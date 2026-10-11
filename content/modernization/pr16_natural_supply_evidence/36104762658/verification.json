@@ -1,0 +1,680 @@
+{
+  "accepted": {
+    "caterpie-initial-hatch": {
+      "contract": {
+        "candidate": {
+          "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+          "size": 33554432
+        },
+        "controller": {
+          "sha256": "902553c8e9a661f08997acf83552ef5ec8ddbda5e9b472d4113c235724f08096",
+          "size": 19452
+        },
+        "fixture": [
+          "caterpie-initial-hatch",
+          [
+            33,
+            0,
+            0,
+            0
+          ],
+          [
+            33,
+            0,
+            0,
+            0
+          ],
+          0,
+          0,
+          649,
+          649,
+          15,
+          [
+            33,
+            81,
+            0,
+            0
+          ]
+        ]
+      },
+      "result": {
+        "all_breeding_paths_accepted": false,
+        "case": "caterpie-initial-hatch",
+        "child_level": 1,
+        "child_species": 649,
+        "egg_and_hatched_save_reload": true,
+        "father_item": 0,
+        "fresh_cores": 3,
+        "full_p03_acceptance": false,
+        "generation_steps": 509,
+        "hatch_callback_frames": 442,
+        "hatch_clock_start": 22,
+        "hatch_state_mask": 6143,
+        "hatch_steps": 4073,
+        "host_write_barriers": 7,
+        "initial_egg_cycles": 15,
+        "manual_save_counter_delta": 2,
+        "mother_item": 0,
+        "moves": [
+          33,
+          81,
+          0,
+          0
+        ],
+        "native_hatch": true,
+        "native_hatch_save_counter_delta": 1,
+        "ordinary_claim": true,
+        "ordinary_deposit": true,
+        "parent_fixture_only": true,
+        "parent_queue_byte_identity": true,
+        "pp": [
+          35,
+          40,
+          0,
+          0
+        ],
+        "release_ready": false,
+        "rom_sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+        "rtc_flash_bytes_preserved": 131072,
+        "schema_version": 1,
+        "scope": "ISSUE19_NATURAL_INITIAL_HATCH_SAVE_CONTINUE",
+        "status": "PASS",
+        "total_frames": 182174,
+        "total_save_counter_delta": 3,
+        "warnings_errors": 0,
+        "witness": {
+          "claim_menu": 20826,
+          "claimed": 21279,
+          "deposit_menu": 446,
+          "egg_reloaded": 25893,
+          "egg_saved": 23471,
+          "first_deposit": 759,
+          "generated": 20219,
+          "hatch_begin": 177260,
+          "hatch_end": 178290,
+          "hatch_reloaded": 182174,
+          "hatch_saved": 179752,
+          "nickname": 177613,
+          "second_deposit": 1299
+        }
+      },
+      "run_id": 36102544792,
+      "source_head": "e98e3a2581419a721e3e3ad7b0f351ba84371119"
+    },
+    "floette-eternal-npc-initial": {
+      "contract": {
+        "candidate": {
+          "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+          "size": 33554432
+        },
+        "geometry": {
+          "local_id": 15,
+          "map": [
+            96,
+            5
+          ],
+          "object": "0f3e0000190013000300000000000000142f460900000000",
+          "position": [
+            25,
+            19
+          ],
+          "script": 155594516,
+          "script_bytes": "6a5a23152b460905202f4609"
+        },
+        "helpers": {
+          "sha256": "902553c8e9a661f08997acf83552ef5ec8ddbda5e9b472d4113c235724f08096",
+          "size": 19452
+        },
+        "oracle": {
+          "sha256": "0c90b74a05d0eec5dd149b306e08f19da5c0c5fb83c4cab4ae9517e0efc931b8",
+          "size": 42
+        },
+        "source": {
+          "sha256": "62da1d12d5dd8da2167def12fa716249cb658b3eaff512fdd66c2c065ac259b6",
+          "size": 6352
+        }
+      },
+      "result": {
+        "all_owners_accepted": false,
+        "boundary": 32,
+        "candidate_sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+        "case": "floette-eternal-npc-initial",
+        "claimed": 543,
+        "continued": 5087,
+        "denied_host_write_apis": 7,
+        "fresh_cores": 2,
+        "gift_counter_steps": 2,
+        "gift_counter_witnesses": [
+          {
+            "after": 3,
+            "before": 2,
+            "frame": 522,
+            "pc": 153949928
+          },
+          {
+            "after": 4,
+            "before": 3,
+            "frame": 1069,
+            "pc": 136064496
+          }
+        ],
+        "guarded_phases": 3,
+        "initial_party_map_ring_flag_are_fixtures": true,
+        "issue19_complete": false,
+        "level": 50,
+        "moves": [
+          204,
+          235,
+          382,
+          738
+        ],
+        "npc_script": 155594516,
+        "party_identity": {
+          "sha256": "a34bf7d94891b650d56fffed6685b92ff01530298d4efddaaac607a9a6cb89c2",
+          "size": 200
+        },
+        "party_preserved_bytes": 200,
+        "pp": [
+          20,
+          5,
+          10,
+          5
+        ],
+        "release_ready": false,
+        "repeat": 5211,
+        "returned": 1203,
+        "save_counters": [
+          2,
+          4,
+          5,
+          5,
+          5
+        ],
+        "saved": 2665,
+        "schema_version": 1,
+        "species": 1029,
+        "status": "PASS",
+        "warnings_errors": 0
+      },
+      "run_id": 36104762658,
+      "source_head": "35b26cd4adc636b10dd6ccc003f25b5014ef2cd0"
+    },
+    "leepun-initial-hatch": {
+      "contract": {
+        "candidate": {
+          "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+          "size": 33554432
+        },
+        "controller": {
+          "sha256": "902553c8e9a661f08997acf83552ef5ec8ddbda5e9b472d4113c235724f08096",
+          "size": 19452
+        },
+        "fixture": [
+          "leepun-initial-hatch",
+          [
+            10,
+            0,
+            0,
+            0
+          ],
+          [
+            10,
+            0,
+            0,
+            0
+          ],
+          0,
+          0,
+          1,
+          1,
+          20,
+          [
+            10,
+            39,
+            0,
+            0
+          ]
+        ]
+      },
+      "result": {
+        "all_breeding_paths_accepted": false,
+        "case": "leepun-initial-hatch",
+        "child_level": 1,
+        "child_species": 1,
+        "egg_and_hatched_save_reload": true,
+        "father_item": 0,
+        "fresh_cores": 3,
+        "full_p03_acceptance": false,
+        "generation_steps": 509,
+        "hatch_callback_frames": 449,
+        "hatch_clock_start": 22,
+        "hatch_state_mask": 6143,
+        "hatch_steps": 5353,
+        "host_write_barriers": 7,
+        "initial_egg_cycles": 20,
+        "manual_save_counter_delta": 2,
+        "mother_item": 0,
+        "moves": [
+          10,
+          39,
+          0,
+          0
+        ],
+        "native_hatch": true,
+        "native_hatch_save_counter_delta": 1,
+        "ordinary_claim": true,
+        "ordinary_deposit": true,
+        "parent_fixture_only": true,
+        "parent_queue_byte_identity": true,
+        "pp": [
+          35,
+          30,
+          0,
+          0
+        ],
+        "release_ready": false,
+        "rom_sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+        "rtc_flash_bytes_preserved": 131072,
+        "schema_version": 1,
+        "scope": "ISSUE19_NATURAL_INITIAL_HATCH_SAVE_CONTINUE",
+        "status": "PASS",
+        "total_frames": 229554,
+        "total_save_counter_delta": 3,
+        "warnings_errors": 0,
+        "witness": {
+          "claim_menu": 20826,
+          "claimed": 21279,
+          "deposit_menu": 446,
+          "egg_reloaded": 25893,
+          "egg_saved": 23471,
+          "first_deposit": 759,
+          "generated": 20219,
+          "hatch_begin": 224633,
+          "hatch_end": 225670,
+          "hatch_reloaded": 229554,
+          "hatch_saved": 227132,
+          "nickname": 225012,
+          "second_deposit": 1299
+        }
+      },
+      "run_id": 36102544792,
+      "source_head": "e98e3a2581419a721e3e3ad7b0f351ba84371119"
+    }
+  },
+  "accepted_case_reruns": 0,
+  "actions_completion_confirmed": false,
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+    "size": 33554432
+  },
+  "compiled_sources": {
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_natural_gift.c": {
+      "sha256": "62da1d12d5dd8da2167def12fa716249cb658b3eaff512fdd66c2c065ac259b6",
+      "size": 6352
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "contracts": {
+    "caterpie-initial-hatch": {
+      "candidate": {
+        "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+        "size": 33554432
+      },
+      "controller": {
+        "sha256": "902553c8e9a661f08997acf83552ef5ec8ddbda5e9b472d4113c235724f08096",
+        "size": 19452
+      },
+      "fixture": [
+        "caterpie-initial-hatch",
+        [
+          33,
+          0,
+          0,
+          0
+        ],
+        [
+          33,
+          0,
+          0,
+          0
+        ],
+        0,
+        0,
+        649,
+        649,
+        15,
+        [
+          33,
+          81,
+          0,
+          0
+        ]
+      ]
+    },
+    "floette-eternal-npc-initial": {
+      "candidate": {
+        "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+        "size": 33554432
+      },
+      "geometry": {
+        "local_id": 15,
+        "map": [
+          96,
+          5
+        ],
+        "object": "0f3e0000190013000300000000000000142f460900000000",
+        "position": [
+          25,
+          19
+        ],
+        "script": 155594516,
+        "script_bytes": "6a5a23152b460905202f4609"
+      },
+      "helpers": {
+        "sha256": "902553c8e9a661f08997acf83552ef5ec8ddbda5e9b472d4113c235724f08096",
+        "size": 19452
+      },
+      "oracle": {
+        "sha256": "0c90b74a05d0eec5dd149b306e08f19da5c0c5fb83c4cab4ae9517e0efc931b8",
+        "size": 42
+      },
+      "source": {
+        "sha256": "62da1d12d5dd8da2167def12fa716249cb658b3eaff512fdd66c2c065ac259b6",
+        "size": 6352
+      }
+    },
+    "leepun-initial-hatch": {
+      "candidate": {
+        "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+        "size": 33554432
+      },
+      "controller": {
+        "sha256": "902553c8e9a661f08997acf83552ef5ec8ddbda5e9b472d4113c235724f08096",
+        "size": 19452
+      },
+      "fixture": [
+        "leepun-initial-hatch",
+        [
+          10,
+          0,
+          0,
+          0
+        ],
+        [
+          10,
+          0,
+          0,
+          0
+        ],
+        0,
+        0,
+        1,
+        1,
+        20,
+        [
+          10,
+          39,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "failures": {},
+  "generated_sources": {
+    "controller.c": {
+      "sha256": "902553c8e9a661f08997acf83552ef5ec8ddbda5e9b472d4113c235724f08096",
+      "size": 19452
+    },
+    "p03_learning_embedded.c": {
+      "sha256": "b284ee09c14dbe4996b014c3720c2c9f2c9f283ad49456080f2a34051a49f67f",
+      "size": 8001
+    },
+    "p03_p02_embedded.c": {
+      "sha256": "bf6bbfc9aa07f339b0b3cc8930473d1551fe93b590e03ea83deca41c23a4a602",
+      "size": 39683
+    },
+    "p03a_fullslots_embedded.c": {
+      "sha256": "6426d51bd82255649b7b81438530520500a5bddcc182edf3f7031a1210697129",
+      "size": 12882
+    },
+    "p03b_archive_embedded.c": {
+      "sha256": "394279f0467ae44bce61963aa19bd92948d4a2190486b9911aab483bd8490ad1",
+      "size": 20168
+    },
+    "supply_breeding_helpers.c": {
+      "sha256": "2e22fe72e8243b3aa563a22af8a0855998bce61d1cde61ae49ac6be3966a3e34",
+      "size": 19468
+    },
+    "supply_gift_vectors.h": {
+      "sha256": "b813a6530e140b53923df400020db80de92c5e704659b35af5a940af78a28078",
+      "size": 85
+    }
+  },
+  "host_compiles": 1,
+  "issue19_complete": false,
+  "native_processes": 1,
+  "new_unit_tests": 13,
+  "prior_runs": [
+    36102544792,
+    36103989903
+  ],
+  "proof_bindings": {
+    "compile-gift.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "compile-gift.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "compile-gift.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "executed-controller.c": {
+      "sha256": "902553c8e9a661f08997acf83552ef5ec8ddbda5e9b472d4113c235724f08096",
+      "size": 19452
+    },
+    "floette-eternal-npc-initial.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "floette-eternal-npc-initial.stderr.txt": {
+      "sha256": "36e7cba961e874c06603e1e26794d44d6b6f1de78b4bad035ac3f8cdab39447b",
+      "size": 2531
+    },
+    "floette-eternal-npc-initial.stdout.txt": {
+      "sha256": "afa98ba7564f9dc453fb369bc281a5f7aaca0b37bcdde9dc251220ac6e37c6a9",
+      "size": 624
+    },
+    "gift-save-impact.json": {
+      "sha256": "45864653f97af0800d83f85e5890d617ce8f361359fed2de61e0da033b4cd922",
+      "size": 1396
+    },
+    "oracle.json": {
+      "sha256": "a0504227075edc7f9419028d9c5dd150023fbdb7726e71b05b6ebefb1b3cf365",
+      "size": 2881
+    },
+    "recipe.json": {
+      "sha256": "f90867542da84fd00ef3a8f274a0bba873e4b1ef6cb501b3d4bed111d55e05f1",
+      "size": 71099
+    },
+    "unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "unit.stderr.txt": {
+      "sha256": "2bd0f8244245b22e425fa3f6df2baad16244a7ceb1a5f6a97ff7597c50384ad4",
+      "size": 1602
+    },
+    "unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    }
+  },
+  "protected_bindings": {
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_exp_evolution_share_checkpoint.json": {
+      "sha256": "2ddb6d6e310ae494f340469bcfb9e639e878e199206c8a62a07c74ba2170f176",
+      "size": 44290
+    },
+    "content/modernization/pr16_learnset_boundaries_checkpoint.json": {
+      "sha256": "8368e8f7d1657ec685b147d96713e566f377b5aee3536822abfed37eca93ccfa",
+      "size": 46927
+    },
+    "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json": {
+      "sha256": "7623c9b5eca00c5a96669815eaa320c9afb4c783279f359ba4268477bdc06143",
+      "size": 32995
+    },
+    "content/modernization/pr16_learnset_natural_checkpoint.json": {
+      "sha256": "f15336e39b840f21bcd7ef30a0b1989421a0516ffd80a7a527266186e69fdf69",
+      "size": 93858
+    },
+    "content/modernization/pr16_learnset_supply_native_checkpoint.json": {
+      "sha256": "75f6fd498056a7b2c60822fb99f2d36a47fd8eab0b8d0422e12dda58efc22dd8",
+      "size": 57961
+    },
+    "content/modernization/pr16_learnset_wiki_checkpoint.json": {
+      "sha256": "71b538f186b03ca3a725a84cd87baa41d72ca2ef0fb43ce22dec0e198cdefbe7",
+      "size": 45627
+    },
+    "content/modernization/pr16_learnset_wiki_completed_actions.json": {
+      "sha256": "4c200406ab0a3895a44a82cb81d71dde1f99aaa1a281eba1da3e851062bf1808",
+      "size": 9673
+    }
+  },
+  "release_ready": false,
+  "results": [
+    {
+      "all_owners_accepted": false,
+      "boundary": 32,
+      "candidate_sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+      "case": "floette-eternal-npc-initial",
+      "claimed": 543,
+      "continued": 5087,
+      "denied_host_write_apis": 7,
+      "fresh_cores": 2,
+      "gift_counter_steps": 2,
+      "gift_counter_witnesses": [
+        {
+          "after": 3,
+          "before": 2,
+          "frame": 522,
+          "pc": 153949928
+        },
+        {
+          "after": 4,
+          "before": 3,
+          "frame": 1069,
+          "pc": 136064496
+        }
+      ],
+      "guarded_phases": 3,
+      "initial_party_map_ring_flag_are_fixtures": true,
+      "issue19_complete": false,
+      "level": 50,
+      "moves": [
+        204,
+        235,
+        382,
+        738
+      ],
+      "npc_script": 155594516,
+      "party_identity": {
+        "sha256": "a34bf7d94891b650d56fffed6685b92ff01530298d4efddaaac607a9a6cb89c2",
+        "size": 200
+      },
+      "party_preserved_bytes": 200,
+      "pp": [
+        20,
+        5,
+        10,
+        5
+      ],
+      "release_ready": false,
+      "repeat": 5211,
+      "returned": 1203,
+      "save_counters": [
+        2,
+        4,
+        5,
+        5,
+        5
+      ],
+      "saved": 2665,
+      "schema_version": 1,
+      "species": 1029,
+      "status": "PASS",
+      "warnings_errors": 0
+    }
+  ],
+  "rom_changes": 0,
+  "run_id": 36104762658,
+  "schema_version": 1,
+  "selected_cases": [
+    "floette-eternal-npc-initial"
+  ],
+  "source_bindings": {
+    ".github/workflows/pr16-natural-supply-20260925.yml": {
+      "sha256": "4e535dba2c863289782aef7221891c193ae9e71ae57df83132ea14d68fd8ec27",
+      "size": 3783
+    },
+    "scripts/pr16_learnset_egg_gameplay.py": {
+      "sha256": "2466bd9816534f195824b91ba44412d155ec70d0422ed19fc56ee8ae23ee51d6",
+      "size": 21265
+    },
+    "scripts/pr16_natural_gift_save.py": {
+      "sha256": "99de6460b4b48d3b56469be2dfe22d33a5ef76a5548d175e0ff8d02d01eaf7df",
+      "size": 7585
+    },
+    "scripts/pr16_natural_supply.py": {
+      "sha256": "9c29301c8b9f227d918ed201244d7e0c1123457cf5ee2513eae22ba3b1da213a",
+      "size": 21963
+    },
+    "tests/test_pr16_natural_gift_save.py": {
+      "sha256": "b446831cb0b7a339d0f948a0b56d6f5c752eed0601f42db63472a2c116d20532",
+      "size": 5561
+    },
+    "tests/test_pr16_natural_supply.py": {
+      "sha256": "2594cadafe2c8f48b7d12820b8f20c43ab1700f29beeea4ac9237386fe1738d7",
+      "size": 5834
+    },
+    "tools/mgba_modernization_p03_breeding_e2e.c": {
+      "sha256": "a99cafd942f958c932709bed6099695f067dc292401b3bfb91e60afe4d6823de",
+      "size": 19614
+    },
+    "tools/mgba_pr16_natural_gift.c": {
+      "sha256": "62da1d12d5dd8da2167def12fa716249cb658b3eaff512fdd66c2c065ac259b6",
+      "size": 6352
+    }
+  },
+  "source_head": "35b26cd4adc636b10dd6ccc003f25b5014ef2cd0",
+  "status": "PASS_NATURAL_SUPPLY_SCOPED",
+  "task": "USER-20260925-NATURAL-SUPPLY",
+  "wiki_generations": 0
+}

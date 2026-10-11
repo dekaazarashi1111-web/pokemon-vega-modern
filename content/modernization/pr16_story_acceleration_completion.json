@@ -1,0 +1,66 @@
+{
+  "status": "COMPLETION_CONFIRMED_SCOPED",
+  "native_run": 36500700863,
+  "native_run_conclusion": "success",
+  "native_source_head": "5243a6000755bd5596f994f322b1587f33fc2484",
+  "native_recording_head": "c2d3cf659d4122555842d2a31eaf7c7647c0cf51",
+  "confirmation_source_head": "099b7fdc6707ef01b4f3a4d7fbdbb4b777420f61",
+  "confirmation_run_id": 36501011745,
+  "artifact_id": 11005890195,
+  "artifact_sha256": "051cf9d3746ebd5bc6a6b28a225d791b30f8bb1acca6ed214ccb91ed9854b4b5",
+  "verified_evidence_files": 75,
+  "save_ledgers": {
+    "story-fast": {
+      "ledger": {
+        "sha256": "cbfabf4f70c64fa60c06ce2717546604b5e203ba9a1ec27c866efd545d335630",
+        "size": 186572
+      },
+      "before": {
+        "sha256": "66d46ea79f6c72588b766385ec4a0851822e6b57815da60882ce53ba5901e13b",
+        "size": 131088
+      },
+      "after": {
+        "sha256": "fa2bb585eeeec1c81f0b8498438001b72d010ead2b9091f8f2b87744be1c6e97",
+        "size": 131088
+      },
+      "changed_bytes": 6386,
+      "ranges": 1765
+    },
+    "progression": {
+      "ledger": {
+        "sha256": "1c75bdcdf6464f7e4ff1edf3473a23b25a59dc51b9e9011a9b999a9ac1d24f56",
+        "size": 185330
+      },
+      "before": {
+        "sha256": "66d46ea79f6c72588b766385ec4a0851822e6b57815da60882ce53ba5901e13b",
+        "size": 131088
+      },
+      "after": {
+        "sha256": "617e59ce2ab6b4e32767917f0184db48d9473755e350b1c24b64abe9025f14a0",
+        "size": 131088
+      },
+      "changed_bytes": 6258,
+      "ranges": 1757
+    }
+  },
+  "new_native_processes": 0,
+  "new_host_compiles": 0,
+  "accepted_case_reruns": 0,
+  "evolution_accepted": false,
+  "release_ready": false,
+  "prior_verification": {
+    "fixture_tests": 19,
+    "write_rejection_tests": 7,
+    "resume_tests": 28,
+    "task_graph": "PASS",
+    "scoped_index_guard": "PASS",
+    "global_private_guard_claimed": false
+  },
+  "visual_review": {
+    "reviewer": "ChatGPT",
+    "screen_count": 15,
+    "completed": true,
+    "scope_ja": "保存/Continueのfield、Mewtwo Lv100とAxew Lv37の戦闘画面、進化自動取消画面を目視照合。evolution-start.ppmは遷移black frame、move.ppmは描画前のaction画面のため、技名表示UI受入とはしない。技選択/PP/勝利はnative readbackで判定。"
+  },
+  "save_ledger_artifact_id": 11005935534
+}

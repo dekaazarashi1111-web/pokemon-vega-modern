@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "status": "SIGNED_HOF_FAILURE_BOUNDARY_NOT_ACCEPTED",
+  "source_ref": "83d45ede769c70b37d718e70fa3a8326ba66e2df",
+  "formal_candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "windows": [
+    {
+      "id": "hof_init_team",
+      "address": 135213172,
+      "size": 268,
+      "sha256": "f45091f0923852f2743952f82744977374f9d21cec8e07057240cb2962407289"
+    },
+    {
+      "id": "hof_try_save_and_delay",
+      "address": 135213440,
+      "size": 116,
+      "sha256": "9069c31e1406393a2c94433e8161622263b49fc986067e908895a6d7426c8381"
+    },
+    {
+      "id": "hof_start_display",
+      "address": 135213556,
+      "size": 28,
+      "sha256": "54cd3cff5399e7dd6ecb390838d7372f420a61258d62ed9024761b6b45bdca79"
+    },
+    {
+      "id": "window_fill",
+      "address": 134235176,
+      "size": 64,
+      "sha256": "1b0dc595bd4113f4626990c1f5a907e8ab4a073b8a198a72743107e3cfd430a6"
+    },
+    {
+      "id": "hof_text_printer",
+      "address": 135232808,
+      "size": 100,
+      "sha256": "24ec179af95b3e8edcb373221a98325a747c96237d639ec0333c998fba1f9f58"
+    },
+    {
+      "id": "window_copy",
+      "address": 134233836,
+      "size": 76,
+      "sha256": "1d9c93ee87964a7970b14fb079cfa2c805f829b2d87d621d3736c354e758000b"
+    }
+  ],
+  "error_text": {
+    "id": "existing_two_line_save_error",
+    "address": 138282075,
+    "size": 23,
+    "sha256": "e026676824d6095409bc28fb3fff98beb9dd31e7df44367b90660e1a64f8139c"
+  },
+  "stack_contract": {
+    "mode": 3,
+    "inner_return_offset": 8,
+    "inner_return": 154629755,
+    "outer_return_offset": 16,
+    "outer_return": 135213461
+  },
+  "tail_contract": {
+    "address": 135213460,
+    "size": 8,
+    "task_register": 4,
+    "task_table": 50352336,
+    "task_size": 40,
+    "old_frame_bytes": 8,
+    "attempt": 50353264,
+    "continue_callback": 50353140
+  },
+  "wait_contract": {
+    "new_keys": 50344286,
+    "mask": 1,
+    "start_display": 135213557,
+    "automatic_retry": false
+  },
+  "payload_contract": {
+    "address": 33669120,
+    "saved_size": 7936,
+    "precleared_size": 8192
+  },
+  "boundary_ja": "HOFの通知/旧SaveFailed回避だけ。初回mode3の二sector更新/main保存原子性、mode4/5/他caller共通wipe、自然殿堂入り・全HOF種族ABIを受け入れない。"
+}

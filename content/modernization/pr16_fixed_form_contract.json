@@ -1,0 +1,156 @@
+{
+  "canonical_model": {
+    "path": "content/collection_supply_v1/canonical_model.json",
+    "sha256": "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0",
+    "size": 899889
+  },
+  "case_matrix": [
+    {
+      "id": "necrozma-dusk-mane-four-slot-roundtrip",
+      "required_witnesses": [
+        "native_transition_entry",
+        "transition_owned_move_resolution",
+        "four_slot_boundary",
+        "identity_preserved",
+        "native_reversion",
+        "normal_save",
+        "fresh_continue"
+      ],
+      "targets": [
+        1260
+      ]
+    },
+    {
+      "id": "necrozma-dawn-wings-four-slot-roundtrip",
+      "required_witnesses": [
+        "native_transition_entry",
+        "transition_owned_move_resolution",
+        "four_slot_boundary",
+        "identity_preserved",
+        "native_reversion",
+        "normal_save",
+        "fresh_continue"
+      ],
+      "targets": [
+        1261
+      ]
+    },
+    {
+      "id": "necrozma-decline-unchanged",
+      "required_witnesses": [
+        "native_transition_entry",
+        "native_decline_or_ineligible_control",
+        "party_bytes_unchanged",
+        "save_counter_unchanged"
+      ],
+      "targets": [
+        1260,
+        1261
+      ]
+    },
+    {
+      "id": "zacian-crowned-battle-roundtrip",
+      "required_witnesses": [
+        "native_held_item_or_battle_entry",
+        "battle_form_and_move",
+        "battle_exit_restoration",
+        "held_item_removal_boundary",
+        "no_invalid_saved_form_move_pair"
+      ],
+      "targets": [
+        1386
+      ]
+    },
+    {
+      "id": "zamazenta-crowned-battle-roundtrip",
+      "required_witnesses": [
+        "native_held_item_or_battle_entry",
+        "battle_form_and_move",
+        "battle_exit_restoration",
+        "held_item_removal_boundary",
+        "no_invalid_saved_form_move_pair"
+      ],
+      "targets": [
+        1387
+      ]
+    }
+  ],
+  "native_acceptance_claimed": false,
+  "p03_fixed_form_gap_closed": false,
+  "p03_umbrella_closed": false,
+  "release_ready": false,
+  "required_native_processes_minimum": 5,
+  "rom_or_save_modified": false,
+  "schema": "pr16_fixed_form_contract.v1",
+  "scope": "READ_ONLY_FIXED_FORM_ACCEPTANCE_CONTRACT",
+  "source_inventory": {
+    "fixed_rows_sha256": "22f64dca4a3fa3846cd6cd22365085f39bf8a7b7314425ffcbd17b82730ea91a",
+    "learnsets_zip": {
+      "path": "userfile/imports/modernization_p01/Pokemon_Vega_Stage61_技習得品質改善版_v1.3.0_20260905.zip",
+      "sha256": "80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb",
+      "size": 82683251
+    },
+    "route_count": 4,
+    "species_count": 4,
+    "status": "PASS_FINITE_FORM_OWNER_INVENTORY"
+  },
+  "status": "PASS_FIXED_FORM_CONTRACT_NATIVE_PENDING",
+  "targets": [
+    {
+      "base_species": 1198,
+      "base_species_key": "SPECIES_KEY_NECROZMA",
+      "family": "necrozma_fixed_transition",
+      "native_acceptance_required": true,
+      "official_move_id": 713,
+      "project_move_id": 690,
+      "reference_id": "scarletviolet:0800.01",
+      "route_id": "667255b406678096a7fa9344",
+      "service_index": 245,
+      "source_method": "form_move",
+      "target_species": 1260,
+      "target_species_key": "SPECIES_KEY_NECROZMA_DUSK_MANE"
+    },
+    {
+      "base_species": 1198,
+      "base_species_key": "SPECIES_KEY_NECROZMA",
+      "family": "necrozma_fixed_transition",
+      "native_acceptance_required": true,
+      "official_move_id": 714,
+      "project_move_id": 669,
+      "reference_id": "scarletviolet:0800.02",
+      "route_id": "a79bbbec71c9a6be03a7d1e4",
+      "service_index": 246,
+      "source_method": "form_move",
+      "target_species": 1261,
+      "target_species_key": "SPECIES_KEY_NECROZMA_DAWN_WINGS"
+    },
+    {
+      "base_species": 1361,
+      "base_species_key": "SPECIES_KEY_ZACIAN",
+      "family": "crowned_battle_transition",
+      "native_acceptance_required": true,
+      "official_move_id": 781,
+      "project_move_id": 768,
+      "reference_id": "scarletviolet:0888.01",
+      "route_id": "371ffcca84ed4eb8fbb6d56b",
+      "service_index": 280,
+      "source_method": "battle_transform",
+      "target_species": 1386,
+      "target_species_key": "SPECIES_KEY_ZACIAN_CROWNED"
+    },
+    {
+      "base_species": 1362,
+      "base_species_key": "SPECIES_KEY_ZAMAZENTA",
+      "family": "crowned_battle_transition",
+      "native_acceptance_required": true,
+      "official_move_id": 782,
+      "project_move_id": 769,
+      "reference_id": "scarletviolet:0889.01",
+      "route_id": "2a8a2a856af40ec96087c9a7",
+      "service_index": 281,
+      "source_method": "battle_transform",
+      "target_species": 1387,
+      "target_species_key": "SPECIES_KEY_ZAMAZENTA_CROWNED"
+    }
+  ]
+}

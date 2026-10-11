@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "status": "FAIL_PREFLIGHT_OWNER_ASSUMPTION_NO_EMULATOR_EXECUTED",
+  "run_id": 34702872369,
+  "job_id": 103577609933,
+  "tested_head": "77473538d0b7b9eebbfc6d92ec9f2be6a6d6e500",
+  "artifact_id": 10301360547,
+  "artifact_size": 63191,
+  "artifact_sha256": "160c8fbfcdb549466b4d4d6f7d27e24f16b2057416dd18b4b683e03d9a7828a9",
+  "artifact_digest_reverified_after_download": true,
+  "source_only_tests_passed": 10,
+  "actual_new_processes": 0,
+  "accepted_controls": 0,
+  "failure": "Factory lock/face/call/wait binding differs",
+  "cause": "The real local2 NPC at map96/5 (20,19) enters the later Codex yes/no wrapper, not FactoryHighModesV2_FieldReception directly. The preflight correctly stopped before compilation or emulation.",
+  "exact_candidate_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+  "source_of_corrected_bytes": "content/modernization/pr16_p05_supply_owner_evidence/34701044310/original.zip:supply-owner.json",
+  "actual_npc_script": "0x093CDA80",
+  "actual_npc_prefix": "6a5a0f00d0d93c090905210d8001000601a4da3c09059cda3c09",
+  "ordinary_factory_choice": "Native No to Codex battle, then goto0x093CDA9C -> 0x093C9390",
+  "factory_native_prefix": "6a5a2389443c0927",
+  "separate_trial_problem": {
+    "configured_trial_delegate": "0x092CF790",
+    "current_bytes": "23c9423c090f009cf52c0909046c02",
+    "current_shape": "callnative, message, release, end; not the full original rental/battle reception",
+    "native_failure_claimed": false,
+    "repair_applied": false,
+    "next_action": "Do not run the rental case through an already statically terminal Trial delegate. First test the previously unexecuted native reception cancellation, then identify and repair the Trial delegate using the original Facility payload header and exact source/ROM preimages."
+  },
+  "p05_native_bp_gap_closed": false,
+  "release_ready": false,
+  "rom_changes": 0
+}

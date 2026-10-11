@@ -1,0 +1,36 @@
+# ReadMail・MoveTutorの全setupとcallback寿命の検証
+
+## 目的と現在の境界
+
+固定再開入口は `CHATGPT_RESUME.md`、可変の正本は既存の固定MD/JSONとする。本scopeは旧egg 874参照の729分類/145未知を親として、party constructor・全23setup状態・実menu入口・task/heapの寿命を具体命令へ束縛する。根や同一allocationが未閉鎖の命令を分類済みにしない。
+
+現候補は33554432byte / SHA-256 `0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583`。ローカルの旧診断結果と現候補全体の照合を区別し、現候補の束縛は専用Actionsで実施する。正式ROM、Save101、donor、controller配線は変更しない。
+
+## 新しい機械証拠
+
+- `pr16_dex_hof_lifetime_setup.py` はconstructor全348byteとsetup全570byteを命令・literal・23entry dispatch table・到達しないpaddingへ分割し、直接CFGの欠落を拒否する。旧party証拠の命令窓は参照し、新しい隙間だけを追加する。
+- state7の失敗終了、state8/15/16の待機、state20のCreateTask、defaultのmain/VBlank登録を区別する。全状態の存在をhelper成功やallocation生存と取り違えない。
+- ResetTasksと限定task列、callback setter、palette reset、help context、通常menuTypeのhelper、CalculatePlayerPartyCount、GetMonData field11/45の書込先を限定callee契約として検査する。CMP以外のflagsを分岐証明に使わず、直前CMPと分岐入口のprovenanceを検査する。
+- `pr16_dex_hof_lifetime_menu.py` はStartMenuの実登録、party入口、mail selectorの初期化/境界、task active/listと破棄、実Tutor二段hookを拘束する。旧関数の置換前本文をcurrent consumerとして使用しない。
+- 普通Tutor供給adapterからcompact reader/resolverとGetMonData11/45までを合成し、選択monが6体のいずれか・有効な非alias stack・同期実行という前提で、書込先をstackと選択mon内部へ限定する。この前提の実menu経路からの成立は別の未閉鎖義務として残す。
+- `pr16_dex_hof_lifetime_root.py` はLeer spriteの全64slotについてconstructorから同slot callbackの同期呼出し、およびcreatesprite commandからhitまでを有限な初期状態の下で実解釈する。未知read/call/write、Thumb状態違反、命令幅の範囲外、alignment違反、解放/再利用を拒否する。prefixのalpha handlerもGPU shadow/queueの局所書込みとして分離する。自然なbattle到達や全prefix継続は主張しない。
+
+## 継承と分類
+
+`pr16_dex_hof_lifetime_chain.py` は13個の独立入力から729親を再構成し、元619原本、全七段の110changes/100witness、既受入行と残unknown全fieldを保持する。新しい診断だけの場合は変更行とwitnessが空のdeltaを許し、分類数を増やせないことを反証する。過去のauditやdeltaは複製しない。
+
+133曲の全model、50assetと新しい保護窓の役割交差だけを再確認する。新曲探索、全ROM参照scan、影響のない受入済みnative/ARM/heap試験は繰り返さない。旧song/battle/Surfの独立最終review未実施という制限は継承する。本scopeの新しいinterpreter/CFGのみを追加確認し、過去に拒否された操作を再実行しない。
+
+## 残る義務
+
+ReadMail/MoveTutorはallocatorの返却範囲と同一epoch、残るgraphics/setup helperの返却/書込み、ResetTasksからstate20までのtask容量、全menu/input経路からの選択域、IRQ・他taskによる非干渉を閉じる必要がある。CreateTaskの満杯時戻り0をslot0成功と扱わない。
+
+Leer側はMOVE_LEER選択を起点とする実engine到達、残るprefix opcode0/10/40/25のhandler継続、battle contextとtile/paletteの入力producerが未閉鎖である。有限fixtureで成功した同期callbackを通常プレイ全体の寿命証明へ昇格しない。
+
+## 容量と公開
+
+最大アクセス幅・間接参照完全性・対象退役とowner移管が未証明のため、旧egg全15118byteを保護し安全容量0を維持する。4byteはoriginの幅でありtargetのread幅ではない。点保護の仮想隙間、古いnominal容量、suffixを使用可能領域にしない。既知global511＋save804の合計1315byteも単一6528byte controllerの配置を満たさない。
+
+全115owner・52save section・残804byteを保持する。heap13352byteを0x0804B85Cの保存退避53300byte入口へ跨いで保持しない。実配置後は全S61E/MDX writer/loader/Link、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/全出口Freeを確認する。正式切替後にtrainer131後半からシオウ通常回復・保存・独立cold Continueへ進む。雑魚ごとのcheckpointは作らない。
+
+専用Actionsのproducer/guard/upload/recordは同じpathと名前を使う。公開は自作sourceと最小address-size-SHA/textのみ。成功11textの完全な閉集合と全size/SHA/LFを要求し、空、部分成功、hidden、symlink、未知file、NULを拒否する。ROM断片/rawhex、ROM、入力save、runtime、私有archive/member path、runner、credentialを追加公開しない。

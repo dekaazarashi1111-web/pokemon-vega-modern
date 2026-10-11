@@ -1,0 +1,66 @@
+name: pr16-research-natural-spending-record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-natural-spending-record.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-natural-spending-record
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify complete UTF-8 source and original text transfer
+        run: python3 -B scripts/pr16_natural_spending_transfer.py
+      - name: Verify original local native evidence without replay
+        run: |
+          python3 -B scripts/pr16_research_natural_spending_record.py record >.local/pr16-natural-record/record.stdout.txt 2>.local/pr16-natural-record/record.stderr.txt
+      - name: Task graph resume and final scoped index
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t owned < <(python3 -B scripts/pr16_research_natural_spending_record.py paths)
+          git add -- "${owned[@]}"
+          python3 -B scripts/pr16_research_natural_spending_record.py guard
+      - name: Non-force scoped completion commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260927-RESEARCH-NATURAL-SPENDING: 自然稼得RP支出とshop窓を限定受入し原本と引継ぎを更新'
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          echo "RESULT=DONE TASK=USER-20260927-RESEARCH-NATURAL-SPENDING VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+      - name: Text-only completion context
+        run: python3 -B scripts/pr16_research_natural_spending_record.py snapshot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-natural-spending-record
+          path: |
+            .local/pr16-natural-record/record.stdout.txt
+            .local/pr16-natural-record/record.stderr.txt
+            .local/pr16-natural-record/unit.stdout.txt
+            .local/pr16-natural-record/unit.stderr.txt
+            .local/pr16-natural-record/summary.json
+            .local/pr16-natural-record/owned.json
+            .local/pr16-natural-record/transfer.json
+            .local/pr16-natural-record/context.zip
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error

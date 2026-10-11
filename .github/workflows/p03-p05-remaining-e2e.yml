@@ -1,0 +1,81 @@
+name: p03-p05-remaining-e2e
+run-name: Stage84 remaining native routes - forgetting and cold save
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p03-p05-remaining-e2e.yml
+      - tools/mgba_modernization_remaining_routes.c
+      - tools/modernization_remaining_route_labels.py
+      - tools/modernization_empty_move_pp_repair.py
+      - scripts/run_modernization_remaining_routes.py
+      - tests/test_modernization_remaining_routes.py
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: p03-p05-remaining-e2e-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  remaining-routes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Fixed toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p .local/remaining-routes
+          git rev-parse HEAD > .local/remaining-routes/tested-head.txt
+          bash infra/setup_github_actions.sh --install > .local/remaining-routes/toolchain.log 2>&1
+      - name: Fail-closed result and input regressions
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 -m unittest discover -s tests -p test_modernization_remaining_routes.py -v > .local/remaining-routes/tests.log 2>&1
+      - name: Reconstruct exact Stage83 without changing accepted baseline
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 scripts/run_modernization_stage83_github_domain.py prepare > .local/remaining-routes/prepare.log 2>&1
+      - name: New native forgetting routes, physical write guards and two-core saves
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 scripts/run_modernization_remaining_routes.py --jobs 2 > .local/remaining-routes/job.stdout.log 2> .local/remaining-routes/job.stderr.log
+          git diff --exit-code
+      - name: Retain bounded source diagnostics only (not runtime acceptance)
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re,zipfile
+          root=pathlib.Path.cwd();out=root/'.local/remaining-routes';out.mkdir(parents=True,exist_ok=True)
+          selected=['tools/modernization_empty_move_pp_repair.py','tools/modernization_remaining_route_labels.py','overlays/move_memory/move_memory.c','overlays/move_memory/move_memory.h','tools/mgba_modernization_remaining_routes.c','scripts/run_modernization_remaining_routes.py','tests/test_modernization_remaining_routes.py','.github/workflows/p03-p05-remaining-e2e.yml']
+          with zipfile.ZipFile(out/'reviewed-source-context.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in selected:
+                  p=root/name
+                  if not p.is_symlink() and p.is_file():
+                      raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw
+                      z.writestr(name,raw)
+          matches=[]
+          for base in ('vendor/upstream/CFRU-JP','src','overlays','content','config','scripts'):
+              for p in sorted((root/base).rglob('*')):
+                  if p.is_symlink() or not p.is_file() or p.suffix not in ('.c','.h','.s','.inc','.json','.py','.txt') or p.stat().st_size>2000000:continue
+                  try:raw=p.read_bytes();text=raw.decode('utf-8')
+                  except UnicodeDecodeError:continue
+                  lines=text.splitlines()
+                  for i,line in enumerate(lines):
+                      if re.search(r'circus|サーカス',line,re.I):
+                          matches.append({'path':p.relative_to(root).as_posix(),'sha256':hashlib.sha256(raw).hexdigest(),'line':i+1,'context':lines[max(0,i-3):i+5]})
+                          if len(matches)>=500:break
+                  if len(matches)>=500:break
+              if len(matches)>=500:break
+          (out/'circus-source-audit.json').write_text(json.dumps({'runtime_acceptance':False,'truncated':len(matches)>=500,'matches':matches},ensure_ascii=False,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-p05-remaining-routes
+          path: .local/remaining-routes/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

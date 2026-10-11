@@ -1,0 +1,17 @@
+{
+  "candidate": {
+    "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_24_WINS_72BP_SAVE_CONTINUE_SCOPED_VERIFIED_30_OPEN",
+  "conclusion": "failure",
+  "genuine_30_wins_verified": false,
+  "job_id": 105935643398,
+  "next_ja": "旧親の再compileをしない保存済みbyte/patch再構築を先に実装・検証する。その後は同じ2b107e7eと24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と保存へ進む。25戦目の最初の入力変更より前のevent列を完全照合し、受入24勝・旧ARM linkの独立再実行をしない。30勝後に正規特性抑制、影響範囲P08へ進む。",
+  "no_repeat_ja": "run35457636604/job105935643398は同候補2b107e7eで実24勝/72BP・25戦目敗北、元party600/owner64/通常Save counter2→3/fresh Continueをscoped検証。121events/1process/2fresh cores、既受入100eventsは同一意味。30勝未達でfailure維持。旧親再compileとRing host testsの重複を発見したため、総ARM0とした旧記述は撤回し原本と訂正を保持。次は再compileしない親復元→25戦目の通常入力改善。",
+  "recorded_head": "618775d1bd269021a9ecf3c622032eb96afe264d",
+  "run_id": 35457636604,
+  "standard_save_fresh_continue": true,
+  "stop_ja": "run35457636604/job105935643398: 候補2b107e7eでREADY/6体Drought停止を突破。実24勝/72BP/25戦目敗北、121events・元party600/owner64・通常Save counter2→3/fresh Continueを検証。30勝未達なのでActions failureを保持。旧bootstrap再compileの総数0記述は誤りとして訂正。",
+  "tested_head": "69075ada3e54a3218a916b5b532f8883428c6bfa"
+}

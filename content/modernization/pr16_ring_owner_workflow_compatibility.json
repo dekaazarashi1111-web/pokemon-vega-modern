@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "classification": "SOURCE_ONLY_NOT_NATIVE_ACCEPTANCE",
+  "task": "PR-P08-7-RING-WORKFLOW-COMPAT",
+  "source_head": "98eed9ff348b7e911af8b8888d1799cca1e65f5d",
+  "run_id": 34954168379,
+  "parent": "1860b26949ce3ddf4d2db68506c8251977db2b03",
+  "legacy_failure_run": 34953511256,
+  "legacy_failure_preserved": true,
+  "prior_source_run": 34953511304,
+  "prior_artifact_id": 10390282494,
+  "prior_artifact_sha256": "50744685b34e19c16bd9d87c1014d183b143b9a936e85cda8814d11d13edb8ca",
+  "prior_result": {
+    "status": "PASS_SOURCE_REPAIR_RECORDED_NONFORCE_PUSHED",
+    "source_head": "9537666ffac4fb96a22d0f832ad7d36429ace630",
+    "commit": "1860b26949ce3ddf4d2db68506c8251977db2b03",
+    "branch": "codex/modernization-followup-20260908",
+    "run_id": 34953511304,
+    "tests": {
+      "tests_run": 48,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "successful": true
+    },
+    "guard": {
+      "base": "dc491d88c86a99d86513a74cce6c55deb165eb4a",
+      "changed_paths": [
+        ".github/workflows/pr16-ring-owner.yml",
+        "content/modernization/p08_remaining_work.json",
+        "content/modernization/pr16_native_supply_resume_20260913.json",
+        "content/modernization/pr16_ring_owner_resolution.json",
+        "design/run_log.md",
+        "design/version_log.md",
+        "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+        "scripts/pr16_p05_native_supply_evidence_map.py",
+        "scripts/pr16_ring_owner.py",
+        "tests/test_pr16_p05_native_supply_evidence_map.py",
+        "tests/test_pr16_ring_owner.py"
+      ],
+      "new_violations": 0,
+      "full_guard_before": 1,
+      "full_guard_after": 1,
+      "exact_output_match": true,
+      "full_guard_pass_claimed": false
+    },
+    "new_emulator_processes": 0,
+    "rom_changes": 0,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "merge_performed": false
+  },
+  "current_check": {
+    "status": "PASS_READ_ONLY_MAP_COMPATIBILITY",
+    "tests": 9,
+    "new_emulator_processes": 0,
+    "historical_records_written": 0
+  },
+  "ring_acquisition_accepted": false,
+  "release_ready": false
+}

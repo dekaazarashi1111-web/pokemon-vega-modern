@@ -1,0 +1,51 @@
+{
+  "source_head": "1c71d539e245d6a9fe83650b8a19ff3282e66c94",
+  "candidate_sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+  "save101_sha256": "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149",
+  "flash_size": 131072,
+  "srm_size": 131088,
+  "rtc_trailer_bytes": 16,
+  "companion_start": 3558,
+  "companion_end_exclusive": 4080,
+  "companion_capacity": 522,
+  "existing_sector31_free_candidate": {
+    "parasite_start": 10840,
+    "parasite_end_exclusive": 11940,
+    "ram_start": 33807168,
+    "ram_end_exclusive": 33808268,
+    "sector_offset_start": 2980,
+    "sector_offset_end": 4080,
+    "size": 1100,
+    "save101_all_zero": true
+  },
+  "banks": [
+    {
+      "bank": 0,
+      "physical_sector": 1,
+      "logical_id": 13,
+      "counter": 100,
+      "stock_payload_size": 2000,
+      "s61e_magic": "S61E",
+      "s61e_version": 1,
+      "s61e_payload_size": 1542,
+      "s61e_payload_crc_valid": true,
+      "companion_candidate_all_zero": true
+    },
+    {
+      "bank": 1,
+      "physical_sector": 16,
+      "logical_id": 13,
+      "counter": 101,
+      "stock_payload_size": 2000,
+      "s61e_magic": "S61E",
+      "s61e_version": 1,
+      "s61e_payload_size": 1542,
+      "s61e_payload_crc_valid": true,
+      "companion_candidate_all_zero": true
+    }
+  ],
+  "status": "READ_ONLY_CAPACITY_AUDIT_NOT_RUNTIME_ACCEPTANCE",
+  "new_owner_runtime_allocated": false,
+  "pc_lifetime_verified": false,
+  "main_bank_companion_wired": false
+}

@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-CAVE-TRAINER351-SAVE25",
+  "status": "PASS_CAVE_TRAINER351_SAVE25_SCOPED",
+  "measurement_source": "61d71820e6df2bc2a16f4fa9102f4aed18c1edaa",
+  "run_id": 37112730069,
+  "job_id": 111173640445,
+  "artifact": {
+    "id": 11270560918,
+    "name": "pr16-story-save25-checkpoint",
+    "size_in_bytes": 223647,
+    "digest": "sha256:887b0cc82df68a993c74229dfe060ce647392deed55c3a3723e780782437c9d3",
+    "workflow_run": {
+      "id": 37112730069,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "61d71820e6df2bc2a16f4fa9102f4aed18c1edaa"
+    },
+    "expires_at": "2027-01-01T09:20:45Z"
+  },
+  "verification": {
+    "status": "PASS_CAVE_TRAINER351_SAVE25_SCOPED",
+    "trainer_victories": 1,
+    "wild_victories": 0,
+    "escapes": 0,
+    "captures": 0,
+    "ordinary_saves": 1,
+    "save_counter": 25,
+    "trainer": 351,
+    "physical_trainer_bit": 1631,
+    "reward_yen": 416,
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      31,
+      7
+    ],
+    "facing": 1,
+    "party_count": 4,
+    "rp": 0,
+    "battle_start": 5,
+    "victory_outcome": 28,
+    "unlocked_return": 31,
+    "save_success_text_observation": 38,
+    "stable_field_observation": 39,
+    "partial_write_observations": [
+      35,
+      36,
+      37
+    ],
+    "progress_inputs": 94,
+    "continue_inputs": 13,
+    "screen_count": 42,
+    "native_processes": 2,
+    "record_native_processes": 0,
+    "accepted_case_reruns": 0,
+    "accepted_test_reruns": 0,
+    "compiles": 0,
+    "rom_changes": 0,
+    "fixture_writes": 0,
+    "hm05_taught_or_used": false,
+    "teleport_accepted": false,
+    "cave_crossing_complete": false,
+    "national_dex_unlocked": false,
+    "natural_growth_accepted": false,
+    "natural_evolution_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "boundary": {
+      "party_changes": [
+        [
+          54,
+          5,
+          2
+        ]
+      ],
+      "bag_unchanged": true,
+      "hm05_owned": true,
+      "money_before": 12296,
+      "money_after": 12712,
+      "physical_flag_deltas": [
+        [
+          1631,
+          0,
+          1
+        ]
+      ],
+      "auxiliary_var_deltas": [
+        [
+          16417,
+          38,
+          40
+        ],
+        [
+          16418,
+          3,
+          0
+        ]
+      ],
+      "auxiliary_runtime_owners_resolved": false,
+      "old_bank_preserved_bytes": 57344,
+      "pc_s61e_preserved": true,
+      "s61e_crc_verified": true,
+      "sector_checksum_checks": 42,
+      "national_dex_magic": 0,
+      "national_var404e": 0,
+      "national_flag840": 0,
+      "story_vars": {
+        "4071": 6,
+        "4072": 1
+      },
+      "badge_count": 1,
+      "all_save_rtc_cold_identical": true,
+      "changed_bytes": 6928,
+      "changed_ranges": 1746
+    },
+    "input_save": {
+      "size": 131088,
+      "sha256": "42a5fd672e8be714d40720a9fa4fece27e53293c0b0ca49a2ed0696e206455a0"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "4a92a1d2a36c1b74fa7ba211a9b3a815d63c04582fd34b117a5c3af16828a68f"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    }
+  },
+  "record_source": "dbb50b3c13ce33d7a8576d9a24178af9e056a49a",
+  "record_run_id": 37113873113,
+  "save25_accepted": true,
+  "teleport_accepted": false,
+  "visual_review": "content/modernization/pr16_story_save25_visual_review.json",
+  "preparation": "content/modernization/pr16_story_save25_preparation.json",
+  "source_bindings": {
+    ".github/workflows/pr16-story-save25-record.yml": {
+      "size": 2135,
+      "sha256": "222a622eee07f5655e4713b62881e4a4d5b0461e86a733a99244e600897d38bd"
+    },
+    ".github/workflows/pr16-story-save25.yml": {
+      "size": 1600,
+      "sha256": "02c891658ebc6fce30f9a68f19ffc12e9ee004f3c0709094e2321d250f3fd2bb"
+    },
+    "content/modernization/pr16_story_save25_preparation.json": {
+      "size": 10008,
+      "sha256": "ba62d8e6ea13ec2168e70cd54a96ca957b16e8c14f74f11a1f2838aa53a99a8e"
+    },
+    "content/modernization/pr16_story_save25_visual_review.json": {
+      "size": 2713,
+      "sha256": "2a915e404197218463aed70959a96e8fbb9bf715f035ea517965ec7e52e2c932"
+    },
+    "scripts/pr16_story_save25_accept.py": {
+      "size": 8352,
+      "sha256": "4722762e1247cf9f0d302bb85094975b8217c49b5f619a6ca5065c2348e40cc4"
+    },
+    "scripts/pr16_story_save25_measure.py": {
+      "size": 10219,
+      "sha256": "8b453583ad9ca61784d4460079c29537ba592230285335fee66d94e382f4c1cf"
+    },
+    "scripts/pr16_story_save25_record.py": {
+      "size": 15291,
+      "sha256": "51dfb42033cfa784c14b71f50056eadacca41d607dfff922a4321cc684526763"
+    },
+    "tests/test_pr16_story_save25_accept.py": {
+      "size": 2434,
+      "sha256": "c8d9c7386fe1ea6bf13164598a678f2f56ee659f9f58e225eb61e8fc3ec5354c"
+    },
+    "tests/test_pr16_story_save25_runtime.py": {
+      "size": 1045,
+      "sha256": "4a983804315ab4aa68965dd391948f725bc8eab90397ab33d72cd71cc5e46786"
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_save25_evidence/continue/commands.txt": {
+      "size": 25,
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3"
+    },
+    "content/modernization/pr16_story_save25_evidence/continue/execution.json": {
+      "size": 548,
+      "sha256": "79479c4e0bff2dc43592a51733b03973c1bb8aee338ed58c17f63c1fa4b2ef0e"
+    },
+    "content/modernization/pr16_story_save25_evidence/continue/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save25_evidence/continue/stdout.txt": {
+      "size": 2101,
+      "sha256": "7f45f862d240523e4554046a3e887ac9b1da91792c6c316e29e571a2533efca1"
+    },
+    "content/modernization/pr16_story_save25_evidence/controller-test-receipts.json": {
+      "size": 2597,
+      "sha256": "d881f3ececcdb04021c34554b8fe48beb8844f26e4eaa3e09c001f581f1d76a1"
+    },
+    "content/modernization/pr16_story_save25_evidence/manifest.json": {
+      "size": 7492,
+      "sha256": "9dfb63a4a3508286a001fac4f145c322345ac8ad7a735358305ed9f2981085cd"
+    },
+    "content/modernization/pr16_story_save25_evidence/measurement.json": {
+      "size": 3887,
+      "sha256": "16083b76db4475cbad80f96cb5e0c4b4d67ef579c5cedd877111cfcbee98e3a0"
+    },
+    "content/modernization/pr16_story_save25_evidence/preflight-failure.json": {
+      "size": 4430,
+      "sha256": "213acfd832dd808b50677512bbcc3ac429ec2b4a20318bf29a4e9a414f63c716"
+    },
+    "content/modernization/pr16_story_save25_evidence/prepared-terminal.json": {
+      "size": 3441,
+      "sha256": "e5be548ce7b6903d23445b11bad66a9bc74ff79f14015e9d0f89e4aab8b78717"
+    },
+    "content/modernization/pr16_story_save25_evidence/progress/commands.txt": {
+      "size": 1168,
+      "sha256": "4e3e53df53ce7fde907019359d780ba1b4a50c75f2ab217c4382a782d06998af"
+    },
+    "content/modernization/pr16_story_save25_evidence/progress/execution.json": {
+      "size": 549,
+      "sha256": "cf2945433c8f5db29d4d7b9693f425af858b18d0a77a8ed70fa57d7ee670b8ea"
+    },
+    "content/modernization/pr16_story_save25_evidence/progress/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save25_evidence/progress/stdout.txt": {
+      "size": 26899,
+      "sha256": "d4ba43ded3ddafd5b4e62ec4573b1dcd8ccc1120e0e31cc43a8bcb9598c02a7e"
+    },
+    "content/modernization/pr16_story_save25_evidence/terminal.json": {
+      "size": 3431,
+      "sha256": "16f83b3f2909a7aece952e16fee3926d1d5f6a2e52ceb49b57b79a8cb45b6f02"
+    },
+    "content/modernization/pr16_story_save25_evidence/unit.stderr.txt": {
+      "size": 1873,
+      "sha256": "07133ac1e725ff81d7247b88b6ff92f2ddab23a7f53ca119543e06879846e5f7"
+    },
+    "content/modernization/pr16_story_save25_evidence/verification.json": {
+      "size": 2326,
+      "sha256": "b642d80df45edd953395cad4d57dc4933e0d1250a5db229edc9e61ccc8f1a480"
+    }
+  },
+  "prior_controller_tests": [
+    16,
+    7
+  ],
+  "new_acceptance_tests": 18,
+  "record_native_processes": 0,
+  "next_goal_ja": "Save25 artifact11270560918のstory-fast.srm（4a92a1d2a36c1b74fa7ba211a9b3a815d63c04582fd34b117a5c3af16828a68f、131088bytes）だけから再開。map1/73・31,7南・party4/RP0・12712円・badge1・story4071=6/4072=1。trainer351の通常勝利/416円/Save25/独立Continueは完了。次は東通路の31,8以南から進み、trainer352（30,13）/353（21,17）と岩階段23,14経由の正規teleportを通常入力で確認する。3root/6node・33点地形は静的候補だけで実通行受入ではない。ミュウツーPP[1,14,2,5]/HP324、オノノクスPP[15,10,15,20]/HP294。通常UIで残PPを扱い、host回復/flag/var解禁は禁止。既存候補ROM/runnerはSave24 artifact11263343138からActions内で読取専用再利用。旧runtime artifact10898620034は404で消失、保持済み11263910704のruntime/manifest.json全member/hashを照合して利用。新公開artifactには新save/画面/textだけを入れ、既存ROM/runner/runtime/入力Saveは再配布しない。94/cold13入力、16+7/新18試験、Save1〜24を無影響再走しない。teleport/洞窟走破/HM05原因/全国図鑑/自然進化/全storyは未完。",
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "general_ci_all_success_claimed": false
+}

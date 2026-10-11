@@ -1,0 +1,19 @@
+{
+  "decoded_payload": {
+    "sha256": "e51e89aa9b634a48cea1a2aff76c62f88190456fb650df5e80c479c3260ce311",
+    "size": 131319
+  },
+  "exception_type": "_lzma.LZMAError",
+  "failed_job": 108650618034,
+  "failed_run": 36330227611,
+  "failed_source_head": "539f8d44b45996150e0d551627c2ff8960f39db9",
+  "failure_stage": "BOUNDED_TEXT_DECOMPRESSION_BEFORE_INSTALL",
+  "memory_limit": 134217728,
+  "native_processes": 0,
+  "previous_memory_limit": 67108864,
+  "reason_ja": "64MiB辞書に管理領域が加わり旧64MiB上限を超えた。固定payload/出力131319bytes/hashを保持し128MiB上限で同一byteを確認。",
+  "recovery_source_head": "575707687a72a5f51fe6e7eb711421234d973fad",
+  "schema_version": 1,
+  "source_payload_changed": false,
+  "unit_test_runs": 0
+}

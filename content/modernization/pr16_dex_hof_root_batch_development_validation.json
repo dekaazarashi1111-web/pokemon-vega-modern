@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_ROOT_BATCH_REVIEW",
+  "review_scope": "new_root_batch_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "initial_head": "415131b489d932aa477a431519de6737017c042f",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-root-batch.yml": {
+      "size": 2932,
+      "sha256": "4427f0bc2c87cdf3b7f95866314d439f970365cb66043f8768c29f01ba79bcc9"
+    },
+    "content/modernization/pr16_dex_hof_engine_roots_review.json": {
+      "size": 19181,
+      "sha256": "c6c8cb8d60e67bbb99777b0133badcc0af2d025e9de5a3acfc7a85973d8c0706"
+    },
+    "content/modernization/pr16_dex_hof_extra_roots_review.json": {
+      "size": 17299,
+      "sha256": "88b3fc79f9a3ee4b02b8eb7788f8b36b3b6ade123fb46cdaea790d3d0b34d5b3"
+    },
+    "content/modernization/pr16_dex_hof_field_text_roots_review.json": {
+      "size": 16752,
+      "sha256": "2a06f379c73c5af730f78543d5480d401fcdb3bf52106eb820b960be8bb18b85"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_sources.json": {
+      "size": 4377,
+      "sha256": "e46d1c51c21d114adbba007cbe1e49afcfed212f6eb368ef61a9d7de858a9d27"
+    },
+    "docs/PR16_DEX_HOF_ROOT_BATCH_JA.md": {
+      "size": 7433,
+      "sha256": "aaaf03f01e071fa71af831f2b7d2a671ea24a8bc278e83021e592ff68bbd5af3"
+    },
+    "scripts/pr16_dex_hof_engine_roots.py": {
+      "size": 80699,
+      "sha256": "186a3e220d911f704f41ba087e426e30b899cb99fb7c45294ee3db19c12ae721"
+    },
+    "scripts/pr16_dex_hof_extra_roots.py": {
+      "size": 61297,
+      "sha256": "053840060cf195a4e9a5f2211556d369db89ce9128f9da7fe0bd13c4dd6bb15a"
+    },
+    "scripts/pr16_dex_hof_field_text_roots.py": {
+      "size": 72600,
+      "sha256": "d9765155c7edd6845a25981f6653273034520c78ed14c4c6ec9ee88c5b3773f7"
+    },
+    "scripts/pr16_dex_hof_root_batch.py": {
+      "size": 6597,
+      "sha256": "d0f0185f54607be8cd5e8d013991827792161e07594ae26e5380fa86b2d04d71"
+    },
+    "scripts/pr16_dex_hof_root_batch_actions.py": {
+      "size": 27339,
+      "sha256": "e654cf70e126a8f88e149e2b85e56e722390b4848d8037e8e224251c4bf1f8ec"
+    },
+    "scripts/pr16_dex_hof_root_batch_capacity.py": {
+      "size": 10350,
+      "sha256": "5aed85dd64dcf2d6079739b0a2eba75f5e047b266a964c90d897b37137c4e642"
+    },
+    "scripts/pr16_dex_hof_root_batch_chain.py": {
+      "size": 18992,
+      "sha256": "c2573e6c6fd60e7a4b16fbc2348e590df4f0b34dc19f7da52de09a44489693b3"
+    },
+    "tests/test_pr16_dex_hof_engine_roots.py": {
+      "size": 12900,
+      "sha256": "bb1a2d8c9b73e3ec6ae6d1b55eea095d31f19e0652d35b91c79c11e13a2c374e"
+    },
+    "tests/test_pr16_dex_hof_extra_roots.py": {
+      "size": 14883,
+      "sha256": "8c396ec311b2e8e41ddc329f5bc443c8700d41f0363726c3e3b051b2f80935ea"
+    },
+    "tests/test_pr16_dex_hof_field_text_roots.py": {
+      "size": 15361,
+      "sha256": "58889b5f4d63e690ddaf12fec20a0f4c624b0c491892fa471a0dc2d1ab210f7c"
+    },
+    "tests/test_pr16_dex_hof_root_batch.py": {
+      "size": 8028,
+      "sha256": "656808bf051a61b6c7e29d9062ae560f2c4345375de7f8cb8e8952d566f900f1"
+    },
+    "tests/test_pr16_dex_hof_root_batch_actions.py": {
+      "size": 15810,
+      "sha256": "08986b311a2d48e634661b61ccf8c20913ebbd9842ae239978fe5c4f830d733b"
+    },
+    "tests/test_pr16_dex_hof_root_batch_capacity.py": {
+      "size": 20738,
+      "sha256": "c1d8a76603e463e567128e41c030b3e44093fc6574ff8e26c7c939931052b117"
+    },
+    "tests/test_pr16_dex_hof_root_batch_chain.py": {
+      "size": 23794,
+      "sha256": "98b7fceca0c15cefda2c3888dd7ee6acb508b6828e59a00455766e4ad4f11794"
+    }
+  },
+  "diagnostic": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "unit_tests": 376,
+    "classifications": [
+      746,
+      128
+    ],
+    "newly_classified": 3,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "identity_source": "previous_verified_recovery_not_current_measurement"
+    },
+    "delta_identity": {
+      "size": 148649,
+      "sha256": "99141d9ad0aa643a5b723ee0bb7bc3af2eb2838f34ab413bb1ced79d15aa9af4"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false
+  },
+  "diagnostic_test_log": {
+    "size": 51095,
+    "sha256": "99fbd8cf100927580799d17e2d30025c736c14ab695a6fe1d189a4614ad771f3"
+  },
+  "source_only_review": {
+    "status": "PASS",
+    "files": 20,
+    "open_findings": 0,
+    "current_rom_measured": false,
+    "old_independent_final_review_retried": false,
+    "scope": "new_root_batch_sources_only",
+    "method_ja": "実Bag登録根、登録ShockWave command処理context/Seagallop API根、GPU/wireless未知維持・有限callee/live保存/生成output分離、全14親保持・容量・公開guardを新sourceのみ静的確認。現0641全ROMは別Actions測定。"
+  },
+  "development_history": [
+    {
+      "scope": "new_extra_roots_source_only_review",
+      "id": "R1",
+      "finding_ja": "opaque/epoch effectの指定siteが実boundaryで実行されたか未検査のため、未実行call指定が無視され得た。",
+      "resolution_ja": "実行boundary site集合への全effect key包含guardと、停止前/他根call拒否の反証を追加。",
+      "status": "RESOLVED_FINAL_SOURCE_AND_PREFLIGHT_VERIFIED",
+      "initial_status": "SOURCE_FIXED_FINAL_VALIDATION_PENDING"
+    },
+    {
+      "scope": "new_extra_roots_source_only_review",
+      "id": "R2",
+      "finding_ja": "診断harnessのroots intkey変換がActionsのJSON strkey fixtureと異なり、test09がKeyErrorになる。",
+      "status": "RESOLVED_FINAL_SOURCE_AND_PREFLIGHT_VERIFIED",
+      "initial_status": "FIX_IN_PROGRESS",
+      "resolution_ja": "diagnostic harnessのroots intkey変換を撤去し、保存reviewのjson.loads strkeyをActionsと共用。test09/61で検査。"
+    },
+    {
+      "scope": "new_extra_roots_writer_self_review",
+      "id": "ROOT_DISPATCH_RETURN",
+      "finding_ja": "ShockWave初回command後のdispatcher stack復帰前にschedulerを始めていた。直後delay commandまで実処理して正常復帰後へ接続する必要がある。",
+      "status": "RESOLVED_FINAL_SOURCE_AND_PREFLIGHT_VERIFIED",
+      "initial_status": "FIX_IN_PROGRESS",
+      "resolution_ja": "直後delay12 commandまで実dispatch、frames12/wait callbackの実storeと正常stack復帰を確認後にRunTasks開始。非active task dirty0xA5の初期条件でも実CreateTask/memsetが初期stateを生成。"
+    },
+    {
+      "scope": "new_root_batch_local_preflight",
+      "id": "PREFLIGHT_SOURCE_CHANGED",
+      "status": "REJECTED_UNBOUND_TO_FINAL_SOURCE",
+      "tests_passed": 376,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "reason_ja": "検証中にextraの最終PROFILE/read-review bytesが変わったため、全376成功でもsource snapshot不変gateで拒否。最終freeze版で再検証する。",
+      "current_rom_reconstructions": 0,
+      "native_processes": 0
+    },
+    {
+      "scope": "new_root_batch_final_preflight",
+      "status": "PASS_BOUND_TO_FINAL_SOURCE",
+      "tests": 376,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "current_rom_reconstructions": 0,
+      "native_processes": 0,
+      "classified_diagnostic": 746,
+      "unknown_diagnostic": 128,
+      "formal_current_acceptance": false
+    }
+  ],
+  "publication_budget": {
+    "status": "PRECURRENT_CONSERVATIVE_SIZE_CHECK_NOT_ACCEPTANCE",
+    "files": {
+      "reference-chain.json": 473459,
+      "measurement.json": 518360,
+      "fixed-checkpoint.json": 558360,
+      "fixed-state.json": 3586693,
+      "fixed-resume.md": 168160,
+      "fixed-run-log.md": 2066632,
+      "fixed-version-log.md": 1678030,
+      "root-batch-tests.txt": 51095,
+      "unknown-frontier.json": 100000,
+      "partial-space.json": 50000,
+      "record.json": 30000
+    },
+    "total": 9280789,
+    "max_file": 4000000,
+    "max_total": 12000000,
+    "state_uses_complete_proof_reference": true
+  },
+  "unchanged_parent": {
+    "classified": 743,
+    "unclassified": 131,
+    "parent_inputs": 27,
+    "retained_proof_families": 14,
+    "changes": 124,
+    "witnesses": 114,
+    "owner_count": 115,
+    "hit_count": 874,
+    "song_models": 133,
+    "assets": 50
+  },
+  "acceptance_boundary": {
+    "current_candidate_verified": false,
+    "current_actions_required": true,
+    "natural_play_reachability_proven": false,
+    "universal_epoch_irq_proven": false,
+    "old_independent_final_source_review_completed": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "controller_runtime_wired": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}

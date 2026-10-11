@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "status": "SIGNED_BATTLE_SEEN_AND_OFFICIAL_COUNT_SCOPE",
+  "parent_candidate": {
+    "size": 33554432,
+    "sha256": "71a1131dae058f568bc5537d21bb8c85dfa551c956c4ac36d9e52293eaf5915c"
+  },
+  "signed_original_candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "windows": [
+    {
+      "id": "battle_entry_1",
+      "address": 134294110,
+      "size": 14,
+      "sha256": "304c3441792fbcc605fed09b0ab6ec8f0f141b300c1d1182e55f2de1e6d10191"
+    },
+    {
+      "id": "battle_entry_2",
+      "address": 134294198,
+      "size": 14,
+      "sha256": "53cd05b0fd242c616eb8b813792548beb4d5670437af81ab9e7b77cb7a9812be"
+    },
+    {
+      "id": "battle_entry_3",
+      "address": 134294230,
+      "size": 14,
+      "sha256": "938b5f130243b57b707f3c1730df63f9de8bf1d1bbbaa3e368f09ba5d845095d"
+    },
+    {
+      "id": "battle_entry_4",
+      "address": 134295190,
+      "size": 14,
+      "sha256": "daabbe660f6dedc26b0b786394a756b9df531d5fb32d1b98e48fca7033949bb5"
+    },
+    {
+      "id": "battle_switch",
+      "address": 134363410,
+      "size": 14,
+      "sha256": "9c8a154e83fdea8b6299d766d560e4befe3ec49da4f0775aa96e2ed040c0210b"
+    },
+    {
+      "id": "cfru_official_count",
+      "address": 152244568,
+      "size": 64,
+      "sha256": "deb210eda4850050d30be894574fc3bab22b3747bf7ce7c3d6230fc6a1caa926"
+    },
+    {
+      "id": "active_switch_opcode",
+      "address": 151254408,
+      "size": 4,
+      "sha256": "104fe77b2c0980efec778fc8208c2d7534910c02c30fa3c6916f914ebf3ca084"
+    }
+  ],
+  "limits": [
+    "他consumer、capture、UI、rollback、DexNavは未接続。",
+    "隔離ARMを通常battle/Save/coldの受入へ拡張しない。",
+    "正式ROM/Save101を変更しない。"
+  ]
+}

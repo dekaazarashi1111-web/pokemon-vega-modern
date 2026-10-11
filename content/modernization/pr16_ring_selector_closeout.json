@@ -1,0 +1,544 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-SELECTOR-CLOSEOUT",
+  "source_head": "eb949aedc42717f8011422d1e961da25ada30b98",
+  "run_id": 35074960605,
+  "classification": "SAVED_SELECTOR_RECORD_EVIDENCE_AND_CI_CLOSEOUT_NOT_NATIVE_ACCEPTANCE",
+  "completed_milestones": [
+    {
+      "run_id": 35073059942,
+      "job_id": 104718887950,
+      "artifact_id": 10437157137,
+      "archive_identity": {
+        "size": 947803,
+        "sha256": "991b48dec27f930fb8e9085702902f330f962735e5a535994c4d200822e8736a"
+      },
+      "receipt": {
+        "status": "PASS_RECORDED_NONFORCE_PUSHED",
+        "task": "PR-P08-7-RING-SELECTOR-OWNERS",
+        "source_head": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+        "commit": "5a3a79347acd235250cd389a6d79b650902f93f6",
+        "run_id": 35073059942,
+        "tests": {
+          "tests_run": 15,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "successful": true
+        },
+        "outputs": [
+          "content/modernization/pr16_ring_selector_owners.json",
+          "content/modernization/pr16_native_supply_resume_20260913.json",
+          "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+          "content/modernization/p08_remaining_work.json",
+          "design/run_log.md",
+          "design/version_log.md"
+        ],
+        "new_emulator_processes": 0,
+        "ring_acquisition_accepted": false,
+        "release_ready": false
+      },
+      "guard": {
+        "base": "a1d33265c6c46b53a0d351a64bb4b22eef699cbe",
+        "changed_paths": [
+          ".github/workflows/pr16-ring-selector-followup.yml",
+          "content/modernization/p08_remaining_work.json",
+          "content/modernization/pr16_native_supply_resume_20260913.json",
+          "content/modernization/pr16_ring_selector_owners.json",
+          "design/run_log.md",
+          "design/version_log.md",
+          "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+          "scripts/pr16_ring_selector_followup.py",
+          "tests/test_pr16_ring_selector_followup.py"
+        ],
+        "new_violations": 0,
+        "full_guard_before": 1,
+        "full_guard_after": 1,
+        "exact_output_match": true,
+        "full_guard_pass_claimed": false
+      },
+      "focused_tests": {
+        "tests_run": 15,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "successful": true
+      },
+      "original_tests_text": "test_all_registers (test_pr16_ring_selector_followup.SelectorReferences.test_all_registers) ... ok\ntest_cut_known_bytes (test_pr16_ring_selector_followup.SelectorReferences.test_cut_known_bytes) ... ok\ntest_exact_literal (test_pr16_ring_selector_followup.SelectorReferences.test_exact_literal) ... ok\ntest_invalid_input (test_pr16_ring_selector_followup.SelectorReferences.test_invalid_input) ... ok\ntest_invalid_targets (test_pr16_ring_selector_followup.SelectorReferences.test_invalid_targets) ... ok\ntest_known_site_not_redecoded (test_pr16_ring_selector_followup.SelectorReferences.test_known_site_not_redecoded) ... ok\ntest_largest_immediate (test_pr16_ring_selector_followup.SelectorReferences.test_largest_immediate) ... ok\ntest_merge_and_rom_edges (test_pr16_ring_selector_followup.SelectorReferences.test_merge_and_rom_edges) ... ok\ntest_no_input_mutation (test_pr16_ring_selector_followup.SelectorReferences.test_no_input_mutation) ... ok\ntest_not_ldr (test_pr16_ring_selector_followup.SelectorReferences.test_not_ldr) ... ok\ntest_other_global (test_pr16_ring_selector_followup.SelectorReferences.test_other_global) ... ok\ntest_pc_alignment (test_pr16_ring_selector_followup.SelectorReferences.test_pc_alignment) ... ok\ntest_saved_node_conflict (test_pr16_ring_selector_followup.SelectorReferences.test_saved_node_conflict) ... ok\ntest_saved_node_size (test_pr16_ring_selector_followup.SelectorReferences.test_saved_node_size) ... ok\ntest_unaligned_literal (test_pr16_ring_selector_followup.SelectorReferences.test_unaligned_literal) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 0.001s\n\nOK\n",
+      "member_identities": {
+        "analysis.json": {
+          "size": 1672608,
+          "sha256": "c857947e34b4f94761cae5d98c4d762000f1a9bfa5e8960edecbdcc8cf22b7c4"
+        },
+        "guard.json": {
+          "size": 663,
+          "sha256": "d9d02ab4edb8e42f0055c5f78f2fa8420432e0f882552831c53dc75b541a7068"
+        },
+        "preflight.json": {
+          "size": 625,
+          "sha256": "efb8d84a517612f83bd2b0b2b93a44b058930af36eb202baee497d03bd2a0a6c"
+        },
+        "recorded-result.json": {
+          "size": 750,
+          "sha256": "12f2081fe6e5699933bd040c2cf0c8c158d337030ae418708bb5a19913baef66"
+        },
+        "source-context.zip": {
+          "size": 653202,
+          "sha256": "995369d19a0ecc26bb532986ab1d6f1372e28542a6924f1f907586b39bba9a31"
+        },
+        "tests.json": {
+          "size": 90,
+          "sha256": "51a37165048ce0c41a5000a462a9cb5f88cae616e94c8db614ebce3fe13f6e31"
+        },
+        "tests.txt": {
+          "size": 1650,
+          "sha256": "cefaf2a77bbe6d22d72547aa29e3bb6c9f59a538da20b8c7c0df663539800b49"
+        }
+      },
+      "observed_run": {
+        "id": 35073059942,
+        "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    },
+    {
+      "run_id": 35074318490,
+      "job_id": 104722959596,
+      "artifact_id": 10437566950,
+      "archive_identity": {
+        "size": 4031,
+        "sha256": "b6ee054208c564e3c2e89e71133d2fed601596def38b1efc698dc8e0b69a1a3a"
+      },
+      "receipt": {
+        "status": "PASS_RECORDED_NONFORCE_PUSHED",
+        "task": "PR-P08-7-RING-RECORD-INIT",
+        "source_head": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+        "commit": "8b626df3ef87d4f96e55160a751f5940f6269efb",
+        "run_id": 35074318490,
+        "tests": {
+          "tests_run": 24,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "successful": true
+        },
+        "outputs": [
+          "content/modernization/pr16_ring_record_init.json",
+          "content/modernization/pr16_native_supply_resume_20260913.json",
+          "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+          "content/modernization/p08_remaining_work.json",
+          "design/run_log.md",
+          "design/version_log.md"
+        ],
+        "new_emulator_processes": 0,
+        "ring_acquisition_accepted": false,
+        "release_ready": false
+      },
+      "guard": {
+        "base": "5a3a79347acd235250cd389a6d79b650902f93f6",
+        "changed_paths": [
+          ".github/workflows/pr16-ring-record-init.yml",
+          "content/modernization/p08_remaining_work.json",
+          "content/modernization/pr16_native_supply_resume_20260913.json",
+          "content/modernization/pr16_ring_record_init.json",
+          "design/run_log.md",
+          "design/version_log.md",
+          "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+          "scripts/pr16_ring_record_init.py",
+          "tests/test_pr16_ring_record_init.py"
+        ],
+        "new_violations": 0,
+        "full_guard_before": 1,
+        "full_guard_after": 1,
+        "exact_output_match": true,
+        "full_guard_pass_claimed": false
+      },
+      "focused_tests": {
+        "tests_run": 24,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "successful": true
+      },
+      "original_tests_text": "test_alias_guard (test_pr16_ring_record_init.RecordInit.test_alias_guard) ... ok\ntest_bool_and_range (test_pr16_ring_record_init.RecordInit.test_bool_and_range) ... ok\ntest_canonical_mapping_boundary (test_pr16_ring_record_init.RecordInit.test_canonical_mapping_boundary) ... ok\ntest_capacity_u16_exhaustive (test_pr16_ring_record_init.RecordInit.test_capacity_u16_exhaustive) ... ok\ntest_corrupt_saved_window (test_pr16_ring_record_init.RecordInit.test_corrupt_saved_window) ... ok\ntest_extent_boundary (test_pr16_ring_record_init.RecordInit.test_extent_boundary) ... ok\ntest_insufficient_allocation_rejected (test_pr16_ring_record_init.RecordInit.test_insufficient_allocation_rejected) ... ok\ntest_invalid_states_exhaustive (test_pr16_ring_record_init.RecordInit.test_invalid_states_exhaustive) ... ok\ntest_largest_limit_bounded (test_pr16_ring_record_init.RecordInit.test_largest_limit_bounded) ... ok\ntest_limit_not_capacity (test_pr16_ring_record_init.RecordInit.test_limit_not_capacity) ... ok\ntest_mode1_does_not_fill (test_pr16_ring_record_init.RecordInit.test_mode1_does_not_fill) ... ok\ntest_mode2_template_not_zero (test_pr16_ring_record_init.RecordInit.test_mode2_template_not_zero) ... ok\ntest_no_selector_write_in_valid_init (test_pr16_ring_record_init.RecordInit.test_no_selector_write_in_valid_init) ... ok\ntest_overlap_halfopen (test_pr16_ring_record_init.RecordInit.test_overlap_halfopen) ... ok\ntest_remainder_untouched (test_pr16_ring_record_init.RecordInit.test_remainder_untouched) ... ok\ntest_size_high_bits (test_pr16_ring_record_init.RecordInit.test_size_high_bits) ... ok\ntest_stack_preserved (test_pr16_ring_record_init.RecordInit.test_stack_preserved) ... ok\ntest_state_high_bits (test_pr16_ring_record_init.RecordInit.test_state_high_bits) ... ok\ntest_step_limit (test_pr16_ring_record_init.RecordInit.test_step_limit) ... ok\ntest_template_parameter (test_pr16_ring_record_init.RecordInit.test_template_parameter) ... ok\ntest_unaligned_pointer (test_pr16_ring_record_init.RecordInit.test_unaligned_pointer) ... ok\ntest_unread_byte_rejected (test_pr16_ring_record_init.RecordInit.test_unread_byte_rejected) ... ok\ntest_writes_in_order (test_pr16_ring_record_init.RecordInit.test_writes_in_order) ... ok\ntest_zero_limit (test_pr16_ring_record_init.RecordInit.test_zero_limit) ... ok\n\n----------------------------------------------------------------------\nRan 24 tests in 0.052s\n\nOK\n",
+      "member_identities": {
+        "guard.json": {
+          "size": 641,
+          "sha256": "2c08a9fbed6fcef603de8be7d6c2c9700137f274a9bd2f456750f09ed2d695a5"
+        },
+        "analysis.json": {
+          "size": 14669,
+          "sha256": "17dccb93b16f1e6bc0181d8a5410decd51e8636557ba7caa1d85a8af2ddb247e"
+        },
+        "recorded-result.json": {
+          "size": 742,
+          "sha256": "1782a40dfa62e7bfd6e38f769219b77c626776ff6ea5edff0a2abd7c3b0cd941"
+        },
+        "tests.json": {
+          "size": 90,
+          "sha256": "32b571f19e085ba4a5bb9f0ec8ccd382ec29071600de111fbc898764f257e5ff"
+        },
+        "tests.txt": {
+          "size": 2409,
+          "sha256": "f3adfd6701c93e6669e178282d4abfb6cf55d7b07d486bfd6becbbe912aeb029"
+        }
+      },
+      "observed_run": {
+        "id": 35074318490,
+        "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    }
+  ],
+  "focused_tests": {
+    "tests_run": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_selector_closeout.py": {
+      "size": 13954,
+      "sha256": "b9e12e5a217edf5d2ed58ab806671173f6f0f3301dea26653936f0338ec5cd9a"
+    },
+    "tests/test_pr16_ring_selector_closeout.py": {
+      "size": 2880,
+      "sha256": "6a1fe256fb5669b85cfb96a1b4a81d1fe607946173d37d15bca8d8bcb230c5b2"
+    },
+    ".github/workflows/pr16-ring-selector-closeout.yml": {
+      "size": 1964,
+      "sha256": "81cd64e12d4b087e0d433284e611b2a87a2cde355bc62384c833f37f65bd2f26"
+    },
+    "content/modernization/pr16_ring_selector_owners.json": {
+      "size": 1704471,
+      "sha256": "64e746c4b085f85afb180bbf03299c84ae7efebd1e72964f5f0195e97d553727"
+    },
+    "content/modernization/pr16_ring_record_init.json": {
+      "size": 22140,
+      "sha256": "36c5c9961ded9db8af4bbd8f6cb96f37477ee09f916afc0c69498ae9bb9c4f11"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    }
+  },
+  "session_totals": {
+    "new_focused_implementation_tests": 39,
+    "new_reference_sites": 649,
+    "saved_references_reused": 15,
+    "new_sampled_bytes": 61024,
+    "candidate_reconstructions": 1,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "rom_changes": 0
+  },
+  "actions_observed": [
+    {
+      "id": 35073064845,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073064812,
+      "name": "source-validation",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073060004,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073060116,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073059937,
+      "name": "source-validation",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073059942,
+      "name": "Ring未観測selector・record所有権の限定検証",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073060001,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35074321926,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35074321744,
+      "name": "source-validation",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35074318364,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35074318391,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35074318490,
+      "name": "保存record初期化契約と制御域alias候補（native非実行）",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35074318357,
+      "name": "source-validation",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35074318343,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35073255905,
+      "name": "p03-forgetting-ci",
+      "head_sha": "5a3a79347acd235250cd389a6d79b650902f93f6",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35073256052,
+      "name": "source-validation",
+      "head_sha": "5a3a79347acd235250cd389a6d79b650902f93f6",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35074371121,
+      "name": "source-validation",
+      "head_sha": "8b626df3ef87d4f96e55160a751f5940f6269efb",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35074371158,
+      "name": "p03-forgetting-ci",
+      "head_sha": "8b626df3ef87d4f96e55160a751f5940f6269efb",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35074966599,
+      "name": "source-validation",
+      "head_sha": "eb949aedc42717f8011422d1e961da25ada30b98",
+      "event": "pull_request",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35074966642,
+      "name": "p03-forgetting-ci",
+      "head_sha": "eb949aedc42717f8011422d1e961da25ada30b98",
+      "event": "pull_request",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35074960547,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "eb949aedc42717f8011422d1e961da25ada30b98",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35074960420,
+      "name": "p03-forgetting-ci",
+      "head_sha": "eb949aedc42717f8011422d1e961da25ada30b98",
+      "event": "push",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35074960463,
+      "name": "source-validation",
+      "head_sha": "eb949aedc42717f8011422d1e961da25ada30b98",
+      "event": "push",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35074960605,
+      "name": "selector・record工程の成功CIと保存原本を照合",
+      "head_sha": "eb949aedc42717f8011422d1e961da25ada30b98",
+      "event": "push",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35074960554,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "eb949aedc42717f8011422d1e961da25ada30b98",
+      "event": "push",
+      "status": "in_progress",
+      "conclusion": null
+    }
+  ],
+  "cached_stage79_native_steps": [
+    {
+      "run_id": 35073060001,
+      "job_id": 104719232554,
+      "name": "domain (p03)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35073060001,
+      "job_id": 104719232618,
+      "name": "domain (p02)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35073060001,
+      "job_id": 104719232623,
+      "name": "domain (battle_policy)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35073060001,
+      "job_id": 104719232643,
+      "name": "domain (mega_shop)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35073060001,
+      "job_id": 104719232664,
+      "name": "domain (floette)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35073060001,
+      "job_id": 104719232674,
+      "name": "domain (p04_mega_runtime)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35073060001,
+      "job_id": 104719233361,
+      "name": "domain (p05)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35074318343,
+      "job_id": 104723271805,
+      "name": "domain (p02)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35074318343,
+      "job_id": 104723271824,
+      "name": "domain (p04_mega_runtime)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35074318343,
+      "job_id": 104723271829,
+      "name": "domain (floette)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35074318343,
+      "job_id": 104723271845,
+      "name": "domain (battle_policy)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35074318343,
+      "job_id": 104723271854,
+      "name": "domain (p03)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35074318343,
+      "job_id": 104723271888,
+      "name": "domain (p05)",
+      "native_step_conclusion": "skipped"
+    },
+    {
+      "run_id": 35074318343,
+      "job_id": 104723271923,
+      "name": "domain (mega_shop)",
+      "native_step_conclusion": "skipped"
+    }
+  ],
+  "external_comparison_reference": {
+    "repo": "pret/pokefirered",
+    "ref": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+    "paths": [
+      "src/event_data.c",
+      "src/quest_log.c"
+    ],
+    "purpose_ja": "GetFlagAddr selector1/2とQuest Log再生/記録の比較。候補ROMへの同一性・到達性の根拠ではない。",
+    "adopted_as_candidate_source": false,
+    "external_code_copied": false
+  },
+  "network_log_correction_ja": "前工程SELECTOR-OWNERSのNetwork「外部技術資料なし」はセッション全体では不正確。上記pret sourceをGitHub接続から比較参照した。旧ログは保存し、この追記を訂正記録とする。",
+  "new_emulator_processes": 0,
+  "candidate_reconstructions": 0,
+  "accepted_native_cases_replayed": 0,
+  "prior_abi_classifications_replayed": 0,
+  "rom_changes": 0,
+  "ring_acquisition_accepted": false,
+  "release_ready": false
+}

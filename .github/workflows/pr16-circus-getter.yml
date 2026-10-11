@@ -1,0 +1,63 @@
+name: PR16 Circus getter ABI
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-getter.yml
+      - scripts/pr16_circus_getter_followup.py
+      - scripts/pr16_circus_getter_abi.py
+      - tools/mgba_pr16_circus_getter_trace.h
+      - tests/test_pr16_circus_getter_abi.py
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-suppression
+  cancel-in-progress: false
+jobs:
+  getter:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 旧失敗原本と新規16契約を照合し開始checkpointを非force記録
+        id: prepare
+        run: |
+          mkdir -p .local/pr16-circus-getter
+          python3 scripts/pr16_circus_getter_followup.py prepare > .local/pr16-circus-getter/prepare.stdout 2> .local/pr16-circus-getter/prepare.stderr
+      - name: 検証済み真正Save30のexact cacheのみ復元（bootstrap禁止）
+        uses: actions/cache/restore@v4
+        with:
+          path: .local/pr16-circus-suppression/resume/
+          key: pr16-circus-save30-2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183-35494023398
+          fail-on-cache-miss: true
+      - name: host mGBA依存のみ導入（ARM compiler不要）
+        run: |
+          sudo apt-get update > .local/pr16-circus-getter/apt-update.log 2>&1
+          sudo apt-get install -y libmgba-dev > .local/pr16-circus-getter/apt-install.log 2>&1
+      - name: 限定中継修復・自然getter30・正規抑制・通常Save継続
+        run: python3 scripts/pr16_circus_getter_followup.py native
+      - name: 成功と未達を分離し原本・引継ぎ・両ログを非force記録
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_getter_followup.py finish
+      - name: ROM・save・cacheを除外して原本を保存
+        if: always()
+        run: python3 scripts/pr16_circus_getter_followup.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-getter
+          path: .local/pr16-circus-getter/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: 未達をActions成功へ読み替えない
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_getter_followup.py result

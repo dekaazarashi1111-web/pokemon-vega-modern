@@ -1,0 +1,443 @@
+{
+  "status": "STATIC_FIFTH_DIGLETT_FROM_SAVE80_NOT_NATIVE",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "6083038273bdf89de7563800c91a215c861552e7fc4da71af7c4a3c3237580dc"
+  },
+  "parent_route_binding": {
+    "size": 35227,
+    "sha256": "c6b980fe375e97383a7b220e9d37d7ef7e69a3dd5e678e1833ca87f563b6d85a"
+  },
+  "map": [
+    10,
+    16
+  ],
+  "start": [
+    3,
+    9
+  ],
+  "route": [
+    [
+      3,
+      9
+    ],
+    [
+      4,
+      9
+    ],
+    [
+      5,
+      9
+    ],
+    [
+      6,
+      9
+    ]
+  ],
+  "interaction": {
+    "local_id": 10,
+    "target": [
+      6,
+      8
+    ],
+    "from_xy": [
+      6,
+      9
+    ],
+    "facing": 2,
+    "script": 136400224,
+    "visibility_flag": 4376,
+    "button": "A"
+  },
+  "terrain": [
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        3,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        4,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        5,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        8
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    }
+  ],
+  "initial_flags": {
+    "4372": 0,
+    "4373": 0,
+    "4374": 0,
+    "4375": 1,
+    "4376": 0,
+    "4377": 0,
+    "4378": 1
+  },
+  "expected_flag_changes": [
+    [
+      4375,
+      1,
+      0
+    ],
+    [
+      4376,
+      0,
+      1
+    ]
+  ],
+  "expected_object_changes": [
+    {
+      "local_id": 10,
+      "operation": "removeobject"
+    },
+    {
+      "local_id": 9,
+      "operation": "addobject"
+    }
+  ],
+  "instructions": [
+    {
+      "address": 136400176,
+      "opcode": 161,
+      "size": 5,
+      "hex": "a110000200",
+      "node": 136400176
+    },
+    {
+      "address": 136400181,
+      "opcode": 151,
+      "size": 2,
+      "hex": "9701",
+      "node": 136400176
+    },
+    {
+      "address": 136400183,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b050001",
+      "node": 136400176
+    },
+    {
+      "address": 136400187,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b060001",
+      "node": 136400176
+    },
+    {
+      "address": 136400191,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b080001",
+      "node": 136400176
+    },
+    {
+      "address": 136400195,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b090001",
+      "node": 136400176
+    },
+    {
+      "address": 136400199,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b0a0001",
+      "node": 136400176
+    },
+    {
+      "address": 136400203,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b0b0001",
+      "node": 136400176
+    },
+    {
+      "address": 136400207,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 136400176
+    },
+    {
+      "address": 136400224,
+      "opcode": 106,
+      "size": 1,
+      "hex": "6a",
+      "node": 136400224
+    },
+    {
+      "address": 136400225,
+      "opcode": 4,
+      "size": 5,
+      "hex": "04f0d56a08",
+      "node": 136400224
+    },
+    {
+      "address": 136400230,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1411",
+      "node": 136400224
+    },
+    {
+      "address": 136400233,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601a04d2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400239,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1511",
+      "node": 136400224
+    },
+    {
+      "address": 136400242,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601c84d2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400248,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1611",
+      "node": 136400224
+    },
+    {
+      "address": 136400251,
+      "opcode": 7,
+      "size": 6,
+      "hex": "0701084e2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400257,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1711",
+      "node": 136400224
+    },
+    {
+      "address": 136400260,
+      "opcode": 7,
+      "size": 6,
+      "hex": "0701104e2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400266,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1911",
+      "node": 136400224
+    },
+    {
+      "address": 136400269,
+      "opcode": 7,
+      "size": 6,
+      "hex": "0701184e2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400275,
+      "opcode": 5,
+      "size": 5,
+      "hex": "0503d66a08",
+      "node": 136400224
+    },
+    {
+      "address": 136400400,
+      "opcode": 4,
+      "size": 5,
+      "hex": "043ad66a08",
+      "node": 136400400
+    },
+    {
+      "address": 136400405,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 136400400
+    },
+    {
+      "address": 141219312,
+      "opcode": 106,
+      "size": 1,
+      "hex": "6a",
+      "node": 141219312
+    },
+    {
+      "address": 141219313,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00084f2108",
+      "node": 141219312
+    },
+    {
+      "address": 141219319,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0902",
+      "node": 141219312
+    },
+    {
+      "address": 141219321,
+      "opcode": 4,
+      "size": 5,
+      "hex": "04304d2108",
+      "node": 141219312
+    },
+    {
+      "address": 141219326,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 141219312
+    },
+    {
+      "address": 141219331,
+      "opcode": 151,
+      "size": 2,
+      "hex": "9700",
+      "node": 141219331
+    },
+    {
+      "address": 141219333,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00214f2108",
+      "node": 141219331
+    },
+    {
+      "address": 141219339,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0906",
+      "node": 141219331
+    },
+    {
+      "address": 141219341,
+      "opcode": 108,
+      "size": 1,
+      "hex": "6c",
+      "node": 141219331
+    },
+    {
+      "address": 141219342,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 141219331
+    },
+    {
+      "address": 141219386,
+      "opcode": 41,
+      "size": 3,
+      "hex": "291811",
+      "node": 141219386
+    },
+    {
+      "address": 141219389,
+      "opcode": 83,
+      "size": 3,
+      "hex": "530a00",
+      "node": 141219386
+    },
+    {
+      "address": 141219392,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1711",
+      "node": 141219386
+    },
+    {
+      "address": 141219395,
+      "opcode": 85,
+      "size": 3,
+      "hex": "550900",
+      "node": 141219386
+    },
+    {
+      "address": 141219398,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 141219386
+    }
+  ],
+  "texts": {
+    "136400648": {
+      "hex": "fd011a0022191f0419fe9480899116001a150c00060910ff",
+      "decoded": "<fd>あは めのまえの\\nディグダに はなし かけた"
+    },
+    "136400673": {
+      "hex": "152e14abfe9480899119001a021137001d2e060c10ff",
+      "decoded": "なんと！\\nディグダの はいちが へんかした"
+    }
+  },
+  "source_graph_reused": true,
+  "full_gym_puzzle_accepted": false,
+  "native_route_accepted": false,
+  "source_notes_ja": "保存済gym graphのlocal10/4372・4373・4374=false・4375=true分岐。4376 set/remove10・4375 clear/add9。旧local5/6/8/9受入入力再走0。"
+}

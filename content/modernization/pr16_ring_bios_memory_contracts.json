@@ -1,0 +1,2116 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-BIOS-MEMORY-CONTRACTS",
+  "source_head": "e73a025885444a645d0bf690361844b463004ae2",
+  "run_id": 35307170557,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "CONDITIONAL_BIOS_MEMORY_AND_CALLER_SUFFIX_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "provenance": {
+      "repository": "mgba-emu/mgba",
+      "ref": "0.10.2",
+      "path": "src/gba/hle-bios.s",
+      "git_blob": "c891479a5ee8efb37eba00365c765d2fa90b12b1",
+      "dispatcher_path": "src/gba/bios.c",
+      "dispatcher_git_blob": "1d0c0dd10ad02d26ee18f7fada6bc7377d34e346",
+      "mode": "CONDITIONAL_MGBA_0_10_2_HLE_MEMORY_CONTRACT_NOT_BIOS_EXECUTION",
+      "preconditions_ja": [
+        "割込・DMA介入なし。source/destinationは列挙した非aliasの明示領域。",
+        "呼出し中のBIOS固有stack領域はcaller objectと非aliasで使用可能という仮定。",
+        "SPSR/例外mode復元は固定swiBaseの契約。実BIOS/IRQ/サイクル/BIOS stack byteは未観測。",
+        "不正alignment、予約control bit、2048word超、領域跨ぎは未モデルとして拒否。"
+      ]
+    },
+    "cases": [
+      {
+        "case": "state0-palette-mode0",
+        "returned": false,
+        "stop": [
+          "未map read",
+          135607516
+        ],
+        "read_fault": {
+          "address": 135607524,
+          "size": 4,
+          "site": 135607516
+        },
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": true,
+            "writes_completed": 10,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 391,
+              "sha256": "031fd4d17cc54cb7dc33aa776d114c7f37c3a2fcaaa7dbf94a37f597327b8c9c"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              368
+            ]
+          },
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33781484,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": true,
+            "writes_completed": 10,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 391,
+              "sha256": "70bfa24b2bafb20115e51506beaff107833666ee03d3a24d546c982a1eacb3d4"
+            },
+            "registers_after": [
+              138293420,
+              33781484,
+              10,
+              368
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 27,
+        "write_identity": {
+          "size": 1049,
+          "sha256": "2ac1b2bd52be47e63166af52fac1e925a32672260314cadf9f844d509b37576f"
+        },
+        "caller_maximum_stack_bytes": 112,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 0,
+        "synthetic_palette": true
+      },
+      {
+        "case": "state0-palette-mode1",
+        "returned": false,
+        "stop": [
+          "未map read",
+          135607516
+        ],
+        "read_fault": {
+          "address": 135607524,
+          "size": 4,
+          "site": 135607516
+        },
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": true,
+            "writes_completed": 10,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 391,
+              "sha256": "031fd4d17cc54cb7dc33aa776d114c7f37c3a2fcaaa7dbf94a37f597327b8c9c"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              368
+            ]
+          },
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33781484,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": true,
+            "writes_completed": 10,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 391,
+              "sha256": "70bfa24b2bafb20115e51506beaff107833666ee03d3a24d546c982a1eacb3d4"
+            },
+            "registers_after": [
+              138293420,
+              33781484,
+              10,
+              368
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 27,
+        "write_identity": {
+          "size": 1049,
+          "sha256": "2ac1b2bd52be47e63166af52fac1e925a32672260314cadf9f844d509b37576f"
+        },
+        "caller_maximum_stack_bytes": 112,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 0,
+        "synthetic_palette": true
+      },
+      {
+        "case": "state0-palette-mode3",
+        "returned": false,
+        "stop": [
+          "未map read",
+          135607516
+        ],
+        "read_fault": {
+          "address": 135607524,
+          "size": 4,
+          "site": 135607516
+        },
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": true,
+            "writes_completed": 10,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 391,
+              "sha256": "031fd4d17cc54cb7dc33aa776d114c7f37c3a2fcaaa7dbf94a37f597327b8c9c"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              368
+            ]
+          },
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33781484,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": true,
+            "writes_completed": 10,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 391,
+              "sha256": "70bfa24b2bafb20115e51506beaff107833666ee03d3a24d546c982a1eacb3d4"
+            },
+            "registers_after": [
+              138293420,
+              33781484,
+              10,
+              368
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 27,
+        "write_identity": {
+          "size": 1049,
+          "sha256": "2ac1b2bd52be47e63166af52fac1e925a32672260314cadf9f844d509b37576f"
+        },
+        "caller_maximum_stack_bytes": 112,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 0,
+        "synthetic_palette": true
+      },
+      {
+        "case": "state1-fill-mode0",
+        "returned": false,
+        "stop": [
+          "未map read",
+          134224574
+        ],
+        "read_fault": {
+          "address": 134224620,
+          "size": 4,
+          "site": 134224574
+        },
+        "bios_events": [
+          {
+            "site": 136084100,
+            "service": 12,
+            "args": [
+              50364120,
+              33701888,
+              16778080
+            ],
+            "source_bytes": 4,
+            "requested_units": 864,
+            "transferred_units": 864,
+            "unit": 4,
+            "fill": true,
+            "completed": true,
+            "writes_completed": 864,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 38019,
+              "sha256": "d1552b6d31abc79a3997a4fb1a724cf72956ea6511319954ff69fecf3ccb8862"
+            },
+            "registers_after": [
+              50364120,
+              33705344,
+              16778080,
+              286331153
+            ]
+          }
+        ],
+        "block_events": [
+          {
+            "site": 134233984,
+            "load": true,
+            "base": 1,
+            "registers": [
+              2,
+              3,
+              4
+            ],
+            "values": [
+              453313280,
+              591620,
+              33701888
+            ]
+          },
+          {
+            "site": 134233986,
+            "load": false,
+            "base": 0,
+            "registers": [
+              2,
+              3,
+              4
+            ],
+            "values": [
+              453313280,
+              591620,
+              33701888
+            ]
+          }
+        ],
+        "nonstack_write_count": 942,
+        "write_identity": {
+          "size": 41139,
+          "sha256": "c73c8a0cfb5ece0a11e1357253dbe383e014ab4be51c8da1eeabac9edd41e644"
+        },
+        "caller_maximum_stack_bytes": 252,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 1
+      },
+      {
+        "case": "state1-fill-mode2",
+        "returned": false,
+        "stop": [
+          "未map read",
+          134224574
+        ],
+        "read_fault": {
+          "address": 134224620,
+          "size": 4,
+          "site": 134224574
+        },
+        "bios_events": [
+          {
+            "site": 136084100,
+            "service": 12,
+            "args": [
+              50364120,
+              33701888,
+              16778080
+            ],
+            "source_bytes": 4,
+            "requested_units": 864,
+            "transferred_units": 864,
+            "unit": 4,
+            "fill": true,
+            "completed": true,
+            "writes_completed": 864,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 38019,
+              "sha256": "d1552b6d31abc79a3997a4fb1a724cf72956ea6511319954ff69fecf3ccb8862"
+            },
+            "registers_after": [
+              50364120,
+              33705344,
+              16778080,
+              286331153
+            ]
+          }
+        ],
+        "block_events": [
+          {
+            "site": 134233984,
+            "load": true,
+            "base": 1,
+            "registers": [
+              2,
+              3,
+              4
+            ],
+            "values": [
+              453313280,
+              591620,
+              33701888
+            ]
+          },
+          {
+            "site": 134233986,
+            "load": false,
+            "base": 0,
+            "registers": [
+              2,
+              3,
+              4
+            ],
+            "values": [
+              453313280,
+              591620,
+              33701888
+            ]
+          }
+        ],
+        "nonstack_write_count": 942,
+        "write_identity": {
+          "size": 41139,
+          "sha256": "c73c8a0cfb5ece0a11e1357253dbe383e014ab4be51c8da1eeabac9edd41e644"
+        },
+        "caller_maximum_stack_bytes": 252,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 1
+      },
+      {
+        "case": "palette-short-source-0",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138293420,
+          "size": 2,
+          "site": 136084104
+        },
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 0,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 3,
+              "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 0,
+        "write_identity": {
+          "size": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "palette-short-source-1",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138293420,
+          "size": 2,
+          "site": 136084104
+        },
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 0,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 3,
+              "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 0,
+        "write_identity": {
+          "size": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "palette-short-source-2",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138293422,
+          "size": 2,
+          "site": 136084104
+        },
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 1,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 41,
+              "sha256": "1dac7bf642c93e8c053aefe68acc6339437e8ff9c162d1b02f692b789aba6d55"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 1,
+        "write_identity": {
+          "size": 41,
+          "sha256": "1dac7bf642c93e8c053aefe68acc6339437e8ff9c162d1b02f692b789aba6d55"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "palette-short-source-9",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138293428,
+          "size": 2,
+          "site": 136084104
+        },
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 4,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 157,
+              "sha256": "6e4778a956d17b4097ab39d667f04d2b4af8474f4ad6cbb86c9799914fe9ec54"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 4,
+        "write_identity": {
+          "size": 157,
+          "sha256": "6e4778a956d17b4097ab39d667f04d2b4af8474f4ad6cbb86c9799914fe9ec54"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "palette-short-source-18",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138293438,
+          "size": 2,
+          "site": 136084104
+        },
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 9,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 352,
+              "sha256": "f350e10565809169b5a90b5b54ec7d8ec01ed0e0e4802638cb6e65e133d78ee6"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 9,
+        "write_identity": {
+          "size": 352,
+          "sha256": "f350e10565809169b5a90b5b54ec7d8ec01ed0e0e4802638cb6e65e133d78ee6"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "palette-short-source-19",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138293438,
+          "size": 2,
+          "site": 136084104
+        },
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 9,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 352,
+              "sha256": "f350e10565809169b5a90b5b54ec7d8ec01ed0e0e4802638cb6e65e133d78ee6"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 9,
+        "write_identity": {
+          "size": 352,
+          "sha256": "f350e10565809169b5a90b5b54ec7d8ec01ed0e0e4802638cb6e65e133d78ee6"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "palette-short-destination-0",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 0,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 3,
+              "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 0,
+        "write_identity": {
+          "size": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "palette-short-destination-1",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 0,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 3,
+              "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 0,
+        "write_identity": {
+          "size": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "palette-short-destination-2",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 1,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 41,
+              "sha256": "1dac7bf642c93e8c053aefe68acc6339437e8ff9c162d1b02f692b789aba6d55"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 1,
+        "write_identity": {
+          "size": 41,
+          "sha256": "1dac7bf642c93e8c053aefe68acc6339437e8ff9c162d1b02f692b789aba6d55"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "palette-short-destination-9",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 4,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 157,
+              "sha256": "6e4778a956d17b4097ab39d667f04d2b4af8474f4ad6cbb86c9799914fe9ec54"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 4,
+        "write_identity": {
+          "size": 157,
+          "sha256": "6e4778a956d17b4097ab39d667f04d2b4af8474f4ad6cbb86c9799914fe9ec54"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "palette-short-destination-18",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 9,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 352,
+              "sha256": "f350e10565809169b5a90b5b54ec7d8ec01ed0e0e4802638cb6e65e133d78ee6"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 9,
+        "write_identity": {
+          "size": 352,
+          "sha256": "f350e10565809169b5a90b5b54ec7d8ec01ed0e0e4802638cb6e65e133d78ee6"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "palette-short-destination-19",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 9,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 352,
+              "sha256": "f350e10565809169b5a90b5b54ec7d8ec01ed0e0e4802638cb6e65e133d78ee6"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 9,
+        "write_identity": {
+          "size": 352,
+          "sha256": "f350e10565809169b5a90b5b54ec7d8ec01ed0e0e4802638cb6e65e133d78ee6"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "palette-readonly",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": false,
+            "writes_completed": 0,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 3,
+              "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              2684355331
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 0,
+        "write_identity": {
+          "size": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "caller_maximum_stack_bytes": 16,
+        "bios_stack_bytes_included": false,
+        "task_state_after": null
+      },
+      {
+        "case": "fill-short-destination-0",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084100
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084100,
+            "service": 12,
+            "args": [
+              50364120,
+              33701888,
+              16778080
+            ],
+            "source_bytes": 4,
+            "requested_units": 864,
+            "transferred_units": 864,
+            "unit": 4,
+            "fill": true,
+            "completed": false,
+            "writes_completed": 0,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 3,
+              "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+            },
+            "registers_after": [
+              50364120,
+              33701888,
+              16778080,
+              286331153
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 78,
+        "write_identity": {
+          "size": 3123,
+          "sha256": "2f03c07bf5c33823f12c397a0eccbbe5c970a4d4165b488a9fc1e95fa5dba6c1"
+        },
+        "caller_maximum_stack_bytes": 252,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 1
+      },
+      {
+        "case": "fill-short-destination-1",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084100
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084100,
+            "service": 12,
+            "args": [
+              50364120,
+              33701888,
+              16778080
+            ],
+            "source_bytes": 4,
+            "requested_units": 864,
+            "transferred_units": 864,
+            "unit": 4,
+            "fill": true,
+            "completed": false,
+            "writes_completed": 0,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 3,
+              "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+            },
+            "registers_after": [
+              50364120,
+              33701888,
+              16778080,
+              286331153
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 78,
+        "write_identity": {
+          "size": 3123,
+          "sha256": "2f03c07bf5c33823f12c397a0eccbbe5c970a4d4165b488a9fc1e95fa5dba6c1"
+        },
+        "caller_maximum_stack_bytes": 252,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 1
+      },
+      {
+        "case": "fill-short-destination-4",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084100
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084100,
+            "service": 12,
+            "args": [
+              50364120,
+              33701888,
+              16778080
+            ],
+            "source_bytes": 4,
+            "requested_units": 864,
+            "transferred_units": 864,
+            "unit": 4,
+            "fill": true,
+            "completed": false,
+            "writes_completed": 1,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 47,
+              "sha256": "0683a755683cd54ffa7b0d118a799c15c970b6273a4d020ba6854f7e8a3f86fd"
+            },
+            "registers_after": [
+              50364120,
+              33701888,
+              16778080,
+              286331153
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 79,
+        "write_identity": {
+          "size": 3167,
+          "sha256": "27cb45ada9a9d89612a453fe6de76f911c32a51b681a62e8122c04b3948ecf47"
+        },
+        "caller_maximum_stack_bytes": 252,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 1
+      },
+      {
+        "case": "fill-short-destination-31",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084100
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084100,
+            "service": 12,
+            "args": [
+              50364120,
+              33701888,
+              16778080
+            ],
+            "source_bytes": 4,
+            "requested_units": 864,
+            "transferred_units": 864,
+            "unit": 4,
+            "fill": true,
+            "completed": false,
+            "writes_completed": 7,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 311,
+              "sha256": "91173be9a6652225eb1765b989885a506c31933657f225563c7760166cbe6a3c"
+            },
+            "registers_after": [
+              50364120,
+              33701888,
+              16778080,
+              286331153
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 85,
+        "write_identity": {
+          "size": 3431,
+          "sha256": "a7c3ddd25ff2e8ab253121425d9b33bfd99e99bd41006f0f717e8dac12d8d7f1"
+        },
+        "caller_maximum_stack_bytes": 252,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 1
+      },
+      {
+        "case": "fill-short-destination-32",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084100
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084100,
+            "service": 12,
+            "args": [
+              50364120,
+              33701888,
+              16778080
+            ],
+            "source_bytes": 4,
+            "requested_units": 864,
+            "transferred_units": 864,
+            "unit": 4,
+            "fill": true,
+            "completed": false,
+            "writes_completed": 8,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 355,
+              "sha256": "b53dcde4ff5c185e1b15d8baf5d9406fea13e36db27141c24521a6c7079bfc9b"
+            },
+            "registers_after": [
+              50364120,
+              33701920,
+              16778080,
+              286331153
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 86,
+        "write_identity": {
+          "size": 3475,
+          "sha256": "715df1210582e893c357fb9addce720b39f059573314b805013d307f11cb198d"
+        },
+        "caller_maximum_stack_bytes": 252,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 1
+      },
+      {
+        "case": "fill-short-destination-3452",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084100
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084100,
+            "service": 12,
+            "args": [
+              50364120,
+              33701888,
+              16778080
+            ],
+            "source_bytes": 4,
+            "requested_units": 864,
+            "transferred_units": 864,
+            "unit": 4,
+            "fill": true,
+            "completed": false,
+            "writes_completed": 863,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 37975,
+              "sha256": "3d6acd3a67ad270cf3798bdda53662ac4b53efba3240cfa349b9ff5660f1fc0c"
+            },
+            "registers_after": [
+              50364120,
+              33705312,
+              16778080,
+              286331153
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 941,
+        "write_identity": {
+          "size": 41095,
+          "sha256": "65fabfb01eed0adc331c2e9d3e82d5fb29b7ec4a31ed8da27b7819eed0a147de"
+        },
+        "caller_maximum_stack_bytes": 252,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 1
+      },
+      {
+        "case": "fill-short-destination-3455",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084100
+        ],
+        "read_fault": null,
+        "bios_events": [
+          {
+            "site": 136084100,
+            "service": 12,
+            "args": [
+              50364120,
+              33701888,
+              16778080
+            ],
+            "source_bytes": 4,
+            "requested_units": 864,
+            "transferred_units": 864,
+            "unit": 4,
+            "fill": true,
+            "completed": false,
+            "writes_completed": 863,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 37975,
+              "sha256": "3d6acd3a67ad270cf3798bdda53662ac4b53efba3240cfa349b9ff5660f1fc0c"
+            },
+            "registers_after": [
+              50364120,
+              33705312,
+              16778080,
+              286331153
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 941,
+        "write_identity": {
+          "size": 41095,
+          "sha256": "65fabfb01eed0adc331c2e9d3e82d5fb29b7ec4a31ed8da27b7819eed0a147de"
+        },
+        "caller_maximum_stack_bytes": 252,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 1
+      },
+      {
+        "case": "candidate-palette-state0-mode0",
+        "returned": false,
+        "stop": [
+          "未map read",
+          135607516
+        ],
+        "read_fault": {
+          "address": 135607524,
+          "size": 4,
+          "site": 135607516
+        },
+        "bios_events": [
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33780460,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": true,
+            "writes_completed": 10,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 401,
+              "sha256": "8a7e036e2a3daa7e17969d7f84f2a692186bf48051502a5562e1b65aa309cc99"
+            },
+            "registers_after": [
+              138293420,
+              33780460,
+              10,
+              368
+            ]
+          },
+          {
+            "site": 136084104,
+            "service": 11,
+            "args": [
+              138293420,
+              33781484,
+              10
+            ],
+            "source_bytes": 20,
+            "requested_units": 10,
+            "transferred_units": 10,
+            "unit": 2,
+            "fill": false,
+            "completed": true,
+            "writes_completed": 10,
+            "bios_execution_observed": false,
+            "return_is_conditional": true,
+            "write_identity": {
+              "size": 401,
+              "sha256": "cd3652d215e9d04d28672ee5cca1605f9d849c752e77568780b69a63fb92dfbc"
+            },
+            "registers_after": [
+              138293420,
+              33781484,
+              10,
+              368
+            ]
+          }
+        ],
+        "block_events": [],
+        "nonstack_write_count": 27,
+        "write_identity": {
+          "size": 1069,
+          "sha256": "722b6180140cf0e2b04f2d88689cb9fc607be49138c1b0d1bbd91741c16aaefb"
+        },
+        "caller_maximum_stack_bytes": 112,
+        "bios_stack_bytes_included": false,
+        "task_state_after": 0,
+        "synthetic_palette": false
+      }
+    ],
+    "new_contract_cases": 26,
+    "source_palette": {
+      "start": 138293420,
+      "length": 20,
+      "hex": "ff7fff7f8c315a673c04ff3a6406d24b4665147b",
+      "identity": {
+        "size": 20,
+        "sha256": "36cc1a2c81842a9e98b8cea37e5394a8e3c92648b5de3abc2649ad32aa609e90"
+      },
+      "candidate": {
+        "size": 33554432,
+        "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+        "crc32": "3EB17B36"
+      },
+      "supplier": "HASH_VERIFIED_CANDIDATE_READ_ONLY_EXACT_20_BYTES"
+    },
+    "saved_node_count": 8628,
+    "new_node_count": 0,
+    "new_window_bytes": 20,
+    "bios_prefix_bytes_resampled": 0,
+    "saved_nodes_redecoded": 0,
+    "candidate_reconstructions": 1,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "full_rom_scans": 0,
+    "successful_callee_stubs": 0,
+    "palette_two_copies_conditional_proven": true,
+    "window_fill_effects_conditional_proven": true,
+    "window_12byte_transfer_conditional_proven": true,
+    "palette_supplier_identity_verified": true,
+    "task_state1_to2_proven": false,
+    "task_state01_complete_proven": false,
+    "normal_story_observed": false,
+    "initializer_runtime_observed": false,
+    "task_scheduler_execution_observed": false,
+    "bios_execution_observed": false,
+    "dma_execution_observed": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "actual_callback_table_observed": false,
+    "task_full_boundary": {
+      "producer_returns": 1,
+      "script_command_returns": 0,
+      "busy_after": 2,
+      "task_allocated": false,
+      "normal_play_reproduction_observed": false,
+      "liveness_proven": false
+    },
+    "next_unmapped_reads": [
+      {
+        "case": "state0-palette-mode0",
+        "stop": [
+          "未map read",
+          135607516
+        ],
+        "read_fault": {
+          "address": 135607524,
+          "size": 4,
+          "site": 135607516
+        }
+      },
+      {
+        "case": "state0-palette-mode1",
+        "stop": [
+          "未map read",
+          135607516
+        ],
+        "read_fault": {
+          "address": 135607524,
+          "size": 4,
+          "site": 135607516
+        }
+      },
+      {
+        "case": "state0-palette-mode3",
+        "stop": [
+          "未map read",
+          135607516
+        ],
+        "read_fault": {
+          "address": 135607524,
+          "size": 4,
+          "site": 135607516
+        }
+      },
+      {
+        "case": "state1-fill-mode0",
+        "stop": [
+          "未map read",
+          134224574
+        ],
+        "read_fault": {
+          "address": 134224620,
+          "size": 4,
+          "site": 134224574
+        }
+      },
+      {
+        "case": "state1-fill-mode2",
+        "stop": [
+          "未map read",
+          134224574
+        ],
+        "read_fault": {
+          "address": 134224620,
+          "size": 4,
+          "site": 134224574
+        }
+      },
+      {
+        "case": "candidate-palette-state0-mode0",
+        "stop": [
+          "未map read",
+          135607516
+        ],
+        "read_fault": {
+          "address": 135607524,
+          "size": 4,
+          "site": 135607516
+        }
+      }
+    ],
+    "boundary_ja": "固定HLEの明示メモリ契約。live BIOS stack/IRQ/実BIOSの観測ではない。palette二重RAMコピー後は選択表、state1 frame/fill/window転送後は属性10の表で停止。state0/1完了・queue転送・通常story/Ringは未受入。",
+    "export_manifest": {
+      "size": 52528,
+      "sha256": "2c7bc161ebb730c089766051690190b58a13dfc60a45264ee735ee242a437576"
+    }
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_bios_record.py": {
+      "size": 11374,
+      "sha256": "448e17fa82fbe031d9202fd6045315e88c590202ae4f3c4f864283052a414ffa"
+    },
+    "scripts/pr16_ring_bios_memory_contracts.py": {
+      "size": 15595,
+      "sha256": "1f38612b3cd565575db321b2488a30334c1d5fd9ac0573295911bb417733a394"
+    },
+    "tests/test_pr16_ring_bios_memory_contracts.py": {
+      "size": 9298,
+      "sha256": "c263f42264dca1ab489175e35e956d078be3235d81df900a6a6229531521716d"
+    },
+    ".github/workflows/pr16-ring-bios-memory-contracts.yml": {
+      "size": 1771,
+      "sha256": "85fe39869ef23a3796a4753acf9bcfeafecc86a60b7295ff82cca1e81e093c40"
+    },
+    "content/modernization/pr16_ring_message_window_checkpoint.json": {
+      "size": 12736,
+      "sha256": "22dca8ce7959e9c0b2ee1547e54b2d4efb7de011cbb825076d91de617064eb38"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_message_window_contracts.py": {
+      "size": 28110,
+      "sha256": "2a5d6bfb8db291c35fe7223fb3b080c58eb4511a12a550fed32220ec396f3fad"
+    },
+    "content/modernization/pr16_ring_message_window_contracts.json": {
+      "size": 769261,
+      "sha256": "3b00f06261173520276abd3f19e2cc2b27e7f5e59b26b243c8ab720cd66f5f82"
+    },
+    "scripts/pr16_ring_message_tile_leaves.py": {
+      "size": 7532,
+      "sha256": "4e829bf29e22277f8b0ddd646218361442ba26f42531f96f33f8cda792c91b70"
+    },
+    "content/modernization/pr16_ring_message_window_dependencies.json": {
+      "size": 86186,
+      "sha256": "fd912ea2c0404f78c4ed94513e985d9be5622a49d9f8a2d9b9a298e9bff4f125"
+    },
+    "scripts/pr16_ring_message_window_dependencies.py": {
+      "size": 7764,
+      "sha256": "ff56381bc31e886629716e69074e9439e936ec856cf60fa9f432e4360e0d26cd"
+    },
+    "content/modernization/pr16_ring_message_window_frontier.json": {
+      "size": 27825,
+      "sha256": "5ad35e199622e777624a482def01cc05e4ba468dbcecdd369e3671a95ce90120"
+    },
+    "scripts/pr16_ring_message_window_frontier.py": {
+      "size": 8874,
+      "sha256": "879bde66b1985a483810a00a483636c9bba2ec1c4b8429ba6a42a4b910c07f54"
+    },
+    "content/modernization/pr16_ring_message_task_checkpoint.json": {
+      "size": 11900,
+      "sha256": "cf971cfb7f5bdb597ca832c6e766db5cb168e3094436b9d919e81ab0a05ac10d"
+    },
+    "scripts/pr16_ring_message_task_contracts.py": {
+      "size": 28265,
+      "sha256": "6e575d79e5ec695f3fafc491cfbe13d47b705591bba8df9f57a368fa7f77124f"
+    },
+    "content/modernization/pr16_ring_message_task_contracts.json": {
+      "size": 1547055,
+      "sha256": "e585b13edd9ecb20de1ac313dfb33d7588c97ceec9e358a2b89741150c86a0e6"
+    },
+    "content/modernization/pr16_ring_message_window_bytes.json": {
+      "size": 186628,
+      "sha256": "bb5068bc9259c93982d03d84455cc4281c1d45d7f0bf466cb024cfe60fa13456"
+    },
+    "scripts/pr16_ring_message_window_bytes.py": {
+      "size": 7253,
+      "sha256": "b69191907b394aee845529a709146450ea7ba32677e9c38bb798e27265ff0e32"
+    },
+    "content/modernization/pr16_ring_message_task_callees.json": {
+      "size": 58019,
+      "sha256": "55e198114931889645456a57b2f76d38b6c911dc962ede062e5d2f9dd43c2b07"
+    },
+    "scripts/pr16_ring_message_task_callees.py": {
+      "size": 7920,
+      "sha256": "02b09cc6f87c46891857f465de129d7fe0631677a2ba075f895e22e9db85e79d"
+    },
+    "content/modernization/pr16_ring_message_task_frontier.json": {
+      "size": 36672,
+      "sha256": "14db168d3a2834b7317b07666840f7a53c22dea716f4702a6bf785ee41bd5428"
+    },
+    "scripts/pr16_ring_message_task_frontier.py": {
+      "size": 11023,
+      "sha256": "281514fa091e8a6082a37024fd6aa54869ff39b996ef15517e7132ce750322ee"
+    },
+    "content/modernization/pr16_ring_message_owner_contracts.json": {
+      "size": 1333833,
+      "sha256": "d7e02206e9e83e14ddcbcf8c1b9cd73c2a5b0237fb2f13f3e780f631f56eef89"
+    },
+    "scripts/pr16_ring_message_owner_contracts.py": {
+      "size": 24057,
+      "sha256": "f5822ffa3cbac2bdd9001f12d1cced8f42b2df315ea74e3c57b63eb88c7966d1"
+    },
+    "content/modernization/pr16_ring_message_owner_frontier.json": {
+      "size": 23137,
+      "sha256": "b91103a45857b814871816eb9169d751cbe02c2626e5d3b2712736966057e3a6"
+    },
+    "scripts/pr16_ring_message_owner_frontier.py": {
+      "size": 10397,
+      "sha256": "14d9c4f97f302c216b320c49ecc12920978d0ee7756a9949e64067496b20b068"
+    },
+    "scripts/pr16_ring_text_audio_sequence.py": {
+      "size": 14986,
+      "sha256": "b84b1a14ae199469ff3a35c21d57bedd0b9d49e7a1f9d1cd802020159ecfbc8b"
+    },
+    "scripts/pr16_ring_audio_tail_contracts.py": {
+      "size": 16143,
+      "sha256": "b80b111cefa095b5b361ebdacbf57dc9be9d393c08cfc28a002573ead960f302"
+    },
+    "scripts/pr16_ring_audio_tail_bytes.py": {
+      "size": 8748,
+      "sha256": "715af133808eda28a035eebb0791f92858183529dec8582711a05a7d372a6701"
+    },
+    "scripts/pr16_ring_audio_output_contracts.py": {
+      "size": 17087,
+      "sha256": "8229621c883fa7f9449341a976b58e6d455737b0ba65b1b89038ab368c0a9b2d"
+    },
+    "scripts/pr16_ring_audio_leaf_bytes.py": {
+      "size": 9771,
+      "sha256": "118b073a6b24508e6d2ecfdf4cb685d459ab874c49bb699c8094bb8c10352fca"
+    },
+    "scripts/pr16_ring_audio_boundary_contracts.py": {
+      "size": 15002,
+      "sha256": "78d711fe93798cb2d697aac35106c3fcb27d75dffedc1e6d6376394a3dde4390"
+    },
+    "scripts/pr16_ring_renderer_output_contracts.py": {
+      "size": 12319,
+      "sha256": "6ec0c16f167e0520b423a7c98fad18f194a8b7002b43a196f84ac5344e4fc967"
+    },
+    "scripts/pr16_ring_cursor_scroll_contracts.py": {
+      "size": 18092,
+      "sha256": "1c4cf92fd6fa819bac2a9ae9186e4fd3bcec89c203e38c1114a77d77e73d509a"
+    },
+    "scripts/pr16_ring_glyph_contracts.py": {
+      "size": 17097,
+      "sha256": "31dbf07bae6c11c0a8caf6c7e44e1121551e1193e2b22c9e018ae6e5ec97df7f"
+    },
+    "scripts/pr16_ring_output_leaf_bytes.py": {
+      "size": 7517,
+      "sha256": "22f6b9434ae223842c56ed6dd84347a7b4f548303a6e053230e5e92175a7afc1"
+    },
+    "scripts/pr16_ring_output_frontier.py": {
+      "size": 7759,
+      "sha256": "73675380b1a0f619baa1ffc0fc6abf71581537bdaf0858f62a42293ca171bcc7"
+    },
+    "scripts/pr16_ring_control_contracts.py": {
+      "size": 17075,
+      "sha256": "11c7824b5e2946453581bc812870f723d4aa16962039052c1b96fced027aa875"
+    },
+    "scripts/pr16_ring_control_frontier.py": {
+      "size": 8469,
+      "sha256": "75a81f81b44bf0d543fc1ecbb07a6d99380a9042005fbd5ec88e8b5ae313af32"
+    },
+    "scripts/pr16_ring_text_state_contracts.py": {
+      "size": 16500,
+      "sha256": "1f6be4b834c8d1a08229c72231846aa2faee6fb503ae86c553980aaf26e9efdb"
+    },
+    "scripts/pr16_ring_explicit_text_machine.py": {
+      "size": 3622,
+      "sha256": "a59059be50cb79b0b2bd0d7fe3b0d331fc51127639fc1b2efb369a06693edfed"
+    },
+    "scripts/pr16_ring_character_frontier.py": {
+      "size": 9313,
+      "sha256": "de6180c89376b2a5d121b2734ccdd2b55280322885183d73c0ba4b7cdb666843"
+    },
+    "scripts/pr16_ring_font_states.py": {
+      "size": 12093,
+      "sha256": "60da75307d3fa2e69b7c2c23f668b12b7a64b60d790671f06cbf5496cafa0fe7"
+    },
+    "scripts/pr16_ring_font_frontier.py": {
+      "size": 11134,
+      "sha256": "d7dcbf3732ee6e6f33bae6777320b6b9fa4d2151ced1b9238a6a77115910cda5"
+    },
+    "scripts/pr16_ring_font_bindings.py": {
+      "size": 13242,
+      "sha256": "6693f5bd5fd8d8a070965fc77a66b676b6cf4e7f5e78c04cb0d9a137e2d00983"
+    },
+    "scripts/pr16_ring_font_bytes.py": {
+      "size": 7719,
+      "sha256": "c00b87bd69d6f47cb5c05089b85793b020857955b8ce95965ccef7842cf35e2f"
+    },
+    "scripts/pr16_ring_ui_leaf_contracts.py": {
+      "size": 15732,
+      "sha256": "2ae5cd8caadc44c4ad0b077ee78e564c44d31f13c6600f443a4c6a7ccc23475c"
+    },
+    "scripts/pr16_ring_ui_leaf_bytes.py": {
+      "size": 7112,
+      "sha256": "a0e190b7ac55f3a3e682b5d22b51133a87cc0feb1786f29262b08196df53d2a7"
+    },
+    "scripts/pr16_ring_ui_contracts.py": {
+      "size": 21972,
+      "sha256": "fb1625164a039e270da8b02d3be2081b304c3a98ab533a6043aff7e14eda0529"
+    },
+    "scripts/pr16_ring_ui_runtime_bytes.py": {
+      "size": 7582,
+      "sha256": "dceebb0c07beb1f1248ee710f1d035c01b19237c4fc77123e75e99424627cf8b"
+    },
+    "scripts/pr16_ring_ui_delegates.py": {
+      "size": 8013,
+      "sha256": "df322f8e399d7babccd486072b0c6b02542e868bbae29602e0c6c73da5f18db5"
+    },
+    "scripts/pr16_ring_ui_frontier.py": {
+      "size": 8819,
+      "sha256": "527db74169fb6c50d649898552dfd2ec6301392128d2ea8b482733ae39beee1f"
+    },
+    "scripts/pr16_ring_ui_owners.py": {
+      "size": 12961,
+      "sha256": "6bb82a9057e01845ef1f4efcce8e41d77856f1cf74c5fe601af9b9b509566bbf"
+    },
+    "scripts/pr16_ring_resource_tail.py": {
+      "size": 7535,
+      "sha256": "f4988540601c2eaa63876d6ee981a362e8614d0aaa11ca4a791e68f2b6100b81"
+    },
+    "content/modernization/pr16_ring_resource_tail.json": {
+      "size": 53805,
+      "sha256": "dc74f564a59f4b72a39f7c4a1a6fab0251b6c225ccd4f326b28123407cb618a3"
+    },
+    "scripts/pr16_ring_resource_frontier.py": {
+      "size": 8691,
+      "sha256": "12bad41bba1c269433134d204f4bae896f79b417900b6c70ea56893fa58e4d88"
+    },
+    "scripts/pr16_ring_remaining_frontier.py": {
+      "size": 12375,
+      "sha256": "3aa490bc6a4615a447f996df72e2ea678f41ed585076d3e2ddc3d572cd6f94bd"
+    },
+    "scripts/pr16_ring_owner_frontier.py": {
+      "size": 12711,
+      "sha256": "e7505577537eba4df7a5ee641836b56f212706473eb99ef139a60d22141b9e65"
+    },
+    "scripts/pr16_ring_effective_frontier.py": {
+      "size": 10560,
+      "sha256": "31303cea8148726c922f40f41231aa588b249796c08e04d9b41225150f25759e"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    },
+    "scripts/pr16_ring_resource_contracts.py": {
+      "size": 20140,
+      "sha256": "c575f1a803acd3c138092487957239e95d9587f20209b5668ed23f293381e700"
+    },
+    "scripts/pr16_ring_dispatch_contracts.py": {
+      "size": 14635,
+      "sha256": "55a743873e6c3409e65813d4a2a474f194827ccb440587595c86bda291d6b2f1"
+    },
+    "scripts/pr16_ring_gate_contracts.py": {
+      "size": 15264,
+      "sha256": "681de11dd4404608122b3069321c60f2f6331b0f04c18d75d87aef208ac383a7"
+    },
+    "scripts/pr16_ring_caller_contracts.py": {
+      "size": 17412,
+      "sha256": "bde459691a9b1fdf1fa239a4df1f12c1ae3e3d16f8405634d46bd88e2290907f"
+    },
+    "scripts/pr16_ring_string_machine.py": {
+      "size": 2000,
+      "sha256": "1db71b3632a95a5a676a4315ccac2dae51ba6a3d80a9d4be42916145703a6581"
+    },
+    "scripts/pr16_ring_contract_machine.py": {
+      "size": 8710,
+      "sha256": "e48dfc6e12913c93efc9ee54d26117fc3082cf7aeb304df90bbae2438a83775b"
+    },
+    "scripts/pr16_ring_saved_contracts.py": {
+      "size": 15079,
+      "sha256": "1fe5c750ebc8be8faf46915f0e172706a35bd4313bb05bfec621af3760e50620"
+    },
+    "scripts/pr16_ring_owner_context.py": {
+      "size": 13828,
+      "sha256": "e4ceb839cb6f9e3676b50549471512ae18698b9d4a4428f5577992758e38c1f0"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    },
+    "scripts/pr16_ring_text_export_recovery.py": {
+      "size": 12559,
+      "sha256": "39156d99a541fe6df74d264df0f08d3f014c3558edff1fa30d576887a97da595"
+    },
+    "scripts/pr16_ring_remaining_contracts.py": {
+      "size": 11862,
+      "sha256": "afb8dda5c8161f8833f4551f299981bdf177b57d4840e2c166945e5e1e4a74bd"
+    },
+    "infra/toolchain_manifest.json": {
+      "size": 33230,
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 32,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35305646696,
+      "head_sha": "d6459ffb27a69d15b7bc5dd086280c2656163fc6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35307173404,
+      "name": "source-validation",
+      "head_sha": "e73a025885444a645d0bf690361844b463004ae2",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35307173393,
+      "name": "p03-forgetting-ci",
+      "head_sha": "e73a025885444a645d0bf690361844b463004ae2",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35307170571,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "e73a025885444a645d0bf690361844b463004ae2",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35307170598,
+      "name": "source-validation",
+      "head_sha": "e73a025885444a645d0bf690361844b463004ae2",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35307170524,
+      "name": "p03-forgetting-ci",
+      "head_sha": "e73a025885444a645d0bf690361844b463004ae2",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35307170591,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "e73a025885444a645d0bf690361844b463004ae2",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35307170557,
+      "name": "BIOSコピー・fillの供給元とメモリ効果を未観測suffixへ結合",
+      "head_sha": "e73a025885444a645d0bf690361844b463004ae2",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35305693744,
+      "name": "source-validation",
+      "head_sha": "c84dd781f100c52038f32ad97d1555668b0f0ac9",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35305693748,
+      "name": "p03-forgetting-ci",
+      "head_sha": "c84dd781f100c52038f32ad97d1555668b0f0ac9",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35305649630,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d6459ffb27a69d15b7bc5dd086280c2656163fc6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35305649612,
+      "name": "source-validation",
+      "head_sha": "d6459ffb27a69d15b7bc5dd086280c2656163fc6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35305646677,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "d6459ffb27a69d15b7bc5dd086280c2656163fc6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35305646580,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d6459ffb27a69d15b7bc5dd086280c2656163fc6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35305646696,
+      "name": "成功724条件の再実行なしcheckpointとActions出自を固定",
+      "head_sha": "d6459ffb27a69d15b7bc5dd086280c2656163fc6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35305646633,
+      "name": "source-validation",
+      "head_sha": "d6459ffb27a69d15b7bc5dd086280c2656163fc6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35305646610,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "d6459ffb27a69d15b7bc5dd086280c2656163fc6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35305364633,
+      "name": "p03-forgetting-ci",
+      "head_sha": "c16885a439f78860b0f2cf503d4615c2bcf039ee",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35305364601,
+      "name": "source-validation",
+      "head_sha": "c16885a439f78860b0f2cf503d4615c2bcf039ee",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35305258008,
+      "name": "p03-forgetting-ci",
+      "head_sha": "cbc53699afa6ea8cc5d913fdba5d4bb451dd2833",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35305257977,
+      "name": "source-validation",
+      "head_sha": "cbc53699afa6ea8cc5d913fdba5d4bb451dd2833",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

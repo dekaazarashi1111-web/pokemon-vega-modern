@@ -1,0 +1,409 @@
+{
+  "accepted_cases": {
+    "mining-earn-cold-cap": {
+      "accepted_case_reruns": 0,
+      "all_activities_accepted": false,
+      "candidate_sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+      "case": "mining-earn-cold-cap",
+      "earned_rp": 10,
+      "fresh_cores": 3,
+      "guarded_host_writes": 0,
+      "ledger_observations": [
+        {
+          "checksum_valid": true,
+          "ledger_event": "fixture",
+          "ledger_sha256": "14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "declined",
+          "ledger_sha256": "bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "earned",
+          "ledger_sha256": "e99966043f6740bcac26ee3a88e1ee1676c1a9e31b897c4efefc323298ece0f8",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "continued",
+          "ledger_sha256": "e99966043f6740bcac26ee3a88e1ee1676c1a9e31b897c4efefc323298ece0f8",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "reentered",
+          "ledger_sha256": "e99966043f6740bcac26ee3a88e1ee1676c1a9e31b897c4efefc323298ece0f8",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "cold_cap",
+          "ledger_sha256": "e99966043f6740bcac26ee3a88e1ee1676c1a9e31b897c4efefc323298ece0f8",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        }
+      ],
+      "manual_saves": 0,
+      "natural_arrival_accepted": false,
+      "natural_reentry_accepted": false,
+      "observations": [
+        {
+          "counter": 2,
+          "event": "fixture",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+        },
+        {
+          "counter": 2,
+          "event": "declined",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+        },
+        {
+          "counter": 4,
+          "event": "earned",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "014000000a00010100000a00000000000000000000000a0000000002000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+        },
+        {
+          "counter": 4,
+          "event": "continued",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "014000000a00010100000a00000000000000000000000a0000000002000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+        },
+        {
+          "counter": 4,
+          "event": "reentered",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "014000000a00010100000a00000000000000000000000a0000000002000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+        },
+        {
+          "counter": 4,
+          "event": "cold_cap",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "014000000a00010100000a00000000000000000000000a0000000002000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+        }
+      ],
+      "screens": [
+        {
+          "screen": "mining-fixture-field.ppm",
+          "sha256": "4048c868091cc587cabaf1e9e503ec8fed6abd925da4991d4a9c7ed6e7a36ea6"
+        },
+        {
+          "screen": "mining-decline-prompt.ppm",
+          "sha256": "b46ad50b405d455456f84602fb7d334ed9236342696c673faa74b86b89d0d039"
+        },
+        {
+          "screen": "mining-earn-prompt.ppm",
+          "sha256": "b46ad50b405d455456f84602fb7d334ed9236342696c673faa74b86b89d0d039"
+        },
+        {
+          "screen": "mining-earn-outcome.ppm",
+          "sha256": "55f4908027e23a8b2ccd6ac6236ba0be2fb110a62b4250a93c9dc285e31d0155"
+        },
+        {
+          "screen": "mining-continued-field.ppm",
+          "sha256": "f39db8b929bb1f621b5a0e7db32409e1e6fb3021c0f86feece3abcb820ea1244"
+        },
+        {
+          "screen": "mining-cold_cap-prompt.ppm",
+          "sha256": "b46ad50b405d455456f84602fb7d334ed9236342696c673faa74b86b89d0d039"
+        },
+        {
+          "screen": "mining-cold_cap-outcome.ppm",
+          "sha256": "30d8316915742af8b4de5f6ba08414d09eae8bc5a58e74d2357fae7834b64e48"
+        }
+      ],
+      "status": "PASS",
+      "stdout": {
+        "sha256": "d15a0cf7df28b868f007f3f1196ea2ba03ac16ce503c5f3747aa4e97f9450ad1",
+        "size": 6336
+      },
+      "transaction_saves": 2,
+      "visits": [
+        {
+          "confirmed": false,
+          "counter": 2,
+          "eligible": true,
+          "frame": 1118,
+          "result": 0,
+          "rock_count": 1,
+          "rp": 0,
+          "visit": "decline"
+        },
+        {
+          "confirmed": true,
+          "counter": 4,
+          "eligible": true,
+          "frame": 2732,
+          "result": 0,
+          "rock_count": 0,
+          "rp": 10,
+          "stopped_before_wild_tail": true,
+          "visit": "earn"
+        },
+        {
+          "confirmed": true,
+          "counter": 4,
+          "eligible": true,
+          "frame": 5090,
+          "result": 4,
+          "rock_count": 0,
+          "rp": 10,
+          "stopped_before_wild_tail": true,
+          "visit": "cold_cap"
+        }
+      ],
+      "warnings_errors": 0,
+      "wild_tail_accepted": false
+    },
+    "mining-missing-badge": {
+      "accepted_case_reruns": 0,
+      "all_activities_accepted": false,
+      "candidate_sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+      "case": "mining-missing-badge",
+      "earned_rp": 0,
+      "fresh_cores": 1,
+      "guarded_host_writes": 0,
+      "ledger_observations": [
+        {
+          "checksum_valid": true,
+          "ledger_event": "fixture",
+          "ledger_sha256": "14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "rejected",
+          "ledger_sha256": "bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        }
+      ],
+      "manual_saves": 0,
+      "natural_arrival_accepted": false,
+      "natural_reentry_accepted": false,
+      "observations": [
+        {
+          "counter": 2,
+          "event": "fixture",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+        },
+        {
+          "counter": 2,
+          "event": "rejected",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+        }
+      ],
+      "screens": [
+        {
+          "screen": "mining-fixture-field.ppm",
+          "sha256": "4048c868091cc587cabaf1e9e503ec8fed6abd925da4991d4a9c7ed6e7a36ea6"
+        },
+        {
+          "screen": "mining-locked-prompt.ppm",
+          "sha256": "c2f5e0297c57f9eea6109b98ea1095fa7901da431aeddd391a81fce94641d554"
+        }
+      ],
+      "status": "PASS",
+      "stdout": {
+        "sha256": "3e7f04ad7449d9cfac944829e4a29738863d18e7f46f21dd94f038628ca46e6d",
+        "size": 2351
+      },
+      "transaction_saves": 0,
+      "visits": [
+        {
+          "confirmed": true,
+          "counter": 2,
+          "eligible": false,
+          "frame": 1086,
+          "result": 0,
+          "rock_count": 1,
+          "rp": 0,
+          "visit": "locked"
+        }
+      ],
+      "warnings_errors": 0,
+      "wild_tail_accepted": false
+    },
+    "mining-missing-move": {
+      "accepted_case_reruns": 0,
+      "all_activities_accepted": false,
+      "candidate_sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+      "case": "mining-missing-move",
+      "earned_rp": 0,
+      "fresh_cores": 1,
+      "guarded_host_writes": 0,
+      "ledger_observations": [
+        {
+          "checksum_valid": true,
+          "ledger_event": "fixture",
+          "ledger_sha256": "14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        },
+        {
+          "checksum_valid": true,
+          "ledger_event": "rejected",
+          "ledger_sha256": "bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce",
+          "migration_dirty": 0,
+          "recovery_blocked": 0,
+          "size": 2048,
+          "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+          "version": 2
+        }
+      ],
+      "manual_saves": 0,
+      "natural_arrival_accepted": false,
+      "natural_reentry_accepted": false,
+      "observations": [
+        {
+          "counter": 2,
+          "event": "fixture",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "f55719006008d0c6f12da4c63bfd652637f5420240bf8cdb1f14222bc48fd5af"
+        },
+        {
+          "counter": 2,
+          "event": "rejected",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 1,
+          "party_sha256": "f55719006008d0c6f12da4c63bfd652637f5420240bf8cdb1f14222bc48fd5af"
+        }
+      ],
+      "screens": [
+        {
+          "screen": "mining-fixture-field.ppm",
+          "sha256": "4048c868091cc587cabaf1e9e503ec8fed6abd925da4991d4a9c7ed6e7a36ea6"
+        },
+        {
+          "screen": "mining-locked-prompt.ppm",
+          "sha256": "c2f5e0297c57f9eea6109b98ea1095fa7901da431aeddd391a81fce94641d554"
+        }
+      ],
+      "status": "PASS",
+      "stdout": {
+        "sha256": "dd31f7e6b97fc61f0ab39e303326d507679ff11ae6fe9d468c69f656b778a73c",
+        "size": 2349
+      },
+      "transaction_saves": 0,
+      "visits": [
+        {
+          "confirmed": true,
+          "counter": 2,
+          "eligible": false,
+          "frame": 1086,
+          "result": 0,
+          "rock_count": 1,
+          "rp": 0,
+          "visit": "locked"
+        }
+      ],
+      "warnings_errors": 0,
+      "wild_tail_accepted": false
+    }
+  },
+  "candidate": {
+    "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+    "size": 33554432
+  },
+  "counts": {
+    "accepted_case_reruns": 0,
+    "accepted_native_processes": 3,
+    "arm_compiles": 0,
+    "failed_native_processes": 0,
+    "host_compiles": 1,
+    "native_processes": 3,
+    "rom_changes": 0
+  },
+  "local_history": "content/modernization/pr16_research_mining_local_development.json",
+  "new_scoped_tests": 64,
+  "original": {
+    "sha256": "ccb0c8411f111fb205313968233d3c3b47b8e4c543d0c1819daab87b8d4a792d",
+    "size": 55960
+  },
+  "record_compiles": 0,
+  "record_native_runs": 0,
+  "record_unit_runs": 0,
+  "scope_ja": "RP稼得・実保存・cold Continue・fixture再入場後capまで。後続wild tailの正常復帰は未検証。",
+  "source_head": "8fdda1bb5e4f559cf71120f17e7fc947116e8f69",
+  "status": "PASS_MINING_ACTIONS_SOURCE_AND_EVIDENCE"
+}

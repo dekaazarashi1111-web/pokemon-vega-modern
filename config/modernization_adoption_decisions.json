@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P03-P05",
+  "decisions": {
+    "MOVE_KEY_ALLYSWITCH": {
+      "decision": "NOT_ADOPTED",
+      "decided_at": "2026-09-08",
+      "requested_project_id": 1063,
+      "official_move_id": 502,
+      "source_route_count": 159,
+      "route_action": "EXCLUDE_FROM_ALL_LEARNSET_CONSUMERS",
+      "replacement_move_key": null,
+      "runtime_action": "DO_NOT_IMPLEMENT_OR_ALLOCATE",
+      "reason_ja": "現行runtimeに技自体がなく実装負荷が高いため、今回候補から外す。既存技への近似置換は行わない。"
+    }
+  }
+}

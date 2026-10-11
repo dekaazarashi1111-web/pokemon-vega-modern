@@ -1,0 +1,79 @@
+name: pr16-research-purchase-20260926
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-purchase-20260926.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-purchase-20260926
+  cancel-in-progress: false
+jobs:
+  purchase:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+      MODE: finalize
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: exact source転送照合
+        shell: python
+        run: |
+          import subprocess
+          bindings = {
+            'scripts/pr16_research_purchase.py': '9db1ac7c21db6694cb3b201da29b34d2721b7c2b',
+            'scripts/pr16_research_purchase_actions.py': '9dce86fd1ffdeb1bdebe56616310cd696b143cf9',
+            'tests/test_pr16_research_purchase.py': 'dc75f7b96ba3aaa00844fdc77039239ac87d262e',
+            'tools/mgba_pr16_research_purchase.c': 'f504d43fa2c0473e4a4834ec5547d09ee787cc37',
+          }
+          for path, sha in bindings.items():
+              assert subprocess.check_output(['git','hash-object',path]).decode().strip() == sha, path
+          print('PASS_EXACT_PURCHASE_SOURCE_TRANSFER')
+      - name: 新規購入境界だけを計測し成功失敗を記録
+        run: python3 -B scripts/pr16_research_purchase_actions.py "$MODE"
+      - name: 局所診断の記録を両ログへ同期
+        shell: python
+        run: |
+          from pathlib import Path
+          import hashlib
+          path = 'docs/PR16_RESEARCH_PURCHASE_DIAGNOSTICS_JA.md'
+          raw = Path(path).read_bytes()
+          line = '\n- Diagnosis: '+path+' sha256='+hashlib.sha256(raw).hexdigest()+'. 保存後は上向きなので無条件UPが歩行になるdriver原因。ローカル記録済み診断6process/5host compilesは受入試験外、後半5processは購入後cacheを再利用。別のsave attachment失敗1試行とstreaming tool拒否は受入証拠外。旧受入テスト再実行0。今回finalizeのnative/unit/compileは0。\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              with Path(name).open('a') as f: f.write(line)
+      - name: 引継ぎとtask graphと最終index
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py check | tee .local/pr16-research-lifecycle/public/resume-check.txt
+          python3 -B scripts/validate_task_graph.py | tee .local/pr16-research-lifecycle/public/task-graph.txt
+          python3 -B scripts/pr16_research_purchase_actions.py guard | tee .local/pr16-research-lifecycle/public/index-guard.txt
+      - name: 同branchへcommitと非force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260926-RESEARCH-PURCHASE: 実購入境界の${MODE}原本と引継ぎ記録"
+          git push origin "HEAD:refs/heads/$branch"
+          reflected=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$reflected"
+          printf '%s\n' "$reflected" > .local/pr16-research-lifecycle/public/reflected-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-purchase
+          path: .local/pr16-research-lifecycle/public/
+          retention-days: 30
+          if-no-files-found: error
+      - name: 原本保存後に限定受入の結論を確定
+        run: python3 -B scripts/pr16_research_purchase_actions.py result

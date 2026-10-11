@@ -1,0 +1,80 @@
+diff --git a/scripts/pr16_exp_evolution_share.py b/scripts/pr16_exp_evolution_share.py
+--- a/scripts/pr16_exp_evolution_share.py
++++ b/scripts/pr16_exp_evolution_share.py
+@@ -65,4 +65,7 @@
+     eligible=[mid for mid,lv in (rows if case['mode']==2 else x.n.p.LEVELS[413]) if case['level']<lv<=level]
+-    if case['mode']==0:eligible+=x.n.p.EVOLUTIONS[414]
++    if case['mode']==0:
++        eligible+=x.n.p.EVOLUTIONS[414]
++        # 進化技の後に、進化後ownerの現在level一致行を通常順で処理する。
++        eligible += [mid for mid,lv in rows if lv==level]
+     moves,points,trace=x.n.p.simulate(case['moves'],points,eligible,0,case['slot'],pp)
+     need(trace['selections']==0,'scope must not enter full-slot summary')
+@@ -140,5 +143,9 @@
+         religible=[];need(r['reserve_moves_after']==r['reserve_pp_after']==[0]*4 and r['reserve_level_after']==r['reserve_xp_after']==r['reserve_level_frame']==0,'no phantom reserve')
+-        need(events==[(b'begin',str(r['evolution_begin']).encode(),b'080cee71'),(b'update',str(r['evolution_update']).encode(),b'080cf869')],'exact native evolution callbacks')
+-        need(r['level_frame']<r['evolution_begin']<r['evolution_update']<r['returned'],'evolution after battle EXP')
++        expected_events=[(b'update',str(r['evolution_update']).encode(),b'080cf869')]
++        if r['evolution_begin']:
++            need(r['level_frame']<r['evolution_begin']<r['evolution_update'],'observed begin chronology')
++            expected_events.insert(0,(b'begin',str(r['evolution_begin']).encode(),b'080cee71'))
++        need(events==expected_events,'exact frame-observed evolution callbacks')
++        need(r['level_frame']<r['evolution_update']<r['returned'],'evolution after battle EXP')
+         need(0<len(pulses)==r['evolution_input_pulses']<=1000,'evolution input witnesses')
+         frames=[int(f) for f,_ in pulses];need(frames==sorted(set(frames)) and r['evolution_update']<=frames[0]<=frames[-1]<r['returned'],'evolution key chronology')
+diff --git a/tools/mgba_pr16_exp_evolution_sync.c b/tools/mgba_pr16_exp_evolution_sync.c
+--- a/tools/mgba_pr16_exp_evolution_sync.c
++++ b/tools/mgba_pr16_exp_evolution_sync.c
+@@ -68,4 +68,8 @@
+     for(unsigned i=n_start[sid];i<n_start[sid]+n_count[sid];++i)
+         if(before<n_rows[i][1] && n_rows[i][1]<=after){a_require(used<128,"bounded eligible rows");sequence[used++]=n_rows[i][0];}
+-    if(evolved)sequence[used++]=16; /* payload evolution span is independently hash-checked by Python. */
++    if(evolved){
++        sequence[used++]=16; /* Pythonが固定payloadの進化spanを独立照合する。 */
++        for(unsigned i=n_start[414];i<n_start[414]+n_count[414];++i)
++            if(n_rows[i][1]==after){a_require(used<129,"bounded evolved current-level rows");sequence[used++]=n_rows[i][0];}
++    }
+     for(unsigned i=0;i<used;++i){unsigned mid=sequence[i],empty=4;bool known=false;
+@@ -79,4 +83,8 @@
+     a_require(e_get(c,index,11)==species && e_get(c,index,56)==level && e_get(c,index,21)==0 && e_get(c,index,12)==0,"owner/level/held/bonus");
+-    for(unsigned j=0;j<4;++j)a_require(e_get(c,index,13+j)==moves[j] && e_get(c,index,17+j)==points[j],"original move/PP oracle");
++    for(unsigned j=0;j<4;++j){
++        unsigned actual=e_get(c,index,13+j),pp=e_get(c,index,17+j);
++        if(actual!=moves[j] || pp!=points[j])fprintf(stderr,"ESHARE_SLOT_MISMATCH index=%u slot=%u expected_move=%u actual_move=%u expected_pp=%u actual_pp=%u\n",index,j,moves[j],actual,points[j],pp);
++        a_require(actual==moves[j] && pp==points[j],"original move/PP oracle");
++    }
+ }
+ int main(int argc,char **argv){
+@@ -114,5 +122,15 @@
+         e_slots(c,1,414,v->level,v->moves,v->points);
+     }
+-    unsigned char before[200]={0},party[200]={0},again[200]={0};e_party(c,"fixture",before);lb_position(c,96,5,20,20);
++    /* 追加の個体生成/setter後の移動を無入力で完了させる。状態を書いて解除しない。 */
++    if(e_count==2){
++        unsigned ready=0;
++        for(unsigned f=0;f<1800 && ready<120;++f){
++            if(lb_field(c))++ready;else ready=0;
++            lb_frame(c,0);
++        }
++        a_require(ready==120,"shared fixture neutral field readiness");
++        fprintf(stderr,"ESHARE_FIELD_READY frame=%u stable=%u\n",lb_frames,ready);
++    }
++    unsigned char before[200]={0},party[200]={0},again[200]={0};e_party(c,"fixture",before);lb_position(c,96,5,20,20);
+     e_original_frame=c->runFrame;c->runFrame=e_frame;
+     struct mCore saved=*c;a_guard(c);
+@@ -163,4 +181,5 @@
+         a_require(!evo_begin && !evo_update && !evo_pulses && e_samples>0 && !e_reserve_entries,"nonparticipant shared EXP only");
+-    }else a_require(level_frame<evo_begin && evo_begin<evo_update && evo_update<returned && evo_pulses,"battle EXP evolution scene");
++    }else a_require(level_frame<evo_update && evo_update<returned && evo_pulses
++        && (!evo_begin || (level_frame<evo_begin && evo_begin<evo_update)),"frame-observed battle EXP evolution scene");
+     e_party(c,"returned",party);a_require(!memcmp(before,party,8) && read32(c,P03_SAVE_COUNTER)==2,"individual and unsaved counter");
+     if(e_count==2)a_require(!memcmp(before+100,party+100,8),"reserve individual preserved");
+diff --git a/tests/test_pr16_exp_evolution_share.py b/tests/test_pr16_exp_evolution_share.py
+--- a/tests/test_pr16_exp_evolution_share.py
++++ b/tests/test_pr16_exp_evolution_share.py
+@@ -64,4 +64,4 @@
+     def test_evolution_not_same_as_regular_metapod_levelup(self):
+-        c=e.vectors(PP)[0];mm,_,eligible=e.expected(c,20,PP,1,ROWS);self.assertEqual(eligible,[16]);self.assertNotIn(77,mm)
++        c=e.vectors(PP)[0];mm,_,eligible=e.expected(c,20,PP,1,ROWS);self.assertEqual(eligible,[16,18]);self.assertNotIn(77,mm)
+     def test_phantom_reserve_is_rejected(self):
+         with self.assertRaises(ValueError):self.accept(0,lambda r:r.update(reserve_level_after=10))

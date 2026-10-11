@@ -1,0 +1,42 @@
+name: pr16-ring-external3-tail-bytes
+run-name: 未読external3末尾の1根採取・検証記録・非force push
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_ring_external3_tail_bytes.py
+      - tests/test_pr16_ring_external3_tail_bytes.py
+      - .github/workflows/pr16-ring-external3-tail-bytes.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-external3-tail-bytes
+  cancel-in-progress: false
+jobs:
+  collect-record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 未読末尾1根採取・正本と両ログ・guard・非force push
+        run: python3 scripts/pr16_ring_external3_tail_bytes.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-external3-tail-bytes
+          path: |
+            .local/pr16-ring-external3-tail-bytes/tests.json
+            .local/pr16-ring-external3-tail-bytes/tests.txt
+            .local/pr16-ring-external3-tail-bytes/recorded-result.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90

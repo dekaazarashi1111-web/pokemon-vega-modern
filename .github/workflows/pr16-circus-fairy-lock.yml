@@ -1,0 +1,62 @@
+name: PR16 Circus Fairy Lock lifecycle
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-fairy-lock.yml
+      - scripts/pr16_circus_fairy_lock.py
+      - tests/test_pr16_circus_fairy_lock.py
+      - tools/mgba_pr16_circus_fairy_lock.h
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-suppression
+  cancel-in-progress: false
+jobs:
+  lifecycle:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 先行原本と新規22契約を検証し開始記録を非force保存
+        id: prepare
+        run: |
+          mkdir -p .local/pr16-circus-fairy-lock
+          python3 scripts/pr16_circus_fairy_lock.py prepare > .local/pr16-circus-fairy-lock/prepare.stdout 2> .local/pr16-circus-fairy-lock/prepare.stderr
+      - name: 真正Save30だけ復元（cache miss時bootstrap禁止）
+        uses: actions/cache/restore@v4
+        with:
+          path: .local/pr16-circus-suppression/resume/
+          key: pr16-circus-save30-2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183-35494023398
+          fail-on-cache-miss: true
+      - name: host mGBA依存のみ導入
+        run: |
+          sudo apt-get update > .local/pr16-circus-fairy-lock/apt-update.log 2>&1
+          sudo apt-get install -y libmgba-dev > .local/pr16-circus-fairy-lock/apt-install.log 2>&1
+      - name: 同一ROM・delay51一回・任意交代制限・帰還SaveContinue
+        run: python3 scripts/pr16_circus_fairy_lock.py native
+      - name: 実停止と成功を分離し原本・引継ぎ・両ログを非force保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_fairy_lock.py finish
+      - name: private bytesを除外して原本を保存
+        if: always()
+        run: python3 scripts/pr16_circus_fairy_lock.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-fairy-lock
+          path: .local/pr16-circus-fairy-lock/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: 未達を成功に読み替えない
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_fairy_lock.py result

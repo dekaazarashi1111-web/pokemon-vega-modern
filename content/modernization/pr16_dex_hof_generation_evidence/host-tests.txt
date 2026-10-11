@@ -1,0 +1,26 @@
+test_01_actual_capacity_rejected_before_io (test_pr16_dex_hof_transaction.TransactionTests.test_01_actual_capacity_rejected_before_io) ... ok
+test_02_exact_roundtrip_and_complete_record_integrity (test_pr16_dex_hof_transaction.TransactionTests.test_02_exact_roundtrip_and_complete_record_integrity) ... ok
+test_03_every_durable_byte_boundary_recovers_exact_old_or_new (test_pr16_dex_hof_transaction.TransactionTests.test_03_every_durable_byte_boundary_recovers_exact_old_or_new) ... ok
+test_04_reported_and_silent_program_faults (test_pr16_dex_hof_transaction.TransactionTests.test_04_reported_and_silent_program_faults) ... ok
+test_05_erase_failure_and_stale_shadow_readback (test_pr16_dex_hof_transaction.TransactionTests.test_05_erase_failure_and_stale_shadow_readback) ... ok
+test_06_last_commit_byte_truthful_after_error (test_pr16_dex_hof_transaction.TransactionTests.test_06_last_commit_byte_truthful_after_error) ... ok
+test_07_orphan_never_becomes_authoritative_after_normal_saves (test_pr16_dex_hof_transaction.TransactionTests.test_07_orphan_never_becomes_authoritative_after_normal_saves) ... ok
+test_08_counter_wrap_and_epoch_exhaustion (test_pr16_dex_hof_transaction.TransactionTests.test_08_counter_wrap_and_epoch_exhaustion) ... ok
+test_09_main_counter_ambiguity_fails_closed (test_pr16_dex_hof_transaction.TransactionTests.test_09_main_counter_ambiguity_fails_closed) ... ok
+test_10_same_epoch_wrong_payload_and_absent_bound_hof_rejected (test_pr16_dex_hof_transaction.TransactionTests.test_10_same_epoch_wrong_payload_and_absent_bound_hof_rejected) ... ok
+test_11_invalid_input_has_zero_io (test_pr16_dex_hof_transaction.TransactionTests.test_11_invalid_input_has_zero_io) ... ok
+test_12_interrupted_real_erase_call_of_every_reused_target_sector (test_pr16_dex_hof_transaction.TransactionTests.test_12_interrupted_real_erase_call_of_every_reused_target_sector) ... ok
+test_13_power_loss_has_no_in_process_recovery_and_retry_is_safe (test_pr16_dex_hof_transaction.TransactionTests.test_13_power_loss_has_no_in_process_recovery_and_retry_is_safe) ... ok
+test_14_existing_shadow_commit_without_main_commit_is_not_success (test_pr16_dex_hof_transaction.TransactionTests.test_14_existing_shadow_commit_without_main_commit_is_not_success) ... ok
+test_15_every_byte_boundary_with_reused_valid_banks (test_pr16_dex_hof_transaction.TransactionTests.test_15_every_byte_boundary_with_reused_valid_banks) ... ok
+test_16_unknown_record_kind_is_closed (test_pr16_dex_hof_transaction.TransactionTests.test_16_unknown_record_kind_is_closed) ... ok
+test_17_powercut_immediately_after_main_commit_and_next_save (test_pr16_dex_hof_transaction.TransactionTests.test_17_powercut_immediately_after_main_commit_and_next_save) ... ok
+test_18_failed_orphan_then_different_hof_retry (test_pr16_dex_hof_transaction.TransactionTests.test_18_failed_orphan_then_different_hof_retry) ... ok
+test_19_normal_save_all_boundaries_through_counter_wrap (test_pr16_dex_hof_transaction.TransactionTests.test_19_normal_save_all_boundaries_through_counter_wrap) ... ok
+test_20_current_source_bound_capacity_audit (test_pr16_dex_hof_transaction.TransactionTests.test_20_current_source_bound_capacity_audit) ... ok
+test_21_closed_publication_contract (test_pr16_dex_hof_transaction.TransactionTests.test_21_closed_publication_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 7.874s
+
+OK

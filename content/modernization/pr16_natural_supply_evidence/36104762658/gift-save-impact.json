@@ -1,0 +1,31 @@
+{
+  "accepted_hatch_reruns": 0,
+  "candidate_unchanged": {
+    "sha256": "b7790902733a638445129c388d65ab3c199bceb92a41338e0069221b556b9f91",
+    "size": 33554432
+  },
+  "inherited_unit_reruns": 0,
+  "inherited_unit_tests": 20,
+  "policy": "GetPending migration save with party1, then delivery save with party2; host write barrier throughout",
+  "prior_failed_boundary": "gift counter 2->4 before manual Save; old assumption 2->3",
+  "prior_run": 36102544792,
+  "prior_status": "PARTIAL_NATURAL_SUPPLY",
+  "rom_changes": 0,
+  "source_contract": {
+    "first_transition_party_count": 1,
+    "post_delivery_save": "FloetteGift_Claim -> create/deliver -> flags -> persist_standard",
+    "pre_delivery_save": "GetPending -> ensure_save -> migrate inner acquisition save -> persist_standard_save",
+    "second_transition_party_count": 2,
+    "source_bindings": {
+      "overlays/acquisition_runtime/acquisition_engine_adapter_rom.c": {
+        "sha256": "ee55358b03c34ce824f6f600e0678b5020ab046f44a825387d0a01f65e255635",
+        "size": 41406
+      },
+      "overlays/modernization_floette_gift/modernization_floette_gift.c": {
+        "sha256": "849fd5160618ee2a13eccb7188ab9f82efa737d73ede1cb766e79820a700aebf",
+        "size": 16759
+      }
+    }
+  },
+  "unit_reexecution_reason": "12 gift validator tests are impacted by corrected counter/party chronology; inherited 20 tests remain unexecuted"
+}

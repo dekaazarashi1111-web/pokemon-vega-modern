@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261004-DEX-RUNTIME",
+  "status": "PASS_FIVE_UI_LIFETIME_AND_HOST_ADAPTER_RUNTIME_UNWIRED",
+  "source_head": "ada18f7e1fb9da89bb737517b8c2cc29b28ac24c",
+  "record_run": 37218128470,
+  "source_bindings": {
+    ".github/workflows/pr16-dex-lifetime.yml": {
+      "size": 1496,
+      "sha256": "2792cf4abf5e57b15e5bb90f1e69163f4ccf4d28d24e21ce24efea23dc77f099"
+    },
+    ".github/workflows/pr16-dex-runtime-record.yml": {
+      "size": 2301,
+      "sha256": "16cf8bd272a6ad32226f11b46372cf81ba64c5bff3ca9a9234ee124568fd7bc3"
+    },
+    "config/modernization_rockruff_own_tempo_stage75.json": {
+      "size": 8066,
+      "sha256": "2accef3c5cb3e45e3b032035acfbc727b2785deafd652a45f56ca0db3ebbf121"
+    },
+    "content/modernization/pr16_dex_placement_audit.json": {
+      "size": 23318,
+      "sha256": "91f90ded3790992ef7df054005575482df8ec040788224b1e17cd52c737517ae"
+    },
+    "content/modernization/pr16_dex_runtime_unit.json": {
+      "size": 13555,
+      "sha256": "4ab2c54db5f2e6b9bc549a9c85729cbd9705b1f3b0e26d5f9acbb33d705a438f"
+    },
+    "content/modernization/rockruff_own_tempo_stage75_contract.json": {
+      "size": 5799,
+      "sha256": "f57efb88124fdf18681a012d520d4382b715763c917fd40eb56a30ba6dce5684"
+    },
+    "docs/PR16_DEX_RUNTIME_INTEGRATION_JA.md": {
+      "size": 6815,
+      "sha256": "cce5fd5337df562f110cdba07d1a829b84abae1273d256929cb5a05fd1a30b5c"
+    },
+    "overlays/dex_owner/dex_adapter.c": {
+      "size": 4685,
+      "sha256": "aa4ac552bcb0b4cb768c54b840240822db4e5038e1e7577558bbc34c86c361f2"
+    },
+    "overlays/dex_owner/dex_adapter.h": {
+      "size": 1232,
+      "sha256": "7a59d170571f07a595000fc7c1eedf56b7c2f3ce9a909948ab7cd0d2c447a140"
+    },
+    "overlays/dex_owner/dex_adapter_tables.h": {
+      "size": 25068,
+      "sha256": "39086f0eb2e3b2319b4961a69293b691f4039e62d20eb6b4793687d461dde056"
+    },
+    "overlays/dex_owner/dex_save_bridge.c": {
+      "size": 4305,
+      "sha256": "e95477302ac5ff1f6dc34f47d2a8d2a5d6ae17aa3115427f260bdac5c0847975"
+    },
+    "overlays/dex_owner/dex_save_bridge.h": {
+      "size": 1651,
+      "sha256": "c365ee5d69958497361d59f634fd56cf647181a02336f0e2ab14dea14a887373"
+    },
+    "scripts/pr16_dex_adapter_tables.py": {
+      "size": 2991,
+      "sha256": "1e95aed2c88eeba05f1636307998eda75c00b3eeaa5c0794ad91ed09183b910d"
+    },
+    "scripts/pr16_dex_lifetime.py": {
+      "size": 9484,
+      "sha256": "1c148294a55ec45fdeec2f3e3b0594544f8c8f09d660a67508e20b93230ca3a5"
+    },
+    "scripts/pr16_dex_runtime_record.py": {
+      "size": 13498,
+      "sha256": "5c2711dd75d2f6cb5c648f98212ed6ad1d13f79c9363ad5f771e744afbb21ad6"
+    },
+    "tests/test_pr16_dex_adapter.py": {
+      "size": 9033,
+      "sha256": "468bd82fce9a156b94cb4b447ba5751fd17b49f62c860524e638363e8b6abb01"
+    },
+    "tests/test_pr16_dex_lifetime.py": {
+      "size": 4702,
+      "sha256": "3a598130dec556183fef0612f9b82a00fe5b8f9dfd3dabaf387c71737c9ed050"
+    },
+    "tests/test_pr16_dex_save_bridge.py": {
+      "size": 7575,
+      "sha256": "f821ddcd237739d015ada8fb3d072fd9b5b82829c5f47c60f96ad9350d869520"
+    },
+    "tools/mgba_pr16_dex_lifetime.c": {
+      "size": 13504,
+      "sha256": "5622f1bf43afed02cde9a7e669f507085d54d702cabcc1c780dbbfed8901b6d8"
+    }
+  },
+  "native_lifetime": {
+    "run": 37217077790,
+    "job": 111479655834,
+    "source": "32fc3bb382598065978696618ea314363fda2e25",
+    "artifact": 11307919413,
+    "archive_size": 147409,
+    "archive_sha256": "e6562a97c2f2731a39459a84dde7c07b52e9d717f5872422ae76baddd0fe1ed3",
+    "all9_steps_success": true,
+    "accepted_ui_cases": 5,
+    "new_native_processes_in_terminal_run": 4,
+    "reused_bag_native_cases": 1,
+    "total_attempt_native_processes": 7,
+    "failed_compile_native_processes": 0,
+    "failed_summary_attempts": 2,
+    "whole_owner_bytes": 522,
+    "whole_party_bytes": 600,
+    "whole_pc_bytes": 33744,
+    "tail_alignment_guard_bytes": 2,
+    "owner_store_calls": 0,
+    "ordinary_saves": 0,
+    "formal_save_changed": false,
+    "rom_changed": false,
+    "visual_review_completed": true,
+    "results": [
+      {
+        "status": "PASS_UNSAVED_MDX_UI_LIFETIME_ONLY",
+        "case": "bag",
+        "frames": 2662,
+        "inputs": 25,
+        "checks": 1274,
+        "whole_owner_bytes": 522,
+        "native_processes": 1,
+        "fixture_bytes": 522,
+        "fixture_calls": 0,
+        "host_write_barriers": 7,
+        "observed_owner_store_calls": 0,
+        "ordinary_saves": 0,
+        "runtime_wired": false,
+        "rom_changed": false,
+        "story_progress_accepted": false
+      },
+      {
+        "status": "PASS_UNSAVED_MDX_UI_LIFETIME_ONLY",
+        "case": "summary",
+        "frames": 3660,
+        "inputs": 33,
+        "checks": 2272,
+        "whole_owner_bytes": 522,
+        "native_processes": 1,
+        "fixture_bytes": 522,
+        "fixture_calls": 0,
+        "host_write_barriers": 7,
+        "observed_owner_store_calls": 0,
+        "ordinary_saves": 0,
+        "runtime_wired": false,
+        "rom_changed": false,
+        "story_progress_accepted": false
+      },
+      {
+        "status": "PASS_UNSAVED_MDX_UI_LIFETIME_ONLY",
+        "case": "pokedex",
+        "frames": 2598,
+        "inputs": 21,
+        "checks": 1210,
+        "whole_owner_bytes": 522,
+        "native_processes": 1,
+        "fixture_bytes": 522,
+        "fixture_calls": 0,
+        "host_write_barriers": 7,
+        "observed_owner_store_calls": 0,
+        "ordinary_saves": 0,
+        "runtime_wired": false,
+        "rom_changed": false,
+        "story_progress_accepted": false
+      },
+      {
+        "status": "PASS_UNSAVED_MDX_UI_LIFETIME_ONLY",
+        "case": "pc",
+        "frames": 2842,
+        "inputs": 26,
+        "checks": 1674,
+        "whole_owner_bytes": 522,
+        "native_processes": 1,
+        "fixture_bytes": 522,
+        "fixture_calls": 1,
+        "host_write_barriers": 7,
+        "observed_owner_store_calls": 0,
+        "ordinary_saves": 0,
+        "runtime_wired": false,
+        "rom_changed": false,
+        "story_progress_accepted": false
+      },
+      {
+        "status": "PASS_UNSAVED_MDX_UI_LIFETIME_ONLY",
+        "case": "box-name",
+        "frames": 4356,
+        "inputs": 40,
+        "checks": 3188,
+        "whole_owner_bytes": 522,
+        "native_processes": 1,
+        "fixture_bytes": 522,
+        "fixture_calls": 1,
+        "host_write_barriers": 7,
+        "observed_owner_store_calls": 0,
+        "ordinary_saves": 0,
+        "runtime_wired": false,
+        "rom_changed": false,
+        "story_progress_accepted": false
+      }
+    ]
+  },
+  "host_tests": 102,
+  "host_c_compiles": 2,
+  "placement_audit": "content/modernization/pr16_dex_placement_audit.json",
+  "namespace_version": 1,
+  "stable_owner_count": 1206,
+  "foundation_runtime_slots": 1670,
+  "adapter_runtime_slots": 1671,
+  "stage75_form": {
+    "species_id": 1670,
+    "base_species_id": 1142,
+    "owner": 925,
+    "namespace_owner_semantics_changed": false
+  },
+  "serialized_bytes": 522,
+  "legacy_snapshot_bytes": 208,
+  "ram_lifetime_scoped_accepted": true,
+  "save_scheduler_wired": false,
+  "consumer_callsites_wired": false,
+  "repair_native_accepted": false,
+  "arm_compiles": 0,
+  "rom_changed": false,
+  "formal_story_save": 101,
+  "formal_save_changed": false,
+  "milestone_reached": false,
+  "release_ready": false,
+  "unresolved": [
+    "宣言済ROM空き3151byteの容量制約とowner lease/compact mapping",
+    "Stage61全save modeとCRC fallback/partial write接続",
+    "外側load復旧Saveより前のMDX復元とsector31 shadow無効化",
+    "全SID/official/nativeUI consumer署名付き接続",
+    "旧履歴の根拠付き昇格",
+    "候補normal Save/独立cold Continue限定native",
+    "シオウPokecenter通常回復milestone"
+  ],
+  "review_fixes": [
+    "store前unknown差分検知",
+    "同値の未所有store拒否",
+    "末尾2byte/再配置PC全体guard",
+    "metadata/path/fixture validator厳格化",
+    "Stage75 OwnTempo1670をbase1142 owner925へ明示拡張"
+  ]
+}

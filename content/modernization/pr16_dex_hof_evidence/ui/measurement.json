@@ -1,0 +1,721 @@
+{
+  "status": "PASS_HOF_UI_ONLY_FAILURE_SUCCESS_AND_COLD",
+  "source_head": "6d75cf77c77f89a6d2541114f796e67ff06efd85",
+  "run_id": 37255103782,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "40ad82373b1e0f49283f59dce1e68a009b3e548d8f3ff080b72a134a228b0ac2"
+  },
+  "isolated_run": 37254891427,
+  "isolated_candidate": {
+    "size": 33554432,
+    "sha256": "40ad82373b1e0f49283f59dce1e68a009b3e548d8f3ff080b72a134a228b0ac2"
+  },
+  "cases": [
+    {
+      "name": "main-fault",
+      "mode": 1,
+      "trace": {
+        "end": {
+          "end": "PASS_HOF_UI_FAILURE_SUCCESS_AND_NO_RETRY",
+          "mode": 1,
+          "frames": 1814,
+          "inputs": 436,
+          "screens": 4,
+          "fixture_bytes_written": 9,
+          "register_writes": 0,
+          "host_write_barriers": 7,
+          "fault_writes": 3,
+          "fault_physical_address": 16384,
+          "counter": 101,
+          "attempt": 255,
+          "stat10_before": 0,
+          "stat10_after": 1,
+          "native_hof_saves": 1,
+          "stock_save_calls": 1,
+          "stat10_increment_calls": 1,
+          "save_sounds": 0,
+          "result_printers": 1,
+          "payload_bytes_preserved_through_ack": 8192,
+          "extension_bytes_preserved": 20248,
+          "old_save_failed_entered": false,
+          "natural_hof_entry_accepted": false,
+          "all_save_modes_accepted": false,
+          "formal_save_changed": false
+        },
+        "stages": [
+          {
+            "hof_stage": "before_ui_fixture",
+            "frame": 1390,
+            "callback": 134569589,
+            "task_func": 0,
+            "attempt": 0,
+            "counter": 101,
+            "stat10": 0,
+            "damaged_mask": 0,
+            "fault_writes": 0,
+            "save_sounds": 0,
+            "result_printers": 0,
+            "flash_sha256": "8b44629f94877b5aac2e23ff15a903e66e19b74e236aa89e1f590849ed509b4d",
+            "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+          },
+          {
+            "hof_stage": "save_returned",
+            "frame": 1719,
+            "callback": 135212321,
+            "task_func": 167771565,
+            "attempt": 255,
+            "counter": 101,
+            "stat10": 1,
+            "damaged_mask": 16,
+            "fault_writes": 3,
+            "save_sounds": 0,
+            "result_printers": 1,
+            "flash_sha256": "fe9ec895e4cd41a13d67edafff62b81a09706f3336ba7ef64279f0472144a81d",
+            "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+          },
+          {
+            "hof_stage": "failure_waiting",
+            "frame": 1781,
+            "callback": 135212321,
+            "task_func": 167771565,
+            "attempt": 255,
+            "counter": 101,
+            "stat10": 1,
+            "damaged_mask": 16,
+            "fault_writes": 3,
+            "save_sounds": 0,
+            "result_printers": 1,
+            "flash_sha256": "fe9ec895e4cd41a13d67edafff62b81a09706f3336ba7ef64279f0472144a81d",
+            "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+          },
+          {
+            "hof_stage": "original_hof_display",
+            "frame": 1814,
+            "callback": 135212321,
+            "task_func": 135213957,
+            "attempt": 255,
+            "counter": 101,
+            "stat10": 1,
+            "damaged_mask": 16,
+            "fault_writes": 3,
+            "save_sounds": 0,
+            "result_printers": 1,
+            "flash_sha256": "fe9ec895e4cd41a13d67edafff62b81a09706f3336ba7ef64279f0472144a81d",
+            "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+          }
+        ],
+        "fixtures": [
+          {
+            "ui_fixture": true,
+            "frame": 1390,
+            "bytes_written": 9,
+            "bytes_changed": 7,
+            "before_sha256": "a6ef43d6c0b7bcbf655707747ec59e96fd272445237c6e494e820c09e0bacc64",
+            "after_sha256": "ed794fd22c6677a340be2e74eb825d744dfd15c43124c2d42912fb03693c4b43",
+            "ewram_unchanged": 262144,
+            "all_other_iwram_unchanged": true
+          }
+        ],
+        "payload": [
+          {
+            "hof_payload": true,
+            "frame": 1425,
+            "address": 33669120,
+            "size": 8192,
+            "sha256": "ef62ad3f5ebf6c6d1a0b3159a5f78fedb288b0793637bcb96aa2e565f03f0426",
+            "task": 0,
+            "stat10": 0
+          }
+        ],
+        "screens": [
+          {
+            "screen": 0,
+            "frame": 1390,
+            "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+          },
+          {
+            "screen": 1,
+            "frame": 1719,
+            "sha256": "b16522730aaf0b8b38e7a8ba1e5bcf474c7e4d1912b4361fae7137f8e44cd810"
+          },
+          {
+            "screen": 2,
+            "frame": 1781,
+            "sha256": "9a169913dc4653ba299f59a6e2ee2069039d8adaccd088eece6b7d212452b7d0"
+          },
+          {
+            "screen": 3,
+            "frame": 1814,
+            "sha256": "d7a0f6ad850a3685faf11879dea37159b7f33e8744e5d6ffb1e3b6491b272d8a"
+          }
+        ]
+      },
+      "save": {
+        "size": 131088,
+        "sha256": "9496160f4fb0bdf8149fe2bfb5beffb9ce74848beb57b6a8bc48faa2fc738d52"
+      },
+      "physical_stat10": 0,
+      "cold": {
+        "counter": 101,
+        "input": {
+          "size": 131088,
+          "sha256": "9496160f4fb0bdf8149fe2bfb5beffb9ce74848beb57b6a8bc48faa2fc738d52"
+        },
+        "output": {
+          "size": 131088,
+          "sha256": "9496160f4fb0bdf8149fe2bfb5beffb9ce74848beb57b6a8bc48faa2fc738d52"
+        },
+        "observation": {
+          "observe": 0,
+          "frame": 1634,
+          "map": [
+            3,
+            24
+          ],
+          "xy": [
+            53,
+            13
+          ],
+          "live_xy": [
+            60,
+            20
+          ],
+          "facing": 3,
+          "field": true,
+          "lock": 0,
+          "callback2": 134569589,
+          "party_count": 4,
+          "save_counter": 101,
+          "rp": 0,
+          "battle_flags": 0,
+          "battle_outcome": 0,
+          "party_sha256": "a889748859f118b98c42e9ef5f0fd2847466d07383f5743946453c961261580d",
+          "flash_sha256": "fe9ec895e4cd41a13d67edafff62b81a09706f3336ba7ef64279f0472144a81d",
+          "ledger_sha256": "e5a00aa9991ac8a5ee3109844d84a55583bd20572ad3ffcd42792f3c36b183ad"
+        },
+        "mdx": {
+          "mdx": 0,
+          "frame": 1634,
+          "valid": true,
+          "legacy_snapshot": 1,
+          "seen_count": 0,
+          "caught_count": 0,
+          "live_sha256": "b33d6d7b257485bcac6dea92b43fe403abd2626eeaca74903fcb0e5b8c9014af",
+          "legacy_sha256": "4c776b05231ba21fb86ca53e28e2e1e395702d6788b64338d4381c628d34cc3e",
+          "stock_flags_vars_sha256": "25724aa725e0584036a780a30a55d7775bb4cf6c4aaa567b158028f6f2fce43a",
+          "bag_sha256": "5e7d314e869058d1330233cbb3833e10b41aed3f5dc0c4314dec1290d370946e",
+          "legacy_snapshot_matches_current_stock": true,
+          "physical_matches_current_generation": 0,
+          "save_file_status": 255,
+          "stock_byte_deltas": []
+        },
+        "end": {
+          "end": "STORY_INPUT_CHECKPOINT",
+          "frames": 1634,
+          "inputs": 16,
+          "warnings_errors": 0,
+          "host_write_barriers": 7,
+          "guarded_host_writes": 0,
+          "fixture_calls": 0,
+          "natural_research_arrival_accepted": false
+        },
+        "screens": [
+          {
+            "screen": 0,
+            "frame": 1634,
+            "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+          }
+        ],
+        "hof_metadata": {
+          "hof_cold_metadata": true,
+          "frame": 1634,
+          "stat10": 0,
+          "ledger_sha256": "e5a00aa9991ac8a5ee3109844d84a55583bd20572ad3ffcd42792f3c36b183ad"
+        }
+      }
+    },
+    {
+      "name": "outer-fault",
+      "mode": 2,
+      "trace": {
+        "end": {
+          "end": "PASS_HOF_UI_FAILURE_SUCCESS_AND_NO_RETRY",
+          "mode": 2,
+          "frames": 1882,
+          "inputs": 504,
+          "screens": 4,
+          "fixture_bytes_written": 9,
+          "register_writes": 0,
+          "host_write_barriers": 7,
+          "fault_writes": 3,
+          "fault_physical_address": 131071,
+          "counter": 102,
+          "attempt": 255,
+          "stat10_before": 0,
+          "stat10_after": 1,
+          "native_hof_saves": 1,
+          "stock_save_calls": 1,
+          "stat10_increment_calls": 1,
+          "save_sounds": 0,
+          "result_printers": 1,
+          "payload_bytes_preserved_through_ack": 8192,
+          "extension_bytes_preserved": 20248,
+          "old_save_failed_entered": false,
+          "natural_hof_entry_accepted": false,
+          "all_save_modes_accepted": false,
+          "formal_save_changed": false
+        },
+        "stages": [
+          {
+            "hof_stage": "before_ui_fixture",
+            "frame": 1390,
+            "callback": 134569589,
+            "task_func": 0,
+            "attempt": 0,
+            "counter": 101,
+            "stat10": 0,
+            "damaged_mask": 0,
+            "fault_writes": 0,
+            "save_sounds": 0,
+            "result_printers": 0,
+            "flash_sha256": "8b44629f94877b5aac2e23ff15a903e66e19b74e236aa89e1f590849ed509b4d",
+            "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+          },
+          {
+            "hof_stage": "save_returned",
+            "frame": 1787,
+            "callback": 135212321,
+            "task_func": 167771565,
+            "attempt": 255,
+            "counter": 102,
+            "stat10": 1,
+            "damaged_mask": 2147483648,
+            "fault_writes": 3,
+            "save_sounds": 0,
+            "result_printers": 1,
+            "flash_sha256": "777ade8a395419435cf04b31f539c09b9d0cc32324f2aa047047f8762d60033f",
+            "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+          },
+          {
+            "hof_stage": "failure_waiting",
+            "frame": 1849,
+            "callback": 135212321,
+            "task_func": 167771565,
+            "attempt": 255,
+            "counter": 102,
+            "stat10": 1,
+            "damaged_mask": 2147483648,
+            "fault_writes": 3,
+            "save_sounds": 0,
+            "result_printers": 1,
+            "flash_sha256": "777ade8a395419435cf04b31f539c09b9d0cc32324f2aa047047f8762d60033f",
+            "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+          },
+          {
+            "hof_stage": "original_hof_display",
+            "frame": 1882,
+            "callback": 135212321,
+            "task_func": 135213957,
+            "attempt": 255,
+            "counter": 102,
+            "stat10": 1,
+            "damaged_mask": 2147483648,
+            "fault_writes": 3,
+            "save_sounds": 0,
+            "result_printers": 1,
+            "flash_sha256": "777ade8a395419435cf04b31f539c09b9d0cc32324f2aa047047f8762d60033f",
+            "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+          }
+        ],
+        "fixtures": [
+          {
+            "ui_fixture": true,
+            "frame": 1390,
+            "bytes_written": 9,
+            "bytes_changed": 7,
+            "before_sha256": "a6ef43d6c0b7bcbf655707747ec59e96fd272445237c6e494e820c09e0bacc64",
+            "after_sha256": "ed794fd22c6677a340be2e74eb825d744dfd15c43124c2d42912fb03693c4b43",
+            "ewram_unchanged": 262144,
+            "all_other_iwram_unchanged": true
+          }
+        ],
+        "payload": [
+          {
+            "hof_payload": true,
+            "frame": 1425,
+            "address": 33669120,
+            "size": 8192,
+            "sha256": "ef62ad3f5ebf6c6d1a0b3159a5f78fedb288b0793637bcb96aa2e565f03f0426",
+            "task": 0,
+            "stat10": 0
+          }
+        ],
+        "screens": [
+          {
+            "screen": 0,
+            "frame": 1390,
+            "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+          },
+          {
+            "screen": 1,
+            "frame": 1787,
+            "sha256": "b16522730aaf0b8b38e7a8ba1e5bcf474c7e4d1912b4361fae7137f8e44cd810"
+          },
+          {
+            "screen": 2,
+            "frame": 1849,
+            "sha256": "9a169913dc4653ba299f59a6e2ee2069039d8adaccd088eece6b7d212452b7d0"
+          },
+          {
+            "screen": 3,
+            "frame": 1882,
+            "sha256": "d7a0f6ad850a3685faf11879dea37159b7f33e8744e5d6ffb1e3b6491b272d8a"
+          }
+        ]
+      },
+      "save": {
+        "size": 131088,
+        "sha256": "b7cc1d045608f95f9dcc4eb77bd71e1936b86918fa15bc4cc90791f7e6dca442"
+      },
+      "physical_stat10": 1,
+      "cold": {
+        "counter": 102,
+        "input": {
+          "size": 131088,
+          "sha256": "b7cc1d045608f95f9dcc4eb77bd71e1936b86918fa15bc4cc90791f7e6dca442"
+        },
+        "output": {
+          "size": 131088,
+          "sha256": "b7cc1d045608f95f9dcc4eb77bd71e1936b86918fa15bc4cc90791f7e6dca442"
+        },
+        "observation": {
+          "observe": 0,
+          "frame": 1390,
+          "map": [
+            3,
+            24
+          ],
+          "xy": [
+            53,
+            13
+          ],
+          "live_xy": [
+            60,
+            20
+          ],
+          "facing": 3,
+          "field": true,
+          "lock": 0,
+          "callback2": 134569589,
+          "party_count": 4,
+          "save_counter": 102,
+          "rp": 0,
+          "battle_flags": 0,
+          "battle_outcome": 0,
+          "party_sha256": "a889748859f118b98c42e9ef5f0fd2847466d07383f5743946453c961261580d",
+          "flash_sha256": "777ade8a395419435cf04b31f539c09b9d0cc32324f2aa047047f8762d60033f",
+          "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+        },
+        "mdx": {
+          "mdx": 0,
+          "frame": 1390,
+          "valid": true,
+          "legacy_snapshot": 1,
+          "seen_count": 0,
+          "caught_count": 0,
+          "live_sha256": "b33d6d7b257485bcac6dea92b43fe403abd2626eeaca74903fcb0e5b8c9014af",
+          "legacy_sha256": "4c776b05231ba21fb86ca53e28e2e1e395702d6788b64338d4381c628d34cc3e",
+          "stock_flags_vars_sha256": "25724aa725e0584036a780a30a55d7775bb4cf6c4aaa567b158028f6f2fce43a",
+          "bag_sha256": "5e7d314e869058d1330233cbb3833e10b41aed3f5dc0c4314dec1290d370946e",
+          "legacy_snapshot_matches_current_stock": true,
+          "physical_matches_current_generation": 1,
+          "save_file_status": 1,
+          "stock_byte_deltas": []
+        },
+        "end": {
+          "end": "STORY_INPUT_CHECKPOINT",
+          "frames": 1390,
+          "inputs": 12,
+          "warnings_errors": 0,
+          "host_write_barriers": 7,
+          "guarded_host_writes": 0,
+          "fixture_calls": 0,
+          "natural_research_arrival_accepted": false
+        },
+        "screens": [
+          {
+            "screen": 0,
+            "frame": 1390,
+            "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+          }
+        ],
+        "hof_metadata": {
+          "hof_cold_metadata": true,
+          "frame": 1390,
+          "stat10": 1,
+          "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+        }
+      }
+    },
+    {
+      "name": "healthy",
+      "mode": 0,
+      "trace": {
+        "end": {
+          "end": "PASS_HOF_UI_FAILURE_SUCCESS_AND_NO_RETRY",
+          "mode": 0,
+          "frames": 1815,
+          "inputs": 437,
+          "screens": 4,
+          "fixture_bytes_written": 9,
+          "register_writes": 0,
+          "host_write_barriers": 7,
+          "fault_writes": 0,
+          "fault_physical_address": 4294967295,
+          "counter": 102,
+          "attempt": 1,
+          "stat10_before": 0,
+          "stat10_after": 1,
+          "native_hof_saves": 1,
+          "stock_save_calls": 1,
+          "stat10_increment_calls": 1,
+          "save_sounds": 1,
+          "result_printers": 0,
+          "payload_bytes_preserved_through_ack": 8192,
+          "extension_bytes_preserved": 20248,
+          "old_save_failed_entered": false,
+          "natural_hof_entry_accepted": false,
+          "all_save_modes_accepted": false,
+          "formal_save_changed": false
+        },
+        "stages": [
+          {
+            "hof_stage": "before_ui_fixture",
+            "frame": 1390,
+            "callback": 134569589,
+            "task_func": 0,
+            "attempt": 0,
+            "counter": 101,
+            "stat10": 0,
+            "damaged_mask": 0,
+            "fault_writes": 0,
+            "save_sounds": 0,
+            "result_printers": 0,
+            "flash_sha256": "8b44629f94877b5aac2e23ff15a903e66e19b74e236aa89e1f590849ed509b4d",
+            "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+          },
+          {
+            "hof_stage": "save_returned",
+            "frame": 1750,
+            "callback": 135212321,
+            "task_func": 135213509,
+            "attempt": 1,
+            "counter": 102,
+            "stat10": 1,
+            "damaged_mask": 0,
+            "fault_writes": 0,
+            "save_sounds": 1,
+            "result_printers": 0,
+            "flash_sha256": "31fa8632c3fcd60fe8ba805070853f4612c453949a7f3fc29dd163ba1c430597",
+            "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+          },
+          {
+            "hof_stage": "success_waiting",
+            "frame": 1760,
+            "callback": 135212321,
+            "task_func": 135213509,
+            "attempt": 1,
+            "counter": 102,
+            "stat10": 1,
+            "damaged_mask": 0,
+            "fault_writes": 0,
+            "save_sounds": 1,
+            "result_printers": 0,
+            "flash_sha256": "31fa8632c3fcd60fe8ba805070853f4612c453949a7f3fc29dd163ba1c430597",
+            "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+          },
+          {
+            "hof_stage": "original_hof_display",
+            "frame": 1815,
+            "callback": 135212321,
+            "task_func": 135213957,
+            "attempt": 1,
+            "counter": 102,
+            "stat10": 1,
+            "damaged_mask": 0,
+            "fault_writes": 0,
+            "save_sounds": 1,
+            "result_printers": 0,
+            "flash_sha256": "31fa8632c3fcd60fe8ba805070853f4612c453949a7f3fc29dd163ba1c430597",
+            "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+          }
+        ],
+        "fixtures": [
+          {
+            "ui_fixture": true,
+            "frame": 1390,
+            "bytes_written": 9,
+            "bytes_changed": 7,
+            "before_sha256": "a6ef43d6c0b7bcbf655707747ec59e96fd272445237c6e494e820c09e0bacc64",
+            "after_sha256": "ed794fd22c6677a340be2e74eb825d744dfd15c43124c2d42912fb03693c4b43",
+            "ewram_unchanged": 262144,
+            "all_other_iwram_unchanged": true
+          }
+        ],
+        "payload": [
+          {
+            "hof_payload": true,
+            "frame": 1425,
+            "address": 33669120,
+            "size": 8192,
+            "sha256": "ef62ad3f5ebf6c6d1a0b3159a5f78fedb288b0793637bcb96aa2e565f03f0426",
+            "task": 0,
+            "stat10": 0
+          }
+        ],
+        "screens": [
+          {
+            "screen": 0,
+            "frame": 1390,
+            "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+          },
+          {
+            "screen": 1,
+            "frame": 1750,
+            "sha256": "b16522730aaf0b8b38e7a8ba1e5bcf474c7e4d1912b4361fae7137f8e44cd810"
+          },
+          {
+            "screen": 2,
+            "frame": 1760,
+            "sha256": "b16522730aaf0b8b38e7a8ba1e5bcf474c7e4d1912b4361fae7137f8e44cd810"
+          },
+          {
+            "screen": 3,
+            "frame": 1815,
+            "sha256": "d7a0f6ad850a3685faf11879dea37159b7f33e8744e5d6ffb1e3b6491b272d8a"
+          }
+        ]
+      },
+      "save": {
+        "size": 131088,
+        "sha256": "f116c15523fe77a5b4915372c954b19d3710131b175287fbfb5d758b3193cab0"
+      },
+      "physical_stat10": 1,
+      "cold": {
+        "counter": 102,
+        "input": {
+          "size": 131088,
+          "sha256": "f116c15523fe77a5b4915372c954b19d3710131b175287fbfb5d758b3193cab0"
+        },
+        "output": {
+          "size": 131088,
+          "sha256": "f116c15523fe77a5b4915372c954b19d3710131b175287fbfb5d758b3193cab0"
+        },
+        "observation": {
+          "observe": 0,
+          "frame": 1390,
+          "map": [
+            3,
+            24
+          ],
+          "xy": [
+            53,
+            13
+          ],
+          "live_xy": [
+            60,
+            20
+          ],
+          "facing": 3,
+          "field": true,
+          "lock": 0,
+          "callback2": 134569589,
+          "party_count": 4,
+          "save_counter": 102,
+          "rp": 0,
+          "battle_flags": 0,
+          "battle_outcome": 0,
+          "party_sha256": "a889748859f118b98c42e9ef5f0fd2847466d07383f5743946453c961261580d",
+          "flash_sha256": "31fa8632c3fcd60fe8ba805070853f4612c453949a7f3fc29dd163ba1c430597",
+          "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+        },
+        "mdx": {
+          "mdx": 0,
+          "frame": 1390,
+          "valid": true,
+          "legacy_snapshot": 1,
+          "seen_count": 0,
+          "caught_count": 0,
+          "live_sha256": "b33d6d7b257485bcac6dea92b43fe403abd2626eeaca74903fcb0e5b8c9014af",
+          "legacy_sha256": "4c776b05231ba21fb86ca53e28e2e1e395702d6788b64338d4381c628d34cc3e",
+          "stock_flags_vars_sha256": "25724aa725e0584036a780a30a55d7775bb4cf6c4aaa567b158028f6f2fce43a",
+          "bag_sha256": "5e7d314e869058d1330233cbb3833e10b41aed3f5dc0c4314dec1290d370946e",
+          "legacy_snapshot_matches_current_stock": true,
+          "physical_matches_current_generation": 1,
+          "save_file_status": 1,
+          "stock_byte_deltas": []
+        },
+        "end": {
+          "end": "STORY_INPUT_CHECKPOINT",
+          "frames": 1390,
+          "inputs": 12,
+          "warnings_errors": 0,
+          "host_write_barriers": 7,
+          "guarded_host_writes": 0,
+          "fixture_calls": 0,
+          "natural_research_arrival_accepted": false
+        },
+        "screens": [
+          {
+            "screen": 0,
+            "frame": 1390,
+            "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+          }
+        ],
+        "hof_metadata": {
+          "hof_cold_metadata": true,
+          "frame": 1390,
+          "stat10": 1,
+          "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+        }
+      }
+    }
+  ],
+  "native_processes": 6,
+  "host_tests": 4,
+  "ram_fixture_bytes_per_ui_process": 9,
+  "register_writes": 0,
+  "natural_entry_accepted": false,
+  "all_nonstart_notifications_accepted": false,
+  "all_save_modes_accepted": false,
+  "hof_atomicity_accepted": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-failure.yml": {
+      "size": 1744,
+      "sha256": "2c062e8f47ffe0fb2486785c7dc787c844fbdbeb31e26fbbeccca4a724ec11fd"
+    },
+    ".github/workflows/pr16-dex-hof-ui.yml": {
+      "size": 1658,
+      "sha256": "54a863ef0679672e0e7335f4faaaebca49d171a7feca765380cdbfd7c135520c"
+    },
+    "content/modernization/pr16_dex_hof_ui_bindings.json": {
+      "size": 1542,
+      "sha256": "9cbea382b7913fee6dd981b9e5a15c6788e37101acc78692221342963ec8fe36"
+    },
+    "scripts/pr16_dex_hof_ui.py": {
+      "size": 13456,
+      "sha256": "53aea516eda23b9483733e1234866381e60b146115b82cd587fb79b72f9244e0"
+    },
+    "tests/test_pr16_dex_hof_ui.py": {
+      "size": 1085,
+      "sha256": "d8d55471ef14ce1b2bfd5fa4a5470b26e099a60a901b817ece9c9089a477a620"
+    },
+    "tools/mgba_pr16_dex_hof_ui.h": {
+      "size": 11414,
+      "sha256": "c6c55635f84ee4038b38b0967a40c01f44401fadba108469344859198e65bb9e"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "windows": [
+    {
+      "id": "hof_constructor",
+      "address": 135212348,
+      "size": 316,
+      "sha256": "1ca1501dec90c3592b1d0e29e133728771f79c7d89f6aa61916f728ddd118551"
+    },
+    {
+      "id": "hof_main_entry",
+      "address": 135212636,
+      "size": 68,
+      "sha256": "48f6a10e8e417ace444ee0a1958a3f1d943b0efea3f5f7c14ca059c8ecba3a18"
+    },
+    {
+      "id": "stat10_getter",
+      "address": 134563716,
+      "size": 60,
+      "sha256": "20b680cd5bf3b169d754454f822e5a2b5b0679e80abc0abffe9d15ba08023dd3"
+    },
+    {
+      "id": "stat10_increment_setter",
+      "address": 134563664,
+      "size": 176,
+      "sha256": "f11c05c1e67f5bc8cb0b2b5a013dff5354eb61ccb1b30ac97392480805f84bcb"
+    },
+    {
+      "id": "hof_idle_callback",
+      "address": 135212320,
+      "size": 28,
+      "sha256": "a9b7c6c9e2d1f18dd642265faf6c5349ab9ae33fca21f628b133ce097210e8e9"
+    }
+  ],
+  "ui_only_fixture": {
+    "addresses": [
+      50344240,
+      50344241,
+      50344242,
+      50344243,
+      50344244,
+      50344245,
+      50344246,
+      50344247,
+      50345320
+    ],
+    "bytes": 9,
+    "entry_callback": 135212637,
+    "callback1": 0,
+    "state": 0,
+    "register_writes": 0
+  },
+  "faults": {
+    "main": "first main-bank0 program byte after initial HOF writes",
+    "outer": "sector31 final byte131071; early failure not accepted"
+  },
+  "scope_ja": "通常Save101からHOF初期化の入口だけをfixture化。殿堂入り進行・自然transition・初回mode3原子性は受入なし。"
+}

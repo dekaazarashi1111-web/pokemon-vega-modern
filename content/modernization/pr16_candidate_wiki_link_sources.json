@@ -1,0 +1,67 @@
+{
+  "arm_builds": 0,
+  "available_link_paths": [],
+  "candidate": {
+    "crc32": "CC068B4A",
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+    "size": 33554432
+  },
+  "input_receipt": {
+    "artifact_id": 10623083176,
+    "artifact_sha256": "b20766e8740854f672b9cf3e894241e7180f843ddab610f8a3b5db9b1e1d7410",
+    "manifest_sha256": "a27bd7656996450c2ded1bc043e3dbd2724ca1ed5e854abcf920dd6e68c97946",
+    "run_id": 35563682153
+  },
+  "metadata": {
+    "keys": ["battle_policy_smoke","battle_script_command_tables","battle_smoke","canonical_id_compatibility","canonical_runtime_roots","downstream_symbols","evolution_compatibility","evolution_linked_references","fingerprint","fingerprint_inputs","hook_audit","input","models","move_effect_lowering","output","payload","published_artifacts","repeatability","runtime_abi_bridges","runtime_generator","runtime_tables","schema_version","status","t04_repoints","task","trainer_ai_smoke","upstream_runs"],
+    "path": "build/stages/06_battle_core.json",
+    "sha256": "3c107c77cd50e39c075277a499e4a86a874c77ebbabd4e4507e125d5cc094260",
+    "size": 255032
+  },
+  "missing_symbols": ["CanUseZMove","GetTypeBasedZMove","CalcMoveSplit","GetSpecialZMove","SetZEffect","ReplaceWithZMoveRuntime","gMovesThatChangePhysicality","GiveBoxMonInitialMoveset","GiveMoveToBoxMon","CreateBoxMon","CreateMon","GetHiddenAbility","GetAbility1","GetAbility2","GetMonAbility","FieldUseFunc_AbilityCapsule"],
+  "new_native_runs": 0,
+  "no_pattern_guessing": true,
+  "offset_bindings": [],
+  "payload": {"sha256":"a9be3fca28416453ea021bbfde0ef687872efffff5ada869871f16dce12b1b76","size":1960618,"start":16777216},
+  "rom_changes": 0,
+  "run_id": 35563682153,
+  "snapshot_rebuilds": 0,
+  "source_head": "10552180e7f6cb34ccaf0b7b7e0f6843d11cb54a",
+  "stage06_identity": null,
+  "symbol_windows": [
+    {
+      "address": "0x9116f90",
+      "candidate_window_sha256": "78aadae6e3b347081d0b5239d7042e02b061b89cc08ea46b3bcb64084b3c36df",
+      "metadata_paths": ["/upstream_runs/0/integration_symbols/HandleInputChooseMove","/upstream_runs/1/integration_symbols/HandleInputChooseMove"],
+      "native_acceptance": "DEFERRED_AUDIT",
+      "same_256_byte_window_as_saved_stage06": null,
+      "symbol": "HandleInputChooseMove",
+      "symbol_extent": "NOT_PROVEN_WITHOUT_ELF_SIZE",
+      "window_size": 256
+    },
+    {
+      "address": "0x9126bb4",
+      "candidate_window_sha256": "8de095ab8699a6be927a4c5459a28fd7dbeaaf1f9f23afb388377f12c2c7ecc4",
+      "metadata_paths": ["/upstream_runs/0/integration_symbols/VegaBattlePolicyCanZ","/upstream_runs/1/integration_symbols/VegaBattlePolicyCanZ"],
+      "native_acceptance": "DEFERRED_AUDIT",
+      "same_256_byte_window_as_saved_stage06": null,
+      "symbol": "VegaBattlePolicyCanZ",
+      "symbol_extent": "NOT_PROVEN_WITHOUT_ELF_SIZE",
+      "window_size": 256
+    },
+    {
+      "address": "0x9126be0",
+      "candidate_window_sha256": "92473fc80c7cb22d0310940c49f98276eef44744f3627dbea4f653683ad9a403",
+      "metadata_paths": ["/upstream_runs/0/integration_symbols/VegaBattlePolicyMarkZ","/upstream_runs/1/integration_symbols/VegaBattlePolicyMarkZ"],
+      "native_acceptance": "DEFERRED_AUDIT",
+      "same_256_byte_window_as_saved_stage06": null,
+      "symbol": "VegaBattlePolicyMarkZ",
+      "symbol_extent": "NOT_PROVEN_WITHOUT_ELF_SIZE",
+      "window_size": 256
+    }
+  ],
+  "upstream_runs": [
+    {"linked_object":{"sha256":"52bbd57a7d2649164c4706ee45dc17ef1f8357862d8dbd79bdcd439c2b0a36fb","size":5733212},"offsets":{"sha256":"f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523","symbol_count":13131},"output_bin":{"sha256":"518de9585051557c285f66c7c25defa0a1b82422020cda44b995c41f1cacec04","size":1960618},"run":1},
+    {"linked_object":{"sha256":"52bbd57a7d2649164c4706ee45dc17ef1f8357862d8dbd79bdcd439c2b0a36fb","size":5733212},"offsets":{"sha256":"f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523","symbol_count":13131},"output_bin":{"sha256":"518de9585051557c285f66c7c25defa0a1b82422020cda44b995c41f1cacec04","size":1960618},"run":2}
+  ]
+}

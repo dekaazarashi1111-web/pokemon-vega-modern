@@ -1,0 +1,44 @@
+name: p03-breeding-capacity-e2e
+run-name: P03 five-egg FIFO and full-party PC capacity with two cold saves
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p03-breeding-capacity-e2e.yml
+      - tools/mgba_modernization_p03_breeding_capacity_e2e.c
+      - scripts/run_modernization_p03_breeding_capacity_e2e.py
+      - tests/test_modernization_p03_breeding_capacity_e2e.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  capacity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install and verify fixed native toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-breeding-capacity-ci
+          bash infra/setup_github_actions.sh --install | tee .local/p03-breeding-capacity-ci/toolchain.txt
+      - name: Reject false positives and actual host-write attempts
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 -m unittest discover -s tests -p 'test_modernization_p03_breeding_capacity_e2e.py' -v 2>&1 | tee .local/p03-breeding-capacity-ci/regression.txt
+      - name: Rebuild unchanged Stage82 and run three fresh capacity cases
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 scripts/run_modernization_stage82_github_domain.py prepare > .local/p03-breeding-capacity-ci/prepare.json
+          /usr/bin/python3 scripts/run_modernization_p03_breeding_capacity_e2e.py --jobs 2 2>&1 | tee .local/p03-breeding-capacity-ci/runtime.txt
+          git diff --exit-code
+          git rev-parse HEAD > .local/p03-breeding-capacity-ci/source-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-breeding-capacity-e2e
+          path: .local/p03-breeding-capacity-ci/
+          if-no-files-found: error
+          retention-days: 30

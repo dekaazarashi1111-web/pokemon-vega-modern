@@ -1,0 +1,98 @@
+
+.local/pr16-streak-input/candidate.gba:     file format binary
+
+
+Disassembly of section .data:
+
+0807ad20 <.data+0x7ad20>:
+ 807ad20:	f80b 7820 	strb.w	r7, [fp, <undefined>]
+ 807ad24:	2800      	cmp	r0, #0
+ 807ad26:	d0fa      	beq.n	0x807ad1e
+ 807ad28:	bc10      	pop	{r4}
+ 807ad2a:	bc01      	pop	{r0}
+ 807ad2c:	4700      	bx	r0
+ 807ad2e:	0000      	movs	r0, r0
+ 807ad30:	9940      	ldr	r1, [sp, #256]	@ 0x100
+ 807ad32:	0838      	lsrs	r0, r7, #32
+ 807ad34:	06d2      	lsls	r2, r2, #27
+ 807ad36:	0000      	movs	r0, r0
+ 807ad38:	b500      	push	{lr}
+ 807ad3a:	4906      	ldr	r1, [pc, #24]	@ (0x807ad54)
+ 807ad3c:	6808      	ldr	r0, [r1, #0]
+ 807ad3e:	4a06      	ldr	r2, [pc, #24]	@ (0x807ad58)
+ 807ad40:	1880      	adds	r0, r0, r2
+ 807ad42:	8800      	ldrh	r0, [r0, #0]
+ 807ad44:	1c0a      	adds	r2, r1, #0
+ 807ad46:	2804      	cmp	r0, #4
+ 807ad48:	d864      	bhi.n	0x807ae14
+ 807ad4a:	0080      	lsls	r0, r0, #2
+ 807ad4c:	4903      	ldr	r1, [pc, #12]	@ (0x807ad5c)
+ 807ad4e:	1840      	adds	r0, r0, r1
+ 807ad50:	6800      	ldr	r0, [r0, #0]
+ 807ad52:	4687      	mov	pc, r0
+ 807ad54:	9940      	ldr	r1, [sp, #256]	@ 0x100
+ 807ad56:	0838      	lsrs	r0, r7, #32
+ 807ad58:	06cc      	lsls	r4, r1, #27
+ 807ad5a:	0000      	movs	r0, r0
+ 807ad5c:	ad60      	add	r5, sp, #384	@ 0x180
+ 807ad5e:	0807      	lsrs	r7, r0, #32
+ 807ad60:	ad74      	add	r5, sp, #464	@ 0x1d0
+ 807ad62:	0807      	lsrs	r7, r0, #32
+ 807ad64:	ad90      	add	r5, sp, #576	@ 0x240
+ 807ad66:	0807      	lsrs	r7, r0, #32
+ 807ad68:	ada8      	add	r5, sp, #672	@ 0x2a0
+ 807ad6a:	0807      	lsrs	r7, r0, #32
+ 807ad6c:	adc4      	add	r5, sp, #784	@ 0x310
+ 807ad6e:	0807      	lsrs	r7, r0, #32
+ 807ad70:	addc      	add	r5, sp, #880	@ 0x370
+ 807ad72:	0807      	lsrs	r7, r0, #32
+ 807ad74:	6811      	ldr	r1, [r2, #0]
+ 807ad76:	4a04      	ldr	r2, [pc, #16]	@ (0x807ad88)
+ 807ad78:	1888      	adds	r0, r1, r2
+ 807ad7a:	7800      	ldrb	r0, [r0, #0]
+ 807ad7c:	2800      	cmp	r0, #0
+ 807ad7e:	d04b      	beq.n	0x807ae18
+ 807ad80:	4802      	ldr	r0, [pc, #8]	@ (0x807ad8c)
+ 807ad82:	1809      	adds	r1, r1, r0
+ 807ad84:	e03a      	b.n	0x807adfc
+ 807ad86:	0000      	movs	r0, r0
+ 807ad88:	06c6      	lsls	r6, r0, #27
+ 807ad8a:	0000      	movs	r0, r0
+ 807ad8c:	06cc      	lsls	r4, r1, #27
+ 807ad8e:	0000      	movs	r0, r0
+ 807ad90:	f7ff fae0 	bl	0x807a354
+ 807ad94:	4802      	ldr	r0, [pc, #8]	@ (0x807ada0)
+ 807ad96:	6801      	ldr	r1, [r0, #0]
+ 807ad98:	4a02      	ldr	r2, [pc, #8]	@ (0x807ada4)
+ 807ad9a:	1889      	adds	r1, r1, r2
+ 807ad9c:	e02e      	b.n	0x807adfc
+ 807ad9e:	0000      	movs	r0, r0
+ 807ada0:	9940      	ldr	r1, [sp, #256]	@ 0x100
+ 807ada2:	0838      	lsrs	r0, r7, #32
+ 807ada4:	06cc      	lsls	r4, r1, #27
+ 807ada6:	0000      	movs	r0, r0
+ 807ada8:	f7ff fae4 	bl	0x807a374
+ 807adac:	0600      	lsls	r0, r0, #24
+ 807adae:	2800      	cmp	r0, #0
+ 807adb0:	d132      	bne.n	0x807ae18
+ 807adb2:	4802      	ldr	r0, [pc, #8]	@ (0x807adbc)
+ 807adb4:	6801      	ldr	r1, [r0, #0]
+ 807adb6:	4802      	ldr	r0, [pc, #8]	@ (0x807adc0)
+ 807adb8:	1809      	adds	r1, r1, r0
+ 807adba:	e01f      	b.n	0x807adfc
+ 807adbc:	9940      	ldr	r1, [sp, #256]	@ 0x100
+ 807adbe:	0838      	lsrs	r0, r7, #32
+ 807adc0:	06cc      	lsls	r4, r1, #27
+ 807adc2:	0000      	movs	r0, r0
+ 807adc4:	f7ff fafc 	bl	0x807a3c0
+ 807adc8:	4802      	ldr	r0, [pc, #8]	@ (0x807add4)
+ 807adca:	6801      	ldr	r1, [r0, #0]
+ 807adcc:	4a02      	ldr	r2, [pc, #8]	@ (0x807add8)
+ 807adce:	1889      	adds	r1, r1, r2
+ 807add0:	e014      	b.n	0x807adfc
+ 807add2:	0000      	movs	r0, r0
+ 807add4:	9940      	ldr	r1, [sp, #256]	@ 0x100
+ 807add6:	0838      	lsrs	r0, r7, #32
+ 807add8:	06cc      	lsls	r4, r1, #27
+ 807adda:	0000      	movs	r0, r0
+ 807addc:	f7ff fb0c 	bl	0x807a3f8

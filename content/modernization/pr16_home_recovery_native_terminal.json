@@ -1,0 +1,104 @@
+{
+  "active_baseline_changed": false,
+  "artifact": {
+    "digest": "sha256:fb3edef0cbb5dfdd8f388528c89d4d331da5e1eb03d877772b9087be05d807f6",
+    "expires_at": "2026-12-27T01:39:16Z",
+    "id": 10947623338,
+    "name": "pr16-home-recovery-native-checkpoint",
+    "size_in_bytes": 18389139,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "f895a324d160055e70bd0788208907e2b4044a8f",
+      "id": 36366801337,
+      "repository_id": 1358127462
+    }
+  },
+  "completion_commit": "8be37140565ed514ce39bfcefe7707d5a66bdc76",
+  "immutable_tested_bindings_verified": 36,
+  "job_id": 108754722968,
+  "new_compiles": 0,
+  "new_native_processes": 0,
+  "new_unit_executions": 0,
+  "real_screens_verified": 26,
+  "release_ready": false,
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "f895a324d160055e70bd0788208907e2b4044a8f",
+    "id": 36366801337,
+    "path": ".github/workflows/pr16-home-recovery-collect.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "save_copies_verified": 3,
+  "schema_version": 1,
+  "steps": [
+    {
+      "conclusion": "success",
+      "name": "Set up job",
+      "number": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/checkout@v4",
+      "number": 2,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Test only seven new immutable artifact cases",
+      "number": 3,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Collect completed native processes without emulation or recompilation",
+      "number": 4,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Validate task graph resume and scoped index",
+      "number": 5,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Non-force same-branch completion commit",
+      "number": 6,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Preserve committed text and completion HEAD",
+      "number": 7,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Retain all collected originals even on publication failure",
+      "number": 8,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/upload-artifact@v4",
+      "number": 9,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Post Run actions/checkout@v4",
+      "number": 18,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Complete job",
+      "number": 19,
+      "status": "completed"
+    }
+  ]
+}

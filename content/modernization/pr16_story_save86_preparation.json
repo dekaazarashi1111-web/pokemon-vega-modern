@@ -1,0 +1,885 @@
+{
+  "status": "STATIC_EIGHTH_INTERACTION_LOCAL10_FROM_SAVE85_NOT_NATIVE",
+  "map": [
+    10,
+    16
+  ],
+  "start": [
+    6,
+    7
+  ],
+  "facing": 1,
+  "route": [
+    [
+      6,
+      7
+    ]
+  ],
+  "terrain": [
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    }
+  ],
+  "interaction": {
+    "local_id": 10,
+    "target": [
+      6,
+      8
+    ],
+    "script": 136400224,
+    "visibility_flag": 4376,
+    "button": "A",
+    "from_xy": [
+      6,
+      7
+    ],
+    "facing": 1,
+    "object_address": 155169804,
+    "object_hex": "0a810000060008000308110000000000604d210818110000"
+  },
+  "expected_flag_changes": [
+    [
+      4372,
+      1,
+      0
+    ],
+    [
+      4373,
+      0,
+      1
+    ],
+    [
+      4377,
+      0,
+      1
+    ]
+  ],
+  "expected_object_changes": [
+    {
+      "local_id": 6,
+      "operation": "removeobject"
+    },
+    {
+      "local_id": 11,
+      "operation": "removeobject"
+    },
+    {
+      "local_id": 5,
+      "operation": "addobject"
+    }
+  ],
+  "gym": {
+    "map": [
+      10,
+      16
+    ],
+    "header": 137450584,
+    "layout": 136946720,
+    "scripts": 135815079,
+    "width": 13,
+    "height": 20,
+    "connections": [],
+    "warps": [
+      {
+        "id": 0,
+        "xy": [
+          5,
+          18
+        ],
+        "elevation": 3,
+        "target_warp": 2,
+        "target_map": [
+          3,
+          2
+        ]
+      },
+      {
+        "id": 1,
+        "xy": [
+          6,
+          18
+        ],
+        "elevation": 3,
+        "target_warp": 2,
+        "target_map": [
+          3,
+          2
+        ]
+      },
+      {
+        "id": 2,
+        "xy": [
+          7,
+          18
+        ],
+        "elevation": 3,
+        "target_warp": 2,
+        "target_map": [
+          3,
+          2
+        ]
+      }
+    ],
+    "objects": [
+      {
+        "local_id": 1,
+        "xy": [
+          3,
+          7
+        ],
+        "script": 154584484,
+        "flag": 0
+      },
+      {
+        "local_id": 2,
+        "xy": [
+          1,
+          4
+        ],
+        "script": 154596220,
+        "flag": 0
+      },
+      {
+        "local_id": 3,
+        "xy": [
+          11,
+          9
+        ],
+        "script": 154587296,
+        "flag": 0
+      },
+      {
+        "local_id": 4,
+        "xy": [
+          7,
+          16
+        ],
+        "script": 142951424,
+        "flag": 0
+      },
+      {
+        "local_id": 5,
+        "xy": [
+          6,
+          14
+        ],
+        "script": 141220048,
+        "flag": 4372
+      },
+      {
+        "local_id": 6,
+        "xy": [
+          4,
+          12
+        ],
+        "script": 141220288,
+        "flag": 4373
+      },
+      {
+        "local_id": 7,
+        "xy": [
+          6,
+          3
+        ],
+        "script": 142951392,
+        "flag": 0
+      },
+      {
+        "local_id": 8,
+        "xy": [
+          9,
+          12
+        ],
+        "script": 141220512,
+        "flag": 4374
+      },
+      {
+        "local_id": 9,
+        "xy": [
+          2,
+          9
+        ],
+        "script": 141220736,
+        "flag": 4375
+      },
+      {
+        "local_id": 10,
+        "xy": [
+          6,
+          8
+        ],
+        "script": 136400224,
+        "flag": 4376
+      },
+      {
+        "local_id": 11,
+        "xy": [
+          10,
+          3
+        ],
+        "script": 136400416,
+        "flag": 4377
+      }
+    ],
+    "collision_grid": [
+      "#############",
+      "#############",
+      "#############",
+      "#.#...O...O.#",
+      "#O#.......#.#",
+      "#.#.......#.#",
+      "#.#########.#",
+      "#.#O........#",
+      "#.####O####.#",
+      "#.O.......#O#",
+      "#.#.#########",
+      "#.#........##",
+      "#.##O####O###",
+      "#...........#",
+      "######O######",
+      "#...........#",
+      "#...#..O#...#",
+      "#...........#",
+      "#....WWW....#",
+      "#############"
+    ],
+    "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+  },
+  "graph": {
+    "nodes": [
+      {
+        "address": 136400176,
+        "end_reason": "return",
+        "instruction_count": 9,
+        "edges": [],
+        "roots": [
+          "map_(10, 16)_npc_10",
+          "map_(10, 16)_npc_11",
+          "map_(10, 16)_npc_5",
+          "map_(10, 16)_npc_6",
+          "map_(10, 16)_npc_8",
+          "map_(10, 16)_npc_9"
+        ]
+      },
+      {
+        "address": 136400224,
+        "end_reason": "goto",
+        "instruction_count": 13,
+        "edges": [
+          136400288,
+          136400328,
+          136400392,
+          136400400,
+          136400408,
+          141219312,
+          141219331
+        ],
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "address": 136400288,
+        "end_reason": "goto",
+        "instruction_count": 4,
+        "edges": [
+          136400312,
+          141219331,
+          141219892
+        ],
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "address": 141219312,
+        "end_reason": "return",
+        "instruction_count": 5,
+        "edges": [
+          136400176
+        ],
+        "roots": [
+          "map_(10, 16)_npc_10",
+          "map_(10, 16)_npc_11",
+          "map_(10, 16)_npc_5",
+          "map_(10, 16)_npc_6",
+          "map_(10, 16)_npc_8",
+          "map_(10, 16)_npc_9"
+        ]
+      },
+      {
+        "address": 141219331,
+        "end_reason": "end",
+        "instruction_count": 5,
+        "edges": [],
+        "roots": [
+          "map_(10, 16)_npc_10",
+          "map_(10, 16)_npc_11",
+          "map_(10, 16)_npc_5",
+          "map_(10, 16)_npc_6",
+          "map_(10, 16)_npc_8",
+          "map_(10, 16)_npc_9"
+        ]
+      },
+      {
+        "address": 141219892,
+        "end_reason": "return",
+        "instruction_count": 7,
+        "edges": [],
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      }
+    ],
+    "references": [
+      {
+        "category": "flag",
+        "value": 4372,
+        "access": "read",
+        "instruction_address": 136400230,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400224,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4372,
+        "access": "clear",
+        "instruction_address": 141219904,
+        "opcode": 42,
+        "command": "clearflag",
+        "script_address": 141219892,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4373,
+        "access": "read",
+        "instruction_address": 136400239,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400224,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4373,
+        "access": "set",
+        "instruction_address": 141219892,
+        "opcode": 41,
+        "command": "setflag",
+        "script_address": 141219892,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4374,
+        "access": "read",
+        "instruction_address": 136400248,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400224,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4374,
+        "access": "read",
+        "instruction_address": 136400288,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400288,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4375,
+        "access": "read",
+        "instruction_address": 136400257,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400224,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4377,
+        "access": "read",
+        "instruction_address": 136400266,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400224,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4377,
+        "access": "set",
+        "instruction_address": 141219898,
+        "opcode": 41,
+        "command": "setflag",
+        "script_address": 141219892,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "species",
+        "value": 16,
+        "access": "cry",
+        "instruction_address": 136400176,
+        "opcode": 161,
+        "command": "playmoncry",
+        "script_address": 136400176,
+        "roots": [
+          "map_(10, 16)_npc_10",
+          "map_(10, 16)_npc_11",
+          "map_(10, 16)_npc_5",
+          "map_(10, 16)_npc_6",
+          "map_(10, 16)_npc_8",
+          "map_(10, 16)_npc_9"
+        ]
+      }
+    ]
+  },
+  "instructions": [
+    {
+      "address": 136400176,
+      "opcode": 161,
+      "size": 5,
+      "hex": "a110000200",
+      "node": 136400176
+    },
+    {
+      "address": 136400181,
+      "opcode": 151,
+      "size": 2,
+      "hex": "9701",
+      "node": 136400176
+    },
+    {
+      "address": 136400183,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b050001",
+      "node": 136400176
+    },
+    {
+      "address": 136400187,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b060001",
+      "node": 136400176
+    },
+    {
+      "address": 136400191,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b080001",
+      "node": 136400176
+    },
+    {
+      "address": 136400195,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b090001",
+      "node": 136400176
+    },
+    {
+      "address": 136400199,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b0a0001",
+      "node": 136400176
+    },
+    {
+      "address": 136400203,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b0b0001",
+      "node": 136400176
+    },
+    {
+      "address": 136400207,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 136400176
+    },
+    {
+      "address": 136400224,
+      "opcode": 106,
+      "size": 1,
+      "hex": "6a",
+      "node": 136400224
+    },
+    {
+      "address": 136400225,
+      "opcode": 4,
+      "size": 5,
+      "hex": "04f0d56a08",
+      "node": 136400224
+    },
+    {
+      "address": 136400230,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1411",
+      "node": 136400224
+    },
+    {
+      "address": 136400233,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601a04d2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400239,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1511",
+      "node": 136400224
+    },
+    {
+      "address": 136400242,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601c84d2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400248,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1611",
+      "node": 136400224
+    },
+    {
+      "address": 136400251,
+      "opcode": 7,
+      "size": 6,
+      "hex": "0701084e2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400257,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1711",
+      "node": 136400224
+    },
+    {
+      "address": 136400260,
+      "opcode": 7,
+      "size": 6,
+      "hex": "0701104e2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400266,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1911",
+      "node": 136400224
+    },
+    {
+      "address": 136400269,
+      "opcode": 7,
+      "size": 6,
+      "hex": "0701184e2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400275,
+      "opcode": 5,
+      "size": 5,
+      "hex": "0503d66a08",
+      "node": 136400224
+    },
+    {
+      "address": 136400288,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1611",
+      "node": 136400288
+    },
+    {
+      "address": 136400291,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601b84d2108",
+      "node": 136400288
+    },
+    {
+      "address": 136400297,
+      "opcode": 4,
+      "size": 5,
+      "hex": "0434d86a08",
+      "node": 136400288
+    },
+    {
+      "address": 136400302,
+      "opcode": 5,
+      "size": 5,
+      "hex": "0503d66a08",
+      "node": 136400288
+    },
+    {
+      "address": 141219312,
+      "opcode": 106,
+      "size": 1,
+      "hex": "6a",
+      "node": 141219312
+    },
+    {
+      "address": 141219313,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00084f2108",
+      "node": 141219312
+    },
+    {
+      "address": 141219319,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0902",
+      "node": 141219312
+    },
+    {
+      "address": 141219321,
+      "opcode": 4,
+      "size": 5,
+      "hex": "04304d2108",
+      "node": 141219312
+    },
+    {
+      "address": 141219326,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 141219312
+    },
+    {
+      "address": 141219331,
+      "opcode": 151,
+      "size": 2,
+      "hex": "9700",
+      "node": 141219331
+    },
+    {
+      "address": 141219333,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00214f2108",
+      "node": 141219331
+    },
+    {
+      "address": 141219339,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0906",
+      "node": 141219331
+    },
+    {
+      "address": 141219341,
+      "opcode": 108,
+      "size": 1,
+      "hex": "6c",
+      "node": 141219331
+    },
+    {
+      "address": 141219342,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 141219331
+    },
+    {
+      "address": 141219892,
+      "opcode": 41,
+      "size": 3,
+      "hex": "291511",
+      "node": 141219892
+    },
+    {
+      "address": 141219895,
+      "opcode": 83,
+      "size": 3,
+      "hex": "530600",
+      "node": 141219892
+    },
+    {
+      "address": 141219898,
+      "opcode": 41,
+      "size": 3,
+      "hex": "291911",
+      "node": 141219892
+    },
+    {
+      "address": 141219901,
+      "opcode": 83,
+      "size": 3,
+      "hex": "530b00",
+      "node": 141219892
+    },
+    {
+      "address": 141219904,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1411",
+      "node": 141219892
+    },
+    {
+      "address": 141219907,
+      "opcode": 85,
+      "size": 3,
+      "hex": "550500",
+      "node": 141219892
+    },
+    {
+      "address": 141219910,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 141219892
+    }
+  ],
+  "texts": {
+    "136400648": {
+      "hex": "fd011a0022191f0419fe9480899116001a150c00060910ff",
+      "decoded": "<fd>あは めのまえの\\nディグダに はなし かけた"
+    },
+    "136400673": {
+      "hex": "152e14abfe9480899119001a021137001d2e060c10ff",
+      "decoded": "なんと！\\nディグダの はいちが へんかした"
+    }
+  },
+  "source_graph_reused": true,
+  "route_native_accepted": false,
+  "gym_puzzle_accepted": false,
+  "old_switch_inputs_replayed": false,
+  "previous_local10_branch": "Save81:4375true、Save85:4374true。次は4372trueの未入力branch。",
+  "next_action_ja": "Save85/6,7南から移動せず南のlocal10/6,8へ通常A。4372trueから4373/4377set/remove6/11・4372clear/add5、local10自体は残る。最初の新event後通常保存。旧第5/第7local10のbranchは再走しない。",
+  "future_static_hint": {
+    "status": "UNMEASURED_SOURCE_ONLY",
+    "after_eighth_flags": [
+      4373,
+      4377,
+      4378
+    ],
+    "then_leader_approach_route": [
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        8,
+        7
+      ],
+      [
+        9,
+        7
+      ],
+      [
+        10,
+        7
+      ],
+      [
+        11,
+        7
+      ],
+      [
+        11,
+        6
+      ],
+      [
+        11,
+        5
+      ],
+      [
+        11,
+        4
+      ],
+      [
+        11,
+        3
+      ],
+      [
+        10,
+        3
+      ],
+      [
+        9,
+        3
+      ],
+      [
+        8,
+        3
+      ],
+      [
+        7,
+        3
+      ]
+    ],
+    "note_ja": "第8保存後、leader前7,3までの静的経路13歩。未入力。leader到達/勝利/ジム攻略へ昇格しない。"
+  },
+  "source_graph_binding": {
+    "path": "content/modernization/pr16_story_save76_gym_route.json",
+    "sha256": "a4a832dd7f2b8e16b4bc618244a957d1c17244b1a6a12a8d6d6a33c07aecd6a3"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "0001f6a52812526ea52a9f2bcca8055e934379830214a8507867b10e3c2e00e0"
+  },
+  "parent_route_binding": {
+    "size": 16410,
+    "sha256": "99ca89cc1f0f9bb869c62380a6df99c8e3c57a094c3b0de211666b8d9f8df4d3"
+  },
+  "initial_flags": {
+    "4372": 1,
+    "4373": 0,
+    "4374": 0,
+    "4375": 0,
+    "4376": 0,
+    "4377": 0,
+    "4378": 1
+  },
+  "native_route_accepted": false,
+  "source_notes_ja": "保存済gym graph/local10限定43命令owner再利用。Save85/6,7南から移動も旋回もせずA。第8は4372truebranch、最初の新event後保存、旧branch/trainer132/160再走0。"
+}

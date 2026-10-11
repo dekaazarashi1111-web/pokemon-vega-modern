@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "tested_head": "a54fe471c666c280f116b5cbfc3b1a6c821e5395",
+  "run_id": 35347587112,
+  "job_id": 105607699274,
+  "artifact_id": 10547413771,
+  "artifact_identity": {
+    "size": 656588,
+    "sha256": "113b5972602453eafdab47f57272f1d9fd0ab22d1efcd4d956651b2f84ad0f65"
+  },
+  "visual_review": {
+    "pr16-ring-policy-native/ring-active-npc-dialogue.png": "eeba86af22b55d341dcfd2a5329346a765b610bf9427e944ad2e87167025dfdb",
+    "pr16-ring-policy-native/ring-active-bag-stone.png": "35491c2977be1af04d107ee108107174dae1bb6b323c08417058af78aac3c25f",
+    "pr16-ring-policy-native/ring-active-give-menu.png": "3b1026ac9af718866d3c28ded62d7156590bef9dc88cfaf655c6d0a7ad773b6e",
+    "pr16-ring-policy-native/ring-active-give-party.png": "421f7c57054248c7319d96671337f931bf67a34f40d0435563feac943ccceb3c",
+    "pr16-ring-policy-native/ring-active-equipped.png": "d5655014b2993516c3ed7606c6aaa3f89b7b6e35b77e3c51a57b79f79285ddf3",
+    "pr16-ring-policy-native/ring-active-natural-equipped-battle.png": "f8052851c869dca1a7ebee5d9f04012abc518e8d6607b7654f330a2c0ad343fa",
+    "pr16-ring-policy-native/ring-active-mega-selection.png": "7ad8f6aa10fbc7165f32cd2f1a83186759fd49ee49d67a95f6db6951a7dccf36",
+    "pr16-ring-policy-native/ring-active-mega-active.png": "20062bd138f25e9ec540cfb52f8e906b7c795f6fa48f1c89d2dad05cff30f52d",
+    "pr16-ring-policy-native/ring-active-native-turn.png": "f08f7712f674fb1e6961c159ff48cc18b897b5e4095f3df9002a20db7b3596e8",
+    "pr16-ring-policy-native/ring-active-reverted-field.png": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+    "pr16-ring-policy-native/ring-active-equipped-reloaded.png": "aa1546fb65a96dfb4b390034619c94fd51518f73993f1c48a6c364541db8d9c7",
+    "pr16-ring-policy-native/ring-active-battle-reloaded.png": "10f51a3c98d3b89105dbf25ea9b9e5ac99472f477b2e6b85a319642cd30e07a3",
+    "pr16-ring-policy-native/ring-unowned-npc-dialogue.png": "5d1ed24198e9fbf7ce6381d4a5939f3ee63884038b302d36f57b7a40b6ca0877",
+    "pr16-ring-policy-native/ring-unowned-mega-selection.png": "d2765bc43dd6e829d3febe585bf4e792fc1b26182bd16db7753b9b55033fb695",
+    "pr16-ring-policy-native/ring-unowned-native-turn.png": "243bb02cc41f6e7b71965b5e995e7170381df48ea2b53b23cb8968e8d99d9d39",
+    "pr16-ring-policy-native/ring-wrong-stone-npc-dialogue.png": "eeba86af22b55d341dcfd2a5329346a765b610bf9427e944ad2e87167025dfdb",
+    "pr16-ring-policy-native/ring-wrong-stone-mega-selection.png": "d2765bc43dd6e829d3febe585bf4e792fc1b26182bd16db7753b9b55033fb695",
+    "pr16-ring-policy-native/ring-wrong-stone-native-turn.png": "243bb02cc41f6e7b71965b5e995e7170381df48ea2b53b23cb8968e8d99d9d39",
+    "pr16-ring-policy-native/ring-no-toggle-npc-dialogue.png": "eeba86af22b55d341dcfd2a5329346a765b610bf9427e944ad2e87167025dfdb",
+    "pr16-ring-policy-native/ring-no-toggle-mega-selection.png": "e819c0653478286d38672f8171694cb6f264043238733c379f9655ecc0f5bd96",
+    "pr16-ring-policy-native/ring-no-toggle-native-turn.png": "57b3baa88e2fc4c74b913a31a407639d636fc3db53ffe8c5cab6b808fd5000f8",
+    "pr16-ring-policy-native/ring-cancel-toggle-npc-dialogue.png": "eeba86af22b55d341dcfd2a5329346a765b610bf9427e944ad2e87167025dfdb",
+    "pr16-ring-policy-native/ring-cancel-toggle-mega-selection.png": "8ed3ecf2c4d6686ed2ae83a30f8c680586a37c7a46d5d85fe6921b4b8542bfbc",
+    "pr16-ring-policy-native/ring-cancel-toggle-native-turn.png": "57b3baa88e2fc4c74b913a31a407639d636fc3db53ffe8c5cab6b808fd5000f8"
+  },
+  "history": [
+    {
+      "run_id": 35343718071,
+      "job_id": 105595282211,
+      "artifact_id": 10546057625,
+      "tested_head": "a5a60d29da009ba11ae9305bd42857cf2d78fb24",
+      "conclusion": "failure",
+      "artifact_identity": {
+        "size": 138114,
+        "sha256": "7fe125eeda308f7f5b5e39e8fa64647df446af77669ee28254d03d05ba01692c"
+      },
+      "new_emulator_processes": 0,
+      "original_stderr": [
+        "pr16-ring-policy-run/build.stderr"
+      ],
+      "reason_ja": "予約済みCFRU入口と追加payload割当台帳の区別を誤り停止。native0。"
+    },
+    {
+      "run_id": 35344225752,
+      "job_id": 105596934606,
+      "artifact_id": 10546267960,
+      "tested_head": "93843a87f541992f1b89bb81fe31cc08bf8e11ec",
+      "conclusion": "success",
+      "artifact_identity": {
+        "size": 263103,
+        "sha256": "5b742efa868b5756880db98725feae7e05e79b7afad684d213e5fff56e21b3c6"
+      },
+      "new_emulator_processes": 0,
+      "original_stderr": [],
+      "reason_ja": "限定候補のARM二重生成と全差分照合に成功。native導入前のbuildだけ。"
+    },
+    {
+      "run_id": 35345312163,
+      "job_id": 105600379561,
+      "artifact_id": 10546469586,
+      "tested_head": "0a119a8758501e253488c97d44c07e121e4d1899",
+      "conclusion": "failure",
+      "artifact_identity": {
+        "size": 278179,
+        "sha256": "23283f5cb3140e7c693e4d164146120a2b98b8e4ed21d76c54003f771ad9b01a"
+      },
+      "new_emulator_processes": 0,
+      "original_stderr": [
+        "pr16-ring-policy-run/native.stderr"
+      ],
+      "reason_ja": "旧候補固定SHAのgear probeが新候補を拒否。新候補自身の地形/出現表を照合する専用経路へ分離。native0。"
+    },
+    {
+      "run_id": 35346267897,
+      "job_id": 105603458712,
+      "artifact_id": 10547266385,
+      "tested_head": "3f8514bb2edc503e636d46da448e176aa7903a95",
+      "conclusion": "failure",
+      "artifact_identity": {
+        "size": 371226,
+        "sha256": "9004d2e34ea3d23db530b45ff1405b461de2a6bd4f375345e6a9a939e88e5b32"
+      },
+      "new_emulator_processes": 1,
+      "original_stderr": [
+        "pr16-ring-policy-native/ring-active.stderr"
+      ],
+      "reason_ja": "NPC正規受取/Give/Save/cold Continue/自然遭遇mode1まで到達したが入力待ちflags0の誤仮定で停止。MASTER4とLINK2を固定定義で区別。成功に数えない。"
+    },
+    {
+      "run_id": 35347204176,
+      "job_id": 105606476228,
+      "artifact_id": 10547846369,
+      "tested_head": "89be0b272cc8f1596ab27f7ce72eefbb13e00ce3",
+      "conclusion": "failure",
+      "artifact_identity": {
+        "size": 280421,
+        "sha256": "79dae4a1b6839318bacdf07686d11e2a2747066050dac7d78e6747cf8ee83d92"
+      },
+      "new_emulator_processes": 0,
+      "original_stderr": [
+        "pr16-ring-policy-run/native.stderr"
+      ],
+      "reason_ja": "最小復元にはbattle headerが未展開のためpreflightで停止。固定state ZIPのSHA/sizeを照合して必要2headerだけ読む。native0。"
+    }
+  ]
+}

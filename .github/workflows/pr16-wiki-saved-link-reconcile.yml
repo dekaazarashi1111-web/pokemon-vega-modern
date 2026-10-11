@@ -1,0 +1,57 @@
+name: PR16 saved link Wiki completed reconciliation
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-wiki-saved-link-reconcile.yml
+      - scripts/pr16_wiki_saved_link_reconcile.py
+      - tests/test_pr16_wiki_saved_link_reconcile.py
+permissions:
+  contents: write
+  actions: read
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: pr16-candidate-wiki
+  cancel-in-progress: false
+jobs:
+  reconcile:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: 今回の記録確定18試験のみ（Wiki48・ELF40・旧110・nativeを再実行しない）
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-wiki-saved-link-reconcile
+          python3 -B -m unittest discover -s tests -p test_pr16_wiki_saved_link_reconcile.py -v 2>&1 | tee .local/pr16-wiki-saved-link-reconcile/unit.txt
+      - name: 今回runの完了GET・原本・push親を照合し固定引継ぎと両ログを確定
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_wiki_saved_link_reconcile.py record | tee .local/pr16-wiki-saved-link-reconcile/result.json
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          git diff --check
+          git diff --exit-code -- docs/wiki config/active_play_baseline.json CHATGPT_RESUME.md AGENTS.md state/source-lock.json
+          git add -- content/modernization/pr16_candidate_wiki_completed_runs_20260921.json content/modernization/pr16_candidate_wiki_acceptance.json content/modernization/pr16_candidate_wiki_followup.json content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md design/run_log.md design/version_log.md
+          python3 -B scripts/pr16_wiki_saved_link_reconcile.py guard
+          git diff --cached --check
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260921-P08-CANDIDATE-WIKI: 保存ELF40・Wiki48試験と完了Actions原本・pushを照合して引継ぎと両ログを確定'
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          git rev-parse HEAD > .local/pr16-wiki-saved-link-reconcile/reflected-head.txt
+          cp content/modernization/pr16_candidate_wiki_completed_runs_20260921.json .local/pr16-wiki-saved-link-reconcile/completed-runs.json
+          cp content/modernization/pr16_candidate_wiki_acceptance.json .local/pr16-wiki-saved-link-reconcile/acceptance.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-wiki-saved-link-completed
+          path: .local/pr16-wiki-saved-link-reconcile/
+          retention-days: 3
+          if-no-files-found: error

@@ -1,0 +1,41 @@
+name: pr16-donor-window
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_donor_window.py
+      - scripts/pr16_donor_window_actions.py
+      - tests/test_pr16_donor_window.py
+      - content/modernization/pr16_donor_window_evidence/completion-request.json
+      - .github/workflows/pr16-donor-window.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-donor-window
+  cancel-in-progress: false
+jobs:
+  donor-window:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Finite saved-parent window proof and nonforce recording
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 -B scripts/pr16_donor_window_actions.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-donor-window-public-text
+          path: .local/pr16-donor-window/public/
+          if-no-files-found: error
+          retention-days: 90

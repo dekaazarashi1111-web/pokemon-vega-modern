@@ -1,0 +1,1045 @@
+{
+  "ability_safety": {
+    "effect_hooks": "PENDING_STAGE72",
+    "new_ids": [
+      312,
+      313,
+      314,
+      315,
+      316,
+      317
+    ],
+    "release_candidate": false,
+    "status": "PASS_SAFE_INDEXED_TABLES_ONLY",
+    "tables": {
+      "ability_descriptions": {
+        "address": "0x094A8DFC",
+        "count": 318,
+        "sha256": "d68eaef48e2168321ef9b6c580691e7b0da5fffc3e9f9555e92fdf3475d59393",
+        "stride": 4
+      },
+      "ability_mold_breaker_ignored": {
+        "address": "0x094A9434",
+        "count": 318,
+        "sha256": "24e49d78de60490b04e12187237d5c0e8ea6168c0146db7e8c7088a6fd1bb1fb",
+        "stride": 1
+      },
+      "ability_names": {
+        "address": "0x094A78DC",
+        "count": 318,
+        "sha256": "f8851fb0d0b69b771d68932ba55a054d53a9124010470aac70f20c160a0aa2d9",
+        "stride": 17
+      },
+      "ability_ratings": {
+        "address": "0x094A92F4",
+        "count": 318,
+        "sha256": "f825ae1c50d378278bb2c042218f00bdef86df2418b415139f3d60056cfb607f",
+        "stride": 1
+      }
+    }
+  },
+  "allocation": {
+    "audit": {
+      "all_allocation_rom_slices_compared": 74,
+      "changed_rom_bytes_inside_target": 383,
+      "content_hash_updated": true,
+      "end_exclusive": 22227936,
+      "full_target_allocation_slice_verified": true,
+      "non_target_allocation_count": 73,
+      "non_target_ledger_rows_unchanged": true,
+      "non_target_rom_slices_unchanged": true,
+      "output_full_slice_sha256": "6a7793e653bff4737082e94311c3967eef8a90cbe1f0bcaefdcb9e9bcdc99c5c",
+      "output_ledger_sha256": "814cb27f4a5028ddc9bb544b8f1aca7947ac9ba0fb67d638b70af54b17812cbf",
+      "overlap_count": 0,
+      "parent_full_slice_sha256": "ef91ae7d159891b40509fae674c9236a3b2e9d1142722d9cdd753be0c95c8c0b",
+      "parent_ledger_sha256": "3c685b4ea01d9ec6d18b4b3ec97fa83e1d6d4f79ed67cfba7617a9e019224fb8",
+      "size": 850544,
+      "start": 21377392,
+      "status": "PASS",
+      "target_name": "modernization_p04_species_runtime_stage70_payload",
+      "target_owner": "USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70",
+      "target_sequence": 73
+    },
+    "new_allocation_count": 0,
+    "output_sha256": "814cb27f4a5028ddc9bb544b8f1aca7947ac9ba0fb67d638b70af54b17812cbf",
+    "parent_sha256": "3c685b4ea01d9ec6d18b4b3ec97fa83e1d6d4f79ed67cfba7617a9e019224fb8",
+    "policy": "UPDATE_MUTATED_OWNER_CONTENT_HASH_PRESERVE_LAYOUT",
+    "target_owner_content_hash_changed": true
+  },
+  "bps": {
+    "path": "build/patches/stage70-to-stage71-modernization-p04-mega-runtime.bps",
+    "round_trip": true,
+    "sha256": "6c3a8877a25f17cd97977152bf90c401dea13f4f1cb20302eb9c0adbc889f487",
+    "size": 979,
+    "source_sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+    "target_sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb"
+  },
+  "change_allowlist": {
+    "allowed_byte_count": 784,
+    "changed_byte_count": 383,
+    "changed_offsets_sha256": "8e329ad2e504b6e9e0c52adf2fe6409bee0d3b10822db06d06a10f0bee7f4c3d",
+    "entries": [
+      {
+        "end_exclusive": 22020848,
+        "entry_hex": "fe00e70355060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_ABSOL_Z",
+        "rom_offset": 22020840
+      },
+      {
+        "end_exclusive": 22221672,
+        "entry_hex": "fe00000034000000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_ABSOL_Z",
+        "rom_offset": 22221664
+      },
+      {
+        "end_exclusive": 22139368,
+        "entry_hex": "fe00e80356060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_BARBARACLE",
+        "rom_offset": 22139360
+      },
+      {
+        "end_exclusive": 22221800,
+        "entry_hex": "fe000000d2030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_BARBARACLE",
+        "rom_offset": 22221792
+      },
+      {
+        "end_exclusive": 22215912,
+        "entry_hex": "fe00e90357060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_BAXCALIBUR",
+        "rom_offset": 22215904
+      },
+      {
+        "end_exclusive": 22221928,
+        "entry_hex": "fe00000028060000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_BAXCALIBUR",
+        "rom_offset": 22221920
+      },
+      {
+        "end_exclusive": 22122600,
+        "entry_hex": "fe00ea0358060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_CHANDELURE",
+        "rom_offset": 22122592
+      },
+      {
+        "end_exclusive": 22222056,
+        "entry_hex": "fe0000004f030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_CHANDELURE",
+        "rom_offset": 22222048
+      },
+      {
+        "end_exclusive": 22134632,
+        "entry_hex": "fe00eb0359060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_CHESNAUGHT",
+        "rom_offset": 22134624
+      },
+      {
+        "end_exclusive": 22222184,
+        "entry_hex": "fe000000ad030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_CHESNAUGHT",
+        "rom_offset": 22222176
+      },
+      {
+        "end_exclusive": 22097128,
+        "entry_hex": "fe00ec035a060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_CHIMECHO",
+        "rom_offset": 22097120
+      },
+      {
+        "end_exclusive": 22222312,
+        "entry_hex": "fe00000088020000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_CHIMECHO",
+        "rom_offset": 22222304
+      },
+      {
+        "end_exclusive": 22068712,
+        "entry_hex": "fe00ed035b060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_CLEFABLE",
+        "rom_offset": 22068704
+      },
+      {
+        "end_exclusive": 22222440,
+        "entry_hex": "fe000000aa010000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_CLEFABLE",
+        "rom_offset": 22222432
+      },
+      {
+        "end_exclusive": 22159848,
+        "entry_hex": "fe00ee035c060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_CRABOMINABLE",
+        "rom_offset": 22159840
+      },
+      {
+        "end_exclusive": 22222568,
+        "entry_hex": "fe00000072040000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_CRABOMINABLE",
+        "rom_offset": 22222560
+      },
+      {
+        "end_exclusive": 22033000,
+        "entry_hex": "fe00ef035d060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_DARKRAI",
+        "rom_offset": 22032992
+      },
+      {
+        "end_exclusive": 22222696,
+        "entry_hex": "fe00000093000000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_DARKRAI",
+        "rom_offset": 22222688
+      },
+      {
+        "end_exclusive": 22135016,
+        "entry_hex": "fe00f0035e060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_DELPHOX",
+        "rom_offset": 22135008
+      },
+      {
+        "end_exclusive": 22222824,
+        "entry_hex": "fe000000b0030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_DELPHOX",
+        "rom_offset": 22222816
+      },
+      {
+        "end_exclusive": 22139624,
+        "entry_hex": "fe00f1035f060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_DRAGALGE",
+        "rom_offset": 22139616
+      },
+      {
+        "end_exclusive": 22222952,
+        "entry_hex": "fe000000d4030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_DRAGALGE",
+        "rom_offset": 22222944
+      },
+      {
+        "end_exclusive": 22077416,
+        "entry_hex": "fe00f20360060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_DRAGONITE",
+        "rom_offset": 22077408
+      },
+      {
+        "end_exclusive": 22223080,
+        "entry_hex": "fe000000ee010000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_DRAGONITE",
+        "rom_offset": 22223072
+      },
+      {
+        "end_exclusive": 22164968,
+        "entry_hex": "fe00f30361060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_DRAMPA",
+        "rom_offset": 22164960
+      },
+      {
+        "end_exclusive": 22223208,
+        "entry_hex": "fe0000009a040000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_DRAMPA",
+        "rom_offset": 22223200
+      },
+      {
+        "end_exclusive": 22066792,
+        "entry_hex": "fe00f40362060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_EELEKTROSS",
+        "rom_offset": 22066784
+      },
+      {
+        "end_exclusive": 22223336,
+        "entry_hex": "fe0000009b010000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_EELEKTROSS",
+        "rom_offset": 22223328
+      },
+      {
+        "end_exclusive": 22111080,
+        "entry_hex": "fe00f50363060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_EMBOAR",
+        "rom_offset": 22111072
+      },
+      {
+        "end_exclusive": 22223464,
+        "entry_hex": "fe000000f5020000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_EMBOAR",
+        "rom_offset": 22223456
+      },
+      {
+        "end_exclusive": 22114920,
+        "entry_hex": "fe00f60364060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_EXCADRILL",
+        "rom_offset": 22114912
+      },
+      {
+        "end_exclusive": 22223592,
+        "entry_hex": "fe00000013030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_EXCADRILL",
+        "rom_offset": 22223584
+      },
+      {
+        "end_exclusive": 22186088,
+        "entry_hex": "fe00f70365060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_FALINKS",
+        "rom_offset": 22186080
+      },
+      {
+        "end_exclusive": 22223720,
+        "entry_hex": "fe0000003f050000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_FALINKS",
+        "rom_offset": 22223712
+      },
+      {
+        "end_exclusive": 22078568,
+        "entry_hex": "fe00f80366060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_FERALIGATR",
+        "rom_offset": 22078560
+      },
+      {
+        "end_exclusive": 22223848,
+        "entry_hex": "fe000000f7010000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_FERALIGATR",
+        "rom_offset": 22223840
+      },
+      {
+        "end_exclusive": 22145896,
+        "entry_hex": "fe00f90367060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_FLOETTE_ETERNAL",
+        "rom_offset": 22145888
+      },
+      {
+        "end_exclusive": 22223976,
+        "entry_hex": "fe00000005040000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_FLOETTE_ETERNAL",
+        "rom_offset": 22223968
+      },
+      {
+        "end_exclusive": 22109032,
+        "entry_hex": "fe00fa0368060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_FROSLASS",
+        "rom_offset": 22109024
+      },
+      {
+        "end_exclusive": 22224104,
+        "entry_hex": "fe000000e5020000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_FROSLASS",
+        "rom_offset": 22224096
+      },
+      {
+        "end_exclusive": 22031080,
+        "entry_hex": "fe00fb0369060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_GARCHOMP_Z",
+        "rom_offset": 22031072
+      },
+      {
+        "end_exclusive": 22224232,
+        "entry_hex": "fe00000084000000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_GARCHOMP_Z",
+        "rom_offset": 22224224
+      },
+      {
+        "end_exclusive": 22211944,
+        "entry_hex": "fe00fc036a060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_GLIMMORA",
+        "rom_offset": 22211936
+      },
+      {
+        "end_exclusive": 22224360,
+        "entry_hex": "fe00000009060000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_GLIMMORA",
+        "rom_offset": 22224352
+      },
+      {
+        "end_exclusive": 22163432,
+        "entry_hex": "fe00fd036b060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_GOLISOPOD",
+        "rom_offset": 22163424
+      },
+      {
+        "end_exclusive": 22224488,
+        "entry_hex": "fe0000008e040000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_GOLISOPOD",
+        "rom_offset": 22224480
+      },
+      {
+        "end_exclusive": 22123880,
+        "entry_hex": "fe00fe036c060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_GOLURK",
+        "rom_offset": 22123872
+      },
+      {
+        "end_exclusive": 22224616,
+        "entry_hex": "fe00000059030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_GOLURK",
+        "rom_offset": 22224608
+      },
+      {
+        "end_exclusive": 22135400,
+        "entry_hex": "fe00ff036d060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_GRENINJA",
+        "rom_offset": 22135392
+      },
+      {
+        "end_exclusive": 22224744,
+        "entry_hex": "fe000000b3030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_GRENINJA",
+        "rom_offset": 22224736
+      },
+      {
+        "end_exclusive": 22140904,
+        "entry_hex": "fe0000046e060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_HAWLUCHA",
+        "rom_offset": 22140896
+      },
+      {
+        "end_exclusive": 22224872,
+        "entry_hex": "fe000000de030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_HAWLUCHA",
+        "rom_offset": 22224864
+      },
+      {
+        "end_exclusive": 22065768,
+        "entry_hex": "fe0001046f060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_HEATRAN",
+        "rom_offset": 22065760
+      },
+      {
+        "end_exclusive": 22225000,
+        "entry_hex": "fe00000093010000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_HEATRAN",
+        "rom_offset": 22224992
+      },
+      {
+        "end_exclusive": 22015848,
+        "entry_hex": "fe00020470060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_LUCARIO_Z",
+        "rom_offset": 22015840
+      },
+      {
+        "end_exclusive": 22225128,
+        "entry_hex": "fe0000000d000000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_LUCARIO_Z",
+        "rom_offset": 22225120
+      },
+      {
+        "end_exclusive": 22167656,
+        "entry_hex": "fe00030471060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_MAGEARNA",
+        "rom_offset": 22167648
+      },
+      {
+        "end_exclusive": 22225256,
+        "entry_hex": "fe000000af040000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_MAGEARNA",
+        "rom_offset": 22225248
+      },
+      {
+        "end_exclusive": 22174696,
+        "entry_hex": "fe00030472060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_MAGEARNA_ORIGINAL",
+        "rom_offset": 22174688
+      },
+      {
+        "end_exclusive": 22225384,
+        "entry_hex": "fe000000e6040000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_MAGEARNA_ORIGINAL",
+        "rom_offset": 22225376
+      },
+      {
+        "end_exclusive": 22139112,
+        "entry_hex": "fe00040473060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_MALAMAR",
+        "rom_offset": 22139104
+      },
+      {
+        "end_exclusive": 22225512,
+        "entry_hex": "fe000000d0030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_MALAMAR",
+        "rom_offset": 22225504
+      },
+      {
+        "end_exclusive": 22077800,
+        "entry_hex": "fe00050474060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_MEGANIUM",
+        "rom_offset": 22077792
+      },
+      {
+        "end_exclusive": 22225640,
+        "entry_hex": "fe000000f1010000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_MEGANIUM",
+        "rom_offset": 22225632
+      },
+      {
+        "end_exclusive": 22143848,
+        "entry_hex": "fe00060475060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_MEOWSTIC_F",
+        "rom_offset": 22143840
+      },
+      {
+        "end_exclusive": 22225768,
+        "entry_hex": "fe000000f5030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_MEOWSTIC_F",
+        "rom_offset": 22225760
+      },
+      {
+        "end_exclusive": 22137960,
+        "entry_hex": "fe00060476060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_MEOWSTIC_M",
+        "rom_offset": 22137952
+      },
+      {
+        "end_exclusive": 22225896,
+        "entry_hex": "fe000000c7030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_MEOWSTIC_M",
+        "rom_offset": 22225888
+      },
+      {
+        "end_exclusive": 22136680,
+        "entry_hex": "fe00070477060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_PYROAR",
+        "rom_offset": 22136672
+      },
+      {
+        "end_exclusive": 22226024,
+        "entry_hex": "fe000000bd030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_PYROAR",
+        "rom_offset": 22226016
+      },
+      {
+        "end_exclusive": 22017512,
+        "entry_hex": "fe00080478060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_RAICHU_X",
+        "rom_offset": 22017504
+      },
+      {
+        "end_exclusive": 22226152,
+        "entry_hex": "fe0000001a000000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_RAICHU_X",
+        "rom_offset": 22226144
+      },
+      {
+        "end_exclusive": 22017520,
+        "entry_hex": "fe00090479060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_RAICHU_Y",
+        "rom_offset": 22017512
+      },
+      {
+        "end_exclusive": 22226280,
+        "entry_hex": "fe0000001a000000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_RAICHU_Y",
+        "rom_offset": 22226272
+      },
+      {
+        "end_exclusive": 22116840,
+        "entry_hex": "fe000a047a060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_SCOLIPEDE",
+        "rom_offset": 22116832
+      },
+      {
+        "end_exclusive": 22226408,
+        "entry_hex": "fe00000022030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_SCOLIPEDE",
+        "rom_offset": 22226400
+      },
+      {
+        "end_exclusive": 22209512,
+        "entry_hex": "fe000b047b060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_SCOVILLAIN",
+        "rom_offset": 22209504
+      },
+      {
+        "end_exclusive": 22226536,
+        "entry_hex": "fe000000f6050000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_SCOVILLAIN",
+        "rom_offset": 22226528
+      },
+      {
+        "end_exclusive": 22062184,
+        "entry_hex": "fe000c047c060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_SCRAFTY",
+        "rom_offset": 22062176
+      },
+      {
+        "end_exclusive": 22226664,
+        "entry_hex": "fe00000077010000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_SCRAFTY",
+        "rom_offset": 22226656
+      },
+      {
+        "end_exclusive": 22017768,
+        "entry_hex": "fe000d047d060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_SKARMORY",
+        "rom_offset": 22017760
+      },
+      {
+        "end_exclusive": 22226792,
+        "entry_hex": "fe0000001c000000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_SKARMORY",
+        "rom_offset": 22226784
+      },
+      {
+        "end_exclusive": 22102248,
+        "entry_hex": "fe000e047e060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_STARAPTOR",
+        "rom_offset": 22102240
+      },
+      {
+        "end_exclusive": 22226920,
+        "entry_hex": "fe000000b0020000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_STARAPTOR",
+        "rom_offset": 22226912
+      },
+      {
+        "end_exclusive": 22022120,
+        "entry_hex": "fe000f047f060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_STARMIE",
+        "rom_offset": 22022112
+      },
+      {
+        "end_exclusive": 22227048,
+        "entry_hex": "fe0000003e000000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_STARMIE",
+        "rom_offset": 22227040
+      },
+      {
+        "end_exclusive": 22212968,
+        "entry_hex": "fe00100480060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_TATSUGIRI_CURLY",
+        "rom_offset": 22212960
+      },
+      {
+        "end_exclusive": 22227176,
+        "entry_hex": "fe00000011060000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_TATSUGIRI_CURLY",
+        "rom_offset": 22227168
+      },
+      {
+        "end_exclusive": 22213096,
+        "entry_hex": "fe00100481060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_TATSUGIRI_DROOPY",
+        "rom_offset": 22213088
+      },
+      {
+        "end_exclusive": 22227304,
+        "entry_hex": "fe00000012060000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_TATSUGIRI_DROOPY",
+        "rom_offset": 22227296
+      },
+      {
+        "end_exclusive": 22213224,
+        "entry_hex": "fe00100482060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_TATSUGIRI_STRETCHY",
+        "rom_offset": 22213216
+      },
+      {
+        "end_exclusive": 22227432,
+        "entry_hex": "fe00000013060000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_TATSUGIRI_STRETCHY",
+        "rom_offset": 22227424
+      },
+      {
+        "end_exclusive": 22072936,
+        "entry_hex": "fe00110483060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_VICTREEBEL",
+        "rom_offset": 22072928
+      },
+      {
+        "end_exclusive": 22227560,
+        "entry_hex": "fe000000cb010000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_VICTREEBEL",
+        "rom_offset": 22227552
+      },
+      {
+        "end_exclusive": 22175336,
+        "entry_hex": "fe00120484060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_ZERAORA",
+        "rom_offset": 22175328
+      },
+      {
+        "end_exclusive": 22227688,
+        "entry_hex": "fe000000eb040000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_ZERAORA",
+        "rom_offset": 22227680
+      },
+      {
+        "end_exclusive": 22144616,
+        "entry_hex": "fe00130485060000",
+        "kind": "forward",
+        "record_key": "P04_MEGA_ZYGARDE_COMPLETE",
+        "rom_offset": 22144608
+      },
+      {
+        "end_exclusive": 22227816,
+        "entry_hex": "fe000000fb030000",
+        "kind": "reverse",
+        "record_key": "P04_MEGA_ZYGARDE_COMPLETE",
+        "rom_offset": 22227808
+      }
+    ],
+    "entry_count": 98,
+    "outside_allowlist_count": 0
+  },
+  "checkpoint_marker": "STAGE71_NOT_RELEASE_CANDIDATE_STAGE72_REQUIRED",
+  "compiled_engine": {
+    "assurance_boundary": {
+      "mode_matrix_exact_runtime": "PENDING_SINGLE_FINAL_MGBA",
+      "source_and_static_rom_preimage": "PASS"
+    },
+    "audited_function_span_count": 12,
+    "derivation": "145 << 2",
+    "function_span_sha256": "123c105c923b015fff07fd3ddbb0bdd4d0729da702a5e2e4141e36a3efd07367",
+    "function_spans": [
+      {
+        "end_exclusive": "0x090D05EC",
+        "sha256": "95c01d303f2f3797323ba44088a8f9c0e3d97503ec8e837cab23fff951f1ca65",
+        "size": 3300,
+        "start": "0x090CF908",
+        "symbol": "BattleBeginFirstTurn"
+      },
+      {
+        "end_exclusive": "0x09100C40",
+        "sha256": "d78b50f907d7cef2acc85c182ba422287a5342dcd8d422ba271a7c28d37b43a3",
+        "size": 676,
+        "start": "0x0910099C",
+        "symbol": "TryFormRevert"
+      },
+      {
+        "end_exclusive": "0x091074D4",
+        "sha256": "638565e4f37338c2f6a67de0111797a9567bae23826a69c5a17905e616281330",
+        "size": 2080,
+        "start": "0x09106CB4",
+        "symbol": "atk1B_cleareffectsonfaint"
+      },
+      {
+        "end_exclusive": "0x09114CF0",
+        "sha256": "193e12989ebe44a577625b47024de4b4d3d15e0a53991ca5060dfdb8a597f031",
+        "size": 268,
+        "start": "0x09114BE4",
+        "symbol": "CanMegaEvolve"
+      },
+      {
+        "end_exclusive": "0x09114D78",
+        "sha256": "a03442da37774671b992ed5c16ced90f7a8b35e72aeea17b9823ad265032740e",
+        "size": 136,
+        "start": "0x09114CF0",
+        "symbol": "GetMegaSpecies"
+      },
+      {
+        "end_exclusive": "0x09114EFC",
+        "sha256": "e7e2f49eeeebf93e9d7e769030bd15b8616d57265935cd8edea13299b871b15b",
+        "size": 288,
+        "start": "0x09114DDC",
+        "symbol": "DoMegaEvolution"
+      },
+      {
+        "end_exclusive": "0x09114FB8",
+        "sha256": "f3ede65853ab4dc056afb4f76d73e30ac689034c50404ff4c93d7db94ff28991",
+        "size": 68,
+        "start": "0x09114F74",
+        "symbol": "TryRevertMega"
+      },
+      {
+        "end_exclusive": "0x09114FD0",
+        "sha256": "39ae9aff879e2b248d42b9981b7fbb78608dea8640507aca1738723206e3c40c",
+        "size": 24,
+        "start": "0x09114FB8",
+        "symbol": "MegaRevert"
+      },
+      {
+        "end_exclusive": "0x09114FF0",
+        "sha256": "a7e2a4a40a526b590b2610887ab6f51c44ed0d269ae8f58537b519422b988602",
+        "size": 32,
+        "start": "0x09114FD0",
+        "symbol": "MegaEvolutionEnabled"
+      },
+      {
+        "end_exclusive": "0x09115098",
+        "sha256": "fa6996e52a4d15d279a775a7fb58a3d95972f015fd1ddf11b610b086da8321b9",
+        "size": 168,
+        "start": "0x09114FF0",
+        "symbol": "BankMegaEvolved"
+      },
+      {
+        "end_exclusive": "0x09126B8C",
+        "sha256": "350a8b0fb1d0cf4bf422b8003753d502586125b83e682a34bc2dffbd5dd82272",
+        "size": 44,
+        "start": "0x09126B60",
+        "symbol": "VegaBattlePolicyCanMega"
+      },
+      {
+        "end_exclusive": "0x09126BB4",
+        "sha256": "952ce6f4e17788fab56a87b54c7602e30f8a470140a0995d607616f251ca7b35",
+        "size": 40,
+        "start": "0x09126B8C",
+        "symbol": "VegaBattlePolicyMarkMega"
+      }
+    ],
+    "item_id": 580,
+    "status": "PASS",
+    "thumb_halfwords": [
+      {
+        "address": "0x09114AF4",
+        "halfword": "0x2191",
+        "meaning": "movs r1,#145"
+      },
+      {
+        "address": "0x09114AFA",
+        "halfword": "0x0089",
+        "meaning": "lsls r1,r1,#2 => 580"
+      },
+      {
+        "address": "0x09114B02",
+        "halfword": "0x2091",
+        "meaning": "movs r0,#145"
+      },
+      {
+        "address": "0x09114B04",
+        "halfword": "0x0080",
+        "meaning": "lsls r0,r0,#2 => 580"
+      },
+      {
+        "address": "0x09114B42",
+        "halfword": "0x2091",
+        "meaning": "movs r0,#145"
+      },
+      {
+        "address": "0x09114B48",
+        "halfword": "0x0080",
+        "meaning": "lsls r0,r0,#2 => 580"
+      },
+      {
+        "address": "0x09114B52",
+        "halfword": "0x2091",
+        "meaning": "movs r0,#145"
+      },
+      {
+        "address": "0x09114B54",
+        "halfword": "0x0080",
+        "meaning": "lsls r0,r0,#2 => 580"
+      }
+    ]
+  },
+  "done": false,
+  "evolution_table": {
+    "address": "0x094FE8E0",
+    "count": 1670,
+    "existing_mega_entries_preserved": 80,
+    "existing_prefix_sha256": "3fc4c8cd5d21c5b7f1fa2972223288ec1040f115321298a19e168694ee45e002",
+    "final_mega_entry_count": 178,
+    "forward_entries_added": 49,
+    "pointer_site_count": 39,
+    "pointer_site_offsets": [
+      271964,
+      17652044,
+      17765272,
+      17765692,
+      17766044,
+      17766120,
+      17766232,
+      17766284,
+      17766332,
+      17766544,
+      17766632,
+      17766724,
+      17774692,
+      17775252,
+      17776588,
+      17806888,
+      17808044,
+      17808728,
+      17809008,
+      17809440,
+      17911004,
+      17911148,
+      17911648,
+      17911728,
+      17912012,
+      17912168,
+      17912220,
+      17912344,
+      18024404,
+      18024492,
+      18024624,
+      18024720,
+      18024776,
+      18024824,
+      18027032,
+      18027096,
+      18027172,
+      18027324,
+      18027888
+    ],
+    "reverse_entries_added": 49,
+    "stage70_sha256": "54ea872fe071c4f8c42a0adc46cc5407c6a0146cd8b76ad4544b8c8aefd7e15a",
+    "stage71_sha256": "529a608b15677baa74532baa7dfa3233047697d97a269f1b84653fc2fdd9a07e",
+    "stride": 128
+  },
+  "generated_rows": {
+    "path": "generated/runtime/modernization_p04_mega_runtime_rows.bin",
+    "sha256": "df370cff1c5163147e14c7b3c6eb1ca5f86142e6ceb7c669116b6b5cde59de6c",
+    "size": 784
+  },
+  "mapping": {
+    "count": 49,
+    "path": "content/modernization/p04_mega_runtime_mapping.json",
+    "sha256": "31e4a36301dda169f7b894a62ee823d00ebd1374945a33f1478f3c9eecf5401f"
+  },
+  "output": {
+    "path": "build/stages/71_modernization_p04_mega_runtime.gba",
+    "sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+    "size": 33554432
+  },
+  "parent": {
+    "path": "build/stages/70_modernization_p04_species_runtime.gba",
+    "sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+    "size": 33554432,
+    "stage": 70
+  },
+  "release_candidate": false,
+  "remaining_work": {
+    "exact_mgba_final_parent_once": "NOT_RUN",
+    "new_ability_effect_hooks_stage72": [
+      312,
+      313,
+      314,
+      315,
+      316,
+      317
+    ],
+    "release_candidate_after_stage72_and_final_gate": false
+  },
+  "schema_version": 1,
+  "stage": 71,
+  "status": "CHECKPOINT_STAGE72_ABILITY_EFFECTS_PENDING",
+  "task": "USER-MODERNIZATION-P04-MEGA-RUNTIME-STAGE71",
+  "validation": {
+    "allocation_full_owner_slice": "PASS",
+    "battle_cleanup": "PASS_EXISTING_OWNER_PLUS_REVERSE_ROWS_HOST_ORACLE",
+    "exact_mgba_final_parent_once": "NOT_RUN",
+    "existing_mega_regression": "PASS_STATIC_BYTE_PRESERVATION",
+    "faint_revert_keep_usage_done": "PASS_SOURCE_COMPILED_SPAN_AND_HOST_ORACLE",
+    "gate_order": {
+      "order": [
+        "PROJECT_VEGA_BATTLE_POLICY_CAN_MEGA",
+        "UPSTREAM_MODE_KEYSTONE_GATE",
+        "EVOLUTION_ROW_EXACT_STONE",
+        "PROJECT_AND_UPSTREAM_USAGE_MARKS"
+      ],
+      "status": "PASS_SOURCE_AND_COMPILED_PREIMAGE"
+    },
+    "host_static_tests": "REQUIRED_SEPARATE_COMMAND",
+    "keystone_by_mode_after_project_policy": {
+      "frontier": true,
+      "link": true,
+      "normal_owned": true,
+      "normal_unowned": false,
+      "status": "PASS_SOURCE_COMPILED_SPAN_AND_HOST_MODEL"
+    },
+    "mapping_49": "PASS",
+    "project_policy": {
+      "configured_mega_mode": "ELIGIBLE_SUBJECT_TO_REMAINING_GATES",
+      "standard_pending_mode": "MEGA_DENIED",
+      "status": "PASS_SOURCE_COMPILED_SPAN_AND_HOST_MODEL"
+    },
+    "reverse_49": "PASS",
+    "special_form_guard": "PASS",
+    "switch_retains_mega": "PASS_SOURCE_AND_HOST_ORACLE",
+    "usage_by_mode": {
+      "mega_brawl_compiled_project_side_used": "EXACT_RUNTIME_PENDING_SINGLE_FINAL_MGBA",
+      "mega_brawl_upstream_no_done_mark": "PASS_SOURCE_AND_HOST_MODEL",
+      "normal_same_owner_one_use": "PASS_SOURCE_AND_HOST_MODEL",
+      "partner_separate_owner": "PASS_SOURCE_AND_HOST_MODEL"
+    },
+    "wrong_stone_rejected": "PASS_ALL_OTHER_NEW_STONES"
+  }
+}

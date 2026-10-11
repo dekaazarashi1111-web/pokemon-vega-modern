@@ -1,0 +1,1 @@
+SECTIONS { . = 0x95ff880; .text : { *(.text*) *(.rodata*) } .data : { *(.data*) } .bss : { *(.bss*) *(COMMON) } /DISCARD/ : { *(.comment) *(.ARM.attributes) *(.ARM.exidx*) } ASSERT(SIZEOF(.data)==0,"data forbidden") ASSERT(SIZEOF(.bss)==0,"BSS forbidden") }

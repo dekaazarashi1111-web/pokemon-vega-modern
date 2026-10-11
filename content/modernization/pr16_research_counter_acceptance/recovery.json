@@ -1,0 +1,45 @@
+{
+  "accepted_case_reruns": 0,
+  "causes_ja": [
+    "終了後ファイル131088byteと不変の入力Flash131072byteを全ファイル比較して誤拒否。",
+    "旧試験loaderが終了後ファイルを入力として使用。旧negative60件は陽性前提がなく、見かけのPASSを受入しない。",
+    "旧unit tracebackのcheckout絶対pathを最終index guardが拒否。raw artifactを保持し、trackedコピーだけroot表記を正規化する。"
+  ],
+  "failed_run_conclusion_rewritten": false,
+  "new_arm_compiles": 0,
+  "new_guard_processes": 0,
+  "new_host_compiles": 0,
+  "new_native_processes": 0,
+  "new_rom_builds": 0,
+  "original_artifact": {
+    "digest": "sha256:829b961d59446c3d0877e028af22fb55f8ed6fb4ff9c2e2f2199aeb9902fc7bf",
+    "id": 10920589167,
+    "name": "pr16-research-counter-numeric",
+    "size_in_bytes": 120577,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "9ec402333e9c5c0defba6073d6f20d551086c6cb",
+      "id": 36286898098,
+      "repository_id": 1358127462
+    }
+  },
+  "original_run": {
+    "conclusion": "failure",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "9ec402333e9c5c0defba6073d6f20d551086c6cb",
+    "id": 36286898098,
+    "path": ".github/workflows/pr16-research-counter-numeric.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "original_steps": {
+    "New counter numeric boundaries only": "failure",
+    "Non-force evidence checkpoint": "skipped",
+    "Preserve measurement and handoff": "success",
+    "Run actions/upload-artifact@v4": "success",
+    "Source transfer identity": "success",
+    "Task graph and exact scoped final index": "failure"
+  },
+  "post_close_scope_ja": "元の終了後ファイルはsize/hashのみ残りbytesは未保存。16byte追加部分の意味やprefix不変を後付けで主張しない。今回受入は原本に記録された全観測点の実コアFlash131072byte不変。修正後driverのprefix検査は将来用で、今回再実行なし。"
+}

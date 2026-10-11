@@ -1,0 +1,257 @@
+{
+  "active_baseline_changed": false,
+  "candidate": {
+    "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+    "size": 33554432
+  },
+  "candidate_stage": 84,
+  "clean_rom_regeneration_verified": false,
+  "crc32": "5D95817C",
+  "domains": {
+    "battle_policy": {
+      "classification": null,
+      "original_archive": "domain-battle_policy.zip",
+      "runner": {
+        "path": "tools/mgba_battle_policy_smoke.c",
+        "sha256": "3369f45a958622045a9e963b1de61f5b5e186e288d04fb10fd3e90b633185ca3",
+        "size": 90064
+      },
+      "status": "PASS"
+    },
+    "floette": {
+      "classification": "PRODUCTION_ROM_FUNCTIONS_ONLY",
+      "original_archive": "domain-floette.zip",
+      "runner": {
+        "path": "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
+        "sha256": "256e84f60a672374359e501cbbe689b081c0f2770e22a5b1edef334fcb60afd2",
+        "size": 28131
+      },
+      "status": "PASS"
+    },
+    "mega_shop": {
+      "classification": "PRODUCTION_ROM_FUNCTIONS_ONLY",
+      "original_archive": "domain-mega_shop.zip",
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_mega_shop_smoke.c",
+        "sha256": "94edf1e43c8ab52ee4a3bf34e3a0252ba78c1a166aaac5e51536ce5da16b1dbf",
+        "size": 167
+      },
+      "status": "PASS"
+    },
+    "p02": {
+      "classification": "STAGE71_EXACT_ROM_NORMAL_INPUT_AND_FRESH_CORE",
+      "original_archive": "domain-p02.zip",
+      "runner": {
+        "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
+        "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+        "size": 39669
+      },
+      "status": "PASS"
+    },
+    "p03": {
+      "classification": "LATEST_CUMULATIVE_P03_REPRESENTATIVE_DIRECT_CALL",
+      "original_archive": "domain-p03.zip",
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_p03_smoke.c",
+        "sha256": "8b3c5b9f4e5997518569f928aebd480d9496963333ba6a1eea920b464db1545e",
+        "size": 24367
+      },
+      "status": "PASS"
+    },
+    "p04_mega_runtime": {
+      "classification": "DIRECT_CALL_BOUNDED",
+      "original_archive": "domain-p04_mega_runtime.zip",
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_mega_runtime_smoke.c",
+        "sha256": "370cfae3aa66875e4245e4ae9c29efe912d7cc1a090add2635e3043d8c30e0d7",
+        "size": 9514
+      },
+      "status": "PASS"
+    },
+    "p05": {
+      "classification": "STAGE78_P05_RUNTIME_DIRECT_CALL",
+      "original_archive": "domain-p05.zip",
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_p05_runtime_smoke.c",
+        "sha256": "682c9c63384f555d6c72e25d0a7f9b7c2a3a789c6e2b856974d355e86f6f3091",
+        "size": 63261
+      },
+      "status": "PASS"
+    }
+  },
+  "evidence_directory": "content/modernization/p08_final_evidence/34477344071",
+  "fresh_domain_processes": 7,
+  "fresh_p06_processes": 8,
+  "full_p03_acceptance": false,
+  "full_p05_acceptance": false,
+  "full_p06_acceptance": false,
+  "full_p07_acceptance": false,
+  "historical_scope_relabelled": false,
+  "originals": {
+    "candidate": {
+      "artifact_id": 10152134447,
+      "sha256": "ed107486691eac003c5029272edeb5b2e685ed36c9d53024e42fd19bd0866860",
+      "size": 282003
+    },
+    "domain-battle_policy": {
+      "artifact_id": 10152204196,
+      "sha256": "60072dbc757b7fbe07223dcaa4c694bdf17afbd64598f01ba9892375006acbc7",
+      "size": 11337
+    },
+    "domain-floette": {
+      "artifact_id": 10152224970,
+      "sha256": "8850643a77e6d06ea074603138a5c95b0f89e85797935bb371b2b3b100ee7f78",
+      "size": 9910
+    },
+    "domain-mega_shop": {
+      "artifact_id": 10152184535,
+      "sha256": "d582631a552aa5b5a3d3baae07f642eb721e1d6c665c4e9a3d37643a54d4a7aa",
+      "size": 10126
+    },
+    "domain-p02": {
+      "artifact_id": 10152220315,
+      "sha256": "c1a69b93eaf1bc7bbe75bb2291e33ecce86c367a85b54b3def7667027c4b36fb",
+      "size": 10470
+    },
+    "domain-p03": {
+      "artifact_id": 10152170863,
+      "sha256": "75515c30a914192bee1fda5cb661dd9a67a487a7ca9bb087df371966f4fa0074",
+      "size": 9672
+    },
+    "domain-p04_mega_runtime": {
+      "artifact_id": 10152172406,
+      "sha256": "10a5125ecfeb1d3afcb1dd50a0c0a068048764c7f2fc72674be6c1c156288b4a",
+      "size": 9606
+    },
+    "domain-p05": {
+      "artifact_id": 10152196002,
+      "sha256": "eeaaf168dbc48700e815f1ecd87381150e86dff2820068cfe463bb22deb6e7c7",
+      "size": 10017
+    },
+    "merged": {
+      "artifact_id": 10152265628,
+      "sha256": "51dc5b43f568c10d188aa4d0da7177b993f64ef1ac84fd6748ec677e37bede70",
+      "size": 11249
+    }
+  },
+  "p06_adopted_fields": 3,
+  "p06_adopted_species": 2,
+  "p06_core_instances": 24,
+  "p06_original_run": 34444010444,
+  "p06_phase_requirements_accepted": [
+    "adopted_three_fields_only",
+    "existing_and_new_slot_identity",
+    "native_stat_recalculation",
+    "normal_save_and_cold_continue"
+  ],
+  "p06_unaccepted_scope": [
+    "adopted_passive_battle_effects_and_applicable_phase_UI_integration"
+  ],
+  "patches": {
+    "active_baseline_changed": false,
+    "artifacts": {
+      "stage80-to-stage84.bps": {
+        "patch": {
+          "sha256": "9be63cbf93363d29b303778a57894325914dcb2c685cead6acfdc32b51eb4d3f",
+          "size": 434
+        },
+        "roundtrip_verified": true,
+        "source": {
+          "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+          "size": 33554432
+        },
+        "target": {
+          "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+          "size": 33554432
+        }
+      },
+      "stage83-to-stage84.bps": {
+        "patch": {
+          "sha256": "386092e4d0e2166a7c1b6b8a962c077747f95404344201dbb584faa673e6cd45",
+          "size": 35
+        },
+        "roundtrip_verified": true,
+        "source": {
+          "sha256": "09e9d8cf085d175299b58e93347e3beb2467c3c09016130f7d35ce033fa50096",
+          "size": 33554432
+        },
+        "target": {
+          "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+          "size": 33554432
+        }
+      },
+      "stage84-to-stage80.bps": {
+        "patch": {
+          "sha256": "5252ab57273912ce8adb23b23b8a0865f9dc4cb111523edc142eb7699975f206",
+          "size": 434
+        },
+        "roundtrip_verified": true,
+        "source": {
+          "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+          "size": 33554432
+        },
+        "target": {
+          "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+          "size": 33554432
+        }
+      },
+      "stage84-to-stage83.bps": {
+        "patch": {
+          "sha256": "9839f6d994868dbbcea75e6f636e64984b7e18593e890140d7aab8422161ffd8",
+          "size": 35
+        },
+        "roundtrip_verified": true,
+        "source": {
+          "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+          "size": 33554432
+        },
+        "target": {
+          "sha256": "09e9d8cf085d175299b58e93347e3beb2467c3c09016130f7d35ce033fa50096",
+          "size": 33554432
+        }
+      }
+    },
+    "candidate": {
+      "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+      "size": 33554432
+    },
+    "clean_rom_patch_included": false,
+    "clean_rom_regeneration_verified": false,
+    "crc32": "5D95817C",
+    "release_ready": false,
+    "rom_files_included": false,
+    "save_files_included": false,
+    "schema_version": 1,
+    "status": "ENGINEERING_HANDOFF_NOT_RELEASE"
+  },
+  "plan_fingerprint": "9cdfdd8fa5c0177e8f2278ebadc1e51647fdc6b184339939cd27c973d02745d4",
+  "protection": {
+    "baseline_changed": false,
+    "full_index_guard_exit": 1,
+    "full_index_guard_pass": false,
+    "full_index_guard_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "full_index_guard_stdout_sha256": "546157bfc80127202558783adc987973a4cb2fc6dcc7e7c80fcd2326e99d8b79",
+    "guard_disabled": false,
+    "originals_deleted": false,
+    "tracked_rom_save": {
+      ".local/60_wild_species_root_repair.srm": {
+        "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+        "size": 131072
+      },
+      "build/stages/78_modernization_p05_eelevate_switch_ai.gba": {
+        "sha256": "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b",
+        "size": 33554432
+      },
+      "build/stages/80_modernization_runtime_boundary_repair.gba": {
+        "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+        "size": 33554432
+      }
+    },
+    "visibility_changed": false
+  },
+  "release_ready": false,
+  "schema_version": 1,
+  "source_head_sha": "4d7365c7144cdda3ee15fca7c5cb365c87e7621d",
+  "source_run_id": 34477344071,
+  "status": "SCOPED_FINAL_CANDIDATE_ACCEPTED_NOT_RELEASE"
+}

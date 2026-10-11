@@ -1,0 +1,171 @@
+{
+  "arm_compiler_version": "clang version 17.0.0 (https://github.com/swiftlang/llvm-project.git 10999b6d034fe318f3d56c83bddb6572593a8bb0)\nTarget: x86_64-unknown-linux-gnu\nThread model: posix\nInstalledDir: /usr/local/swift/usr/bin\n",
+  "candidate_assembly_implementation": "clang --target=arm-none-eabi -mcpu=arm7tdmi -mthumb; ld.lld; llvm-objcopy",
+  "compiler_version": "cc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "counts": {
+    "accepted_matrix_reruns": 0,
+    "earning_prefix_executions": 1,
+    "final_patch_tests": 23,
+    "final_ui_only_executions": 1,
+    "host_write_guard_processes": 7,
+    "new_native_fresh_cores": 8,
+    "new_native_processes": 5,
+    "new_oracle_tests": 120,
+    "old_arm_rebuilds": 0,
+    "production_thumb_assemblies": 4,
+    "production_thumb_links": 4,
+    "readonly_disassembly_wrappers": 2,
+    "spend_development_executions": 3,
+    "strict_host_compiles": 4
+  },
+  "failures_preserved": [
+    {
+      "accepted": false,
+      "cause": "Observer expected pixel base0x280, but accepted ROM already used0x38; stopped before spending.",
+      "native_returncode": 1,
+      "trial": "spend-1"
+    },
+    {
+      "cause": "Monetary logic passed; top border clipped and old dialogue visible behind menu.",
+      "native_returncode": 0,
+      "trial": "spend-2",
+      "ui_accepted": false
+    },
+    {
+      "cause": "Monetary logic and Continue passed; single-tile margins from the wide dialogue frame remained.",
+      "monetary_evidence_reused": true,
+      "native_returncode": 0,
+      "trial": "spend-3",
+      "ui_accepted": false
+    }
+  ],
+  "final_impact": {
+    "after": 181,
+    "before": 253,
+    "changed_bytes": 1,
+    "changed_offset": 32813104,
+    "from_candidate": "985f5897214830b8db4cd0c9afc4a1c5dadf1ecb19f3b03bf2f9d9e958699d51",
+    "new_earnings": 0,
+    "new_purchases": 0,
+    "new_saves": 0,
+    "to_candidate": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842"
+  },
+  "final_link_note": "ld.lld reported no _start; this ROM thunk has a fixed load address and no ELF process entry, so no entry is needed. Not a native runtime warning.",
+  "final_visual_screens": 12,
+  "fixed_inputs": [
+    {
+      "archive": {
+        "sha256": "7d3de78d4e852583eb35551076021630c1343aa623e91fe1529d73f4cf1471ed",
+        "size": 17366330
+      },
+      "artifact_id": 10898510128,
+      "run_id": 36218655601
+    },
+    {
+      "archive": {
+        "sha256": "a6aeccb72fa15411d956b418ca5f030aa5020a466303a25e0f8814ba2eeb5c4d",
+        "size": 102586759
+      },
+      "artifact_id": 10898620034,
+      "run_id": 36218655601
+    }
+  ],
+  "guard_reuse": {
+    "common_prefix": {
+      "sha256": "3f504db61a26ca743210288099a000db85b127190c4cf5c397d8d5a60626dcde",
+      "size": 60168
+    },
+    "comparison": "BYTE_IDENTICAL_AFTER_CANDIDATE_LITERAL_NORMALIZATION_ONLY",
+    "initial_generated_source": {
+      "sha256": "e3f80c27065eaf4c970445c8b259757b037cee342b52dbdfab6c5d8f3b869391",
+      "size": 69723
+    },
+    "later_guard_reruns": 0
+  },
+  "host_compile_command": [
+    "cc",
+    "-std=c11",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-misleading-indentation",
+    "-Itools",
+    "-I.",
+    "-I<runtime>/include",
+    "<generated.c>",
+    "-L<runtime>/lib",
+    "-lmgba",
+    "-lm",
+    "-Wl,--allow-shlib-undefined",
+    "-o",
+    "<private-runner>"
+  ],
+  "measurement_environment": "LOCAL_FROM_FIXED_GITHUB_ARTIFACT_RUNTIME_NOT_ACTIONS_NATIVE",
+  "monetary_candidate_visual_accepted": false,
+  "native_execution_paths_private": true,
+  "natural_story_progress_accepted": false,
+  "natural_travel_accepted": false,
+  "private_rom_save_or_image_tracked": false,
+  "raw_screen_retention_ja": "PPM原本は本会話の作業環境に保持。GitHubには画面hash/所見とnative stdoutを保存。GitHub Actionsで撮影/永続artifact化したとは主張しない。",
+  "raw_sources": {
+    "initial": {
+      "sha256": "e3f80c27065eaf4c970445c8b259757b037cee342b52dbdfab6c5d8f3b869391",
+      "size": 69723
+    },
+    "logical": {
+      "sha256": "5e331e0d6d224ac6635dd47ee3985d9290d3424a0176ffa26c9b83c8048ee9bf",
+      "size": 69722
+    },
+    "monetary": {
+      "sha256": "1925229831010f6478761fdf47aea17139a8899a6ac1d41281a5f4a0a6d97a78",
+      "size": 69832
+    },
+    "ui": {
+      "sha256": "1b5cb26fd38f244b8d9c9fb2ba46101c74c3e02a99a592adcce6bc14c073c449",
+      "size": 73236
+    }
+  },
+  "release_ready": false,
+  "retained_saves": {
+    "earned": {
+      "complete_file": {
+        "sha256": "b51c88f69600a8cbf85a152bb96aec5c6844df7cf299e9c0a464f324dba3ebba",
+        "size": 131088
+      },
+      "flash_prefix": {
+        "sha256": "4b3ab306a49b58ef43a6b0c35a5fc6442dce2cb90283391fd5606536797571a0",
+        "size": 131072
+      },
+      "footer": {
+        "sha256": "d48b908d1d6ca42c0a573fd78626b6508904e1a44aab41682a843912901ead1f",
+        "size": 16
+      },
+      "footer_semantics_claimed": false,
+      "source_read_only": true
+    },
+    "spent": {
+      "complete_file": {
+        "sha256": "f4309eaa866100ee4cafef4f4980bad98e3b05d1eea11393727d2e0c6624c434",
+        "size": 131088
+      },
+      "flash_prefix": {
+        "sha256": "ee0789ac11cd05fccc659c902e877cb71cbbed0ea1cad98283b672c958c1f27d",
+        "size": 131072
+      },
+      "footer": {
+        "sha256": "d48b908d1d6ca42c0a573fd78626b6508904e1a44aab41682a843912901ead1f",
+        "size": 16
+      },
+      "footer_semantics_claimed": false,
+      "source_read_only": true
+    }
+  },
+  "runtime_library": {
+    "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d",
+    "size": 1968536
+  },
+  "schema_version": 1,
+  "source_base_head": "8bd7b30cda27b70c8b4ca0dd9d73134f33e5d211",
+  "source_semantics_ja": "基点HEADにローカル変更を重ねた実測。生成Cの全bytes/各実行identityと最終sourceを保存し、当時のHEADだけに後継sourceが存在したとは主張しない。"
+}

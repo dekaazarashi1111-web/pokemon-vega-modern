@@ -1,0 +1,29 @@
+name: PR16 Wiki remaining text fixture
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-wiki-remaining-fixture.yml
+      - scripts/pr16_wiki_remaining_fixture.py
+permissions:
+  contents: read
+  actions: read
+jobs:
+  fixture:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: 残件実装用の現modelと限定sourceをtextだけで保存（native0）
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_wiki_remaining_fixture.py
+      - name: tracked file不変
+        run: git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-wiki-remaining-text-fixture
+          path: .local/pr16-wiki-remaining-fixture/fixture.zip
+          retention-days: 3
+          if-no-files-found: error

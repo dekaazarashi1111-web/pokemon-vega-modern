@@ -1,0 +1,138 @@
+{
+  "explicit_exclusions": {
+    "cfru_mirage_item_validation": "retain 998; new stones are excluded from Mirage virtual item ABI",
+    "codex_and_collection_overlays": "retain 998; dedicated Stage68 claim flags avoid their fixed catalogs",
+    "debug_and_tm_scan": "not required for held Mega Stone shop/battle/bag path"
+  },
+  "first_rejected": 1044,
+  "new_max_inclusive": 1043,
+  "old_max_inclusive": 998,
+  "parent_rom_sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
+  "policy": "PATCH_ONLY_CFRU_ITEM_C_SEMANTIC_MAX_INCLUSIVE_LITERALS",
+  "schema_version": 1,
+  "site_count": 12,
+  "sites": [
+    {
+      "context_offset": 17889260,
+      "expected_context_hex": "02490c00dfe7c046e603000008d1040903000088",
+      "expected_context_sha256": "ffa55de2aa44849cce55060b81536f0faabce8c5153b1fcac11da70afa175996",
+      "literal_offset_in_context": 8,
+      "semantic_evidence": "pinned CFRU offsets.ini symbol + item.c ITEMS_COUNT/SanitizeItemId semantics",
+      "semantic_owner": "CFRU_COMPARE_ITEMS_ALPHABETICALLY",
+      "site_address": "0x0910F7F4",
+      "site_offset": 17889268
+    },
+    {
+      "context_offset": 17890724,
+      "expected_context_hex": "0200584210407047e6030000054b984205d88300",
+      "expected_context_sha256": "b1f929f372f6c4f0f21607cc95a44bfd41b746220d3459b9e34440eb4f4c136c",
+      "literal_offset_in_context": 8,
+      "semantic_evidence": "pinned CFRU offsets.ini symbol + item.c ITEMS_COUNT/SanitizeItemId semantics",
+      "semantic_owner": "CFRU_SANITIZE_ITEM_ID",
+      "site_address": "0x0910FDAC",
+      "site_offset": 17890732
+    },
+    {
+      "context_offset": 17890752,
+      "expected_context_hex": "70470248fce7c046e603000008d10409054b9842",
+      "expected_context_sha256": "b703f96ee923371b510905b5fe98c32d616ee579d70e977c61df2c99150d6987",
+      "literal_offset_in_context": 8,
+      "semantic_evidence": "pinned CFRU offsets.ini symbol + item.c ITEMS_COUNT/SanitizeItemId semantics",
+      "semantic_owner": "CFRU_ITEM_ID_GET_NAME",
+      "site_address": "0x0910FDC8",
+      "site_offset": 17890760
+    },
+    {
+      "context_offset": 17890784,
+      "expected_context_hex": "987b7047014bfbe7e603000008d10409054b9842",
+      "expected_context_sha256": "2508709aa166f8580b5dec55d72ac1dc928ad8a30fdc7f6a30049b0bbf3b59a3",
+      "literal_offset_in_context": 8,
+      "semantic_evidence": "pinned CFRU offsets.ini symbol + item.c ITEMS_COUNT/SanitizeItemId semantics",
+      "semantic_owner": "CFRU_ITEM_ID_GET_HOLD_EFFECT",
+      "site_address": "0x0910FDE8",
+      "site_offset": 17890792
+    },
+    {
+      "context_offset": 17890816,
+      "expected_context_hex": "d87b7047014bfbe7e603000008d10409074b9842",
+      "expected_context_sha256": "94333fd5b4354abcb28947f66e1b0b803331eb138d8ec7d26e2259f59da0d10c",
+      "literal_offset_in_context": 8,
+      "semantic_evidence": "pinned CFRU offsets.ini symbol + item.c ITEMS_COUNT/SanitizeItemId semantics",
+      "semantic_owner": "CFRU_ITEM_ID_GET_HOLD_EFFECT_PARAM",
+      "site_address": "0x0910FE08",
+      "site_offset": 17890824
+    },
+    {
+      "context_offset": 17890856,
+      "expected_context_hex": "7047024bf8e7c046e603000008d10409074b9842",
+      "expected_context_sha256": "1c6c943237bb4e2ca3b1705dafe760e20c5b66abfad5beffbd4140e136ca3ff7",
+      "literal_offset_in_context": 8,
+      "semantic_evidence": "pinned CFRU offsets.ini symbol + item.c ITEMS_COUNT/SanitizeItemId semantics",
+      "semantic_owner": "CFRU_IS_MEGA_STONE",
+      "site_address": "0x0910FE30",
+      "site_offset": 17890864
+    },
+    {
+      "context_offset": 17890896,
+      "expected_context_hex": "7047024bf8e7c046e603000008d10409074b9842",
+      "expected_context_sha256": "1c6c943237bb4e2ca3b1705dafe760e20c5b66abfad5beffbd4140e136ca3ff7",
+      "literal_offset_in_context": 8,
+      "semantic_evidence": "pinned CFRU offsets.ini symbol + item.c ITEMS_COUNT/SanitizeItemId semantics",
+      "semantic_owner": "CFRU_IS_PRIMAL_ORB",
+      "site_address": "0x0910FE58",
+      "site_offset": 17890904
+    },
+    {
+      "context_offset": 17890936,
+      "expected_context_hex": "7047024bf8e7c046e603000008d104090e4b0200",
+      "expected_context_sha256": "5529a0eb185d1b1b5c78a585727503cfad27e484cd130f188cfcf84ace81e3c2",
+      "literal_offset_in_context": 8,
+      "semantic_evidence": "pinned CFRU offsets.ini symbol + item.c ITEMS_COUNT/SanitizeItemId semantics",
+      "semantic_owner": "CFRU_IS_Z_CRYSTAL",
+      "site_address": "0x0910FE80",
+      "site_offset": 17890944
+    },
+    {
+      "context_offset": 17891004,
+      "expected_context_hex": "43425841f0e7c046e603000008d1040910b5034b",
+      "expected_context_sha256": "bb7ef88d57ebe73528a2e6ee12abb1df2eff94a2ba6e8445946701c0845e058f",
+      "literal_offset_in_context": 8,
+      "semantic_evidence": "pinned CFRU offsets.ini symbol + item.c ITEMS_COUNT/SanitizeItemId semantics",
+      "semantic_owner": "CFRU_IS_TYPE_Z_CRYSTAL",
+      "site_address": "0x0910FEC4",
+      "site_offset": 17891012
+    },
+    {
+      "context_offset": 17891100,
+      "expected_context_hex": "7047024bf8e7c046e603000008d10409044b4000",
+      "expected_context_sha256": "1ff9d1da8fed23ed31335b7aa4f8eb4538a7291528595629ec8dd035246ab141",
+      "literal_offset_in_context": 8,
+      "semantic_evidence": "pinned CFRU offsets.ini symbol + item.c ITEMS_COUNT/SanitizeItemId semantics",
+      "semantic_owner": "CFRU_IS_GEM",
+      "site_address": "0x0910FF24",
+      "site_offset": 17891108
+    },
+    {
+      "context_offset": 17895604,
+      "expected_context_hex": "2189000890ac0302e60300000e3e4108083e4108",
+      "expected_context_sha256": "07d8dd233e090f9da7019f740161ff2627bb080f02ad18c6afa5aeeaf73f784a",
+      "literal_offset_in_context": 8,
+      "semantic_evidence": "pinned CFRU offsets.ini symbol + item.c ITEMS_COUNT/SanitizeItemId semantics",
+      "semantic_owner": "CFRU_BAG_BUILD_LIST_MENU",
+      "site_address": "0x091110BC",
+      "site_offset": 17895612
+    },
+    {
+      "context_offset": 17898360,
+      "expected_context_hex": "00f07bf870bdc046e603000008d104090e3e4108",
+      "expected_context_sha256": "07be11032e57a81ed9b1b73fafcc60d161dc164277bc28b8a904e8f3231aa0d0",
+      "literal_offset_in_context": 8,
+      "semantic_evidence": "pinned CFRU offsets.ini symbol + item.c ITEMS_COUNT/SanitizeItemId semantics",
+      "semantic_owner": "CFRU_BAG_LIST_ITEM_NAME_COLORED",
+      "site_address": "0x09111B80",
+      "site_offset": 17898368
+    }
+  ],
+  "stage": 68,
+  "task": "USER-MODERNIZATION-MEGA-STONE-BP-SHOP"
+}

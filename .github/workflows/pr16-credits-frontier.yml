@@ -1,0 +1,31 @@
+name: PR16 credits frontier source-only diagnostic
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_dex_hof_credits_frontier.py
+      - tests/test_pr16_dex_hof_credits_frontier.py
+      - content/modernization/pr16_dex_hof_credits_frontier.json
+      - .github/workflows/pr16-credits-frontier.yml
+permissions:
+  contents: read
+concurrency:
+  group: pr16-credits-frontier-source-only
+  cancel-in-progress: false
+jobs:
+  check:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Preserve 782 parent and reject post-EOS text coverage
+        run: |
+          python3 -m unittest discover -s tests -p test_pr16_dex_hof_credits_frontier.py -v
+          python3 scripts/pr16_dex_hof_credits_frontier.py
+          python3 scripts/pr16_resume.py check
+          python3 scripts/validate_task_graph.py
+          git diff --exit-code

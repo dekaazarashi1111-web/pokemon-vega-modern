@@ -1,0 +1,2382 @@
+{
+  "actions_completion_confirmed": true,
+  "active_baseline_changed": false,
+  "all_owners_accepted": false,
+  "arm_assembler_runs": 1,
+  "arm_compiles": 0,
+  "battle_exp_accepted": false,
+  "candidate": {
+    "sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+    "size": 33554432
+  },
+  "compiled_sources": {
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_learnset_progression.c": {
+      "sha256": "e6dd7435386707c65fdd5c945c2bb66cdec7b499c1d3d0a9ee4d69105cf992a0",
+      "size": 10772
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "completed_actions": {
+    "arm_reruns": 0,
+    "artifact": {
+      "digest": "sha256:aa00c8801af28e74e5d291ee245a4f0b18342308508553cb06d7f911a7d0193e",
+      "id": 10746048932,
+      "name": "pr16-learnset-entry-repair-proof",
+      "size_in_bytes": 38049
+    },
+    "conclusion": "success",
+    "host_reruns": 0,
+    "job_id": 107157758267,
+    "native_reruns": 0,
+    "reflected_head": "e08909cbccfe0a1a8f29cdfc96411d49fa07bd6e",
+    "run_id": 35853901025,
+    "source_head": "190a25a6032827d4a060d6d93c98db98da9eb9be",
+    "steps": [
+      {
+        "completed_at": "2026-09-23T11:19:58Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-23T11:19:57Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:20:09Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-23T11:19:58Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:20:09Z",
+        "conclusion": "success",
+        "name": "Run actions/setup-python@v5",
+        "number": 3,
+        "started_at": "2026-09-23T11:20:09Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:20:09Z",
+        "conclusion": "success",
+        "name": "ローカル検証済みsourceの転送identityを照合",
+        "number": 4,
+        "started_at": "2026-09-23T11:20:09Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:20:28Z",
+        "conclusion": "success",
+        "name": "限定host libraryと8byte assemblerだけ導入",
+        "number": 5,
+        "started_at": "2026-09-23T11:20:09Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:21:58Z",
+        "conclusion": "success",
+        "name": "原本原因照合・新26境界試験・影響11経路の実操作",
+        "number": 6,
+        "started_at": "2026-09-23T11:20:28Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:03Z",
+        "conclusion": "success",
+        "name": "recipe・実測原本・固定引継ぎ・両ログを記録",
+        "number": 7,
+        "started_at": "2026-09-23T11:21:58Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:06Z",
+        "conclusion": "success",
+        "name": "同branchへ非force commit/pushして最新refと照合",
+        "number": 8,
+        "started_at": "2026-09-23T11:22:03Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:07Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 9,
+        "started_at": "2026-09-23T11:22:06Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:07Z",
+        "conclusion": "skipped",
+        "name": "実測FAILを成功へ読み替えない",
+        "number": 10,
+        "started_at": "2026-09-23T11:22:07Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:07Z",
+        "conclusion": "success",
+        "name": "Post Run actions/setup-python@v5",
+        "number": 19,
+        "started_at": "2026-09-23T11:22:07Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:08Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 20,
+        "started_at": "2026-09-23T11:22:07Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-23T11:22:08Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 21,
+        "started_at": "2026-09-23T11:22:08Z",
+        "status": "completed"
+      }
+    ],
+    "verified_at_head": "28abc92ea4dd9ed6bbbf3b447f516c41d9d8ddde"
+  },
+  "completion_source_bindings": {
+    ".github/workflows/pr16-learnset-entry-repair.yml": {
+      "sha256": "14418a4de65fa257e4b355e3ead13d12a81abcbf035c21445a3d916ddabd6e6f",
+      "size": 2598
+    },
+    "overlays/modernization_pr16_learnset_entry/entry.s": {
+      "sha256": "cbc0b5ea5d01bf6bfa78c760f9d1d1ed6112b21e41e071051e5319e4806461fe",
+      "size": 275
+    },
+    "scripts/pr16_learnset_entry_repair.py": {
+      "sha256": "61e7d5459fdea592d4ef3275c64166c3cd44fb3aab0b76bc236c2afd8c605a3c",
+      "size": 24351
+    },
+    "tests/test_pr16_learnset_entry_repair.py": {
+      "sha256": "e72106dce9d715b0ad7c965cbabb1b62fbba4219be28bfbda41a7453294c433a",
+      "size": 5637
+    },
+    "tools/mgba_pr16_learnset_progression.c": {
+      "sha256": "e6dd7435386707c65fdd5c945c2bb66cdec7b499c1d3d0a9ee4d69105cf992a0",
+      "size": 10772
+    }
+  },
+  "diagnosis": {
+    "artifact": {
+      "digest": "sha256:a48ed8b39b774a38335b0a392c1969544d8062bd3648bc330c8c0de17ba91c91",
+      "id": 10746122523,
+      "name": "pr16-learnset-progression-diagnosis",
+      "size_in_bytes": 94324
+    },
+    "root_cause": {
+      "correct_first_cursor_after": 8,
+      "first_old_cursor_after": 9,
+      "level": 12,
+      "mixed_first_continuation": [
+        77,
+        79
+      ],
+      "old_cfru_rows": [
+        [
+          16,
+          0
+        ],
+        [
+          16,
+          1
+        ],
+        [
+          33,
+          1
+        ],
+        [
+          81,
+          1
+        ],
+        [
+          106,
+          1
+        ],
+        [
+          535,
+          1
+        ],
+        [
+          48,
+          4
+        ],
+        [
+          93,
+          8
+        ],
+        [
+          77,
+          12
+        ],
+        [
+          78,
+          12
+        ],
+        [
+          79,
+          12
+        ],
+        [
+          60,
+          16
+        ],
+        [
+          18,
+          20
+        ],
+        [
+          373,
+          24
+        ],
+        [
+          219,
+          28
+        ],
+        [
+          375,
+          32
+        ],
+        [
+          554,
+          36
+        ],
+        [
+          537,
+          40
+        ],
+        [
+          497,
+          44
+        ]
+      ],
+      "owner": 414,
+      "plr1_rows": [
+        [
+          16,
+          1
+        ],
+        [
+          33,
+          1
+        ],
+        [
+          81,
+          1
+        ],
+        [
+          106,
+          1
+        ],
+        [
+          535,
+          1
+        ],
+        [
+          48,
+          4
+        ],
+        [
+          93,
+          8
+        ],
+        [
+          77,
+          12
+        ],
+        [
+          78,
+          12
+        ],
+        [
+          79,
+          12
+        ],
+        [
+          60,
+          16
+        ],
+        [
+          18,
+          20
+        ],
+        [
+          373,
+          24
+        ],
+        [
+          219,
+          28
+        ],
+        [
+          375,
+          32
+        ],
+        [
+          554,
+          36
+        ],
+        [
+          537,
+          40
+        ],
+        [
+          497,
+          44
+        ]
+      ],
+      "repaired_single_table": [
+        77,
+        78,
+        79
+      ],
+      "source_of_expectations": "locked original payload, not adjusted to observed failure",
+      "trace_run": 35852603289
+    },
+    "run_id": 35853096160,
+    "source_head": "28f54168048d517afa3f270d540bc65edd79ff1f",
+    "xref_scope_ja": "prefixのBL一覧は直前の共有BX thunkを含む。entry識別はnative命令traceと0x09114038の関数prologueで固定し、xrefを未検証の直接callerへ読み替えない。"
+  },
+  "failures": [],
+  "fresh_cores": 22,
+  "generated_sources": {
+    "p03_learning_embedded.c": {
+      "sha256": "255287ebe9d8b6d36f7ecef438de46c816016d1dd3cafc3a3d3e4819e037ffe0",
+      "size": 8002
+    },
+    "p03_p02_embedded.c": {
+      "sha256": "eb623412afbcc2c690a4998680d2fd2a301da4dd09cceec121a5384afb153d2d",
+      "size": 39684
+    },
+    "p03a_fullslots_embedded.c": {
+      "sha256": "57fc8de90490f933db890bac5864180e3d6f814468fa701bd77438c952796e78",
+      "size": 12883
+    },
+    "pr16_progression_archive.c": {
+      "sha256": "0b802a5ed483deadb7cbc6156b114bd3659f6f2fb406102d1a4a8ef9555d76de",
+      "size": 20169
+    },
+    "pr16_progression_vectors.h": {
+      "sha256": "7b5a980fb4ab3660c275c46b18c4cca79cdbf14d6c77807ea5dc30e11d95418a",
+      "size": 1131
+    }
+  },
+  "host_compiles": 1,
+  "impacted_accepted_case_reruns": 8,
+  "impacted_previously_accepted_cases": [
+    "caterpie-below-level",
+    "caterpie-empty",
+    "caterpie-evolve-metapod",
+    "caterpie-known",
+    "caterpie-refuse",
+    "caterpie-replace",
+    "caterpie-summary-cancel",
+    "metapod-evolve-butterfree"
+  ],
+  "inherited_progression_unit_tests": 31,
+  "inherited_repair_case_ids": [],
+  "inherited_repair_unit_tests": 0,
+  "initial_creation_accepted": false,
+  "issue19_complete": false,
+  "native_processes": 11,
+  "new_unit_tests": 26,
+  "next_step_ja": "Issue19: このentry repair候補を保存parentへapplyして使用する。成功した通常アメlevel-up/進化11caseは再実行せず、自然生成の初期技と戦闘EXP由来level-upの未受入経路へ。Bag23/既存戦闘/条件付きegg8/代表画面/旧4hook/旧host/ARM/Wiki/PLA1/PLC2は影響なし・再実行しない。全owner/Issue19/release/active baseline切替は未完。",
+  "parent": {
+    "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+    "size": 33554432
+  },
+  "previous_attempts": [],
+  "prior_actions": {
+    "accepted_completed_runs": [
+      {
+        "conclusion": "success",
+        "head_sha": "d9227eeb0ff92e523e4d2f848909b50ec83f022f",
+        "id": 35837431004,
+        "path": ".github/workflows/pr16-learnset-egg-gameplay.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "29f1d8ca2b4f8468471265418a6e42430a660616",
+        "id": 35839299224,
+        "path": ".github/workflows/pr16-learnset-visual.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "ec80e1a3d59911cf3a25fe29092a1f4658398ba9",
+        "id": 35839963209,
+        "path": ".github/workflows/pr16-learnset-visual-list.yml",
+        "status": "completed"
+      }
+    ],
+    "initial_head_ci_action_required_not_native_failure": 35840463023,
+    "pagination_complete_claimed": false,
+    "recent_first_page": [
+      {
+        "conclusion": null,
+        "head_sha": "190a25a6032827d4a060d6d93c98db98da9eb9be",
+        "id": 35853907381,
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "190a25a6032827d4a060d6d93c98db98da9eb9be",
+        "id": 35853907393,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "190a25a6032827d4a060d6d93c98db98da9eb9be",
+        "id": 35853900826,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "190a25a6032827d4a060d6d93c98db98da9eb9be",
+        "id": 35853900777,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "190a25a6032827d4a060d6d93c98db98da9eb9be",
+        "id": 35853900814,
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "190a25a6032827d4a060d6d93c98db98da9eb9be",
+        "id": 35853901025,
+        "path": ".github/workflows/pr16-learnset-entry-repair.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "9d788ef7d09980baa37120955aca921f73a63871",
+        "id": 35853865182,
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "9d788ef7d09980baa37120955aca921f73a63871",
+        "id": 35853865132,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "9d788ef7d09980baa37120955aca921f73a63871",
+        "id": 35853858891,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "9d788ef7d09980baa37120955aca921f73a63871",
+        "id": 35853858860,
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "9d788ef7d09980baa37120955aca921f73a63871",
+        "id": 35853858868,
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "9d788ef7d09980baa37120955aca921f73a63871",
+        "id": 35853858880,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "59f6b21ece5483ced1c915ee1193f453962e5725",
+        "id": 35853726105,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "59f6b21ece5483ced1c915ee1193f453962e5725",
+        "id": 35853726047,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "59f6b21ece5483ced1c915ee1193f453962e5725",
+        "id": 35853719969,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "59f6b21ece5483ced1c915ee1193f453962e5725",
+        "id": 35853719976,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "59f6b21ece5483ced1c915ee1193f453962e5725",
+        "id": 35853720006,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "cancelled",
+        "head_sha": "dc9317ce1863edf1e08b9d59f0e57d9118bf3dd7",
+        "id": 35853690463,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "dc9317ce1863edf1e08b9d59f0e57d9118bf3dd7",
+        "id": 35853690427,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "dc9317ce1863edf1e08b9d59f0e57d9118bf3dd7",
+        "id": 35853682600,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "cancelled",
+        "head_sha": "dc9317ce1863edf1e08b9d59f0e57d9118bf3dd7",
+        "id": 35853682580,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "dc9317ce1863edf1e08b9d59f0e57d9118bf3dd7",
+        "id": 35853682587,
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "dc9317ce1863edf1e08b9d59f0e57d9118bf3dd7",
+        "id": 35853682558,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "28f54168048d517afa3f270d540bc65edd79ff1f",
+        "id": 35853103251,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "28f54168048d517afa3f270d540bc65edd79ff1f",
+        "id": 35853103275,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "28f54168048d517afa3f270d540bc65edd79ff1f",
+        "id": 35853096096,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "28f54168048d517afa3f270d540bc65edd79ff1f",
+        "id": 35853096095,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "28f54168048d517afa3f270d540bc65edd79ff1f",
+        "id": 35853096160,
+        "path": ".github/workflows/pr16-learnset-progression-diagnose.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "28f54168048d517afa3f270d540bc65edd79ff1f",
+        "id": 35853096325,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "4614e45bc7eae24d89a339a982c356d965202cfd",
+        "id": 35852895648,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "4614e45bc7eae24d89a339a982c356d965202cfd",
+        "id": 35852895655,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "4614e45bc7eae24d89a339a982c356d965202cfd",
+        "id": 35852887283,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "4614e45bc7eae24d89a339a982c356d965202cfd",
+        "id": 35852887092,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "4614e45bc7eae24d89a339a982c356d965202cfd",
+        "id": 35852887304,
+        "path": ".github/workflows/pr16-learnset-progression-diagnose.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "4614e45bc7eae24d89a339a982c356d965202cfd",
+        "id": 35852887131,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "head_sha": "57f4272e508c34c0dd6ac9f3f1aa25da15ade606",
+        "id": 35852730757,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "head_sha": "57f4272e508c34c0dd6ac9f3f1aa25da15ade606",
+        "id": 35852730752,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "94a1b43c81b4de1d9773d9ea3a4457e59534d570",
+        "id": 35852611889,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "94a1b43c81b4de1d9773d9ea3a4457e59534d570",
+        "id": 35852611908,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "94a1b43c81b4de1d9773d9ea3a4457e59534d570",
+        "id": 35852603023,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "94a1b43c81b4de1d9773d9ea3a4457e59534d570",
+        "id": 35852603062,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "94a1b43c81b4de1d9773d9ea3a4457e59534d570",
+        "id": 35852603177,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_sha": "94a1b43c81b4de1d9773d9ea3a4457e59534d570",
+        "id": 35852603289,
+        "path": ".github/workflows/pr16-learnset-progression.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "59a14a0d786d619dca87a607e5cce3b588bb325f",
+        "id": 35852559266,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "59a14a0d786d619dca87a607e5cce3b588bb325f",
+        "id": 35852559198,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "59a14a0d786d619dca87a607e5cce3b588bb325f",
+        "id": 35852552292,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "59a14a0d786d619dca87a607e5cce3b588bb325f",
+        "id": 35852552118,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "59a14a0d786d619dca87a607e5cce3b588bb325f",
+        "id": 35852552089,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "59a14a0d786d619dca87a607e5cce3b588bb325f",
+        "id": 35852552170,
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "head_sha": "f49d7a3185d0e4836a7912fabc2020b56210b5eb",
+        "id": 35852359861,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "head_sha": "f49d7a3185d0e4836a7912fabc2020b56210b5eb",
+        "id": 35852359873,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "8e5af54e0063f874a3594139e637a6ac301b2cb2",
+        "id": 35852268156,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "8e5af54e0063f874a3594139e637a6ac301b2cb2",
+        "id": 35852267977,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_sha": "8e5af54e0063f874a3594139e637a6ac301b2cb2",
+        "id": 35852260342,
+        "path": ".github/workflows/pr16-learnset-progression.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "8e5af54e0063f874a3594139e637a6ac301b2cb2",
+        "id": 35852260235,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "8e5af54e0063f874a3594139e637a6ac301b2cb2",
+        "id": 35852260254,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "8e5af54e0063f874a3594139e637a6ac301b2cb2",
+        "id": 35852260256,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "0c5eb9df393ada8152189b251be76691aa430fce",
+        "id": 35851862621,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "0c5eb9df393ada8152189b251be76691aa430fce",
+        "id": 35851862574,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "0c5eb9df393ada8152189b251be76691aa430fce",
+        "id": 35851854669,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "0c5eb9df393ada8152189b251be76691aa430fce",
+        "id": 35851854647,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "0c5eb9df393ada8152189b251be76691aa430fce",
+        "id": 35851854754,
+        "path": ".github/workflows/pr16-learnset-progression-diagnose.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "0c5eb9df393ada8152189b251be76691aa430fce",
+        "id": 35851854626,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "6fff65aea63dd9097bfa5b439fc90d0b71f1a5fd",
+        "id": 35851746081,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "6fff65aea63dd9097bfa5b439fc90d0b71f1a5fd",
+        "id": 35851746085,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "6fff65aea63dd9097bfa5b439fc90d0b71f1a5fd",
+        "id": 35851738736,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "6fff65aea63dd9097bfa5b439fc90d0b71f1a5fd",
+        "id": 35851738683,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "6fff65aea63dd9097bfa5b439fc90d0b71f1a5fd",
+        "id": 35851738596,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "6fff65aea63dd9097bfa5b439fc90d0b71f1a5fd",
+        "id": 35851738625,
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "c59ee479374bdbc40d108d577ebd234198b4c0dd",
+        "id": 35851647839,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "c59ee479374bdbc40d108d577ebd234198b4c0dd",
+        "id": 35851647853,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "c59ee479374bdbc40d108d577ebd234198b4c0dd",
+        "id": 35851640116,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "c59ee479374bdbc40d108d577ebd234198b4c0dd",
+        "id": 35851640240,
+        "path": ".github/workflows/pr16-learnset-progression-diagnose.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "c59ee479374bdbc40d108d577ebd234198b4c0dd",
+        "id": 35851640093,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "c59ee479374bdbc40d108d577ebd234198b4c0dd",
+        "id": 35851640106,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "5d2c6b393b94489e356b38e3835c18a2a7b63fb1",
+        "id": 35851414142,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "5d2c6b393b94489e356b38e3835c18a2a7b63fb1",
+        "id": 35851414179,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "5d2c6b393b94489e356b38e3835c18a2a7b63fb1",
+        "id": 35851408421,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "5d2c6b393b94489e356b38e3835c18a2a7b63fb1",
+        "id": 35851408484,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "5d2c6b393b94489e356b38e3835c18a2a7b63fb1",
+        "id": 35851408571,
+        "path": ".github/workflows/pr16-learnset-progression-diagnose.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "5d2c6b393b94489e356b38e3835c18a2a7b63fb1",
+        "id": 35851408420,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "head_sha": "986558490afd560d06d5964ab7f0db49ebc791ca",
+        "id": 35851028883,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "head_sha": "986558490afd560d06d5964ab7f0db49ebc791ca",
+        "id": 35851029004,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "502e5c35f5960cbd1c1adb5b334c588715574e5a",
+        "id": 35850881816,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "502e5c35f5960cbd1c1adb5b334c588715574e5a",
+        "id": 35850881800,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "502e5c35f5960cbd1c1adb5b334c588715574e5a",
+        "id": 35850873322,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "502e5c35f5960cbd1c1adb5b334c588715574e5a",
+        "id": 35850873269,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "502e5c35f5960cbd1c1adb5b334c588715574e5a",
+        "id": 35850873349,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_sha": "502e5c35f5960cbd1c1adb5b334c588715574e5a",
+        "id": 35850873307,
+        "path": ".github/workflows/pr16-learnset-progression.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "bda0a09f9e7132b2670d7721105c4ad4a61a4c65",
+        "id": 35850825617,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "bda0a09f9e7132b2670d7721105c4ad4a61a4c65",
+        "id": 35850825667,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "bda0a09f9e7132b2670d7721105c4ad4a61a4c65",
+        "id": 35850818761,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "cancelled",
+        "head_sha": "bda0a09f9e7132b2670d7721105c4ad4a61a4c65",
+        "id": 35850818706,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "bda0a09f9e7132b2670d7721105c4ad4a61a4c65",
+        "id": 35850818751,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "c57e5f4a0afc3ad49fcfc84f9b7e19476693f476",
+        "id": 35850789864,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "c57e5f4a0afc3ad49fcfc84f9b7e19476693f476",
+        "id": 35850789955,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "c57e5f4a0afc3ad49fcfc84f9b7e19476693f476",
+        "id": 35850781035,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "cancelled",
+        "head_sha": "c57e5f4a0afc3ad49fcfc84f9b7e19476693f476",
+        "id": 35850781037,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "c57e5f4a0afc3ad49fcfc84f9b7e19476693f476",
+        "id": 35850781178,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "c57e5f4a0afc3ad49fcfc84f9b7e19476693f476",
+        "id": 35850781054,
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "completed"
+      }
+    ]
+  },
+  "proof_bindings": {
+    "assemble.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "assemble.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "assemble.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "butterfree-known-first.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "butterfree-known-first.stderr.txt": {
+      "sha256": "1c4696245e2f18b393e2d88526c42818e497ea42c8649278e7ea650fbe561ae9",
+      "size": 2737
+    },
+    "butterfree-known-first.stdout.txt": {
+      "sha256": "5d6dac3752025dfc204553aef2a845a93296ad3c93cfa81ab13f2159bd05cf9c",
+      "size": 870
+    },
+    "butterfree-refuse-three.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "butterfree-refuse-three.stderr.txt": {
+      "sha256": "48f6bd13c2402f0c87c60605b55007f2c3ac129ec8044974fe79d6bd09972600",
+      "size": 2138
+    },
+    "butterfree-refuse-three.stdout.txt": {
+      "sha256": "a22513f1afb272c38155af0e67d9a9ec8fc7ab32ac4103160ba621c94e9abf27",
+      "size": 877
+    },
+    "butterfree-three-moves.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "butterfree-three-moves.stderr.txt": {
+      "sha256": "93a0d68e00fe7afaf167954a5cc471af7646cf47effcd85cd35a070b4349379b",
+      "size": 2381
+    },
+    "butterfree-three-moves.stdout.txt": {
+      "sha256": "25c4772e3d00fdc31967c7b1aa8df3645c188d6fa2c90cc67f917f7f1920a154",
+      "size": 878
+    },
+    "caterpie-below-level.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-below-level.stderr.txt": {
+      "sha256": "ac4880d85c360806b8a53fff03c0ac685f42551974ae1e7f3c323c73f42fd057",
+      "size": 2156
+    },
+    "caterpie-below-level.stdout.txt": {
+      "sha256": "c588aee9435ebfe7fc4bfb74bd3aae75e7e432bd53e549141c41096dd259c414",
+      "size": 865
+    },
+    "caterpie-empty.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-empty.stderr.txt": {
+      "sha256": "4fbd347e6b685b940acda32aadf85d91954430b5dfaf2012c9a79bd268a2fef3",
+      "size": 2250
+    },
+    "caterpie-empty.stdout.txt": {
+      "sha256": "58042acb6ed4c0f1906fabf43e001e7348d2fc5c2ec8cfa90354826956f6ec84",
+      "size": 864
+    },
+    "caterpie-evolve-metapod.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-evolve-metapod.stderr.txt": {
+      "sha256": "4b665a5e972428055466cf50dbdf9459f3591d526812d9012f158036dd80bd76",
+      "size": 2350
+    },
+    "caterpie-evolve-metapod.stdout.txt": {
+      "sha256": "87e16657dc87d02c79b8542e09a5e7973b0bc6258ac01dd774998193c4658532",
+      "size": 876
+    },
+    "caterpie-known.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-known.stderr.txt": {
+      "sha256": "987ce9bd038c071f48e26cab0deba674240582abe16a81fe0117facfdacdd0b7",
+      "size": 2268
+    },
+    "caterpie-known.stdout.txt": {
+      "sha256": "00efa4613e1f27d755df744e7b36934dcd253aea5a3b0d07fea333bbe9c82376",
+      "size": 867
+    },
+    "caterpie-refuse.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-refuse.stderr.txt": {
+      "sha256": "6164efc5b223d72465fd47b817b317597aeb6160385caa27de75a78b11e11ff6",
+      "size": 2258
+    },
+    "caterpie-refuse.stdout.txt": {
+      "sha256": "aa2609f449908839255eecfcc2f188caa7e8f00ef43bfe75149dd5377449e687",
+      "size": 872
+    },
+    "caterpie-replace.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-replace.stderr.txt": {
+      "sha256": "63b6b447e7ecd6095b8c3fdc877692ad3c4df08ab8b1993d6e4a06bb1a6d309b",
+      "size": 2522
+    },
+    "caterpie-replace.stdout.txt": {
+      "sha256": "e2d21fa2c36e4be7e38e3723f5b9d7c44f3b813328a672edb64fa53d94a530dd",
+      "size": 877
+    },
+    "caterpie-summary-cancel.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-summary-cancel.stderr.txt": {
+      "sha256": "41c06c1866e3c443de0397dbb921242213357d030e74273e4d61b963809727bf",
+      "size": 2499
+    },
+    "caterpie-summary-cancel.stdout.txt": {
+      "sha256": "551155ecce5d56206d37275465fc49f6ebef20ea4e9103cc296114249c9f81bc",
+      "size": 884
+    },
+    "compile.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "entry-diagnosis.json": {
+      "sha256": "c8b9fc0a15b784771dcc118c4a3536d4b99f45f7e0ea4e56b2ebf569ac8b5f6b",
+      "size": 47302
+    },
+    "executed-vectors.h": {
+      "sha256": "7b5a980fb4ab3660c275c46b18c4cca79cdbf14d6c77807ea5dc30e11d95418a",
+      "size": 1131
+    },
+    "extract.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "extract.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "extract.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "metapod-evolve-butterfree.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "metapod-evolve-butterfree.stderr.txt": {
+      "sha256": "7736e57c1379ecda1d9830ccd2d0076e825336b5d6484b4917335119ee0b285a",
+      "size": 2259
+    },
+    "metapod-evolve-butterfree.stdout.txt": {
+      "sha256": "4671c017542f7d9e17fe1987d2b0490cceb402c13b52001b28f48a26d393d477",
+      "size": 874
+    },
+    "oracle.json": {
+      "sha256": "2a9230799515c75a85eefe4609c497fb7800f53be37b826434897a8de4a81ff4",
+      "size": 6053
+    },
+    "recipe.json": {
+      "sha256": "465cfd77b0602f1f59aa23a62f4afe8b6ccbac893554d368e9d1715edd4129ef",
+      "size": 898
+    },
+    "root-cause.json": {
+      "sha256": "89de685737b4fd6b0d0911713e2792bd4aaadcb3ba13630543522e3060ff016f",
+      "size": 1557
+    },
+    "unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "unit.stderr.txt": {
+      "sha256": "aadda6112a7353151286e42c754386e374a4569c96b5f9d31dd7de9358c751c1",
+      "size": 3433
+    },
+    "unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "vectors.json": {
+      "sha256": "ffcb9939a11e9fa550c7ccc5f8ade524ee9755e9d2bc05b92737e08be1f588b9",
+      "size": 5646
+    }
+  },
+  "protected_bindings": {
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_learnset_battle_checkpoint.json": {
+      "sha256": "a1f99fae7693dd5f51d34e774d9c6bf43985b7e9515226f747ec3230c24b8b59",
+      "size": 17707
+    },
+    "content/modernization/pr16_learnset_egg_gameplay_checkpoint.json": {
+      "sha256": "7623c9b5eca00c5a96669815eaa320c9afb4c783279f359ba4268477bdc06143",
+      "size": 32995
+    },
+    "content/modernization/pr16_learnset_gameplay_checkpoint.json": {
+      "sha256": "ea69013f782168a52a0a9f5936468f87b2afd34aa3625cf74223202c6054f878",
+      "size": 92196
+    },
+    "content/modernization/pr16_learnset_impact_completed_actions.json": {
+      "sha256": "95d2e53adf50a83b05da4f2fa3c6dbe15128bdff88cd64618feb004ab6521959",
+      "size": 11264
+    },
+    "content/modernization/pr16_learnset_progression_checkpoint.json": {
+      "sha256": "be5a1684a51e9bcced727139e5a243edab6c806a76f3518ccbc3f72e7ca3b412",
+      "size": 45167
+    },
+    "content/modernization/pr16_learnset_supply_native_checkpoint.json": {
+      "sha256": "75f6fd498056a7b2c60822fb99f2d36a47fd8eab0b8d0422e12dda58efc22dd8",
+      "size": 57961
+    },
+    "content/modernization/pr16_learnset_wiki_checkpoint.json": {
+      "sha256": "71b538f186b03ca3a725a84cd87baa41d72ca2ef0fb43ce22dec0e198cdefbe7",
+      "size": 45627
+    },
+    "content/modernization/pr16_learnset_wiki_completed_actions.json": {
+      "sha256": "4c200406ab0a3895a44a82cb81d71dde1f99aaa1a281eba1da3e851062bf1808",
+      "size": 9673
+    },
+    "docs/PR16_LEARNSET_PROGRESSION_JA.md": {
+      "sha256": "2d185c6a03df18aa63e7bb587095266dea2033eff0e5e3061e3d61d06277d4f5",
+      "size": 1640
+    }
+  },
+  "public_evidence_bindings": {
+    "assemble.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "assemble.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "assemble.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "butterfree-known-first.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "butterfree-known-first.stderr.txt": {
+      "sha256": "1c4696245e2f18b393e2d88526c42818e497ea42c8649278e7ea650fbe561ae9",
+      "size": 2737
+    },
+    "butterfree-known-first.stdout.txt": {
+      "sha256": "5d6dac3752025dfc204553aef2a845a93296ad3c93cfa81ab13f2159bd05cf9c",
+      "size": 870
+    },
+    "butterfree-refuse-three.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "butterfree-refuse-three.stderr.txt": {
+      "sha256": "48f6bd13c2402f0c87c60605b55007f2c3ac129ec8044974fe79d6bd09972600",
+      "size": 2138
+    },
+    "butterfree-refuse-three.stdout.txt": {
+      "sha256": "a22513f1afb272c38155af0e67d9a9ec8fc7ab32ac4103160ba621c94e9abf27",
+      "size": 877
+    },
+    "butterfree-three-moves.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "butterfree-three-moves.stderr.txt": {
+      "sha256": "93a0d68e00fe7afaf167954a5cc471af7646cf47effcd85cd35a070b4349379b",
+      "size": 2381
+    },
+    "butterfree-three-moves.stdout.txt": {
+      "sha256": "25c4772e3d00fdc31967c7b1aa8df3645c188d6fa2c90cc67f917f7f1920a154",
+      "size": 878
+    },
+    "caterpie-below-level.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-below-level.stderr.txt": {
+      "sha256": "ac4880d85c360806b8a53fff03c0ac685f42551974ae1e7f3c323c73f42fd057",
+      "size": 2156
+    },
+    "caterpie-below-level.stdout.txt": {
+      "sha256": "c588aee9435ebfe7fc4bfb74bd3aae75e7e432bd53e549141c41096dd259c414",
+      "size": 865
+    },
+    "caterpie-empty.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-empty.stderr.txt": {
+      "sha256": "4fbd347e6b685b940acda32aadf85d91954430b5dfaf2012c9a79bd268a2fef3",
+      "size": 2250
+    },
+    "caterpie-empty.stdout.txt": {
+      "sha256": "58042acb6ed4c0f1906fabf43e001e7348d2fc5c2ec8cfa90354826956f6ec84",
+      "size": 864
+    },
+    "caterpie-evolve-metapod.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-evolve-metapod.stderr.txt": {
+      "sha256": "4b665a5e972428055466cf50dbdf9459f3591d526812d9012f158036dd80bd76",
+      "size": 2350
+    },
+    "caterpie-evolve-metapod.stdout.txt": {
+      "sha256": "87e16657dc87d02c79b8542e09a5e7973b0bc6258ac01dd774998193c4658532",
+      "size": 876
+    },
+    "caterpie-known.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-known.stderr.txt": {
+      "sha256": "987ce9bd038c071f48e26cab0deba674240582abe16a81fe0117facfdacdd0b7",
+      "size": 2268
+    },
+    "caterpie-known.stdout.txt": {
+      "sha256": "00efa4613e1f27d755df744e7b36934dcd253aea5a3b0d07fea333bbe9c82376",
+      "size": 867
+    },
+    "caterpie-refuse.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-refuse.stderr.txt": {
+      "sha256": "6164efc5b223d72465fd47b817b317597aeb6160385caa27de75a78b11e11ff6",
+      "size": 2258
+    },
+    "caterpie-refuse.stdout.txt": {
+      "sha256": "aa2609f449908839255eecfcc2f188caa7e8f00ef43bfe75149dd5377449e687",
+      "size": 872
+    },
+    "caterpie-replace.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-replace.stderr.txt": {
+      "sha256": "63b6b447e7ecd6095b8c3fdc877692ad3c4df08ab8b1993d6e4a06bb1a6d309b",
+      "size": 2522
+    },
+    "caterpie-replace.stdout.txt": {
+      "sha256": "e2d21fa2c36e4be7e38e3723f5b9d7c44f3b813328a672edb64fa53d94a530dd",
+      "size": 877
+    },
+    "caterpie-summary-cancel.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "caterpie-summary-cancel.stderr.txt": {
+      "sha256": "41c06c1866e3c443de0397dbb921242213357d030e74273e4d61b963809727bf",
+      "size": 2499
+    },
+    "caterpie-summary-cancel.stdout.txt": {
+      "sha256": "551155ecce5d56206d37275465fc49f6ebef20ea4e9103cc296114249c9f81bc",
+      "size": 884
+    },
+    "compile.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "entry-diagnosis.json": {
+      "sha256": "c8b9fc0a15b784771dcc118c4a3536d4b99f45f7e0ea4e56b2ebf569ac8b5f6b",
+      "size": 47302
+    },
+    "executed-vectors.h": {
+      "sha256": "7b5a980fb4ab3660c275c46b18c4cca79cdbf14d6c77807ea5dc30e11d95418a",
+      "size": 1131
+    },
+    "extract.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "extract.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "extract.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "metapod-evolve-butterfree.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "metapod-evolve-butterfree.stderr.txt": {
+      "sha256": "7736e57c1379ecda1d9830ccd2d0076e825336b5d6484b4917335119ee0b285a",
+      "size": 2259
+    },
+    "metapod-evolve-butterfree.stdout.txt": {
+      "sha256": "4671c017542f7d9e17fe1987d2b0490cceb402c13b52001b28f48a26d393d477",
+      "size": 874
+    },
+    "oracle.json": {
+      "sha256": "2a9230799515c75a85eefe4609c497fb7800f53be37b826434897a8de4a81ff4",
+      "size": 6053
+    },
+    "recipe.json": {
+      "sha256": "465cfd77b0602f1f59aa23a62f4afe8b6ccbac893554d368e9d1715edd4129ef",
+      "size": 898
+    },
+    "root-cause.json": {
+      "sha256": "89de685737b4fd6b0d0911713e2792bd4aaadcb3ba13630543522e3060ff016f",
+      "size": 1557
+    },
+    "unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "unit.stderr.txt": {
+      "sha256": "aadda6112a7353151286e42c754386e374a4569c96b5f9d31dd7de9358c751c1",
+      "size": 3433
+    },
+    "unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "vectors.json": {
+      "sha256": "ffcb9939a11e9fa550c7ccc5f8ade524ee9755e9d2bc05b92737e08be1f588b9",
+      "size": 5646
+    },
+    "verification.json": {
+      "sha256": "e52d526bb656cf4c980d1964f86a67ff65cdef3f37430536141ce2ba396791ba",
+      "size": 56875
+    }
+  },
+  "public_evidence_path": "content/modernization/pr16_learnset_entry_repair_evidence/35853901025",
+  "recipe": {
+    "active_baseline_changed": false,
+    "after_hex": "004b184729773709",
+    "arm_compiles": 0,
+    "before_hex": "f0b5c64600b5038c",
+    "candidate": {
+      "sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "size": 33554432
+    },
+    "cause": "first native candy call used the unhooked CFRU table while continuation used PLR1; their row indices differ",
+    "crc32": "AC98CEA0",
+    "declared_write_bytes": 8,
+    "entry": 152125496,
+    "new_allocations": 0,
+    "offset": 17907768,
+    "outside_declared_write_bytes": 0,
+    "parent": {
+      "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "size": 33554432
+    },
+    "preserves": [
+      "r0 mon",
+      "r1 firstMove",
+      "r2",
+      "incoming LR",
+      "stack",
+      "existing ordinary adapter",
+      "two P03 evolution caller paths"
+    ],
+    "save_layout_changes": 0,
+    "table_changes": 0,
+    "target": 154629929
+  },
+  "release_ready": false,
+  "results": [
+    {
+      "battle_exp_accepted": false,
+      "candy_consumed_and_persisted": true,
+      "case": "butterfree-known-first",
+      "denied_host_write_apis": 7,
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_creation_accepted": false,
+      "initial_party_item_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 12,
+      "level_before": 11,
+      "mgba_version": "0.10.2",
+      "moves_after": [
+        77,
+        81,
+        78,
+        79
+      ],
+      "moves_before": [
+        77,
+        81,
+        0,
+        0
+      ],
+      "party_bytes_preserved": 100,
+      "pp_after": [
+        7,
+        8,
+        30,
+        15
+      ],
+      "pp_before": [
+        7,
+        8,
+        0,
+        0
+      ],
+      "release_ready": false,
+      "rom_sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "scope": "ISSUE19_CANDY_LEVELUP_EVOLUTION_SAVE_CONTINUE",
+      "species_after": 414,
+      "species_before": 414,
+      "status": "PASS",
+      "warnings_errors": 0,
+      "witness": {
+        "begin": 0,
+        "dialog": 0,
+        "dialogs": 0,
+        "field": 659,
+        "party": 1,
+        "selection": 0,
+        "selections": 0,
+        "stop": 0,
+        "stops": 0,
+        "summary": 0,
+        "update": 0
+      }
+    },
+    {
+      "battle_exp_accepted": false,
+      "candy_consumed_and_persisted": true,
+      "case": "butterfree-refuse-three",
+      "denied_host_write_apis": 7,
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_creation_accepted": false,
+      "initial_party_item_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 12,
+      "level_before": 11,
+      "mgba_version": "0.10.2",
+      "moves_after": [
+        33,
+        81,
+        45,
+        52
+      ],
+      "moves_before": [
+        33,
+        81,
+        45,
+        52
+      ],
+      "party_bytes_preserved": 100,
+      "pp_after": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "pp_before": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "release_ready": false,
+      "rom_sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "scope": "ISSUE19_CANDY_LEVELUP_EVOLUTION_SAVE_CONTINUE",
+      "species_after": 414,
+      "species_before": 414,
+      "status": "PASS",
+      "warnings_errors": 0,
+      "witness": {
+        "begin": 0,
+        "dialog": 180,
+        "dialogs": 3,
+        "field": 929,
+        "party": 1,
+        "selection": 0,
+        "selections": 0,
+        "stop": 210,
+        "stops": 3,
+        "summary": 0,
+        "update": 0
+      }
+    },
+    {
+      "battle_exp_accepted": false,
+      "candy_consumed_and_persisted": true,
+      "case": "butterfree-three-moves",
+      "denied_host_write_apis": 7,
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_creation_accepted": false,
+      "initial_party_item_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 12,
+      "level_before": 11,
+      "mgba_version": "0.10.2",
+      "moves_after": [
+        33,
+        79,
+        77,
+        78
+      ],
+      "moves_before": [
+        33,
+        81,
+        0,
+        0
+      ],
+      "party_bytes_preserved": 100,
+      "pp_after": [
+        7,
+        15,
+        35,
+        30
+      ],
+      "pp_before": [
+        7,
+        8,
+        0,
+        0
+      ],
+      "release_ready": false,
+      "rom_sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "scope": "ISSUE19_CANDY_LEVELUP_EVOLUTION_SAVE_CONTINUE",
+      "species_after": 414,
+      "species_before": 414,
+      "status": "PASS",
+      "warnings_errors": 0,
+      "witness": {
+        "begin": 0,
+        "dialog": 360,
+        "dialogs": 1,
+        "field": 1199,
+        "party": 1,
+        "selection": 510,
+        "selections": 1,
+        "stop": 0,
+        "stops": 0,
+        "summary": 480,
+        "update": 0
+      }
+    },
+    {
+      "battle_exp_accepted": false,
+      "candy_consumed_and_persisted": true,
+      "case": "caterpie-below-level",
+      "denied_host_write_apis": 7,
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_creation_accepted": false,
+      "initial_party_item_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 8,
+      "level_before": 7,
+      "mgba_version": "0.10.2",
+      "moves_after": [
+        33,
+        81,
+        0,
+        0
+      ],
+      "moves_before": [
+        33,
+        81,
+        0,
+        0
+      ],
+      "party_bytes_preserved": 100,
+      "pp_after": [
+        7,
+        8,
+        0,
+        0
+      ],
+      "pp_before": [
+        7,
+        8,
+        0,
+        0
+      ],
+      "release_ready": false,
+      "rom_sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "scope": "ISSUE19_CANDY_LEVELUP_EVOLUTION_SAVE_CONTINUE",
+      "species_after": 649,
+      "species_before": 649,
+      "status": "PASS",
+      "warnings_errors": 0,
+      "witness": {
+        "begin": 91,
+        "dialog": 0,
+        "dialogs": 0,
+        "field": 989,
+        "party": 1,
+        "selection": 0,
+        "selections": 0,
+        "stop": 0,
+        "stops": 0,
+        "summary": 0,
+        "update": 117
+      }
+    },
+    {
+      "battle_exp_accepted": false,
+      "candy_consumed_and_persisted": true,
+      "case": "caterpie-empty",
+      "denied_host_write_apis": 7,
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_creation_accepted": false,
+      "initial_party_item_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 9,
+      "level_before": 8,
+      "mgba_version": "0.10.2",
+      "moves_after": [
+        33,
+        81,
+        535,
+        0
+      ],
+      "moves_before": [
+        33,
+        81,
+        0,
+        0
+      ],
+      "party_bytes_preserved": 100,
+      "pp_after": [
+        7,
+        8,
+        20,
+        0
+      ],
+      "pp_before": [
+        7,
+        8,
+        0,
+        0
+      ],
+      "release_ready": false,
+      "rom_sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "scope": "ISSUE19_CANDY_LEVELUP_EVOLUTION_SAVE_CONTINUE",
+      "species_after": 649,
+      "species_before": 649,
+      "status": "PASS",
+      "warnings_errors": 0,
+      "witness": {
+        "begin": 181,
+        "dialog": 0,
+        "dialogs": 0,
+        "field": 1079,
+        "party": 1,
+        "selection": 0,
+        "selections": 0,
+        "stop": 0,
+        "stops": 0,
+        "summary": 0,
+        "update": 207
+      }
+    },
+    {
+      "battle_exp_accepted": false,
+      "candy_consumed_and_persisted": true,
+      "case": "caterpie-evolve-metapod",
+      "denied_host_write_apis": 7,
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_creation_accepted": false,
+      "initial_party_item_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 9,
+      "level_before": 8,
+      "mgba_version": "0.10.2",
+      "moves_after": [
+        33,
+        81,
+        535,
+        106
+      ],
+      "moves_before": [
+        33,
+        81,
+        0,
+        0
+      ],
+      "party_bytes_preserved": 100,
+      "pp_after": [
+        7,
+        8,
+        20,
+        30
+      ],
+      "pp_before": [
+        7,
+        8,
+        0,
+        0
+      ],
+      "release_ready": false,
+      "rom_sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "scope": "ISSUE19_CANDY_LEVELUP_EVOLUTION_SAVE_CONTINUE",
+      "species_after": 413,
+      "species_before": 649,
+      "status": "PASS",
+      "warnings_errors": 0,
+      "witness": {
+        "begin": 181,
+        "dialog": 0,
+        "dialogs": 0,
+        "field": 2189,
+        "party": 1,
+        "selection": 0,
+        "selections": 0,
+        "stop": 0,
+        "stops": 0,
+        "summary": 0,
+        "update": 207
+      }
+    },
+    {
+      "battle_exp_accepted": false,
+      "candy_consumed_and_persisted": true,
+      "case": "caterpie-known",
+      "denied_host_write_apis": 7,
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_creation_accepted": false,
+      "initial_party_item_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 9,
+      "level_before": 8,
+      "mgba_version": "0.10.2",
+      "moves_after": [
+        33,
+        535,
+        45,
+        52
+      ],
+      "moves_before": [
+        33,
+        535,
+        45,
+        52
+      ],
+      "party_bytes_preserved": 100,
+      "pp_after": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "pp_before": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "release_ready": false,
+      "rom_sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "scope": "ISSUE19_CANDY_LEVELUP_EVOLUTION_SAVE_CONTINUE",
+      "species_after": 649,
+      "species_before": 649,
+      "status": "PASS",
+      "warnings_errors": 0,
+      "witness": {
+        "begin": 92,
+        "dialog": 0,
+        "dialogs": 0,
+        "field": 989,
+        "party": 1,
+        "selection": 0,
+        "selections": 0,
+        "stop": 0,
+        "stops": 0,
+        "summary": 0,
+        "update": 118
+      }
+    },
+    {
+      "battle_exp_accepted": false,
+      "candy_consumed_and_persisted": true,
+      "case": "caterpie-refuse",
+      "denied_host_write_apis": 7,
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_creation_accepted": false,
+      "initial_party_item_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 9,
+      "level_before": 8,
+      "mgba_version": "0.10.2",
+      "moves_after": [
+        33,
+        81,
+        45,
+        52
+      ],
+      "moves_before": [
+        33,
+        81,
+        45,
+        52
+      ],
+      "party_bytes_preserved": 100,
+      "pp_after": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "pp_before": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "release_ready": false,
+      "rom_sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "scope": "ISSUE19_CANDY_LEVELUP_EVOLUTION_SAVE_CONTINUE",
+      "species_after": 649,
+      "species_before": 649,
+      "status": "PASS",
+      "warnings_errors": 0,
+      "witness": {
+        "begin": 243,
+        "dialog": 180,
+        "dialogs": 1,
+        "field": 1139,
+        "party": 1,
+        "selection": 0,
+        "selections": 0,
+        "stop": 210,
+        "stops": 1,
+        "summary": 0,
+        "update": 268
+      }
+    },
+    {
+      "battle_exp_accepted": false,
+      "candy_consumed_and_persisted": true,
+      "case": "caterpie-replace",
+      "denied_host_write_apis": 7,
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_creation_accepted": false,
+      "initial_party_item_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 9,
+      "level_before": 8,
+      "mgba_version": "0.10.2",
+      "moves_after": [
+        33,
+        535,
+        45,
+        52
+      ],
+      "moves_before": [
+        33,
+        81,
+        45,
+        52
+      ],
+      "party_bytes_preserved": 100,
+      "pp_after": [
+        7,
+        20,
+        9,
+        10
+      ],
+      "pp_before": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "release_ready": false,
+      "rom_sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "scope": "ISSUE19_CANDY_LEVELUP_EVOLUTION_SAVE_CONTINUE",
+      "species_after": 649,
+      "species_before": 649,
+      "status": "PASS",
+      "warnings_errors": 0,
+      "witness": {
+        "begin": 631,
+        "dialog": 180,
+        "dialogs": 1,
+        "field": 1529,
+        "party": 1,
+        "selection": 330,
+        "selections": 1,
+        "stop": 0,
+        "stops": 0,
+        "summary": 300,
+        "update": 656
+      }
+    },
+    {
+      "battle_exp_accepted": false,
+      "candy_consumed_and_persisted": true,
+      "case": "caterpie-summary-cancel",
+      "denied_host_write_apis": 7,
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_creation_accepted": false,
+      "initial_party_item_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 9,
+      "level_before": 8,
+      "mgba_version": "0.10.2",
+      "moves_after": [
+        33,
+        81,
+        45,
+        52
+      ],
+      "moves_before": [
+        33,
+        81,
+        45,
+        52
+      ],
+      "party_bytes_preserved": 100,
+      "pp_after": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "pp_before": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "release_ready": false,
+      "rom_sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "scope": "ISSUE19_CANDY_LEVELUP_EVOLUTION_SAVE_CONTINUE",
+      "species_after": 649,
+      "species_before": 649,
+      "status": "PASS",
+      "warnings_errors": 0,
+      "witness": {
+        "begin": 393,
+        "dialog": 180,
+        "dialogs": 1,
+        "field": 1289,
+        "party": 1,
+        "selection": 300,
+        "selections": 1,
+        "stop": 360,
+        "stops": 1,
+        "summary": 300,
+        "update": 418
+      }
+    },
+    {
+      "battle_exp_accepted": false,
+      "candy_consumed_and_persisted": true,
+      "case": "metapod-evolve-butterfree",
+      "denied_host_write_apis": 7,
+      "fresh_cores": 2,
+      "guarded_phases": 3,
+      "initial_creation_accepted": false,
+      "initial_party_item_progress_are_fixtures": true,
+      "issue19_complete": false,
+      "level_after": 10,
+      "level_before": 9,
+      "mgba_version": "0.10.2",
+      "moves_after": [
+        106,
+        16,
+        0,
+        0
+      ],
+      "moves_before": [
+        106,
+        0,
+        0,
+        0
+      ],
+      "party_bytes_preserved": 100,
+      "pp_after": [
+        7,
+        35,
+        0,
+        0
+      ],
+      "pp_before": [
+        7,
+        0,
+        0,
+        0
+      ],
+      "release_ready": false,
+      "rom_sha256": "8946438bc37fda468c53e41378a6f82fac8f0b1af7ac6785ef07ca708c2714a1",
+      "save_counters": [
+        2,
+        3,
+        3
+      ],
+      "schema_version": 1,
+      "scope": "ISSUE19_CANDY_LEVELUP_EVOLUTION_SAVE_CONTINUE",
+      "species_after": 414,
+      "species_before": 413,
+      "status": "PASS",
+      "warnings_errors": 0,
+      "witness": {
+        "begin": 91,
+        "dialog": 0,
+        "dialogs": 0,
+        "field": 2159,
+        "party": 1,
+        "selection": 0,
+        "selections": 0,
+        "stop": 0,
+        "stops": 0,
+        "summary": 0,
+        "update": 117
+      }
+    }
+  ],
+  "run_id": 35853901025,
+  "schema_version": 1,
+  "scope": "CFRU_FIRST_CALL_ENTRY_REPAIR_CANDY_EVOLUTION_SAVE_CONTINUE",
+  "source_bindings": {
+    ".github/workflows/pr16-learnset-entry-repair.yml": {
+      "sha256": "c72c4229bc990bc2733ff60e13221bc039269939269a0efa080f0151bb2a282e",
+      "size": 4086
+    },
+    "overlays/modernization_pr16_learnset_entry/entry.s": {
+      "sha256": "cbc0b5ea5d01bf6bfa78c760f9d1d1ed6112b21e41e071051e5319e4806461fe",
+      "size": 275
+    },
+    "scripts/pr16_learnset_entry_repair.py": {
+      "sha256": "61e7d5459fdea592d4ef3275c64166c3cd44fb3aab0b76bc236c2afd8c605a3c",
+      "size": 24351
+    },
+    "tests/test_pr16_learnset_entry_repair.py": {
+      "sha256": "e72106dce9d715b0ad7c965cbabb1b62fbba4219be28bfbda41a7453294c433a",
+      "size": 5637
+    },
+    "tools/mgba_pr16_learnset_progression.c": {
+      "sha256": "e6dd7435386707c65fdd5c945c2bb66cdec7b499c1d3d0a9ee4d69105cf992a0",
+      "size": 10772
+    }
+  },
+  "source_head": "190a25a6032827d4a060d6d93c98db98da9eb9be",
+  "status": "PASS_REPAIRED_CFRU_FIRST_CALL_ENTRY",
+  "task": "USER-20260923-LEARNSET-PROGRESSION",
+  "tests_passed": true,
+  "unaffected_accepted_case_reruns": 0,
+  "wiki_generations": 0
+}

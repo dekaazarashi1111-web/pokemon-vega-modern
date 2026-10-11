@@ -1,0 +1,140 @@
+{
+  "terminal": {
+    "run": {
+      "id": 37127420854,
+      "head_sha": "6440c70c8dd20442d67f5de89e0c9d93f12acafc",
+      "head_branch": "codex/modernization-followup-20260908",
+      "path": ".github/workflows/pr16-story-save38.yml",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1
+    },
+    "job": {
+      "id": 111215461690,
+      "run_id": 37127420854,
+      "workflow_name": "pr16-story-save38",
+      "head_branch": "codex/modernization-followup-20260908",
+      "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37127420854",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUPNhZs8AAAAZ5PVFOg",
+      "head_sha": "6440c70c8dd20442d67f5de89e0c9d93f12acafc",
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111215461690",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37127420854/job/111215461690",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-03T13:48:13Z",
+      "started_at": "2026-10-03T13:48:16Z",
+      "completed_at": "2026-10-03T13:48:55Z",
+      "name": "continuation",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-03T13:48:16Z",
+          "completed_at": "2026-10-03T13:48:17Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-03T13:48:17Z",
+          "completed_at": "2026-10-03T13:48:31Z"
+        },
+        {
+          "name": "Inherit all thirteen controller checks; exact cumulative source guard",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-03T13:48:31Z",
+          "completed_at": "2026-10-03T13:48:33Z"
+        },
+        {
+          "name": "Repair unsaved arrow-door boundary and independent Continue",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 4,
+          "started_at": "2026-10-03T13:48:33Z",
+          "completed_at": "2026-10-03T13:48:51Z"
+        },
+        {
+          "name": "Lightweight task graph",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5,
+          "started_at": "2026-10-03T13:48:51Z",
+          "completed_at": "2026-10-03T13:48:51Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-03T13:48:51Z",
+          "completed_at": "2026-10-03T13:48:53Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-03T13:48:53Z",
+          "completed_at": "2026-10-03T13:48:53Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-03T13:48:53Z",
+          "completed_at": "2026-10-03T13:48:53Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111215461690",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000019532,
+      "runner_name": "GitHub Actions 1000019532",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  },
+  "artifact": 11275593672,
+  "failure": {
+    "status": "NOT_ACCEPTED_PRESERVE_NO_AUTOMATIC_REPLAY",
+    "type": "ValueError",
+    "message": "出口warp待機上限。無条件再走しない",
+    "native_processes": 1,
+    "source_head": "6440c70c8dd20442d67f5de89e0c9d93f12acafc",
+    "run_id": 37127420854
+  },
+  "execution": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "7942159bf82220a864a128c66f97aa3da6e2558b0f3e8181d410a925e145a301"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "7942159bf82220a864a128c66f97aa3da6e2558b0f3e8181d410a925e145a301"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 3554,
+      "inputs": 44,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 25
+  },
+  "reason_ja": "追加南入力で屋外到達したが出口NPC会話で停止。正規会話/戦闘を含む変更影響区間だけ回復。",
+  "native_processes": 1,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0
+}
