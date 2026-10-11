@@ -14380,3 +14380,25 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 正式788分類/86未知、選定残7、安全容量0。旧受入/旧原本/R0/ROM/Save101/baseline不変。全story/全alias/退役・移管/保存controller受入は非主張。
 - Commit: この記録を含む単親通常commit。実SHAはGit履歴とActions resultへ記録。
 - Network: 同repo PR/ref/Actions/artifactのGETと同branch非force push。固定公開source https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 および固定JPsymbol。検索語 gMultiBootProgram_BerryGlitchFix_Start / mb_berry_fix。JP近傍長と公開asset長の相違を未照合のまま同一視しない。
+
+## 2026-10-11T02:22:35.829708+00:00
+- Timestamp: 2026-10-11T02:22:35.829708+00:00
+- Task: USER-20261011-WIKI-READABILITY-PRIORITY / Wiki閲覧改善
+- Version: wiki-r0.1-6e88a021
+- Status: DONE
+- Summary: 所有者2026-10-11T01:23:24Zの方針変更の未追記事務記録を補完。決定の再策定やWiki完成宣言ではない。
+- Files changed: 閲覧生成器/限定試験/専用Actions、別出力R0.1、固定入口/引継ぎMD/状態JSON、検証証拠、両ログ。原本・旧Wiki・ゲームは不変。
+- Verify: 既存task markerを各ログで検索し未追記分だけ追加。
+- Commit: この記録を含む同branchの単親通常commit。実SHAはActions resultとGit履歴で照合。
+- Network: GitHubの指定repo/PR/HEAD/Actions読取と同branchへの非force pushのみ。ROM/native再走0。
+
+## 2026-10-11T02:22:35.837813+00:00
+- Timestamp: 2026-10-11T02:22:35.837813+00:00
+- Task: USER-20261011-WIKI-READABILITY-BUILD / Wiki閲覧改善
+- Version: wiki-r0.1-6e88a021
+- Status: DONE
+- Summary: R0.1 4517資料、主要4表と全詳細、役割要約の共通除去、参考JSON隔離、実在ZIPを生成。全習得/条件/逆引きとゲーム情報不変。提示受領は未完。
+- Files changed: 閲覧生成器/限定試験/専用Actions、別出力R0.1、固定入口/引継ぎMD/状態JSON、検証証拠、両ログ。原本・旧Wiki・ゲームは不変。
+- Verify: 限定28試験、task graph、592544リンク、決定性/check byte+mtime、ZIP展開/member/hash PASS。新native/ROM再構成/旧受入再走0。
+- Commit: この記録を含む同branchの単親通常commit。実SHAはActions resultとGit履歴で照合。
+- Network: GitHubの指定repo/PR/HEAD/Actions読取と同branchへの非force pushのみ。ROM/native再走0。

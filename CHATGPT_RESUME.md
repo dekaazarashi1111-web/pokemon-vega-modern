@@ -43,3 +43,7 @@ CHATGPT_RESUME.md を読み、指示された正本と最新Actionsを照合し�
 受入済みは変更影響なしに再実行せず、固定の引継ぎMD/JSONと両ログを更新してください。
 merge・release・baseline切替は別途明示指示なしに行わないでください。
 ```
+
+## 閲覧改善の実装・検証記録
+
+[固定引継ぎ](docs/PR16_WIKI_READABILITY_STATUS_JA.md) を参照。現在状態は同じJSONのwiki_readabilityに記録し、生成成功と実物提示の受領を区別する。

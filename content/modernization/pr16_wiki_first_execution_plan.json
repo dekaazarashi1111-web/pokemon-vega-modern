@@ -4,9 +4,9 @@
   "authority_ja": "このJSONが現在の作業選択の唯一の正本。現在はwiki_readabilityを最優先とし、旧R0のreview_readyだけで技術解析へ進まない。旧native_supply_resumeは証拠/保留停止点として保持する。",
   "bindings": {
     "CHATGPT_RESUME.md": {
-      "git_blob_sha": "c2ae3ca1c87d47b36ea5f8d5b35f2a821d758d00",
-      "sha256": "3d2db56fbaa33d050d4348903dd594419f5bfd7b5e8018e52059e1e4d23ba220",
-      "size": 5070
+      "git_blob_sha": "e2e02862e8534001e9facefff37636f43aeb6f4c",
+      "sha256": "1d52ad0a4bb65ae080684388aaacf5a3e6c7293dc11da4f5c8aaee73524a01c2",
+      "size": 5297
     },
     "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
       "git_blob_sha": "116c6f1f8ccbed26029de10f31be7c69be75b09f",
@@ -17,6 +17,11 @@
       "git_blob_sha": "a078a1eb9543c4b9b43f45d0448ceac1e2f331a1",
       "sha256": "38803aba5f4e707a1cff361fc630588861a68bba8deb6761460c189de7287888",
       "size": 12028
+    },
+    "docs/PR16_WIKI_READABILITY_STATUS_JA.md": {
+      "git_blob_sha": "8817655eaf34330fe46187b20ca3c9e137f7016e",
+      "sha256": "8eb4d036914bc0081193e319a19d3325acb002f399c40929c20470b7f340195e",
+      "size": 2052
     }
   },
   "branch": "codex/modernization-followup-20260908",
@@ -25,39 +30,76 @@
   "long_term_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
   "next_action": {
     "done_ja": "wiki_readabilityの全completion_gates、実在entry/manifest/検証/公開commit/package、readyとpresented_to_ownerが揃うこと。R0のreadyや今回の方針commitだけでは完了にしない。",
-    "goal_ja": "まず閲覧用Wiki R0.1を限定修正して完成させる。役割別要約の取りこぼし/空抽出の誤断定、主要MD一覧の技術情報過多、ローカル保存とAI検討の入口を直す。固定R0/ゲーム数値/全習得/原本は不変。実装・限定検証・パッケージ生成/展開確認・記録・固定入口とDL提示まで行い、全条件達成前に保存解析へ戻らない。",
+    "goal_ja": "公開commitと完了Actions/packageを取得し、4主要MDとリーテイルを実物確認、固定入口とZIPを会話で提示してpresentation証拠を記録する。生成/native/受入試験は再走しない。",
     "id": "WIKI_READABILITY_FIX",
     "read_paths": [
-      "docs/PR16_WIKI_READABILITY_PRIORITY_JA.md",
-      "docs/wiki/r0-6e88a021/README.md",
-      "docs/wiki/r0-6e88a021/LIMITATIONS.md",
-      "docs/wiki/r0-6e88a021/VEGA_BALANCE_INDEX.md",
-      "docs/wiki/r0-6e88a021/MOVE_INDEX.md",
-      "docs/wiki/r0-6e88a021/ABILITY_INDEX.md",
-      "docs/wiki/r0-6e88a021/pokemon/3.md",
-      "scripts/pr16_wiki_r0_build.py"
+      "docs/PR16_WIKI_READABILITY_STATUS_JA.md",
+      "content/modernization/pr16_wiki_readability_verification.json",
+      "docs/wiki/r0.1-6e88a021/README.md"
     ]
   },
   "observed_head_checks": {
     "all_ci_green_claimed": false,
-    "branch_in_progress_count_at_priority_edit": 0,
-    "new_workflow_dispatched": false,
     "runs": [
       {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
+        "id": 38104890598,
+        "name": "source-validation",
+        "status": "in_progress"
+      },
+      {
         "conclusion": "failure",
-        "id": 38100986723,
+        "event": "pull_request",
+        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
+        "id": 38104890502,
         "name": "p03-forgetting-ci",
         "status": "completed"
       },
       {
-        "conclusion": "failure",
-        "id": 38100986769,
-        "name": "source-validation",
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
+        "id": 38104885843,
+        "name": "pr16-wiki-readability",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
+        "id": 38104886162,
+        "name": "Stage79 runtime boundary audit",
         "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "event": "push",
+        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
+        "id": 38104886181,
+        "name": "p03-forgetting-ci",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
+        "id": 38104885643,
+        "name": "Stage79 mGBA (all)",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
+        "id": 38104885636,
+        "name": "source-validation",
+        "status": "in_progress"
       }
     ],
-    "scope": "PR_TRIGGERED_RUNS_RETURNED_FOR_BASE_HEAD_ONLY",
-    "source_head": "dbb45a0c6ecbbb0c3017d57553dd55032a0708f7"
+    "scope": "ALL_EVENTS_FOR_EXACT_HEAD_AT_OBSERVATION",
+    "source_head": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -228,17 +270,18 @@
       "base_revision": "R0",
       "base_wiki_commit": "473aca371dbfd1d8a041d2ead4326a54759dcda4",
       "completion_gates": {
-        "core_game_semantics_unchanged": false,
-        "historical_snapshots_preserved": false,
+        "core_game_semantics_unchanged": true,
+        "historical_snapshots_preserved": true,
         "human_md_tables_reviewed": false,
-        "known_hint_problem_resolved": false,
-        "links_and_read_only_determinism": false,
-        "logs_and_state_recorded": false,
-        "offline_package_generated_verified": false,
+        "known_hint_problem_resolved": true,
+        "links_and_read_only_determinism": true,
+        "logs_and_state_recorded": true,
+        "offline_package_generated_verified": true,
         "published_and_presented": false
       },
+      "core_game_semantic_sha256": "8aa44826011462d78af79f8d410b0ce868b3620060c8f23f0e761e29dc13e226",
       "decision_id": "OWNER-20261011-WIKI-READABILITY-FIRST",
-      "entry_path": null,
+      "entry_path": "docs/wiki/r0.1-6e88a021/README.md",
       "forbidden": [
         "R0や原本の上書き",
         "ゲームデータ/数値/全習得経路・条件/機構対応の変更",
@@ -247,7 +290,7 @@
         "Wiki修正目的のROM/native再実行",
         "修正版提示前の保存容量解析続行"
       ],
-      "input_manifest_path": null,
+      "input_manifest_path": "docs/wiki/r0.1-6e88a021/data/index.json",
       "known_regression": {
         "function": "move_roles",
         "generator": "scripts/pr16_wiki_r0_build.py",
@@ -255,9 +298,24 @@
         "source_path": "docs/wiki/r0-6e88a021/pokemon/3.md",
         "species_id": 3
       },
-      "next_ja": "まず閲覧用Wiki R0.1を限定修正して完成させる。役割別要約の取りこぼし/空抽出の誤断定、主要MD一覧の技術情報過多、ローカル保存とAI検討の入口を直す。固定R0/ゲーム数値/全習得/原本は不変。実装・限定検証・パッケージ生成/展開確認・記録・固定入口とDL提示まで行い、全条件達成前に保存解析へ戻らない。",
+      "next_ja": "公開commitと完了Actions/packageを取得し、4主要MDとリーテイルを実物確認、固定入口とZIPを会話で提示してpresentation証拠を記録する。生成/native/受入試験は再走しない。",
       "owner_instruction_at": "2026-10-11T01:23:24Z",
-      "package": null,
+      "package": {
+        "actions_run_id": 38104885843,
+        "artifact_name": "pr16-wiki-readability-package",
+        "artifact_upload_confirmed": false,
+        "deterministic": true,
+        "expanded_links": 592544,
+        "expanded_verified": true,
+        "files": 4517,
+        "manifest_sha256": "5cc845e6958cba45966d3a2f7d446483509bd53ed7d6220db17399cedac77372",
+        "name": "wiki-r0.1-6e88a021.zip",
+        "private_inputs_included": false,
+        "sha256": "abd887f241fbfdcc454bfc13abf9fa3b7c7c2025943c40ec3880dc2a66f1268e",
+        "size": 33950355,
+        "tree_sha256": "c8838ef1dc8914918e77fb1cecb6844d05a5d052b66219f82c7256e4f2c5d711",
+        "uncompressed_bytes": 177464001
+      },
       "paused_phase": "SAVE_CAPACITY_INTEGRATION",
       "paused_technical_next_action": {
         "done_ja": "現ownerと実readerを証明し、完了runの外部受領後のみ型分類を更新する。",
@@ -286,11 +344,12 @@
         "主要な種族値・特性・技性能MD表の閲覧性",
         "固定閲覧版・実際のローカル保存パッケージとAI検討用入口"
       ],
-      "source_head": "dbb45a0c6ecbbb0c3017d57553dd55032a0708f7",
-      "status": "NOT_STARTED",
+      "source_head": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
+      "status": "VERIFIED",
       "target_revision": "R0.1",
       "task": "WIKI_READABILITY_FIX",
-      "verification_evidence_path": null
+      "tree_sha256": "c8838ef1dc8914918e77fb1cecb6844d05a5d052b66219f82c7256e4f2c5d711",
+      "verification_evidence_path": "content/modernization/pr16_wiki_readability_verification.json"
     }
   },
   "pr_number": 16,
@@ -346,11 +405,18 @@
     "native_processes": 0,
     "owner_instruction_at": "2026-10-10T10:56:56Z",
     "pending_berry_origin_run": {
+      "acceptance_not_inferred": true,
+      "observed": {
+        "conclusion": "success",
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099840927,
+        "status": "completed"
+      },
       "output_report": "content/modernization/pr16_berry_origin_checkpoint.json",
       "replay_forbidden": true,
       "run_id": 38099840927,
       "source_head": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
-      "status": "COMPLETION_NOT_YET_OBSERVED"
+      "status": "COMPLETED_RESULT_OBSERVED"
     },
     "prior_reconciliation_attempt": {
       "completion_commit_created": false,
@@ -367,9 +433,26 @@
     "received_typed_origins_completion": "content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json",
     "rom_changes": 0,
     "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-    "status": "R0_READY_BERRY_ORIGIN_BOUNDED_IDENTITY_READER_PENDING",
+    "status": "WIKI_READABILITY_VERIFIED_PRESENTATION_PENDING",
     "task": "USER-20261010-WIKI-FIRST-POLICY",
     "wiki_generated": true,
+    "wiki_readability_execution": {
+      "accepted_test_reruns": 0,
+      "actions_run_id": 38104885843,
+      "all_ci_green_claimed": false,
+      "focused_tests": 28,
+      "full_index_private_guard": {
+        "executed": true,
+        "exit_code": 1,
+        "historical_violations_not_rewritten": true,
+        "passed": false,
+        "raw_private_log_published": false
+      },
+      "native_processes": 0,
+      "rom_reconstructions": 0,
+      "source_head": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
+      "task": "USER-20261011-WIKI-READABILITY-BUILD"
+    },
     "wiki_readability_priority_update": {
       "accepted_test_reruns": 0,
       "all_ci_green_claimed": false,
@@ -377,12 +460,12 @@
       "decision_id": "OWNER-20261011-WIKI-READABILITY-FIRST",
       "full_index_private_guard_executed": false,
       "legacy_log_append": {
-        "next_ja": "同Task/決定IDを検索し未追記分だけ通常の許可された作業環境でappend-only記録する。旧ログを切詰めない。そのままWiki閲覧改善の実装へ進む。",
+        "next_ja": "事務追記済み。同taskを再追記しない。",
         "paths": [
           "design/run_log.md",
           "design/version_log.md"
         ],
-        "status": "NOT_PERFORMED"
+        "status": "DONE"
       },
       "local_verification": [
         "元状態JSONを現在Git blob SHAで完全照合",
