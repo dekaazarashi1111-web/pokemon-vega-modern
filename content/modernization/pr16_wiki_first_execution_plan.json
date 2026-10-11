@@ -4,9 +4,9 @@
   "authority_ja": "このJSONが作業選択の正本。R0.1の全gateと実物提示は完了し、閲覧改善優先条件を充足。現在はnext_actionのBerry現owner/reader未完scopeへ戻る。旧R0のreadyだけで解除したのではない。旧方針・旧解析の記録は履歴として保持する。",
   "bindings": {
     "CHATGPT_RESUME.md": {
-      "git_blob_sha": "1cf9c3940bd7a9b5578cd0590d7f36f6fcd16ad1",
-      "sha256": "a5e7eaedda21f1dc4e978fe73757661222286bf8eed2651d7848f7f38ee269e7",
-      "size": 2368
+      "git_blob_sha": "bc7eaf07114b0da85aaaef3460751425a8ea4837",
+      "sha256": "af8f102530cd301cfa85628f6cb1d0ffdf665a5e81f8e2344ee05c0225fbf9ea",
+      "size": 2464
     },
     "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
       "git_blob_sha": "116c6f1f8ccbed26029de10f31be7c69be75b09f",
@@ -29,13 +29,14 @@
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "long_term_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
   "next_action": {
-    "done_ja": "実consumerと完了Actionsを束縛した範囲だけ正式差分へ受領する。",
-    "goal_ja": "0x0880FA64の保存済みLZ構文候補0件/一致Tileset descriptor0件とconsumer frontierから、実asset owner/実caller/readerへ有限に結ぶ。今回の前後64KiB探索/30試験は再走せず保存hashを継承する。正式789/85・選定残6・安全容量0。窓外跨りread/間接参照/旧owner退役・移管/heap/controller/局所Saveは未完。",
-    "id": "SAVE_CAPACITY_SELECTED_ASSET_ACTUAL_READER",
+    "done_ja": "実lookupで選定したassetと実readerの全4byte消費を束縛し、完了run受領後にだけ正式型差分を追加する。",
+    "goal_ja": "正しいARM Tileset ABI（callback+0x10/属性+0x14）と保存した実map lookup/descriptor候補から、0x0880FA64の実asset extentとcaller/read全4byteを限定して閉じる。旧0件原本はABI不整合の履歴であり不存在証明ではない。今回のlookup/probe/32試験、旧LZ探索/30試験を無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。",
+    "id": "SAVE_CAPACITY_SELECTED_MAP_ASSET_READER",
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
-      "content/modernization/pr16_selected_asset_checkpoint.json",
-      "content/modernization/pr16_selected_asset_evidence/bounded-asset.json",
+      "content/modernization/pr16_selected_map_asset_checkpoint.json",
+      "content/modernization/pr16_selected_map_asset_evidence/map-asset.json",
+      "content/modernization/pr16_selected_map_asset_evidence/arm-layout.json",
       "content/modernization/pr16_berry_lz_type_evidence/window-progress.json"
     ]
   },
@@ -45,8 +46,8 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "1fafda9f6f4c10d5a597287fc001333d4f5f67dd",
-        "id": 38173149291,
+        "head_sha": "164eb78e03fd4a01a8cfc236da836ee525a95650",
+        "id": 38177631295,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
@@ -54,8 +55,8 @@
       {
         "conclusion": "failure",
         "event": "pull_request",
-        "head_sha": "1fafda9f6f4c10d5a597287fc001333d4f5f67dd",
-        "id": 38173149303,
+        "head_sha": "164eb78e03fd4a01a8cfc236da836ee525a95650",
+        "id": 38177631241,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
@@ -63,50 +64,50 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "1fafda9f6f4c10d5a597287fc001333d4f5f67dd",
-        "id": 38173141350,
-        "name": "pr16-selected-asset",
-        "path": ".github/workflows/pr16-selected-asset.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "1fafda9f6f4c10d5a597287fc001333d4f5f67dd",
-        "id": 38173141358,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "1fafda9f6f4c10d5a597287fc001333d4f5f67dd",
-        "id": 38173141339,
+        "head_sha": "164eb78e03fd4a01a8cfc236da836ee525a95650",
+        "id": 38177623113,
         "name": "Stage79 mGBA (all)",
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "status": "in_progress"
       },
       {
-        "conclusion": "failure",
-        "event": "push",
-        "head_sha": "1fafda9f6f4c10d5a597287fc001333d4f5f67dd",
-        "id": 38173141313,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
-      },
-      {
         "conclusion": "success",
         "event": "push",
-        "head_sha": "1fafda9f6f4c10d5a597287fc001333d4f5f67dd",
-        "id": 38173141357,
+        "head_sha": "164eb78e03fd4a01a8cfc236da836ee525a95650",
+        "id": 38177623026,
         "name": "Stage79 runtime boundary audit",
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "164eb78e03fd4a01a8cfc236da836ee525a95650",
+        "id": 38177623055,
+        "name": "pr16-selected-map-asset",
+        "path": ".github/workflows/pr16-selected-map-asset.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "164eb78e03fd4a01a8cfc236da836ee525a95650",
+        "id": 38177623021,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "push",
+        "head_sha": "164eb78e03fd4a01a8cfc236da836ee525a95650",
+        "id": 38177623023,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
       }
     ],
-    "source_head": "1fafda9f6f4c10d5a597287fc001333d4f5f67dd"
+    "source_head": "164eb78e03fd4a01a8cfc236da836ee525a95650"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -205,11 +206,11 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_selected_asset_checkpoint.json",
+        "checkpoint_path": "content/modernization/pr16_selected_map_asset_checkpoint.json",
         "classified": 789,
         "completion_evidence_path": null,
         "donor_safe_bytes": 0,
-        "next_ja": "0x0880FA64の保存済みLZ構文候補0件/一致Tileset descriptor0件とconsumer frontierから、実asset owner/実caller/readerへ有限に結ぶ。今回の前後64KiB探索/30試験は再走せず保存hashを継承する。正式789/85・選定残6・安全容量0。窓外跨りread/間接参照/旧owner退役・移管/heap/controller/局所Saveは未完。",
+        "next_ja": "正しいARM Tileset ABI（callback+0x10/属性+0x14）と保存した実map lookup/descriptor候補から、0x0880FA64の実asset extentとcaller/read全4byteを限定して閉じる。旧0件原本はABI不整合の履歴であり不存在証明ではない。今回のlookup/probe/32試験、旧LZ探索/30試験を無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。",
         "reference_chain_path": "content/modernization/pr16_berry_lz_type_evidence/reference-chain.json",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
@@ -221,7 +222,7 @@
         ],
         "scheduling_status": "READY_FROM_SAVED_SELECTED_ORIGINS",
         "selected_unknown_origins": 6,
-        "status": "SELECTED_ASSET_BOUNDED_READER_PENDING",
+        "status": "SELECTED_MAP_LOOKUP_BOUND_ASSET_READER_PENDING",
         "unclassified": 85,
         "unknown_frontier_path": "content/modernization/pr16_berry_lz_type_evidence/unknown-frontier.json",
         "window_progress_path": "content/modernization/pr16_berry_lz_type_evidence/window-progress.json"
@@ -422,7 +423,7 @@
     "last_execution": {
       "accepted_test_reruns": 0,
       "actions_completion_confirmed": false,
-      "actions_run_id": 38173141350,
+      "actions_run_id": 38177623055,
       "donor_safe_bytes": 0,
       "formal_classified": 789,
       "formal_unclassified": 85,
@@ -435,11 +436,12 @@
       },
       "full_rom_scans": 0,
       "native_processes": 0,
-      "new_unit_tests": 30,
+      "new_unit_tests": 32,
+      "prior_lz_search_reruns": 0,
       "read_only_check_passed": true,
       "rom_reconstructions": 1,
-      "source_head": "1fafda9f6f4c10d5a597287fc001333d4f5f67dd",
-      "task": "USER-20261012-SELECTED-ASSET-0880FA64",
+      "source_head": "164eb78e03fd4a01a8cfc236da836ee525a95650",
+      "task": "USER-20261012-SELECTED-MAP-ASSET-ABI",
       "task_graph_passed": true
     },
     "legacy_generated_md_modified": false,
@@ -500,15 +502,17 @@
     "received_berry_lz_completion": "content/modernization/pr16_berry_child_lz_evidence/actions-completion.json",
     "received_berry_lz_type_inputs": "content/modernization/pr16_berry_lz_type_evidence/receipt-actions-completion.json",
     "received_berry_transfer_completion": "content/modernization/pr16_berry_child_evidence/transfer-completion.json",
+    "received_selected_asset_completion": "content/modernization/pr16_selected_map_asset_evidence/parent-actions-completion.json",
     "received_sound_asset_completion": "content/modernization/pr16_sound_origin_reader_evidence/asset-completion.json",
     "received_sound_reader_completion": "content/modernization/pr16_sound_origin_reader_evidence/actions-completion.json",
     "received_sound_receipt_completion": "content/modernization/pr16_berry_origin_evidence/prior-actions.json",
     "received_typed_origins_completion": "content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json",
     "rom_changes": 0,
     "selected_asset_checkpoint": "content/modernization/pr16_selected_asset_checkpoint.json",
-    "source_head": "1fafda9f6f4c10d5a597287fc001333d4f5f67dd",
-    "status": "SELECTED_ASSET_BOUNDED_READER_PENDING",
-    "task": "USER-20261012-SELECTED-ASSET-0880FA64",
+    "selected_map_asset_checkpoint": "content/modernization/pr16_selected_map_asset_checkpoint.json",
+    "source_head": "164eb78e03fd4a01a8cfc236da836ee525a95650",
+    "status": "SELECTED_MAP_LOOKUP_BOUND_ASSET_READER_PENDING",
+    "task": "USER-20261012-SELECTED-MAP-ASSET-ABI",
     "wiki_generated": true,
     "wiki_readability_execution": {
       "accepted_test_reruns": 0,

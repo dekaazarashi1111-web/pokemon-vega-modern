@@ -14,7 +14,7 @@ R0.1は別出力として実装・限定検証・パッケージ生成/展開確
 
 ## 次の未完作業
 
-現在の next_action は SAVE_CAPACITY_SELECTED_ASSET_ACTUAL_READER。0x0880FA64の保存済みLZ構文候補0件/一致Tileset descriptor0件とconsumer frontierから、実asset owner/実caller/readerへ有限に結ぶ。今回の前後64KiB探索/30試験は再走せず保存hashを継承する。正式789/85・選定残6・安全容量0。窓外跨りread/間接参照/旧owner退役・移管/heap/controller/局所Saveは未完。 固定JSONのread_pathsを使う。
+現在の next_action は SAVE_CAPACITY_SELECTED_MAP_ASSET_READER。正しいARM Tileset ABI（callback+0x10/属性+0x14）と保存した実map lookup/descriptor候補から、0x0880FA64の実asset extentとcaller/read全4byteを限定して閉じる。旧0件原本はABI不整合の履歴であり不存在証明ではない。今回のlookup/probe/32試験、旧LZ探索/30試験を無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。 固定JSONのread_pathsを使う。
 
 所有者が閲覧版で案を検討する間も、実作業セッションでは保存容量→CI整合→追加機構の技術確認を継続する。未承認バランス案や新メガ/Gmax/Zの対象・性能は決めない。無人バックグラウンド実行の約束ではない。
 

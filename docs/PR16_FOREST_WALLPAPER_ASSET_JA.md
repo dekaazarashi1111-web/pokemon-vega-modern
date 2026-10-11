@@ -198,6 +198,16 @@ run 38097726375 の完了success、全job/必須step、公開artifactの全hash�
 
 [限定証拠](../content/modernization/pr16_selected_asset_evidence/bounded-asset.json) / [checkpoint](../content/modernization/pr16_selected_asset_checkpoint.json)。前回Berry型登録Actionsの全8member/68text/公開commitを受領。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 0x0880FA64の保存済みLZ構文候補0件/一致Tileset descriptor0件とconsumer frontierから、実asset owner/実caller/readerへ有限に結ぶ。今回の前後64KiB探索/30試験は再走せず保存hashを継承する。正式789/85・選定残6・安全容量0。窓外跨りread/間接参照/旧owner退役・移管/heap/controller/局所Saveは未完。
+
+## Tileset ABI訂正と現map lookup
+
+旧Tileset decoderのcallback/属性offset逆転を固定公開headerのARM compileで確認し、後継だけを修正。68 descriptor候補中data field妥当68件。現lookupの実命令とroot、有限入力矩形から0選定候補を保存。実asset readや分類増加は未主張。新32試験、候補復元1、native/旧受入/旧LZ探索再走0。
+
+[後継証拠](../content/modernization/pr16_selected_map_asset_evidence/map-asset.json) / [checkpoint](../content/modernization/pr16_selected_map_asset_checkpoint.json)。前回run全8member/77text/公開commitを受領。旧測定原本は不変。
+
+## 次の未完作業
+
+正しいARM Tileset ABI（callback+0x10/属性+0x14）と保存した実map lookup/descriptor候補から、0x0880FA64の実asset extentとcaller/read全4byteを限定して閉じる。旧0件原本はABI不整合の履歴であり不存在証明ではない。今回のlookup/probe/32試験、旧LZ探索/30試験を無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。

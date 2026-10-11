@@ -11756,3 +11756,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 0x0880FA64の保存済みLZ構文候補0件/一致Tileset descriptor0件とconsumer frontierから、実asset owner/実caller/readerへ有限に結ぶ。今回の前後64KiB探索/30試験は再走せず保存hashを継承する。正式789/85・選定残6・安全容量0。窓外跨りread/間接参照/旧owner退役・移管/heap/controller/局所Saveは未完。
 - Commit: この記録を含む単親通常commit。実SHAはActions result/Git履歴。
 - Network: 同repo PR/ref/Actions/artifact/既存private入力と同branch非force push。固定pret/pokefirered c75f352304d529f6ba92d4f74b9cf8b5c3810788 のfieldmap/Tileset/Colosseum sourceと固定JPsymbolを参照。検索語 gTileset_General。ROM/save/生byte列の公開なし。
+
+## 2026-10-11T21:46:08.211274+00:00
+- Timestamp: 2026-10-11T21:46:08.211274+00:00
+- Task: USER-20261012-SELECTED-MAP-ASSET-ABI / 正しいTileset ABIと実map lookup
+- Version: selected-map-asset-v1
+- Status: DONE（後継ABI/限定lookup。実asset readerと保存統合は未完）
+- Summary: 旧Tileset decoderのcallback/属性offset逆転を固定公開headerのARM compileで確認し、後継だけを修正。68 descriptor候補中data field妥当68件。現lookupの実命令とroot、有限入力矩形から0選定候補を保存。実asset readや分類増加は未主張。新32試験、候補復元1、native/旧受入/旧LZ探索再走0。
+- Files changed: 後継検証器/32試験/Actions、限定証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: 新32人工境界試験、固定構造体ARM layout、実lookup/全候補SHA/115owner、前回完了Actions/全artifact、保存後read-only、task graph、限定最終index。
+- Boundary: 正式789/85・残6・安全容量0。全体CI green/全story/退役・移管/ROM配布受入は非主張。
+- Next: 正しいARM Tileset ABI（callback+0x10/属性+0x14）と保存した実map lookup/descriptor候補から、0x0880FA64の実asset extentとcaller/read全4byteを限定して閉じる。旧0件原本はABI不整合の履歴であり不存在証明ではない。今回のlookup/probe/32試験、旧LZ探索/30試験を無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+- Commit: この記録を含む単親通常commit。実SHAはActions result/Git履歴。
+- Network: 同repo PR/ref/Actions/artifact/既存private入力と同branch非force push。固定pret/pokefirered c75f352304d529f6ba92d4f74b9cf8b5c3810788 のglobal.fieldmap.h/fieldmap.c/overworld.cと固定JPsymbol。参照語 struct Tileset / Overworld_GetMapHeaderByGroupAndId。ROM/save/生byte列の公開なし。

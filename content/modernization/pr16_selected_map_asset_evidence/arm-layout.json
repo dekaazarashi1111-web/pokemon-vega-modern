@@ -1,0 +1,112 @@
+{
+  "compile_source_identity": {
+    "sha256": "8ded504c7c0c9c04b5648881816f5a8c0785eda15650b407e3887a171c918dc0",
+    "size": 1481
+  },
+  "compiled_rodata_identity": {
+    "sha256": "62d3f075b2fe319844e6db76da9c836503ab87cb616d10ec540937283ab34b31",
+    "size": 68
+  },
+  "compiler_version": "13.2.1",
+  "layout": {
+    "attributes": 20,
+    "border": 8,
+    "border_height": 25,
+    "border_width": 24,
+    "callback": 16,
+    "compressed": 0,
+    "height": 4,
+    "map": 12,
+    "map_layout_size": 28,
+    "metatiles": 12,
+    "palettes": 8,
+    "primary": 16,
+    "secondary": 1,
+    "secondary_tileset": 20,
+    "tiles": 4,
+    "tileset_size": 24,
+    "width": 0
+  },
+  "public_sources": {
+    "include/global.fieldmap.h": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "e2828ec0cb1439718e830fbef4366770b3b77b1c",
+      "path": "include/global.fieldmap.h",
+      "repository": "pret/pokefirered",
+      "sha256": "34a8c91e10803ba48b97a2df8a721ca37fad7572b2ff951a4ab7ec15a5f050eb",
+      "size": 12127
+    },
+    "src/fieldmap.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "41567772299000ba5855419e5c39ad9373a34c20",
+      "path": "src/fieldmap.c",
+      "repository": "pret/pokefirered",
+      "sha256": "bbe15c7af1059a9f796dddaca28bdaaf206b715895029e189fa6ae012272ce68",
+      "size": 28166
+    },
+    "src/overworld.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "339014da46ae8543143edc99ab72bf7496203a0d",
+      "path": "src/overworld.c",
+      "repository": "pret/pokefirered",
+      "sha256": "df352e738b56856765aec65adc6fdea0a4b25fe567bc760d4ce2d34afc6ff7e2",
+      "size": 103643
+    }
+  },
+  "public_symbol_source": {
+    "commit": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+    "git_blob": "53316c0d61da2c6cc22acf3d79f68c61c64c65be",
+    "path": "diagnostics/pokefirered_jp.sym.audit.tsv",
+    "repository": "ComplexRobot/frlg-sym",
+    "sha256": "fc1e4b579b21a592b8e09fa3c36f242833837190401128cd6866c945eff2f44e",
+    "size": 4147002
+  },
+  "shim_semantics_ja": "固定公開構造体本文を無変更で抽出しARMv4Tで配置。ゲーム本体の再コンパイルではない。",
+  "symbols": {
+    "found": {
+      "GetMapHeaderFromConnection": {
+        "address": 134578820,
+        "following_distinct_address": 134578836,
+        "line": 3013,
+        "row_sha256": "d912a918ee2c2ec7066521918840f652b6b8844da70e3d321fefb42e6c028ad6"
+      },
+      "InitMap": {
+        "address": 134578836,
+        "following_distinct_address": 134578856,
+        "line": 3015,
+        "row_sha256": "8774a1a86a0473e5b8ea9dcd843c221a79f5e303c252a1ec421df29d09b35347"
+      },
+      "MapGridGetMetatileAttributeAt": {
+        "address": 134580228,
+        "following_distinct_address": 134580276,
+        "line": 3029,
+        "row_sha256": "036b7d02058b8417bd7f29197a7e05a13e5eeecab7324edf4593bd9c59ea44fe"
+      },
+      "MapGridGetMetatileIdAt": {
+        "address": 134579972,
+        "following_distinct_address": 134580184,
+        "line": 3027,
+        "row_sha256": "a09289f5d95a81c692ed76449ce68b44a1a6e5c85637c024d204f60110d69db5"
+      },
+      "Overworld_GetMapHeaderByGroupAndId": {
+        "address": 134564600,
+        "following_distinct_address": 134564624,
+        "line": 2795,
+        "row_sha256": "aa7f2ebbf45953c2ad3fb373bf104e9aeb96cc1f49d3f5aa9a7e854a82a51d89"
+      },
+      "gMapGroups": {
+        "address": 137455448,
+        "following_distinct_address": 137455620,
+        "line": 28931,
+        "row_sha256": "7e96fe360a02b062e7b28ce110e9a505bf174eb6a6ea07766ffeb5fcf2eda986"
+      }
+    },
+    "missing": [
+      "CopyMapGridData",
+      "GetMetatileAttributesById",
+      "GetMetatileAttributesByIdAndMapLayout",
+      "gBackupMapLayout",
+      "gMapHeader"
+    ]
+  }
+}
