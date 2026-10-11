@@ -166,6 +166,16 @@ run 38097726375 の完了success、全job/必須step、公開artifactの全hash�
 
 [checkpoint](../content/modernization/pr16_berry_child_lz_checkpoint.json) / [実reader](../content/modernization/pr16_berry_child_lz_evidence/lz-reader.json)。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 新LZ測定の完了run/全artifactを再走せず受領し、正式788/86親へ対象1件だけの条件付き圧縮token型差分を適用する。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。
+
+## USER-20261011-BERRY-CHILD-LZ-RECEIPT
+
+子機継続LZ測定runの完了・全ZIP/member・公開commit/contextを受領。対象全4byteは実SWI11の展開元token。測定原本のpending表記は改作せず、別receiptで完了を確定。新native/復元/旧試験再走0。
+
+[checkpoint](../content/modernization/pr16_berry_child_lz_receipt.json) / [実reader](../content/modernization/pr16_berry_child_lz_evidence/lz-reader.json)。
+
+## 次の未完作業
+
+保存済みLZ readerと完了receiptから、正式788/86のreference-chain/unknown-frontier/window-progressへ対象0x086C51BFの1件だけの型差分を追加し、他873行と原本を保持する。reader/native/25試験は再走しない。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。

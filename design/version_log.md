@@ -11717,3 +11717,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 新LZ測定の完了run/全artifactを再走せず受領し、正式788/86親へ対象1件だけの条件付き圧縮token型差分を適用する。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。
 - Commit: この記録を含む同branch単親通常commit。実SHAはActions result/Gitで照合。
 - Network: 同repo PR/ref/Actions/artifact GET、既存固定再構成入力、非force push。一次資料 https://github.com/mgba-emu/mgba/blob/0.10.2/src/gba/bios.c と include/mgba/internal/arm/arm.h のSWI11/透過memory APIを確認。検索語: github pret berry fix multiboot crt0 02000120（有用な検索結果なし）。私有原本・展開byteは公開しない。
+
+## 2026-10-11T09:59:55.828829+00:00
+- Timestamp: 2026-10-11T09:59:55.828829+00:00
+- Task: USER-20261011-BERRY-CHILD-LZ-RECEIPT / Berry停止点以後のLZ reader
+- Version: berry-child-lz-v1
+- Status: DONE（LZ_READER_COMPLETION_BOUND_FORMAL_DELTA_PENDING。正式型/容量/保存統合は未完）
+- Summary: 子機継続LZ測定runの完了・全ZIP/member・公開commit/contextを受領。対象全4byteは実SWI11の展開元token。測定原本のpending表記は改作せず、別receiptで完了を確定。新native/復元/旧試験再走0。
+- Files changed: LZ専用source/試験/native/Actionsと公開text証拠、固定MD/JSON、両ログ。
+- Verify: 新scope=0試験、原本hash/read-only/task graph/限定最終index。native=0、復元=0。受入済み再走0。
+- Boundary: 通信値はfixture、元BIOS/自然リンク/元cartの成功ではない。正式788/86・残7・安全容量0。全体CI greenを推測しない。
+- Next: 保存済みLZ readerと完了receiptから、正式788/86のreference-chain/unknown-frontier/window-progressへ対象0x086C51BFの1件だけの型差分を追加し、他873行と原本を保持する。reader/native/25試験は再走しない。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。
+- Commit: この記録を含む同branch単親通常commit。実SHAはActions result/Gitで照合。
+- Network: 同repo PR/ref/Actions/artifact GET、既存固定再構成入力、非force push。一次資料 https://github.com/mgba-emu/mgba/blob/0.10.2/src/gba/bios.c と include/mgba/internal/arm/arm.h のSWI11/透過memory APIを確認。検索語: github pret berry fix multiboot crt0 02000120（有用な検索結果なし）。私有原本・展開byteは公開しない。

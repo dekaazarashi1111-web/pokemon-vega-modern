@@ -14,7 +14,7 @@ R0.1は別出力として実装・限定検証・パッケージ生成/展開確
 
 ## 次の未完作業
 
-現在の next_action は SAVE_CAPACITY_BERRY_LZ_TYPED_RECEIPT。保存PC0x02000120から通信32readを明示fixtureとする新nativeを実行。実ARM caller→SWI11→0x020001D8帰還を287279stepで観測。展開元12698byteを全て1回ずつ実readし、対象0x086C51BF全4byteをLZ tokenとして消費。展開18036byteは独立parserと完全一致。親13profile/旧393220stepは再走0。初回JSON読取失敗の未受入native1/復元1を別保存し、本taskは累計native2/復元2。成功した無変更25試験は原本から再利用。 新LZ測定の完了run/全artifactを再走せず受領し、正式788/86親へ対象1件だけの条件付き圧縮token型差分を適用する。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。 固定JSONのread_pathsを使う。
+現在の next_action は SAVE_CAPACITY_BERRY_LZ_TYPED_RECEIPT。子機継続LZ測定runの完了・全ZIP/member・公開commit/contextを受領。対象全4byteは実SWI11の展開元token。測定原本のpending表記は改作せず、別receiptで完了を確定。新native/復元/旧試験再走0。 保存済みLZ readerと完了receiptから、正式788/86のreference-chain/unknown-frontier/window-progressへ対象0x086C51BFの1件だけの型差分を追加し、他873行と原本を保持する。reader/native/25試験は再走しない。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。 固定JSONのread_pathsを使う。
 
 所有者が閲覧版で案を検討する間も、実作業セッションでは保存容量→CI整合→追加機構の技術確認を継続する。未承認バランス案や新メガ/Gmax/Zの対象・性能は決めない。無人バックグラウンド実行の約束ではない。
 
