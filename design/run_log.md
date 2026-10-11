@@ -14402,3 +14402,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Verify: 限定28試験、task graph、592544リンク、決定性/check byte+mtime、ZIP展開/member/hash PASS。新native/ROM再構成/旧受入再走0。
 - Commit: この記録を含む同branchの単親通常commit。実SHAはActions resultとGit履歴で照合。
 - Network: GitHubの指定repo/PR/HEAD/Actions読取と同branchへの非force pushのみ。ROM/native再走0。
+
+## 2026-10-11T02:29:55.826713+00:00
+- Timestamp: 2026-10-11T02:29:55.826713+00:00
+- Task: USER-20261011-WIKI-READABILITY-RECEIPT / Wiki閲覧改善
+- Version: wiki-r0.1-6e88a021
+- Status: DONE
+- Summary: 固定公開R0.1/実物4主要MD/リーテイル/資料ZIPと完了Actionsを照合して会話提示を受領。全閲覧改善gate完了。正式788/86・選定残7・安全容量0のBerry未完へ復帰。
+- Files changed: 閲覧生成器/限定試験/専用Actions、別出力R0.1、固定入口/引継ぎMD/状態JSON、検証証拠、両ログ。原本・旧Wiki・ゲームは不変。
+- Verify: 生成run completed/success、公開member hash/集合・提示manifest/package/外部artifact identity・task graph PASS。生成/28試験/native再走0。
+- Commit: この記録を含む同branchの単親通常commit。実SHAはActions resultとGit履歴で照合。
+- Network: GitHubの指定repo/PR/HEAD/Actions読取と同branchへの非force pushのみ。ROM/native再走0。

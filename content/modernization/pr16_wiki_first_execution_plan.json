@@ -4,9 +4,9 @@
   "authority_ja": "このJSONが現在の作業選択の唯一の正本。現在はwiki_readabilityを最優先とし、旧R0のreview_readyだけで技術解析へ進まない。旧native_supply_resumeは証拠/保留停止点として保持する。",
   "bindings": {
     "CHATGPT_RESUME.md": {
-      "git_blob_sha": "e2e02862e8534001e9facefff37636f43aeb6f4c",
-      "sha256": "1d52ad0a4bb65ae080684388aaacf5a3e6c7293dc11da4f5c8aaee73524a01c2",
-      "size": 5297
+      "git_blob_sha": "1ba0a7f434759f052fc1dafb58844ecd8203cb20",
+      "sha256": "29175e64944526666a35f12147524618c517e78a13e8cc0705c17fe530c52661",
+      "size": 2441
     },
     "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
       "git_blob_sha": "116c6f1f8ccbed26029de10f31be7c69be75b09f",
@@ -19,9 +19,9 @@
       "size": 12028
     },
     "docs/PR16_WIKI_READABILITY_STATUS_JA.md": {
-      "git_blob_sha": "8817655eaf34330fe46187b20ca3c9e137f7016e",
-      "sha256": "8eb4d036914bc0081193e319a19d3325acb002f399c40929c20470b7f340195e",
-      "size": 2052
+      "git_blob_sha": "449a14bc76f61757037f6772d92d920d14497e84",
+      "sha256": "f966d9a6da69738f92862f5edd30a77c80706a02e80cef3ab7a2442251c78acb",
+      "size": 2038
     }
   },
   "branch": "codex/modernization-followup-20260908",
@@ -29,13 +29,15 @@
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "long_term_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
   "next_action": {
-    "done_ja": "wiki_readabilityの全completion_gates、実在entry/manifest/検証/公開commit/package、readyとpresented_to_ownerが揃うこと。R0のreadyや今回の方針commitだけでは完了にしない。",
-    "goal_ja": "公開commitと完了Actions/packageを取得し、4主要MDとリーテイルを実物確認、固定入口とZIPを会話で提示してpresentation証拠を記録する。生成/native/受入試験は再走しない。",
-    "id": "WIKI_READABILITY_FIX",
+    "done_ja": "現ownerと実readerを証明し、完了runの外部受領後のみ型分類を更新する。",
+    "goal_ja": "保存したBerry近傍の限定identity・公開assetとのlocale差・consumer frontierから、0x086C51BFの現ownerと実readerを有限範囲で結ぶ。公開EN assetや近傍JPsymbolを現ownerと同一視しない。今回の候補復元/限定測定/20試験と旧受入は再走せず、実readerの新scopeだけを検証する。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。",
+    "id": "SAVE_CAPACITY_BERRY_ORIGIN_ACTUAL_OWNER_READER",
     "read_paths": [
-      "docs/PR16_WIKI_READABILITY_STATUS_JA.md",
-      "content/modernization/pr16_wiki_readability_verification.json",
-      "docs/wiki/r0.1-6e88a021/README.md"
+      "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
+      "content/modernization/pr16_berry_origin_checkpoint.json",
+      "content/modernization/pr16_berry_origin_evidence/bounded-binding.json",
+      "content/modernization/pr16_sound_origin_reader_evidence/window-progress.json",
+      "content/modernization/pr16_donor_origins_evidence/symbol-frontier.json"
     ]
   },
   "observed_head_checks": {
@@ -44,62 +46,62 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
-        "id": 38104890598,
+        "head_sha": "e2f4bc4cd0fbd8d08b4d60b1a8d262a1bb3753aa",
+        "id": 38105318920,
+        "name": "p03-forgetting-ci",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "e2f4bc4cd0fbd8d08b4d60b1a8d262a1bb3753aa",
+        "id": 38105318922,
         "name": "source-validation",
         "status": "in_progress"
       },
       {
-        "conclusion": "failure",
-        "event": "pull_request",
-        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
-        "id": 38104890502,
-        "name": "p03-forgetting-ci",
-        "status": "completed"
-      },
-      {
         "conclusion": null,
         "event": "push",
-        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
-        "id": 38104885843,
-        "name": "pr16-wiki-readability",
+        "head_sha": "e2f4bc4cd0fbd8d08b4d60b1a8d262a1bb3753aa",
+        "id": 38105312855,
+        "name": "source-validation",
         "status": "in_progress"
       },
       {
-        "conclusion": "success",
+        "conclusion": null,
         "event": "push",
-        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
-        "id": 38104886162,
+        "head_sha": "e2f4bc4cd0fbd8d08b4d60b1a8d262a1bb3753aa",
+        "id": 38105312762,
         "name": "Stage79 runtime boundary audit",
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "event": "push",
-        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
-        "id": 38104886181,
-        "name": "p03-forgetting-ci",
-        "status": "completed"
+        "status": "in_progress"
       },
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
-        "id": 38104885643,
+        "head_sha": "e2f4bc4cd0fbd8d08b4d60b1a8d262a1bb3753aa",
+        "id": 38105312771,
+        "name": "p03-forgetting-ci",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "e2f4bc4cd0fbd8d08b4d60b1a8d262a1bb3753aa",
+        "id": 38105312773,
         "name": "Stage79 mGBA (all)",
         "status": "in_progress"
       },
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
-        "id": 38104885636,
-        "name": "source-validation",
+        "head_sha": "e2f4bc4cd0fbd8d08b4d60b1a8d262a1bb3753aa",
+        "id": 38105312765,
+        "name": "pr16-wiki-readability",
         "status": "in_progress"
       }
     ],
     "scope": "ALL_EVENTS_FOR_EXACT_HEAD_AT_OBSERVATION",
-    "source_head": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6"
+    "source_head": "e2f4bc4cd0fbd8d08b4d60b1a8d262a1bb3753aa"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -144,11 +146,11 @@
     "owner_review": {
       "approvals": [],
       "proposals": [],
-      "reference_revision": "R0",
+      "reference_revision": "R0.1",
       "status": "REFERENCE_PRESENTED_NO_APPROVAL",
       "wait_does_not_block_technical_work": true
     },
-    "phase": "WIKI_READABILITY_FIX",
+    "phase": "SAVE_CAPACITY_INTEGRATION",
     "policy_doc": "docs/PR16_WIKI_READABILITY_PRIORITY_JA.md",
     "release_gate": {
       "requires": [
@@ -212,7 +214,7 @@
           "heap-ready/同期非再入/退避前Free/全出口Free",
           "必要な局所Save/fresh Continue受入"
         ],
-        "scheduling_status": "PAUSED_FOR_WIKI_READABILITY",
+        "scheduling_status": "READY_FROM_PRESERVED_BERRY_FRONTIER",
         "selected_unknown_origins": 7,
         "status": "BERRY_NEIGHBORHOOD_BOUND_PUBLIC_ASSET_DIFFERS_OWNER_PENDING",
         "unclassified": 86,
@@ -272,12 +274,12 @@
       "completion_gates": {
         "core_game_semantics_unchanged": true,
         "historical_snapshots_preserved": true,
-        "human_md_tables_reviewed": false,
+        "human_md_tables_reviewed": true,
         "known_hint_problem_resolved": true,
         "links_and_read_only_determinism": true,
         "logs_and_state_recorded": true,
         "offline_package_generated_verified": true,
-        "published_and_presented": false
+        "published_and_presented": true
       },
       "core_game_semantic_sha256": "8aa44826011462d78af79f8d410b0ce868b3620060c8f23f0e761e29dc13e226",
       "decision_id": "OWNER-20261011-WIKI-READABILITY-FIRST",
@@ -298,12 +300,14 @@
         "source_path": "docs/wiki/r0-6e88a021/pokemon/3.md",
         "species_id": 3
       },
-      "next_ja": "公開commitと完了Actions/packageを取得し、4主要MDとリーテイルを実物確認、固定入口とZIPを会話で提示してpresentation証拠を記録する。生成/native/受入試験は再走しない。",
+      "next_ja": "閲覧版固定・提示済み。保存した最新Berry現owner/readerの未完scopeへ戻る。",
       "owner_instruction_at": "2026-10-11T01:23:24Z",
       "package": {
         "actions_run_id": 38104885843,
+        "artifact_digest": "sha256:fd84a545d7ce24dac1c23a40138715c5b6d3a45959a1594d7a87f0b7a83a64ea",
+        "artifact_id": 11689004499,
         "artifact_name": "pr16-wiki-readability-package",
-        "artifact_upload_confirmed": false,
+        "artifact_upload_confirmed": true,
         "deterministic": true,
         "expanded_links": 592544,
         "expanded_verified": true,
@@ -331,11 +335,12 @@
       },
       "paused_technical_state_reference": "owner_execution_plan.technical_lanes.save_capacity",
       "planned_output_directory": "docs/wiki/r0.1-6e88a021",
-      "presentation_evidence": null,
-      "presented_to_owner": false,
+      "presentation_evidence": "content/modernization/pr16_wiki_readability_presentation.json",
+      "presented_to_owner": true,
       "priority": "FIRST_UNTIL_COMPLETED_AND_PRESENTED",
-      "published_commit": null,
-      "ready": false,
+      "published_commit": "db1a250d80cd85015b183ec44a9a868bb051dc07",
+      "ready": true,
+      "receipt_path": "content/modernization/pr16_wiki_readability_receipt.json",
       "required": true,
       "resume_after_ja": "最新HEAD/Actionsと保留したBerry現owner/readerの原本を照合し、未回収成功は再測定せず受領。最新の未完技術scopeへ戻り、所有者の案待ちだけでは停止しない。",
       "resume_condition_ja": "全completion_gates=true、実在成果の検証と公開、固定入口/DLの所有者提示後のみ。過去R0のreadyは解除根拠にしない。",
@@ -345,7 +350,7 @@
         "固定閲覧版・実際のローカル保存パッケージとAI検討用入口"
       ],
       "source_head": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
-      "status": "VERIFIED",
+      "status": "READY_FOR_REVIEW",
       "target_revision": "R0.1",
       "task": "WIKI_READABILITY_FIX",
       "tree_sha256": "c8838ef1dc8914918e77fb1cecb6844d05a5d052b66219f82c7256e4f2c5d711",
@@ -433,14 +438,14 @@
     "received_typed_origins_completion": "content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json",
     "rom_changes": 0,
     "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-    "status": "WIKI_READABILITY_VERIFIED_PRESENTATION_PENDING",
+    "status": "R0_1_PUBLISHED_PRESENTED_BERRY_OWNER_READER_NEXT",
     "task": "USER-20261010-WIKI-FIRST-POLICY",
     "wiki_generated": true,
     "wiki_readability_execution": {
       "accepted_test_reruns": 0,
-      "actions_run_id": 38104885843,
+      "actions_run_id": 38105312765,
       "all_ci_green_claimed": false,
-      "focused_tests": 28,
+      "completed_build_run": 38104885843,
       "full_index_private_guard": {
         "executed": true,
         "exit_code": 1,
@@ -448,10 +453,9 @@
         "passed": false,
         "raw_private_log_published": false
       },
-      "native_processes": 0,
-      "rom_reconstructions": 0,
-      "source_head": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
-      "task": "USER-20261011-WIKI-READABILITY-BUILD"
+      "generated_again": false,
+      "source_head": "e2f4bc4cd0fbd8d08b4d60b1a8d262a1bb3753aa",
+      "task": "USER-20261011-WIKI-READABILITY-RECEIPT"
     },
     "wiki_readability_priority_update": {
       "accepted_test_reruns": 0,

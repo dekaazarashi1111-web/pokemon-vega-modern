@@ -1,6 +1,6 @@
 # Wiki R0.1 閲覧改善の固定引継ぎ
 
-生成・限定検証済み。固定公開commitと実物レビュー・提示・完了Actionsの受領はまだ。
+公開・提示受領済み。次は保存したBerry現owner/readerの未完scope。
 
 [閲覧入口](wiki/r0.1-6e88a021/README.md) / [ベガ比較](wiki/r0.1-6e88a021/VEGA_BALANCE_INDEX.md) / [全種族](wiki/r0.1-6e88a021/POKEMON_INDEX.md) / [技](wiki/r0.1-6e88a021/MOVE_INDEX.md) / [特性](wiki/r0.1-6e88a021/ABILITY_INDEX.md)。
 
@@ -10,7 +10,7 @@
 
 ファイル数 4517、展開size 177464001、検証リンク 592544。ZIP `wiki-r0.1-6e88a021.zip`、size 33950355、SHA-256 `abd887f241fbfdcc454bfc13abf9fa3b7c7c2025943c40ec3880dc2a66f1268e`。資料限定、展開/全member hash/内部リンク/決定性を確認済み。
 
-入力R0 commit `473aca371dbfd1d8a041d2ead4326a54759dcda4`、生成source `4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6`、公開commit `提示受領時に束縛`。Actions run 38104885843 の `pr16-wiki-readability-package` artifactを使うか、READMEの限定packageコマンドで再現する。外側artifact ZIPには内側の閲覧ZIPが含まれる。
+入力R0 commit `473aca371dbfd1d8a041d2ead4326a54759dcda4`、生成source `4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6`、公開commit `db1a250d80cd85015b183ec44a9a868bb051dc07`。Actions run 38104885843 の `pr16-wiki-readability-package` artifactを使うか、READMEの限定packageコマンドで再現する。外側artifact ZIPには内側の閲覧ZIPが含まれる。
 
 参考JSON内の旧repository pathは来歴で、旧機械読取原本/実行環境を資料ZIPへ同梱しない。全習得のMarkdown閲覧導線は内部完結。説明は完全な実効果仕様ではない。
 
