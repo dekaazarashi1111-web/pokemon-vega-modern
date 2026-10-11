@@ -17,15 +17,15 @@
   "branch": "codex/modernization-followup-20260908",
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "next_action": {
-    "done_ja": "次の未分類originのasset/実readerを根拠に追加し、保存原本を継承して容量と保存安全性へ進む。",
-    "goal_ja": "残る選定窓7行の先頭0x086C51BFを保存symbol近傍から固定公開asset/現候補へ束縛し、実consumerを有限scopeで検証する。正式788分類/86未知・安全容量0。音声asset32試験/reader33試験/26 native・旧受入・全874scan・窓最適化は無変更再走しない。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Saveは未完。",
-    "id": "SAVE_CAPACITY_SELECTED_WINDOW_NEXT_ASSET_BINDING",
+    "done_ja": "現ownerと実readerを証明し、完了runの外部受領後のみ型分類を更新する。",
+    "goal_ja": "保存したBerry近傍の限定identity・公開assetとのlocale差・consumer frontierから、0x086C51BFの現ownerと実readerを有限範囲で結ぶ。公開EN assetや近傍JPsymbolを現ownerと同一視しない。今回の候補復元/限定測定/20試験と旧受入は再走せず、実readerの新scopeだけを検証する。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。",
+    "id": "SAVE_CAPACITY_BERRY_ORIGIN_ACTUAL_OWNER_READER",
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
-      "content/modernization/pr16_sound_origin_reader_receipt.json",
+      "content/modernization/pr16_berry_origin_checkpoint.json",
+      "content/modernization/pr16_berry_origin_evidence/bounded-binding.json",
       "content/modernization/pr16_sound_origin_reader_evidence/window-progress.json",
-      "content/modernization/pr16_donor_origins_evidence/symbol-frontier.json",
-      "content/modernization/pr16_sound_origin_reader_evidence/reader-proof.json"
+      "content/modernization/pr16_donor_origins_evidence/symbol-frontier.json"
     ]
   },
   "observed_head_checks": {
@@ -34,35 +34,26 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
-        "id": 38098093626,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "pull_request",
-        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
-        "id": 38098093627,
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099845979,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
-        "id": 38098086994,
+        "conclusion": "failure",
+        "event": "pull_request",
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099845984,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
-        "id": 38098087128,
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099841019,
         "name": "Stage79 mGBA (all)",
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "status": "in_progress"
@@ -70,8 +61,8 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
-        "id": 38098086975,
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099840955,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
@@ -79,23 +70,32 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
-        "id": 38098087251,
-        "name": "pr16-sound-origin-reader",
-        "path": ".github/workflows/pr16-sound-origin-reader.yml",
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099840927,
+        "name": "pr16-berry-origin",
+        "path": ".github/workflows/pr16-berry-origin.yml",
         "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "push",
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099840985,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
       },
       {
         "conclusion": "success",
         "event": "push",
-        "head_sha": "491440bf01119783ae6be79a1029c94f8f254ffc",
-        "id": 38098087155,
+        "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+        "id": 38099840891,
         "name": "Stage79 runtime boundary audit",
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
       }
     ],
-    "source_head": "491440bf01119783ae6be79a1029c94f8f254ffc"
+    "source_head": "359d3fae20d5d0e25342c0e1b8daac921aa0e646"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -192,11 +192,11 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_sound_origin_reader_receipt.json",
+        "checkpoint_path": "content/modernization/pr16_berry_origin_checkpoint.json",
         "classified": 788,
         "completion_evidence_path": null,
         "donor_safe_bytes": 0,
-        "next_ja": "残る選定窓7行の先頭0x086C51BFを保存symbol近傍から固定公開asset/現候補へ束縛し、実consumerを有限scopeで検証する。正式788分類/86未知・安全容量0。音声asset32試験/reader33試験/26 native・旧受入・全874scan・窓最適化は無変更再走しない。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Saveは未完。",
+        "next_ja": "保存したBerry近傍の限定identity・公開assetとのlocale差・consumer frontierから、0x086C51BFの現ownerと実readerを有限範囲で結ぶ。公開EN assetや近傍JPsymbolを現ownerと同一視しない。今回の候補復元/限定測定/20試験と旧受入は再走せず、実readerの新scopeだけを検証する。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。",
         "reference_chain_path": "content/modernization/pr16_sound_origin_reader_evidence/reference-chain.json",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
@@ -207,7 +207,7 @@
           "必要な局所Save/fresh Continue受入"
         ],
         "selected_unknown_origins": 7,
-        "status": "SOUND_ORIGIN_FORMALLY_ACCEPTED_788_86",
+        "status": "BERRY_NEIGHBORHOOD_BOUND_PUBLIC_ASSET_DIFFERS_OWNER_PENDING",
         "unclassified": 86,
         "unknown_frontier_path": "content/modernization/pr16_sound_origin_reader_evidence/unknown-frontier.json",
         "window_progress_path": "content/modernization/pr16_sound_origin_reader_evidence/window-progress.json"
@@ -267,11 +267,12 @@
     "commit_semantics": "このJSONを含む単親の同branch通常commit。自己SHA追記だけの追加commitを作らない。",
     "full_index_private_guard_executed": true,
     "last_execution": {
-      "accepted_tests_rerun": 0,
+      "accepted_test_reruns": 0,
       "actions_completion_confirmed": false,
-      "actions_run_id": 38098087251,
-      "classified": 788,
+      "actions_run_id": 38099840927,
       "donor_safe_bytes": 0,
+      "formal_classified": 788,
+      "formal_unclassified": 86,
       "full_index_private_guard": {
         "executed": true,
         "exit_code": 1,
@@ -279,15 +280,14 @@
         "passed": false,
         "raw_private_log_published": false
       },
-      "new_native_processes": 0,
+      "full_rom_scans": 0,
+      "native_processes": 0,
+      "new_unit_tests": 20,
       "read_only_check_passed": true,
-      "received_completed_run": 38097726375,
-      "received_measurement_completion_confirmed": true,
-      "rom_reconstructions": 0,
-      "source_head": "491440bf01119783ae6be79a1029c94f8f254ffc",
-      "task": "USER-20261011-SOUND-ORIGIN-RECEIPT",
-      "task_graph_passed": true,
-      "unclassified": 86
+      "rom_reconstructions": 1,
+      "source_head": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+      "task": "USER-20261011-BERRY-ORIGIN-BINDING",
+      "task_graph_passed": true
     },
     "legacy_generated_md_modified": false,
     "legacy_log_append": {
@@ -311,6 +311,13 @@
     "mode": "SCOPED_R0_BUILD_AND_NONFORCE_PUSH",
     "native_processes": 0,
     "owner_instruction_at": "2026-10-10T10:56:56Z",
+    "pending_berry_origin_run": {
+      "output_report": "content/modernization/pr16_berry_origin_checkpoint.json",
+      "replay_forbidden": true,
+      "run_id": 38099840927,
+      "source_head": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+      "status": "COMPLETION_NOT_YET_OBSERVED"
+    },
     "prior_reconciliation_attempt": {
       "completion_commit_created": false,
       "conclusion": "failure",
@@ -322,10 +329,11 @@
     "project_task_graph_check_executed": true,
     "received_sound_asset_completion": "content/modernization/pr16_sound_origin_reader_evidence/asset-completion.json",
     "received_sound_reader_completion": "content/modernization/pr16_sound_origin_reader_evidence/actions-completion.json",
+    "received_sound_receipt_completion": "content/modernization/pr16_berry_origin_evidence/prior-actions.json",
     "received_typed_origins_completion": "content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json",
     "rom_changes": 0,
     "source_head": "8abd7cffadb899157a9812d205c5248a9bb760c3",
-    "status": "R0_READY_SOUND_ORIGIN_FORMALLY_ACCEPTED_788_86",
+    "status": "R0_READY_BERRY_ORIGIN_BOUNDED_IDENTITY_READER_PENDING",
     "task": "USER-20261010-WIKI-FIRST-POLICY",
     "wiki_generated": true
   },

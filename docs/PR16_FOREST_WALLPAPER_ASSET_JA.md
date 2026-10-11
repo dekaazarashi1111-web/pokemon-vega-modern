@@ -124,6 +124,16 @@ Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4by
 
 run 38097726375 の完了success、全job/必須step、公開artifactの全hash、測定commitと全textを照合。保存原本を再走せず0x084723AFだけを符号付きPCMの条件付き実readerとして正式追加しました。**正式788分類/86未知、選定窓は残7行、安全容量0**。3voice table→WaveData→有限ARM補間の証拠であり、自然dispatch・通常IWRAM配置・全代替reader不在は主張しません。[受領checkpoint](../content/modernization/pr16_sound_origin_reader_receipt.json) / [reference chain](../content/modernization/pr16_sound_origin_reader_evidence/reference-chain.json) / [次の7行](../content/modernization/pr16_sound_origin_reader_evidence/window-progress.json)。この受領で新native/旧試験/ROM再構成は0。全旧原本/R0/ROM/Save101/baseline不変。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 残る選定窓7行の先頭0x086C51BFを保存symbol近傍から固定公開asset/現候補へ束縛し、実consumerを有限scopeで検証する。正式788分類/86未知・安全容量0。音声asset32試験/reader33試験/26 native・旧受入・全874scan・窓最適化は無変更再走しない。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Saveは未完。
+
+## Berry近傍の限定identityと公開locale差
+
+保存JPsymbol間13452byteと現候補全SHA/配置owner/対象4byteを束縛。固定公開assetは15348byte、全asset一致=False。長さ差・同位置差・局所一致・header/Thumb形・実consumer候補の有限literalを記録。形だけでは分類しない。
+
+[限定証拠](../content/modernization/pr16_berry_origin_evidence/bounded-binding.json) / [checkpoint](../content/modernization/pr16_berry_origin_checkpoint.json) / [直前受領Actions完了](../content/modernization/pr16_berry_origin_evidence/prior-actions.json)。新20人工境界試験・task graph・決定的保存後read-only検査・旧原本保全。新scope候補復元1、native0、旧受入再走0。正式788/86・選定残7・安全容量0。公開assetをJP/現候補と盲目的に同一視せず、実owner/readerは未完。
+
+## 次の未完作業
+
+保存したBerry近傍の限定identity・公開assetとのlocale差・consumer frontierから、0x086C51BFの現ownerと実readerを有限範囲で結ぶ。公開EN assetや近傍JPsymbolを現ownerと同一視しない。今回の候補復元/限定測定/20試験と旧受入は再走せず、実readerの新scopeだけを検証する。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。

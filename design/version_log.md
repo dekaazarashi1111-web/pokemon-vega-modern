@@ -11623,3 +11623,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: 自然note dispatch・通常IWRAMコピー実行・全alternative reader不在・退役/移管は非主張。donor/lease/安全容量0、旧受入/R0/ROM/Save101/baseline不変。
 - Commit: この記録を含む同branch単親通常commit。実SHAはGit履歴とActions resultから照合。
 - Network: 固定GitHub PR/ref/Actions原本、同branch非force push。新公開出典は https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 のm4a_1.s/定数/music_voice.incと固定JPsymbol。検索語 SoundMainRAM voice_directsound。非圧縮波形は符号付き1byte補間で消費する。asset生成/既受入native再走なし。
+
+## 2026-10-11T00:52:48.177304+00:00
+- Timestamp: 2026-10-11T00:52:48.177304+00:00
+- Task: USER-20261011-BERRY-ORIGIN-BINDING / 選定Berry近傍の限定identityとlocale差検証
+- Version: berry-origin-binding-v1
+- Status: DONE（限定測定。型分類・保存統合は未完）
+- Summary: 保存JPsymbol間13452byteと現候補全SHA/配置owner/対象4byteを束縛。固定公開assetは15348byte、全asset一致=False。長さ差・同位置差・局所一致・header/Thumb形・実consumer候補の有限literalを記録。形だけでは分類しない。
+- Files changed: 専用検証器/20試験/Actions、限定text証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: 新20試験、対象全4byte/全候補SHA/既存owner配置、固定公開source全blob、全7ZIP/17text原本、JSON往復、保存後read-only、task graph PASS。
+- Boundary: 正式788分類/86未知、選定残7、安全容量0。旧受入/旧原本/R0/ROM/Save101/baseline不変。全story/全alias/退役・移管/保存controller受入は非主張。
+- Commit: この記録を含む単親通常commit。実SHAはGit履歴とActions resultへ記録。
+- Network: 同repo PR/ref/Actions/artifactのGETと同branch非force push。固定公開source https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788 および固定JPsymbol。検索語 gMultiBootProgram_BerryGlitchFix_Start / mb_berry_fix。JP近傍長と公開asset長の相違を未照合のまま同一視しない。
