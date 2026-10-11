@@ -101,6 +101,17 @@ def project_detail(name, raw):
     return text.replace('**固定レビュー版 R0**', '**R0.1（閲覧改善版）**', 1).encode()
 
 
+def known_synthesis_present(text):
+    for line in text.splitlines():
+        cells = [cell.strip() for cell in line.split('|')]
+        if (len(cells) == 8 and cells[2] == 'レベル Lv46'
+                and cells[3] == '[235: こうごうせい](../moves/235.md)'
+                and cells[4] == '原作Vega基準'
+                and cells[6] == 'vega:3:level_up:17'):
+            return True
+    return False
+
+
 def special_value(value, field):
     if field == 'accuracy' and value == 0:
         return '特殊（原本0・0%とは断定しない）'
@@ -196,7 +207,7 @@ def render(base, index, index_raw, source_head):
     files['data/legacy_role_hints.jsonl'] = b''.join(compact(s) for s in legacy)
     files['data/classification.json'] = encode(metadata)
     files['data/r0_input_manifest.json'] = index_raw
-    files['README.md'] = (heading('ポケモンベガ Modern 閲覧資料')+'''まず[ベガ比較](VEGA_BALANCE_INDEX.md)を開き、必要な場合だけ[全種族](POKEMON_INDEX.md)へ進みます。気になる名前から個別ページの「全習得」を読み、関連する[技](MOVE_INDEX.md)・[特性](ABILITY_INDEX.md)の詳細へ移ってください。4,514ページを一括でAIへ渡す必要はありません。
+    files['README.md'] = (heading('ポケモンベガ Modern 閲覧資料')+'''まず[ベガ比較](VEGA_BALANCE_INDEX.md)を開き、必要な場合だけ[全種族](POKEMON_INDEX.md)へ進みます。気になる名前から個別ページの「全習得」を読み、関連する[技](MOVE_INDEX.md)・[特性](ABILITY_INDEX.md)の詳細へ移ってください。資料全体を一括でAIへ渡す必要はありません。
 
 基本性能・全習得経路/条件・機構対応は固定R0から不変です。役割要約の取りこぼしを判断根拠から外し、表示だけを改善しました。バランス変更案や実装承認は含みません。
 
@@ -237,7 +248,7 @@ def render(base, index, index_raw, source_head):
         if name.startswith('conditions/'):
             need(raw == files[name], '条件byte差分')
     known = files['pokemon/3.md'].decode().split(LEARN, 1)[1]
-    need(any('こうごうせい' in line and re.search(r'\b46\b', line) for line in known.splitlines()), 'リーテイルLv46こうごうせい欠落')
+    need(known_synthesis_present(known), 'リーテイルLv46こうごうせい欠落')
     manifest = {'schema_version': 1, 'revision': 'R0.1', 'source_head': source_head, 'base_commit': BASE_COMMIT, 'base_manifest': identity(index_raw), 'candidate': index['candidate'], 'core_game_semantic_sha256': identity(compact(game_projection(files)))['sha256'], 'core_game_semantics_unchanged': True, 'role_hints_policy': 'REMOVED_FROM_REVIEW_ISOLATED_LEGACY', 'counts': index['counts'], 'files': {n: identity(raw) for n, raw in sorted(files.items())}}
     manifest['tree_sha256'] = identity(compact(manifest['files']))['sha256']
     files['data/index.json'] = encode(manifest)

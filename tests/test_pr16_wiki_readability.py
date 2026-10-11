@@ -13,7 +13,7 @@ import pr16_wiki_readability as w
 
 class ReadabilityTests(unittest.TestCase):
     def pokemon(self, hint='**回復候補**: すいとる、ねむる。'):
-        return ('# リーテイル\n**固定レビュー版 R0**\n'+w.HINT+hint+'\n'+w.SUPPLY+'\n```json\n{"native":"DEFERRED_AUDIT"}\n```\n'+w.LEARN+'| 46 | こうごうせい | 直接 |\n| 4 | 技A | 持越し |\n| 条件C | 技B | 条件付き繁殖 |\n').encode()
+        return ('# リーテイル\n**固定レビュー版 R0**\n'+w.HINT+hint+'\n'+w.SUPPLY+'\n```json\n{"native":"DEFERRED_AUDIT"}\n```\n'+w.LEARN+'| 17 | レベル Lv46 | [235: こうごうせい](../moves/235.md) | 原作Vega基準 | [条件](../conditions/c1.md#c1f3b3e9e186d97a17ff0eadcc6cf24a19070e2700830d32dea90737e3ae6a33) | vega:3:level_up:17 |\n| 4 | 技A | 持越し |\n| 条件C | 技B | 条件付き繁殖 |\n').encode()
 
     def fixture(self, root):
         files = {'README.md': b'# entry\n[detail](pokemon/3.md)\n', 'pokemon/3.md': b'<a id="learn"></a>\n[entry](../README.md)\n'}
@@ -26,7 +26,10 @@ class ReadabilityTests(unittest.TestCase):
     def test_known_synthesis_not_hidden_by_hint(self):
         result = w.project_detail('pokemon/3.md', self.pokemon()).decode()
         self.assertNotIn('**回復候補**', result)
-        self.assertIn('| 46 | こうごうせい |', result)
+        self.assertTrue(w.known_synthesis_present(result))
+        for before, after in (('Lv46', 'Lv146'), ('Lv46', 'Lv47'), ('235:', '234:'), ('level_up:17', 'machine:17'), ('原作Vega基準', '参考')):
+            with self.subTest(after=after):
+                self.assertFalse(w.known_synthesis_present(result.replace(before, after)))
         self.assertIn('未分類・要全習得確認', result)
 
     def test_empty_hint_is_not_negative_evidence(self):
