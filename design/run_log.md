@@ -14488,3 +14488,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 次の選定窓origin 0x0880FA64を保存symbol近傍から固定asset/現候補の実consumerへ限定的に結ぶ。残る選定窓6行・正式789分類/85未知・安全容量0。Berryの親13profile/子機entry/LZ native/25 reader試験/25型差分試験は変更影響がない限り再走しない。全874scan/窓最適化は再走不要。旧owner退役・移管、窓外跨りread/間接参照、heap/controller、局所Save/fresh Continueは未完。
 - Commit: この記録を含む同branch単親通常commit。実SHAはActions result/Git履歴で照合。
 - Network: 同repo PR/ref/Actions/artifact GETと同branchへの非force pushのみ。新たなROM/外部asset取得なし。私有原本と展開byteは公開しない。
+
+## 2026-10-11T20:41:14.689895+00:00
+- Timestamp: 2026-10-11T20:41:14.689895+00:00
+- Task: USER-20261012-SELECTED-ASSET-0880FA64 / 次の選定originのasset境界
+- Version: selected-asset-v1
+- Status: DONE（有限測定。実reader/保存統合は未完）
+- Summary: 対象0880FA64の全候補SHA/4byteを束縛し、前後64KiBの有限探索でLZ構文候補0件、一致Tileset descriptor0件を保存。実reader受入や型分類増加は未主張。新30試験、候補復元1、native/旧受入再走0。
+- Files changed: 専用検証器/30試験/Actions、限定証拠、固定引継ぎMD/JSON、両ログ。
+- Verify: 新30境界試験、全候補/配置/対象hash、固定公開source全blob、前回Actions/全artifact、保存後read-only、task graph、限定最終index。
+- Boundary: 正式789/85・残6・安全容量0。全体CI green/全story/ROM配布受入は非主張。
+- Next: 0x0880FA64の保存済みLZ構文候補0件/一致Tileset descriptor0件とconsumer frontierから、実asset owner/実caller/readerへ有限に結ぶ。今回の前後64KiB探索/30試験は再走せず保存hashを継承する。正式789/85・選定残6・安全容量0。窓外跨りread/間接参照/旧owner退役・移管/heap/controller/局所Saveは未完。
+- Commit: この記録を含む単親通常commit。実SHAはActions result/Git履歴。
+- Network: 同repo PR/ref/Actions/artifact/既存private入力と同branch非force push。固定pret/pokefirered c75f352304d529f6ba92d4f74b9cf8b5c3810788 のfieldmap/Tileset/Colosseum sourceと固定JPsymbolを参照。検索語 gTileset_General。ROM/save/生byte列の公開なし。

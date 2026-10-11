@@ -188,6 +188,16 @@ run 38097726375 の完了success、全job/必須step、公開artifactの全hash�
 
 通信値は明示fixture、mGBA HLE readerの条件付き証拠です。自然リンク/元BIOS CPU/実cart/代替reader完全排除/領域退役の成功ではありません。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 次の選定窓origin 0x0880FA64を保存symbol近傍から固定asset/現候補の実consumerへ限定的に結ぶ。残る選定窓6行・正式789分類/85未知・安全容量0。Berryの親13profile/子機entry/LZ native/25 reader試験/25型差分試験は変更影響がない限り再走しない。全874scan/窓最適化は再走不要。旧owner退役・移管、窓外跨りread/間接参照、heap/controller、局所Save/fresh Continueは未完。
+
+## 0880FA64の有限asset候補とdescriptor
+
+対象0880FA64の全候補SHA/4byteを束縛し、前後64KiBの有限探索でLZ構文候補0件、一致Tileset descriptor0件を保存。実reader受入や型分類増加は未主張。新30試験、候補復元1、native/旧受入再走0。
+
+[限定証拠](../content/modernization/pr16_selected_asset_evidence/bounded-asset.json) / [checkpoint](../content/modernization/pr16_selected_asset_checkpoint.json)。前回Berry型登録Actionsの全8member/68text/公開commitを受領。
+
+## 次の未完作業
+
+0x0880FA64の保存済みLZ構文候補0件/一致Tileset descriptor0件とconsumer frontierから、実asset owner/実caller/readerへ有限に結ぶ。今回の前後64KiB探索/30試験は再走せず保存hashを継承する。正式789/85・選定残6・安全容量0。窓外跨りread/間接参照/旧owner退役・移管/heap/controller/局所Saveは未完。
