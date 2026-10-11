@@ -228,6 +228,16 @@ run 38177623055の全job/必須step成功、artifact9member/87textと公開commi
 
 [checkpoint](../content/modernization/pr16_selected_asset_xrefs_checkpoint.json) / [逆参照](../content/modernization/pr16_selected_asset_xrefs_evidence/inverse-references.json)。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 0x0880FA64の前4096byteから全4byteまでへの逆参照11件、第2段1件、Thumb literal形0件を保存。inverse-references.jsonの具体的なorigin/targetから実table・caller・asset境界を特定し、全4byteのreaderへ結ぶ。pointer形と旧symbol近傍だけではowner/型を確定しない。前4096byte外のasset開始・計算参照は未網羅。今回の逆参照/30試験と受入済みmap/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+
+## 整列2起点からのrecord/base候補
+
+保存済み逆参照から整列2起点のみの構造体/連続pointer窓を検査し、新base参照0件、Thumb literal形0件。全候補SHA/115owner配置と旧pointer全4byteを束縛。新22境界試験・task graph PASS。新scope復元1回、native/旧逆参照/map/LZ/Wiki再走0。構造体形は実reader受入ではない。
+
+[checkpoint](../content/modernization/pr16_selected_asset_records_checkpoint.json) / [record候補](../content/modernization/pr16_selected_asset_records_evidence/record-candidates.json)。
+
+## 次の未完作業
+
+0x095FE848/0x09673660の2整列pointer起点からrecord/base候補を保存。新base参照0件、Thumb literal形0件。record-candidates.jsonの具体的構造体・参照元から、0x0880FA64を含む実asset境界と実caller/readerを特定する。構造体形やliteral形だけでは正式型にしない。保存した旧11起点への逆参照/30試験と今回22試験・base探索を再走しない。map/ARM/LZ/Wikiも無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。

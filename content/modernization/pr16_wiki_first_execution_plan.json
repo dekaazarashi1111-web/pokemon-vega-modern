@@ -4,9 +4,9 @@
   "authority_ja": "このJSONが作業選択の正本。R0.1の全gateと実物提示は完了し、閲覧改善優先条件を充足。現在はnext_actionのBerry現owner/reader未完scopeへ戻る。旧R0のreadyだけで解除したのではない。旧方針・旧解析の記録は履歴として保持する。",
   "bindings": {
     "CHATGPT_RESUME.md": {
-      "git_blob_sha": "d6bcb157be3e15cfdd5d0a20b8700505bbe8e36f",
-      "sha256": "5d41e7e98b87093680e6ecf432a67c8af7d4908e1590ba3da4a2fdac9ec69fdb",
-      "size": 2580
+      "git_blob_sha": "25ac71f8c819bf3034ba8a8597c29b7ec3959b71",
+      "sha256": "0a9f8aab82db4392c0155c53255a044e2f31d8c6dd368133a4c6b535d80edd03",
+      "size": 2582
     },
     "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
       "git_blob_sha": "116c6f1f8ccbed26029de10f31be7c69be75b09f",
@@ -30,13 +30,13 @@
   "long_term_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
   "next_action": {
     "done_ja": "保存した具体的参照元から全4byteの実readerを束縛し、完了run受領後に正式型差分だけ追加する。",
-    "goal_ja": "0x0880FA64の前4096byteから全4byteまでへの逆参照11件、第2段1件、Thumb literal形0件を保存。inverse-references.jsonの具体的なorigin/targetから実table・caller・asset境界を特定し、全4byteのreaderへ結ぶ。pointer形と旧symbol近傍だけではowner/型を確定しない。前4096byte外のasset開始・計算参照は未網羅。今回の逆参照/30試験と受入済みmap/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。",
-    "id": "SAVE_CAPACITY_SELECTED_ASSET_XREF_READER",
+    "goal_ja": "0x095FE848/0x09673660の2整列pointer起点からrecord/base候補を保存。新base参照0件、Thumb literal形0件。record-candidates.jsonの具体的構造体・参照元から、0x0880FA64を含む実asset境界と実caller/readerを特定する。構造体形やliteral形だけでは正式型にしない。保存した旧11起点への逆参照/30試験と今回22試験・base探索を再走しない。map/ARM/LZ/Wikiも無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。",
+    "id": "SAVE_CAPACITY_SELECTED_ASSET_RECORD_READER",
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
-      "content/modernization/pr16_selected_asset_xrefs_checkpoint.json",
-      "content/modernization/pr16_selected_asset_xrefs_evidence/inverse-references.json",
-      "content/modernization/pr16_selected_map_asset_receipt.json"
+      "content/modernization/pr16_selected_asset_records_checkpoint.json",
+      "content/modernization/pr16_selected_asset_records_evidence/record-candidates.json",
+      "content/modernization/pr16_selected_asset_xrefs_checkpoint.json"
     ]
   },
   "observed_head_checks": {
@@ -45,8 +45,8 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "7a36d6844fe674c18ff5cbe3dfa5ea6604ba8b64",
-        "id": 38181197609,
+        "head_sha": "f8a4ee07c9589d992a57842f935f7816d5ea6b54",
+        "id": 38182082479,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
@@ -54,26 +54,35 @@
       {
         "conclusion": "failure",
         "event": "pull_request",
-        "head_sha": "7a36d6844fe674c18ff5cbe3dfa5ea6604ba8b64",
-        "id": 38181197476,
+        "head_sha": "f8a4ee07c9589d992a57842f935f7816d5ea6b54",
+        "id": 38182082496,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "event": "push",
-        "head_sha": "7a36d6844fe674c18ff5cbe3dfa5ea6604ba8b64",
-        "id": 38181189952,
-        "name": "Stage79 mGBA (all)",
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
-        "status": "in_progress"
+        "head_sha": "f8a4ee07c9589d992a57842f935f7816d5ea6b54",
+        "id": 38182076203,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "f8a4ee07c9589d992a57842f935f7816d5ea6b54",
+        "id": 38182076243,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
       },
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "7a36d6844fe674c18ff5cbe3dfa5ea6604ba8b64",
-        "id": 38181189976,
+        "head_sha": "f8a4ee07c9589d992a57842f935f7816d5ea6b54",
+        "id": 38182076141,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
@@ -81,32 +90,23 @@
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "7a36d6844fe674c18ff5cbe3dfa5ea6604ba8b64",
-        "id": 38181189831,
-        "name": "pr16-selected-asset-xrefs",
-        "path": ".github/workflows/pr16-selected-asset-xrefs.yml",
+        "head_sha": "f8a4ee07c9589d992a57842f935f7816d5ea6b54",
+        "id": 38182076122,
+        "name": "pr16-selected-asset-records",
+        "path": ".github/workflows/pr16-selected-asset-records.yml",
         "status": "in_progress"
       },
       {
-        "conclusion": "success",
+        "conclusion": null,
         "event": "push",
-        "head_sha": "7a36d6844fe674c18ff5cbe3dfa5ea6604ba8b64",
-        "id": 38181189875,
-        "name": "Stage79 runtime boundary audit",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "event": "push",
-        "head_sha": "7a36d6844fe674c18ff5cbe3dfa5ea6604ba8b64",
-        "id": 38181189840,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
+        "head_sha": "f8a4ee07c9589d992a57842f935f7816d5ea6b54",
+        "id": 38182076081,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
       }
     ],
-    "source_head": "7a36d6844fe674c18ff5cbe3dfa5ea6604ba8b64"
+    "source_head": "f8a4ee07c9589d992a57842f935f7816d5ea6b54"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -205,11 +205,11 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_selected_asset_xrefs_checkpoint.json",
+        "checkpoint_path": "content/modernization/pr16_selected_asset_records_checkpoint.json",
         "classified": 789,
         "completion_evidence_path": null,
         "donor_safe_bytes": 0,
-        "next_ja": "0x0880FA64の前4096byteから全4byteまでへの逆参照11件、第2段1件、Thumb literal形0件を保存。inverse-references.jsonの具体的なorigin/targetから実table・caller・asset境界を特定し、全4byteのreaderへ結ぶ。pointer形と旧symbol近傍だけではowner/型を確定しない。前4096byte外のasset開始・計算参照は未網羅。今回の逆参照/30試験と受入済みmap/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。",
+        "next_ja": "0x095FE848/0x09673660の2整列pointer起点からrecord/base候補を保存。新base参照0件、Thumb literal形0件。record-candidates.jsonの具体的構造体・参照元から、0x0880FA64を含む実asset境界と実caller/readerを特定する。構造体形やliteral形だけでは正式型にしない。保存した旧11起点への逆参照/30試験と今回22試験・base探索を再走しない。map/ARM/LZ/Wikiも無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。",
         "reference_chain_path": "content/modernization/pr16_berry_lz_type_evidence/reference-chain.json",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
@@ -221,7 +221,7 @@
         ],
         "scheduling_status": "READY_FROM_SAVED_SELECTED_ORIGINS",
         "selected_unknown_origins": 6,
-        "status": "SELECTED_ASSET_INVERSE_REFERENCES_BOUND_READER_PENDING",
+        "status": "SELECTED_ASSET_RECORD_BASES_BOUND_READER_PENDING",
         "unclassified": 85,
         "unknown_frontier_path": "content/modernization/pr16_berry_lz_type_evidence/unknown-frontier.json",
         "window_progress_path": "content/modernization/pr16_berry_lz_type_evidence/window-progress.json"
@@ -422,8 +422,9 @@
     "last_execution": {
       "accepted_inventory_reruns": 0,
       "accepted_test_reruns": 0,
+      "accepted_xref_passes_replayed": 0,
       "actions_completion_confirmed": false,
-      "actions_run_id": 38181189831,
+      "actions_run_id": 38182076122,
       "arm_layout_recompiles": 0,
       "full_index_private_guard": {
         "executed": true,
@@ -434,13 +435,13 @@
       },
       "map_probe_reruns": 0,
       "native_processes": 0,
-      "new_inverse_reference_passes": 12,
-      "new_unit_tests": 30,
+      "new_base_reference_passes": 32,
+      "new_unit_tests": 22,
       "prior_lz_search_reruns": 0,
       "read_only_check_passed": true,
       "rom_reconstructions": 1,
-      "source_head": "7a36d6844fe674c18ff5cbe3dfa5ea6604ba8b64",
-      "task": "USER-20261012-SELECTED-ASSET-XREFS",
+      "source_head": "f8a4ee07c9589d992a57842f935f7816d5ea6b54",
+      "task": "USER-20261012-SELECTED-ASSET-RECORDS",
       "task_graph_passed": true
     },
     "legacy_generated_md_modified": false,
@@ -502,6 +503,7 @@
     "received_berry_lz_type_inputs": "content/modernization/pr16_berry_lz_type_evidence/receipt-actions-completion.json",
     "received_berry_transfer_completion": "content/modernization/pr16_berry_child_evidence/transfer-completion.json",
     "received_selected_asset_completion": "content/modernization/pr16_selected_map_asset_evidence/parent-actions-completion.json",
+    "received_selected_asset_xrefs_completion": "content/modernization/pr16_selected_asset_records_evidence/parent-actions-completion.json",
     "received_selected_map_completion": "content/modernization/pr16_selected_map_receipt_evidence/actions-completion.json",
     "received_selected_map_receipt_completion": "content/modernization/pr16_selected_asset_xrefs_evidence/parent-actions-completion.json",
     "received_sound_asset_completion": "content/modernization/pr16_sound_origin_reader_evidence/asset-completion.json",
@@ -510,12 +512,13 @@
     "received_typed_origins_completion": "content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json",
     "rom_changes": 0,
     "selected_asset_checkpoint": "content/modernization/pr16_selected_asset_checkpoint.json",
+    "selected_asset_records_checkpoint": "content/modernization/pr16_selected_asset_records_checkpoint.json",
     "selected_asset_xrefs_checkpoint": "content/modernization/pr16_selected_asset_xrefs_checkpoint.json",
     "selected_map_asset_checkpoint": "content/modernization/pr16_selected_map_asset_checkpoint.json",
     "selected_map_asset_receipt": "content/modernization/pr16_selected_map_asset_receipt.json",
-    "source_head": "7a36d6844fe674c18ff5cbe3dfa5ea6604ba8b64",
-    "status": "SELECTED_ASSET_INVERSE_REFERENCES_BOUND_READER_PENDING",
-    "task": "USER-20261012-SELECTED-ASSET-XREFS",
+    "source_head": "f8a4ee07c9589d992a57842f935f7816d5ea6b54",
+    "status": "SELECTED_ASSET_RECORD_BASES_BOUND_READER_PENDING",
+    "task": "USER-20261012-SELECTED-ASSET-RECORDS",
     "wiki_generated": true,
     "wiki_readability_execution": {
       "accepted_test_reruns": 0,
