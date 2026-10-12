@@ -20,7 +20,7 @@ class ResumeTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
         self.s = json.loads((ROOT/m.STATE).read_text(encoding='utf-8'))
-        names = [m.STATE, self.s['latest_native_evidence'], *self.s['source_bindings'], *self.s['next_action']['read_paths']]
+        names = [m.STATE, m.ACTIVE_PLAN, m.HISTORICAL_ENTRY, self.s['latest_native_evidence'], *self.s['source_bindings'], *self.s['next_action']['read_paths']]
         for name in dict.fromkeys(names):
             dst = self.root/name
             dst.parent.mkdir(parents=True, exist_ok=True)
@@ -116,6 +116,21 @@ class ResumeTests(unittest.TestCase):
     def test_markdown_drift(self):
         with (self.root/m.DOC).open('a') as f:f.write('stale')
         self.assert_invalid()
+
+    def test_historical_resume_copy_drift_rejected(self):
+        with (self.root/m.HISTORICAL_ENTRY).open('a') as file:
+            file.write('corrupted historical copy')
+        self.assert_invalid('stale source: CHATGPT_RESUME.md')
+
+    def test_active_resume_independent_binding_rejected(self):
+        with (self.root/'CHATGPT_RESUME.md').open('a') as file:
+            file.write('changed active route')
+        self.assert_invalid('stale active handoff')
+
+    def test_historical_fallback_requires_exact_legacy_binding(self):
+        self.s['source_bindings']['CHATGPT_RESUME.md']['size'] += 1
+        self.sync()
+        self.assert_invalid('stale source: CHATGPT_RESUME.md')
 
     def test_source_drift(self):
         p=self.root/next(iter(self.s['source_bindings']))

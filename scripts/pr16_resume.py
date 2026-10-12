@@ -143,6 +143,32 @@ def validate_spending(root: Path, d: dict, s: dict, control: dict) -> None:
         require(s['bp'][key] == r[key], 'spending state '+key+' differs')
 
 
+# 旧2026-09-13受入台帳の束縛は元の入口9236byteに対する不変証拠。
+# R0.1でroot入口を置き換えた後は、同一byteを退避した履歴へだけ照合する。
+# 現行rootは新方針の独立束縛で必ず検査し、旧SHAの機械置換をしない。
+HISTORICAL_ENTRY = 'CHATGPT_RESUME_BEFORE_WIKI_FIRST.md'
+ACTIVE_PLAN = 'content/modernization/pr16_wiki_first_execution_plan.json'
+HISTORICAL_ENTRY_BINDING = {'size': 9236,
+    'sha256': 'b374bff6a93a6df00575eac83706303a662c816859439349be886e09fbb1f3e0'}
+
+
+def bound_source_bytes(root: Path, name: str, meta: dict) -> bytes:
+    if name != 'CHATGPT_RESUME.md' or meta != HISTORICAL_ENTRY_BINDING:
+        return safe_path(root, name).read_bytes()
+    # R0.1の新しい入口を旧履歴バイトとして受入れない。どちらも独立に照合。
+    plan = load(root, ACTIVE_PLAN)
+    require(plan['stable_entrypoint'] == 'CHATGPT_RESUME.md'
+            and plan['branch'] == 'codex/modernization-followup-20260908'
+            and plan['pr_number'] == 16,
+            'active handoff route differs')
+    active = safe_path(root, name).read_bytes()
+    active_binding = plan['bindings'][name]
+    require(len(active) == active_binding['size']
+            and hashlib.sha256(active).hexdigest() == active_binding['sha256'],
+            'stale active handoff: '+name)
+    return safe_path(root, HISTORICAL_ENTRY).read_bytes()
+
+
 def validate(root: Path, *, check_doc: bool = True) -> dict:
     s = load(root, STATE)
     require(s['schema_version'] == 2, 'unsupported resume schema')
@@ -261,7 +287,7 @@ def validate(root: Path, *, check_doc: bool = True) -> dict:
     require(s['bp']['next_step'] == s['next_action']['goal_ja'], 'next-action mirrors differ')
     require(s['source_bindings'], 'missing source bindings')
     for name, meta in s['source_bindings'].items():
-        raw = safe_path(root, name).read_bytes()
+        raw = bound_source_bytes(root, name, meta)
         require(len(raw) == meta['size'] and hashlib.sha256(raw).hexdigest() == meta['sha256'], 'stale source: '+name)
     require(isinstance(s['pending_runs'], list), 'pending runs must be explicit')
     for item in s['pending_runs']:
