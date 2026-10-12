@@ -9,6 +9,8 @@ on:
       - .github/workflows/pr16-ips-dpe-instruction-extent.yml
 permissions:
   contents: read
+  actions: read
+  pull-requests: read
 concurrency:
   group: pr16-ips-dpe-instruction-extent
   cancel-in-progress: false
@@ -36,6 +38,7 @@ jobs:
       - name: IPS/DPE の限定実byte照合（機密ROM出力禁止）
         env:
           PYTHONDONTWRITEBYTECODE: '1'
+          GITHUB_TOKEN: ${{ github.token }}
         run: python3 -B scripts/pr16_ips_dpe_instruction_probe_actions.py
       - uses: actions/upload-artifact@v4
         if: always()
