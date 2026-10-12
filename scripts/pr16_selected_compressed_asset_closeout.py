@@ -82,7 +82,7 @@ def receive_measurement():
            and proof["input_sound_identity"] == m.identity(m.encode(saved)),
            "保存音声・系譜原本を束縛")
     m.need(proof["owner_lineage"]["source_image_identity"]
-           == dict(sha256="499714cc04fd43ecb59ac45d8d23dad6badbc013c46d13", size=21383),
+           == dict(sha256="499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13", size=21383),
            "保存PLA1のarchive identity")
     completion.update(
         artifact={k: meta[k] for k in ("id", "name", "digest", "size_in_bytes")},
