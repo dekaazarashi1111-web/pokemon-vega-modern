@@ -1,0 +1,45 @@
+# 新root分類と部分leaseの容量契約
+
+## 目的と受入境界
+
+旧egg15118byteから実HOF controllerの容量を安全に得るため、保存済み726分類・148未知の親を完全保持して新しい実rootを追跡する。同時に、全148分類だけを唯一の手段に固定せず、未知参照の最大アクセス範囲を厳密に保護できる部分leaseの条件を実装する。
+
+この文書の計画値は実測成功を意味しない。新Actionsの専用checkpointと独立measurement、全byte identityが受入正本。正式ROM・Save101・現0641候補・115 actual owner・52 save subowner・残804byteは変更しない。
+
+## 部分leaseの条件
+
+参照候補のsize=4は参照元wordの幅であり、参照先のread幅ではない。consumerの最大アクセス範囲が不明な候補が1件でもあれば、その候補は旧egg全域を保護する。既存ownerを省略して空き容量にせず、間接参照・対象範囲の退役完全性・明示owner移管を別の必須条件として扱う。
+
+新しい純粋なinterval plannerは重複・隣接の和集合、domain clipping、整列、連続配置の容量を計算する。有限extentを受け取る一般数学関数自体はそのextentの意味を証明しない。生産用の入口は独立identityで固定した親とmaterialized後継の全874行・全115actual ownerを要求し、根拠のないextentや承認flagでleaseを発行するAPIを持たない。
+
+現frontierでは最大アクセス範囲が未証明であり、旧eggの安全な部分lease容量は0byte。unknown0になっても間接参照・退役・owner移管が閉じなければ使用できない。
+
+## 既測定controllerとの比較
+
+保存済みcontroller footprintは単一.text 6528byte・4byte整列。元C/header・測定器・関連sourceのidentityを照合してこの容量測定を再利用する。controller footprintのARM/nativeは再走しない。現候補の全byte再構成では従来の下位writer link工程を用いる。実配線時のcallback/遠距離veneer/heap admission追加により必要量が増える可能性があるため、6528は今後の全統合サイズ保証ではない。
+
+726親で全未知targetを引き続き保護し、各targetの1byteだけを保護すると仮定した危険な楽観計算でも、最長空隙は1269byte、4byte整列後1266byte。これは現在の全targetを残す条件下だけの数値で、false positiveを追加分類すれば変わる。安全なread幅や実使用権限を示さない。関数分割や別linkによる配置はこの既測定単一sectionとの比較と別問題であり未評価。
+
+保存済みactual owner幾何からglobalのallocatable余白は511byte、save内部残は804byte、合計上限1315byteで6528に5213byte足りない。合計はpack可能性を意味しない。Vega/CFRU/DPE reserved領域をallocator行がないという理由で未使用にしない。
+
+## 新しい有限root
+
+Hall of Fame PC側の実special263からCreateTask、main callback、state分岐、taskIdを保持した40byte strideのfunc更新を辿る。成功枝と失敗枝が同一STRへ合流する場合もcallback値を別々に保持し、成功経路の最小BL/LDR命令窓だけを分類する。関数名・周辺owner範囲・literal pool全体は分類しない。自然story到達・UI全動作・全heap lifetimeは主張しない。
+
+MOVE_AMNESIA133の実selectorから先頭loadspritegfx opcode0/tag10093、table row93、pointer32/size16/tag16、Alloc成功枝と実BIOS LZ77読取へ結ぶ。0x08C0DF31は圧縮asset0x08C0DD94/1725byte内のpayloadだけとして分類する。header・paddingへ拡張せず、decoded4096を独立SHAで照合。画面表示・自然戦闘到達・全animation table範囲は主張しない。未使用CRACKED_EGG候補はroot未接続で未知のまま。
+
+## 証拠継承・検証・公開
+
+619原本と25/17/33/29/3の全107 changes、22/16/33/23/3の全97 witnesses、全726 acceptedと残unknownの全fieldを保持する。原本や親chainを再複製せず、新しいnamespaceの最小deltaだけを追加する。
+
+133曲の全保存モデル、50asset、旧198334read roleのidentityを保持し、新typed窓・新rootとの交差だけを検査する。新曲探索と無影響nativeは行わない。旧最終song/battle/Surf独立レビュー未実施を継承し、その拒否操作を別経路で再実行しない。
+
+新Actionsで現0641を1回だけ復元し、全SHA・115actual owner・874hit・新有限窓を検査する。新拒否unitと閉じたsuccess artifact guardを実行し、固定引継ぎMD/JSON・両append-onlyログを更新する。新source全blobを全文/LF照合してから同branchへ非force反映する。
+
+producer/guard/upload/recordのdirectoryとnameを一致させ、全11textとreceiptの非空・size/SHA/LFを検査する。hidden・symlink・未知file/拡張子・部分成功を拒否する。公開はsource・最小address-size-SHA・textのみ。ROM断片・rawhex・ROM・入力save・runtime・runner・credentialsを追加公開しない。
+
+## 次の接続工程
+
+残unknownの具体root/consumerを閉じ、必要領域に対するアクセス範囲・間接参照・退役完全性を証明できれば全域退役に固執せず部分leaseへ進む。証明できない領域は全域保護する。
+
+容量確保後にCcontroller実配置、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready・同期非再入・全出口Freeを閉じる。heap13352byteを0804B85C保存退避53300byte入口へ跨いで保持しない。正式候補切替後trainer131後半からシオウ通常回復・保存・独立coldContinueへ進む。雑魚毎checkpointは禁止。

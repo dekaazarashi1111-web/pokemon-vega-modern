@@ -1,0 +1,1005 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "classification": "CIRCUS_COLD_BOOT_LOAD_ORDER_SOURCE_BOUND_NATIVE_REPAIR_PENDING",
+  "excluded_sources": [
+    {
+      "identity": {
+        "sha256": "08286d81d867f199060ec63c42efceb9f0dd5b16a020f32847d799bb4c5fb94b",
+        "size": 1423400
+      },
+      "path": "scripts/build_stage61_display_npc_event_audit.py",
+      "reason": "invalid tracked text"
+    },
+    {
+      "identity": {
+        "sha256": "ff571610a00d6e2b4253bb39ccc28a25713d42285e5871f55ba537cc4ce06ed9",
+        "size": 1779495
+      },
+      "path": "scripts/run_stage61_mgba_validation.py",
+      "reason": "invalid tracked text"
+    },
+    {
+      "identity": {
+        "sha256": "30c48a4ea935102e42a5e5d81ad600c800d4c11026a91847c75e14d3a166d0a0",
+        "size": 1586763
+      },
+      "path": "tools/mgba_stage61_display_npc_event_e2e.c",
+      "reason": "invalid tracked text"
+    },
+    {
+      "identity": {
+        "sha256": "00496eca56765961f62e0733d5d08f9999b5f1d4acfafccca253e9190a1cae1f",
+        "size": 2062397
+      },
+      "path": "tools/stage61_interaction_oracle.py",
+      "reason": "invalid tracked text"
+    }
+  ],
+  "host_tests": [
+    {
+      "count": 4,
+      "pattern": "test_pr16_circus_load_order.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "latest_three_win_conclusion": "failure",
+  "latest_three_win_run": 35421235529,
+  "matches": [
+    {
+      "identity": {
+        "sha256": "092cfac9c09f8859659ad8070dd7567b0615997601042c739e02b095a97828cb",
+        "size": 3480
+      },
+      "matches": [],
+      "path": "overlays/circus_streak/circus_facility_policy.c"
+    },
+    {
+      "identity": {
+        "sha256": "1158013e3bcf11f40a2df75a712dd19f81e369df9a030e69acac9cb85b241c60",
+        "size": 6251
+      },
+      "matches": [],
+      "path": "overlays/circus_streak/circus_streak.c"
+    },
+    {
+      "identity": {
+        "sha256": "cdbd4bc908c20f96a6765f71c38f4501c9e05493f95fbc3f3747d7a5bab96a03",
+        "size": 2680
+      },
+      "matches": [],
+      "path": "overlays/circus_streak/circus_streak.h"
+    },
+    {
+      "identity": {
+        "sha256": "a7b527568813993bd3755a9e95f7162d1471f243c6afbddb573a40862e242b7b",
+        "size": 1850
+      },
+      "matches": [],
+      "path": "overlays/circus_streak/circus_streak_io.c"
+    },
+    {
+      "identity": {
+        "sha256": "c47485dda2e7d29607acabe1dc07e7c466e87b8b59cd1ffff5210813841135d1",
+        "size": 555
+      },
+      "matches": [],
+      "path": "overlays/circus_streak/circus_streak_io.h"
+    },
+    {
+      "identity": {
+        "sha256": "75c4073f74018d8def02efa9533c90142a60b8f8fd18359f8fc8756a993d564b",
+        "size": 686
+      },
+      "matches": [],
+      "path": "overlays/circus_streak/circus_streak_loss.h"
+    },
+    {
+      "identity": {
+        "sha256": "910a658f99c0f74f8e43038966622ac29ecdfe99cc1e1a73be90c4c87faa42d2",
+        "size": 679
+      },
+      "matches": [],
+      "path": "overlays/circus_streak/circus_streak_return.h"
+    },
+    {
+      "identity": {
+        "sha256": "eec635efce1f9892c1744cabbd6d85ebd2536420640e813d276c9611feda225b",
+        "size": 7747
+      },
+      "matches": [
+        {
+          "line": 156,
+          "text": "EXPORT uint8_t CircusStreakRuntimeSaveLoad(uint8_t save_type)"
+        }
+      ],
+      "path": "overlays/circus_streak/circus_streak_runtime.c"
+    },
+    {
+      "identity": {
+        "sha256": "9060134cc464eda522d4be877b1de66cf2b20df750b005cc08a7ab4d14486000",
+        "size": 660
+      },
+      "matches": [
+        {
+          "line": 12,
+          "text": "uint8_t CircusStreakRuntimeSaveLoad(uint8_t save_type);"
+        }
+      ],
+      "path": "overlays/circus_streak/circus_streak_runtime.h"
+    },
+    {
+      "identity": {
+        "sha256": "f3c069d8ecc06d51df91d64f17abdb8bfeed8568f3ba95629f7775dd54aff1bf",
+        "size": 75657
+      },
+      "matches": [
+        {
+          "line": 1832,
+          "text": "CWR_EXPORT(CodexBattleRewards_SaveLoadAdapter)"
+        },
+        {
+          "line": 1833,
+          "text": "u8 CodexBattleRewards_SaveLoadAdapter(u8 save_type)"
+        }
+      ],
+      "path": "overlays/codex_battle_rewards/codex_battle_rewards.c"
+    },
+    {
+      "identity": {
+        "sha256": "2a8370c2ef4e48878b85f0b888bc46221db1b3e1ce442d4ba121cff6d7e32951",
+        "size": 123769
+      },
+      "matches": [
+        {
+          "line": 2720,
+          "text": "CBR_EXPORT(CodexBattleRuntime_SaveLoadAdapter)"
+        },
+        {
+          "line": 2721,
+          "text": "u8 CodexBattleRuntime_SaveLoadAdapter(u8 save_type)"
+        }
+      ],
+      "path": "overlays/codex_battle_runtime/codex_battle_runtime.c"
+    },
+    {
+      "identity": {
+        "sha256": "14c27f895b9ae8d1b3d9d077ce49999fc17a1422a83e8ddb87657c66ebab06d3",
+        "size": 65077
+      },
+      "matches": [
+        {
+          "line": 1571,
+          "text": "COLLECTION_EXPORT(CollectionSupply_SaveLoadAdapter)"
+        },
+        {
+          "line": 1572,
+          "text": "u8 CollectionSupply_SaveLoadAdapter(u8 save_type)"
+        }
+      ],
+      "path": "overlays/collection_supply_v1/collection_supply_v1.c"
+    },
+    {
+      "identity": {
+        "sha256": "f99bcebb0cc05d0418c4663090458b0bf5843573cdf2e298c78fbda27ca51b74",
+        "size": 5530
+      },
+      "matches": [
+        {
+          "line": 116,
+          "text": "uint8_t CollectionSupply_SaveLoadAdapter(uint8_t save_type);"
+        }
+      ],
+      "path": "overlays/collection_supply_v1/collection_supply_v1.h"
+    },
+    {
+      "identity": {
+        "sha256": "681b53d6199ab8ec3dc03a47f4a1a6457412603dc032679930111e18e738268b",
+        "size": 76769
+      },
+      "matches": [
+        {
+          "line": 1570,
+          "text": "FACTORY_HIGH_EXPORT(FactoryHighModesV2_Recover)"
+        },
+        {
+          "line": 1571,
+          "text": "u16 FactoryHighModesV2_Recover(void)"
+        },
+        {
+          "line": 1645,
+          "text": "FACTORY_HIGH_EXPORT(FactoryHighModesV2_SaveLoadAdapter)"
+        },
+        {
+          "line": 1646,
+          "text": "u8 FactoryHighModesV2_SaveLoadAdapter(u8 save_type)"
+        },
+        {
+          "line": 1660,
+          "text": "            (void)FactoryHighModesV2_Recover();"
+        },
+        {
+          "line": 1833,
+          "text": "        u16 recovered = FactoryHighModesV2_Recover();"
+        },
+        {
+          "line": 2050,
+          "text": "    return FactoryHighModesV2_Recover();"
+        }
+      ],
+      "path": "overlays/factory_high_modes_v2/factory_high_modes_v2.c"
+    },
+    {
+      "identity": {
+        "sha256": "290c4f9ea7f274121273f5b43f736b5c598a6b50d412e0a85c320d0e1765622b",
+        "size": 6051
+      },
+      "matches": [
+        {
+          "line": 136,
+          "text": "uint16_t FactoryHighModesV2_Recover(void);"
+        },
+        {
+          "line": 140,
+          "text": "uint8_t FactoryHighModesV2_SaveLoadAdapter(uint8_t save_type);"
+        }
+      ],
+      "path": "overlays/factory_high_modes_v2/factory_high_modes_v2.h"
+    },
+    {
+      "identity": {
+        "sha256": "2f0445d9a2479f18f7c05325359ea3d96e94690f127535204f26ec2664b084f2",
+        "size": 27162
+      },
+      "matches": [
+        {
+          "line": 633,
+          "text": "FACTORY_SHINY_EXPORT(FactoryShinyMemorialRuntime_RecoverDispatch)"
+        },
+        {
+          "line": 634,
+          "text": "u16 FactoryShinyMemorialRuntime_RecoverDispatch(void)"
+        }
+      ],
+      "path": "overlays/factory_shiny_memorial_runtime/factory_shiny_memorial_runtime.c"
+    },
+    {
+      "identity": {
+        "sha256": "1523f016e48ba47ed0156b0398f9a256c2cb6c024b48b9a04236fcd6a5ca9dd3",
+        "size": 974
+      },
+      "matches": [
+        {
+          "line": 23,
+          "text": "uint16_t FactoryShinyMemorialRuntime_RecoverDispatch(void);"
+        }
+      ],
+      "path": "overlays/factory_shiny_memorial_runtime/factory_shiny_memorial_runtime.h"
+    },
+    {
+      "identity": {
+        "sha256": "bb8a59b76603e1acf4c1655d03c333f3ea067c47fdec9e6e03dbff4935381243",
+        "size": 42973
+      },
+      "matches": [
+        {
+          "line": 1144,
+          "text": "MIRAGE_EXPORT(MirageProduction_SaveLoadAdapter)"
+        },
+        {
+          "line": 1145,
+          "text": "u8 MirageProduction_SaveLoadAdapter(u8 save_type)"
+        }
+      ],
+      "path": "overlays/mirage_production/mirage_production.c"
+    },
+    {
+      "identity": {
+        "sha256": "fa14ae7cb213593481b2b3a9e2ea29829ee6bd62fb31d0012d0378d408305f88",
+        "size": 5197
+      },
+      "matches": [
+        {
+          "line": 117,
+          "text": "uint8_t MirageProduction_SaveLoadAdapter(uint8_t save_type);"
+        }
+      ],
+      "path": "overlays/mirage_production/mirage_production.h"
+    },
+    {
+      "identity": {
+        "sha256": "fc69ca2ff94e98ffb46f1b4117c73156683e83bbc777e9f8527c027c70399423",
+        "size": 164678
+      },
+      "matches": [
+        {
+          "line": 1082,
+          "text": "     * global normal-save adapter, otherwise the journal is written twice. */"
+        },
+        {
+          "line": 1441,
+          "text": "PUBLIC_TEXT(VegaQolProduction_SaveLoadAdapter)"
+        },
+        {
+          "line": 1442,
+          "text": "u8 VegaQolProduction_SaveLoadAdapter(u8 save_type)"
+        }
+      ],
+      "path": "overlays/qol_production/qol_production.c"
+    },
+    {
+      "identity": {
+        "sha256": "d659645003fc4da6611815f2071e83185a334a78f7e9981533135a9aef6fde7f",
+        "size": 7233
+      },
+      "matches": [
+        {
+          "line": 147,
+          "text": "uint8_t VegaQolProduction_SaveLoadAdapter(uint8_t save_type);"
+        }
+      ],
+      "path": "overlays/qol_production/qol_production.h"
+    },
+    {
+      "identity": {
+        "sha256": "3f71ea1d9f308c652e70dd863b601ad39a9c648ca25bf55932b4966fa4246e62",
+        "size": 63507
+      },
+      "matches": [
+        {
+          "line": 949,
+          "text": "RESEARCH_EXPORT(ResearchEconomy_SaveLoadAdapter)"
+        },
+        {
+          "line": 950,
+          "text": "u8 ResearchEconomy_SaveLoadAdapter(u8 save_type)"
+        }
+      ],
+      "path": "overlays/research_economy_v1/research_economy_v1.c"
+    },
+    {
+      "identity": {
+        "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
+        "size": 3743
+      },
+      "matches": [
+        {
+          "line": 49,
+          "text": "uint8_t ResearchEconomy_SaveLoadAdapter(uint8_t save_type);"
+        }
+      ],
+      "path": "overlays/research_economy_v1/research_economy_v1.h"
+    },
+    {
+      "identity": {
+        "sha256": "e4e196f72e74521503e3ddc480c9a43dea277b82abd5c99368f31c3751e1b228",
+        "size": 50932
+      },
+      "matches": [
+        {
+          "line": 339,
+          "text": "    /* Stage40のTrySavingData入口はQoL save adapterであり、標準save成功後に"
+        }
+      ],
+      "path": "overlays/reward_encounters_v2/reward_encounters_v2.c"
+    },
+    {
+      "identity": {
+        "sha256": "78e6a74c05ecf652d82e43c1e7ce196de3f6694731bbbabeeead76eef27b6320",
+        "size": 25098
+      },
+      "matches": [
+        {
+          "line": 250,
+          "text": "VegaSaveStatus VegaSaveLoad(VegaModernSaveData *data, size_t available_size)"
+        }
+      ],
+      "path": "overlays/save_migration/save_migration.c"
+    },
+    {
+      "identity": {
+        "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67",
+        "size": 12497
+      },
+      "matches": [
+        {
+          "line": 267,
+          "text": "VegaSaveStatus VegaSaveLoad(VegaModernSaveData *data, size_t available_size);"
+        }
+      ],
+      "path": "overlays/save_migration/save_migration.h"
+    },
+    {
+      "identity": {
+        "sha256": "bd20bff34ea2656fa9646fcf4fef977422a339a3805308f4863c3754199b635f",
+        "size": 53259
+      },
+      "matches": [
+        {
+          "line": 90,
+          "text": "extern u8 TrainerChangeKitHost_SaveLoadGameData(u8 save_type);"
+        },
+        {
+          "line": 124,
+          "text": "#define FN_SAVE_LOAD_GAME_DATA TrainerChangeKitHost_SaveLoadGameData"
+        },
+        {
+          "line": 1371,
+          "text": "TRAINER_CHANGEKIT_EXPORT(TrainerChangeKitFinalRuntime_SaveLoadAdapter)"
+        },
+        {
+          "line": 1372,
+          "text": "u8 TrainerChangeKitFinalRuntime_SaveLoadAdapter(u8 save_type)"
+        }
+      ],
+      "path": "overlays/trainer_changekit_final_runtime/trainer_changekit_final_runtime.c"
+    },
+    {
+      "identity": {
+        "sha256": "cabb9f7aadbdf5d84bfbd04f1790f4467bc849c6469755ecc9c0b4879961533a",
+        "size": 6601
+      },
+      "matches": [
+        {
+          "line": 114,
+          "text": " * SaveLoadAdapter wraps Save_LoadGameData through a relocated trampoline. */"
+        },
+        {
+          "line": 117,
+          "text": "uint8_t TrainerChangeKitFinalRuntime_SaveLoadAdapter(uint8_t save_type);"
+        }
+      ],
+      "path": "overlays/trainer_changekit_final_runtime/trainer_changekit_final_runtime.h"
+    },
+    {
+      "identity": {
+        "sha256": "1011490d67808d19fda9ae18723bd8aa123106e7589b413b3116ab01e02e6be6",
+        "size": 60538
+      },
+      "matches": [
+        {
+          "line": 52,
+          "text": "    \"CodexBattleRewards_SaveLoadAdapter\","
+        },
+        {
+          "line": 291,
+          "text": "        \"CODEX_REWARD_T27_SAVE_LOAD\": _integer(t27[\"save_load_adapter\"], \"T27 SaveLoad\"),"
+        },
+        {
+          "line": 823,
+          "text": "        \"save_load_adapter\": \"CodexBattleRuntime_SaveLoadAdapter\","
+        },
+        {
+          "line": 878,
+          "text": "                \"CodexBattleRuntime_SaveLoadAdapter\"][\"address\"])):"
+        },
+        {
+          "line": 879,
+          "text": "        _fail(\"Stage44 SaveLoad runtime chain differs\")"
+        },
+        {
+          "line": 938,
+          "text": "        \"save_load_adapter\": \"CodexBattleRuntime_SaveLoadAdapter\","
+        }
+      ],
+      "path": "scripts/build_codex_battle_rewards.py"
+    },
+    {
+      "identity": {
+        "sha256": "64c6060477d539a6dbb942581aa09d5789a6056e2bb9ae678282e564f0d53a52",
+        "size": 87941
+      },
+      "matches": [
+        {
+          "line": 62,
+          "text": "    \"CodexBattleRuntime_SaveLoadAdapter\","
+        }
+      ],
+      "path": "scripts/build_codex_battle_runtime.py"
+    },
+    {
+      "identity": {
+        "sha256": "b25a000ef37a9115b1ccb17958ded1c605b859143df677c154e13dd79fa85f37",
+        "size": 85174
+      },
+      "matches": [
+        {
+          "line": 72,
+          "text": "    \"CollectionSupply_SaveLoadAdapter\","
+        }
+      ],
+      "path": "scripts/build_collection_supply_v1.py"
+    },
+    {
+      "identity": {
+        "sha256": "9f7deb8dcc5347e70e84f17e0a31d188ccc7c7d382788fb0c46dd38b23474983",
+        "size": 94857
+      },
+      "matches": [
+        {
+          "line": 110,
+          "text": "    \"FactoryHighModesV2_Recover\","
+        },
+        {
+          "line": 114,
+          "text": "    \"FactoryHighModesV2_SaveLoadAdapter\","
+        }
+      ],
+      "path": "scripts/build_factory_high_modes_v2.py"
+    },
+    {
+      "identity": {
+        "sha256": "b9f0a8865662d98357b7d76445f7f23c09c2f0182002ae30390a7990cb78d4c0",
+        "size": 47090
+      },
+      "matches": [
+        {
+          "line": 67,
+          "text": "    \"FactoryShinyMemorialRuntime_RecoverDispatch\","
+        },
+        {
+          "line": 536,
+          "text": "        entrypoints[\"FactoryShinyMemorialRuntime_RecoverDispatch\"],"
+        },
+        {
+          "line": 638,
+          "text": "    dispatch = int(runtime[\"entrypoints\"][\"FactoryShinyMemorialRuntime_RecoverDispatch\"])"
+        },
+        {
+          "line": 878,
+          "text": "            hex(entry[\"FactoryShinyMemorialRuntime_RecoverDispatch\"]),"
+        }
+      ],
+      "path": "scripts/build_factory_shiny_memorial_runtime.py"
+    },
+    {
+      "identity": {
+        "sha256": "db270b8c32dae90cdd2bfe96fa7a398a405b1034b6d888bc06e8913046cd04ac",
+        "size": 124369
+      },
+      "matches": [
+        {
+          "line": 193,
+          "text": "    \"MirageProduction_SaveLoadAdapter\","
+        },
+        {
+          "line": 554,
+          "text": "            \"native::MirageProduction_SaveLoadAdapter\", 8,"
+        },
+        {
+          "line": 1482,
+          "text": "        entrypoints[\"MirageProduction_SaveLoadAdapter\"],"
+        },
+        {
+          "line": 1948,
+          "text": "            target = runtime[\"entrypoints\"][\"MirageProduction_SaveLoadAdapter\"]"
+        }
+      ],
+      "path": "scripts/build_mirage_production.py"
+    },
+    {
+      "identity": {
+        "sha256": "3719afca8f1a9385d8da073faba369c3994e98d848b65c01fec7c5832d062ea1",
+        "size": 79738
+      },
+      "matches": [
+        {
+          "line": 1556,
+          "text": "        \"VegaQolProduction_StartMenuPanel\", \"VegaQolProduction_SaveLoadAdapter\","
+        }
+      ],
+      "path": "scripts/build_qol_production.py"
+    },
+    {
+      "identity": {
+        "sha256": "03ad1c326663e09ca5e694a7bcf84808f5d4b7c5c353d03c72cdc82482015341",
+        "size": 120273
+      },
+      "matches": [
+        {
+          "line": 112,
+          "text": "    \"ResearchEconomy_SaveLoadAdapter\","
+        }
+      ],
+      "path": "scripts/build_research_economy_v1.py"
+    },
+    {
+      "identity": {
+        "sha256": "06b7609f957f3a6942b3b35e5a6388a365b4be5175dce4afe04d5df4eefe891b",
+        "size": 109603
+      },
+      "matches": [
+        {
+          "line": 1418,
+          "text": "    \"TrainerChangeKitFinalRuntime_SaveLoadAdapter\","
+        },
+        {
+          "line": 1774,
+          "text": "        entrypoints[\"TrainerChangeKitFinalRuntime_SaveLoadAdapter\"],"
+        },
+        {
+          "line": 2304,
+          "text": "        \"TrainerChangeKitFinalRuntime_SaveLoadAdapter\","
+        }
+      ],
+      "path": "scripts/build_trainer_changekit_final.py"
+    },
+    {
+      "identity": {
+        "sha256": "92d39408d459abaa5a8093e70914852027a31eefccc0530c9cdbcdc30a46cb84",
+        "size": 5098
+      },
+      "matches": [
+        {
+          "line": 18,
+          "text": "PATTERN=re.compile(r'SaveLoad|SaveWrite|Factory.*Recover|Recover.*Factory|[Ss]ave[_ -]?[Aa]dapter|0[xX]09405[dD]81|0[xX]9405[dD]81')"
+        }
+      ],
+      "path": "scripts/pr16_circus_load_order.py"
+    },
+    {
+      "identity": {
+        "sha256": "35e96e0fbca856cf74afbcda56f7b220ebaccc050bc907431f91b0020ad1bcf5",
+        "size": 18586
+      },
+      "matches": [
+        {
+          "line": 222,
+          "text": "    patch('save-load-delegate',SAVE_LOAD_LITERAL,struct.pack('<I',entries['CircusStreakRuntimeSaveLoad']))"
+        }
+      ],
+      "path": "scripts/pr16_circus_streak.py"
+    },
+    {
+      "identity": {
+        "sha256": "b3e88d34e98d3eb94d7e42c2506074c7ff03c0842359bb58ae312ff39cc9baa4",
+        "size": 18567
+      },
+      "matches": [
+        {
+          "line": 66,
+          "text": "    \"MirageProduction_SaveLoadAdapter\","
+        }
+      ],
+      "path": "scripts/rebuild_mirage_production_from_clean.py"
+    },
+    {
+      "identity": {
+        "sha256": "a2a83ba561ac6b90b962790ac44e522408dd7b75196c6f9cbd31b53091670b9d",
+        "size": 6407
+      },
+      "matches": [
+        {
+          "line": 104,
+          "text": "    assert(VegaSaveLoad(&disk, sizeof(disk)) == VEGA_SAVE_OK && disk.pending_encounter.valid);"
+        },
+        {
+          "line": 123,
+          "text": "    assert(VegaSaveLoad(&save, sizeof(save)) == VEGA_SAVE_OK);"
+        }
+      ],
+      "path": "tests/fixtures/engine_vertical_slice_fixture.c"
+    },
+    {
+      "identity": {
+        "sha256": "30578585f9cb84c89be876267117a68814a2a158573ca6628f97436e2fa52aed",
+        "size": 17758
+      },
+      "matches": [
+        {
+          "line": 231,
+          "text": "    CHECK(VegaSaveLoad(&corrupt, sizeof(corrupt)) == VEGA_SAVE_OK);"
+        }
+      ],
+      "path": "tests/fixtures/save_migration_fixture.c"
+    },
+    {
+      "identity": {
+        "sha256": "54aa004d426eb57059424f76446ffcc728d4076b75f4a772c1a9c37b4fe20b7e",
+        "size": 13060
+      },
+      "matches": [
+        {
+          "line": 134,
+          "text": "            \"SaveWriteToFlash\", \"SetUpStartMenu\", \"GiveEggFromDaycare\","
+        }
+      ],
+      "path": "tests/test_cfru_battle_patchset.py"
+    },
+    {
+      "identity": {
+        "sha256": "2ff0ce8563542a3367242ca8b9ca89147707dce362c66d4de2a3c33633f9b816",
+        "size": 5870
+      },
+      "matches": [
+        {
+          "line": 109,
+          "text": "        dispatch = source.index(\"FactoryShinyMemorialRuntime_RecoverDispatch\")"
+        }
+      ],
+      "path": "tests/test_factory_shiny_memorial_runtime.py"
+    },
+    {
+      "identity": {
+        "sha256": "e163204b08abc144fa6864c0f7a3e9fcfcd5b87132981185e628dafcff04f7f1",
+        "size": 29392
+      },
+      "matches": [
+        {
+          "line": 65,
+          "text": "    \"MirageProduction_SaveLoadAdapter\","
+        }
+      ],
+      "path": "tests/test_mirage_production.py"
+    },
+    {
+      "identity": {
+        "sha256": "3dcf25d956c8518d38e196031f6ec7ae1c90efb0d333c61e2e907d02f3f2cdcd",
+        "size": 1640
+      },
+      "matches": [
+        {
+          "line": 10,
+          "text": "        for token in ('SaveLoad','SaveWrite','FactoryRuntime_Recover','FactoryOnRecover','save_adapter','0x09405D81','0x9405d81'):"
+        },
+        {
+          "line": 20,
+          "text": "            self.assertFalse(m.allowed(name));self.assertFalse(m.selected(name,b'SaveLoad'))"
+        },
+        {
+          "line": 22,
+          "text": "        for raw in (b'\\xff',b'a\\0SaveLoad',b'x'*(1024*1024+1)):"
+        }
+      ],
+      "path": "tests/test_pr16_circus_load_order.py"
+    },
+    {
+      "identity": {
+        "sha256": "44859ba2db83c209bfb1361be1990c6fdd705deca84fcfd79070967ddd2ba1c3",
+        "size": 39332
+      },
+      "matches": [
+        {
+          "line": 123,
+          "text": "    \"ResearchEconomy_SaveLoadAdapter\","
+        }
+      ],
+      "path": "tests/test_research_economy_v1.py"
+    },
+    {
+      "identity": {
+        "sha256": "3e522142b0f0376afeea05999cff0abcdf89533960bc315bc81ad2fd885eeef2",
+        "size": 29032
+      },
+      "matches": [
+        {
+          "line": 96,
+          "text": "                \"SaveWriteToFlash\","
+        },
+        {
+          "line": 105,
+          "text": "            \"SaveWriteToFlash\": \"004a1047417f1209\","
+        },
+        {
+          "line": 121,
+          "text": "            {\"SaveWriteToFlash\", \"HandleSavingData\"},"
+        }
+      ],
+      "path": "tests/test_stage61_state_namespace_collision_audit.py"
+    },
+    {
+      "identity": {
+        "sha256": "8284173ee8aaaaf6afc29a6b84e9565a2f6173908007a5f8df3550d4b00f6e77",
+        "size": 7872
+      },
+      "matches": [
+        {
+          "line": 123,
+          "text": "            \"TrainerChangeKitFinalRuntime_SaveLoadAdapter\","
+        }
+      ],
+      "path": "tests/test_trainer_changekit_final_builder.py"
+    },
+    {
+      "identity": {
+        "sha256": "762b371baa921ae52583a929a321829ad0c9ec6ba33ab2e5873d9af445d2736c",
+        "size": 26198
+      },
+      "matches": [
+        {
+          "line": 168,
+          "text": "static unsigned sSaveLoads;"
+        },
+        {
+          "line": 315,
+          "text": "uint8_t TrainerChangeKitHost_SaveLoadGameData(uint8_t save_type)"
+        },
+        {
+          "line": 317,
+          "text": "    ++sSaveLoads;"
+        },
+        {
+          "line": 430,
+          "text": "    CHECK(TrainerChangeKitFinalRuntime_SaveLoadAdapter(2u) == 3u);"
+        },
+        {
+          "line": 432,
+          "text": "    CHECK(sSaveLoads == 1u && sLastSaveType == 2u);"
+        },
+        {
+          "line": 545,
+          "text": "            \"SaveLoadAdapter\","
+        }
+      ],
+      "path": "tests/test_trainer_changekit_final_runtime.py"
+    },
+    {
+      "identity": {
+        "sha256": "9209bb971ee549a997e52edef891399b7e89ba912fd4b44702657cf12bfe5e41",
+        "size": 55140
+      },
+      "matches": [
+        {
+          "line": 153,
+          "text": "    X(save_load, \"CodexBattleRewards_SaveLoadAdapter\") \\"
+        }
+      ],
+      "path": "tools/mgba_codex_battle_rewards_smoke.c"
+    },
+    {
+      "identity": {
+        "sha256": "4a54ef6e0e1dd23f004203c157505ed5917085cbec3de1f05d12e285ef56b41e",
+        "size": 91091
+      },
+      "matches": [
+        {
+          "line": 158,
+          "text": "    X(save_load, \"CodexBattleRuntime_SaveLoadAdapter\") \\"
+        }
+      ],
+      "path": "tools/mgba_codex_battle_runtime_smoke.c"
+    },
+    {
+      "identity": {
+        "sha256": "1595468b2ffb568ab046124c6bdb0dc3147c6b3f6bfdc10547fb0a4dd90b13df",
+        "size": 28665
+      },
+      "matches": [
+        {
+          "line": 60,
+          "text": "    X(save_load, \"CollectionSupply_SaveLoadAdapter\") \\"
+        }
+      ],
+      "path": "tools/mgba_collection_supply_v1_smoke.c"
+    },
+    {
+      "identity": {
+        "sha256": "2bf39e557e52086337d4987430171c9ee63c2bbd6587042518d91c959c50cd1a",
+        "size": 31210
+      },
+      "matches": [
+        {
+          "line": 85,
+          "text": "    X(recover, \"FactoryHighModesV2_Recover\") \\"
+        },
+        {
+          "line": 89,
+          "text": "    X(save_adapter, \"FactoryHighModesV2_SaveLoadAdapter\") \\"
+        },
+        {
+          "line": 329,
+          "text": "        && fh_jump_target(core, FH_SAVE_HOOK) == s->save_adapter"
+        },
+        {
+          "line": 339,
+          "text": "                fh_jump_target(core, FH_SAVE_HOOK), s->save_adapter,"
+        }
+      ],
+      "path": "tools/mgba_factory_high_modes_v2_smoke.c"
+    },
+    {
+      "identity": {
+        "sha256": "48d9e8e2d92b46d88256d795252d132b264a08199fc3c89efcf356bfb47c269a",
+        "size": 111752
+      },
+      "matches": [
+        {
+          "line": 211,
+          "text": "    \"MirageProduction_SaveLoadAdapter\","
+        },
+        {
+          "line": 2001,
+          "text": "        fprintf(stderr, \"fresh core SaveLoad result=%\" PRIu32"
+        }
+      ],
+      "path": "tools/mgba_mirage_production_smoke.c"
+    },
+    {
+      "identity": {
+        "sha256": "943b06d4fa2227fe053477e4aa31c490d84e74b09bd3e9291dc945a08efbb200",
+        "size": 44673
+      },
+      "matches": [
+        {
+          "line": 125,
+          "text": "    X(save_load, \"ResearchEconomy_SaveLoadAdapter\") \\"
+        }
+      ],
+      "path": "tools/mgba_research_economy_v1_smoke.c"
+    },
+    {
+      "identity": {
+        "sha256": "395bd2e76da4ea239bd02235b70258dc1c980da3d85f88812137959f4c2eab12",
+        "size": 35291
+      },
+      "matches": [
+        {
+          "line": 71,
+          "text": "    uint32_t policy_begin, policy_end, save_adapter, ability_adapter;"
+        },
+        {
+          "line": 225,
+          "text": "        {0x080DB4E4U, s->save_adapter},"
+        },
+        {
+          "line": 675,
+          "text": "    s.save_adapter = tcf_number(argv[arg++], \"save_adapter\");"
+        }
+      ],
+      "path": "tools/mgba_trainer_changekit_final_smoke.c"
+    },
+    {
+      "identity": {
+        "sha256": "1040d2f975258c05dfbb040c908c159644e660791712a4f67be68041bffa91d9",
+        "size": 239270
+      },
+      "matches": [
+        {
+          "line": 238,
+          "text": "    \"SaveWriteToFlash\": 0x09127F40,"
+        },
+        {
+          "line": 1316,
+          "text": "        \"symbol\": \"SaveWriteToFlash\","
+        },
+        {
+          "line": 2834,
+          "text": "        _fail(\"linked SaveWriteToFlash no longer owns sector30/31\")"
+        },
+        {
+          "line": 2844,
+          "text": "            \"linked SaveWriteToFlash(0xFFFF) also writes sector30/31; connecting it \""
+        },
+        {
+          "line": 2849,
+          "text": "            \"keep stock SaveWriteToFlash/HandleSavingData orchestration; hook the \""
+        },
+        {
+          "line": 3932,
+          "text": "        \"SaveWriteToFlash\": SAVE_CORE_HOOKS[0],"
+        },
+        {
+          "line": 4373,
+          "text": "        \"SaveWriteToFlash\", \"HandleSavingData\""
+        },
+        {
+          "line": 5199,
+          "text": "                \"SaveWriteToFlash/HandleSavingDataをsector31 transaction調停なしに接続しない\","
+        }
+      ],
+      "path": "tools/stage61_state_namespace_collision_audit.py"
+    }
+  ],
+  "native_processes_executed": 0,
+  "original_trace_run": 35420622910,
+  "physical_admission_accepted": false,
+  "previous_source_export_conclusion": "failure",
+  "previous_source_export_run": 35421781231,
+  "release_ready": false,
+  "schema_version": 1,
+  "scope_ja": "cold boot owner64未ロードの間にSave counter2→3→4。raw観測と固定sourceのload/save呼出順を結合。3勝は2勝1敗で未完、ここで成功へ改作しない。",
+  "source_bytes": 2506782,
+  "source_files": 58,
+  "source_head": "61500b6ed541acfb77287f521d5f07750f91c76a",
+  "suppression_accepted": false
+}

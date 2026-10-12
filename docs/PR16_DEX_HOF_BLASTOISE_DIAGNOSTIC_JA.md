@@ -1,0 +1,42 @@
+# Blastoise第一画像の現候補終端反証を確定
+
+2026-10-08。初回[Actions run37722012087](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37722012087)、job113131584284、source f9551f5d345949866a5dedd070da7479299922cdの全9stepが成功。新184試験を完走し、取得4JSONが生成・検証・公開前の12hashと完全一致した。
+
+現0641でも083D655Cの圧縮入力は1287byteで終了する。終端083D6A63より254byte後の083D6B61の4byteは、この第一画像readerでは消費されない。独立公開PNGの1794byte圧縮入力/3200byte出力とも全体hashが一致しない。対象4byte単体の保存hash一致と近傍symbol/reference_sizeだけでは型付けできない。正式783分類/91未知を保持する。安全donor0、正式ROM/Save101不変。
+
+## 実取得原本
+
+- artifact11525439041 / pr16-blastoise-asset-only
+- ZIP12207byte / SHA-256 d364b3a4a324686421f19afbc370d0469cae7c8bf63a9915dee545d1829c28ec
+- measurement.json:25968byte / 65fe0fd1dab9ae3ee375228ad85884e51a5215f8827e4131edfd8adafc50f3e7
+- reference-chain.json:1320byte / dcef706ce658675552bd36fbb203b3409daa6eee72b4df94b647decf4ad0a31e
+- tests.json:143byte / 14d8c76f2e5a5c56d19132bee13a3538d116b3740f093709256542d4b9e359b4
+- provenance.json:14357byte / d413a70ff25e6ce45f61be26e5a087dbf22920b1f0e90abb71a9b996ac7a8f5f
+- job log:28092byte / fa4f25ca2b65f78cea1803cbc791145d809933930583a75d83aae3b7b30a9dfd
+- 現scope proof canonical:9742byte / 12a331a1b2d640da0641f3aefdfe93e2b8d2ca6e62895ea0edd39335ebb18f90
+
+4JSONをcontent/modernization/pr16_dex_hof_blastoise_evidenceへ原本byteのまま保存。logとZIPはGit管理外、公開はidentityだけ。checkpointはcontent/modernization/pr16_dex_hof_blastoise_checkpoint.json。receipt validatorはscripts/pr16_dex_hof_endpoint_receipt.pyで、成功測定workflowのglob外に置く。記録commitで再測定しない。
+
+## 有限consumerの境界
+
+58命令/63保護窓を実ROMへ束縛し、LoadCreditsMonPic(2)の選択prefix52命令を追跡した。公開C由来のtemplate083D27C8、実literal080F52E4→083D655C、BL080F52CE→CopyToWindowPixelBuffer(1,src,0,0)、実gWindows stride12/offset8→window1 buffer、BL08004418→SWI11仕様decoderを結ぶ。初回API帰還080F52D2が終端である。
+
+InitWindowsの同期成功とwindow1の3200byte disjoint writable buffer生成、およびwindow0用Fill/LoadMonPicがwindow1 epochを保存する条件付き。opaque boundaryでcaller-saved/flags/nonlive RAMを消去して再確認。InitWindows/allocator実装、BIOS本体CPU、第二画像、残関数、VRAM/DMA、画面、自然story到達、全calleeや普遍heap/IRQは未証明。
+
+現圧縮1287/SHA cdf23c05be2f344e136245089ffc3b3ea153f03b1835648def7ceb38fcec7b75、decoded3200/SHA 6a8f2647e7797596a4b820332cb0f48d693d4731098f7512bd175e0b311ff7c8。公開PNGは圧縮1794/SHA 795833f5dc50f7eeb6bc69b851d2ea3cdebe18ee6c8ec35e3b708ca1113dea01、decoded3200/SHA 53555d2564544f36b20a1100c372fd16e6a4eab1e62f58a2a87b02dae97ab068。公開source陽性fixtureと別ROM6ffの陰性開発観察は現測定原本と別の由来として保持する。
+
+## 保存親と未知91件
+
+62保存入力から正式783親を復元する。全30受入namespace・164変更・154witnessと874hit全fieldは不変。今回31番目namespaceは変更0の診断deltaで、分類数を増やさない。旧91unknown原本はDiploma evidence/unknown-frontier.jsonを参照し複製・改作しない。次の分類工程は正式783親をそのまま使用できる。
+
+新184試験と今回consumerは成功原本から再利用。旧Diploma168/receipt40、minigame152、credits37、旧consumer/旧native/全ROMscanは再走していない。現ROM再構成はscope初回1、native0、旧egg15118全域保護を維持する。
+
+## 次の有限1件
+
+次は保存unknown0838B32F。固定JP auditの候補root gWeatherBubbleTiles0838B304、公開pret graphics/weather/bubble.png（8x16 indexed4）、非圧縮.4bpp登録、sWeatherBubbleSpriteSheet0838D5F4のsize64、Bubbles_InitVars0807D034→LoadSpriteSheet08008258→CpuCopy16を1件だけ調べる。公開PNGからの独立4bpp生成、現0641全asset一致、実登録data/size/tag・literal/caller・全reader入力が揃うまで未知を維持する。
+
+一次source: [field_weather.c](https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/field_weather.c#L138)、[field_weather_effects.c](https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/field_weather_effects.c#L2200-L2232)、[sprite.c](https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/sprite.c#L1476-L1490)。
+
+083D6B61の未消費tail、083E239B/083DF94FのEOS後byte、083DE68Eの未使用左文を再度近傍距離で型にしない。全保存入口ready、退避53300前heap13352 Free、同期非再入、controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gate。
+
+固定再開37722012016/job113131583968全5step、forgetting37722012109/37722018545、runtime audit37722012038は成功。一般source-validation37722012060/37722018589はcapacity step14で失敗し、step17に二次未生成artifact失敗がある。Stage79 37722012090は03:23UTC時点in_progressで全CI成功とはしない。

@@ -1,0 +1,672 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-SAVED-CONTRACTS",
+  "source_head": "0ea72e2eab60447f96a91b3bfa8c97466c57ac31",
+  "run_id": 35110450877,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "cases": [
+      {
+        "case": "script-callback-0x8068ddd",
+        "return_r0": 33558528,
+        "instruction_steps": 4,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 2,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33558529,
+            33558530
+          ],
+          [
+            33558532,
+            33558536
+          ]
+        ]
+      },
+      {
+        "case": "script-callback-0x806b159",
+        "return_r0": 33558528,
+        "instruction_steps": 4,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 2,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33558529,
+            33558530
+          ],
+          [
+            33558532,
+            33558536
+          ]
+        ]
+      },
+      {
+        "case": "cursor-0x0",
+        "return_r0": 0,
+        "instruction_steps": 24,
+        "maximum_stack_bytes": 16,
+        "nonstack_write_count": 4,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33558536,
+            33558540
+          ]
+        ]
+      },
+      {
+        "case": "cursor-0x1",
+        "return_r0": 1,
+        "instruction_steps": 24,
+        "maximum_stack_bytes": 16,
+        "nonstack_write_count": 4,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33558536,
+            33558540
+          ]
+        ]
+      },
+      {
+        "case": "cursor-0x80000000",
+        "return_r0": 2147483648,
+        "instruction_steps": 24,
+        "maximum_stack_bytes": 16,
+        "nonstack_write_count": 4,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33558536,
+            33558540
+          ]
+        ]
+      },
+      {
+        "case": "cursor-0xffffffff",
+        "return_r0": 4294967295,
+        "instruction_steps": 24,
+        "maximum_stack_bytes": 16,
+        "nonstack_write_count": 4,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33558536,
+            33558540
+          ]
+        ]
+      },
+      {
+        "case": "cursor-0x4030201",
+        "return_r0": 67305985,
+        "instruction_steps": 24,
+        "maximum_stack_bytes": 16,
+        "nonstack_write_count": 4,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33558536,
+            33558540
+          ]
+        ]
+      },
+      {
+        "case": "copy2048-0",
+        "return_r0": 134217985,
+        "instruction_steps": 10245,
+        "maximum_stack_bytes": 8,
+        "nonstack_write_count": 2048,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33804288,
+            33806336
+          ]
+        ]
+      },
+      {
+        "case": "checksum-0",
+        "return_r0": 2036332105,
+        "instruction_steps": 24580,
+        "maximum_stack_bytes": 16,
+        "nonstack_write_count": 0,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": []
+      },
+      {
+        "case": "checksum-write-0",
+        "return_r0": 33804296,
+        "instruction_steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33804296,
+            33804300
+          ]
+        ]
+      },
+      {
+        "case": "copy2048-1",
+        "return_r0": 134217985,
+        "instruction_steps": 10245,
+        "maximum_stack_bytes": 8,
+        "nonstack_write_count": 2048,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33804288,
+            33806336
+          ]
+        ]
+      },
+      {
+        "case": "checksum-1",
+        "return_r0": 1112563293,
+        "instruction_steps": 24580,
+        "maximum_stack_bytes": 16,
+        "nonstack_write_count": 0,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": []
+      },
+      {
+        "case": "checksum-write-1",
+        "return_r0": 33804296,
+        "instruction_steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33804296,
+            33804300
+          ]
+        ]
+      },
+      {
+        "case": "copy2048-17",
+        "return_r0": 134217985,
+        "instruction_steps": 10245,
+        "maximum_stack_bytes": 8,
+        "nonstack_write_count": 2048,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33804288,
+            33806336
+          ]
+        ]
+      },
+      {
+        "case": "checksum-17",
+        "return_r0": 3680656413,
+        "instruction_steps": 24580,
+        "maximum_stack_bytes": 16,
+        "nonstack_write_count": 0,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": []
+      },
+      {
+        "case": "checksum-write-17",
+        "return_r0": 33804296,
+        "instruction_steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33804296,
+            33804300
+          ]
+        ]
+      },
+      {
+        "case": "copy2048-255",
+        "return_r0": 134217985,
+        "instruction_steps": 10245,
+        "maximum_stack_bytes": 8,
+        "nonstack_write_count": 2048,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33804288,
+            33806336
+          ]
+        ]
+      },
+      {
+        "case": "checksum-255",
+        "return_r0": 1039170857,
+        "instruction_steps": 24580,
+        "maximum_stack_bytes": 16,
+        "nonstack_write_count": 0,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": []
+      },
+      {
+        "case": "checksum-write-255",
+        "return_r0": 33804296,
+        "instruction_steps": 14,
+        "maximum_stack_bytes": 0,
+        "nonstack_write_count": 4,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33804296,
+            33804300
+          ]
+        ]
+      },
+      {
+        "case": "metadata-init-0",
+        "return_r0": 134217985,
+        "instruction_steps": 404,
+        "maximum_stack_bytes": 8,
+        "nonstack_write_count": 101,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33812640,
+            33812736
+          ]
+        ]
+      },
+      {
+        "case": "metadata-init-255",
+        "return_r0": 134217985,
+        "instruction_steps": 404,
+        "maximum_stack_bytes": 8,
+        "nonstack_write_count": 101,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33812640,
+            33812736
+          ]
+        ]
+      },
+      {
+        "case": "metadata-ensure-valid",
+        "return_r0": 134217985,
+        "instruction_steps": 9,
+        "maximum_stack_bytes": 8,
+        "nonstack_write_count": 0,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": []
+      },
+      {
+        "case": "metadata-ensure-invalid",
+        "return_r0": 134217985,
+        "instruction_steps": 414,
+        "maximum_stack_bytes": 16,
+        "nonstack_write_count": 101,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": [
+          [
+            33812640,
+            33812736
+          ]
+        ]
+      },
+      {
+        "case": "validator-0-0-0",
+        "return_r0": 6,
+        "instruction_steps": 10,
+        "maximum_stack_bytes": 32,
+        "nonstack_write_count": 0,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": []
+      },
+      {
+        "case": "validator-33558528-2047-1",
+        "return_r0": 4,
+        "instruction_steps": 21,
+        "maximum_stack_bytes": 32,
+        "nonstack_write_count": 0,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": []
+      },
+      {
+        "case": "validator-33558528-2048-0",
+        "return_r0": 1,
+        "instruction_steps": 28706,
+        "maximum_stack_bytes": 32,
+        "nonstack_write_count": 0,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": []
+      },
+      {
+        "case": "validator-33558528-2048-255",
+        "return_r0": 1,
+        "instruction_steps": 30753,
+        "maximum_stack_bytes": 32,
+        "nonstack_write_count": 0,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": []
+      },
+      {
+        "case": "validator-33558528-2048-1",
+        "return_r0": 2,
+        "instruction_steps": 22585,
+        "maximum_stack_bytes": 40,
+        "nonstack_write_count": 0,
+        "sp_and_r4_r11_restored": true,
+        "nonstack_write_ranges": []
+      }
+    ],
+    "synthetic_contract_case_count": 28,
+    "copy_actual_callsite": {
+      "owner": 154635693,
+      "site": 154635750,
+      "arguments": {
+        "r0": "0x0203D000",
+        "r1": "0x02039A14",
+        "r2": "0x00000800",
+        "r3": "UNKNOWN"
+      },
+      "branch_register": null,
+      "resolved_target": null,
+      "binding_basis": "SAVED_CFG_REGISTER_FLOW_WITH_EXPLICIT_ABI_PRECONDITIONS",
+      "required_unproven_abi": [
+        "callee@0x09378DB6: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+        "callee@0x09378DCC: returns/SP/frame/r4-r11 preservation NOT PROVEN",
+        "callee@0x09378DD6: returns/SP/frame/r4-r11 preservation NOT PROVEN"
+      ],
+      "runtime_reachable": false,
+      "callee_abi_proven": false
+    },
+    "copy_range": {
+      "source": [
+        33790484,
+        33792532
+      ],
+      "destination": [
+        33804288,
+        33806336
+      ],
+      "length": 2048
+    },
+    "checksum_contract": {
+      "input_bytes": 2048,
+      "zeroed_hash_offsets": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "seed": 2166136261,
+      "multiplier": 16777619,
+      "output_slot_offset": 8
+    },
+    "metadata_range": [
+      33812640,
+      33812736
+    ],
+    "metadata_marker": 827737426,
+    "validator_prefix_return_codes": [
+      6,
+      4,
+      1,
+      2
+    ],
+    "validator_success_continuation_proven": false,
+    "return_contract_preconditions": [
+      "この合成modelの非alias buffer/stackと整列した実引数",
+      "copy/zero fillの長さは正・範囲は非wrap・読み書き可能",
+      "実callerの到達・全callee帰還・live SP/frameとは別の限定契約"
+    ],
+    "all_live_frames_proven": false,
+    "all_callers_resolved": false,
+    "caller_pointer_size_limit_proven": false,
+    "all_runtime_owners_excluded": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 0,
+    "new_byte_samples": 0,
+    "accepted_native_cases_replayed": 0,
+    "prior_graph_decoders_replayed": 0,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "classification": "SAVED_SYNTHETIC_MEMORY_AND_FRAME_CONTRACTS_NOT_NATIVE_ACQUISITION",
+    "next_unread_boundaries": {
+      "direct_callees": [
+        134647177,
+        134648173
+      ],
+      "computed_jump_site": 135346182,
+      "validator_window_end": 154917416,
+      "resolved_trampoline_targets_without_global_abi_proof": [
+        134667973,
+        136063573,
+        153948897,
+        153954521,
+        153954681
+      ]
+    }
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_saved_contracts.py": {
+      "size": 15079,
+      "sha256": "1fe5c750ebc8be8faf46915f0e172706a35bd4313bb05bfec621af3760e50620"
+    },
+    "tests/test_pr16_ring_saved_contracts.py": {
+      "size": 7599,
+      "sha256": "ccb4d63a82376181098be08ffd4b9c38e56596e170bc76ded9df96846744395f"
+    },
+    ".github/workflows/pr16-ring-saved-contracts.yml": {
+      "size": 1937,
+      "sha256": "c2e906451631630e1011fe7972ec6f789b41fc009e21a731a05aad5424b415fb"
+    },
+    "content/modernization/pr16_ring_owner_context.json": {
+      "size": 37372,
+      "sha256": "be7fbf1e7aa0d99bfd371e951e3b5cf8ca6b4d9c8ce65e178e07bb564083833f"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "content/modernization/pr16_ring_owner_frontier.json": {
+      "size": 73322,
+      "sha256": "4260abb358c4ea4c93f0b28d18b91a8ca242a061681cdca52ddd36842dff4ccf"
+    },
+    "content/modernization/pr16_ring_patch_owner.json": {
+      "size": 125662,
+      "sha256": "fb396fd19040d954ebc10c5296a35293575284e24f53bb6a0e23b440eb1a8746"
+    },
+    "scripts/pr16_ring_owner_context.py": {
+      "size": 13828,
+      "sha256": "e4ceb839cb6f9e3676b50549471512ae18698b9d4a4428f5577992758e38c1f0"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 32,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35109188711,
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35110459127,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0ea72e2eab60447f96a91b3bfa8c97466c57ac31",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35110459110,
+      "name": "source-validation",
+      "head_sha": "0ea72e2eab60447f96a91b3bfa8c97466c57ac31",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35110450758,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0ea72e2eab60447f96a91b3bfa8c97466c57ac31",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35110450877,
+      "name": "保存memory効果とframe合成契約の記録",
+      "head_sha": "0ea72e2eab60447f96a91b3bfa8c97466c57ac31",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35110450757,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "0ea72e2eab60447f96a91b3bfa8c97466c57ac31",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35110450695,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "0ea72e2eab60447f96a91b3bfa8c97466c57ac31",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35110450652,
+      "name": "source-validation",
+      "head_sha": "0ea72e2eab60447f96a91b3bfa8c97466c57ac31",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35109275928,
+      "name": "source-validation",
+      "head_sha": "b4bb860473dd7c3070f44f76cdeae4e907807328",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35109275945,
+      "name": "p03-forgetting-ci",
+      "head_sha": "b4bb860473dd7c3070f44f76cdeae4e907807328",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35109194146,
+      "name": "p03-forgetting-ci",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35109194166,
+      "name": "source-validation",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35109188191,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35109188222,
+      "name": "p03-forgetting-ci",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35109188729,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35109188711,
+      "name": "保存18ownerの実callsite結合と未証明境界の記録",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35109188393,
+      "name": "source-validation",
+      "head_sha": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35100819891,
+      "name": "source-validation",
+      "head_sha": "1656ebba8d9237f9fbe5a1c1980a73a796326ea4",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35100819932,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1656ebba8d9237f9fbe5a1c1980a73a796326ea4",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35100569090,
+      "name": "source-validation",
+      "head_sha": "be75645c967228f15188ebe7e5e46618b81de966",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35100569233,
+      "name": "p03-forgetting-ci",
+      "head_sha": "be75645c967228f15188ebe7e5e46618b81de966",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+name: PR16 P08 Ring evidence recovery
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_p08_ring_recovery.py
+      - tests/test_pr16_p08_ring_recovery.py
+      - .github/workflows/pr16-p08-ring-recovery.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-suppression
+  cancel-in-progress: false
+jobs:
+  recovery:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 完了原本だけ回収・14画面とbyteを照合・受入記録を非force保存
+        run: python3 scripts/pr16_p08_ring_recovery.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-p08-ring-recovery
+          path: .local/pr16-p08-ring-recovery/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

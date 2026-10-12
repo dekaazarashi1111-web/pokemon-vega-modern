@@ -1,0 +1,328 @@
+{
+  "status": "STATIC_CAVE_MAP_LOAD_ONLY_NOT_NATIVE",
+  "source_head": "9b4354510b2f511043075548967ad36e4a506b06",
+  "run_id": 37123370663,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "ceb55e1df60f35b69f4854017afa19d703df987c602c3a0f6b0090c2323e0685"
+  },
+  "map": [
+    1,
+    73
+  ],
+  "map_scripts": 135697300,
+  "map_script_rows": [
+    {
+      "type": 1,
+      "pointer": 136398393,
+      "table_address": 135697300
+    }
+  ],
+  "map_script_references": [],
+  "graph": {
+    "root_count": 1,
+    "unique_root_address_count": 1,
+    "visited_script_count": 3,
+    "nodes": [
+      {
+        "address": 136398336,
+        "end_reason": "return",
+        "instruction_count": 7,
+        "edges": [],
+        "roots": [
+          "cave_map1_73:map_script:1:0"
+        ]
+      },
+      {
+        "address": 136398393,
+        "end_reason": "end",
+        "instruction_count": 5,
+        "edges": [
+          136398336,
+          136398412
+        ],
+        "roots": [
+          "cave_map1_73:map_script:1:0"
+        ]
+      },
+      {
+        "address": 136398412,
+        "end_reason": "return",
+        "instruction_count": 2,
+        "edges": [],
+        "roots": [
+          "cave_map1_73:map_script:1:0"
+        ]
+      }
+    ],
+    "references": [
+      {
+        "category": "flag",
+        "value": 4354,
+        "access": "read",
+        "instruction_address": 136398393,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136398393,
+        "roots": [
+          "cave_map1_73:map_script:1:0"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4367,
+        "access": "read",
+        "instruction_address": 136398402,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136398393,
+        "roots": [
+          "cave_map1_73:map_script:1:0"
+        ]
+      }
+    ],
+    "diagnostics": []
+  },
+  "instructions": [
+    {
+      "address": 136398336,
+      "opcode": 162,
+      "size": 9,
+      "hex": "a2200010008a020100",
+      "node": 136398336
+    },
+    {
+      "address": 136398345,
+      "opcode": 162,
+      "size": 9,
+      "hex": "a22100100081020000",
+      "node": 136398336
+    },
+    {
+      "address": 136398354,
+      "opcode": 162,
+      "size": 9,
+      "hex": "a22200100088020100",
+      "node": 136398336
+    },
+    {
+      "address": 136398363,
+      "opcode": 162,
+      "size": 9,
+      "hex": "a22000110092020100",
+      "node": 136398336
+    },
+    {
+      "address": 136398372,
+      "opcode": 162,
+      "size": 9,
+      "hex": "a22100110081020000",
+      "node": 136398336
+    },
+    {
+      "address": 136398381,
+      "opcode": 162,
+      "size": 9,
+      "hex": "a22200110090020100",
+      "node": 136398336
+    },
+    {
+      "address": 136398390,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 136398336
+    },
+    {
+      "address": 136398393,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b0211",
+      "node": 136398393
+    },
+    {
+      "address": 136398396,
+      "opcode": 7,
+      "size": 6,
+      "hex": "070100462108",
+      "node": 136398393
+    },
+    {
+      "address": 136398402,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b0f11",
+      "node": 136398393
+    },
+    {
+      "address": 136398405,
+      "opcode": 7,
+      "size": 6,
+      "hex": "07014c462108",
+      "node": 136398393
+    },
+    {
+      "address": 136398411,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 136398393
+    },
+    {
+      "address": 136398412,
+      "opcode": 162,
+      "size": 9,
+      "hex": "a20800050081020000",
+      "node": 136398412
+    },
+    {
+      "address": 136398421,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 136398412
+    }
+  ],
+  "inherited_preparation": {
+    "size": 241478,
+    "sha256": "ae80279b131567435de17878e82d1fc353d7974d4b3ce844ebc5c19d2715c522"
+  },
+  "inherited_cells": 920,
+  "new_terrain_cells": 0,
+  "native_processes": 0,
+  "rom_changes": 0,
+  "save_changes": 0,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "prior_record": {
+    "run": {
+      "id": 37123210891,
+      "head_sha": "6910abb080a36796bd570455eb7858828a5d3b51",
+      "head_branch": "codex/modernization-followup-20260908",
+      "path": ".github/workflows/pr16-story-save33-record.yml",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    "job": {
+      "id": 111203247521,
+      "run_id": 37123210891,
+      "workflow_name": "pr16-story-save33-record",
+      "head_branch": "codex/modernization-followup-20260908",
+      "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37123210891",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUPNhZs8AAAAZ5DrloQ",
+      "head_sha": "6910abb080a36796bd570455eb7858828a5d3b51",
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111203247521",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37123210891/job/111203247521",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-03T12:32:37Z",
+      "started_at": "2026-10-03T12:32:39Z",
+      "completed_at": "2026-10-03T12:33:12Z",
+      "name": "record",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-03T12:32:40Z",
+          "completed_at": "2026-10-03T12:32:40Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-03T12:32:40Z",
+          "completed_at": "2026-10-03T12:32:53Z"
+        },
+        {
+          "name": "Exact new acceptance source guard",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-03T12:32:53Z",
+          "completed_at": "2026-10-03T12:32:54Z"
+        },
+        {
+          "name": "Record Save33 using saved originals without native replay",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-03T12:32:54Z",
+          "completed_at": "2026-10-03T12:33:03Z"
+        },
+        {
+          "name": "Scoped final index private guard and fixed resume",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-03T12:33:03Z",
+          "completed_at": "2026-10-03T12:33:07Z"
+        },
+        {
+          "name": "Lightweight task graph",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-03T12:33:07Z",
+          "completed_at": "2026-10-03T12:33:07Z"
+        },
+        {
+          "name": "Commit and nonforce push same branch",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-03T12:33:07Z",
+          "completed_at": "2026-10-03T12:33:09Z"
+        },
+        {
+          "name": "Exact committed text readback",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-03T12:33:09Z",
+          "completed_at": "2026-10-03T12:33:09Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-03T12:33:09Z",
+          "completed_at": "2026-10-03T12:33:10Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-03T12:33:10Z",
+          "completed_at": "2026-10-03T12:33:10Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-03T12:33:10Z",
+          "completed_at": "2026-10-03T12:33:10Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111203247521",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000019274,
+      "runner_name": "GitHub Actions 1000019274",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  }
+}

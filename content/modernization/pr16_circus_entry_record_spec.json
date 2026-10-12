@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "artifacts": {
+    "build": {
+      "run_id": 35360663203,
+      "job_id": 105650834496,
+      "artifact_id": 10553719312,
+      "tested_head": "657c589538b68ab665b4acfcc36bd4434b00a2a6",
+      "conclusion": "success",
+      "workflow": ".github/workflows/pr16-circus-entry.yml",
+      "name": "pr16-circus-entry",
+      "with_manifest": true,
+      "artifact_identity": {"size": 108957, "sha256": "af761b533b1edbe1c39ea4ae0344188a7fa4d57f0bf14324d2718ff9598c2b4f"},
+      "required_success_steps": ["新規script adapterと分岐23件のみを検証", "固定compilerとStage84親入力を復元", "固定private入力とcharmapだけを復元", "ROM save ELFを除外した原本と次工程の限定sourceを保持", "新候補作成のためだけに固定親を再構成（受入native再実行なし）"]
+    },
+    "failed_metadata": {
+      "run_id": 35359098745,
+      "job_id": 105645626749,
+      "artifact_id": 10554256296,
+      "tested_head": "8ddb662a5508c98d7d863ff83fb831612555e1b0",
+      "conclusion": "failure",
+      "workflow": ".github/workflows/pr16-circus-entry.yml",
+      "name": "pr16-circus-entry",
+      "with_manifest": true,
+      "artifact_identity": {"size": 88021, "sha256": "85a53f90bef1778675e0210c9a0e4a90c6aae684ad113f1cb51aaa510cf6532a"},
+      "required_success_steps": ["新規script adapterと分岐18件のみを検証", "固定compilerとStage84親入力を復元", "固定private入力とcharmapだけを復元", "ROM save ELFを除外した原本と次工程の限定sourceを保持"]
+    },
+    "failed_alignment": {
+      "run_id": 35359681701,
+      "job_id": 105647588377,
+      "artifact_id": 10553862533,
+      "tested_head": "a053cb990b98216f8ee256a145334208b2d95eee",
+      "conclusion": "failure",
+      "workflow": ".github/workflows/pr16-circus-entry.yml",
+      "name": "pr16-circus-entry",
+      "with_manifest": true,
+      "artifact_identity": {"size": 89520, "sha256": "722e8ea21a8755e954833aad079db9c08f820ae44531c64c69061f9f1fdeecec"},
+      "required_success_steps": ["新規script adapterと分岐23件のみを検証", "固定compilerとStage84親入力を復元", "固定private入力とcharmapだけを復元", "ROM save ELFを除外した原本と次工程の限定sourceを保持"]
+    }
+  }
+}

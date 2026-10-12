@@ -1,0 +1,121 @@
+{
+  "active_baseline_changed": false,
+  "allocation": {
+    "actual_code": 64,
+    "aligned_absolute_reference_candidates": [],
+    "allocation_overlap": 0,
+    "base": 167030784,
+    "dialogue_tiles": [
+      408,
+      512
+    ],
+    "frame_tiles": [
+      532,
+      541
+    ],
+    "intervals_half_open": true,
+    "maximum_height": 16,
+    "maximum_width": 21,
+    "new_ewram_bytes": 0,
+    "old_dialogue_hidden_without_free": true,
+    "pixel_tiles": [
+      56,
+      392
+    ],
+    "reservation": 128,
+    "standard_list_allocation_end": 167030784,
+    "top": 1
+  },
+  "candidate": {
+    "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
+    "size": 33554432
+  },
+  "canonical_source_unchanged": true,
+  "changed_bytes": 71,
+  "code": {
+    "sha256": "912cccf40213defa338809c1fa1cc7820340e417a7f07b543ef1b924c621adea",
+    "size": 64
+  },
+  "declared_bytes": 76,
+  "natural_story_progress_accepted": false,
+  "naturally_earned_spending_accepted": false,
+  "numeric_and_standard_list_unchanged": true,
+  "outside_declared_changes": 0,
+  "parent": {
+    "sha256": "59ac6688576238f00dac88cccec1a42415f6f0e4f3f07d60411f6d3059bf61e6",
+    "size": 33554432
+  },
+  "patches": [
+    {
+      "after": "00080115",
+      "before": "00080015",
+      "offset": 20705760
+    },
+    {
+      "after": "01b0f409",
+      "before": "7d7f0f08",
+      "offset": 20705784
+    },
+    {
+      "after": "39051108",
+      "before": "f90b1108",
+      "offset": 20706844
+    },
+    {
+      "after": "70b504000d0000200021094b00f00ff8084b00f00cf801002000f022064b00f006f820002900054b00f001f870bd1847b57f0f08cd890f08e13015087d7f0f08",
+      "before": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "offset": 32813056
+    }
+  ],
+  "release_ready": false,
+  "roots": {
+    "0x80f7f7c": {
+      "sha256": "a401363c8b3e6280a42ea513458eaec9bebfd944f5eaddc9406eeabf615cbe51",
+      "size": 64
+    },
+    "0x80f7fb4": {
+      "sha256": "d33a42d3e9cde21a83b7c3f042a5cc2d4d4fd55dd2165c36711afd09b88b9d26",
+      "size": 72
+    },
+    "0x80f7ffc": {
+      "sha256": "575753f4f9766817dbc64afb070a42ab4f373caa832ea067437582419d660f49",
+      "size": 64
+    },
+    "0x80f872c": {
+      "sha256": "ed0558a7f9b622d0c83662488bead96036e9506e49a45e0072480e7638f523fe",
+      "size": 80
+    },
+    "0x80f89cc": {
+      "sha256": "19d9981b1aed03106357bf2d486368c433afa47e68fe05a7fe7a25446e329ce1",
+      "size": 32
+    },
+    "0x8110538": {
+      "sha256": "e64ed4de9f4b66a0d0f1e6970fa2bc4baae18099624f8f0bcfddb60862c8d0bc",
+      "size": 144
+    },
+    "0x8110bf8": {
+      "sha256": "f403a8437aa88f6910432ea87fc3bc28e96cfe6decd7d6b2c1064b1a5e37b5ee",
+      "size": 56
+    },
+    "0x81530e0": {
+      "sha256": "ca65ef229f7226d4d61f1e5800a93736fada53933e2247bdfe9c0edd2aa1489f",
+      "size": 112
+    },
+    "0x93bef60": {
+      "sha256": "909b7382e883ac048866a96a60c96408988801901d92a2757135835720050f3c",
+      "size": 736
+    },
+    "0x93bf510": {
+      "sha256": "6128b97abea88222a98f38d689ed87035d27a75c3af45ca1716ecdc748ce143b",
+      "size": 320
+    },
+    "0x93c0328": {
+      "sha256": "866d74853185fe10244f62630aad1c9681d63d63b2e4e02cd4b0accfb909adc0",
+      "size": 116
+    }
+  },
+  "schema_version": 1,
+  "shop_catalog_and_save_code_unchanged": true,
+  "source": "tools/pr16_research_shop_ui.S",
+  "whole_rom_rollback_matches_parent": true
+}

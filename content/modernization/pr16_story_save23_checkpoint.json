@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-STORY-SAVE23",
+  "status": "PASS_INTERIOR_WARP_SAVE23_SCOPED_FROM_PRESERVED_FAILED_RUN",
+  "measurement_source": "171a6518751659d66523924b9469045019814fb7",
+  "run_id": 37090970832,
+  "job_id": 111111036767,
+  "artifact": {
+    "id": 11261539316,
+    "name": "pr16-story-save23-checkpoint",
+    "size_in_bytes": 17499395,
+    "digest": "sha256:b5cb150d1fe3271b8dba3791b01fc3a3548f5183cb5c5bc5a6d684a99f8234b4",
+    "workflow_run": {
+      "id": 37090970832,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "171a6518751659d66523924b9469045019814fb7"
+    },
+    "expires_at": "2027-01-01T02:46:34Z"
+  },
+  "measurement_conclusion": "failure",
+  "record_source": "f74ed8efe29f36952c3f9ec864ca6a8f37a47c82",
+  "record_run_id": 37091670533,
+  "save23_accepted": true,
+  "verification": {
+    "route": [
+      [
+        1,
+        36
+      ],
+      [
+        1,
+        73
+      ]
+    ],
+    "arrival_observation": 7,
+    "save_success_wording_observation": 13,
+    "save_stable_field_observation": 14,
+    "inner_cave_arrival": true,
+    "cave_crossing_complete": false,
+    "ordinary_saves": 1,
+    "save_counter": 23,
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      20,
+      3
+    ],
+    "facing": 4,
+    "party_count": 4,
+    "rp": 0,
+    "trainer_victories": 0,
+    "wild_victories": 0,
+    "escapes": 0,
+    "captures": 0,
+    "fixture_writes": 0,
+    "national_dex_unlocked": false,
+    "hm05_root_cause_resolved": false,
+    "natural_growth_accepted": false,
+    "natural_evolution_accepted": false,
+    "natural_research_arrival_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "status": "PASS_INTERIOR_WARP_SAVE23_SCOPED_FROM_PRESERVED_FAILED_RUN",
+    "boundary": {
+      "auxiliary_flag_deltas": [
+        [
+          2056,
+          1,
+          0
+        ]
+      ],
+      "auxiliary_var_deltas": [
+        [
+          16417,
+          23,
+          26
+        ],
+        [
+          16418,
+          3,
+          1
+        ]
+      ],
+      "auxiliary_flag2056_runtime_owner_resolved": false,
+      "auxiliary_vars_runtime_owner_resolved": false,
+      "national_dex_magic": 0,
+      "national_var404e": 0,
+      "national_flag840": 0,
+      "story_vars": {
+        "4071": 6,
+        "4072": 1
+      },
+      "party_bytes_preserved": 600,
+      "bag_unchanged": true,
+      "money": 12296,
+      "hm05_owned": true,
+      "hm05_taught_or_used": false,
+      "sector_checksums": 42,
+      "pc_and_s61e_sections_unchanged": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "s61e_crc_and_inverse_checked": true,
+      "save22_bank_preserved_bytes": 57344,
+      "complete_save_rtc_cold_identical": true,
+      "changed_bytes": 7000,
+      "changed_ranges": 1788
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    },
+    "input_save": {
+      "size": 131088,
+      "sha256": "bb3b6159ab12358fd051b88a592c99807b2bc14b1f9f41e952daf7a4d1a4529e"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb"
+    },
+    "measured_run_conclusion": "failure",
+    "failure_reason_ja": "初回oracleが補助flag2056の通常変化を不変条件で拒否。旧failureは保持。",
+    "measurement_native_processes": 2,
+    "record_native_processes": 0,
+    "accepted_case_reruns": 0,
+    "accepted_test_reruns": 0,
+    "progress_inputs": 45,
+    "continue_inputs": 13,
+    "progress_frames": 3318,
+    "continue_frames": 1510,
+    "screen_count": 17,
+    "save_success_wording_observed": true,
+    "visual_review_required": true,
+    "rom_changes": 0,
+    "compiles": 0
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-story-save23-inspect.yml": {
+      "size": 1613,
+      "sha256": "af5cd054d07d3561fefdf0b473cf7109b0246f6c1e89b143b97c1efcd9a8e851"
+    },
+    ".github/workflows/pr16-story-save23-record.yml": {
+      "size": 2525,
+      "sha256": "cf3217a5ada8f7d52867524f1b89c4416a008a4decd850a02c9219ea0e6db6c7"
+    },
+    ".github/workflows/pr16-story-save23.yml": {
+      "size": 1587,
+      "sha256": "8adec26a624042abc820a6ad12afb6f250e909d209f72500d8fc4d9222f28905"
+    },
+    "content/modernization/pr16_story_save23_visual_review.json": {
+      "size": 2501,
+      "sha256": "0bdb418a6a5e69fb9cd9ea7e195a8ff17dc1d688d5e4ac6fded0147ae2865a9c"
+    },
+    "scripts/pr16_story_save23_accept.py": {
+      "size": 7991,
+      "sha256": "22922c0f8ad7d67beb88f5d8ffe29ebc0ec51d8bb43049eb918ef3c35edd276b"
+    },
+    "scripts/pr16_story_save23_inspect.py": {
+      "size": 7046,
+      "sha256": "99aeda12997d49f6485ddfa0191ad39379ad74932b0705e989518a63d596e0a0"
+    },
+    "scripts/pr16_story_save23_measure.py": {
+      "size": 10956,
+      "sha256": "f6bad26331667c1aa42addf0489f22c05dcefed5a3de5d9dadc21590f1dabceb"
+    },
+    "scripts/pr16_story_save23_record.py": {
+      "size": 16648,
+      "sha256": "53806b1928467bba4a0ab1886082b8b4ba79b44a4adb381b8772a5045367f1c3"
+    },
+    "tests/test_pr16_story_save23_accept.py": {
+      "size": 4593,
+      "sha256": "7e2c57f1d340bbf2ef0067ffb38b6a7f9d6961fcb2e58488a24d07d12c645990"
+    },
+    "tests/test_pr16_story_save23_inspect.py": {
+      "size": 2248,
+      "sha256": "606fec55ce54ecadc9293bb733d8880d961f78bf9398dda24b6411625a8bf604"
+    },
+    "tests/test_pr16_story_save23_measure.py": {
+      "size": 2840,
+      "sha256": "3ae2aeeb6a70e8b9999725f73ff789c13d45b3c298d58657ffa92b0e428db2f6"
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_save23_evidence/continue/commands.txt": {
+      "size": 25,
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3"
+    },
+    "content/modernization/pr16_story_save23_evidence/continue/execution.json": {
+      "size": 548,
+      "sha256": "4c9ac58f6ffa7997837fdbba6eb533ad434f69e4a28ed25430332493e9494c63"
+    },
+    "content/modernization/pr16_story_save23_evidence/continue/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save23_evidence/continue/stdout.txt": {
+      "size": 2101,
+      "sha256": "00f646ec63ad5bf205597fcfdfc9a8bf33c8bcc21f6475bcd4d97dada859ce2f"
+    },
+    "content/modernization/pr16_story_save23_evidence/failure.json": {
+      "size": 205,
+      "sha256": "359ecfbcc0ca1d2d026dfec6e3fbc31c1d97eaf7f226eb10be8202a31d305bc5"
+    },
+    "content/modernization/pr16_story_save23_evidence/inspection.json": {
+      "size": 12217,
+      "sha256": "ab44edd86247fbfd608cc72ff8cdd10524f87a21a60917684648d4ff31701468"
+    },
+    "content/modernization/pr16_story_save23_evidence/manifest.json": {
+      "size": 4529,
+      "sha256": "fda01f9d63d02a8da8af0817ff3fdb09155247561a921996b72955c013c832e8"
+    },
+    "content/modernization/pr16_story_save23_evidence/parent.json": {
+      "size": 460,
+      "sha256": "409b212888d4ce13d103194ca38141d28edafe26619bff468d64ed5517a330df"
+    },
+    "content/modernization/pr16_story_save23_evidence/progress/commands.txt": {
+      "size": 449,
+      "sha256": "3bc11e87dd3c6ef9cea6f1f7ea22ccd4f2ec3074a26d563d78abf88f83764130"
+    },
+    "content/modernization/pr16_story_save23_evidence/progress/execution.json": {
+      "size": 549,
+      "sha256": "22a00b0356f82856e75c36cfad0b1327cb8a91a48933cd423739403321657136"
+    },
+    "content/modernization/pr16_story_save23_evidence/progress/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save23_evidence/progress/stdout.txt": {
+      "size": 10746,
+      "sha256": "58c4e1726afd9682a6b4bfce5bc057ff4e0cd8396e815b4abbcef8060216abf5"
+    },
+    "content/modernization/pr16_story_save23_evidence/terminal.json": {
+      "size": 3418,
+      "sha256": "86ad86f78cfed8bca508b90511deb205df63ff11896605dfcbd1730148b4c9e0"
+    },
+    "content/modernization/pr16_story_save23_evidence/unit.stderr.txt": {
+      "size": 2809,
+      "sha256": "95916f3abf361bde276b51324bbda03b052fbfd26488e14a4fdc92e5adeb2869"
+    },
+    "content/modernization/pr16_story_save23_evidence/unit.stdout.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save23_evidence/verification.json": {
+      "size": 2721,
+      "sha256": "dbcc052fbed10003d23ddd66c2d91b378a3a6dba21dd41868ccfe5ea5239481e"
+    },
+    "content/modernization/pr16_story_save23_evidence/visual-review.json": {
+      "size": 2501,
+      "sha256": "0bdb418a6a5e69fb9cd9ea7e195a8ff17dc1d688d5e4ac6fded0147ae2865a9c"
+    }
+  },
+  "save_byte_ledger": {
+    "binding": {
+      "size": 210066,
+      "sha256": "195ca15587c78be41406178db4019c953b68badd955bcb98f4cbe4e187b97a80"
+    },
+    "changed_bytes": 7000,
+    "ranges": 1788,
+    "artifact_only": true
+  },
+  "next_goal_ja": "story-fastの唯一の開始点はartifact11261539316のstory-fast.srm（Save23、131088bytes、SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb）。ちえのどうくつ内部map1/73・20,3東・party4/RP0・12296円・badge1、var4071=6/4072=1。北入口からの階段warp・通常Save23・保存成功文言・独立Continueは限定受入済み。内部の先へ通常入力で進み、次のSave/cold境界で区切る。洞窟走破/南出口/新storyイベントは未完。45/cold13入力、静的14/入力17/原本受入24試験とSave1〜22/旧BP/P08は無影響に再走しない。run37090970832のfailureは保存後oracleの補助flag2056不変仮定が原因であり、成功へ改作しない。2056:1→0と補助var4021/4022の実観測差分だけを限定記録しruntime ownerは未解決。HM05は所持のみで未習得/未使用・原因未解決、同じ拒否入力を反復しない。全国図鑑magic0/grant ownerと分離progression原本Axewを保全し、flag/var注入で解禁しない。正規全国図鑑、自然成長/進化、Lucky Egg/12ケース/Lv100soak、研究施設自然到達、全storyは未完。",
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "general_ci_all_success_claimed": false
+}

@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "pret-credits.c": {
+      "local": "pret-credits.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/credits.c",
+      "size": 50032,
+      "sha256": "96690b500af63cc588b2ca8060f4af5b1a69a99797870099831d77a32027af25",
+      "git_blob_sha": "8f89652a0f864ae4fcacd67cccff3a4d3441f350"
+    },
+    "pret-strings.c": {
+      "local": "pret-strings.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/strings.c",
+      "size": 96631,
+      "sha256": "08e3799f20dd90ae937808be25721d28c3465b4f2ebaba2e71321e52f72465c1",
+      "git_blob_sha": "c09955503495e79c237d7f6d5164c666c7502600"
+    },
+    "pret-defines.h": {
+      "local": "pret-defines.h",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "include/gba/defines.h",
+      "size": 2518,
+      "sha256": "4356e895d7108dedd2c788bbbe98e0948778712a4ea6374193bdc1a851efe69b",
+      "git_blob_sha": "5521e942c00cc2c263b842ae7608dfb7ac881a76"
+    },
+    "pret-charmap.txt": {
+      "local": "pret-charmap.txt",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "charmap.txt",
+      "size": 21853,
+      "sha256": "4da662317b3b5109a52064f9012d85b644d1dbf0f3f24243374aeef4cf25f061",
+      "git_blob_sha": "b9d0ed9de00d05fc303bb987a5aa634b19009b47"
+    }
+  },
+  "hits": [
+    {
+      "address": 138290075,
+      "target": 167706112,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "f2e445f2786ebdc255f66acdec7db6f31fb21ad17af9863e6edaa228ba0508f3",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    },
+    {
+      "address": 138290371,
+      "target": 167706112,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "f2e445f2786ebdc255f66acdec7db6f31fb21ad17af9863e6edaa228ba0508f3",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    },
+    {
+      "address": 138290531,
+      "target": 167706112,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "f1ed636c11d324ba4803f99d37d78a578db512f2b4a03298003c980710caf186",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    },
+    {
+      "address": 138290575,
+      "target": 167706112,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "f1ed636c11d324ba4803f99d37d78a578db512f2b4a03298003c980710caf186",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    }
+  ],
+  "layout_rows": [
+    {
+      "hit": 138290075,
+      "table_index": 1,
+      "pointer_pair": {
+        "address": 138264084,
+        "size": 8,
+        "sha256": "123e6b8ea5ab0f8c45d3a298ee8088de7aa80e261357bb9d3e38bd50db77d288"
+      },
+      "title": {
+        "address": 138290048,
+        "size": 27,
+        "sha256": "055e7dadc1face2ad56cd48b49c314dccd6317284edba9ae25c939ea352a181e"
+      },
+      "gap": {
+        "address": 138290075,
+        "size": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+      },
+      "names": {
+        "address": 138290076,
+        "size": 22,
+        "sha256": "01c87c4f075b3bb23e5920a09f4cb64789a05dd70f7cc41aa70c4c4be2fa9a7c"
+      },
+      "source_title_symbol": "gCreditsString_Art_Director_Battle_Director",
+      "source_names_symbol": "gCreditsString_Ken_Sugimori_Shigeki_Morimoto"
+    },
+    {
+      "hit": 138290371,
+      "table_index": 6,
+      "pointer_pair": {
+        "address": 138264144,
+        "size": 8,
+        "sha256": "06d672c19c3bc2fc6d1bacca738582c84e528eb0c41f6391c15aac5c124e1b87"
+      },
+      "title": {
+        "address": 138290352,
+        "size": 18,
+        "sha256": "504a12620bc2f5aca3012ae08b036665a979e27dea3a0da8c792c5c8ad0cd17e"
+      },
+      "gap": {
+        "address": 138290370,
+        "size": 2,
+        "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+      },
+      "names": {
+        "address": 138290372,
+        "size": 22,
+        "sha256": "b447f575f87ec5ae774b9dc998785b13fc6e0bae7b34dfc2617da833715cc85f"
+      },
+      "source_title_symbol": "gCreditsString_Graphic_Designers_2",
+      "source_names_symbol": "gCreditsString_Ken_Sugimori_Hironobu_Yoshida"
+    },
+    {
+      "hit": 138290531,
+      "table_index": 10,
+      "pointer_pair": {
+        "address": 138264192,
+        "size": 8,
+        "sha256": "9429753dd20150f953fa23ffba5b19309289b1d5a4a962e7b25c036c67e1f6c9"
+      },
+      "title": {
+        "address": 138290516,
+        "size": 15,
+        "sha256": "4215fb5d381fd0ab6497403f623e48d40983beb18353233e50e19f2e4f944ab9"
+      },
+      "gap": {
+        "address": 138290531,
+        "size": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+      },
+      "names": {
+        "address": 138290532,
+        "size": 30,
+        "sha256": "e83f9ab4016cf132320f8cf0ec272432110a364c71d247a65671b2b933734532"
+      },
+      "source_title_symbol": "gCreditsString_Game_Designers_2",
+      "source_names_symbol": "gCreditsString_Hitomi_Sato_Shigeru_Ohmori_Tadashi_Takahashi"
+    },
+    {
+      "hit": 138290575,
+      "table_index": 11,
+      "pointer_pair": {
+        "address": 138264204,
+        "size": 8,
+        "sha256": "29a24a97681b1a688372810561bd20432661f76b6885039d611f457a7d85618e"
+      },
+      "title": {
+        "address": 138290564,
+        "size": 11,
+        "sha256": "83e8b97f9f834dba9662710c8086e654fe8316436f3e420b5b845fb263a4430a"
+      },
+      "gap": {
+        "address": 138290575,
+        "size": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+      },
+      "names": {
+        "address": 138290576,
+        "size": 21,
+        "sha256": "7ecf4b7e6b174f837a094590cbddeaaff9281133f9ad53d13ee764bf7d897851"
+      },
+      "source_title_symbol": "gCreditsString_Game_Scenario",
+      "source_names_symbol": "gCreditsString_Hitomi_Sato_Satoshi_Tajiri"
+    }
+  ],
+  "windows": [
+    {
+      "address": 138264084,
+      "size": 8,
+      "sha256": "123e6b8ea5ab0f8c45d3a298ee8088de7aa80e261357bb9d3e38bd50db77d288"
+    },
+    {
+      "address": 138290048,
+      "size": 27,
+      "sha256": "055e7dadc1face2ad56cd48b49c314dccd6317284edba9ae25c939ea352a181e"
+    },
+    {
+      "address": 138290075,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 138290076,
+      "size": 22,
+      "sha256": "01c87c4f075b3bb23e5920a09f4cb64789a05dd70f7cc41aa70c4c4be2fa9a7c"
+    },
+    {
+      "address": 138264144,
+      "size": 8,
+      "sha256": "06d672c19c3bc2fc6d1bacca738582c84e528eb0c41f6391c15aac5c124e1b87"
+    },
+    {
+      "address": 138290352,
+      "size": 18,
+      "sha256": "504a12620bc2f5aca3012ae08b036665a979e27dea3a0da8c792c5c8ad0cd17e"
+    },
+    {
+      "address": 138290370,
+      "size": 2,
+      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+    },
+    {
+      "address": 138290372,
+      "size": 22,
+      "sha256": "b447f575f87ec5ae774b9dc998785b13fc6e0bae7b34dfc2617da833715cc85f"
+    },
+    {
+      "address": 138264192,
+      "size": 8,
+      "sha256": "9429753dd20150f953fa23ffba5b19309289b1d5a4a962e7b25c036c67e1f6c9"
+    },
+    {
+      "address": 138290516,
+      "size": 15,
+      "sha256": "4215fb5d381fd0ab6497403f623e48d40983beb18353233e50e19f2e4f944ab9"
+    },
+    {
+      "address": 138290531,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 138290532,
+      "size": 30,
+      "sha256": "e83f9ab4016cf132320f8cf0ec272432110a364c71d247a65671b2b933734532"
+    },
+    {
+      "address": 138264204,
+      "size": 8,
+      "sha256": "29a24a97681b1a688372810561bd20432661f76b6885039d611f457a7d85618e"
+    },
+    {
+      "address": 138290564,
+      "size": 11,
+      "sha256": "83e8b97f9f834dba9662710c8086e654fe8316436f3e420b5b845fb263a4430a"
+    },
+    {
+      "address": 138290575,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 138290576,
+      "size": 21,
+      "sha256": "7ecf4b7e6b174f837a094590cbddeaaff9281133f9ad53d13ee764bf7d897851"
+    }
+  ],
+  "claims": {
+    "proof_scope": "bounded_layout_observation_and_unknown_retention_only",
+    "padding_classified": false,
+    "all_hit_bytes_consumed": false,
+    "actual_runtime_execution_observed": false,
+    "actual_registered_root_recomposed": false,
+    "japanese_serializer_bound": false,
+    "linker_layout_bound": false,
+    "gap_unreferenced_proven": false,
+    "indirect_reference_completeness_claimed": false,
+    "natural_play_reachability_proven": false,
+    "universal_heap_or_irq_lifetime_proven": false,
+    "donor_eligible": false,
+    "donor_leased": false
+  },
+  "source_limitations": {
+    "public_alignment_declaration_verified": true,
+    "public_alignment_macro_verified": true,
+    "selected_public_text_count": 8,
+    "exact_rom_text_matches": 0,
+    "japanese_object_build_available": false,
+    "exact_linker_map_available": false,
+    "complete_reference_domain_available": false
+  },
+  "required_obligations": [
+    "日本語object全体を生成する固定source・文字変換・serializerの一致",
+    "同一objectの境界・alignment・linker配置を現candidateへ独立束縛",
+    "gapを文字列や他のデータと誤認しない領域分離と未参照境界の根",
+    "対象namesを実登録rootから実consumerへ合成する有限条件",
+    "全4byteの型が閉じること。3byteの文字消費から先行1byteへ拡張しない"
+  ],
+  "classified_hits": []
+}

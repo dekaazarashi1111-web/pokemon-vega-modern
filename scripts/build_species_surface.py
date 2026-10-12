@@ -398,10 +398,66 @@ ITEM_UNKNOWN = {35, 36}
 MOVE_PARAM = {26, 37, 38}
 SPECIES_PARAM = {27}
 
+# T09の公開済み成果はEVO_MEGA(0xFE)のparameterを一律Item aliasで
+# 変換していた。この挙動は過去stageのbyte再現専用として固定し、P02以降は
+# MEGA_VARIANT_WISH(2)だけをMove namespaceで変換する。既定値をlegacyに
+# 保つことで、過去Stage09/39等のbuild/check結果を暗黙に書き換えない。
+EVOLUTION_PARAMETER_POLICY_T09_LEGACY_V1 = "T09_LEGACY_ITEM_0XFE_V1"
+EVOLUTION_PARAMETER_POLICY_MODERNIZATION_P02_V2 = "MODERNIZATION_P02_WISH_MOVE_V2"
+EVOLUTION_PARAMETER_POLICIES = {
+    EVOLUTION_PARAMETER_POLICY_T09_LEGACY_V1,
+    EVOLUTION_PARAMETER_POLICY_MODERNIZATION_P02_V2,
+}
+MEGA_VARIANT_WISH = 2
 
-def merge_evolutions(stage: bytes, dpe: bytes, config: Mapping[str, Any], rows: list[dict[str, Any]],
-                     species_alias: Mapping[int, int], move_alias: Mapping[int, int],
-                     item_alias: Mapping[int, int]) -> tuple[bytes, dict[str, Any]]:
+
+def remap_evolution_parameters(
+    method: int,
+    param: int,
+    unknown: int,
+    species_alias: Mapping[int, int],
+    move_alias: Mapping[int, int],
+    item_alias: Mapping[int, int],
+    *,
+    policy: str,
+) -> tuple[int, int]:
+    """進化methodの実consumer意味に従いparameter/extraをcanonical化する。
+
+    legacy policyは公開済みT09の再現専用で、EVO_MEGAを一律Item扱いする。
+    modernization policyはWish MegaのparameterだけMoveとして解決する。
+    """
+
+    if policy not in EVOLUTION_PARAMETER_POLICIES:
+        fail(f"unknown evolution parameter namespace policy: {policy}")
+    if (
+        policy == EVOLUTION_PARAMETER_POLICY_MODERNIZATION_P02_V2
+        and method == 0xFE
+        and unknown == MEGA_VARIANT_WISH
+        and param
+    ):
+        param = map_required(move_alias, param, "Wish Mega evolution Move")
+    elif method in ITEM_PARAM and param:
+        param = map_required(item_alias, param, "evolution Item")
+    if method in ITEM_UNKNOWN and unknown:
+        unknown = map_required(item_alias, unknown, "evolution held Item")
+    if method in MOVE_PARAM and param:
+        param = map_required(move_alias, param, "evolution Move")
+    if method in SPECIES_PARAM and param:
+        param = map_required(species_alias, param, "evolution party Species")
+    return param, unknown
+
+
+def merge_evolutions(
+    stage: bytes,
+    dpe: bytes,
+    config: Mapping[str, Any],
+    rows: list[dict[str, Any]],
+    species_alias: Mapping[int, int],
+    move_alias: Mapping[int, int],
+    item_alias: Mapping[int, int],
+    *,
+    parameter_policy: str = EVOLUTION_PARAMETER_POLICY_T09_LEGACY_V1,
+) -> tuple[bytes, dict[str, Any]]:
     meta = read_json(ROOT / config["inputs"]["stage06_metadata_path"])
     runtime = meta["runtime_tables"]["evolutions"]
     old = slice_at(stage, int(runtime["address"]), 412 * 128, "T06 evolution prefix")
@@ -440,14 +496,10 @@ def merge_evolutions(stage: bytes, dpe: bytes, config: Mapping[str, Any], rows: 
             if method == 0:
                 continue
             target = map_required(species_alias, target, "evolution target Species")
-            if method in ITEM_PARAM and param:
-                param = map_required(item_alias, param, "evolution Item")
-            if method in ITEM_UNKNOWN and unknown:
-                unknown = map_required(item_alias, unknown, "evolution held Item")
-            if method in MOVE_PARAM and param:
-                param = map_required(move_alias, param, "evolution Move")
-            if method in SPECIES_PARAM and param:
-                param = map_required(species_alias, param, "evolution party Species")
+            param, unknown = remap_evolution_parameters(
+                method, param, unknown, species_alias, move_alias, item_alias,
+                policy=parameter_policy,
+            )
             key = (method, param, target, unknown)
             if key in seen:
                 duplicate_count += 1

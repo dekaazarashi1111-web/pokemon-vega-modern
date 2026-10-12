@@ -1,0 +1,52 @@
+{
+  "binding": {
+    "activity": 5,
+    "backgrounds": 155268872,
+    "binding": "map96/37-background0",
+    "cap": 6,
+    "events": 155268944,
+    "points": 6,
+    "script": 154928612,
+    "x": 48,
+    "y": 4
+  },
+  "candidate": {
+    "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+    "size": 33554432
+  },
+  "dialogues": [
+    {
+      "binding_key": "BINDING_KEY_ACTIVITY_PHOTO",
+      "dialogue_key": "DIALOGUE_KEY_PHOTO_PROMPT",
+      "encoded_hex": "090c072dfe072b080c1f0d06acff",
+      "notes": "標準Yes/No。",
+      "runtime_address": 154927601,
+      "text": "けしきを\\nきろくしますか？",
+      "usage": "ACTIVITY"
+    },
+    {
+      "binding_key": "BINDING_KEY_ACTIVITY_PHOTO",
+      "dialogue_key": "DIALOGUE_KEY_PHOTO_REWARD",
+      "encoded_hex": "0c340c2e2d072b08adfea79f527e644126adff",
+      "notes": "commit後。",
+      "runtime_address": 154927615,
+      "text": "しゃしんをきろく。\\n6ポイントだよ。",
+      "usage": "REWARD"
+    },
+    {
+      "binding_key": "BINDING_KEY_ACTIVITY_PHOTO",
+      "dialogue_key": "DIALOGUE_KEY_PHOTO_CAP",
+      "encoded_hex": "073603190c340c2e1afe072b083e204126adff",
+      "notes": "daily claim済み。",
+      "runtime_address": 154927634,
+      "text": "きょうのしゃしんは\\nきろくずみだよ。",
+      "usage": "DAILY_CAP"
+    }
+  ],
+  "natural_arrival_claimed": false,
+  "points_injected": false,
+  "script": {
+    "sha256": "a1bad962d49bd4d4cb9dc5e8abe8ad96a4f6307fdf2e719f4dab72010bfce02a",
+    "size": 94
+  }
+}

@@ -1,0 +1,29 @@
+# Issue19: 四条件consumerのPLC2接続
+
+PLC1 115282→PLC2 31014 bytesの同値圧縮と分割配置を採用し、新候補284b8822へ進化/思い出し/egg/shared-eggの4入口を接続。15代表条件×2processでP03両進化LR/満杯/重複/実PP/4技不変/Floette archive拒否を受入。Tutor実接続・archive再束縛・新Wiki・通常操作E2Eは未完。
+
+候補SHA-256 `284b88223be484a1f0a674d242bc7f4447258bf79cdd5a04b54dadb928d85c85`、33554432 bytes、CRC32 `3BFB83F0`。run `35721669287` / HEAD `4bf406cd0b008fb08c44124838d442925d53118b`。
+
+受入はhost fixtureからの実ROM call限定。通常の遭遇・戦闘・習得画面・Save/Continueは未受入。旧初期技/通常level-upの受入を再実行しない。90試験は成功原本を継承、新規6 ABIガード試験と2独立リンク・2native processを実行した。
+
+4hook以外は新data/code segmentのみ。既存ownerの再利用/削除0、全差分rollback一致、P03 dispatch/PLR1/共有root不変。Thumb switch補助関数未解決は-fno-jump-tablesで除き、旧3失敗runは原本を保持。
+
+## 次工程
+
+Issue19: 保存済みPLC2四条件入口の候補/ARM/data/linkを再利用し、残る実ゲームtutorとarchive供給境界を明示ownerへ接続する。新候補Wikiを別pathへ生成し、影響するBag/戦闘/習得選択/Save/Continueの通常操作E2Eへ進む。96host試験/4入口直接ROM probeの単純再実行は禁止。
+
+## 初回WIP設計の記録
+
+# Issue19: 条件表のPLC2配置
+
+Task: USER-20260922-LEARNSET-COMPACT。これは配置修復のWIP checkpointであり、ROM接続・通常操作E2E・Issue19完了の受入ではない。
+
+先行run35716683381 / source d61d54443d5ac8d47c9807a8a042c1e4402073ddは、受入済みPLC1の115282 bytesとコード8192 bytesを連続配置しようとして停止した。18game host試験は成功したがARM/nativeへ進んでいない。失敗原本を保持し、41host試験/622669照合と、この18試験を変更影響なしに再実行しない。
+
+保存progress allocationの連続空間はintegration_modulesの25976 bytesとfuture_tailの35044 bytesが最大である。予約領域や既存allocationを破棄せず、PLC1の全8355 owner/consumer行をPLC2へ同値変換して配置する。実ROMの空白byte確認と全差分rollbackは次のnative工程で必要。
+
+PLC2は32-byte header、1671 policy bytes、5列の16-bit index、型付きの共有行で構成する。共有するのは完全に同じ不変行だけであり、行内部の順序・重複・owner・consumerを変更しない。Tutorは0x8040 tag、他は0..50 count、非学習ownerは0xFFFF sentinel。配置時validatorはレコード境界・全参照・未参照領域・重複レコードも検査する。実行時decoderはheader、owner、列、範囲、型、技ID、Tutor上位paddingをfail-closedで検査する。
+
+固定PLC1 SHA-256 d112866d8424f52ce3aaec00bc1517567943bae2cf6e7115725b26685dcd221dから、842共有行・31014 bytesのPLC2 SHA-256 3fb75ac95022f2cfa9ea1a0bda13dd57f8ed883564b95271e97ba45489b7aa90を得た。ローカル新規25試験と全1671×9=15039 C decoder照合はPASS。ただしローカルの依存headerは照合用コピーであり、canonical sourceでのActions検証とARM/nativeは未完。
+
+次はデータとARM codeを別々のdeclared free範囲へ配置し、旧4入口の未実行nativeだけを検証する。PLC1・公式/Vega原本・PLR1・通常level-up・P03進化dispatch・既存4技・旧Wiki・基準ROMは変更しない。Tutorの実ゲーム接続、archive再束縛、新Wiki、通常操作E2E、release判定は別工程である。

@@ -1,0 +1,95 @@
+name: pr16-purchased-gear
+run-name: Real purchase Give walk native Mega with protected screen originals
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-purchased-gear.yml
+      - scripts/pr16_purchased_gear.py
+      - tools/mgba_pr16_purchased_gear.c
+      - tests/test_pr16_purchased_gear.py
+      - scripts/pr16_purchased_gear_evidence.py
+      - tests/test_pr16_purchased_gear_evidence.py
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pr16-purchased-gear
+  cancel-in-progress: false
+jobs:
+  purchased-gear-native:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Restore exact parent and compiler without touching baseline
+        run: |
+          set -euo pipefail
+          out=.local/pr16-purchased-gear-evidence
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json"
+      - name: Fixed adopted V4 and original character map
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-inputs
+          gh release download private-environment-v1 --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir .local/pr16-inputs
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');cfg=json.loads((root/'config/github_private_environment.json').read_bytes());bindings={}
+          for archive,member,digest in (('pokemon-vega-private-env-v1-inputs.zip','userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip','4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2'),('pokemon-vega-private-env-v1-state.zip','vendor/upstream/CFRU-JP/charmap.tbl',None)):
+              model=next(a for a in cfg['archives'] if a['name']==archive);raw=(root/'.local/pr16-inputs'/archive).read_bytes()
+              assert len(raw)==model['size'] and hashlib.sha256(raw).hexdigest()==model['sha256']
+              with zipfile.ZipFile(root/'.local/pr16-inputs'/archive) as z:data=z.read(member)
+              if digest:assert hashlib.sha256(data).hexdigest()==digest
+              target=root/member;assert not any(p.is_symlink() for p in (target,*target.parents))
+              if target.exists():assert target.read_bytes()==data
+              else:target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data);target.chmod(0o444)
+              bindings[member]={'archive':archive,'archive_sha256':model['sha256'],'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (root/'.local/pr16-purchased-gear-evidence/input-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Build parent and reject malformed or inflated gear acceptance
+        run: |
+          set -euo pipefail
+          out=.local/pr16-purchased-gear-evidence
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/evolution.stdout" 2> "$out/evolution.stderr"
+          python3 -m unittest tests.test_pr16_purchased_gear_evidence tests.test_pr16_purchased_gear tests.test_pr16_natural_capture tests.test_pr16_shop_display_repair tests.test_pr16_shop_routes -v > "$out/unit.log" 2>&1
+      - name: Real purchase Give Save walk Mega revert Save cold Continue
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_purchased_gear.py > .local/pr16-purchased-gear-evidence/native.stdout 2> .local/pr16-purchased-gear-evidence/native.stderr
+          git diff --exit-code
+      - name: Preserve exact sources and controller without ROM or save
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-purchased-gear-evidence';out.mkdir(parents=True,exist_ok=True)
+          names={'scripts/pr16_purchased_gear_evidence.py','tests/test_pr16_purchased_gear_evidence.py','scripts/pr16_purchased_gear.py','tools/mgba_pr16_purchased_gear.c','tests/test_pr16_purchased_gear.py','.github/workflows/pr16-purchased-gear.yml','scripts/pr16_gear_route_probe.py','scripts/pr16_natural_capture.py','tools/mgba_pr16_natural_capture.c','scripts/pr16_capture_geometry.py','scripts/pr16_p05_root_diagnostics.py','scripts/pr16_shop_display_repair.py','scripts/pr16_shop_display_probe.py','scripts/pr16_shop_routes.py','tools/mgba_pr16_shop_routes.c','tools/mgba_modernization_p03_breeding_e2e.c'}
+          p=root/'.local/pr16-purchased-gear/result.json'
+          if p.exists():names.update(json.loads(p.read_bytes())['sources'])
+          bindings={}
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(names):
+                  p=root/name;raw=p.read_bytes();raw.decode('utf8');assert not p.is_symlink() and b'\0' not in raw
+                  z.writestr(name,raw);bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'source-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-purchased-gear
+          path: |
+            .local/pr16-purchased-gear/
+            .local/pr16-purchased-gear-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

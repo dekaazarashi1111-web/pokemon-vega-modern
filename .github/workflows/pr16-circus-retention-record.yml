@@ -1,0 +1,55 @@
+name: PR16 Circus retention evidence record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-retention-record.yml
+      - scripts/pr16_circus_retention_record.py
+      - tests/test_pr16_circus_retention_record.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-retention-record
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 保持成功原本を照合し固定引継ぎと両ログを非force commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-circus-retention-record
+          python3 scripts/pr16_circus_retention_record.py > .local/pr16-circus-retention-record/record.stdout 2> .local/pr16-circus-retention-record/record.stderr
+      - name: 記録receiptと限定text原本のみ保持
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re
+          src=pathlib.Path('.local/pr16-circus-retention-record');out=pathlib.Path('.local/pr16-circus-retention-record-evidence')
+          out.mkdir(parents=True,exist_ok=True);members={}
+          for p in sorted(src.rglob('*')):
+              if not p.is_file() or p.suffix not in {'.json','.md','.txt','.stdout','.stderr'}:continue
+              assert not p.is_symlink()
+              raw=p.read_bytes();raw.decode('utf-8');assert len(raw)<2000000 and b'\0' not in raw
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw)
+              name=p.relative_to(src).as_posix();dst=out/name;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(raw)
+              members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(members,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-retention-record
+          path: .local/pr16-circus-retention-record-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

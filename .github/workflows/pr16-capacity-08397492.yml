@@ -1,0 +1,39 @@
+name: pr16-capacity-08397492
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_capacity_08397492.py
+      - scripts/pr16_capacity_08397492_actions.py
+      - tests/test_pr16_capacity_08397492.py
+      - .github/workflows/pr16-capacity-08397492.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-capacity-08397492
+  cancel-in-progress: false
+jobs:
+  binding:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: New frontier tests, saved parent and public symbol binding
+        run: python3 -B scripts/pr16_capacity_08397492_actions.py
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: pr16-capacity-08397492-binding-text
+          path: .local/pr16-capacity-08397492
+          if-no-files-found: error

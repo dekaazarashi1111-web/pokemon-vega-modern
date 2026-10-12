@@ -1,0 +1,776 @@
+{
+  "status": "MEASURED_SAVE38_AWAITING_VISUAL_AND_INDEPENDENT_ACCEPTANCE",
+  "source_head": "1d3504839f4c1a86b054d3529f2c98a19ac40236",
+  "run_id": 37127609831,
+  "input_save": {
+    "size": 131088,
+    "sha256": "7942159bf82220a864a128c66f97aa3da6e2558b0f3e8181d410a925e145a301"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "ca6b332ff001f757bde9d82baab19d4b6b8547488afefe62dc6ea408ced8b074"
+  },
+  "inspection": {
+    "status": "STATIC_ROUTE503_CONNECTION_CANDIDATE_ONLY",
+    "exit_npc": {
+      "local_id": 10,
+      "xy": [
+        13,
+        76
+      ],
+      "script": 154580643,
+      "flag": 0
+    },
+    "exit_npc_graph": {
+      "root_count": 1,
+      "unique_root_address_count": 1,
+      "visited_script_count": 6,
+      "nodes": [
+        {
+          "address": 148911502,
+          "end_reason": "end",
+          "instruction_count": 6,
+          "edges": [
+            148911528
+          ],
+          "roots": [
+            "route503_npc10"
+          ]
+        },
+        {
+          "address": 148911528,
+          "end_reason": "goto",
+          "instruction_count": 1,
+          "edges": [
+            154580672
+          ],
+          "roots": [
+            "route503_npc10"
+          ]
+        },
+        {
+          "address": 148911542,
+          "end_reason": "end",
+          "instruction_count": 3,
+          "edges": [],
+          "roots": [
+            "route503_npc10"
+          ]
+        },
+        {
+          "address": 154580643,
+          "end_reason": "goto",
+          "instruction_count": 2,
+          "edges": [
+            148911502
+          ],
+          "roots": [
+            "route503_npc10"
+          ]
+        },
+        {
+          "address": 154580672,
+          "end_reason": "goto",
+          "instruction_count": 1,
+          "edges": [
+            154580707
+          ],
+          "roots": [
+            "route503_npc10"
+          ]
+        },
+        {
+          "address": 154580707,
+          "end_reason": "goto",
+          "instruction_count": 2,
+          "edges": [
+            148911542
+          ],
+          "roots": [
+            "route503_npc10"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "category": "special",
+          "value": 57,
+          "access": "call",
+          "instruction_address": 148911502,
+          "opcode": 38,
+          "command": "specialvar",
+          "script_address": 148911502,
+          "roots": [
+            "route503_npc10"
+          ]
+        },
+        {
+          "category": "trainer",
+          "value": 1029,
+          "access": "battle",
+          "instruction_address": 154580707,
+          "opcode": 92,
+          "command": "trainerbattle",
+          "battle_type": 5,
+          "script_address": 154580707,
+          "roots": [
+            "route503_npc10"
+          ]
+        },
+        {
+          "category": "trainer",
+          "value": 103,
+          "access": "battle",
+          "instruction_address": 154580643,
+          "opcode": 92,
+          "command": "trainerbattle",
+          "battle_type": 0,
+          "script_address": 154580643,
+          "roots": [
+            "route503_npc10"
+          ]
+        },
+        {
+          "category": "var",
+          "value": 32781,
+          "access": "write",
+          "instruction_address": 148911502,
+          "opcode": 38,
+          "command": "specialvar",
+          "script_address": 148911502,
+          "roots": [
+            "route503_npc10"
+          ]
+        },
+        {
+          "category": "var",
+          "value": 32781,
+          "access": "read",
+          "instruction_address": 148911507,
+          "opcode": 33,
+          "command": "compare_var_to_value",
+          "operand": 1,
+          "script_address": 148911502,
+          "roots": [
+            "route503_npc10"
+          ]
+        }
+      ],
+      "diagnostics": []
+    },
+    "preparation": {
+      "size": 8480,
+      "sha256": "c5f41016c7d829795234506dea6eb8ad8c0f66ed004e1f4e81ffe5faf6eb4ca1"
+    },
+    "route": [
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        6
+      ]
+    ],
+    "origin": {
+      "map": [
+        1,
+        38
+      ],
+      "header": 137443052,
+      "layout": 137243912,
+      "scripts": 135682168,
+      "width": 10,
+      "height": 8,
+      "connections": [],
+      "warps": [
+        {
+          "id": 0,
+          "xy": [
+            4,
+            6
+          ],
+          "elevation": 3,
+          "target_warp": 1,
+          "target_map": [
+            3,
+            21
+          ]
+        },
+        {
+          "id": 1,
+          "xy": [
+            6,
+            4
+          ],
+          "elevation": 3,
+          "target_warp": 1,
+          "target_map": [
+            1,
+            73
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "local_id": 1,
+          "xy": [
+            4,
+            4
+          ],
+          "script": 136400012,
+          "flag": 0
+        }
+      ],
+      "collision_grid": [
+        "##########",
+        "##########",
+        "##......##",
+        "##......##",
+        "##..O.W.##",
+        "##......##",
+        "##..W...##",
+        "##########"
+      ],
+      "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+    },
+    "exit_warp": {
+      "id": 0,
+      "xy": [
+        4,
+        6
+      ],
+      "elevation": 3,
+      "target_warp": 1,
+      "target_map": [
+        3,
+        21
+      ]
+    },
+    "destination": {
+      "map": [
+        3,
+        21
+      ],
+      "header": 137447700,
+      "layout": 141532152,
+      "scripts": 135747045,
+      "width": 28,
+      "height": 86,
+      "connections": [
+        {
+          "direction": 2,
+          "offset": -5,
+          "target_map": [
+            3,
+            1
+          ]
+        },
+        {
+          "direction": 3,
+          "offset": 67,
+          "target_map": [
+            3,
+            44
+          ]
+        }
+      ],
+      "warps": [
+        {
+          "id": 0,
+          "xy": [
+            15,
+            56
+          ],
+          "elevation": 0,
+          "target_warp": 1,
+          "target_map": [
+            1,
+            36
+          ]
+        },
+        {
+          "id": 1,
+          "xy": [
+            9,
+            75
+          ],
+          "elevation": 0,
+          "target_warp": 0,
+          "target_map": [
+            1,
+            38
+          ]
+        },
+        {
+          "id": 2,
+          "xy": [
+            1,
+            3
+          ],
+          "elevation": 0,
+          "target_warp": 0,
+          "target_map": [
+            0,
+            0
+          ]
+        }
+      ],
+      "objects": [
+        {
+          "local_id": 1,
+          "xy": [
+            12,
+            49
+          ],
+          "script": 154627027,
+          "flag": 0
+        },
+        {
+          "local_id": 2,
+          "xy": [
+            7,
+            33
+          ],
+          "script": 154581163,
+          "flag": 0
+        },
+        {
+          "local_id": 3,
+          "xy": [
+            13,
+            12
+          ],
+          "script": 154580387,
+          "flag": 0
+        },
+        {
+          "local_id": 4,
+          "xy": [
+            22,
+            10
+          ],
+          "script": 154626067,
+          "flag": 0
+        },
+        {
+          "local_id": 5,
+          "xy": [
+            13,
+            40
+          ],
+          "script": 154626899,
+          "flag": 0
+        },
+        {
+          "local_id": 6,
+          "xy": [
+            21,
+            27
+          ],
+          "script": 154580515,
+          "flag": 0
+        },
+        {
+          "local_id": 7,
+          "xy": [
+            14,
+            35
+          ],
+          "script": 154626579,
+          "flag": 0
+        },
+        {
+          "local_id": 8,
+          "xy": [
+            5,
+            43
+          ],
+          "script": 154582659,
+          "flag": 0
+        },
+        {
+          "local_id": 9,
+          "xy": [
+            10,
+            31
+          ],
+          "script": 154581291,
+          "flag": 0
+        },
+        {
+          "local_id": 10,
+          "xy": [
+            13,
+            76
+          ],
+          "script": 154580643,
+          "flag": 0
+        },
+        {
+          "local_id": 11,
+          "xy": [
+            5,
+            49
+          ],
+          "script": 154580899,
+          "flag": 0
+        },
+        {
+          "local_id": 12,
+          "xy": [
+            11,
+            25
+          ],
+          "script": 154580319,
+          "flag": 0
+        },
+        {
+          "local_id": 13,
+          "xy": [
+            12,
+            25
+          ],
+          "script": 154580319,
+          "flag": 0
+        },
+        {
+          "local_id": 14,
+          "xy": [
+            20,
+            21
+          ],
+          "script": 155117740,
+          "flag": 4366
+        },
+        {
+          "local_id": 15,
+          "xy": [
+            26,
+            46
+          ],
+          "script": 148898816,
+          "flag": 342
+        },
+        {
+          "local_id": 16,
+          "xy": [
+            8,
+            12
+          ],
+          "script": 148898829,
+          "flag": 343
+        }
+      ],
+      "collision_grid": [
+        "###########........#########",
+        "###########........#########",
+        "###########........#########",
+        "#W#########........#########",
+        "###########........#########",
+        "###########........#########",
+        "########.............#######",
+        "#####..................#####",
+        "#####..................#####",
+        "###....................#####",
+        "###...................O#####",
+        "###....................#####",
+        "###.....O....O.........#####",
+        "#####....................###",
+        "#####....................###",
+        "#######......##..##......###",
+        "#######......##..##......###",
+        "#####################....###",
+        "#####################....###",
+        "#####################......#",
+        "#####################......#",
+        "###################.O......#",
+        "###################........#",
+        "#############..............#",
+        "#############..............#",
+        "###########OO............###",
+        "###########..............###",
+        "#######......########O.#####",
+        "#######............##..#####",
+        "#######........#############",
+        "###..##........#############",
+        "#.........O..###############",
+        "#............###############",
+        "#......O.....###############",
+        "#............###############",
+        "###...........O#############",
+        "###............#############",
+        "#####..............#########",
+        "#####..........#############",
+        "###########..............###",
+        "#######......O...........###",
+        "#######....................#",
+        "#######....................#",
+        "#####O....................##",
+        "#####......................#",
+        "###..............####.....##",
+        "###..............####.....O#",
+        "#..............######....#.#",
+        "#............##########....#",
+        "#....O......O##########....#",
+        "#............##########....#",
+        "###..........##########....#",
+        "###..........###############",
+        "#####........###############",
+        "#####........###############",
+        "########.....###############",
+        "########.....##W############",
+        "########........############",
+        "############....############",
+        "############....############",
+        "############################",
+        "############################",
+        "############################",
+        "############################",
+        "############################",
+        "############################",
+        "############################",
+        "############################",
+        "############################",
+        "############################",
+        "############################",
+        "#..#########################",
+        "#....#######################",
+        ".......#####################",
+        ".......#####################",
+        ".......##W##################",
+        ".............O##############",
+        "..............##############",
+        "..............##############",
+        "...............#############",
+        "...............#############",
+        "#..........#################",
+        "#..........#################",
+        "############################",
+        "############################",
+        "############################"
+      ],
+      "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+    },
+    "destination_source": {
+      "candidate": {
+        "size": 33554432,
+        "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+      }
+    },
+    "new_map_views": 0,
+    "new_script_nodes": 0,
+    "native_exit_accepted": false,
+    "door_exit_input": {
+      "from_xy": [
+        4,
+        6
+      ],
+      "direction": "south",
+      "key": 128
+    }
+  },
+  "route": [
+    [
+      6,
+      4
+    ],
+    [
+      6,
+      5
+    ],
+    [
+      5,
+      5
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      4,
+      6
+    ]
+  ],
+  "battle": {
+    "start": 10,
+    "finish": 39,
+    "trainer": true,
+    "outcome": 1,
+    "used": [
+      0,
+      3,
+      0,
+      0
+    ],
+    "decisions": [
+      {
+        "observation": 17,
+        "move_slot": 1
+      },
+      {
+        "observation": 22,
+        "keep_current": true
+      },
+      {
+        "observation": 25,
+        "move_slot": 1
+      },
+      {
+        "observation": 29,
+        "keep_current": true
+      },
+      {
+        "observation": 32,
+        "move_slot": 1
+      }
+    ]
+  },
+  "teleport": [],
+  "frontier": {
+    "kind": "route503_exit_trainer",
+    "trigger": [
+      4,
+      6
+    ],
+    "map": [
+      3,
+      21
+    ],
+    "xy": [
+      9,
+      76
+    ],
+    "observation": 39
+  },
+  "final": {
+    "observe": 59,
+    "frame": 9119,
+    "map": [
+      3,
+      21
+    ],
+    "xy": [
+      9,
+      76
+    ],
+    "live_xy": [
+      16,
+      83
+    ],
+    "facing": 1,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 38,
+    "rp": 0,
+    "battle_flags": 12,
+    "battle_outcome": 1,
+    "party_sha256": "2177b4bbc36333b233a8a6e9d13eccb725421cd83f2ec641a1ec6d66a3f67d39",
+    "flash_sha256": "8fc73b5c83df1b89bfd840f5452cc95e21902f1a63247c0b7ee52d7acb693631",
+    "ledger_sha256": "a42b7de819dcb559b39e870697fd51b376d8955e5025164a64d3355f4b02af8c"
+  },
+  "continued": {
+    "observe": 1,
+    "frame": 1510,
+    "map": [
+      3,
+      21
+    ],
+    "xy": [
+      9,
+      76
+    ],
+    "live_xy": [
+      16,
+      83
+    ],
+    "facing": 1,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 38,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "2177b4bbc36333b233a8a6e9d13eccb725421cd83f2ec641a1ec6d66a3f67d39",
+    "flash_sha256": "8fc73b5c83df1b89bfd840f5452cc95e21902f1a63247c0b7ee52d7acb693631",
+    "ledger_sha256": "a42b7de819dcb559b39e870697fd51b376d8955e5025164a64d3355f4b02af8c"
+  },
+  "progress": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "7942159bf82220a864a128c66f97aa3da6e2558b0f3e8181d410a925e145a301"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "ca6b332ff001f757bde9d82baab19d4b6b8547488afefe62dc6ea408ced8b074"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 9119,
+      "inputs": 122,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 60
+  },
+  "independent_continue": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "ca6b332ff001f757bde9d82baab19d4b6b8547488afefe62dc6ea408ced8b074"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "ca6b332ff001f757bde9d82baab19d4b6b8547488afefe62dc6ea408ced8b074"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 1510,
+      "inputs": 13,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 2
+  },
+  "screen_count": 62,
+  "native_processes": 2,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "rom_changes": 0,
+  "fixture_writes": 0,
+  "ordinary_saves": 1,
+  "cave_crossing_complete": true,
+  "outside_route503_reached": true,
+  "full_story_accepted": false,
+  "release_ready": false,
+  "artifact_excludes": [
+    "existing ROM",
+    "runner",
+    "runtime",
+    "input Save37"
+  ]
+}

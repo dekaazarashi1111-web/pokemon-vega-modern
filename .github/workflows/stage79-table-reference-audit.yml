@@ -1,0 +1,67 @@
+name: stage79-table-reference-audit
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/stage79-table-reference-audit.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install pinned analysis toolchain
+        run: bash infra/setup_github_actions.sh --install
+      - name: Inspect only the stalled calls and their literal references
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-table-reference-audit
+          python3 - <<'PY' > .local/stage79-table-reference-audit/references.txt
+          import hashlib, json, pathlib, struct, subprocess
+          config = json.loads(pathlib.Path('config/modernization_stage79_cumulative_mgba.json').read_text())
+          path = pathlib.Path(config['input_identity']['rom']['path'])
+          raw = path.read_bytes()
+          digest = hashlib.sha256(raw).hexdigest()
+          assert digest == config['input_identity']['rom']['sha256']
+          print('STAGE', path, 'SHA256', digest, flush=True)
+          for start, end in [(0x092D11D8, 0x092D12D8), (0x090FC504, 0x090FC584),
+                             (0x090D939C, 0x090D93DC)]:
+              subprocess.run(['arm-none-eabi-objdump', '-D', '-b', 'binary', '-m', 'arm',
+                  '-M', 'force-thumb', '--adjust-vma=0x08000000',
+                  f'--start-address={start}', f'--stop-address={end}', str(path)], check=True)
+              for address in range(start, end, 2):
+                  op = struct.unpack_from('<H', raw, address - 0x08000000)[0]
+                  if op & 0xF800 != 0x4800:
+                      continue
+                  literal = ((address + 4) & ~3) + (op & 255) * 4
+                  value = struct.unpack_from('<I', raw, literal - 0x08000000)[0]
+                  target = None
+                  if 0x08000000 <= value < 0x09FFFFFC:
+                      target = raw[value - 0x08000000:value - 0x08000000 + 48].hex()
+                  print(f'LITERAL instruction={address:08x} location={literal:08x} value={value:08x} target48={target}')
+          for name in ['overlays/qol_production/qol_production.c', 'tools/modernization_p04_species_runtime.py']:
+              lines = pathlib.Path(name).read_text().splitlines()
+              for index, line in enumerate(lines):
+                  if 'GetSpeciesExpFn' in line or 'species_base_stats' in line or 'acquisition_collection_defs' in line:
+                      print('SOURCE', name, index + 1, '\n'.join(lines[max(0, index - 2):index + 4]))
+          print('COLLECTION_BOUNDS', json.dumps({
+              'begin': hex(struct.unpack_from('<I', raw, 0x012D12C4)[0]),
+              'end': hex(struct.unpack_from('<I', raw, 0x012D12C0)[0]),
+              'policy_begin': hex(struct.unpack_from('<I', raw, 0x012D12D0)[0]),
+              'policy_end': hex(struct.unpack_from('<I', raw, 0x012D12CC)[0])}))
+          assert hashlib.sha256(path.read_bytes()).hexdigest() == digest
+          print('DIAGNOSTIC_ONLY: ROM unchanged; no acceptance evidence produced')
+          PY
+          cat .local/stage79-table-reference-audit/references.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-table-reference-audit
+          path: .local/stage79-table-reference-audit
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

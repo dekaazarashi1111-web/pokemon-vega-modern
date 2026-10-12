@@ -1,0 +1,1485 @@
+{
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "development_cold_card_end_accepted": false,
+  "development_native_failures": 0,
+  "development_native_processes": 2,
+  "development_text_recovered_only_after_exact_predetermined_hash_match": true,
+  "expected_json": {
+    "sha256": "9104b9aa1b3fc654193932c48cbbf2863ff8610c6bfd466675a42cb79f66b4b7",
+    "size": 27997
+  },
+  "formal_native_processes": 2,
+  "new_acceptance_tests": 58,
+  "new_tests": 68,
+  "new_transport_tests": 10,
+  "result": {
+    "accepted_case_reruns": 0,
+    "all_five_returns_unlocked_snapshots": false,
+    "battles": [
+      {
+        "field_callback": 20,
+        "field_lock": 0,
+        "flags": 12,
+        "outcome": 1,
+        "resolved": 18,
+        "reward": 19,
+        "start": 4,
+        "unlocked_return_snapshot": true
+      },
+      {
+        "field_callback": 37,
+        "field_lock": 1,
+        "flags": 12,
+        "outcome": 1,
+        "resolved": 35,
+        "reward": 36,
+        "start": 24,
+        "unlocked_return_snapshot": false
+      },
+      {
+        "field_callback": 48,
+        "field_lock": 0,
+        "flags": 12,
+        "outcome": 1,
+        "resolved": 46,
+        "reward": 47,
+        "start": 38,
+        "unlocked_return_snapshot": true
+      },
+      {
+        "field_callback": 63,
+        "field_lock": 0,
+        "flags": 12,
+        "outcome": 1,
+        "resolved": 61,
+        "reward": 62,
+        "start": 50,
+        "unlocked_return_snapshot": true
+      },
+      {
+        "field_callback": 79,
+        "field_lock": 0,
+        "flags": 12,
+        "outcome": 1,
+        "resolved": 77,
+        "reward": 78,
+        "start": 66,
+        "unlocked_return_snapshot": true
+      }
+    ],
+    "candidate": {
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "size": 33554432
+    },
+    "captures": 0,
+    "cold_frames": 3464,
+    "cold_inputs": 35,
+    "compiles": 0,
+    "continued": {
+      "battle_flags": 0,
+      "battle_outcome": 0,
+      "callback2": 134569589,
+      "facing": 2,
+      "field": true,
+      "flash_sha256": "d66139084f59fbe1cbba7ec85b8560568db06b7db92ff554668286a60f5bdc0c",
+      "frame": 3464,
+      "ledger_sha256": "27f6e575912fb552fe1c4c5f7a9649c7b7e8090cbb1bfd24b7b9fccc46ff152a",
+      "live_xy": [
+        11,
+        13
+      ],
+      "lock": 0,
+      "map": [
+        1,
+        36
+      ],
+      "observe": 5,
+      "party_count": 4,
+      "party_sha256": "1db2d393d7bc515b5e3c675ee8b3c8b061b78792f18c3878a38b2edf23d7356c",
+      "rp": 0,
+      "save_counter": 22,
+      "xy": [
+        4,
+        6
+      ]
+    },
+    "development_cold_card_end_accepted": false,
+    "final_save_observation": {
+      "battle_flags": 12,
+      "battle_outcome": 1,
+      "callback2": 134569589,
+      "facing": 2,
+      "field": true,
+      "flash_sha256": "d66139084f59fbe1cbba7ec85b8560568db06b7db92ff554668286a60f5bdc0c",
+      "frame": 41557,
+      "ledger_sha256": "27f6e575912fb552fe1c4c5f7a9649c7b7e8090cbb1bfd24b7b9fccc46ff152a",
+      "live_xy": [
+        11,
+        13
+      ],
+      "lock": 0,
+      "map": [
+        1,
+        36
+      ],
+      "observe": 86,
+      "party_count": 4,
+      "party_sha256": "1db2d393d7bc515b5e3c675ee8b3c8b061b78792f18c3878a38b2edf23d7356c",
+      "rp": 0,
+      "save_counter": 22,
+      "xy": [
+        4,
+        6
+      ]
+    },
+    "fixture_writes": 0,
+    "full_story_accepted": false,
+    "hm05_root_cause_resolved": false,
+    "hm05_taught_or_used": false,
+    "inner_cave_reached": false,
+    "input_save": {
+      "sha256": "c9cb14fa73a38e105a0e6553f7fc1dc82c9bdd182e0409e28022c8ffe44b3d20",
+      "size": 131088
+    },
+    "losses": 0,
+    "national_dex_unlocked": false,
+    "natural_evolution_accepted": false,
+    "natural_growth_accepted": false,
+    "natural_research_arrival_accepted": false,
+    "northern_cave_entrance_reached": true,
+    "ordinary_heals": 0,
+    "ordinary_saves": 1,
+    "output_save": {
+      "sha256": "bb3b6159ab12358fd051b88a592c99807b2bc14b1f9f41e952daf7a4d1a4529e",
+      "size": 131088
+    },
+    "progress_frames": 41557,
+    "progress_inputs": 397,
+    "release_ready": false,
+    "rom_changes": 0,
+    "rom_owners": {
+      "auxiliary_vars_runtime_owners_resolved": false,
+      "cave_nodes": 1,
+      "cave_script": {
+        "diagnostics": [],
+        "nodes": [
+          {
+            "address": 135682164,
+            "edges": [],
+            "end_reason": "end",
+            "instruction_count": 2,
+            "roots": [
+              "map:1:36:map_script:3:0"
+            ]
+          }
+        ],
+        "references": [
+          {
+            "access": "set_world_map",
+            "category": "fly_flag",
+            "command": "setworldmapflag",
+            "instruction_address": 135682164,
+            "opcode": 208,
+            "roots": [
+              "map:1:36:map_script:3:0"
+            ],
+            "script_address": 135682164,
+            "value": 2217
+          }
+        ],
+        "root_count": 1,
+        "unique_root_address_count": 1,
+        "visited_script_count": 1
+      },
+      "flag2056_runtime_owner_resolved": false,
+      "graph_diagnostics": 0,
+      "inner_cave_arrival_accepted": false,
+      "outbound_warp": {
+        "elevation": 0,
+        "id": 0,
+        "target_map": [
+          1,
+          36
+        ],
+        "target_warp": 1,
+        "xy": [
+          15,
+          56
+        ]
+      },
+      "paired_exit": {
+        "elevation": 3,
+        "id": 1,
+        "target_map": [
+          3,
+          21
+        ],
+        "target_warp": 0,
+        "xy": [
+          4,
+          6
+        ]
+      },
+      "rematches_accepted": false,
+      "return_warp_executed": false,
+      "trainer_nodes": 30,
+      "trainer_roots": 5,
+      "trainers": [
+        {
+          "graph": {
+            "diagnostics": [],
+            "nodes": [
+              {
+                "address": 148911054,
+                "edges": [
+                  148911080
+                ],
+                "end_reason": "end",
+                "instruction_count": 6,
+                "roots": [
+                  "trainer-102"
+                ]
+              },
+              {
+                "address": 148911080,
+                "edges": [
+                  154580544
+                ],
+                "end_reason": "goto",
+                "instruction_count": 1,
+                "roots": [
+                  "trainer-102"
+                ]
+              },
+              {
+                "address": 148911094,
+                "edges": [],
+                "end_reason": "end",
+                "instruction_count": 3,
+                "roots": [
+                  "trainer-102"
+                ]
+              },
+              {
+                "address": 154580515,
+                "edges": [
+                  148911054
+                ],
+                "end_reason": "goto",
+                "instruction_count": 2,
+                "roots": [
+                  "trainer-102"
+                ]
+              },
+              {
+                "address": 154580544,
+                "edges": [
+                  154580579
+                ],
+                "end_reason": "goto",
+                "instruction_count": 1,
+                "roots": [
+                  "trainer-102"
+                ]
+              },
+              {
+                "address": 154580579,
+                "edges": [
+                  148911094
+                ],
+                "end_reason": "goto",
+                "instruction_count": 2,
+                "roots": [
+                  "trainer-102"
+                ]
+              }
+            ],
+            "references": [
+              {
+                "access": "call",
+                "category": "special",
+                "command": "specialvar",
+                "instruction_address": 148911054,
+                "opcode": 38,
+                "roots": [
+                  "trainer-102"
+                ],
+                "script_address": 148911054,
+                "value": 57
+              },
+              {
+                "access": "battle",
+                "battle_type": 0,
+                "category": "trainer",
+                "command": "trainerbattle",
+                "instruction_address": 154580515,
+                "opcode": 92,
+                "roots": [
+                  "trainer-102"
+                ],
+                "script_address": 154580515,
+                "value": 102
+              },
+              {
+                "access": "battle",
+                "battle_type": 5,
+                "category": "trainer",
+                "command": "trainerbattle",
+                "instruction_address": 154580579,
+                "opcode": 92,
+                "roots": [
+                  "trainer-102"
+                ],
+                "script_address": 154580579,
+                "value": 1028
+              },
+              {
+                "access": "write",
+                "category": "var",
+                "command": "specialvar",
+                "instruction_address": 148911054,
+                "opcode": 38,
+                "roots": [
+                  "trainer-102"
+                ],
+                "script_address": 148911054,
+                "value": 32781
+              },
+              {
+                "access": "read",
+                "category": "var",
+                "command": "compare_var_to_value",
+                "instruction_address": 148911059,
+                "opcode": 33,
+                "operand": 1,
+                "roots": [
+                  "trainer-102"
+                ],
+                "script_address": 148911054,
+                "value": 32781
+              }
+            ],
+            "root_count": 1,
+            "unique_root_address_count": 1,
+            "visited_script_count": 6
+          },
+          "name_ja": "アミカ",
+          "object": {
+            "flag": 0,
+            "local_id": 6,
+            "script": 154580515,
+            "xy": [
+              21,
+              27
+            ]
+          },
+          "physical_bit": 1382,
+          "reward_yen": 240,
+          "trainer": 102
+        },
+        {
+          "graph": {
+            "diagnostics": [],
+            "nodes": [
+              {
+                "address": 148911182,
+                "edges": [
+                  148911208
+                ],
+                "end_reason": "end",
+                "instruction_count": 6,
+                "roots": [
+                  "trainer-108"
+                ]
+              },
+              {
+                "address": 148911208,
+                "edges": [
+                  154581320
+                ],
+                "end_reason": "goto",
+                "instruction_count": 1,
+                "roots": [
+                  "trainer-108"
+                ]
+              },
+              {
+                "address": 148911222,
+                "edges": [],
+                "end_reason": "end",
+                "instruction_count": 3,
+                "roots": [
+                  "trainer-108"
+                ]
+              },
+              {
+                "address": 154581291,
+                "edges": [
+                  148911182
+                ],
+                "end_reason": "goto",
+                "instruction_count": 2,
+                "roots": [
+                  "trainer-108"
+                ]
+              },
+              {
+                "address": 154581320,
+                "edges": [
+                  154581355
+                ],
+                "end_reason": "goto",
+                "instruction_count": 1,
+                "roots": [
+                  "trainer-108"
+                ]
+              },
+              {
+                "address": 154581355,
+                "edges": [
+                  148911222
+                ],
+                "end_reason": "goto",
+                "instruction_count": 2,
+                "roots": [
+                  "trainer-108"
+                ]
+              }
+            ],
+            "references": [
+              {
+                "access": "call",
+                "category": "special",
+                "command": "specialvar",
+                "instruction_address": 148911182,
+                "opcode": 38,
+                "roots": [
+                  "trainer-108"
+                ],
+                "script_address": 148911182,
+                "value": 57
+              },
+              {
+                "access": "battle",
+                "battle_type": 5,
+                "category": "trainer",
+                "command": "trainerbattle",
+                "instruction_address": 154581355,
+                "opcode": 92,
+                "roots": [
+                  "trainer-108"
+                ],
+                "script_address": 154581355,
+                "value": 1034
+              },
+              {
+                "access": "battle",
+                "battle_type": 0,
+                "category": "trainer",
+                "command": "trainerbattle",
+                "instruction_address": 154581291,
+                "opcode": 92,
+                "roots": [
+                  "trainer-108"
+                ],
+                "script_address": 154581291,
+                "value": 108
+              },
+              {
+                "access": "write",
+                "category": "var",
+                "command": "specialvar",
+                "instruction_address": 148911182,
+                "opcode": 38,
+                "roots": [
+                  "trainer-108"
+                ],
+                "script_address": 148911182,
+                "value": 32781
+              },
+              {
+                "access": "read",
+                "category": "var",
+                "command": "compare_var_to_value",
+                "instruction_address": 148911187,
+                "opcode": 33,
+                "operand": 1,
+                "roots": [
+                  "trainer-108"
+                ],
+                "script_address": 148911182,
+                "value": 32781
+              }
+            ],
+            "root_count": 1,
+            "unique_root_address_count": 1,
+            "visited_script_count": 6
+          },
+          "name_ja": "コウガ",
+          "object": {
+            "flag": 0,
+            "local_id": 9,
+            "script": 154581291,
+            "xy": [
+              10,
+              31
+            ]
+          },
+          "physical_bit": 1388,
+          "reward_yen": 132,
+          "trainer": 108
+        },
+        {
+          "graph": {
+            "diagnostics": [],
+            "nodes": [
+              {
+                "address": 148911310,
+                "edges": [
+                  148911336
+                ],
+                "end_reason": "end",
+                "instruction_count": 6,
+                "roots": [
+                  "trainer-94"
+                ]
+              },
+              {
+                "address": 148911336,
+                "edges": [
+                  154626608
+                ],
+                "end_reason": "goto",
+                "instruction_count": 1,
+                "roots": [
+                  "trainer-94"
+                ]
+              },
+              {
+                "address": 148911350,
+                "edges": [],
+                "end_reason": "end",
+                "instruction_count": 3,
+                "roots": [
+                  "trainer-94"
+                ]
+              },
+              {
+                "address": 154626579,
+                "edges": [
+                  148911310
+                ],
+                "end_reason": "goto",
+                "instruction_count": 2,
+                "roots": [
+                  "trainer-94"
+                ]
+              },
+              {
+                "address": 154626608,
+                "edges": [
+                  154626643
+                ],
+                "end_reason": "goto",
+                "instruction_count": 1,
+                "roots": [
+                  "trainer-94"
+                ]
+              },
+              {
+                "address": 154626643,
+                "edges": [
+                  148911350
+                ],
+                "end_reason": "goto",
+                "instruction_count": 2,
+                "roots": [
+                  "trainer-94"
+                ]
+              }
+            ],
+            "references": [
+              {
+                "access": "call",
+                "category": "special",
+                "command": "specialvar",
+                "instruction_address": 148911310,
+                "opcode": 38,
+                "roots": [
+                  "trainer-94"
+                ],
+                "script_address": 148911310,
+                "value": 57
+              },
+              {
+                "access": "battle",
+                "battle_type": 5,
+                "category": "trainer",
+                "command": "trainerbattle",
+                "instruction_address": 154626643,
+                "opcode": 92,
+                "roots": [
+                  "trainer-94"
+                ],
+                "script_address": 154626643,
+                "value": 1360
+              },
+              {
+                "access": "battle",
+                "battle_type": 0,
+                "category": "trainer",
+                "command": "trainerbattle",
+                "instruction_address": 154626579,
+                "opcode": 92,
+                "roots": [
+                  "trainer-94"
+                ],
+                "script_address": 154626579,
+                "value": 94
+              },
+              {
+                "access": "write",
+                "category": "var",
+                "command": "specialvar",
+                "instruction_address": 148911310,
+                "opcode": 38,
+                "roots": [
+                  "trainer-94"
+                ],
+                "script_address": 148911310,
+                "value": 32781
+              },
+              {
+                "access": "read",
+                "category": "var",
+                "command": "compare_var_to_value",
+                "instruction_address": 148911315,
+                "opcode": 33,
+                "operand": 1,
+                "roots": [
+                  "trainer-94"
+                ],
+                "script_address": 148911310,
+                "value": 32781
+              }
+            ],
+            "root_count": 1,
+            "unique_root_address_count": 1,
+            "visited_script_count": 6
+          },
+          "name_ja": "アイク",
+          "object": {
+            "flag": 0,
+            "local_id": 7,
+            "script": 154626579,
+            "xy": [
+              14,
+              35
+            ]
+          },
+          "physical_bit": 1374,
+          "reward_yen": 2600,
+          "trainer": 94
+        },
+        {
+          "graph": {
+            "diagnostics": [],
+            "nodes": [
+              {
+                "address": 148911374,
+                "edges": [
+                  148911400
+                ],
+                "end_reason": "end",
+                "instruction_count": 6,
+                "roots": [
+                  "trainer-1362"
+                ]
+              },
+              {
+                "address": 148911400,
+                "edges": [
+                  154626928
+                ],
+                "end_reason": "goto",
+                "instruction_count": 1,
+                "roots": [
+                  "trainer-1362"
+                ]
+              },
+              {
+                "address": 148911414,
+                "edges": [],
+                "end_reason": "end",
+                "instruction_count": 3,
+                "roots": [
+                  "trainer-1362"
+                ]
+              },
+              {
+                "address": 154626899,
+                "edges": [
+                  148911374
+                ],
+                "end_reason": "goto",
+                "instruction_count": 2,
+                "roots": [
+                  "trainer-1362"
+                ]
+              },
+              {
+                "address": 154626928,
+                "edges": [
+                  154626963
+                ],
+                "end_reason": "goto",
+                "instruction_count": 1,
+                "roots": [
+                  "trainer-1362"
+                ]
+              },
+              {
+                "address": 154626963,
+                "edges": [
+                  148911414
+                ],
+                "end_reason": "goto",
+                "instruction_count": 2,
+                "roots": [
+                  "trainer-1362"
+                ]
+              }
+            ],
+            "references": [
+              {
+                "access": "call",
+                "category": "special",
+                "command": "specialvar",
+                "instruction_address": 148911374,
+                "opcode": 38,
+                "roots": [
+                  "trainer-1362"
+                ],
+                "script_address": 148911374,
+                "value": 57
+              },
+              {
+                "access": "battle",
+                "battle_type": 0,
+                "category": "trainer",
+                "command": "trainerbattle",
+                "instruction_address": 154626899,
+                "opcode": 92,
+                "roots": [
+                  "trainer-1362"
+                ],
+                "script_address": 154626899,
+                "value": 1362
+              },
+              {
+                "access": "battle",
+                "battle_type": 5,
+                "category": "trainer",
+                "command": "trainerbattle",
+                "instruction_address": 154626963,
+                "opcode": 92,
+                "roots": [
+                  "trainer-1362"
+                ],
+                "script_address": 154626963,
+                "value": 1363
+              },
+              {
+                "access": "write",
+                "category": "var",
+                "command": "specialvar",
+                "instruction_address": 148911374,
+                "opcode": 38,
+                "roots": [
+                  "trainer-1362"
+                ],
+                "script_address": 148911374,
+                "value": 32781
+              },
+              {
+                "access": "read",
+                "category": "var",
+                "command": "compare_var_to_value",
+                "instruction_address": 148911379,
+                "opcode": 33,
+                "operand": 1,
+                "roots": [
+                  "trainer-1362"
+                ],
+                "script_address": 148911374,
+                "value": 32781
+              }
+            ],
+            "root_count": 1,
+            "unique_root_address_count": 1,
+            "visited_script_count": 6
+          },
+          "name_ja": "ルチア",
+          "object": {
+            "flag": 0,
+            "local_id": 5,
+            "script": 154626899,
+            "xy": [
+              13,
+              40
+            ]
+          },
+          "physical_bit": 1376,
+          "reward_yen": 2600,
+          "trainer": 1362
+        },
+        {
+          "graph": {
+            "diagnostics": [],
+            "nodes": [
+              {
+                "address": 148911438,
+                "edges": [
+                  148911464
+                ],
+                "end_reason": "end",
+                "instruction_count": 6,
+                "roots": [
+                  "trainer-97"
+                ]
+              },
+              {
+                "address": 148911464,
+                "edges": [
+                  154627056
+                ],
+                "end_reason": "goto",
+                "instruction_count": 1,
+                "roots": [
+                  "trainer-97"
+                ]
+              },
+              {
+                "address": 148911478,
+                "edges": [],
+                "end_reason": "end",
+                "instruction_count": 3,
+                "roots": [
+                  "trainer-97"
+                ]
+              },
+              {
+                "address": 154627027,
+                "edges": [
+                  148911438
+                ],
+                "end_reason": "goto",
+                "instruction_count": 2,
+                "roots": [
+                  "trainer-97"
+                ]
+              },
+              {
+                "address": 154627056,
+                "edges": [
+                  154627091
+                ],
+                "end_reason": "goto",
+                "instruction_count": 1,
+                "roots": [
+                  "trainer-97"
+                ]
+              },
+              {
+                "address": 154627091,
+                "edges": [
+                  148911478
+                ],
+                "end_reason": "goto",
+                "instruction_count": 2,
+                "roots": [
+                  "trainer-97"
+                ]
+              }
+            ],
+            "references": [
+              {
+                "access": "call",
+                "category": "special",
+                "command": "specialvar",
+                "instruction_address": 148911438,
+                "opcode": 38,
+                "roots": [
+                  "trainer-97"
+                ],
+                "script_address": 148911438,
+                "value": 57
+              },
+              {
+                "access": "battle",
+                "battle_type": 5,
+                "category": "trainer",
+                "command": "trainerbattle",
+                "instruction_address": 154627091,
+                "opcode": 92,
+                "roots": [
+                  "trainer-97"
+                ],
+                "script_address": 154627091,
+                "value": 1364
+              },
+              {
+                "access": "battle",
+                "battle_type": 0,
+                "category": "trainer",
+                "command": "trainerbattle",
+                "instruction_address": 154627027,
+                "opcode": 92,
+                "roots": [
+                  "trainer-97"
+                ],
+                "script_address": 154627027,
+                "value": 97
+              },
+              {
+                "access": "write",
+                "category": "var",
+                "command": "specialvar",
+                "instruction_address": 148911438,
+                "opcode": 38,
+                "roots": [
+                  "trainer-97"
+                ],
+                "script_address": 148911438,
+                "value": 32781
+              },
+              {
+                "access": "read",
+                "category": "var",
+                "command": "compare_var_to_value",
+                "instruction_address": 148911443,
+                "opcode": 33,
+                "operand": 1,
+                "roots": [
+                  "trainer-97"
+                ],
+                "script_address": 148911438,
+                "value": 32781
+              }
+            ],
+            "root_count": 1,
+            "unique_root_address_count": 1,
+            "visited_script_count": 6
+          },
+          "name_ja": "ヘイスケ",
+          "object": {
+            "flag": 0,
+            "local_id": 1,
+            "script": 154627027,
+            "xy": [
+              12,
+              49
+            ]
+          },
+          "physical_bit": 1377,
+          "reward_yen": 468,
+          "trainer": 97
+        }
+      ],
+      "world_map_flag2217_owner_verified": true
+    },
+    "save_counter": 22,
+    "save_structure": {
+      "all_bag_slots_preserved": true,
+      "all_save_rtc_preserved_after_continue": true,
+      "auxiliary_flag2056_and_vars_runtime_owners_claimed": false,
+      "badge_count": 1,
+      "hm05_retained": true,
+      "legacy_var_deltas": [
+        [
+          16417,
+          92,
+          23
+        ],
+        [
+          16418,
+          2,
+          3
+        ],
+        [
+          16461,
+          8,
+          20
+        ]
+      ],
+      "money_after": 12296,
+      "money_before": 6256,
+      "national_dex_magic": 0,
+      "national_flag840": 0,
+      "national_var404e": 0,
+      "other_party_byte_scope_ja": "slot1/3のoffset41が各+1。なつき度owner/全因果の受入にはしない。",
+      "party_changed_bytes": [
+        [
+          52,
+          5,
+          1
+        ],
+        [
+          53,
+          20,
+          14
+        ],
+        [
+          54,
+          15,
+          5
+        ],
+        [
+          55,
+          10,
+          5
+        ],
+        [
+          86,
+          93,
+          68
+        ],
+        [
+          141,
+          42,
+          43
+        ],
+        [
+          341,
+          58,
+          59
+        ]
+      ],
+      "party_exp_species_level_moves_held_items_unchanged": true,
+      "pc_chunk13_payload_preserved_bytes": 2000,
+      "pc_full_sections_preserved": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "physical_flag_deltas": [
+        [
+          1374,
+          0,
+          1
+        ],
+        [
+          1376,
+          0,
+          1
+        ],
+        [
+          1377,
+          0,
+          1
+        ],
+        [
+          1382,
+          0,
+          1
+        ],
+        [
+          1388,
+          0,
+          1
+        ],
+        [
+          2056,
+          0,
+          1
+        ],
+        [
+          2217,
+          0,
+          1
+        ]
+      ],
+      "previous_bank_preserved_bytes": 57344,
+      "s61e_crc_and_complement_verified": true,
+      "s61e_payload_deltas": [],
+      "sector_checksum_checks": 42,
+      "sector_reports": {
+        "input21": [
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 57344,
+            "section": 7
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 61440,
+            "section": 8
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 65536,
+            "section": 9
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 69632,
+            "section": 10
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 73728,
+            "section": 11
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 77824,
+            "section": 12
+          },
+          {
+            "checksum": 27650,
+            "counter": 21,
+            "payload_bytes": 2000,
+            "physical_offset": 81920,
+            "section": 13
+          },
+          {
+            "checksum": 24507,
+            "counter": 21,
+            "payload_bytes": 3876,
+            "physical_offset": 86016,
+            "section": 0
+          },
+          {
+            "checksum": 37874,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 90112,
+            "section": 1
+          },
+          {
+            "checksum": 33401,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 94208,
+            "section": 2
+          },
+          {
+            "checksum": 23529,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 98304,
+            "section": 3
+          },
+          {
+            "checksum": 34751,
+            "counter": 21,
+            "payload_bytes": 3776,
+            "physical_offset": 102400,
+            "section": 4
+          },
+          {
+            "checksum": 19640,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 106496,
+            "section": 5
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 110592,
+            "section": 6
+          }
+        ],
+        "output22": [
+          {
+            "checksum": 0,
+            "counter": 22,
+            "payload_bytes": 3968,
+            "physical_offset": 0,
+            "section": 6
+          },
+          {
+            "checksum": 0,
+            "counter": 22,
+            "payload_bytes": 3968,
+            "physical_offset": 4096,
+            "section": 7
+          },
+          {
+            "checksum": 0,
+            "counter": 22,
+            "payload_bytes": 3968,
+            "physical_offset": 8192,
+            "section": 8
+          },
+          {
+            "checksum": 0,
+            "counter": 22,
+            "payload_bytes": 3968,
+            "physical_offset": 12288,
+            "section": 9
+          },
+          {
+            "checksum": 0,
+            "counter": 22,
+            "payload_bytes": 3968,
+            "physical_offset": 16384,
+            "section": 10
+          },
+          {
+            "checksum": 0,
+            "counter": 22,
+            "payload_bytes": 3968,
+            "physical_offset": 20480,
+            "section": 11
+          },
+          {
+            "checksum": 0,
+            "counter": 22,
+            "payload_bytes": 3968,
+            "physical_offset": 24576,
+            "section": 12
+          },
+          {
+            "checksum": 27650,
+            "counter": 22,
+            "payload_bytes": 2000,
+            "physical_offset": 28672,
+            "section": 13
+          },
+          {
+            "checksum": 7834,
+            "counter": 22,
+            "payload_bytes": 3876,
+            "physical_offset": 32768,
+            "section": 0
+          },
+          {
+            "checksum": 41949,
+            "counter": 22,
+            "payload_bytes": 3968,
+            "physical_offset": 36864,
+            "section": 1
+          },
+          {
+            "checksum": 43798,
+            "counter": 22,
+            "payload_bytes": 3968,
+            "physical_offset": 40960,
+            "section": 2
+          },
+          {
+            "checksum": 23529,
+            "counter": 22,
+            "payload_bytes": 3968,
+            "physical_offset": 45056,
+            "section": 3
+          },
+          {
+            "checksum": 62122,
+            "counter": 22,
+            "payload_bytes": 3776,
+            "physical_offset": 49152,
+            "section": 4
+          },
+          {
+            "checksum": 19640,
+            "counter": 22,
+            "payload_bytes": 3968,
+            "physical_offset": 53248,
+            "section": 5
+          }
+        ],
+        "retained21": [
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 57344,
+            "section": 7
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 61440,
+            "section": 8
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 65536,
+            "section": 9
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 69632,
+            "section": 10
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 73728,
+            "section": 11
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 77824,
+            "section": 12
+          },
+          {
+            "checksum": 27650,
+            "counter": 21,
+            "payload_bytes": 2000,
+            "physical_offset": 81920,
+            "section": 13
+          },
+          {
+            "checksum": 24507,
+            "counter": 21,
+            "payload_bytes": 3876,
+            "physical_offset": 86016,
+            "section": 0
+          },
+          {
+            "checksum": 37874,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 90112,
+            "section": 1
+          },
+          {
+            "checksum": 33401,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 94208,
+            "section": 2
+          },
+          {
+            "checksum": 23529,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 98304,
+            "section": 3
+          },
+          {
+            "checksum": 34751,
+            "counter": 21,
+            "payload_bytes": 3776,
+            "physical_offset": 102400,
+            "section": 4
+          },
+          {
+            "checksum": 19640,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 106496,
+            "section": 5
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 110592,
+            "section": 6
+          }
+        ]
+      },
+      "story_vars": {
+        "4071": 6,
+        "4072": 1
+      },
+      "unused_party_bytes_preserved": 200
+    },
+    "save_success_wording_frame_captured": false,
+    "screens": 93,
+    "status": "PASS_ROUTE503_FIVE_TRAINERS_CHIE_ENTRANCE_SAVE22_SCOPED",
+    "total_reward": 6040,
+    "trainer_rewards": [
+      {
+        "name_ja": "アミカ",
+        "trainer": 102,
+        "yen": 240
+      },
+      {
+        "name_ja": "コウガ",
+        "trainer": 108,
+        "yen": 132
+      },
+      {
+        "name_ja": "アイク",
+        "trainer": 94,
+        "yen": 2600
+      },
+      {
+        "name_ja": "ルチア",
+        "trainer": 1362,
+        "yen": 2600
+      },
+      {
+        "name_ja": "ヘイスケ",
+        "trainer": 97,
+        "yen": 468
+      }
+    ],
+    "trainer_victories": 5,
+    "visual_review_anchors": 57,
+    "wild_escapes": 0,
+    "wild_victories": 0
+  },
+  "run_id": 36668710078,
+  "source_bindings": {
+    ".github/workflows/pr16-story-save22.yml": {
+      "sha256": "3b819cf4aea818b06e73dcbae408336f38bea40160254a3dc09e152b84b6a74c",
+      "size": 1847
+    },
+    "content/modernization/pr16_story_save22_development/spec.json": {
+      "sha256": "ec1ee2fbe6fffab392920cfc009b5e0fac49c31b1bf357aff356551c691f8e86",
+      "size": 12233
+    },
+    "scripts/pr16_story_save22_accept.py": {
+      "sha256": "f8b6d63c08e4e6deb0ad5999a7bb8bbe45f0abc017a7c3778ae9f70ff9c9c95f",
+      "size": 17259
+    },
+    "scripts/pr16_story_save22_measure.py": {
+      "sha256": "efa3efb09b34b28efb148c14ae8660f6884c01bac27b343e6c2e61fd0465e2c6",
+      "size": 9516
+    },
+    "tests/test_pr16_story_save22_accept.py": {
+      "sha256": "63d7e42d889372966457b1f910082b3175a489814819173100ce53aaef9b061b",
+      "size": 12220
+    },
+    "tests/test_pr16_story_save22_transport.py": {
+      "sha256": "f451a53e45374f0b30ce775a0ebe3e61f2710bd6b44f79b5ba4f1cec2f8e66e5",
+      "size": 2377
+    }
+  },
+  "source_head": "8c6f51827d3d51a1f2f25b4444f6103496d2ecba"
+}

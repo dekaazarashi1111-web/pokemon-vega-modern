@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260920-P08-ORDINARY-ABI",
+  "regression_id": "P08_CIRCUS_POST_EXIT_ORDINARY",
+  "case": "circus-exit30-ordinary",
+  "source_head": "63ec984e57524d747ef2a2b9816a7c979f2e1b37",
+  "workflow_source_head": "63ec984e57524d747ef2a2b9816a7c979f2e1b37",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+  },
+  "original": {
+    "run_id": 35504302893,
+    "job_id": 106061386465,
+    "head_sha": "cc5d6822266a9663b0e368c9cff2c94d2ede3435",
+    "artifact_id": 10603527226,
+    "archive": {
+      "size": 299507,
+      "sha256": "39481869e73b6685b964d58c8a24143f90c6650ee7e2c444f14207c11c8865e0"
+    },
+    "generated": {
+      "p03b_archive_embedded.c": {
+        "size": 20163,
+        "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+      },
+      "p03a_fullslots_embedded.c": {
+        "size": 12877,
+        "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+      },
+      "p03_learning_embedded.c": {
+        "size": 7996,
+        "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+      },
+      "p03_p02_embedded.c": {
+        "size": 39678,
+        "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+      },
+      "pr16_shop_breeding_helpers.c": {
+        "size": 19626,
+        "sha256": "1a97210389443f72586fdb1fa6c6523b296f56ee116065e71040a14f465a14c0"
+      },
+      "pr16_capture_shop_helpers.c": {
+        "size": 10007,
+        "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+      },
+      "pr16_gear_capture_helpers.c": {
+        "size": 9640,
+        "sha256": "4c057989f1638e14d6814c269291f952ad2cb8e96be5a36274ff8707fc63bee8"
+      },
+      "pr16_bp_native_helpers.c": {
+        "size": 16314,
+        "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+      },
+      "pr16_bp_control_embedded.c": {
+        "size": 11463,
+        "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+      },
+      "pr16_circus_selection_helpers.c": {
+        "size": 10511,
+        "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+      },
+      "pr16_circus_turn_helpers.c": {
+        "size": 3939,
+        "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+      },
+      "pr16_gear_route.h": {
+        "size": 518,
+        "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+      },
+      "pr16_circus_addresses.h": {
+        "size": 87,
+        "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+      },
+      "pr16_streak_legacy.c": {
+        "size": 11746,
+        "sha256": "de1618b95f09d8ce02c2a1ce8b833fa893f35c4da08b64dd69f9927cfe0c89c2"
+      },
+      "pr16_streak_policy.c": {
+        "size": 64920,
+        "sha256": "f8b1d0252056f3c11612204d3ea1320439ffa6495e356b1f36791d6f750179dc"
+      },
+      "controller.c": {
+        "size": 13153,
+        "sha256": "f395e059a52cc69d5d39d2a3d8fc4795d57f790e4887fe1cf74313e06f40ec7d"
+      },
+      "getter_suppression.h": {
+        "size": 6501,
+        "sha256": "bb8e8ef9510c7ebbbbf615ac94318a6d8423c7825d0523266bfe7a48e12075ea"
+      },
+      "cg_addresses.h": {
+        "size": 60,
+        "sha256": "21868ddb440be1b5cf8b04e44599e5428873746f324d48d3b220b1009e914c9d"
+      },
+      "ss_routes.h": {
+        "size": 2248,
+        "sha256": "537c00aaa9986c2de7a4328f03c737cf03c196cf43a1176a749bb4e05b21494b"
+      }
+    },
+    "cache": {
+      "source_run": 35494023398,
+      "save": {
+        "size": 131088,
+        "sha256": "b4846fe3d915f69f7cefb2f58a0c2c0c571d9f96d5d16a295537854d849c2371"
+      },
+      "cache_key": "pr16-circus-save30-2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183-35494023398",
+      "prefix_wins_reexecuted": 0,
+      "host_state_injection": false
+    },
+    "exit_event": {
+      "label": "resume30",
+      "frame": 2602,
+      "battle": 30,
+      "callback2": 134569589,
+      "script": 0,
+      "newbs": 0,
+      "outcome": 0,
+      "flags": 0,
+      "types": 0,
+      "count": 1,
+      "bp": 90,
+      "save_counter": 3,
+      "pending": 0,
+      "snapshot": 0,
+      "marker": 0,
+      "order": [
+        0,
+        0,
+        0
+      ],
+      "owner": "56435331a9bcacce010040007913be65510000000a0000001e0000001e0000001e001e0000000100d535be400000000000000000000000000000000000000000",
+      "party": "f0ed6f94d535be406c7f6faeffffff00000001020101010101ff0000000000000400000070ca01000046040035003f0165017e000f280a050000000000000000000000000005320200000000000000000000000032ff640064003200430038002e004b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "factory": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "note_ja": "現候補の施設退出cleanupは受入済み原本を継承。新規区間は旧候補由来の真正退出Save30を現候補でContinue後の通常戦闘だけ。"
+  },
+  "source_bindings": {
+    "scripts/pr16_p08_ordinary_abi.py": {
+      "size": 11486,
+      "sha256": "d1f95373560356f658b2e9e06b717c2e5ccea09fa4b695814dd16b35e31f5ae9"
+    },
+    "tools/mgba_pr16_p08_ordinary_abi.h": {
+      "size": 4579,
+      "sha256": "2e82265f5605ce455ee4d00e50c22a6edfd0a7a072e7f5b5047e4ec2cef979f8"
+    },
+    "tests/test_pr16_p08_ordinary_abi.py": {
+      "size": 5415,
+      "sha256": "f76256f9e723319d367975e1590d1acb6cae15c0bd132c43830a598525c1a66e"
+    },
+    ".github/workflows/pr16-p08-ordinary-abi.yml": {
+      "size": 2226,
+      "sha256": "7fbff4de822c0c7d0f24b376555e443befd9949d770d4dde9f5dbf81d342b4c8"
+    },
+    "scripts/pr16_p08_ordinary_representative.py": {
+      "size": 18299,
+      "sha256": "da11e612be0e617826755a7f4877943b4403321dd6be9962c680cdd72760ec2c"
+    },
+    "tools/mgba_pr16_p08_ordinary_main.h": {
+      "size": 5338,
+      "sha256": "f0cb583d59bf1387c648f26fbf7bfd7de35628d4cf81f614e2a9761fb4566905"
+    },
+    "tools/mgba_pr16_p08_ordinary_observer.h": {
+      "size": 4107,
+      "sha256": "923431e93d921bc205fcfca7cac077392f3bea9577779550c4bf972bab604037"
+    },
+    "tests/test_pr16_p08_ordinary_representative.py": {
+      "size": 7149,
+      "sha256": "de454577e9a1e56a205ee61b01c08154a2e16ea93ff96183c60875f70fa686c2"
+    },
+    ".github/workflows/pr16-p08-ordinary.yml": {
+      "size": 2404,
+      "sha256": "f015d8632521e2a155053ab76d949f13fdd7d091a6517710b76135e07faac955"
+    },
+    "scripts/pr16_p08_memory_acceptance.py": {
+      "size": 5249,
+      "sha256": "cfc97374d81751bffa575acfc8e0488c97d6abf54292eaa80229ed180197e10d"
+    }
+  },
+  "protected_originals": {
+    "content/modernization/pr16_p08_candidate_impact.json": {
+      "size": 739897,
+      "sha256": "9aeab30775211ba995a3d6dd589d697f70ed966bb34719aa1ea5e86548799142"
+    },
+    "content/modernization/pr16_p08_ring_acceptance.json": {
+      "size": 3292,
+      "sha256": "ca5b7ed5260273c6cbe18b895f502fe4d33e4c77d6a3fc9c262dc2a81f5e7193"
+    },
+    "content/modernization/pr16_circus_acceptance.json": {
+      "size": 5476,
+      "sha256": "265f903d57d1205ef87877b4f29a73bc16ef6ed208ffade8cd62b1c39f5ca2ab"
+    },
+    "content/modernization/pr16_circus_suppression_lifecycle.json": {
+      "size": 65187,
+      "sha256": "186ffa2d54e587de953922d89cede9e86182b354b8aa704255b8242518525a02"
+    },
+    "content/modernization/pr16_circus_getter_followup.json": {
+      "size": 117299,
+      "sha256": "856881aa9b0156f391736de4748733395f493fe3de48ac23596e828c5745ba27"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf"
+    },
+    "config/active_play_baseline.json": {
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    },
+    "content/modernization/pr16_p08_ordinary_representative.json": {
+      "size": 30539,
+      "sha256": "0db2e0369841c4d6e8de7bd049fffdfce705cf08220173fa7c04413d9ce7ad49"
+    }
+  },
+  "native_verified": false,
+  "representative_accepted": false,
+  "visual_review_completed": false,
+  "new_emulator_processes": 0,
+  "host_compiles": 0,
+  "fresh_cores": 0,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "accepted_standalone_replays": 0,
+  "prefix_wins_reexecuted": 0,
+  "rom_changes": 0,
+  "release_ready": false,
+  "failures": [],
+  "recording_run": 35512907219,
+  "recording_source_head": "63ec984e57524d747ef2a2b9816a7c979f2e1b37",
+  "phase": "START",
+  "screens": {},
+  "previous_trial": {
+    "run_id": 35512429611,
+    "job_id": 106082548688,
+    "head_sha": "304eb25919601ccd7534dfd6e1da1dd5be091019",
+    "artifact_id": 10605663618,
+    "archive": {
+      "size": 67051,
+      "sha256": "afe36570cf4beefe7dd7db5b88dfc0d6fbdea1e82ab86300e7dec2866cd1fdd9"
+    },
+    "conclusion": "failure",
+    "classification": "OBSERVER_COMPARED_BEFORE_STAGE72_RESTORE",
+    "new_processes": 1,
+    "observed_fresh_cores": 1,
+    "accepted": false,
+    "report": "content/modernization/pr16_p08_ordinary_representative.json"
+  }
+}

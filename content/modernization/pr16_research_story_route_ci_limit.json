@@ -1,0 +1,588 @@
+{
+  "accepted_story_commit": "ed76bcd4d0b2a0c1fd870146d827fa10b12bd0a2",
+  "accepted_story_replayed": false,
+  "accepted_story_status": "PASS_NATURAL_STORY_POTION_SAVE_SCOPED",
+  "active_baseline_changed": false,
+  "archive": {
+    "sha256": "8121cd32d05a9ef3d5db7ac1adb53142cb1c090384796a60b7108108bad3ae95",
+    "size": 1430
+  },
+  "artifact": {
+    "created_at": "2026-09-27T15:43:49Z",
+    "digest": "sha256:8121cd32d05a9ef3d5db7ac1adb53142cb1c090384796a60b7108108bad3ae95",
+    "expires_at": "2026-10-27T15:43:48Z",
+    "id": 10935806576,
+    "name": "p03-capacity-final-ci",
+    "size_in_bytes": 1430,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
+      "id": 36330551685,
+      "repository_id": 1358127462
+    }
+  },
+  "ci_checkout": "f3ed5e7266acd511b48a66593032dbe0078b507e",
+  "ci_job": {
+    "conclusion": "failure",
+    "id": 108651517097,
+    "name": "validate",
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-27T15:42:35Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-27T15:42:34Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:42:48Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-27T15:42:35Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:42:48Z",
+        "conclusion": "success",
+        "name": "Run actions/setup-python@v5",
+        "number": 3,
+        "started_at": "2026-09-27T15:42:48Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:42:49Z",
+        "conclusion": "success",
+        "name": "Git管理内の整合性を検証",
+        "number": 4,
+        "started_at": "2026-09-27T15:42:48Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:42:51Z",
+        "conclusion": "success",
+        "name": "P03/P05 representative E2E result contracts",
+        "number": 5,
+        "started_at": "2026-09-27T15:42:49Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:42:57Z",
+        "conclusion": "success",
+        "name": "Stage81 candidate and P03 full-slot regression contracts",
+        "number": 6,
+        "started_at": "2026-09-27T15:42:51Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:13Z",
+        "conclusion": "success",
+        "name": "現在のP08受入境界と原本証跡を検証",
+        "number": 7,
+        "started_at": "2026-09-27T15:42:57Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:23Z",
+        "conclusion": "success",
+        "name": "Stage81 real CLI evidence and release boundary",
+        "number": 8,
+        "started_at": "2026-09-27T15:43:13Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:24Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 9,
+        "started_at": "2026-09-27T15:43:23Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:42Z",
+        "conclusion": "success",
+        "name": "Stage82 archive UI recipe, contracts and P08 originals",
+        "number": 10,
+        "started_at": "2026-09-27T15:43:24Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:46Z",
+        "conclusion": "success",
+        "name": "P03 physical breeding contracts and original Actions evidence",
+        "number": 11,
+        "started_at": "2026-09-27T15:43:42Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:47Z",
+        "conclusion": "success",
+        "name": "P05 native Mega lifecycle and immutable P08 originals",
+        "number": 12,
+        "started_at": "2026-09-27T15:43:46Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:48Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 13,
+        "started_at": "2026-09-27T15:43:47Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:48Z",
+        "conclusion": "failure",
+        "name": "P03 capacity fixed originals and cold-save acceptance",
+        "number": 14,
+        "started_at": "2026-09-27T15:43:48Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:49Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 15,
+        "started_at": "2026-09-27T15:43:48Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:49Z",
+        "conclusion": "skipped",
+        "name": "P03 relearner 46 fixed originals and 80 regression checks",
+        "number": 16,
+        "started_at": "2026-09-27T15:43:49Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:49Z",
+        "conclusion": "failure",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 17,
+        "started_at": "2026-09-27T15:43:49Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:49Z",
+        "conclusion": "skipped",
+        "name": "Post Run actions/setup-python@v5",
+        "number": 33,
+        "started_at": "2026-09-27T15:43:49Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:49Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 34,
+        "started_at": "2026-09-27T15:43:49Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:43:49Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 35,
+        "started_at": "2026-09-27T15:43:49Z",
+        "status": "completed"
+      }
+    ]
+  },
+  "ci_run": {
+    "conclusion": "failure",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
+    "id": 36330551685,
+    "path": ".github/workflows/ci.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "complete_repository_history_claimed": false,
+  "current_qol": {
+    "sha256": "6a07635ca20dcd37365a2393910eb610d4f9c5a682585149ecb1243738cce23a",
+    "size": 164877
+  },
+  "error_message": "tested source changed: overlays/qol_production/qol_production.c",
+  "error_type": "ValueError",
+  "errors": 2,
+  "full_ci_green": false,
+  "historical_expected_qol": {
+    "sha256": "fc69ca2ff94e98ffb46f1b4117c73156683e83bbc777e9f8527c027c70399423",
+    "size": 164678
+  },
+  "latest_branch_actions": [
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "9d68eae91936df187d7014ccc30a9b081ab2a0a8",
+      "id": 36331105589,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "9d68eae91936df187d7014ccc30a9b081ab2a0a8",
+      "id": 36331105490,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "9d68eae91936df187d7014ccc30a9b081ab2a0a8",
+      "id": 36331100459,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "9d68eae91936df187d7014ccc30a9b081ab2a0a8",
+      "id": 36331100464,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "9d68eae91936df187d7014ccc30a9b081ab2a0a8",
+      "id": 36331100545,
+      "path": ".github/workflows/pr16-research-story-route-ci-limit.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "9d68eae91936df187d7014ccc30a9b081ab2a0a8",
+      "id": 36331100458,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "ed76bcd4d0b2a0c1fd870146d827fa10b12bd0a2",
+      "id": 36330838795,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "ed76bcd4d0b2a0c1fd870146d827fa10b12bd0a2",
+      "id": 36330838844,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "6162f3e9a3dede208318bfd8dfce1cc1293500cd",
+      "id": 36330815717,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "6162f3e9a3dede208318bfd8dfce1cc1293500cd",
+      "id": 36330815744,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "6162f3e9a3dede208318bfd8dfce1cc1293500cd",
+      "id": 36330809604,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "6162f3e9a3dede208318bfd8dfce1cc1293500cd",
+      "id": 36330809679,
+      "path": ".github/workflows/pr16-research-story-route-terminal.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "6162f3e9a3dede208318bfd8dfce1cc1293500cd",
+      "id": 36330809613,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "6162f3e9a3dede208318bfd8dfce1cc1293500cd",
+      "id": 36330809556,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "408911e20138d51880fb0c9f76f31e9d311d73be",
+      "id": 36330616807,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "408911e20138d51880fb0c9f76f31e9d311d73be",
+      "id": 36330616832,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
+      "id": 36330551772,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
+      "id": 36330551685,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
+      "id": 36330546824,
+      "path": ".github/workflows/pr16-research-story-route.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb",
+      "id": 36330546745,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "new_compiles": 0,
+  "new_native_processes": 0,
+  "new_unit_test_runs": 0,
+  "observed_at": "2026-09-27T15:52:00.906749+00:00",
+  "old_acceptance_weakened": false,
+  "qol_git_blob": "d1ba686a3c2d7abf936edd0d17810d93a4357374",
+  "release_ready": false,
+  "schema_version": 1,
+  "source_inputs_changed": false,
+  "start_head": "20d1bb4f98efdf89adb241d81a62259e3f6b4bd1",
+  "status": "GENERAL_CI_PREEXISTING_CAPACITY_SOURCE_MISMATCH_NOT_NEW_STORY_FAILURE",
+  "successful_tests": 23,
+  "task": "USER-20260928-RESEARCH-STORY-ROUTE",
+  "terminal_job": {
+    "conclusion": "success",
+    "id": 108652234123,
+    "name": "terminal",
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-27T15:46:55Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-27T15:46:54Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:47:05Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-27T15:46:55Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:47:10Z",
+        "conclusion": "success",
+        "name": "Verify exact successful run Save screens and committed originals without replay",
+        "number": 3,
+        "started_at": "2026-09-27T15:47:05Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:47:12Z",
+        "conclusion": "success",
+        "name": "Fixed resume task graph and scoped append-only final index",
+        "number": 4,
+        "started_at": "2026-09-27T15:47:10Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:47:14Z",
+        "conclusion": "success",
+        "name": "Commit and non-force push terminal checkpoint",
+        "number": 5,
+        "started_at": "2026-09-27T15:47:12Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:47:15Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 6,
+        "started_at": "2026-09-27T15:47:14Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:47:15Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 12,
+        "started_at": "2026-09-27T15:47:15Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T15:47:15Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 13,
+        "started_at": "2026-09-27T15:47:15Z",
+        "status": "completed"
+      }
+    ]
+  },
+  "terminal_run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "6162f3e9a3dede208318bfd8dfce1cc1293500cd",
+    "id": 36330809679,
+    "path": ".github/workflows/pr16-research-story-route-terminal.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "test_count": 25,
+  "tests_log": {
+    "sha256": "0e81f35ab043e17d041c1f9f7de830d326dfc59586ec8354db53cfad4827dbac",
+    "size": 5936
+  },
+  "unchanged_inputs_since_task_start": {
+    ".github/workflows/ci.yml": {
+      "sha256": "348b488f1b69ab3196f50b351a4fe227b341c25e130e79c514d4f3b3994ba8e2",
+      "size": 7084
+    },
+    ".github/workflows/p03-breeding-capacity-e2e.yml": {
+      "sha256": "5bb7daeea3eb5b86cba8cfa437895d203939bd359625c6b820923b6262dd60b4",
+      "size": 1918
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "config/modernization_stage79_cumulative_mgba.json": {
+      "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6",
+      "size": 28627
+    },
+    "content/modernization/p08_breeding_capacity_evidence/34439826111/original.zip": {
+      "sha256": "b0995f68a5ef75936ebc379c8d0f74f3e6f31a5d793a1fc3bab352f1b48cb04a",
+      "size": 33550
+    },
+    "infra/setup_github_actions.sh": {
+      "sha256": "8b081dd37ae761325e80ed4f689b1d790f76a6acb311ba810820221828c79cc2",
+      "size": 2571
+    },
+    "infra/toolchain_manifest.json": {
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff",
+      "size": 33230
+    },
+    "overlays/qol_production/qol_production.c": {
+      "sha256": "6a07635ca20dcd37365a2393910eb610d4f9c5a682585149ecb1243738cce23a",
+      "size": 164877
+    },
+    "scripts/record_modernization_p03_capacity.py": {
+      "sha256": "edbb1784d0da5c5744f795caeb79a601ab75f55d632fb284a4f7baeff30ed03a",
+      "size": 16772
+    },
+    "scripts/run_modernization_p03_breeding_capacity_e2e.py": {
+      "sha256": "8dddd6ed6c8a70f1bbf8924d787c03d4e4063c321b7242f60c54359d2608471f",
+      "size": 14340
+    },
+    "scripts/run_modernization_p03_fullslots_e2e.py": {
+      "sha256": "439db2906617448e7e46ce76bbcdc44fad6c2dbb4b4aede436bd7385a2b282ea",
+      "size": 13940
+    },
+    "tests/test_modernization_p03_breeding_capacity_e2e.py": {
+      "sha256": "dac303ab21290b993272582a932d75bc6694de9896bffa4f3006cd9745e33909",
+      "size": 14409
+    },
+    "tests/test_modernization_p08_capacity_evidence.py": {
+      "sha256": "4ae9088e5186c79014811033c4aacb70ae7195b7e4928b2dc89d433fec7697e6",
+      "size": 9582
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+      "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+      "size": 39669
+    },
+    "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+      "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467",
+      "size": 20154
+    },
+    "tools/mgba_modernization_p03_breeding_capacity_e2e.c": {
+      "sha256": "93b2d09bbb7333283b0ee5d9bb6e45d13fa95adc767891e0c28819241dc34b72",
+      "size": 15600
+    },
+    "tools/mgba_modernization_p03_fullslots_e2e.c": {
+      "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa",
+      "size": 12868
+    },
+    "tools/mgba_modernization_p03_learning_e2e.c": {
+      "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d",
+      "size": 7987
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    },
+    "tools/modernization_p03_native_pp_repair.py": {
+      "sha256": "bfa4a1f2c8d470bafdb705d57fdd73a55a7885cfacb1dca6c392576a38f51e17",
+      "size": 5164
+    }
+  },
+  "verified_source_head": "228d31f3e3ab74dbfc089b63a75478c0d5fde1eb"
+}

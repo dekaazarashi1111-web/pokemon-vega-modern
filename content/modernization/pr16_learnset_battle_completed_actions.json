@@ -1,0 +1,158 @@
+{
+  "accepted_test_reruns": 0,
+  "actions_completion_confirmed": true,
+  "arm_compiles": 0,
+  "artifact": {
+    "digest": "sha256:d972e46dad658ba824a9ab91120fec4c8d7028e3f7917ab4a90f5869ef42772a",
+    "id": 10738122800,
+    "name": "pr16-learnset-battle-proof",
+    "size_in_bytes": 53077
+  },
+  "candidate": {
+    "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+    "size": 33554432
+  },
+  "inherited_unit_tests": 28,
+  "issue19_complete": false,
+  "job_id": 107091863129,
+  "job_steps": [
+    {
+      "conclusion": "success",
+      "name": "Set up job",
+      "number": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/checkout@v4",
+      "number": 2,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/setup-python@v5",
+      "number": 3,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "新しい通常戦闘用のhost libraryだけ導入",
+      "number": 4,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "22試験を継承し6通常戦闘境界試験・未受入自然戦闘1ケース",
+      "number": 5,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "固定引継ぎMD/JSON・両ログと成功失敗の原本を記録",
+      "number": 6,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "同branchへ非force commit/pushし最新refを照合",
+      "number": 7,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/upload-artifact@v4",
+      "number": 8,
+      "status": "completed"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "失敗した実測を成功へ読み替えずrun終端へ反映",
+      "number": 9,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Post Run actions/setup-python@v5",
+      "number": 17,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Post Run actions/checkout@v4",
+      "number": 18,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Complete job",
+      "number": 19,
+      "status": "completed"
+    }
+  ],
+  "new_native_runs": 0,
+  "previous_recording_failures": [
+    {
+      "run_id": 35835731455,
+      "stop": "proof directory already exists; 14 units passed"
+    },
+    {
+      "run_id": 35836024443,
+      "stop": "private guard str/bytes contract; completion validator and 3 units passed"
+    }
+  ],
+  "raw_verification": {
+    "sha256": "b091f6109aba01632f5c1a9afd20826868e05cc0402c74a2f25535300c4f2c36",
+    "size": 14612
+  },
+  "recording_run_id": 35836327852,
+  "recording_source_head": "b48e23f37b2ef0d83f034a7a95cf1289c37c822a",
+  "recording_tests_rerun": 0,
+  "recording_unit_tests": 17,
+  "reflected_head": "37b023853baea5d3e1f0dfb8f8de6de38334262c",
+  "release_ready": false,
+  "result": {
+    "bag_reruns": 0,
+    "boundary": 863,
+    "candidate_sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+    "chosen": 2018,
+    "damage": 2280,
+    "encounter": 1942,
+    "enemy_hp_before": 193,
+    "enemy_hp_min": 139,
+    "enemy_species": 838,
+    "fresh_cores": 2,
+    "host_write_barriers": 3,
+    "initial_party": {
+      "sha256": "e19c16d9192efa69c033ac281507f777efc5cc179b4dcbb8408b77b00dfbcc2e",
+      "size": 100
+    },
+    "initial_party_fixture": true,
+    "issue19_complete": false,
+    "manual_saves": 1,
+    "move": 420,
+    "outcome": 4,
+    "party_preserved_bytes": 100,
+    "persisted_party": {
+      "sha256": "fcfd46c6566483158eb4b02faac8b2afd5e0ed800f319d1bcec8283d1bfd3802",
+      "size": 100
+    },
+    "pp_after": 4,
+    "pp_before": 5,
+    "pp_spent": 2034,
+    "release_ready": false,
+    "returned": 3190,
+    "scope": "LEARNED_PARTY_FIXTURE_NATURAL_BATTLE_SAVE_CONTINUE",
+    "selection": 2016,
+    "slot": 1,
+    "species": 1029,
+    "status": "PASS",
+    "story_acquisition_verified": false,
+    "walking_steps": 48,
+    "warnings_errors": 0
+  },
+  "rom_changes": 0,
+  "run_id": 35833647521,
+  "schema_version": 1,
+  "source_head": "38fe29cec7477131741cddc98a0422207c874889",
+  "status": "PASS_COMPLETED_ACTIONS_SCOPED_BATTLE"
+}

@@ -1,0 +1,174 @@
+{
+  "actions_completion_confirmed": true,
+  "active_baseline_changed": false,
+  "candidate": {
+    "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
+    "size": 33554432
+  },
+  "checkpoint": {
+    "candidate": {
+      "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
+      "size": 33554432
+    },
+    "commands": "quit\n",
+    "completed_training_segment_replay_required": false,
+    "data_artifact": 10898510128,
+    "executable": {
+      "sha256": "67096f8c8a487c03957da071d0190f74542480fb051cf8e8934e1b05adee9a61",
+      "size": 73792
+    },
+    "experience": 245,
+    "frame": 19042,
+    "hp": [
+      13,
+      23
+    ],
+    "level": 7,
+    "map": [
+      3,
+      0
+    ],
+    "mode": "continue-story",
+    "native_bag_potion_count": 0,
+    "natural_learned_move_ja": "すいとる",
+    "natural_research_arrival_accepted": false,
+    "new_game_replay_required": false,
+    "parent_artifact": 10944976226,
+    "party_count": 1,
+    "rp": 0,
+    "run_id": 36362293129,
+    "runtime_artifact": 10898620034,
+    "save": {
+      "sha256": "e3ff50a1d88d24db28b4996440cf11c0114fa75f228c238f9e2e87fb122ac48a",
+      "size": 131088
+    },
+    "save_counter": 5,
+    "schema_version": 1,
+    "source_head": "67e9cc46f50222e19799244598d65534360c53fd",
+    "status_condition_ja": "まひ",
+    "xy": [
+      4,
+      27
+    ]
+  },
+  "continued": {
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "callback2": 134569589,
+    "facing": 1,
+    "field": true,
+    "flash_sha256": "31000985262da50a202afd2709fb6975a21425c646f50bbfd2301868c5700d92",
+    "frame": 2572,
+    "ledger_sha256": "9b5100a78d6f918e5072e016fcd9de8da18d1961a82772067c0703e40530ddf3",
+    "live_xy": [
+      11,
+      34
+    ],
+    "lock": 0,
+    "map": [
+      3,
+      0
+    ],
+    "observe": 6,
+    "party_count": 1,
+    "party_sha256": "1cc3c4629af1b2bcf170bd3ad128f913881b5a50e04ed93d186590db81cb4f58",
+    "rp": 0,
+    "save_counter": 5,
+    "xy": [
+      4,
+      27
+    ]
+  },
+  "development": "content/modernization/pr16_research_story_training_development/verification.json",
+  "experience": 245,
+  "experience_gain": 41,
+  "first_save": {
+    "battle_flags": 4,
+    "battle_outcome": 1,
+    "callback2": 134569589,
+    "facing": 1,
+    "field": true,
+    "flash_sha256": "31000985262da50a202afd2709fb6975a21425c646f50bbfd2301868c5700d92",
+    "frame": 19042,
+    "ledger_sha256": "9b5100a78d6f918e5072e016fcd9de8da18d1961a82772067c0703e40530ddf3",
+    "live_xy": [
+      11,
+      34
+    ],
+    "lock": 0,
+    "map": [
+      3,
+      0
+    ],
+    "observe": 48,
+    "party_count": 1,
+    "party_sha256": "1cc3c4629af1b2bcf170bd3ad128f913881b5a50e04ed93d186590db81cb4f58",
+    "rp": 0,
+    "save_counter": 5,
+    "xy": [
+      4,
+      27
+    ]
+  },
+  "full_story_accepted": false,
+  "home_portal_locked_observed": true,
+  "hp": [
+    13,
+    23
+  ],
+  "independent_ui_pairs": 4,
+  "input_save": {
+    "sha256": "f36faf0e82cf1c57c8a2c2a5e4bcf30ea6a53432b4d7828c79f1ee2f67cdd8d9",
+    "size": 131088
+  },
+  "learned_moves_ja": [
+    "ひっかく",
+    "しっぽをふる",
+    "すいとる"
+  ],
+  "level": 7,
+  "manifest": "content/modernization/pr16_research_story_training_evidence/36362293129/manifest.json",
+  "measurement": "content/modernization/pr16_research_story_training_evidence/36362293129/measurement.json",
+  "moves_pp": [
+    31,
+    30,
+    25
+  ],
+  "native_bag_potion_count": 0,
+  "natural_learned_move_ja": "すいとる",
+  "natural_research_arrival_accepted": false,
+  "next_input": "continue-story from training.srm; do not replay completed 194 inputs",
+  "ordinary_recovery_accepted": false,
+  "output_save": {
+    "sha256": "e3ff50a1d88d24db28b4996440cf11c0114fa75f228c238f9e2e87fb122ac48a",
+    "size": 131088
+  },
+  "release_ready": false,
+  "retained_artifact": {
+    "created_at": "2026-09-28T00:28:29Z",
+    "digest": "sha256:875a68c85e3f22ed0adfb3b5f782c094d569f6721f9ccda93e4433b13957d81c",
+    "expired": false,
+    "expires_at": "2026-12-27T00:27:30Z",
+    "id": 10946201851,
+    "name": "pr16-research-story-training-checkpoint",
+    "size_in_bytes": 1179243,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
+      "id": 36362293129,
+      "repository_id": 1358127462
+    }
+  },
+  "retained_artifact_id": 10946201851,
+  "retained_artifact_name": "pr16-research-story-training-checkpoint",
+  "run_id": 36362293129,
+  "screen_count": 56,
+  "source_head": "67e9cc46f50222e19799244598d65534360c53fd",
+  "status": "PASS_NATURAL_LV7_ABSORB_SAVE_SCOPED",
+  "status_condition_ja": "まひ",
+  "terminal_receipt": "content/modernization/pr16_research_story_training_terminal.json",
+  "trainer_battles": 0,
+  "trainer_victories": 0,
+  "wild_victories": 1
+}

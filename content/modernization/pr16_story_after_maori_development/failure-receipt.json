@@ -1,0 +1,38 @@
+{
+  "failed_native": 1,
+  "failed_commands": {
+    "size": 3737,
+    "sha256": "c245cf747ccc7ba06081b3350ad6734657abd490796986df209ad333aa725f99"
+  },
+  "failed_stdout": {
+    "size": 73502,
+    "sha256": "5b5d9433fd082831bb7245881dff0a760a8527563775e2aaced6574f1ba49741"
+  },
+  "failed_stderr": {
+    "size": 43,
+    "sha256": "1627552c5ef3ce9ae9dc22991c2d12a65b7f9458bbf984ac4511b4ec9bd4f2f8"
+  },
+  "rejected": "key 0 900",
+  "corrected": "key 0 600",
+  "returncode": 1,
+  "save_unchanged": {
+    "size": 131088,
+    "sha256": "5c4a03b9d92f7be54250d565162b03b5b85a2f221c3873d26d894b74b76778ce"
+  },
+  "prefix_exact": true,
+  "failed_observations": 107,
+  "formal_acceptance": false,
+  "accepted_case_reruns": 0,
+  "actions_failures": [
+    {
+      "run_id": 36507857717,
+      "cause": "fixture 6H with 5 values",
+      "native": 0
+    },
+    {
+      "run_id": 36508880929,
+      "cause": "pre-created artifact directory vs mkdir(exist_ok=False)",
+      "native": 0
+    }
+  ]
+}

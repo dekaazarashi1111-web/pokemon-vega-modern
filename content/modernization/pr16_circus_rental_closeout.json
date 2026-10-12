@@ -1,0 +1,256 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "classification": "CIRCUS_24_WINS_72BP_SAVE_CONTINUE_SCOPED_VERIFIED_30_OPEN",
+  "evidence": {
+    "actual_new_processes": 1,
+    "candidate": {
+      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183",
+      "size": 33554432
+    },
+    "genuine_30_wins_verified": false,
+    "inherited_pipeline_accounting": {
+      "accepted_ring_host_test_command_reexecuted": true,
+      "all_ancestor_arm_links_zero": false,
+      "ancestor_compile_reexecuted": true,
+      "exact_ancestor_execution_count": null,
+      "interpretation_ja": "旧new_arm_links/old_arm_links_replayed=0は末端Drought再構築の局所値。継承セットアップは旧親候補を再compileしRing host testsも実行していた。全体0の記述を訂正し、原本は変更しない。実行総数は採取されておらず捏造しない。",
+      "native_accepted_standalone_replayed": 0,
+      "scope": "runs35457143420/35457636604 inherited preparation shell",
+      "source_bindings": {
+        ".github/workflows/pr16-circus-loss-followup.yml": {
+          "sha256": "c05b37f3ef3d5a5e7d00627f62429fdea80c8b65c306b80dbf56fe2149b955ef",
+          "size": 6800
+        },
+        "scripts/pr16_circus_entry.py": {
+          "sha256": "a026633b218686fa8c440f6b9d8954f8eb29f1cae39ae17ee9f65be19105a79f",
+          "size": 15402
+        },
+        "scripts/pr16_circus_retention.py": {
+          "sha256": "a53bce1090845a2c669c34f41e21179270a5551c58984bf00459b8cc896ed3b6",
+          "size": 9674
+        },
+        "scripts/pr16_circus_three_win.py": {
+          "sha256": "52dc5b49dccc95d647f30aea696c77daf1fa4de050ce1344b4ec71576a7af0d6",
+          "size": 8910
+        },
+        "scripts/pr16_ring_policy_successor.py": {
+          "sha256": "13b4907245beaf484ee9bd32a44faeae7a0cdf5c047c51530a0c7b91ad72bf33",
+          "size": 11995
+        }
+      },
+      "terminal_drought_payload_links": 0
+    },
+    "lifecycle": {
+      "admissions": 9,
+      "battles": 25,
+      "bp_earned": 72,
+      "candidate_sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183",
+      "case": "circus-continuous-30-save",
+      "completed_batches": 8,
+      "events": 121,
+      "forced_identity_checks": 30,
+      "fresh_cores": 2,
+      "host_write_barriers": 7,
+      "input_only_after_guard": true,
+      "losses": 1,
+      "manual_saves": 1,
+      "owner_bytes_verified": 64,
+      "party_bytes_verified": 600,
+      "physical_admission_accepted": false,
+      "release_ready": false,
+      "save_counter_after": 3,
+      "save_counter_before": 2,
+      "schema_version": 1,
+      "status": "PASS_CIRCUS_CONTINUOUS_LIFECYCLE",
+      "suppression_accepted": false,
+      "switches": 30,
+      "target_wins": 30,
+      "total_frames": 430235,
+      "turns": 296,
+      "warnings_errors": 0,
+      "wins": 24
+    },
+    "native_failures": [],
+    "native_report_status": "PASS_CIRCUS_SCOPED_NATIVE",
+    "physical_admission_accepted": false,
+    "release_ready": false,
+    "rental_drought_result": {
+      "accepted_native_cases_replayed": 0,
+      "accepted_prefix_events_semantically_identical": 100,
+      "accepted_prefix_wins_reexecuted_for_continuation": 21,
+      "actual_wins": 24,
+      "battle22_confirmation": {
+        "battle": 21,
+        "count": 3,
+        "frame": 359363,
+        "marker": 2,
+        "newbs": 0,
+        "outcome": 0,
+        "script": 167726315,
+        "snapshot": 1
+      },
+      "classification": "CIRCUS_RENTAL_DROUGHT_RETURN_SAVE_CONTINUE_SCOPED_VERIFIED",
+      "events": 121,
+      "genuine_30_wins_verified": false,
+      "last_event": {
+        "battle": 25,
+        "bp": 72,
+        "count": 1,
+        "frame": 430235,
+        "label": "reloaded",
+        "marker": 0,
+        "newbs": 0,
+        "outcome": 0,
+        "script": 0,
+        "snapshot": 0
+      },
+      "native_report_status": "PASS_CIRCUS_SCOPED_NATIVE",
+      "old_arm_links_replayed": 0,
+      "physical_admission_accepted": false,
+      "process_failure": "genuine 30-win target remains open",
+      "release_ready": false,
+      "repaired_boundary": true,
+      "standard_save_fresh_continue": true,
+      "suppression_accepted": false,
+      "witness": {
+        "crossed": true,
+        "direct": true,
+        "entered": null,
+        "final": {
+          "callback2": 135394217,
+          "complete": 1,
+          "count": 3,
+          "current": 21,
+          "elapsed": 1,
+          "events": 101,
+          "frame": 359364,
+          "index": 32,
+          "keys": 1,
+          "label": "event-crossed-direct",
+          "marker": 2,
+          "newbs": 0,
+          "offset": 32,
+          "outcome": 0,
+          "phase": 2,
+          "saved_count": 1,
+          "script": 167726315,
+          "snapshot": 1,
+          "state": 5
+        },
+        "transition": []
+      }
+    },
+    "scoped_result": {
+      "accepted_prefix_battles_reexecuted_for_continuation": 3,
+      "admissions": 9,
+      "bp_earned": 72,
+      "classification": "CIRCUS_CONTINUOUS_FIRST_LOSS_DIAGNOSTIC",
+      "completed_batches": 8,
+      "factory_streak_and_claim_unchanged": true,
+      "genuine_30_wins_verified": false,
+      "later_battle_launches_verified": 16,
+      "losses": 1,
+      "original_party_bytes_verified": 600,
+      "owner_bytes_verified": 64,
+      "physical_admission_accepted": false,
+      "release_ready": false,
+      "suppression_accepted": false,
+      "wins": 24
+    },
+    "standard_save_fresh_continue": true,
+    "successful_fresh_cores": 2,
+    "suppression_accepted": false
+  },
+  "execution_count_scope": "この記録専用closeout runのみ。参照runの旧親再compileはevidence.inherited_pipeline_accountingを参照。",
+  "formal_bp_checkpoint_unchanged": true,
+  "host_tests": [
+    {
+      "count": 13,
+      "pattern": "test_pr16_circus_rental_closeout.py",
+      "success": true
+    }
+  ],
+  "native_processes_reexecuted": 0,
+  "new_arm_links": 0,
+  "next_action_ja": "旧親の再compileをしない保存済みbyte/patch再構築を先に実装・検証する。その後は同じ2b107e7eと24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と保存へ進む。25戦目の最初の入力変更より前のevent列を完全照合し、受入24勝・旧ARM linkの独立再実行をしない。30勝後に正規特性抑制、影響範囲P08へ進む。",
+  "observed_runs": [
+    {
+      "conclusion": "failure",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457636604,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457639486,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457639464,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457636611,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457636637,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457636645,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457636626,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_sha": "618775d1bd269021a9ecf3c622032eb96afe264d",
+      "id": 35458202655,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_sha": "618775d1bd269021a9ecf3c622032eb96afe264d",
+      "id": 35458202701,
+      "status": "completed"
+    }
+  ],
+  "physical_admission_accepted": false,
+  "release_ready": false,
+  "rom_changes": 0,
+  "schema_version": 1,
+  "source_head": "9eaef3fc7a2a3ddf03a64931f270fe9006afbb38",
+  "suppression_accepted": false,
+  "verified_actions": {
+    "job": {
+      "conclusion": "failure",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 105935643398,
+      "run_id": 35457636604,
+      "status": "completed"
+    },
+    "run": {
+      "conclusion": "failure",
+      "event": "push",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457636604,
+      "path": ".github/workflows/pr16-circus-rental-resume.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  }
+}

@@ -1,0 +1,824 @@
+{
+  "claim_flag_namespace": {
+    "below_next_owner_boundary": true,
+    "claim_flag": 5325,
+    "claim_flag_hex": "0x14CD",
+    "claim_flag_key": "FLAG_KEY_STAGE69_FLOETTE_ETERNAL_GIFT",
+    "collision_count": 0,
+    "contiguous_after_stage68": true,
+    "global_manifest": {
+      "claim_row_present": false,
+      "data_row_count": 404,
+      "mutated": false,
+      "path": "manifests/flags.csv",
+      "sha256": "9bbaf18e36b41bede706cf55564bb70a7fcf0313a0e5f4ce8c2430070775fbb6",
+      "size": 63729
+    },
+    "migration": "expanded event flag zero-default on legacy saves",
+    "next_owner_boundary": "0x1500",
+    "source_of_truth": "config/modernization_floette_gift.json + Stage69 checkpoint",
+    "stage68_reserved": {
+      "count": 45,
+      "first": 5280,
+      "last": 5324
+    },
+    "status": "PASS_DEDICATED_STAGE69_ALLOCATION"
+  },
+  "entrypoints": {
+    "FloetteGift_Claim": 155593493,
+    "FloetteGift_IsFormObtained": 155593417,
+    "FloetteGift_IsNationalDexCaught": 155593481,
+    "FloetteGift_IsNationalDexSeen": 155593457,
+    "FloetteGift_Probe": 155593393
+  },
+  "gift": {
+    "canonical_collection_bit": 850,
+    "canonical_national_dex": 670,
+    "claim_flag": 5325,
+    "claim_flag_hex": "0x14CD",
+    "level": 50,
+    "repeatability": "ONCE_PER_SAVE",
+    "species_id": 1029,
+    "unlock_item_id": 580
+  },
+  "legacy_collection_override": {
+    "legacy_model": {
+      "mutated": false,
+      "path": "content/collection_supply_v1/canonical_model.json",
+      "row": {
+        "base_species": 959,
+        "base_species_key": "SPECIES_KEY_FLOETTE",
+        "collection_policy": "UNOBTAINABLE_CANON_EXCLUDED",
+        "display_name": "フラエッテ",
+        "distributable": false,
+        "method": "DO_NOT_DISTRIBUTE",
+        "method_id": 5,
+        "record_key": "FORM_RECORD_1029",
+        "repeatability": "NOT_APPLICABLE",
+        "species_key": "SPECIES_KEY_FLOETTE_ETERNAL",
+        "status": "UNOBTAINABLE_EVENT_FORM_EXCLUDED",
+        "target_species": 1029,
+        "unlock": "NONE",
+        "unlock_id": 0
+      },
+      "sha256": "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0",
+      "size": 899889
+    },
+    "national_dex_registration": {
+      "base_species_id": 959,
+      "collection_bit": 850,
+      "collection_key": "COLLECTION_NATIONAL_0670",
+      "ledger_manifest_path": "vendor/vega_acquisition/manifests/collection_ledger_bits.csv",
+      "legacy_52_byte_pokedex_bitmaps_indexed": false,
+      "national_dex": 670,
+      "reason": "National 670 exceeds the legacy 416-bit FireRed bitmap; canonical acquisition ledger is the existing safe owner"
+    },
+    "stage69_override": {
+      "claim_owner": "expanded event flag 0x14CD",
+      "legacy_history_preserved": true,
+      "species_id": 1029,
+      "status": "OBTAINABLE_ONE_TIME_GIFT"
+    },
+    "status": "PASS_STAGE69_EXPLICIT_OVERRIDE_WITHOUT_REWRITE"
+  },
+  "map": {
+    "cell_audit": {
+      "blockmap_address": 153853128,
+      "collision": 0,
+      "elevation": 3,
+      "height": 40,
+      "layout_address": 153856976,
+      "metatile_entry": 12304,
+      "metatile_entry_hex": "0x3010",
+      "metatile_id": 16,
+      "walkable_collision_zero": true,
+      "width": 48,
+      "x": 25,
+      "y": 19
+    },
+    "events_after_address": 155595088,
+    "existing_14_objects_preserved": true,
+    "gift_object": {
+      "graphics_id": 62,
+      "local_id": 15,
+      "movement_type": 0,
+      "source_clone_local_id": 14,
+      "x": 25,
+      "y": 19
+    },
+    "gift_script_address": 155594516,
+    "group_id": 96,
+    "header_address": 153877972,
+    "header_offset": 19660244,
+    "map_id": 5,
+    "map_scripts_preserved": true,
+    "object_count_after": 15,
+    "object_count_before": 14,
+    "objects_after_address": 155594728,
+    "old_event_counts": [
+      14,
+      10,
+      0,
+      7
+    ],
+    "old_events_pointer": 155531192,
+    "old_objects_pointer": 155530856,
+    "old_objects_sha256": "2ab06726b926d0ec889780702fb7886162956ddc470d95730fb5645ea1aaba6e",
+    "old_scripts_pointer": 154724552,
+    "stage68_shop_local14_preserved": true
+  },
+  "parent": {
+    "allocation_sha256": "f5e1745c9ebd9a12e7b84c02fb7d2ae6972b94e90f7c355f8e11f6dc22585d4b",
+    "metadata_sha256": "f2d046b20ba93ed745823cf73da467ad0c886ce1e94a984213e9aa4d536db75e",
+    "path": "build/stages/68_modernization_mega_shop.gba",
+    "runtime_gate": {
+      "path": "content/modernization/mega_shop_mgba_runtime_gate.json",
+      "sha256": "5b7b499ccb5af5777033aad1b1d234b2ec49c785d5fe02f818f9312715f8f03c",
+      "size": 4318,
+      "status": "PASS"
+    },
+    "sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+    "size": 33554432,
+    "stage": 68,
+    "task": "USER-MODERNIZATION-MEGA-STONE-BP-SHOP"
+  },
+  "payload": {
+    "address": 155593136,
+    "code_address": 155593392,
+    "code_offset": 21375664,
+    "code_sha256": "647b9ce00e695845acd9ac9a4ad61e2d3d1cd678cb148c95efb00c8cf65eac82",
+    "code_size": 1012,
+    "magic": "VEGAFG69",
+    "offset": 21375408,
+    "sha256": "c11517d3a05514970cbee20e2d07501ecab3383cc08d0fbc845271299036941b",
+    "size": 1972
+  },
+  "release_patch_round_trip": {
+    "exact": true,
+    "format": "BPS1",
+    "sha256": "4a630083fe5152010516a4d511696bc0ccededd536f3386b4c12d039a5d42bd0",
+    "size": 1849,
+    "source_sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+    "target_sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95"
+  },
+  "rom": {
+    "path": "build/stages/69_modernization_floette_gift.gba",
+    "sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
+    "size": 33554432
+  },
+  "schema_version": 1,
+  "species_runtime_evidence": {
+    "all_required_roles": [
+      "base_stats",
+      "front_sprite",
+      "back_sprite",
+      "normal_palette",
+      "shiny_palette",
+      "icon",
+      "icon_palette",
+      "name",
+      "level_up",
+      "tm_compatibility",
+      "tutor_compatibility"
+    ],
+    "missing_role_count": 0,
+    "required_role_count": 11,
+    "stage67": {
+      "evidence": {
+        "back_sprite": {
+          "compressed_size_consumed": 850,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 710,
+          "decoded_sha256": "8f4537e7a9879e447b14372bdc7d919db2a860bd32f498ca9df8f6840b72dd7b",
+          "decoded_size": 2048,
+          "pointer": 158398672,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "d0f8700900080504",
+          "root": 167064232,
+          "row_address": 167072464,
+          "row_sha256": "eee24e8167c913efa6c06ffe4f206a25617ac8d89c7cfdc217799e6f2a0f6c03",
+          "row_size": 8,
+          "stride": 8
+        },
+        "base_stats": {
+          "abilities": [
+            167,
+            0,
+            181
+          ],
+          "raw_hex": "4a41435c7d8017177800000800000000fe1432000606a70000800000b5008200",
+          "root": 157286400,
+          "row_address": 157319328,
+          "row_sha256": "756d566678094767a7891522748d72a258a3a26f644fe0f6d237bc30a5bec91c",
+          "row_size": 32,
+          "stats": [
+            74,
+            65,
+            67,
+            92,
+            125,
+            128
+          ],
+          "stride": 32,
+          "type_names": [
+            "FAIRY",
+            "FAIRY"
+          ],
+          "types": [
+            23,
+            23
+          ]
+        },
+        "front_sprite": {
+          "compressed_size_consumed": 834,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 650,
+          "decoded_sha256": "d6e879a875401efed9d69bbe3f8887e3c0d4044ea516c53d859cbeece0ffee2c",
+          "decoded_size": 2048,
+          "pointer": 159718852,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "c41d850900080504",
+          "root": 167051264,
+          "row_address": 167059496,
+          "row_sha256": "15bd508b78da4a43a6c021272b8a11480ecce343f0abe36739a414e972bacefb",
+          "row_size": 8,
+          "stride": 8
+        },
+        "icon": {
+          "decoded_nonzero_bytes": 290,
+          "decoded_sha256": "482fd9813ed2c482e5079ff7e7c2b95c4e459e7e6f308eb11286ca31421c4ec1",
+          "decoded_size": 1024,
+          "pointer": 161220592,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "f0079c09",
+          "root": 167103136,
+          "row_address": 167107252,
+          "row_sha256": "1c473c10d5fca505c3686f9ea5244f35016f984d57b82724f8c8f910b458d7df",
+          "stride": 4
+        },
+        "icon_palette": {
+          "palette_index": 0,
+          "root": 167109620,
+          "row_address": 167110649,
+          "row_non_null": true,
+          "row_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+          "stride": 1
+        },
+        "level_up": {
+          "decoded_sha256": "31ac497522e7662bac949da022e61f89070042ace02e9d6e737f163dba21c59e",
+          "decoded_size": 51,
+          "entry_count_including_terminator": 17,
+          "pointer": 154794493,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "root": 154815660,
+          "root_pointer_site": 275564,
+          "row_address": 154819776,
+          "row_raw_hex": "fdf93909",
+          "row_sha256": "881026b1b207979aaa4428611a859f03b3c21a20a13f8db9f538480b65fdc7ef",
+          "rows": [
+            {
+              "level": 1,
+              "move_id": 33
+            },
+            {
+              "level": 1,
+              "move_id": 22
+            },
+            {
+              "level": 1,
+              "move_id": 543
+            },
+            {
+              "level": 6,
+              "move_id": 543
+            },
+            {
+              "level": 10,
+              "move_id": 720
+            },
+            {
+              "level": 15,
+              "move_id": 75
+            },
+            {
+              "level": 20,
+              "move_id": 273
+            },
+            {
+              "level": 25,
+              "move_id": 345
+            },
+            {
+              "level": 27,
+              "move_id": 697
+            },
+            {
+              "level": 33,
+              "move_id": 569
+            },
+            {
+              "level": 38,
+              "move_id": 312
+            },
+            {
+              "level": 43,
+              "move_id": 698
+            },
+            {
+              "level": 46,
+              "move_id": 546
+            },
+            {
+              "level": 50,
+              "move_id": 738
+            },
+            {
+              "level": 51,
+              "move_id": 80
+            },
+            {
+              "level": 58,
+              "move_id": 76
+            },
+            {
+              "level": 255,
+              "move_id": 0
+            }
+          ],
+          "stride": 4
+        },
+        "name": {
+          "decoded": "フラエッテ",
+          "raw_hex": "6c7754a063ffffffffffff",
+          "root": 167585584,
+          "row_address": 167596903,
+          "row_sha256": "33b14721ea0f5dc525af5cae915eebca6ecb478e746727fc656af250355bac48",
+          "stride": 11,
+          "terminated_encoded_hex": "6c7754a063ff",
+          "terminator_present": true
+        },
+        "normal_palette": {
+          "compressed_size_consumed": 40,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 28,
+          "decoded_sha256": "3c0b2ec6e18ee0fa29ccb15d14818a5d4082bccb6baa5518820407c2b9cf8a34",
+          "decoded_size": 32,
+          "pointer": 159719688,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "0821850905040000",
+          "root": 167077200,
+          "row_address": 167085432,
+          "row_sha256": "7abda6040be865e0daa2ea14be9f27db26b1c08b3fcbbdba4c5ddc7cbb15796c",
+          "row_size": 8,
+          "stride": 8
+        },
+        "shiny_palette": {
+          "compressed_size_consumed": 40,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 28,
+          "decoded_sha256": "ee669761fd9c528891524bd6756a785fdbba1e7d7fd881cacbc0ccdb5dd3d25e",
+          "decoded_size": 32,
+          "pointer": 158399524,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "24fc70095a0a0000",
+          "root": 167090168,
+          "row_address": 167098400,
+          "row_sha256": "5c8398dbe2b0ccd6acbd7ac0761241d626bf17eeb81fe6590bd357a663d37781",
+          "row_size": 8,
+          "stride": 8
+        },
+        "tm_compatibility": {
+          "nonzero_bytes": 12,
+          "raw_hex": "28863f94009e00002000620220a08384",
+          "root": 155499776,
+          "root_pointer_in_rom": true,
+          "root_pointer_non_null": true,
+          "root_pointer_site": 275124,
+          "row_address": 155516240,
+          "row_sha256": "4be76c601bea52271dedbda25cb73a7a5d048c229e95c1f4d74940267a6ab691",
+          "row_size": 16,
+          "stride": 16
+        },
+        "tutor_compatibility": {
+          "catalog_pointer_in_rom": true,
+          "catalog_pointer_non_null": true,
+          "catalog_pointer_site": 1184724,
+          "catalog_root": 155499648,
+          "nonzero_bytes": 10,
+          "raw_hex": "24080402480200900000130000004008",
+          "root": 154868520,
+          "root_pointer_in_rom": true,
+          "root_pointer_non_null": true,
+          "root_pointer_site": 1184800,
+          "row_address": 154884984,
+          "row_sha256": "2e44b8bc113b0c79fd5e5690867e30290837453fab55e9462586a7d82cf96327",
+          "row_size": 16,
+          "stride": 16
+        }
+      },
+      "rom_label": "Stage67",
+      "rom_sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
+      "rom_size": 33554432,
+      "species_id": 1029,
+      "status": "PASS_FULLY_RUNTIME_ADDRESSABLE"
+    },
+    "stage68_inheritance": {
+      "evidence": {
+        "back_sprite": {
+          "compressed_size_consumed": 850,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 710,
+          "decoded_sha256": "8f4537e7a9879e447b14372bdc7d919db2a860bd32f498ca9df8f6840b72dd7b",
+          "decoded_size": 2048,
+          "pointer": 158398672,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "d0f8700900080504",
+          "root": 167064232,
+          "row_address": 167072464,
+          "row_sha256": "eee24e8167c913efa6c06ffe4f206a25617ac8d89c7cfdc217799e6f2a0f6c03",
+          "row_size": 8,
+          "stride": 8
+        },
+        "base_stats": {
+          "abilities": [
+            167,
+            0,
+            181
+          ],
+          "raw_hex": "4a41435c7d8017177800000800000000fe1432000606a70000800000b5008200",
+          "root": 157286400,
+          "row_address": 157319328,
+          "row_sha256": "756d566678094767a7891522748d72a258a3a26f644fe0f6d237bc30a5bec91c",
+          "row_size": 32,
+          "stats": [
+            74,
+            65,
+            67,
+            92,
+            125,
+            128
+          ],
+          "stride": 32,
+          "type_names": [
+            "FAIRY",
+            "FAIRY"
+          ],
+          "types": [
+            23,
+            23
+          ]
+        },
+        "front_sprite": {
+          "compressed_size_consumed": 834,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 650,
+          "decoded_sha256": "d6e879a875401efed9d69bbe3f8887e3c0d4044ea516c53d859cbeece0ffee2c",
+          "decoded_size": 2048,
+          "pointer": 159718852,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "c41d850900080504",
+          "root": 167051264,
+          "row_address": 167059496,
+          "row_sha256": "15bd508b78da4a43a6c021272b8a11480ecce343f0abe36739a414e972bacefb",
+          "row_size": 8,
+          "stride": 8
+        },
+        "icon": {
+          "decoded_nonzero_bytes": 290,
+          "decoded_sha256": "482fd9813ed2c482e5079ff7e7c2b95c4e459e7e6f308eb11286ca31421c4ec1",
+          "decoded_size": 1024,
+          "pointer": 161220592,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "f0079c09",
+          "root": 167103136,
+          "row_address": 167107252,
+          "row_sha256": "1c473c10d5fca505c3686f9ea5244f35016f984d57b82724f8c8f910b458d7df",
+          "stride": 4
+        },
+        "icon_palette": {
+          "palette_index": 0,
+          "root": 167109620,
+          "row_address": 167110649,
+          "row_non_null": true,
+          "row_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+          "stride": 1
+        },
+        "level_up": {
+          "decoded_sha256": "31ac497522e7662bac949da022e61f89070042ace02e9d6e737f163dba21c59e",
+          "decoded_size": 51,
+          "entry_count_including_terminator": 17,
+          "pointer": 154794493,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "root": 154815660,
+          "root_pointer_site": 275564,
+          "row_address": 154819776,
+          "row_raw_hex": "fdf93909",
+          "row_sha256": "881026b1b207979aaa4428611a859f03b3c21a20a13f8db9f538480b65fdc7ef",
+          "rows": [
+            {
+              "level": 1,
+              "move_id": 33
+            },
+            {
+              "level": 1,
+              "move_id": 22
+            },
+            {
+              "level": 1,
+              "move_id": 543
+            },
+            {
+              "level": 6,
+              "move_id": 543
+            },
+            {
+              "level": 10,
+              "move_id": 720
+            },
+            {
+              "level": 15,
+              "move_id": 75
+            },
+            {
+              "level": 20,
+              "move_id": 273
+            },
+            {
+              "level": 25,
+              "move_id": 345
+            },
+            {
+              "level": 27,
+              "move_id": 697
+            },
+            {
+              "level": 33,
+              "move_id": 569
+            },
+            {
+              "level": 38,
+              "move_id": 312
+            },
+            {
+              "level": 43,
+              "move_id": 698
+            },
+            {
+              "level": 46,
+              "move_id": 546
+            },
+            {
+              "level": 50,
+              "move_id": 738
+            },
+            {
+              "level": 51,
+              "move_id": 80
+            },
+            {
+              "level": 58,
+              "move_id": 76
+            },
+            {
+              "level": 255,
+              "move_id": 0
+            }
+          ],
+          "stride": 4
+        },
+        "name": {
+          "decoded": "フラエッテ",
+          "raw_hex": "6c7754a063ffffffffffff",
+          "root": 167585584,
+          "row_address": 167596903,
+          "row_sha256": "33b14721ea0f5dc525af5cae915eebca6ecb478e746727fc656af250355bac48",
+          "stride": 11,
+          "terminated_encoded_hex": "6c7754a063ff",
+          "terminator_present": true
+        },
+        "normal_palette": {
+          "compressed_size_consumed": 40,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 28,
+          "decoded_sha256": "3c0b2ec6e18ee0fa29ccb15d14818a5d4082bccb6baa5518820407c2b9cf8a34",
+          "decoded_size": 32,
+          "pointer": 159719688,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "0821850905040000",
+          "root": 167077200,
+          "row_address": 167085432,
+          "row_sha256": "7abda6040be865e0daa2ea14be9f27db26b1c08b3fcbbdba4c5ddc7cbb15796c",
+          "row_size": 8,
+          "stride": 8
+        },
+        "shiny_palette": {
+          "compressed_size_consumed": 40,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 28,
+          "decoded_sha256": "ee669761fd9c528891524bd6756a785fdbba1e7d7fd881cacbc0ccdb5dd3d25e",
+          "decoded_size": 32,
+          "pointer": 158399524,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "24fc70095a0a0000",
+          "root": 167090168,
+          "row_address": 167098400,
+          "row_sha256": "5c8398dbe2b0ccd6acbd7ac0761241d626bf17eeb81fe6590bd357a663d37781",
+          "row_size": 8,
+          "stride": 8
+        },
+        "tm_compatibility": {
+          "nonzero_bytes": 12,
+          "raw_hex": "28863f94009e00002000620220a08384",
+          "root": 155499776,
+          "root_pointer_in_rom": true,
+          "root_pointer_non_null": true,
+          "root_pointer_site": 275124,
+          "row_address": 155516240,
+          "row_sha256": "4be76c601bea52271dedbda25cb73a7a5d048c229e95c1f4d74940267a6ab691",
+          "row_size": 16,
+          "stride": 16
+        },
+        "tutor_compatibility": {
+          "catalog_pointer_in_rom": true,
+          "catalog_pointer_non_null": true,
+          "catalog_pointer_site": 1184724,
+          "catalog_root": 155499648,
+          "nonzero_bytes": 10,
+          "raw_hex": "24080402480200900000130000004008",
+          "root": 154868520,
+          "root_pointer_in_rom": true,
+          "root_pointer_non_null": true,
+          "root_pointer_site": 1184800,
+          "row_address": 154884984,
+          "row_sha256": "2e44b8bc113b0c79fd5e5690867e30290837453fab55e9462586a7d82cf96327",
+          "row_size": 16,
+          "stride": 16
+        }
+      },
+      "rom_label": "Stage68",
+      "rom_sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+      "rom_size": 33554432,
+      "species_id": 1029,
+      "status": "PASS_FULLY_RUNTIME_ADDRESSABLE"
+    },
+    "status": "PASS_STAGE67_PROVEN_AND_STAGE68_BYTE_IDENTICAL"
+  },
+  "stage": 69,
+  "status": "PASS_HOST_AND_EXACT_PARTIAL_RUNTIME_FULL_RELOAD_PENDING",
+  "task": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT",
+  "transaction": {
+    "destination_order": [
+      "party",
+      "PC"
+    ],
+    "form_specific_source_of_truth": "expanded flag 0x14CD",
+    "legacy_fire_red_pokedex_bitmap_write": false,
+    "national_670_seen_caught_source_of_truth": "canonical collection ledger bit 850",
+    "party_and_pc_full": "NO_DELIVERY_NO_CLAIM_NO_SAVE",
+    "publication_order": [
+      "CreateMon(Species1029,Lv50)",
+      "GiveMon(party-or-PC)",
+      "FlagSet(0x14CD)",
+      "set collection_bits[850]",
+      "VegaAcqEngine_FinalizeInMemory",
+      "TrySavingData(0)",
+      "TryWriteSector(31)"
+    ],
+    "save_failure_rollback": [
+      "FlagClear(0x14CD)",
+      "remove exact delivered party/PC slot",
+      "restore exact pre-transaction modern ledger",
+      "VegaAcqEngine_FinalizeInMemory",
+      "compensating TrySavingData(0)",
+      "compensating TryWriteSector(31)"
+    ],
+    "unlock": {
+      "item_id": 580,
+      "item_key": "ITEM_KEY_MEGA_RING"
+    }
+  },
+  "validation": {
+    "exact_rom_runtime_smoke": "PARTIAL_PASS_FULL_AND_RELOAD_PENDING",
+    "heavy_test_runs": 3,
+    "host": {
+      "form_claim_flag": "0x14CD",
+      "national_670_collection_bit": 850,
+      "party_delivery": true,
+      "party_pc_full_unclaimed": true,
+      "pc_delivery": true,
+      "rollback_failure_surfaced": true,
+      "scenario_count": 13,
+      "sector_save_rollback": true,
+      "standard_save_rollback": true,
+      "status": "PASS"
+    },
+    "runtime_gate": {
+      "attempt_count": 3,
+      "attempts": [
+        {
+          "attempt": 1,
+          "failed_phase": "pc-delivery",
+          "last_completed_phase": "party-delivery",
+          "rom_claim_result": "SUCCESS",
+          "rom_species1029_postcondition": "PASS_INSIDE_GIFT_RUNTIME_USING_DPE_ABI",
+          "rom_transaction_failure": false,
+          "status": "FAIL_HARNESS_ASSERTION",
+          "supplemental_assertion": "stock GetBoxMonDataAt plus legacy Codex box-level adapter"
+        },
+        {
+          "attempt": 2,
+          "failed_phase": "pc-delivery",
+          "last_completed_phase": "party-delivery",
+          "rom_claim_result": "SUCCESS",
+          "rom_species1029_postcondition": "PASS_INSIDE_GIFT_RUNTIME_USING_DPE_ABI",
+          "rom_transaction_failure": false,
+          "status": "FAIL_HARNESS_ASSERTION",
+          "supplemental_assertion": "CreateMon(1029,50) EXP identity still read through obsolete stock GetBoxMonDataAt 0x0808B4B5"
+        },
+        {
+          "attempt": 3,
+          "completed_phases": [
+            "natural-new-game",
+            "physical-graph-and-save-init",
+            "clean-production-fixture",
+            "party-delivery",
+            "pc-delivery"
+          ],
+          "executed_runner_binary_sha256": "44bc4598eb68a33f769dc9ec318024aad8c01cbc8eee7315627076eac346b5bc",
+          "executed_runner_source_sha256": "b61faf2ae294ba9e9d89969b9623f762bc6f1027b9258aa573e544bfa89c2785",
+          "failed_phase": "party-and-pc-full fixture creation",
+          "gift_full_branch_invoked": false,
+          "reason": "stock SetBoxMonAt fixture writes were not address-compatible with the linked DPE GetBoxMonDataAt validation ABI",
+          "rom_party_claim_result": "SUCCESS",
+          "rom_pc_claim_result": "SUCCESS",
+          "rom_species1029_postcondition": "PASS_INSIDE_GIFT_RUNTIME_USING_DPE_ABI",
+          "rom_transaction_failure": false,
+          "status": "FAIL_HARNESS_FIXTURE_SETUP"
+        }
+      ],
+      "corrected_runner": {
+        "binary_sha256": "8e70ab35aa37e006c1e83f1b2ae0f25fda88a351853fd00cd894a10458a9e9d1",
+        "binary_size": 47232,
+        "embedded_harness_path": "tools/mgba_regression_smoke.c",
+        "embedded_harness_sha256": "f2e63f6bbf3c2c860664fa6bb178304b834352917b75d3605fb0aa20dd11c5b0",
+        "fixture_correction": "uses Stage26 linked DPE GetBoxedMonPtr to resolve each slot, copies a production CreateMon BoxMon image, validates through linked DPE GetBoxMonDataAt, and clears through linked DPE ZeroBoxMonAt",
+        "linked_get_box_mon_data_at": "0x09123BE5",
+        "linked_get_boxed_mon_ptr": "0x09123AE1",
+        "linked_zero_box_mon_at": "0x091239C9",
+        "source_path": "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
+        "source_sha256": "35306047c3f052b13761edfbab1ae6bf7f7220b15d0d31fa4ec69faaed8fd8eb",
+        "source_size": 23196,
+        "status": "COMPILE_PASS_NOT_EXECUTED_PER_THREE_ATTEMPT_LIMIT"
+      },
+      "exact_rom_confirmed": {
+        "acquisition_save_initialization": true,
+        "claim_flag_14cd_after_party_and_pc_delivery": true,
+        "full_party_pc_delivery_species1029_level50": true,
+        "mega_ring_580_gate": true,
+        "national670_collection_bit850_after_party_and_pc_delivery": true,
+        "party_delivery_species1029_level50": true,
+        "physical_npc_script_graph_to_entrypoint": true
+      },
+      "execution_attempts": 3,
+      "host_confirmed_pending_exact_rom": {
+        "party_and_pc_full_unclaimed": true,
+        "same_session_once_rejected": true,
+        "sector31_save_rollback": true,
+        "standard_save_rollback": true
+      },
+      "not_yet_executed_exact_rom": {
+        "fresh_core_once_rejected": "PENDING",
+        "fresh_core_standard_save_reload": "PENDING"
+      },
+      "release_gate": "PENDING_EXACT_PARTY_PC_FULL_AND_FRESH_RELOAD",
+      "retained_artifacts": [
+        "content/modernization/floette_gift_mgba_runtime_gate.json"
+      ],
+      "retry_count": 2,
+      "rom_path": "build/stages/69_modernization_floette_gift.gba",
+      "rom_sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
+      "rom_size": 33554432,
+      "schema_version": 1,
+      "stage": 69,
+      "status": "PARTIAL_PASS_HARNESS_FIXTURE_BLOCKED",
+      "successful_process_runs": 0,
+      "task": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT",
+      "temporary_saves_retained": false,
+      "warnings_errors_before_harness_stop": 0
+    },
+    "stage67_species_exact_audit": "PASS",
+    "stage68_species_inheritance": "BYTE_IDENTICAL"
+  }
+}

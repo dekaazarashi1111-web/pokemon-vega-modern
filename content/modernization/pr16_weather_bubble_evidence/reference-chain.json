@@ -1,0 +1,124 @@
+{
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "changes": [
+    {
+      "accepted": true,
+      "address": 137933615,
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_WEATHER_BUBBLE_4BPP_MINIMUM_ASSET",
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "sha256": "3ea4906792e7bcff120a5cb608b1a021496197463fc54c920e20b49deb986b58",
+      "size": 4,
+      "target": 167706624,
+      "witness_ids": [
+        0
+      ]
+    }
+  ],
+  "claims": {
+    "actual_bios_cpu_executed": false,
+    "actual_runtime_execution_observed": false,
+    "actual_screen_rendered": false,
+    "conditional_finite_reader_only": true,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "full_story_reachability_claimed": false,
+    "indirect_reference_completeness_claimed": false,
+    "opaque_callee_effects_proven": false,
+    "universal_heap_or_irq_lifetime_proven": false
+  },
+  "classified": 784,
+  "donor_safe_bytes": 0,
+  "evidence_bindings": {
+    "content/modernization/pr16_weather_bubble_evidence/measurement.json": {
+      "sha256": "9b3d4036968f5e88c5e69afee88a8e65d44281b68d86995b060be19bcaed2205",
+      "size": 42289
+    },
+    "content/modernization/pr16_weather_bubble_evidence/parent.json": {
+      "sha256": "80b7c65e97fe74417879e96e59bbe83db76eabfd1bea62f05477b0a80edbdc6b",
+      "size": 12927
+    },
+    "content/modernization/pr16_weather_bubble_evidence/provenance.json": {
+      "sha256": "54df49cc2a52273c98e2339c9ad173ea2d0787477630060e28aea07c7ebf985b",
+      "size": 34477
+    },
+    "content/modernization/pr16_weather_bubble_evidence/tests.json": {
+      "sha256": "a07f29f4245fd164952de33f336cd0b8984f8125492eb3a3c89d3a4658cd303e",
+      "size": 2610
+    }
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 783,
+  "inherited_unclassified": 91,
+  "measurement_replays": 0,
+  "namespace": "weather_bubble_reference_chain",
+  "native_processes": 0,
+  "newly_classified": 1,
+  "old_full_rom_scan_runs": 0,
+  "old_scope_test_reruns": 0,
+  "parent_audit_identity": {
+    "sha256": "bfa28a3ee203a2cd1d534adfd2cca3019c23a027258c9ea5ea6a8c838b129673",
+    "size": 5400898
+  },
+  "schema_version": 1,
+  "status": "ACCEPTED_ONE_CONDITIONAL_WEATHER_BUBBLE_MINIMUM_ASSET_TYPE",
+  "unclassified": 90,
+  "witnesses": [
+    {
+      "address": 137933615,
+      "evidence": {
+        "asset": {
+          "address": 137933572,
+          "sha256": "fbf6491632f1aa7b1b2c827a23cb77c22e1e675976be827b443d64992acdb1e7",
+          "size": 64
+        },
+        "claims": {
+          "actual_bios_cpu_executed": false,
+          "actual_runtime_execution_observed": false,
+          "actual_screen_rendered": false,
+          "conditional_finite_reader_only": true,
+          "donor_eligible": false,
+          "donor_leased": false,
+          "formal_rom_changed": false,
+          "formal_save_changed": false,
+          "full_story_reachability_claimed": false,
+          "indirect_reference_completeness_claimed": false,
+          "opaque_callee_effects_proven": false,
+          "universal_heap_or_irq_lifetime_proven": false
+        },
+        "classified_window": {
+          "address": 137933615,
+          "size": 4
+        },
+        "copy": 136084104,
+        "input_contract": {
+          "allocation_ja": "AllocSpriteTiles(2)の正常同期ABI帰還がtileStart0..1022の連続2tileを確保する条件。AllocSpriteTileRange(tag0x1205,start,2)が同epochを保存する条件。両helper実装/普遍heap/IRQは未証明。",
+          "copy_ja": "実LoadSpriteSheetのLDR/BLが独立64byteをCpuSetへ渡す。実SWI0B/BX stubと16bit非fill32単位の仕様モデル。BIOS本体CPU実行ではない。",
+          "entry_ja": "固定JP候補Bubbles_InitVarsの有限prefix。天候選択/task/自然story到達ではない。",
+          "stop_ja": "LoadSpriteSheetがBubbles_InitVarsへ帰還した直後まで。VRAMはモデル上の書込のみ、描画/残初期化/削除は未証明。",
+          "weather_ja": "実gWeatherPtrが非alias EWRAM Weatherを指し、FogHorizontal_InitVarsの正常同期ABI帰還がbubblesSpritesCreated(offset0x72E)を保存する条件。Fog本体とproducerは未証明。"
+        },
+        "loader": 134251096,
+        "measurement_identity": {
+          "sha256": "9b3d4036968f5e88c5e69afee88a8e65d44281b68d86995b060be19bcaed2205",
+          "size": 42289
+        },
+        "root": 134729780,
+        "run_id": 38040440848,
+        "sheet": 137942516,
+        "source_head": "3aada9217cc80627496adf33756d8fc2de3b5765"
+      },
+      "evidence_identity": {
+        "sha256": "57a081ad3084b4dfe0ed7a536c13faa47fc73ba8aef713efc0d4d257de2e926f",
+        "size": 1964
+      },
+      "id": 0,
+      "kind": "rooted_weather_bubble_4bpp_minimum_asset",
+      "size": 4
+    }
+  ]
+}

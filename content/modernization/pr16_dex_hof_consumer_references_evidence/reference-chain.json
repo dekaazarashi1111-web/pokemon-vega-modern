@@ -1,0 +1,727 @@
+{
+  "schema_version": 1,
+  "status": "PASS_723_PARENT_BOUND_CONSUMER_REFERENCE_CHAIN",
+  "baseline": {
+    "path": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent": {
+    "path": "content/modernization/pr16_dex_hof_script_references_evidence/reference-chain.json",
+    "size": 134951,
+    "sha256": "da105fd05e4ddb51bd7648af890db509c9b8f1e7e79112dbc1b295ce15b51279"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 723,
+  "inherited_unclassified": 151,
+  "changes": [
+    {
+      "address": 134797311,
+      "target": 167702512,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "2443ced86d5d184ad56731c1f87e3bbdd1b3bbc9b94a20ab91ca79653a8c39c6",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_THUMB_INSTRUCTION_STREAM",
+      "accepted": true,
+      "witness_ids": [
+        0
+      ]
+    },
+    {
+      "address": 161867738,
+      "target": 167709028,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "d57a307513a3017e14b7f6cb6b943e8366d24b5cce848558cbcd7915a30793b8",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_HISTORICAL_DPE_PALETTE_POINTER_TAG_CROSS_FIELD",
+      "accepted": true,
+      "witness_ids": [
+        1
+      ]
+    },
+    {
+      "address": 167565224,
+      "target": 167695790,
+      "kind": "THUMB_BL_SHAPE",
+      "size": 4,
+      "sha256": "aee5e311f93b083c1cbcb45af72d17f997942cde34f2d5fbf4268d446d10a19f",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_HISTORICAL_T09_TUTOR_NUMERIC_MASK",
+      "accepted": true,
+      "witness_ids": [
+        2
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": 0,
+      "address": 134797310,
+      "size": 6,
+      "kind": "rooted_thumb_instruction_stream",
+      "evidence": {
+        "root": {
+          "kind": "special_function",
+          "entry": 134791396,
+          "opcode": 37,
+          "special_id": 60,
+          "slot": {
+            "address": 135672152,
+            "size": 4,
+            "sha256": "888b0d4dbb253148e6ccd703eaeca2f21f5eeeac0fdcb2f71811f40652faa885",
+            "value": 134791397
+          }
+        },
+        "instruction_window": {
+          "address": 134797310,
+          "size": 6,
+          "sha256": "a08c220ce4e51d3af5b612cb9ed5d0894e8e342199a5140b1a5a5ef7967ae01a"
+        },
+        "instructions": [
+          {
+            "address": 134797310,
+            "size": 4
+          },
+          {
+            "address": 134797314,
+            "size": 2
+          }
+        ],
+        "root_verified": true,
+        "literal_pool_included": false,
+        "path_instructions": 152,
+        "typed_indirect_edges": 12,
+        "full_story_reachability_claimed": false,
+        "full_storage_lifetime_claimed": false
+      },
+      "evidence_identity": {
+        "size": 601,
+        "sha256": "17257a9679f92cd4b0159688b1b12be38c5536c2702285fdf06364d877347361"
+      }
+    },
+    {
+      "id": 1,
+      "address": 161867738,
+      "size": 4,
+      "kind": "historical_dpe_palette_pointer_tag_cross_field",
+      "evidence": {
+        "historical_table": {
+          "address": 161858784,
+          "size": 11520,
+          "sha256": "1c3b40c6795be8d6a4765484b348869ea55146076f59f4a60ce79a9c37aaa0d2"
+        },
+        "historical_row": {
+          "address": 161867736,
+          "size": 8,
+          "sha256": "7567c85ad1c341c0b5c90e42b86e6a8a78a7bca2a62a508fe80cf3eede72fb67",
+          "pointer": 157585468,
+          "tag": 2559,
+          "unused": 0
+        },
+        "canonical_root": {
+          "address": 134218036,
+          "size": 4,
+          "sha256": "66ccf2e042478e91bf9b624aef5b93e09b4138c2298d0acbd3626c5ec163d0b2",
+          "target": 156587316
+        },
+        "canonical_row": {
+          "address": 156597716,
+          "size": 8,
+          "sha256": "b75e8f5f87d08c3ee218602811c706b7035c400bbc2d900676f6097d68837d21",
+          "pointer": 157585468,
+          "tag": 2921,
+          "unused": 0
+        },
+        "hit": {
+          "address": 161867738,
+          "target": 167709028,
+          "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+          "size": 4,
+          "sha256": "d57a307513a3017e14b7f6cb6b943e8366d24b5cce848558cbcd7915a30793b8",
+          "classification": "UNCLASSIFIED",
+          "accepted": false,
+          "reason": "no_complete_typed_asset_consumer_witness",
+          "owner_candidates": []
+        },
+        "claims": {
+          "historical_typing_only": true,
+          "current_runtime_reachability_claimed": false,
+          "current_reference_absence_claimed": false,
+          "retirement_completeness_claimed": false,
+          "donor_leased": false
+        },
+        "layout": {
+          "stride": 8,
+          "pointer_offset": 0,
+          "pointer_size": 4,
+          "tag_offset": 4,
+          "tag_size": 2,
+          "unused_offset": 6,
+          "unused_size": 2
+        },
+        "source_species": 1119,
+        "canonical_species": 1300,
+        "source_symbol": "gBackShinySprite1119NickitPal"
+      },
+      "evidence_identity": {
+        "size": 1309,
+        "sha256": "85d86a6a8cb9c577f4aa6d4159c00d58d51e2819f57a9b4e367b34888edd1816"
+      }
+    },
+    {
+      "id": 2,
+      "address": 167565224,
+      "size": 4,
+      "kind": "historical_t09_tutor_numeric_mask",
+      "evidence": {
+        "historical": {
+          "schema_version": 1,
+          "status": "PASS_HISTORICAL_T09_NUMERIC_CONSUMER_ONLY",
+          "historical_candidate": {
+            "size": 33554432,
+            "sha256": "17240646e2aa58be929bbb73c8176673f2c31d841733d7712ae2fab912f87e39"
+          },
+          "sources": {
+            "config/github_private_environment.json": {
+              "size": 5007,
+              "sha256": "33ff93eb2a1183ccdc3fea5c08b986271d75e9a8e349627072b36dd4c6abb56a",
+              "git_blob_sha": "32913e02fdb71f007d3c65801a9bb5d3f5a6c210"
+            },
+            "config/move_distribution_v4.json": {
+              "size": 4181,
+              "sha256": "170b313c414163d7fc1edab363866c164e547c1a8627005ca136c93e10561787",
+              "git_blob_sha": "21c9e42f655ff1c910778211f5e8a347ae0ed52d"
+            },
+            "config/species_surface.json": {
+              "size": 3565,
+              "sha256": "b490fcea065d0b1c176784139355312618061258d715e5785132b72908eee160",
+              "git_blob_sha": "fe52aa5d43f860a80f3b7b24681bf874ba9a8e28"
+            },
+            "scripts/build_species_surface.py": {
+              "size": 88276,
+              "sha256": "d032f6cbf3e38914e332899deed99168873d85746f3c340cdafc5bc5db791bad",
+              "git_blob_sha": "6bf37ee88f559ba76997dabb8a0c35127c088342"
+            },
+            "config/cfru_vega_minimal.h": {
+              "size": 3078,
+              "sha256": "cbf61ee395af2f61103c29c0bea4b6cddc15499a1e4c1706f2b1f72afeafe4f2",
+              "git_blob_sha": "dacccff5804eafd687773c77b880a9108ae45f3f"
+            },
+            "vendor/upstream/CFRU-JP/src/item.c": {
+              "size": 55431,
+              "sha256": "885c2ae9fa78d145eec1eca4333104b6fdd90a1d5afbbe191e0bc3398e740922",
+              "git_blob_sha": "ea5302c0dc2bb9fc92e665aab6015a27ff4275d7"
+            },
+            "vendor/upstream/CFRU-JP/include/pokemon.h": {
+              "size": 29476,
+              "sha256": "d75972c66e85835a3fc9c859cb695c033995ba6627ba1d44f577b35136356c78",
+              "git_blob_sha": "b18f2ee2a1517efa8aeb742daedac9e778d73d7a"
+            }
+          },
+          "historical_owner": {
+            "address": 167559648,
+            "size": 25936,
+            "sha256": "a44431aea3f197a030bd496482aa91b747f260d19822d8ab4eedc0a8363b441f"
+          },
+          "hit": {
+            "address": 167565224,
+            "size": 4,
+            "sha256": "aee5e311f93b083c1cbcb45af72d17f997942cde34f2d5fbf4268d446d10a19f"
+          },
+          "row": {
+            "address": 167565208,
+            "size": 20,
+            "sha256": "38b2c4cacd1358dc8f30068f80c17b819902a41e82b0f71c5bc58786c87fae11"
+          },
+          "root_roles": [
+            {
+              "address": 135402528,
+              "size": 4,
+              "sha256": "7c0cc09bc8cdb31ab4ae169080c2dab2a6578ed0684de52bb78e82c327f03cfb",
+              "role": "HISTORICAL_TUTOR_TABLE_ROOT",
+              "target": 167559648
+            },
+            {
+              "address": 152109956,
+              "size": 4,
+              "sha256": "f3bad4fc1771b4f8e4a7a9ea3ba1bc6ae16b6190a29777a885246649c7918ea9",
+              "role": "CONSUMER_ROOT_LITERAL",
+              "target": 135402528
+            }
+          ],
+          "consumer_roles": [
+            {
+              "address": 152109608,
+              "size": 104,
+              "sha256": "31b26047f1464073a48e85e19d2841593b4152ba5d7281ad0428cf2dadd18e7c",
+              "role": "NUMERIC_GATE_STRIDE_WORD0_WORD3_RETURN"
+            },
+            {
+              "address": 152109740,
+              "size": 44,
+              "sha256": "24ce4349632671fc2a19da6fa7a7f8496144b032d1f356417f3ad0f5599ec058",
+              "role": "NUMERIC_WORD1_WORD2_WORD4_RETURN"
+            },
+            {
+              "address": 152109952,
+              "size": 4,
+              "sha256": "4ffd826d832d6b947a91652f00684ec23bac47f75f06f509bf557de19312950b",
+              "role": "SPECIES_READER_LITERAL"
+            },
+            {
+              "address": 152116346,
+              "size": 2,
+              "sha256": "55112ca377cb9d32aedcf68674a5cd6e8512783956b7198b276fc762a02ad442",
+              "role": "SPECIES_READER_REGISTER_VENEER"
+            }
+          ],
+          "semantics": {
+            "entry": 152109608,
+            "regular_id_count": 152,
+            "regular_id_min": 0,
+            "regular_id_max": 151,
+            "excluded_special_id_min": 152,
+            "excluded_special_id_max": 255,
+            "species_result_mask_bits": 16,
+            "species_index": 278,
+            "stride_bytes": 20,
+            "word_count": 5,
+            "entry_extent_bytes": 20,
+            "word_offsets": [
+              0,
+              4,
+              8,
+              12,
+              16
+            ],
+            "target_word_index": 4,
+            "target_tutor_id_min": 128,
+            "target_tutor_id_max": 151,
+            "read_role": "LE_U32_NUMERIC_COMPATIBILITY_MASK",
+            "result_role": "MASK_AND_BIT_TO_BOOL",
+            "code_pointer_from_table": false,
+            "branch_pointer_from_table": false,
+            "stores_from_table": false,
+            "current_runtime_reachability_claimed": false,
+            "full_1621_species_historical_reader_safety_claimed": false,
+            "indirect_reference_completeness_claimed": false
+          },
+          "historical_typing_only": true,
+          "current_candidate_accepted": false,
+          "donor_eligible": false,
+          "rom_reconstructions": 0,
+          "rom_writes": 0,
+          "native_processes": 0
+        },
+        "current": {
+          "status": "PASS_CURRENT_T09_HISTORICAL_NUMERIC_TYPE",
+          "candidate": {
+            "size": 33554432,
+            "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+          },
+          "historical_candidate": {
+            "size": 33554432,
+            "sha256": "17240646e2aa58be929bbb73c8176673f2c31d841733d7712ae2fab912f87e39"
+          },
+          "hit": {
+            "address": 167565224,
+            "size": 4,
+            "sha256": "aee5e311f93b083c1cbcb45af72d17f997942cde34f2d5fbf4268d446d10a19f"
+          },
+          "actual_owner": {
+            "address": 167559648,
+            "size": 25936,
+            "sha256": "a44431aea3f197a030bd496482aa91b747f260d19822d8ab4eedc0a8363b441f"
+          },
+          "row": {
+            "address": 167565208,
+            "size": 20,
+            "sha256": "38b2c4cacd1358dc8f30068f80c17b819902a41e82b0f71c5bc58786c87fae11"
+          },
+          "semantics": {
+            "entry": 152109608,
+            "regular_id_count": 152,
+            "regular_id_min": 0,
+            "regular_id_max": 151,
+            "excluded_special_id_min": 152,
+            "excluded_special_id_max": 255,
+            "species_result_mask_bits": 16,
+            "species_index": 278,
+            "stride_bytes": 20,
+            "word_count": 5,
+            "entry_extent_bytes": 20,
+            "word_offsets": [
+              0,
+              4,
+              8,
+              12,
+              16
+            ],
+            "target_word_index": 4,
+            "target_tutor_id_min": 128,
+            "target_tutor_id_max": 151,
+            "read_role": "LE_U32_NUMERIC_COMPATIBILITY_MASK",
+            "result_role": "MASK_AND_BIT_TO_BOOL",
+            "code_pointer_from_table": false,
+            "branch_pointer_from_table": false,
+            "stores_from_table": false,
+            "current_runtime_reachability_claimed": false,
+            "full_1621_species_historical_reader_safety_claimed": false,
+            "indirect_reference_completeness_claimed": false
+          },
+          "historical_typing_only": true,
+          "current_runtime_reachability_claimed": false,
+          "retirement_completeness_claimed": false,
+          "donor_eligible": false
+        },
+        "hit": {
+          "address": 167565224,
+          "target": 167695790,
+          "kind": "THUMB_BL_SHAPE",
+          "size": 4,
+          "sha256": "aee5e311f93b083c1cbcb45af72d17f997942cde34f2d5fbf4268d446d10a19f",
+          "classification": "UNCLASSIFIED",
+          "accepted": false,
+          "reason": "no_complete_typed_asset_consumer_witness",
+          "owner_candidates": [
+            "species_surface_tutor"
+          ]
+        }
+      },
+      "evidence_identity": {
+        "size": 5428,
+        "sha256": "c40e104cd5e0cf167a22151d8f5f72ebc8cac42c7c38dd89eadc5f089f56cb16"
+      }
+    }
+  ],
+  "classified": 726,
+  "unclassified": 148,
+  "newly_classified": 3,
+  "proof": {
+    "data": {
+      "status": "PASS_NEW_THREE_FINITE_CONSUMER_REFERENCES",
+      "engine": {
+        "status": "PASS_ONE_FINITE_STORAGE_TASK_CODE_WINDOW",
+        "count": 1,
+        "full_story_reachability_claimed": false,
+        "full_storage_lifetime_claimed": false
+      },
+      "palette": {
+        "status": "PASS_HISTORICAL_DPE_PALETTE_DESCRIPTOR_CROSSING",
+        "source_bindings": {
+          "config/species_surface.json": {
+            "size": 3565,
+            "sha256": "b490fcea065d0b1c176784139355312618061258d715e5785132b72908eee160",
+            "git_blob_sha": "fe52aa5d43f860a80f3b7b24681bf874ba9a8e28"
+          },
+          "config/species_port.json": {
+            "size": 2928,
+            "sha256": "650c922cb27663cc3852c84c1bfa4ffc70c41b0eaa626aa1d3b1df5c946d55a8",
+            "git_blob_sha": "4d57b01ee47286ec9c31f810db301c9df323b226"
+          },
+          "state/source-lock.json": {
+            "size": 3166,
+            "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4",
+            "git_blob_sha": "e55a4b006cfff95995aaa703e37c401d15b86864"
+          },
+          "scripts/build_species_surface.py": {
+            "size": 88276,
+            "sha256": "d032f6cbf3e38914e332899deed99168873d85746f3c340cdafc5bc5db791bad",
+            "git_blob_sha": "6bf37ee88f559ba76997dabb8a0c35127c088342"
+          },
+          "manifests/species_ids.csv": {
+            "size": 207095,
+            "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366",
+            "git_blob_sha": "1b3ad93740ccdcb0234c8b7f08c5b3b9d02a99d8"
+          },
+          "vendor/upstream/DPE-JP/src/Shiny_Palette_Table.c": {
+            "size": 153783,
+            "sha256": "f3ca77e89ea38466f43d7f7e92a84ab3dfd03b0a6180167331da12f20d73943d",
+            "git_blob_sha": "84594e814069145fa4c7fd3a9d8404ecc249aade"
+          },
+          "vendor/upstream/DPE-JP/include/graphics.h": {
+            "size": 799,
+            "sha256": "e4df6e2c0036cc596d524e2912ced925db255f9decf7255899bec7aa7933b560",
+            "git_blob_sha": "d6937044ee89e56c6ec6393c92353e5168a2e799"
+          },
+          "vendor/upstream/DPE-JP/include/species.h": {
+            "size": 45355,
+            "sha256": "00ff340a373d5187f970cabbfc45bb1e0971b14a9f504ee2d38e4e929b86f27c",
+            "git_blob_sha": "948cba1aee04dfdd9886e54d6ea8c39ad9661efb"
+          }
+        },
+        "current_owner": "modernization_rockruff_own_tempo_stage75_payload",
+        "claims": {
+          "historical_typing_only": true,
+          "current_runtime_reachability_claimed": false,
+          "current_reference_absence_claimed": false,
+          "retirement_completeness_claimed": false,
+          "donor_leased": false
+        }
+      },
+      "tutor": {
+        "status": "PASS_CURRENT_T09_HISTORICAL_NUMERIC_TYPE",
+        "historical_proof": "content/modernization/pr16_dex_hof_tutor_history_evidence/historical.json",
+        "historical_proof_identity": {
+          "size": 4485,
+          "sha256": "1cc261f62b9e00b50de232ec4a07bb4533a91dc36c3b9ec50857b6832aee1ab6"
+        },
+        "historical_run": 37338921508,
+        "historical_reconstructions": 0,
+        "actual_owner": "species_surface_tutor",
+        "historical_typing_only": true,
+        "retirement_completeness_claimed": false
+      },
+      "battle_partial": {
+        "status": "PARTIAL_CONSUMER_ONLY_ZERO_NEW_CLASSIFICATIONS",
+        "count": 0,
+        "consumer_models": 16,
+        "unproven_hit_addresses": [
+          151004088,
+          151008779,
+          151008973,
+          151010306,
+          151018900,
+          151024127,
+          151024190,
+          151024241,
+          151024541,
+          151024690
+        ],
+        "donor_leased": false,
+        "full_root_chain_proven": false
+      },
+      "independent_old_final_source_review_completed": false,
+      "donor_leased": false,
+      "indirect_reference_completeness_claimed": false
+    },
+    "song": {
+      "status": "PASS_RETAINED_133_MODELS_50_ASSETS_NEW_CONSUMER_INTERSECTION",
+      "combined_song_models": 133,
+      "retained_sample_witnesses": 50,
+      "model_identity": {
+        "size": 213296,
+        "sha256": "71f01cee0a344409445e17fdea268371269a3e622c6b93563d04b35677e0b975"
+      },
+      "sample_identity": {
+        "size": 1121492,
+        "sha256": "9f765e8eee8ad78eaac8902ccafbf9e14c7c694f842e9ae6b2002583181b70ee"
+      },
+      "old_protected_read_windows": 198334,
+      "old_protected_read_identity": {
+        "size": 26409459,
+        "sha256": "26ae440b2d8456747f59e7fd73679a17b6289ef1a733bdd51c1f9ff668fc8914"
+      },
+      "all133_models_exact": true,
+      "all50_sample_identities_exact": true,
+      "old_and_new_root_windows": 2957,
+      "old_and_new_root_identity": {
+        "size": 316606,
+        "sha256": "71fe2d0c67b43c6f9d9a94fb4adff192d706b72caeb772e591622ca59890dd44"
+      },
+      "new_song_discovery_runs": 0,
+      "new_songs": [],
+      "new_audio_classified": 0,
+      "native_processes": 0,
+      "donor_leased": false
+    },
+    "public_source_bindings": {
+      "BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "gaps-pret-scrcmd.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/scrcmd.c",
+        "size": 56954,
+        "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+        "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814"
+      },
+      "pret-task.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/task.c",
+        "size": 5029,
+        "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+        "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+      },
+      "pret-main.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/main.c",
+        "size": 11699,
+        "sha256": "0bfa6c662b1cbd49bd31020b6c2509208004611e6701ad64badce22eca371139",
+        "git_blob_sha": "542b0f5d16dd93107523d11163bfcb70a42b707a"
+      },
+      "pret-crt0.s": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/crt0.s",
+        "size": 2573,
+        "sha256": "a13a09dab32f5f073387183ca5072e009e997223c7eba16d65dd6ecf2d575d73",
+        "git_blob_sha": "a0d8a4b55237b38afc5b69d4e9aad0c2df232e14"
+      },
+      "pret-hall_of_fame.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/hall_of_fame.c",
+        "size": 36837,
+        "sha256": "00dd00b63f3edf8e0ee617a09936d1a51306cc9dc33e6021da8f1042af5dd4ab",
+        "git_blob_sha": "05c7d75384c2ad8481b6819f71faaf089f683bbf"
+      },
+      "pret-pokemon_storage_system_tasks.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/pokemon_storage_system_tasks.c",
+        "size": 77841,
+        "sha256": "ac9e5037b244339c48a930cecbeb07a4cea20086c9347bdf9536164be8d74188",
+        "git_blob_sha": "fdc5250c347a304547f613b5ed8685157341345a"
+      },
+      "battle-src--general_bs_commands.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/general_bs_commands.c",
+        "size": 170849,
+        "sha256": "ee23f75ab32b0f453128a9e5f9c7e77aba4a0de646e762a5fe821b61c1b20643",
+        "git_blob_sha": "476cbdd3ee2cfe3ce2ccca51b609560b1f1a4282"
+      },
+      "battle-BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "battle-continuation-attackcanceler.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/attackcanceler.c",
+        "size": 43335,
+        "sha256": "5344ba9c634786753235ffc6d72cc0c8554930a42991bc81aa04bb1b839f768f",
+        "git_blob_sha": "10ce1e8cce69923e2fbe5ec52e0035cf47b638c5"
+      },
+      "pokemon-vega-modern--config--species_surface.json": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "afa090a1d28aa3776bc1f7c9875051cbbaa16439",
+        "source": "config/species_surface.json",
+        "size": 3565,
+        "sha256": "b490fcea065d0b1c176784139355312618061258d715e5785132b72908eee160",
+        "git_blob_sha": "fe52aa5d43f860a80f3b7b24681bf874ba9a8e28"
+      },
+      "pokemon-vega-modern--config--species_port.json": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "afa090a1d28aa3776bc1f7c9875051cbbaa16439",
+        "source": "config/species_port.json",
+        "size": 2928,
+        "sha256": "650c922cb27663cc3852c84c1bfa4ffc70c41b0eaa626aa1d3b1df5c946d55a8",
+        "git_blob_sha": "4d57b01ee47286ec9c31f810db301c9df323b226"
+      },
+      "pokemon-vega-modern--state--source-lock.json": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "afa090a1d28aa3776bc1f7c9875051cbbaa16439",
+        "source": "state/source-lock.json",
+        "size": 3166,
+        "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4",
+        "git_blob_sha": "e55a4b006cfff95995aaa703e37c401d15b86864"
+      },
+      "pokemon-vega-modern--scripts--build_species_surface.py": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "afa090a1d28aa3776bc1f7c9875051cbbaa16439",
+        "source": "scripts/build_species_surface.py",
+        "size": 88276,
+        "sha256": "d032f6cbf3e38914e332899deed99168873d85746f3c340cdafc5bc5db791bad",
+        "git_blob_sha": "6bf37ee88f559ba76997dabb8a0c35127c088342"
+      },
+      "pokemon-vega-modern--manifests--species_ids.csv": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "afa090a1d28aa3776bc1f7c9875051cbbaa16439",
+        "source": "manifests/species_ids.csv",
+        "size": 207095,
+        "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366",
+        "git_blob_sha": "1b3ad93740ccdcb0234c8b7f08c5b3b9d02a99d8"
+      },
+      "DPE-JP--src--Shiny_Palette_Table.c": {
+        "repository": "kapibarasan000/DPE-JP",
+        "commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+        "source": "src/Shiny_Palette_Table.c",
+        "size": 153783,
+        "sha256": "f3ca77e89ea38466f43d7f7e92a84ab3dfd03b0a6180167331da12f20d73943d",
+        "git_blob_sha": "84594e814069145fa4c7fd3a9d8404ecc249aade"
+      },
+      "DPE-JP--include--graphics.h": {
+        "repository": "kapibarasan000/DPE-JP",
+        "commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+        "source": "include/graphics.h",
+        "size": 799,
+        "sha256": "e4df6e2c0036cc596d524e2912ced925db255f9decf7255899bec7aa7933b560",
+        "git_blob_sha": "d6937044ee89e56c6ec6393c92353e5168a2e799"
+      },
+      "DPE-JP--include--species.h": {
+        "repository": "kapibarasan000/DPE-JP",
+        "commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+        "source": "include/species.h",
+        "size": 45355,
+        "sha256": "00ff340a373d5187f970cabbfc45bb1e0971b14a9f504ee2d38e4e929b86f27c",
+        "git_blob_sha": "948cba1aee04dfdd9886e54d6ea8c39ad9661efb"
+      },
+      "pokemon-vega-modern--config--github_private_environment.json": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "afa090a1d28aa3776bc1f7c9875051cbbaa16439",
+        "source": "config/github_private_environment.json",
+        "size": 5007,
+        "sha256": "33ff93eb2a1183ccdc3fea5c08b986271d75e9a8e349627072b36dd4c6abb56a",
+        "git_blob_sha": "32913e02fdb71f007d3c65801a9bb5d3f5a6c210"
+      },
+      "pokemon-vega-modern--config--move_distribution_v4.json": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "afa090a1d28aa3776bc1f7c9875051cbbaa16439",
+        "source": "config/move_distribution_v4.json",
+        "size": 4181,
+        "sha256": "170b313c414163d7fc1edab363866c164e547c1a8627005ca136c93e10561787",
+        "git_blob_sha": "21c9e42f655ff1c910778211f5e8a347ae0ed52d"
+      },
+      "pokemon-vega-modern--config--cfru_vega_minimal.h": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "afa090a1d28aa3776bc1f7c9875051cbbaa16439",
+        "source": "config/cfru_vega_minimal.h",
+        "size": 3078,
+        "sha256": "cbf61ee395af2f61103c29c0bea4b6cddc15499a1e4c1706f2b1f72afeafe4f2",
+        "git_blob_sha": "dacccff5804eafd687773c77b880a9108ae45f3f"
+      },
+      "CFRU-JP--src--item.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/item.c",
+        "size": 55431,
+        "sha256": "885c2ae9fa78d145eec1eca4333104b6fdd90a1d5afbbe191e0bc3398e740922",
+        "git_blob_sha": "ea5302c0dc2bb9fc92e665aab6015a27ff4275d7"
+      },
+      "CFRU-JP--include--pokemon.h": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "include/pokemon.h",
+        "size": 29476,
+        "sha256": "d75972c66e85835a3fc9c859cb695c033995ba6627ba1d44f577b35136356c78",
+        "git_blob_sha": "b18f2ee2a1517efa8aeb742daedac9e778d73d7a"
+      }
+    }
+  },
+  "proof_identity": {
+    "size": 10897,
+    "sha256": "7f780992e94fcf00980bcc628f3280be1b43a72bb2ce79a24edfd4a9a3de29e1"
+  },
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0
+}

@@ -1,0 +1,62 @@
+name: pr16-dex-hof-script-producer-batch-closeout
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-dex-hof-script-producer-batch-closeout.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-dex-hof-script-producer-batch-closeout
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  contract:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 24
+      - name: Exact new host source and immutable prior evidence
+        run: python3 -B scripts/pr16_dex_hof_script_producer_batch_closeout.py source_guard
+      - name: Twenty-two publication, provenance and source-review guards
+        run: |
+          mkdir -p .local
+          python3 -B -m unittest discover -s tests -p 'test_pr16_dex_hof_script_producer_batch_closeout.py' -v > .local/pr16-script-producer-batch-closeout-tests.txt 2>&1
+      - name: Verify terminal host record without rerunning tests
+        run: python3 -B scripts/pr16_dex_hof_script_producer_batch_closeout.py close
+      - name: Scoped final index and fixed resume
+        run: python3 -B scripts/pr16_dex_hof_script_producer_batch_closeout.py guard
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - name: Commit and nonforce push same branch
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20261006-DEX-HOF-SCRIPT-PRODUCER-BATCH: 登録event/battle境界最小型batchと共有deltaの終端照合'
+          git push origin HEAD:codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$(git rev-parse HEAD)"
+      - name: Exact committed text readback
+        run: python3 -B scripts/pr16_dex_hof_script_producer_batch_closeout.py snapshot
+      - name: Closed host text publication guard
+        id: publication_guard
+        if: always()
+        run: python3 -B scripts/pr16_dex_hof_script_producer_batch_closeout.py export
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.publication_guard.outcome == 'success' }}
+        with:
+          name: pr16-dex-hof-script-producer-batch-closeout-text-only
+          path: public-dex-hof-script-producer-batch-closeout
+          retention-days: 90
+          if-no-files-found: error

@@ -1,0 +1,19 @@
+# PR16 Weather Bubble 最小型受入
+
+Weather Bubble成功run38040440848/job114179438484の全9step/32試験を原本継承。ZIPと4JSON、生成・検証済み/公開済みの各4hash、6測定source/143依存source/62親原本を照合。独立8x16 indexed4画像の全64byte一致、実sheet/reader38命令・64byte消費・実12byte stack帰還を条件付き最小4byte型へ受入。0838B32Fだけ追加し784分類/90未知/全874hit、旧30段164変更154witness不変。新receipt41試験PASS。今回ROM再構成/旧scope再走/native各0、donor安全容量0、正式ROM/Save101不変。
+
+## 根拠と境界
+
+測定source HEAD: `3aada9217cc80627496adf33756d8fc2de3b5765`。成功artifact11665870186のZIP SHA-256: `f3d0cfed7517d5a1c73d6eadf9c1fa0024ccbcd9bc36c915cc07edf099ef681f`。公開sourceはpret/pokefireredの固定c75f352304d529f6ba92d4f74b9cf8b5c3810788。gWeatherBubbleTiles0838B304〜0838B344、対象0838B32F〜0838B333（offset43から4byte）、sWeatherBubbleSpriteSheet0838D5F4のsize64/tag1205、Bubbles_InitVars0807D034→LoadSpriteSheet08008258→CpuSet081C7A88。全32半word消費/出力SHA一致とallocation失敗/created済みの両未消費controlを保持する。
+
+受入は誤検出pointerの条件付きデータ型1件のみ。Fog/allocator/registryの同期正常ABIと同一資源epochを条件にする。BIOS本体CPU、描画、自然story到達、IRQ/全heap寿命、donor適格性/leaseは未証明。安全容量は0、正式ROMとSave101、BP/P08受入、release=falseを変更しない。
+
+## 再開と再検証
+
+正式784分類/90未知の保存親から次は08397492の1件。pr16_weather_bubble_receipt.restore_parentで62旧原本と今回4原本/差分を復元し、独立公開source・全asset・実table/literal/readerへ結ぶ。近傍名/参考size/距離だけで型へ昇格しない。Bubble成功32試験/実reader/ROM再構成は再走しない。Blastoise083D6B61の既知未消費tail診断も反復しない。保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復保存coldContinueは別gate。
+
+`python3 scripts/pr16_weather_bubble_receipt.py` は保存原本と現在sourceだけを照合する。正式旧親はblastoise_chain.parentの62原本。診断31番目Blastoise namespaceを混ぜない。新31番目Bubble差分で165変更/155witness。原本4JSONのformal_classification_accepted=falseは測定時事実のまま保持し、受入は別checkpointで記録する。
+
+## Actionsと会計
+
+既知失敗38039867181から実call frame束縛へ修正した成功だけを受領。過去task再構成は失敗込み2、成功runは1、本closeoutは0。closeout失敗38042005576は保存logのANSIに対するgh出力拒否。試験・受入・commit前に停止し、固定job原logのPIPE取得だけを修正した。source-validationの既存38040440825/job114179438028はstep14 capacity証拠のqol_production.c source不一致（2error）、step17未生成artifact uploadも失敗。これらのsourceと受入条件を変更せず、全CI greenとは記録しない。

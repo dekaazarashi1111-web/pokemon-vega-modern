@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260929-STORY-GYM",
+  "status": "WIP_RECOVERABLE_INPUT_PREFIX_NOT_ACCEPTED",
+  "initial_head": "8cf60b7ecc93d433549f29088b8eb07d536ab5a9",
+  "source_artifact": 11021368349,
+  "parent_artifact": 11012768108,
+  "runtime_artifact": 10898620034,
+  "prior_unaccepted_wip": "content/modernization/pr16_story_gym_development/progress-wip.json",
+  "prior_wip_recovery_ja": "旧WIPにはcommands/stdoutのhashのみで、再開可能なプロセス/入力本文/保存終端がない。改作や成功昇格をせず保持。正式Save18から未受入ジム区間だけを新規実行。",
+  "native_processes_started": 1,
+  "native_processes_closed": 0,
+  "observations": 46,
+  "last_observation": {"observe":45,"frame":16526,"map":[6,2],"xy":[1,8],"live_xy":[8,15],"facing":3,"field":false,"lock":1,"callback2":134285761,"party_count":4,"save_counter":18,"rp":0,"battle_flags":12,"battle_outcome":0,"party_sha256":"3c89b035ff6bd14f60889b9e684d39955af6d50cb9b6352ccd97627ba2a4304d","flash_sha256":"925659d1ad292aa14fe3bdc84aeb4589b1c4b22f18829a2f22f84eac93cf2530","ledger_sha256":"29ac0537dc913a6fb06f63ed91c5407fed0cda7f9d98f42a890b3b93263cc180"},
+  "commands": {"size":1297,"sha256":"87cef109a5613de9c08a195c41ce4260ff9e7cc532be8e8260a10d0c0a5c6083"},
+  "commands_zlib_b85": "c$|HcNe+WB3`O^xB1eb^47pAvRxB#DQl;L$lqtqRe+Pd0vHb}1^i9NLBFf#oJm=*tchARrdVQuudyTc$c&+_2I_}sim5o~B-dd_>mMpipUrWMiJfKu)XSP^NhokRZbeq$3Ir?Uya&$Fqqq~+RORDX}L}+B<BYYlxvAfGkd`2Bq1p5HZLqo~o#sH1Yag`O&iZg-~px>PtC8HQO4@WPTAo9Y|%LQ&;_#Og3TtHBwAO9&N`tiRJ(j$UeqI)B)pURLP84!$mE-mBz@lZ3^M5CYL81kd-^>GmS(Z2fu9!p-M",
+  "stdout_prefix": {"size":30269,"sha256":"f69f3893cb950bb41d27c3a22f645877a572b0d583808abd7f3cd3a47f056031"},
+  "acceptance_complete": false,
+  "save19_complete": false,
+  "accepted_case_reruns": 0,
+  "rom_changes": 0,
+  "note_ja": "進行中。全入力prefixを保持し、同じ成功を重複計上しない。Save19/独立Continue/正式Actions未受入。"
+}

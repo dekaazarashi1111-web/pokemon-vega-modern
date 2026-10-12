@@ -1,0 +1,93 @@
+name: pr16-shop-display-probe
+run-name: Original versus top-one renderer, visual review required
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-shop-display-probe.yml
+      - scripts/pr16_shop_display_probe.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  display-probe:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Exact Stage84 parent and toolchain
+        run: |
+          set -euo pipefail
+          out=.local/pr16-shop-display-evidence
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json"
+      - name: Restore fixed V4 and original text encoding only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-inputs
+          gh release download private-environment-v1 --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir .local/pr16-inputs
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');cfg=json.loads((root/'config/github_private_environment.json').read_text());bindings={}
+          for archive,member,digest in (('pokemon-vega-private-env-v1-inputs.zip','userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip','4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2'),('pokemon-vega-private-env-v1-state.zip','vendor/upstream/CFRU-JP/charmap.tbl',None)):
+              model=next(a for a in cfg['archives'] if a['name']==archive);raw=(root/'.local/pr16-inputs'/archive).read_bytes()
+              assert len(raw)==model['size'] and hashlib.sha256(raw).hexdigest()==model['sha256']
+              with zipfile.ZipFile(root/'.local/pr16-inputs'/archive) as z:
+                  data=z.read(member)
+                  if 'state.zip' in archive:
+                      selection=[name for name in z.namelist() if name.endswith(('/window.c','/window.h','/bg.c','/bg.h','/field_message_box.c','/menu.c')) and name.startswith('vendor/')]
+                      with zipfile.ZipFile(root/'.local/pr16-shop-display-evidence/fixed-window-sources.zip','w',zipfile.ZIP_DEFLATED) as sources:
+                          for name in selection:
+                              value=z.read(name)
+                              try:value.decode('utf8')
+                              except UnicodeDecodeError:continue
+                              assert b'\0' not in value;sources.writestr(name,value)
+              if digest:assert hashlib.sha256(data).hexdigest()==digest
+              target=root/member;assert not any(p.is_symlink() for p in (target,*target.parents))
+              if target.exists():assert target.read_bytes()==data
+              else:target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data);target.chmod(0o444)
+              bindings[member]={'archive':archive,'archive_sha256':model['sha256'],'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (root/'.local/pr16-shop-display-evidence/input-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Reconstruct unchanged accepted parent
+        run: |
+          set -euo pipefail
+          out=.local/pr16-shop-display-evidence
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: Compare physical purchase and cancellation with only top-coordinate changed
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_shop_display_probe.py > .local/pr16-shop-display-evidence/probe.stdout 2> .local/pr16-shop-display-evidence/probe.stderr
+          git diff --exit-code
+      - name: Preserve actual implementation and raw screenshots, not experimental ROMs
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-shop-display-evidence';out.mkdir(parents=True,exist_ok=True)
+          names={'scripts/pr16_shop_display_probe.py','scripts/pr16_shop_routes.py','tools/mgba_pr16_shop_routes.c','.github/workflows/pr16-shop-display-probe.yml'}
+          p=root/'.local/pr16-shop-display-probe/result.json'
+          if p.exists():names.update(json.loads(p.read_bytes())['sources'])
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(names):
+                  p=root/name;raw=p.read_bytes();raw.decode('utf8');assert not p.is_symlink() and b'\0' not in raw;z.writestr(name,raw)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-shop-display-probe
+          path: |
+            .local/pr16-shop-display-probe/
+            .local/pr16-shop-display-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

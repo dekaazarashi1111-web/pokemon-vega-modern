@@ -1,0 +1,75 @@
+name: pr16-vega-original-record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - '.github/pr16-vega-original-record.json'
+      - '.github/workflows/pr16-vega-original-record.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-vega-original-record
+  cancel-in-progress: false
+jobs:
+  record-original:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 記録契約10境界だけを検証
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-vega-original-record
+          python3 -B -m unittest tests.test_pr16_vega_original_record -v 2>&1 | tee .local/pr16-vega-original-record/recording-unit.txt
+      - name: 完了原本だけを照合し正本と両ログへ追記
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_vega_original_record.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          git diff --check
+          git add CHATGPT_RESUME.md docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md docs/PR16_VEGA_ORIGINAL_AUDIT_JA.md content/modernization/pr16_native_supply_resume_20260913.json content/modernization/pr16_vega_original_checkpoint.json content/modernization/pr16_vega_original_evidence design/run_log.md design/version_log.md
+          git diff --cached --check
+          python3 -B scripts/pr16_vega_original_record.py guard --base "$GITHUB_SHA"
+          git diff --exit-code
+      - name: 最終indexを同じbranchへ非force commit/push
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          git fetch origin "$branch"
+          test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260921-LEARNSET-BASELINE-RESET: Vega181種の原本9923行・全差分を検証記録し採用停止点を確定'
+          git push origin "HEAD:refs/heads/$branch"
+          new=$(git rev-parse HEAD)
+          remote=$(git ls-remote origin "refs/heads/$branch" | cut -f1)
+          test "$new" = "$remote"
+          printf 'RESULT=DONE TASK=USER-20260921-LEARNSET-BASELINE-RESET VERIFY=PASS COMMIT=%s\n' "$new" | tee .local/pr16-vega-original-record/result.txt
+          git status --porcelain --untracked-files=no > .local/pr16-vega-original-record/tracked-status.txt
+          test ! -s .local/pr16-vega-original-record/tracked-status.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-vega-original-recorded
+          path: |
+            .local/pr16-vega-original-record/recording-unit.txt
+            .local/pr16-vega-original-record/result.txt
+            .local/pr16-vega-original-record/tracked-status.txt
+          if-no-files-found: error
+          retention-days: 30

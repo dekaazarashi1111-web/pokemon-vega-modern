@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261012-IPS-DPE-INSTRUCTION-EXTENT",
+  "status": "IPS_DPE_SAVED_WORDS_VERIFIED_FINITE_LITERAL_SHAPES_ZERO_OWNER_PENDING",
+  "source_head": "d386f3eec2e8784b8fd52ecaa4c19a2ffb852f16",
+  "actions_run_id": 38244314715,
+  "actions_completion_confirmed": true,
+  "actions_receipt_path": "content/modernization/pr16_ips_dpe_instruction_extent_evidence/actions-completion.json",
+  "evidence_path": "content/modernization/pr16_ips_dpe_instruction_extent_evidence/instruction-summary.json",
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "first_level_count": 11,
+  "unaligned": 9,
+  "finite_literal_shapes": 0,
+  "dpe_output_bin_candidates": 0,
+  "actual_reader_proven": false,
+  "formal_classified": 789,
+  "formal_unclassified": 85,
+  "selected_unknown_origins": 6,
+  "donor_safe_bytes": 0,
+  "new_unit_tests": 11,
+  "task_graph_passed": true,
+  "accepted_test_reruns": 0,
+  "candidate_reconstructions": 1,
+  "native_processes": 0,
+  "prior_acceptance_unchanged": true,
+  "observed_head_checks": {
+    "source_head": "d386f3eec2e8784b8fd52ecaa4c19a2ffb852f16",
+    "all_ci_green_claimed": false,
+    "successful_new_limited_run": 38244314715,
+    "runs": [
+      {
+        "id": 38244314715,
+        "name": "pr16-ips-dpe-instruction-extent",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 38244314531,
+        "name": "Stage79 runtime boundary audit",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 38244314627,
+        "name": "source-validation",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 38244315015,
+        "name": "p03-forgetting-ci",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 38244328211,
+        "name": "source-validation",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 38244327977,
+        "name": "p03-forgetting-ci",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "failure"
+      }
+    ]
+  },
+  "next_ja": "保存11参照地点の現候補実word SHAと非整列9件を確認。限定±4104byte ARM/±1028byte Thumb PC相対literal LDR形は0件で、実callerが存在しない証明ではない。DPE固定予約内0x09673660からの実output.bin候補は今回のbuild/upstream-cacheに0件、包含/owner/asset readerは未証明。次は固定DPE pin 10ff98c8の対応output.bin実体とビルド系譜/長さ/ROM包含を取得して照合し、IPS record11873の実asset開始/終端および保存11起点以外のtable/計算参照から元asset readerの実命令・経路を有限に追う。新規11試験・今回の成功候補復元・既受入PLA1/12境界/7 private guard/全旧音声・map・LZ・Wikiは変更影響なしに再走しない。正式789/85・選定残6・安全容量0、保存controller/窓外跨り/heap/局所Saveは未完。"
+}

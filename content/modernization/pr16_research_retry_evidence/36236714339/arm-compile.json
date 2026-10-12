@@ -1,0 +1,29 @@
+{
+  "command": [
+    "clang-17",
+    "--target=thumbv4t-none-eabi",
+    "-mcpu=arm7tdmi",
+    "-mthumb",
+    "-Oz",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fomit-frame-pointer",
+    "-fno-unwind-tables",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-c",
+    ".local/pr16-research-lifecycle/retry-isolated.c",
+    "-o",
+    ".local/pr16-research-lifecycle/retry-isolated.o"
+  ],
+  "returncode": 0,
+  "stderr": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "stdout": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  }
+}

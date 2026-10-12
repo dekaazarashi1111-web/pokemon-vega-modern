@@ -1,0 +1,108 @@
+name: pr16-research-story-continue-install
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-continue-install.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  install:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install bounded reviewed UTF8 source and reuse exact new test originals
+        run: |
+          python3 -B - <<'PY'
+          import base64,datetime,hashlib,json,lzma,os,pathlib,subprocess,sys
+          root=pathlib.Path.cwd();sys.path[:0]=[str(root/'scripts'),str(root)]
+          import pr16_research_lifecycle_actions as d
+          import pr16_research_story as s
+          from pr16_learnset_compact_record import publish_resume
+          d.current();out=root/'.local/pr16-story-continue-install';out.mkdir(parents=True)
+          START='9314fd64164a4ac6d602e69499cbdceb09f81584'
+          subprocess.run(['git','merge-base','--is-ancestor',START,'HEAD'],check=True)
+          state=d.read(root/d.STATE);s.need(d.bindings(set(state['source_bindings']))==state['source_bindings'],'all accepted originals unchanged')
+          specifications=[('19bd7ca73120511bc465c5ec4665afd58786e361',4000,'fe96c3a2ed1cba4696beddd7eddb1f3fff5025c6f453b489aec918cbf13dbd35'),('4d576d1fe7b601fab331692411ac625d6f0695c0',4000,'255e8681430fb54497e0805e1e8fc9d10c7c59118ac9df66336807bccb669b17'),('90c8765fd8a53f324edb2beb7ad4aad8649575ce',2616,'602efc8c506e728a66a5be1716c1a12144e281481a72a48079a6299b078e7c7c')]
+          pieces=[]
+          for sha,size,digest in specifications:
+            q=d.inputs.api('git/blobs/'+sha);s.need(q['sha']==sha and q['encoding']=='base64','fixed blob encoding')
+            b=base64.b64decode(q['content'])
+            if sha=='4d576d1fe7b601fab331692411ac625d6f0695c0':
+              # 転送時に挿入された一文字だけを明示訂正し、元chunkのSHAで拒否側に固定。
+              s.need(len(b)==4001,'known transport typo length');text=base64.b64encode(b).decode();s.need(text.count('NkVSmK0Ljd')==1,'one known transport insertion');text=text.replace('NkVSmK0Ljd','NkVSm0Ljd');text+='='*(-len(text)%4);b=base64.b64decode(text)
+            s.need(s.identity(b)==dict(size=size,sha256=digest),'exact original chunk bytes');pieces.append(b)
+          packed=b''.join(pieces);s.need(s.identity(packed)==dict(size=10616,sha256='7104f057296053f482d811e083ef385e79551998a639dc5fc65eaa1589dc9e82'),'whole packed identity')
+          decoder=lzma.LZMADecompressor(memlimit=67108864);raw=decoder.decompress(packed,max_length=60000)
+          s.need(decoder.eof and not decoder.unused_data and s.identity(raw)==dict(size=56465,sha256='d0803c69e470981eb56832bb4c4810e5664f92fea87b8d937c672487ae686003'),'bounded decoded identity')
+          payload=json.loads(raw,object_pairs_hook=s.unique);base='content/modernization/pr16_research_story_continue_development/'
+          names={'scripts/pr16_research_story_continue.py','tests/test_pr16_research_story_continue.py','docs/PR16_RESEARCH_STORY_CONTINUE_JA.md'}|{base+n for n in ('commands.txt','continue.stderr.txt','continue.stdout.txt','initial-invalid-oracle.json','progress.stderr.txt','progress.stdout.txt','unit.stderr.txt','unit.stdout.txt','verification.json','visual-review.json')}
+          s.need(set(payload)=={'schema_version','task','files'} and payload['schema_version']==1 and payload['task']=='USER-20260927-RESEARCH-STORY-CONTINUE' and set(payload['files'])==names,'closed reviewed payload')
+          for name,row in payload['files'].items():
+            p=root/name;s.need(set(row)=={'before','content'} and row['before'] is None and not p.exists() and type(row['content']) is str and '\0' not in row['content'],'new UTF8 text only');p.parent.mkdir(parents=True,exist_ok=True);p.write_text(row['content'],encoding='utf-8')
+          import pr16_research_story_continue as m
+          dev=root/m.DEV;v=d.read(dev/'verification.json')
+          s.need(d.bindings(set(v['source_bindings']))==v['source_bindings'] and d.bindings(set(v['evidence_bindings']))==v['evidence_bindings'],'local test/source/evidence binding')
+          unit=(dev/'unit.stderr.txt').read_bytes();s.need(v['unit_tests']==59 and unit.count(b' ... ok\n')==59 and b'\nOK\n' in unit and b'FAILED' not in unit and not (dev/'unit.stdout.txt').read_bytes(),'59 new successful oracle originals')
+          m.commands((dev/'commands.txt').read_text());result=m.verify((dev/'progress.stdout.txt').read_bytes(),(dev/'continue.stdout.txt').read_bytes(),d.read(root/m.PARENT),v['output_save'])
+          for p in (m.SOURCE,m.TEST):compile((root/p).read_text(),p,'exec')
+          s.need(d.bindings(set(state['source_bindings']))==state['source_bindings'],'accepted sources unchanged after install')
+          goal='starter Continue以後のライバル敗北復帰→517番道路の木→東側道路map3/19→通常Save counter1→2→独立Continueは開発実測済。新59oracleを原本/source一致で保持。次はこの新規区間だけをActionsで独立測定しroute.srmを保存する。正式run/artifactがあれば先に照合し成功入力を重複しない。研究活動施設への通常到達は未完。旧初期化/スターター/RP/UI/BP/P08は再実行しない。'
+          state['research_story_continue_development']=dict(path=base+'verification.json',status=v['status'],natural_research_arrival_accepted=False,actions_completion_confirmed=False,local_native_processes=2,new_unit_tests=59)
+          state['bp']['current_stop']='STORY_CONTINUE_DEVELOPED_ACTIONS_NEXT';state['bp']['next_step']=goal
+          state['next_action']=dict(state['next_action'],id='STORY_CONTINUE_INDEPENDENT_MEASUREMENT_NEXT',goal_ja=goal,read_paths=['docs/PR16_RESEARCH_STORY_CONTINUE_JA.md',base+'verification.json',base+'commands.txt',m.SOURCE,m.PARENT],stop_rule_ja='原本SHA一致の保存Continue以後だけ。開発測定を正式Actions受入へ読み替えない。既存新run/artifactの確認後に必要な未測定部分だけを動かす。merge/release/baseline変更禁止。')
+          state['do_not_repeat'].insert(0,'継続開発原本 '+base+'verification.json はnative2/新oracle59。新Actions原本が既に存在する場合は先に回収し、正常に完走した入力の再実行を禁止。初期化/スターターは再生不要。')
+          wf='.github/workflows/pr16-research-story-continue-install.yml';context='.github/workflows/pr16-research-story-continue-context.yml'
+          for p in names|{wf,context}:state['source_bindings'][p]=s.identity((root/p).read_bytes())
+          state['logs_synchronized']=True;publish_resume(state)
+          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20260927-RESEARCH-STORY-CONTINUE / 保存Continue専用oracleの開発checkpoint\n- Version: research-story-continue-source-v1\n- Status: DONE（ソース保存限定。正式Actions測定と研究活動到達は未完）\n- Summary: 開発入力114区間/12012framesで通常ライバル戦の敗北復帰、517番道路の切れる木の拒否、町帰還と東側道路map3/19への退出、通常Save1→2を観測。別core Continueで全party/Flash/研究ledger/位置/RP0を保持。22実画面を目視確認。\n- Files changed: 新continuation oracle/test/閉じた入力/開発UTF8原本/guide、固定引継ぎMD/JSON、両ログ。ROM/save/runner/画面は非tracked。\n- Verify: 新59oracle全PASS原本とsource SHAを再利用、陽性oracle照合PASS。初回誤記17入力を実測12へ訂正した失敗は別receiptへ保持し負例okを未受入のまま扱う。開発native2、旧受入再実行0、compile/ROM変更0。このinstallは新native/unit起動0。resume/task graph/scoped index後にcommit。\n- Commit: source={os.environ["GITHUB_SHA"]}; install_run={os.environ["GITHUB_RUN_ID"]}; 同branch非force push。\n- Network: 固定GitHub HEAD/context/artifact/APIのみ。初期head9314fd64とstarter成功run36320959294を照合。一般CI action_required/歴史的全体guardを成功へ読み替えず、merge/release/baseline変更0。\n'
+          for p in d.LOGS:
+            with (root/p).open('a') as f:f.write(entry)
+          owned=names|{d.STATE,d.DOC}|d.LOGS
+          (out/'paths.txt').write_text('\n'.join(sorted(owned))+'\n');d.write(out/'verification.json',dict(status='PASS_SOURCE_CHECKPOINT_ONLY',source_head=os.environ['GITHUB_SHA'],new_native_processes=0,new_unit_test_runs=0,reused_new_unit_tests=59,result=result))
+          print('PASS: exact new source and local evidence; old native replay 0')
+          PY
+      - name: Validate resume graph scoped index and append-only logs
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t paths < .local/pr16-story-continue-install/paths.txt
+          git add -- "${paths[@]}"
+          python3 -B - <<'PY'
+          import pathlib,sys
+          sys.path.insert(0,'scripts');import pr16_learnset_runtime_record as g
+          g.START='9314fd64164a4ac6d602e69499cbdceb09f81584';g.CODE={'.github/workflows/pr16-research-story-continue-install.yml','.github/workflows/pr16-research-story-continue-context.yml'};g.OWNED=set(pathlib.Path('.local/pr16-story-continue-install/paths.txt').read_text().splitlines());g.guard()
+          PY
+          git diff --cached --check
+      - name: Commit non-force source checkpoint
+        run: |
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260927-RESEARCH-STORY-CONTINUE: 保存継続oracleと59検査原本を記録'
+          git push origin "HEAD:$GITHUB_REF"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-story-continue-install/committed-head.txt
+          python3 -B - <<'PY'
+          import pathlib,subprocess,zipfile
+          out=pathlib.Path('.local/pr16-story-continue-install')
+          with zipfile.ZipFile(out/'record.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for p in (out/'paths.txt').read_text().splitlines():z.writestr(p,subprocess.check_output(['git','show','HEAD:'+p]))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-story-continue-source-checkpoint
+          path: .local/pr16-story-continue-install
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

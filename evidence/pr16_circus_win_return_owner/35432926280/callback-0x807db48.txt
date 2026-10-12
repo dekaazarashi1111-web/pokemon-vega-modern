@@ -1,0 +1,32 @@
+
+.local/pr16-streak-input/candidate.gba:     file format binary
+
+
+Disassembly of section .data:
+
+0807db48 <.data+0x7db48>:
+ 807db48:	b500      	push	{lr}
+ 807db4a:	f7fc fb41 	bl	0x807a1d0
+ 807db4e:	0600      	lsls	r0, r0, #24
+ 807db50:	0e00      	lsrs	r0, r0, #24
+ 807db52:	2801      	cmp	r0, #1
+ 807db54:	d105      	bne.n	0x807db62
+ 807db56:	f07b fc61 	bl	0x80f941c
+ 807db5a:	2800      	cmp	r0, #0
+ 807db5c:	d001      	beq.n	0x807db62
+ 807db5e:	2001      	movs	r0, #1
+ 807db60:	e000      	b.n	0x807db64
+ 807db62:	2000      	movs	r0, #0
+ 807db64:	bc02      	pop	{r1}
+ 807db66:	4708      	bx	r1
+ 807db68:	b500      	push	{lr}
+ 807db6a:	f7eb fb49 	bl	0x8069200
+ 807db6e:	f7d7 fe6b 	bl	0x8055848
+ 807db72:	f7ff fc01 	bl	0x807d378
+ 807db76:	f7fc fdf5 	bl	0x807a764
+ 807db7a:	2009      	movs	r0, #9
+ 807db7c:	f7f3 ff78 	bl	0x8071a70
+ 807db80:	4804      	ldr	r0, [pc, #16]	@ (0x807db94)
+ 807db82:	4905      	ldr	r1, [pc, #20]	@ (0x807db98)
+ 807db84:	6001      	str	r1, [r0, #0]
+ 807db86:	4805      	ldr	r0, [pc, #20]	@ (0x807db9c)

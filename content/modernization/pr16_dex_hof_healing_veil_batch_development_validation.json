@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_HEALING_VEIL_BATCH_REVIEW",
+  "review_scope": "new_healing_veil_batch_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "initial_head": "e6510c5964fe1f17f61cc0261024e4e3ac427a55",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-healing-veil-batch.yml": {
+      "size": 3054,
+      "sha256": "287a3c88a76235bd6dedff53ad4136f3692319a391baada374cac36789b8e69e"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_sources.json": {
+      "size": 2989,
+      "sha256": "86a55511cbf4026575cca09bbfe91c19ab798aa1dc3993b9b2e35aef28713e22"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_roots_review.json": {
+      "size": 58388,
+      "sha256": "2c356fa80c0fac8ae6f50eab12408e17694efb9c487e30a30c21189ba6936bad"
+    },
+    "docs/PR16_DEX_HOF_HEALING_VEIL_BATCH_JA.md": {
+      "size": 3440,
+      "sha256": "cb6c7ad22501aca6338362279e40e0f6c1437c9d3fbe624c008c54b59c6e8728"
+    },
+    "scripts/pr16_dex_hof_healing_veil_batch.py": {
+      "size": 6260,
+      "sha256": "b730bf71917803393fb656392a38893db445c8bb3f39fb3c696ee770ce3fc121"
+    },
+    "scripts/pr16_dex_hof_healing_veil_batch_actions.py": {
+      "size": 29209,
+      "sha256": "4caa5d0ea1d36a09613a5660e5caba6feb29b9f6c1b6a66fd92c7c387cb158ab"
+    },
+    "scripts/pr16_dex_hof_healing_veil_batch_capacity.py": {
+      "size": 10834,
+      "sha256": "d0199fae9d34ec5bd0db798f68d746ebe917154756a4af4b697c51bde5c40ea3"
+    },
+    "scripts/pr16_dex_hof_healing_veil_batch_chain.py": {
+      "size": 20110,
+      "sha256": "4bb411c2710f68aa781d7c45aefce6d85bcf61e164b34e66d3fffd5bfeb78561"
+    },
+    "scripts/pr16_dex_hof_healing_veil_roots.py": {
+      "size": 28107,
+      "sha256": "d8aba519beeee5ed8a08c3b518cf0b306f0e54e8c85d7aa578655a5c2f41d3c2"
+    },
+    "tests/test_pr16_dex_hof_healing_veil_batch.py": {
+      "size": 7733,
+      "sha256": "44c9d2eee3fa7d979b67251fa36a120322b20cfebe33e4d395a877588863c2aa"
+    },
+    "tests/test_pr16_dex_hof_healing_veil_batch_actions.py": {
+      "size": 18833,
+      "sha256": "e71e2542572259f83313d672514dd427045893df4705e2c142407f87d51959f6"
+    },
+    "tests/test_pr16_dex_hof_healing_veil_batch_capacity.py": {
+      "size": 14246,
+      "sha256": "3ea59a75c4189cf53c0ad57abe187087597a80cad60fd8faf0c8d0ae35b2220f"
+    },
+    "tests/test_pr16_dex_hof_healing_veil_batch_chain.py": {
+      "size": 17607,
+      "sha256": "058077cc495d42573410a2909134421bdb58deebe84e6d65a60bba01a90fcd40"
+    },
+    "tests/test_pr16_dex_hof_healing_veil_roots.py": {
+      "size": 16876,
+      "sha256": "313c111c94ffb9ed3ce7153aefac04f8978632865c10733c691788bb7edabfa5"
+    }
+  },
+  "diagnostic": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "unit_tests": 207,
+    "new_integration_tests": 103,
+    "reused_new_scope_test_logs": [
+      {
+        "path": "healing-veil-roots-work/new-tests.txt",
+        "tests": 65,
+        "identity": {
+          "size": 10151,
+          "sha256": "c68277c35b90ac4931bfee203c35b5565e2a22f5ca9d797376a78ced05cb8030"
+        },
+        "reused": true
+      },
+      {
+        "path": "healing-veil-chain-work/new-tests.log",
+        "tests": 39,
+        "identity": {
+          "size": 8032,
+          "sha256": "9ee1b505507db94b9d28ca600e70c2559ab6516e6f87c072a30e50085a3dc255"
+        },
+        "reused": true
+      }
+    ],
+    "classifications": [
+      756,
+      118
+    ],
+    "newly_classified": 3,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "identity_source": "previous_verified_recovery_not_current_measurement"
+    },
+    "delta_identity": {
+      "size": 30048,
+      "sha256": "d7f844745ac3043f7ee6f6e173201885179e95946537155a784bb7ae694238e3"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false
+  },
+  "diagnostic_test_log": {
+    "size": 32286,
+    "sha256": "241360c5a1e3b9e62e4d84095a73f7fe685016eeb04a81fd9f20649c4ad8e07c"
+  },
+  "source_only_review": {
+    "status": "PASS",
+    "files": 14,
+    "open_findings": 0,
+    "current_rom_measured": false,
+    "old_independent_final_review_retried": false,
+    "scope": "new_healing_veil_batch_sources_only",
+    "method_ja": "新effect65/32の実Move/slot登録と有限serializer、E3/goto/FF09 consumerによる3件の最小4byte型、全18親保持・最新owner容量・公開guardを新sourceだけ独立確認。条件付き型とhandler成功・全prefix自然到達を別義務に保持。現0641全ROMは別Actions測定。"
+  },
+  "development_history": [
+    {
+      "id": "HV-SOURCE-01",
+      "severity": "blocking_test_failure",
+      "finding_ja": "consumer HITSが親inventoryと異なる順序のため、batch projectionの全行順序を検証する2試験が失敗する。",
+      "resolution_ja": "HITSを親昇順へ統一し、effectとpointerの選択はHITS位置に依存せずaddress-keyへ固定した。test_64とtest_65で昇順・effect/root/左右命令と完全pointer fieldを反証する。",
+      "verified": true,
+      "test_evidence": [
+        "test_each_projection_exact_deepcopy",
+        "test_all_fixtures_without_dropping_full_parent",
+        "test_64_sorted_closed_hit_projection",
+        "test_65_address_keyed_evidence_matches_actual_commands"
+      ]
+    },
+    {
+      "id": "HV-SOURCE-02",
+      "severity": "blocking_publication_contract",
+      "finding_ja": "receipt本文の閉schemaがなくnative_processes=99と未知fieldを付加しても、commit済みproof/snapshotを変えずexportが成功した。",
+      "resolution_ja": "validate_exportがmeasurement source/run、厳密native0、proof/snapshot全identity、current HEADと各Git blobから期待receipt全体を独立再構築し、canonical本文完全一致を要求する。未知fieldとbool/float aliasも拒否する。",
+      "verified": true,
+      "test_evidence": [
+        "test_closed_entire_receipt_rejects_extra_field",
+        "test_receipt_native_process_is_exact_integer_zero",
+        "test_missing_receipt_native_process_rejected",
+        "test_additional_field_in_identity_rejected",
+        "test_entire_receipt_native_injection_rejected_by_export"
+      ]
+    },
+    {
+      "stage": "preflight_freeze",
+      "finding": "consumer test65追加が統合103試験中に入り全CODE終端binding照合が停止",
+      "resolution": "consumer本体不変・最終65試験PASSとwriter停止後、新統合103だけ確定bindingで再確認。凍結consumer65/chain39ログを全identity付きで再利用。",
+      "old_suites_run": 0
+    }
+  ],
+  "publication_budget": {
+    "status": "PRECURRENT_CONSERVATIVE_SIZE_CHECK_NOT_ACCEPTANCE",
+    "files": {
+      "reference-chain.json": 64176,
+      "measurement.json": 167052,
+      "fixed-checkpoint.json": 207052,
+      "fixed-state.json": 3629780,
+      "fixed-resume.md": 173217,
+      "fixed-run-log.md": 2093700,
+      "fixed-version-log.md": 1705098,
+      "healing-veil-batch-tests.txt": 32286,
+      "unknown-frontier.json": 100000,
+      "partial-space.json": 60000,
+      "record.json": 30000
+    },
+    "total": 8262361,
+    "max_file": 4000000,
+    "max_total": 12000000,
+    "state_uses_complete_proof_reference": true
+  },
+  "unchanged_parent": {
+    "classified": 753,
+    "unclassified": 121,
+    "parent_inputs": 35,
+    "retained_proof_families": 18,
+    "changes": 134,
+    "witnesses": 124,
+    "owner_count": 115,
+    "hit_count": 874,
+    "song_models": 133,
+    "assets": 50
+  },
+  "acceptance_boundary": {
+    "current_candidate_verified": false,
+    "current_actions_required": true,
+    "natural_play_reachability_proven": false,
+    "universal_epoch_irq_proven": false,
+    "old_independent_final_source_review_completed": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "controller_runtime_wired": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}

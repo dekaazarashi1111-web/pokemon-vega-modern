@@ -1,0 +1,203 @@
+{
+  "status": "MEASURED_SAVE26_AWAITING_VISUAL_AND_INDEPENDENT_ACCEPTANCE",
+  "source_head": "3fde7851bff63efd661b0e5b9f6c6b488272fbb5",
+  "run_id": 37114774344,
+  "input_save": {
+    "size": 131088,
+    "sha256": "4a92a1d2a36c1b74fa7ba211a9b3a815d63c04582fd34b117a5c3af16828a68f"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "e65fc5bb2c76d7cfcdd144c1a69451ad8508ff73ad82e4c7f24595d75200624d"
+  },
+  "route": [
+    [
+      31,
+      7
+    ],
+    [
+      31,
+      8
+    ],
+    [
+      31,
+      9
+    ],
+    [
+      31,
+      10
+    ],
+    [
+      31,
+      11
+    ],
+    [
+      31,
+      12
+    ],
+    [
+      32,
+      12
+    ],
+    [
+      33,
+      12
+    ],
+    [
+      34,
+      12
+    ],
+    [
+      34,
+      13
+    ],
+    [
+      34,
+      14
+    ],
+    [
+      34,
+      15
+    ],
+    [
+      33,
+      15
+    ]
+  ],
+  "battle": {
+    "start": 17,
+    "finish": 26,
+    "trainer": false,
+    "outcome": 1,
+    "used": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "decisions": [
+      {
+        "observation": 23,
+        "move_slot": 2
+      }
+    ]
+  },
+  "teleport": null,
+  "final": {
+    "observe": 34,
+    "frame": 4613,
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      32,
+      15
+    ],
+    "live_xy": [
+      39,
+      22
+    ],
+    "facing": 3,
+    "field": false,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 26,
+    "rp": 0,
+    "battle_flags": 4,
+    "battle_outcome": 1,
+    "party_sha256": "d383efab4e3b8db8a7ae9faff78ae06db279d9e754282298e96b1b85a1d7c53a",
+    "flash_sha256": "8755b4268a772ef7efcc9dacbf96caee28f2580124daf8cf322d72d2c6c5bfe9",
+    "ledger_sha256": "50ba3fdcc36f077af96d2d61a5f101e0d7302f080e3ed26b8eba59390b22ea83"
+  },
+  "continued": {
+    "observe": 1,
+    "frame": 1510,
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      32,
+      15
+    ],
+    "live_xy": [
+      39,
+      22
+    ],
+    "facing": 3,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 26,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "d383efab4e3b8db8a7ae9faff78ae06db279d9e754282298e96b1b85a1d7c53a",
+    "flash_sha256": "8755b4268a772ef7efcc9dacbf96caee28f2580124daf8cf322d72d2c6c5bfe9",
+    "ledger_sha256": "50ba3fdcc36f077af96d2d61a5f101e0d7302f080e3ed26b8eba59390b22ea83"
+  },
+  "progress": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "4a92a1d2a36c1b74fa7ba211a9b3a815d63c04582fd34b117a5c3af16828a68f"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "e65fc5bb2c76d7cfcdd144c1a69451ad8508ff73ad82e4c7f24595d75200624d"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 4613,
+      "inputs": 84,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 35
+  },
+  "independent_continue": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "e65fc5bb2c76d7cfcdd144c1a69451ad8508ff73ad82e4c7f24595d75200624d"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "e65fc5bb2c76d7cfcdd144c1a69451ad8508ff73ad82e4c7f24595d75200624d"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 1510,
+      "inputs": 13,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 2
+  },
+  "screen_count": 37,
+  "native_processes": 2,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "rom_changes": 0,
+  "fixture_writes": 0,
+  "ordinary_saves": 1,
+  "cave_crossing_complete": false,
+  "full_story_accepted": false,
+  "release_ready": false,
+  "artifact_excludes": [
+    "existing ROM",
+    "runner",
+    "runtime",
+    "input Save25"
+  ]
+}

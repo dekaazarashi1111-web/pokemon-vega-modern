@@ -1,0 +1,46 @@
+{
+  "compiler": "13.2.1",
+  "code": {
+    "size": 744,
+    "sha256": "256a39da04a3263c9afed974ebebc31488bddd2f24077b09015a1ec2179b674a"
+  },
+  "open": 167028737,
+  "task": 167029025,
+  "symbols": "08002c45 A SL_Print\n08003cb1 A SL_AddWindow\n08003e09 A SL_RemoveWindow\n08003eed A SL_CopyWindow\n08003f6d A SL_PutWindow\n08004429 A SL_FillWindow\n08069201 A SL_Suspend\n080693f5 A SL_Resume\n08071a71 A SL_Sound\n08076bb5 A SL_CreateTask\n08076ca1 A SL_DestroyTask\n080f77fd A SL_Schedule\n080f7f7d A SL_DrawFrame\n080f7ffd A SL_ClearFrame\n080f89cd A SL_BaseTile\n0811030d A SL_Cursor\n08110bf9 A SL_Input\n09f4a800 T SL_Open\n09f4a920 T SL_Task\n09f4a9c0 t __SL_Resume_from_thumb\n09f4a9cc t __SL_CopyWindow_from_thumb\n09f4a9d8 t __SL_Print_from_thumb\n09f4a9e4 t __SL_FillWindow_from_thumb\n09f4a9f0 t __SL_Schedule_from_thumb\n09f4a9fc t __SL_CreateTask_from_thumb\n09f4aa08 t __SL_BaseTile_from_thumb\n09f4aa14 t __SL_AddWindow_from_thumb\n09f4aa20 t __SL_DrawFrame_from_thumb\n09f4aa2c t __SL_DestroyTask_from_thumb\n09f4aa38 t __SL_ClearFrame_from_thumb\n09f4aa44 t __SL_Cursor_from_thumb\n09f4aa50 t __SL_Suspend_from_thumb\n09f4aa5c t __SL_Sound_from_thumb\n09f4aa68 t __SL_PutWindow_from_thumb\n09f4aa74 t __SL_RemoveWindow_from_thumb\n09f4aa80 t __SL_Input_from_thumb\n09f4aad0 t SL_ROW_2\n09f4aad4 t SL_ROW_1\n09f4aadf t SL_ROW_0\n",
+  "source": {
+    "size": 3318,
+    "sha256": "c0ca5517dcd73b0f1c185a14d01e91fe7f5441fdb21b52d12c050603217f51e8"
+  },
+  "rows": [
+    [
+      "ポイントとランク",
+      "9f527e6414777e58ff"
+    ],
+    [
+      "ポイントのあつめかた",
+      "9f527e64190112220610ff"
+    ],
+    [
+      "おわる",
+      "052c29ff"
+    ]
+  ],
+  "new_arm_compiles": 1,
+  "source_head": "8b4dfa8626903803d246f1979fa27ef9e12578ee",
+  "run_id": 36310534280,
+  "code_hex": "0323f0b53d4a5b4213803d493d4b3e4a87b01879002802d01868884222d028339342f6d15021364800f0e8f807000f2818d828254543334bed18ff2302266a462b81324b0493324b6e81938200f0dcf86b46d88204a800f0ddf8fe2806d9380000f0e4f807b0f0bc01bc004703040406240e1b142b812000112100f0b3f80021200000f0cdf82000002500f0edf801233100200000931f4a02950195073300f09bf811233100200000931b4a02950195093b00f091f82123310020000093174a02950195193b00f087f8032710232a003100009320000f3b0295019700f0b2f83900200000f072f8280000f081f80123024a5b42138000f0abf8b3e70470030221a9f409d05000035053000300090114060f0000dfaaf409d4aaf409d0aaf409f8b507000f2814d828244443204be4182379002b0dd022681e4b9a4209d163891b041b14002b07dd6389013b1b041b146381f8bc01bc004700f092f80600831cf7d025892d062d0eff2d0bd00021280000f062f8280000f07df8002000f038f8ff232381380000f051f8052000f066f80223721c05d033061b0e022b06d833041b0c054a138000f00bf8d2e7034bf8e7d050000321a9f40904700302fdff00007847fde704f01fe5f59306087847fde704f01fe5ed3e00087847fde704f01fe5452c00087847fde704f01fe5294400087847fde704f01fe5fd770f087847fde704f01fe5b56b07087847fde704f01fe5cd890f087847fde704f01fe5b13c00087847fde704f01fe57d7f0f087847fde704f01fe5a16c07087847fde704f01fe5fd7f0f087847fde704f01fe50d0311087847fde704f01fe5019206087847fde704f01fe5711a07087847fde704f01fe56d3f00087847fde704f01fe5093e00087847fde704f01fe5f90b11080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000052c29ff9f527e64190112220610ff9f527e6414777e58ff",
+  "source_bindings": {
+    "tools/pr16_research_standard_list.c": {
+      "size": 3318,
+      "sha256": "c0ca5517dcd73b0f1c185a14d01e91fe7f5441fdb21b52d12c050603217f51e8"
+    },
+    "scripts/pr16_research_standard_list.py": {
+      "size": 9390,
+      "sha256": "9dd2fb8008033e501cf444ecbab6d17600984a28c5849bb7495579609ad0d728"
+    },
+    "tests/test_pr16_research_standard_list.py": {
+      "size": 9665,
+      "sha256": "a4c9200caf1b7557e81eb44d00f748222c0d24641d9a586b41282c4b9eb4fd12"
+    }
+  }
+}

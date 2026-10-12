@@ -1,0 +1,184 @@
+{
+  "status": "STATIC_SAVE79_THIRD_DIGLETT_ONLY",
+  "preparation": {
+    "size": 8747,
+    "sha256": "90fa9c811573035e22e4851a5f4eb9638220bf03934020ec037cc7d52ec3a3ee"
+  },
+  "route": [
+    [
+      4,
+      13
+    ],
+    [
+      5,
+      13
+    ],
+    [
+      6,
+      13
+    ],
+    [
+      7,
+      13
+    ],
+    [
+      8,
+      13
+    ],
+    [
+      9,
+      13
+    ]
+  ],
+  "terrain": [
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        4,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        5,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        7,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        8,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        9,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        9,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    }
+  ],
+  "interaction": {
+    "local_id": 8,
+    "target": [
+      9,
+      12
+    ],
+    "from_xy": [
+      9,
+      13
+    ],
+    "facing": 2,
+    "script": 141220512,
+    "visibility_flag": 4374,
+    "button": "A"
+  },
+  "initial_flags": {
+    "4372": 0,
+    "4373": 0,
+    "4374": 0,
+    "4375": 1,
+    "4376": 0,
+    "4377": 0,
+    "4378": 1
+  },
+  "expected_flag_changes": [
+    [
+      4372,
+      0,
+      1
+    ],
+    [
+      4374,
+      0,
+      1
+    ],
+    [
+      4375,
+      1,
+      0
+    ]
+  ],
+  "expected_object_changes": [
+    {
+      "local_id": 5,
+      "operation": "removeobject"
+    },
+    {
+      "local_id": 8,
+      "operation": "removeobject"
+    },
+    {
+      "local_id": 9,
+      "operation": "addobject"
+    }
+  ],
+  "instruction_count": 43,
+  "text_count": 2,
+  "native_route_accepted": false
+}

@@ -1,0 +1,323 @@
+name: pr16-story-acceleration-plan-repair
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-acceleration-plan-repair.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-acceleration-plan-repair
+  cancel-in-progress: false
+jobs:
+  repair-and-record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+      GENERATION_RUN_ID: '36494701271'
+      GENERATION_ARTIFACT_ID: '11003075314'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Resolve immutable decision and workflow ancestry
+        run: |
+          set -euo pipefail
+          test "$(git branch --show-current)" = "codex/modernization-followup-20260908"
+          echo "WORKFLOW_PARENT_HEAD=$(git rev-parse HEAD^)" >> "$GITHUB_ENV"
+          echo "DECISION_BASE_HEAD=$(git rev-parse HEAD^^)" >> "$GITHUB_ENV"
+          test "$(git rev-parse HEAD^)" = "9210469fb8bd0c874cc9b1161d3c70eaf9f7b8d9"
+          test "$(git rev-parse HEAD^^)" = "16e11cf367d9d6e977f66c6b209d8623931444dd"
+      - name: Restore generated plan originals from failed recording run
+        run: |
+          set -euo pipefail
+          rm -rf .local/pr16-story-acceleration-plan-repair
+          mkdir -p .local/pr16-story-acceleration-plan-repair
+          gh run download "$GENERATION_RUN_ID" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name pr16-story-acceleration-plan \
+            --dir .local/pr16-story-acceleration-plan-repair
+          test -f .local/pr16-story-acceleration-plan-repair/docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md
+          test -f .local/pr16-story-acceleration-plan-repair/content/modernization/pr16_story_acceleration_plan.json
+          cp .local/pr16-story-acceleration-plan-repair/docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md \
+            docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md
+          cp .local/pr16-story-acceleration-plan-repair/content/modernization/pr16_story_acceleration_plan.json \
+            content/modernization/pr16_story_acceleration_plan.json
+      - name: Synchronize owner decision, fixed resume, bindings and both logs
+        run: |
+          python3 - <<'PY'
+          from __future__ import annotations
+
+          import datetime as dt
+          import hashlib
+          import json
+          import os
+          import textwrap
+          from pathlib import Path
+
+          root = Path('.')
+          state_path = root / 'content/modernization/pr16_native_supply_resume_20260913.json'
+          plan_path = root / 'content/modernization/pr16_story_acceleration_plan.json'
+          plan_doc_path = root / 'docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md'
+          resume_path = root / 'CHATGPT_RESUME.md'
+          run_id = int(os.environ['GITHUB_RUN_ID'])
+          generation_run = int(os.environ['GENERATION_RUN_ID'])
+          generation_artifact = int(os.environ['GENERATION_ARTIFACT_ID'])
+          decision_base = os.environ['DECISION_BASE_HEAD']
+          workflow_parent = os.environ['WORKFLOW_PARENT_HEAD']
+          source_head = os.environ['GITHUB_SHA']
+          timestamp = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z')
+
+          plan = json.loads(plan_path.read_text(encoding='utf-8'))
+          plan.update({
+              'workflow_source_head': source_head,
+              'workflow_parent_head': workflow_parent,
+              'decision_base_head': decision_base,
+              'recording_run_id': run_id,
+              'generation_run_id': generation_run,
+              'generation_artifact_id': generation_artifact,
+              'recorded_at_utc': timestamp,
+              'recording_repair_reason': 'CHATGPT_RESUME.md source binding is refreshed after the owner-decision insertion; failed generation run remains historical',
+          })
+          plan['story_fast']['item_resolution_rule'] = (
+              'Resolve every held/support item by the current item manifest and verify ABI before use. '
+              'If Wise Glasses, Muscle Band, Smoke Ball, or a support item cannot be resolved exactly, '
+              'use no held item or omit that support item; never guess a numeric ID.'
+          )
+          plan['story_fast']['field_move_rotation'] = {
+              'rule': 'A field move is installed only after its story-owned HM/key-item/badge authorization; every between-section move swap is a new recorded fixture boundary.',
+              'base_loadout': [
+                  {'species_key': 'SPECIES_KEY_MEW', 'moves': ['MOVE_SURF', 'MOVE_FLY', 'MOVE_STRENGTH', 'MOVE_ROCK_SMASH']},
+                  {'species_key': 'SPECIES_KEY_BIBAREL', 'moves': ['MOVE_CUT', 'MOVE_WATERFALL', 'MOVE_DIVE', 'MOVE_ROCK_CLIMB']},
+              ],
+              'conditional_swap': {
+                  'move_key': 'MOVE_FLASH',
+                  'current_id': 148,
+                  'install_on': 'SPECIES_KEY_MEW',
+                  'replace_temporarily': 'the least-needed currently authorized utility move for the exact dark-area section',
+                  'restore_after_section': True,
+              },
+          }
+          plan['progression']['held_item_resolution_rule'] = (
+              'Resolve Lucky Egg by the current item manifest and prove the held-effect ABI with a no-item/item EXP differential before the soak. '
+              'Do not run the accelerated soak when the key or multiplier is unresolved.'
+          )
+          plan_path.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          doc = plan_doc_path.read_text(encoding='utf-8')
+          field_section = textwrap.dedent('''\
+          ### field moveの段階解禁と差替え
+
+          基本loadoutはMewのなみのり・そらをとぶ・かいりき・いわくだき、Bibarelのいあいぎり・たきのぼり・ダイビング・ロッククライムとする。ただし、各技は対応するHM・key item・badge・story authorizationをゲーム内で自然取得した後だけ入れる。
+
+          暗所でフラッシュ(ID148)が必要な区間は、Mewのその時点で最も不要な解禁済みutility技と一時交換し、区間終了後に元へ戻す。交換前後を別fixture boundaryとして、技・PP・個体checksum・Save差分を記録する。未取得field moveを先行投入してsequence breakしない。
+
+          持ち物と支援用品は現候補のitem manifestからstable keyとABIを解決してから使用する。ものしりメガネ、ちからのハチマキ、けむりだま等を完全一致で解決できない場合は、数値IDを推測せず持ち物なしへfail-safeする。
+
+          ''')
+          marker = '### 支援用品\n'
+          if field_section not in doc:
+              if marker not in doc:
+                  raise ValueError('field-move insertion marker missing')
+              doc = doc.replace(marker, field_section + marker, 1)
+          lucky_note = (
+              '\nしあわせタマゴは現候補のitem manifestからstable key・held-effect ABIを解決し、'
+              '未所持/所持の同一相手EXP差を先に実測する。解決不能または倍率不一致なら高速soakへ進まず、数値IDを推測しない。\n'
+          )
+          soak_marker = '## レーンC: 長時間soak\n'
+          if lucky_note not in doc:
+              if soak_marker not in doc:
+                  raise ValueError('lucky-egg insertion marker missing')
+              doc = doc.replace(soak_marker, lucky_note + '\n' + soak_marker, 1)
+          plan_doc_path.write_text(doc, encoding='utf-8')
+
+          goal = (
+              '所有者決定の3レーンへ切替える。Save14原本を不変に保ち、'
+              '(A) 自己OT Lv100のMewtwo/Haxorusと段階解禁utilityでマオリ以降の通常storyを高速走破、'
+              '(B) 別fixtureで通常wild battle EXP→level-up/技習得/進化→通常Save/fresh Continueを変更境界ごとに自動検証、'
+              '(C) Axew系+しあわせタマゴとAudino/Chansey/Blissey段階切替でLv100までsoakする。'
+              'まず作業コピー2本を生成し、stable key/item ABIを再解決してから、服従/戦闘復帰/保存再開smokeと最初のEXP進化縦切りを受入する。'
+          )
+          stop_rule = (
+              'Save14原本artifactと受入済みSave1〜14は不変。story-fastとprogressionを混同しない。'
+              'fixture書込みは戦闘開始前だけとし、開始後のparty/EXP/level/技/進化/story flag/outcomeへのhost書込みを禁止する。'
+              'Lv100走破を自然難易度・自然入手・自然育成へ、fixture戦を野生テーブル・自然初期技へ読み替えない。'
+          )
+          host_policy = (
+              '受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。'
+              '自己OT party、manifest解決済み通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。'
+              'badge/key item/story flag/money/RPをfixture付与せず、戦闘開始後は通常入力とゲーム内処理だけを使う。'
+          )
+
+          resume = resume_path.read_text(encoding='utf-8')
+          start = '<!-- owner-story-acceleration-plan -->'
+          end = '<!-- /owner-story-acceleration-plan -->'
+          section = textwrap.dedent('''\
+          <!-- owner-story-acceleration-plan -->
+          ## 所有者決定: ストーリー走破と自然成長検証を分離
+
+          - Save14原本は上書きせず、`story-fast.srm` と `progression.srm` の2作業コピーへ分ける。
+          - story-fastはSave14の自己OTを正確に継承したLv100主力で戦闘を短縮し、イベント・warp・trainer勝利・通常Save/fresh Continue・全story接続を確認する。難易度や自然育成の受入にはしない。
+          - progressionは通常wild battleを直接開始し、通常入力による撃破からEXP、level-up、技習得、進化、field復帰、通常Save/fresh Continueを検証する。しあわせタマゴとAudino/Chansey/Blissey段階切替によるsoakはitem ABIとbase EXP対照後に行う。
+          - 主力、技、持ち物、自己OT、field utility、フラッシュ差替え、相手切替、host-write境界、最初の縦切りは `docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md` と `content/modernization/pr16_story_acceleration_plan.json` を正とする。
+          - 次作業は、作業コピー2本の生成、stable key/item ABI再解決、自己OT Lv100服従smoke、Axew第一進化直前からの通常戦闘EXP縦切りである。受入済みSave14以前を再生しない。
+          <!-- /owner-story-acceleration-plan -->
+          ''')
+          if start in resume:
+              left, rest = resume.split(start, 1)
+              _, right = rest.split(end, 1)
+              resume = left + section + right.lstrip('\n')
+          else:
+              anchor = '## 次回そのまま渡す指示'
+              if anchor not in resume:
+                  raise ValueError('CHATGPT_RESUME insertion anchor missing')
+              resume = resume.replace(anchor, section + '\n' + anchor, 1)
+          resume_path.write_text(resume, encoding='utf-8')
+
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['bp']['next_step'] = goal
+          state['next_action']['id'] = 'STORY_FAST_E2E_AND_NATURAL_EXP_EVOLUTION_SPLIT'
+          state['next_action']['goal_ja'] = goal
+          state['next_action']['stop_rule_ja'] = stop_rule
+          state['next_action']['host_write_policy_ja'] = host_policy
+          state['next_action']['read_paths'] = [
+              'docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md',
+              'content/modernization/pr16_story_acceleration_plan.json',
+              'docs/PR16_STORY_SAVE14_JA.md',
+              'content/modernization/pr16_story_save14_checkpoint.json',
+              'content/modernization/pr16_story_save14_working.json',
+              'content/modernization/pr16_learnset_progression_checkpoint.json',
+              'content/modernization/pr16_learnset_battle_checkpoint.json',
+          ]
+          state['story_acceleration_plan'] = {
+              'path': 'content/modernization/pr16_story_acceleration_plan.json',
+              'document': 'docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md',
+              'status': 'OWNER_APPROVED_EXECUTION_PLAN_RECORDED',
+              'decision_base_head': decision_base,
+              'workflow_source_head': source_head,
+              'generation_run_id': generation_run,
+              'generation_artifact_id': generation_artifact,
+              'recording_run_id': run_id,
+              'source_stop': 'PASS_STORY_SAVE14_SCOPED',
+              'source_artifact_id': 10999218544,
+              'accepted_case_reruns': 0,
+              'new_native_processes': 0,
+              'rom_changes': 0,
+              'release_ready': False,
+          }
+          no_repeat = (
+              '所有者決定後はSave14原本から自然育成を漫然と継続しない。'
+              'story-fastは自己OT Lv100作業コピー、成長受入は別progression fixtureの通常戦闘EXPで行い、'
+              '両レーンの主張を混同しない。'
+          )
+          if no_repeat not in state['do_not_repeat']:
+              state['do_not_repeat'].insert(0, no_repeat)
+
+          def bind(name: str) -> None:
+              raw = (root / name).read_bytes()
+              state['source_bindings'][name] = {
+                  'sha256': hashlib.sha256(raw).hexdigest(),
+                  'size': len(raw),
+              }
+
+          bind('CHATGPT_RESUME.md')
+          bind('docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md')
+          bind('content/modernization/pr16_story_acceleration_plan.json')
+          state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          run_entry = textwrap.dedent(f'''\
+
+          ## {timestamp}
+
+          - Task: `USER-20260929-STORY-ACCELERATION-PLAN` / ストーリー高速走破と自然EXP・技習得・進化検証の分離
+          - Status: DONE
+          - Summary:
+            - Save14原本を不変にし、自己OT Lv100によるstory-fast、通常wild battle EXPによるprogression、Axew系Lv100 soakの3レーンを所有者決定として固定した。
+            - Mewtwo/Haxorus/Mew/Bibarelの編成、技・持ち物・EV/IV、party空き2枠、field move段階解禁とFlash差替え、支援用品のmanifest解決規則を記録した。
+            - progressionはpre-battle fixtureだけを許可し、戦闘開始後のparty/EXP/level/技/進化/flag/outcome host-writeを禁止した。Lucky Egg対照、Exp. Share、技空き/置換/拒否、進化/cancel、複数level、Lv100 overflowを必須境界にした。
+            - 固定再開JSON、`CHATGPT_RESUME.md`、生成再開MD、両ログを同期し、変更した固定入口と新計画2ファイルのsource bindingを更新した。既受入native/ROM/Saveの再実行・変更は0。
+          - Verify:
+            - `python3 scripts/pr16_resume.py render/check`: PASS
+            - `python3 -m unittest discover -s tests -p test_pr16_resume.py -v`: PASS
+            - `python3 scripts/validate_task_graph.py --check`: PASS
+            - plan JSON schema/source binding/`git diff --check`: PASS
+          - Runtime accounting: new native process 0 / ROM change 0 / accepted-case rerun 0 / release・merge・baseline切替0。
+          - Generation run: `{generation_run}`（freshness guardで停止、commitなし）/ recording run: `{run_id}`。
+          - Commit: `-`（本エントリを含むActions commit）
+          ''')
+          version_entry = textwrap.dedent(f'''\
+
+          ## {timestamp} — Story fast E2E / natural EXP-evolution split
+
+          - `USER-20260929-STORY-ACCELERATION-PLAN`: Save14以降を、自己OT Lv100によるstory接続確認と、通常戦闘EXPによるlevel-up・技習得・進化検証へ分離した。
+          - Mewtwo/Haxorus/Mew/Bibarelのstory-fast編成、Axew+Lucky EggとAudino/Chansey/Blisseyのsoak、Flashを含むfield move rotation、pre-battle fixture境界、必須12ケースを固定した。
+          - 固定再開の次作業を作業コピー2本、stable key/item ABI解決、服従/勝利/保存再開smoke、最初のEXP進化縦切りへ更新した。runtime受入・release状態は不変。
+          - Generation run `{generation_run}` / recording run `{run_id}` / decision base `{decision_base}`。
+          ''')
+          with (root / 'design/run_log.md').open('a', encoding='utf-8') as stream:
+              stream.write(run_entry)
+          with (root / 'design/version_log.md').open('a', encoding='utf-8') as stream:
+              stream.write(version_entry)
+          PY
+      - name: Render and validate fixed resume and plan
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py render
+          python3 -B scripts/pr16_resume.py check
+          python3 -B -m unittest discover -s tests -p test_pr16_resume.py -v
+          python3 -B scripts/validate_task_graph.py --check
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          root = Path('.')
+          plan = json.loads((root/'content/modernization/pr16_story_acceleration_plan.json').read_text(encoding='utf-8'))
+          state = json.loads((root/'content/modernization/pr16_native_supply_resume_20260913.json').read_text(encoding='utf-8'))
+          assert plan['status'] == 'OWNER_APPROVED_EXECUTION_PLAN_RECORDED'
+          assert plan['source_save_immutable'] is True
+          assert plan['new_native_processes'] == 0
+          assert len(plan['story_fast']['party']) == 4
+          assert plan['story_fast']['open_party_slots'] == 2
+          assert plan['story_fast']['field_move_rotation']['conditional_swap']['current_id'] == 148
+          assert plan['progression']['primary_soak_species_key'] == 'SPECIES_KEY_AXEW'
+          assert plan['progression']['required_case_count'] == 12
+          assert state['next_action']['id'] == 'STORY_FAST_E2E_AND_NATURAL_EXP_EVOLUTION_SPLIT'
+          assert state['story_acceleration_plan']['release_ready'] is False
+          for name in ('CHATGPT_RESUME.md','docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md','content/modernization/pr16_story_acceleration_plan.json'):
+              raw=(root/name).read_bytes(); meta=state['source_bindings'][name]
+              assert meta == {'sha256': hashlib.sha256(raw).hexdigest(), 'size': len(raw)}
+          PY
+          git diff --check
+      - name: Non-force commit and remote readback
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add CHATGPT_RESUME.md \
+            docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md \
+            docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md \
+            content/modernization/pr16_story_acceleration_plan.json \
+            content/modernization/pr16_native_supply_resume_20260913.json \
+            design/run_log.md design/version_log.md
+          git diff --cached --check
+          test -n "$(git status --short)"
+          git commit -m "USER-20260929-STORY-ACCELERATION: Lv100走破とEXP進化専用レーンへ固定 run=$GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/$branch
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 -B scripts/pr16_resume.py check
+          echo "RESULT=DONE TASK=USER-20260929-STORY-ACCELERATION-PLAN VERIFY=PLAN_RESUME_BINDINGS_LOGS_PASS COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-acceleration-plan-repair
+          path: |
+            docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md
+            content/modernization/pr16_story_acceleration_plan.json
+          if-no-files-found: error
+          retention-days: 90

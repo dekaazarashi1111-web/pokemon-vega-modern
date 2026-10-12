@@ -1,0 +1,635 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "BPRJ.ld": {
+      "local": "BPRJ.ld",
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "path": "BPRJ.ld",
+      "size": 68505,
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+      "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+    },
+    "pret-scrcmd.c": {
+      "local": "pret-scrcmd.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/scrcmd.c",
+      "size": 56954,
+      "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+      "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814"
+    }
+  },
+  "hits": [
+    {
+      "address": 135791439,
+      "target": 167707188,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "ee6178805d8e8c97f3ee2a63daf1f8664adc53e374cbb838dda85e157aeed7ee",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    }
+  ],
+  "root": {
+    "kind": "current_map_object_registered_conditional_script_text",
+    "group": 7,
+    "map": 0,
+    "object": 0,
+    "script": 135790913,
+    "map_literal": 134564620,
+    "dispatch": 134648088,
+    "loadword": 134650740,
+    "callstd": 134650432,
+    "message": 134656204,
+    "byte_consumer": 134253390,
+    "stop_after_eos": 134647186
+  },
+  "windows": [
+    {
+      "address": 134253384,
+      "size": 40,
+      "sha256": "30d10a27a1e38e96fd10f8307f3dc347d16a9478d84262cea28f3c5fe4803e89"
+    },
+    {
+      "address": 134253432,
+      "size": 8,
+      "sha256": "a51810c3f7c76fcc13e9e4980b883ea07640899f55c0cd297b0e908318f730b1"
+    },
+    {
+      "address": 134253602,
+      "size": 18,
+      "sha256": "0c52bde8b003f5c29e3c6dbabf8c9a92e8d2af32d07a8e4be3204e5da8d29441"
+    },
+    {
+      "address": 134564620,
+      "size": 4,
+      "sha256": "d672c5b39141ec15b78c62a82995e610593e06bd92fe2cb5aa5434696139c61e"
+    },
+    {
+      "address": 134647036,
+      "size": 22,
+      "sha256": "21a453e96949a0d9fb5171661fa50c374d49700b967be503ebc44c7f1c33c427"
+    },
+    {
+      "address": 134647064,
+      "size": 12,
+      "sha256": "3de38ec5f04c42bb9b8db33a7ea7670511adf96ff701dcf02c1e71fbd5c2b4d1"
+    },
+    {
+      "address": 134647176,
+      "size": 10,
+      "sha256": "c9c63ee2cd5ea4486328dff3525d3236a7a09633b08d878b6c5d61d52b1c50f4"
+    },
+    {
+      "address": 134647200,
+      "size": 4,
+      "sha256": "f31d45fbff05c0a5cdec5375dee92c4759c03f5fdf6bb34ee1808fb384a32f24"
+    },
+    {
+      "address": 134647916,
+      "size": 58,
+      "sha256": "57fcbf4f792dfa30088f1d3753300eac4042bd545395b5e587b1acac5834ffba"
+    },
+    {
+      "address": 134647976,
+      "size": 10,
+      "sha256": "8db31238fb6265cfa04f9be46b7ef134e68c38c3e7ed68c633ea30e42082ce1f"
+    },
+    {
+      "address": 134648088,
+      "size": 26,
+      "sha256": "c23e12489eeb9a5ddc85d4216365fb60541ae3b9d43eb3181fe4fa0b7ca84ace"
+    },
+    {
+      "address": 134648132,
+      "size": 40,
+      "sha256": "9a74d64cab74b8806fe9edfaac5a440ede9a61760ceea7f75a3791ff197d7462"
+    },
+    {
+      "address": 134648212,
+      "size": 20,
+      "sha256": "77ef01de4a48da25e8f463a63a684fc5799bab3168a85d936768641bd0129ac8"
+    },
+    {
+      "address": 134648272,
+      "size": 48,
+      "sha256": "1d6f67baf6aff67172ec8c2580bdd5ab743a7224f461ff4e68431c1d9e105f2c"
+    },
+    {
+      "address": 134648796,
+      "size": 8,
+      "sha256": "1a7270f8c3d75390c0acd8169220e2342ae02bb3bd5a67ce43085a2e8cd3b8b1"
+    },
+    {
+      "address": 134650432,
+      "size": 38,
+      "sha256": "a56ab43f56bba187706c31510aa5bd742c77459127cba73001da353919fc3841"
+    },
+    {
+      "address": 134650472,
+      "size": 8,
+      "sha256": "b4cdb095c5a7cbb104afc8e9e7acb6439f60636ff45687974cb51b720f0ad173"
+    },
+    {
+      "address": 134650740,
+      "size": 34,
+      "sha256": "6632a06bebc6c051ba0f1d400cb47767a9237d0bd2dcee6a9023e04b2a227b61"
+    },
+    {
+      "address": 134656204,
+      "size": 26,
+      "sha256": "ffd9c927490654600bb682ee6c17dbb27b44e381204466610ee88937136bdb5c"
+    },
+    {
+      "address": 135671016,
+      "size": 4,
+      "sha256": "25dd52f3be6308884dd9180d47a4ca1860449f2bd0827e3b52dd0541da6c8476"
+    },
+    {
+      "address": 135671040,
+      "size": 4,
+      "sha256": "589e15f487c95a94b42e75dd09c3ea3952ed1ad18639243d8b79d3f81e599983"
+    },
+    {
+      "address": 135671392,
+      "size": 4,
+      "sha256": "920c41671abfc966bc6788c9868829592c7bfb3c951dc31e5dcc78f5e11a1d46"
+    },
+    {
+      "address": 135673704,
+      "size": 4,
+      "sha256": "7cc413b64c6552062304957e0f82c5297595d5c4ce0e1eddb78feaa06a6f2aa9"
+    },
+    {
+      "address": 135790913,
+      "size": 129,
+      "sha256": "a490ab3bffae58f1f0c2a11ab4fba179bead5bf01eb43d9f8ba7189aae9ba43b"
+    },
+    {
+      "address": 135791180,
+      "size": 8,
+      "sha256": "671650288496167955c6959088ba9830198a2939b7fdae5acb36f267f9472e65"
+    },
+    {
+      "address": 135791292,
+      "size": 8,
+      "sha256": "47daa67a8ce0c8a0f2af34cffda52f0beaa8882069a99f68f199fb2eac18ba8b"
+    },
+    {
+      "address": 135791417,
+      "size": 103,
+      "sha256": "738619c3b8ed5364a2b7db932fb8f08d10ad7f5b8a3d3a5212e5af5ef3a2e986"
+    },
+    {
+      "address": 135867813,
+      "size": 8,
+      "sha256": "f740301a394637a38744ce56918c9b5334c317b0e3ac36424549fef8b66166db"
+    },
+    {
+      "address": 136084172,
+      "size": 2,
+      "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5"
+    },
+    {
+      "address": 137449464,
+      "size": 8,
+      "sha256": "2c5cabff02c2439d5774153eea8007b0008501dcd81c56cb5d3da7ecfe25ac6b"
+    },
+    {
+      "address": 137454836,
+      "size": 4,
+      "sha256": "6dd960094da200c7b3721acbde49bc3923bc290640b3965c37335ad1fb5881ab"
+    },
+    {
+      "address": 137880368,
+      "size": 24,
+      "sha256": "1e08ca20282a366786010e37eb744507b085abd3f4ae9e25ab99c6b41e6f27b5"
+    },
+    {
+      "address": 137880424,
+      "size": 8,
+      "sha256": "66cbf769970bf2fc1ee6b775b82fde892997393b9b0b0bfd477be2c21ae579be"
+    },
+    {
+      "address": 153899440,
+      "size": 4,
+      "sha256": "b52cc5bd6dd8d58fbbf3f123475a4fcf3087c9ea1d6e1f42ad05092aa32dcdbf"
+    }
+  ],
+  "claims": {
+    "proof_scope": "conditional_registered_event_script_to_actual_text_byte_reads",
+    "root_verified": true,
+    "root_verification_scope": "current_registration_and_script_structure_only",
+    "registered_root_runtime_execution_proven": false,
+    "valid_suffix_context_is_entry_condition": true,
+    "structural_prefix_only": true,
+    "prefix_handler_runtime_effects_proven": false,
+    "selected_producer_consumer_machine_executed": true,
+    "full_story_reachability_claimed": false,
+    "actual_runtime_execution_observed": false,
+    "full_renderer_claimed": false,
+    "universal_heap_or_irq_lifetime_proven": false,
+    "opaque_callee_effects_proven": false,
+    "source_pointer_interpretation": false,
+    "whole_text_classified": false,
+    "indirect_reference_completeness_claimed": false,
+    "donor_eligible": false,
+    "donor_leased": false
+  },
+  "input_contract": {
+    "entry": "Current map7/0 object0 selection supplies script08180141; natural map/object interaction reachability is a separate obligation.",
+    "prefix": "固定script byte列のgrammarと有限edgeだけを検査する。Python source転送例は現ROM handlerの実行証明ではなく、contextを進めない。root_verifiedは現登録とscript構造だけを意味する。",
+    "special": "固定source転送意味ではRESULT8/0が左右pathを選ぶ、という別々の条件例だけを確認する。現ROM special344/waitstateの効果、結果の生成、自然到達は証明しない。",
+    "handoff": "実suffixの入口条件は、現登録script中の構造上validな選択command contextが得られていること。検証では実InitScriptContextとSetupScriptへ選択PCを渡し、その条件を具体化する。登録rootからruntimeで到達したとは扱わず、text pointerはseedしない。",
+    "consumer": "Actual dispatcher, LOADWORD operand reader/data0 store, CALLSTD4 stack push/pointer store, message(NULL), ShowFieldMessage and StringExpandPlaceholders execute with message state0. Stop immediately after complete EOS expansion, before rendering helpers.",
+    "memory": "Context, stack, expanded-text output and message-state storage are aligned, disjoint and live for each finite invocation. No allocation, free, IRQ or arbitrary external call occurs inside the selected producer/consumer prefix. Universal lifetime and asynchronous effects are outside scope.",
+    "minimum": "Only the 4-byte hit0818034F is classified. Root/script/consumer code, literal/table cells and both complete texts are evidence only; no other region is excluded."
+  },
+  "texts": [
+    {
+      "address": 135791417,
+      "size": 25,
+      "sha256": "76a0778a7185be0db018cfdc27ccef1c543ca89818c7d74633ceab80ac0e5f78",
+      "owner_id": "OBJECT:7/0:0",
+      "target_script_root": 135790913,
+      "root_chain": [
+        {
+          "address": 134564620,
+          "size": 4,
+          "sha256": "d672c5b39141ec15b78c62a82995e610593e06bd92fe2cb5aa5434696139c61e",
+          "role": "map_groups_literal",
+          "value": 153899412
+        },
+        {
+          "address": 153899440,
+          "size": 4,
+          "sha256": "b52cc5bd6dd8d58fbbf3f123475a4fcf3087c9ea1d6e1f42ad05092aa32dcdbf",
+          "role": "group_slot",
+          "value": 137454836
+        },
+        {
+          "address": 137454836,
+          "size": 4,
+          "sha256": "6dd960094da200c7b3721acbde49bc3923bc290640b3965c37335ad1fb5881ab",
+          "role": "map_slot",
+          "value": 137449464
+        },
+        {
+          "address": 137449464,
+          "size": 8,
+          "sha256": "2c5cabff02c2439d5774153eea8007b0008501dcd81c56cb5d3da7ecfe25ac6b",
+          "role": "map_header",
+          "events": 137880424
+        },
+        {
+          "address": 137880424,
+          "size": 8,
+          "sha256": "66cbf769970bf2fc1ee6b775b82fde892997393b9b0b0bfd477be2c21ae579be",
+          "role": "event_header",
+          "objects": 137880368
+        },
+        {
+          "address": 137880368,
+          "size": 24,
+          "sha256": "1e08ca20282a366786010e37eb744507b085abd3f4ae9e25ab99c6b41e6f27b5",
+          "role": "object_record",
+          "script": 135790913,
+          "script_field": 137880384
+        }
+      ],
+      "path": [
+        {
+          "address": 135790913,
+          "size": 1,
+          "sha256": "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
+          "opcode": 106
+        },
+        {
+          "address": 135790914,
+          "size": 1,
+          "sha256": "bbeebd879e1dff6918546dc0c179fdde505f2a21591c9a9c96e36b054ec5af83",
+          "opcode": 90
+        },
+        {
+          "address": 135790915,
+          "size": 6,
+          "sha256": "dc0f66c38f2bdbe2d11df8eb7f4e4563089ff9e9dfc5f4d72588d53997a327d9",
+          "opcode": 15
+        },
+        {
+          "address": 135790921,
+          "size": 2,
+          "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+          "opcode": 9
+        },
+        {
+          "address": 135790923,
+          "size": 5,
+          "sha256": "0e9de4aacdbeb8156adf57b76bb52133d118f724fe361edcc019c5696bd8a7a5",
+          "opcode": 103
+        },
+        {
+          "address": 135790928,
+          "size": 1,
+          "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+          "opcode": 102
+        },
+        {
+          "address": 135790929,
+          "size": 5,
+          "sha256": "8beb2c90780307b6489410b6d320dd42e641269a220e84431d45a355cd284af1",
+          "opcode": 22
+        },
+        {
+          "address": 135790934,
+          "size": 3,
+          "sha256": "59f87a0bb0bd5395d6dc59417a0f9d54c595bd3d165c3777e7fb02e68f7222dc",
+          "opcode": 37
+        },
+        {
+          "address": 135790937,
+          "size": 1,
+          "sha256": "265fda17a34611b1533d8a281ff680dc5791b0ce0a11c25b35e11c8e75685509",
+          "opcode": 39
+        },
+        {
+          "address": 135790938,
+          "size": 5,
+          "sha256": "c771907ee3b56d884ce9c1351c0ff345a26a7ea4dc0270339065b00c61004209",
+          "opcode": 25
+        },
+        {
+          "address": 135790943,
+          "size": 5,
+          "sha256": "4fb15658f90bee04d12b1e4f79c5c52a6f398511af4c7494db997e6dfabcde0b",
+          "opcode": 33
+        },
+        {
+          "address": 135790948,
+          "size": 6,
+          "sha256": "c697832fda325e71e5a01fc1e765ec313cec0f21a307427925dac1b8421396ed",
+          "opcode": 6
+        },
+        {
+          "address": 135790954,
+          "size": 5,
+          "sha256": "2cacec105048e37b1948945ff8d911dcabf1134f58354329d8b40e76dd8243bc",
+          "opcode": 33
+        },
+        {
+          "address": 135790959,
+          "size": 6,
+          "sha256": "892d6b1b86fd70db406f48b77f207e542964cfc27fac31944e5485c65f1efef0",
+          "opcode": 6
+        },
+        {
+          "address": 135790965,
+          "size": 5,
+          "sha256": "33ef8da5017564b5800257927ca9045a8edd8eadd7b4239cec158c2b5f89d8e3",
+          "opcode": 33
+        },
+        {
+          "address": 135790970,
+          "size": 6,
+          "sha256": "d88e8ccc549e9447317bc3d5168c0a6ca7a23ca28a43358f50d46714ed209f5c",
+          "opcode": 6
+        },
+        {
+          "address": 135790976,
+          "size": 5,
+          "sha256": "17bf3c52dc66f04ca78a556eccf14908e75cc17ad5b37868eb9e17b4fbccf682",
+          "opcode": 33
+        },
+        {
+          "address": 135790981,
+          "size": 6,
+          "sha256": "9d478c656c5407ac1df25be5fb7b7565e3e5990708b79d3d68690f936ad08ed6",
+          "opcode": 6
+        },
+        {
+          "address": 135790987,
+          "size": 5,
+          "sha256": "39d56fe466edefcd6a900f8c62c0c82e620c5e720bb2028e2ccfd4cf6655ab96",
+          "opcode": 33
+        },
+        {
+          "address": 135790992,
+          "size": 6,
+          "sha256": "de1a7212cfbe5bff9b5d3e6ebcf73efb36e44c7bb2aca3a2db5c631043d0e4f6",
+          "opcode": 6
+        },
+        {
+          "address": 135790998,
+          "size": 5,
+          "sha256": "d3f9c3833ef73a23efec34b27d25c4ff2781798826c5ad32193296eec7e0ed92",
+          "opcode": 33
+        },
+        {
+          "address": 135791003,
+          "size": 6,
+          "sha256": "116d638a662f178c9a2bbf359e793591df07711f90dc82f14be9a506ae842006",
+          "opcode": 6
+        },
+        {
+          "address": 135791009,
+          "size": 5,
+          "sha256": "dc3a3c2a31990fb952890ca7c05907cb3b166f7c4a5abaa0c5da56f1996452dc",
+          "opcode": 33
+        },
+        {
+          "address": 135791014,
+          "size": 6,
+          "sha256": "6208274b0222bd53acc7e47efccd90b6429f27de134e7d8bf15012c50470ced3",
+          "opcode": 6
+        },
+        {
+          "address": 135791020,
+          "size": 5,
+          "sha256": "3a4328348e8d837e4d765d9d3bbfbc55b2d31eb739276009d7cd237a9563d3bd",
+          "opcode": 33
+        },
+        {
+          "address": 135791025,
+          "size": 6,
+          "sha256": "b6a21356e4cda0eff96d33bba8963075670fd6256318426675cc89c0360e6178",
+          "opcode": 6
+        },
+        {
+          "address": 135791031,
+          "size": 5,
+          "sha256": "82d600a81316644e391a194358ad2ec6c4a8a8cdc588814291bbbfc4cac73ad1",
+          "opcode": 33
+        },
+        {
+          "address": 135791036,
+          "size": 6,
+          "sha256": "074ec238e8c7c532fd144f71cf98415fd85ae1abe429e4c431419e6a4794eb16",
+          "opcode": 6
+        },
+        {
+          "address": 135791292,
+          "size": 6,
+          "sha256": "4316040331c98cc1b2d5a7a0b3d1f9e4294e39c769d68f8a7ef9ab4dd5ab3ab7",
+          "opcode": 15
+        }
+      ],
+      "loadword_and_callstd": {
+        "address": 135791292,
+        "size": 8,
+        "sha256": "47daa67a8ce0c8a0f2af34cffda52f0beaa8882069a99f68f199fb2eac18ba8b",
+        "pointer": 135791417
+      },
+      "special_result": 8
+    },
+    {
+      "address": 135791442,
+      "size": 78,
+      "sha256": "66cc1204dce7df3f36beec31468577d6d8d7bd3a7b3235f6cbcd9fe0795cda36",
+      "owner_id": "OBJECT:7/0:0",
+      "target_script_root": 135790913,
+      "root_chain": [
+        {
+          "address": 134564620,
+          "size": 4,
+          "sha256": "d672c5b39141ec15b78c62a82995e610593e06bd92fe2cb5aa5434696139c61e",
+          "role": "map_groups_literal",
+          "value": 153899412
+        },
+        {
+          "address": 153899440,
+          "size": 4,
+          "sha256": "b52cc5bd6dd8d58fbbf3f123475a4fcf3087c9ea1d6e1f42ad05092aa32dcdbf",
+          "role": "group_slot",
+          "value": 137454836
+        },
+        {
+          "address": 137454836,
+          "size": 4,
+          "sha256": "6dd960094da200c7b3721acbde49bc3923bc290640b3965c37335ad1fb5881ab",
+          "role": "map_slot",
+          "value": 137449464
+        },
+        {
+          "address": 137449464,
+          "size": 8,
+          "sha256": "2c5cabff02c2439d5774153eea8007b0008501dcd81c56cb5d3da7ecfe25ac6b",
+          "role": "map_header",
+          "events": 137880424
+        },
+        {
+          "address": 137880424,
+          "size": 8,
+          "sha256": "66cbf769970bf2fc1ee6b775b82fde892997393b9b0b0bfd477be2c21ae579be",
+          "role": "event_header",
+          "objects": 137880368
+        },
+        {
+          "address": 137880368,
+          "size": 24,
+          "sha256": "1e08ca20282a366786010e37eb744507b085abd3f4ae9e25ab99c6b41e6f27b5",
+          "role": "object_record",
+          "script": 135790913,
+          "script_field": 137880384
+        }
+      ],
+      "path": [
+        {
+          "address": 135790913,
+          "size": 1,
+          "sha256": "189f40034be7a199f1fa9891668ee3ab6049f82d38c68be70f596eab2e1857b7",
+          "opcode": 106
+        },
+        {
+          "address": 135790914,
+          "size": 1,
+          "sha256": "bbeebd879e1dff6918546dc0c179fdde505f2a21591c9a9c96e36b054ec5af83",
+          "opcode": 90
+        },
+        {
+          "address": 135790915,
+          "size": 6,
+          "sha256": "dc0f66c38f2bdbe2d11df8eb7f4e4563089ff9e9dfc5f4d72588d53997a327d9",
+          "opcode": 15
+        },
+        {
+          "address": 135790921,
+          "size": 2,
+          "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314",
+          "opcode": 9
+        },
+        {
+          "address": 135790923,
+          "size": 5,
+          "sha256": "0e9de4aacdbeb8156adf57b76bb52133d118f724fe361edcc019c5696bd8a7a5",
+          "opcode": 103
+        },
+        {
+          "address": 135790928,
+          "size": 1,
+          "sha256": "252f10c83610ebca1a059c0bae8255eba2f95be4d1d7bcfa89d7248a82d9f111",
+          "opcode": 102
+        },
+        {
+          "address": 135790929,
+          "size": 5,
+          "sha256": "8beb2c90780307b6489410b6d320dd42e641269a220e84431d45a355cd284af1",
+          "opcode": 22
+        },
+        {
+          "address": 135790934,
+          "size": 3,
+          "sha256": "59f87a0bb0bd5395d6dc59417a0f9d54c595bd3d165c3777e7fb02e68f7222dc",
+          "opcode": 37
+        },
+        {
+          "address": 135790937,
+          "size": 1,
+          "sha256": "265fda17a34611b1533d8a281ff680dc5791b0ce0a11c25b35e11c8e75685509",
+          "opcode": 39
+        },
+        {
+          "address": 135790938,
+          "size": 5,
+          "sha256": "c771907ee3b56d884ce9c1351c0ff345a26a7ea4dc0270339065b00c61004209",
+          "opcode": 25
+        },
+        {
+          "address": 135790943,
+          "size": 5,
+          "sha256": "4fb15658f90bee04d12b1e4f79c5c52a6f398511af4c7494db997e6dfabcde0b",
+          "opcode": 33
+        },
+        {
+          "address": 135790948,
+          "size": 6,
+          "sha256": "c697832fda325e71e5a01fc1e765ec313cec0f21a307427925dac1b8421396ed",
+          "opcode": 6
+        },
+        {
+          "address": 135791180,
+          "size": 6,
+          "sha256": "3300fa5cc03755fc735601faf032436c3bb1af622b90218df28e93f57ac65ad3",
+          "opcode": 15
+        }
+      ],
+      "loadword_and_callstd": {
+        "address": 135791180,
+        "size": 8,
+        "sha256": "671650288496167955c6959088ba9830198a2939b7fdae5acb36f267f9472e65",
+        "pointer": 135791442
+      },
+      "special_result": 0
+    }
+  ]
+}

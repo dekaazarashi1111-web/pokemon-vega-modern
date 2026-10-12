@@ -1,0 +1,51 @@
+# 743親からの実root最小型batch
+
+対象は同branch現0641候補の旧egg874参照。独立Help checkpointで743分類/131未知の親を固定し、新しい実root→producer→consumerで閉じる必要最小窓だけを追加する。自然play全到達・普遍IRQ/heap寿命・間接参照/対象退役の完全性とは分ける。
+
+## 追加する根
+
+新しいconsumer module、独立review、必要最小型と有限条件を新scopeの測定で固定する。登録tableまたは独立に束縛した実API/constructorを根にし、実producerが保存するselector/state/pointerを実consumerが読むまでを結合する。callee境界ではその後のread-before-writeに必要なfieldだけを保存し、生成出力と事前保存域を区別する。非live RAMを破壊した再合成でも同じ最小型に達することを検証する。
+
+旧診断06c5の成功を現0641の測定へ昇格しない。現候補の全SHA・115actual owner・874hitと新必要窓は専用Actionsの1回の再構築で照合する。既成功Help/RFU/Fame/Credits/Summary/party/Mystery/nativeの実行、旧全ROMinventory scanは行わない。
+
+## Bagの最小data型
+
+0x083DD7E7の4byteはUse/Tossの境界である。StartMenu登録cell0836B388→実Bag callback0806EC70→Main/Bag constructor→setup0..20→実CreateTask/RunTasks→context producer0810A37C→text pointer producer08110804→現printer hook/実RenderText0800580EのLDRBを結ぶ。両文字列の全8byteをEOS込みで消費し、型にするのはhit4byteだけである。
+
+有限条件にはStartMenu根の選択、pocket0、成功20byte allocation、graphics/link/list/windowの必要resource、正常ABI返り値を含む。これらを全自然到達や外部callee全効果の証明にしない。ResetTasks出力条件は16active byteだけで、task配列全640byteの保存/固定を要求しない。4Main frame、33producer event、1166意味命令、129opaque境界、96集約live契約、73窓3166byteを束縛する。
+
+並替え09149270/09149286はこのpathの実消費が閉じないため未知のまま。登録tableや隣接文字列の観測だけで分類を増やさない。
+
+## 追加codeの必要最小型
+
+Shock Waveの0x080B0113は完全BLと後続branchの6byte、Seagallopの0x0814777Bは隣接する完全BL2本の8byteとして検証する。全関数範囲をcode型へ拡張しない。
+
+Shock Waveは現move table0904A6D4のindex351→script081B0FC5を束縛する。script prefixをopcode長で構造parseし、+65（081B1006）が有効なcreatevisualtask command境界であることを確認する。「登録scriptのこのcommand処理contextへ到達した」という入口条件とframes-to-wait0/script-active1でscript pointerを置き、実opcode dispatch→Cmd_createvisualtask→command由来callback/priority/引数→実CreateTask→初回呼出→直後delay12 commandの実処理/frames・wait callback実store→dispatcherの正常stack復帰→RunTasks→実state/segment producer→hitへ結ぶ。script pointerの登録writerやLaunchBattleAnimationからの全前方graphics実行は証明していない。CreateSprite失敗43回という有限条件を使い、64task frameで実segment5/state3へ達する。task selector/stateを直接注入した証明とはしない。
+
+SeagallopはDoSeagallopFerryScene APIの有限呼出条件から実callback2登録→setup0..7→実CreateTask/RunTasksへ進む。17callback pump後のfade完了という十分条件の下、158task frameと実timer140/行先clamp writerを経て帰還処理のhitに達する。乗船の全自然caller、全描画、普遍IRQ/資源寿命を証明したとはしない。
+
+新code2根の808意味命令・64窓2144byteと1316境界を、89集約契約として束縛する。tilemapはRAMの将来readだけでなく後続BG使用までのresource epochを明示する。最終使用後には不要なepoch保持を求めない。opaque/frame effectの指定は実際に通ったboundary siteの集合に限定し、停止直前や他根だけのcall指定が黙って無視されることを拒否する。
+
+## 未証明のまま保持する境界
+
+Credits4件（083E239B/24C3/2563/258F）は日本語serializer/layout生成根が未束縛である。公開英語ALIGNED(4)・zero値・見かけの整列だけでは型にしない。GPUやwireless等の未結合の登録/caller/writerも、実証拠が閉じなければ残unknownを変更しない。
+
+新GPU guardは0809FF00の実state0..7から0x1111のGPU shadow/hardware storeとVBlank実登録までを照合するが、外側の独立登録rootは閉じていない。別版Rubyの類似実装は対応候補でしかなく、今回のsource manifestや型採用根へ入れない。
+
+新wireless guardはconstructor08118BCC→実CreateTask/InsertTask/32byte zero producer→RunTasks3frameの有限条件を確認する。activity6/7ではdata+0x13が0のまま08118D03のBLを迂回する。これは選択した有限pathの結果で、全game/callerでの到達不能や全writer不在の証明ではない。2件ともguardはregionを一切発行せず、欠落・偽型・余分なclaimを拒否する。
+
+619原本と27独立親入力から743親を再構成する。全14旧namespace、124changes/114witness、全874hit identity、旧accepted/残unknown全field、133曲/50assetを保持し、原本を複製しない。新deltaはroot_batch_reference_chainだけに保存する。既曲・assetのserialized原本identityと新窓の役割交差の確認は、新曲探索や旧native受入の再走ではない。
+
+## 容量と実controller
+
+未知最大access、間接参照完全性、対象退役、owner移管が未証明の間は旧egg15118byte全域保護・安全容量0。未知件数が0になっても他の義務を自動達成扱いしない。実owner hashは最新generation_writerのowner_byte_auditを使い、過去allocatorのnominal suffixから推測しない。
+
+115actual owner、52save owner、残804byteは不変。global511+save804の上限1315は単一controller6528に不足する。controllerは未配線で、heap13352をstock保存退避53300/0804B85C入口へ跨がせない。正式ROM・Save101・donorは変更しない。
+
+安全容量と全保存入口のheap-ready/同期非再入/退避前Freeを閉じてから、全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bitへ単一controllerを接続する。最終図鑑修復後はtrainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎checkpointは作らない。
+
+## 検証と公開
+
+新sourceだけを独立にレビューする。旧独立最終レビューの拒否・未実施は継承し、同操作を別経路で実行しない。新scope testsと独立measured envelope・全親保持・容量refusalを記録する。
+
+source・最小address-size-SHA・textだけを公開する。ROM断片/rawhex/ROM/runtime/入力save/runner/credential、不要な私有archive/memberpathは公開しない。producer/guard/upload/recordのpathを一致させ、非空size/SHA/LF・CR拒否・closed success set・hidden/symlink/未知拡張子拒否を検査する。全blob全文読戻し後にexpected_sha付き非force ref更新し、upload直前も実commit全byte/Git blobに再束縛する。一般CIのQOL source不一致/action_required job0/Stage79旧cacheはscope受入と分ける。

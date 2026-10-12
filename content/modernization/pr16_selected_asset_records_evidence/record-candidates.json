@@ -1,0 +1,245 @@
+{
+  "accepted_test_reruns": 0,
+  "accepted_xref_passes_replayed": 0,
+  "actual_asset_reader_proven": false,
+  "base_reference_count": 0,
+  "base_references": [],
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "donor_safe_bytes": 0,
+  "formal_classification_changes": 0,
+  "formal_classified": 789,
+  "formal_unclassified": 85,
+  "inspections": [
+    {
+      "base_candidates": [
+        157280264,
+        157280268,
+        157280272,
+        157280276,
+        157280280,
+        157280284,
+        157280288,
+        157280292,
+        157280296,
+        157280300,
+        157280304,
+        157280308,
+        157280312,
+        157280316,
+        157280320,
+        157280324,
+        157280328
+      ],
+      "neighborhood": {
+        "end_exclusive": 157280396,
+        "identity": {
+          "sha256": "fc2bc1bff828b0365a42b7c2ebb9991136ff8c252d193506e1314fce14ba901c",
+          "size": 132
+        },
+        "pointer_words": [
+          {
+            "address": 157280284,
+            "canonical_target": 140525830,
+            "target": 207634694
+          },
+          {
+            "address": 157280304,
+            "canonical_target": 134752356,
+            "target": 134752356
+          },
+          {
+            "address": 157280328,
+            "canonical_target": 142667780,
+            "target": 142667780
+          },
+          {
+            "address": 157280356,
+            "canonical_target": 134316224,
+            "target": 134316224
+          }
+        ],
+        "start": 157280264
+      },
+      "origin": 157280328,
+      "owner_identified": false,
+      "pointer_run": {
+        "actual_table_extent_proven": false,
+        "end_exclusive": 157280332,
+        "identity": {
+          "sha256": "554af33fbd5b07da23508894969a899dc3353bb21d4b8c3fb579cdfb0aa62805",
+          "size": 4
+        },
+        "lower_window_exhausted": false,
+        "origin_index": 0,
+        "start": 157280328,
+        "upper_window_exhausted": false,
+        "words": [
+          {
+            "address": 157280328,
+            "canonical_target": 142667780,
+            "target": 142667780
+          }
+        ]
+      },
+      "record_shapes": [],
+      "target": 142667780
+    },
+    {
+      "base_candidates": [
+        157759008,
+        157759012,
+        157759016,
+        157759020,
+        157759024,
+        157759028,
+        157759032,
+        157759036,
+        157759040,
+        157759044,
+        157759048,
+        157759052,
+        157759056,
+        157759060,
+        157759064,
+        157759068,
+        157759072
+      ],
+      "neighborhood": {
+        "end_exclusive": 157759140,
+        "identity": {
+          "sha256": "ad59d2f3a95260c55a96ab62c3f4d1776d039042799a5098ebe514e9a1130017",
+          "size": 132
+        },
+        "pointer_words": [
+          {
+            "address": 157759036,
+            "canonical_target": 152044288,
+            "target": 152044288
+          },
+          {
+            "address": 157759052,
+            "canonical_target": 139805764,
+            "target": 139805764
+          },
+          {
+            "address": 157759072,
+            "canonical_target": 142667728,
+            "target": 142667728
+          }
+        ],
+        "start": 157759008
+      },
+      "origin": 157759072,
+      "owner_identified": false,
+      "pointer_run": {
+        "actual_table_extent_proven": false,
+        "end_exclusive": 157759076,
+        "identity": {
+          "sha256": "435a3bd621ca2d1c07e630c83bf3a4a2ea7bc77f12b70988df44c7681ecbdd19",
+          "size": 4
+        },
+        "lower_window_exhausted": false,
+        "origin_index": 0,
+        "start": 157759072,
+        "upper_window_exhausted": false,
+        "words": [
+          {
+            "address": 157759072,
+            "canonical_target": 142667728,
+            "target": 142667728
+          }
+        ]
+      },
+      "record_shapes": [],
+      "target": 142667728
+    }
+  ],
+  "limitations_ja": [
+    "2起点の前64byte整列baseと連続pointer形開始だけの有限探索。全table基点の網羅ではない。",
+    "構造体/命令の形は実readerの証明ではない。外形だけで正式型や安全容量を変更しない。",
+    "新規baseへの逆参照だけを全ROM入力から検索。旧11起点の第2段検索、map、LZ、Wikiは再走しない。"
+  ],
+  "literal_shape_count": 0,
+  "map_probe_reruns": 0,
+  "new_base_candidates": [
+    157280264,
+    157280268,
+    157280272,
+    157280276,
+    157280280,
+    157280284,
+    157280288,
+    157280292,
+    157280296,
+    157280300,
+    157280304,
+    157280308,
+    157280312,
+    157280316,
+    157280320,
+    157280324,
+    157759008,
+    157759012,
+    157759016,
+    157759020,
+    157759024,
+    157759028,
+    157759032,
+    157759036,
+    157759040,
+    157759044,
+    157759048,
+    157759052,
+    157759056,
+    157759060,
+    157759064,
+    157759068
+  ],
+  "new_base_reference_passes": 32,
+  "origin": {
+    "address": 142670436,
+    "sha256": "b12945a9395fea471444b59c0a9e33507a82af3be4b8d0a17ffbf5077f926c37",
+    "size": 4
+  },
+  "owner_identified": false,
+  "placement_identity": {
+    "sha256": "4aa2ac0de3933b90c246591c7a01f89f641c7038f280b31e1f09ae8a2a8f99cf",
+    "size": 113550
+  },
+  "prior_lz_search_reruns": 0,
+  "public_sources": {
+    "include/gba/m4a_internal.h": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "609259b032a32c932fc1a9f54d0e3afda70c02dc",
+      "path": "include/gba/m4a_internal.h",
+      "repository": "pret/pokefirered",
+      "sha256": "9e841d8fe72d6af9f2d5a8135f686618e20975132a6d2fc95e6c7604213505e6",
+      "size": 14382
+    },
+    "include/sprite.h": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "6a1b272119ce6e3a8dcf45adf2eef8923a6d5175",
+      "path": "include/sprite.h",
+      "repository": "pret/pokefirered",
+      "sha256": "a77aa1c837dfb58cf60b3eac299c7cc29a23ce27735ba710b9e8eeed102bf773",
+      "size": 9368
+    }
+  },
+  "public_symbol_source": {
+    "commit": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+    "git_blob": "53316c0d61da2c6cc22acf3d79f68c61c64c65be",
+    "path": "diagnostics/pokefirered_jp.sym.audit.tsv",
+    "repository": "ComplexRobot/frlg-sym",
+    "sha256": "fc1e4b579b21a592b8e09fa3c36f242833837190401128cd6866c945eff2f44e",
+    "size": 4147002
+  },
+  "saved_xrefs_identity": {
+    "sha256": "e371905c2be05e42b3156dd0799d6bde8134fb989bb1583cee262a2b13ec0aef",
+    "size": 22571
+  },
+  "schema_version": 1,
+  "selected_unknown_origins": 6
+}

@@ -1,0 +1,820 @@
+{
+  "abi": {
+    "bubbles_created_offset": 1838,
+    "game_code_compiled": false,
+    "pointer_bytes": 4,
+    "sources": [
+      {
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "git_blob": "c3c07d10d70b2f8b46dee954ab6428ffab076ca8",
+        "path": "include/field_weather.h",
+        "repository": "pret/pokefirered",
+        "sha256": "aa42a5396c46db9d86182a9615c12132092b03a457e532c1089a8d2cc0c0bef1",
+        "size": 5052,
+        "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/field_weather.h"
+      },
+      {
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "git_blob": "e84dbc48c4ddb78a99fd07f4db81d446fff4c2f2",
+        "path": "include/constants/field_weather.h",
+        "repository": "pret/pokefirered",
+        "sha256": "24518565778cd43ce060d190bd72d9796508d173a13ea402591f493862ce390d",
+        "size": 792,
+        "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/constants/field_weather.h"
+      }
+    ],
+    "status": "PASS_PUBLIC_WEATHER_ARM_ABI",
+    "tag": 4613,
+    "translation_unit": {
+      "sha256": "c1b46a8e057aa4815afce17abaf03c399e8f7789937bc5ef2898c44f95c09d06",
+      "size": 4248
+    }
+  },
+  "accepted_scope_test_reruns": 0,
+  "context": {
+    "code_bindings": {
+      ".github/workflows/pr16-weather-bubble-reader.yml": {
+        "sha256": "861caa0e4b311c7969017ade09a36ef4dd627333bb62f19213cf5717c19466cb",
+        "size": 2236
+      },
+      "content/modernization/pr16_weather_bubble_sources.json": {
+        "sha256": "3a52993b35aa70d6380d392cc0a1a86529ad92b441281eefbf08715cf1a64ff6",
+        "size": 2316
+      },
+      "scripts/pr16_weather_bubble.py": {
+        "sha256": "42a6d9139538c8e1367ab290157ac56cb72b629faf5bd953fc344f74a9548070",
+        "size": 11951
+      },
+      "scripts/pr16_weather_bubble_actions.py": {
+        "sha256": "2b407b8941de32450cd337730b553e807b7824b5779f9b7a9f13a783b48b832c",
+        "size": 12923
+      },
+      "scripts/pr16_weather_bubble_sources.py": {
+        "sha256": "d5827de8da092c0209003c382b6ab657905bf50ce37fa257021732fe64476070",
+        "size": 6080
+      },
+      "tests/test_pr16_weather_bubble.py": {
+        "sha256": "162f89f168b684f7a2925ea2f7e3e76bffd5df776fde7a8531ae676d71b6f2a0",
+        "size": 11914
+      }
+    },
+    "run_id": 38040440848,
+    "source_head": "3aada9217cc80627496adf33756d8fc2de3b5765"
+  },
+  "correction_ja": "固定8byteの自己仮定を除去。実BL時のstackとcallee-savedを記録し帰還時に完全照合。",
+  "dependency_bindings": {
+    "scripts/pr16_dex_battle_actions.py": {
+      "sha256": "f4e94350b499bdaa98a31c9df32c4eaa4b02eb6228efdd90d0454db01a540bcc",
+      "size": 5920
+    },
+    "scripts/pr16_dex_battle_consumers.py": {
+      "sha256": "719c995fd3bc40b94c0b3446d7a579db61e479b04a9a71f64845a9d3f5e36437",
+      "size": 6281
+    },
+    "scripts/pr16_dex_fallback_qol.py": {
+      "sha256": "35d544c2f0868a2d748e767b01e74614b8c539bfcd9093bd96d731f2253bd6c9",
+      "size": 6127
+    },
+    "scripts/pr16_dex_fallback_qol_actions.py": {
+      "sha256": "6db9f44458aeb5850c04c76e3600087e4c8c8b64623ebeb47e3b3112ebb0099c",
+      "size": 6341
+    },
+    "scripts/pr16_dex_fallback_tail_lease.py": {
+      "sha256": "b58773fe21c1e42c0e0fa287dfe8b067b4d41b0f3b668ba12b016204526413aa",
+      "size": 12073
+    },
+    "scripts/pr16_dex_gameplay.py": {
+      "sha256": "c8e4589d43e5f10bbb1f4cf0a8f66c2cf592b65a31230808ba4f56bfa41eab0b",
+      "size": 6407
+    },
+    "scripts/pr16_dex_gameplay_actions.py": {
+      "sha256": "13c338b405b5803260e660fded2ba5a6749931bf28c794bbdcf103350a15c28e",
+      "size": 14844
+    },
+    "scripts/pr16_dex_hof_absorbing_ability_roots.py": {
+      "sha256": "a811a265b19e712bfce4f46a30c78803f5a5a6af1aff5d3c180128ba56af89d1",
+      "size": 40352
+    },
+    "scripts/pr16_dex_hof_animation_background_roots.py": {
+      "sha256": "560c2665e14e33c221311a9918edf6633f7937c154a2859d6c976ce285f35bf5",
+      "size": 42767
+    },
+    "scripts/pr16_dex_hof_animation_registered_roots.py": {
+      "sha256": "22691f91118c95db13eb0216ec559eddd3ff26d91134eb8a192a4f4fefc3b943",
+      "size": 56212
+    },
+    "scripts/pr16_dex_hof_battle_script_roots.py": {
+      "sha256": "278c7e9805c0037a35e726b08793c1bf180befc497b2fb692432e8fd6691c6e1",
+      "size": 21877
+    },
+    "scripts/pr16_dex_hof_battle_tail_roots.py": {
+      "sha256": "9058cf8089678f379df13b81f33c6fe0ebb029208853d259c93b7aa2d4930264",
+      "size": 18556
+    },
+    "scripts/pr16_dex_hof_blastoise_asset.py": {
+      "sha256": "c85fd0489ad636a6bae2f9b743e1aca3c2100fd4f3ca8f2f9d9e48ecfea82f7b",
+      "size": 14935
+    },
+    "scripts/pr16_dex_hof_blastoise_chain.py": {
+      "sha256": "2d60c400490c2e86f34f30270f04c72ddefbf0d35299e1dbdc77b0a59bf507d2",
+      "size": 17426
+    },
+    "scripts/pr16_dex_hof_blastoise_sources.py": {
+      "sha256": "76d85953cb6f9dd9e8c74e8c0f447d4ef3fdc5b63cb1ffa8e6a97b66e917cfc5",
+      "size": 22334
+    },
+    "scripts/pr16_dex_hof_blastoise_validation.py": {
+      "sha256": "f00f55cae6947d098a84af6ae83b1f3d10e868f8ede7b983517fb88d84b8d5d4",
+      "size": 13412
+    },
+    "scripts/pr16_dex_hof_boundary_chain.py": {
+      "sha256": "af107bf416e87df128ed16d987d4f4f27ef361d3de7f6d44df6da594745af6f0",
+      "size": 11951
+    },
+    "scripts/pr16_dex_hof_boundary_mystery.py": {
+      "sha256": "f2d93f99a51f736cdb661da221531be76db66eb1baa1081ac56d7d95ab21810b",
+      "size": 23013
+    },
+    "scripts/pr16_dex_hof_callback_chain.py": {
+      "sha256": "023cd07150f04bbca51532fa94b804782aa0e05bc6c8efb90b2a61f5a0cbcb84",
+      "size": 10471
+    },
+    "scripts/pr16_dex_hof_callback_party.py": {
+      "sha256": "ee287a3037e10671e34b621200f848980b058ed7dc7343647c561c17978395b8",
+      "size": 20743
+    },
+    "scripts/pr16_dex_hof_callback_party_task.py": {
+      "sha256": "83e6383538bd9ba447cf6ab53a465dbb6ab4ea4b617453e4123f95354fcdb2f6",
+      "size": 13686
+    },
+    "scripts/pr16_dex_hof_capacity.py": {
+      "sha256": "f4b49441ca336dede4252536449af957e9a7e27d8b928232b8024dec1b3bc91c",
+      "size": 3583
+    },
+    "scripts/pr16_dex_hof_capacity_actions.py": {
+      "sha256": "3b3802b7326e68c65267d46bd16c8bb65b8ef80420c9352f1b9932a105c94cef",
+      "size": 16248
+    },
+    "scripts/pr16_dex_hof_chat_keyboard_roots.py": {
+      "sha256": "e036583f49949b5998f592194b606a4e4c82b16830d10adb2937a837fc9186a9",
+      "size": 57110
+    },
+    "scripts/pr16_dex_hof_choose_limit_roots.py": {
+      "sha256": "e39bd3cb8de9f082d0e1af1c38d4f49bb939c437be476b151bbb9c34021b83ad",
+      "size": 45475
+    },
+    "scripts/pr16_dex_hof_choosemove_text_roots.py": {
+      "sha256": "fc5cc575bbf309827fa535620b686ca33023603e8e46f0e78459026050c65f3a",
+      "size": 65263
+    },
+    "scripts/pr16_dex_hof_consumer_chain.py": {
+      "sha256": "bece8b74f849095cb6ae5ffac92d24a2619c756ebab5486de2a9efb057a1d057",
+      "size": 10839
+    },
+    "scripts/pr16_dex_hof_consumer_palette.py": {
+      "sha256": "ac26b8a825eba8df6fe375ae36a951bb3dd33b7a5b2d09a22570ce896834a37f",
+      "size": 8451
+    },
+    "scripts/pr16_dex_hof_consumer_tutor.py": {
+      "sha256": "5f1a0e3b2c5e0c90f0e42adc3b8746709d71638b69a34cf688553d0b6ecedfcf",
+      "size": 15956
+    },
+    "scripts/pr16_dex_hof_credits_frontier.py": {
+      "sha256": "38fa6914a94b717c4ae80ca0a6b220e38af2918a0a1952392a63951eac6dc25f",
+      "size": 17551
+    },
+    "scripts/pr16_dex_hof_critical_move_ids.py": {
+      "sha256": "32fc9f9fe11b076851f84d504b50aff115a8d386e8af58c261e3aa15f0e6e33f",
+      "size": 12338
+    },
+    "scripts/pr16_dex_hof_critical_move_list_roots.py": {
+      "sha256": "e8cb943f82b3f5d0349df13812195063293ce5ec3ffa8b26944e40d698866498",
+      "size": 24690
+    },
+    "scripts/pr16_dex_hof_dancer_roots.py": {
+      "sha256": "bd3dc9eb48e97a19710b652221f2688ad4bf9bab78cd5a05027d3bb61ab478dd",
+      "size": 52203
+    },
+    "scripts/pr16_dex_hof_diploma_asset.py": {
+      "sha256": "ad156b54d2c1f14165b32534d6522140d74ff06c42b2a4fd84c795650203a289",
+      "size": 18594
+    },
+    "scripts/pr16_dex_hof_diploma_chain.py": {
+      "sha256": "e02dc8f954d45e11e5a2494318e33c73cdc81fcd6caa13e337299046cac30145",
+      "size": 13161
+    },
+    "scripts/pr16_dex_hof_diploma_sources.py": {
+      "sha256": "210ca9579461a4a1f5f02351dfde8a2c98e7500b71d170b432607ba33b11c60c",
+      "size": 20686
+    },
+    "scripts/pr16_dex_hof_donor.py": {
+      "sha256": "077352b7cd7662f6da0f023573ed4b5e02962d3c1855a9edbd455c19c2afc920",
+      "size": 23915
+    },
+    "scripts/pr16_dex_hof_event_boundary_batch_chain.py": {
+      "sha256": "5119240e6fb36f0f0e789c5ae721dda2dc24c0b94871f76a9127acce4bb7da1b",
+      "size": 25218
+    },
+    "scripts/pr16_dex_hof_event_text_roots.py": {
+      "sha256": "f312a83a4236ff4fc0e1ab83983d5d74c3d15843a4bd9754b469f9ab10417463",
+      "size": 37060
+    },
+    "scripts/pr16_dex_hof_extra_roots.py": {
+      "sha256": "053840060cf195a4e9a5f2211556d369db89ce9128f9da7fe0bd13c4dd6bb15a",
+      "size": 61297
+    },
+    "scripts/pr16_dex_hof_failure.py": {
+      "sha256": "b15e706167429a63e3a856b7ad1fcca6e7c006bfbfb44d633c66616e297771c9",
+      "size": 5438
+    },
+    "scripts/pr16_dex_hof_failure_actions.py": {
+      "sha256": "1da2e18c1b0c0ed6c5c378bb6ace61a046d603e1223ab4bffc466fd0d1b3133b",
+      "size": 6497
+    },
+    "scripts/pr16_dex_hof_field_consumer_batch_chain.py": {
+      "sha256": "9bbb09487b7d88b0e675d04e971bbe65d8561e5325a5f46792fb142e963554d1",
+      "size": 24954
+    },
+    "scripts/pr16_dex_hof_field_move_roots.py": {
+      "sha256": "24b4f876dedd42a4709b1c8706d58f24ec1e7bd91a6705e4fbc01cf3ef4ea71d",
+      "size": 19374
+    },
+    "scripts/pr16_dex_hof_field_text_roots.py": {
+      "sha256": "d9765155c7edd6845a25981f6653273034520c78ed14c4c6ec9ee88c5b3773f7",
+      "size": 72600
+    },
+    "scripts/pr16_dex_hof_finite_producer_roots.py": {
+      "sha256": "4ebff9ab9594234386e0801cc92d8f5d7ba330340defe321a5d8519979fb56e1",
+      "size": 16247
+    },
+    "scripts/pr16_dex_hof_frontier_records_roots.py": {
+      "sha256": "3c7fdc06b0942990a223e3f96148ed1fdee518740a5813849ef8dd4c95af7a1b",
+      "size": 57902
+    },
+    "scripts/pr16_dex_hof_generation_actions.py": {
+      "sha256": "3a11b72ba57d843982094a8e457e3ab5ed5f7446b2113b259a270b04f035f285",
+      "size": 11998
+    },
+    "scripts/pr16_dex_hof_generation_source.py": {
+      "sha256": "7859f36ac19ea13cb0d800a47fba54f87a1e62b43b5c9d8da3c819b28858b4ed",
+      "size": 4322
+    },
+    "scripts/pr16_dex_hof_generation_writer_actions.py": {
+      "sha256": "45dfa6f3b9666f8d2ec806f0cc56fc5dc95d2a440225fae5e1b33c780a465079",
+      "size": 11421
+    },
+    "scripts/pr16_dex_hof_healing_veil_batch_chain.py": {
+      "sha256": "4bb411c2710f68aa781d7c45aefce6d85bcf61e164b34e66d3fffd5bfeb78561",
+      "size": 20110
+    },
+    "scripts/pr16_dex_hof_healing_veil_roots.py": {
+      "sha256": "d8aba519beeee5ed8a08c3b518cf0b306f0e54e8c85d7aa578655a5c2f41d3c2",
+      "size": 28107
+    },
+    "scripts/pr16_dex_hof_help_batch_chain.py": {
+      "sha256": "2ef7cabcd0e8af8f2e73d87722f90c7d8d66b28e2231773bb99466a2f7f6d975",
+      "size": 18267
+    },
+    "scripts/pr16_dex_hof_help_roots.py": {
+      "sha256": "cb2a5fe4e46cca6c40c1b0d4c6f8cb54b42f67089e13512889a94ced423ed10a",
+      "size": 58745
+    },
+    "scripts/pr16_dex_hof_jp_field_chain.py": {
+      "sha256": "ebd1fc89ad1e41c39dcb76cdf61a377e306f539eae23ed388d0cc3ce65b95984",
+      "size": 14318
+    },
+    "scripts/pr16_dex_hof_jp_field_producer.py": {
+      "sha256": "11cf6cd06fedde0ca6c57b9cb125fac1bb9fd6ed3c65da080b5e67fd3d7cf979",
+      "size": 19137
+    },
+    "scripts/pr16_dex_hof_jp_field_text.py": {
+      "sha256": "8b80109b605ed9262f3d4d4babb720a702979eca2b47e37bddd153a544171228",
+      "size": 19064
+    },
+    "scripts/pr16_dex_hof_jp_item_chain.py": {
+      "sha256": "92adfd49126448f09b0dca96a35eb93d3e912611c92dd85fe3dadcdfabaca85b",
+      "size": 15187
+    },
+    "scripts/pr16_dex_hof_jp_item_text.py": {
+      "sha256": "bee2b0084163cbfd4eda6959dbf295ed6e8dc36120951bc92ad9a96219f9fbe0",
+      "size": 18379
+    },
+    "scripts/pr16_dex_hof_jp_minigame_chain.py": {
+      "sha256": "c59883b756f4eb75b743e5cdfbc25efab92e4feb20bf10e518dbc1221314c6d2",
+      "size": 15781
+    },
+    "scripts/pr16_dex_hof_jp_minigame_text.py": {
+      "sha256": "c56d182b178973ce90833eddc42e5f37c5c724209fd3073ea064dea94d9e3f58",
+      "size": 15613
+    },
+    "scripts/pr16_dex_hof_lifetime_chain.py": {
+      "sha256": "c8ea5be8b817ce8c86d87957bb0ebaef4943c7688483f1c5df7c28ccd5366a71",
+      "size": 10548
+    },
+    "scripts/pr16_dex_hof_lifetime_menu.py": {
+      "sha256": "16bc23bd565c732e08c79fd55b16f25d1256ee54a429b113514aa395641cf02f",
+      "size": 47996
+    },
+    "scripts/pr16_dex_hof_lifetime_root.py": {
+      "sha256": "7d1827e12c7261371778d0fb08b0bbc5dcdd8efd2344017310c617a2ebbd650a",
+      "size": 19545
+    },
+    "scripts/pr16_dex_hof_lifetime_setup.py": {
+      "sha256": "573c194e0b1709e56c125fcf63b1ea1794506adea8892592c756526e123560ff",
+      "size": 63155
+    },
+    "scripts/pr16_dex_hof_main_cow.py": {
+      "sha256": "f77ab22c0af18c93e83d577b188521a0e3f8acdf267fd88d11e1b6f6fbd12a50",
+      "size": 7051
+    },
+    "scripts/pr16_dex_hof_main_cow_actions.py": {
+      "sha256": "00c609bfe5203dc7debf183f5b573db5ee528932906a87c73d096947ec840cad",
+      "size": 6969
+    },
+    "scripts/pr16_dex_hof_menu_text.py": {
+      "sha256": "1bd3e5d5a9d80c5a80badadaa47628e6a718b6465726ce6d61f2ce3ad481f745",
+      "size": 67458
+    },
+    "scripts/pr16_dex_hof_minigame_text_roots.py": {
+      "sha256": "cb04b40ef9be093fdfc25734acd578038f37da81b34a97a4a811a691f1c0a351",
+      "size": 55947
+    },
+    "scripts/pr16_dex_hof_money_reward_roots.py": {
+      "sha256": "29fe574273fd70ec66bcd9ad586f69d1183780dd00a3a11449d7e4e7d57149c9",
+      "size": 23173
+    },
+    "scripts/pr16_dex_hof_moveend_wrapper_roots.py": {
+      "sha256": "aa5b44ac4e1fc5f2ee8d34024e3f86c63a7227e6f60902c0c64639356d98d3e0",
+      "size": 42804
+    },
+    "scripts/pr16_dex_hof_new_code.py": {
+      "sha256": "7e29c17cef9d7861b25241b3646cc42efdb73139259e2f76fa43fa5e4800d069",
+      "size": 25606
+    },
+    "scripts/pr16_dex_hof_party_chain.py": {
+      "sha256": "a6e5ed520f72038e66eece579164e9cc0e051063589a13e83e3a5e5ccd24367a",
+      "size": 11683
+    },
+    "scripts/pr16_dex_hof_party_takeitem.py": {
+      "sha256": "b059b1907cea67c0c6f73a6d0da2916f723a78feb9e88c83e13ce6b840043cb4",
+      "size": 35963
+    },
+    "scripts/pr16_dex_hof_party_tutor.py": {
+      "sha256": "93a7addd262a1ed56f854263fb4c99137730d21d8bf32374dbe01ed787e9ae90",
+      "size": 25461
+    },
+    "scripts/pr16_dex_hof_reference_chain.py": {
+      "sha256": "5932316cc2b7de37cdd22861a699064b83e5aef550e981a1b0662af348065767",
+      "size": 12491
+    },
+    "scripts/pr16_dex_hof_reference_code.py": {
+      "sha256": "bfac6384418fb43d5fcb0e83a2b0772138bee297acf737114c00efd07804d8a9",
+      "size": 7469
+    },
+    "scripts/pr16_dex_hof_reference_data.py": {
+      "sha256": "dc31f9604e7e0592d427f47790592b9338391644964ad095802f87348b7b5e5e",
+      "size": 9430
+    },
+    "scripts/pr16_dex_hof_reference_delta.py": {
+      "sha256": "14bb93599fa78116281b88a549be1ebfc26d3252825e43bc16174c01a16bf0ef",
+      "size": 9644
+    },
+    "scripts/pr16_dex_hof_reference_gaps.py": {
+      "sha256": "2ab5e4107a0570504547c5e492616d8d7201be9f74fa53797d837f6d605a1910",
+      "size": 30125
+    },
+    "scripts/pr16_dex_hof_registered_boundary_batch_chain.py": {
+      "sha256": "68d8398468660159826698d70a968b966f997bcd2f4112914179ba482cfaa98e",
+      "size": 20312
+    },
+    "scripts/pr16_dex_hof_registered_callback_batch_chain.py": {
+      "sha256": "bda8791180d07e3099fb7341f2ec66b3aef51bbe8c2bdcdcfc3611a2320864ca",
+      "size": 20396
+    },
+    "scripts/pr16_dex_hof_registered_item_batch_chain.py": {
+      "sha256": "40b45cf0f265d7ca81e326be58a05a57ad51d5fbd7cf63b28f7bc5b52482af90",
+      "size": 20534
+    },
+    "scripts/pr16_dex_hof_registered_state_batch_chain.py": {
+      "sha256": "99d2fc0ad332860453c0975bfd32b81a32816844554c6103517c0fe2409ce5e0",
+      "size": 20492
+    },
+    "scripts/pr16_dex_hof_registered_table_batch_chain.py": {
+      "sha256": "aba14f90475947e33c061bf647105d507ceb2665891cb14c6b36de4fd50fb92e",
+      "size": 20452
+    },
+    "scripts/pr16_dex_hof_registered_text_batch_chain.py": {
+      "sha256": "676dbabe1df46ac4a2aadc0975e36a04ba53927a1cba44799fb68757c0ec640a",
+      "size": 20244
+    },
+    "scripts/pr16_dex_hof_registered_ui_batch_chain.py": {
+      "sha256": "21eff55da391c49b9d3cbe6a8ed8c2e3e6af8a3f256eb7a358876d80fa34a078",
+      "size": 20553
+    },
+    "scripts/pr16_dex_hof_remaining_chain.py": {
+      "sha256": "d13ae212ce911f39208d7564a1ad66f5124f30384d48d5ba591a4563565bdd2c",
+      "size": 10862
+    },
+    "scripts/pr16_dex_hof_remaining_consumers_chain.py": {
+      "sha256": "fcc21331740736f3196e066005d1b07c236992b504db143bc1ea120494e62232",
+      "size": 13167
+    },
+    "scripts/pr16_dex_hof_remaining_engine.py": {
+      "sha256": "d88ace154be758ca5b8788e9fbfa26c643874a60347f49da16d00a3b99cacf1f",
+      "size": 9566
+    },
+    "scripts/pr16_dex_hof_root_batch_chain.py": {
+      "sha256": "c2573e6c6fd60e7a4b16fbc2348e590df4f0b34dc19f7da52de09a44489693b3",
+      "size": 18992
+    },
+    "scripts/pr16_dex_hof_runtime_chain.py": {
+      "sha256": "b07256a9484d6657c8698adf3cdf3354e013f371372fc9f32842d488d6ca308b",
+      "size": 10601
+    },
+    "scripts/pr16_dex_hof_runtime_party.py": {
+      "sha256": "89b97cb896ff2d2cdf4a4a04276006afb00d1c2b2c74d20689a0a63e24a25be1",
+      "size": 47501
+    },
+    "scripts/pr16_dex_hof_runtime_sprite.py": {
+      "sha256": "e2409be802248a15b143e7590a44aa54f4d1d13a2d14ffb5faeb0a26177dde30",
+      "size": 31951
+    },
+    "scripts/pr16_dex_hof_script_battle.py": {
+      "sha256": "6021b4ff83da30c1256425bb32509b78920d718d316d0cfb79d82d57d24c37b1",
+      "size": 18692
+    },
+    "scripts/pr16_dex_hof_script_chain.py": {
+      "sha256": "1d2cc1bd9ed8cf76acda46e19205c8550280c42b1364f813155d77255e9cf093",
+      "size": 13190
+    },
+    "scripts/pr16_dex_hof_script_engine.py": {
+      "sha256": "de309ea83fce769b1a66b3cecde4a29a7b2ed8f83c01cd4054b6147f22f83f54",
+      "size": 18593
+    },
+    "scripts/pr16_dex_hof_script_learnsets.py": {
+      "sha256": "7ee5549e54a0742e5523465205185ca17bdea93f4525754bdddfc23d0695359e",
+      "size": 11948
+    },
+    "scripts/pr16_dex_hof_script_producer_batch_chain.py": {
+      "sha256": "9c31b22c4078b2be27309f27e0e5048e3740af3282ebec705321066240d266a6",
+      "size": 25622
+    },
+    "scripts/pr16_dex_hof_space_assets.py": {
+      "sha256": "b972e8cb6b79692e5bcbef6d90caf56424123d59c6fbdacbcec2e12410d68fbb",
+      "size": 17920
+    },
+    "scripts/pr16_dex_hof_space_chain.py": {
+      "sha256": "65002e5a3aadbe35d4ad7ebc041852d49a8ddf2675bfd3347f66b568074872df",
+      "size": 10578
+    },
+    "scripts/pr16_dex_hof_stat_confirm_roots.py": {
+      "sha256": "09ac0163bd7bc21fde511f0946365629445c55c1d5e6319d6eafea8b4212be36",
+      "size": 20409
+    },
+    "scripts/pr16_dex_hof_stock_limit_roots.py": {
+      "sha256": "07580a533b20894a5d1bfa29f1d09295c9f90e6111c7d385949330bbf63cb295",
+      "size": 12331
+    },
+    "scripts/pr16_dex_hof_storage_actions.py": {
+      "sha256": "80f04f8b7c018c99952477584417d731b8e28326c04f150c24d93e022de45335",
+      "size": 14153
+    },
+    "scripts/pr16_dex_hof_successor.py": {
+      "sha256": "3c94d5d37f361a99eb0ae6b1d39697e6ffc524c5e75d23aad65d8bdf223de72c",
+      "size": 12256
+    },
+    "scripts/pr16_dex_hof_successor_source.py": {
+      "sha256": "2c2090185928acf05e72390e30924b3476b0a7d2d54ec345e894ffb489851d2a",
+      "size": 22573
+    },
+    "scripts/pr16_dex_hof_summary_chain.py": {
+      "sha256": "0d48f0ae79fffbb124d8b8912afdd9fbaa94a3be42831cf062717a64c6027ffd",
+      "size": 11748
+    },
+    "scripts/pr16_dex_hof_summary_nature.py": {
+      "sha256": "0783c5203abca54ab85cf8c8c3a0a640c030d3500690066b9c9dbb398888bbf7",
+      "size": 24869
+    },
+    "scripts/pr16_dex_hof_summary_type.py": {
+      "sha256": "82f3dc6af635fd80fac5800c83ca861822af05c2d24d2c52045bc11ccbf323e6",
+      "size": 67283
+    },
+    "scripts/pr16_dex_hof_tail_lease.py": {
+      "sha256": "fdd11b32566de7cc0f1cf8f499645beca7d92fa4c10ae1aab4e90bdda6f12db4",
+      "size": 5156
+    },
+    "scripts/pr16_dex_hof_toxic_orb_roots.py": {
+      "sha256": "ee710b9f509731d1df3e236fbaedee8cf05f845a84ad40d054e19db82bbf00a9",
+      "size": 47232
+    },
+    "scripts/pr16_dex_hof_ui_data.py": {
+      "sha256": "150ca00fd11435806cefe21f022dd6c951699ec0592a3c796fc648c6daaffa8f",
+      "size": 34565
+    },
+    "scripts/pr16_dex_lease.py": {
+      "sha256": "d80db50543bbaadeba2dce3fab34ce3dc2c219ca4bb4aac2f55d0271b372b4f6",
+      "size": 7656
+    },
+    "scripts/pr16_dex_lifecycle.py": {
+      "sha256": "7ebfd6c18dfca286f03d5921cc06162e37a0b7791c039f1e200841cb51ac3497",
+      "size": 6366
+    },
+    "scripts/pr16_dex_lifecycle_actions.py": {
+      "sha256": "6f9ebb33d3dd7b420dbf1ab9e414b9242cdf137f595d67a308a1db3f2835d050",
+      "size": 6414
+    },
+    "scripts/pr16_dex_mystery_failure.py": {
+      "sha256": "8757f657dd2183126bae6bb548069da4bcc1b180ea005f00374c8db9ab4230d5",
+      "size": 5525
+    },
+    "scripts/pr16_dex_outer_qol.py": {
+      "sha256": "d7f0efc7df9f42b2a27bc1b49de4f60709a8eb8b4d005440c218ef4f018497f2",
+      "size": 6896
+    },
+    "scripts/pr16_dex_outer_qol_actions.py": {
+      "sha256": "4e23d88a95cf9727e27a01506d68ac172cc9461477be1d17738761f378e5a8ca",
+      "size": 15344
+    },
+    "scripts/pr16_dex_placement.py": {
+      "sha256": "d094fa7c1a1a9262f8543d9ed24930b78e32c66e22ee06360be7addc0897f7c7",
+      "size": 9148
+    },
+    "scripts/pr16_dex_publication.py": {
+      "sha256": "c8cb5004d90cb5f1ac890c67c751053b41d2b0cbf1389c4da1a0489c89f42e7b",
+      "size": 1986
+    },
+    "scripts/pr16_dex_save_failure.py": {
+      "sha256": "958fb56845cfceba2b8e8b350df052ac03218e7c81226d138cbdb38dbc71eb15",
+      "size": 4567
+    },
+    "scripts/pr16_dex_save_failure_actions.py": {
+      "sha256": "65fdc482634d83684a75677b1e51f747ba3ab3a1bb1f94609fc6f9a93d28682f",
+      "size": 6443
+    },
+    "scripts/pr16_dex_scheduler.py": {
+      "sha256": "5a099e95f45328dcaeffae7ab0d6039b581a7ba5865ac4ee5fb46358e8dcf8b2",
+      "size": 24289
+    },
+    "scripts/pr16_dex_start_failure_actions.py": {
+      "sha256": "b43dbaf353bf6f8f5ae17a2de108adaea589efe739a53e745ed8dc09265f5513",
+      "size": 5570
+    },
+    "scripts/pr16_dex_start_fault_ui.py": {
+      "sha256": "2e33a2e774521db00b088e10b84fe012bb0ce0bf5d756696de59df4e525cf2b4",
+      "size": 13041
+    },
+    "scripts/pr16_dex_subowners.py": {
+      "sha256": "358f1eae1b335ca1cac5c595ee72a422f4499b85133b3c87ff0aa9f7721c4142",
+      "size": 1607
+    },
+    "scripts/pr16_dex_tail_lease.py": {
+      "sha256": "f0b8d18b4ff533372a10841ff08b71506c4a305e5d9126704ec919d985572ee6",
+      "size": 5067
+    },
+    "scripts/pr16_dex_union_failure.py": {
+      "sha256": "52c3b53ba26766d6515dfe214cedaca74c6ca76b5c8e3efebbc54d38634498cf",
+      "size": 8299
+    },
+    "scripts/pr16_dex_union_failure_actions.py": {
+      "sha256": "1e6e46cd474565b482ac9ab7cf2c05b62bbf54a856c39952a52224436c26aacf",
+      "size": 8508
+    },
+    "scripts/pr16_dex_union_formatter_actions.py": {
+      "sha256": "6e421aae3f60c7bb048ff0a1a5009486fbb75aa75eff232679711cac34a380b7",
+      "size": 6958
+    },
+    "scripts/pr16_dex_valid_failure.py": {
+      "sha256": "b4a3517b1cbb0ca6e82a8fa00b28ea2b3bcb75ed648567cf3487c23d8ff830ab",
+      "size": 2048
+    },
+    "scripts/pr16_research_bag_actions.py": {
+      "sha256": "785b1ec81ede3e50e673eb9f1a0861e6240048e7409f29d30d5331351527f5b8",
+      "size": 8168
+    },
+    "scripts/pr16_research_bag_delegate.py": {
+      "sha256": "9964a15ebf2fcb8a14145766fd9c89157ef98a525362832537a12774ecfaf7ad",
+      "size": 6509
+    },
+    "scripts/pr16_research_save_delegate.py": {
+      "sha256": "ed64cc810b7ad05da32b68827d96e54e39eeb04d8eeb65302f07a4ef54676474",
+      "size": 3372
+    },
+    "scripts/pr16_story_after_maori.py": {
+      "sha256": "094873217c89f543c1a5ed00435bf2d7a50ff486e0ed06908ee6c75a0414eaf6",
+      "size": 9178
+    },
+    "scripts/pr16_story_after_maori_session.py": {
+      "sha256": "1fa24fa46102436b45989c92d821d3a48e97d0061dc650cf48feb6e3bd2484d2",
+      "size": 4370
+    },
+    "scripts/pr16_story_live_observer.py": {
+      "sha256": "134de87d94272e94af64f58b89247b424406c4bf752d73fe4024557d4867dd85",
+      "size": 8734
+    },
+    "scripts/pr16_story_live_probe.py": {
+      "sha256": "0646d215f3ef79e52155eda2bdb8a95e432f5306f20938ff9dc368f391c6ab8b",
+      "size": 11278
+    },
+    "scripts/pr16_story_live_session.py": {
+      "sha256": "1fc816d17c0258a0b578f0091b61d064b290ec2292273c9c500f5e205e1c387b",
+      "size": 1232
+    },
+    "scripts/pr16_story_milestones.py": {
+      "sha256": "81aae02a2859460db6f383d54e6b01a8819880aaccd9009f74905a668183d9cb",
+      "size": 6315
+    },
+    "scripts/pr16_weather_bubble.py": {
+      "sha256": "42a6d9139538c8e1367ab290157ac56cb72b629faf5bd953fc344f74a9548070",
+      "size": 11951
+    },
+    "scripts/pr16_weather_bubble_actions.py": {
+      "sha256": "2b407b8941de32450cd337730b553e807b7824b5779f9b7a9f13a783b48b832c",
+      "size": 12923
+    },
+    "scripts/pr16_weather_bubble_sources.py": {
+      "sha256": "d5827de8da092c0209003c382b6ab657905bf50ce37fa257021732fe64476070",
+      "size": 6080
+    }
+  },
+  "failed_previous_run": {
+    "conclusion": "failure",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "6cf13ee2f032862ff97ae55ca62a85d05fbcc800",
+    "id": 38039867181,
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "files": {
+    "measurement.json": {
+      "sha256": "9b3d4036968f5e88c5e69afee88a8e65d44281b68d86995b060be19bcaed2205",
+      "size": 42289
+    },
+    "parent.json": {
+      "sha256": "80b7c65e97fe74417879e96e59bbe83db76eabfd1bea62f05477b0a80edbdc6b",
+      "size": 12927
+    },
+    "tests.json": {
+      "sha256": "a07f29f4245fd164952de33f336cd0b8984f8125492eb3a3c89d3a4658cd303e",
+      "size": 2610
+    }
+  },
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "full_rom_scan_runs": 0,
+  "header": {
+    "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+    "git_blob": "c3c07d10d70b2f8b46dee954ab6428ffab076ca8",
+    "path": "include/field_weather.h",
+    "repository": "pret/pokefirered",
+    "sha256": "aa42a5396c46db9d86182a9615c12132092b03a457e532c1089a8d2cc0c0bef1",
+    "size": 5052,
+    "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/field_weather.h"
+  },
+  "native_processes": 0,
+  "new_reader_cases": 3,
+  "public_sources": {
+    "Makefile": {
+      "cache_name": "pret_pokefirered__Makefile",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "8b454dbd18eb0069fa5851d788697190890a5b37",
+      "path": "Makefile",
+      "repository": "pret/pokefirered",
+      "sha256": "51960ea72311e53c272ebcc5b481021efba52fcc7db7f0ded4bfcebaf8bbdf47",
+      "size": 14605,
+      "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/Makefile"
+    },
+    "diagnostics/pokefirered_jp.sym.audit.tsv": {
+      "cache_name": "ComplexRobot_frlg-sym__diagnostics_pokefirered_jp.sym.audit.tsv",
+      "commit": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "git_blob": "53316c0d61da2c6cc22acf3d79f68c61c64c65be",
+      "path": "diagnostics/pokefirered_jp.sym.audit.tsv",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "fc1e4b579b21a592b8e09fa3c36f242833837190401128cd6866c945eff2f44e",
+      "size": 4147002,
+      "url": "https://raw.githubusercontent.com/ComplexRobot/frlg-sym/c04a31542086b20d8c6ee641eaa70b8db6713fd3/diagnostics/pokefirered_jp.sym.audit.tsv"
+    },
+    "diagnostics/pokefirered_jp.sym.metadata.tsv": {
+      "cache_name": "ComplexRobot_frlg-sym__diagnostics_pokefirered_jp.sym.metadata.tsv",
+      "commit": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "git_blob": "2550c490a130f22dfd59725a200152a607c969fd",
+      "path": "diagnostics/pokefirered_jp.sym.metadata.tsv",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "aa387f052a694890c3de8104f93b885cd0091d401a59cddf8ab067a6869bb774",
+      "size": 464,
+      "url": "https://raw.githubusercontent.com/ComplexRobot/frlg-sym/c04a31542086b20d8c6ee641eaa70b8db6713fd3/diagnostics/pokefirered_jp.sym.metadata.tsv"
+    },
+    "graphics/weather/bubble.png": {
+      "cache_name": "pret_pokefirered__graphics_weather_bubble.png",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "05885a11d972076dbab2597e967a3bf4cf84f706",
+      "path": "graphics/weather/bubble.png",
+      "repository": "pret/pokefirered",
+      "sha256": "50228f9e15b7df7afa4ee8250938f3d5108acebf0f7b4856e50680b04888f94b",
+      "size": 177,
+      "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/graphics/weather/bubble.png"
+    },
+    "graphics_file_rules.mk": {
+      "cache_name": "pret_pokefirered__graphics_file_rules.mk",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "39b952cd45b6a34eb98318a76aa531fcafff134d",
+      "path": "graphics_file_rules.mk",
+      "repository": "pret/pokefirered",
+      "sha256": "bd56e518ab9527f844642230673ce27a5bae73c7208d917d3288b073859fb685",
+      "size": 14859,
+      "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/graphics_file_rules.mk"
+    },
+    "include/gba/syscall.h": {
+      "cache_name": "pret_pokefirered__include_gba_syscall.h",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "22fdf09facfaa812bf11b13d1f3ff86271598511",
+      "path": "include/gba/syscall.h",
+      "repository": "pret/pokefirered",
+      "sha256": "c73c64b468e6b51557aa7c3b4a0d166906b8db7fd8cc53c117b1c912844017ac",
+      "size": 1225,
+      "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/gba/syscall.h"
+    },
+    "include/sprite.h": {
+      "cache_name": "pret_pokefirered__include_sprite.h",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "6a1b272119ce6e3a8dcf45adf2eef8923a6d5175",
+      "path": "include/sprite.h",
+      "repository": "pret/pokefirered",
+      "sha256": "a77aa1c837dfb58cf60b3eac299c7cc29a23ce27735ba710b9e8eeed102bf773",
+      "size": 9368,
+      "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/sprite.h"
+    },
+    "src/field_weather.c": {
+      "cache_name": "pret_pokefirered__src_field_weather.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "56cf6505bd381fde0aaa9a704cc4e997b5f934d2",
+      "path": "src/field_weather.c",
+      "repository": "pret/pokefirered",
+      "sha256": "935ed0d0d83ff91bd8fdb52883c8223a816a66a40ec44b2b61c3e68fedc52672",
+      "size": 33681,
+      "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/field_weather.c"
+    },
+    "src/field_weather_effects.c": {
+      "cache_name": "pret_pokefirered__src_field_weather_effects.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "6d69e355258ec0164a22b11e0ca198638b1c13ca",
+      "path": "src/field_weather_effects.c",
+      "repository": "pret/pokefirered",
+      "sha256": "28ac11dd8d3cf66bb4e6d7e663cfc2411e8bfc82fec13bb2f2ec55d9c51ec67d",
+      "size": 62867,
+      "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/field_weather_effects.c"
+    },
+    "src/libagbsyscall.s": {
+      "cache_name": "pret_pokefirered__src_libagbsyscall.s",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "61c23feb497ade0742be6845be7d5716574f54cc",
+      "path": "src/libagbsyscall.s",
+      "repository": "pret/pokefirered",
+      "sha256": "6d183afe7a31976b1e301dac4f2926df9e251a636cd2a197f56bc8296dc46e78",
+      "size": 1358,
+      "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/libagbsyscall.s"
+    },
+    "src/sprite.c": {
+      "cache_name": "pret_pokefirered__src_sprite.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "d0198d53004775c8664dcccf57833e178833776e",
+      "path": "src/sprite.c",
+      "repository": "pret/pokefirered",
+      "sha256": "2a804302eb5a89d31c3ec2f33dc645a80a0c645113d4b33b9bd571064c0286ae",
+      "size": 48783,
+      "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/sprite.c"
+    },
+    "tools/gbagfx/convert_png.c": {
+      "cache_name": "pret_pokefirered__tools_gbagfx_convert_png.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "58371229c06d0c036a23d55ffcbf5761d0089800",
+      "path": "tools/gbagfx/convert_png.c",
+      "repository": "pret/pokefirered",
+      "sha256": "c542d1cffe83516d8b644ec04be507d3fa376231083f03f2001be15152da2965",
+      "size": 7511,
+      "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/tools/gbagfx/convert_png.c"
+    },
+    "tools/gbagfx/gfx.c": {
+      "cache_name": "pret_pokefirered__tools_gbagfx_gfx.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "1dfc38e2d0362cb8224f67f057f68ee7120dce9f",
+      "path": "tools/gbagfx/gfx.c",
+      "repository": "pret/pokefirered",
+      "sha256": "3cd8346e273b76d74324af0c3aecfeda6607af5757503f3a973bf6be0faaccf2",
+      "size": 18570,
+      "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/tools/gbagfx/gfx.c"
+    },
+    "tools/gbagfx/main.c": {
+      "cache_name": "pret_pokefirered__tools_gbagfx_main.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob": "0dba4c8aea0bec7a3f407ae3aee570e8e88a6834",
+      "path": "tools/gbagfx/main.c",
+      "repository": "pret/pokefirered",
+      "sha256": "3d263018fd669800dfe3dc5b5e62a013b8433769e4d5dc7c9aad2280980b9c0b",
+      "size": 21495,
+      "url": "https://raw.githubusercontent.com/pret/pokefirered/c75f352304d529f6ba92d4f74b9cf8b5c3810788/tools/gbagfx/main.c"
+    }
+  },
+  "reconstructions": 1,
+  "status": "PASS_NEW_BUBBLE_MEASUREMENT_PUBLICATION",
+  "task_total_reconstructions_including_failed_run": 2
+}

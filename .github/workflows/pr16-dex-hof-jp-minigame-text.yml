@@ -1,0 +1,63 @@
+name: pr16-dex-hof-jp-minigame-text
+run-name: current-minigame-reject-cancel-full-text-minimum-type
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-dex-hof-jp-minigame-text.yml
+      - scripts/pr16_dex_hof_jp_minigame_*.py
+      - tests/test_pr16_dex_hof_jp_minigame_*.py
+      - content/modernization/pr16_dex_hof_jp_minigame_sources.json
+      - content/modernization/pr16_dex_hof_jp_minigame_development.json
+      - content/modernization/pr16_dex_hof_jp_minigame_development_proof.json
+      - docs/PR16_DEX_HOF_JP_MINIGAME_TEXT_JA.md
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-dex-hof-jp-minigame-text
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  minigame-text:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: First scope across all branches and closed source boundary
+        run: python3 -B scripts/pr16_dex_hof_jp_minigame_actions.py guard
+      - name: Official Ubuntu compiler for current candidate
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev
+      - name: New minigame rejection and cancellation roots with complete text only
+        id: measurement
+        run: python3 -B scripts/pr16_dex_hof_jp_minigame_actions.py run
+      - name: Closed successful text publication guard
+        id: publication_guard
+        env:
+          MINIGAME_MEASUREMENT_OUTCOME: ${{ steps.measurement.outcome }}
+        if: always()
+        run: python3 -B scripts/pr16_dex_hof_jp_minigame_actions.py export
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.publication_guard.outcome == 'success' }}
+        with:
+          name: pr16-jp-minigame-text-only
+          path: public-jp-minigame-text
+          retention-days: 90
+          if-no-files-found: error
+      - name: Read-only checkout and task graph
+        run: |
+          python3 -B scripts/validate_task_graph.py --check
+          git diff --exit-code

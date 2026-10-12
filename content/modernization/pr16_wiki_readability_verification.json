@@ -1,0 +1,65 @@
+{
+  "accepted_test_reruns": 0,
+  "actions_completion_confirmed": false,
+  "actions_run_id": 38104885843,
+  "bytes": 177464001,
+  "code_bindings": {
+    ".github/workflows/pr16-wiki-readability.yml": {
+      "sha256": "c34af8a7fd9c27d1b880ee089655513b5aeec65d7829c016f41fecefe2a72958",
+      "size": 3064
+    },
+    "scripts/pr16_wiki_readability.py": {
+      "sha256": "b17c0321d44a763c602994910aa18a55938e3f7c01683bdf2597bf242a293cf5",
+      "size": 21627
+    },
+    "scripts/pr16_wiki_readability_publish.py": {
+      "sha256": "f4e858982ff0583a8e315e8cb6c0c8eca05d60344a79c838a7a852f1acd6daad",
+      "size": 21681
+    },
+    "tests/test_pr16_wiki_readability.py": {
+      "sha256": "f9ae0ecf4b96f6742a25dff9f1c2e3b0c7e0952b1aa1fd803421ad7d6315ff9e",
+      "size": 9392
+    }
+  },
+  "core_game_semantic_sha256": "8aa44826011462d78af79f8d410b0ce868b3620060c8f23f0e761e29dc13e226",
+  "core_game_semantics_unchanged": true,
+  "deterministic": true,
+  "files": 4517,
+  "focused_tests": 28,
+  "full_index_private_guard": {
+    "executed": true,
+    "exit_code": 1,
+    "historical_violations_not_rewritten": true,
+    "passed": false,
+    "raw_private_log_published": false
+  },
+  "historical_snapshots_preserved": true,
+  "known_regression": "役割要約を全種から除外、リーテイルLv46こうごうせいと全習得byte不変",
+  "links": 592544,
+  "native_processes": 0,
+  "package": {
+    "deterministic": true,
+    "expanded_links": 592544,
+    "expanded_verified": true,
+    "files": 4517,
+    "manifest_sha256": "5cc845e6958cba45966d3a2f7d446483509bd53ed7d6220db17399cedac77372",
+    "name": "wiki-r0.1-6e88a021.zip",
+    "private_inputs_included": false,
+    "sha256": "abd887f241fbfdcc454bfc13abf9fa3b7c7c2025943c40ec3880dc2a66f1268e",
+    "size": 33950355,
+    "tree_sha256": "c8838ef1dc8914918e77fb1cecb6844d05a5d052b66219f82c7256e4f2c5d711",
+    "uncompressed_bytes": 177464001
+  },
+  "prior_berry_run_observed_without_rerun": {
+    "conclusion": "success",
+    "head_sha": "359d3fae20d5d0e25342c0e1b8daac921aa0e646",
+    "id": 38099840927,
+    "status": "completed"
+  },
+  "read_only_byte_mtime": true,
+  "rom_reconstructions": 0,
+  "source_head": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
+  "status": "PASS",
+  "task_graph_passed": true,
+  "tree_sha256": "c8838ef1dc8914918e77fb1cecb6844d05a5d052b66219f82c7256e4f2c5d711"
+}

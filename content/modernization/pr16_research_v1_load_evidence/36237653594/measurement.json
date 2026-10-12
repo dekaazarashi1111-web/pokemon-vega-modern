@@ -1,0 +1,113 @@
+{
+  "accepted": {},
+  "accepted_case_reruns": 0,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "artifacts": [
+    {
+      "digest": "sha256:a6aeccb72fa15411d956b418ca5f030aa5020a466303a25e0f8814ba2eeb5c4d",
+      "id": 10898620034,
+      "name": "pr16-special-wild-gameplay-runtime",
+      "size_in_bytes": 102586759,
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "8660fe70f4354333cf7647186663cacafa04451b",
+        "id": 36218655601,
+        "repository_id": 1358127462
+      }
+    },
+    {
+      "digest": "sha256:7d3de78d4e852583eb35551076021630c1343aa623e91fe1529d73f4cf1471ed",
+      "id": 10898510128,
+      "name": "pr16-special-wild-gameplay-data",
+      "size_in_bytes": 17366330,
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "8660fe70f4354333cf7647186663cacafa04451b",
+        "id": 36218655601,
+        "repository_id": 1358127462
+      }
+    }
+  ],
+  "candidate": {
+    "sha256": "58079dfbdbe15899d9b86f53ad3a21fe46ddcebf5fed231c85dcd2332ddd2d75",
+    "size": 33554432
+  },
+  "cases": {
+    "v1-load-checksum": {
+      "elapsed_seconds": 0.42,
+      "private_save": {
+        "sha256": "2a8384fca96fe07996138f3e3164186c78ec16e7a9923314bdefd620b25f3a6c",
+        "size": 131088
+      },
+      "returncode": 1,
+      "stderr": {
+        "sha256": "ffaa8c7841b6fa2f182d9fd79ec0958000070777aa15b2afa709f8f544050995",
+        "size": 60
+      },
+      "stdout": {
+        "sha256": "5be8fc42fc7c579afae4118c2950fb60dc63f58d0661640435fe4f35771a17ce",
+        "size": 529
+      },
+      "timeout": false
+    },
+    "v1-load-tail": {
+      "elapsed_seconds": 0.412,
+      "private_save": {
+        "sha256": "edc10f7a5e06f232b2d7a866832425dbb1f341724764797dc88f0275b2b44d26",
+        "size": 131088
+      },
+      "returncode": 1,
+      "stderr": {
+        "sha256": "ffaa8c7841b6fa2f182d9fd79ec0958000070777aa15b2afa709f8f544050995",
+        "size": 60
+      },
+      "stdout": {
+        "sha256": "5be8fc42fc7c579afae4118c2950fb60dc63f58d0661640435fe4f35771a17ce",
+        "size": 529
+      },
+      "timeout": false
+    },
+    "v1-load-valid": {
+      "elapsed_seconds": 0.423,
+      "private_save": {
+        "sha256": "f2f9bd2703032cccb37215cb95df197e3607e95458cebc0595e3d495fcbbdd89",
+        "size": 131088
+      },
+      "returncode": 1,
+      "stderr": {
+        "sha256": "15bb3e664fb11910e4c1f61721067d3dfc5450a9eb335bc571208d393a34331a",
+        "size": 64
+      },
+      "stdout": {
+        "sha256": "5be8fc42fc7c579afae4118c2950fb60dc63f58d0661640435fe4f35771a17ce",
+        "size": 529
+      },
+      "timeout": false
+    }
+  },
+  "failures": {
+    "v1-load-checksum": {
+      "reason": "successful clean native process",
+      "type": "ValueError"
+    },
+    "v1-load-tail": {
+      "reason": "successful clean native process",
+      "type": "ValueError"
+    },
+    "v1-load-valid": {
+      "reason": "successful clean native process",
+      "type": "ValueError"
+    }
+  },
+  "fixture_ram_writes": 0,
+  "guard_processes": 7,
+  "host_compiles": 1,
+  "native_processes": 3,
+  "new_unit_tests": 26,
+  "rom_changes": 0,
+  "run_id": 36237653594,
+  "source_head": "af1065f42eb965dacb26060a22595ed3f85a3adb"
+}

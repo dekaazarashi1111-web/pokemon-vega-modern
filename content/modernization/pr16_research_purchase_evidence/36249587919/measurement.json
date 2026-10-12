@@ -1,0 +1,292 @@
+{
+  "accepted": {
+    "binding": {
+      "backgrounds": 155270164,
+      "binding": "map98/3-background0",
+      "catalog": 0,
+      "events": 155270224,
+      "item": 4,
+      "price": 10,
+      "quantity": 5,
+      "script": 154927912
+    },
+    "candidate_sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+    "case": "shop-select-purchase-insufficient-save-continue",
+    "catalog": 0,
+    "fixture_field_callback_writes": 1,
+    "fixture_warp_calls": 4,
+    "frames_after_warp": 2574,
+    "fresh_cores": 4,
+    "guarded_host_writes": 0,
+    "host_write_barriers": 7,
+    "item": 4,
+    "ledger_observations": [
+      {
+        "checksum_valid": true,
+        "ledger_event": "fixture",
+        "ledger_sha256": "64519cd245028a5f45e0c9cd7562d4c37113d7c5f11c5b75bcb2deef1c8d0b25",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "selected_decline",
+        "ledger_sha256": "64519cd245028a5f45e0c9cd7562d4c37113d7c5f11c5b75bcb2deef1c8d0b25",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "declined",
+        "ledger_sha256": "64519cd245028a5f45e0c9cd7562d4c37113d7c5f11c5b75bcb2deef1c8d0b25",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "selected_buy",
+        "ledger_sha256": "64519cd245028a5f45e0c9cd7562d4c37113d7c5f11c5b75bcb2deef1c8d0b25",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "purchased",
+        "ledger_sha256": "4f6f47f3590e162348c20ee9eb972cdf79729ede29d811bbdc15996a3c8b71b1",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "transaction_continue",
+        "ledger_sha256": "4f6f47f3590e162348c20ee9eb972cdf79729ede29d811bbdc15996a3c8b71b1",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "selected_insufficient",
+        "ledger_sha256": "4f6f47f3590e162348c20ee9eb972cdf79729ede29d811bbdc15996a3c8b71b1",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "insufficient",
+        "ledger_sha256": "4f6f47f3590e162348c20ee9eb972cdf79729ede29d811bbdc15996a3c8b71b1",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "saved",
+        "ledger_sha256": "4f6f47f3590e162348c20ee9eb972cdf79729ede29d811bbdc15996a3c8b71b1",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "continued",
+        "ledger_sha256": "4f6f47f3590e162348c20ee9eb972cdf79729ede29d811bbdc15996a3c8b71b1",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      },
+      {
+        "checksum_valid": true,
+        "ledger_event": "continued_again",
+        "ledger_sha256": "4f6f47f3590e162348c20ee9eb972cdf79729ede29d811bbdc15996a3c8b71b1",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "size": 2048,
+        "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+        "version": 2
+      }
+    ],
+    "manual_saves": 1,
+    "menu_observations": [
+      {
+        "callback": 154924453,
+        "eligible_count": 19,
+        "native_tasks": 1,
+        "shop_open": "decline",
+        "window": 1
+      },
+      {
+        "callback": 154924453,
+        "eligible_count": 19,
+        "native_tasks": 1,
+        "shop_open": "buy",
+        "window": 0
+      },
+      {
+        "callback": 154924453,
+        "eligible_count": 19,
+        "native_tasks": 1,
+        "shop_open": "insufficient",
+        "window": 1
+      }
+    ],
+    "natural_progress_accepted": false,
+    "normal_new_game_accepted": false,
+    "observations": [
+      {
+        "counter": 2,
+        "event": "fixture",
+        "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "item_quantity": 0,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "014000000a0001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 2,
+        "event": "selected_decline",
+        "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "item_quantity": 0,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "014000000a0001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 2,
+        "event": "declined",
+        "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "item_quantity": 0,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "014000000a0001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 2,
+        "event": "selected_buy",
+        "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "item_quantity": 0,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "014000000a0001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 4,
+        "event": "purchased",
+        "inventory_sha256": "2ab0f0bb993a1c3f12489a087a65dfac2cb65c0adf6b61649ee5d79cd1bf84bf",
+        "item_quantity": 5,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000000001010000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 4,
+        "event": "transaction_continue",
+        "inventory_sha256": "2ab0f0bb993a1c3f12489a087a65dfac2cb65c0adf6b61649ee5d79cd1bf84bf",
+        "item_quantity": 5,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000000001010000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 4,
+        "event": "selected_insufficient",
+        "inventory_sha256": "2ab0f0bb993a1c3f12489a087a65dfac2cb65c0adf6b61649ee5d79cd1bf84bf",
+        "item_quantity": 5,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000000001010000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 4,
+        "event": "insufficient",
+        "inventory_sha256": "2ab0f0bb993a1c3f12489a087a65dfac2cb65c0adf6b61649ee5d79cd1bf84bf",
+        "item_quantity": 5,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000000001010000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 5,
+        "event": "saved",
+        "inventory_sha256": "2ab0f0bb993a1c3f12489a087a65dfac2cb65c0adf6b61649ee5d79cd1bf84bf",
+        "item_quantity": 5,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000000001010000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 5,
+        "event": "continued",
+        "inventory_sha256": "2ab0f0bb993a1c3f12489a087a65dfac2cb65c0adf6b61649ee5d79cd1bf84bf",
+        "item_quantity": 5,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000000001010000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      },
+      {
+        "counter": 5,
+        "event": "continued_again",
+        "inventory_sha256": "2ab0f0bb993a1c3f12489a087a65dfac2cb65c0adf6b61649ee5d79cd1bf84bf",
+        "item_quantity": 5,
+        "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+        "owner": "01400000000001010000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+        "party_count": 6,
+        "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+      }
+    ],
+    "price": 10,
+    "purchase_accepted": true,
+    "quantity": 5,
+    "scope": "NATIVE_RESEARCH_SELECTION_PURCHASE_INSUFFICIENT_AND_SAVE_CONTINUE",
+    "status": "PASS",
+    "stdout": {
+      "sha256": "03a927975d24341f0a5dc46c3f788d4e99f2839776f93c3cccc364cd5cfc0f4c",
+      "size": 9419
+    },
+    "transaction_saves": 2,
+    "warnings_errors": 0
+  },
+  "candidate": {
+    "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+    "size": 33554432
+  },
+  "failure": null,
+  "run_id": 36249587919,
+  "source_head": "bd690e9be3933332ba955900d83f16a73a8b975e"
+}

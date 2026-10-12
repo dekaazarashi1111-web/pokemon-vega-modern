@@ -1,0 +1,14 @@
+{
+  "status": "STRICT_PARENT_BYTE_BINDING_PRE_DISPATCH_CONTRACT",
+  "source_head": "b83dcb3d7a0a5465606be442eb431c9d53e0acfe",
+  "parent_fixture_path": "content/modernization/pr16_story_save99_next_route.json",
+  "parent_fixture_binding": {
+    "size": 10384,
+    "sha256": "932c0673b692d5c65ed2afb41009caf644da4c74f66f7f303fdd039a0646aff8"
+  },
+  "final_newline_included": true,
+  "normalization_used": false,
+  "failed_copy_size": 10385,
+  "failed_copy_sha256": "0f480baa7dc1c8786c8e166d44b61853e89543d54e3567ee24c2d50e74e13143",
+  "rule_ja": "正本のGit blob byteを読んで期待hashを算出。JSON/textの転送写しの末尾改行を無意識に追加しない。branchへ反映する前に新commitの全送信対象blobを読み戻し、送信元のUTF-8 byte列と完全一致を照合。差があれば停止し、正本や受入条件を正規化しない。旧成功unit/nativeは影響なしに再走しない。"
+}

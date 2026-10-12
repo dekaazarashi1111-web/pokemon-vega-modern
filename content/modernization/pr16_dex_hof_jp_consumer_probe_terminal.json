@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "status": "RECORDED_CURRENT_JP_LEXICAL_AND_POINTER_OBSERVATION_ONLY",
+  "source_head": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a",
+  "run_id": 37688855091,
+  "run_attempt": 1,
+  "conclusion": "success",
+  "job": {
+    "id": 113023572648,
+    "name": "bounded-current",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 37688855091,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Current source and publication boundary",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Official Ubuntu toolchain for same current candidate",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Fixed sources and bounded current measurements",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Closed text publication guard",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Read-only checkout and lightweight task graph",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      }
+    ]
+  },
+  "artifact": {
+    "id": 11512656180,
+    "name": "pr16-jp-consumer-probe-text-only",
+    "size_in_bytes": 7863,
+    "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11512656180",
+    "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11512656180/zip",
+    "expired": false,
+    "created_at": "2026-10-07T21:24:35Z",
+    "expires_at": "2027-01-05T21:21:51Z",
+    "updated_at": "2026-10-07T21:24:35Z",
+    "digest": "sha256:30abe9cfde2d7e69f3eb25566110a78a264ee9f59967f363860ddef22121f8fc",
+    "workflow_run": {
+      "id": 37688855091,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a"
+    }
+  },
+  "measurement_path": "content/modernization/pr16_dex_hof_jp_consumer_probe_evidence/measurement.json",
+  "tests_path": "content/modernization/pr16_dex_hof_jp_consumer_probe_evidence/probe-tests.json",
+  "measurement_identity": {
+    "size": 49671,
+    "sha256": "c800071446877641d8745054163d5f67040dbfec5c442feb588c858cfc954436"
+  },
+  "tests_identity": {
+    "size": 94,
+    "sha256": "23ff586778bb4d645430ad8925f2727bd73b083d9ab3dd04b83fbf8d5227bb82"
+  },
+  "classified": 779,
+  "unclassified": 95,
+  "newly_classified": 0,
+  "native_processes": 0,
+  "all_api_arguments_proven": false,
+  "serializer_execution_proven": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "donor_eligible": false,
+  "latest_other_runs": [
+    {
+      "id": 37688868544,
+      "name": "p03-forgetting-ci",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a",
+      "run_attempt": 1,
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37688868544"
+    },
+    {
+      "id": 37688868517,
+      "name": "source-validation",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a",
+      "run_attempt": 1,
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37688868517"
+    },
+    {
+      "id": 37688855021,
+      "name": "Stage79 mGBA (all)",
+      "status": "in_progress",
+      "conclusion": null,
+      "head_sha": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a",
+      "run_attempt": 1,
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37688855021"
+    },
+    {
+      "id": 37688855106,
+      "name": "p03-forgetting-ci",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a",
+      "run_attempt": 1,
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37688855106"
+    },
+    {
+      "id": 37688855115,
+      "name": "Stage79 runtime boundary audit",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a",
+      "run_attempt": 1,
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37688855115"
+    },
+    {
+      "id": 37688855091,
+      "name": "current-japanese-candidate-bounded-measurement",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a",
+      "run_attempt": 1,
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37688855091"
+    },
+    {
+      "id": 37688855036,
+      "name": "PR16 fixed handoff source-only verification",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a",
+      "run_attempt": 1,
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37688855036"
+    },
+    {
+      "id": 37688855108,
+      "name": "source-validation",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a",
+      "run_attempt": 1,
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37688855108"
+    }
+  ],
+  "general_ci_exact_error": "ValueError: tested source changed: overlays/qol_production/qol_production.c",
+  "registered_cells_verified": 2,
+  "lexical_eos_extents": [
+    30,
+    27,
+    24,
+    38
+  ],
+  "explored_function_entries": 14,
+  "explored_instructions": 653,
+  "explored_contiguous_windows": 28,
+  "current_rom_reconstructions": 1,
+  "current_owner_count": 115,
+  "unit_tests": 59
+}

@@ -1,0 +1,426 @@
+{
+  "actions_completion_confirmed": false,
+  "actions_run_id": 38094042257,
+  "all_old_namespaces_preserved": true,
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "claims": {
+    "accepted_measurement_replays": 0,
+    "accepted_test_reruns": 0,
+    "actual_gpu_flush_or_irq_executed": false,
+    "actual_runtime_execution_observed": false,
+    "all_alternative_readers_excluded": false,
+    "conditional_finite_reader_only": true,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "floating_point_callee_body_executed": false,
+    "formal_classification_accepted": true,
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "indirect_reference_completeness_claimed": false,
+    "native_processes": 0,
+    "natural_entry_reachability_proven": false
+  },
+  "classified": 787,
+  "delta_identity": {
+    "sha256": "99be8c45e24dd8e281ee6e77861f04297b65ecc1b5c09f37f91e80aab36e83be",
+    "size": 5763
+  },
+  "donor_safe_bytes": 0,
+  "evidence_bindings": {
+    "content/modernization/pr16_typed_origins_receipt_evidence/measurement-actions.json": {
+      "sha256": "786afd69891f11ebaacfaf97b7679af4ddfed308ec81e771a7c6f9082ff40d32",
+      "size": 5873
+    },
+    "content/modernization/pr16_typed_origins_receipt_evidence/receipt-tests.txt": {
+      "sha256": "1300a6caeb3ba39eb6c2e18b8c77efaa25f009c801d14059d936d3bc5ef4bd93",
+      "size": 6329
+    },
+    "content/modernization/pr16_typed_origins_receipt_evidence/reference-chain.json": {
+      "sha256": "99be8c45e24dd8e281ee6e77861f04297b65ecc1b5c09f37f91e80aab36e83be",
+      "size": 5763
+    },
+    "content/modernization/pr16_typed_origins_receipt_evidence/unknown-frontier.json": {
+      "sha256": "7eff70285e1de674b77a1be7b9e31f235a158dc26a905421fa6094359c3501b4",
+      "size": 38217
+    },
+    "content/modernization/pr16_typed_origins_receipt_evidence/window-progress.json": {
+      "sha256": "d2064ff07c15e89ed56f99340832872b9b6171f93736b1757a58fcd3e2e341e3",
+      "size": 3155
+    }
+  },
+  "full_audit_identity": {
+    "sha256": "fdedf5dd0eee64c2a9a884668a88e327a5e548bc10d83f5891b6090cb2dfc9a1",
+    "size": 11775370
+  },
+  "full_index_private_guard": {
+    "executed": true,
+    "exit_code": 1,
+    "historical_violations_not_rewritten": true,
+    "passed": false,
+    "raw_private_log_published": false
+  },
+  "measurement_actions": {
+    "artifact_id": 11683989837,
+    "conclusion": "success",
+    "context_identities": {
+      ".github/workflows/pr16-typed-origins.yml": {
+        "sha256": "26b2ac743dfdc72d6e6736b8e3f0684092c3751d29a68ba8052e574094825244",
+        "size": 1521
+      },
+      "content/modernization/pr16_first_origin_evidence/actions-completion.json": {
+        "sha256": "52f31c6a3ba5f07581b53b8c3604ca56fb19c2d6305972eb2e112f7334860701",
+        "size": 1923
+      },
+      "content/modernization/pr16_forest_wallpaper_receipt_evidence/reference-chain.json": {
+        "sha256": "46bcdda65a2f9fab6a86ccf76569cf54c4600c916a67bf4f8572714e4eb34a95",
+        "size": 4155
+      },
+      "content/modernization/pr16_forest_wallpaper_receipt_evidence/unknown-frontier.json": {
+        "sha256": "f8bebaf76cfa3d0d3de8a78f1354d4fe576de17d6ba29af9f13d262a57c54537",
+        "size": 39089
+      },
+      "content/modernization/pr16_typed_origins_checkpoint.json": {
+        "sha256": "eee0837aa8f925a1b150c687a4124bee91710dc4c9eff03b3e6e6e183f2d30ea",
+        "size": 6878
+      },
+      "content/modernization/pr16_typed_origins_evidence/bounded-discovery.json": {
+        "sha256": "b2d1495a31c4315730edc74e07a8c1fd32c947d0f2cd616b027339e47cb34df6",
+        "size": 74666
+      },
+      "content/modernization/pr16_typed_origins_evidence/reader-profiles.json": {
+        "sha256": "761b8488dcdfcdea82373f050356f247297befecf7fee5e4c871029339182303",
+        "size": 19614
+      },
+      "content/modernization/pr16_wiki_first_execution_plan.json": {
+        "sha256": "98d8e300a76cb21a4096f4682036ea7d5b312e5181261504d48f28fc6173c27c",
+        "size": 16634
+      },
+      "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md": {
+        "sha256": "93d99edba7f4d4b8fa011696ec61044b1c4a57f039d40a3183078d8076851dc3",
+        "size": 11042
+      },
+      "scripts/pr16_dex_hof_lifetime_root.py": {
+        "sha256": "7d1827e12c7261371778d0fb08b0bbc5dcdd8efd2344017310c617a2ebbd650a",
+        "size": 19545
+      },
+      "scripts/pr16_dex_hof_runtime_sprite.py": {
+        "sha256": "e2409be802248a15b143e7590a44aa54f4d1d13a2d14ffb5faeb0a26177dde30",
+        "size": 31951
+      },
+      "scripts/pr16_forest_wallpaper_receipt.py": {
+        "sha256": "cba0df69e9c13886dd4bf64c5147a21c4402ec09534f9a2a37ccc436eb541bbe",
+        "size": 15041
+      },
+      "scripts/pr16_typed_origins.py": {
+        "sha256": "a4118754c1c5c1ada4b40e673748b66e8eab9465c34a93a36434f1090d6e1e02",
+        "size": 10823
+      },
+      "scripts/pr16_typed_origins_actions.py": {
+        "sha256": "93ffa9804e9d7a93d85c298b2002054a3ff735fdaa58a66db3037d7ab2b06433",
+        "size": 18680
+      },
+      "scripts/pr16_weather_bubble_receipt.py": {
+        "sha256": "101c841322b777b27891567e77f1149f65fc8c952fca384b03289c55e32edce2",
+        "size": 13368
+      },
+      "tests/test_pr16_typed_origins.py": {
+        "sha256": "f62107202752f84d7910803b3868db613409ade2e26a0b5db826001a5858619a",
+        "size": 3726
+      }
+    },
+    "job_id": 114330857734,
+    "measurement_commit": "d71ce11174a0410dd0d0bb7bfcebf104d14bfbc2",
+    "measurement_replays": 0,
+    "member_identities": {
+      "actions-completion.json": {
+        "sha256": "52f31c6a3ba5f07581b53b8c3604ca56fb19c2d6305972eb2e112f7334860701",
+        "size": 1923
+      },
+      "attempt.json": {
+        "sha256": "154951dc47db6755b84aa2af1f4cc7e52623f79a7761ecad563d7c6a5d00a66c",
+        "size": 165
+      },
+      "bounded-actions-completion.json": {
+        "sha256": "52f31c6a3ba5f07581b53b8c3604ca56fb19c2d6305972eb2e112f7334860701",
+        "size": 1923
+      },
+      "bounded-discovery.json": {
+        "sha256": "b2d1495a31c4315730edc74e07a8c1fd32c947d0f2cd616b027339e47cb34df6",
+        "size": 74666
+      },
+      "pr16_typed_origins_checkpoint.json": {
+        "sha256": "eee0837aa8f925a1b150c687a4124bee91710dc4c9eff03b3e6e6e183f2d30ea",
+        "size": 6878
+      },
+      "reader-profiles.json": {
+        "sha256": "761b8488dcdfcdea82373f050356f247297befecf7fee5e4c871029339182303",
+        "size": 19614
+      },
+      "reader-tests.txt": {
+        "sha256": "c5c0145603a96e84cf45f26640549f81724b05d56f37b257a5e74f1586e8e6d9",
+        "size": 1581
+      },
+      "result.json": {
+        "sha256": "9b5fce920f312383b52c705a32b0e8b2805ecacc823f416d999d955216dfa000",
+        "size": 914
+      },
+      "scoped-context.zip": {
+        "sha256": "be0d09c1cc756833c55ba1a68b266652c239975afaa94463a6bf447cd5b7e15f",
+        "size": 86748
+      }
+    },
+    "native_processes": 0,
+    "old_scope_test_reruns": 0,
+    "rom_reconstructions": 0,
+    "run_attempt": 1,
+    "run_id": 38092235316,
+    "source_head": "85f9700fe8725322eb28c5bb1be8ec3af739c50b",
+    "status": "completed",
+    "steps": [
+      {
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/setup-python@v5",
+        "number": 3,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Install scoped ARM reconstruction tools",
+        "number": 4,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Execute new typed origin readers and receive prior bounds without replay",
+        "number": 5,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 6,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Post Run actions/setup-python@v5",
+        "number": 11,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 12,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 13,
+        "status": "completed"
+      }
+    ],
+    "zip_identity": {
+      "sha256": "910d4829d1063f141e3d9ed4f964d1d177e266251ae2621579d32ee9c2d36567",
+      "size": 107962
+    }
+  },
+  "measurement_replays": 0,
+  "measurement_source_bindings": {
+    ".github/workflows/pr16-typed-origins.yml": {
+      "sha256": "26b2ac743dfdc72d6e6736b8e3f0684092c3751d29a68ba8052e574094825244",
+      "size": 1521
+    },
+    "CHATGPT_RESUME.md": {
+      "sha256": "563fec8b1ad11b3a80128515c8a4795fb4eca2cfc6407c22e2726a561cee5652",
+      "size": 5102
+    },
+    "content/modernization/pr16_donor_window_evidence/windows.json": {
+      "sha256": "100dd710037fd958db20191a4bffa8590fb0414a2e252705f1111d75e15e9d2c",
+      "size": 9687
+    },
+    "content/modernization/pr16_first_origin_checkpoint.json": {
+      "sha256": "92018330ff8c2d05cfd6497e16ece36ae7739ee1ab6364d8843abac918eb05ed",
+      "size": 7347
+    },
+    "content/modernization/pr16_first_origin_evidence/bounded-code-facts.json": {
+      "sha256": "db5ae67361abaf800c8650b01861bb52524137386002a45f821e06e900abc429",
+      "size": 63212
+    },
+    "content/modernization/pr16_typed_origins_checkpoint.json": {
+      "sha256": "eee0837aa8f925a1b150c687a4124bee91710dc4c9eff03b3e6e6e183f2d30ea",
+      "size": 6878
+    },
+    "content/modernization/pr16_typed_origins_evidence/reader-profiles.json": {
+      "sha256": "761b8488dcdfcdea82373f050356f247297befecf7fee5e4c871029339182303",
+      "size": 19614
+    },
+    "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
+      "sha256": "dd200aa3a4e0fa581991c9f3553b042398af691977313d57e44fd088e15fa35d",
+      "size": 20300
+    },
+    "scripts/pr16_dex_hof_lifetime_root.py": {
+      "sha256": "7d1827e12c7261371778d0fb08b0bbc5dcdd8efd2344017310c617a2ebbd650a",
+      "size": 19545
+    },
+    "scripts/pr16_dex_hof_runtime_sprite.py": {
+      "sha256": "e2409be802248a15b143e7590a44aa54f4d1d13a2d14ffb5faeb0a26177dde30",
+      "size": 31951
+    },
+    "scripts/pr16_first_origin.py": {
+      "sha256": "548ac0a3da82c12304b595c3176048a4b5823bbc2f1d1d34fc406a80576fd08a",
+      "size": 8841
+    },
+    "scripts/pr16_first_origin_actions.py": {
+      "sha256": "1933645db5a9d9d3ece9fea5066fb7c887692c0da83b984f3514468efd51e274",
+      "size": 21448
+    },
+    "scripts/pr16_typed_origins.py": {
+      "sha256": "a4118754c1c5c1ada4b40e673748b66e8eab9465c34a93a36434f1090d6e1e02",
+      "size": 10823
+    },
+    "scripts/pr16_typed_origins_actions.py": {
+      "sha256": "93ffa9804e9d7a93d85c298b2002054a3ff735fdaa58a66db3037d7ab2b06433",
+      "size": 18680
+    },
+    "tests/test_pr16_first_origin.py": {
+      "sha256": "ce44f9982271b0b8eed72ddc404b3ad4c2800c7cfca46f1635a7f307311b7829",
+      "size": 6914
+    },
+    "tests/test_pr16_typed_origins.py": {
+      "sha256": "f62107202752f84d7910803b3868db613409ade2e26a0b5db826001a5858619a",
+      "size": 3726
+    }
+  },
+  "native_processes": 0,
+  "new_unit_tests": 63,
+  "newly_classified": 2,
+  "next_ja": "正式787/87・安全容量0の保存親から、同じ6528byte選定窓の残8origin（次は0x084723AF）を進める。保存symbol-frontierと固定公開source/asset identityから現候補の有限consumer範囲を束縛する。近傍labelだけで型分類しない。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Save/fresh Continueは未完。新二originの3reader/20試験/63受領試験、全874scan、Forest/Bubble/窓最適化をsource不変なら再走しない。",
+  "observed_head_checks": {
+    "all_ci_green_claimed": false,
+    "runs": [
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "48cfc304625384c746ec873bc2d5910f4ea8d9f3",
+        "id": 38094048227,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "48cfc304625384c746ec873bc2d5910f4ea8d9f3",
+        "id": 38094048253,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "48cfc304625384c746ec873bc2d5910f4ea8d9f3",
+        "id": 38094042352,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "48cfc304625384c746ec873bc2d5910f4ea8d9f3",
+        "id": 38094042257,
+        "name": "pr16-typed-origins-receipt",
+        "path": ".github/workflows/pr16-typed-origins-receipt.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "failure",
+        "event": "push",
+        "head_sha": "48cfc304625384c746ec873bc2d5910f4ea8d9f3",
+        "id": 38094042239,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "48cfc304625384c746ec873bc2d5910f4ea8d9f3",
+        "id": 38094042391,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "48cfc304625384c746ec873bc2d5910f4ea8d9f3",
+        "id": 38094042232,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      }
+    ],
+    "source_head": "48cfc304625384c746ec873bc2d5910f4ea8d9f3"
+  },
+  "old_scope_test_reruns": 0,
+  "parent_audit_identity": {
+    "sha256": "f88d65c235eda330aef618776bff97037d5ca2c4c9fbea53798217dcb5bda669",
+    "size": 5408731
+  },
+  "read_only_check_passed": true,
+  "receipt_code_bindings": {
+    ".github/workflows/pr16-typed-origins-receipt.yml": {
+      "sha256": "2ae68b72c585501b111612cbc393095b038c2c12d5510aef4f4f975dae55ac5e",
+      "size": 1438
+    },
+    "scripts/pr16_typed_origins_receipt.py": {
+      "sha256": "af1dcb59c044e3a447988edca890c4a31d57737f7b5d38ebcf7f8a9fcfa6135e",
+      "size": 18468
+    },
+    "scripts/pr16_typed_origins_receipt_actions.py": {
+      "sha256": "05cdefbae11e6b4467128f8898f7c57322a5cf77b6c8e0f259fa06a1c7bab923",
+      "size": 21533
+    },
+    "tests/test_pr16_typed_origins_receipt.py": {
+      "sha256": "3f61f841d8c66877f56d39689ba4a60ccbb8ec7d134a94baa9a556107236c0f6",
+      "size": 9844
+    }
+  },
+  "rom_reconstructions": 0,
+  "schema_version": 1,
+  "scoped_final_index_guard": {
+    "historical_guard_pass_claimed": false,
+    "new_private_violations": 0,
+    "status": "PASS"
+  },
+  "source_head": "48cfc304625384c746ec873bc2d5910f4ea8d9f3",
+  "status": "ACCEPTED_TWO_CONDITIONAL_TYPED_ORIGINS",
+  "task": "USER-20261011-TYPED-ORIGINS-RECEIPT",
+  "task_graph_passed": true,
+  "unchanged_hit_rows": 872,
+  "unclassified": 87,
+  "unknown_identity": {
+    "sha256": "7eff70285e1de674b77a1be7b9e31f235a158dc26a905421fa6094359c3501b4",
+    "size": 38217
+  },
+  "window_progress_path": "content/modernization/pr16_typed_origins_receipt_evidence/window-progress.json"
+}

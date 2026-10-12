@@ -1,0 +1,277 @@
+{
+  "source_head": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
+  "run_id": 36504040292,
+  "source_bindings": {
+    ".github/workflows/pr16-story-fast-maori.yml": {
+      "size": 1239,
+      "sha256": "49044cadede6adf9aa6a466ef682a89a6c32316b3335c6cfcd1361d6df58967c"
+    },
+    "content/modernization/pr16_story_fast_maori_development/commands.txt": {
+      "size": 2024,
+      "sha256": "8607ce50ef3e719e89db3263a17d60f807c65ef978da19cdd3bb1f2a9d6c98c5"
+    },
+    "content/modernization/pr16_story_fast_maori_development/continue-commands.txt": {
+      "size": 107,
+      "sha256": "47f99a27da17c99fe62b0cd7d4b1af585a7b9bb62b99cde80a0c113da69d0593"
+    },
+    "content/modernization/pr16_story_fast_maori_development/measurement.json": {
+      "size": 3313,
+      "sha256": "597cd42bf3321347306350a859d892c0db3afc4a81dcd8e39f8c095c4de6b63f"
+    },
+    "scripts/pr16_story_fast_maori.py": {
+      "size": 12364,
+      "sha256": "3add6d4ff7d2a0840085a398cfa3164bc4c11d11ceb5ef92caa26ab11c4bfa80"
+    },
+    "scripts/pr16_story_fast_maori_measure.py": {
+      "size": 7041,
+      "sha256": "0f2b88d4e0fdeb06af69598b02334eb76dfd75b28f2ac0abb7034a840bdf0907"
+    },
+    "tests/test_pr16_story_fast_maori.py": {
+      "size": 8337,
+      "sha256": "020fd8cbe7d465949740fa200dfcfee20aefa3587ce2b744c07816f5bb203f8b"
+    }
+  },
+  "result": {
+    "previous_bank_preserved_bytes": 57344,
+    "pc_sections_preserved": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "party_changed_bytes": [
+      {
+        "offset": 52,
+        "before": 9,
+        "after": 6
+      },
+      {
+        "offset": 141,
+        "before": 35,
+        "after": 36
+      }
+    ],
+    "unused_party_bytes_preserved": 200,
+    "all_five_bag_pockets_unchanged": true,
+    "money_before": 2776,
+    "money_after": 2936,
+    "all_save_rtc_preserved_after_continue": true,
+    "national_dex_magic": 0,
+    "general_sector_checksum_acceptance_claimed": false,
+    "escape_episode": {
+      "start": 9,
+      "outcome": 13,
+      "locked_tail": 14,
+      "unlocked_field": 15
+    },
+    "trainer_episode": {
+      "start": 18,
+      "last_faint": 32,
+      "outcome": 33,
+      "unlocked_field": 36
+    },
+    "first_save": {
+      "observe": 42,
+      "frame": 14924,
+      "map": [
+        3,
+        19
+      ],
+      "xy": [
+        53,
+        10
+      ],
+      "live_xy": [
+        60,
+        17
+      ],
+      "facing": 2,
+      "field": false,
+      "lock": 0,
+      "callback2": 134569589,
+      "party_count": 4,
+      "save_counter": 16,
+      "rp": 0,
+      "battle_flags": 12,
+      "battle_outcome": 1,
+      "party_sha256": "417f5ba944b0d0006a0f87686fdd18bac5a99629cf9c52d4778aab29cabe31dc",
+      "flash_sha256": "d56f4d4cefbc1ec5d9be68062372ba6f08b165443092558e2d0d11bc8c0e008d",
+      "ledger_sha256": "f93c14a115f662300e0054d7da8adcdd282bcdd982749a24332c5be5da965d6b"
+    },
+    "progress_field": {
+      "observe": 43,
+      "frame": 15106,
+      "map": [
+        3,
+        19
+      ],
+      "xy": [
+        53,
+        10
+      ],
+      "live_xy": [
+        60,
+        17
+      ],
+      "facing": 2,
+      "field": false,
+      "lock": 0,
+      "callback2": 134569589,
+      "party_count": 4,
+      "save_counter": 16,
+      "rp": 0,
+      "battle_flags": 12,
+      "battle_outcome": 1,
+      "party_sha256": "417f5ba944b0d0006a0f87686fdd18bac5a99629cf9c52d4778aab29cabe31dc",
+      "flash_sha256": "d56f4d4cefbc1ec5d9be68062372ba6f08b165443092558e2d0d11bc8c0e008d",
+      "ledger_sha256": "f93c14a115f662300e0054d7da8adcdd282bcdd982749a24332c5be5da965d6b"
+    },
+    "continued": {
+      "observe": 0,
+      "frame": 1390,
+      "map": [
+        3,
+        19
+      ],
+      "xy": [
+        53,
+        10
+      ],
+      "live_xy": [
+        60,
+        17
+      ],
+      "facing": 2,
+      "field": true,
+      "lock": 0,
+      "callback2": 134569589,
+      "party_count": 4,
+      "save_counter": 16,
+      "rp": 0,
+      "battle_flags": 0,
+      "battle_outcome": 0,
+      "party_sha256": "417f5ba944b0d0006a0f87686fdd18bac5a99629cf9c52d4778aab29cabe31dc",
+      "flash_sha256": "d56f4d4cefbc1ec5d9be68062372ba6f08b165443092558e2d0d11bc8c0e008d",
+      "ledger_sha256": "f93c14a115f662300e0054d7da8adcdd282bcdd982749a24332c5be5da965d6b"
+    },
+    "afterbattle_dialogue_end": {
+      "observe": 3,
+      "frame": 1848,
+      "map": [
+        3,
+        19
+      ],
+      "xy": [
+        53,
+        10
+      ],
+      "live_xy": [
+        60,
+        17
+      ],
+      "facing": 4,
+      "field": true,
+      "lock": 0,
+      "callback2": 134569589,
+      "party_count": 4,
+      "save_counter": 16,
+      "rp": 0,
+      "battle_flags": 0,
+      "battle_outcome": 0,
+      "party_sha256": "417f5ba944b0d0006a0f87686fdd18bac5a99629cf9c52d4778aab29cabe31dc",
+      "flash_sha256": "d56f4d4cefbc1ec5d9be68062372ba6f08b165443092558e2d0d11bc8c0e008d",
+      "ledger_sha256": "f93c14a115f662300e0054d7da8adcdd282bcdd982749a24332c5be5da965d6b"
+    },
+    "trainer_victories": 1,
+    "wild_victories": 0,
+    "escapes": 1,
+    "losses": 0,
+    "captures": 0,
+    "ordinary_saves": 1,
+    "save_counter": 16,
+    "party_count": 4,
+    "rp": 0,
+    "money": 2936,
+    "prize_money": 160,
+    "save_success_text_frame_captured": false,
+    "progress_wire_field_flag": false,
+    "natural_growth_accepted": false,
+    "natural_difficulty_accepted": false,
+    "evolution_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "rom_owner": {
+      "map": [
+        3,
+        19
+      ],
+      "local_id": 3,
+      "object_record": 155155892,
+      "script": 154626451,
+      "rooted_trainer_references": [
+        {
+          "category": "trainer",
+          "value": 1359,
+          "access": "battle",
+          "instruction_address": 154626515,
+          "opcode": 92,
+          "command": "trainerbattle",
+          "battle_type": 5,
+          "script_address": 154626515,
+          "roots": [
+            "Maori"
+          ]
+        },
+        {
+          "category": "trainer",
+          "value": 93,
+          "access": "battle",
+          "instruction_address": 154626451,
+          "opcode": 92,
+          "command": "trainerbattle",
+          "battle_type": 0,
+          "script_address": 154626451,
+          "roots": [
+            "Maori"
+          ]
+        }
+      ],
+      "scope": "native story trainer 93; rematch 1359 is not the measured battle"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    },
+    "input_save": {
+      "size": 131088,
+      "sha256": "fa2bb585eeeec1c81f0b8498438001b72d010ead2b9091f8f2b87744be1c6e97"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "5c4a03b9d92f7be54250d565162b03b5b85a2f221c3873d26d894b74b76778ce"
+    },
+    "screen_count": 48,
+    "new_native_processes": 2,
+    "development_native_processes": 2,
+    "accepted_case_reruns": 0,
+    "host_compiles": 0,
+    "arm_compiles": 0,
+    "rom_changes": 0,
+    "active_baseline_changed": false
+  },
+  "focused_tests": 44,
+  "development_focused_tests": 44,
+  "development_native_processes": 2,
+  "formal_native_processes": 2,
+  "accepted_case_reruns": 0,
+  "protected_source_count": 3092,
+  "save_byte_ledger": {
+    "size": 185286,
+    "sha256": "c55298c9c21b3eb989e294f353121e184b5b5e53f9e375856373ef9b374f421d"
+  }
+}

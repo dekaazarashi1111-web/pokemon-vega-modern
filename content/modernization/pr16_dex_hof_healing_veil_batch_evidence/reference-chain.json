@@ -1,0 +1,2129 @@
+{
+  "schema_version": 1,
+  "status": "PASS_753_PARENT_BOUND_HEALING_VEIL_BATCH_REFERENCE_CHAIN",
+  "baseline": {
+    "path": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent": {
+    "path": "content/modernization/pr16_dex_hof_script_producer_batch_evidence/reference-chain.json",
+    "size": 194298,
+    "sha256": "a5447e696153e276597a94f090fdb602d13762a486719c53c4b56b0186bbfbd9"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 753,
+  "inherited_unclassified": 121,
+  "changes": [
+    {
+      "address": 151008779,
+      "target": 167708698,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "18ef76b290714a374b93d046cd3c65db21739f4c57ba34221bc20e7b9daf7787",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_REGISTERED_HEALING_VEIL_MINIMUM_CROSS_FIELD",
+      "accepted": true,
+      "witness_ids": [
+        0
+      ]
+    },
+    {
+      "address": 151008973,
+      "target": 167708698,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "18ef76b290714a374b93d046cd3c65db21739f4c57ba34221bc20e7b9daf7787",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_REGISTERED_HEALING_VEIL_MINIMUM_CROSS_FIELD",
+      "accepted": true,
+      "witness_ids": [
+        1
+      ]
+    },
+    {
+      "address": 151010306,
+      "target": 167708698,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "18ef76b290714a374b93d046cd3c65db21739f4c57ba34221bc20e7b9daf7787",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_REGISTERED_HEALING_VEIL_MINIMUM_CROSS_FIELD",
+      "accepted": true,
+      "witness_ids": [
+        2
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": 0,
+      "address": 151008779,
+      "size": 4,
+      "kind": "registered_healing_veil_minimum_cross_field",
+      "evidence": {
+        "hit": 151008779,
+        "kind": "registered_healing_veil_minimum_cross_field",
+        "effect": 32,
+        "root": 151008563,
+        "left_command": {
+          "address": 151008775,
+          "size": 6,
+          "opcode": 227
+        },
+        "right_command": {
+          "address": 151008781,
+          "size": 10,
+          "opcode": 65289
+        },
+        "byte_roles": [
+          "left_script_pointer_byte2",
+          "left_script_pointer_byte3",
+          "right_primary_opcode",
+          "right_secondary_opcode"
+        ],
+        "whole_pointers": [
+          {
+            "address": 151008777,
+            "size": 4,
+            "value": 136030474
+          },
+          {
+            "address": 151008787,
+            "size": 4,
+            "value": 151024593
+          }
+        ],
+        "consumer_entry_condition": "each_typed_command_entry_only",
+        "claims": {
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "callasm_success_proven": false,
+          "goto_fallthrough_claimed": false,
+          "all_prefix_execution_claimed": false,
+          "owner_transfer_proven": false,
+          "opcode_handler_success_proven": false,
+          "whole_dispatcher_classified": false,
+          "current_rom_identity_checked_by_local_diagnostic": false,
+          "set_target_partner_success_proven": false,
+          "recovery_or_status_effect_success_proven": false,
+          "set_reflect_or_aurora_veil_success_proven": false,
+          "natural_bank_value_generation_proven": false
+        }
+      },
+      "evidence_identity": {
+        "size": 1234,
+        "sha256": "1eda9c38eda957d41a28fbbbfd262c4fbf05cbb0ccb41a439723d71dec4a2738"
+      }
+    },
+    {
+      "id": 1,
+      "address": 151008973,
+      "size": 4,
+      "kind": "registered_healing_veil_minimum_cross_field",
+      "evidence": {
+        "hit": 151008973,
+        "kind": "registered_healing_veil_minimum_cross_field",
+        "effect": 32,
+        "root": 151008563,
+        "left_command": {
+          "address": 151008969,
+          "size": 6,
+          "opcode": 227
+        },
+        "right_command": {
+          "address": 151008975,
+          "size": 10,
+          "opcode": 65289
+        },
+        "byte_roles": [
+          "left_script_pointer_byte2",
+          "left_script_pointer_byte3",
+          "right_primary_opcode",
+          "right_secondary_opcode"
+        ],
+        "whole_pointers": [
+          {
+            "address": 151008971,
+            "size": 4,
+            "value": 136030474
+          },
+          {
+            "address": 151008981,
+            "size": 4,
+            "value": 151009076
+          }
+        ],
+        "consumer_entry_condition": "each_typed_command_entry_only",
+        "claims": {
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "callasm_success_proven": false,
+          "goto_fallthrough_claimed": false,
+          "all_prefix_execution_claimed": false,
+          "owner_transfer_proven": false,
+          "opcode_handler_success_proven": false,
+          "whole_dispatcher_classified": false,
+          "current_rom_identity_checked_by_local_diagnostic": false,
+          "set_target_partner_success_proven": false,
+          "recovery_or_status_effect_success_proven": false,
+          "set_reflect_or_aurora_veil_success_proven": false,
+          "natural_bank_value_generation_proven": false
+        }
+      },
+      "evidence_identity": {
+        "size": 1234,
+        "sha256": "9cc87dbb92cd3ccdbdf1191196b4198385ccb053d843be2a546fcf66221b5425"
+      }
+    },
+    {
+      "id": 2,
+      "address": 151010306,
+      "size": 4,
+      "kind": "registered_healing_veil_minimum_cross_field",
+      "evidence": {
+        "hit": 151010306,
+        "kind": "registered_healing_veil_minimum_cross_field",
+        "effect": 65,
+        "root": 151010277,
+        "left_command": {
+          "address": 151010303,
+          "size": 5,
+          "opcode": 40
+        },
+        "right_command": {
+          "address": 151010308,
+          "size": 10,
+          "opcode": 65289
+        },
+        "byte_roles": [
+          "left_script_pointer_byte2",
+          "left_script_pointer_byte3",
+          "right_primary_opcode",
+          "right_secondary_opcode"
+        ],
+        "whole_pointers": [
+          {
+            "address": 151010304,
+            "size": 4,
+            "value": 136030474
+          },
+          {
+            "address": 151010314,
+            "size": 4,
+            "value": 151031313
+          }
+        ],
+        "consumer_entry_condition": "each_typed_command_entry_only",
+        "claims": {
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "callasm_success_proven": false,
+          "goto_fallthrough_claimed": false,
+          "all_prefix_execution_claimed": false,
+          "owner_transfer_proven": false,
+          "opcode_handler_success_proven": false,
+          "whole_dispatcher_classified": false,
+          "current_rom_identity_checked_by_local_diagnostic": false,
+          "set_target_partner_success_proven": false,
+          "recovery_or_status_effect_success_proven": false,
+          "set_reflect_or_aurora_veil_success_proven": false,
+          "natural_bank_value_generation_proven": false
+        }
+      },
+      "evidence_identity": {
+        "size": 1233,
+        "sha256": "d292b26c45c76bb37ae3eb4f978fbedae91083d36bad05268539242c8ef34127"
+      }
+    }
+  ],
+  "classified": 756,
+  "unclassified": 118,
+  "newly_classified": 3,
+  "proof": {
+    "data": {
+      "status": "PASS_NEW_REGISTERED_HEALING_VEIL_FIELDS",
+      "consumers": {
+        "registered_healing_veil_minimum_cross_field": {
+          "status": "PASS_THREE_REGISTERED_HEALING_VEIL_TYPES",
+          "count": 3,
+          "hits": [
+            151008779,
+            151008973,
+            151010306
+          ],
+          "typed_bytes": 12,
+          "serializer_window_sizes": [
+            41,
+            63,
+            53,
+            88
+          ],
+          "source_serialized_root": true,
+          "native_selector_models": [
+            {
+              "command": 151010278,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151010308,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151010278,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151010290,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151010303,
+              "opcode": 40,
+              "edge": "taken",
+              "entry": 134356560,
+              "next_cursor": 136030474,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008564,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151008674,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008564,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151008576,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008578,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151008658,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008578,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151008590,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008590,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151008738,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008590,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151008602,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008602,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151008897,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008602,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151008614,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008614,
+              "opcode": 42,
+              "edge": "taken",
+              "entry": 134356752,
+              "next_cursor": 151008897,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008614,
+              "opcode": 42,
+              "edge": "next",
+              "entry": 134356752,
+              "next_cursor": 151008626,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008929,
+              "opcode": 40,
+              "edge": "taken",
+              "entry": 134356560,
+              "next_cursor": 151008940,
+              "command_entry_condition": true,
+              "natural_entry_proven": false
+            }
+          ],
+          "native_dispatch_models": [
+            {
+              "command": 151010278,
+              "opcode": 42,
+              "opcode_byte_reads": [
+                151010278
+              ],
+              "handler": 134356752,
+              "dispatch_slots": [
+                151254264
+              ],
+              "cursor_at_handler": 151010278,
+              "steps": 9,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151010303,
+              "opcode": 40,
+              "opcode_byte_reads": [
+                151010303
+              ],
+              "handler": 134356560,
+              "dispatch_slots": [
+                151254256
+              ],
+              "cursor_at_handler": 151010303,
+              "steps": 9,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151010308,
+              "opcode": 65289,
+              "opcode_byte_reads": [
+                151010308,
+                151010309
+              ],
+              "handler": 152153960,
+              "dispatch_slots": [
+                151255116,
+                151255156
+              ],
+              "cursor_at_handler": 151010309,
+              "steps": 20,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008564,
+              "opcode": 42,
+              "opcode_byte_reads": [
+                151008564
+              ],
+              "handler": 134356752,
+              "dispatch_slots": [
+                151254264
+              ],
+              "cursor_at_handler": 151008564,
+              "steps": 9,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008578,
+              "opcode": 42,
+              "opcode_byte_reads": [
+                151008578
+              ],
+              "handler": 134356752,
+              "dispatch_slots": [
+                151254264
+              ],
+              "cursor_at_handler": 151008578,
+              "steps": 9,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008590,
+              "opcode": 42,
+              "opcode_byte_reads": [
+                151008590
+              ],
+              "handler": 134356752,
+              "dispatch_slots": [
+                151254264
+              ],
+              "cursor_at_handler": 151008590,
+              "steps": 9,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008602,
+              "opcode": 42,
+              "opcode_byte_reads": [
+                151008602
+              ],
+              "handler": 134356752,
+              "dispatch_slots": [
+                151254264
+              ],
+              "cursor_at_handler": 151008602,
+              "steps": 9,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008614,
+              "opcode": 42,
+              "opcode_byte_reads": [
+                151008614
+              ],
+              "handler": 134356752,
+              "dispatch_slots": [
+                151254264
+              ],
+              "cursor_at_handler": 151008614,
+              "steps": 9,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008775,
+              "opcode": 227,
+              "opcode_byte_reads": [
+                151008775
+              ],
+              "handler": 134399252,
+              "dispatch_slots": [
+                151255004
+              ],
+              "cursor_at_handler": 151008775,
+              "steps": 9,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008781,
+              "opcode": 65289,
+              "opcode_byte_reads": [
+                151008781,
+                151008782
+              ],
+              "handler": 152153960,
+              "dispatch_slots": [
+                151255116,
+                151255156
+              ],
+              "cursor_at_handler": 151008782,
+              "steps": 20,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008929,
+              "opcode": 40,
+              "opcode_byte_reads": [
+                151008929
+              ],
+              "handler": 134356560,
+              "dispatch_slots": [
+                151254256
+              ],
+              "cursor_at_handler": 151008929,
+              "steps": 9,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008969,
+              "opcode": 227,
+              "opcode_byte_reads": [
+                151008969
+              ],
+              "handler": 134399252,
+              "dispatch_slots": [
+                151255004
+              ],
+              "cursor_at_handler": 151008969,
+              "steps": 9,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            },
+            {
+              "command": 151008975,
+              "opcode": 65289,
+              "opcode_byte_reads": [
+                151008975,
+                151008976
+              ],
+              "handler": 152153960,
+              "dispatch_slots": [
+                151255116,
+                151255156
+              ],
+              "cursor_at_handler": 151008976,
+              "steps": 20,
+              "command_entry_condition": true,
+              "handler_executed": false,
+              "natural_entry_proven": false
+            }
+          ],
+          "native_pointer_read_proofs": [
+            {
+              "command": 151010308,
+              "handler": 152153960,
+              "stop": 152154004,
+              "pointer": 151031313,
+              "pointer_bytes": 4,
+              "bank_operand": 1,
+              "resolver_slot": 152441876,
+              "bank_read_address": 33701067,
+              "distinct_bank_value_cases": 4,
+              "command_entry_condition": true,
+              "natural_entry_proven": false,
+              "counter_branch_executed": false
+            },
+            {
+              "command": 151008781,
+              "handler": 152153960,
+              "stop": 152154004,
+              "pointer": 151024593,
+              "pointer_bytes": 4,
+              "bank_operand": 0,
+              "resolver_slot": 152441872,
+              "bank_read_address": 33701068,
+              "distinct_bank_value_cases": 4,
+              "command_entry_condition": true,
+              "natural_entry_proven": false,
+              "counter_branch_executed": false
+            },
+            {
+              "command": 151008975,
+              "handler": 152153960,
+              "stop": 152154004,
+              "pointer": 151009076,
+              "pointer_bytes": 4,
+              "bank_operand": 0,
+              "resolver_slot": 152441872,
+              "bank_read_address": 33701068,
+              "distinct_bank_value_cases": 4,
+              "command_entry_condition": true,
+              "natural_entry_proven": false,
+              "counter_branch_executed": false
+            }
+          ],
+          "native_jumpiffainted_models": {
+            "status": "PASS_CONDITIONAL_E3_BANK_TARGET_TAKEN_NEXT",
+            "primary_slot": 151255004,
+            "entry": 134399252,
+            "legacy_resolver_entry": 134309428,
+            "redirect_literal": 134309432,
+            "actual_resolver_entry": 151862572,
+            "resolver_table_slot": 152441872,
+            "bank_read": 33701068,
+            "hp_base": 33700676,
+            "hp_stride": 88,
+            "hp_offset": 40,
+            "hp_width": 2,
+            "hp_domain_count": 65536,
+            "machine_cases": 56,
+            "models": [
+              {
+                "command": 151008775,
+                "edge": "taken",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 0,
+                "next_cursor": 136030474,
+                "steps": 44,
+                "full_pointer_read": true,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 136030474
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 1,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 255,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 256,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 32767,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 32768,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 65535,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "taken",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 0,
+                "next_cursor": 136030474,
+                "steps": 44,
+                "full_pointer_read": true,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 136030474
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 1,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 255,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 256,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 32767,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 32768,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 65535,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "taken",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 0,
+                "next_cursor": 136030474,
+                "steps": 44,
+                "full_pointer_read": true,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 136030474
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 1,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 255,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 256,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 32767,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 32768,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 65535,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "taken",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 0,
+                "next_cursor": 136030474,
+                "steps": 44,
+                "full_pointer_read": true,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 136030474
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 1,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 255,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 256,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 32767,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 32768,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008775,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 65535,
+                "next_cursor": 151008781,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008781
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "taken",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 0,
+                "next_cursor": 136030474,
+                "steps": 44,
+                "full_pointer_read": true,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 136030474
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 1,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 255,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 256,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 32767,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 32768,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 0,
+                "hp": 65535,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700716,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 0
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "taken",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 0,
+                "next_cursor": 136030474,
+                "steps": 44,
+                "full_pointer_read": true,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 136030474
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 1,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 255,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 256,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 32767,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 32768,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 1,
+                "hp": 65535,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700804,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 1
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "taken",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 0,
+                "next_cursor": 136030474,
+                "steps": 44,
+                "full_pointer_read": true,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 136030474
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 1,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 255,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 256,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 32767,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 32768,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 2,
+                "hp": 65535,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700892,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 2
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "taken",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 0,
+                "next_cursor": 136030474,
+                "steps": 44,
+                "full_pointer_read": true,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 136030474
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 1,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 255,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 256,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 32767,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 32768,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              },
+              {
+                "command": 151008969,
+                "edge": "next",
+                "entry": 134399252,
+                "bank": 3,
+                "hp": 65535,
+                "next_cursor": 151008975,
+                "steps": 34,
+                "full_pointer_read": false,
+                "hp_address": 33700980,
+                "writes": [
+                  {
+                    "address": 33700644,
+                    "size": 1,
+                    "value": 3
+                  },
+                  {
+                    "address": 33701076,
+                    "size": 4,
+                    "value": 151008975
+                  }
+                ]
+              }
+            ],
+            "entry_preconditions": [
+              "CURSORはsource束縛済みのE3全6byte命令2件の一方を指す",
+              "BANK_TARGET operandは0、実target RAM値は0..3",
+              "選択bankのbattle-mon HP halfwordは0..65535",
+              "有効で非aliasの専用stackと安定入力を仮定し、同時書換えなし"
+            ],
+            "public_us_address_alone_used_as_jp_evidence": false,
+            "natural_reachability_claimed": false,
+            "prefix_execution_claimed": false,
+            "callasm_success_claimed": false,
+            "move_effect_success_claimed": false,
+            "current_rom_identity_checked_by_local_model": false
+          },
+          "protected_windows": 313,
+          "protected_bytes": 891,
+          "donor_leased": false,
+          "donor_eligible": false,
+          "full_story_reachability_claimed": false,
+          "natural_battle_entry_reachability_claimed": false,
+          "whole_script_range_classified": false,
+          "attackcanceler_success_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "callasm_success_proven": false,
+          "goto_fallthrough_claimed": false,
+          "all_prefix_execution_claimed": false,
+          "owner_transfer_proven": false,
+          "opcode_handler_success_proven": false,
+          "whole_dispatcher_classified": false,
+          "current_rom_identity_checked_by_local_diagnostic": false,
+          "set_target_partner_success_proven": false,
+          "recovery_or_status_effect_success_proven": false,
+          "set_reflect_or_aurora_veil_success_proven": false,
+          "natural_bank_value_generation_proven": false
+        }
+      },
+      "held_roots": {},
+      "new_data": 3,
+      "new_code": 0,
+      "new_boundary": 0,
+      "natural_gameplay_reachability_claimed": false,
+      "universal_heap_or_irq_lifetime_claimed": false,
+      "independent_old_final_source_review_completed": false,
+      "donor_leased": false,
+      "indirect_reference_completeness_claimed": false
+    },
+    "song": {
+      "status": "PASS_RETAINED_133_MODELS_50_ASSETS_NEW_CONSUMER_INTERSECTION",
+      "combined_song_models": 133,
+      "retained_sample_witnesses": 50,
+      "model_identity": {
+        "size": 213296,
+        "sha256": "71f01cee0a344409445e17fdea268371269a3e622c6b93563d04b35677e0b975"
+      },
+      "sample_identity": {
+        "size": 1121492,
+        "sha256": "9f765e8eee8ad78eaac8902ccafbf9e14c7c694f842e9ae6b2002583181b70ee"
+      },
+      "old_protected_read_windows": 198334,
+      "old_protected_read_identity": {
+        "size": 26409459,
+        "sha256": "26ae440b2d8456747f59e7fd73679a17b6289ef1a733bdd51c1f9ff668fc8914"
+      },
+      "all133_models_exact": true,
+      "all50_sample_identities_exact": true,
+      "old_and_new_root_windows": 7823,
+      "old_and_new_root_identity": {
+        "size": 837888,
+        "sha256": "0ab87e403525da54c8b4999141f48fa9267889ac7f58cde143efacec6107165e"
+      },
+      "new_song_discovery_runs": 0,
+      "new_songs": [],
+      "new_audio_classified": 0,
+      "native_processes": 0,
+      "donor_leased": false
+    },
+    "public_source_bindings": {
+      "battle-BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "battle-asm_defines.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "asm_defines.s",
+        "size": 131732,
+        "sha256": "1beb8b1cce26e302eb17b6907951fc4ae0a1a0ae94cffb168a12c648ca45c8a7",
+        "git_blob_sha": "67f802d777e348e74c0f2d6c7ae2227fdf849f6f"
+      },
+      "battle-assembly--battle_scripts--general_attack_battle_scripts.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/battle_scripts/general_attack_battle_scripts.s",
+        "size": 178625,
+        "sha256": "8ce944c4bc85f2827eb806a3ba1f046e332429ceadd2b55bbc79f900a6a7bd11",
+        "git_blob_sha": "f0a04c0f348555a82aa861ccb62b9cc046699a48"
+      },
+      "battle-assembly--data--battle_script_commands_table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/battle_script_commands_table.s",
+        "size": 11083,
+        "sha256": "ef6615d20d0768e23828b941fcd2a4f04ba06507a7ed498ab51b8db10e71f5f6",
+        "git_blob_sha": "10e8cf9821e5be79798b3ab1d02ea3e44ce44f05"
+      },
+      "battle-assembly--data--move_effect_table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/move_effect_table.s",
+        "size": 8052,
+        "sha256": "6200094d2df850f70121a981c89e776a8419cc71423b44ea4773f609ca39a7ee",
+        "git_blob_sha": "8a80d63f814e97b353416a73e2be7c82c453b244"
+      },
+      "battle-battle_script_macros.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "battle_script_macros.s",
+        "size": 28316,
+        "sha256": "203f55037871e670401692a2a08ba282745a442fc84fca0615fbe1b136f8f317",
+        "git_blob_sha": "bc62b1a589d0569980bd723d8da6272f40f12817"
+      },
+      "battle-src--general_bs_commands.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/general_bs_commands.c",
+        "size": 170849,
+        "sha256": "ee23f75ab32b0f453128a9e5f9c7e77aba4a0de646e762a5fe821b61c1b20643",
+        "git_blob_sha": "476cbdd3ee2cfe3ce2ccca51b609560b1f1a4282"
+      },
+      "battle-src--new_bs_commands.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/new_bs_commands.c",
+        "size": 63964,
+        "sha256": "203c32caf217965e468bc2efee45809b05289c51201412250b2352e17643688b",
+        "git_blob_sha": "78614276ea045eaa06781210d588dd6ea6995bf3"
+      }
+    }
+  },
+  "proof_identity": {
+    "size": 26167,
+    "sha256": "81d8a0a4884f8715739d383c20839e49de473b5747b0cabb8220df4e77e4fd58"
+  },
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "donor_safe_bytes": 0,
+  "controller_runtime_wired": false,
+  "universal_irq_or_heap_lifetime_claimed": false,
+  "natural_play_universal_reachability_claimed": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false
+}

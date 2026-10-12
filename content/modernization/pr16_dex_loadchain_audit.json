@@ -1,0 +1,952 @@
+{
+  "schema_version": 1,
+  "title": "Stage61 MDX 保存接続の load chain / newgame seam 読取監査",
+  "source_ref": {
+    "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+    "commit": "a2b15ba9ef3c4076aa5e3460ca312241e9ba2e28",
+    "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/tree/a2b15ba9ef3c4076aa5e3460ca312241e9ba2e28"
+  },
+  "audit_candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "disclosure": {
+    "rom_bytes_included": false,
+    "rom_preimages": "address / size / SHA-256 のみ。ROM 本体・byte 列・私有原本の絶対パスは含まない。",
+    "owner_semantics": "allocation_container は既存の配置領域名であり、最後に当該 byte を変更した主体の証明ではない。"
+  },
+  "source_bindings": [
+    {
+      "path": "overlays/circus_streak/circus_streak_cold_load.c",
+      "git_blob_sha1": "881b67bd61863b416f2ea046d3829a988f2e41f9",
+      "line_ranges": [
+        [
+          1,
+          34
+        ]
+      ]
+    },
+    {
+      "path": "overlays/circus_streak/circus_streak_runtime.c",
+      "git_blob_sha1": "9ad0820cb0f2df1614fe0084f6c09442402e850c",
+      "line_ranges": [
+        [
+          156,
+          162
+        ]
+      ]
+    },
+    {
+      "path": "overlays/collection_supply_v1/collection_supply_v1.c",
+      "git_blob_sha1": "947f6bde6a846bc9ba41dfbd8fd5cfced5fccddf",
+      "line_ranges": [
+        [
+          1571,
+          1582
+        ]
+      ]
+    },
+    {
+      "path": "overlays/codex_battle_rewards/codex_battle_rewards.c",
+      "git_blob_sha1": "c7f4e238b7fa6a8379097892833f07ba4a3d2616",
+      "line_ranges": [
+        [
+          1832,
+          1847
+        ]
+      ]
+    },
+    {
+      "path": "overlays/codex_battle_runtime/codex_battle_runtime.c",
+      "git_blob_sha1": "8db6b02788bd99867ae0b77e78091a85a6356361",
+      "line_ranges": [
+        [
+          2720,
+          2726
+        ]
+      ]
+    },
+    {
+      "path": "overlays/factory_high_modes_v2/factory_high_modes_v2.c",
+      "git_blob_sha1": "ed3707cdfd4e34f2ab318b97d10d9cd000f04345",
+      "line_ranges": [
+        [
+          1104,
+          1142
+        ],
+        [
+          1570,
+          1586
+        ],
+        [
+          1645,
+          1665
+        ]
+      ]
+    },
+    {
+      "path": "overlays/research_economy_v1/research_economy_v1.c",
+      "git_blob_sha1": "888ea10e6fa008b4c7fdbbb7e5a302252bc2fadb",
+      "line_ranges": [
+        [
+          625,
+          664
+        ],
+        [
+          951,
+          998
+        ]
+      ]
+    },
+    {
+      "path": "overlays/mirage_production/mirage_production.c",
+      "git_blob_sha1": "a9f83248a06fbfbe627a49b7640aaf4c7b028f0e",
+      "line_ranges": [
+        [
+          1100,
+          1157
+        ]
+      ]
+    },
+    {
+      "path": "overlays/qol_production/qol_production.c",
+      "git_blob_sha1": "d1ba686a3c2d7abf936edd0d17810d93a4357374",
+      "line_ranges": [
+        [
+          823,
+          851
+        ],
+        [
+          1431,
+          1465
+        ]
+      ]
+    }
+  ],
+  "upstream_bindings": [
+    {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "path": "assembly/hooks/general_hooks.s",
+      "line_ranges": [
+        [
+          352,
+          359
+        ]
+      ],
+      "role": "newgame prologue と wipe 後 continuation"
+    },
+    {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "path": "src/save.c",
+      "git_blob_sha1": "091a986261abd9e643094f25759fc90fffe4e687",
+      "line_ranges": [
+        [
+          504,
+          507
+        ]
+      ],
+      "role": "NewGameWipeNewSaveData"
+    },
+    {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "path": "BPRJ.ld",
+      "role": "Memset Thumb target 0x081C9DF9"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/save.c",
+      "git_blob_sha1": "36b960f375c92711aa49b99bdfe9c6b3a99d6b1c",
+      "line_ranges": [
+        [
+          650,
+          720
+        ],
+        [
+          803,
+          830
+        ]
+      ],
+      "role": "stock save modes と loader 戻り値破棄"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/save_failed_screen.c",
+      "line_ranges": [
+        [
+          162,
+          228
+        ]
+      ],
+      "role": "damaged-mask による wipe と retry"
+    },
+    {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/new_game.c",
+      "line_ranges": [
+        [
+          107,
+          152
+        ]
+      ],
+      "role": "NewGameInitData"
+    }
+  ],
+  "windows": [
+    {
+      "id": "global_load_entry",
+      "address": "0x080DB4E4",
+      "size": 8,
+      "sha256": "f68726e5d524c87479695117caf127a59fc4ddd8cdbd7d4e5cfad57b295bd987"
+    },
+    {
+      "id": "global_load_literal",
+      "address": "0x080DB4E8",
+      "size": 4,
+      "sha256": "d5d35c81a10ae576a9c309c068bd12d3b7ff27b4dac1206e8790fbdd337a4d93"
+    },
+    {
+      "id": "circus_cold_call",
+      "address": "0x09FF69FE",
+      "size": 8,
+      "sha256": "f41c282a5265cb613cd58a90569811a49827607bc0fc36bd0f97b36192bf1900"
+    },
+    {
+      "id": "circus_cold_literal",
+      "address": "0x09FF6A28",
+      "size": 4,
+      "sha256": "730f7787926ec0b20b2628ea45292a50071104183d4ebf6e42aa040b79798ec2"
+    },
+    {
+      "id": "circus_runtime_call",
+      "address": "0x09FF5888",
+      "size": 8,
+      "sha256": "7eb3b7b304386da6c2ca59b46f3ea736ac823f2a1cecc77aa7e5116109a2886a"
+    },
+    {
+      "id": "circus_runtime_literal",
+      "address": "0x09FF58A4",
+      "size": 4,
+      "sha256": "f38dc55dc1cfea32849f281ddcf27cdf446a3af736f7d30b16149b70a44df119"
+    },
+    {
+      "id": "collection_call",
+      "address": "0x09405D80",
+      "size": 8,
+      "sha256": "cce5760b22ba9c05f0b35594f4d274767372a6616123bdc7d9954dcb74bc678d"
+    },
+    {
+      "id": "collection_literal",
+      "address": "0x09405DB8",
+      "size": 4,
+      "sha256": "38012c0b67a444550cf1d2e83e22d7aa37004ee5ef64ad0ecdd8bb96409318e8"
+    },
+    {
+      "id": "rewards_call",
+      "address": "0x093D2000",
+      "size": 8,
+      "sha256": "8658e527ebf169d446e392e06d98542fe3cdfc05323f2c82e4499cf6df98dc7f"
+    },
+    {
+      "id": "rewards_literal",
+      "address": "0x093D202C",
+      "size": 4,
+      "sha256": "bdcb6dcedb64fb2569e8af87c18ee87b92b7721f259c72492bac142be3998cc9"
+    },
+    {
+      "id": "battle_runtime_call",
+      "address": "0x093CB0BE",
+      "size": 8,
+      "sha256": "1f333ef9cf09369c82eef4f57b94fc01e09665b2bb8bbaa3d7d35f4aa26f855e"
+    },
+    {
+      "id": "battle_runtime_literal",
+      "address": "0x093CB0CC",
+      "size": 4,
+      "sha256": "bc6059b498829d25680e2811d7fd792f566e4c492b92fe7c40e94ce24d4e7c9a"
+    },
+    {
+      "id": "factory_call",
+      "address": "0x093C4428",
+      "size": 8,
+      "sha256": "f4962ecdbc57e91b333fb4a44ec15116a4dd36de99caaa538a1b577fe31b0222"
+    },
+    {
+      "id": "factory_literal",
+      "address": "0x093C4470",
+      "size": 4,
+      "sha256": "29d442cedf0a8386238e17e4b662afbb9a72542a163dfcb26814b35b08472c15"
+    },
+    {
+      "id": "research_call",
+      "address": "0x093BDF28",
+      "size": 8,
+      "sha256": "d0ffe9d14daa4e8857125be9aba095c7bf43d8f4093b48b819fdf91ef1318f45"
+    },
+    {
+      "id": "research_literal",
+      "address": "0x093BDFB4",
+      "size": 4,
+      "sha256": "0ad4ecb5aee76116c4cb55faf57e3d350327021eb1f9fe3c4606ec14270dd80e"
+    },
+    {
+      "id": "mirage_call",
+      "address": "0x093910EC",
+      "size": 8,
+      "sha256": "012c2145183e5d1481cf3afb75932a49092630f6ef9d0980ae2d25f9e8b9654f"
+    },
+    {
+      "id": "post_qol_patch_literal",
+      "address": "0x09391114",
+      "size": 4,
+      "sha256": "fb18b7a6983b609d010d14c7f0c4e1088559bad699a2369575428cb6be9f9e71"
+    },
+    {
+      "id": "qol_call",
+      "address": "0x093776A0",
+      "size": 8,
+      "sha256": "cac0dd45bd5c358a04ddcff690d850cc861bee50ce33f1b183420e679b1f1e66"
+    },
+    {
+      "id": "qol_literal",
+      "address": "0x093776F8",
+      "size": 4,
+      "sha256": "5e076f03ad2e941d2f80b049b2cd72ffbe25d0044a1f81697da9e3e9162fec7b"
+    },
+    {
+      "id": "trainer_call",
+      "address": "0x09303764",
+      "size": 8,
+      "sha256": "adc9ecd0d8050b267953361f62e79faf10424b7caab524f883e55512b305ecec"
+    },
+    {
+      "id": "trainer_literal",
+      "address": "0x09303774",
+      "size": 4,
+      "sha256": "2ac14d03ab4abf7557290cf8967f12fc47fb5fcaebbe9a954e3ace850436cb6a"
+    },
+    {
+      "id": "stock_load_trampoline_call",
+      "address": "0x09302D70",
+      "size": 12,
+      "sha256": "ed860653fc5384c01d2ec3357b6e6316fcbe93c996add1ace6659a6b93f9aee2"
+    },
+    {
+      "id": "stock_load_trampoline_literal",
+      "address": "0x09302D84",
+      "size": 4,
+      "sha256": "749f5e0a3f2b0ed525a81650ee9f4724cad823b6bbb810605b420e2ba9dbfd0e"
+    },
+    {
+      "id": "stage61_selector_hook",
+      "address": "0x080DAEF4",
+      "size": 8,
+      "sha256": "d31ac2385924705767f53a1102d6016f0931f3ec3e0cf14a74814d6645034c3a"
+    },
+    {
+      "id": "stage61_loader_hook",
+      "address": "0x080DAE3C",
+      "size": 8,
+      "sha256": "917fc0dba092a5e5a468e28ee9612095755c00db80cfbad4dd5b6b011595e0f2"
+    },
+    {
+      "id": "stock_ignores_loader_return",
+      "address": "0x080DAE2E",
+      "size": 8,
+      "sha256": "84e26cc2898b394a80ee5191b7f0f51a0d98b3c55a9ad8ee6d872877767af29e"
+    },
+    {
+      "id": "mirage_first_recovery",
+      "address": "0x09391106",
+      "size": 4,
+      "sha256": "da17c91a58ac94bebaa71fe200f50e3185f1fc4bdf67c76b973440b5b48f3133"
+    },
+    {
+      "id": "research_migration_persist",
+      "address": "0x093BDF80",
+      "size": 4,
+      "sha256": "a52942667b06a317890f7dfece4597da509ce49245d952a9ac4e7de1d74b76a2"
+    },
+    {
+      "id": "research_recover",
+      "address": "0x093BDFA2",
+      "size": 4,
+      "sha256": "f02e68ee41456e760de9ba043337de1296f35f9dd2e8530bc4f34651c0776a09"
+    },
+    {
+      "id": "factory_recover",
+      "address": "0x093C4464",
+      "size": 4,
+      "sha256": "b5aeaa2f0265e091f1c657d7871d475534f82b8dfff322fe199b786efa9e058f"
+    },
+    {
+      "id": "qol_sector31_copy_scope",
+      "address": "0x09378DAC",
+      "size": 130,
+      "sha256": "77ef469b99718e3de23ef1c56d22f006d87bde06ac849159a0504bf169176606"
+    },
+    {
+      "id": "newgame_entry",
+      "address": "0x08054324",
+      "size": 8,
+      "sha256": "50363909efb91a7e35c278ef4fd7c37f3695409d8fcc2a2da877ef004e350af4"
+    },
+    {
+      "id": "newgame_adapter",
+      "address": "0x09097168",
+      "size": 20,
+      "sha256": "71d9a15daf9614ea64551d72fb3e5e585caf156c3b2f169f04a45dd0dfcec6f6"
+    },
+    {
+      "id": "newgame_wipe_call",
+      "address": "0x09097170",
+      "size": 4,
+      "sha256": "93d8a263e302c709f92ae148121f0830a0fe098b456693d64870a90e6ccac50f"
+    },
+    {
+      "id": "newgame_continuation_literal",
+      "address": "0x09097178",
+      "size": 4,
+      "sha256": "c6347dd1a599292cf2380ef10c594b1517df8698fa3e2db5347f8656caeeeac9"
+    },
+    {
+      "id": "newgame_wipe",
+      "address": "0x0912818C",
+      "size": 28,
+      "sha256": "9bf068e8f4fe65f6ae413d1b58ce0daadfc1f23982ff04d88b6170b5bc800f62"
+    },
+    {
+      "id": "newgame_continuation",
+      "address": "0x0805432C",
+      "size": 16,
+      "sha256": "4e1654bee56dca5e7396aa904f2423aaf4318d51ca1fd48276dd0656f4858691"
+    },
+    {
+      "id": "stock_all_save_modes",
+      "address": "0x080DB230",
+      "size": 284,
+      "sha256": "4fea80399bae2aa77d66ddc1b20793bbc3ca9000d78cf2255a155cb312a8c4ec"
+    },
+    {
+      "id": "save_failed_wipe",
+      "address": "0x080F64A8",
+      "size": 68,
+      "sha256": "c57d09ae3c8fdf10964e4e857712a5e6c280ee4deb08be3025f40b25e28ed93b"
+    },
+    {
+      "id": "stage61_original_owner",
+      "address": "0x09448960",
+      "size": 12568,
+      "sha256": "00c052e674a5161df02b467e4a7b1d5a0e75af40bfc49ef45590df531f776131"
+    }
+  ],
+  "load_chain_outer_to_inner": [
+    {
+      "id": "global_load_entry",
+      "entry_address": "0x080DB4E4",
+      "symbol": "LoadGameSave",
+      "allocation_container": "vega_base",
+      "call_window": "global_load_entry",
+      "literal_window": "global_load_literal",
+      "literal_address": "0x080DB4E8",
+      "original_target_thumb": "0x09FF69D1",
+      "next": "circus_cold_load"
+    },
+    {
+      "id": "circus_cold_load",
+      "entry_address": "0x09FF69D0",
+      "symbol": "CircusStreakColdLoad",
+      "allocation_container": "pr16_circus_cold_load_bridge",
+      "call_window": "circus_cold_call",
+      "literal_window": "circus_cold_literal",
+      "literal_address": "0x09FF6A28",
+      "original_target_thumb": "0x09FF5889",
+      "next": "circus_runtime_load",
+      "before_inner": "Circus の所有領域を cold-load 用に prime する。"
+    },
+    {
+      "id": "circus_runtime_load",
+      "entry_address": "0x09FF5888",
+      "symbol": "CircusStreakRuntimeSaveLoad",
+      "allocation_container": "pr16_circus_streak_runtime",
+      "call_window": "circus_runtime_call",
+      "literal_window": "circus_runtime_literal",
+      "literal_address": "0x09FF58A4",
+      "original_target_thumb": "0x09405D81",
+      "next": "collection_load",
+      "after_inner": "Circus 所有 64 bytes のロード後状態を処理する。"
+    },
+    {
+      "id": "collection_load",
+      "entry_address": "0x09405D80",
+      "symbol": "CollectionSupply_SaveLoadAdapter",
+      "allocation_container": "collection_supply_v1_stage56_payload",
+      "call_window": "collection_call",
+      "literal_window": "collection_literal",
+      "literal_address": "0x09405DB8",
+      "original_target_thumb": "0x093D2001",
+      "next": "codex_rewards_load"
+    },
+    {
+      "id": "codex_rewards_load",
+      "entry_address": "0x093D2000",
+      "symbol": "CodexBattleRewards_SaveLoadAdapter",
+      "allocation_container": "windows_box14_vault_stage47_payload",
+      "call_window": "rewards_call",
+      "literal_window": "rewards_literal",
+      "literal_address": "0x093D202C",
+      "original_target_thumb": "0x093CB0AD",
+      "next": "codex_battle_runtime_load"
+    },
+    {
+      "id": "codex_battle_runtime_load",
+      "entry_address": "0x093CB0AC",
+      "symbol": "CodexBattleRuntime_SaveLoadAdapter",
+      "allocation_container": "codex_battle_runtime_stage44_payload",
+      "call_window": "battle_runtime_call",
+      "literal_window": "battle_runtime_literal",
+      "literal_address": "0x093CB0CC",
+      "original_target_thumb": "0x093C4421",
+      "next": "factory_load"
+    },
+    {
+      "id": "factory_load",
+      "entry_address": "0x093C4420",
+      "symbol": "FactoryHighModesV2_SaveLoadAdapter",
+      "allocation_container": "factory_high_modes_v2_stage42_payload",
+      "call_window": "factory_call",
+      "literal_window": "factory_literal",
+      "literal_address": "0x093C4470",
+      "original_target_thumb": "0x093BDF21",
+      "next": "research_load",
+      "after_inner": "Research の処理後に FactoryRecover を実行し得る。restore_original は persist_current を 2 回呼び得る。"
+    },
+    {
+      "id": "research_load",
+      "entry_address": "0x093BDF20",
+      "symbol": "ResearchEconomy_SaveLoadAdapter",
+      "allocation_container": "research_economy_v1_stage40_payload",
+      "call_window": "research_call",
+      "literal_window": "research_literal",
+      "literal_address": "0x093BDFB4",
+      "original_target_thumb": "0x093910ED",
+      "next": "mirage_load",
+      "after_inner": "Mirage の処理後に migration persist と ResearchRecover を実行し得る。"
+    },
+    {
+      "id": "mirage_load",
+      "entry_address": "0x093910EC",
+      "symbol": "MirageProduction_SaveLoadAdapter",
+      "allocation_container": "mirage_production_stage38_payload",
+      "call_window": "mirage_call",
+      "literal_window": "post_qol_patch_literal",
+      "literal_address": "0x09391114",
+      "original_target_thumb": "0x09377695",
+      "next": "qol_load",
+      "after_inner": "QOL が成功 1 を返した場合、最初の復旧処理 MirageRecover へ進む。"
+    },
+    {
+      "id": "qol_load",
+      "entry_address": "0x09377694",
+      "symbol": "VegaQolProduction_SaveLoadAdapter",
+      "allocation_container": "qol_production_stage36_payload",
+      "call_window": "qol_call",
+      "literal_window": "qol_literal",
+      "literal_address": "0x093776F8",
+      "original_target_thumb": "0x0930375D",
+      "next": "trainer_load",
+      "after_inner": "sector31 の legacy 2048 bytes を必要時に復元し、RAM の normalize/finalize を行う。"
+    },
+    {
+      "id": "trainer_load",
+      "entry_address": "0x0930375C",
+      "symbol": "TrainerChangeKitFinalRuntime_SaveLoadAdapter",
+      "allocation_container": "trainer_changekit_final_stage35_payload",
+      "call_window": "trainer_call",
+      "literal_window": "trainer_literal",
+      "literal_address": "0x09303774",
+      "original_target_thumb": "0x09302D71",
+      "next": "stock_load_trampoline"
+    },
+    {
+      "id": "stock_load_trampoline",
+      "entry_address": "0x09302D70",
+      "symbol": "original stock-load trampoline",
+      "allocation_container": "trainer_changekit_final_stage35_payload",
+      "call_window": "stock_load_trampoline_call",
+      "literal_window": "stock_load_trampoline_literal",
+      "literal_address": "0x09302D84",
+      "original_target_thumb": "0x080DB4ED",
+      "next": "stock_load_continuation"
+    }
+  ],
+  "stock_load": {
+    "continuation_thumb": "0x080DB4ED",
+    "ordered_calls": [
+      {
+        "call_address": "0x080DB514",
+        "target_address": "0x080DADFC",
+        "symbol": "TryLoadSaveSlot"
+      },
+      {
+        "call_address": "0x080DAE22",
+        "target_address": "0x080DAEF4",
+        "redirected_target_thumb": "0x0944942D",
+        "window": "stage61_selector_hook",
+        "symbol": "Stage61 sector selector"
+      },
+      {
+        "call_address": "0x080DAE2E",
+        "target_address": "0x080DAE3C",
+        "redirected_target_thumb": "0x0944943D",
+        "window": "stage61_loader_hook",
+        "symbol": "Stage61 HandleLoadSector"
+      },
+      {
+        "call_address": "0x080DB51C",
+        "target_address": "0x0804BAC8",
+        "symbol": "LoadSerializedGame"
+      }
+    ],
+    "discarded_loader_return": {
+      "window": "stock_ignores_loader_return",
+      "instruction_address": "0x080DAE32",
+      "behavior": "HandleLoadSector の戻り値 r0 を採用せず、保存済み selector status r5 を r0 に戻して返す。MDX load 失敗を loader の return だけで上位へ伝えることはできない。"
+    },
+    "stage61_success_order": [
+      "選択済み完全 bank の stock データを RAM にコピーする。",
+      "同じ authority の S61E を復元する。",
+      "同じ authority の MDX を復元する。"
+    ],
+    "load_type_3": "Hall-of-Fame 専用ロード。main-bank MDX の再ロード・失効処理を post-load wrapper から行わない。",
+    "no_full_loader_reentry": "post-QOL seam から HandleLoadSector 全体を再実行すると、QOL が正規化した stock RAM を巻き戻すため禁止。"
+  },
+  "shadow_restore_scope": {
+    "upstream_caution": "CFRU upstream の全 parasite / sector30 / sector31 復元を、そのまま現在の Stage61 置換済み ROM の動作として扱わない。",
+    "qol_read_sector": 31,
+    "qol_read_buffer": "0x020399B0",
+    "qol_legacy_copy": {
+      "window": "qol_sector31_copy_scope",
+      "destination_start": "0x0203D000",
+      "size": 2048,
+      "destination_end_exclusive": "0x0203D800",
+      "overlaps_mdx": false
+    },
+    "other_owned_regions": [
+      {
+        "owner": "Codex battle rewards",
+        "start": "0x0203D800",
+        "size": 128,
+        "end_exclusive": "0x0203D880",
+        "behavior": "sentinel と後段の所有領域復元"
+      },
+      {
+        "owner": "Collection supply",
+        "start": "0x0203D900",
+        "size": 512,
+        "end_exclusive": "0x0203DB00",
+        "behavior": "ロード後に所有領域状態を clear / 後段復元"
+      },
+      {
+        "owner": "Circus streak",
+        "start": "0x0203DB00",
+        "size": 64,
+        "end_exclusive": "0x0203DB40",
+        "behavior": "inner load 前の prime とロード後 clear"
+      }
+    ],
+    "mdx_live": {
+      "start": "0x0203DB40",
+      "size": 522,
+      "end_exclusive": "0x0203DD4A"
+    },
+    "mdx_sector31_shadow": {
+      "sector": 31,
+      "parasite_base": "0x0203CF9C",
+      "offset": "0xBA4",
+      "size": 522,
+      "end_exclusive": "0xDAE",
+      "authoritative": false,
+      "restored_by_reviewed_outer_chain": false
+    },
+    "conclusion": "確認した外側 chain は MDX live へ上書きしない。Stage61 成功末尾での MDX load は復旧 Save より前に位置する。post-QOL wrapper は追加の失敗伝播 barrier として有効。"
+  },
+  "post_qol_seam": {
+    "patch_window": "post_qol_patch_literal",
+    "patch_address": "0x09391114",
+    "patch_size": 4,
+    "allocation_container": "mirage_production_stage38_payload",
+    "original_target_thumb": "0x09377695",
+    "replacement": "新規 wrapper の Thumb pointer",
+    "execution_position": "元 QOL load が戻った直後、MirageRecover より前。Research / Factory の復旧 Save よりも前。",
+    "abi": {
+      "c_prototype": "uint8_t wrapper(uint8_t save_type)",
+      "input": "r0 = save_type",
+      "output": "r0 = uint8_t status。元 QOL の非 1 status は変更せず返す。元成功 1 に対する新規 MDX failure は 255。",
+      "preserved": [
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8",
+        "r9",
+        "r10",
+        "r11",
+        "sp",
+        "通常の caller への LR return"
+      ],
+      "caller_clobbered": [
+        "r0",
+        "r1",
+        "r2",
+        "r3",
+        "r12",
+        "condition flags"
+      ],
+      "original_qol_call_count": 1,
+      "stack": "通常の callable wrapper。既存 caller の callee-saved / SP を保持する。"
+    },
+    "required_behavior": [
+      "save_type == 3 は main MDX 復元・失効から除外する。",
+      "main load が成功 1 のとき、既ロード MDX の valid-live を確認する。必要なら完全 bank の証明を伴う同一 selected bank / counter から MDX のみ再ロードする。",
+      "MDX failure は session を invalidate し、非 1 を返して Mirage / Research / Factory の recovery を止める。",
+      "新規 InitNew、sector31 shadow からの MDX 復元、Save の呼出し、別 authority の不要な再選択を行わない。"
+    ],
+    "recovery_calls": [
+      {
+        "order": 1,
+        "window": "mirage_first_recovery",
+        "call_address": "0x09391106",
+        "target_address": "0x09390EB4",
+        "role": "MirageRecover。journal active 時は transaction_commit が Save する。"
+      },
+      {
+        "order": 2,
+        "window": "research_migration_persist",
+        "call_address": "0x093BDF80",
+        "target_address": "0x093BF630",
+        "role": "Research migration persist"
+      },
+      {
+        "order": 3,
+        "window": "research_recover",
+        "call_address": "0x093BDFA2",
+        "target_address": "0x093BF6A8",
+        "role": "ResearchRecover"
+      },
+      {
+        "order": 4,
+        "window": "factory_recover",
+        "call_address": "0x093C4464",
+        "target_address": "0x093C4264",
+        "role": "FactoryRecover。restore_original は persist_current を 2 回呼び得る。"
+      }
+    ],
+    "lease_requirement": "新規 wrapper payload の配置 lease と、この literal 4 bytes の限定変更を明示する。Stage61 save owner の所有権だけで別領域への書込みを正当化しない。"
+  },
+  "newgame_seam": {
+    "root": {
+      "window": "newgame_entry",
+      "entry_address": "0x08054324",
+      "target_thumb": "0x09097169"
+    },
+    "adapter": {
+      "window": "newgame_adapter",
+      "entry_address": "0x09097168",
+      "allocation_container": "cfru_payload"
+    },
+    "wipe_call": {
+      "window": "newgame_wipe_call",
+      "call_address": "0x09097170",
+      "target_address": "0x0912818C"
+    },
+    "old_wipe": {
+      "window": "newgame_wipe",
+      "target_memset_thumb": "0x081C9DF9",
+      "start": "0x0203B0E8",
+      "size": 11940,
+      "end_exclusive": "0x0203DF8C",
+      "value": 0
+    },
+    "continuation": {
+      "window": "newgame_continuation",
+      "address": "0x0805432C",
+      "thumb_target": "0x0805432D"
+    },
+    "patch": {
+      "window": "newgame_continuation_literal",
+      "address": "0x09097178",
+      "size": 4,
+      "old_thumb_target": "0x0805432D",
+      "new_target": "naked / special tail wrapper の Thumb pointer"
+    },
+    "execution_position": "既存 NewGameWipeNewSaveData 完了後、stock continuation 0x0805432D へ戻る直前。",
+    "abi": {
+      "entry_sp_relative_to_original_newgame_entry": -28,
+      "frame": [
+        {
+          "offset": 0,
+          "size": 8,
+          "meaning": "既存 local scratch"
+        },
+        {
+          "offset": 8,
+          "size": 4,
+          "meaning": "元 r8"
+        },
+        {
+          "offset": 12,
+          "size": 4,
+          "meaning": "元 r4"
+        },
+        {
+          "offset": 16,
+          "size": 4,
+          "meaning": "元 r5"
+        },
+        {
+          "offset": 20,
+          "size": 4,
+          "meaning": "元 r6"
+        },
+        {
+          "offset": 24,
+          "size": 4,
+          "meaning": "元 caller LR"
+        }
+      ],
+      "entry_r6": "元 r8",
+      "entry_lr": "0x09097175",
+      "must_preserve": [
+        "既存 28-byte frame",
+        "entry sp",
+        "r4-r11"
+      ],
+      "control_flow": "通常関数として LR return してはいけない。LR は adapter の literal load / bx へ戻るため wrapper を再入する。InitNew 後は 0x0805432D へ tail branch する。",
+      "c_call_stack_alignment": "entry SP の 8-byte alignment を仮定せず検証・調整し、tail branch 前に既存 SP を復元する。",
+      "continuation_registers": "元 continuation と同じく r0 に 0x0805432D を置いて tail branch できる。continuation は r0/r1 を使用前に上書きする。"
+    },
+    "initialization": {
+      "operation": "VegaDexInitNew",
+      "live_address": "0x0203DB40",
+      "size": 522,
+      "call_count": 1,
+      "codec_success_status": 0,
+      "flash_write": false
+    },
+    "subsequent_stock_clear_pokedex_flags": {
+      "call_address": "0x08054384",
+      "scope": "旧 mirror のみ"
+    },
+    "restriction": "この InitNew は実 newgame に限定する。failed load や lazy load で新規状態を生成しない。"
+  },
+  "save_modes": {
+    "stock_handler_address": "0x080DB230",
+    "stock_handler_window": "stock_all_save_modes",
+    "jump_table_address": "0x080DB258",
+    "cases": [
+      {
+        "value": 0,
+        "name": "NORMAL",
+        "branch_address": "0x080DB2B4",
+        "stock_behavior": "main save"
+      },
+      {
+        "value": 1,
+        "name": "LINK",
+        "branch_address": "0x080DB2D8",
+        "stock_behavior": "logical sectors 0..4"
+      },
+      {
+        "value": 2,
+        "name": "EREADER",
+        "branch_address": "0x080DB2F8",
+        "stock_behavior": "logical sector 0"
+      },
+      {
+        "value": 3,
+        "name": "HALL_OF_FAME",
+        "branch_address": "0x080DB286",
+        "stock_behavior": "physical sectors 28/29 を書いた後に main save"
+      },
+      {
+        "value": 4,
+        "name": "OVERWRITE_DIFFERENT_FILE",
+        "branch_address": "0x080DB30C",
+        "stock_behavior": "physical sectors 28..31 を erase してから main save"
+      },
+      {
+        "value": 5,
+        "name": "HALL_OF_FAME_ERASE_BEFORE",
+        "branch_address": "0x080DB270",
+        "stock_behavior": "physical sectors 28..31 を erase、Hall-of-Fame 保存、その後 main save"
+      }
+    ],
+    "default": "6 以上は stock normal 経路。",
+    "stage61_dispatch": "NORMAL は owned COW。LINK は backup 確立後に stock 0..4 と record-only。その他は stock handler に委譲するため、直接 sector writer の MDX 接続も必要。",
+    "delegate_caution": "0x080DB230 を delegate 先として保持し、自身を呼ぶ再帰 hook にしない。",
+    "status_conventions": {
+      "stage61_success": 1,
+      "vega_dex_success": 0
+    }
+  },
+  "damaged_mask": {
+    "wipe_window": "save_failed_wipe",
+    "wipe_address": "0x080F64A8",
+    "retry_call_address": "0x080F64C4",
+    "retry_target_address": "0x080C6480",
+    "behavior": "SaveFailed は damaged bit が立った各 physical sector の 4096 bytes を zero program する。1 wipe 最大 130 attempts、HandleSaving retry 最大 3 回。",
+    "unsafe_marker_31": "invalid-live の便宜的 sector31 bit は独立 ledger / owner を破壊するため不適切。",
+    "ignored_return": "stock TrySavingData 経路は失敗 return だけでは停止しない。damaged-mask との整合が必要。",
+    "prewrite_failure_policy": "read-validate で最新の完全 authority bank を確定し、その反対側の main-bank record sector を mark する。stale な global counter だけで選ばない。",
+    "direct_abi_caution": "prewrite validation 失敗時に actual target を無条件 mark すると、その target が唯一の完全 authority の場合に UI wipe が正本を破壊する。",
+    "no_authority_case": "完全 authority を確立できない場合、無条件に安全な arbitrary sector は存在しない。上位に非破壊の failure channel を設ける必要がある。",
+    "actual_write_failure": "実際に失敗した callback は、触れた non-authority target だけを damaged として扱う。"
+  },
+  "preservation": {
+    "stage61_original_source": {
+      "path": "overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c",
+      "size": 129221,
+      "sha256": "7ad33b6b00aacb30088b7a0cc528a7fb41c947a709bb4006ab225d82d4e271bf"
+    },
+    "stage61_original_owner_window": "stage61_original_owner",
+    "required_export_positions": 44,
+    "required_non_save_preservation": "元 non-save code/data と共有 helper / libgcc / rodata を保持する。",
+    "mdx": {
+      "live_address": "0x0203DB40",
+      "size": 522,
+      "logical_sector": 13,
+      "sector_offset": "0xDE6",
+      "sector_end_exclusive": "0xFF0"
+    },
+    "s61e": {
+      "logical_sector": 13,
+      "sector_offset": "0x7D0",
+      "size": 1558,
+      "sector_end_exclusive": "0xDE6",
+      "crc_separate_from_mdx": true
+    }
+  },
+  "verification": {
+    "type": "private candidate に対する read-only static preimage 再照合",
+    "candidate_identity_match": true,
+    "checked_windows": 41,
+    "matched_windows": 41,
+    "failed_windows": [],
+    "rom_execution_performed": false,
+    "limitations": [
+      "この監査は保存・ロードを emulator 上で動的実行した証跡ではない。",
+      "source binding は固定 source ref での読取監査結果であり、ここで後続実装 commit の正しさを主張しない。",
+      "post-QOL seam と newgame seam は接続候補の ABI 契約であり、本 JSON の作成自体は ROM を変更しない。"
+    ],
+    "checked_literal_targets": 16,
+    "matched_literal_targets": 16,
+    "checked_direct_bl_targets": 10,
+    "matched_direct_bl_targets": 10
+  }
+}

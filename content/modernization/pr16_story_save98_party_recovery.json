@@ -1,0 +1,69 @@
+{
+  "status": "FAILED_GUARD_PRESERVED_EXACT_PARTY_PHASE_RECOVERY",
+  "source": "c8312b3a0d7ddacb42825f9a60140612bce34eb3",
+  "run_id": 37195233466,
+  "job_id": 111415610355,
+  "artifact_id": 11301280087,
+  "archive": {
+    "size": 43241,
+    "sha256": "99d10de708807e43c88893286987549be2b7b1a2b75b623957960bf1972f0904"
+  },
+  "failed_execution": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "4871ba79e718ea8dc8bc701394846ce1b393cd41a5961564ed4d670437a52139"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "4871ba79e718ea8dc8bc701394846ce1b393cd41a5961564ed4d670437a52139"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 1838,
+      "inputs": 28,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 9
+  },
+  "failed_observation": 8,
+  "failed_xy": [
+    23,
+    24
+  ],
+  "travel_steps": 6,
+  "turns": 2,
+  "inputs": 28,
+  "observations": 9,
+  "ordinary_saves": 0,
+  "native_processes": 1,
+  "input_save_unchanged": true,
+  "controller_tests_passed": 42,
+  "observed_party_sha256": "a889748859f118b98c42e9ef5f0fd2847466d07383f5743946453c961261580d",
+  "diagnostic_exact_preimage_deltas": [
+    [
+      41,
+      48,
+      49
+    ],
+    [
+      141,
+      13,
+      14
+    ],
+    [
+      241,
+      111,
+      112
+    ]
+  ],
+  "diagnostic_not_native_byte_dump": true,
+  "runtime_owner_resolved": false,
+  "host_writes": 0,
+  "fixture_writes": 0,
+  "repair_ja": "親party600bytesの上記3byteだけ+1したSHA256が失敗観測と一致。この診断はROM/fixtureを書かない。町23,24の6歩目以降だけこのhashを許容し、それ以外のparty変化は停止。最終通常saveの全600byteを独立照合するまで未受入。以前のoffset41等のruntime owner未解明を解決済みにしない。"
+}

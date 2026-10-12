@@ -1,0 +1,630 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-FLAGSET-CONTINUATION",
+  "source_head": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+  "run_id": 34971661219,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "FLAGSET_CONTINUATION_BYTES_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "target": 134667901,
+    "inherited_edge": {
+      "owner": 154634739,
+      "site": 154634748,
+      "register": 3,
+      "classification": "LITERAL_BRANCH_LIVE_FRAME",
+      "frame_bytes": 8,
+      "entry_lr_saved_offsets": [
+        -4
+      ],
+      "all_runtime_owners_excluded": false,
+      "target": 134667901
+    },
+    "graph": {
+      "entry": 134667901,
+      "window": 256,
+      "window_identity": {
+        "size": 256,
+        "sha256": "50c43c0107a490450cbedfa0f805b399fae63dacf9f12bb58ede38502e96dabc"
+      },
+      "nodes": [
+        {
+          "address": 134667900,
+          "size": 4,
+          "hex": "fff79aff",
+          "kind": "call",
+          "target": 134667700,
+          "memory_write": false,
+          "successors": [
+            134667904
+          ]
+        },
+        {
+          "address": 134667904,
+          "size": 2,
+          "hex": "021c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667906
+          ]
+        },
+        {
+          "address": 134667906,
+          "size": 2,
+          "hex": "002a",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667908
+          ]
+        },
+        {
+          "address": 134667908,
+          "size": 2,
+          "hex": "06d0",
+          "kind": "conditional",
+          "target": 134667924,
+          "memory_write": false,
+          "successors": [
+            134667910,
+            134667924
+          ]
+        },
+        {
+          "address": 134667910,
+          "size": 2,
+          "hex": "0720",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667912
+          ]
+        },
+        {
+          "address": 134667912,
+          "size": 2,
+          "hex": "2040",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667914
+          ]
+        },
+        {
+          "address": 134667914,
+          "size": 2,
+          "hex": "0121",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667916
+          ]
+        },
+        {
+          "address": 134667916,
+          "size": 2,
+          "hex": "8140",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667918
+          ]
+        },
+        {
+          "address": 134667918,
+          "size": 2,
+          "hex": "1078",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667920
+          ]
+        },
+        {
+          "address": 134667920,
+          "size": 2,
+          "hex": "0143",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667922
+          ]
+        },
+        {
+          "address": 134667922,
+          "size": 2,
+          "hex": "1170",
+          "kind": "ordinary",
+          "memory_write": true,
+          "successors": [
+            134667924
+          ]
+        },
+        {
+          "address": 134667924,
+          "size": 2,
+          "hex": "0020",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667926
+          ]
+        },
+        {
+          "address": 134667926,
+          "size": 2,
+          "hex": "10bc",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667928
+          ]
+        },
+        {
+          "address": 134667928,
+          "size": 2,
+          "hex": "02bc",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667930
+          ]
+        },
+        {
+          "address": 134667930,
+          "size": 2,
+          "hex": "0847",
+          "kind": "indirect",
+          "register": 1,
+          "memory_write": false,
+          "successors": []
+        }
+      ],
+      "external_edges": [
+        {
+          "site": 134667900,
+          "kind": "call",
+          "target": 134667701,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 134667930,
+          "kind": "indirect",
+          "register": 1,
+          "target": null
+        }
+      ],
+      "memory_write_sites": [
+        134667922
+      ],
+      "side_effects_excluded": false
+    },
+    "sampled_ranges": [
+      {
+        "address": 134667900,
+        "hex": "fff79aff",
+        "size": 4,
+        "sha256": "49be3d370fc275e45ce509db85207515d6d647fea0747a2d163bdd43dfd01f35"
+      },
+      {
+        "address": 134667904,
+        "hex": "021c",
+        "size": 2,
+        "sha256": "cb2828956cb51650cc27a5513386391ae1d6ccabec0c03e307b0b3f522ca7902"
+      },
+      {
+        "address": 134667906,
+        "hex": "002a",
+        "size": 2,
+        "sha256": "587bae728805519c3542d21766295396bd01087b6c47765ae3cadbf679813bbe"
+      },
+      {
+        "address": 134667908,
+        "hex": "06d0",
+        "size": 2,
+        "sha256": "9149c8d6262e69a6b33e80ad900d4494b04889c536aac4609d3a7e71223902f1"
+      },
+      {
+        "address": 134667910,
+        "hex": "0720",
+        "size": 2,
+        "sha256": "ee43bd6f35bdfa85d43539dc2de2d67000164ec799d872d471b69d759a6e8e7d"
+      },
+      {
+        "address": 134667912,
+        "hex": "2040",
+        "size": 2,
+        "sha256": "f271497cb80c183cd98dd7f3d12bcfb527d04757ff7bf9015a5b7eda3fd0da47"
+      },
+      {
+        "address": 134667914,
+        "hex": "0121",
+        "size": 2,
+        "sha256": "c846f87c9d6bdfaa33038ac78269cfd5a08aa89a0918e99c4c4ae2e804a4f9a3"
+      },
+      {
+        "address": 134667916,
+        "hex": "8140",
+        "size": 2,
+        "sha256": "5845a3f69ea59cfc12219a5272b8be0b9f9bb60648ed002627e6637041b1bff3"
+      },
+      {
+        "address": 134667918,
+        "hex": "1078",
+        "size": 2,
+        "sha256": "b69d5115fcf731b8eb78f20d9e3590f8acbee1034741062c81fd7066b37da8ed"
+      },
+      {
+        "address": 134667920,
+        "hex": "0143",
+        "size": 2,
+        "sha256": "a897a2c44344b4c097bde002670d78bf9dce4e54d630600c893363d4e4637732"
+      },
+      {
+        "address": 134667922,
+        "hex": "1170",
+        "size": 2,
+        "sha256": "a519b4462ef694cc40ac88af6c6cc7b51887880b81b634f66ee958f829bdb858"
+      },
+      {
+        "address": 134667924,
+        "hex": "0020",
+        "size": 2,
+        "sha256": "474f2af47544e9c7ce4338cabd43c5ca1c26432b7300ce387406157ea433891f"
+      },
+      {
+        "address": 134667926,
+        "hex": "10bc",
+        "size": 2,
+        "sha256": "f86b59492835dbb37428524d56c2d42d1d9f6ed9d097cab378c3694b16edb340"
+      },
+      {
+        "address": 134667928,
+        "hex": "02bc",
+        "size": 2,
+        "sha256": "a8bc0e9542c3c9dc9c902bc1af9c4ddf0d7dcf84301696eabec4df976119b3b1"
+      },
+      {
+        "address": 134667930,
+        "hex": "0847",
+        "size": 2,
+        "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5"
+      }
+    ],
+    "sampled_instruction_bytes": 32,
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "additional_unread_targets": [],
+    "remaining_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "reused_saved_entries": [
+      134667701
+    ],
+    "inherited_frame_return_verified": false,
+    "stack_integrity_proven": false,
+    "all_callers_resolved": false,
+    "ring_acquisition_accepted": false,
+    "all_runtime_owners_excluded": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0,
+    "new_graph_decodes": 1,
+    "candidate_reconstructions": 1
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    "tests/test_pr16_ring_flagset_continuation.py": {
+      "size": 8671,
+      "sha256": "aec54eeab43ebc90a058e9d1eb77fd52b2db5fbfd509c37119d6dd38cff37b6a"
+    },
+    ".github/workflows/pr16-ring-flagset-continuation.yml": {
+      "size": 7115,
+      "sha256": "98a2972dea4eda977ce0ee6c8d8dd24183bb42b9d7c34f966f66a0fdc6863966"
+    },
+    "content/modernization/pr16_ring_indirect_abi.json": {
+      "size": 14759,
+      "sha256": "a7308d8829bc02cef6fa4b2a8b3f12d57d7eb838f58350a274c6739958bd6f37"
+    },
+    "content/modernization/pr16_ring_patch_owner.json": {
+      "size": 125662,
+      "sha256": "fb396fd19040d954ebc10c5296a35293575284e24f53bb6a0e23b440eb1a8746"
+    },
+    "content/modernization/pr16_ring_transitive_owner.json": {
+      "size": 34036,
+      "sha256": "2045f5f2d9b2f234f58b8c596121f26794ae578a220e960d38b4a2999ab51cb7"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_compiled_owner.py": {
+      "size": 13070,
+      "sha256": "708854062d694ef1e8bbafe633f24e684a92e44daea3abec01afb42c7a419aee"
+    },
+    "overlays/save_migration/save_migration.c": {
+      "size": 25098,
+      "sha256": "78e6a74c05ecf652d82e43c1e7ce196de3f6694731bbbabeeead76eef27b6320"
+    }
+  },
+  "reused_successful_actions": [
+    {
+      "id": 34968485915,
+      "name": "Ring保存済み15間接辺のABI分類・検証・記録／ROMとnative実行なし",
+      "head_sha": "0449002040cefe9c7df01c2bf7804ea51fb16491",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "name": "同一3勝完了（基礎9+反復3 BP）から通常ショップ購入・Save・Continue検証",
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 34971666748,
+      "name": "source-validation",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34971666755,
+      "name": "p03-forgetting-ci",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34971661123,
+      "name": "p03-forgetting-ci",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34971661202,
+      "name": "source-validation",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34971661152,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34971661219,
+      "name": "Ring未読FlagSet継続1根の採取・検証・記録／受入済みnative再実行なし",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34971661234,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34968553471,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0565db05c3e244b3b214bbc8141bb6c4182c8649",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34968553490,
+      "name": "source-validation",
+      "head_sha": "0565db05c3e244b3b214bbc8141bb6c4182c8649",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34968489226,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0449002040cefe9c7df01c2bf7804ea51fb16491",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34968489234,
+      "name": "source-validation",
+      "head_sha": "0449002040cefe9c7df01c2bf7804ea51fb16491",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34968485915,
+      "name": "Ring保存済み15間接辺のABI分類・検証・記録／ROMとnative実行なし",
+      "head_sha": "0449002040cefe9c7df01c2bf7804ea51fb16491",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34968485727,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "0449002040cefe9c7df01c2bf7804ea51fb16491",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34968485895,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0449002040cefe9c7df01c2bf7804ea51fb16491",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34968485739,
+      "name": "source-validation",
+      "head_sha": "0449002040cefe9c7df01c2bf7804ea51fb16491",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34968485790,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "0449002040cefe9c7df01c2bf7804ea51fb16491",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34965203985,
+      "name": "source-validation",
+      "head_sha": "93635dcc022a12a794df67e2d16a739fe15b29fc",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34965204007,
+      "name": "p03-forgetting-ci",
+      "head_sha": "93635dcc022a12a794df67e2d16a739fe15b29fc",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34965137935,
+      "name": "source-validation",
+      "head_sha": "64ba3172d0a195acd3ca4f69157ce2eda9636d0e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34965137855,
+      "name": "p03-forgetting-ci",
+      "head_sha": "64ba3172d0a195acd3ca4f69157ce2eda9636d0e",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34965133378,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "64ba3172d0a195acd3ca4f69157ce2eda9636d0e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34965133357,
+      "name": "source-validation",
+      "head_sha": "64ba3172d0a195acd3ca4f69157ce2eda9636d0e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34965133363,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "64ba3172d0a195acd3ca4f69157ce2eda9636d0e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34965133361,
+      "name": "p03-forgetting-ci",
+      "head_sha": "64ba3172d0a195acd3ca4f69157ce2eda9636d0e",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34965133426,
+      "name": "Ring patch先・handler検証の固定記録／再buildとnativeなし",
+      "head_sha": "64ba3172d0a195acd3ca4f69157ce2eda9636d0e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34964229787,
+      "name": "p03-forgetting-ci",
+      "head_sha": "03ca035d5617b4d381845189e15838b5ba495a7d",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34964229778,
+      "name": "source-validation",
+      "head_sha": "03ca035d5617b4d381845189e15838b5ba495a7d",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34964225326,
+      "name": "p03-forgetting-ci",
+      "head_sha": "03ca035d5617b4d381845189e15838b5ba495a7d",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34964225321,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "03ca035d5617b4d381845189e15838b5ba495a7d",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34964225410,
+      "name": "source-validation",
+      "head_sha": "03ca035d5617b4d381845189e15838b5ba495a7d",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "focused_tests": {
+    "tests_run": 42,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  }
+}

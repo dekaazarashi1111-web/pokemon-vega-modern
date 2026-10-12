@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "flag": {
+    "name": "FLAG_OPENED_START_MENU",
+    "id": 2110,
+    "save1_offset": 4071,
+    "stock_observation_index": 263,
+    "bit": 6,
+    "before": 1,
+    "after": 65
+  },
+  "windows": [
+    {
+      "id": "start_menu_flag_owner",
+      "address": "0x806c4c0",
+      "size": 48,
+      "sha256": "0848591752657265dbedcba5e21aad10ce3b0fab2883edc887dd51ae6731e5d4"
+    },
+    {
+      "id": "newgame_first_save_mode4",
+      "address": "0x806f130",
+      "size": 60,
+      "sha256": "a566c9c0cf5a1f57dd59ec2ea2a333c8ca35e9c3f4cba7d6eba1d167d6bba93c"
+    },
+    {
+      "id": "newgame_sets_different_file",
+      "address": "0x805433c",
+      "size": 6,
+      "sha256": "6f5467e78d2e024fae830a9c825d24a5e66e24719dc642d5e268b97a6aa04b0b"
+    },
+    {
+      "id": "different_file_literal",
+      "address": "0x8054418",
+      "size": 4,
+      "sha256": "f45d0ea57ace84d02d7f1133de8ff55c58329a7492af5c34eccba3eac06a0736"
+    }
+  ],
+  "sources": [
+    "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/constants/flags.h#L1396",
+    "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/field_control_avatar.c#L284-L290",
+    "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/start_menu.c#L791-L802",
+    "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/new_game.c#L107-L114"
+  ],
+  "contract_ja": [
+    "初回STARTを開くとstockがFlagSet(0x83E)してからShowStartMenuを呼ぶ。NewGame初回保存の観測差分263:1→65はこの1bitだけ。",
+    "NewGameはgDifferentSaveFile=1。通常Save UIはこの時type4を渡し、以降type0へ戻る。blank Flashからの初回Save4を受入しても、既存の異なるsave上書き、HOF、Save失敗等の全固有副作用を受入したことにはならない。",
+    "旧flag0x808や他vars/expanded領域の変更を免除しない。全before/after hashを保存し、1byte逆変換で保存原本から元進行hashへ戻ることを確認する。"
+  ],
+  "rom_fragments_or_raw_hex_included": false
+}

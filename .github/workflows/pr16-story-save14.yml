@@ -1,0 +1,58 @@
+name: pr16-story-save14
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-save14.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-save14
+  cancel-in-progress: false
+jobs:
+  training:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Resume and immutable Save13 boundary
+        run: python3 -B scripts/pr16_resume.py check
+      - name: New training303 and independent cold40 only
+        run: python3 -B scripts/pr16_story_save14_actions.py measure
+      - name: Record faint replacement and Save14 scoped evidence
+        run: python3 -B scripts/pr16_story_save14_actions.py record
+      - name: Task graph and scoped final index
+        run: |
+          python3 -B scripts/validate_task_graph.py --check
+          python3 -B scripts/pr16_story_save14_actions.py guard
+      - name: Non-force commit and remote readback
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260929-STORY-SAVE14: ひんし交代の野生1勝とSave14を限定受入、110検査・引継ぎ・両ログ同期 run=$GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/$branch
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 -B scripts/pr16_story_save14_actions.py snapshot
+          echo "RESULT=DONE TASK=USER-20260929-STORY-SAVE14 VERIFY=110_PASS COMMIT=$(git rev-parse HEAD)"
+      - name: Preserve originals without replay
+        if: always()
+        run: python3 -B scripts/pr16_story_save14_actions.py preserve
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-save14-checkpoint
+          path: .local/pr16-story-save14/checkpoint
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

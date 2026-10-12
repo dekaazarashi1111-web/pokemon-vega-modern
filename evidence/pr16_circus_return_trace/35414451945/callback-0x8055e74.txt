@@ -1,0 +1,78 @@
+
+.local/pr16-streak-input/candidate.gba:     file format binary
+
+
+Disassembly of section .data:
+
+08055e74 <.data+0x55e74>:
+ 8055e74:	b510      	push	{r4, lr}
+ 8055e76:	4809      	ldr	r0, [pc, #36]	@ (0x8055e9c)
+ 8055e78:	79c0      	ldrb	r0, [r0, #7]
+ 8055e7a:	09c0      	lsrs	r0, r0, #7
+ 8055e7c:	1c04      	adds	r4, r0, #0
+ 8055e7e:	2c00      	cmp	r4, #0
+ 8055e80:	d002      	beq.n	0x8055e88
+ 8055e82:	2000      	movs	r0, #0
+ 8055e84:	f7aa fc36 	bl	0x80006f4
+ 8055e88:	f7ff ffd6 	bl	0x8055e38
+ 8055e8c:	2c00      	cmp	r4, #0
+ 8055e8e:	d001      	beq.n	0x8055e94
+ 8055e90:	f000 fa18 	bl	0x80562c4
+ 8055e94:	bc10      	pop	{r4}
+ 8055e96:	bc01      	pop	{r0}
+ 8055e98:	4700      	bx	r0
+ 8055e9a:	0000      	movs	r0, r0
+ 8055e9c:	79ec      	ldrb	r4, [r5, #7]
+ 8055e9e:	0203      	lsls	r3, r0, #8
+ 8055ea0:	4901      	ldr	r1, [pc, #4]	@ (0x8055ea8)
+ 8055ea2:	6008      	str	r0, [r1, #0]
+ 8055ea4:	4770      	bx	lr
+ 8055ea6:	0000      	movs	r0, r0
+ 8055ea8:	3130      	adds	r1, #48	@ 0x30
+ 8055eaa:	0300      	lsls	r0, r0, #12
+ 8055eac:	b510      	push	{r4, lr}
+ 8055eae:	4c05      	ldr	r4, [pc, #20]	@ (0x8055ec4)
+ 8055eb0:	6820      	ldr	r0, [r4, #0]
+ 8055eb2:	2800      	cmp	r0, #0
+ 8055eb4:	d010      	beq.n	0x8055ed8
+ 8055eb6:	f171 fe07 	bl	0x81c7ac8
+ 8055eba:	0600      	lsls	r0, r0, #24
+ 8055ebc:	2800      	cmp	r0, #0
+ 8055ebe:	d103      	bne.n	0x8055ec8
+ 8055ec0:	2000      	movs	r0, #0
+ 8055ec2:	e019      	b.n	0x8055ef8
+ 8055ec4:	5064      	str	r4, [r4, r1]
+ 8055ec6:	0300      	lsls	r0, r0, #12
+ 8055ec8:	2100      	movs	r1, #0
+ 8055eca:	6021      	str	r1, [r4, #0]
+ 8055ecc:	4801      	ldr	r0, [pc, #4]	@ (0x8055ed4)
+ 8055ece:	6001      	str	r1, [r0, #0]
+ 8055ed0:	e011      	b.n	0x8055ef6
+ 8055ed2:	0000      	movs	r0, r0
+ 8055ed4:	5060      	str	r0, [r4, r1]
+ 8055ed6:	0300      	lsls	r0, r0, #12
+ 8055ed8:	4803      	ldr	r0, [pc, #12]	@ (0x8055ee8)
+ 8055eda:	6800      	ldr	r0, [r0, #0]
+ 8055edc:	2800      	cmp	r0, #0
+ 8055ede:	d005      	beq.n	0x8055eec
+ 8055ee0:	f171 fdf2 	bl	0x81c7ac8
+ 8055ee4:	e004      	b.n	0x8055ef0
+ 8055ee6:	0000      	movs	r0, r0
+ 8055ee8:	5060      	str	r0, [r4, r1]
+ 8055eea:	0300      	lsls	r0, r0, #12
+ 8055eec:	f027 fbd2 	bl	0x807d694
+ 8055ef0:	4903      	ldr	r1, [pc, #12]	@ (0x8055f00)
+ 8055ef2:	2000      	movs	r0, #0
+ 8055ef4:	6008      	str	r0, [r1, #0]
+ 8055ef6:	2001      	movs	r0, #1
+ 8055ef8:	bc10      	pop	{r4}
+ 8055efa:	bc02      	pop	{r1}
+ 8055efc:	4708      	bx	r1
+ 8055efe:	0000      	movs	r0, r0
+ 8055f00:	5060      	str	r0, [r4, r1]
+ 8055f02:	0300      	lsls	r0, r0, #12
+ 8055f04:	b500      	push	{lr}
+ 8055f06:	f000 f9b9 	bl	0x805627c
+ 8055f0a:	f01b f995 	bl	0x8071238
+ 8055f0e:	f7ff fee7 	bl	0x8055ce0
+ 8055f12:	f7fe  	bl	0x8054324

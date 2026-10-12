@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261012-IPS-DPE-INSTRUCTION-EXTENT",
+  "source_head": "d386f3eec2e8784b8fd52ecaa4c19a2ffb852f16",
+  "workflow": ".github/workflows/pr16-ips-dpe-instruction-extent.yml",
+  "run_id": 38244314715,
+  "job_id": 114794296522,
+  "status": "completed",
+  "conclusion": "success",
+  "verified_steps": [
+    "新規11命令・境界試験",
+    "新scope ARM toolchain",
+    "IPS/DPE の限定実byte照合（機密ROM出力禁止）",
+    "Run actions/upload-artifact@v4"
+  ],
+  "run_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/38244314715",
+  "artifact": {
+    "id": 11743528607,
+    "name": "pr16-ips-dpe-instruction-extent-public-text",
+    "size_in_bytes": 2334,
+    "digest": "sha256:5f468ba3901d1d496962f9cc3985b4aa42639b282813e11aa4baca26c9013cbd",
+    "zip_bytes_downloaded": true,
+    "zip_digest_verified": true,
+    "members": {
+      "instruction-extent.json": {
+        "size": 5290,
+        "sha256": "68e2ad5ebdef2edd6f99dba63495cf3c43139a8093a7714f65cef26313b2e6e1"
+      },
+      "attempt.json": {
+        "size": 99,
+        "sha256": "8836921d39130d99282eb41cd5da01981676a9cd9bdfc60d0273cde052efffb0"
+      },
+      "result.json": {
+        "size": 416,
+        "sha256": "4631c78949429aaf60dcb9df576bd9dbcb1be2b4371e1040d0d2ee807ba0c3fe"
+      }
+    }
+  },
+  "initial_failed_attempt": {
+    "run_id": 38243855751,
+    "artifact_id": 11743638772,
+    "explanation": "API token unavailable, KeyError in existing pr16_research_bag_actions.api, before new candidate was verified",
+    "accepted": false
+  },
+  "new_unit_tests": 11,
+  "task_graph_passed": true,
+  "successful_rom_reconstructions": 1,
+  "accepted_test_reruns": 0,
+  "native_processes": 0,
+  "actual_reader_claimed": false,
+  "all_ci_green_claimed": false
+}

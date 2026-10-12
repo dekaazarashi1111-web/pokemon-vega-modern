@@ -1,0 +1,124 @@
+{
+  "archive": {
+    "archive_root": "Pokemon_Vega_Stage61_Learnsets_v1_3_20260905",
+    "sha256": "80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb",
+    "size": 82683251
+  },
+  "automatic_fallback": false,
+  "crosswalk_member": {
+    "sha256": "17bded79b9df09bbf7b040ecfced62631757d3b4b27e55782aaca614fb1f2475",
+    "size": 189708
+  },
+  "decision": "EXPLICIT_GIFT_REFERENCE_ADOPTION",
+  "expected_consumers": {
+    "evolution": 1,
+    "level_up": 13,
+    "machine": 23
+  },
+  "expected_routes": 37,
+  "gift_map": {
+    "clone_local_id": 14,
+    "expected_collision": 0,
+    "expected_metatile_entry": "0x3010",
+    "group": 96,
+    "local_id": 15,
+    "map": 5,
+    "x": 25,
+    "y": 19
+  },
+  "gift_policy": {
+    "base_species_id": 959,
+    "base_species_key": "SPECIES_KEY_FLOETTE",
+    "canonical_collection_bit": 850,
+    "canonical_national_dex": 670,
+    "claim_flag": "0x14CD",
+    "claim_flag_key": "FLAG_KEY_STAGE69_FLOETTE_ETERNAL_GIFT",
+    "claim_flag_source_of_truth": "config/modernization_floette_gift.json + Stage69 checkpoint",
+    "level": 50,
+    "repeatability": "ONCE_PER_SAVE",
+    "species_id": 1029,
+    "species_key": "SPECIES_KEY_FLOETTE_ETERNAL",
+    "unlock_item_id": 580,
+    "unlock_item_key": "ITEM_KEY_MEGA_RING"
+  },
+  "owner_approved_overlay": [],
+  "parent_checkpoint": "content/modernization/pr16_learnset_payload_checkpoint.json",
+  "physical_supply_verified": false,
+  "preserve_gift_contract": true,
+  "preserve_original_p01": true,
+  "preserve_saved_four_moves": true,
+  "reason_ja": "Issue19再開指示に基づき、Stage69で取得可能なEternal専用の固定参考原本を後継official_baselineへ採用する。P01除外は履歴として保持し、通常Floette・旧ROM表へのfallbackは行わない。",
+  "reference_id": "legendsza:0670.05",
+  "reference_member": {
+    "sha256": "af3ac5a4dda8a3c51642b47f68cf86f47159ad3ff8f82a3e9154591c21fedbe1",
+    "size": 193768661
+  },
+  "release_ready": false,
+  "repository_sources": {
+    "config/modernization_floette_gift.json": {
+      "sha256": "140da74d3e43a857b728417eeb8c701f44cfed0f6575719a6ff13ccab9c093c8",
+      "size": 6670
+    },
+    "config/pr16_learnset_baseline_source_lock.json": {
+      "sha256": "dda5b34c7ed947e2b291d7b5afcbd95b54b9711ffe0fe57a43ad762063598ceb",
+      "size": 4105
+    },
+    "content/modernization/identity_contract.json": {
+      "sha256": "be4e08a27986b7e384eab8239f5608732b5c6575b060fdae50efd0c90a810443",
+      "size": 1461322
+    },
+    "manifests/move_ids.csv": {
+      "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20",
+      "size": 128694
+    },
+    "manifests/species_ids.csv": {
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366",
+      "size": 207095
+    }
+  },
+  "runtime_applied": false,
+  "schema_version": 1,
+  "side_change_adopted": false,
+  "source_artifact": {
+    "digest": "sha256:a16115cbe4529fc0c317d46f57e2ccc436ed8eacb6361bb01ddd70b710e3a629",
+    "id": 10666698998,
+    "name": "pr16-learnset-floette-source",
+    "size_in_bytes": 11445
+  },
+  "source_files": {
+    "compiled.json": {
+      "sha256": "eed880c1328a1ae1bef0aecd3c7c23d568523bda3c0b5508d70d9ae4d094d075",
+      "size": 61304
+    },
+    "crosswalk.json": {
+      "sha256": "f9cca8e6a44ba0fddf46d1437a3de7c31bc07aa1b24359c96a42faab9812ef37",
+      "size": 17475
+    },
+    "reference.json": {
+      "sha256": "67fe6fcaaa42b5e3924d5ebdb7f139c1c7ce3da6bd75f81b6774e08be2954cef",
+      "size": 48457
+    },
+    "target.json": {
+      "sha256": "0828fdf44ea29e5fa1dc358eaa988ed4c3c08a8437e8919bb68e45d29d8d4bea",
+      "size": 464
+    }
+  },
+  "source_receipt": {
+    "sha256": "262c8ed4667b064fa8f8009f3ebd067e9f31988225934ba52a9ab4491e38956a",
+    "size": 2174
+  },
+  "source_run": {
+    "conclusion": "success",
+    "head_sha": "eefecda80d08ee7df8b9c59dbb1bf1caa5d21577",
+    "id": 35661456139,
+    "job_id": 106537412089
+  },
+  "source_selection": {
+    "layer": "official_baseline",
+    "original_p01_apply": false,
+    "successor_selected": true
+  },
+  "species_id": 1029,
+  "species_key": "SPECIES_KEY_FLOETTE_ETERNAL",
+  "task": "USER-20260921-LEARNSET-BASELINE-RESET"
+}

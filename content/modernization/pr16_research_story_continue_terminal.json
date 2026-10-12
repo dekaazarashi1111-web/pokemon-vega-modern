@@ -1,0 +1,567 @@
+{
+  "accepted_case_reruns": 0,
+  "active_baseline_changed": false,
+  "all_committed_originals_match": true,
+  "all_required_steps_succeeded": true,
+  "archive": {
+    "sha256": "55e88187f9dbc5ed2f075857506071a06789ae03c57004f8a0f4d54b0f251362",
+    "size": 1313382
+  },
+  "artifact": {
+    "created_at": "2026-09-27T14:19:55Z",
+    "digest": "sha256:55e88187f9dbc5ed2f075857506071a06789ae03c57004f8a0f4d54b0f251362",
+    "expired": false,
+    "expires_at": "2026-12-26T14:19:09Z",
+    "id": 10933499471,
+    "name": "pr16-research-story-continue-checkpoint",
+    "size_in_bytes": 1313382,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "4c5d2d46bbef7f984800ea4133afe0388ac4c73d",
+      "id": 36325475401,
+      "repository_id": 1358127462
+    }
+  },
+  "checkpoint": {
+    "candidate": {
+      "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
+      "size": 33554432
+    },
+    "commands": "quit\n",
+    "completed_route_segment_replay_required": false,
+    "data_artifact": 10898510128,
+    "executable": {
+      "sha256": "67096f8c8a487c03957da071d0190f74542480fb051cf8e8934e1b05adee9a61",
+      "size": 73792
+    },
+    "frame": 12012,
+    "map": [
+      3,
+      19
+    ],
+    "mode": "continue-story",
+    "natural_research_arrival_accepted": false,
+    "new_game_replay_required": false,
+    "parent_artifact": 10932059074,
+    "party_count": 1,
+    "rp": 0,
+    "run_id": 36325475401,
+    "runtime_artifact": 10898620034,
+    "save": {
+      "sha256": "503e26cfdc8605ff79984afdcab3ffd9ce448f4557a8d1cdf64526ad15cdd65a",
+      "size": 131088
+    },
+    "save_counter": 2,
+    "schema_version": 1,
+    "source_head": "4c5d2d46bbef7f984800ea4133afe0388ac4c73d",
+    "starter_story_replay_required": false,
+    "xy": [
+      1,
+      14
+    ]
+  },
+  "complete_repository_history_claimed": false,
+  "completion_commit": "64777bc7fea788561a994bb3589bcf9a89c26175",
+  "job": {
+    "conclusion": "success",
+    "id": 108637305546,
+    "name": "continue-story",
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-27T14:19:13Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-27T14:19:12Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T14:19:22Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-27T14:19:13Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T14:19:45Z",
+        "conclusion": "success",
+        "name": "Measure new saved-story interval and independent successor Continue",
+        "number": 3,
+        "started_at": "2026-09-27T14:19:22Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T14:19:48Z",
+        "conclusion": "success",
+        "name": "Record immutable evidence fixed resume and append-only logs",
+        "number": 4,
+        "started_at": "2026-09-27T14:19:45Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T14:19:52Z",
+        "conclusion": "success",
+        "name": "Task graph and scoped final index",
+        "number": 5,
+        "started_at": "2026-09-27T14:19:48Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T14:19:54Z",
+        "conclusion": "success",
+        "name": "Non-force scoped completion commit",
+        "number": 6,
+        "started_at": "2026-09-27T14:19:52Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T14:19:55Z",
+        "conclusion": "success",
+        "name": "Preserve text completion snapshot",
+        "number": 7,
+        "started_at": "2026-09-27T14:19:54Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T14:19:55Z",
+        "conclusion": "success",
+        "name": "Preserve partial progress without replay",
+        "number": 8,
+        "started_at": "2026-09-27T14:19:55Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T14:19:55Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 9,
+        "started_at": "2026-09-27T14:19:55Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T14:19:56Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 18,
+        "started_at": "2026-09-27T14:19:55Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T14:19:56Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 19,
+        "started_at": "2026-09-27T14:19:56Z",
+        "status": "completed"
+      }
+    ]
+  },
+  "latest_branch_actions": [
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "fce3748d1307a0b214af65095f7e34c7c6c63fcd",
+      "id": 36325671827,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "fce3748d1307a0b214af65095f7e34c7c6c63fcd",
+      "id": 36325671842,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "fce3748d1307a0b214af65095f7e34c7c6c63fcd",
+      "id": 36325665374,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "fce3748d1307a0b214af65095f7e34c7c6c63fcd",
+      "id": 36325665287,
+      "path": ".github/workflows/pr16-research-story-continue-terminal.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "fce3748d1307a0b214af65095f7e34c7c6c63fcd",
+      "id": 36325665213,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "fce3748d1307a0b214af65095f7e34c7c6c63fcd",
+      "id": 36325665245,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "queued"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "64777bc7fea788561a994bb3589bcf9a89c26175",
+      "id": 36325524617,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "64777bc7fea788561a994bb3589bcf9a89c26175",
+      "id": 36325524662,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "4c5d2d46bbef7f984800ea4133afe0388ac4c73d",
+      "id": 36325482021,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "4c5d2d46bbef7f984800ea4133afe0388ac4c73d",
+      "id": 36325481897,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "4c5d2d46bbef7f984800ea4133afe0388ac4c73d",
+      "id": 36325475473,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "4c5d2d46bbef7f984800ea4133afe0388ac4c73d",
+      "id": 36325475401,
+      "path": ".github/workflows/pr16-research-story-continue.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "4c5d2d46bbef7f984800ea4133afe0388ac4c73d",
+      "id": 36325475404,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "4c5d2d46bbef7f984800ea4133afe0388ac4c73d",
+      "id": 36325475082,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "3ca27705a75fdb63b7fbc9d9aec931581c19990c",
+      "id": 36325445081,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "3ca27705a75fdb63b7fbc9d9aec931581c19990c",
+      "id": 36325445078,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "3ca27705a75fdb63b7fbc9d9aec931581c19990c",
+      "id": 36325440956,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "3ca27705a75fdb63b7fbc9d9aec931581c19990c",
+      "id": 36325441002,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "3ca27705a75fdb63b7fbc9d9aec931581c19990c",
+      "id": 36325440889,
+      "path": ".github/workflows/modernization-stage79-mgba.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "3ca27705a75fdb63b7fbc9d9aec931581c19990c",
+      "id": 36325440884,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "9f303fd3311af549140b7e6f89acf6ae2c51b85e",
+      "id": 36325241174,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "9f303fd3311af549140b7e6f89acf6ae2c51b85e",
+      "id": 36325241168,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "755d62d5fae166c5c07f54d576b6dfdd3ab712dc",
+      "id": 36325214788,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "755d62d5fae166c5c07f54d576b6dfdd3ab712dc",
+      "id": 36325214828,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "755d62d5fae166c5c07f54d576b6dfdd3ab712dc",
+      "id": 36325209407,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "755d62d5fae166c5c07f54d576b6dfdd3ab712dc",
+      "id": 36325209383,
+      "path": ".github/workflows/pr16-research-story-continue-install.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "755d62d5fae166c5c07f54d576b6dfdd3ab712dc",
+      "id": 36325209338,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "755d62d5fae166c5c07f54d576b6dfdd3ab712dc",
+      "id": 36325209336,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e4f76a7757da7c431604eff6a19ac2a9d4a139b7",
+      "id": 36323974748,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "e4f76a7757da7c431604eff6a19ac2a9d4a139b7",
+      "id": 36323974722,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "natural_research_arrival_accepted": false,
+  "new_compiles": 0,
+  "new_native_processes": 0,
+  "new_unit_test_runs": 0,
+  "observed_at": "2026-09-27T14:22:41.835995+00:00",
+  "release_ready": false,
+  "result": {
+    "active_baseline_changed": false,
+    "candidate": {
+      "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
+      "size": 33554432
+    },
+    "continued": {
+      "battle_flags": 0,
+      "battle_outcome": 0,
+      "callback2": 134569589,
+      "facing": 4,
+      "field": true,
+      "flash_sha256": "7943c088c7584054e14f8979f0d36b5c58aa404cc441450bfafb9caf3a311efc",
+      "frame": 1390,
+      "ledger_sha256": "1872d707bdf6ef3b10714e66d66e2c8ad0e6a0f2dd9aa621ffccc864c5fd4cd1",
+      "live_xy": [
+        8,
+        21
+      ],
+      "lock": 0,
+      "map": [
+        3,
+        19
+      ],
+      "observe": 0,
+      "party_count": 1,
+      "party_sha256": "639649fd6e90d49ed23f85943fc7fedf5c4379519c5b53d704f85258e6f3eeb8",
+      "rp": 0,
+      "save_counter": 2,
+      "xy": [
+        1,
+        14
+      ]
+    },
+    "east_route_map": [
+      3,
+      19
+    ],
+    "first_save": {
+      "battle_flags": 12,
+      "battle_outcome": 2,
+      "callback2": 134569589,
+      "facing": 4,
+      "field": true,
+      "flash_sha256": "7943c088c7584054e14f8979f0d36b5c58aa404cc441450bfafb9caf3a311efc",
+      "frame": 12012,
+      "ledger_sha256": "1872d707bdf6ef3b10714e66d66e2c8ad0e6a0f2dd9aa621ffccc864c5fd4cd1",
+      "live_xy": [
+        8,
+        21
+      ],
+      "lock": 0,
+      "map": [
+        3,
+        19
+      ],
+      "observe": 20,
+      "party_count": 1,
+      "party_sha256": "639649fd6e90d49ed23f85943fc7fedf5c4379519c5b53d704f85258e6f3eeb8",
+      "rp": 0,
+      "save_counter": 2,
+      "xy": [
+        1,
+        14
+      ]
+    },
+    "full_natural_research_activity_route_accepted": false,
+    "initial": {
+      "battle_flags": 0,
+      "battle_outcome": 0,
+      "callback2": 134569589,
+      "facing": 2,
+      "field": true,
+      "flash_sha256": "24d96d37945bc531907667908cdbc419c89901a81f7847d2bcded0e5e522842e",
+      "frame": 1390,
+      "ledger_sha256": "2d6d9d491ed11758cf9a3ba580197ad315d2477a6b45f9f29befef17af499e49",
+      "live_xy": [
+        15,
+        12
+      ],
+      "lock": 0,
+      "map": [
+        4,
+        3
+      ],
+      "observe": 0,
+      "party_count": 1,
+      "party_sha256": "639649fd6e90d49ed23f85943fc7fedf5c4379519c5b53d704f85258e6f3eeb8",
+      "rp": 0,
+      "save_counter": 1,
+      "xy": [
+        8,
+        5
+      ]
+    },
+    "input_frames": 12012,
+    "input_save": {
+      "sha256": "113f04e9e5222360687e28868fb78f394650aa5c85b357675737544d49ad346b",
+      "size": 131088
+    },
+    "natural_research_arrival_accepted": false,
+    "ordinary_save_count": 1,
+    "output_save": {
+      "sha256": "503e26cfdc8605ff79984afdcab3ffd9ce448f4557a8d1cdf64526ad15cdd65a",
+      "size": 131088
+    },
+    "release_ready": false,
+    "rival_result": "LOSS_THEN_NORMAL_RECOVERY",
+    "rival_victory_accepted": false,
+    "route517_arrival_accepted": true,
+    "screen_count": 22,
+    "status": "PASS_NATURAL_STORY_ROUTE_SAVE_SCOPED"
+  },
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "4c5d2d46bbef7f984800ea4133afe0388ac4c73d",
+    "id": 36325475401,
+    "path": ".github/workflows/pr16-research-story-continue.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "schema_version": 1,
+  "source_head": "4c5d2d46bbef7f984800ea4133afe0388ac4c73d",
+  "status": "PASS_NATURAL_STORY_ROUTE_SAVE_SCOPED",
+  "task": "USER-20260927-RESEARCH-STORY-CONTINUE",
+  "verified_real_screens": 22
+}

@@ -1,0 +1,51 @@
+# 参加拒否と取消文：現候補1件受入
+
+source cde7da732b17ba3dbc4806ea87680b2ca012b9c6、run37713083180/job113103259904は全10step成功。artifact11522331925の実ダウンロード4原本は、包装前モデル・生成直後・検証時・公開直前のidentityと一致した。外側ZIPは119856bytes、SHA-256 1c4f5d8191bf6a704b4aba0e8cc488dba9d5ac6e8daa300e7383318afcdb744b。
+
+正式最小型は781→782分類、93→92未知。新しい受入は083DE6ABの4byte1件だけ。左参加拒否文のFC09/EOS3byteと右取消文の先頭glyph1byteを、別callbackの正producerと全文readerで覆う。他873行・旧28段162変更152witnessを全field保持した。自然play、実画面、全callback復帰、普遍heap/IRQ、安全donor容量の受入には広げない。
+
+## 実際に結んだproducer
+
+ChooseMonForWirelessMinigame081281C0からmenuType11/layout0/action13/slot0、msg1/task08120319/exit080561A1を実constructorへ渡す。全setup状態、state20の実CreateTask、同task0へのRunTasksを結んだ。
+
+state6のSetPartyMonsAllowedInMinigame081210D4はmenuType11枝を実行した。mode1/partyCount1/非egg/species1の明示getter条件から非Dodrio判定0を生成し、081210E8の初期化STRHと0812114Eの加算STRHでminigameBitflag0203B022を0として生産した。bitflagはhost初期RAM条件に含めていない。getter内部のmonデータ読取全体は証明していない。
+
+拒否はaction hook09097A80→action13 cell0812041C→08120524→非egg→081211E4。081211C4のLDRSH/slot0右shift/bit0判定が同producerのflagを実読取し、左083DE699の21byteをkeepOpen0で渡した。
+
+取消は入力helperの戻り2(B相当)→08120578の別hook09097AB4→stock08120580→action13→08121248。右083DE6AEの12byteをkeepOpen1で渡した。旧起点083DE6B0は使用しない。hardwareのBキー読取そのものはこの有限条件の証明外である。
+
+entry rootは3617命令/128opaque境界、本文/printerは2491命令/41境界。cancel rootは3593命令/128境界、本文/printerは1519命令/25境界。各opaque境界でr0-r3/r12/LR/flagsを破棄し、future-live以外のRAMを消去しても同じ登録・分岐・全文読取になることを検査した。
+
+## 全文と停止点
+
+左21byte「その ポケモンは さんか できません[FC][09]」と右12byte「さんかを やめますか？」を独立固定charmapでserializeし、現ROMの全byteと照合した。両実literal/cellがtext pointerを作り、LDRBが各EOSまで読む。左FC09のoperandとEOSも全消費する。
+
+終点はPartyMenuPrintTextからDisplayPartyMenuMessage内08120AF2への復帰。API後半、全callbackの正常復帰、取消へのYes/No回答、実際の参加終了は未受入。有効window6/font2、text speed255、printer開始時new/heldKeys0、左FC09待機の正常戻り1、同allocation/必要資源epochと通常同期ABIは明示条件である。
+
+独立reviewでconsumerのFree対象をglobal pointer cellから実allocation02000010へ訂正し、両laneのFree拒否を確認した。root profileのJSON型別名も再帰的な型厳密比較へ修正した。新scope152試験は26roots/37text/48chain/41actions。公開前の実producer→JSON正規化→4file書出し→読戻し回帰も含む。
+
+## 原本と再開
+
+保存4原本:
+- measurement.json: 1033412bytes、SHA 40e6ce79fc92557dc8c35ee1ae0d5b01c68cc36f599c668e63a159904585077f
+- reference-chain.json: 428715bytes、SHA b2a22b8fa00ef667fb04c889a7661cf34fe20d2ab9e4b9c6906a43a2c97f1263
+- tests.json: 142bytes、SHA 78981cfde9a792d7ac554a5f7cdac728187c48ba6ff50d950ed4fb30eeecf77e
+- provenance.json: 1712bytes、SHA 835a1131ec10bae3387893b42e6f047319b292141a42476b95a09a6ba8dd5581
+
+取得job全logは28539bytes、SHA 4d23fad38b7ed4c19b131f8e95680c2c4aa69db2f6bab491563576f480273a74。生成・検証・公開前の各4identityを受入checkpointへ保存する。logそのものを証拠の代わりに生成しない。
+
+checkpointはcontent/modernization/pr16_dex_hof_jp_minigame_checkpoint.json、receiptはscripts/pr16_dex_hof_minigame_receipt.py。55保存入力で781親を復元し、保存済みreference-chainをread_measured→materializeして現在782親を得る。旧781配列を次scopeの正式親へ直接流用しない。
+
+このscopeの現ROM再構成は初回1。受入記録では152試験/consumerを再走せず、成功原本を継承する。旧scopeの再走も0。交換/mailboxの元2failureと成功回復・累積再構成3はその原本に保持し、今回へ合算・上書きしない。native/旧heap/全ROMscan再走0。
+
+## 次の有限scopeと本番gate
+
+次は083E239BのJP固有文字列source/crosswalkを1件限定で調べる。独立起点/caller/literalを得た後だけ新producer/cell/API/全文readerを実装する。近傍symbolや英語reference長からJP extentを推定せず、source未発見ならunknownを維持する。画像型の別候補083DCAED/DiplomaGfxはdecoder/consumer未調査。
+
+先行した旧手元ROMの限定小窓診断では、次の2件を新規分類せず保留した。現0641の追加受入や全ROM無参照の証明ではない。
+- 083DE68E: 左「とくぼう」083DE68C/5byteは[固定sourceでUnused](https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/strings.c#L361-L366)。通常SPDEFのcell08125B34は別文083DDDFDを指す。右「すばやさ」083DE691/5byteのcell08125B08とStringCopyは確認したが、左正producerを借用できない。
+- 083DF94F: [keyboard printer](https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/naming_screen.c#L1945-L1955)の左登録cell083A874C→083DF93Eは最初のEOS083DF94Eで停止し、hit先頭94F..951の3byteを覆えない。右cell083A8750→083DF952だけでは4byte型を閉じられない。次symbolまでの距離を全文長にしたり、EOS後を根拠なくpadding扱いしない。
+
+詳しい現在の停止点と次の読書順は固定再開MD/JSONを正本とする。
+
+旧egg15118全域保護、donor安全0、正式ROM/Save101不変。全保存入口ready、退避53300開始前のheap13352 Free、同期非再入、controller6528本番配線は別gate。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinueも未完。汎用Stage79待ちと既知source-validation failureは専用成功と区別する。

@@ -1,0 +1,58 @@
+name: stage79-harness-diagnostics
+
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/stage79-harness-diagnostics.yml
+      - scripts/stage79_harness_repair.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Run ROM-free Actions wrapper regression tests
+        run: python3 -m unittest discover -s tests -p test_modernization_stage79_github_domain.py -v
+      - name: Preserve exact harness source inputs, without ROM or save files
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-harness-diagnostics
+          git rev-parse HEAD > .local/stage79-harness-diagnostics/source-head.txt
+          tar -czf .local/stage79-harness-diagnostics/sources.tar.gz \
+            .github/workflows/modernization-stage79-mgba.yml \
+            scripts/run_modernization_stage79_cumulative_mgba.py \
+            scripts/run_modernization_stage79_github_domain.py \
+            scripts/run_modernization_p02_stage71_acceptance.py \
+            config/modernization_stage79_cumulative_mgba.json \
+            config/modernization_p02_stage71_acceptance_gate.json \
+            tools/mgba_modernization_p02_stage71_acceptance_smoke.c \
+            tools/mgba_modernization_mega_shop_smoke.c \
+            overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c \
+            tools/mgba_modernization_stage79_p03_smoke.c \
+            tools/mgba_modernization_stage79_mega_runtime_smoke.c \
+            tools/mgba_modernization_stage79_p05_runtime_smoke.c \
+            tools/mgba_battle_policy_smoke.c \
+            tools/mgba_qol_production_smoke.c \
+            tools/mgba_battle_core_smoke.c \
+            tools/mgba_ai_fixture_runner.c \
+            tools/mgba_regression_smoke.c \
+            tests/test_modernization_stage79_cumulative_mgba.py \
+            tests/test_modernization_stage79_p05_runtime_smoke.py \
+            tests/test_modernization_p02_stage71_acceptance.py \
+            tests/test_modernization_stage79_github_domain.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-harness-diagnostics
+          path: .local/stage79-harness-diagnostics
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7

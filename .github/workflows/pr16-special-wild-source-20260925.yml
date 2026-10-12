@@ -1,0 +1,74 @@
+name: pr16-special-wild-source-20260925
+# 現在HEADのtracked textだけを限定転送。旧unit/native/ROM生成は実行しない。
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-special-wild-source-20260925.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-special-wild-source-20260925
+  cancel-in-progress: false
+jobs:
+  source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: 限定tracked textと最新Actionsを固定する（実受入なし）
+        run: |
+          python3 -B - <<'PY'
+          import hashlib, json, os, pathlib, subprocess, urllib.request, zipfile
+          root = pathlib.Path('.')
+          out = root/'.local/pr16-special-wild-source'
+          out.mkdir(parents=True)
+          repo = os.environ['GITHUB_REPOSITORY']
+          def fetch(path):
+              request = urllib.request.Request('https://api.github.com/repos/'+repo+'/'+path, headers={'Authorization':'Bearer '+os.environ['GITHUB_TOKEN'], 'Accept':'application/vnd.github+json'})
+              with urllib.request.urlopen(request, timeout=60) as response:
+                  return json.load(response)
+          def slim(run):
+              return {key:run[key] for key in ('id','name','head_sha','head_branch','path','event','status','conclusion','run_attempt','created_at','updated_at')}
+          runs = fetch('actions/runs?per_page=25')['workflow_runs']
+          pr = fetch('pulls/16')
+          assert pr['state']=='open' and not pr['merged'] and pr['head']['ref']=='codex/modernization-followup-20260908'
+          status = {'source_head':os.environ['GITHUB_SHA'], 'pull_request':{k:pr[k] for k in ('number','state','draft','merged')}, 'head':pr['head']['sha'], 'latest_runs':[slim(r) for r in runs], 'in_progress':[slim(r) for r in fetch('actions/runs?status=in_progress&per_page=100')['workflow_runs']], 'queued':[slim(r) for r in fetch('actions/runs?status=queued&per_page=100')['workflow_runs']], 'new_native_runs':0, 'accepted_reruns':0}
+          tracked = subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          exact = {'AGENTS.md','CHATGPT_RESUME.md','design/run_log.md','design/version_log.md','design/active_play_baseline.md','state/source-lock.json'}
+          index = {}
+          with zipfile.ZipFile(out/'source.zip','w',compression=zipfile.ZIP_DEFLATED) as archive:
+              for name in tracked:
+                  if not name: continue
+                  path = pathlib.Path(name)
+                  wanted = name in exact or path.name=='AGENTS.md'
+                  wanted |= path.parts[0] in ('scripts','tools','tests') and path.suffix in ('.py','.c','.h','.ld','.S','.s')
+                  wanted |= name.startswith('config/') and path.suffix=='.json'
+                  wanted |= str(path.parent)=='content/modernization' and path.suffix=='.json'
+                  wanted |= str(path.parent)=='docs' and path.name.startswith(('PR16_','CHATGPT_WEB_')) and path.suffix=='.md'
+                  wanted |= name.startswith('.github/workflows/pr16-') and path.suffix=='.yml'
+                  if not wanted: continue
+                  assert path.is_file() and not path.is_symlink()
+                  raw = path.read_bytes()
+                  assert len(raw)<16000000 and b'\0' not in raw, name
+                  raw.decode('utf-8')
+                  index[name] = {'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+                  archive.writestr(name,raw)
+              archive.writestr('snapshot-index.json',json.dumps(index,ensure_ascii=False,indent=2)+'\n')
+              archive.writestr('snapshot-actions.json',json.dumps(status,ensure_ascii=False,indent=2)+'\n')
+          (out/'summary.json').write_text(json.dumps({'source_head':status['source_head'],'files':len(index),'source_archive_sha256':hashlib.sha256((out/'source.zip').read_bytes()).hexdigest(),'new_native_runs':0,'accepted_reruns':0},indent=2)+'\n')
+          print((out/'summary.json').read_text())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-special-wild-source
+          path: .local/pr16-special-wild-source/
+          retention-days: 7
+          if-no-files-found: error

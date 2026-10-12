@@ -1,0 +1,333 @@
+{
+  "actions_completion_confirmed": false,
+  "active_baseline_changed": false,
+  "candidate": {
+    "sha256": "37f73b807c452165c37764a2b80811d2779f456e451175402a7d93ae6a746113",
+    "size": 33554432
+  },
+  "error": {
+    "counts": {
+      "accepted_case_reruns": 0,
+      "arm_compiles": 0,
+      "guard_processes": 7,
+      "host_compiles": 1,
+      "native_processes": 1
+    },
+    "reason": "clean native process and unchanged actual Flash",
+    "type": "ValueError"
+  },
+  "evidence_directory": "content/modernization/pr16_research_standard_list_evidence/36311122801",
+  "evidence_manifest": "content/modernization/pr16_research_standard_list_evidence/36311122801/manifest.json",
+  "failed_build_preserved": {
+    "conclusion": "failure",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "78af3822e1d9782a8af5805e342b3f8d1f6f617e",
+    "id": 36310336114,
+    "path": ".github/workflows/pr16-research-standard-list.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "issue19_complete": false,
+  "measurement": {
+    "candidate": {
+      "sha256": "37f73b807c452165c37764a2b80811d2779f456e451175402a7d93ae6a746113",
+      "size": 33554432
+    },
+    "commands": {
+      "sha256": "119142a17842f459735db933be963bb70c05464375364fca1032900c8471aac8",
+      "size": 637
+    },
+    "counts": {
+      "accepted_case_reruns": 0,
+      "arm_compiles": 0,
+      "guard_processes": 7,
+      "host_compiles": 1,
+      "native_processes": 1
+    },
+    "elapsed_seconds": 4.724,
+    "flash_prefix_unchanged": true,
+    "returncode": 1,
+    "run_id": 36311122801,
+    "save_after": {
+      "sha256": "7277074f0543fcf99b23d15706219f3e95acdd3baa42791d163cca6b3b714b38",
+      "size": 131088
+    },
+    "screens": {
+      "b_cancel_closed.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "b_cancel_message.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "balance_selected.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "counter_approach.ppm": {
+        "sha256": "1deaddcdd37ea592367a12720bab1b8559317c19c0a4f37e110ec541f2dce5c0",
+        "size": 115215
+      },
+      "counter_intro.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "door_entered.ppm": {
+        "sha256": "7ee8b4aff0a844134a5ee3c6efbf3662b4430f717de1e867917dd9417a45e588",
+        "size": 115215
+      },
+      "end.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "exit_closed.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "exit_cursor.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "exit_message.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "guide_cursor.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "guide_one.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "guide_two.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "menu_after_balance.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "menu_after_guide.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "menu_first.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "menu_revisit.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "menu_third.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "revisit_intro.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "third_cancel_message.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "third_closed.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      },
+      "third_intro.ppm": {
+        "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+        "size": 115215
+      }
+    },
+    "source_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+    "stderr": {
+      "sha256": "f6a056e8344364ae33dca29e4c768c52f4c1f9cc2baf2c4f673e4471ce557277",
+      "size": 679
+    },
+    "stdout": {
+      "sha256": "2dec4e346b6f50378eedc62911034a5fe03dd78048b2056dc0a2b5943aaa4bd4",
+      "size": 39633
+    },
+    "timeout": false
+  },
+  "natural_story_progress_accepted": false,
+  "naturally_earned_spending_accepted": false,
+  "parent": {
+    "sha256": "c3971e83184613a27730eaec6490d203a2c1261c77894b711b0352f487808557",
+    "size": 33554432
+  },
+  "previous_pending_runs_reconciled": [
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455",
+      "id": 36287528910,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455",
+      "id": 36287528794,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455",
+      "id": 36287524393,
+      "path": ".github/workflows/pr16-research-counter-accept.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455",
+      "id": 36287524368,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "ca8b2648e74e2d603caf2f6bb7311cc8491ff455",
+      "id": 36287524388,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "protected_bindings": {
+    "CHATGPT_RESUME.md": {
+      "sha256": "963f3d4b12d184aaa9be7decbdd98cfe7b89317bfa8396008c8e1ab3581359f6",
+      "size": 7562
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_research_connection_acceptance.json": {
+      "sha256": "7d8ed5bd981cc4a92a0046c69de41497eed277636b4d3915dc7793548176a88b",
+      "size": 15624
+    },
+    "content/modernization/pr16_research_connection_checkpoint.json": {
+      "sha256": "0105596c64e8c90f95972ceb5f9a966e859ed2cac84480ae14abd16b322889a1",
+      "size": 7507
+    },
+    "content/modernization/pr16_research_counter_checkpoint.json": {
+      "sha256": "1dbab36587e67021634f1372ef3671bb1a811505a177f653e3dbbf6c2075d947",
+      "size": 11017
+    },
+    "content/modernization/pr16_research_counter_numeric_recipe.json": {
+      "sha256": "30d4d394ee91fd21276b5baea24d0bd9760193a9721db661929a10e2318eec4f",
+      "size": 2886
+    },
+    "content/modernization/pr16_research_game_corner_checkpoint.json": {
+      "sha256": "da406e68da9ed502a1b7fc89db0cc75caaed18f9d0dd277e9baff4df05361163",
+      "size": 3065
+    },
+    "content/modernization/pr16_research_save_impact_checkpoint.json": {
+      "sha256": "7fad32c544c8aae20401665934c19b4e7ac6e3a712bd885dbd4c35afbc0aef13",
+      "size": 10809
+    },
+    "content/modernization/pr16_special_wild_ui_checkpoint.json": {
+      "sha256": "69c403857d191d28984a07ff4e3b0714cd3ad0ac8f5affe8b9b6ac9c0cde7ff9",
+      "size": 19502
+    },
+    "content/research_economy_v1/canonical_model.json": {
+      "sha256": "4b49923047ed5494784b5c2a49ba672f1b7e7c12ff91cf7edc8a416f745d9efd",
+      "size": 46529
+    },
+    "design/active_play_baseline.md": {
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8",
+      "size": 5551
+    },
+    "docs/PR16_RESEARCH_COUNTER_JA.md": {
+      "sha256": "319bd11270f3ecd9fbefe6ff5ca02d1a9dfba646e2bbf8ab8cdf9668d0cd8924",
+      "size": 4812
+    },
+    "docs/PR16_RESEARCH_GAME_CORNER_JA.md": {
+      "sha256": "15c85ae83e316ae8040ecb0d4512402e17df2d1203d28fab345cbaa10355e00e",
+      "size": 3324
+    },
+    "overlays/research_economy_v1/research_economy_v1.c": {
+      "sha256": "08375e4c9c65f698358b92c4eb1c8439fe5e70e7d7ddd9d17854edce4b58abda",
+      "size": 63636
+    },
+    "overlays/research_economy_v1/research_economy_v1.h": {
+      "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
+      "size": 3743
+    }
+  },
+  "recipe": "content/modernization/pr16_research_standard_list_recipe.json",
+  "release_ready": false,
+  "reused_build": {
+    "archive": {
+      "sha256": "84f278c2e18bdb17989e347688962589af5a693cfd125a00aa3ea96cf0de55f0",
+      "size": 1259229
+    },
+    "arm_compiles": 1,
+    "artifact_id": 10928552956,
+    "run_id": 36310534280,
+    "source_head": "8b4dfa8626903803d246f1979fa27ef9e12578ee",
+    "tests": 30
+  },
+  "run_id": 36311122801,
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-research-standard-list.yml": {
+      "sha256": "a6a3e11f230083a08984640409fa15b5d21324136cd045c1c00d1bdf66785890",
+      "size": 3624
+    },
+    "scripts/pr16_research_standard_list.py": {
+      "sha256": "9dd2fb8008033e501cf444ecbab6d17600984a28c5849bb7495579609ad0d728",
+      "size": 9390
+    },
+    "scripts/pr16_research_standard_list_actions.py": {
+      "sha256": "24025e61286a5256c54c762c7c30fcb38f8c90f816812eab0693868bdd789ab2",
+      "size": 19933
+    },
+    "scripts/pr16_research_standard_list_oracle.py": {
+      "sha256": "6311cb7100da37d5819e6cac984f386db6cb47972427ca5b250ac96c95ed108a",
+      "size": 8961
+    },
+    "scripts/pr16_research_standard_list_probe.py": {
+      "sha256": "cdad160c3c4cf832b9bce3ec07f85800726f28c2a2c414ecdd74914cb8de7328",
+      "size": 3314
+    },
+    "tests/test_pr16_research_standard_list.py": {
+      "sha256": "a4c9200caf1b7557e81eb44d00f748222c0d24641d9a586b41282c4b9eb4fd12",
+      "size": 9665
+    },
+    "tests/test_pr16_research_standard_list_oracle.py": {
+      "sha256": "6d57905b7d5cfc170733295c67f805ca17769dbd7b45bb75dca0f1da878953e0",
+      "size": 4130
+    },
+    "tools/pr16_research_standard_list.c": {
+      "sha256": "c0ca5517dcd73b0f1c185a14d01e91fe7f5441fdb21b52d12c050603217f51e8",
+      "size": 3318
+    }
+  },
+  "source_head": "a06f61d9ed78061d59f2b7cb681efdfe55d3daaa",
+  "standard_list_accepted": false,
+  "status": "STOPPED_STANDARD_LIST_MEASUREMENT",
+  "task": "USER-20260927-RESEARCH-STANDARD-LIST",
+  "visual_review_completed": false
+}

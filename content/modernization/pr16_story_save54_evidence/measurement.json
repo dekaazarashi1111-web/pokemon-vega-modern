@@ -1,0 +1,264 @@
+{
+  "status": "MEASURED_SAVE54_AWAITING_VISUAL_AND_INDEPENDENT_ACCEPTANCE",
+  "source_head": "041077371f32b04015916058fe460e1ade4dd989",
+  "run_id": 37149491580,
+  "input_save": {
+    "size": 131088,
+    "sha256": "e22287b3ef44b53029d855aca7cac243f567af75fce21d557f28294c7f4c9a13"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "bfdd4fb964fd8a3b526b919921b2400e3c1f44c02011208b03f0507606a496ad"
+  },
+  "inspection": {
+    "status": "STATIC_SAVE54_HEALER_PATH_ONLY",
+    "preparation": {
+      "size": 9816,
+      "sha256": "0834e16c9988bf9789419a0b5a91ae6a204956e6b0494701f2e80594c114b658"
+    },
+    "route": [
+      [
+        7,
+        8
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        7,
+        4
+      ]
+    ],
+    "terrain": [
+      {
+        "xy": [
+          7,
+          7
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "xy": [
+          7,
+          6
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "xy": [
+          7,
+          5
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "xy": [
+          7,
+          4
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "xy": [
+          7,
+          3
+        ],
+        "elevation": 0,
+        "collision": 1,
+        "behavior": 128
+      }
+    ],
+    "healer_owner": {
+      "local_id": 3,
+      "xy": [
+        7,
+        2
+      ],
+      "script": 135790449,
+      "shared_menu": 135872070,
+      "heal_script": 135872156,
+      "heal_special": 0,
+      "special_instruction": 135872182
+    },
+    "new_terrain_cells": 0,
+    "new_map_views": 0,
+    "new_script_nodes": 0,
+    "native_route_accepted": false
+  },
+  "route": [
+    [
+      7,
+      8
+    ],
+    [
+      7,
+      7
+    ],
+    [
+      7,
+      6
+    ],
+    [
+      7,
+      5
+    ],
+    [
+      7,
+      4
+    ]
+  ],
+  "battle": null,
+  "teleport": [],
+  "frontier": {
+    "kind": "healer_conversation",
+    "map": [
+      6,
+      5
+    ],
+    "xy": [
+      7,
+      4
+    ],
+    "start_observation": 5,
+    "observation": 10,
+    "party_changed": true
+  },
+  "final": {
+    "observe": 36,
+    "frame": 3702,
+    "map": [
+      6,
+      5
+    ],
+    "xy": [
+      7,
+      4
+    ],
+    "live_xy": [
+      14,
+      11
+    ],
+    "facing": 2,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 54,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "de9715dca25c84f8e9949c8848fad1d85b883c514f77be14ccaa93d43b824d77",
+    "flash_sha256": "aaafea867467b71890719da352d51792b8b2ddbc7ad70d9d0a85b743b87c8dbe",
+    "ledger_sha256": "3aef553d4f2dba8f52868966ed63e2e315f111535d017321afe1c0df1a7bd384"
+  },
+  "continued": {
+    "observe": 1,
+    "frame": 1510,
+    "map": [
+      6,
+      5
+    ],
+    "xy": [
+      7,
+      4
+    ],
+    "live_xy": [
+      14,
+      11
+    ],
+    "facing": 2,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 54,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "de9715dca25c84f8e9949c8848fad1d85b883c514f77be14ccaa93d43b824d77",
+    "flash_sha256": "aaafea867467b71890719da352d51792b8b2ddbc7ad70d9d0a85b743b87c8dbe",
+    "ledger_sha256": "3aef553d4f2dba8f52868966ed63e2e315f111535d017321afe1c0df1a7bd384"
+  },
+  "progress": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "e22287b3ef44b53029d855aca7cac243f567af75fce21d557f28294c7f4c9a13"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "bfdd4fb964fd8a3b526b919921b2400e3c1f44c02011208b03f0507606a496ad"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 3702,
+      "inputs": 66,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 37
+  },
+  "independent_continue": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "bfdd4fb964fd8a3b526b919921b2400e3c1f44c02011208b03f0507606a496ad"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "bfdd4fb964fd8a3b526b919921b2400e3c1f44c02011208b03f0507606a496ad"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 1510,
+      "inputs": 13,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 2
+  },
+  "screen_count": 39,
+  "native_processes": 2,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "rom_changes": 0,
+  "fixture_writes": 0,
+  "ordinary_saves": 1,
+  "cave_crossing_complete": true,
+  "outside_route503_reached": true,
+  "healer_conversation_started": true,
+  "normal_recovery_required": true,
+  "pp_recovery_accepted": false,
+  "full_story_accepted": false,
+  "release_ready": false,
+  "artifact_excludes": [
+    "existing ROM",
+    "runner",
+    "runtime",
+    "input Save53"
+  ]
+}

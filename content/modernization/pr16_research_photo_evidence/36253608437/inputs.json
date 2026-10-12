@@ -1,0 +1,65 @@
+{
+  "after_barrier": "physical keys and read-only observations only; no activity call/result/RP injection",
+  "candidate": {
+    "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+    "size": 33554432
+  },
+  "fixture": {
+    "balance_credit_injected": false,
+    "fixture": {
+      "sha256": "434076d0db74c4c5bf1b63e3aa4cc336d17e1f2dbb894160e840c721aa337a38",
+      "size": 131072
+    },
+    "initial_lifetime": 0,
+    "initial_rp": 0,
+    "ledger": {
+      "sha256": "14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913",
+      "size": 2048
+    },
+    "natural_arrival_claimed": false,
+    "offset": 127076,
+    "outside_ledger_changes": 0,
+    "progression_is_fixture": true,
+    "seed": {
+      "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+      "size": 131072
+    }
+  },
+  "generated_source": {
+    "sha256": "040a049e64f4665a5b7fb0b2b067bea629669de4c7dc2c0b766a0a8867204309",
+    "size": 50872
+  },
+  "runtime_artifacts": [
+    {
+      "digest": "sha256:a6aeccb72fa15411d956b418ca5f030aa5020a466303a25e0f8814ba2eeb5c4d",
+      "id": 10898620034,
+      "name": "pr16-special-wild-gameplay-runtime",
+      "size_in_bytes": 102586759,
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "8660fe70f4354333cf7647186663cacafa04451b",
+        "id": 36218655601,
+        "repository_id": 1358127462
+      }
+    },
+    {
+      "digest": "sha256:7d3de78d4e852583eb35551076021630c1343aa623e91fe1529d73f4cf1471ed",
+      "id": 10898510128,
+      "name": "pr16-special-wild-gameplay-data",
+      "size_in_bytes": 17366330,
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "8660fe70f4354333cf7647186663cacafa04451b",
+        "id": 36218655601,
+        "repository_id": 1358127462
+      }
+    }
+  ],
+  "seed": {
+    "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+    "size": 131072
+  },
+  "stopped_fixture": "progress and stock warp to map96/37 (48,5); initial RP/lifetime/claim=0"
+}

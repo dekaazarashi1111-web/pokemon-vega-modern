@@ -1,0 +1,50 @@
+{
+  "artifact_digest": "sha256:87b95f9b6fb518f1f41d07001d5e8638b9147c029e26120b3344a63fa08355d9",
+  "artifact_head_sha": "fdac91af6288953e740d4ceb5bc2cc25e3690cf7",
+  "artifact_id": 10102197760,
+  "artifact_name": "p03-learning-e2e",
+  "artifact_run_id": 34347153852,
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "fdac91af6288953e740d4ceb5bc2cc25e3690cf7",
+  "job_conclusion": "success",
+  "job_id": 102451363915,
+  "job_name": "learning-save-reload",
+  "job_status": "completed",
+  "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+  "required_steps": [
+    {
+      "conclusion": "success",
+      "name": "固定mGBA toolchain",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "結果契約の回帰検証",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "新規2 processで通常習得・保存・Continueを実行",
+      "status": "completed"
+    }
+  ],
+  "run_attempt": 1,
+  "run_id": 34347153852,
+  "status": "completed",
+  "verified_execution_sources": {
+    ".github/workflows/p03-learning-e2e.yml": {
+      "sha256": "5de0be17146fcb63fa17ba634a96aa7c694b274f24bab404a48635cec7ecfcca",
+      "size": 1457
+    },
+    "infra/setup_github_actions.sh": {
+      "sha256": "8b081dd37ae761325e80ed4f689b1d790f76a6acb311ba810820221828c79cc2",
+      "size": 2571
+    },
+    "infra/toolchain_manifest.json": {
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff",
+      "size": 33230
+    }
+  },
+  "workflow_path": ".github/workflows/p03-learning-e2e.yml"
+}

@@ -1,0 +1,54 @@
+{
+  "status": "PASS_ORIGINAL_NONBLANK_AND_MANUAL_SCENE_REVIEW",
+  "original_screens": [
+    {
+      "case": "save101-save",
+      "index": 0,
+      "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423",
+      "colors": 30,
+      "nonblack_pixels": 38350
+    },
+    {
+      "case": "save101-save",
+      "index": 1,
+      "sha256": "34b6e4265a527e25b4b7e49da9b0ec42722eb28b2015b5bc527e3445f318ad73",
+      "colors": 30,
+      "nonblack_pixels": 38350
+    },
+    {
+      "case": "save101-cold",
+      "index": 0,
+      "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423",
+      "colors": 30,
+      "nonblack_pixels": 38350
+    },
+    {
+      "case": "newgame-save",
+      "index": 0,
+      "sha256": "c735c4070e9cf842661e600b45924f4f58ae3409d28ba8418db7986741d0ded6",
+      "colors": 49,
+      "nonblack_pixels": 19108
+    },
+    {
+      "case": "newgame-save",
+      "index": 1,
+      "sha256": "c735c4070e9cf842661e600b45924f4f58ae3409d28ba8418db7986741d0ded6",
+      "colors": 49,
+      "nonblack_pixels": 19108
+    },
+    {
+      "case": "newgame-cold",
+      "index": 0,
+      "sha256": "c735c4070e9cf842661e600b45924f4f58ae3409d28ba8418db7986741d0ded6",
+      "colors": 49,
+      "nonblack_pixels": 19108
+    }
+  ],
+  "newgame_three_screens_byte_identical": true,
+  "extra_probe_run": 37232287450,
+  "extra_native_processes": 1,
+  "extra_saves": 0,
+  "room_visible": true,
+  "road_visible": true,
+  "reason_ja": "画像表示時の疑義を原本全byte/非黒pixel/色数と個別画像で解消。元3室内画像は同じSHAで正常。追加無入力4画面も同じ室内。描画不具合を観測したという主張は撤回。"
+}

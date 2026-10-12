@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-TEXT-EXPORT-RECOVERY",
+  "source_head": "ce4bfe14efd71a7cb6f50712afcd4be6facffe83",
+  "run_id": 35257642049,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "SAVED_RECORD_VERIFIED_EXPORT_SHARDED_WITHOUT_CASE_REPLAY",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "original_record": {
+      "record_verified": true,
+      "original_conclusion": "failure",
+      "original_run_id": 35255462365,
+      "original_job_id": 105317869677,
+      "record_commit": "a5573a9226b4f3f0f3dbbf1832c3c87e50a0bcb9",
+      "saved_tests": {
+        "tests_run": 49,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "successful": true
+      },
+      "accepted_cases_replayed": 0,
+      "failure_stage": "post-record text export boundary",
+      "original_failure_reclassified_as_success": false
+    },
+    "export_logical_files": 60,
+    "export_parts": 116,
+    "logical_files_over_old_limit": {
+      "content/modernization/pr16_ring_text_audio_sequence.json": {
+        "size": 2621135,
+        "sha256": "13a14a0fbfab57663c883c00b812a7282896267eab185733f7cfe85bd6bc8860"
+      }
+    },
+    "export_manifest": {
+      "size": 38341,
+      "sha256": "cf40b1728f9bc7473a3d2e2258a8b4e4812776848f8c63465c5db5f3177ee754"
+    },
+    "saved_node_count": 7291,
+    "new_node_count": 0,
+    "saved_nodes_redecoded": 0,
+    "saved_contract_cases": 333,
+    "new_contract_cases": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "accepted_native_cases_replayed": 0,
+    "candidate_reconstructions": 0,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "next_owner_work_pending": true,
+    "implementation_attempts": [
+      {
+        "run_id": 35257148521,
+        "source_head": "70584fb1caf8f88257e6f105b90e641816f7c6f9",
+        "conclusion": "failure",
+        "stage": "gh log escape-sequence refusal before tests",
+        "new_emulator_processes": 0
+      }
+    ],
+    "boundary_ja": "元runのfailureは保持。上限を緩めず分割前後のUTF-8/hashを検査。Ring通常取得/実allocation/callbackは未受入。"
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_text_export_recovery.py": {
+      "size": 12559,
+      "sha256": "39156d99a541fe6df74d264df0f08d3f014c3558edff1fa30d576887a97da595"
+    },
+    "tests/test_pr16_ring_text_export_recovery.py": {
+      "size": 7037,
+      "sha256": "d0d0c0867f30cb10e4b489b3302e2ab3d69926eff0123fb9eb81640c7e8fb711"
+    },
+    ".github/workflows/pr16-ring-text-export-recovery.yml": {
+      "size": 1291,
+      "sha256": "de0677b872e35c6c57d3516c3d4eadb7111ff36933882e431695a3cbd222947a"
+    },
+    "content/modernization/pr16_ring_text_audio_sequence.json": {
+      "size": 2621135,
+      "sha256": "13a14a0fbfab57663c883c00b812a7282896267eab185733f7cfe85bd6bc8860"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_text_audio_sequence.py": {
+      "size": 14986,
+      "sha256": "b84b1a14ae199469ff3a35c21d57bedd0b9d49e7a1f9d1cd802020159ecfbc8b"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 34,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35255462365,
+      "head_sha": "a5f372e25eba83e5a09dead27bf8b287ce13fda2",
+      "status": "completed",
+      "conclusion": "failure",
+      "scoped_recovery": {
+        "record_verified": true,
+        "original_conclusion": "failure",
+        "original_run_id": 35255462365,
+        "original_job_id": 105317869677,
+        "record_commit": "a5573a9226b4f3f0f3dbbf1832c3c87e50a0bcb9",
+        "saved_tests": {
+          "tests_run": 49,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "successful": true
+        },
+        "accepted_cases_replayed": 0,
+        "failure_stage": "post-record text export boundary",
+        "original_failure_reclassified_as_success": false
+      }
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35257646297,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ce4bfe14efd71a7cb6f50712afcd4be6facffe83",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35257646295,
+      "name": "source-validation",
+      "head_sha": "ce4bfe14efd71a7cb6f50712afcd4be6facffe83",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35257642181,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "ce4bfe14efd71a7cb6f50712afcd4be6facffe83",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35257642049,
+      "name": "Ring保存記録の独立照合と上限内text分割export",
+      "head_sha": "ce4bfe14efd71a7cb6f50712afcd4be6facffe83",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35257642045,
+      "name": "source-validation",
+      "head_sha": "ce4bfe14efd71a7cb6f50712afcd4be6facffe83",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35257642086,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "ce4bfe14efd71a7cb6f50712afcd4be6facffe83",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35257642105,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ce4bfe14efd71a7cb6f50712afcd4be6facffe83",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35257154363,
+      "name": "p03-forgetting-ci",
+      "head_sha": "70584fb1caf8f88257e6f105b90e641816f7c6f9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35257154364,
+      "name": "source-validation",
+      "head_sha": "70584fb1caf8f88257e6f105b90e641816f7c6f9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35257148449,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "70584fb1caf8f88257e6f105b90e641816f7c6f9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35257148521,
+      "name": "Ring保存記録の独立照合と上限内text分割export",
+      "head_sha": "70584fb1caf8f88257e6f105b90e641816f7c6f9",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35257148403,
+      "name": "p03-forgetting-ci",
+      "head_sha": "70584fb1caf8f88257e6f105b90e641816f7c6f9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35257148301,
+      "name": "source-validation",
+      "head_sha": "70584fb1caf8f88257e6f105b90e641816f7c6f9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35257148458,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "70584fb1caf8f88257e6f105b90e641816f7c6f9",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35255638516,
+      "name": "p03-forgetting-ci",
+      "head_sha": "a5573a9226b4f3f0f3dbbf1832c3c87e50a0bcb9",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35255638583,
+      "name": "source-validation",
+      "head_sha": "a5573a9226b4f3f0f3dbbf1832c3c87e50a0bcb9",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35255468396,
+      "name": "p03-forgetting-ci",
+      "head_sha": "a5f372e25eba83e5a09dead27bf8b287ce13fda2",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35255468392,
+      "name": "source-validation",
+      "head_sha": "a5f372e25eba83e5a09dead27bf8b287ce13fda2",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35255462299,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "a5f372e25eba83e5a09dead27bf8b287ce13fda2",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35255462387,
+      "name": "p03-forgetting-ci",
+      "head_sha": "a5f372e25eba83e5a09dead27bf8b287ce13fda2",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

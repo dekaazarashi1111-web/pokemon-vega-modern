@@ -1,0 +1,15 @@
+{
+  "errors": 1,
+  "exception": "KeyError",
+  "failed_test": "test_pr16_research_story_route.RouteTests.test_missing_terminal_is_rejected",
+  "native_replays_for_fix": 0,
+  "negative_only_acceptance": false,
+  "raw_original": {
+    "sha256": "3f84c14a82813d47e599f0a60fa03b00b1e3a025191942d5e07cb612b021813a",
+    "size": 9414
+  },
+  "reason_ja": "終端欠落の拒否自体は機能したが、既存解析器の辞書参照が公開wrapperのValueError契約になっていなかった。新wrapperで必須終端を前検査し、解析経路の変更影響に対して74件を再検査。旧受入試験の再実行ではない。",
+  "status": "FAILED_INITIAL_TERMINAL_SCHEMA_TEST",
+  "successes": 73,
+  "tests": 74
+}

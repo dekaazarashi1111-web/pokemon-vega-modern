@@ -1,0 +1,172 @@
+{
+  "accepted_case_reruns": 0,
+  "accepted_cases": [
+    "init-erased-save-unavailable",
+    "init-zero-save-unavailable",
+    "v1-save-unavailable"
+  ],
+  "accepted_native_cases": 3,
+  "actions_completion_confirmed": true,
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
+    "size": 33554432
+  },
+  "failed_cases": [],
+  "guard_processes": 7,
+  "host_compiles": 1,
+  "issue19_complete": false,
+  "manifest": "content/modernization/pr16_research_phase0_evidence/36234797221/manifest.json",
+  "measurement": "content/modernization/pr16_research_phase0_evidence/36234797221/measurement.json",
+  "measurement_actions": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "4946ff7f22401b260362ca6d6be7e7cb4bd1c460",
+    "id": 36234797221,
+    "path": ".github/workflows/pr16-research-phase0-20260926.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "native_processes": 3,
+  "native_save_unavailable_phase0_accepted": true,
+  "new_unit_tests": 18,
+  "normal_ui_accepted": false,
+  "physical_flash_fault_accepted": false,
+  "protected": {
+    "CHATGPT_RESUME.md": {
+      "sha256": "963f3d4b12d184aaa9be7decbdd98cfe7b89317bfa8396008c8e1ab3581359f6",
+      "size": 7562
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_research_lifecycle_checkpoint.json": {
+      "sha256": "36451c1700f14f62fa5110475312433b44e070462753ed870a2759b25c2660c8",
+      "size": 6182
+    },
+    "content/modernization/pr16_research_save_impact_checkpoint.json": {
+      "sha256": "7fad32c544c8aae20401665934c19b4e7ac6e3a712bd885dbd4c35afbc0aef13",
+      "size": 10809
+    },
+    "content/modernization/pr16_special_wild_ui_checkpoint.json": {
+      "sha256": "69c403857d191d28984a07ff4e3b0714cd3ad0ac8f5affe8b9b6ac9c0cde7ff9",
+      "size": 19502
+    },
+    "design/active_play_baseline.md": {
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8",
+      "size": 5551
+    }
+  },
+  "release_ready": false,
+  "run_id": 36234797221,
+  "same_core_retry_accepted": false,
+  "schema_version": 1,
+  "source_head": "4946ff7f22401b260362ca6d6be7e7cb4bd1c460",
+  "sources": {
+    ".github/workflows/pr16-research-lifecycle-20260926.yml": {
+      "sha256": "10801a389f2a21f1174f6f31d9afed61a7f9bb09ba38d467aae98e0b8a79c0df",
+      "size": 3028
+    },
+    ".github/workflows/pr16-research-lifecycle-v2-20260926.yml": {
+      "sha256": "9d0786d1f53a88b5fa86dd0daf04200f2b439d937a08e4a81446966e1bfd88bf",
+      "size": 3004
+    },
+    ".github/workflows/pr16-research-phase0-20260926.yml": {
+      "sha256": "01094ca325cc45c427776cc98ca66cb0c1df8ca2bf559a30c06255c648569690",
+      "size": 2857
+    },
+    "config/research_economy_v1.json": {
+      "sha256": "7e92079158303a125358ae6fa49c231f6085b2ca0a335d5f0e8bb6c55db2ed8d",
+      "size": 9388
+    },
+    "overlays/research_economy_v1/research_economy_v1.c": {
+      "sha256": "88a14bd79e1c7247b80102c76b48023b8de67dc7cdc6fb526cd1c155393e93c3",
+      "size": 63507
+    },
+    "overlays/research_economy_v1/research_economy_v1.h": {
+      "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
+      "size": 3743
+    },
+    "scripts/pr16_research_bag_actions.py": {
+      "sha256": "785b1ec81ede3e50e673eb9f1a0861e6240048e7409f29d30d5331351527f5b8",
+      "size": 8168
+    },
+    "scripts/pr16_research_bag_delegate.py": {
+      "sha256": "9964a15ebf2fcb8a14145766fd9c89157ef98a525362832537a12774ecfaf7ad",
+      "size": 6509
+    },
+    "scripts/pr16_research_lifecycle.py": {
+      "sha256": "eea83b47fa1b5549b504e63a10327f30ccc3fc332e403ecf4b7bd4a8c1f03ec7",
+      "size": 4705
+    },
+    "scripts/pr16_research_lifecycle_actions.py": {
+      "sha256": "98777603d976b7f08811c3bb5921418a884a69e6ad0b8abeae11a2c188edf136",
+      "size": 18178
+    },
+    "scripts/pr16_research_lifecycle_v2.py": {
+      "sha256": "234e9a26bb918a0333b475725256dd3bff4d5866756b4098a54b4daf216e9238",
+      "size": 14295
+    },
+    "scripts/pr16_research_phase0.py": {
+      "sha256": "b6d2a60e77df4f50d3279f7cb7bdda6ae0b499231eb8c9bf03b0e0a83e6b8c14",
+      "size": 4646
+    },
+    "scripts/pr16_research_phase0_actions.py": {
+      "sha256": "d0d3749a95b9a23e18c31246776e4d9f7cba4885ae654f9726c6a20f1f06b1b6",
+      "size": 14530
+    },
+    "scripts/pr16_research_save_delegate.py": {
+      "sha256": "ed64cc810b7ad05da32b68827d96e54e39eeb04d8eeb65302f07a4ef54676474",
+      "size": 3372
+    },
+    "scripts/pr16_research_save_impact.py": {
+      "sha256": "c7bb583ba27d062c0bbf417a72fd846eff597d78bd64fc971d237c62c1c543e7",
+      "size": 20035
+    },
+    "tests/test_pr16_research_lifecycle.py": {
+      "sha256": "2db44c1820c292d41a641f1cde2154865954a7bb36d600462b141f9f204cb0fa",
+      "size": 4549
+    },
+    "tests/test_pr16_research_phase0.py": {
+      "sha256": "b85a78dda92cf01076969d5de8a4c385b230097f08dba522e750ad97e7dc3c58",
+      "size": 3459
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_research_lifecycle.c": {
+      "sha256": "76672efe0c466ea1816a67e36662206734cb008116586cb2f1b632d273289a0f",
+      "size": 5759
+    },
+    "tools/mgba_pr16_research_phase0.c": {
+      "sha256": "a0f689be824b1feffbb08527f89553241f7d05a177bf3590d1c750bad68baa2a",
+      "size": 4167
+    },
+    "tools/mgba_pr16_research_save_impact.c": {
+      "sha256": "b57e58a94f208f6f3ce8418b850d9cd03de203c12bb73a0cd0cdf6fb7968b78f",
+      "size": 16977
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "status": "PASS_PHASE0_NATIVE_UNAVAILABLE_3_SCOPED",
+  "task": "USER-20260926-RESEARCH-PHASE0",
+  "v1_load_adapter_accepted": false
+}

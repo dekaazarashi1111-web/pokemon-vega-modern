@@ -1,0 +1,70 @@
+
+.local/pr16-streak-input/candidate.gba:     file format binary
+
+
+Disassembly of section .data:
+
+08055df4 <.data+0x55df4>:
+ 8055df4:	b510      	push	{r4, lr}
+ 8055df6:	4c09      	ldr	r4, [pc, #36]	@ (0x8055e1c)
+ 8055df8:	6861      	ldr	r1, [r4, #4]
+ 8055dfa:	4809      	ldr	r0, [pc, #36]	@ (0x8055e20)
+ 8055dfc:	4281      	cmp	r1, r0
+ 8055dfe:	d117      	bne.n	0x8055e30
+ 8055e00:	f0bd fcf8 	bl	0x81137f4
+ 8055e04:	0600      	lsls	r0, r0, #24
+ 8055e06:	0e00      	lsrs	r0, r0, #24
+ 8055e08:	2801      	cmp	r0, #1
+ 8055e0a:	d003      	beq.n	0x8055e14
+ 8055e0c:	4805      	ldr	r0, [pc, #20]	@ (0x8055e24)
+ 8055e0e:	7800      	ldrb	r0, [r0, #0]
+ 8055e10:	2802      	cmp	r0, #2
+ 8055e12:	d109      	bne.n	0x8055e28
+ 8055e14:	f7ff ffb8 	bl	0x8055d88
+ 8055e18:	e00a      	b.n	0x8055e30
+ 8055e1a:	0000      	movs	r0, r0
+ 8055e1c:	3130      	adds	r1, #48	@ 0x30
+ 8055e1e:	0300      	lsls	r0, r0, #12
+ 8055e20:	5e75      	ldrsh	r5, [r6, r1]
+ 8055e22:	0805      	lsrs	r5, r0, #32
+ 8055e24:	ad72      	add	r5, sp, #456	@ 0x1c8
+ 8055e26:	0203      	lsls	r3, r0, #8
+ 8055e28:	8de0      	ldrh	r0, [r4, #46]	@ 0x2e
+ 8055e2a:	8da1      	ldrh	r1, [r4, #44]	@ 0x2c
+ 8055e2c:	f7ff ff6e 	bl	0x8055d0c
+ 8055e30:	bc10      	pop	{r4}
+ 8055e32:	bc01      	pop	{r0}
+ 8055e34:	4700      	bx	r0
+ 8055e36:	0000      	movs	r0, r0
+ 8055e38:	b500      	push	{lr}
+ 8055e3a:	f013 fa95 	bl	0x8069368
+ 8055e3e:	f020 ff67 	bl	0x8076d10
+ 8055e42:	f7b0 fc49 	bl	0x80066d8
+ 8055e46:	f004 fb11 	bl	0x805a46c
+ 8055e4a:	f0c0 fa11 	bl	0x8116270
+ 8055e4e:	f004 fc49 	bl	0x805a6e4
+ 8055e52:	f7b0 fc67 	bl	0x8006724
+ 8055e56:	f019 ff0d 	bl	0x806fc74
+ 8055e5a:	f019 fc81 	bl	0x806f760
+ 8055e5e:	f0a1 fcd7 	bl	0x80f7810
+ 8055e62:	bc01      	pop	{r0}
+ 8055e64:	4700      	bx	r0
+ 8055e66:	0000      	movs	r0, r0
+ 8055e68:	b500      	push	{lr}
+ 8055e6a:	f7ff ffe5 	bl	0x8055e38
+ 8055e6e:	bc01      	pop	{r0}
+ 8055e70:	4700      	bx	r0
+ 8055e72:	0000      	movs	r0, r0
+ 8055e74:	b510      	push	{r4, lr}
+ 8055e76:	4809      	ldr	r0, [pc, #36]	@ (0x8055e9c)
+ 8055e78:	79c0      	ldrb	r0, [r0, #7]
+ 8055e7a:	09c0      	lsrs	r0, r0, #7
+ 8055e7c:	1c04      	adds	r4, r0, #0
+ 8055e7e:	2c00      	cmp	r4, #0
+ 8055e80:	d002      	beq.n	0x8055e88
+ 8055e82:	2000      	movs	r0, #0
+ 8055e84:	f7aa fc36 	bl	0x80006f4
+ 8055e88:	f7ff ffd6 	bl	0x8055e38
+ 8055e8c:	2c00      	cmp	r4, #0
+ 8055e8e:	d001      	beq.n	0x8055e94
+ 8055e90:	f000 fa18 	bl	0x80562c4

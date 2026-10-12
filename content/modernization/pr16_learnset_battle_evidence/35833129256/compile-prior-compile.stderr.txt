@@ -1,0 +1,16 @@
+tools/mgba_pr16_learnset_battle.c: In function ‘lb_path’:
+tools/mgba_pr16_learnset_battle.c:60:43: error: ‘QOL_KEY_LEFT’ undeclared (first use in this function); did you mean ‘QOL_KEY_L’?
+   60 |         lb_step(c,x<tx?QOL_KEY_RIGHT:x>tx?QOL_KEY_LEFT:y<ty?QOL_KEY_DOWN:QOL_KEY_UP);
+      |                                           ^~~~~~~~~~~~
+      |                                           QOL_KEY_L
+tools/mgba_pr16_learnset_battle.c:60:43: note: each undeclared identifier is reported only once for each function it appears in
+tools/mgba_pr16_learnset_battle.c: In function ‘lb_cursor’:
+tools/mgba_pr16_learnset_battle.c:67:65: error: ‘QOL_KEY_LEFT’ undeclared (first use in this function); did you mean ‘QOL_KEY_L’?
+   67 |         lb_press(c,(at&1)!=(target&1)?((target&1)?QOL_KEY_RIGHT:QOL_KEY_LEFT):((target&2)?QOL_KEY_DOWN:QOL_KEY_UP),12);}
+      |                                                                 ^~~~~~~~~~~~
+      |                                                                 QOL_KEY_L
+tools/mgba_pr16_learnset_battle.c: In function ‘main’:
+tools/mgba_pr16_learnset_battle.c:146:39: error: ‘QOL_KEY_LEFT’ undeclared (first use in this function); did you mean ‘QOL_KEY_L’?
+  146 |         lb_step(c,x==14?QOL_KEY_RIGHT:QOL_KEY_LEFT);
+      |                                       ^~~~~~~~~~~~
+      |                                       QOL_KEY_L

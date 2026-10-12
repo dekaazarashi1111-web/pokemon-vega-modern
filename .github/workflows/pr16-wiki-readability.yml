@@ -1,0 +1,74 @@
+name: pr16-wiki-readability
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_wiki_readability.py
+      - scripts/pr16_wiki_readability_publish.py
+      - tests/test_pr16_wiki_readability.py
+      - .github/workflows/pr16-wiki-readability.yml
+      - content/modernization/pr16_wiki_readability_presentation.json
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-wiki-readability
+  cancel-in-progress: false
+jobs:
+  readability:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 閲覧改善の限定回帰とtask graph
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-wiki-readability/proof
+          if [ ! -f content/modernization/pr16_wiki_readability_presentation.json ]; then
+            python3 -B - <<'PY' >.local/pr16-wiki-readability/proof/unit.txt 2>&1
+          import json
+          from pathlib import Path
+          import unittest
+          suite = unittest.defaultTestLoader.discover('tests', pattern='test_pr16_wiki_readability.py')
+          result = unittest.TextTestRunner(verbosity=2).run(suite)
+          Path('.local/pr16-wiki-readability/proof/unit-result.json').write_text(json.dumps({'tests':result.testsRun,'failures':len(result.failures),'errors':len(result.errors),'skipped':len(result.skipped)}))
+          raise SystemExit(0 if result.wasSuccessful() and not result.skipped else 1)
+          PY
+          else
+            printf '生成と限定回帰は完了原本を継承。提示receiptだけを照合。\n' >.local/pr16-wiki-readability/proof/unit-inherited.txt
+          fi
+          python3 -B scripts/validate_task_graph.py >.local/pr16-wiki-readability/proof/task-graph.txt
+      - name: 閲覧版と資料ZIPを検証して同branchへ非force反映
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_wiki_readability_publish.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-wiki-readability-proof
+          path: .local/pr16-wiki-readability/proof/
+          include-hidden-files: true
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-wiki-readability-context
+          path: .local/pr16-wiki-readability/context.zip
+          include-hidden-files: true
+          if-no-files-found: warn
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-wiki-readability-package
+          path: .local/pr16-wiki-readability/package/wiki-r0.1-6e88a021.zip
+          include-hidden-files: true
+          if-no-files-found: warn

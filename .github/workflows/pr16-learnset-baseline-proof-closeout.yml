@@ -1,0 +1,151 @@
+name: pr16-learnset-baseline-proof-closeout
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - '.github/workflows/pr16-learnset-baseline-proof-closeout.yml'
+      - 'content/modernization/pr16_learnset_baseline_evidence/unit.log'
+      - 'content/modernization/pr16_learnset_baseline_evidence/recording-unit.log'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  proof-closeout:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+      BRANCH: codex/modernization-followup-20260908
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 全12証拠のGit読戻しと3破壊検査・完了CI照合
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-learnset-storage
+          python3 - <<'PY'
+          import copy, datetime, hashlib, json, os, pathlib, subprocess, sys
+          sys.path.insert(0,'scripts')
+          import pr16_learnset_baseline_record as r
+          from pr16_resume import STATE, DOC, render
+          from pr16_wiki_reconcile import fetch
+          root=pathlib.Path('.')
+          checkpoint=json.loads((root/r.CHECKPOINT).read_bytes())
+          state=json.loads((root/STATE).read_bytes())
+          assert state['learnset_baseline']==checkpoint
+          expected=set(r.COPIED)|set(r.PROOF)|{'recording-unit.log','actions.json'}
+          bindings=checkpoint['proof_bindings']
+          def verify(items, reader):
+              assert set(items)==expected and len(items)==12
+              for name, identity in items.items():
+                  data=reader(name)
+                  assert len(data)==identity['size'] and hashlib.sha256(data).hexdigest()==identity['sha256'], name
+                  data.decode('utf-8'); assert b'\0' not in data
+          originals={name:subprocess.check_output(['git','show','HEAD:'+r.EVIDENCE+'/'+name]) for name in expected}
+          verify(bindings, originals.__getitem__)
+          def rejected(items, values):
+              try: verify(items, values.__getitem__)
+              except (AssertionError,KeyError): return
+              raise AssertionError('storage mutation was not rejected')
+          missing=dict(originals); del missing['unit.log']; rejected(bindings,missing)
+          modified=dict(originals); modified['recording-unit.log']+=b'\n'; rejected(bindings,modified)
+          surplus=dict(bindings, unexpected={'size':0,'sha256':'0'*64}); rejected(surplus,originals)
+          r.validate_recording_log(originals['recording-unit.log'])
+          receipt=json.loads(originals['receipt.json'])
+          assert receipt['code_identity']=={p:r.file_identity(root/p) for p in r.CODE}
+          completed=[]
+          for rid in (35607343534,35607351926,35607351956):
+              run=fetch(f'actions/runs/{rid}')
+              assert run['head_sha']=='0ae98859af26d2fba4fa376a6b23931300829d70'
+              assert run['head_branch']==r.BRANCH and run['repository']['full_name']==r.REPO
+              assert run['status']=='completed' and run['conclusion']=='success'
+              jobs=fetch(f'actions/runs/{rid}/jobs?per_page=100')
+              assert jobs['total_count']==len(jobs['jobs']) and jobs['jobs']
+              assert all(j['status']=='completed' and j['conclusion']=='success' for j in jobs['jobs'])
+              completed.append({k:run[k] for k in ('id','name','head_sha','status','conclusion','updated_at')})
+          target='content/modernization/pr16_learnset_baseline_storage.json'
+          workflow='.github/workflows/pr16-learnset-baseline-proof-closeout.yml'
+          report={'schema_version':1,'task':r.TASK,'status':'PASS_ALL_12_PROOFS_TRACKED',
+              'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),
+              'previous_recording_head':'eefffe6ea4ec7e247232ef0e944bb27946e28c89',
+              'recovered_files':['unit.log','recording-unit.log'],'cause':'git add honored existing *.log ignore; connector committed exact original log bytes',
+              'tracked_proof_files':12,'negative_storage_checks':3,'completed_runs':completed,
+              'accepted_tests_reexecuted':0,'new_native_runs':0,'rom_changes':0,
+              'issue19_complete':False,'release_ready':False,'proof_bindings':bindings}
+          assert not (root/target).exists() and 'learnset_baseline_storage' not in state
+          (root/target).write_bytes(r.stable_json(report))
+          state['learnset_baseline_storage']={'path':target,**report}
+          for name in (target,workflow,r.EVIDENCE+'/unit.log',r.EVIDENCE+'/recording-unit.log'):
+              state['source_bindings'][name]=r.file_identity(root/name)
+          (root/STATE).write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n')
+          (root/DOC).write_text(render(state))
+          now=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
+          note=(f'\n\n## {now} — Issue19検証ログのGit保存を補完\n'
+              f'- Task: {r.TASK}\n- Version: official-source-isolation-storage-closeout\n'
+              '- Status: DONE（証拠保存の補完。Issue19全体は未完）\n'
+              '- Summary: *.log除外で未追跡だったunit.log/recording-unit.logを元artifactのbyte/SHAのまま明示追加。旧checkpointのhashは書き換えず、全12証拠をGit HEADから読戻した。\n'
+              '- Files changed: 証拠ログ2件、限定closeout workflow、storage JSON、固定状態JSON、両ログ。\n'
+              '- Verify: 全12証拠のGit size/SHA照合。欠落・改変・余剰3条件を拒否。resume/task graph/diff/限定最終indexを確認。39+12試験・独立生成・nativeの再実行0。\n'
+              f'- Commit: 本記録を含むcommit。記録入力HEAD={os.environ["GITHUB_SHA"]}。\n'
+              '- Network: Actions run35607343534（記録）,35607351926（source-validation）,35607351956（forgetting）の完了成功をGET照合。ROM/旧Wiki/受入済みnative原本/active baseline変更0、merge/releaseなし。\n')
+          for name in ('design/run_log.md','design/version_log.md'):
+              with (root/name).open('a',encoding='utf-8') as f:f.write(note)
+          (root/'.local/pr16-learnset-storage/storage.json').write_bytes(r.stable_json(report))
+          print(json.dumps({'status':report['status'],'tracked_proofs':12,'negative_storage_checks':3}))
+          PY
+          python3 -B scripts/pr16_resume.py check > .local/pr16-learnset-storage/resume.txt
+          python3 -B scripts/validate_task_graph.py > .local/pr16-learnset-storage/task-graph.txt
+          git diff --check
+      - name: 変更7ファイルを確認して記録を非force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- content/modernization/pr16_learnset_baseline_storage.json content/modernization/pr16_native_supply_resume_20260913.json design/run_log.md design/version_log.md
+          python3 - <<'PY' > .local/pr16-learnset-storage/final-index.json
+          from collections import Counter
+          import json, pathlib, subprocess, sys
+          sys.path.insert(0,'scripts')
+          import guard_private_files as guard
+          base='eefffe6ea4ec7e247232ef0e944bb27946e28c89'
+          expected={'content/modernization/pr16_learnset_baseline_evidence/unit.log',
+              'content/modernization/pr16_learnset_baseline_evidence/recording-unit.log',
+              '.github/workflows/pr16-learnset-baseline-proof-closeout.yml',
+              'content/modernization/pr16_learnset_baseline_storage.json',
+              'content/modernization/pr16_native_supply_resume_20260913.json','design/run_log.md','design/version_log.md'}
+          def git(*a): return subprocess.check_output(['git',*a])
+          actual=set(filter(None,git('diff','--cached','--name-only','-z',base).decode().split('\0')))
+          assert actual==expected, actual^expected
+          for name in actual:
+              data=git('show',':'+name); data.decode('utf-8'); assert b'\0' not in data
+              before=subprocess.run(['git','show',base+':'+name],capture_output=True).stdout
+              def bad(raw):
+                  lines=raw.decode('utf-8',errors='replace').splitlines()
+                  return Counter(lines[i-1] for i in guard.document_user_path_lines(raw))
+              assert not (bad(data)-bad(before)), name
+          print(json.dumps({'status':'PASS_CHANGED_FINAL_INDEX','paths':7,'new_violations':0,'full_historical_guard_pass_claimed':False}))
+          PY
+          git diff --cached --check
+          git diff --exit-code
+          git fetch --no-tags origin "$BRANCH"
+          test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260921-LEARNSET-BASELINE-RESET: 検証ログ2原本の追跡と全12証拠の保存を確定'
+          git push origin "HEAD:refs/heads/$BRANCH"
+          git rev-parse HEAD > .local/pr16-learnset-storage/reflected-head.txt
+          printf 'RESULT=PASS_OFFICIAL_SOURCE_ISOLATION TASK=USER-20260921-LEARNSET-BASELINE-RESET VERIFY=ALL_12_PROOFS_TRACKED COMMIT=%s\n' "$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-baseline-storage
+          path: .local/pr16-learnset-storage/
+          if-no-files-found: error
+          retention-days: 30

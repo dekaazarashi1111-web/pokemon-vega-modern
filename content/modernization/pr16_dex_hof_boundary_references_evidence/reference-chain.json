@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "status": "PASS_732_PARENT_BOUND_BOUNDARY_REFERENCE_CHAIN",
+  "baseline": {
+    "path": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent": {
+    "path": "content/modernization/pr16_dex_hof_runtime_closure_evidence/reference-chain.json",
+    "size": 68925,
+    "sha256": "7fdc8ed846f529fd7dfd5b35b322ddf8bd1eb46e18f5fd45239e21e998adae8e"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 732,
+  "inherited_unclassified": 142,
+  "changes": [
+    {
+      "address": 135540573,
+      "target": 167706878,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "2b613342208b5c5580a9f10556e394e4ac5f03fe523c7ad346795de3f15b3bcb",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_MASK_LITERAL_THUMB_BOUNDARY",
+      "accepted": true,
+      "witness_ids": [
+        0
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": 0,
+      "address": 135540572,
+      "size": 6,
+      "kind": "rooted_mask_literal_thumb_boundary",
+      "evidence": {
+        "schema_version": 1,
+        "root_verified": true,
+        "root": {
+          "kind": "conditional_actual_cb2_create_task_dispatch",
+          "initializer": 135539148,
+          "setup_call": 135539152,
+          "setup_success_guard": 135539156,
+          "callback_setter_call": 135539162,
+          "callback_literal": 135539180,
+          "callback_entry": 135538608,
+          "constructor_call": 135539172,
+          "constructor": 135542112,
+          "create_task_call": 135542118,
+          "create_task": 134704052,
+          "insert_task": 134704136,
+          "find_first": 134704448,
+          "main_callback_field": 50344244,
+          "main_indirect_call": 134219062,
+          "runtasks_call": 135538610,
+          "runtasks": 134704400,
+          "task_indirect_call": 134704426,
+          "task_entry": 135542184,
+          "tasks": 50352336,
+          "task_data_base": 50352344,
+          "task_stride": 40,
+          "selected_admission": "all_16_inactive_then_first_free_row0",
+          "state_offset": 8,
+          "text_state_offset": 9,
+          "state_bound": 37,
+          "state_table": 135542228,
+          "state11_slot": 135542272,
+          "state23_slot": 135542320,
+          "helper_entry": 135540388,
+          "text_state0_to1_store": 135540618,
+          "pending_return": -2
+        },
+        "input_contract": {
+          "scope": "finite_selected_slices_only_not_observed_RAM",
+          "initializer_admission": "entry_0x081429CC_with_valid_nonalias_ABI_stack",
+          "setup_success": "0x081427C8_returns_nonzero_with_ABI_preserved",
+          "create_admission": "one_sufficient_selected_example_all_16_task_active_bytes_zero; not_a_general_necessity",
+          "opaque_calls": "calls_at_explicit_BL_sites_return_with_ABI; preserve_selected_func_active_head_tail_state_textState_and_callback2_except_documented_writes; memset_clears_only_32_task_data_bytes",
+          "cb2_return": "RunTextPrinters_AnimateSprites_BuildOamBuffer_calls_return_normally_and_preserve_selected_task_fields",
+          "task_epoch": "row0_func_active_head_tail_and_callback2_hold_for_each_selected_dispatch_only",
+          "main_dispatch_guards": "calls_at_0x08000512_and_0x0800051A_return0; callback1_is_null; callback2_is_registered_0x081427B1",
+          "state11_producer": "state8_dispatch_and_MysteryGiftClient_Run_returns4; textState0_is_preserved",
+          "state23_producer": "state22_dispatch; AskDiscardGift_returns0_with_textState0; isWonderNews0; saved_gift_check_returns1",
+          "between_producer_and_helper": "selected_state11_or23_and_textState0_retained_until_RunTasks_dispatch",
+          "state0_success": "readable_static_message; text_expansion_and_window_calls_return_normally_with_valid_window_resource",
+          "between_two_helper_calls": "same_selected_task_state_and_textState1_retained; ABI_stack_disjoint_from_task_data_and_globals",
+          "mask_consumption": "eight_readable_template_bytes_and_writable_nonalias_28byte_helper_stack_frame",
+          "client_heap": "no_dereference_on_selected_state11_or23_helper_paths; lifetime_not_required"
+        },
+        "claims": {
+          "proof_scope": "conditional_finite_registered_task_mask_and_instruction_roles",
+          "full_story_reachability_claimed": false,
+          "runtime_execution_observed": false,
+          "universal_callback_epoch_claimed": false,
+          "all_task_states_proven": false,
+          "irq_noninterference_proven": false,
+          "client_heap_lifetime_required": false,
+          "all_opaque_callees_return_proven": false,
+          "both_paths_same_execution_claimed": false,
+          "literal_interpreted_as_pointer": false,
+          "whole_function_range_classified": false,
+          "indirect_reference_completeness_claimed": false,
+          "donor_eligible": false,
+          "donor_leased": false
+        },
+        "boundary_window": {
+          "address": 135540572,
+          "size": 6,
+          "sha256": "56e23ac810e438bc340d6fe37ab342c80ff23a9351c32cd09f6abbd6d14c24b6"
+        },
+        "hit": {
+          "address": 135540573,
+          "size": 4
+        },
+        "partition": "adjacent_complete_literal32_then_instruction16",
+        "elements": [
+          {
+            "address": 135540572,
+            "size": 4,
+            "sha256": "5fc1f3b5dfc3af9f4a3c54c77f448216c82908ce3953813f1e12695bb71271c8",
+            "role": "scalar_and_mask_literal32",
+            "root": {
+              "selector": 11,
+              "slot": 135542272,
+              "entry": 135542936,
+              "helper_call": 135542946,
+              "helper_entry": 135540388,
+              "text_state": 1,
+              "placement": 0,
+              "condition": "placement_eq_zero",
+              "branch": 135540552,
+              "selected_successor": 135540554,
+              "load": 135540554,
+              "load_width": 4,
+              "and_consumer": 135540558,
+              "cleared_bit_start": 16,
+              "cleared_bit_count": 8,
+              "template_stack_offset": 20,
+              "replacement_tilemap_top": 9
+            }
+          },
+          {
+            "address": 135540576,
+            "size": 2,
+            "sha256": "0d915a3817397d574d32fdf36d15d0172f9273a2e9f7b59be1fedfc2fd1c77eb",
+            "role": "complete_thumb_ldr_literal16",
+            "root": {
+              "selector": 23,
+              "slot": 135542320,
+              "entry": 135543458,
+              "helper_call": 135543468,
+              "helper_entry": 135540388,
+              "text_state": 1,
+              "placement": 1,
+              "condition": "placement_ne_zero",
+              "branch": 135540552,
+              "selected_successor": 135540576,
+              "instruction": 135540576,
+              "loaded_literal": 135540624,
+              "load_width": 4,
+              "and_consumer": 135540580,
+              "template_stack_offset": 20,
+              "replacement_tilemap_top": 15
+            }
+          }
+        ],
+        "exclusive_paths": true,
+        "single_path_covers_both_elements": false,
+        "literal_is_pointer": false,
+        "type_classification_only": true
+      },
+      "evidence_identity": {
+        "size": 4468,
+        "sha256": "cf3eb8ce6b13ad2da0b473a52607a9da9349a757ba7a1c1a6f2ba3e408d72a0a"
+      }
+    }
+  ],
+  "classified": 733,
+  "unclassified": 141,
+  "newly_classified": 1,
+  "proof": {
+    "data": {
+      "status": "PASS_MINIMUM_ROOTED_HETEROGENEOUS_BOUNDARY_TYPE",
+      "mystery": {
+        "status": "PASS_ONE_CONDITIONAL_MYSTERY_GIFT_BOUNDARY",
+        "count": 1,
+        "hit": 135540573,
+        "protected_windows": 62,
+        "protected_bytes": 940,
+        "source_bindings": {
+          "pret-mystery_gift_menu.c": {
+            "local": "pret-mystery_gift_menu.c",
+            "repository": "pret/pokefirered",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "path": "src/mystery_gift_menu.c",
+            "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/mystery_gift_menu.c",
+            "size": 47233,
+            "sha256": "0bb89d37bbd201f4b5ec59f5cf66582bc467b01df419ddb3593b254a70a5f215",
+            "git_blob_sha": "77c032c1b1d3360ff5fb87070815c4a98019df8c"
+          },
+          "pret-task.c": {
+            "local": "pret-task.c",
+            "repository": "pret/pokefirered",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "path": "src/task.c",
+            "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/task.c",
+            "size": 5029,
+            "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+            "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+          },
+          "pret-main.c": {
+            "local": "pret-main.c",
+            "repository": "pret/pokefirered",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "path": "src/main.c",
+            "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/main.c",
+            "size": 11699,
+            "sha256": "0bfa6c662b1cbd49bd31020b6c2509208004611e6701ad64badce22eca371139",
+            "git_blob_sha": "542b0f5d16dd93107523d11163bfcb70a42b707a"
+          }
+        },
+        "proof_scope": "conditional_finite_registered_task_mask_and_instruction_roles",
+        "full_story_reachability_claimed": false,
+        "runtime_execution_observed": false,
+        "universal_callback_epoch_claimed": false,
+        "all_task_states_proven": false,
+        "irq_noninterference_proven": false,
+        "client_heap_lifetime_required": false,
+        "all_opaque_callees_return_proven": false,
+        "both_paths_same_execution_claimed": false,
+        "literal_interpreted_as_pointer": false,
+        "whole_function_range_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      },
+      "new_data": 0,
+      "new_code": 0,
+      "new_boundary": 1,
+      "natural_gameplay_reachability_claimed": false,
+      "universal_heap_or_irq_lifetime_claimed": false,
+      "independent_old_final_source_review_completed": false,
+      "donor_leased": false,
+      "indirect_reference_completeness_claimed": false
+    },
+    "song": {
+      "status": "PASS_RETAINED_133_MODELS_50_ASSETS_NEW_CONSUMER_INTERSECTION",
+      "combined_song_models": 133,
+      "retained_sample_witnesses": 50,
+      "model_identity": {
+        "size": 213296,
+        "sha256": "71f01cee0a344409445e17fdea268371269a3e622c6b93563d04b35677e0b975"
+      },
+      "sample_identity": {
+        "size": 1121492,
+        "sha256": "9f765e8eee8ad78eaac8902ccafbf9e14c7c694f842e9ae6b2002583181b70ee"
+      },
+      "old_protected_read_windows": 198334,
+      "old_protected_read_identity": {
+        "size": 26409459,
+        "sha256": "26ae440b2d8456747f59e7fd73679a17b6289ef1a733bdd51c1f9ff668fc8914"
+      },
+      "all133_models_exact": true,
+      "all50_sample_identities_exact": true,
+      "old_and_new_root_windows": 6617,
+      "old_and_new_root_identity": {
+        "size": 708402,
+        "sha256": "d433d1f09d71b2f70fd0fecc70108c78ae166556a5461566697ce6497b99c080"
+      },
+      "new_song_discovery_runs": 0,
+      "new_songs": [],
+      "new_audio_classified": 0,
+      "native_processes": 0,
+      "donor_leased": false
+    },
+    "public_source_bindings": {
+      "pret-mystery_gift_menu.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/mystery_gift_menu.c",
+        "size": 47233,
+        "sha256": "0bb89d37bbd201f4b5ec59f5cf66582bc467b01df419ddb3593b254a70a5f215",
+        "git_blob_sha": "77c032c1b1d3360ff5fb87070815c4a98019df8c"
+      },
+      "pret-task.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/task.c",
+        "size": 5029,
+        "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+        "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+      },
+      "pret-main.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/main.c",
+        "size": 11699,
+        "sha256": "0bfa6c662b1cbd49bd31020b6c2509208004611e6701ad64badce22eca371139",
+        "git_blob_sha": "542b0f5d16dd93107523d11163bfcb70a42b707a"
+      }
+    }
+  },
+  "proof_identity": {
+    "size": 3963,
+    "sha256": "f7fb90056748c31a23c42ddba4912134b0dc08db5612f436d9662a696e8426bb"
+  },
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0
+}

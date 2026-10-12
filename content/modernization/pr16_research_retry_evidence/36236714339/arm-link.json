@@ -1,0 +1,19 @@
+{
+  "command": [
+    "ld.lld-17",
+    "-T",
+    ".local/pr16-research-lifecycle/retry-isolated.ld",
+    ".local/pr16-research-lifecycle/retry-isolated.o",
+    "-o",
+    ".local/pr16-research-lifecycle/retry-isolated.elf"
+  ],
+  "returncode": 0,
+  "stderr": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "stdout": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  }
+}

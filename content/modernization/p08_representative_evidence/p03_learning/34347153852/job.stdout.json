@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "scope": "P03_CATERPIE_LEVELUP_SAVE_RELOAD_REPRESENTATIVE",
+  "source_bindings": {
+    "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+      "size": 39669,
+      "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b"
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "size": 149046,
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85"
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "size": 94688,
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24"
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "size": 36272,
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+    },
+    "tools/mgba_modernization_p03_learning_e2e.c": {
+      "size": 7987,
+      "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d"
+    },
+    "scripts/run_modernization_p03_learning_e2e.py": {
+      "size": 7883,
+      "sha256": "cfb10c0882ad860f22c3f2d19a54090975624047ad981a8e54c94660b820abac"
+    },
+    "config/modernization_p03_stage65.json": {
+      "size": 6733,
+      "sha256": "1846992a47218e8f6e65606e69d692bc611d974ede8177e137786aa0d405ec00"
+    },
+    "config/active_play_baseline.json": {
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    }
+  },
+  "rom": {
+    "size": 33554432,
+    "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3"
+  },
+  "seed": {
+    "size": 131072,
+    "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb"
+  },
+  "fresh_process_runs": 2,
+  "cached_results_reused": 0,
+  "cases": [
+    {
+      "mode": "learn",
+      "returncode": 0,
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_CATERPIE_LEVELUP_SAVE_RELOAD_REPRESENTATIVE",
+        "mode": "learn",
+        "rom_sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+        "species": 649,
+        "initial_level": 8,
+        "final_level": 9,
+        "expected_move": 535,
+        "learned_slot_pp": 45,
+        "normal_bag_party_input": true,
+        "evolution_cancel_input": true,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "representative_scheduler_e2e": true,
+        "representative_save_reload_e2e": true,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0
+      },
+      "stdout": {
+        "size": 562,
+        "sha256": "b0feb1def20b297bdce883f3ed31feb001d22fd17959cd68aae376363431339a"
+      },
+      "stderr": {
+        "size": 165,
+        "sha256": "37da131b956299a73f03d4490b211ce9716d74fc7da86cd2720f43f510020c79"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "c6b249ce867e54b14c817700c4d328747f7f1324397c6364fc7303cd5dff71ad"
+      }
+    },
+    {
+      "mode": "below-level",
+      "returncode": 0,
+      "runner_result": {
+        "schema_version": 1,
+        "status": "PASS",
+        "scope": "P03_CATERPIE_LEVELUP_SAVE_RELOAD_REPRESENTATIVE",
+        "mode": "below-level",
+        "rom_sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+        "species": 649,
+        "initial_level": 7,
+        "final_level": 8,
+        "expected_move": 0,
+        "learned_slot_pp": 0,
+        "normal_bag_party_input": true,
+        "evolution_cancel_input": true,
+        "normal_save_menu": true,
+        "fresh_core_normal_continue": true,
+        "representative_scheduler_e2e": true,
+        "representative_save_reload_e2e": true,
+        "breeding_e2e": false,
+        "full_p03_acceptance": false,
+        "release_ready": false,
+        "warnings_errors": 0
+      },
+      "stdout": {
+        "size": 565,
+        "sha256": "98f8c721484141b37d1ae91b93db4fececff0ec40a514ee7b98985310161ce17"
+      },
+      "stderr": {
+        "size": 168,
+        "sha256": "746e41f799756139e4dbe56af5e66b9b17dab797a0ae7270b17c1951f968496c"
+      },
+      "private_save_after": {
+        "size": 131088,
+        "sha256": "959bd2ae88d9e98c2e4f5557b1141ccd9c57fc7f0cd3d54fcc41b95b8e555d6b"
+      }
+    }
+  ],
+  "full_p03_acceptance": false,
+  "breeding_e2e": false,
+  "release_ready": false,
+  "active_baseline_changed": false
+}

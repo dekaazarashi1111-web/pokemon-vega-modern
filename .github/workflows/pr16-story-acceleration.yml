@@ -1,0 +1,117 @@
+name: pr16-story-acceleration
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-acceleration.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-story-acceleration
+  cancel-in-progress: false
+jobs:
+  split:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify exact resume and prevent accepted replay
+        run: |
+          set -euo pipefail
+          test ! -e content/modernization/pr16_story_acceleration_checkpoint.json
+          python3 -B scripts/pr16_resume.py check
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+      - name: Download pinned input archives without executing old scenarios
+        run: |
+          set -euo pipefail
+          mkdir -p build/pr16-story-acceleration/inputs
+          gh api repos/$GITHUB_REPOSITORY/actions/artifacts/10999218544/zip > build/pr16-story-acceleration/inputs/save14.zip
+          gh api repos/$GITHUB_REPOSITORY/actions/artifacts/10898620034/zip > build/pr16-story-acceleration/inputs/runtime.zip
+      - name: Compile and measure only the split fixture and bounded gate probe
+        run: python3 -B scripts/pr16_story_acceleration_run.py run
+      - uses: actions/upload-artifact@v4
+        id: evidence
+        if: always()
+        with:
+          name: pr16-story-acceleration-${{ github.run_id }}
+          path: build/pr16-story-acceleration/proof/
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Record scoped acceptance and blocked evolution separately
+        if: success()
+        env:
+          EVIDENCE_ID: ${{ steps.evidence.outputs.artifact-id }}
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_story_acceleration_run.py record --artifact-id "$EVIDENCE_ID"
+          python3 -B scripts/pr16_resume.py render
+          python3 -B scripts/pr16_resume.py check
+          python3 -B -m unittest discover -s tests -p test_pr16_resume.py -v
+          python3 -B scripts/validate_task_graph.py --check
+          git diff --check
+      - name: Validate exact index and non-force commit
+        if: success()
+        run: |
+          set -euo pipefail
+          git add content/modernization/pr16_story_acceleration_checkpoint.json \
+            docs/PR16_STORY_ACCELERATION_CHECKPOINT_JA.md \
+            content/modernization/pr16_native_supply_resume_20260913.json \
+            docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md \
+            CHATGPT_RESUME.md design/run_log.md design/version_log.md
+          git diff --cached --check
+          python3 - <<'PY'
+          import collections, json, subprocess, sys
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          import guard_private_files as guard
+          base='8e9cb064a07104c613ac442b24901220b8799105'
+          def git(*args):
+              return subprocess.check_output(['git',*args])
+          paths=set(git('diff','--name-only',base,'HEAD').decode().splitlines())
+          paths.update(git('diff','--cached','--name-only').decode().splitlines())
+          old_violations=[]
+          for name in sorted(paths):
+              path=Path(name)
+              assert path.suffix.lower() not in guard.BLOCKED_SUFFIXES,name
+              assert not any(name==p or name.startswith(p+'/') for p in guard.BLOCKED_PARTS),name
+              raw=guard.index_blob(Path('.'),name)
+              text=raw.decode('utf-8')
+              assert '\0' not in text,name
+              if path.suffix.lower() in guard.DOCUMENT_SUFFIXES:
+                  now=collections.Counter(text.splitlines()[n-1] for n in guard.document_user_path_lines(raw))
+                  proc=subprocess.run(['git','show',base+':'+name],capture_output=True)
+                  old=collections.Counter()
+                  if proc.returncode==0:
+                      lines=proc.stdout.decode('utf-8').splitlines()
+                      old=collections.Counter(lines[n-1] for n in guard.document_user_path_lines(proc.stdout))
+                  assert not (now-old),(name,'new machine-specific user path')
+                  if now:old_violations.append({'path':name,'inherited_count':sum(now.values())})
+          result={'changed_paths':sorted(paths),'new_private_violations':0,'inherited_document_violations':old_violations,'global_private_guard_claimed':False}
+          Path('build/pr16-story-acceleration/index-guard.json').write_text(json.dumps(result,indent=2)+'\n')
+          print('SCOPED_INDEX_GUARD=PASS GLOBAL_PRIVATE_GUARD=NOT_CLAIMED')
+          PY
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260929-STORY-ACCELERATION: 作業コピー2本と服従smokeを受入・進化gate停止を記録 run=$GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/$branch
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 -B scripts/pr16_resume.py check
+          git rev-parse HEAD > build/pr16-story-acceleration/recorded-head.txt
+          echo "RESULT=DONE TASK=USER-20260929-STORY-ACCELERATION VERIFY=PASS_SCOPED_EVOLUTION_BLOCKED COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-acceleration-record-${{ github.run_id }}
+          path: |
+            build/pr16-story-acceleration/index-guard.json
+            build/pr16-story-acceleration/recorded-head.txt
+          if-no-files-found: ignore
+          retention-days: 90

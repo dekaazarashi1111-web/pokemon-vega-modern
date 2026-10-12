@@ -1,0 +1,329 @@
+{
+  "accepted_case_reruns": 0,
+  "active_baseline_changed": false,
+  "all_committed_originals_match": true,
+  "all_required_steps_succeeded": true,
+  "archive": {
+    "sha256": "875a68c85e3f22ed0adfb3b5f782c094d569f6721f9ccda93e4433b13957d81c",
+    "size": 1179243
+  },
+  "artifact": {
+    "created_at": "2026-09-28T00:28:29Z",
+    "digest": "sha256:875a68c85e3f22ed0adfb3b5f782c094d569f6721f9ccda93e4433b13957d81c",
+    "expired": false,
+    "expires_at": "2026-12-27T00:27:30Z",
+    "id": 10946201851,
+    "name": "pr16-research-story-training-checkpoint",
+    "size_in_bytes": 1179243,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
+      "id": 36362293129,
+      "repository_id": 1358127462
+    }
+  },
+  "complete_repository_history_claimed": false,
+  "completion_commit": "63e1afc473250070b497b1807d080b0f82bbc1a6",
+  "content_screens": 56,
+  "job": {
+    "conclusion": "success",
+    "id": 108741716867,
+    "name": "training-story",
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-28T00:27:34Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-28T00:27:33Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T00:27:45Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-28T00:27:34Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T00:28:17Z",
+        "conclusion": "success",
+        "name": "Measure only new training interval and independent successor Continue",
+        "number": 3,
+        "started_at": "2026-09-28T00:27:45Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T00:28:19Z",
+        "conclusion": "success",
+        "name": "Record immutable evidence fixed resume and append-only logs",
+        "number": 4,
+        "started_at": "2026-09-28T00:28:17Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T00:28:24Z",
+        "conclusion": "success",
+        "name": "Task graph fixed resume and scoped final index",
+        "number": 5,
+        "started_at": "2026-09-28T00:28:19Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T00:28:27Z",
+        "conclusion": "success",
+        "name": "Non-force scoped completion commit",
+        "number": 6,
+        "started_at": "2026-09-28T00:28:24Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T00:28:27Z",
+        "conclusion": "success",
+        "name": "Preserve text completion snapshot",
+        "number": 7,
+        "started_at": "2026-09-28T00:28:27Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T00:28:27Z",
+        "conclusion": "success",
+        "name": "Preserve partial progress without replay",
+        "number": 8,
+        "started_at": "2026-09-28T00:28:27Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T00:28:29Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 9,
+        "started_at": "2026-09-28T00:28:27Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T00:28:29Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 18,
+        "started_at": "2026-09-28T00:28:29Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T00:28:29Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 19,
+        "started_at": "2026-09-28T00:28:29Z",
+        "status": "completed"
+      }
+    ]
+  },
+  "latest_branch_actions": [
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "7420514edf7b5ab709258b2a13e8cc584182f35b",
+      "id": 36362459508,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "7420514edf7b5ab709258b2a13e8cc584182f35b",
+      "id": 36362459632,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "7420514edf7b5ab709258b2a13e8cc584182f35b",
+      "id": 36362454587,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "7420514edf7b5ab709258b2a13e8cc584182f35b",
+      "id": 36362454676,
+      "path": ".github/workflows/pr16-research-story-training-terminal.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "7420514edf7b5ab709258b2a13e8cc584182f35b",
+      "id": 36362454597,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "7420514edf7b5ab709258b2a13e8cc584182f35b",
+      "id": 36362454583,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "63e1afc473250070b497b1807d080b0f82bbc1a6",
+      "id": 36362355563,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "63e1afc473250070b497b1807d080b0f82bbc1a6",
+      "id": 36362355592,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
+      "id": 36362297846,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
+      "id": 36362297837,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
+      "id": 36362293105,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
+      "id": 36362293114,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
+      "id": 36362293129,
+      "path": ".github/workflows/pr16-research-story-training.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
+      "id": 36362293100,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "fae8f90d4bd78879cfe3039f3628507b8832ebac",
+      "id": 36362237743,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "fae8f90d4bd78879cfe3039f3628507b8832ebac",
+      "id": 36362237757,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "5026e43a3ab026f1e646fec639a02a7f120100cf",
+      "id": 36362209695,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "5026e43a3ab026f1e646fec639a02a7f120100cf",
+      "id": 36362209715,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "5026e43a3ab026f1e646fec639a02a7f120100cf",
+      "id": 36362204668,
+      "path": ".github/workflows/pr16-research-story-training-install.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "5026e43a3ab026f1e646fec639a02a7f120100cf",
+      "id": 36362204649,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "natural_research_arrival_accepted": false,
+  "new_compiles": 0,
+  "new_native_processes": 0,
+  "new_unit_test_runs": 0,
+  "observed_at": "2026-09-28T00:30:40.478903+00:00",
+  "release_ready": false,
+  "reused_new_oracle_tests": 86,
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "67e9cc46f50222e19799244598d65534360c53fd",
+    "id": 36362293129,
+    "path": ".github/workflows/pr16-research-story-training.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "schema_version": 1,
+  "source_head": "67e9cc46f50222e19799244598d65534360c53fd",
+  "status": "PASS_NATURAL_LV7_ABSORB_SAVE_SCOPED",
+  "task": "USER-20260928-RESEARCH-STORY-TRAINING",
+  "verified_real_screens": 56,
+  "verified_snapshot_text_files": 19
+}

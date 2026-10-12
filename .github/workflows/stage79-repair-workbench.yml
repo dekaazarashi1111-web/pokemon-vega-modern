@@ -1,0 +1,45 @@
+name: stage79-repair-workbench
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/stage79-repair-workbench.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Package tracked implementation and current acceptance inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-workbench
+          git rev-parse HEAD > .local/stage79-workbench/head.txt
+          git ls-files -z -- tools scripts tests overlays config content generated infra Makefile AGENTS.md tasks design docs .github/scripts .github/workflows build/stages/06_battle_core.json 'build/stages/78*' 'build/stages/80*' .local/60_wild_species_root_repair.srm | tar --null -T - -czf .local/stage79-workbench/inputs.tar.gz
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          config = json.loads(Path('config/modernization_stage79_cumulative_mgba.json').read_text())
+          identities = [config['input_identity']['rom'], config['runtime_candidate']['rom']]
+          lines = []
+          for rom in identities:
+              data = Path(rom['path']).read_bytes()
+              actual = hashlib.sha256(data).hexdigest()
+              if actual != rom['sha256'] or len(data) != rom['size']:
+                  raise SystemExit('Parent/current candidate identity mismatch: ' + rom['path'])
+              lines.append(f"{actual}  {rom['path']}\n")
+          Path('.local/stage79-workbench/rom-sha256.txt').write_text(''.join(lines))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage79-repair-workbench
+          path: .local/stage79-workbench/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 3

@@ -1,0 +1,40 @@
+name: pr16-donor-origins
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_donor_origins.py
+      - scripts/pr16_donor_origins_actions.py
+      - tests/test_pr16_donor_origins.py
+      - .github/workflows/pr16-donor-origins.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-donor-origins
+  cancel-in-progress: false
+jobs:
+  donor-origins:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bind selected origin symbols without replaying accepted measurements
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 -B scripts/pr16_donor_origins_actions.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-donor-origins-public-text
+          path: .local/pr16-donor-origins/public/
+          if-no-files-found: error
+          retention-days: 90

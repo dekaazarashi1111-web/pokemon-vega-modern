@@ -1,0 +1,58 @@
+{
+  "actions": {
+    "conclusion": "success",
+    "id": 38091044744,
+    "observed_at": "2026-10-10T22:39:58.610567+00:00",
+    "required_steps": [
+      "Bind actual first-origin bounds and receive prior symbols without replay",
+      "Run actions/upload-artifact@v4"
+    ],
+    "source_head": "06563a617a42e960b3e40ce6e6c0634322161e34",
+    "status": "completed"
+  },
+  "artifact_id": 11683933530,
+  "measurement_commit": "d4445cf929deec11d98f0173f4f11c86fe396f05",
+  "measurement_replays": 0,
+  "member_identities": {
+    "actions-completion.json": {
+      "sha256": "017de59531617adbc3e7117cd558e7ed63bacae393ab27abe535d8482a806ee7",
+      "size": 2030
+    },
+    "attempt.json": {
+      "sha256": "948130b66b76aa8c0179afca298578a0a48149e1bbe4c538421f223baf7473cc",
+      "size": 203
+    },
+    "bounded-code-facts.json": {
+      "sha256": "db5ae67361abaf800c8650b01861bb52524137386002a45f821e06e900abc429",
+      "size": 63212
+    },
+    "bounds-tests.txt": {
+      "sha256": "0d92377439c6d1c626a6a462e1f2df9254c7bd901e67e0f41ee298e448dfc3e3",
+      "size": 2961
+    },
+    "pr16_first_origin_checkpoint.json": {
+      "sha256": "92018330ff8c2d05cfd6497e16ece36ae7739ee1ab6364d8843abac918eb05ed",
+      "size": 7347
+    },
+    "result.json": {
+      "sha256": "3c01865941a9134731724e70d51ba06f5415068783f30a03cf1b11d9e4577010",
+      "size": 790
+    },
+    "scoped-context.zip": {
+      "sha256": "7e4c5c9b5f197b3dadc177d97e0e1832403c37610bee644a2c650de30424f4a7",
+      "size": 65715
+    },
+    "symbol-actions-completion.json": {
+      "sha256": "017de59531617adbc3e7117cd558e7ed63bacae393ab27abe535d8482a806ee7",
+      "size": 2030
+    }
+  },
+  "old_scope_test_reruns": 0,
+  "rom_reconstructions": 0,
+  "schema_version": 1,
+  "status": "COMPLETED_BOUNDED_ACTIONS_RECEIVED_WITHOUT_REPLAY",
+  "zip_identity": {
+    "sha256": "4825648ceaeaf9eb9f3185b3787ba310cb6b6d9c2bfb2af47e9b26b3b970b9f2",
+    "size": 83395
+  }
+}

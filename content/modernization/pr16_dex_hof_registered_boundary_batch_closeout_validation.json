@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_REGISTERED_BOUNDARY_CLOSEOUT_SOURCE_REVIEW",
+  "review_scope": "new_registered_boundary_closeout_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-registered-boundary-batch-closeout.yml": {
+      "size": 3028,
+      "sha256": "238a1ca414cf0577401261f00645c8af88a4a34e0c3aaa31e3669c8fb72a28e2"
+    },
+    ".github/workflows/pr16-dex-hof-registered-boundary-batch.yml": {
+      "size": 3034,
+      "sha256": "aba8516cab39097a7dd9f8025d5fd09770457bf27ff1eae76cbeb56a20208826"
+    },
+    "scripts/pr16_dex_hof_registered_boundary_batch_closeout.py": {
+      "size": 15771,
+      "sha256": "c6d8ffba2c6355f3f2abd87b27f4596cd1120c791f70aa04acd8e6e25de78a88"
+    },
+    "tests/test_pr16_dex_hof_registered_boundary_batch_closeout.py": {
+      "size": 9000,
+      "sha256": "cc6e9c6f4eb80f3e7d490df93c98a7c1c8fafe5e57fbc2f160fad0222ab00ea5"
+    }
+  },
+  "source_only_review_identity": {
+    "size": 7021,
+    "sha256": "3aba63cf12e1e5a6236c4231454f9ed51631ad344dc7af4b653d71c94ce2dd7e"
+  },
+  "unit_tests": 22,
+  "test_log_identity": {
+    "size": 3514,
+    "sha256": "8583e7f62379dc8c32a4aa7ed99c8da6a511592bbc38f326ed13b3ab55aa2d70"
+  },
+  "measurement_source": "bae28746fb1215c56102455a86adca5fe58d0c04",
+  "measurement_run": 37430181601,
+  "measurement_job": 112158963089,
+  "record_head": "1c3cad835c1a414de84fd54d5cc66071de49d07c",
+  "measurement_unit_tests": 203,
+  "old_tests_rerun": 0,
+  "current_rom_reconstructions": 0,
+  "arm_compiles": 0,
+  "native_processes": 0,
+  "receipt_body_bound_to_committed_recording": true,
+  "source_review_unresolved_findings_rejected": true,
+  "source_layout_prediction_not_current_rom_proof": true
+}

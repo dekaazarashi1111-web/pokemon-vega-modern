@@ -1,0 +1,801 @@
+{
+  "coord": {
+    "address": 137879216,
+    "hex": "0e000500030061400000000036f21708",
+    "xy": [
+      14,
+      5
+    ],
+    "elevation": 3,
+    "variable": 16481,
+    "value": 0,
+    "script": 135787062
+  },
+  "graph": {
+    "root_count": 2,
+    "unique_root_address_count": 2,
+    "visited_script_count": 11,
+    "nodes": [
+      {
+        "address": 135786902,
+        "end_reason": "end",
+        "instruction_count": 12,
+        "edges": [
+          135786947
+        ],
+        "roots": [
+          "Museum_1F_local1"
+        ]
+      },
+      {
+        "address": 135786947,
+        "end_reason": "end",
+        "instruction_count": 7,
+        "edges": [
+          135786978,
+          135786998
+        ],
+        "roots": [
+          "Museum_1F_local1"
+        ]
+      },
+      {
+        "address": 135786978,
+        "end_reason": "end",
+        "instruction_count": 6,
+        "edges": [],
+        "roots": [
+          "Museum_1F_local1"
+        ]
+      },
+      {
+        "address": 135786998,
+        "end_reason": "end",
+        "instruction_count": 6,
+        "edges": [],
+        "roots": [
+          "Museum_1F_local1"
+        ]
+      },
+      {
+        "address": 135787062,
+        "end_reason": "goto",
+        "instruction_count": 5,
+        "edges": [
+          135787084
+        ],
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      },
+      {
+        "address": 135787084,
+        "end_reason": "end",
+        "instruction_count": 14,
+        "edges": [
+          135787133
+        ],
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      },
+      {
+        "address": 135787133,
+        "end_reason": "end",
+        "instruction_count": 20,
+        "edges": [
+          135787216,
+          135787227,
+          135787238,
+          135787249
+        ],
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      },
+      {
+        "address": 135787216,
+        "end_reason": "return",
+        "instruction_count": 3,
+        "edges": [],
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      },
+      {
+        "address": 135787227,
+        "end_reason": "return",
+        "instruction_count": 3,
+        "edges": [],
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      },
+      {
+        "address": 135787238,
+        "end_reason": "return",
+        "instruction_count": 3,
+        "edges": [],
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      },
+      {
+        "address": 135787249,
+        "end_reason": "end",
+        "instruction_count": 8,
+        "edges": [],
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      }
+    ],
+    "references": [
+      {
+        "category": "var",
+        "value": 16385,
+        "access": "write",
+        "instruction_address": 135787063,
+        "opcode": 22,
+        "command": "setvar",
+        "operand": 2,
+        "script_address": 135787062,
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 16385,
+        "access": "read",
+        "instruction_address": 135787151,
+        "opcode": 33,
+        "command": "compare_var_to_value",
+        "operand": 0,
+        "script_address": 135787133,
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 16385,
+        "access": "read",
+        "instruction_address": 135787162,
+        "opcode": 33,
+        "command": "compare_var_to_value",
+        "operand": 1,
+        "script_address": 135787133,
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 16385,
+        "access": "read",
+        "instruction_address": 135787173,
+        "opcode": 33,
+        "command": "compare_var_to_value",
+        "operand": 2,
+        "script_address": 135787133,
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 16481,
+        "access": "write",
+        "instruction_address": 135787206,
+        "opcode": 22,
+        "command": "setvar",
+        "operand": 1,
+        "script_address": 135787133,
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 32780,
+        "access": "read",
+        "instruction_address": 135786904,
+        "opcode": 33,
+        "command": "compare_var_to_value",
+        "operand": 3,
+        "script_address": 135786902,
+        "roots": [
+          "Museum_1F_local1"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 32780,
+        "access": "read",
+        "instruction_address": 135786915,
+        "opcode": 33,
+        "command": "compare_var_to_value",
+        "operand": 1,
+        "script_address": 135786902,
+        "roots": [
+          "Museum_1F_local1"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 32780,
+        "access": "read",
+        "instruction_address": 135786926,
+        "opcode": 33,
+        "command": "compare_var_to_value",
+        "operand": 2,
+        "script_address": 135786902,
+        "roots": [
+          "Museum_1F_local1"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 32781,
+        "access": "read",
+        "instruction_address": 135786955,
+        "opcode": 33,
+        "command": "compare_var_to_value",
+        "operand": 1,
+        "script_address": 135786947,
+        "roots": [
+          "Museum_1F_local1"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 32781,
+        "access": "read",
+        "instruction_address": 135786966,
+        "opcode": 33,
+        "command": "compare_var_to_value",
+        "operand": 0,
+        "script_address": 135786947,
+        "roots": [
+          "Museum_1F_local1"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 32781,
+        "access": "read",
+        "instruction_address": 135787098,
+        "opcode": 33,
+        "command": "compare_var_to_value",
+        "operand": 1,
+        "script_address": 135787084,
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 32781,
+        "access": "read",
+        "instruction_address": 135787139,
+        "opcode": 33,
+        "command": "compare_var_to_value",
+        "operand": 0,
+        "script_address": 135787133,
+        "roots": [
+          "Museum_1F_coord14_5"
+        ]
+      }
+    ],
+    "diagnostics": []
+  },
+  "instructions": [
+    {
+      "address": 135787062,
+      "opcode": 105,
+      "size": 1,
+      "hex": "69",
+      "node": 135787062
+    },
+    {
+      "address": 135787063,
+      "opcode": 22,
+      "size": 5,
+      "hex": "1601400200",
+      "node": 135787062
+    },
+    {
+      "address": 135787068,
+      "opcode": 79,
+      "size": 7,
+      "hex": "4fff00954b1908",
+      "node": 135787062
+    },
+    {
+      "address": 135787075,
+      "opcode": 81,
+      "size": 3,
+      "hex": "510000",
+      "node": 135787062
+    },
+    {
+      "address": 135787078,
+      "opcode": 5,
+      "size": 5,
+      "hex": "054cf21708",
+      "node": 135787062
+    },
+    {
+      "address": 135787084,
+      "opcode": 199,
+      "size": 2,
+      "hex": "c700",
+      "node": 135787084
+    },
+    {
+      "address": 135787086,
+      "opcode": 147,
+      "size": 4,
+      "hex": "93000000",
+      "node": 135787084
+    },
+    {
+      "address": 135787090,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00cdf31708",
+      "node": 135787084
+    },
+    {
+      "address": 135787096,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0905",
+      "node": 135787084
+    },
+    {
+      "address": 135787098,
+      "opcode": 33,
+      "size": 5,
+      "hex": "210d800100",
+      "node": 135787084
+    },
+    {
+      "address": 135787103,
+      "opcode": 6,
+      "size": 6,
+      "hex": "06017df21708",
+      "node": 135787084
+    },
+    {
+      "address": 135787109,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00f3f31708",
+      "node": 135787084
+    },
+    {
+      "address": 135787115,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0904",
+      "node": 135787084
+    },
+    {
+      "address": 135787117,
+      "opcode": 104,
+      "size": 1,
+      "hex": "68",
+      "node": 135787084
+    },
+    {
+      "address": 135787118,
+      "opcode": 148,
+      "size": 3,
+      "hex": "940000",
+      "node": 135787084
+    },
+    {
+      "address": 135787121,
+      "opcode": 79,
+      "size": 7,
+      "hex": "4fff0009f31708",
+      "node": 135787084
+    },
+    {
+      "address": 135787128,
+      "opcode": 81,
+      "size": 3,
+      "hex": "510000",
+      "node": 135787084
+    },
+    {
+      "address": 135787131,
+      "opcode": 107,
+      "size": 1,
+      "hex": "6b",
+      "node": 135787084
+    },
+    {
+      "address": 135787132,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 135787084
+    },
+    {
+      "address": 135787133,
+      "opcode": 146,
+      "size": 6,
+      "hex": "923200000000",
+      "node": 135787133
+    },
+    {
+      "address": 135787139,
+      "opcode": 33,
+      "size": 5,
+      "hex": "210d800000",
+      "node": 135787133
+    },
+    {
+      "address": 135787144,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601f1f21708",
+      "node": 135787133
+    },
+    {
+      "address": 135787150,
+      "opcode": 104,
+      "size": 1,
+      "hex": "68",
+      "node": 135787133
+    },
+    {
+      "address": 135787151,
+      "opcode": 33,
+      "size": 5,
+      "hex": "2101400000",
+      "node": 135787133
+    },
+    {
+      "address": 135787156,
+      "opcode": 7,
+      "size": 6,
+      "hex": "0701d0f21708",
+      "node": 135787133
+    },
+    {
+      "address": 135787162,
+      "opcode": 33,
+      "size": 5,
+      "hex": "2101400100",
+      "node": 135787133
+    },
+    {
+      "address": 135787167,
+      "opcode": 7,
+      "size": 6,
+      "hex": "0701dbf21708",
+      "node": 135787133
+    },
+    {
+      "address": 135787173,
+      "opcode": 33,
+      "size": 5,
+      "hex": "2101400200",
+      "node": 135787133
+    },
+    {
+      "address": 135787178,
+      "opcode": 7,
+      "size": 6,
+      "hex": "0701e6f21708",
+      "node": 135787133
+    },
+    {
+      "address": 135787184,
+      "opcode": 47,
+      "size": 3,
+      "hex": "2ff800",
+      "node": 135787133
+    },
+    {
+      "address": 135787187,
+      "opcode": 145,
+      "size": 6,
+      "hex": "913200000000",
+      "node": 135787133
+    },
+    {
+      "address": 135787193,
+      "opcode": 149,
+      "size": 4,
+      "hex": "95000000",
+      "node": 135787133
+    },
+    {
+      "address": 135787197,
+      "opcode": 48,
+      "size": 1,
+      "hex": "30",
+      "node": 135787133
+    },
+    {
+      "address": 135787198,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00faf31708",
+      "node": 135787133
+    },
+    {
+      "address": 135787204,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0904",
+      "node": 135787133
+    },
+    {
+      "address": 135787206,
+      "opcode": 22,
+      "size": 5,
+      "hex": "1661400100",
+      "node": 135787133
+    },
+    {
+      "address": 135787211,
+      "opcode": 148,
+      "size": 3,
+      "hex": "940000",
+      "node": 135787133
+    },
+    {
+      "address": 135787214,
+      "opcode": 107,
+      "size": 1,
+      "hex": "6b",
+      "node": 135787133
+    },
+    {
+      "address": 135787215,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 135787133
+    },
+    {
+      "address": 135787216,
+      "opcode": 79,
+      "size": 7,
+      "hex": "4fff000bf31708",
+      "node": 135787216
+    },
+    {
+      "address": 135787223,
+      "opcode": 81,
+      "size": 3,
+      "hex": "510000",
+      "node": 135787216
+    },
+    {
+      "address": 135787226,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 135787216
+    },
+    {
+      "address": 135787227,
+      "opcode": 79,
+      "size": 7,
+      "hex": "4fff0010f31708",
+      "node": 135787227
+    },
+    {
+      "address": 135787234,
+      "opcode": 81,
+      "size": 3,
+      "hex": "510000",
+      "node": 135787227
+    },
+    {
+      "address": 135787237,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 135787227
+    },
+    {
+      "address": 135787238,
+      "opcode": 79,
+      "size": 7,
+      "hex": "4fff0014f31708",
+      "node": 135787238
+    },
+    {
+      "address": 135787245,
+      "opcode": 81,
+      "size": 3,
+      "hex": "510000",
+      "node": 135787238
+    },
+    {
+      "address": 135787248,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 135787238
+    },
+    {
+      "address": 135787249,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f0011f41708",
+      "node": 135787249
+    },
+    {
+      "address": 135787255,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0904",
+      "node": 135787249
+    },
+    {
+      "address": 135787257,
+      "opcode": 104,
+      "size": 1,
+      "hex": "68",
+      "node": 135787249
+    },
+    {
+      "address": 135787258,
+      "opcode": 148,
+      "size": 3,
+      "hex": "940000",
+      "node": 135787249
+    },
+    {
+      "address": 135787261,
+      "opcode": 79,
+      "size": 7,
+      "hex": "4fff0009f31708",
+      "node": 135787249
+    },
+    {
+      "address": 135787268,
+      "opcode": 81,
+      "size": 3,
+      "hex": "510000",
+      "node": 135787249
+    },
+    {
+      "address": 135787271,
+      "opcode": 107,
+      "size": 1,
+      "hex": "6b",
+      "node": 135787249
+    },
+    {
+      "address": 135787272,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 135787249
+    }
+  ],
+  "texts": {
+    "135787550": {
+      "hex": "3b2550082800450340abff",
+      "decoded": "ごゆっくり どうぞ！"
+    },
+    "135787561": {
+      "hex": "2c3c2c3c00030c2b0627fe1a150d00152e13fa1d2e15000a4118fb0f2a2628000720fe5a6a585013000c501329acff",
+      "decoded": "わざわざ うしろから\\nはなす なんて\\lへんな こだね\\pそれより きみ\\nコハクって しってる？"
+    },
+    "135787611": {
+      "hex": "5a6a5816001f3d5010fe21060c19020723192d0026203704270e29fb0f03410215003d50092e2d00450a0619fe092e0735033d3637000c13292e415013ff",
+      "decoded": "コハクに まじった\\nむかしのいきものを よみがえらせる\\pそうだいな じっけんを どこかの\\nけんきゅうじょが してるんだって"
+    },
+    "135787673": {
+      "hex": "050521060c00070627004410000c2937fe565e57192603160006101f50100023192dfb5a6a58140002032e4126ff",
+      "decoded": "おおむかし きから でた しるが\\nカセキのように かたまった ものを\\pコハクと いうんだよ"
+    },
+    "135787469": {
+      "hex": "1a021a02000a45231a00fe092e370828360300a6a1042e00440dfb092e3708000c1f0d06acff",
+      "decoded": "はいはい こどもは \\nけんがくりょう 50えん です\\pけんがく しますか？"
+    },
+    "135787507": {
+      "hex": "1f1000071318ff",
+      "decoded": "また きてね"
+    },
+    "135787514": {
+      "hex": "1a0200100c0616fea6a1042e0002104107001f0c10abff",
+      "decoded": "はい たしかに\\n50えん いただき ました！"
+    },
+    "135787537": {
+      "hex": "b00127fe0506183700150226ff",
+      "decoded": "…あら\\nおかねが ないよ"
+    }
+  },
+  "selected_nodes": [
+    135787062,
+    135787084,
+    135787133,
+    135787216,
+    135787227,
+    135787238,
+    135787249
+  ],
+  "movements": [
+    {
+      "address": 135875477,
+      "hex": "30fe"
+    },
+    {
+      "address": 135787284,
+      "hex": "1b28fe"
+    },
+    {
+      "address": 135787275,
+      "hex": "13131b28fe"
+    },
+    {
+      "address": 135787280,
+      "hex": "131b28fe"
+    },
+    {
+      "address": 135787273,
+      "hex": "10fe"
+    }
+  ],
+  "expected": {
+    "money_before": 23164,
+    "money_after": 23114,
+    "entry_fee": 50,
+    "admission_var": 16481,
+    "admission_before": 0,
+    "admission_after": 1,
+    "route": [
+      [
+        14,
+        9
+      ],
+      [
+        14,
+        8
+      ],
+      [
+        14,
+        7
+      ],
+      [
+        14,
+        6
+      ],
+      [
+        14,
+        5
+      ]
+    ],
+    "scripted_arrival_candidates": [
+      [
+        14,
+        5
+      ],
+      [
+        15,
+        5
+      ],
+      [
+        14,
+        4
+      ],
+      [
+        15,
+        4
+      ]
+    ],
+    "museum_second_floor_accepted": false
+  }
+}

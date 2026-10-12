@@ -1,0 +1,46 @@
+name: p05-controller-witness
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p05-controller-witness.yml
+      - tools/mgba_modernization_p05_controller_witness.c
+      - tools/modernization_p05_turn_observer.h
+      - scripts/run_modernization_p05_controller_witness.py
+      - tests/test_modernization_p05_controller_witness.py
+      - tests/modernization_p05_turn_observer_fixture.c
+      - tools/mgba_battle_core_smoke.c
+      - tools/mgba_ai_fixture_runner.c
+      - config/modernization_stage79_cumulative_mgba.json
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dragonize-controller-turn:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: 固定mGBA toolchain
+        run: bash infra/setup_github_actions.sh --install
+      - name: 受動observer・結果契約・失敗時保存の回帰検証
+        run: python3 -m unittest discover -s tests -p 'test_modernization_p05_controller_witness.py' -v
+      - name: 同一Stage80で新規4 processを実行
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p05-controller-witness
+          git rev-parse HEAD > .local/p05-controller-witness/tested-head.txt
+          python3 scripts/run_modernization_p05_controller_witness.py \
+            > .local/p05-controller-witness/job.stdout.json \
+            2> .local/p05-controller-witness/job.stderr.log
+      - name: 成否を問わず原本ログを保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p05-controller-witness
+          path: .local/p05-controller-witness/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14

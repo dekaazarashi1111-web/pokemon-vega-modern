@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_NEW_CONSUMER_CONTRACT",
+  "base_head": "c2059ee805d978575b319e7a113b3edf0a676f1e",
+  "consumers": [
+    {
+      "module": "pr16_dex_hof_frontier_records_roots",
+      "test_module": "test_pr16_dex_hof_frontier_records_roots",
+      "review": "content/modernization/pr16_dex_hof_frontier_records_roots_review.json",
+      "kind": "registered_frontier_records_minimum_text_consumption",
+      "type_category": "data",
+      "hits": [
+        152309773
+      ],
+      "windows": [
+        {
+          "address": 152309773,
+          "size": 4
+        }
+      ]
+    },
+    {
+      "module": "pr16_dex_hof_choosemove_text_roots",
+      "test_module": "test_pr16_dex_hof_choosemove_text_roots",
+      "review": "content/modernization/pr16_dex_hof_choosemove_text_roots_review.json",
+      "kind": "registered_choosemove_minimum_text_boundaries",
+      "type_category": "data",
+      "hits": [
+        152318566,
+        152318997
+      ],
+      "windows": [
+        {
+          "address": 152318566,
+          "size": 4
+        },
+        {
+          "address": 152318997,
+          "size": 4
+        }
+      ]
+    }
+  ],
+  "held_hits": [],
+  "parent": {
+    "classified": 776,
+    "unclassified": 98,
+    "input_count": 49,
+    "namespaces": 25,
+    "changes": 157,
+    "witnesses": 147
+  },
+  "candidates_only": [
+    {
+      "label": "FrontierRecords",
+      "module_candidate": "pr16_dex_hof_frontier_records_roots",
+      "hits": [
+        152309773
+      ],
+      "type_category_candidate": "data",
+      "minimum_bytes_candidate": 4
+    },
+    {
+      "label": "ChooseMove text",
+      "module_candidate": "pr16_dex_hof_choosemove_text_roots",
+      "hits": [
+        152318566,
+        152318997
+      ],
+      "type_category_candidate": "data",
+      "minimum_bytes_candidate": 8
+    }
+  ],
+  "acceptance_summary_ja": "実special057のtask/main登録・state0→7からCurrent/Max15byte、実ChooseMove公開hookとQoL/BattleUI wrapperからL/Z/Max選択枝の57byte/EOSを読み、3つの文字境界を最小各4byteへ結合。必要future read/write資源epochと非live消去を限定合成し、自然全play・全callee効果とは分離。",
+  "next_goal_ja": "残95件は別の独立した実consumer根から限定調査する。DexNav090ED992/09140BFCは実menu登録根が未結合のため未知保持。最小型を自然全play/全callee効果/普遍IRQ・heap寿命へ昇格せず、間接参照完全性/退役/owner移管が閉じるまで旧egg15118全域保護・安全0。heap13352はstock保存退避53300を跨がない。単一controller6528と全保存入口heap-ready/同期非再入/0804B85C退避前Freeを別gateで閉じてから全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bitへ接続する。正式切替後trainer131後半→シオウ通常回復/保存/独立coldContinue。雑魚毎Saveなし。"
+}

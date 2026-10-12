@@ -1,0 +1,85 @@
+name: PR16 move generic unlock fixtures once
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-move-generic-unlocks-once.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pr16-move-generic-unlocks-once
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout current PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: codex/modernization-followup-20260908
+          fetch-depth: 0
+
+      - name: Move generic unlock fixtures before authored host load
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('tools/mgba_pr16_generic_form_carry.c')
+          text = path.read_text()
+          old = '''    a_require(a_continue(c),"generic form initial Continue failed");a_flash_prepare(c);
+              (void)call_preserving(c,0x09220861U,1U,36U,6U,4U);run_key_frames(c,0U,1800U);
+          '''.replace('          ', '')
+          new = '''    a_require(a_continue(c),"generic form initial Continue failed");a_flash_prepare(c);
+              /* Generic service unlocks must exist before the authored map/host loads. */
+              write8(c,QOL_LEDGER+18U,1U);write8(c,QOL_LEDGER+20U,1U);write8(c,QOL_LEDGER+21U,1U);
+              write8(c,QOL_LEDGER+0x73FU,1U);write8(c,QOL_LEDGER+0x745U,1U);
+              (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);
+              (void)call_preserving(c,0x09220861U,1U,36U,6U,4U);run_key_frames(c,0U,1800U);
+          '''.replace('          ', '')
+          old_tail = '''    /* Unlocks are prerequisite fixtures; the service interaction itself is native. */
+              write8(c,QOL_LEDGER+18U,1U);write8(c,QOL_LEDGER+20U,1U);write8(c,QOL_LEDGER+21U,1U);
+              write8(c,QOL_LEDGER+0x73FU,1U);write8(c,QOL_LEDGER+0x745U,1U);
+              (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);
+          '''.replace('          ', '')
+          new_tail = '''    /* Finalize the individual fixture before the read-only observation barrier. */
+              (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);
+          '''.replace('          ', '')
+
+          if text.count(old) == text.count(old_tail) == 1:
+              text = text.replace(old, new).replace(old_tail, new_tail)
+              path.write_text(text)
+          elif new in text and new_tail in text and old not in text and old_tail not in text:
+              print('generic unlock fixture order is already repaired')
+          else:
+              raise SystemExit('generic unlock fixture replacement points differ')
+          PY
+
+      - name: Validate focused contract and source-only diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p 'test_pr16_generic_form_carry.py' -v
+          git diff --check
+          test "$(git diff --name-only)" = tools/mgba_pr16_generic_form_carry.c
+
+      - name: Commit runner repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- tools/mgba_pr16_generic_form_carry.c; then
+            exit 0
+          fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/mgba_pr16_generic_form_carry.c
+          git commit -m 'USER-MODERNIZATION: load generic unlocks before FORM host'
+          git pull --rebase origin codex/modernization-followup-20260908
+          git push origin HEAD:codex/modernization-followup-20260908

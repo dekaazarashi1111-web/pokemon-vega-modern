@@ -1,0 +1,90 @@
+name: p08-current-acceptance-record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/p08-current-acceptance-record.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  record:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 原本と現在受入の回帰検証
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p08-acceptance-record
+          python3 -m unittest tests.test_modernization_p08_current_acceptance tests.test_modernization_p08_stage79_evidence -v 2>&1 | tee .local/p08-acceptance-record/tests.log
+          python3 scripts/check_modernization_p08_current_acceptance.py --check > .local/p08-acceptance-record/report.json
+          git diff --exit-code
+      - name: 標準ログへ追記し確認用ブランチへ記録
+        shell: bash
+        env:
+          RECORD_RUN_ID: ${{ github.run_id }}
+          RECORD_ATTEMPT: ${{ github.run_attempt }}
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import datetime
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import re
+          report = json.loads(Path('.local/p08-acceptance-record/report.json').read_text())
+          log = Path('.local/p08-acceptance-record/tests.log').read_text()
+          counts = re.findall(r'^Ran (\d+) tests? in ', log, re.M)
+          if len(counts) != 1 or not log.rstrip().endswith('OK'):
+              raise SystemExit('Missing successful unittest summary')
+          if report['validation_status'] != 'PASS' or report['release_ready'] is not False:
+              raise SystemExit('Invalid acceptance boundary')
+          stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
+          run = int(os.environ['RECORD_RUN_ID'])
+          source = os.environ['SOURCE_SHA']
+          marker = '<!-- USER-MODERNIZATION-P08-CURRENT-ACCEPTANCE:' + source + ' -->'
+          summary = (
+              '\n\n## ' + stamp + '\n' + marker + '\n'
+              '- Task: USER-MODERNIZATION-P08-CURRENT-ACCEPTANCE / 現在受入残件の証跡分離\n'
+              '- Status: DONE（残件の分離・検証器。製品全体はBLOCKED）\n'
+              '- Summary: Stage77原本を保持し、Stage80の7領域証跡と現在未検証項目を分離。採用仕様の創作・リリース昇格なし。\n'
+              '- Files changed: scripts/check_modernization_p08_current_acceptance.py, tests/test_modernization_p08_current_acceptance.py, content/modernization/p08_current_acceptance.json, docs/P08_CURRENT_ACCEPTANCE.md, .github/workflows/ci.yml\n'
+              '- Verify: 現在受入＋既存原本証跡 ' + counts[0] + ' tests PASS; snapshot --check PASS; release_ready=false\n'
+              '- Commit: 検証対象 ' + source + '（この追記を含むcommitはActions artifactのrecord-head.txtへ記録）\n'
+              '- Evidence: https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/' + str(run) + '\n'
+              '- Network: GitHub Actions/APIで読取・検証記録のみ。外部仕様から製品内容を追加していない。\n')
+          for name in ['design/run_log.md', 'design/version_log.md']:
+              path = Path(name)
+              if marker not in path.read_text():
+                  with path.open('a') as stream:
+                      stream.write(summary)
+          record = {'schema_version': 1, 'task': report['task'], 'source_head': source,
+                    'record_run_id': run, 'focused_tests_passed': int(counts[0]),
+                    'snapshot_sha256': hashlib.sha256(Path('content/modernization/p08_current_acceptance.json').read_bytes()).hexdigest(),
+                    'release_ready': False, 'heavy_execution_performed': False}
+          Path('content/modernization/p08_current_acceptance_record.json').write_text(json.dumps(record, sort_keys=True, indent=2) + '\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add design/run_log.md design/version_log.md content/modernization/p08_current_acceptance_record.json
+          git commit -m 'docs(p08): record validated current acceptance boundaries without release promotion'
+          git rev-parse HEAD > .local/p08-acceptance-record/record-head.txt
+          branch="codex/p08-acceptance-record-${RECORD_RUN_ID}-${RECORD_ATTEMPT}"
+          printf '%s\n' "$branch" > .local/p08-acceptance-record/record-branch.txt
+          git push origin "HEAD:refs/heads/$branch"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p08-acceptance-record
+          path: .local/p08-acceptance-record/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

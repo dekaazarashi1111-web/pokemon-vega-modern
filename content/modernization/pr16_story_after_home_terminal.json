@@ -1,0 +1,163 @@
+{
+  "artifact": {
+    "digest": "sha256:11762d516aca1df0e607b1c2549c8b2be2d0c374522b762a6df325e2efc21f31",
+    "expires_at": "2026-12-27T02:35:43Z",
+    "id": 10948853813,
+    "name": "pr16-story-after-home-checkpoint",
+    "size_in_bytes": 18792389,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "5b378dcae45d7f92307d27ea07ab7041ebce25f5",
+      "id": 36370422350,
+      "repository_id": 1358127462
+    }
+  },
+  "completion_head": "d55125bb7ec6f407e56270df873d8b2dfddd6fad",
+  "job": {
+    "conclusion": "success",
+    "id": 108765396422,
+    "name": "story",
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-28T02:35:47Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-28T02:35:46Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T02:36:00Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-28T02:35:47Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T02:36:39Z",
+        "conclusion": "success",
+        "name": "Measure only new story interval and independent Continue",
+        "number": 3,
+        "started_at": "2026-09-28T02:36:00Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T02:36:47Z",
+        "conclusion": "success",
+        "name": "Record measured originals and fixed handoff",
+        "number": 4,
+        "started_at": "2026-09-28T02:36:39Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T02:36:49Z",
+        "conclusion": "success",
+        "name": "Validate task graph and exact staged text boundary",
+        "number": 5,
+        "started_at": "2026-09-28T02:36:47Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T02:36:52Z",
+        "conclusion": "success",
+        "name": "Commit verified text and non-force push same branch",
+        "number": 6,
+        "started_at": "2026-09-28T02:36:49Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T02:36:52Z",
+        "conclusion": "success",
+        "name": "Read back committed text and retain completion identity",
+        "number": 7,
+        "started_at": "2026-09-28T02:36:52Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T02:36:52Z",
+        "conclusion": "success",
+        "name": "Preserve partial native originals without replay",
+        "number": 8,
+        "started_at": "2026-09-28T02:36:52Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T02:36:55Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 9,
+        "started_at": "2026-09-28T02:36:52Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T02:36:55Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 18,
+        "started_at": "2026-09-28T02:36:55Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-28T02:36:55Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 19,
+        "started_at": "2026-09-28T02:36:55Z",
+        "status": "completed"
+      }
+    ]
+  },
+  "new_native_processes": 0,
+  "new_test_executions": 0,
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "5b378dcae45d7f92307d27ea07ab7041ebce25f5",
+    "id": 36370422350,
+    "path": ".github/workflows/pr16-story-after-home.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "run_id": 36370422350,
+  "save_byte_proof": {
+    "after_party_offset": 90168,
+    "all_save_rtc_preserved_after_continue": true,
+    "before_party_offset": 28728,
+    "experience_after": 270,
+    "experience_before": 245,
+    "hp": [
+      23,
+      23
+    ],
+    "level": 7,
+    "moves_pp": [
+      35,
+      30,
+      25
+    ],
+    "other_party_bytes_preserved": 597,
+    "party_changed_bytes": [
+      {
+        "after": 14,
+        "before": 245,
+        "offset": 36
+      },
+      {
+        "after": 1,
+        "before": 0,
+        "offset": 37
+      },
+      {
+        "after": 86,
+        "before": 85,
+        "offset": 41
+      }
+    ],
+    "saved_minutes_after": 39,
+    "saved_minutes_before": 32
+  },
+  "source_head": "5b378dcae45d7f92307d27ea07ab7041ebce25f5"
+}

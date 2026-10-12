@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_REGISTERED_ITEM_CLOSEOUT_SOURCE_REVIEW",
+  "review_scope": "new_registered_item_closeout_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-registered-item-batch-closeout.yml": {
+      "size": 2973,
+      "sha256": "df9c269d5a06871c8dbae715d8d61c1e7b7606d938bd54729ac28d8243cd1bf7"
+    },
+    ".github/workflows/pr16-dex-hof-registered-item-batch.yml": {
+      "size": 2964,
+      "sha256": "9a298fe2e93c3519d84ba405a9014db58553442992a3e555d95808e7fb8b51bd"
+    },
+    "scripts/pr16_dex_hof_registered_item_batch_closeout.py": {
+      "size": 16618,
+      "sha256": "f9b14bc469a26927a30643864e75d02e68c38713c7fb565ff89e62428003c3b0"
+    },
+    "tests/test_pr16_dex_hof_registered_item_batch_closeout.py": {
+      "size": 14188,
+      "sha256": "f769e8e04b4f13d7c3377c3637fe3b70047ca0e55eadadd4a1b9e7f9bd4f8f54"
+    }
+  },
+  "source_only_review_identity": {
+    "size": 4111,
+    "sha256": "21db69263259148d465ff41b94dc63f0ce7434aa0393a1c26eac82208512ba8b"
+  },
+  "unit_tests": 35,
+  "test_log_identity": {
+    "size": 5707,
+    "sha256": "6671d28d9436a4e9dfa159a399c9ae229e9aa0ca4984622a8400040e1cc8be48"
+  },
+  "measurement_source": "5f9a8d5e15089099b7ec0b3530b416cd41365447",
+  "measurement_run": 37447505079,
+  "measurement_job": 112215767959,
+  "record_head": "8013b647cbe72273d2797a6c4d8dde6a0da4d016",
+  "measurement_unit_tests": 308,
+  "old_tests_rerun": 0,
+  "current_rom_reconstructions": 0,
+  "arm_compiles": 0,
+  "native_processes": 0,
+  "receipt_body_bound_to_committed_recording": true,
+  "source_review_unresolved_findings_rejected": true,
+  "source_layout_prediction_not_current_rom_proof": true
+}

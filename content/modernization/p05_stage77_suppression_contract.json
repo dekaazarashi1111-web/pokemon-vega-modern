@@ -1,0 +1,127 @@
+{
+  "active_play_baseline": {
+    "json": {
+      "path": "config/active_play_baseline.json",
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "markdown": {
+      "path": "design/active_play_baseline.md",
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8",
+      "size": 5551
+    },
+    "stage": 62,
+    "unchanged": true
+  },
+  "allocation_lineage": {
+    "first80_all_fields_equal": true,
+    "new_count": 81,
+    "new_first80_sha256": "f7cb757186024897cea03e71b02d8e25afc27829d407dc319f3e5a678fa87594",
+    "new_sequence": 80,
+    "parent_count": 80,
+    "parent_first80_sha256": "f7cb757186024897cea03e71b02d8e25afc27829d407dc319f3e5a678fa87594",
+    "parent_last_sequence": 79,
+    "payload_slice_sha256": "933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672"
+  },
+  "allocation_sequence": 80,
+  "bps": {
+    "path": "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps",
+    "round_trip": true,
+    "sha256": "50a779b3cca8b7ffbb386872ed989a6392e050c18a3716e7c252c24412047df7",
+    "size": 1489,
+    "source_sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
+    "target_sha256": "245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f"
+  },
+  "checks": {
+    "active_play_baseline_unchanged": "PASS",
+    "allocator_overlap": "PASS",
+    "battle_circus_global_suppression_delegates_original": "PASS",
+    "bps_roundtrip": "PASS",
+    "browt_pombon_gecqua_added": 0,
+    "eelevate_unsafe_switch_hooks_installed": 0,
+    "mgba_runtime": "NOT_RUN",
+    "normal_path_delegates_stage72_wrapper": "PASS",
+    "ordinary_gastro_neutralizing_gas_mold_breaker_semantics_unchanged": "PASS",
+    "parent_first80_rows_all_fields_preserved": "PASS",
+    "parent_stage76_commit_and_six_identities": "PASS",
+    "r3_saved_veneer_count": 7,
+    "rom_diff_outside_payload_plus_29_hooks": 0,
+    "side_change_added": 0,
+    "stage72_ability_surface_occurrences_guarded": 33,
+    "stage72_symbol_and_hook_abi_exact": "PASS",
+    "stage72_unique_hooks_repointed": 29,
+    "stage76_pointer_and_three_hooks_preserved": "PASS"
+  },
+  "done": false,
+  "full_p05_done": false,
+  "implementation_sha256": "580535ee2df622ad0daed905e4160f2afaaa6fa9c7f6da273297ae23565185c5",
+  "output": {
+    "crc32": "F1CE0EAC",
+    "path": "build/stages/77_modernization_p05_circus_suppression.gba",
+    "sha256": "245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f",
+    "size": 33554432
+  },
+  "parent": {
+    "commit": "cbf98eddf712ee677eef011e6fc106a67e536c08",
+    "crc32": "0A78B46A",
+    "path": "build/stages/76_modernization_p05_edges.gba",
+    "sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
+    "size": 33554432,
+    "stage": 76
+  },
+  "payload": {
+    "allocation_sequence": 80,
+    "load_address": "0x095D5870",
+    "path": "generated/runtime/modernization_p05_stage77_suppression.bin",
+    "sha256": "933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672",
+    "size": 1220,
+    "start": 22894704
+  },
+  "pending": [
+    "Eelevate dedicated switch AI: full Ground/Thousand Arrows/grounding/Gravity/Mold Breaker/Ability Shield semantics",
+    "single cumulative P05 mGBA smoke on the latest ROM"
+  ],
+  "release_ready": false,
+  "schema_version": 1,
+  "stage": 77,
+  "status": "BATTLE_CIRCUS_SUPPRESSION_CONNECTED_NOT_P05_DONE",
+  "suppression_contract": {
+    "battle_circus_global": {
+      "ability_hook_counts": {
+        "Dragonize": 5,
+        "Eelevate": 12,
+        "Fire Mane": 1,
+        "Mega Sol": 11,
+        "Piercing Drill": 3,
+        "Spicy Spray": 1
+      },
+      "ability_suppression_mask": "0x80000000",
+      "ability_surface_occurrence_count": 33,
+      "battle_type_flags_address": "0x02022AAC",
+      "battle_type_mask": "0x04000000",
+      "circus_flags_address": "0x0203DFBC",
+      "normal_path": "TAIL_DELEGATE_STAGE72_WRAPPER",
+      "predicate": "(battle_type_flags & 0x04000000) != 0 && (circus_flags & 0x80000000) != 0",
+      "status": "IMPLEMENT",
+      "suppressed_path": "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE",
+      "unique_hook_count": 29
+    },
+    "exclusions": {
+      "active_play_baseline_changed": false,
+      "browt_pombon_gecqua_added": 0,
+      "done": false,
+      "eelevate_dedicated_switch_ai": "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT",
+      "full_p05_done": false,
+      "mgba_runtime": "DEFERRED_TO_SINGLE_CUMULATIVE_P05_SMOKE",
+      "release_ready": false,
+      "side_change_added": 0
+    },
+    "ordinary_suppression": {
+      "gastro_acid": "ALREADY_SAFE_ACTIVE_ABILITY_MOVED_TO_SUPPRESSED_ABILITIES_AND_RAW_SET_NONE",
+      "mold_breaker": "ALREADY_SAFE_ONLY_EELEVATE_FLAGGED_AND_IGNORED_ACTIVE_ABILITY_MOVED_TO_DISABLED_MOLD_BREAKER_AND_RAW_SET_NONE",
+      "neutralizing_gas": "ALREADY_SAFE_ACTIVE_ABILITY_MOVED_TO_NEUTRALIZING_GAS_BLOCKED_AND_RAW_SET_NONE",
+      "stage77_behavior": "NO_CHANGE"
+    }
+  },
+  "task": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION"
+}

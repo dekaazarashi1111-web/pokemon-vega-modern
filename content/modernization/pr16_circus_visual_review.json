@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "source_run": 35504302893,
+  "source_head": "cc5d6822266a9663b0e368c9cff2c94d2ede3435",
+  "completed": true,
+  "reviewer": "ChatGPT",
+  "method_ja": "2026-09-20: 元PPM29枚をcontact sheet 3枚に等倍配置して全画面目視。画面だけから抑制やSave bytesを断定せず、自然CPU traceとlifecycle原本に対応付けた。",
+  "screens": {
+    "screens/circus-suppression-save-circus-question.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "9c79681a2c049ae0566081d23a76ea56734072855776a5c57b3fba5a4f496719"
+      },
+      "observation_ja": "実NPC会話「サーカスに さんかしますか？ いいえで ファクトリーへ」と、はい/いいえの通常UI。"
+    },
+    "screens/circus-suppression-save-circus-rentals.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "0458493dd7160a8428df8e0e11e3b9f01fa2287d4ff7aa26a0b13b505e6a6c1d"
+      },
+      "observation_ja": "6体のLv50レンタル選出UI。未選択のさんかしない表示。"
+    },
+    "screens/circus-suppression-save-codex-gateway.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "542dc317d5fde807068b3f13f3ae89d60531eba4107c239615f7156008f00ef8"
+      },
+      "observation_ja": "実NPC会話「Codexたいせんを しますか？ いいえで ファクトリーへ」と通常UI。"
+    },
+    "screens/circus-suppression-save-entry-menu-1.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "8518bff86676ef7b300fab22720009f22a5c0ce17984e37907871da1d2d50e1b"
+      },
+      "observation_ja": "通常party選出UIのさんかする/つよさをみる/やめる、または選択後1ばんめ/2ばんめ/3ばんめ表示。ホストで置換した証拠とは扱わない。"
+    },
+    "screens/circus-suppression-save-entry-menu-2.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "0093916905c6f78f4d5c4a0ac6727a32fd328015dc8202b267176cd5c211c6b4"
+      },
+      "observation_ja": "通常party選出UIのさんかする/つよさをみる/やめる、または選択後1ばんめ/2ばんめ/3ばんめ表示。ホストで置換した証拠とは扱わない。"
+    },
+    "screens/circus-suppression-save-entry-menu-3.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "c237b8272c227d591e8762b37e20ae44522cb0737ea44ffe2627014efbe5ffd8"
+      },
+      "observation_ja": "通常party選出UIのさんかする/つよさをみる/やめる、または選択後1ばんめ/2ばんめ/3ばんめ表示。ホストで置換した証拠とは扱わない。"
+    },
+    "screens/circus-suppression-save-selected-1.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "ffdbdfc64ee2cc225937dc5a5c7c4c887ba20cd47be41a06361af214a99cdeae"
+      },
+      "observation_ja": "通常party選出UIのさんかする/つよさをみる/やめる、または選択後1ばんめ/2ばんめ/3ばんめ表示。ホストで置換した証拠とは扱わない。"
+    },
+    "screens/circus-suppression-save-selected-2.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "792f6e6a945ccffc6de0f2f12521e58d9147b669e5877299d5da177df3da7137"
+      },
+      "observation_ja": "通常party選出UIのさんかする/つよさをみる/やめる、または選択後1ばんめ/2ばんめ/3ばんめ表示。ホストで置換した証拠とは扱わない。"
+    },
+    "screens/circus-suppression-save-selected-3.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "9a90785a134b44ba227e6faca40df54b9ab85fba5554de3cfdfa9ce2decc4ae2"
+      },
+      "observation_ja": "通常party選出UIのさんかする/つよさをみる/やめる、または選択後1ばんめ/2ばんめ/3ばんめ表示。ホストで置換した証拠とは扱わない。"
+    },
+    "screens/circus-suppression-save-streak-01-resume30.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "205442de09fb3b8ad740d9a574a9675d5744837353bf245d8aa2c761ee275e22"
+      },
+      "observation_ja": "受付前のフィールドと元主人公位置を確認。Save/fresh Continueの成立やparty600/owner64は画面だけでなく原本byte/counterにより検証。"
+    },
+    "screens/circus-suppression-save-streak-02-selected.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "9a90785a134b44ba227e6faca40df54b9ab85fba5554de3cfdfa9ce2decc4ae2"
+      },
+      "observation_ja": "通常party選出UIのさんかする/つよさをみる/やめる、または選択後1ばんめ/2ばんめ/3ばんめ表示。ホストで置換した証拠とは扱わない。"
+    },
+    "screens/circus-suppression-save-streak-03-confirmation.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "25fb0444aea809f64d57b01350b002577b0bae4d85852387739554d039d4e1fd"
+      },
+      "observation_ja": "選出3体の1/2/3ばんめと、けってい/もどるの通常party確認UI。"
+    },
+    "screens/circus-suppression-save-streak-04-action.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "1418f9cfcddf1249848ddcc1a6705b65a9b5433d57db31b0e913905ce6171d97"
+      },
+      "observation_ja": "レンタルと相手のLv50対戦画面、HPバーと戦闘描画。特性抑制自体の判定は同一ROM自然CPU traceに依拠。"
+    },
+    "screens/circus-suppression-save-streak-05-outcome.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "b6bde726db93d1ac3b2df7ef2dba541288cd5b816a7b7d6b9ee7de2d12c52edd"
+      },
+      "observation_ja": "相手側表示が消え、自側の残HPと戦闘画面が残る終端。勝利値はnative outcome原本と照合。"
+    },
+    "screens/circus-suppression-save-streak-06-settled.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "e5d71187dff190cde3c9ff8b5e8429be31736e0d2cdb286906b11ad21fa989ee"
+      },
+      "observation_ja": "「しょうり！ あいての ポケモンと 1ひき こうかんしますか？」とはい/いいえの通常交換UI。"
+    },
+    "screens/circus-suppression-save-streak-07-confirmation.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "25fb0444aea809f64d57b01350b002577b0bae4d85852387739554d039d4e1fd"
+      },
+      "observation_ja": "選出3体の1/2/3ばんめと、けってい/もどるの通常party確認UI。"
+    },
+    "screens/circus-suppression-save-streak-08-action.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "439b7b3849f6c8af57606bf260a56975bc109acbd0208b2384ebaa07cfd57375"
+      },
+      "observation_ja": "レンタルと相手のLv50対戦画面、HPバーと戦闘描画。特性抑制自体の判定は同一ROM自然CPU traceに依拠。"
+    },
+    "screens/circus-suppression-save-streak-09-outcome.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "146640cf46213b188b495d4ab0456e13175de94ef445f0c93f549f5a6eeb726d"
+      },
+      "observation_ja": "相手側表示が消え、自側の残HPと戦闘画面が残る終端。勝利値はnative outcome原本と照合。"
+    },
+    "screens/circus-suppression-save-streak-10-settled.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "e5d71187dff190cde3c9ff8b5e8429be31736e0d2cdb286906b11ad21fa989ee"
+      },
+      "observation_ja": "「しょうり！ あいての ポケモンと 1ひき こうかんしますか？」とはい/いいえの通常交換UI。"
+    },
+    "screens/circus-suppression-save-streak-11-confirmation.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "25fb0444aea809f64d57b01350b002577b0bae4d85852387739554d039d4e1fd"
+      },
+      "observation_ja": "選出3体の1/2/3ばんめと、けってい/もどるの通常party確認UI。"
+    },
+    "screens/circus-suppression-save-streak-12-action.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "e29ee850081c16cde58c8776bc7a5c6c7b6008309aa1d40b66c892dadcb8cfab"
+      },
+      "observation_ja": "レンタルと相手のLv50対戦画面、HPバーと戦闘描画。特性抑制自体の判定は同一ROM自然CPU traceに依拠。"
+    },
+    "screens/circus-suppression-save-streak-13-outcome.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "9950a5b422183eb11c4b2e7d299fc95167d928dffda8d21c89666452bd548666"
+      },
+      "observation_ja": "相手側表示が消え、自側の残HPと戦闘画面が残る終端。勝利値はnative outcome原本と照合。"
+    },
+    "screens/circus-suppression-save-streak-14-settled.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "169d0b9a3f50c1052829a533bd15268de7ad590788f3c4329ff2e48bcf7d8678"
+      },
+      "observation_ja": "「3れんしょう！ BPを 9 てにいれました」の通常報酬画面。"
+    },
+    "screens/circus-suppression-save-streak-15-returned.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "6fadc80a468c3fc4c6b2d96c7432a0682e4c85886d2041e27a684e6c770ffded"
+      },
+      "observation_ja": "受付前のフィールドと元主人公位置を確認。Save/fresh Continueの成立やparty600/owner64は画面だけでなく原本byte/counterにより検証。"
+    },
+    "screens/circus-suppression-save-streak-16-saved.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "36c5b17ffdf6b6afebe229a3427d5096bc31a52bbaf3943241c9676c9b54dadc"
+      },
+      "observation_ja": "受付前のフィールドと元主人公位置を確認。Save/fresh Continueの成立やparty600/owner64は画面だけでなく原本byte/counterにより検証。"
+    },
+    "screens/circus-suppression-save-streak-17-reloaded.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "3f01c0f82a78952075ada73edb8881d7a215cfc804f6a101ada7c15946aef68b"
+      },
+      "observation_ja": "受付前のフィールドと元主人公位置を確認。Save/fresh Continueの成立やparty600/owner64は画面だけでなく原本byte/counterにより検証。"
+    },
+    "screens/circus-suppression-save-suppression-real-action.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "1418f9cfcddf1249848ddcc1a6705b65a9b5433d57db31b0e913905ce6171d97"
+      },
+      "observation_ja": "レンタルと相手のLv50対戦画面、HPバーと戦闘描画。特性抑制自体の判定は同一ROM自然CPU traceに依拠。"
+    },
+    "screens/circus-suppression-save-suppression-reloaded.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "3f01c0f82a78952075ada73edb8881d7a215cfc804f6a101ada7c15946aef68b"
+      },
+      "observation_ja": "受付前のフィールドと元主人公位置を確認。Save/fresh Continueの成立やparty600/owner64は画面だけでなく原本byte/counterにより検証。"
+    },
+    "screens/circus-suppression-save-suppression-saved.ppm": {
+      "identity": {
+        "size": 115215,
+        "sha256": "36c5b17ffdf6b6afebe229a3427d5096bc31a52bbaf3943241c9676c9b54dadc"
+      },
+      "observation_ja": "受付前のフィールドと元主人公位置を確認。Save/fresh Continueの成立やparty600/owner64は画面だけでなく原本byte/counterにより検証。"
+    }
+  }
+}

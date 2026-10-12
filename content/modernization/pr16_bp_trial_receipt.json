@@ -1,0 +1,124 @@
+{
+  "original_emulator_processes": 1,
+  "originals": [
+    {
+      "actions": {
+        "sha256": "8e20fa900de8b632fb6e87eb7b01dc0b7495b6d34f5148e599af608431fe455f",
+        "size": 1163
+      },
+      "conclusion": "failure",
+      "emulator_processes_in_retention": 0,
+      "final_member_count": 13,
+      "final_stream_binding": "POST_PROCESS_ARTIFACT_MEMBERS_PLUS_EXACT_OUTER_ZIP",
+      "job": 103589804409,
+      "native_bp_earning_accepted": false,
+      "new_emulator_processes_in_original": 0,
+      "original": {
+        "path": "content/modernization/pr16_bp_trial_evidence/34707390052/original.zip",
+        "sha256": "f1380784016598cd84424f397cb364ef65b7005d64fd08ad61366a3b8b2e4f57",
+        "size": 22846
+      },
+      "original_in_flight_receipt_mismatches": [],
+      "release_ready": false,
+      "run": 34707390052,
+      "source_files_compared_with_tested_git_head": 0,
+      "tested_head": "fcc57ce61ac78c293956b3a4f87437874a1c7363"
+    },
+    {
+      "actions": {
+        "sha256": "96981278f2191b0a1d2d4edc81c3c8fb850a4d6264b06cabb9b82e068a26f690",
+        "size": 1164
+      },
+      "conclusion": "failure",
+      "emulator_processes_in_retention": 0,
+      "final_member_count": 17,
+      "final_stream_binding": "POST_PROCESS_ARTIFACT_MEMBERS_PLUS_EXACT_OUTER_ZIP",
+      "job": 103590416796,
+      "native_bp_earning_accepted": false,
+      "new_emulator_processes_in_original": 0,
+      "original": {
+        "path": "content/modernization/pr16_bp_trial_evidence/34707616730/original.zip",
+        "sha256": "0d0afaaa6224ac9db83d77a0f1b0cf65c7f18b21d0af39fa9c312722ce1ce306",
+        "size": 227260
+      },
+      "original_in_flight_receipt_mismatches": [
+        "route.stderr"
+      ],
+      "release_ready": false,
+      "run": 34707616730,
+      "source_files_compared_with_tested_git_head": 21,
+      "tested_head": "224d8b83145393ad8e25006eee758f69f7df31e3"
+    },
+    {
+      "actions": {
+        "sha256": "0c3323181b9c4d3480082f9416e04569ade1b8297670449391270595ec818660",
+        "size": 1164
+      },
+      "conclusion": "success",
+      "emulator_processes_in_retention": 0,
+      "final_member_count": 17,
+      "final_stream_binding": "POST_PROCESS_ARTIFACT_MEMBERS_PLUS_EXACT_OUTER_ZIP",
+      "job": 103591001790,
+      "native_bp_earning_accepted": false,
+      "new_emulator_processes_in_original": 0,
+      "original": {
+        "path": "content/modernization/pr16_bp_trial_evidence/34707830538/original.zip",
+        "sha256": "211704d1cb61baa66bde68b041690842bbfb83efc89a0539d09d3091c33c7123",
+        "size": 228493
+      },
+      "original_in_flight_receipt_mismatches": [
+        "route.stdout"
+      ],
+      "release_ready": false,
+      "run": 34707830538,
+      "source_files_compared_with_tested_git_head": 21,
+      "tested_head": "b21938a2db9cc9691158793570d263793caf88a4"
+    },
+    {
+      "actions": {
+        "sha256": "1a6e1063564b4e4190a5f252e718b828a5866988a299a2d11efd5283c22c9bc7",
+        "size": 1171
+      },
+      "conclusion": "failure",
+      "emulator_processes_in_retention": 0,
+      "final_member_count": 56,
+      "final_stream_binding": "POST_PROCESS_ARTIFACT_MEMBERS_PLUS_EXACT_OUTER_ZIP",
+      "job": 103592052623,
+      "native_bp_earning_accepted": false,
+      "new_emulator_processes_in_original": 1,
+      "original": {
+        "path": "content/modernization/pr16_bp_trial_evidence/34708218707/original.zip",
+        "sha256": "826ecd85c68e6e0c272a612662dd7007b4cd50939e9571e712035281830d2f11",
+        "size": 622627
+      },
+      "original_in_flight_receipt_mismatches": [],
+      "release_ready": false,
+      "run": 34708218707,
+      "source_files_compared_with_tested_git_head": 80,
+      "tested_head": "16c148cbdc67520b38755c10c13febb81fc53259"
+    }
+  ],
+  "p05_native_bp_gap_closed": false,
+  "release_ready": false,
+  "retained_failure_is_not_acceptance": true,
+  "retention_emulator_processes": 0,
+  "schema_version": 1,
+  "status": "PASS_RETAINED_TRIAL_ORIGINALS_NOT_NATIVE_ACCEPTANCE",
+  "successful_native_cases": 0,
+  "successor": {
+    "actual_changed_bytes": 3,
+    "after": "a4d43809",
+    "before": "90f72c09",
+    "built": true,
+    "clean_rom_dual_build_verified": false,
+    "crc32": "5283EC5F",
+    "declared_operand_address": "0x093C93C1",
+    "declared_size": 4,
+    "full_candidate_regression_complete": false,
+    "legacy_completion_root": "0x092CF790",
+    "legacy_rental_root": "0x092CF5F0",
+    "predecessor_wrapper": "0x0938D4A4",
+    "sha256": "df8a15c3b464854ca84a5c0533177cfa3187b5eef252d20248f7654edb72887c",
+    "size": 33554432
+  }
+}

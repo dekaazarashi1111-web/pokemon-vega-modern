@@ -1,0 +1,624 @@
+{
+  "context_bytes": 20,
+  "parent_rom": {
+    "path": "build/stages/67_modernization_p02_p03_consumers.gba",
+    "sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
+    "size": 33554432
+  },
+  "policy": "PATCH_ONLY_EXPLICIT_SEMANTIC_OWNER_SITES_WITH_EXACT_CONTEXT",
+  "schema_version": 1,
+  "stage": 68,
+  "tables": [
+    {
+      "capacity_site_set_sha256": "43f407400dddf8c222112d7fac0e9ca2ba3759fcad8f00673db21d74899e2390",
+      "old_address": "0x0904D108",
+      "site_count": 32,
+      "sites": [
+        {
+          "context_offset": 448,
+          "expected_context_hex": "70b7040928cc040908d10409f42104095cc51409",
+          "expected_context_sha256": "5e4956d170e4717fc902a8a2961d3ff72dc92d226084cf35eedd4c05c5290f81",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "scripts/build_battle_core.py:2937",
+          "semantic_owner": "BATTLE_CORE_GITEMS_INDIRECT_ROOT",
+          "site_address": "0x080001C8",
+          "site_offset": 456
+        },
+        {
+          "context_offset": 631516,
+          "expected_context_hex": "401802bc0847000008d1040910b50004000c064c",
+          "expected_context_sha256": "9e6ee72cd2c51d9775cf3e16ad233c180222980b0f2bdfacdeb4e8fdf83b83cb",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A2E4",
+          "site_offset": 631524
+        },
+        {
+          "context_offset": 631552,
+          "expected_context_hex": "488910bc02bc084708d1040910b50004000c064c",
+          "expected_context_sha256": "cc5582c9ba72203d0a4a0c7a3b08b975efc92bf342ffac9d928245227c3dd0b3",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A308",
+          "site_offset": 631560
+        },
+        {
+          "context_offset": 631588,
+          "expected_context_hex": "888910bc02bc084708d1040900490847d1fd1009",
+          "expected_context_sha256": "89931b8dd02de515c2cd60bb5a021a909af724b4756833b696b9ece92ee75929",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A32C",
+          "site_offset": 631596
+        },
+        {
+          "context_offset": 631624,
+          "expected_context_hex": "887b10bc02bc084708d1040910b50004000c064c",
+          "expected_context_sha256": "6f68641543bc38d7f17689ccaa4d7f1c5cf7a6b2e8c241367bbf4ce10ce1003e",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A350",
+          "site_offset": 631632
+        },
+        {
+          "context_offset": 631660,
+          "expected_context_hex": "c87b10bc02bc084708d1040910b50004000c074c",
+          "expected_context_sha256": "88825dc440284760e5d3a9224ba5e100f7c334d13c63aff6e6c0e9af854d1afc",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A374",
+          "site_offset": 631668
+        },
+        {
+          "context_offset": 631700,
+          "expected_context_hex": "10bc02bc0847000008d1040910b50004000c064c",
+          "expected_context_sha256": "501a6203c105fdbd529cff08a219c63a435e5ae896eb7d4461ae71330e691baa",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A39C",
+          "site_offset": 631708
+        },
+        {
+          "context_offset": 631736,
+          "expected_context_hex": "087d10bc02bc084708d10409004b184729443d09",
+          "expected_context_sha256": "517b08ed6670acffb697345243c2de220fd77df92062891a48fc1981b7bfbf80",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A3C0",
+          "site_offset": 631744
+        },
+        {
+          "context_offset": 631772,
+          "expected_context_hex": "487d10bc02bc084708d1040910b50004000c064c",
+          "expected_context_sha256": "6798039e3a5b584c2d76db16fc518a008dfd0201d9aa13dbf1132233de603c18",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A3E4",
+          "site_offset": 631780
+        },
+        {
+          "context_offset": 631808,
+          "expected_context_hex": "887d10bc02bc084708d1040910b50004000c064c",
+          "expected_context_sha256": "8472d8bcabb19fa960e97af0b903b85324f20f827552d142137c00f68a6559ae",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A408",
+          "site_offset": 631816
+        },
+        {
+          "context_offset": 631844,
+          "expected_context_hex": "c87d10bc02bc084708d1040910b50004000c074c",
+          "expected_context_sha256": "ac0d8b1680ee160c8f72670b45e335443942668316b53ef66aa1e9824578e7a8",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A42C",
+          "site_offset": 631852
+        },
+        {
+          "context_offset": 631884,
+          "expected_context_hex": "10bc02bc0847000008d1040910b50004000c064c",
+          "expected_context_sha256": "501a6203c105fdbd529cff08a219c63a435e5ae896eb7d4461ae71330e691baa",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A454",
+          "site_offset": 631892
+        },
+        {
+          "context_offset": 631920,
+          "expected_context_hex": "087f10bc02bc084708d1040910b50004000c074c",
+          "expected_context_sha256": "0b055af75792acacca0559a63622efbde78bec71f2b4b6b3dc84fe712841b894",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A478",
+          "site_offset": 631928
+        },
+        {
+          "context_offset": 631960,
+          "expected_context_hex": "10bc02bc0847000008d1040910b50004000c074c",
+          "expected_context_sha256": "db57ff1e7c44be19d00f4b7508ee6b7558111227f6107c4918ba4276ddc2471b",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A4A0",
+          "site_offset": 631968
+        },
+        {
+          "context_offset": 632000,
+          "expected_context_hex": "10bc02bc0847000008d1040970b583b00006000e",
+          "expected_context_sha256": "4ef5231df1349d8551eab251253ec59d83a8547e9876a69714d339f778a86d7d",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "SanitizeItemId-adjacent vanilla item.c accessor cluster",
+          "semantic_owner": "FIRERED_ITEM_ACCESSOR_LITERAL_POOL",
+          "site_address": "0x0809A4C8",
+          "site_offset": 632008
+        },
+        {
+          "context_offset": 17535544,
+          "expected_context_hex": "2e3b02026949070808d104097c3e02028d440408",
+          "expected_context_sha256": "b74d9c2c7ba40b70c8795c02eea6b9458041a6ec567b7e5ba84ce0280b661a5b",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_ABILITY_BATTLE_EFFECTS_ITEM_LOOKUP",
+          "site_address": "0x090B9240",
+          "site_offset": 17535552
+        },
+        {
+          "context_offset": 17573508,
+          "expected_context_hex": "a5f910bd4e7e030208d10409367e0302051f0708",
+          "expected_context_sha256": "4fbbd838562afec988d5ce710d4402587ac97db6034b6979404638f5c7c18e72",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_ANIM_TASK_TECHNO_BLAST_ITEM_LOOKUP",
+          "site_address": "0x090C268C",
+          "site_offset": 17573516
+        },
+        {
+          "context_offset": 17789536,
+          "expected_context_hex": "310304089dfd100908d1040954b11509030a013b",
+          "expected_context_sha256": "254305a61f374d7dd321759a38995274b7890a8593c9b76e8b5b0342b89cabd6",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_END_OF_BATTLE_ITEM_LOOKUP",
+          "site_address": "0x090F7268",
+          "site_offset": 17789544
+        },
+        {
+          "context_offset": 17791820,
+          "expected_context_hex": "10bdc0469dfd100908d1040954b1150918472047",
+          "expected_context_sha256": "f541b0200fed0ef24c7f8dcb056f4df902329ccefe129d3dd1d7efe767705ebe",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_CONSUMABLE_ITEM_LOOKUP",
+          "site_address": "0x090F7B54",
+          "site_offset": 17791828
+        },
+        {
+          "context_offset": 17812020,
+          "expected_context_hex": "e44102029dfd100908d10409d43c0202cd3c0202",
+          "expected_context_sha256": "66328909b0c5da0586a18abb1e137330f4627fb4a1704a0f622c2e652ac4be97",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_GET_EXP_ITEM_LOOKUP",
+          "site_address": "0x090FCA3C",
+          "site_offset": 17812028
+        },
+        {
+          "context_offset": 17889264,
+          "expected_context_hex": "dfe7c046e603000008d104090300008870b50a88",
+          "expected_context_sha256": "8f8cf13d13b577a5b3e2754faf482ea2fe0a5210e1c961221a54bacb64f933ec",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_COMPARE_ITEMS_ALPHABETICALLY",
+          "site_address": "0x0910F7F8",
+          "site_offset": 17889272
+        },
+        {
+          "context_offset": 17890756,
+          "expected_context_hex": "fce7c046e603000008d10409054b984206d88300",
+          "expected_context_sha256": "fe7982ef717ee80bc90466d2b8d9399b683425f0180f05afb423aabdf854f4b7",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_ITEM_ID_GET_NAME",
+          "site_address": "0x0910FDCC",
+          "site_offset": 17890764
+        },
+        {
+          "context_offset": 17890788,
+          "expected_context_hex": "014bfbe7e603000008d10409054b984206d88300",
+          "expected_context_sha256": "0a998f4d5617d939b5753a76aadea42721543e1fa7f749389bf639ce6e6ba709",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_ITEM_ID_GET_HOLD_EFFECT",
+          "site_address": "0x0910FDEC",
+          "site_offset": 17890796
+        },
+        {
+          "context_offset": 17890820,
+          "expected_context_hex": "014bfbe7e603000008d10409074b984209d88300",
+          "expected_context_sha256": "5cf51aec938f1d3a16b8ba9dd14ad71c7396dec1954f3b722fd0955bb79cd214",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_ITEM_ID_GET_HOLD_EFFECT_PARAM",
+          "site_address": "0x0910FE0C",
+          "site_offset": 17890828
+        },
+        {
+          "context_offset": 17890860,
+          "expected_context_hex": "f8e7c046e603000008d10409074b984209d88300",
+          "expected_context_sha256": "a559cb4926b7af072c7ce89a29394836e0d21f0d20076ede3c8e6b699922863a",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_MEGA_STONE",
+          "site_address": "0x0910FE34",
+          "site_offset": 17890868
+        },
+        {
+          "context_offset": 17890900,
+          "expected_context_hex": "f8e7c046e603000008d10409074b984209d88300",
+          "expected_context_sha256": "a559cb4926b7af072c7ce89a29394836e0d21f0d20076ede3c8e6b699922863a",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_PRIMAL_ORB",
+          "site_address": "0x0910FE5C",
+          "site_offset": 17890908
+        },
+        {
+          "context_offset": 17890940,
+          "expected_context_hex": "f8e7c046e603000008d104090e4b020010b59842",
+          "expected_context_sha256": "7583c65ef005d2b5951d22fad3055f8a1a4f3051edf0837ccef287c54447bd13",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_Z_CRYSTAL",
+          "site_address": "0x0910FE84",
+          "site_offset": 17890948
+        },
+        {
+          "context_offset": 17891008,
+          "expected_context_hex": "f0e7c046e603000008d1040910b5034b01f0cffe",
+          "expected_context_sha256": "813589a90c8e12b2bed343bd5b3c39617aecb7bada9153ff7737950e3ea50721",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_TYPE_Z_CRYSTAL",
+          "site_address": "0x0910FEC8",
+          "site_offset": 17891016
+        },
+        {
+          "context_offset": 17891104,
+          "expected_context_hex": "f8e7c046e603000008d10409044b4000c35a0a22",
+          "expected_context_sha256": "46474b425a2ecd59603b58aca305bffd6b6d2e1cf8c923c3f92c8e4f4647d19b",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_GEM",
+          "site_address": "0x0910FF28",
+          "site_offset": 17891112
+        },
+        {
+          "context_offset": 17895592,
+          "expected_context_hex": "c2c603020189000808d104092189000890ac0302",
+          "expected_context_sha256": "9f4a2efadd8170b8bbd164143930744ad2955ab2ca5c24bf5ed97bfc36fe8f8f",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_BAG_BUILD_LIST_MENU",
+          "site_address": "0x091110B0",
+          "site_offset": 17895600
+        },
+        {
+          "context_offset": 17898364,
+          "expected_context_hex": "70bdc046e603000008d104090e3e410801890008",
+          "expected_context_sha256": "c2bf1620175f8e1073477aa88c29422de07d2fadce504764fcb4ae84ba1eb6f8",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_BAG_LIST_ITEM_NAME",
+          "site_address": "0x09111B84",
+          "site_offset": 17898372
+        },
+        {
+          "context_offset": 20792380,
+          "expected_context_hex": "7047c046e703000008d104090117000003000a00",
+          "expected_context_sha256": "d28aab00808bb8074164c6aec651ca67c331ddf349a581bf2bb6fcda55511a99",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "Stage49 allocation world_item_recovery_stage49_payload",
+          "semantic_owner": "WORLD_ITEM_RECOVERY_ITEM_TABLE_ROOT",
+          "site_address": "0x093D4444",
+          "site_offset": 20792388
+        }
+      ],
+      "table_key": "item_data"
+    },
+    {
+      "capacity_site_set_sha256": "af56d059fb8e4ab8ee2f69716b0fcc701d7ced4f7779b78e4d42d00a2fa8159c",
+      "old_address": "0x09056D20",
+      "site_count": 3,
+      "sites": [
+        {
+          "context_offset": 623092,
+          "expected_context_hex": "6af7e6fc201c0ce0206d0509d0970302d4970302",
+          "expected_context_sha256": "faee0bc7a7e13e9872d8bbbc65f2ee2a3f37f648428a186a5223bff9b3b4637f",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "config/stage58_qol_world_convenience_debug.json:qol_item_graphics.consumer_pointer_sites",
+          "semantic_owner": "STAGE58_CANONICAL_ITEM_GRAPHICS_CONSUMER_080981FC",
+          "site_address": "0x080981FC",
+          "site_offset": 623100
+        },
+        {
+          "context_offset": 623316,
+          "expected_context_hex": "77fc201c0be00000206d0509d0970302d4970302",
+          "expected_context_sha256": "c64c30229528916b1241fbd57d26a2487b0aa6c7d29783d0c445c788e1580edb",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "config/stage58_qol_world_convenience_debug.json:qol_item_graphics.consumer_pointer_sites",
+          "semantic_owner": "STAGE58_CANONICAL_ITEM_GRAPHICS_CONSUMER_080982DC",
+          "site_address": "0x080982DC",
+          "site_offset": 623324
+        },
+        {
+          "context_offset": 623516,
+          "expected_context_hex": "8918086870470000206d050970b50004060c0906",
+          "expected_context_sha256": "4d42c9e192733893bc00636047e2f21ed5d09765c440e285f5d5db03b6fb5fbc",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "config/stage58_qol_world_convenience_debug.json:qol_item_graphics.consumer_pointer_sites",
+          "semantic_owner": "STAGE58_CANONICAL_ITEM_GRAPHICS_CONSUMER_080983A4",
+          "site_address": "0x080983A4",
+          "site_offset": 623524
+        }
+      ],
+      "table_key": "item_graphics"
+    },
+    {
+      "capacity_site_set_sha256": "329b5ca91fdd55c5b541cb58b65640ea2d5fb7d7f476312afbecbeec7df5958a",
+      "old_address": "0x0915B9D0",
+      "site_count": 8,
+      "sites": [
+        {
+          "context_offset": 236052,
+          "expected_context_hex": "8c3f0202543f0202d0b915094850000308310000",
+          "expected_context_sha256": "e2f121931ff1bfc0aa2e72066b8fea1c129d9de12ed75658de2f27f1e683253f",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "CFRU gItemEffectTable2 repoint retained in base engine consumer",
+          "semantic_owner": "FIRERED_ITEM_EFFECT_TABLE_CONSUMER",
+          "site_address": "0x08039A1C",
+          "site_offset": 236060
+        },
+        {
+          "context_offset": 265264,
+          "expected_context_hex": "07d031e0243b0202d0b91509029daf2d2dd10848",
+          "expected_context_sha256": "4e7d3a123e333e1f43645a1a50248cdbd6d7c65c2d68ba964b24d076a9319ec2",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "CFRU gItemEffectTable2 repoint retained in base engine consumer",
+          "semantic_owner": "FIRERED_ITEM_EFFECT_TABLE_CONSUMER",
+          "site_address": "0x08040C38",
+          "site_offset": 265272
+        },
+        {
+          "context_offset": 269324,
+          "expected_context_hex": "07d02be0243b0202d0b91509009aaf2a26d10848",
+          "expected_context_sha256": "7c994c1d8bfb98b7727a1142e9e0f8b090769ace4e3199d87ee1f1b046266d05",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "CFRU gItemEffectTable2 repoint retained in base engine consumer",
+          "semantic_owner": "FIRERED_ITEM_EFFECT_TABLE_CONSUMER",
+          "site_address": "0x08041C14",
+          "site_offset": 269332
+        },
+        {
+          "context_offset": 271128,
+          "expected_context_hex": "af2b05d000208be0d0b91509af2b06d107480178",
+          "expected_context_sha256": "1794853948b831d5d0fdfc5767f4f35aab0d43542babb21704460e40685972ca",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "CFRU gItemEffectTable2 repoint retained in base engine consumer",
+          "semantic_owner": "FIRERED_ITEM_EFFECT_TABLE_CONSUMER",
+          "site_address": "0x08042320",
+          "site_offset": 271136
+        },
+        {
+          "context_offset": 271652,
+          "expected_context_hex": "fff78cff0fe00000d0b91509643f0202cf3c0202",
+          "expected_context_sha256": "a69e95d343056292a263644ccce9bece9342e86b0aab7cf03220642edc884f75",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "CFRU gItemEffectTable2 repoint retained in base engine consumer",
+          "semantic_owner": "FIRERED_ITEM_EFFECT_TABLE_CONSUMER",
+          "site_address": "0x0804252C",
+          "site_offset": 271660
+        },
+        {
+          "context_offset": 1202600,
+          "expected_context_hex": "002803d1002002e0d0b91509012002bc08470000",
+          "expected_context_sha256": "cdbcfcd8baed3a98b86bde5c5874f0abf1f1ecf892826e3f7bc87305aab9550f",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "CFRU gItemEffectTable2 repoint retained in base engine consumer",
+          "semantic_owner": "FIRERED_ITEM_EFFECT_TABLE_CONSUMER",
+          "site_address": "0x081259B0",
+          "site_offset": 1202608
+        },
+        {
+          "context_offset": 1204388,
+          "expected_context_hex": "00f006f919e00000d0b9150914b00302201c00f0",
+          "expected_context_sha256": "1ad8036b90b9078bebc68c078cd5303287401b059cf87422f006fce13c450640",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "CFRU gItemEffectTable2 repoint retained in base engine consumer",
+          "semantic_owner": "FIRERED_ITEM_EFFECT_TABLE_CONSUMER",
+          "site_address": "0x081260AC",
+          "site_offset": 1204396
+        },
+        {
+          "context_offset": 1209848,
+          "expected_context_hex": "04d000207fe00000d0b915094022101c08400028",
+          "expected_context_sha256": "c4a595af2e6a48d8b9840f78d2ce9141ae673e38644ab496c0bb9a89fff87625",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "CFRU gItemEffectTable2 repoint retained in base engine consumer",
+          "semantic_owner": "FIRERED_ITEM_EFFECT_TABLE_CONSUMER",
+          "site_address": "0x08127600",
+          "site_offset": 1209856
+        }
+      ],
+      "table_key": "item_effect_pointer2"
+    },
+    {
+      "capacity_site_set_sha256": "ebb240543d94135628dee2049008e901734b6f79e42b449a9b5aad19db416d8e",
+      "old_address": "0x0915B198",
+      "site_count": 4,
+      "sites": [
+        {
+          "context_offset": 17450288,
+          "expected_context_hex": "52020000b0df030298b115094cad1409d9020000",
+          "expected_context_sha256": "a9b794987117e52e33079d2e866900030cbcecfca4ae617040e1f6163f9029be",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_BATTLE_AI_FLING_LOOKUP_NEGATIVE",
+          "site_address": "0x090A4538",
+          "site_offset": 17450296
+        },
+        {
+          "context_offset": 17481456,
+          "expected_context_hex": "19020000d302000098b115097cb61409be020000",
+          "expected_context_sha256": "f54316a15d86d687c490019f623861fe26a0a4d919260c3119a115baf9f20622",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_BATTLE_AI_FLING_LOOKUP_POSITIVE",
+          "site_address": "0x090ABEF8",
+          "site_offset": 17481464
+        },
+        {
+          "context_offset": 17606104,
+          "expected_context_hex": "0e8e0009c83c020298b11509e23d0202582170b5",
+          "expected_context_sha256": "15efe4b2dafba7b43bf369cff5eb88da6396fafd98824c350d417e78c7ef4949",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_TRY_FLING",
+          "site_address": "0x090CA5E0",
+          "site_offset": 17606112
+        },
+        {
+          "context_offset": 17725600,
+          "expected_context_hex": "720200007302000098b115097c3e0202ec3d0202",
+          "expected_context_sha256": "75a9faab753eb8f67ba8b6a34b9750aec215322e9e69695179dd1feedc317ba8",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_GET_BASE_POWER_FLING_LOOKUP",
+          "site_address": "0x090E78A8",
+          "site_offset": 17725608
+        }
+      ],
+      "table_key": "item_fling"
+    },
+    {
+      "capacity_site_set_sha256": "937ead07915e9a551592844c893f12397f8016b7c0d0c23bb0b1c38236f36ac4",
+      "old_address": "0x0915A984",
+      "site_count": 10,
+      "sites": [
+        {
+          "context_offset": 17889340,
+          "expected_context_hex": "ff24825cf1e7c04684a91509038810b5002b0ad0",
+          "expected_context_sha256": "831f1299fdbaa98363796ace93369e2ebff3783ebe7dcc014d84c97978e081f6",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_COMPARE_ITEMS_BY_TYPE",
+          "site_address": "0x0910F844",
+          "site_offset": 17889348
+        },
+        {
+          "context_offset": 17891128,
+          "expected_context_hex": "9a4240417047c04684a91509044b4000c35a0222",
+          "expected_context_sha256": "93da6e21ce654aa90d8f864f5836a6058c6ed6b672ca8af4fd7ee36fc5991775",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_HEALTH_RECOVERY_ITEM",
+          "site_address": "0x0910FF40",
+          "site_offset": 17891136
+        },
+        {
+          "context_offset": 17891152,
+          "expected_context_hex": "9a4240417047c04684a91509034b4000c05a1238",
+          "expected_context_sha256": "082bb718e9dbafa805bb5d259737acae94940bd06f17d0d9cf44c46154f835d2",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_STATUS_RECOVERY_ITEM",
+          "site_address": "0x0910FF58",
+          "site_offset": 17891160
+        },
+        {
+          "context_offset": 17891172,
+          "expected_context_hex": "434258417047c04684a91509044b4000c35a0522",
+          "expected_context_sha256": "e6e3ff605b00cc63e9d59c9a7ed34833bf64e4c03c66e427469c3343e176443f",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_PP_RECOVERY_ITEM",
+          "site_address": "0x0910FF6C",
+          "site_offset": 17891180
+        },
+        {
+          "context_offset": 17891196,
+          "expected_context_hex": "9a4240417047c04684a91509044b4000c35a0122",
+          "expected_context_sha256": "af34fd55bf77b56a63dd0cb5205f0c1bbabd78bff7b0bc9777fddc642e5fa7d5",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_STAT_BOOST_DRINK",
+          "site_address": "0x0910FF84",
+          "site_offset": 17891204
+        },
+        {
+          "context_offset": 17891220,
+          "expected_context_hex": "9a4240417047c04684a91509034b4000c05a1c38",
+          "expected_context_sha256": "654a16d1374df46b92fcfedabbf5e9c1b6756c7f344f96a404e613c11dea6c1f",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_PP_BOOST_DRINK",
+          "site_address": "0x0910FF9C",
+          "site_offset": 17891228
+        },
+        {
+          "context_offset": 17891240,
+          "expected_context_hex": "434258417047c04684a91509034b4000c05a1b38",
+          "expected_context_sha256": "b732004989d41edef6b10216d0a562f6e69675bccc794ec062e18cfa89d094e2",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_EXP_MODIFIER_ITEM",
+          "site_address": "0x0910FFB0",
+          "site_offset": 17891248
+        },
+        {
+          "context_offset": 17891260,
+          "expected_context_hex": "434258417047c04684a91509044b4000c35a0522",
+          "expected_context_sha256": "e6e3ff605b00cc63e9d59c9a7ed34833bf64e4c03c66e427469c3343e176443f",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_ABILITY_MODIFIER_ITEM",
+          "site_address": "0x0910FFC4",
+          "site_offset": 17891268
+        },
+        {
+          "context_offset": 17891284,
+          "expected_context_hex": "9a4240417047c04684a91509034b4000c05a3a38",
+          "expected_context_sha256": "e2f40c8157e7c17bddb39160ad46fddc50a54ae7dc8ce6b446011b2cab1fd462",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_STAT_BOOST_WING",
+          "site_address": "0x0910FFDC",
+          "site_offset": 17891292
+        },
+        {
+          "context_offset": 17891304,
+          "expected_context_hex": "434258417047c04684a9150910b5034b01f03bfe",
+          "expected_context_sha256": "60bf3c12ae76b57012086c7c7b40ab6d0c8856d2b646889a9a075d4b5911a0a7",
+          "pointer_offset_in_context": 8,
+          "semantic_evidence": "pinned CFRU offsets.ini + source symbol",
+          "semantic_owner": "CFRU_IS_SHARD",
+          "site_address": "0x0910FFF0",
+          "site_offset": 17891312
+        }
+      ],
+      "table_key": "item_type_by_id"
+    }
+  ],
+  "task": "USER-MODERNIZATION-MEGA-STONE-BP-SHOP"
+}

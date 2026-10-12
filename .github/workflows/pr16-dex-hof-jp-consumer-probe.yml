@@ -1,0 +1,61 @@
+name: pr16-dex-hof-jp-consumer-probe
+run-name: current-japanese-candidate-bounded-measurement
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-dex-hof-jp-consumer-probe.yml
+      - scripts/pr16_dex_hof_jp_consumer_probe.py
+      - scripts/pr16_dex_hof_jp_consumer_probe_actions.py
+      - tests/test_pr16_dex_hof_jp_consumer_probe.py
+      - content/modernization/pr16_dex_hof_jp_consumer_probe_sources.json
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-dex-hof-jp-consumer-probe
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  bounded-current:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Current source and publication boundary
+        run: python3 -B scripts/pr16_dex_hof_jp_consumer_probe_actions.py guard
+      - name: Official Ubuntu toolchain for same current candidate
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev
+      - name: Fixed sources and bounded current measurements
+        id: measurement
+        run: python3 -B scripts/pr16_dex_hof_jp_consumer_probe_actions.py run
+      - name: Closed text publication guard
+        id: publication_guard
+        env:
+          PROBE_MEASUREMENT_OUTCOME: ${{ steps.measurement.outcome }}
+        if: always()
+        run: python3 -B scripts/pr16_dex_hof_jp_consumer_probe_actions.py export
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.publication_guard.outcome == 'success' }}
+        with:
+          name: pr16-jp-consumer-probe-text-only
+          path: public-jp-consumer-probe
+          retention-days: 90
+          if-no-files-found: error
+      - name: Read-only checkout and lightweight task graph
+        run: |
+          python3 -B scripts/validate_task_graph.py --check
+          git diff --exit-code

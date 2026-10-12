@@ -1,0 +1,40 @@
+{
+  "actual_new_native_processes_this_checkpoint": 0,
+  "evidence": [
+    {
+      "artifact_id": 10297959447,
+      "job_id": 103556287612,
+      "kind": "native",
+      "original_path": "content/modernization/pr16_fixed_form_acceptance_evidence/34694785866/original.zip",
+      "run_id": 34694785866,
+      "sha256": "4af3705661914957c55fba282e66d3abcc73625cd5e2c82bde388e19bddc0a01",
+      "size": 840801,
+      "tested_head": "54625b020731f68d72643b65e60cbb91c2f0524e"
+    },
+    {
+      "artifact_id": 10298660168,
+      "job_id": 103556933334,
+      "kind": "static",
+      "original_path": "content/modernization/pr16_fixed_form_acceptance_evidence/34695030927/original.zip",
+      "run_id": 34695030927,
+      "sha256": "4036ebbda5962133c616ce450f1e0a70d0a65aad54dac58e7654a9c37ca51f61",
+      "size": 530770,
+      "tested_head": "2bb937f7c2c1bedf29531f70b88d59163f349c65"
+    }
+  ],
+  "findings": {
+    "crowned": "both species reached effective Crowned/project move, spent PP5→4, won and returned to field. Strict idle controller rejected live Quest Log recording; use guarded live-field input only, not host state clearing.",
+    "necrozma_form_service": "native indices245/246 transition to1260/1261 and auto-save2→3, but moves98,733,235,33/PP11,5,3,7/bonus229 remain unchanged",
+    "rejected_test_assumption": "Photon Geyser is NOT a privileged automatic replacement and is NOT restored on defusion by the pinned native owner. Correct runner semantics before any ROM repair; do not implement the wrong assumption just to pass.",
+    "stage73_adapter": "only indices37..41 use Rotom move transaction; indices245/246 delegate to original species-only CollectionSupply owner",
+    "true_necrozma_owner": "party_menu.c Task_TryLearnPostFormeChangeMove after N-Solarizer/N-Lunarizer fusion prompts replacement when all four slots are occupied; defusion removes signature and compacts slots"
+  },
+  "next_cases": [
+    "zacian-crowned-battle-roundtrip",
+    "zamazenta-crowned-battle-roundtrip"
+  ],
+  "p03_fixed_form_gap_closed": false,
+  "release_ready": false,
+  "schema_version": 1,
+  "status": "STATIC_OWNER_AND_FAILED_NATIVE_CHECKPOINT"
+}

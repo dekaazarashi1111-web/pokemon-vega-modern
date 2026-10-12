@@ -1,0 +1,52 @@
+name: pr16-home-recovery-terminal
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-home-recovery-terminal.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-home-recovery-terminal
+  cancel-in-progress: false
+jobs:
+  terminal:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+      PR16_HOME_COLLECTION_ONLY: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify published completion and retained real evidence without replay
+        run: python -B scripts/pr16_home_recovery_native_actions.py terminal
+      - name: Validate fixed resume task graph and scoped index
+        run: |
+          python -B scripts/validate_task_graph.py --check
+          python -B scripts/pr16_resume.py check
+          python -B scripts/pr16_home_recovery_native_actions.py guard
+          git diff --cached --check
+      - name: Non-force same-branch terminal commit
+        run: |
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260928-HOME-RECOVERY: 全11stepと26画面3Saveの終端確認、回復済みSaveから再開 run=$GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$(git rev-parse HEAD)"
+          printf 'RESULT=DONE TASK=USER-20260928-HOME-RECOVERY VERIFY=PASS COMMIT=%s\n' "$(git rev-parse HEAD)"
+      - name: Save terminal receipt and exact committed text
+        run: python -B scripts/pr16_home_recovery_native_actions.py snapshot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-home-recovery-terminal-receipt
+          path: .local/pr16-home-native-run/checkpoint
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

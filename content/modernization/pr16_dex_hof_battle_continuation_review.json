@@ -1,0 +1,1244 @@
+{
+  "schema_version": 1,
+  "status": "PARTIAL_CONSUMER_ONLY_ZERO_NEW_CLASSIFICATIONS",
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "source_bindings": {
+    "src/general_bs_commands.c": {
+      "size": 170849,
+      "sha256": "ee23f75ab32b0f453128a9e5f9c7e77aba4a0de646e762a5fe821b61c1b20643"
+    },
+    "src/attackcanceler.c": {
+      "size": 43335,
+      "sha256": "5344ba9c634786753235ffc6d72cc0c8554930a42991bc81aa04bb1b839f768f"
+    },
+    "BPRJ.ld": {
+      "size": 68505,
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a"
+    }
+  },
+  "models": [
+    {
+      "command": 151024119,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 0,
+      "status2": 0,
+      "next_cursor": 151024129,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024129
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 0
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "89d94fff2af8ad52ad85d18925841c13977c0902820945edb58cdebccec7b618"
+      }
+    },
+    {
+      "command": 151024119,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 1,
+      "status2": 0,
+      "next_cursor": 151024129,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024129
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 1
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "8577ec12d6168b2131e82d189aeef13df6fe9301238f277050be8f3ffd1e4df3"
+      }
+    },
+    {
+      "command": 151024119,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 2,
+      "status2": 0,
+      "next_cursor": 151024129,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024129
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 2
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "3c56a039365ab07637c474a155d6b0b153de8179d22b6dfba8c699ea3062f605"
+      }
+    },
+    {
+      "command": 151024119,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 3,
+      "status2": 0,
+      "next_cursor": 151024129,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024129
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 3
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "694ae54b9252d31569b1583a685e946b353b603b6da75c0c6fe70a4e0c445ea6"
+      }
+    },
+    {
+      "command": 151024182,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 0,
+      "status2": 0,
+      "next_cursor": 151024192,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024192
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 0
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "b6c72654081e6fd677dd004dc50509ef818235e65473b591e9fab596281df77a"
+      }
+    },
+    {
+      "command": 151024182,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 1,
+      "status2": 0,
+      "next_cursor": 151024192,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024192
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 1
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "dfe1c8018163113f410b68b3e86306ccc0d7d05ae9f35dbbde387a399250afdc"
+      }
+    },
+    {
+      "command": 151024182,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 2,
+      "status2": 0,
+      "next_cursor": 151024192,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024192
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 2
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "89da3bbbc50f74beb894df1043a300fa0fbac7c5c81ab1b47428339821b3fcd5"
+      }
+    },
+    {
+      "command": 151024182,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 3,
+      "status2": 0,
+      "next_cursor": 151024192,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024192
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 3
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "3b36ac75d7c57e2f2225cb4e39777aa002d4af0744fa2f5ea5a0331094096206"
+      }
+    },
+    {
+      "command": 151024530,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 0,
+      "status2": 0,
+      "next_cursor": 151024540,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024540
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 0
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "d5ee0b981327950f5c7069dbf98ed63f56329362f70301e2180dca6c9258de49"
+      }
+    },
+    {
+      "command": 151024530,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 1,
+      "status2": 0,
+      "next_cursor": 151024540,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024540
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 1
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "c615b3845072c7be94f7a9e75de71ae127b6f9f2ea9d800e98da093b67e14501"
+      }
+    },
+    {
+      "command": 151024530,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 2,
+      "status2": 0,
+      "next_cursor": 151024540,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024540
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 2
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "8fdfe149f60ed7b116abada1a6a0ff266cb84a0ac74f3fafd1a940a80553ea04"
+      }
+    },
+    {
+      "command": 151024530,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 3,
+      "status2": 0,
+      "next_cursor": 151024540,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024540
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 3
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "1a4d09df6bb1b4ddc187765514a795d6d9b11129abb9342e05ec611c0a6bf2e9"
+      }
+    },
+    {
+      "command": 151024641,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 0,
+      "status2": 0,
+      "next_cursor": 151024651,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024651
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 0
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "1bb942b3a06a8f6480cfa0b1de186c015d7c6a3dcce372651bef8c4e133b9b74"
+      }
+    },
+    {
+      "command": 151024641,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 1,
+      "status2": 0,
+      "next_cursor": 151024651,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024651
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 1
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "ddc56360db78da3e05a123766ae41be95db4241742e5a189360c0ceb75ee5f37"
+      }
+    },
+    {
+      "command": 151024641,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 2,
+      "status2": 0,
+      "next_cursor": 151024651,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024651
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 2
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "514410feaf68f58a85b7b2a378e16d0aa7df9ce84f5fa538712a60d3232623b2"
+      }
+    },
+    {
+      "command": 151024641,
+      "opcode": 29,
+      "entry": 152073428,
+      "target_bank": 3,
+      "status2": 0,
+      "next_cursor": 151024651,
+      "writes": [
+        {
+          "address": 33701076,
+          "size": 4,
+          "value": 151024651
+        }
+      ],
+      "call_returns": [
+        {
+          "entry": 151862572,
+          "return_to": 152073440,
+          "result": 3
+        },
+        {
+          "entry": 151872104,
+          "return_to": 152073536,
+          "result": 0
+        }
+      ],
+      "callback_preserved": true,
+      "callee_saved_registers_preserved": true,
+      "full_root_chain_proven": false,
+      "instruction_count": 74,
+      "stack_write_count": 12,
+      "execution_identity": {
+        "size": 10956,
+        "sha256": "9476ad5b361a1756f7f085469c0cc68070c7a4e959f757eb387ab74afe5b8ba4"
+      }
+    }
+  ],
+  "protected_windows": [
+    {
+      "address": 151024119,
+      "size": 10,
+      "sha256": "b6e452af5a0a45c6ea15039a32b6cb0cbb096715daf6c131042f4a3505af9839"
+    },
+    {
+      "address": 151024120,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024121,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024122,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024123,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024124,
+      "size": 1,
+      "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+    },
+    {
+      "address": 151024125,
+      "size": 1,
+      "sha256": "4a64a107f0cb32536e5bce6c98c393db21cca7f4ea187ba8c4dca8b51d4ea80a"
+    },
+    {
+      "address": 151024126,
+      "size": 1,
+      "sha256": "949f94d858ef6ad1333164d796a0d777fd82f9155ece7d6fad68c0b992f0e7af"
+    },
+    {
+      "address": 151024127,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024128,
+      "size": 1,
+      "sha256": "2b4c342f5433ebe591a1da77e013d1b72475562d48578dca8b84bac6651c3cb9"
+    },
+    {
+      "address": 151024182,
+      "size": 10,
+      "sha256": "b6e452af5a0a45c6ea15039a32b6cb0cbb096715daf6c131042f4a3505af9839"
+    },
+    {
+      "address": 151024183,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024184,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024185,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024186,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024187,
+      "size": 1,
+      "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+    },
+    {
+      "address": 151024188,
+      "size": 1,
+      "sha256": "4a64a107f0cb32536e5bce6c98c393db21cca7f4ea187ba8c4dca8b51d4ea80a"
+    },
+    {
+      "address": 151024189,
+      "size": 1,
+      "sha256": "949f94d858ef6ad1333164d796a0d777fd82f9155ece7d6fad68c0b992f0e7af"
+    },
+    {
+      "address": 151024190,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024191,
+      "size": 1,
+      "sha256": "2b4c342f5433ebe591a1da77e013d1b72475562d48578dca8b84bac6651c3cb9"
+    },
+    {
+      "address": 151024530,
+      "size": 10,
+      "sha256": "b6e452af5a0a45c6ea15039a32b6cb0cbb096715daf6c131042f4a3505af9839"
+    },
+    {
+      "address": 151024531,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024532,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024533,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024534,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024535,
+      "size": 1,
+      "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+    },
+    {
+      "address": 151024536,
+      "size": 1,
+      "sha256": "4a64a107f0cb32536e5bce6c98c393db21cca7f4ea187ba8c4dca8b51d4ea80a"
+    },
+    {
+      "address": 151024537,
+      "size": 1,
+      "sha256": "949f94d858ef6ad1333164d796a0d777fd82f9155ece7d6fad68c0b992f0e7af"
+    },
+    {
+      "address": 151024538,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024539,
+      "size": 1,
+      "sha256": "2b4c342f5433ebe591a1da77e013d1b72475562d48578dca8b84bac6651c3cb9"
+    },
+    {
+      "address": 151024641,
+      "size": 10,
+      "sha256": "b6e452af5a0a45c6ea15039a32b6cb0cbb096715daf6c131042f4a3505af9839"
+    },
+    {
+      "address": 151024642,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024643,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024644,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024645,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024646,
+      "size": 1,
+      "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+    },
+    {
+      "address": 151024647,
+      "size": 1,
+      "sha256": "4a64a107f0cb32536e5bce6c98c393db21cca7f4ea187ba8c4dca8b51d4ea80a"
+    },
+    {
+      "address": 151024648,
+      "size": 1,
+      "sha256": "949f94d858ef6ad1333164d796a0d777fd82f9155ece7d6fad68c0b992f0e7af"
+    },
+    {
+      "address": 151024649,
+      "size": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+    },
+    {
+      "address": 151024650,
+      "size": 1,
+      "sha256": "2b4c342f5433ebe591a1da77e013d1b72475562d48578dca8b84bac6651c3cb9"
+    },
+    {
+      "address": 151254212,
+      "size": 4,
+      "sha256": "7c26f75ca71f40ec84c65f89c3e7c6d120cc1816a2bfe37c3283c0141e8fb9f3"
+    },
+    {
+      "address": 151862572,
+      "size": 2,
+      "sha256": "45032905ccc19f93939ffc8a27669cc54ac144bd58ce513681f9320712ed9b2c"
+    },
+    {
+      "address": 151862574,
+      "size": 2,
+      "sha256": "9aff6030a8e84cc47176fdef17e5eca720c9b8902c0712e4a5a971441698e231"
+    },
+    {
+      "address": 151862576,
+      "size": 2,
+      "sha256": "0b86a0155226624182365551b5bdb2ef51f08e0bd314dfa2614be4efcf7239fc"
+    },
+    {
+      "address": 151862578,
+      "size": 2,
+      "sha256": "d00475282874683e84ffcafeb4751fd5c81734811427e3c6a88b3732393d0544"
+    },
+    {
+      "address": 151862580,
+      "size": 2,
+      "sha256": "8509b81230019d2ad970d970f791dfbdc8caf54f5c594fcd327cef9feed206c1"
+    },
+    {
+      "address": 151862582,
+      "size": 2,
+      "sha256": "c3e2fea8610fe33f7d1fb00d01e587ea21fa1086d580a41b188589b2062a0b2b"
+    },
+    {
+      "address": 151862584,
+      "size": 2,
+      "sha256": "dbc3123448b0cc75d5015664bfd2b4d9121855ab292cb234c0a2446e8d34aa05"
+    },
+    {
+      "address": 151862588,
+      "size": 2,
+      "sha256": "d61f3ece088ca2fb6ebd3f47479ea5514bdbc39d0decd1f678f629b107878331"
+    },
+    {
+      "address": 151862654,
+      "size": 2,
+      "sha256": "dda7e47e4d1e6dc244c2207991e28eb4b566ba9054553afcdb966a9ce627cbaa"
+    },
+    {
+      "address": 151862656,
+      "size": 2,
+      "sha256": "0572e74d18bddef457544b6c8899fe3deaf157f25f31ab1d87df0706f3eb49f9"
+    },
+    {
+      "address": 151862658,
+      "size": 2,
+      "sha256": "6d538d73f8f2e6c9c7d94bc999588a9e31ee4173ae96b9605b90dca80d6c3f3f"
+    },
+    {
+      "address": 151862668,
+      "size": 4,
+      "sha256": "867bf688fb1aae15e8475ced025033cd534871c51fc1ae0caeaaf4cccde38fcb"
+    },
+    {
+      "address": 151862692,
+      "size": 4,
+      "sha256": "03dede61d14fa5184908109e0378519cf70b2698578181519d017c8a2e3f001d"
+    },
+    {
+      "address": 151872104,
+      "size": 2,
+      "sha256": "0f0a78a9a0c1a60a1ae3e55966184ced0c89c9ba38c97c1e0b41a65f154fc4ab"
+    },
+    {
+      "address": 151872106,
+      "size": 2,
+      "sha256": "2ca1ee3f15428996845bef9e5c407de689d825e762a000f8836bec76e51447d2"
+    },
+    {
+      "address": 151872108,
+      "size": 2,
+      "sha256": "8b7c1ab7b8b90cc95828f321d3e7d8f7aac869305fbe05fc74a9702ec7d27d95"
+    },
+    {
+      "address": 151872110,
+      "size": 2,
+      "sha256": "9826ad44549992c3337e801335a73625cbbb68bf07637c1927a1f4def22f4211"
+    },
+    {
+      "address": 151872112,
+      "size": 2,
+      "sha256": "b61af5a0a3758678bbd846a2cff1c45e43f8f053a0335152bdfa1a0316f9a382"
+    },
+    {
+      "address": 151872114,
+      "size": 2,
+      "sha256": "20481ef20874a86469a8a7b5512871d428b232ea4ea8f44bfffe2c5b1e2b3d1b"
+    },
+    {
+      "address": 151872116,
+      "size": 2,
+      "sha256": "9b4fb24edd6d1d8830e272398263cdbf026b97392cc35387b991dc0248a628f9"
+    },
+    {
+      "address": 151872118,
+      "size": 2,
+      "sha256": "474f2af47544e9c7ce4338cabd43c5ca1c26432b7300ce387406157ea433891f"
+    },
+    {
+      "address": 151872120,
+      "size": 2,
+      "sha256": "aae06928db18f53826583cb04e592526b12fbb4c9b0ab4bdb928360132bf3c60"
+    },
+    {
+      "address": 151872122,
+      "size": 2,
+      "sha256": "922f68aaa72f5c7ae62eff5c06ecb72ba11ff7d66891cb6a9fcff8bb1a639338"
+    },
+    {
+      "address": 151872124,
+      "size": 2,
+      "sha256": "31ad9e712aea2a78b3b24a595ce1f05f6c5e4f7dd901ffe9b3d767d7dcc126e9"
+    },
+    {
+      "address": 151872144,
+      "size": 4,
+      "sha256": "0c7a9543324a7e8c5a9bed7fed6175b2b9bce628a7c71301fafe3e64c8555bab"
+    },
+    {
+      "address": 152073428,
+      "size": 2,
+      "sha256": "636468142fdb68e6a4d0408f0a196c2942a9e8ab6eafff1255d4e2e058d4ebff"
+    },
+    {
+      "address": 152073430,
+      "size": 2,
+      "sha256": "6f4a2ef9674a955e02545ea6b3a423d649620123b1e84eb7dcba0e7c38b073ab"
+    },
+    {
+      "address": 152073432,
+      "size": 2,
+      "sha256": "3fa74174041e56ca5fd51cb4799fe0ac63529aa7c63eec944d4bb2a92c912273"
+    },
+    {
+      "address": 152073434,
+      "size": 2,
+      "sha256": "33a64d7377d23750fd06ffc86fffd219e1288c58ab0f4f0450d109cec1c6ebb8"
+    },
+    {
+      "address": 152073436,
+      "size": 4,
+      "sha256": "cda4e700a22be612075a6cc28e989881dd427234a13346ffa3be8a8950545d45"
+    },
+    {
+      "address": 152073440,
+      "size": 2,
+      "sha256": "3fa74174041e56ca5fd51cb4799fe0ac63529aa7c63eec944d4bb2a92c912273"
+    },
+    {
+      "address": 152073442,
+      "size": 2,
+      "sha256": "0e1b2e15f04bd426fd869a13a41a18afe85b1b7f423b3a64b7bfbf1155740922"
+    },
+    {
+      "address": 152073444,
+      "size": 2,
+      "sha256": "ec5ff1d90a6b859779ecd83452faef4e65e3458976c900287e69099fa2555211"
+    },
+    {
+      "address": 152073446,
+      "size": 2,
+      "sha256": "f9535535516e208e35e9c0e78efc9f998672699f00c34688d01678bbe58b95a6"
+    },
+    {
+      "address": 152073448,
+      "size": 2,
+      "sha256": "a4621539db3e320586bf47fc4f9bdecc959f59f30802dedd08b8cda90c92d27f"
+    },
+    {
+      "address": 152073450,
+      "size": 2,
+      "sha256": "774cd31a9820fa0b5fbd1f596837399a495f4fdf0709061b6f202200a69437bc"
+    },
+    {
+      "address": 152073452,
+      "size": 2,
+      "sha256": "60f01593e68e330e64443aebe8bce76c71ea4c61bd8ba831215edde7f4de85a5"
+    },
+    {
+      "address": 152073454,
+      "size": 2,
+      "sha256": "330f727f4b59150983aa62920f268230b4148719ee95469c8f0cbd6fbc1dcb54"
+    },
+    {
+      "address": 152073456,
+      "size": 2,
+      "sha256": "ad20ba36ffc61a58f5e44fc82b3a7bac1e4e8d5e99cc36424ba9199fbf07b6e4"
+    },
+    {
+      "address": 152073458,
+      "size": 2,
+      "sha256": "8c6f3f91183eca3a74635a35984bcc7cdee3c8c354641c8cf0a377b2b5d206af"
+    },
+    {
+      "address": 152073460,
+      "size": 2,
+      "sha256": "9293540f5f5b8caecef6a957579ba242c4c81bfc4f7a7f03674bd70349c57e53"
+    },
+    {
+      "address": 152073462,
+      "size": 2,
+      "sha256": "30880c87c92edd0e8cb5b899f0c9afdcc9fadb327658453804f4c75f17c90c2a"
+    },
+    {
+      "address": 152073464,
+      "size": 2,
+      "sha256": "2dc7c8b9a1cea9d896d36c3c023025c135e77b5eec8b64b4ff9015fb87455a32"
+    },
+    {
+      "address": 152073466,
+      "size": 2,
+      "sha256": "a8b1b4fe0930de4baff9b55286f7ba78edbcb3f2b18f6ad7e9336c541bf60515"
+    },
+    {
+      "address": 152073468,
+      "size": 2,
+      "sha256": "ad20ba36ffc61a58f5e44fc82b3a7bac1e4e8d5e99cc36424ba9199fbf07b6e4"
+    },
+    {
+      "address": 152073470,
+      "size": 2,
+      "sha256": "d5e80fd3dbac40be00ed0d6b8df020747ed6b89dbe493076ef50bf13a987c45d"
+    },
+    {
+      "address": 152073472,
+      "size": 2,
+      "sha256": "9295396046d1e8b252ca264a82c31d35765e94a1cdfeee543925e14379f62cc0"
+    },
+    {
+      "address": 152073474,
+      "size": 2,
+      "sha256": "f0f639189843668f480629df87f02cbef73dfc70d2e4e33b280ca7142827b314"
+    },
+    {
+      "address": 152073476,
+      "size": 2,
+      "sha256": "36696d34fce38b101fed5298e3166ea22a9954bd6d237930c2bd96b03c041a62"
+    },
+    {
+      "address": 152073478,
+      "size": 2,
+      "sha256": "a4621539db3e320586bf47fc4f9bdecc959f59f30802dedd08b8cda90c92d27f"
+    },
+    {
+      "address": 152073480,
+      "size": 2,
+      "sha256": "00718864e4c0096bc794275c5717b873a013bcf69067d8359519b9324b2d3f7e"
+    },
+    {
+      "address": 152073482,
+      "size": 2,
+      "sha256": "ceb827ad3d3884fd4d50ae6099d6d50c09a21e72ebd309708e8b69d93df19e55"
+    },
+    {
+      "address": 152073484,
+      "size": 2,
+      "sha256": "0041239c12eed873bfeaea3652d47bc8662a9e7b068be87888611a319c873ea9"
+    },
+    {
+      "address": 152073486,
+      "size": 2,
+      "sha256": "541232e2aa3f8edc67d9f9ea0c39d63311cda71c466343617fd9f6672ffd31a3"
+    },
+    {
+      "address": 152073488,
+      "size": 2,
+      "sha256": "015e4a471e2724ab3c5d0d614e08e782e45c9d99548d8c52951b1d27edca5db3"
+    },
+    {
+      "address": 152073490,
+      "size": 2,
+      "sha256": "15bdb3647ce1ce59732e9746b40dddcdc89200bb3a2fea2cfcb2e1590421d68d"
+    },
+    {
+      "address": 152073492,
+      "size": 2,
+      "sha256": "e70c70f47188140af0c19bc341d2433059bfc88d9e406d4480c23fb96de0bcad"
+    },
+    {
+      "address": 152073494,
+      "size": 2,
+      "sha256": "845dc26db5d0740b3f6e79768d52818485932f9d2a7d3a6f983dbd78d38d5741"
+    },
+    {
+      "address": 152073496,
+      "size": 2,
+      "sha256": "27fdcadefa183bc0f3ae58e421ec160d12a833c02a65ec4f0b6fc7f9bbcfcd93"
+    },
+    {
+      "address": 152073498,
+      "size": 2,
+      "sha256": "1eefadbe832b884e8e2c0c5ef7497d5b03ae1f380728fdb1416cf89bba260795"
+    },
+    {
+      "address": 152073500,
+      "size": 2,
+      "sha256": "a1f90b45c4855033bfef8f7cfe656375b32928a9b0e4a049af0d6f9043c60bd3"
+    },
+    {
+      "address": 152073502,
+      "size": 2,
+      "sha256": "89e6171a4a3b59144e2870d5845f69c88d8854032933a09528c0e9985cecff2e"
+    },
+    {
+      "address": 152073510,
+      "size": 2,
+      "sha256": "3fa74174041e56ca5fd51cb4799fe0ac63529aa7c63eec944d4bb2a92c912273"
+    },
+    {
+      "address": 152073512,
+      "size": 2,
+      "sha256": "e21ef004e72f5ee91147436e546b095269528f2a7dc8cf5395c28183a7eaa9aa"
+    },
+    {
+      "address": 152073514,
+      "size": 2,
+      "sha256": "c2dbf3783769aef47692faf2bec49a161a41bc0bcb0fda1f2e0ecb4f836b1780"
+    },
+    {
+      "address": 152073516,
+      "size": 2,
+      "sha256": "0d4542e69834fdd98d546c52551d295d1465ce1e0870def994e76e97d60d4736"
+    },
+    {
+      "address": 152073522,
+      "size": 2,
+      "sha256": "80fafc00b11702de93935fc695be340573dfdc7c9d5f31ca969eae613dabd75d"
+    },
+    {
+      "address": 152073524,
+      "size": 2,
+      "sha256": "3ed91a0589f1424623dcfdf0b98f95b4dd470c792831ff577ae4d6c7c21d5f0c"
+    },
+    {
+      "address": 152073526,
+      "size": 2,
+      "sha256": "80fafc00b11702de93935fc695be340573dfdc7c9d5f31ca969eae613dabd75d"
+    },
+    {
+      "address": 152073528,
+      "size": 2,
+      "sha256": "913da1f8df6f8fd47593840d533ba0458cc9873996bf310460abb495b34c232a"
+    },
+    {
+      "address": 152073530,
+      "size": 2,
+      "sha256": "ea8131cbfe4c74bbd860e361d7634a023fa81cc54838f7c43a6df1bc9b2c3799"
+    },
+    {
+      "address": 152073532,
+      "size": 4,
+      "sha256": "c02e18be6770f3bdac5a68a66fa9353e5847355c7f5ff55a9a5cea362b3a47fb"
+    },
+    {
+      "address": 152073536,
+      "size": 2,
+      "sha256": "2ee788372518190a6ab539cbb20331df1040f21846e3ba836c269aee907c894c"
+    },
+    {
+      "address": 152073538,
+      "size": 2,
+      "sha256": "dfade6dec3919bba938fa9039abce31c98a7c24227cc30a504f8eee1eebaaf05"
+    },
+    {
+      "address": 152073540,
+      "size": 2,
+      "sha256": "49ee35b4c1732e7d10fd4a3b3dce5dbf35ca38f60b31333506082d1cb00657f8"
+    },
+    {
+      "address": 152073542,
+      "size": 2,
+      "sha256": "9ab3c91bcedc0e9de3664e6e7f487cdd88ffab3857520311458dd2542bf9de23"
+    },
+    {
+      "address": 152073544,
+      "size": 2,
+      "sha256": "38449dc89395f38d0d39ae3f35382988f14925bd149365c1c8de255f3bd71b2a"
+    },
+    {
+      "address": 152073548,
+      "size": 4,
+      "sha256": "59c48c41c063282aaef89b4f33fbc27388f489e7aee02aae3d46901ecc97a3af"
+    },
+    {
+      "address": 152073552,
+      "size": 4,
+      "sha256": "0c7a9543324a7e8c5a9bed7fed6175b2b9bce628a7c71301fafe3e64c8555bab"
+    },
+    {
+      "address": 152073556,
+      "size": 4,
+      "sha256": "9e451f8899715509b27346bd9ba5f852540c227c66031f9146589b6fb30f32c3"
+    },
+    {
+      "address": 152073560,
+      "size": 4,
+      "sha256": "0c4646b6b59e20d6504ff5dae1a5c0cf52ccdcb54e77e605e1a922ec265eac1a"
+    },
+    {
+      "address": 152073564,
+      "size": 4,
+      "sha256": "bf906cd362964d265fdb27547a75d2ad2ce86cccec49cdc613764a77dc5f149d"
+    },
+    {
+      "address": 152441872,
+      "size": 4,
+      "sha256": "18f024c127c32184b8e39224af70e26c3bc9d1daf21f6a263faeddbfff83316d"
+    }
+  ],
+  "newly_classified": 0,
+  "unproven_hit_addresses": [
+    151004088,
+    151008779,
+    151008973,
+    151010306,
+    151018900,
+    151024127,
+    151024190,
+    151024241,
+    151024541,
+    151024690
+  ],
+  "root_frontier": {
+    "common_attackcanceler_closed": false,
+    "leech_seed_root_closed": false
+  },
+  "donor_leased": false,
+  "indirect_reference_completeness_claimed": false,
+  "full_story_reachability_claimed": false,
+  "native_processes": 0,
+  "rom_writes": 0
+}

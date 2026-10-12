@@ -1,0 +1,49 @@
+name: pr16-bp-retention-session-note
+run-name: 未反映ABI案・ツール停止の引継ぎ記録だけ（ROM解析/nativeなし）
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-retention-session-note.yml
+      - scripts/pr16_bp_retention_session_note.py
+      - tests/test_pr16_bp_retention_session_note.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-bp-party-retention-record
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 同一停止点へ未反映を記録・受入は変更しない
+        run: python3 scripts/pr16_bp_retention_session_note.py record
+      - name: 記録だけの回帰と既存整合性gate
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-retention-session-note
+          python3 -m unittest discover -s tests -p test_pr16_bp_retention_session_note.py -v 2>&1 | tee "$out/record-tests.txt"
+          python3 -m unittest discover -s tests -p test_pr16_resume.py -v 2>&1 | tee "$out/resume-tests.txt"
+          python3 scripts/pr16_bp_retention_session_note.py check
+          python3 scripts/pr16_resume.py check | tee "$out/resume-check.json"
+          python3 scripts/validate_task_graph.py | tee "$out/task-graph.txt"
+          git diff --check
+      - name: 既存append-only/index/guard gateと非force push
+        run: python3 scripts/pr16_bp_retention_session_note.py publish
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-retention-session-note
+          path: .local/pr16-bp-retention-session-note/
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error

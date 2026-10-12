@@ -1,0 +1,109 @@
+{
+  "all_26_real_screens_verified": true,
+  "all_input_observations_match": true,
+  "artifact": {
+    "digest": "sha256:78d0d78872923c157acfe82d0fbafa6bc8513290b4752f8827e684a7e67c866b",
+    "expires_at": "2026-12-27T01:33:43Z",
+    "id": 10946773841,
+    "name": "pr16-home-recovery-native-checkpoint",
+    "size_in_bytes": 17521370,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "ee915a7fe4f9ad987a04063c094f30f5509ce760",
+      "id": 36366437821,
+      "repository_id": 1358127462
+    }
+  },
+  "collection_native_processes": 0,
+  "copy_failure": "PermissionError on second copy2 to read-only checkpoint/candidate.gba; native processes had already exited",
+  "job_id": 108753682061,
+  "native_processes_completed": 2,
+  "old_run_relabelled_success": false,
+  "returncodes": [
+    0,
+    0
+  ],
+  "run": {
+    "conclusion": "failure",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "ee915a7fe4f9ad987a04063c094f30f5509ce760",
+    "id": 36366437821,
+    "path": ".github/workflows/pr16-home-recovery-native.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "schema_version": 1,
+  "stderr_sizes": [
+    0,
+    0
+  ],
+  "steps": [
+    {
+      "conclusion": "success",
+      "name": "Set up job",
+      "number": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/checkout@v4",
+      "number": 2,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "name": "Measure only new mother recovery and independent Continue",
+      "number": 3,
+      "status": "completed"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "Record immutable recovery evidence and fixed resume",
+      "number": 4,
+      "status": "completed"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "Validate task graph resume and scoped index",
+      "number": 5,
+      "status": "completed"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "Non-force same-branch completion commit",
+      "number": 6,
+      "status": "completed"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "Preserve committed text and completion HEAD",
+      "number": 7,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "name": "Preserve partial native progress without replay",
+      "number": 8,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/upload-artifact@v4",
+      "number": 9,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Post Run actions/checkout@v4",
+      "number": 18,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Complete job",
+      "number": 19,
+      "status": "completed"
+    }
+  ]
+}

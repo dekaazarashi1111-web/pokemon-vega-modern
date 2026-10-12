@@ -1,0 +1,55 @@
+name: PR16 P08 Ring representative
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_p08_ring_representative.py
+      - tests/test_pr16_p08_ring_representative.py
+      - .github/workflows/pr16-p08-ring.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-suppression
+  cancel-in-progress: false
+jobs:
+  representative:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: P08完了Actions・原本と22context契約を確認し開始を非force保存
+        id: prepare
+        run: |
+          mkdir -p .local/pr16-p08-ring
+          python3 scripts/pr16_p08_ring_representative.py prepare > .local/pr16-p08-ring/prepare.stdout 2> .local/pr16-p08-ring/prepare.stderr
+      - name: host mGBA依存のみ導入（ARM buildなし）
+        run: |
+          sudo apt-get update > .local/pr16-p08-ring/apt-update.txt 2>&1
+          sudo apt-get install -y libmgba-dev > .local/pr16-p08-ring/apt-install.txt 2>&1
+      - name: 同じ46487d98候補のRing active代表1件だけ実行
+        run: python3 scripts/pr16_p08_ring_representative.py native
+      - name: 未観測と成功を分離し原本・引継ぎ・両ログを非force保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_p08_ring_representative.py finish
+      - name: ROM・saveを除外し画面と原本を保存
+        if: always()
+        run: python3 scripts/pr16_p08_ring_representative.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-p08-ring
+          path: .local/pr16-p08-ring/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: 失敗を成功に読み替えない
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_p08_ring_representative.py result

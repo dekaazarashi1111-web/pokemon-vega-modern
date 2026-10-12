@@ -1,0 +1,49 @@
+name: PR16 Circus cold-load recovery fix
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-coldboot.yml
+      - scripts/pr16_circus_coldboot.py
+      - scripts/pr16_circus_coldboot_probe.py
+      - overlays/circus_streak/circus_streak_cold_load.c
+      - tools/mgba_pr16_circus_coldboot.c
+      - tests/test_pr16_circus_coldboot.py
+      - tests/fixtures/circus_cold_load_fixture.c
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-three-win
+  cancel-in-progress: false
+jobs:
+  circus-coldboot:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 旧失敗と自動Save2回を照合しloader保護契約を保存
+        id: prepare
+        run: python3 scripts/pr16_circus_coldboot.py prepare
+      - name: 2独立ARM linkと中断best1保存復帰を検証
+        run: python3 scripts/pr16_circus_coldboot.py pipeline
+      - name: 成否原本と固定引継ぎと両ログを非force保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_coldboot.py finish
+      - name: ROMとsaveを除いた証拠を保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_coldboot.py pack
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.prepare.outcome == 'success'
+        with:
+          name: pr16-circus-coldboot
+          path: .local/pr16-circus-coldboot-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

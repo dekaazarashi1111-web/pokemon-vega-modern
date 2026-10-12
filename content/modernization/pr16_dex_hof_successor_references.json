@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "status": "PASS_TWO_TYPED_DPCM_REFERENCES_ON_FORMAL_PARENT_CURRENT_WINDOW_RECHECK_REQUIRED",
+  "formal_candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "target_candidate": {
+    "size": 33554432,
+    "sha256": "88be88116bd452bd70cffaf2a820d5c6c6b6b7410fa603a9a0228b694725d5de"
+  },
+  "target_requires_same_window_hashes": true,
+  "scope_ja": "save後継body参照監査の追加2件だけ。全ROM参照完全性や新ROM配置の受入を主張しない。",
+  "candidates": [
+    {
+      "address": 163464128,
+      "size": 4,
+      "sha256": "ab92557db8b5f5c42fcc6dab65ecd25db4c2fddbd8dc97e96a8c777de9001e4d",
+      "target": 167517770,
+      "scan_kind": "THUMB_BL_SHAPE",
+      "classification": "FALSE_POSITIVE_DPCM_CRY_SAMPLE",
+      "root": 163458660,
+      "encoded_payload_offset": 5452,
+      "block_index": 165,
+      "offset_in_block": 7,
+      "meaning_ja": "4byteすべてが型付きDPCM音声のdelta nibble列内。命令又は関数pointerではない。"
+    },
+    {
+      "address": 162951636,
+      "size": 4,
+      "sha256": "1a0b9e9126ef055487706206e03c371db3e8bf7818f13fb2d20eb5bada4788fd",
+      "target": 167518758,
+      "scan_kind": "ALIGNED_U32",
+      "classification": "FALSE_POSITIVE_DPCM_CRY_SAMPLE",
+      "root": 162946020,
+      "encoded_payload_offset": 5600,
+      "block_index": 169,
+      "offset_in_block": 23,
+      "meaning_ja": "4byteすべてが型付きDPCM音声のdelta nibble列内。命令又は関数pointerではない。",
+      "stored_value": 167518759,
+      "prior_proof": "content/modernization/pr16_dex_capacity_lease.json#range_candidates/33"
+    }
+  ],
+  "roots": [
+    {
+      "address": 163458660,
+      "size": 6385,
+      "sha256": "3f6e708c122be7fb5ec23075c11dcbe567f805af32421413ce4039b9dcbadc56",
+      "kind": "dpcm4",
+      "header": {
+        "address": 163458660,
+        "size": 16,
+        "sha256": "b7b130d1ec7844cc46c9c969dc637659571eaa95981ec96099fec3db67f71fd0"
+      },
+      "wave_type": 1,
+      "wave_status": 0,
+      "wave_frequency": 22579200,
+      "wave_loop_start": 0,
+      "decoded_size": 12352,
+      "decoded_sha256": "43edc7fedab91f21004021545202df849792be6cfeef212d2ba0a90efc047c79",
+      "decoded_full_block_samples": 12352,
+      "decoded_full_block_sha256": "43edc7fedab91f21004021545202df849792be6cfeef212d2ba0a90efc047c79",
+      "encoded_blocks": 193,
+      "encoded_block_bytes": 33,
+      "decoded_block_samples": 64,
+      "decoder_read_end_exclusive": 163465045,
+      "typed_tables": [
+        {
+          "table_name": "species_cry",
+          "table_address": 156630764,
+          "stride": 12,
+          "table_root_sites": [
+            {
+              "address": 134682808,
+              "size": 4,
+              "sha256": "a8693c7b91e4e9b62dc8b0661042bd43eae8a6f9e4481a5968221ffea802db82",
+              "value": 156630764
+            },
+            {
+              "address": 134875804,
+              "size": 4,
+              "sha256": "a8693c7b91e4e9b62dc8b0661042bd43eae8a6f9e4481a5968221ffea802db82",
+              "value": 156630764
+            }
+          ],
+          "rows": [
+            {
+              "row_index": 838,
+              "row": {
+                "address": 156640820,
+                "size": 12,
+                "sha256": "f783ff82f62b452bca0a232236d000f1ce7b10fc1df1ac28d906fa8e42700a20"
+              },
+              "wave_pointer_site": 156640824
+            }
+          ]
+        },
+        {
+          "table_name": "species_cry2",
+          "table_address": 156650816,
+          "stride": 12,
+          "table_root_sites": [
+            {
+              "address": 134682792,
+              "size": 4,
+              "sha256": "6041486a3e1f951add0fcb18b3775bd3e235a9833f6d6aa078b9710637fafc71",
+              "value": 156650816
+            },
+            {
+              "address": 134875788,
+              "size": 4,
+              "sha256": "6041486a3e1f951add0fcb18b3775bd3e235a9833f6d6aa078b9710637fafc71",
+              "value": 156650816
+            }
+          ],
+          "rows": [
+            {
+              "row_index": 838,
+              "row": {
+                "address": 156660872,
+                "size": 12,
+                "sha256": "0f4ec76da196c1d0e53831a7242532090743fa7711f3e6742e1e7c8379e39f9a"
+              },
+              "wave_pointer_site": 156660876
+            }
+          ]
+        }
+      ],
+      "refs": [
+        156640824,
+        156660876
+      ],
+      "reference_windows": [
+        {
+          "address": 156640824,
+          "size": 4,
+          "sha256": "51406c6539b9ffd65426657ab159b9dc8b141780b4e1f60b11e4c550a4ea7bfd",
+          "value": 163458660
+        },
+        {
+          "address": 156660876,
+          "size": 4,
+          "sha256": "51406c6539b9ffd65426657ab159b9dc8b141780b4e1f60b11e4c550a4ea7bfd",
+          "value": 163458660
+        }
+      ],
+      "next_active_wave_root": 163465080,
+      "bytes_to_next_active_root": 35,
+      "gap_is_not_claimed_free": true
+    },
+    {
+      "address": 162946020,
+      "size": 8662,
+      "sha256": "9f08a52758c3f79dd7ec356f46d7c52c15e4933ed7e89f086beaadeffb91a1c6",
+      "kind": "dpcm4",
+      "header": {
+        "address": 162946020,
+        "size": 16,
+        "sha256": "7ba8869f142d2596d399065184d135b9671bb4b54cf819169ebde95730d8e5c1"
+      },
+      "wave_type": 1,
+      "wave_status": 0,
+      "wave_frequency": 10764288,
+      "wave_loop_start": 0,
+      "decoded_size": 16738,
+      "decoded_sha256": "df5681d67d90cd770770abd01bf38b7743b0e3ba79da9d502c7e31d321179c2b",
+      "decoded_full_block_samples": 16768,
+      "decoded_full_block_sha256": "e85ddf3fe736b2455d6867509312a554a1ffd54bc10ff04c817b8db21f7dc37a",
+      "encoded_blocks": 262,
+      "encoded_block_bytes": 33,
+      "decoded_block_samples": 64,
+      "decoder_read_end_exclusive": 162954682,
+      "typed_tables": [
+        {
+          "table_name": "species_cry",
+          "table_address": 156630764,
+          "stride": 12,
+          "table_root_sites": [
+            {
+              "address": 134682808,
+              "size": 4,
+              "sha256": "a8693c7b91e4e9b62dc8b0661042bd43eae8a6f9e4481a5968221ffea802db82",
+              "value": 156630764
+            },
+            {
+              "address": 134875804,
+              "size": 4,
+              "sha256": "a8693c7b91e4e9b62dc8b0661042bd43eae8a6f9e4481a5968221ffea802db82",
+              "value": 156630764
+            }
+          ],
+          "rows": [
+            {
+              "row_index": 1008,
+              "row": {
+                "address": 156642860,
+                "size": 12,
+                "sha256": "0fdee417352169509e3a833cde088920e9f390ff7414ff8a341ff5a144230a6a"
+              },
+              "wave_pointer_site": 156642864
+            },
+            {
+              "row_index": 1099,
+              "row": {
+                "address": 156643952,
+                "size": 12,
+                "sha256": "0fdee417352169509e3a833cde088920e9f390ff7414ff8a341ff5a144230a6a"
+              },
+              "wave_pointer_site": 156643956
+            }
+          ]
+        },
+        {
+          "table_name": "species_cry2",
+          "table_address": 156650816,
+          "stride": 12,
+          "table_root_sites": [
+            {
+              "address": 134682792,
+              "size": 4,
+              "sha256": "6041486a3e1f951add0fcb18b3775bd3e235a9833f6d6aa078b9710637fafc71",
+              "value": 156650816
+            },
+            {
+              "address": 134875788,
+              "size": 4,
+              "sha256": "6041486a3e1f951add0fcb18b3775bd3e235a9833f6d6aa078b9710637fafc71",
+              "value": 156650816
+            }
+          ],
+          "rows": [
+            {
+              "row_index": 1008,
+              "row": {
+                "address": 156662912,
+                "size": 12,
+                "sha256": "cb43e25754ee75cc1a1ca6195d6ee467195947087397c404cbc967f7dcdf1aeb"
+              },
+              "wave_pointer_site": 156662916
+            },
+            {
+              "row_index": 1099,
+              "row": {
+                "address": 156664004,
+                "size": 12,
+                "sha256": "cb43e25754ee75cc1a1ca6195d6ee467195947087397c404cbc967f7dcdf1aeb"
+              },
+              "wave_pointer_site": 156664008
+            }
+          ]
+        }
+      ],
+      "refs": [
+        155978472,
+        155979564,
+        155998512,
+        155999604,
+        156642864,
+        156643956,
+        156662916,
+        156664008,
+        161490296,
+        161491388,
+        161507576,
+        161508668,
+        167144420,
+        167145512,
+        167163872,
+        167164964
+      ],
+      "reference_windows": [
+        {
+          "address": 155978472,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 155979564,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 155998512,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 155999604,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 156642864,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 156643956,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 156662916,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 156664008,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 161490296,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 161491388,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 161507576,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 161508668,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 167144420,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 167145512,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 167163872,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        },
+        {
+          "address": 167164964,
+          "size": 4,
+          "sha256": "3060f5279cff32b93aca42dfbed9e7cc2f4fcd707c85256f213638673c6c4014",
+          "value": 162946020
+        }
+      ],
+      "prior_encoded_range_binding": {
+        "address": 162946020,
+        "size": 8662,
+        "sha256": "9f08a52758c3f79dd7ec356f46d7c52c15e4933ed7e89f086beaadeffb91a1c6"
+      },
+      "prior_wave_pointer_sites": [
+        155978472,
+        155979564,
+        155998512,
+        155999604,
+        156642864,
+        156643956,
+        156662916,
+        156664008,
+        161490296,
+        161491388,
+        161507576,
+        161508668,
+        167144420,
+        167145512,
+        167163872,
+        167164964
+      ]
+    }
+  ],
+  "source_bindings": {
+    "scripts/pr16_dex_tail_lease.py": {
+      "size": 5067,
+      "sha256": "f0b8d18b4ff533372a10841ff08b71506c4a305e5d9126704ec919d985572ee6"
+    },
+    "scripts/pr16_dex_lease.py": {
+      "size": 7656,
+      "sha256": "d80db50543bbaadeba2dce3fab34ce3dc2c219ca4bb4aac2f55d0271b372b4f6"
+    },
+    "content/modernization/pr16_dex_capacity_lease.json": {
+      "size": 56797,
+      "sha256": "be49a2518504bf3f9640b216bbcec0f11aadb718e3f72cfff3d4fd55de98fe0d"
+    },
+    "content/modernization/pr16_dex_save_body_references.json": {
+      "size": 15359,
+      "sha256": "72847c574b048d896d35d4fae79ca83a5782df2e8ff1041670c0b511e7f4c563"
+    }
+  },
+  "upstream_sources": {
+    "dpe_tone_type": "https://github.com/kapibarasan000/DPE-JP/blob/10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e/include/cries.h#L3-L14",
+    "dpe_cry_repoints": "https://github.com/kapibarasan000/DPE-JP/blob/10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e/repointall#L1",
+    "fr_wave_type": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/include/gba/m4a_internal.h#L39-L68",
+    "fr_dpcm_decoder": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/m4a_1.s#L670-L707",
+    "fr_dpcm_encoder": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/tools/wav2agb/converter.cpp#L213-L278",
+    "fr_cry_tone": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/m4a.c#L1660-L1698"
+  },
+  "validation_contract_ja": [
+    "target候補全size/SHAを先に照合し、全asset/header/row/root/ref/scanのsizeとSHAを現ROMで再確認する。",
+    "table_root_sitesのu32はtable_address、各rowのtable_address+12*row_index位置とrow+4 pointerはroot addressに一致する。",
+    "全reference_windowsとprior_wave_pointer_sitesのu32がwave addressへ一致する。16既知wave pointer sitesは省略しない。",
+    "WaveData headerはtype1、status/frequency/loop/sample countの記録値と一致し、0<=loop<=sample count。",
+    "encoded extentは16+ceil(sample count/64)*33。既存固定decoderで全blockを復号し、sample countでtrimしたSHAと全block出力SHAを照合する。最後のblock paddingをfree容量にしない。",
+    "THUMB_BL_SHAPEはhalfword maskとsigned23bit displacementからscan+4+offsetを計算しtargetに一致する。ALIGNED_U32は4byte aligned、stored_valueとそのThumb-bit正規化targetを一致させる。",
+    "両scanの4byteは全てencoded payloadの同一block内delta nibble列。原音声byte、pointer、assetを変更しない。",
+    "次assetまで35byteの領域は用途未認定であり、空きとして使わない。"
+  ],
+  "rom_fragments_or_raw_hex_included": false,
+  "rom_reads": 1,
+  "rom_writes": 0,
+  "save_reads": 0,
+  "native_runs": 0,
+  "arm_compiles": 0
+}

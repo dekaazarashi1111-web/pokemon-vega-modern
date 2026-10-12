@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "run": 37255103782,
+  "source_head": "6d75cf77c77f89a6d2541114f796e67ff06efd85",
+  "archive": [
+    11322322595,
+    37255103782,
+    68085,
+    "ebe197a5d3e935ac631c4d5d883b44b6b8b0277fa5e96c7ac38b95218e5eff95"
+  ],
+  "screens": 15,
+  "actual_pixels_reviewed": true,
+  "images": {
+    "healthy/screen-0000.ppm": {
+      "size": 115215,
+      "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+    },
+    "healthy/screen-0001.ppm": {
+      "size": 115215,
+      "sha256": "b16522730aaf0b8b38e7a8ba1e5bcf474c7e4d1912b4361fae7137f8e44cd810"
+    },
+    "healthy/screen-0002.ppm": {
+      "size": 115215,
+      "sha256": "b16522730aaf0b8b38e7a8ba1e5bcf474c7e4d1912b4361fae7137f8e44cd810"
+    },
+    "healthy/screen-0003.ppm": {
+      "size": 115215,
+      "sha256": "d7a0f6ad850a3685faf11879dea37159b7f33e8744e5d6ffb1e3b6491b272d8a"
+    },
+    "healthy-cold/cold-102/screen-0000.ppm": {
+      "size": 115215,
+      "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+    },
+    "main-fault/screen-0000.ppm": {
+      "size": 115215,
+      "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+    },
+    "main-fault/screen-0001.ppm": {
+      "size": 115215,
+      "sha256": "b16522730aaf0b8b38e7a8ba1e5bcf474c7e4d1912b4361fae7137f8e44cd810"
+    },
+    "main-fault/screen-0002.ppm": {
+      "size": 115215,
+      "sha256": "9a169913dc4653ba299f59a6e2ee2069039d8adaccd088eece6b7d212452b7d0"
+    },
+    "main-fault/screen-0003.ppm": {
+      "size": 115215,
+      "sha256": "d7a0f6ad850a3685faf11879dea37159b7f33e8744e5d6ffb1e3b6491b272d8a"
+    },
+    "main-fault-cold/cold-101/screen-0000.ppm": {
+      "size": 115215,
+      "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+    },
+    "outer-fault/screen-0000.ppm": {
+      "size": 115215,
+      "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+    },
+    "outer-fault/screen-0001.ppm": {
+      "size": 115215,
+      "sha256": "b16522730aaf0b8b38e7a8ba1e5bcf474c7e4d1912b4361fae7137f8e44cd810"
+    },
+    "outer-fault/screen-0002.ppm": {
+      "size": 115215,
+      "sha256": "9a169913dc4653ba299f59a6e2ee2069039d8adaccd088eece6b7d212452b7d0"
+    },
+    "outer-fault/screen-0003.ppm": {
+      "size": 115215,
+      "sha256": "d7a0f6ad850a3685faf11879dea37159b7f33e8744e5d6ffb1e3b6491b272d8a"
+    },
+    "outer-fault-cold/cold-102/screen-0000.ppm": {
+      "size": 115215,
+      "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+    }
+  },
+  "review_ja": "全15原本を個別表示し実pixel確認。両故障のsteady待機画面は既存2行の保存失敗文。保存直後screen1は描画反映前の元保存中表示であり、失敗文の可視証拠には使わない。A後は通常HOFの先頭個体表示。正常は元保存中画面から通常個体表示へ。各独立coldは元field。同じframe前後証拠を取り直すnative0。",
+  "limitations_ja": "9byte UI-only入口からの候補検証。自然リーグ到達・全演出完走・HOF全種族ABI・初回mode3原子性を受入しない。主故障cold101のQOL ledgerは正常と異なり、前Union/Mysteryと同一SHAの既存fallback差として残す。全cold owner保持を主張しない。"
+}

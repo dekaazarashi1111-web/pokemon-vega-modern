@@ -1,0 +1,248 @@
+{
+  "actions_completion_confirmed": false,
+  "actions_completion_path": "content/modernization/pr16_donor_window_evidence/actions-completion.json",
+  "actions_run_id": 38088235191,
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "claims": {
+    "accepted_test_reruns": 0,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "formal_classification_changes": 0,
+    "indirect_reference_completeness_claimed": false,
+    "intra_donor_origins_covered": false,
+    "native_processes": 0,
+    "old_full_rom_scan_runs": 0,
+    "outside_target_excludes_access": false,
+    "retirement_or_transfer_complete": false,
+    "rom_reconstructions": 0,
+    "rom_writes": 0,
+    "save_writes": 0
+  },
+  "code_bindings": {
+    ".github/workflows/pr16-donor-window.yml": {
+      "sha256": "3278c9fcb2d7f2a68b93c504c80f5c52d1e02c9f6f7fd119e8c6054c2fadaef8",
+      "size": 1265
+    },
+    "scripts/pr16_donor_window.py": {
+      "sha256": "d844c921b55a0f5550591ac34352cd2a6973cbe83718b1366a4309b8ea09bcfd",
+      "size": 8752
+    },
+    "scripts/pr16_donor_window_actions.py": {
+      "sha256": "fca5b3d3a56ef4d6ef43adac386a71432573a6141234aa168cdd56af8006c027",
+      "size": 18013
+    },
+    "tests/test_pr16_donor_window.py": {
+      "sha256": "1e7d42363d7317e71dd7fde251b195fae6c21080c6961ea8b4c42cb7fa77e0db",
+      "size": 7801
+    }
+  },
+  "full_index_private_guard": {
+    "executed": true,
+    "exit_code": 1,
+    "historical_violations_not_rewritten": true,
+    "passed": false,
+    "raw_private_log_published": false
+  },
+  "new_unit_tests": 49,
+  "next_ja": "候補窓[0x09FED0C4,0x09FEEA44)の6528byteについて、保存未知target 10行（先頭0x080A006F）のsource/asset identityと実consumerを限定して結ぶ。窓外targetからの跨りread・旧owner内originの除外・間接参照を残し、owner退役/部分移管を証明する。全874scan/Forest/Bubble/49窓試験の無変更再走は禁止。安全容量0を維持し、controller/heap/保存接続は別gate。",
+  "observed_head_checks": {
+    "all_ci_green_claimed": false,
+    "runs": [
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "1aa6966db7f6ca647e5c665d6794179aba7a2822",
+        "id": 38088240958,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "1aa6966db7f6ca647e5c665d6794179aba7a2822",
+        "id": 38088241082,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "1aa6966db7f6ca647e5c665d6794179aba7a2822",
+        "id": 38088235191,
+        "name": "pr16-donor-window",
+        "path": ".github/workflows/pr16-donor-window.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "1aa6966db7f6ca647e5c665d6794179aba7a2822",
+        "id": 38088235252,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "1aa6966db7f6ca647e5c665d6794179aba7a2822",
+        "id": 38088234817,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "1aa6966db7f6ca647e5c665d6794179aba7a2822",
+        "id": 38088234967,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "1aa6966db7f6ca647e5c665d6794179aba7a2822",
+        "id": 38088234998,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      }
+    ],
+    "source_head": "1aa6966db7f6ca647e5c665d6794179aba7a2822"
+  },
+  "parent_audit_identity": {
+    "sha256": "f88d65c235eda330aef618776bff97037d5ca2c4c9fbea53798217dcb5bda669",
+    "size": 5408731
+  },
+  "plan_identity": {
+    "sha256": "100dd710037fd958db20191a4bffa8590fb0414a2e252705f1111d75e15e9d2c",
+    "size": 9687
+  },
+  "plan_path": "content/modernization/pr16_donor_window_evidence/windows.json",
+  "protected_inputs_unchanged": true,
+  "randomized_oracle_examples": 150,
+  "read_only_check_passed": true,
+  "real_oracle_windows": 2148,
+  "schema_version": 1,
+  "scoped_final_index_guard": {
+    "historical_guard_pass_claimed": false,
+    "new_private_violations": 0,
+    "status": "PASS"
+  },
+  "selected": {
+    "accepted_false_positive_entries": 141,
+    "distinct_unclassified_targets": 10,
+    "end_exclusive": 167701060,
+    "size": 6528,
+    "start": 167694532,
+    "unclassified_target_entries": 10,
+    "unclassified_target_rows": [
+      {
+        "accepted": false,
+        "address": 134873199,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "34ab26c2eaf2a22455a60b55e8b489ed9a07e9939dd3e68c1bd9007fe5eb8a9d",
+        "size": 4,
+        "target": 167695616
+      },
+      {
+        "accepted": false,
+        "address": 136091369,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "9bd8fd67ee8be1be8cdeb36dba8bc477c063d5b9956f73eb37da1012b5cd6258",
+        "size": 4,
+        "target": 167700214
+      },
+      {
+        "accepted": false,
+        "address": 138879919,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "eb72d696d22c970b1090b11a8020bfb44f42ecff189aaffc9b47eb75cbeb0993",
+        "size": 4,
+        "target": 167699418
+      },
+      {
+        "accepted": false,
+        "address": 141316543,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "169f39595db6c1ad1cf83234441b8a0ec54dc2a94afab2cc05d80713fb0a0a41",
+        "size": 4,
+        "target": 167700464
+      },
+      {
+        "accepted": false,
+        "address": 142670436,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "b12945a9395fea471444b59c0a9e33507a82af3be4b8d0a17ffbf5077f926c37",
+        "size": 4,
+        "target": 167695044
+      },
+      {
+        "accepted": false,
+        "address": 147192984,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "9cd21e4f7f81bc2652457d64d06b8bbf7b820174e7436ef380b9b920405b8f9f",
+        "size": 4,
+        "target": 167698446
+      },
+      {
+        "accepted": false,
+        "address": 147394384,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "7b25c4295c4557003431fc342ed7f11fd23a0f312a9ff5508ab5fb0a6f63e394",
+        "size": 4,
+        "target": 167697170
+      },
+      {
+        "accepted": false,
+        "address": 152947327,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "24bacfcab7d33a3ceaf1d0d4081f9ff609b5b99283fd7e2d46e22e930a29f957",
+        "size": 4,
+        "target": 167699972
+      },
+      {
+        "accepted": false,
+        "address": 163413345,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "2a104f5801c3c3568b6e8e9590073f806dc49940945c6152820556355a78aba3",
+        "size": 4,
+        "target": 167697676
+      },
+      {
+        "accepted": false,
+        "address": 165704221,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "19ef338573c058958ae2d1cb232de6ca58d71e4598f8acf5b7f2ebfd489ec07e",
+        "size": 4,
+        "target": 167697902
+      }
+    ]
+  },
+  "source_head": "1aa6966db7f6ca647e5c665d6794179aba7a2822",
+  "status": "WINDOW_RANKING_COMPLETE_SAVE_INTEGRATION_PENDING",
+  "task": "USER-20261011-DONOR-WINDOW",
+  "task_graph_passed": true,
+  "tests_identity": {
+    "sha256": "ec0da60f28c148f7fcd357f4d3a56f43dd76521efd5327da52fe708d80e201b1",
+    "size": 5413
+  }
+}

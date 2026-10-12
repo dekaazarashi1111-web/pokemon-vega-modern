@@ -1,0 +1,132 @@
+{
+  "jobs": [
+    {
+      "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/108389711674",
+      "completed_at": "2026-09-26T10:46:00Z",
+      "conclusion": "success",
+      "created_at": "2026-09-26T10:44:54Z",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "9978dcfdafe356dd4815b021aa897e4e605abc34",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36236714339/job/108389711674",
+      "id": 108389711674,
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "name": "retry",
+      "node_id": "CR_kwDOUPNhZs8AAAAZPIe_Og",
+      "run_attempt": 1,
+      "run_id": 36236714339,
+      "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/36236714339",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions",
+      "runner_id": 1000015594,
+      "runner_name": "GitHub Actions 1000015594",
+      "started_at": "2026-09-26T10:44:56Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-26T10:44:57Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-26T10:44:56Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:45:09Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-26T10:44:57Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:45:09Z",
+          "conclusion": "success",
+          "name": "単一関数だけのARM toolchain",
+          "number": 3,
+          "started_at": "2026-09-26T10:45:09Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:45:53Z",
+          "conclusion": "success",
+          "name": "同一core再試行と原本記録",
+          "number": 4,
+          "started_at": "2026-09-26T10:45:09Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:45:54Z",
+          "conclusion": "success",
+          "name": "引継ぎとtask graphを照合",
+          "number": 5,
+          "started_at": "2026-09-26T10:45:53Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:45:55Z",
+          "conclusion": "success",
+          "name": "最終index限定guardと差分検査",
+          "number": 6,
+          "started_at": "2026-09-26T10:45:54Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:45:57Z",
+          "conclusion": "success",
+          "name": "同branchへcommitと非force push",
+          "number": 7,
+          "started_at": "2026-09-26T10:45:55Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:45:57Z",
+          "conclusion": "success",
+          "name": "失敗を成功扱いしない",
+          "number": 8,
+          "started_at": "2026-09-26T10:45:57Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:45:58Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 9,
+          "started_at": "2026-09-26T10:45:57Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:45:58Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 18,
+          "started_at": "2026-09-26T10:45:58Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-26T10:45:58Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "started_at": "2026-09-26T10:45:58Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/108389711674",
+      "workflow_name": "pr16-research-retry-20260926"
+    }
+  ],
+  "new_arm_compiles": 0,
+  "new_native_runs": 0,
+  "new_unit_runs": 0,
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "9978dcfdafe356dd4815b021aa897e4e605abc34",
+    "id": 36236714339,
+    "path": ".github/workflows/pr16-research-retry-20260926.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  }
+}

@@ -1,0 +1,57 @@
+name: pr16-story-ayame-record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-ayame-record.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-story-ayame-record
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 3
+      - name: New 24 record gate tests and scoped code guard only
+        run: |
+          mkdir -p .local/pr16-story-ayame-record/preflight
+          printf '%s\n' '65d2e633ffb598bab2f7e687e04660cd37ac83f6635b39f9902045f0e71e84ae  scripts/pr16_story_ayame_record.py' 'e6153a7795b1a4695e2f5093ac9c2fb56209db287622fbc6ccba10a0e416a4a2  tests/test_pr16_story_ayame_record.py' | sha256sum --check
+          python3 -B -m unittest discover -s tests -p test_pr16_story_ayame_record.py -v > .local/pr16-story-ayame-record/preflight/unit.stdout.txt 2> .local/pr16-story-ayame-record/preflight/unit.stderr.txt
+          cat .local/pr16-story-ayame-record/preflight/unit.stderr.txt
+          python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_ayame_record as r; import pr16_learnset_runtime_record as g; g.START='52b65212f0bab0e60eaaa08821add11799631cf7'; g.CODE={r.SELF,r.WF,r.TEST}; g.OWNED=set(); g.guard()"
+      - name: Record completed Save18 originals without core or accepted test reruns
+        run: python3 -B scripts/pr16_story_ayame_record.py record
+      - name: Scoped final index private guard and fixed resume
+        run: python3 -B scripts/pr16_story_ayame_record.py guard
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - name: Commit and nonforce push same branch
+        run: |
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260929-STORY-AYAME-GATE: 三兄弟3勝・ジム入場・全回復Save18・独立Continueの限定受入を記録'
+          git push origin HEAD:codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$(git rev-parse HEAD)"
+      - name: Exact committed text readback
+        run: |
+          python3 -B scripts/pr16_story_ayame_record.py snapshot
+          cp .local/pr16-story-ayame-record/preflight/unit.*.txt .local/pr16-story-ayame-record/public/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-ayame-record
+          path: .local/pr16-story-ayame-record/public
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

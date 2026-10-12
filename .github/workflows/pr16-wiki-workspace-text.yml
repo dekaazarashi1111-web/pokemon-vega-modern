@@ -1,0 +1,47 @@
+name: PR16 Wiki scoped workspace text
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-wiki-workspace-text.yml]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: 残件実装に必要なtracked textだけを保存（build/nativeなし）
+        run: |
+          python3 -B - <<'PY'
+          import hashlib, json, pathlib, subprocess, zipfile
+          root = pathlib.Path('.')
+          exact = {'AGENTS.md', 'CHATGPT_RESUME.md', 'Makefile', 'state/source-lock.json', 'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md', 'design/run_log.md', 'design/version_log.md', 'design/active_play_baseline.md', 'design/agent_context_map.md', 'design/current_state.md', 'docs/wiki/README.md', 'docs/wiki/p08-candidate-46487d98/RUNTIME_LIMITATIONS.md'}
+          prefixes = ('scripts/pr16_', 'scripts/build_pr16_', 'tests/test_pr16_', 'tools/engine/', 'content/modernization/', 'config/', '.github/workflows/pr16-', 'overlays/qol_production/', 'overlays/form_lifecycle/')
+          exact.update({'scripts/build_battle_core.py', 'scripts/build_move_port.py', 'scripts/private_file_guard.py', 'scripts/validate_task_graph.py'})
+          records = {}; total = 0
+          pathlib.Path('.local/wiki-workspace').mkdir(parents=True, exist_ok=True)
+          with zipfile.ZipFile('.local/wiki-workspace/tracked-text.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+            for name in sorted(subprocess.check_output(['git','ls-files','-z']).decode().split('\0')):
+              if not name or not (name in exact or name.startswith(prefixes)): continue
+              path = root / name
+              if path.suffix not in {'.py','.c','.h','.s','.md','.json','.yml','.yaml','.ini'} and name != 'Makefile': continue
+              if path.is_symlink() or not path.is_file(): continue
+              data = path.read_bytes()
+              if len(data) > 2000000 or b'\0' in data: continue
+              try: data.decode('utf-8')
+              except UnicodeDecodeError: continue
+              total += len(data)
+              if total > 150000000: raise SystemExit('text scope size exceeded')
+              archive.writestr(name, data)
+              records[name] = {'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+            archive.writestr('WORKSPACE_MANIFEST.json', json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'roms':0,'saves':0,'builds':0,'native_runs':0,'files':records}, ensure_ascii=False, sort_keys=True, indent=2)+'\n')
+          print(json.dumps({'files':len(records),'bytes':total,'roms':0,'saves':0,'builds':0,'native_runs':0}))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-wiki-workspace-text
+          path: .local/wiki-workspace/tracked-text.zip
+          retention-days: 3
+          if-no-files-found: error

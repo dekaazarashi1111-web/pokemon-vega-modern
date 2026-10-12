@@ -1,0 +1,151 @@
+{
+  "native": {
+    "terminal": {
+      "run": {
+        "id": 37190678835,
+        "head_sha": "fd9ce64230317b5607967c68445dcb109dcbfd4e",
+        "head_branch": "codex/modernization-followup-20260908",
+        "path": ".github/workflows/pr16-story-save95.yml",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      },
+      "job": {
+        "id": 111402001558,
+        "run_id": 37190678835,
+        "workflow_name": "pr16-story-save95",
+        "head_branch": "codex/modernization-followup-20260908",
+        "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37190678835",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUPNhZs8AAAAZ8BOklg",
+        "head_sha": "fd9ce64230317b5607967c68445dcb109dcbfd4e",
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111402001558",
+        "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37190678835/job/111402001558",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-10-04T08:59:12Z",
+        "started_at": "2026-10-04T08:59:14Z",
+        "completed_at": "2026-10-04T08:59:42Z",
+        "name": "continuation",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-04T08:59:14Z",
+            "completed_at": "2026-10-04T08:59:15Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-04T08:59:15Z",
+            "completed_at": "2026-10-04T08:59:27Z"
+          },
+          {
+            "name": "紙引渡し新区間だけのcontroller検査",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-04T08:59:27Z",
+            "completed_at": "2026-10-04T08:59:29Z"
+          },
+          {
+            "name": "最初の紙引渡しevent後Save95と独立Continue",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 4,
+            "started_at": "2026-10-04T08:59:29Z",
+            "completed_at": "2026-10-04T08:59:40Z"
+          },
+          {
+            "name": "Lightweight task graph",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 5,
+            "started_at": "2026-10-04T08:59:40Z",
+            "completed_at": "2026-10-04T08:59:40Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-04T08:59:40Z",
+            "completed_at": "2026-10-04T08:59:41Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-04T08:59:41Z",
+            "completed_at": "2026-10-04T08:59:41Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-04T08:59:41Z",
+            "completed_at": "2026-10-04T08:59:41Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111402001558",
+        "labels": [
+          "ubuntu-24.04"
+        ],
+        "runner_id": 1000021635,
+        "runner_name": "GitHub Actions 1000021635",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      }
+    },
+    "artifact": 11299056405,
+    "archive": {
+      "size": 85226,
+      "sha256": "bd9a735b967bf13fbed0fbafef931b132d81db3293d91b564571e34bb7d47666"
+    },
+    "failure": {
+      "status": "NOT_ACCEPTED_PRESERVE_NO_AUTOMATIC_REPLAY",
+      "type": "ValueError",
+      "message": "最初のlocal2会話を観測",
+      "native_processes": 1,
+      "source_head": "fd9ce64230317b5607967c68445dcb109dcbfd4e",
+      "run_id": 37190678835
+    },
+    "execution": {
+      "returncode": 0,
+      "initial_save": {
+        "size": 131088,
+        "sha256": "a306d040197e63d32a3a3d3380041af66c05ec17b8dbe52225320dad4046bb4f"
+      },
+      "final_save": {
+        "size": 131088,
+        "sha256": "a306d040197e63d32a3a3d3380041af66c05ec17b8dbe52225320dad4046bb4f"
+      },
+      "native_end": {
+        "end": "STORY_INPUT_CHECKPOINT",
+        "frames": 2636,
+        "inputs": 52,
+        "warnings_errors": 0,
+        "host_write_barriers": 7,
+        "guarded_host_writes": 0,
+        "fixture_calls": 0,
+        "natural_research_arrival_accepted": false
+      },
+      "observations": 21
+    },
+    "accepted": false,
+    "ordinary_saves": 0,
+    "reason_ja": "local2はROM movement type5左右移動。初期4,9を会話時座標と誤仮定し初Aで会話なし、安全停止。原画128内部pixelの左右spriteを正面で2回連続確認する待機へ限定修正。初回failure結論は保持。"
+  },
+  "controller_executions": 48,
+  "controller_passed_executions": 48,
+  "controller_failed_executions": 0,
+  "final_controller_cases": 46,
+  "changed_controller_cases_retested": 2,
+  "unchanged_success_reruns": 0
+}

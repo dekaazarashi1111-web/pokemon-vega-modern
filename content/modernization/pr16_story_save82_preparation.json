@@ -1,0 +1,382 @@
+{
+  "status": "STATIC_TRAINER132_FROM_SAVE81_NOT_NATIVE",
+  "map": [
+    10,
+    16
+  ],
+  "start": [
+    6,
+    9
+  ],
+  "facing": 2,
+  "route": [
+    [
+      6,
+      9
+    ],
+    [
+      6,
+      8
+    ],
+    [
+      6,
+      7
+    ]
+  ],
+  "terrain": [
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        8
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    }
+  ],
+  "interaction": {
+    "local_id": 1,
+    "target": [
+      3,
+      7
+    ],
+    "script": 154584484,
+    "trainer_id": 132,
+    "trainer_type": 1,
+    "range": 3,
+    "movement_type": 10,
+    "trigger_candidate": [
+      6,
+      7
+    ],
+    "button": "automatic-line-of-sight-if-active",
+    "object_address": 155169588,
+    "object_hex": "0138000003000700030a110001000300a4c5360900000000"
+  },
+  "gym": {
+    "map": [
+      10,
+      16
+    ],
+    "header": 137450584,
+    "layout": 136946720,
+    "scripts": 135815079,
+    "width": 13,
+    "height": 20,
+    "connections": [],
+    "warps": [
+      {
+        "id": 0,
+        "xy": [
+          5,
+          18
+        ],
+        "elevation": 3,
+        "target_warp": 2,
+        "target_map": [
+          3,
+          2
+        ]
+      },
+      {
+        "id": 1,
+        "xy": [
+          6,
+          18
+        ],
+        "elevation": 3,
+        "target_warp": 2,
+        "target_map": [
+          3,
+          2
+        ]
+      },
+      {
+        "id": 2,
+        "xy": [
+          7,
+          18
+        ],
+        "elevation": 3,
+        "target_warp": 2,
+        "target_map": [
+          3,
+          2
+        ]
+      }
+    ],
+    "objects": [
+      {
+        "local_id": 1,
+        "xy": [
+          3,
+          7
+        ],
+        "script": 154584484,
+        "flag": 0
+      },
+      {
+        "local_id": 2,
+        "xy": [
+          1,
+          4
+        ],
+        "script": 154596220,
+        "flag": 0
+      },
+      {
+        "local_id": 3,
+        "xy": [
+          11,
+          9
+        ],
+        "script": 154587296,
+        "flag": 0
+      },
+      {
+        "local_id": 4,
+        "xy": [
+          7,
+          16
+        ],
+        "script": 142951424,
+        "flag": 0
+      },
+      {
+        "local_id": 5,
+        "xy": [
+          6,
+          14
+        ],
+        "script": 141220048,
+        "flag": 4372
+      },
+      {
+        "local_id": 6,
+        "xy": [
+          4,
+          12
+        ],
+        "script": 141220288,
+        "flag": 4373
+      },
+      {
+        "local_id": 7,
+        "xy": [
+          6,
+          3
+        ],
+        "script": 142951392,
+        "flag": 0
+      },
+      {
+        "local_id": 8,
+        "xy": [
+          9,
+          12
+        ],
+        "script": 141220512,
+        "flag": 4374
+      },
+      {
+        "local_id": 9,
+        "xy": [
+          2,
+          9
+        ],
+        "script": 141220736,
+        "flag": 4375
+      },
+      {
+        "local_id": 10,
+        "xy": [
+          6,
+          8
+        ],
+        "script": 136400224,
+        "flag": 4376
+      },
+      {
+        "local_id": 11,
+        "xy": [
+          10,
+          3
+        ],
+        "script": 136400416,
+        "flag": 4377
+      }
+    ],
+    "collision_grid": [
+      "#############",
+      "#############",
+      "#############",
+      "#.#...O...O.#",
+      "#O#.......#.#",
+      "#.#.......#.#",
+      "#.#########.#",
+      "#.#O........#",
+      "#.####O####.#",
+      "#.O.......#O#",
+      "#.#.#########",
+      "#.#........##",
+      "#.##O####O###",
+      "#...........#",
+      "######O######",
+      "#...........#",
+      "#...#..O#...#",
+      "#...........#",
+      "#....WWW....#",
+      "#############"
+    ],
+    "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+  },
+  "graph": {
+    "nodes": [
+      {
+        "address": 135815270,
+        "end_reason": "end",
+        "instruction_count": 3,
+        "edges": [],
+        "roots": [
+          "map_(10, 16)_npc_1"
+        ]
+      },
+      {
+        "address": 154584484,
+        "end_reason": "goto",
+        "instruction_count": 2,
+        "edges": [
+          135815270
+        ],
+        "roots": [
+          "map_(10, 16)_npc_1"
+        ]
+      }
+    ],
+    "references": [
+      {
+        "category": "trainer",
+        "value": 132,
+        "access": "battle",
+        "instruction_address": 154584484,
+        "opcode": 92,
+        "command": "trainerbattle",
+        "battle_type": 0,
+        "script_address": 154584484,
+        "roots": [
+          "map_(10, 16)_npc_1"
+        ]
+      }
+    ]
+  },
+  "instructions": [
+    {
+      "address": 135815270,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00794f2108",
+      "node": 135815270
+    },
+    {
+      "address": 135815276,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0906",
+      "node": 135815270
+    },
+    {
+      "address": 135815278,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 135815270
+    },
+    {
+      "address": 154584484,
+      "opcode": 92,
+      "size": 14,
+      "hex": "5c0084000000384f21085d4f2108",
+      "node": 154584484
+    },
+    {
+      "address": 154584498,
+      "opcode": 5,
+      "size": 5,
+      "hex": "0566601808",
+      "node": 154584484
+    }
+  ],
+  "texts": {
+    "136400696": {
+      "hex": "1e501e03ab000a2a1a001f10fe3a2e071900260b0f0315fa647aae65ae0b2e004115abff",
+      "decoded": "ほっほう！ これは また\\nげんきの よさそうな\\lトレーナーさん だな！"
+    },
+    "136400733": {
+      "hex": "1e501e03b0003a2e072300260813fe556f5916001226021906b0ff",
+      "decoded": "ほっほう… げんきも よくて\\nオマケに つよいのか…"
+    },
+    "136400761": {
+      "hex": "0a0a19008d7178ae91aefe658865600b2e19000c35201afa143c2e4418b0001a150c37fa01032e4126001e501e03abff",
+      "decoded": "ここの ジムリーダー\\nナギナタさんの しゅみは\\lとざんでね… はなしが\\lあうんだよ ほっほう！"
+    }
+  },
+  "source_graph_reused": true,
+  "route_native_accepted": false,
+  "gym_puzzle_accepted": false,
+  "trainer_victory_accepted": false,
+  "old_switch_inputs_replayed": false,
+  "next_action_ja": "Save81/6,9北から開いたlocal10跡6,8を通り北2歩6,7へ。local1/3,7のtrainer132・range3・movement10の視線event候補。最初の新event/battleを通常入力、勝利後通常保存。発火しなければ6,7で縮小停止し画面確認。第6ディグダやジムリーダー到達を推測で受入にしない。",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "3beb00ee134983ae76b2e41bdc9d5cdbf76e2d031d3f42d3a07fadb164a07633"
+  },
+  "parent_route_binding": {
+    "size": 6367,
+    "sha256": "3c51b84269842622590f2e5f0922d62e36634107bf2ab5542535124db5952ee8"
+  },
+  "initial_flags": {
+    "4372": 0,
+    "4373": 0,
+    "4374": 0,
+    "4375": 0,
+    "4376": 1,
+    "4377": 0,
+    "4378": 1
+  },
+  "native_route_accepted": false,
+  "source_notes_ja": "保存済gym graph/local1 trainer132・range3・movement10。Save81から北2歩のみ。発火なしは6,7で無保存停止。旧switch受入再走0。"
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "status": "TWO_NATIVE_PREFIX_CASES_VERIFIED_THUMB_BATTLE_REPAIR_OPEN",
+  "task": "USER-20260918-CIRCUS-NATIVE",
+  "tested_head": "224f5de7e3e317d276989b869abdf5cbef05c3f4",
+  "run_id": 35363580877,
+  "job_id": 105660508734,
+  "run_conclusion": "failure",
+  "artifact_id": 10555159622,
+  "artifact_identity": {
+    "size": 295538,
+    "sha256": "ca5353b6d728960702beb4f16fb4b829714d947474d2a10c2f831f9c0403b0a0"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "022bd5e6383f5513f7b43fd00923f8ed66908b18a07f7be252b8ce7a011c5c72"
+  },
+  "accepted_cases": [
+    {
+      "case": "circus-cancel-save-continue",
+      "total_frames": 5004,
+      "original_party_bytes_restored": 600,
+      "save_counter_before": 2,
+      "save_counter_after": 3,
+      "manual_saves": 1,
+      "fresh_cores": 2,
+      "bp_earned": 0,
+      "inventory_changed": false,
+      "effect_flags": 0,
+      "native_result": "PASS_CIRCUS_SCOPED_NATIVE"
+    },
+    {
+      "case": "factory-fallback-cancel",
+      "total_frames": 791,
+      "original_party_bytes_restored": 600,
+      "save_counter_before": 2,
+      "save_counter_after": 2,
+      "manual_saves": 0,
+      "fresh_cores": 1,
+      "bp_earned": 0,
+      "inventory_changed": false,
+      "effect_flags": 0,
+      "native_result": "PASS_CIRCUS_SCOPED_NATIVE"
+    }
+  ],
+  "evidence_review_ja": "ZIP全member hashと原本stdout/processを照合。取消7枚・Factory入口5枚のPPMを目視し、Circus質問、6体選択、取消確認、フィールド復帰、fresh Continue、既存Factoryメニューへの分岐を確認。初期配置fixtureと実受付入力を区別。guard後の7種host書込みは禁止され、効果/施設番号/PC/LRは注入していない。",
+  "failed_case": "circus-first-battle",
+  "failure_ja": "最終3体確認からscript adapterを呼ぶ際、--defsymで結合した既存Thumb関数がARM用veneerのldr pcで呼ばれ、0910ed2cのStub/0910ed44のIllegal opcodeを検出。sp072前、効果0、戦闘領域未確保のまま停止。現候補を製品へ採用しない。",
+  "next_ja": "既存Thumb ownerをbx r3で呼ぶ型付き専用thunkを独立2compile/linkして、新adapter領域だけを修正する。取消/Factory入口で通らない領域だけの差分を証明し、成功済み2ケースは再実行しない。未完のcircus-first-battleだけを再検証し、固定引継ぎMD/JSONと両ログへ原本を統合する。",
+  "physical_admission_accepted": false,
+  "suppression_accepted": false,
+  "release_ready": false,
+  "formal_bp_checkpoint_changed": false,
+  "accepted_native_cases_replayed": 0
+}

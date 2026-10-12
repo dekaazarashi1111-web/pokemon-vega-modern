@@ -1,0 +1,205 @@
+{
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+    "size": 33554432
+  },
+  "rom_changes": 0,
+  "roots": {
+    "ecology": {
+      "dialogues": {
+        "guide_cap": {
+          "binding_key": "BINDING_KEY_GUIDE_ECOLOGY",
+          "dialogue_key": "DIALOGUE_KEY_ECOLOGY_CAP",
+          "encoded_hex": "0e0210021136030b1afea6a19f527e641f44adff",
+          "notes": "research day上限。",
+          "runtime_address": 154927758,
+          "text": "せいたいちょうさは\\n50ポイントまで。",
+          "usage": "DAILY_CAP"
+        },
+        "guide_message": {
+          "binding_key": "BINDING_KEY_GUIDE_ECOLOGY",
+          "dialogue_key": "DIALOGUE_KEY_ECOLOGY_GUIDE",
+          "encoded_hex": "1136030b9f59737e2dfe1a121e060844a2a19f527e64adff",
+          "notes": "research caught初回遷移。",
+          "runtime_address": 154927734,
+          "text": "ちょうさポケモンを\\nはつほかくで10ポイント。",
+          "usage": "ACTIVITY"
+        }
+      },
+      "door": [
+        12,
+        1
+      ],
+      "header": 153886876,
+      "inside": [
+        97,
+        67,
+        4,
+        9
+      ],
+      "kind": 0,
+      "outdoor": [
+        97,
+        63,
+        29,
+        26
+      ],
+      "record": 155191592,
+      "script": 154928764
+    },
+    "fishing": {
+      "dialogues": {
+        "guide_cap": {
+          "binding_key": "BINDING_KEY_GUIDE_FISHING",
+          "dialogue_key": "DIALOGUE_KEY_FISHING_CAP",
+          "encoded_hex": "12281aa21611fea3a59f527e641f44adff",
+          "notes": "research day上限。",
+          "runtime_address": 154927675,
+          "text": "つりは1にち\\n24ポイントまで。",
+          "usage": "DAILY_CAP"
+        },
+        "guide_message": {
+          "binding_key": "BINDING_KEY_GUIDE_FISHING",
+          "dialogue_key": "DIALOGUE_KEY_FISHING_GUIDE",
+          "encoded_hex": "1228440c2e0c352dfe12061f042914a59f527e64adff",
+          "notes": "初回caught限定。",
+          "runtime_address": 154927653,
+          "text": "つりでしんしゅを\\nつかまえると4ポイント。",
+          "usage": "ACTIVITY"
+        }
+      },
+      "door": [
+        0,
+        1
+      ],
+      "header": 153897716,
+      "inside": [
+        98,
+        110,
+        3,
+        7
+      ],
+      "kind": 0,
+      "outdoor": [
+        96,
+        23,
+        12,
+        87
+      ],
+      "record": 155270980,
+      "script": 154928708
+    },
+    "game": {
+      "dialogues": {
+        "guide_cap": {
+          "binding_key": "BINDING_KEY_GUIDE_GAME_CORNER",
+          "dialogue_key": "DIALOGUE_KEY_GAME_CAP",
+          "encoded_hex": "8aae711aa21611fea2a99f527e641f44adff",
+          "notes": "research day上限。",
+          "runtime_address": 154927716,
+          "text": "ゲームは1にち\\n18ポイントまで。",
+          "usage": "DAILY_CAP"
+        },
+        "guide_message": {
+          "binding_key": "BINDING_KEY_GUIDE_GAME_CORNER",
+          "dialogue_key": "DIALOGUE_KEY_GAME_GUIDE",
+          "encoded_hex": "a2a1a15a527e023d360319fe1a02140344a49f527e64adff",
+          "notes": "net gain条件。",
+          "runtime_address": 154927692,
+          "text": "100コインいじょうの\\nはいとうで3ポイント。",
+          "usage": "ACTIVITY"
+        }
+      },
+      "door": [
+        0,
+        0
+      ],
+      "header": 153893516,
+      "inside": [
+        98,
+        56,
+        9,
+        13
+      ],
+      "kind": 3,
+      "outdoor": [
+        96,
+        6,
+        34,
+        22
+      ],
+      "record": 155270516,
+      "script": 154928736
+    },
+    "lab": {
+      "dialogues": {
+        "counter_activity_one": {
+          "binding_key": "BINDING_KEY_RESEARCH_COUNTER",
+          "dialogue_key": "DIALOGUE_KEY_COUNTER_ACTIVITY_1",
+          "encoded_hex": "1228141136030b44fe9f527e64371c0429adff",
+          "notes": "既存hook説明。",
+          "runtime_address": 154927194,
+          "text": "つりとちょうさで\\nポイントがふえる。",
+          "usage": "ACTIVITY"
+        },
+        "counter_activity_two": {
+          "binding_key": "BINDING_KEY_RESEARCH_COUNTER",
+          "dialogue_key": "DIALOGUE_KEY_COUNTER_ACTIVITY_2",
+          "encoded_hex": "210c14022c14fe0c340c2e23012926adff",
+          "notes": "SIMPLE_EVENT説明。",
+          "runtime_address": 154927213,
+          "text": "むしといわと\\nしゃしんもあるよ。",
+          "usage": "ACTIVITY"
+        },
+        "counter_balance": {
+          "binding_key": "BINDING_KEY_RESEARCH_COUNTER",
+          "dialogue_key": "DIALOGUE_KEY_COUNTER_BALANCE",
+          "encoded_hex": "9f527e642dfe0608162e0c1f0dadff",
+          "notes": "続けて標準数値bufferを表示。",
+          "runtime_address": 154927179,
+          "text": "ポイントを\\nかくにんします。",
+          "usage": "BALANCE"
+        },
+        "counter_intro": {
+          "binding_key": "BINDING_KEY_RESEARCH_COUNTER",
+          "dialogue_key": "DIALOGUE_KEY_COUNTER_INTRO",
+          "encoded_hex": "092e0735032dfe1a3d222603adff",
+          "notes": "初回受付。",
+          "runtime_address": 154927165,
+          "text": "けんきゅうを\\nはじめよう。",
+          "usage": "INTRO"
+        },
+        "counter_revisit": {
+          "binding_key": "BINDING_KEY_RESEARCH_COUNTER",
+          "dialogue_key": "DIALOGUE_KEY_COUNTER_REVISIT",
+          "encoded_hex": "1f10072b082dfe01122213071318adff",
+          "notes": "通常終了。",
+          "runtime_address": 154927246,
+          "text": "またきろくを\\nあつめてきてね。",
+          "usage": "REVISIT"
+        }
+      },
+      "door": [
+        2,
+        0
+      ],
+      "header": 153889500,
+      "inside": [
+        98,
+        3,
+        6,
+        12
+      ],
+      "kind": 0,
+      "outdoor": [
+        96,
+        0,
+        16,
+        14
+      ],
+      "record": 155270044,
+      "script": 154927780
+    }
+  }
+}

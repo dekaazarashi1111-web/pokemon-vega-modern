@@ -1,0 +1,41 @@
+name: pr16-ring-high-branch-abi
+run-name: 保存高域8命令のABI検証記録・非force push
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_ring_high_branch_abi.py
+      - tests/test_pr16_ring_high_branch_abi.py
+      - .github/workflows/pr16-ring-high-branch-abi.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-high-branch-abi
+  cancel-in-progress: false
+jobs:
+  collect-record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 限定検証・保存高域ABI・正本と両ログ・guard・非force push
+        run: python3 scripts/pr16_ring_high_branch_abi.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-high-branch-abi
+          path: |
+            .local/pr16-ring-high-branch-abi/tests.json
+            .local/pr16-ring-high-branch-abi/recorded-result.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90

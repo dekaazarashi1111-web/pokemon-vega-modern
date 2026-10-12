@@ -1,0 +1,547 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-CALLEE-BYTES",
+  "source_head": "680ec66c4406ee027b389585ae06a98cf6b86176",
+  "run_id": 34976478801,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "ONE_CALLEE_BYTES_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "target": 151613701,
+    "graph": {
+      "entry": 151613701,
+      "window": 1024,
+      "window_identity": {
+        "size": 1024,
+        "sha256": "e9f4b61af353e477c307888358da072eadfc6e227706d6f7d8bdb71300a59f11"
+      },
+      "nodes": [
+        {
+          "address": 151613700,
+          "size": 2,
+          "hex": "70b5",
+          "kind": "ordinary",
+          "memory_write": true,
+          "successors": [
+            151613702
+          ]
+        },
+        {
+          "address": 151613702,
+          "size": 2,
+          "hex": "0504",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            151613704
+          ]
+        },
+        {
+          "address": 151613704,
+          "size": 2,
+          "hex": "2c0c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            151613706
+          ]
+        },
+        {
+          "address": 151613706,
+          "size": 2,
+          "hex": "261c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            151613708
+          ]
+        },
+        {
+          "address": 151613708,
+          "size": 2,
+          "hex": "201c",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            151613710
+          ]
+        },
+        {
+          "address": 151613710,
+          "size": 4,
+          "hex": "91f05ff8",
+          "kind": "call",
+          "target": 152207824,
+          "memory_write": false,
+          "successors": [
+            151613714
+          ]
+        },
+        {
+          "address": 151613714,
+          "size": 2,
+          "hex": "0028",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            151613716
+          ]
+        },
+        {
+          "address": 151613716,
+          "size": 2,
+          "hex": "efd1",
+          "kind": "conditional",
+          "target": 151613686,
+          "memory_write": false,
+          "successors": [
+            151613718
+          ]
+        },
+        {
+          "address": 151613718,
+          "size": 2,
+          "hex": "0148",
+          "kind": "ordinary",
+          "literal_address": 151613724,
+          "literal_value": 134667709,
+          "memory_write": false,
+          "successors": [
+            151613720
+          ]
+        },
+        {
+          "address": 151613720,
+          "size": 2,
+          "hex": "0047",
+          "kind": "indirect",
+          "register": 0,
+          "memory_write": false,
+          "successors": []
+        }
+      ],
+      "external_edges": [
+        {
+          "site": 151613710,
+          "kind": "call",
+          "target": 152207825,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 151613716,
+          "kind": "conditional",
+          "target": 151613687,
+          "resolved_to_code_address_only": true
+        },
+        {
+          "site": 151613720,
+          "kind": "indirect",
+          "register": 0,
+          "target": null
+        }
+      ],
+      "memory_write_sites": [
+        151613700
+      ],
+      "side_effects_excluded": false
+    },
+    "sampled_ranges": [
+      {
+        "address": 151613700,
+        "hex": "70b5",
+        "size": 2,
+        "sha256": "0f0a78a9a0c1a60a1ae3e55966184ced0c89c9ba38c97c1e0b41a65f154fc4ab"
+      },
+      {
+        "address": 151613702,
+        "hex": "0504",
+        "size": 2,
+        "sha256": "9eefa461c6e7babd740914c99f7264897afdab6932472de7af5e067139e98031"
+      },
+      {
+        "address": 151613704,
+        "hex": "2c0c",
+        "size": 2,
+        "sha256": "ab28109c76051d674842e56aeb856eb2b1931187a6f4464a927ed0067c936c48"
+      },
+      {
+        "address": 151613706,
+        "hex": "261c",
+        "size": 2,
+        "sha256": "a8b11552d9455f6b17d1df06d97fe0b26e1f5dfe5a2b5d64a0650167a98ec8a1"
+      },
+      {
+        "address": 151613708,
+        "hex": "201c",
+        "size": 2,
+        "sha256": "51855451620c11a743f2ab624c3fd39586f5cfeb83635ca26ecb6cd163d6c6fb"
+      },
+      {
+        "address": 151613710,
+        "hex": "91f05ff8",
+        "size": 4,
+        "sha256": "578a35b35ee5f7caf4b8b33a055368c93314f07a187d7c861241f5e3c0dff902"
+      },
+      {
+        "address": 151613714,
+        "hex": "0028",
+        "size": 2,
+        "sha256": "2ee788372518190a6ab539cbb20331df1040f21846e3ba836c269aee907c894c"
+      },
+      {
+        "address": 151613716,
+        "hex": "efd1",
+        "size": 2,
+        "sha256": "fe4d5f59af03b46d4bbce81275f38ffb8002a2306f497dfd2b0b695cdee3149b"
+      },
+      {
+        "address": 151613718,
+        "hex": "0148",
+        "size": 2,
+        "sha256": "31e0725f04cb990467ae9ead44eba9bea6a77dc200aaca4f52d0ea20b15d60c6"
+      },
+      {
+        "address": 151613720,
+        "hex": "0047",
+        "size": 2,
+        "sha256": "81904e68a8b9a2427e9e87e2c61b1098057608d18357d70d9281e8513941cf53"
+      },
+      {
+        "address": 151613724,
+        "hex": "bddd0608",
+        "size": 4,
+        "sha256": "4cc566c60b2d6ee18292d1a6ff44e793ff50b5ddbb0e7614faa3875d8bb18e41"
+      }
+    ],
+    "sampled_instruction_bytes": 22,
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "sampled_old_targets": [
+      151613701
+    ],
+    "external_targets": [
+      151613687,
+      152207825
+    ],
+    "additional_unread_targets": [
+      151613687,
+      152207825
+    ],
+    "old_frontier_removed": false,
+    "callee_return_proven": false,
+    "stack_integrity_proven": false,
+    "all_callers_resolved": false,
+    "all_runtime_owners_excluded": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0,
+    "new_graph_decodes": 1,
+    "candidate_reconstructions": 1
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_callee_bytes.py": {
+      "size": 15678,
+      "sha256": "d15bcb04e4d3ca1d05ad5738f20a96274b4e33a8cae5caca97659ac5d53fa32a"
+    },
+    "tests/test_pr16_ring_callee_bytes.py": {
+      "size": 2323,
+      "sha256": "490f6a4bfa013f0fb31e6a48b9671422914b14f4c6d33bda099324440691c7bd"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    },
+    "content/modernization/pr16_ring_frame_join.json": {
+      "size": 12005,
+      "sha256": "279cfedbac150421195f4ae1fbabdda45164032e6a0d3677f5f368450a96ebc4"
+    },
+    "content/modernization/pr16_ring_flagset_continuation.json": {
+      "size": 17058,
+      "sha256": "f42e0ce2a7716e99c01315ea6c8a5e47454437a20956c8836ab0335caba25c97"
+    },
+    "content/modernization/pr16_ring_indirect_abi.json": {
+      "size": 14759,
+      "sha256": "a7308d8829bc02cef6fa4b2a8b3f12d57d7eb838f58350a274c6739958bd6f37"
+    },
+    "content/modernization/pr16_ring_patch_owner.json": {
+      "size": 125662,
+      "sha256": "fb396fd19040d954ebc10c5296a35293575284e24f53bb6a0e23b440eb1a8746"
+    },
+    "content/modernization/pr16_ring_transitive_owner.json": {
+      "size": 34036,
+      "sha256": "2045f5f2d9b2f234f58b8c596121f26794ae578a220e960d38b4a2999ab51cb7"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_compiled_owner.py": {
+      "size": 13070,
+      "sha256": "708854062d694ef1e8bbafe633f24e684a92e44daea3abec01afb42c7a419aee"
+    }
+  },
+  "reused_successful_actions": [
+    {
+      "id": 34974346670,
+      "name": "Ring保存済み継承frameとcall-return境界の結合・検証・記録／ROMとnativeなし",
+      "head_sha": "369299c404a28ece2aaadf82b578c636d3120021",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "name": "同一3勝完了（基礎9+反復3 BP）から通常ショップ購入・Save・Continue検証",
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 34976484214,
+      "name": "source-validation",
+      "head_sha": "680ec66c4406ee027b389585ae06a98cf6b86176",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34976484145,
+      "name": "p03-forgetting-ci",
+      "head_sha": "680ec66c4406ee027b389585ae06a98cf6b86176",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34976478741,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "680ec66c4406ee027b389585ae06a98cf6b86176",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34976478801,
+      "name": "Ring旧未読callee 0x09097105のみ採取・checkpoint保存／native再実行なし",
+      "head_sha": "680ec66c4406ee027b389585ae06a98cf6b86176",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34976478786,
+      "name": "source-validation",
+      "head_sha": "680ec66c4406ee027b389585ae06a98cf6b86176",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34976478648,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "680ec66c4406ee027b389585ae06a98cf6b86176",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34976478694,
+      "name": "p03-forgetting-ci",
+      "head_sha": "680ec66c4406ee027b389585ae06a98cf6b86176",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 34974415512,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d0a03bbf0501a23de9bcf9845d5b0decbf7b80bc",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34974415482,
+      "name": "source-validation",
+      "head_sha": "d0a03bbf0501a23de9bcf9845d5b0decbf7b80bc",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34974348715,
+      "name": "p03-forgetting-ci",
+      "head_sha": "369299c404a28ece2aaadf82b578c636d3120021",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34974348723,
+      "name": "source-validation",
+      "head_sha": "369299c404a28ece2aaadf82b578c636d3120021",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34974346819,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "369299c404a28ece2aaadf82b578c636d3120021",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34974346597,
+      "name": "p03-forgetting-ci",
+      "head_sha": "369299c404a28ece2aaadf82b578c636d3120021",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34974346871,
+      "name": "source-validation",
+      "head_sha": "369299c404a28ece2aaadf82b578c636d3120021",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34974346900,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "369299c404a28ece2aaadf82b578c636d3120021",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34974346670,
+      "name": "Ring保存済み継承frameとcall-return境界の結合・検証・記録／ROMとnativeなし",
+      "head_sha": "369299c404a28ece2aaadf82b578c636d3120021",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34971827195,
+      "name": "source-validation",
+      "head_sha": "1c64151fe28cd2646b894e4bfb188b601275fcef",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34971827201,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1c64151fe28cd2646b894e4bfb188b601275fcef",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34971666755,
+      "name": "p03-forgetting-ci",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34971666748,
+      "name": "source-validation",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34971661123,
+      "name": "p03-forgetting-ci",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34971661202,
+      "name": "source-validation",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34971661234,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34971661219,
+      "name": "Ring未読FlagSet継続1根の採取・検証・記録／受入済みnative再実行なし",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34971661152,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34968553471,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0565db05c3e244b3b214bbc8141bb6c4182c8649",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34968553490,
+      "name": "source-validation",
+      "head_sha": "0565db05c3e244b3b214bbc8141bb6c4182c8649",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 34968489226,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0449002040cefe9c7df01c2bf7804ea51fb16491",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 34968489234,
+      "name": "source-validation",
+      "head_sha": "0449002040cefe9c7df01c2bf7804ea51fb16491",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34968485915,
+      "name": "Ring保存済み15間接辺のABI分類・検証・記録／ROMとnative実行なし",
+      "head_sha": "0449002040cefe9c7df01c2bf7804ea51fb16491",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "focused_tests": {
+    "tests_run": 36,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  }
+}

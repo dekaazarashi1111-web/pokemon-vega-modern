@@ -1,0 +1,141 @@
+{
+  "current_run_unit_executions": 0,
+  "current_suite_unique_tests": 24,
+  "meaning_ja": "旧22の5件はBG修復時の7件で置換。現行24件を今回実行したという意味ではない。",
+  "observation_repair": {
+    "accepted_case_reruns": 0,
+    "accepted_original_cases": [
+      "fixed-form-1254",
+      "fixed-form-1390",
+      "research-egg-1201"
+    ],
+    "arm_compiles": 0,
+    "controller_after": {
+      "sha256": "512b67b61590517717ebed6989c850967d276ee013791cc005aea2ef52cc2722",
+      "size": 11869
+    },
+    "controller_before": {
+      "sha256": "50836c4a0a32d67182b1ca04f47c6c40ec4c6aaa799b6e0b7ac76af7b507d59d",
+      "size": 11845
+    },
+    "driver_after": {
+      "sha256": "63a827014b234772011a804bdbb18254d92b3076f26012680b2a345d0718be8f",
+      "size": 26632
+    },
+    "driver_before": {
+      "sha256": "f36ede0b0046eaf86b9f8c685fad22ca20cbbac3180d7931b9a5231957dc6fcf",
+      "size": 26723
+    },
+    "host_compiles": 0,
+    "input_head": "dfc6d35028c77d2dd0864a41c4fc759d15d2225e",
+    "issue19_complete": false,
+    "modified_source_after_input_head": true,
+    "native_origin_run": 36119380600,
+    "new_native_processes": 0,
+    "new_unit_tests": 6,
+    "observation_source_bindings": {
+      "scripts/pr16_collection_gift_observation.py": {
+        "sha256": "18dd57f6687c50648355500afd4261b9a45500fc4333ab480956f20914e4e130",
+        "size": 15382
+      },
+      "tests/test_pr16_collection_gift_observation.py": {
+        "sha256": "50cf2e30970f0b4bcfed4676fca3b62d4dac055883f10e843470094c26131e21",
+        "size": 2650
+      }
+    },
+    "old_unit_reruns": 0,
+    "original_run_conclusion": "failure",
+    "path": "content/modernization/pr16_collection_gifts_evidence/36120941191/observation-repair.json",
+    "previous_screens": {
+      "all_single_color": true,
+      "artifact_id": 10856621674,
+      "images": 9,
+      "run_id": 36119380600,
+      "visual_acceptance": false
+    },
+    "primary_source": "mgba-emu/mgba@0.10.2:src/gba/core.c:_GBACoreReset (blob 8bdf218b3e3b8a73d4da4c1b028ae86843f3a502)",
+    "raw_bindings": {
+      "process.json": {
+        "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+        "size": 44
+      },
+      "stderr.txt": {
+        "sha256": "37ae667203d7ebb2bbc0878e1826c7f537c0999d4ae35792b48a60661189e36b",
+        "size": 8479
+      },
+      "stdout.txt": {
+        "sha256": "535ba998dcdb86c54ccc81a0fe99d30d346f7ebe4cff043e42f3dc53f85bb42e",
+        "size": 849
+      }
+    },
+    "release_ready": false,
+    "render_fix_scope": "RESET_AFTER_VIDEO_BUFFER_BEFORE_EACH_BOOT_CONTINUE_NO_GIFT_LOGIC_CHANGE",
+    "revalidated_case": "research-egg-1201",
+    "rom_changes": 0,
+    "run_id": 36120941191,
+    "schema_version": 1,
+    "status": "PASS_OBSERVATION_REPAIR_THREE_MECHANICAL_CASES",
+    "task": "USER-20260925-COLLECTION-OBSERVATION"
+  },
+  "old_suite_run": 36110983368,
+  "old_suite_tests": 22,
+  "pre_barrier_step_fix": {
+    "actual_source": {
+      "sha256": "512b67b61590517717ebed6989c850967d276ee013791cc005aea2ef52cc2722",
+      "size": 11869
+    },
+    "guarded_controller_bytes_unchanged": true,
+    "reverse_patch_sha256": "80b3ace6b3e85853b3ab2f40bd39ba737d081a9f48e0552b26f4758968397662"
+  },
+  "repair_run": 36118048058,
+  "repair_terminal": {
+    "conclusion": "success",
+    "head_sha": "410c63c8c552c06fb80b0535f5c6425b963a1e3c",
+    "id": 36118048058,
+    "status": "completed"
+  },
+  "repair_tests": 7,
+  "schema_version": 1,
+  "scope_tests": {
+    "inherited_tests": 9,
+    "new_tests": 0,
+    "origin_run": 36111746469,
+    "split_cases_ast_unchanged": true,
+    "test_binding": {
+      "sha256": "fe57b7367a770add9d99a57272ecbbdf2ec54f631359353acb08f1f9f1039203",
+      "size": 2882
+    }
+  },
+  "source_bindings": {
+    "scripts/pr16_collection_bg_prepare.py": {
+      "sha256": "aed856bfc9f878f577cb4560c9fca36332a8eccc2a485e53ceaf580a21d8b65b",
+      "size": 10427
+    },
+    "scripts/pr16_collection_gift_bg.py": {
+      "sha256": "b8c9d81fe540abf422515e8a43150ed2e2f57c74e73c6ecdc476d3b3e85b0f49",
+      "size": 3864
+    },
+    "scripts/pr16_collection_gift_scope.py": {
+      "sha256": "6e5ecd8cc9b6e940a813591346b26dbafa931445a80b143e88bbbd4a4956ab86",
+      "size": 11246
+    },
+    "scripts/pr16_collection_gifts.py": {
+      "sha256": "f36ede0b0046eaf86b9f8c685fad22ca20cbbac3180d7931b9a5231957dc6fcf",
+      "size": 26723
+    },
+    "tests/test_pr16_collection_gift_bg.py": {
+      "sha256": "edffaa54f5306c587468b7cf56e559b26d20c1cea8edb1945634dcd466c8da6a",
+      "size": 3946
+    },
+    "tests/test_pr16_collection_gifts.py": {
+      "sha256": "b2006c26557849770e3954325917048e8d5a46b560b43bc00ec4f2ea1c83659b",
+      "size": 8923
+    },
+    "tools/mgba_pr16_collection_gifts.c": {
+      "sha256": "80b3ace6b3e85853b3ab2f40bd39ba737d081a9f48e0552b26f4758968397662",
+      "size": 11795
+    }
+  },
+  "superseded_by_repair_tests": 5,
+  "unchanged_old_tests": 17
+}

@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_REGISTERED_ITEM_BATCH_REVIEW",
+  "review_scope": "new_registered_item_batch_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "initial_head": "d68ae32ed8d55e30d342ab8187dda48e6e16eb59",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-registered-item-batch.yml": {
+      "size": 3075,
+      "sha256": "34ef559cd11ac42b2be87367d4349416cba1bd16f38ef8412399639d05de78d3"
+    },
+    "content/modernization/pr16_dex_hof_absorbing_ability_roots_review.json": {
+      "size": 18560,
+      "sha256": "000e4a8f6f3e073f44d264d7d4619acc7f3d8364741f91ff49f09e3efc693313"
+    },
+    "content/modernization/pr16_dex_hof_moveend_wrapper_roots_review.json": {
+      "size": 19861,
+      "sha256": "dcea7e74578b0dc95a687023334d40ebf0087587a521edcd7dcec6ce22151d7c"
+    },
+    "content/modernization/pr16_dex_hof_registered_item_batch_sources.json": {
+      "size": 19547,
+      "sha256": "f323b323a192ea2164f333ee4fffd35d73816523982b0e4c3845922c42d5a2d1"
+    },
+    "content/modernization/pr16_dex_hof_toxic_orb_roots_review.json": {
+      "size": 18435,
+      "sha256": "b7168fee50574b907fed5ec366acc9b2e72b909dc626b2322b4c64c2a0ff7531"
+    },
+    "docs/PR16_DEX_HOF_REGISTERED_ITEM_BATCH_JA.md": {
+      "size": 5443,
+      "sha256": "bfe35336a65d726e3fc0b0d699be68b389a01022cf85d66c6acfad4cc90cf61e"
+    },
+    "scripts/pr16_dex_hof_absorbing_ability_roots.py": {
+      "size": 40352,
+      "sha256": "a811a265b19e712bfce4f46a30c78803f5a5a6af1aff5d3c180128ba56af89d1"
+    },
+    "scripts/pr16_dex_hof_moveend_wrapper_roots.py": {
+      "size": 42804,
+      "sha256": "aa5b44ac4e1fc5f2ee8d34024e3f86c63a7227e6f60902c0c64639356d98d3e0"
+    },
+    "scripts/pr16_dex_hof_registered_item_batch.py": {
+      "size": 7104,
+      "sha256": "57649be67e3a68d5d0dcc2f4ac08352e800c542bf6e6fbe2b61b64d71d190b99"
+    },
+    "scripts/pr16_dex_hof_registered_item_batch_actions.py": {
+      "size": 32065,
+      "sha256": "105799456d885194c289a1f131d81faacefdc39a367b8ebba2c0ccb39b1927ee"
+    },
+    "scripts/pr16_dex_hof_registered_item_batch_capacity.py": {
+      "size": 11477,
+      "sha256": "1237017c27f7ff371c012a5bc06b780912fddcf75707b2dcf493df7dba40f19a"
+    },
+    "scripts/pr16_dex_hof_registered_item_batch_chain.py": {
+      "size": 20534,
+      "sha256": "40b45cf0f265d7ca81e326be58a05a57ad51d5fbd7cf63b28f7bc5b52482af90"
+    },
+    "scripts/pr16_dex_hof_toxic_orb_roots.py": {
+      "size": 47232,
+      "sha256": "ee710b9f509731d1df3e236fbaedee8cf05f845a84ad40d054e19db82bbf00a9"
+    },
+    "tests/test_pr16_dex_hof_absorbing_ability_roots.py": {
+      "size": 10475,
+      "sha256": "2edde55922afe3ea6cb8cdc96dd0744e12534baae7cc4be0a286f311d8496f5b"
+    },
+    "tests/test_pr16_dex_hof_moveend_wrapper_roots.py": {
+      "size": 14354,
+      "sha256": "12e5ce33e294e0ad87a0485249a2d66d1f4931d16b21d66fc5031e810f0e56d9"
+    },
+    "tests/test_pr16_dex_hof_registered_item_batch.py": {
+      "size": 7740,
+      "sha256": "b015fdd5920bf6e64b394b64e8cf50bf68c01ed8f04db638feb733aedf95e531"
+    },
+    "tests/test_pr16_dex_hof_registered_item_batch_actions.py": {
+      "size": 28792,
+      "sha256": "e35459b4592802d5c77b4b9f9719508e81fe859eac935bf77fae0ca99d2320ba"
+    },
+    "tests/test_pr16_dex_hof_registered_item_batch_capacity.py": {
+      "size": 16185,
+      "sha256": "bc58c6177d589e105c8e232b236190cd765a8fdd6376214091d4491691d827f3"
+    },
+    "tests/test_pr16_dex_hof_registered_item_batch_chain.py": {
+      "size": 22411,
+      "sha256": "2c4f7e072b96d04f484e98702a69d83007eefa87ab6b9c7389d6b351d356b717"
+    },
+    "tests/test_pr16_dex_hof_toxic_orb_roots.py": {
+      "size": 14442,
+      "sha256": "82b18cfda5d96fa7ea8b6b3a5454dd05383dd0e457a5e6b49bde51d77def7902"
+    }
+  },
+  "diagnostic": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "unit_tests": 308,
+    "preflight_newly_run_tests": 172,
+    "reused_fixed_consumer_source_only_tests": 136,
+    "classifications": [
+      774,
+      100
+    ],
+    "newly_classified": 3,
+    "minimum_type_bytes": 18,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "identity_source": "previous_verified_recovery_not_current_measurement"
+    },
+    "delta_identity": {
+      "size": 50123,
+      "sha256": "5dd5a422f8e21b3303392157a709ba4536d6b9908a7c3f53f519aedf24ca66bc"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false
+  },
+  "diagnostic_test_log": {
+    "size": 46906,
+    "sha256": "6b5c55e29ddf7f8b64a1e114d6bd14af7559df9a6143c2a0e2936b1a0da5f90b"
+  },
+  "source_only_review": {
+    "status": "PASS",
+    "reports": [
+      {
+        "identity": {
+          "size": 5850,
+          "sha256": "21c6041222e9d13dd562922dc57350d68341995fe9f942d43fe08ebce93aed95"
+        },
+        "files": 11
+      },
+      {
+        "identity": {
+          "size": 11924,
+          "sha256": "49b973091639acbba7b1c5fe58eeeb2408e24e551a28f46e0100733f5aa81acb"
+        },
+        "files": 9
+      }
+    ],
+    "current_rom_measured": false,
+    "old_independent_final_review_retried": false
+  },
+  "unchanged_parent": {
+    "classified": 771,
+    "unclassified": 103,
+    "parent_inputs": 45,
+    "retained_proof_families": 23,
+    "changes": 152,
+    "witnesses": 142,
+    "owner_count": 115,
+    "hit_count": 874,
+    "song_models": 133,
+    "assets": 50
+  },
+  "acceptance_boundary": {
+    "current_candidate_verified": false,
+    "current_actions_required": true,
+    "natural_play_reachability_proven": false,
+    "universal_epoch_irq_proven": false,
+    "old_independent_final_source_review_completed": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "controller_runtime_wired": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}

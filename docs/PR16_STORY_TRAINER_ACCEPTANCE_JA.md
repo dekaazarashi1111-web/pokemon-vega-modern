@@ -1,0 +1,7 @@
+# trainer131接近・会話・entryの限定受入
+
+正式Save101は不変。trainer131視線の位置更新は通常歩数maintenance前、接近はlocal3 templateX34→37のみと解明。既知waitbuttonpress native/PCを確認した通常Aからbattle flags12/outcome0・実4体481/528/1537/1147を観測。2専用native各8step成功、最終167入力/85画面/7093frames、trainer戦闘入力0。全party・所持金23114円・SaveRTC保持、rekey平文比較でstat7/9各+1・毒歩数reset・時計を限定受入。初回NPC owner未対応停止は失敗原本として保持。全国963/749の旧seen setterがtrainerRematches/FameChecker等へ書くことを固定ROMで静的特定し、現在sourceの保存ABI衝突と番号namespace衝突も記録。30trainer+14dex+4公開metadataの48hostと保存原本再生で破壊前guardを検証。新ROM生成/切替、図鑑破壊実行、trainer勝利/賞金、回復/Save/fresh Continueは0。最終milestone未達、一般CI既知QOL source不一致は未解決。
+
+## 次の1手
+
+正式再開はSave101 artifact11303305200/story-fast.srm（131088bytes、SHA256814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149）、Route506 3/24(53,13)西。未保存trainer131 entry原本run37210491215/artifact11306222294は再利用し、新たな技入力を送らない。固定ROMのlegacy seen setter0x0810586cは全国963/749で非図鑑fieldへ書くため、pr16_story_dex_guard.pyの停止を解除する前に、現stable-keyの図鑑namespaceとversion/CRC/保存先を明示した専用late-stage修復を実装し、全getter/setter/clear/save/Continue/consumer限定回帰を行う。DPE/CFRUの旧Bag衝突パッチ再適用や無宣言reserved利用は不可。受入済みtrainer接近/会話/entry・旧wild/clock等は影響なしに再走しない。修復候補の正式受入後だけSave101の未保存失敗区間を再開し、trainer131/128/1065、506→519→シオウPokecenter7/3で通常回復・Save・cold Continueへ進む。全雑魚戦Save方針を復活させない。trainer勝利/賞金、シオウ回復、NationalDex解禁、自然成長は未完。merge/release/baseline切替なし。

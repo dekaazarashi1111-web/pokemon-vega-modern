@@ -1,0 +1,47 @@
+{
+  "candidate": {
+    "size": 33554432,
+    "sha256": "88be88116bd452bd70cffaf2a820d5c6c6b6b7410fa603a9a0228b694725d5de"
+  },
+  "windows": [
+    {
+      "id": "init_mon",
+      "address": 135212756,
+      "size": 416,
+      "sha256": "072c237aec68c34bdcd83890177eda2f63193e89e3f94db3c7c1b9889e7ba9ba",
+      "meaning_ja": "20byte mon packing、species low9、level7、nickname10。GetMonDataは試験時stub。"
+    },
+    {
+      "id": "init_team",
+      "address": 135213172,
+      "size": 268,
+      "sha256": "f45091f0923852f2743952f82744977374f9d21cec8e07057240cb2962407289",
+      "meaning_ja": "HOF load後に最初のspecies0 teamへ120byte追加。50件時49件左shift。1936byte suffixを触らない。"
+    },
+    {
+      "id": "hof_write_sector",
+      "address": 135113032,
+      "size": 120,
+      "sha256": "2d7dfbfa7e0393902355431d3ed6b492bb7e432d5fcfcf38ca06a8b9f96d66fc",
+      "meaning_ja": "全4096byte zero後、payload3968byte、署名FF8、payload checksumをFF4へ保存。"
+    },
+    {
+      "id": "hof_load_sector",
+      "address": 135115016,
+      "size": 112,
+      "sha256": "06fea339c0e5b811e51e80d88b26b2342a7236f24f80bf57d5eb3bb1556ece59",
+      "meaning_ja": "署名FF8とpayload checksumFF4のみを検査し指定sizeをcopy。"
+    },
+    {
+      "id": "save_checksum",
+      "address": 135115152,
+      "size": 44,
+      "sha256": "96873a7437320533b402fb6eb7f44df0a095a19fa8abe4b41dd03a04be2ee832",
+      "meaning_ja": "LEu32和を32bit wrapし、上位16と下位16を加算してlow16を返す。"
+    }
+  ],
+  "formal_window_identity_same": true,
+  "current_rom_owners": 115,
+  "current_scheduler_subowners": 43,
+  "current_scheduler_free_bytes": 186
+}

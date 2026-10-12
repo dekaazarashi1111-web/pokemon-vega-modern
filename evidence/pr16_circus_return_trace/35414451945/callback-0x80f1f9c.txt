@@ -1,0 +1,84 @@
+
+.local/pr16-streak-input/candidate.gba:     file format binary
+
+
+Disassembly of section .data:
+
+080f1f9c <.data+0xf1f9c>:
+ 80f1f9c:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 80f1f9e:	4657      	mov	r7, sl
+ 80f1fa0:	464e      	mov	r6, r9
+ 80f1fa2:	4645      	mov	r5, r8
+ 80f1fa4:	b4e0      	push	{r5, r6, r7}
+ 80f1fa6:	b085      	sub	sp, #20
+ 80f1fa8:	0600      	lsls	r0, r0, #24
+ 80f1faa:	0e00      	lsrs	r0, r0, #24
+ 80f1fac:	4681      	mov	r9, r0
+ 80f1fae:	4931      	ldr	r1, [pc, #196]	@ (0x80f2074)
+ 80f1fb0:	0080      	lsls	r0, r0, #2
+ 80f1fb2:	4448      	add	r0, r9
+ 80f1fb4:	00c0      	lsls	r0, r0, #3
+ 80f1fb6:	1840      	adds	r0, r0, r1
+ 80f1fb8:	8cc1      	ldrh	r1, [r0, #38]	@ 0x26
+ 80f1fba:	0609      	lsls	r1, r1, #24
+ 80f1fbc:	0e09      	lsrs	r1, r1, #24
+ 80f1fbe:	7a82      	ldrb	r2, [r0, #10]
+ 80f1fc0:	9200      	str	r2, [sp, #0]
+ 80f1fc2:	7b03      	ldrb	r3, [r0, #12]
+ 80f1fc4:	9301      	str	r3, [sp, #4]
+ 80f1fc6:	7b82      	ldrb	r2, [r0, #14]
+ 80f1fc8:	9202      	str	r2, [sp, #8]
+ 80f1fca:	7c00      	ldrb	r0, [r0, #16]
+ 80f1fcc:	9003      	str	r0, [sp, #12]
+ 80f1fce:	2700      	movs	r7, #0
+ 80f1fd0:	0048      	lsls	r0, r1, #1
+ 80f1fd2:	1840      	adds	r0, r0, r1
+ 80f1fd4:	00c0      	lsls	r0, r0, #3
+ 80f1fd6:	9004      	str	r0, [sp, #16]
+ 80f1fd8:	4b27      	ldr	r3, [pc, #156]	@ (0x80f2078)
+ 80f1fda:	4698      	mov	r8, r3
+ 80f1fdc:	4827      	ldr	r0, [pc, #156]	@ (0x80f207c)
+ 80f1fde:	1809      	adds	r1, r1, r0
+ 80f1fe0:	468a      	mov	sl, r1
+ 80f1fe2:	4827      	ldr	r0, [pc, #156]	@ (0x80f2080)
+ 80f1fe4:	9904      	ldr	r1, [sp, #16]
+ 80f1fe6:	1808      	adds	r0, r1, r0
+ 80f1fe8:	9900      	ldr	r1, [sp, #0]
+ 80f1fea:	9a01      	ldr	r2, [sp, #4]
+ 80f1fec:	9b03      	ldr	r3, [sp, #12]
+ 80f1fee:	f714 fd8b 	bl	0x8006b08
+ 80f1ff2:	0600      	lsls	r0, r0, #24
+ 80f1ff4:	0e06      	lsrs	r6, r0, #24
+ 80f1ff6:	2e40      	cmp	r6, #64	@ 0x40
+ 80f1ff8:	d01c      	beq.n	0x80f2034
+ 80f1ffa:	f7ff faeb 	bl	0x80f15d4
+ 80f1ffe:	0134      	lsls	r4, r6, #4
+ 80f2000:	19a4      	adds	r4, r4, r6
+ 80f2002:	00a4      	lsls	r4, r4, #2
+ 80f2004:	4642      	mov	r2, r8
+ 80f2006:	18a5      	adds	r5, r4, r2
+ 80f2008:	4653      	mov	r3, sl
+ 80f200a:	7819      	ldrb	r1, [r3, #0]
+ 80f200c:	1c28      	adds	r0, r5, #0
+ 80f200e:	f715 ff7b 	bl	0x8007f08
+ 80f2012:	481c      	ldr	r0, [pc, #112]	@ (0x80f2084)
+ 80f2014:	1824      	adds	r4, r4, r0
+ 80f2016:	481c      	ldr	r0, [pc, #112]	@ (0x80f2088)
+ 80f2018:	6020      	str	r0, [r4, #0]
+ 80f201a:	2003      	movs	r0, #3
+ 80f201c:	9a02      	ldr	r2, [sp, #8]
+ 80f201e:	4002      	ands	r2, r0
+ 80f2020:	0092      	lsls	r2, r2, #2
+ 80f2022:	7968      	ldrb	r0, [r5, #5]
+ 80f2024:	230d      	movs	r3, #13
+ 80f2026:	425b      	negs	r3, r3
+ 80f2028:	1c19      	adds	r1, r3, #0
+ 80f202a:	4008      	ands	r0, r1
+ 80f202c:	4310      	orrs	r0, r2
+ 80f202e:	7168      	strb	r0, [r5, #5]
+ 80f2030:	0178      	lsls	r0, r7, #5
+ 80f2032:	85e8      	strh	r0, [r5, #46]	@ 0x2e
+ 80f2034:	1c78      	adds	r0, r7, #1
+ 80f2036:	0600      	lsls	r0, r0, #24
+ 80f2038:	0e07      	lsrs	r7, r0, #24
+ 80f203a:	2f07      	cmp	r7, #7

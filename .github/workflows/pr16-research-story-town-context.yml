@@ -1,0 +1,54 @@
+name: pr16-research-story-town-context
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-town-context.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  context:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Export only latest source delta without native or accepted test replay
+        run: |
+          python3 -B - <<'PY'
+          import hashlib,json,os,subprocess,zipfile
+          from pathlib import Path
+          root=Path.cwd();out=root/'.local/pr16-story-town-context';out.mkdir(parents=True)
+          start='27c36f00177af193d3fb2883ba0d2416d0d2f929'
+          assert subprocess.check_output(['git','rev-parse','HEAD^']).decode().strip()==start
+          cp=json.loads(Path('content/modernization/pr16_research_story_route_checkpoint.json').read_text())
+          assert cp['actions_completion_confirmed'] is True and cp['retained_artifact_id']==10934928662
+          assert cp['output_save']=={'size':131088,'sha256':'8e924f8f058007f204db4319304f064f5b3232256b2e41a3706f88d4e2105110'}
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          required={'AGENTS.md','CHATGPT_RESUME.md','README.md','Makefile','.gitignore','design/current_state.md','design/agent_context_map.md','design/tasks_next.md','design/active_play_baseline.md','design/run_log.md','design/version_log.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','docs/PR16_RESEARCH_STORY_ROUTE_JA.md','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','state/source-lock.json'}
+          prefixes=('content/modernization/pr16_research_story_route','scripts/pr16_research_story_route','tests/test_pr16_research_story_route','.github/workflows/pr16-research-story-route')
+          def ident(raw):return {'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          manifest={};total=0
+          with zipfile.ZipFile(out/'source-delta.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(filter(None,names)):
+                  p=Path(name)
+                  if not(name in required or name.startswith(prefixes) or (p.parent==Path('.github') and p.suffix=='.json')):continue
+                  assert not p.is_symlink() and p.is_file()
+                  raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw
+                  total+=len(raw);assert total<40000000
+                  z.writestr(name,raw);manifest[name]=ident(raw)
+              z.writestr('delta-head.txt',os.environ['GITHUB_SHA']+'\n')
+              z.writestr('delta-manifest.json',json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          receipt={'schema_version':1,'status':'LATEST_SOURCE_DELTA_NOT_NATIVE_ACCEPTANCE','source_head':os.environ['GITHUB_SHA'],'start_head':start,'run_id':int(os.environ['GITHUB_RUN_ID']),'source_archive':ident((out/'source-delta.zip').read_bytes()),'source_files':len(manifest),'parent_artifact':10934928662,'native_processes':0,'accepted_case_reruns':0,'rom_changes':0,'host_compiles':0,'arm_compiles':0,'release_ready':False,'active_baseline_changed':False}
+          (out/'preparation.json').write_text(json.dumps(receipt,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          print(json.dumps(receipt,ensure_ascii=False,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-research-story-town-source-delta
+          path: .local/pr16-story-town-context
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

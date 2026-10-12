@@ -1,0 +1,141 @@
+name: pr16-shop-display-checkpoint
+run-name: Retain scoped shop repair, rejected probe and exact successor
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-shop-display-checkpoint.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-shop-display-checkpoint
+  cancel-in-progress: false
+jobs:
+  retain-shop-display:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Rebuild exact scoped acceptance and all existing generation paths
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-shop-display-checkpoint
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          python3 scripts/restore_modernization_final_originals.py > "$out/restore.json"
+          python3 scripts/pr16_shop_display_checkpoint.py --fetch --write > "$out/display.json"
+          python3 scripts/pr16_p05_route_checkpoint.py > "$out/p05-historical.json"
+          python3 scripts/pr16_shared_egg_checkpoint.py > "$out/shared.json"
+          python3 scripts/pr16_physical_route_checkpoint.py > "$out/physical.json"
+          python3 scripts/pr16_completion_checkpoint.py > "$out/completion.json"
+          python3 scripts/pr16_refresh_current_view.py --write > "$out/refresh.json"
+          python3 scripts/pr16_refresh_current_view.py > "$out/check.json"
+          python3 scripts/record_modernization_final_acceptance.py > "$out/final-generator.json"
+          python3 scripts/record_modernization_p03_forgetting.py > "$out/forgetting-generator.json"
+          python3 -m unittest tests.test_pr16_shop_display_checkpoint tests.test_pr16_shop_display_repair tests.test_pr16_p05_route_checkpoint tests.test_pr16_shop_routes tests.test_pr16_receiver_audit tests.test_pr16_p05_root_diagnostics tests.test_pr16_current_view tests.test_pr16_shared_egg_checkpoint tests.test_pr16_physical_route_checkpoint tests.test_pr16_completion_checkpoint -v > "$out/unit.log" 2>&1
+      - name: Save precise repair boundary and append-only history
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib,sys
+          sys.path.insert(0,'scripts');import pr16_shop_display_checkpoint as m
+          root=pathlib.Path('.');receipt=m.build();view=json.loads((root/m.prior.OVERVIEW).read_bytes())
+          assert receipt['shop_visual_acceptance'] is True and view['shop_display_repair_checkpoint']['shop_visual_acceptance'] is True
+          assert view['p05_route_checkpoint']['shop_visual_acceptance'] is False
+          assert view['p05_route_checkpoint']['historical_candidate']==m.prior.CANDIDATE
+          assert view['next_integration_candidate']['candidate']==m.CANDIDATE and view['next_integration_candidate']['full_candidate_regression_complete'] is False
+          assert view['full_p06_acceptance'] is True and view['p06_adoption']['full_phase_accepted'] is True
+          assert view['physical_route_checkpoint']['new_native_processes']==15 and view['shared_egg_checkpoint']['new_native_processes']==16
+          assert all(view[k] is False for k in ('release_ready','full_p03_acceptance','full_p05_acceptance','full_p07_acceptance'))
+          assert b'Ran 84 tests' in (root/'.local/pr16-shop-display-checkpoint/unit.log').read_bytes()
+          doc='''# PR16 メガストーン実受付の表示修正 — 2026-09-11
+          
+          **ショップの取得・表示・保存は後継候補で受入済みです。製品全体、自然捕獲から戦闘、最終配布は未完了です。**
+          
+          現在の入口は `content/modernization/p08_remaining_work.json`、今回の原本照合は `content/modernization/pr16_shop_display_acceptance.json` です。旧候補の表示不合格は `pr16_p05_route_acceptance.json` にそのまま残します。候補が異なるため、旧不合格を成功へ書き換えていません。
+          
+          ## 原因とコード修正
+          
+          実測BG0はcharacter base 0x8000。旧一覧のbase tile532、21×16=336タイルはVRAM 0xC280..0xEC80へ画像を書き、背景タイルマップ開始0xE000と枠用tile532..540へ重なっていました。GetStdWindowBaseTileの戻り値を一覧の本文用領域に使っていたことが原因です。
+          
+          `scripts/pr16_shop_display_repair.py` は本文をtile1..336、VRAM 0x8020..0xAA20へ置き、枠の上端を画面内の1へ変更します。価格・品目・BP処理・セーブ形式は変更しません。元のコンパイラ出力を4524bytes完全一致で再現してから、私有コピーで2項目だけ変えたrendererを空き領域へ配置し、元render_menu入口を分岐させます。allocatorの所有・全割当ハッシュ・非重複・宣言外差分なしを照合しています。履歴の元overlayを改変せず、追加の再生成レイヤーとして実装しました。
+          
+          採用済み親: SHA-256 `635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`。
+          
+          ショップ修正の後継候補: SHA-256 `e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267`、33554432bytes、CRC32 `BFB089F9`。他領域の旧成功は親候補の原本として保持し、後継で再実行したとは数えません。
+          
+          ## 実run 34571394609：修正版11件22コア＋元ROM対照3件6コア
+          
+          実行HEAD `d33ce3a774f695cee0723e999c485818bec0ea4a`。Factoryマップ96/5、NPC local14 (24,19) の実会話から、全9ページの45品目一覧、6種の石の購入、最初/途中/最終ページの取消、BP不足、リング未所持まで操作しました。石6種はオーダイル・シビルドン・カエンジシ・メガニウム・ドリュウズ・スコヴィランです。
+          
+          修正版11件では、全在庫・手持ち・BP・自動保存回数、通常Start保存、別コアContinue、再開後の購入済み除外を照合。背景タイルマップ6144bytesを合計96回比較し、差分0、一覧領域の重複0でした。元ROMの新規対照3件では破損が再現し、この検査が元の不具合を検出することを確認しています。対照3件を修正版の成功件数へ加えていません。
+          
+          観測開始後は7種類のhost書込みAPIを禁止し、拒否の実行記録も保持。開始位置・リング・BP・claim初期状態はfixtureで、石そのものは観測後の実購入による取得です。リングの通常取得、BP稼ぎ、自然捕獲、取得個体の戦闘まで成功したという意味ではありません。
+          
+          **画面原本も確認済みです。** 全9ページ、修正版11件の終了後、解禁済み10件の保存再開後の一覧で、背景と枠が正常でした。レビュー対象のSHA-256は `pr16_shop_display_visual_review.json` に固定しています。同じrunの元ROM対照画像は破損を示す負の対照で、修正版画像の成功へ読み替えません。
+          
+          ## 失敗した仮説も保持
+          
+          run34569993409、HEAD `203d2d64ac143c66e62e1c2430d685306d4feea6` は上端だけ0→1の比較実験です。元ROM3件と変更ROM3件、計6件12コアでデータ検査は通りましたが、表示崩れは直りませんでした。これは不採用の原本として記録します。最初の実購入10件20コアのデータ成功/表示不合格run34568373963も、P05原本に保持済みです。
+          
+          ## 生成・原本保存・再検査
+          
+          修正工程は別の一時ディレクトリで独立2回生成し、同一バイト列を確認。親→修正版と修正版→親のBPS往復も検査しました。これは**修正工程だけの独立2回生成**で、clean ROMから全工程2回の製品要件ではありません。BPSは作業用の可逆差分で、製品配布パッチとは呼びません。
+          
+          `.github/workflows/pr16-shop-display-repair.yml` が親の復元から後継候補生成・実操作まで自動実行します。ユーザーにこの修正の手動パッチ適用を依頼していません。
+          
+          `content/modernization/pr16_shop_display_evidence/<run>/original.zip` と `actions.json` に2runをGit追跡。SHA-256・CRC・ZIP安全性、成功したActions全step/実行HEAD、raw出力/exit記録、実際にコンパイルしたcontroller、入力ソース、レビュー画像を再照合して受入JSONを生成します。原本にはROM/saveを含みません。作業用BPSは修正runの原本内に保持しています。
+          
+          `python3 scripts/pr16_shop_display_checkpoint.py` と `python3 scripts/pr16_refresh_current_view.py` で再検査。最終受入/P03忘却の両生成経路も確認済みです。保存runの対象テストは84件。保存と再検査は新しいエミュレータ実行として数えません。
+          
+          ## 残件と継続時の境界
+          
+          ショップ修正候補を `next_integration_candidate` に明示し、旧成功の `final_integration` 原本を偽って新候補へ読み替えていません。P03/P07の供給経路対応、自然捕獲と通常取得から戦闘への接続、実Circus受付/入場、同一候補への最終統合・必要な影響回帰・clean ROM全工程2回・配布/セーブ保護付き導入戻し方は未完了です。`pr16_capture_geometry.py` はコード保存だけで、実行や捕獲成功とは数えません。
+          
+          ロトム・ピンプク・ピチュー・進化・共有技・P06の保持済み成功、P06内外のtrue整合、publicと無料わざメモリーの承認を保持します。Stage62・実プレイsave・旧原本・公開範囲・既存履歴は変更せず、PR #16は未マージです。
+          '''
+          path=root/'docs/PR16_SHOP_DISPLAY_CHECKPOINT_JA.md';assert not path.exists();path.write_text(doc)
+          marker='PR16-SHOP-DISPLAY-REPAIRED-20260911'
+          entry='\n## 2026-09-11 / '+marker+'\n\n- USER-MODERNIZATION: fixed list-content tiles overlapping world tilemaps and frame tiles. Only top=1 and content base=1 are changed in a separately compiled renderer layer; original sources and parent remain untouched.\n- Exact successor e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267, 33554432 bytes, CRC BFB089F9. Independent repair builds2 and both BPS round trips, NOT full clean product generation.\n- Native run34571394609 / d33ce3a7: repaired11 processes22 cores, 9 pages, six purchases/five controls, normal save/cold Continue, 6144-byte world maps compared96 times with zero differences and no overlapping list layout. Separate original3 processes6 cores reproduce corruption. Reviewed native pixels are pinned.\n- Rejected top-only experiment run34569993409 remains rejected, original first shop data pass/visual fail run34568373963 is unchanged. Never add controls/probes to repaired success count.\n- Retention run '+os.environ['GITHUB_RUN_ID']+': exact ZIPs/Actions/source/raw/graphics validated, historical receipts and both current generators preserved, 84 target tests. Shop successor is scoped; full P03/P05/P07/release stay false.\n- Natural capture-to-battle, Circus actual admission, remaining supply coverage and full final integration/distribution remain. Stage62, real save, prior successes, P06 mirrors, visibility/owner policy and unmerged PR remain protected.\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              path=root/name;before=path.read_text();assert marker not in before;path.write_text(before+entry)
+          PY
+      - name: Commit originals and scoped successor only at unchanged branch HEAD
+        env:
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_shop_display_checkpoint as m
+          m.build();originals=[m.DIRECTORY+'/'+str(r[0])+'/original.zip' for r in m.RECORDS.values()]
+          paths=[m.RECEIPT,m.prior.OVERVIEW,'docs/PR16_SHOP_DISPLAY_CHECKPOINT_JA.md','design/run_log.md','design/version_log.md',*originals,*[p.removesuffix('original.zip')+'actions.json' for p in originals]]
+          changed=set(filter(None,subprocess.check_output(['git','diff','--name-only','-z']).decode().split('\0')));assert changed<=set(paths)
+          for name in ('design/run_log.md','design/version_log.md'):assert pathlib.Path(name).read_bytes().startswith(subprocess.check_output(['git','show','HEAD:'+name]))
+          subprocess.run(['git','add','--',*[p for p in paths if p not in originals]],check=True)
+          subprocess.run(['git','add','-f','--',*originals],check=True)
+          assert set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))==set(paths)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-MODERNIZATION: retain shop repair originals, reviewed graphics and scoped successor'
+          git push origin "HEAD:refs/heads/$branch"
+          git rev-parse HEAD > .local/pr16-shop-display-checkpoint/published-head.txt
+          python3 scripts/pr16_shop_display_checkpoint.py > .local/pr16-shop-display-checkpoint/post-commit-originals.json
+          python3 scripts/pr16_refresh_current_view.py > .local/pr16-shop-display-checkpoint/post-commit-current.json
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-shop-display-checkpoint
+          path: .local/pr16-shop-display-checkpoint/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

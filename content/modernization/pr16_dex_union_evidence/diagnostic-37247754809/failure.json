@@ -1,0 +1,7 @@
+{
+  "status": "DIAGNOSTIC_NOT_ACCEPTED",
+  "type": "ValueError",
+  "message": "strict ui compile ./.local/pr16-dex-union-ui/ui.c: In function ‘uu_frame’:\n./.local/pr16-dex-union-ui/ui.c:489:150: error: comparison of integer expressions of different signedness: ‘int32_t’ {aka ‘int’} and ‘unsigned int’ [-Werror=sign-compare]\n  489 |   if(pc==0x08002BC4&&read32(c,0x03003134)==0x08128F05){const unsigned roots[]={uu_task,uu_display,uu_sprite};for(unsigned j=0;j<3;j++)if(cpu->gprs[0]==roots[j]){uu_freed[j]++;si_need(uu_freed[j]==1,\"each Union allocation freed once\");}}\n      |                                                                                                                                                      ^~\ncc1: all warnings being treated as errors\n",
+  "native_processes": 0,
+  "attempts": []
+}

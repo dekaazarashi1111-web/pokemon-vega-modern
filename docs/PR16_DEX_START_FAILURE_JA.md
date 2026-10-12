@@ -1,0 +1,44 @@
+# PR16 START保存のvalid-live失敗と通常キー再試行
+
+正式ROM/Save101は保持する。ここで扱うのは、STARTのsame-save mode0でmain bankへ書く途中にFlash故障をモデル化した、候補限定の失敗表示・field復帰・通常キー再保存・独立Continueである。実カートリッジ故障や全save modeを受け入れたものではない。
+
+## 通常エラーへ戻す範囲
+
+TrySavingDataの結果gateで、実START DoSave callbackが0x03000FA4の0x0806F131であり、保存modeが0または4の場合だけ、失敗時に0x080DB36Eの既存通常エラーへ戻す。元のinvalid MDX拒否、その他のvalid保存caller、既存stock画面の通知は保持する。saveTypeだけでSTARTと推測しない。
+
+START以外では返値を見ないHOF・Link・e-reader・Mystery Gift等がある。DoSaveFailedScreenを一律no-opにすると唯一の失敗通知まで消えるため、採用しない。global SpeciesToNationalや既存ROM/正式Saveの切替も行わない。
+
+既存failure gate ownerを明示的に置換し、その隣の監査済み未割当部分だけへ延長する。元110owner全byte、scheduler/codec/lifecycle/battle consumer、他の未宣言ROM byteを保持し、全ROMの逆変換を検査する。新しいmutable latch・偽damaged mask・暗黙修復はない。
+
+## 故障モデルと受入条件
+
+通常Continue後のSave101作業コピーで、有効MDXを一切変更せず通常START/SAVE/確認を操作する。mGBA 0.10.2のFlash state machineがPROGRAM/RAWのときだけ、最初に書くbank0の1physical addressのprogram dataをXOR1する。これはエミュレータ側の明示fault modelであり、実ハード故障の観測ではない。通常CPU命令、Flash driver、readbackが失敗を検出する。RAM・CPU register・story stateへのhost fixtureは0、7種類の書込barrierは最初のframe前から有効。
+
+失敗後は有効MDX522byte、counter101、全source bank1とsector28..31、party、正規化Bagを保持する。故障時点から全拡張RAM0x0203B0E8..0x02040000の20248byteを比較し、旧tiles/video-state画面へ入らないことを確認する。target bankの部分変更とauthority bankの保全を分離する。
+
+通常エラー第一頁は描画待ち4frame後に画像を採取し、改ページA→最終頁→別の復帰A→fieldへ戻す。その後fault modelだけを解除し、通常STARTから改めてSaveする。失敗したsave typeをhostから再呼出しせず、保存counter101→102とMDXのdurable commitを確認する。失敗snapshotの独立Continue101と再保存snapshotの独立Continue102を別processで確認し、各Flash/RTC全byteがcold中に不変であることを要求する。
+
+## 最初の隔離gate測定の原本欠落
+
+source5a4822770ffd4543c4ad8a98b2a3d595b85c3bab / run37238699272 / job111542850908は全10step success。256個のu8 mode dispatchと864個のvalid/invalid・callback・status・mask・SP境界、計1120caseを必須assertした実行stepが成功した。ただしupload pathが旧public-dex-save-failureのままでartifact0件となった。
+
+この1120caseを無変更で再実行しない。後続runで同じsourceと固定compilerから候補全byte/配置を再構成し、原本測定JSONがないことを明示して記録する。失われたsteps数やraw native receiptは創作しない。出力先を修正し、空artifactはwarningでなくerrorとした。全byte mode dispatchは各modeの保存副作用の受入ではない。
+
+## 未完の安全契約
+
+- HOFの旧SaveFailedはtiles16KiBとvideo-stateだけでなくgDecompressionBufferを文字描画に使い、そこにあるHOF保存payloadを上書きし得る。再試行でHOF回数加算やmode4/5のsector28..31 eraseを重複させない契約が必要。
+- valid MDXでもstale selector＋descriptor/buffer異常ではauthority側がdamagedに選ばれ得る。Validate成功だけでstock wipeを安全と判定しない。
+- 外側QOL sector31の保存失敗は、返値だけでなくgSaveAttemptStatusへの伝播が必要。main成功後のsector31失敗をSTARTが成功表示する可能性は、このmain bank故障試験とは別の未完。
+- START mode4は失敗後もgDifferentSaveFileをclearするため、次のキーSaveはmode0になる。今回のsame-save mode0再試行をmode4再試行として扱わない。
+- mode1のbackup→stock部分保存→record-only、mode2のid0専用、mode3/5 HOF、mode4 overwrite、6..255 default、LinkFull/direct writer/特殊callerの通知・cold fallback・固有副作用は個別に受け入れる。
+- active capture/SetMonPokedexFlags、native授受/孵化/進化、UI/native count、acquisition/research/reward、reward clear、Factory memorial/Codex rollback、DexNavの残consumerは未接続。
+
+全consumer/必要な保存modeと影響nativeが閉じるまで正式ROM/Save101切替やtrainer131後半へ進まない。最終milestoneはシオウPokecenterの通常回復・Save・独立coldContinue。通常雑魚ごとのcheckpointは作らない。
+
+## 受入原本
+
+run37239138134 / job111544115505 / source78b6af2fd055f492fc28f264f5b3f6bfb7cda498は全10step success。候補d69a1d3c2b2d929ee94523eae00a7e6ce51a11e9a759c179b63f25b5abd7890c、gate192byte、allocator111owner/overlap0、総未割当1527byte、当該末尾連続80byte。
+
+通常故障・再試行processは3515frame/818入力/5画面、fault program1回（Flash physical offset16384）。RAM fixture0/register fixture0。独立cold101は1634frame/16入力、cold102は1390frame/12入力で各1画面。計3process/7画面。第一頁「レポートが かけませんでした」、最終頁の故障案内、失敗後field、再保存後field、両cold fieldを原本画像で目視した。全件同じrunの原本で、描画補完の再実行はない。
+
+失敗saveは131088byte/SHA37d6246e7104539d329bb954261feaad098570e1c21cc62647e672cdca54d017、再保存saveは131088byte/SHAbb236a0bb13ea4fee8a988a5700f9f0eb6b8056ec8d1627e37f9e2631ea15238。これらは候補試験のprivate作業出力であり、正式Save101へ昇格しない。公開artifact11315944185にはtext・最小identity・画面だけを含む。

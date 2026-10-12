@@ -1,0 +1,100 @@
+name: pr16-research-wild-local-record-20260927
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-wild-local-record-20260927.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-wild-local-record-20260927
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 受入commitを比較基準に固定・原本不変照合・記録失敗も保存
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import os, subprocess, sys
+          from pathlib import Path
+          sys.path[:0]=['scripts','.']
+          import pr16_research_wild_local_record as m
+          from pr16_learnset_compact_record import publish_resume
+          # 終端確認の差分は、すでにpush済みの限定受入commitから測る。
+          # 最初の実装前HEADを流用すると旧Actions原本まで新規差分になる。
+          m.START='fbf7c9dc38b8a6c233e7583948dcb11b6aa0fd31'
+          m.CODE={m.WF}
+          subprocess.run(['git','merge-base','--is-ancestor',m.START,'HEAD'],check=True)
+          prior=m.d.read(m.CP)
+          m.need(prior['record_run_id']==36275891559 and prior['native_acceptance'] and not prior['actions_completion_confirmed'],'固定受入境界')
+          for path,expected in prior['proof_bindings'].items():
+              m.need(m.identity(Path(path).read_bytes())==expected,'受入済み証拠不変: '+path)
+          for path,expected in prior['source_bindings'].items():
+              if path!=m.WF:
+                  m.need(m.identity(Path(path).read_bytes())==expected,'受入済みsource不変: '+path)
+          failed=m.d.inputs.api('actions/runs/36275950886')
+          m.need(failed['status']=='completed' and failed['conclusion']=='failure' and failed['head_sha']=='f0ecc346dcdd5233eec76c67eafb5e5a484817bb','記録failure原本')
+          m.record('confirm')
+          cp=m.d.read(m.CP)
+          repair=dict(base_commit=m.START,failed_record=m.d.run_summary(failed),reason_ja='終端確認で実装前STARTを再利用し旧Actions証拠まで新規所有差分へ混入した。完了済み受入commitからの記録差分に限定して修復。native/unit/compile再実行0。',native_processes=0,unit_processes=0,compiles=0)
+          actions=m.d.read(cp['actions']);actions['record_scope_repair']=repair;m.d.write(cp['actions'],actions)
+          cp['record_scope_repair']=repair
+          cp['proof_bindings'].update(prior['proof_bindings'])
+          cp['proof_bindings'][cp['actions']]=m.identity(Path(cp['actions']).read_bytes())
+          m.d.write(m.CP,cp)
+          state=m.d.read(m.d.STATE)
+          for path in (m.CP,cp['actions']):state['source_bindings'][path]=m.identity(Path(path).read_bytes())
+          publish_resume(state)
+          for path in m.d.LOGS:
+              with Path(path).open('a',encoding='utf-8') as f:
+                  f.write('- Record scope repair: run36275950886の記録だけのfailureを保持。比較基準を受入commit fbf7c9dcへ固定し、旧Actions原本を不変継承。受入済みsource/evidence hashを再確認、native/unit/compile追加0。\n')
+          subprocess.run(['git','add','--',m.CP,cp['actions'],m.d.STATE,m.d.DOC,*sorted(m.d.LOGS)],check=True)
+          PY
+      - name: 固定引継ぎ・task graph・終端反映だけの最終index guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B - <<'PY'
+          import sys
+          sys.path[:0]=['scripts','.']
+          import pr16_research_wild_local_record as m
+          m.START='fbf7c9dc38b8a6c233e7583948dcb11b6aa0fd31'
+          m.CODE={m.WF}
+          m.guard()
+          PY
+      - name: 現HEAD確認・Actions終端確定commit・同branch非force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          python3 -B -c 'import sys;sys.path[:0]=["scripts","."];import pr16_research_lifecycle_actions as d;d.current()'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260927-RESEARCH-WILD: 釣り生態の限定受入Actions終端・原本継承・両ログを確定"
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          echo "RESULT=DONE TASK=USER-20260927-RESEARCH-WILD VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-wild-local-record
+          path: |
+            .local/pr16-research-wild-local-record/
+            content/modernization/pr16_research_wild_local_evidence/
+            content/modernization/pr16_research_wild_checkpoint.json
+          retention-days: 14
+          if-no-files-found: warn

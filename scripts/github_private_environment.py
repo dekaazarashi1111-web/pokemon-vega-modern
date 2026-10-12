@@ -23,6 +23,9 @@ INTERNAL_MANIFEST = "PRIVATE_ENVIRONMENT_MANIFEST.json"
 MAX_SECRET_SCAN_FILE = 64 * 1024 * 1024
 MAX_ARCHIVE_MEMBER_SCAN = 64 * 1024 * 1024
 FIXED_ZIP_TIME = (2026, 9, 5, 0, 0, 0)
+RIGHTS_MANIFESTS = (
+    "content/modernization/p04_asset_import_manifest.json",
+)
 
 SECRET_PATTERNS = {
     "private_key": re.compile(
@@ -102,12 +105,29 @@ def _load_config(path: Path) -> dict:
 
 
 def _resolve_source(root: Path, value: object) -> Path:
+    workspace = root.resolve()
     if value == "@workspace_parent/PRIVATE_INPUTS":
-        return root.parent / "PRIVATE_INPUTS"
+        candidate = workspace.parent / "PRIVATE_INPUTS"
+        if candidate.is_symlink():
+            raise PrivateEnvironmentError(f"bundle source rootのsymlinkは禁止です: {candidate}")
+        return candidate
     if value == "@workspace_parent/integration_inputs":
-        return root.parent / "integration_inputs"
+        candidate = workspace.parent / "integration_inputs"
+        if candidate.is_symlink():
+            raise PrivateEnvironmentError(f"bundle source rootのsymlinkは禁止です: {candidate}")
+        return candidate
     path = _safe_relative(value, "source")
-    return root.joinpath(*path.parts)
+    candidate = workspace
+    for component in path.parts:
+        candidate = candidate / component
+        if candidate.is_symlink():
+            raise PrivateEnvironmentError(
+                f"bundle source pathのsymlinkは禁止です: {candidate}"
+            )
+    resolved = candidate.resolve()
+    if resolved != workspace and workspace not in resolved.parents:
+        raise PrivateEnvironmentError(f"bundle sourceがworkspace外です: {value!r}")
+    return resolved
 
 
 def _is_excluded(relative: PurePosixPath, excludes: tuple[PurePosixPath, ...]) -> bool:
@@ -147,6 +167,8 @@ def _secret_hits(path: Path) -> list[str]:
 
 
 def _iter_source_files(source: Path) -> Iterable[tuple[Path, PurePosixPath]]:
+    if source.is_symlink():
+        raise PrivateEnvironmentError(f"bundle source rootのsymlinkは禁止です: {source}")
     if source.is_file():
         yield source, PurePosixPath(source.name)
         return
@@ -159,9 +181,50 @@ def _iter_source_files(source: Path) -> Iterable[tuple[Path, PurePosixPath]]:
             yield path, PurePosixPath(path.relative_to(source).as_posix())
 
 
+def _non_redistributable_roots(root: Path) -> tuple[Path, ...]:
+    """rights manifestが再配布不可とする生成rootをfail-closedで解決する。"""
+
+    result: list[Path] = []
+    workspace = root.resolve()
+    for relative in RIGHTS_MANIFESTS:
+        manifest_path = root / relative
+        if not manifest_path.exists():
+            raise PrivateEnvironmentError(f"rights manifestがありません: {relative}")
+        if manifest_path.is_symlink() or not manifest_path.is_file():
+            raise PrivateEnvironmentError(
+                f"rights manifestが通常ファイルではありません: {relative}"
+            )
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise PrivateEnvironmentError(
+                f"rights manifestを読めません: {relative}: {exc}"
+            ) from exc
+        rights = manifest.get("rights") if isinstance(manifest, dict) else None
+        output = manifest.get("output") if isinstance(manifest, dict) else None
+        if not isinstance(rights, dict) or not isinstance(output, dict):
+            raise PrivateEnvironmentError(f"rights manifest構造が不正です: {relative}")
+        allowed = rights.get("redistribution_allowed")
+        if not isinstance(allowed, bool):
+            raise PrivateEnvironmentError(
+                f"redistribution_allowedがboolではありません: {relative}"
+            )
+        if allowed:
+            continue
+        logical = _safe_relative(output.get("logical_root"), "rights asset root")
+        guarded = root.joinpath(*logical.parts).resolve()
+        if guarded == workspace or workspace not in guarded.parents:
+            raise PrivateEnvironmentError(
+                f"rights asset rootがworkspace外です: {logical.as_posix()}"
+            )
+        result.append(guarded)
+    return tuple(result)
+
+
 def collect_archive_files(root: Path, archive: dict) -> list[BundleFile]:
     result: list[BundleFile] = []
     destinations: set[str] = set()
+    forbidden_roots = _non_redistributable_roots(root)
     for source_spec in archive["sources"]:
         if not isinstance(source_spec, dict):
             raise PrivateEnvironmentError("source設定がobjectではありません")
@@ -176,6 +239,15 @@ def collect_archive_files(root: Path, archive: dict) -> list[BundleFile]:
         for path, relative in _iter_source_files(source):
             if _is_excluded(relative, excludes):
                 continue
+            resolved = path.resolve()
+            if any(
+                resolved == forbidden or forbidden in resolved.parents
+                for forbidden in forbidden_roots
+            ):
+                raise PrivateEnvironmentError(
+                    "再配布不可assetをbundleへ入れません: "
+                    f"{path.relative_to(root).as_posix()}"
+                )
             destination = (destination_root / relative).as_posix()
             _safe_relative(destination, "archive member")
             if destination == INTERNAL_MANIFEST or destination in destinations:
@@ -315,12 +387,18 @@ def _read_and_verify_archive(path: Path, expected: dict | None) -> dict:
 
 def _destination(root: Path, member: str) -> Path:
     relative = _safe_relative(member, "restore member")
-    target = root.joinpath(*relative.parts)
-    current = root
+    workspace = root.resolve()
+    target = workspace.joinpath(*relative.parts)
+    current = workspace
     for part in relative.parts[:-1]:
         current = current / part
         if current.is_symlink():
             raise PrivateEnvironmentError(f"restore親pathがsymlinkです: {current}")
+    resolved = target.resolve(strict=False)
+    if resolved != workspace and workspace not in resolved.parents:
+        raise PrivateEnvironmentError(
+            f"restore先がworkspace外へ解決されます: {relative.as_posix()}"
+        )
     return target
 
 
@@ -360,9 +438,15 @@ def restore_archive(root: Path, path: Path, expected: dict, force: bool) -> dict
             finally:
                 temporary_path.unlink(missing_ok=True)
             restored += 1
-    manifest_dir = root / ".local/github-private-environment/manifests"
-    manifest_dir.mkdir(parents=True, exist_ok=True)
-    manifest_path = manifest_dir / f"{path.name}.json"
+    manifest_path = _destination(
+        root,
+        f".local/github-private-environment/manifests/{path.name}.json",
+    )
+    if manifest_path.is_symlink():
+        raise PrivateEnvironmentError(
+            f"restore manifest先のsymlinkは禁止です: {manifest_path}"
+        )
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(
         json.dumps(manifest, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
         encoding="utf-8",
@@ -377,9 +461,9 @@ def restore_links(root: Path, config: dict, force: bool) -> int:
             raise PrivateEnvironmentError("input link rowが不正です")
         link_rel = _safe_relative(row.get("path"), "input link")
         target_rel = _safe_relative(row.get("target"), "input target")
-        link = root.joinpath(*link_rel.parts)
-        target = root.joinpath(*target_rel.parts)
-        if not target.is_file():
+        link = _destination(root, link_rel.as_posix())
+        target = _destination(root, target_rel.as_posix())
+        if target.is_symlink() or not target.is_file():
             raise PrivateEnvironmentError(f"input link targetがありません: {target_rel}")
         link.parent.mkdir(parents=True, exist_ok=True)
         relative_target = os.path.relpath(target, start=link.parent)

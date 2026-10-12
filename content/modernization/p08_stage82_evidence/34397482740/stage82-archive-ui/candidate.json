@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "stage": 82,
+  "status": "BUILT_NOT_ACCEPTED",
+  "parent_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+  "candidate_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+  "size": 33554432,
+  "repairs": [
+    {
+      "name": "Stage75_MachineGateScript",
+      "offset": 22329071,
+      "before_hex": "210d800100",
+      "after_hex": "0000000000"
+    },
+    {
+      "name": "Stage75_TutorGateScript",
+      "offset": 22329099,
+      "before_hex": "210d800100",
+      "after_hex": "0000000000"
+    },
+    {
+      "name": "native_allocation",
+      "offset": 939904,
+      "before_hex": "9f20",
+      "after_hex": "dd20"
+    },
+    {
+      "name": "native_list_builder",
+      "offset": 942216,
+      "before_hex": "f0b5474680b483b0424f3968424c0819007864267043414d4019e8315df714f93968887639680c19207870434019e8315df70af90006000e804600253868807e854213da3e1c8d246400316808196a00e831891809880901314a891822f70cfc093401353068807e8542eedb294c2068294940180178642048432849401802216a4659f723f92748694622f7adfb2068817e90218d277f00c9194018224922f7ebfb2168887e013088760025012343449c4645450fda261c3c1c3068eb00011c2031c91802190a602430c0180560093401354545f1db0f4c2268eb00101c2030c018114901602432d218fe2010600f4a111c0f4868c868c168c868c12068203010606546958103b008bc9846f0bc01bc004700002caa0302e3010000e4410202c85304094c1c0202c45b3c08c05e00036c5c3c08",
+      "after_hex": "f0b583b02b4804682b48205c642148432a49401800902100e831294b00f048f8282800d90020060001960130a0760025b4273f013f19b54219d26900e831615a0901204a8918380010220b78037001310130013af9d1ff23fb739f2000010019e90040180760456010370135e3e79f20000100190290e900401813490160fe21416000980221114a114b00f011f811481149062203680b6004300431013af9d10d490298086001980130888103b0f0bd1847c0462caa0302e3010000e4410202d1320408c8530409c45b3c084c1c020255f303086c5c3c08c05e0003c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046c046"
+    },
+    {
+      "name": "native_name_index",
+      "offset": 942584,
+      "before_hex": "d3009a188d235b00",
+      "after_hex": "12011246b4231b01"
+    },
+    {
+      "name": "native_learned_name_stride",
+      "offset": 941556,
+      "before_hex": "c900",
+      "after_hex": "0901"
+    }
+  ],
+  "changed_byte_count": 317,
+  "layout": {
+    "allocation": 3536,
+    "moves": 232,
+    "capacity": 40,
+    "selected_party": 483,
+    "selected_slot": 484,
+    "items": 2544,
+    "item_stride": 8,
+    "names": 2880,
+    "name_stride": 16
+  },
+  "hall_of_fame_required": true,
+  "unrelated_bytes_preserved": true,
+  "learnsets_changed": false,
+  "active_baseline_changed": false,
+  "full_p03_acceptance": false,
+  "breeding_e2e": false,
+  "release_ready": false
+}

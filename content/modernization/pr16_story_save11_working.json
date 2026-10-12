@@ -1,0 +1,85 @@
+{
+  "accepted_case_reruns": 0,
+  "actions_completion_confirmed": true,
+  "active_baseline_changed": false,
+  "base_head": "39d05cd01972f398138e6763db18f9465ff2866f",
+  "candidate": {
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+    "size": 33554432
+  },
+  "capture_attempts": 2,
+  "captures": 1,
+  "continue_frames": 3560,
+  "continue_inputs": 50,
+  "development_focused_tests": 68,
+  "development_native_processes": 2,
+  "development_source_bindings": {
+    "scripts/pr16_story_save11.py": {
+      "sha256": "8f93e95a14c012630222d447c5e362ba83ae2e20b0c0fdc54e460670174a1a53",
+      "size": 13973
+    },
+    "tests/test_pr16_story_save11.py": {
+      "sha256": "09245dab1ad5b0190f3cebaadba803e00c813964dd03f53e8b9c522c5ef3fa76",
+      "size": 9389
+    }
+  },
+  "development_unit_stderr": {
+    "sha256": "cf86c328856fc6434bdbfdbc35a2533b0cfbc6b5a3dffd4f47e4a8b866428dba",
+    "size": 8143
+  },
+  "experience": [
+    450,
+    27
+  ],
+  "failed_capture_attempts": 1,
+  "formal_focused_tests": 68,
+  "formal_native_processes": 2,
+  "formal_run_id": 36430188567,
+  "formal_source_head": "79be6cb0fe60277cb37df6d3b85d9a8414b28c51",
+  "full_image_comparisons": 7,
+  "hp": [
+    [
+      16,
+      26
+    ],
+    [
+      4,
+      15
+    ]
+  ],
+  "input_save": {
+    "sha256": "c2c08321b12ef4b5039884d9e4155eb32a614415bb68a1497758cdedfb9000c0",
+    "size": 131088
+  },
+  "map": [
+    3,
+    19
+  ],
+  "natural_research_arrival_accepted": false,
+  "notes_ja": "Save10から通常操作のみ。ツツケラLv3へ初投失敗、すいとる3回、二投目で捕獲。名前入力を空のまま決定して元名保持。通常Save10→11の完了表示と独立Continueを実測。全131088Save/RTC一致、親bank57344bytesと未使用party400bytes保持。先頭個体の変化はHP26→16とPP25→22の2bytesのみ。捕獲成功の表示とparty1→2/outcome7を結合し、勝利・逃走とは区別する。保存完了時はlock1、field解除はcoldで確認。地域図鑑No???/レポート図鑑1匹を保持し図鑑統合は未受入。次は新検証器・失敗系試験と正式Actions。旧受入218/cold62等は再生しない。開発成功区間を再開探索として再生しない。",
+  "output_save": {
+    "sha256": "dfe8188b695323c61fa79172df41a5b3c7eb8b6c56d54df2cf1bc67cac424eef",
+    "size": 131088
+  },
+  "parent_artifact": 10970079659,
+  "parent_checkpoint": "content/modernization/pr16_story_save10_checkpoint.json",
+  "party_count_after": 2,
+  "party_count_before": 1,
+  "poke_balls_after": 3,
+  "poke_balls_before": 5,
+  "progress_frames": 12231,
+  "progress_inputs": 176,
+  "release_ready": false,
+  "retained_artifact_id": 10973111478,
+  "save_counter": 11,
+  "schema_version": 1,
+  "screen_count": 83,
+  "status": "FORMAL_TERMINAL_CONFIRMED",
+  "superseded_by": "content/modernization/pr16_story_save11_checkpoint.json",
+  "trainer_victories": 0,
+  "wild_victories": 0,
+  "xy": [
+    15,
+    10
+  ]
+}

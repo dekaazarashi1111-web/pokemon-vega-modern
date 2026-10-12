@@ -1,0 +1,1119 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-UI-OWNERS",
+  "source_head": "e70be3ee87d24b695f2bae1d3eef6a0afbc489c0",
+  "run_id": 35199184638,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "jp_symbol_bindings": {
+      "sTextPrinters": 33685552,
+      "RenderFont": 134229581,
+      "CopyWindowToVram": 134233837,
+      "gWindows": 33686576
+    },
+    "saved_sites": {
+      "134229232": "f0b5",
+      "134229580": "10b5",
+      "134233836": "70b5",
+      "134229342": "4901",
+      "134229430": "4901",
+      "134229592": "4018",
+      "134229594": "8000"
+    },
+    "callback_global": 50347472,
+    "callback_record_stride": 12,
+    "callback_selector_offset": 5,
+    "output_pool": 33685552,
+    "output_stride": 32,
+    "resource_pool": 33686576,
+    "resource_stride": 12,
+    "next_named_roots": [
+      {
+        "symbol": "AddTextPrinterParameterized",
+        "entry": 134229061,
+        "already_saved": false
+      },
+      {
+        "symbol": "DeactivateAllTextPrinters",
+        "entry": 134229033,
+        "already_saved": false
+      },
+      {
+        "symbol": "RunTextPrinters",
+        "entry": 134229457,
+        "already_saved": false
+      },
+      {
+        "symbol": "InitWindows",
+        "entry": 134232817,
+        "already_saved": false
+      },
+      {
+        "symbol": "AddWindow",
+        "entry": 134233265,
+        "already_saved": false
+      },
+      {
+        "symbol": "RemoveWindow",
+        "entry": 134233609,
+        "already_saved": false
+      },
+      {
+        "symbol": "FreeAllWindowBuffers",
+        "entry": 134233753,
+        "already_saved": false
+      }
+    ],
+    "missing_named_roots": [
+      "SetFontsPointer",
+      "SetDefaultFontsPointer"
+    ],
+    "symbol_name_is_execution_proof": false,
+    "source_header_is_live_allocation_proof": false,
+    "unbound_symbol_hypotheses": [
+      {
+        "entry": 134229233,
+        "name": "AddTextPrinter",
+        "present_in_pinned_ld": false,
+        "accepted_as_symbol_binding": false
+      }
+    ],
+    "classification": "PINNED_JP_UI_OWNER_BINDINGS_NOT_LIVE_ALLOCATION_OR_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "source_provenance": {
+      "cfru/BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "git_blob": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "path": "BPRJ.ld",
+        "relevant_lines": [
+          {
+            "line": 253,
+            "text": "gWindows = 0x2020430;"
+          },
+          {
+            "line": 600,
+            "text": "CompleteOnInactiveTextPrinter = 0x802F614 | 1;"
+          },
+          {
+            "line": 602,
+            "text": "DestroyExpTaskAndCompleteOnInactiveTextPrinter = 0x802FAD0 | 1;"
+          },
+          {
+            "line": 971,
+            "text": "BuyMenuInitWindows = 0x813FD90 | 1;"
+          },
+          {
+            "line": 1221,
+            "text": "DeactivateAllTextPrinters = 0x8002C28 | 1;"
+          },
+          {
+            "line": 1222,
+            "text": "AddTextPrinterParameterized = 0x8002C44 | 1;"
+          },
+          {
+            "line": 1223,
+            "text": "RunTextPrinters = 0x8002DD0 | 1;"
+          },
+          {
+            "line": 1224,
+            "text": "IsTextPrinterActive = 0x8002E3C | 1;"
+          },
+          {
+            "line": 1225,
+            "text": "TextPrinterDrawDownArrow = 0x80054C4 | 1;"
+          },
+          {
+            "line": 1226,
+            "text": "TextPrinterWaitAutoMode = 0x80055D4 | 1;"
+          },
+          {
+            "line": 1245,
+            "text": "RunTextPrintersAndIsPrinter0Active = 0x80F7D14 | 1;"
+          },
+          {
+            "line": 1247,
+            "text": "AddTextPrinterForMessage = 0x80F7DBC | 1;"
+          },
+          {
+            "line": 1251,
+            "text": "AddTextPrinterParameterized4 = 0x812EDAC | 1;"
+          },
+          {
+            "line": 1421,
+            "text": "IsPartyMenuTextPrinterActive = 0x8120B60 | 1;"
+          },
+          {
+            "line": 1432,
+            "text": "PartyMenuRemoveWindow = 0x81224B0 | 1;"
+          },
+          {
+            "line": 1469,
+            "text": "InitWindows = 0x8003AF0 | 1;"
+          },
+          {
+            "line": 1470,
+            "text": "AddWindow = 0x8003CB0 | 1;"
+          },
+          {
+            "line": 1471,
+            "text": "RemoveWindow = 0x8003E08 | 1;"
+          },
+          {
+            "line": 1472,
+            "text": "FreeAllWindowBuffers = 0x8003E98 | 1;"
+          },
+          {
+            "line": 1505,
+            "text": "SetWindowTemplateFields = 0x8110984 | 1;"
+          },
+          {
+            "line": 1506,
+            "text": "CreateWindowTemplate = 0x8110A38 | 1;"
+          },
+          {
+            "line": 1875,
+            "text": "AddTextPrinterParameterized2 = 0x80F7D28 | 1;"
+          },
+          {
+            "line": 1934,
+            "text": "sTextPrinters = 0x2020030;"
+          },
+          {
+            "line": 1946,
+            "text": "AddTextPrinterParameterized3 = 0x812ED24 | 1;"
+          }
+        ]
+      },
+      "cfru/include/text.h": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "git_blob": "adf57ec8f9a107c3952a16288e1b3045e161935c",
+        "size": 14441,
+        "sha256": "49dd90aa97d20a015fc2f1fa16d6000e73e1053a4a05a3f08b334ab8bffbc40b",
+        "path": "include/text.h",
+        "relevant_lines": [
+          {
+            "line": 314,
+            "text": "#define NUM_TEXT_PRINTERS 32"
+          },
+          {
+            "line": 330,
+            "text": "struct TextPrinterSubStruct"
+          },
+          {
+            "line": 341,
+            "text": "struct TextPrinterTemplate"
+          },
+          {
+            "line": 358,
+            "text": "struct TextPrinter"
+          },
+          {
+            "line": 360,
+            "text": "    struct TextPrinterTemplate printerTemplate;"
+          },
+          {
+            "line": 362,
+            "text": "    void (*callback)(struct TextPrinterTemplate *, u16); // 0x10"
+          },
+          {
+            "line": 365,
+            "text": "        struct TextPrinterSubStruct sub;"
+          },
+          {
+            "line": 378,
+            "text": "struct FontInfo"
+          },
+          {
+            "line": 380,
+            "text": "    u16 (*fontFunction)(struct TextPrinter *x);"
+          },
+          {
+            "line": 391,
+            "text": "extern const struct FontInfo *gFonts;"
+          },
+          {
+            "line": 435,
+            "text": "u16 __attribute__((long_call)) AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16));"
+          },
+          {
+            "line": 436,
+            "text": "bool16 __attribute__((long_call)) AddTextPrinter(struct TextPrinterTemplate *textSubPrinter, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16));"
+          },
+          {
+            "line": 437,
+            "text": "void __attribute__((long_call)) RunTextPrinters(void);"
+          },
+          {
+            "line": 438,
+            "text": "bool16 __attribute__((long_call)) IsTextPrinterActive(u8 id);"
+          },
+          {
+            "line": 442,
+            "text": "void __attribute__((long_call)) TextPrinterDrawDownArrow(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 443,
+            "text": "bool8 __attribute__((long_call)) TextPrinterWaitAutoMode(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 444,
+            "text": "bool16 __attribute__((long_call)) TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 452,
+            "text": "void SetFontsPointer(const struct FontInfo *fonts);"
+          },
+          {
+            "line": 453,
+            "text": "void DeactivateAllTextPrinters(void);"
+          },
+          {
+            "line": 456,
+            "text": "u32 __attribute__((long_call)) RenderFont(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 464,
+            "text": "void CopyGlyphToWindow(struct TextPrinter *x);"
+          },
+          {
+            "line": 465,
+            "text": "void ClearTextSpan(struct TextPrinter *textPrinter, u32 width);"
+          },
+          {
+            "line": 467,
+            "text": "u16 Font0Func(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 468,
+            "text": "u16 Font1Func(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 469,
+            "text": "u16 Font2Func(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 470,
+            "text": "u16 Font3Func(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 471,
+            "text": "u16 Font4Func(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 472,
+            "text": "u16 Font5Func(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 473,
+            "text": "u16 Font7Func(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 474,
+            "text": "u16 Font8Func(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 476,
+            "text": "void TextPrinterInitDownArrowCounters(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 477,
+            "text": "void TextPrinterClearDownArrow(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 478,
+            "text": "bool16 TextPrinterWait(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 480,
+            "text": "u16 RenderText(struct TextPrinter *textPrinter);"
+          },
+          {
+            "line": 488,
+            "text": "void SetDefaultFontsPointer(void);"
+          }
+        ]
+      },
+      "cfru/include/window.h": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "git_blob": "abf9660c5a9f451245147f3c65e99657537a2d93",
+        "size": 4092,
+        "sha256": "82e2a7cb661ffe8a85d128752715bc16e6dc037a7eaac79d1a28ac9a3ac6dbe4",
+        "path": "include/window.h",
+        "relevant_lines": [
+          {
+            "line": 20,
+            "text": "struct WindowTemplate"
+          },
+          {
+            "line": 31,
+            "text": "#define WINDOWS_MAX 32"
+          },
+          {
+            "line": 48,
+            "text": "struct Window"
+          },
+          {
+            "line": 50,
+            "text": "    struct WindowTemplate window;"
+          },
+          {
+            "line": 54,
+            "text": "bool16 __attribute__((long_call)) InitWindows(const struct WindowTemplate* templates);"
+          },
+          {
+            "line": 55,
+            "text": "u16 __attribute__((long_call)) AddWindow(const struct WindowTemplate *template);"
+          },
+          {
+            "line": 56,
+            "text": "void __attribute__((long_call)) RemoveWindow(u8 windowId);"
+          },
+          {
+            "line": 57,
+            "text": "void __attribute__((long_call)) FreeAllWindowBuffers(void);"
+          },
+          {
+            "line": 81,
+            "text": "int AddWindowWithoutTileMap(const struct WindowTemplate *template);"
+          },
+          {
+            "line": 83,
+            "text": "u16 AddWindow8Bit(struct WindowTemplate *template);"
+          },
+          {
+            "line": 84,
+            "text": "u16 AddWindow8Bit(struct WindowTemplate *template);"
+          },
+          {
+            "line": 90,
+            "text": "//extern struct Window gWindows[];"
+          }
+        ]
+      },
+      "pokefirered/src/text.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "git_blob": "f3eef07ce6dea8269980a5ecfdd6902c1c9c13d2",
+        "size": 63210,
+        "sha256": "5696f49443eeaaac74b530421ac7f0cbfc71996c557399583788111c322dd80c",
+        "path": "src/text.c",
+        "relevant_lines": [
+          {
+            "line": 386,
+            "text": "u16 FontFunc_Small(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 388,
+            "text": "    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;"
+          },
+          {
+            "line": 398,
+            "text": "u16 FontFunc_NormalCopy1(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 400,
+            "text": "    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;"
+          },
+          {
+            "line": 410,
+            "text": "u16 FontFunc_Normal(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 412,
+            "text": "    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;"
+          },
+          {
+            "line": 422,
+            "text": "u16 FontFunc_NormalCopy2(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 424,
+            "text": "    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;"
+          },
+          {
+            "line": 434,
+            "text": "u16 FontFunc_Male(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 436,
+            "text": "    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;"
+          },
+          {
+            "line": 446,
+            "text": "u16 FontFunc_Female(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 448,
+            "text": "    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;"
+          },
+          {
+            "line": 458,
+            "text": "void TextPrinterInitDownArrowCounters(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 460,
+            "text": "    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;"
+          },
+          {
+            "line": 471,
+            "text": "void TextPrinterDrawDownArrow(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 473,
+            "text": "    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;"
+          },
+          {
+            "line": 522,
+            "text": "void TextPrinterClearDownArrow(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 534,
+            "text": "bool8 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 536,
+            "text": "    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;"
+          },
+          {
+            "line": 550,
+            "text": "bool16 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 555,
+            "text": "        result = TextPrinterWaitAutoMode(textPrinter);"
+          },
+          {
+            "line": 559,
+            "text": "        TextPrinterDrawDownArrow(textPrinter);"
+          },
+          {
+            "line": 569,
+            "text": "bool16 TextPrinterWait(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 574,
+            "text": "        result = TextPrinterWaitAutoMode(textPrinter);"
+          },
+          {
+            "line": 629,
+            "text": "u16 RenderText(struct TextPrinter *textPrinter)"
+          },
+          {
+            "line": 631,
+            "text": "    struct TextPrinterSubStruct *subStruct = &textPrinter->subUnion.sub;"
+          },
+          {
+            "line": 665,
+            "text": "            textPrinter->printerTemplate.currentY += gFonts[textPrinter->printerTemplate.fontId].maxLetterHeight + textPrinter->printerTemplate.lineSpacing;"
+          },
+          {
+            "line": 798,
+            "text": "            TextPrinterInitDownArrowCounters(textPrinter);"
+          },
+          {
+            "line": 802,
+            "text": "            TextPrinterInitDownArrowCounters(textPrinter);"
+          },
+          {
+            "line": 860,
+            "text": "        if (TextPrinterWait(textPrinter))"
+          },
+          {
+            "line": 864,
+            "text": "        if (TextPrinterWaitWithDownArrow(textPrinter))"
+          },
+          {
+            "line": 873,
+            "text": "        if (TextPrinterWaitWithDownArrow(textPrinter))"
+          },
+          {
+            "line": 875,
+            "text": "            TextPrinterClearDownArrow(textPrinter);"
+          },
+          {
+            "line": 876,
+            "text": "            textPrinter->scrollDistance = gFonts[textPrinter->printerTemplate.fontId].maxLetterHeight + textPrinter->printerTemplate.lineSpacing;"
+          }
+        ]
+      },
+      "pokefirered/src/window.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "git_blob": "834f13a8c9f4b5dbf5f5c278004f5fe5d9ff0ca2",
+        "size": 15783,
+        "sha256": "223a0ff33a3d4c92dc25d18ab2022d32e7e06d8c0e2fbf02c3cc111cbb0a2352",
+        "path": "src/window.c",
+        "relevant_lines": [
+          {
+            "line": 7,
+            "text": "EWRAM_DATA struct Window gWindows[WINDOWS_MAX] = {0};"
+          },
+          {
+            "line": 11,
+            "text": "static const struct WindowTemplate sDummyWindowTemplate = {0xFF, 0, 0, 0, 0, 0, 0};"
+          },
+          {
+            "line": 18,
+            "text": "bool16 InitWindows(const struct WindowTemplate *templates)"
+          },
+          {
+            "line": 37,
+            "text": "    for (i = 0; i < WINDOWS_MAX; ++i)"
+          },
+          {
+            "line": 39,
+            "text": "        gWindows[i].window = sDummyWindowTemplate;"
+          },
+          {
+            "line": 40,
+            "text": "        gWindows[i].tileData = NULL;"
+          },
+          {
+            "line": 43,
+            "text": "    for (i = 0, allocatedBaseBlock = 0, bgLayer = templates[i].bg; bgLayer != 0xFF && i < WINDOWS_MAX; ++i, bgLayer = templates[i].bg)"
+          },
+          {
+            "line": 62,
+            "text": "                    FreeAllWindowBuffers();"
+          },
+          {
+            "line": 87,
+            "text": "        gWindows[i].tileData = allocatedTilemapBuffer;"
+          },
+          {
+            "line": 88,
+            "text": "        gWindows[i].window = templates[i];"
+          },
+          {
+            "line": 92,
+            "text": "            gWindows[i].window.baseBlock = allocatedBaseBlock;"
+          },
+          {
+            "line": 101,
+            "text": "u16 AddWindow(const struct WindowTemplate *template)"
+          },
+          {
+            "line": 110,
+            "text": "    for (win = 0; win < WINDOWS_MAX; ++win)"
+          },
+          {
+            "line": 112,
+            "text": "        if ((bgLayer = gWindows[win].window.bg) == 0xFF)"
+          },
+          {
+            "line": 116,
+            "text": "    if (win == WINDOWS_MAX)"
+          },
+          {
+            "line": 161,
+            "text": "    gWindows[win].tileData = allocatedTilemapBuffer;"
+          },
+          {
+            "line": 162,
+            "text": "    gWindows[win].window = *template;"
+          },
+          {
+            "line": 166,
+            "text": "        gWindows[win].window.baseBlock = allocatedBaseBlock;"
+          },
+          {
+            "line": 167,
+            "text": "        BgTileAllocOp(bgLayer, allocatedBaseBlock, gWindows[win].window.width * gWindows[win].window.height, BG_TILE_ALLOC);"
+          },
+          {
+            "line": 173,
+            "text": "void RemoveWindow(u8 windowId)"
+          },
+          {
+            "line": 175,
+            "text": "    u8 bgLayer = gWindows[windowId].window.bg;"
+          },
+          {
+            "line": 179,
+            "text": "        BgTileAllocOp(bgLayer, gWindows[windowId].window.baseBlock, gWindows[windowId].window.width * gWindows[windowId].window.height, BG_TILE_FREE);"
+          },
+          {
+            "line": 182,
+            "text": "    gWindows[windowId].window = sDummyWindowTemplate;"
+          },
+          {
+            "line": 193,
+            "text": "    if (gWindows[windowId].tileData != NULL)"
+          },
+          {
+            "line": 195,
+            "text": "        Free(gWindows[windowId].tileData);"
+          },
+          {
+            "line": 196,
+            "text": "        gWindows[windowId].tileData = NULL;"
+          },
+          {
+            "line": 200,
+            "text": "void FreeAllWindowBuffers(void)"
+          },
+          {
+            "line": 213,
+            "text": "    for (i = 0; i < WINDOWS_MAX; ++i)"
+          },
+          {
+            "line": 215,
+            "text": "        if (gWindows[i].tileData != NULL)"
+          },
+          {
+            "line": 217,
+            "text": "            Free(gWindows[i].tileData);"
+          },
+          {
+            "line": 218,
+            "text": "            gWindows[i].tileData = NULL;"
+          },
+          {
+            "line": 225,
+            "text": "    struct Window windowLocal = gWindows[windowId];"
+          },
+          {
+            "line": 245,
+            "text": "    struct Window windowLocal = gWindows[windowId];"
+          },
+          {
+            "line": 260,
+            "text": "    struct Window windowLocal = gWindows[windowId];"
+          },
+          {
+            "line": 282,
+            "text": "    struct Window windowLocal = gWindows[windowId];"
+          },
+          {
+            "line": 296,
+            "text": "    struct Window windowLocal = gWindows[windowId];"
+          },
+          {
+            "line": 330,
+            "text": "    destRect.pixels = gWindows[windowId].tileData;"
+          },
+          {
+            "line": 331,
+            "text": "    destRect.width = 8 * gWindows[windowId].window.width;"
+          },
+          {
+            "line": 332,
+            "text": "    destRect.height = 8 * gWindows[windowId].window.height;"
+          },
+          {
+            "line": 346,
+            "text": "    destRect.pixels = gWindows[windowId].tileData;"
+          },
+          {
+            "line": 347,
+            "text": "    destRect.width = 8 * gWindows[windowId].window.width;"
+          },
+          {
+            "line": 348,
+            "text": "    destRect.height = 8 * gWindows[windowId].window.height;"
+          },
+          {
+            "line": 357,
+            "text": "    pixelRect.pixels = gWindows[windowId].tileData;"
+          },
+          {
+            "line": 358,
+            "text": "    pixelRect.width = 8 * gWindows[windowId].window.width;"
+          },
+          {
+            "line": 359,
+            "text": "    pixelRect.height = 8 * gWindows[windowId].window.height;"
+          },
+          {
+            "line": 367,
+            "text": "        CpuCopy16(src, gWindows[windowId].tileData + (0x20 * tileOffset), size);"
+          },
+          {
+            "line": 369,
+            "text": "        LZ77UnCompWram(src, gWindows[windowId].tileData + (0x20 * tileOffset));"
+          },
+          {
+            "line": 374,
+            "text": "    int fillSize = gWindows[windowId].window.width * gWindows[windowId].window.height;"
+          },
+          {
+            "line": 375,
+            "text": "    CpuFastFill8(fillValue, gWindows[windowId].tileData, 0x20 * fillSize);"
+          },
+          {
+            "line": 402,
+            "text": "    struct WindowTemplate window = gWindows[windowId].window;"
+          },
+          {
+            "line": 403,
+            "text": "    u8 *tileData = gWindows[windowId].tileData;"
+          },
+          {
+            "line": 449,
+            "text": "    struct WindowTemplate window = gWindows[windowId].window;"
+          },
+          {
+            "line": 458,
+            "text": "        gWindows[windowId].window.tilemapLeft = value;"
+          },
+          {
+            "line": 461,
+            "text": "        gWindows[windowId].window.tilemapTop = value;"
+          },
+          {
+            "line": 464,
+            "text": "        gWindows[windowId].window.paletteNum = value;"
+          },
+          {
+            "line": 467,
+            "text": "        gWindows[windowId].window.baseBlock = value;"
+          },
+          {
+            "line": 483,
+            "text": "        return gWindows[windowId].window.bg;"
+          },
+          {
+            "line": 485,
+            "text": "        return gWindows[windowId].window.tilemapLeft;"
+          },
+          {
+            "line": 487,
+            "text": "        return gWindows[windowId].window.tilemapTop;"
+          },
+          {
+            "line": 489,
+            "text": "        return gWindows[windowId].window.width;"
+          },
+          {
+            "line": 491,
+            "text": "        return gWindows[windowId].window.height;"
+          },
+          {
+            "line": 493,
+            "text": "        return gWindows[windowId].window.paletteNum;"
+          },
+          {
+            "line": 495,
+            "text": "        return gWindows[windowId].window.baseBlock;"
+          },
+          {
+            "line": 497,
+            "text": "        return (u32)(gWindows[windowId].tileData);"
+          },
+          {
+            "line": 507,
+            "text": "    for (i = 0; i < WINDOWS_MAX; i++)"
+          },
+          {
+            "line": 509,
+            "text": "        if (gWindows[i].window.bg == bgId)"
+          }
+        ]
+      }
+    },
+    "original_failed_attempt": {
+      "run_id": 35198562759,
+      "source_head": "5463174ef150fa07360f7dd4eccb0f355e5ba596",
+      "conclusion": "failure",
+      "artifact_id": 10486748720,
+      "zip_sha256": "0d13cbceeef226acfb5ff9907dc408e8fce1db2e0f91a87a66b5405328b5b6a0",
+      "tests_passed": 32,
+      "cause": "AddTextPrinterは固定JP ldに未定義。symbol-backedな名前結合から除外し仮説を保持。"
+    },
+    "upstream_fetches_this_run": 0,
+    "header_abi": {
+      "pointer_bits": 32,
+      "header_printer_count": 32,
+      "header_printer_bytes": 36,
+      "saved_candidate_slot_bytes": 32,
+      "header_extra_offsets": [
+        32,
+        33
+      ],
+      "header_stride_matches_candidate": false,
+      "header_is_candidate_allocation_proof": false
+    },
+    "saved_node_count": 2970,
+    "unbound_runtime_data": [
+      {
+        "base": 50347472,
+        "index_offset": 5,
+        "stride": 12,
+        "read_bytes": 4,
+        "kind": "callback table pointer"
+      },
+      {
+        "base": 33686576,
+        "stride": 12,
+        "read_bytes": 12,
+        "kind": "resource record array"
+      },
+      {
+        "base": 33685552,
+        "stride": 32,
+        "write_bytes": 32,
+        "kind": "nonnull output slots"
+      },
+      {
+        "kind": "special pointer table",
+        "base": 135671828,
+        "read_bytes": 4,
+        "actual_entry_count_proven": false
+      },
+      {
+        "kind": "extended variable storage",
+        "base": 33796840,
+        "size": 1024,
+        "actual_allocation_proven": false
+      },
+      {
+        "kind": "saveblock1 ordinary variables",
+        "offset": 4096,
+        "size": 512,
+        "actual_allocation_proven": false
+      }
+    ],
+    "all_callers_resolved": false,
+    "all_live_frames_proven": false,
+    "all_runtime_owners_excluded": false,
+    "all_dispatch_returns_proven": false,
+    "all_live_slot_bounds_proven": false,
+    "caller_pointer_size_limit_proven": false,
+    "actual_callback_table_observed": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 0,
+    "new_byte_samples": 0,
+    "accepted_native_cases_replayed": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "preconditions": [
+      "JP ldは固定sourceのbinding。候補命令の名前対応であり全実装一致・live到達を意味しない。",
+      "pretは別地域reference。source配列長をJP candidateの実allocationへ転記しない。",
+      "32byte候補slotへ36byteヘッダstrideを適用しない。次はJP initializerの保存命令・実tableの限定照合。"
+    ]
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_ui_owners.py": {
+      "size": 12961,
+      "sha256": "6bb82a9057e01845ef1f4efcce8e41d77856f1cf74c5fe601af9b9b509566bbf"
+    },
+    "tests/test_pr16_ring_ui_owners.py": {
+      "size": 7158,
+      "sha256": "ba51781a5c4e222be975bcb2f049673abbb2cd61175de87ffbb55ebb87805008"
+    },
+    ".github/workflows/pr16-ring-ui-owners.yml": {
+      "size": 1853,
+      "sha256": "4b57f5b82ffc41f48256ebaca6a4395a4a68a44351f4dab88599f53c18d0d476"
+    },
+    "content/modernization/pr16_ring_resource_contracts.json": {
+      "size": 473082,
+      "sha256": "11bc44e5d9f0090d30f97267188aa18053d58f6fdc57640a9975780f80fa2a76"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "state/source-lock.json": {
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    },
+    "scripts/pr16_ring_resource_tail.py": {
+      "size": 7535,
+      "sha256": "f4988540601c2eaa63876d6ee981a362e8614d0aaa11ca4a791e68f2b6100b81"
+    },
+    "content/modernization/pr16_ring_resource_tail.json": {
+      "size": 53805,
+      "sha256": "dc74f564a59f4b72a39f7c4a1a6fab0251b6c225ccd4f326b28123407cb618a3"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 39,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35196651200,
+      "head_sha": "798145cfb950e61fed0a38fe72e5bf30e591636c",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35199188658,
+      "name": "source-validation",
+      "head_sha": "e70be3ee87d24b695f2bae1d3eef6a0afbc489c0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35199188654,
+      "name": "p03-forgetting-ci",
+      "head_sha": "e70be3ee87d24b695f2bae1d3eef6a0afbc489c0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35199184624,
+      "name": "p03-forgetting-ci",
+      "head_sha": "e70be3ee87d24b695f2bae1d3eef6a0afbc489c0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35199184621,
+      "name": "source-validation",
+      "head_sha": "e70be3ee87d24b695f2bae1d3eef6a0afbc489c0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35199184638,
+      "name": "固定JP描画ownerとallocation境界",
+      "head_sha": "e70be3ee87d24b695f2bae1d3eef6a0afbc489c0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35199184632,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "e70be3ee87d24b695f2bae1d3eef6a0afbc489c0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35199184646,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "e70be3ee87d24b695f2bae1d3eef6a0afbc489c0",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35198568884,
+      "name": "p03-forgetting-ci",
+      "head_sha": "5463174ef150fa07360f7dd4eccb0f355e5ba596",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35198568871,
+      "name": "source-validation",
+      "head_sha": "5463174ef150fa07360f7dd4eccb0f355e5ba596",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35198562759,
+      "name": "固定JP描画ownerとallocation境界",
+      "head_sha": "5463174ef150fa07360f7dd4eccb0f355e5ba596",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35198562559,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "5463174ef150fa07360f7dd4eccb0f355e5ba596",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35198562538,
+      "name": "p03-forgetting-ci",
+      "head_sha": "5463174ef150fa07360f7dd4eccb0f355e5ba596",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35198562644,
+      "name": "source-validation",
+      "head_sha": "5463174ef150fa07360f7dd4eccb0f355e5ba596",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35198562551,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "5463174ef150fa07360f7dd4eccb0f355e5ba596",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35196763105,
+      "name": "p03-forgetting-ci",
+      "head_sha": "1cbae24d59fec4d84a851fed3bc889a664391f40",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35196763120,
+      "name": "source-validation",
+      "head_sha": "1cbae24d59fec4d84a851fed3bc889a664391f40",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35196655380,
+      "name": "p03-forgetting-ci",
+      "head_sha": "798145cfb950e61fed0a38fe72e5bf30e591636c",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35196655334,
+      "name": "source-validation",
+      "head_sha": "798145cfb950e61fed0a38fe72e5bf30e591636c",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35196651120,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "798145cfb950e61fed0a38fe72e5bf30e591636c",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35196651049,
+      "name": "p03-forgetting-ci",
+      "head_sha": "798145cfb950e61fed0a38fe72e5bf30e591636c",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

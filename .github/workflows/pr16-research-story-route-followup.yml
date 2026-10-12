@@ -1,0 +1,57 @@
+name: pr16-research-story-route-followup
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-route-followup.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  prepare:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore fixed candidate and export exact scoped development source without native replay
+        run: |
+          python3 -B - <<'PY'
+          import hashlib,json,os,shutil,subprocess,sys,zipfile
+          from pathlib import Path
+          root=Path.cwd();sys.path[:0]=[str(root/'scripts'),str(root)]
+          import pr16_research_story_actions as old
+          import pr16_research_story_continue as m
+          out=root/'.local/pr16-story-route-prepare';out.mkdir(parents=True)
+          old.OUT=out;old.PUBLIC=out/'public';old.PUBLIC.mkdir()
+          runtime,data=old.restore()
+          candidate=(data/'candidate.gba').read_bytes()
+          m.need(m.identity(candidate)==m.CANDIDATE,'fixed whole candidate')
+          export=out/'export';export.mkdir()
+          (export/'candidate.gba').write_bytes(candidate)
+          required={'AGENTS.md','CHATGPT_RESUME.md','README.md','design/current_state.md','design/agent_context_map.md','design/tasks_next.md','design/active_play_baseline.md','design/run_log.md','design/version_log.md','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','state/source-lock.json'}
+          files=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          manifest={};total=0
+          with zipfile.ZipFile(export/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(filter(None,files)):
+                  p=Path(name)
+                  selected=(name in required or (name.startswith(('scripts/','tools/','tests/')) and p.suffix in ('.py','.c','.h')) or (name.startswith(('config/','tasks/','.github/workflows/')) and p.suffix in ('.json','.md','.yml','.yaml')) or name.startswith('content/modernization/pr16_research') or name.startswith('docs/PR16_RESEARCH'))
+                  if not selected or p.suffix not in ('.py','.c','.h','.json','.md','.yml','.yaml','.txt') or p.is_symlink():continue
+                  raw=p.read_bytes();raw.decode('utf-8');m.need(b'\0' not in raw,'tracked text only')
+                  total+=len(raw);m.need(total<180000000,'bounded source export')
+                  z.writestr(name,raw);manifest[name]=m.identity(raw)
+              z.writestr('export-head.txt',os.environ['GITHUB_SHA']+'\n')
+              z.writestr('export-manifest.json',json.dumps(manifest,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          receipt=dict(schema_version=1,status='DEVELOPMENT_INPUT_PREPARED_NOT_ACCEPTANCE',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),parent_route_artifact=10933499471,parent_route_save=m.ROUTE_SAVE,candidate=m.CANDIDATE,source_archive=m.identity((export/'source.zip').read_bytes()),source_files=len(manifest),native_processes=0,host_compiles=0,arm_compiles=0,accepted_case_reruns=0,rom_changes=0,release_ready=False,active_baseline_changed=False)
+          (export/'preparation.json').write_text(json.dumps(receipt,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          print(json.dumps(receipt,ensure_ascii=False,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-research-story-route-development-input
+          path: .local/pr16-story-route-prepare/export
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

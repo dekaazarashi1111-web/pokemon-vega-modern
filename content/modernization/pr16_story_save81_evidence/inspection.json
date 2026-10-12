@@ -1,0 +1,141 @@
+{
+  "status": "STATIC_SAVE81_FIFTH_DIGLETT_ONLY",
+  "preparation": {
+    "size": 7689,
+    "sha256": "d9f8e9bae55bb54d92d02f87d37f01ff4cb395fb1097853b87bde7fd68c5f070"
+  },
+  "route": [
+    [
+      3,
+      9
+    ],
+    [
+      4,
+      9
+    ],
+    [
+      5,
+      9
+    ],
+    [
+      6,
+      9
+    ]
+  ],
+  "terrain": [
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        3,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        4,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        5,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        8
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    }
+  ],
+  "interaction": {
+    "local_id": 10,
+    "target": [
+      6,
+      8
+    ],
+    "from_xy": [
+      6,
+      9
+    ],
+    "facing": 2,
+    "script": 136400224,
+    "visibility_flag": 4376,
+    "button": "A"
+  },
+  "initial_flags": {
+    "4372": 0,
+    "4373": 0,
+    "4374": 0,
+    "4375": 1,
+    "4376": 0,
+    "4377": 0,
+    "4378": 1
+  },
+  "expected_flag_changes": [
+    [
+      4375,
+      1,
+      0
+    ],
+    [
+      4376,
+      0,
+      1
+    ]
+  ],
+  "expected_object_changes": [
+    {
+      "local_id": 10,
+      "operation": "removeobject"
+    },
+    {
+      "local_id": 9,
+      "operation": "addobject"
+    }
+  ],
+  "instruction_count": 39,
+  "text_count": 2,
+  "native_route_accepted": false
+}

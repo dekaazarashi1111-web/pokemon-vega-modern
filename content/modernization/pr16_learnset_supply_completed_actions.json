@@ -1,0 +1,224 @@
+{
+  "accepted_tests_rerun": 0,
+  "active_baseline_changed": false,
+  "aligned_data_artifact": {
+    "digest": "sha256:a1130da2f577f4cd7f6a00e60ba67ae7658a8b6265bc3401a979c8758562ffc6",
+    "id": 10704282359,
+    "name": "pr16-learnset-supply-aligned-data",
+    "size_in_bytes": 50476
+  },
+  "candidate": {
+    "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+    "size": 33554432
+  },
+  "candidate_crc32": "00F31AF7",
+  "closeout_run_id": 35749634016,
+  "completed_actions": {
+    "conclusion": "success",
+    "created_at": "2026-09-22T15:36:59Z",
+    "event": "push",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
+    "id": 35748601580,
+    "jobs": [
+      {
+        "conclusion": "success",
+        "id": 106816516184,
+        "name": "supply-rom",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "新probe用host libraryだけ導入（ARM生成なし）",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "保存配置を継承し28ownerの未受入4hookだけ検証",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "後継配置とnative証拠・固定引継ぎを記録し限定guard",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "同branchへ非force commit/pushし最新refを照合",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "status": "completed"
+          }
+        ]
+      }
+    ],
+    "path": ".github/workflows/pr16-learnset-supply-rom.yml",
+    "status": "completed",
+    "updated_at": "2026-09-22T15:38:05Z"
+  },
+  "gameplay_e2e_accepted": false,
+  "host_compile_failure": {
+    "artifact": {
+      "digest": "sha256:47f62a2f1591d5f59e7fbdd06e99c5f262dfd8a22322454c61b2961b44359027",
+      "id": 10703297226,
+      "name": "pr16-learnset-supply-rom-proof",
+      "size_in_bytes": 78066
+    },
+    "fixed_in": "740ecf0a94de514fa735e4697f5d6129d45520e4",
+    "native_started": false,
+    "raw_failure": {
+      "error": "command failed native-compile: In file included from tools/mgba_pr16_learnset_supply.c:8,\n                 from tools/mgba_pr16_supply_coverage.c:3:\ntools/mgba_battle_core_smoke.c:12: error: \"main\" redefined [-Werror]\n   12 | #define main t01_ai_fixture_bundled_entry_point\n      | \ntools/mgba_pr16_supply_coverage.c:2: note: this is the location of the previous definition\n    2 | #define main pr16_original_supply_main\n      | \ntools/mgba_pr16_supply_coverage.c:10:5: error: redefinition of ‘main’\n   10 | int main(int argc,char **argv)\n      |     ^~~~\ntools/mgba_pr16_learnset_supply.c:101:5: note: previous definition of ‘main’ with type ‘int(int,  char **)’\n  101 | int main(int argc,char **argv)\n      |     ^~~~\ntools/mgba_pr16_supply_coverage.c: In function ‘main’:\ntools/mgba_pr16_supply_coverage.c:13:12: error: implicit declaration of function ‘pr16_original_supply_main’ [-Werror=implicit-function-declaration]\n   13 |     return pr16_original_supply_main(argc,argv);\n      |            ^~~~~~~~~~~~~~~~~~~~~~~~~\ncc1: all warnings being treated as errors\n",
+      "run_id": "35747886574",
+      "source_head": "da2485291a3d16991405e3e68faa6a6f625383e6",
+      "status": "FAIL"
+    },
+    "raw_failure_binding": {
+      "sha256": "9cdd7bb8c7d4aec90e19f8f3a8f0ad115382dc0b5a9b8e136a5764ccba186e62",
+      "size": 1235
+    },
+    "stderr": "In file included from tools/mgba_pr16_learnset_supply.c:8,\n                 from tools/mgba_pr16_supply_coverage.c:3:\ntools/mgba_battle_core_smoke.c:12: error: \"main\" redefined [-Werror]\n   12 | #define main t01_ai_fixture_bundled_entry_point\n      | \ntools/mgba_pr16_supply_coverage.c:2: note: this is the location of the previous definition\n    2 | #define main pr16_original_supply_main\n      | \ntools/mgba_pr16_supply_coverage.c:10:5: error: redefinition of ‘main’\n   10 | int main(int argc,char **argv)\n      |     ^~~~\ntools/mgba_pr16_learnset_supply.c:101:5: note: previous definition of ‘main’ with type ‘int(int,  char **)’\n  101 | int main(int argc,char **argv)\n      |     ^~~~\ntools/mgba_pr16_supply_coverage.c: In function ‘main’:\ntools/mgba_pr16_supply_coverage.c:13:12: error: implicit declaration of function ‘pr16_original_supply_main’ [-Werror=implicit-function-declaration]\n   13 |     return pr16_original_supply_main(argc,argv);\n      |            ^~~~~~~~~~~~~~~~~~~~~~~~~\ncc1: all warnings being treated as errors\n"
+  },
+  "inherited_closeout": {
+    "artifact": {
+      "digest": "sha256:3c461c7c4bf3499081bd27d82969baaa6047f68ee32a72497fe435634ed5f147",
+      "id": 10703799253,
+      "name": "pr16-supply-native-closeout-proof",
+      "size_in_bytes": 856
+    },
+    "members": {
+      "record.txt": {
+        "sha256": "16a7f4de31dbbdce061779c4d68cadae4d079a6762d5f69560af9b27b406ad13",
+        "size": 802
+      },
+      "unit.txt": {
+        "sha256": "dc19facfd950681e1f8de8fd50202b42af7db2fa07c759bdea92704d1ac7abaa",
+        "size": 1393
+      }
+    },
+    "record_files_written": false,
+    "run_id": 35749269393,
+    "scoped_tests_passed": 12,
+    "source_head": "700011a644e3d5504781ea3cf50a7ca3549f56b8",
+    "tests_rerun": 0,
+    "whole_run_conclusion": "failure"
+  },
+  "inherited_closeout_tests": 12,
+  "issue19_complete": false,
+  "native_proof_artifact": {
+    "digest": "sha256:199ed431af286ceb2881e9a1cb79174983652e531df568333468369e7f1af5d4",
+    "id": 10704202526,
+    "name": "pr16-learnset-supply-rom-proof",
+    "size_in_bytes": 89356
+  },
+  "new_closeout_tests": 6,
+  "new_native_processes": 0,
+  "new_rom_materializations": 0,
+  "observed_source_checks": [
+    {
+      "conclusion": "success",
+      "event": "pull_request",
+      "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
+      "id": 35748613314,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "pull_request",
+      "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
+      "id": 35748613079,
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
+      "id": 35748601577,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
+      "id": 35748601648,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
+      "id": 35748601580,
+      "path": ".github/workflows/pr16-learnset-supply-rom.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
+      "id": 35748601657,
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "740ecf0a94de514fa735e4697f5d6129d45520e4",
+      "id": 35748601578,
+      "path": ".github/workflows/modernization-stage79-mgba.yml",
+      "status": "completed"
+    }
+  ],
+  "physical_supply_verified": false,
+  "record_commit": "b464a4df505d26067c42550db90615eeb3655cdd",
+  "release_ready": false,
+  "remote_ref_guard": {
+    "branch_ref_exact": true,
+    "live_branch_head": "688602071100edd7fc4e545e475686b3b45ae021",
+    "observed_pr_head": "700011a644e3d5504781ea3cf50a7ca3549f56b8",
+    "pr_head_display_lag": true,
+    "pr_head_in_verified_record_only_ancestry": true
+  },
+  "source_head": "688602071100edd7fc4e545e475686b3b45ae021",
+  "status": "COMPLETED_ACTIONS_AND_IMMUTABLE_EVIDENCE_RECONCILED"
+}

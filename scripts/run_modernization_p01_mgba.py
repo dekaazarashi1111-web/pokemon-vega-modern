@@ -18,7 +18,6 @@ if str(ROOT) not in sys.path:
 from scripts import build_acquisition_events as acquisition  # noqa: E402
 
 
-CANDIDATE = Path("config/modernization_candidate.json")
 RUNTIME_CONFIG = Path("config/modernization_p01_runtime.json")
 ACQUISITION_METADATA = Path("build/stages/26_acquisition_events.json")
 EVOLUTION_REPORT = Path("generated/runtime/acquisition_evolution_routes.json")
@@ -40,11 +39,15 @@ def _sha(raw: bytes) -> str:
 
 
 def run() -> dict[str, Any]:
-    candidate = _json(CANDIDATE)["candidate"]
     runtime_config = _json(RUNTIME_CONFIG)
-    rom = (ROOT / candidate["path"]).read_bytes()
-    if len(rom) != candidate["size"] or _sha(rom) != candidate["sha256"]:
-        raise ModernizationP01MgbaError("Stage63 candidate identityが不一致です")
+    rom_path = Path(runtime_config["outputs"]["rom"])
+    metadata = _json(Path(runtime_config["outputs"]["metadata"]))
+    expected = metadata["output"]
+    if expected.get("path") != rom_path.as_posix():
+        raise ModernizationP01MgbaError("P01 runtime configとStage63 metadataの出力pathが不一致です")
+    rom = (ROOT / rom_path).read_bytes()
+    if len(rom) != expected["size"] or _sha(rom) != expected["sha256"]:
+        raise ModernizationP01MgbaError("固定Stage63 P01 ROM identityが不一致です")
 
     table = runtime_config["runtime_table"]
     offset = int(table["rom_offset"])
@@ -77,7 +80,7 @@ def run() -> dict[str, Any]:
         "schema_version": 1,
         "task": "USER-MODERNIZATION-P01",
         "status": "PASS",
-        "rom_sha256": candidate["sha256"],
+        "rom_sha256": expected["sha256"],
         "process_runs": fixture["process_runs"],
         "scope": {
             "acquisition_runtime": True,

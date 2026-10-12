@@ -1,0 +1,66 @@
+name: PR16 Circus first-turn evidence record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-first-record.yml
+      - scripts/pr16_circus_first_record.py
+      - tests/test_pr16_circus_first_record.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-first-record
+  cancel-in-progress: false
+jobs:
+  circus-first-record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 固定初戦成功原本だけを検証し引継ぎと両ログを非force commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-circus-first-record
+          python3 scripts/pr16_circus_first_record.py > .local/pr16-circus-first-record/record.stdout 2> .local/pr16-circus-first-record/record.stderr
+      - name: 限定記録と次の個体継承owner sourceをtextだけで保持
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re,subprocess
+          out=pathlib.Path('.local/pr16-circus-first-record-evidence');out.mkdir(parents=True,exist_ok=True)
+          members={}
+          def save(name,p):
+              assert p.is_file() and not p.is_symlink()
+              raw=p.read_bytes();raw.decode('utf-8');assert len(raw)<2000000 and b'\0' not in raw
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw)
+              dst=out/name;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(raw)
+              members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          source=pathlib.Path('.local/pr16-circus-first-record')
+          for p in sorted(source.rglob('*')):
+              if p.is_file() and p.suffix in {'.json','.md','.txt','.stdout','.stderr'}:save('record/'+p.relative_to(source).as_posix(),p)
+          names=['scripts/pr16_circus_first_record.py','tests/test_pr16_circus_first_record.py','.github/workflows/pr16-circus-first-record.yml',
+                 'scripts/pr16_bp_party_retention_successor.py','scripts/pr16_resume.py','scripts/pr16_ring_compiled_record.py',
+                 'scripts/pr16_ring_followup_v2.py','scripts/pr16_circus_record.py']
+          prefixes=['overlays/facility_runtime/','overlays/facility_party_retention/','overlays/save_migration/','overlays/vega_adapter/','overlays/factory_high_modes_v2/']
+          for name in subprocess.check_output(['git','ls-files','--',*prefixes],text=True).splitlines():
+              if pathlib.Path(name).suffix in {'.c','.h'} and not name.endswith('_generated.h'):names.append(name)
+          for name in sorted(set(names)):
+              p=pathlib.Path(name)
+              if p.exists():save('source/'+name,p)
+          (out/'members.json').write_text(json.dumps(members,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-first-record
+          path: .local/pr16-circus-first-record-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

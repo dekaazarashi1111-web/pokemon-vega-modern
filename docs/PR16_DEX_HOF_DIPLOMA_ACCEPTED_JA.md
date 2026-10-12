@@ -1,0 +1,41 @@
+# Diplomaの条件付き最小asset型を正式783/91へ受入
+
+2026-10-08。初回[Actions run37718308112](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37718308112)、job113119846893、測定HEAD60f32297e1a20266f8e5638df66dea28901cf84d。全9stepが成功した。Artifactsの成功4JSONを実取得し、生成時・計測検証時・公開直前の全12hashと完全一致したため、083DCAEDの4byte1件だけを正式782分類/92未知から783分類/91未知へ進める。
+
+正式ROM・Save101変更0、native0、donor安全byte0。旧egg15118全域保護は不変。実画面、BIOS本体CPU実行、自然story/task到達、全callee、普遍heap/IRQを受入したものではない。
+
+## 実取得の固定証拠
+
+- source HEAD: 60f32297e1a20266f8e5638df66dea28901cf84d
+- Artifact: 11524203520 / pr16-diploma-asset-only
+- ZIP: 23805bytes / SHA-256 b26e3f9067fe58caf99306e3a544671e77b79bcf36fda685c42ed2ec485b50f6
+- measurement.json: 43872bytes / 9d15682887a459c8c5118b8b5e9e0feecf9416250e7e143bd95502bfaae98e52
+- reference-chain.json: 26250bytes / 017219a26f87021cafdf48f1f6fe9064a021421bb856685ade710c6ce743c7fc
+- tests.json: 141bytes / 947a2088691beb8247138d82d6a00aaf4c47bf80aca2b6dbf64092413b2da170
+- provenance.json: 13362bytes / 3e0e351216bbb883f6cda8e21ecbf37cb79f60ae6f5bdd24ba79715058edb676
+
+4JSONはcontent/modernization/pr16_dex_hof_diploma_evidenceへ原本byteのまま保存。checkpointはcontent/modernization/pr16_dex_hof_diploma_checkpoint.json。原job log全文はGit管理外で全byteを照合し、28116bytes/SHA4c3846b82023b9e590e6b63422942f9c5700ff98c0c33b34a20e5f222521e72eと全12hashをcheckpointへ固定する。rawログやROM、PNG、圧縮・解凍byteはGitへ追加しない。
+
+## 受入範囲
+
+固定公開source13件からPNG→4bpp8192byte→最小LZ10入力3366byteを独立生成。現0641候補を1回再構成し、完全SHA・115owner・874保存hitを再束縛した。実streamは独立sourceの全SHAと一致し、末尾2byteのalignment paddingを除外する。
+
+149命令/157窓の有限モデルは、state0の32slot/count初期化と実gfxState1生成から実literal083DBF7C→header読取→条件付きAlloc8192→SWI11仕様decoder→LoadBgTiles(1,同buffer,8192,0)へ到達した。Alloc/BGのopaque境界ではcaller-saved/flagsをUnknownへ破棄し、future-live RAMだけで再実行した。詳しい契約はdocs/PR16_DEX_HOF_DIPLOMA_ASSET_JA.mdと固定proofを参照。
+
+新168試験は成功ActionsでPASS。正式782親57原本・旧29段163変更153witness・他873行の全fieldを保持し、唯一の最小型で30段164変更154witnessにする。旧credits37/minigame152・旧consumer・旧native・全ROMscanは再走していない。
+
+## 再開方法
+
+scripts/pr16_dex_hof_diploma_chain.pyのparentへPARENT_INPUTS57原本を渡すと、正式782親を得る。保存reference-chain.jsonをread_measuredで独立identity認証し、materializeして783親へ復元する。
+
+- materialized全783親: 5400898bytes / SHA-256 bfa28a3ee203a2cd1d534adfd2cca3019c23a027258c9ea5ea6a8c838b129673
+- 次の残91unknownは同evidence/unknown-frontier.json。前92原本から対象1行だけを除き、他全field/順序は保持
+- 受入validator: scripts/pr16_dex_hof_asset_receipt.py。成功測定source14とworkflowを変更せず、記録commitで同scopeを再測定しない
+
+次は083D6B61の1件だけを調べる。独立JP auditではsBlastoise1_Tiles候補の起点が083D655Cだが、reference sizeはJP extentではない。公開画像source・正登録・実literal・decoder・consumerの証拠が揃うまで未知のまま保つ。
+
+## 継承する制限と一般CI
+
+固定再開37718307901/job113119845747は全5step成功。forgetting37718307838/37718313137とruntime audit37718308061も成功。一般source-validation37718307946/37718313422はfailure、Stage79 37718307986はpendingで、専用成功を全CI成功とはしない。
+
+083E239B/083DF94FのEOS後byteや083DE68Eの未使用左文を今回型へ混ぜない。全保存入口ready、退避53300前heap13352 Free、同期非再入、controller6528本番配線、正式切替後trainer131後半→シオウ回復/保存/coldContinueは別gateとして継続する。

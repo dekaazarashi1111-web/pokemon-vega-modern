@@ -1,0 +1,802 @@
+{
+  "base_head": "f9780b534f2562518c64d6a14d9950ef4e8402c5",
+  "candidates": [
+    {
+      "callers": [
+        {
+          "api": "DisplayPartyMenuMessage",
+          "jp": "0x08124F08",
+          "lines": [
+            3905,
+            3929
+          ],
+          "name": "CursorCB_FieldMove",
+          "source": "pret-pokefirered/src/party_menu.c",
+          "source_branch": "fieldMove<=WATERFALLかつ対応badge未取得",
+          "text": "gText_CantUseUntilNewBadge"
+        },
+        {
+          "api": "DisplayPartyMenuMessage",
+          "jp": "0x08124930",
+          "lines": [
+            3760,
+            3794
+          ],
+          "name": "CursorCB_Enter",
+          "source": "pret-pokefirered/src/party_menu.c",
+          "source_branch": "UnionRoom以外はmaxBattlers=3、空きなし枝",
+          "text": "gText_NoMoreThanThreeMayEnter"
+        }
+      ],
+      "eos_address": null,
+      "finite_api_chain": [
+        "実menu task/input dispatcher",
+        "sCursorOptionsの選択func cell",
+        "CursorCB_FieldMoveまたはCursorCB_Enter",
+        "DisplayPartyMenuMessage",
+        "PartyMenuPrintText",
+        "AddTextPrinterParameterized2(window6)"
+      ],
+      "held_hit": "0x083DDEE1",
+      "jp_extent": null,
+      "left_source": {
+        "line": 262,
+        "path": "pret-pokefirered/src/strings.c"
+      },
+      "left_start": "0x083DDEC6",
+      "left_text": "gText_CantUseUntilNewBadge",
+      "next_symbol_distance_bytes": 30,
+      "obligations_ja": [
+        "現配置の実登録table/slotからcallerへ到達し、内部callbackをhost直呼出して代用しない。",
+        "左・右双方の実literal siteとtext addressを現命令で結ぶ。",
+        "両symbolの完全な制御文字列とEOSを独立に取得・検証し、held4byteが文字境界にあることを証明する。",
+        "caller branchとAPI引数、必要resource/正常ABI復帰のみの有限条件を明記する。"
+      ],
+      "registration": {
+        "cells": [
+          {
+            "actual_cell_verified": false,
+            "expected_stock_thumb_value": "0x08124931",
+            "index": 12,
+            "kind": "ENTER",
+            "predicted_cell": "0x08419E0C"
+          },
+          {
+            "actual_cell_verified": false,
+            "expected_stock_thumb_value": "0x08124F09",
+            "index": 18,
+            "kind": "FIELD_MOVES_FIRST",
+            "predicted_cell": "0x08419E3C"
+          }
+        ],
+        "dispatch_source": {
+          "lines": [
+            3080,
+            3090
+          ],
+          "path": "pret-pokefirered/src/party_menu.c"
+        },
+        "fieldmove_indices": [
+          18,
+          29
+        ],
+        "function_offset_bytes": 4,
+        "jp_base": "0x08419DA8",
+        "lines": [
+          1032,
+          1090
+        ],
+        "minimality_ja": "必要なfieldmove slotを1つ選び、全12slotを自動展開しない。",
+        "source": "pret-pokefirered/src/data/party_menu.h",
+        "stride_bytes": 8,
+        "table": "sCursorOptions"
+      },
+      "right_source": {
+        "line": 263,
+        "path": "pret-pokefirered/src/strings.c"
+      },
+      "right_start": "0x083DDEE4",
+      "right_text": "gText_NoMoreThanThreeMayEnter",
+      "status": "independent_address_candidates_only"
+    },
+    {
+      "callers": [
+        {
+          "api": "StringExpandPlaceholders(gStringVar4,text), then DisplayPartyMenuMessage(gStringVar4,keepOpen)",
+          "jp": "0x08120D48",
+          "lines": [
+            1610,
+            1617
+          ],
+          "name": "DisplaySwitchedHeldItemMessage",
+          "source": "pret-pokefirered/src/party_menu.c",
+          "text": "gText_SwitchedPkmnItem"
+        },
+        {
+          "api": "DisplayPartyMenuMessage",
+          "jp": "0x08127D3C",
+          "lines": [
+            5630,
+            5648
+          ],
+          "name": "TryGiveMailToSelectedMon",
+          "source": "pret-pokefirered/src/party_menu.c",
+          "source_branch": "MON_DATA_HELD_ITEM != ITEM_NONE",
+          "text": "gText_PkmnHoldingItemCantHoldMail"
+        }
+      ],
+      "eos_address": null,
+      "finite_api_chain": [
+        "実item交換taskまたはmailboxのparty menu登録",
+        "選択input/task callback",
+        "名前付きcaller",
+        "左: StringExpandPlaceholdersで元textのEOSまで読取",
+        "DisplayPartyMenuMessage",
+        "PartyMenuPrintText",
+        "AddTextPrinterParameterized2(window6)"
+      ],
+      "held_hit": "0x083DE02B",
+      "jp_extent": null,
+      "left_source": {
+        "line": 275,
+        "path": "pret-pokefirered/src/strings.c"
+      },
+      "left_start": "0x083DE016",
+      "left_text": "gText_SwitchedPkmnItem",
+      "next_symbol_distance_bytes": 24,
+      "obligations_ja": [
+        "左は実task登録と選択枝からDisplaySwitchedHeldItemMessageへ結ぶ。4つの呼出元を無条件に全て実行せず採用rootを限定する。",
+        "右はmailbox→InitPartyMenuの登録引数とaction分岐を現配置で結ぶ。",
+        "左textのSTR_VAR_1/2とgStringVar4のfuture-live資源を保持し、原textのEOS読取と展開後printer読取を分離する。",
+        "両symbolの実literal site、完全な文字serializer/EOS、held4byteの境界所属を検証する。"
+      ],
+      "registration_candidates": [
+        {
+          "actual_registration_verified": false,
+          "lines": [
+            3479,
+            3485
+          ],
+          "name": "Task_SwitchItemsYesNo→Task_HandleSwitchItemsYesNoInput",
+          "next_callsite_line": 3513,
+          "registered_callback": "0x0812410D",
+          "source": "pret-pokefirered/src/party_menu.c",
+          "task_entry": "0x081240D8"
+        },
+        {
+          "actual_registration_verified": false,
+          "additional_dispatch_lines": [
+            1179,
+            1184
+          ],
+          "entry": "0x08127D10",
+          "lines": [
+            5625,
+            5628
+          ],
+          "name": "ChooseMonToGiveMailFromMailbox→InitPartyMenu(Task_HandleChooseMonInput)→HandleChooseMonSelection→TryGiveMailToSelectedMon",
+          "registered_callback": "0x08120319",
+          "source": "pret-pokefirered/src/party_menu.c"
+        }
+      ],
+      "right_source": {
+        "line": 276,
+        "path": "pret-pokefirered/src/strings.c"
+      },
+      "right_start": "0x083DE02E",
+      "right_text": "gText_PkmnHoldingItemCantHoldMail",
+      "status": "independent_address_candidates_only"
+    }
+  ],
+  "clean_jp_identity": {
+    "game_code": "BPRJ",
+    "matches_project_source_lock": true,
+    "metadata_lines": [
+      2,
+      12
+    ],
+    "metadata_path": "frlg-sym/diagnostics/pokefirered_jp.sym.metadata.tsv",
+    "revision": 0,
+    "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+  },
+  "fetched_source_executed": false,
+  "formal_classification_added": 0,
+  "formal_classified_count": 779,
+  "formal_unknown_count": 95,
+  "generator_contract": {
+    "algorithm": "symmatch-cxx23-v13",
+    "emission": {
+      "exports_accepted_pointer_site": false,
+      "exports_jp_extent": false,
+      "exports_reference_size": true,
+      "lines": [
+        430,
+        490
+      ],
+      "notes_ja": "L443–447でreference symbol.sizeBytesを出力。L465–473は採用と異なるproposalのみconflictsへ出す。",
+      "path": "frlg-sym/src/SymbolMatcher.cpp"
+    },
+    "eos_walk": {
+      "exports_target_eos": false,
+      "lines": [
+        1256,
+        1343
+      ],
+      "notes_ja": "L1304–1317で最初のFFまで進む。L1319–1322で英語reference配置由来のalignment/paddingを継承。JP全文extentの出力ではない。",
+      "path": "frlg-sym/src/SymbolMatcherPasses.cpp",
+      "reads_target_eos": true
+    },
+    "pointer_read": {
+      "lines": [
+        620,
+        651
+      ],
+      "notes_ja": "siteAddressからRead32またはComputeBlTargetを読み、region/owner deltaを確認してAddProposal。",
+      "path": "frlg-sym/src/SymbolMatcherPasses.cpp"
+    },
+    "proposal_acceptance": {
+      "lines": [
+        1034,
+        1120
+      ],
+      "notes_ja": "強い票がある採用にrelocated_pointer_or_call96を付ける。",
+      "path": "frlg-sym/src/SymbolMatcherPasses.cpp"
+    },
+    "proposal_storage": {
+      "lines": [
+        604,
+        617
+      ],
+      "notes_ja": "address/sourceNode/strong/sourceAddressを保存するがsiteOffsetそのものはproposalへ保存しない。",
+      "path": "frlg-sym/src/SymbolMatcherPasses.cpp"
+    },
+    "rigid_propagation": {
+      "lines": [
+        956,
+        990
+      ],
+      "notes_ja": "rigid sourceはtargetAddress+edge.siteOffsetを強いproposalとして使う。",
+      "path": "frlg-sym/src/SymbolMatcherPasses.cpp"
+    }
+  },
+  "mapped_symbols": [
+    {
+      "audit_line": 1195,
+      "jp_address": "0x08008B48",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "StringExpandPlaceholders",
+      "reference_address": "0x08008FE0",
+      "reference_size_hex": "000000ec",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 5146,
+      "jp_address": "0x08076BB4",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "CreateTask",
+      "reference_address": "0x08077430",
+      "reference_size_hex": "00000052",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 9464,
+      "jp_address": "0x080F7D28",
+      "jp_extent_verified": false,
+      "method": "relocated_pointer_or_call",
+      "name": "AddTextPrinterParameterized2",
+      "reference_address": "0x080F6D48",
+      "reference_size_hex": "0000008c",
+      "rigid": false,
+      "score": 96,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10776,
+      "jp_address": "0x0811F24C",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "InitPartyMenu",
+      "reference_address": "0x0811EABC",
+      "reference_size_hex": "0000015c",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10812,
+      "jp_address": "0x08120318",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "Task_HandleChooseMonInput",
+      "reference_address": "0x0811FBA0",
+      "reference_size_hex": "0000007c",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10814,
+      "jp_address": "0x081203B4",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "HandleChooseMonSelection",
+      "reference_address": "0x0811FC3C",
+      "reference_size_hex": "00000198",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10826,
+      "jp_address": "0x08120AE8",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "DisplayPartyMenuMessage",
+      "reference_address": "0x08120370",
+      "reference_size_hex": "00000030",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10827,
+      "jp_address": "0x08120B18",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "Task_PrintAndWaitForText",
+      "reference_address": "0x081203A0",
+      "reference_size_hex": "00000048",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10834,
+      "jp_address": "0x08120D48",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "DisplaySwitchedHeldItemMessage",
+      "reference_address": "0x081205D0",
+      "reference_size_hex": "00000070",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10847,
+      "jp_address": "0x081211E4",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "TryEnterMonForMinigame",
+      "reference_address": "0x08120A6C",
+      "reference_size_hex": "00000064",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10848,
+      "jp_address": "0x08121248",
+      "jp_extent_verified": false,
+      "method": "relocated_pointer_or_call",
+      "name": "CancelParticipationPrompt",
+      "reference_address": "0x08120AD0",
+      "reference_size_hex": "00000038",
+      "rigid": true,
+      "score": 96,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10896,
+      "jp_address": "0x0812278C",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "PartyMenuPrintText",
+      "reference_address": "0x08122038",
+      "reference_size_hex": "0000004c",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10936,
+      "jp_address": "0x08123438",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "Task_HandleSelectionMenuInput",
+      "reference_address": "0x08122CD4",
+      "reference_size_hex": "000000f0",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10959,
+      "jp_address": "0x08124080",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "Task_SwitchHoldItemsPrompt",
+      "reference_address": "0x0812391C",
+      "reference_size_hex": "00000058",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10960,
+      "jp_address": "0x081240D8",
+      "jp_extent_verified": false,
+      "method": "relocated_pointer_or_call",
+      "name": "Task_SwitchItemsYesNo",
+      "reference_address": "0x08123974",
+      "reference_size_hex": "00000034",
+      "rigid": true,
+      "score": 96,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10961,
+      "jp_address": "0x0812410C",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "Task_HandleSwitchItemsYesNoInput",
+      "reference_address": "0x081239A8",
+      "reference_size_hex": "00000120",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10965,
+      "jp_address": "0x08124354",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "Task_DisplayGaveMailFromPartyMessage",
+      "reference_address": "0x08123BF0",
+      "reference_size_hex": "00000078",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10979,
+      "jp_address": "0x08124930",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "CursorCB_Enter",
+      "reference_address": "0x081241CC",
+      "reference_size_hex": "00000104",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 10986,
+      "jp_address": "0x08124F08",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "CursorCB_FieldMove",
+      "reference_address": "0x0812461C",
+      "reference_size_hex": "00000220",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 11085,
+      "jp_address": "0x08127AFC",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "Task_DisplayGaveMailFromBagMessage",
+      "reference_address": "0x0812723C",
+      "reference_size_hex": "00000070",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 11087,
+      "jp_address": "0x08127BA0",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "Task_HandleSwitchItemsFromBagYesNoInput",
+      "reference_address": "0x081272E0",
+      "reference_size_hex": "000000e4",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 11091,
+      "jp_address": "0x08127D10",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "ChooseMonToGiveMailFromMailbox",
+      "reference_address": "0x08127450",
+      "reference_size_hex": "0000002c",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 11092,
+      "jp_address": "0x08127D3C",
+      "jp_extent_verified": false,
+      "method": "unique_normalized_code",
+      "name": "TryGiveMailToSelectedMon",
+      "reference_address": "0x0812747C",
+      "reference_size_hex": "000000a4",
+      "rigid": true,
+      "score": 98,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 36409,
+      "jp_address": "0x083DDEC6",
+      "jp_extent_verified": false,
+      "method": "relocated_pointer_or_call",
+      "name": "gText_CantUseUntilNewBadge",
+      "reference_address": "0x08416B52",
+      "reference_size_hex": "00000034",
+      "rigid": false,
+      "score": 96,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 36410,
+      "jp_address": "0x083DDEE4",
+      "jp_extent_verified": false,
+      "method": "relocated_pointer_or_call",
+      "name": "gText_NoMoreThanThreeMayEnter",
+      "reference_address": "0x08416B86",
+      "reference_size_hex": "00000028",
+      "rigid": false,
+      "score": 96,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 36422,
+      "jp_address": "0x083DE016",
+      "jp_extent_verified": false,
+      "method": "relocated_pointer_or_call",
+      "name": "gText_SwitchedPkmnItem",
+      "reference_address": "0x08416D5A",
+      "reference_size_hex": "0000002d",
+      "rigid": false,
+      "score": 96,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 36423,
+      "jp_address": "0x083DE02E",
+      "jp_extent_verified": false,
+      "method": "relocated_pointer_or_call",
+      "name": "gText_PkmnHoldingItemCantHoldMail",
+      "reference_address": "0x08416D87",
+      "reference_size_hex": "00000038",
+      "rigid": false,
+      "score": 96,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 36514,
+      "jp_address": "0x083DE699",
+      "jp_extent_verified": false,
+      "method": "relocated_pointer_or_call",
+      "name": "gText_PkmnCantParticipate",
+      "reference_address": "0x08417706",
+      "reference_size_hex": "00000022",
+      "rigid": false,
+      "score": 96,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 36515,
+      "jp_address": "0x083DE6B0",
+      "jp_extent_verified": false,
+      "method": "bounded_translated_string_sequence",
+      "name": "gText_CancelParticipation",
+      "reference_address": "0x08417728",
+      "reference_size_hex": "00000016",
+      "rigid": false,
+      "score": 90,
+      "score_is_probability": false
+    },
+    {
+      "audit_line": 38091,
+      "jp_address": "0x08419DA8",
+      "jp_extent_verified": false,
+      "method": "relocated_pointer_or_call",
+      "name": "sCursorOptions",
+      "reference_address": "0x0845A678",
+      "reference_size_hex": "000000f0",
+      "rigid": false,
+      "score": 96,
+      "score_is_probability": false
+    }
+  ],
+  "provenance_limits": [
+    "sym/audit の reference_size は英語参照の長さ。日本語のEOS込みextentではない。",
+    "scoreはevidence rankであり、確率ではない。",
+    "metadataはtarget ROM identityを持つが、英語referenceのpret commit/hash一覧を明示しない。固定pret sourceとの関数名対応を実命令照合の代わりにしない。",
+    "relocated_pointer_or_call のmethodは独立した実pointer/call観測に由来する候補を表すが、採用proposalの具体的caller/siteOffset/target wordはauditに出力されない。下記callerは固定C sourceによる候補であり、そのcallerが実際の採用proposal元だったとの断定ではない。",
+    "次symbolとの差30/24byteはEOS位置の証明ではない。EOS後padding、次symbol開始、control-code引数を個別確認する。",
+    "sCursorOptions はrigid0。source strideによるcell計算は候補であり、現ROMの実slot観測ではない。",
+    "現候補0641のCFRU-JP/Vega hook・wrapper差分をcleanJP crosswalkだけで同一と扱わない。"
+  ],
+  "raw_rom_windows_read": false,
+  "rejected_third": {
+    "competing_right_start": "0x083DE6AE",
+    "competing_strong": 1,
+    "conflict_line": 178,
+    "conflict_path": "frlg-sym/diagnostics/pokefirered_jp.sym.conflicts.tsv",
+    "eos_address": null,
+    "held_hit": "0x083DE6AB",
+    "jp_extent": null,
+    "left_start": "0x083DE699",
+    "left_text": "gText_PkmnCantParticipate",
+    "origin_audit_line": 10848,
+    "origin_jp_address": "0x08121248",
+    "origin_reference_address": "0x08120AD0",
+    "origin_reference_function": "CancelParticipationPrompt",
+    "reason_ja": "英語順序・padding/alignment由来の6B0採用に対し、登録callerからの強いpointer候補6AEが競合。6B0を独立境界として採用しない。6AEも今回未観測のため自動採用しない。",
+    "right_text": "gText_CancelParticipation",
+    "shipped_method": "bounded_translated_string_sequence",
+    "shipped_right_start": "0x083DE6B0",
+    "shipped_score": 90,
+    "status": "held_unknown"
+  },
+  "required_tests_before_classification_ja": [
+    "全公開sourceの固定ref/path/size/SHA256/Git blobとcleanJP identityを照合する。",
+    "現候補0641 identity/lineageと対象hook差分を照合し、stock住所を現在の実callerと暗黙同一視しない。",
+    "名前付きsource→実登録cell/caller literal→API引数→制御文字列serializer→EOS全文読取を両側で閉じる。",
+    "英語reference_size、隣接symbol差、近傍住所だけをextent根拠にした入力は拒否する。",
+    "source hash、symbol start、literal target、callback slot/Thumb bit、EOS/control bytes、consumer read範囲を変えた再封印evidenceも拒否するmutation試験を設ける。",
+    "必要future-live RAM/stack/resource epochだけを保持し、非live消去でも同じ有限経路・消費を再現する。",
+    "失敗時は分類を増やさず、unknownを保持し、成功証拠を生成しない。",
+    "現測定はこの2候補だけ。旧受入suite・旧全ROM走査・自然全play/全callee/普遍IRQ/heap寿命証明を代用・追加しない。"
+  ],
+  "rom_executed": false,
+  "schema_version": 1,
+  "shared_api_source": [
+    {
+      "contract": "PartyMenuPrintText(str)の後、CreateTask(Task_PrintAndWaitForText,1)。",
+      "jp": "0x08120AE8",
+      "lines": [
+        1519,
+        1526
+      ],
+      "name": "DisplayPartyMenuMessage",
+      "path": "pret-pokefirered/src/party_menu.c"
+    },
+    {
+      "contract": "AddTextPrinterParameterized2(6,FONT_NORMAL,text,GetTextSpeedSetting(),0,...)。Parameterized4ではない。",
+      "jp": "0x0812278C",
+      "lines": [
+        2570,
+        2575
+      ],
+      "name": "PartyMenuPrintText",
+      "path": "pret-pokefirered/src/party_menu.c"
+    },
+    {
+      "audit_line": 1195,
+      "jp": "0x08008B48",
+      "name": "StringExpandPlaceholders"
+    },
+    {
+      "audit_line": 9464,
+      "jp": "0x080F7D28",
+      "name": "AddTextPrinterParameterized2"
+    }
+  ],
+  "sources": [
+    {
+      "git_blob": "1d0809feff3b2536bd91082cbb482253525c196b",
+      "path": "sym/pokefirered_jp.sym",
+      "ref": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "223428cb80e8d3a0fb1387d4c70a09f0636c9f32ab65b1e99d8bb199b5939ac5",
+      "size_bytes": 2229426,
+      "url": "https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/sym/pokefirered_jp.sym"
+    },
+    {
+      "git_blob": "53316c0d61da2c6cc22acf3d79f68c61c64c65be",
+      "path": "diagnostics/pokefirered_jp.sym.audit.tsv",
+      "ref": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "fc1e4b579b21a592b8e09fa3c36f242833837190401128cd6866c945eff2f44e",
+      "size_bytes": 4147002,
+      "url": "https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/diagnostics/pokefirered_jp.sym.audit.tsv"
+    },
+    {
+      "git_blob": "2550c490a130f22dfd59725a200152a607c969fd",
+      "path": "diagnostics/pokefirered_jp.sym.metadata.tsv",
+      "ref": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "aa387f052a694890c3de8104f93b885cd0091d401a59cddf8ab067a6869bb774",
+      "size_bytes": 464,
+      "url": "https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/diagnostics/pokefirered_jp.sym.metadata.tsv"
+    },
+    {
+      "git_blob": "da3a4499bb073472c4ade18dbee4a029948f8e0e",
+      "path": "diagnostics/pokefirered_jp.sym.conflicts.tsv",
+      "ref": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "42f5a1a43ac8d89a423b1c67f91a9b7b8c712f2feaa1341dd636d017a5de76a0",
+      "size_bytes": 14127,
+      "url": "https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/diagnostics/pokefirered_jp.sym.conflicts.tsv"
+    },
+    {
+      "git_blob": "790f5b437097213028e53e7b1d4dd37a3565ee15",
+      "path": "diagnostics/pokefirered_jp.sym.unresolved.tsv",
+      "ref": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "5f37ea414f9e326379d5dbc2d0aab0a28aa4bd254f896cd191f18ec4f20530b7",
+      "size_bytes": 162464,
+      "url": "https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/diagnostics/pokefirered_jp.sym.unresolved.tsv"
+    },
+    {
+      "git_blob": "e0248cfaa94dd7955b43fde0a828c22d47b11e7a",
+      "path": "src/SymbolMatcherPasses.cpp",
+      "ref": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "0627b067989a81aec5bae0a43122a4c8897479ade3f22d12d7c102a1b700e090",
+      "size_bytes": 56986,
+      "url": "https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/src/SymbolMatcherPasses.cpp"
+    },
+    {
+      "git_blob": "f49b1e919831cd392a1620888ce2702a9c09193e",
+      "path": "src/SymbolMatcher.cpp",
+      "ref": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "33f716981f7e2aa8ffa47d877e1eedb6b271b0d5efbbd85ff1da62f1832ad7ca",
+      "size_bytes": 22276,
+      "url": "https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/src/SymbolMatcher.cpp"
+    },
+    {
+      "git_blob": "1ad8be19cf060c86466a1ce139c7c27b5c10b66b",
+      "path": "README.md",
+      "ref": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+      "repository": "ComplexRobot/frlg-sym",
+      "sha256": "1c9b7653be25d3b65b0e6854854f40aa0c7cd3f69fad8eacb511c432f3e825f8",
+      "size_bytes": 7105,
+      "url": "https://github.com/ComplexRobot/frlg-sym/blob/c04a31542086b20d8c6ee641eaa70b8db6713fd3/README.md"
+    },
+    {
+      "git_blob": "7f3a881e6c56773aee03da475c9a1adc50530223",
+      "path": "src/party_menu.c",
+      "ref": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "repository": "pret/pokefirered",
+      "sha256": "8290dfd5b6444e743029ab76543ed5e4b5b32c1c2f475c686946545f934d5f9b",
+      "size_bytes": 211085,
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/party_menu.c"
+    },
+    {
+      "git_blob": "6b4ebc1f7c0c5f72eb28f656c31be10f86e02094",
+      "path": "src/data/party_menu.h",
+      "ref": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "repository": "pret/pokefirered",
+      "sha256": "cfd30a7b5fdc0026da999a62d3ff72159cad88d9a921730c179d804ee026a9f7",
+      "size_bytes": 36157,
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/data/party_menu.h"
+    },
+    {
+      "git_blob": "c09955503495e79c237d7f6d5164c666c7502600",
+      "path": "src/strings.c",
+      "ref": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "repository": "pret/pokefirered",
+      "sha256": "08e3799f20dd90ae937808be25721d28c3465b4f2ebaba2e71321e52f72465c1",
+      "size_bytes": 96631,
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/strings.c"
+    }
+  ],
+  "status": "source_only_candidates_unaccepted",
+  "summary_ja": "前2組について固定JP crosswalkと固定C sourceの名前付きcaller/API対応を得た。EOS extent、採用pointer literal site、現候補0641の実table cell、wrapper/hooks、consumer全文読取は未検証。第3組の順序整列由来右境界は競合のため棄却。"
+}

@@ -1,0 +1,297 @@
+{
+  "archive": {
+    "body_size": 72137,
+    "file_count": 22,
+    "header_size": 56,
+    "magic": "VEGA16",
+    "owner": "content_population_payload",
+    "table_size": 4901,
+    "version": 1
+  },
+  "donor_leased": false,
+  "owners": [
+    {
+      "address": 154004224,
+      "after_sha256": "23d922c55eaadadd95e572096c2f1e36ac397e756de1ff968ee6141247bdf562",
+      "name": "trainer_v5_stage31_foundation_payload",
+      "size": 47248
+    },
+    {
+      "address": 154051472,
+      "after_sha256": "f1374c489749c1906122a97c5116e9541c356693a3953bd1ff0170649693bb4e",
+      "name": "trainer_v5_stage32_tohoku_batch02_payload",
+      "size": 48976
+    },
+    {
+      "address": 154100448,
+      "after_sha256": "ff4c0096241cf99ad163a57f2bc0022e4280d46896a7adb8f249899f3992c7ea",
+      "name": "trainer_v5_stage33_tohoku_batch03_payload",
+      "size": 51312
+    },
+    {
+      "address": 154151760,
+      "after_sha256": "1c6fdddbc4415d67cb6ba1fcf9e60db53ebb93e5e16a83eb4a3f17a461cbd945",
+      "name": "trainer_changekit_final_stage35_payload",
+      "size": 475614
+    },
+    {
+      "address": 153136164,
+      "after_sha256": "6058a8b222ae3cbdc50269fd5fc0f089075ad5896d91f99c061d8c4ef4f9c4a2",
+      "name": "content_population_payload",
+      "size": 77094
+    }
+  ],
+  "prior_classified": 619,
+  "required_candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "research_only_formal_candidate": {
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+    "size": 33554432
+  },
+  "root_scope_ja": "明示3本のname field literalと1本のitem field literalだけを束縛。追加base literalを不在/完全性証明へ転用しない。",
+  "schema_version": 1,
+  "scope_ja": "JP trainer name末尾3byteと先頭u16 itemの下位byteを跨ぐ15窓、および自己記述T16 zlib stream2窓の歴史的型付け。現消費の到達性・間接参照完全性は主張しない。",
+  "source_bindings": {
+    "scripts/build_trainer_changekit_final.py": {
+      "git_blob_sha": "e846697a52e51c2ec3c8df3c12d1ad1646d77479",
+      "sha256": "06b7609f957f3a6942b3b35e5a6388a365b4be5175dce4afe04d5df4eefe891b",
+      "size": 109603
+    },
+    "scripts/build_trainer_v5_stage31.py": {
+      "git_blob_sha": "7ec13b8e12f95d5a7b1fadf50d764771b736ab8d",
+      "sha256": "38aa505f9ce81575150e5564332cfb90faeae5b5f9ba93e3607218417e57d49d",
+      "size": 61158
+    },
+    "scripts/build_trainer_v5_stage32.py": {
+      "git_blob_sha": "c640b8ec8767fdf9c61dc9e916b13a7c52414130",
+      "sha256": "1e51f0b33a9e19680b6e6523dbaf1c0adcc1245c673d43baf8764932de93bc23",
+      "size": 65989
+    },
+    "scripts/build_trainer_v5_stage32_batch02.py": {
+      "git_blob_sha": "020dd1ec98011db60bd20839bc06cdd5659244b2",
+      "sha256": "9596b0200c7ad33ca3b9e6695d8770ec09e5decce8c544594227067802191b17",
+      "size": 64696
+    },
+    "tools/content/populate_content.py": {
+      "git_blob_sha": "718fdcc146bd0c9ca9cbbdf9ef1bfde74bb4c41e",
+      "sha256": "dc97713e7e8286a230ad542e9b94782ca5845dbf09104a05dd4c1de906d73f64",
+      "size": 76536
+    },
+    "tools/regression/rom_runtime.py": {
+      "git_blob_sha": "5d78cfb13310523f55c93a16d0e9bd86f3ae81f6",
+      "sha256": "f1ace4562ebea22ca24957e0561f9cc410fc737833e7c1bec467ad48bc569672",
+      "size": 102121
+    },
+    "vendor/upstream/CFRU-JP/include/battle.h": {
+      "git_blob_sha": "7add3e78535b105d9d08d3d601da4e1d784f526a",
+      "sha256": "8c6b332ef73bc545297b4f6c5bedc1ad11fa4470901f39cf386c1be53f4abdc9",
+      "size": 52228
+    }
+  },
+  "trainer_layout": {
+    "item_offset": 10,
+    "item_size": 2,
+    "name_offset": 4,
+    "name_size": 6,
+    "origin_offset": 7,
+    "origin_size": 4,
+    "party_pointer_offset": 28,
+    "stride": 32
+  },
+  "trainer_roots": [
+    {
+      "address": 135354552,
+      "field_offset": 4,
+      "sha256": "b3e61b42d793a0f1708b23aedd9b376a62c1e7315baf1f894d19eab02448049d",
+      "size": 4,
+      "value": 154308724
+    },
+    {
+      "address": 135355204,
+      "field_offset": 4,
+      "sha256": "b3e61b42d793a0f1708b23aedd9b376a62c1e7315baf1f894d19eab02448049d",
+      "size": 4,
+      "value": 154308724
+    },
+    {
+      "address": 135456612,
+      "field_offset": 4,
+      "sha256": "b3e61b42d793a0f1708b23aedd9b376a62c1e7315baf1f894d19eab02448049d",
+      "size": 4,
+      "value": 154308724
+    },
+    {
+      "address": 135036796,
+      "field_offset": 10,
+      "sha256": "04b0aa57801b9ad76b76f424407ca97e7827b73234ee07cbc36becb18d905b07",
+      "size": 4,
+      "value": 154308730
+    }
+  ],
+  "trainer_tables": [
+    {
+      "address": 136306648,
+      "count": 743,
+      "name": "original_jp_vega_trainer_table",
+      "owner": null,
+      "rows": [
+        {
+          "address": 136317176,
+          "index": 329,
+          "sha256": "157f9cb8d55bee6f9111eefc2a0e42eda603eb7d45dcbb26f9c07514cdfb8df7",
+          "size": 32
+        },
+        {
+          "address": 136317208,
+          "index": 330,
+          "sha256": "623f20c70117f75ae37c9c6e3b4943463ce218b8563e521584ef608958a0e880",
+          "size": 32
+        },
+        {
+          "address": 136317240,
+          "index": 331,
+          "sha256": "578d2eac2761adc1a0e4d821b27513bf74bc9f47d88f7dd09e8fbe464c6be674",
+          "size": 32
+        },
+        {
+          "address": 136319896,
+          "index": 414,
+          "sha256": "1e0d9ec41f5af0dd973d8c004ca1ffa8209fa14a2c4fd6bb4e638bfb902f849d",
+          "size": 32
+        }
+      ],
+      "serializer": "tools/regression/rom_runtime.py#_trainer_runtime",
+      "sha256": "ae59e91e036e3835c52fda02d396aec269eda3dba635f653240f029850fcb21c",
+      "size": 23776
+    },
+    {
+      "address": 154006592,
+      "count": 1367,
+      "header": {
+        "address": 154004224,
+        "sha256": "1de5054a624266da954f7890250e22261fc95dc52f746428428af2c009418890",
+        "size": 72
+      },
+      "name": "trainer_v5_stage31_foundation_payload",
+      "owner": "trainer_v5_stage31_foundation_payload",
+      "rows": [
+        {
+          "address": 154012704,
+          "index": 191,
+          "sha256": "256e5a562c3c3e2ed975eae1dddbb28726ae71e5bfa71203a4b0aba6b73a6546",
+          "size": 32
+        },
+        {
+          "address": 154019840,
+          "index": 414,
+          "sha256": "1d8866f4eeb87c709d89d04c402d15b57cf2492e4d2c695513a08fcd0d6b5a1f",
+          "size": 32
+        }
+      ],
+      "sha256": "cce135ca0f4ad75e91a2d5ecdb4084133092e77aa6fa9930301db3430d0077db",
+      "size": 43744
+    },
+    {
+      "address": 154054896,
+      "count": 1367,
+      "header": {
+        "address": 154051472,
+        "sha256": "d8dfc9a1eba9da74a5d87dea65da68c0b29f434d2844293fa77b43edb79a71ce",
+        "size": 72
+      },
+      "name": "trainer_v5_stage32_tohoku_batch02_payload",
+      "owner": "trainer_v5_stage32_tohoku_batch02_payload",
+      "rows": [
+        {
+          "address": 154061008,
+          "index": 191,
+          "sha256": "256e5a562c3c3e2ed975eae1dddbb28726ae71e5bfa71203a4b0aba6b73a6546",
+          "size": 32
+        },
+        {
+          "address": 154068144,
+          "index": 414,
+          "sha256": "1d8866f4eeb87c709d89d04c402d15b57cf2492e4d2c695513a08fcd0d6b5a1f",
+          "size": 32
+        }
+      ],
+      "sha256": "f1c04199cab65f8a73f258bb491bd3dfc67bc5b91b075f26f0e8ef147f31cf4c",
+      "size": 43744
+    },
+    {
+      "address": 154105280,
+      "count": 1367,
+      "header": {
+        "address": 154100448,
+        "sha256": "ad235bb4e6394b5744499777c2dd433bda08c8e64d227b1de8b7e8e879a3c307",
+        "size": 72
+      },
+      "name": "trainer_v5_stage33_tohoku_batch03_payload",
+      "owner": "trainer_v5_stage33_tohoku_batch03_payload",
+      "rows": [
+        {
+          "address": 154111392,
+          "index": 191,
+          "sha256": "256e5a562c3c3e2ed975eae1dddbb28726ae71e5bfa71203a4b0aba6b73a6546",
+          "size": 32
+        },
+        {
+          "address": 154118528,
+          "index": 414,
+          "sha256": "1d8866f4eeb87c709d89d04c402d15b57cf2492e4d2c695513a08fcd0d6b5a1f",
+          "size": 32
+        }
+      ],
+      "sha256": "9ed465ccc77cc70b8db93cad3007bed5dc90be080924e4d21488426afae85b93",
+      "size": 43744
+    },
+    {
+      "address": 154308720,
+      "count": 4284,
+      "header": {
+        "address": 154151760,
+        "sha256": "e029776c8ce06dedca2e5978fa5655429877f9f6c2222bfc3219ef493d68ee8c",
+        "size": 72
+      },
+      "name": "trainer_changekit_final_stage35_payload",
+      "owner": "trainer_changekit_final_stage35_payload",
+      "rows": [
+        {
+          "address": 154319248,
+          "index": 329,
+          "sha256": "2b5df381b2ea3580ec31535c2ba9e27b6df8c750edb13dd17b67f5d8478cb8be",
+          "size": 32
+        },
+        {
+          "address": 154319280,
+          "index": 330,
+          "sha256": "2df3d6d35cad1ced3d08eb1b89454f5c1d9048a63ffb627cde8c59879fab0815",
+          "size": 32
+        },
+        {
+          "address": 154319312,
+          "index": 331,
+          "sha256": "c809e46a6b7c3cc5c8210b94f1750b40839f5817f99c40e0597b75163d652f95",
+          "size": 32
+        },
+        {
+          "address": 154321968,
+          "index": 414,
+          "sha256": "9dff24fe92e2235f9a6edde440eee16e993b7619f4e8b32f9d3abbbe14eb8290",
+          "size": 32
+        },
+        {
+          "address": 154347536,
+          "index": 1213,
+          "sha256": "1f94db1dc764c7a57d0e308d7f0d01ae67170e309d0e921054b7aed9fea00e9a",
+          "size": 32
+        }
+      ],
+      "sha256": "bf886961e9afc22682a3b50bfcbe8ef9629a3d51ac34a128c585b7eee43fdc40",
+      "size": 137088
+    }
+  ],
+  "unknown_expected": 255
+}

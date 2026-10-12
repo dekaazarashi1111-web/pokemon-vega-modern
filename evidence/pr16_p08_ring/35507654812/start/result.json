@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260920-P08-RING",
+  "source_head": "870e65e58fa34289daa6216ae41ed201e54b5e29",
+  "workflow_source_head": "870e65e58fa34289daa6216ae41ed201e54b5e29",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+  },
+  "case": "ring-active",
+  "original": {
+    "run_id": 35347587112,
+    "head_sha": "a54fe471c666c280f116b5cbfc3b1a6c821e5395",
+    "artifact_id": 10547413771,
+    "archive": {
+      "size": 656588,
+      "sha256": "113b5972602453eafdab47f57272f1d9fd0ab22d1efcd4d956651b2f84ad0f65"
+    },
+    "sources": {
+      "config/github_private_environment.json": {
+        "sha256": "33ff93eb2a1183ccdc3fea5c08b986271d75e9a8e349627072b36dd4c6abb56a",
+        "size": 5007
+      },
+      "overlays/cfru/integration.h": {
+        "sha256": "8323050dac61b161d89393815ce63837cedee4369235a5f2277dc32fdd523f5a",
+        "size": 8981
+      },
+      "overlays/cfru/runtime.h": {
+        "sha256": "9f608381273cd49af4df91af5ec9598420dfe6c4b8ec30150945c655fa64c476",
+        "size": 8156
+      },
+      "overlays/ring_npc/ring_npc.c": {
+        "sha256": "e14d28dd4f891b4d3ef5d27d036de669013ed1f8bb8e9916111aab71a3b4bc5d",
+        "size": 1817
+      },
+      "overlays/ring_npc/ring_npc.h": {
+        "sha256": "32e9d0112e70555bfc4a93871a2cb9a3e3be2162527e67abf4d8518990d06386",
+        "size": 489
+      },
+      "overlays/ring_policy/ring_policy.c": {
+        "sha256": "a9d523ad733b71af9cbfcd081555de0cd6361b14bb339463cb3e9e50b85de845",
+        "size": 3207
+      },
+      "overlays/ring_policy/ring_policy.h": {
+        "sha256": "631d923b90c8f397a9a7672ce19f96ca9f4f4d6dc6c0131cac53269086c15583",
+        "size": 398
+      },
+      "scripts/pr16_capture_geometry.py": {
+        "sha256": "c4e1bd692944020fee552077705e7d86884530d525fbafba095e746bd00b157c",
+        "size": 3346
+      },
+      "scripts/pr16_natural_capture.py": {
+        "sha256": "99371140f7424806b25205f2b86e922bbbbfe50bd91c967cb478c804d91c26ef",
+        "size": 9937
+      },
+      "scripts/pr16_p05_root_diagnostics.py": {
+        "sha256": "1aece44ba87988435c5316d56cd8aa143ea5739ef7bda35103578b93a8c50018",
+        "size": 8880
+      },
+      "scripts/pr16_purchased_gear.py": {
+        "sha256": "da0878109e346e1454ac3f47b8e6d75247deb9a9c4f4b5fd2881a86458007a6d",
+        "size": 13172
+      },
+      "scripts/pr16_ring_npc_successor.py": {
+        "sha256": "4832d39eed10928f9ebb292fb1746546a8a3206c6ad0f86ed7241d1b5f8e73c2",
+        "size": 16901
+      },
+      "scripts/pr16_ring_policy_native.py": {
+        "sha256": "d008aae0dee1b1735ca14931850e4964c8ef70bf730d3d22608981f9dd2a9f74",
+        "size": 15416
+      },
+      "scripts/pr16_ring_policy_successor.py": {
+        "sha256": "13b4907245beaf484ee9bd32a44faeae7a0cdf5c047c51530a0c7b91ad72bf33",
+        "size": 11995
+      },
+      "scripts/pr16_shop_routes.py": {
+        "sha256": "29ef07ef51bd2564f443844cdd859fffb5fa182c02b4260d16f1abbae302b338",
+        "size": 9771
+      },
+      "scripts/run_modernization_p03_breeding_e2e.py": {
+        "sha256": "c293ceec2e3a72094300bbf0d6764c5a4017f6db4a1cf138d8ccf647cbbc9e75",
+        "size": 14073
+      },
+      "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+        "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+        "size": 39669
+      },
+      "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+        "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467",
+        "size": 20154
+      },
+      "tools/mgba_modernization_p03_breeding_e2e.c": {
+        "sha256": "a99cafd942f958c932709bed6099695f067dc292401b3bfb91e60afe4d6823de",
+        "size": 19614
+      },
+      "tools/mgba_modernization_p03_fullslots_e2e.c": {
+        "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa",
+        "size": 12868
+      },
+      "tools/mgba_modernization_p03_learning_e2e.c": {
+        "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d",
+        "size": 7987
+      },
+      "tools/mgba_pr16_natural_capture.c": {
+        "sha256": "cd09b0ad480403b0e76239196415656c36b26abe18f12bcc946c4f9f9c9d2e6e",
+        "size": 9630
+      },
+      "tools/mgba_pr16_purchased_gear.c": {
+        "sha256": "ba8a7994d25bf7d5d95fdf9fb35bace671f4b1625f5cee96df235a92bbdac9aa",
+        "size": 16307
+      },
+      "tools/mgba_pr16_ring_policy.c": {
+        "sha256": "ba8d25d7b8d95856777327d13f2fca8eadb663fe9fba1cc8915cf916748a2415",
+        "size": 12153
+      },
+      "tools/mgba_pr16_shop_routes.c": {
+        "sha256": "16eda36fade0e8ef0ec3dc0b45b22c9776969f557aedc6ac25f1b65ffc09848c",
+        "size": 10000
+      }
+    },
+    "generated": {
+      "p03_learning_embedded.c": {
+        "sha256": "8a772d3ef7b937ba475228a98782d25d49405a6faaed690810db80ebb4bd3543",
+        "size": 8005
+      },
+      "p03_p02_embedded.c": {
+        "sha256": "49a15c51cee2471bd0e911f6a8b804bb860bbecc54be2ef5f2474e9dfb31015b",
+        "size": 39687
+      },
+      "p03a_fullslots_embedded.c": {
+        "sha256": "c76199eb2186d979dd5130597987a6f45d6434fb3fe11b983935ad55a1e7c0a6",
+        "size": 12886
+      },
+      "p03b_archive_embedded.c": {
+        "sha256": "e675b1086391f1f4c57080e6d3a53d2eeeda68bd02dd92de3830256238e2a997",
+        "size": 20172
+      },
+      "pr16_capture_shop_helpers.c": {
+        "sha256": "e6ac82cf3157365bf669340d199dc649aaf7d6159a0c4fda80357b8ee2aa1b3f",
+        "size": 10012
+      },
+      "pr16_gear_capture_helpers.c": {
+        "sha256": "f13abfb70d53f8334d944ca596fd2c7d0d421d52f4ed6db6224c6241f02ac5a5",
+        "size": 9645
+      },
+      "pr16_gear_route.h": {
+        "sha256": "1a6934a98bc4e68cd0189c38bb9b851a2248bfa9c83996b6d7c4b959c984f09d",
+        "size": 528
+      },
+      "pr16_ring_gear_helpers.c": {
+        "sha256": "fb3d861669894d24ca75a0ba881e0e48acc989551abe282f178a2991943ce606",
+        "size": 16319
+      },
+      "pr16_ring_policy_generated.h": {
+        "sha256": "54231b1bd94e1c3e5079c3cd4a440906f4450b10918df8f2dddd3dc698ff973b",
+        "size": 286
+      },
+      "pr16_shop_breeding_helpers.c": {
+        "sha256": "29875c0c2fe7e45f12fbd0409ea52614e954a056e9a07c8487e790be3d21a3be",
+        "size": 19630
+      }
+    },
+    "guards": {
+      "bus8": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "bus16": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "bus32": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "raw8": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "raw16": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "raw32": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "register": {
+        "process": {
+          "schema_version": 1,
+          "returncode": 1,
+          "timed_out": false,
+          "spawn_error": null
+        },
+        "stderr": {
+          "size": 50,
+          "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934"
+        },
+        "stdout": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    "exact_original_preserved": true,
+    "old_case_count": 5,
+    "old_cases_reexecuted": 0
+  },
+  "protected_originals": {
+    "content/modernization/pr16_ring_policy_acceptance.json": {
+      "size": 162934,
+      "sha256": "85c56f6eb79b8f589ef6ab7a49db18929f9beb97dc7aac0dadc273623b07acfd"
+    },
+    "content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json": {
+      "size": 105995,
+      "sha256": "786e5e10a23e5008669b3ec76d8646ee523819d91740dbb8a361e5150598bae9"
+    },
+    "content/modernization/pr16_p08_candidate_impact.json": {
+      "size": 739897,
+      "sha256": "9aeab30775211ba995a3d6dd589d697f70ed966bb34719aa1ea5e86548799142"
+    },
+    "content/modernization/pr16_saved_reconstruction_recipes.json": {
+      "size": 1249360,
+      "sha256": "80d93a1de6175eaffb391baf1d38a0de8ec647c90b837863e2703868e33d1bd5"
+    },
+    "content/modernization/pr16_circus_getter_followup.json": {
+      "size": 117299,
+      "sha256": "856881aa9b0156f391736de4748733395f493fe3de48ac23596e828c5745ba27"
+    },
+    "config/active_play_baseline.json": {
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    }
+  },
+  "source_bindings": {
+    "scripts/pr16_p08_ring_representative.py": {
+      "size": 19613,
+      "sha256": "2127d51a3618b9ffeeff696bc9505205b2b4e206acf83aa41e6f431f65494d4e"
+    },
+    "tests/test_pr16_p08_ring_representative.py": {
+      "size": 4383,
+      "sha256": "8ac6c6bf6135d44b1e73911fb761990119afdecc4e5c2bca6265dd2f6a48e8fd"
+    },
+    ".github/workflows/pr16-p08-ring.yml": {
+      "size": 2196,
+      "sha256": "bb8247eee634f2ce910613e739d631e49c8f299e4503e27dac8040e6313c46de"
+    },
+    "scripts/pr16_ring_policy_native.py": {
+      "size": 15416,
+      "sha256": "d008aae0dee1b1735ca14931850e4964c8ef70bf730d3d22608981f9dd2a9f74"
+    },
+    "scripts/pr16_p08_impact.py": {
+      "size": 13808,
+      "sha256": "d454d6e9be42c935e1bc83d22723dd12d83e67f185996fc778e15e0cb71dd835"
+    }
+  },
+  "native_verified": false,
+  "representative_accepted": false,
+  "visual_review_completed": false,
+  "new_emulator_processes": 0,
+  "host_compiles": 0,
+  "fresh_cores": 0,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "accepted_standalone_replays": 0,
+  "prefix_wins_reexecuted": 0,
+  "rom_changes": 0,
+  "release_ready": false,
+  "failures": [],
+  "recording_run": 35507654812,
+  "phase": "START"
+}

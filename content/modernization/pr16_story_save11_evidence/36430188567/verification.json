@@ -1,0 +1,403 @@
+{
+  "schema_version": 1,
+  "method": "DIRECT_PIXEL_REVIEW_NO_OCR",
+  "base_head": "39d05cd01972f398138e6763db18f9465ff2866f",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "runner": {
+    "size": 73792,
+    "sha256": "9c62d9664d50ea58a150b59b1c2d5465e6a50f5b0824ce4728f92656331ee14d"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "c2c08321b12ef4b5039884d9e4155eb32a614415bb68a1497758cdedfb9000c0"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "dfe8188b695323c61fa79172df41a5b3c7eb8b6c56d54df2cf1bc67cac424eef"
+  },
+  "parent_artifact": 10970079659,
+  "development_native_processes": 2,
+  "accepted_case_reruns": 0,
+  "progress_end": {
+    "end": "STORY_INPUT_CHECKPOINT",
+    "frames": 12231,
+    "inputs": 176,
+    "warnings_errors": 0,
+    "host_write_barriers": 7,
+    "guarded_host_writes": 0,
+    "fixture_calls": 0,
+    "natural_research_arrival_accepted": false
+  },
+  "continue_end": {
+    "end": "STORY_INPUT_CHECKPOINT",
+    "frames": 3560,
+    "inputs": 50,
+    "warnings_errors": 0,
+    "host_write_barriers": 7,
+    "guarded_host_writes": 0,
+    "fixture_calls": 0,
+    "natural_research_arrival_accepted": false
+  },
+  "claims": {
+    "captures": 1,
+    "capture_attempts": 2,
+    "failed_capture_attempts": 1,
+    "poke_balls_before": 5,
+    "poke_balls_after": 3,
+    "wild_victories": 0,
+    "trainer_victories": 0,
+    "losses": 0,
+    "escapes": 0,
+    "experience_gained": 0,
+    "ordinary_saves": 1,
+    "natural_research_arrival": false,
+    "regional_pokedex_integration": false,
+    "full_story": false,
+    "release_ready": false
+  },
+  "full_image_pairs": [
+    [
+      49,
+      1
+    ],
+    [
+      50,
+      2
+    ],
+    [
+      51,
+      3
+    ],
+    [
+      52,
+      4
+    ],
+    [
+      53,
+      5
+    ],
+    [
+      54,
+      6
+    ],
+    [
+      55,
+      7
+    ]
+  ],
+  "nonidentical_pairs": [
+    {
+      "progress": 58,
+      "continued": 11,
+      "changed_pixels": 80,
+      "bounds": [
+        1,
+        11,
+        65,
+        78
+      ],
+      "reason_ja": "バッグ左端のカーソル/スクロール表示。全画面一致としない"
+    }
+  ],
+  "files": {
+    "commands.txt": {
+      "size": 2252,
+      "sha256": "9e85df9d83c41229e86299612e99fb80305b60e816dbd660a5f7d77bec7cf2f6"
+    },
+    "continue-commands.txt": {
+      "size": 479,
+      "sha256": "ecc5413a62c03f0902264fb9c75d6e44bc3944421e5374f5ca41e49891101129"
+    },
+    "progress.stdout.txt": {
+      "size": 47490,
+      "sha256": "607bbee6f3eba7f043e84817568707ed236a243beb2b8340c688a0d9cb86c665"
+    },
+    "continue.stdout.txt": {
+      "size": 9902,
+      "sha256": "9950a32c10ed7b3f8e57a40a75bd6c0254805422278f9ec5b1fcbd3ef8f411c5"
+    }
+  },
+  "anchors": [
+    {
+      "screen": 0,
+      "sha256": "acb3a3b8a590589759fc1237804e7684302e341a8556f148a11d9440ae730f48",
+      "meaning_ja": "Save10の民家出発"
+    },
+    {
+      "screen": 10,
+      "sha256": "0e74279c8885831534dbdd23adf7b1e9cd980c3fde2721a09dcc7a352474adf9",
+      "meaning_ja": "野生遭遇の開始"
+    },
+    {
+      "screen": 11,
+      "sha256": "411c88c0cd83d9170a3ad5ceaab17b764a58e5b6f80c2d2cb345b96311a61765",
+      "meaning_ja": "ツツケラ♂Lv3との遭遇"
+    },
+    {
+      "screen": 15,
+      "sha256": "9ebd61fb5a37714ee923e985810346e9032306ed7eda6d433b2ad7e9d492cb82",
+      "meaning_ja": "最初のボール5個"
+    },
+    {
+      "screen": 17,
+      "sha256": "1dcfd8b585c80f6ecf789df2cccc20b25a40a047e7af26e9bca5b315fe0743fd",
+      "meaning_ja": "1個目の投球"
+    },
+    {
+      "screen": 18,
+      "sha256": "fb7e396a9531dcaec323ae345db4f49746f13d3c1b16ebffb512a313bf20a26f",
+      "meaning_ja": "失敗後も戦闘継続"
+    },
+    {
+      "screen": 20,
+      "sha256": "ac7bd9983fb2ce786e20c0921c2d0429ce7e0c18504073ffa3468f23ed29d640",
+      "meaning_ja": "失敗後のボール4個"
+    },
+    {
+      "screen": 23,
+      "sha256": "cc81503bddedab710bbcca4fb6fefc892dd0769b97baf5b46ebe01b17f2c859a",
+      "meaning_ja": "すいとるPP25"
+    },
+    {
+      "screen": 27,
+      "sha256": "94e8b7b0ca7d9335b10abe9dca941c38e62b0c330a7dcd5997f6427c2221e0e1",
+      "meaning_ja": "すいとるPP24"
+    },
+    {
+      "screen": 31,
+      "sha256": "8214356608bd9f7cb1b796f2b38b1b42e94b57d30b9bc55f91957fc23654b36a",
+      "meaning_ja": "すいとるPP23"
+    },
+    {
+      "screen": 34,
+      "sha256": "b89ecf41620102cb764f88c8067d69b2467958134bbd78cfdcbdf27c59c7ab9e",
+      "meaning_ja": "相手HP低下とリープンHP16"
+    },
+    {
+      "screen": 36,
+      "sha256": "aa57b66f62430e513ee0dbba4bff16bc3109df910ae52f178a9bb7b27809b286",
+      "meaning_ja": "すいとるPP22・ここでは使用しない"
+    },
+    {
+      "screen": 37,
+      "sha256": "ac7bd9983fb2ce786e20c0921c2d0429ce7e0c18504073ffa3468f23ed29d640",
+      "meaning_ja": "2個目を投げる前のボール4個"
+    },
+    {
+      "screen": 39,
+      "sha256": "9ad4e768098ed7d4bd965442e9d8131dde734240d1a3f69252c124fd1ea7f21d",
+      "meaning_ja": "2個目の投球"
+    },
+    {
+      "screen": 40,
+      "sha256": "60fa68e6ec05561c3bc2abf5a506f6958250ade028c73362ac81a2c73091667e",
+      "meaning_ja": "捕獲成功の表示"
+    },
+    {
+      "screen": 41,
+      "sha256": "25feee5c982a4bd0a7e6b9050ccbea3add965975d7e4bef43af4ed7488819643",
+      "meaning_ja": "捕獲成功の全文"
+    },
+    {
+      "screen": 42,
+      "sha256": "c3a14aa0ed44f81a8f7d8c8bdeb91001e3de0b511107a5889e13933331271d19",
+      "meaning_ja": "図鑑データ追加のメッセージ"
+    },
+    {
+      "screen": 43,
+      "sha256": "24ec04367aff0dfd5931cb45df40d5052847c54953715a4b822c4aa9694c98e9",
+      "meaning_ja": "ニックネーム確認"
+    },
+    {
+      "screen": 44,
+      "sha256": "b45f8d44b1aee2f797efa105f8735379a517f8ae1bc8140083a09dffeff76694",
+      "meaning_ja": "名前入力"
+    },
+    {
+      "screen": 45,
+      "sha256": "0b6cb84216a86409ebe1abba7bc46af844c23430864af00d661305b1a055ab9e",
+      "meaning_ja": "空入力"
+    },
+    {
+      "screen": 46,
+      "sha256": "bb186bab06be8208351101f33c1cb938576c377860964e7544cf6f65096e83cd",
+      "meaning_ja": "STARTで決定へ"
+    },
+    {
+      "screen": 47,
+      "sha256": "990b31286fd2249007afb1c51e852b9517d19b15182b372f22b4cb84a94303bc",
+      "meaning_ja": "捕獲後field・手持ち2"
+    },
+    {
+      "screen": 49,
+      "sha256": "717387b1dc935e818c00da4b7df6fbe8d15c5ea04e043e1c505a87db81411973",
+      "meaning_ja": "手持ち2体の一覧"
+    },
+    {
+      "screen": 50,
+      "sha256": "b326be6d2db7ab9f5a374d6b6cb9fbbc6f3ad6a9b0599643872ae51fd686419b",
+      "meaning_ja": "リープンの情報"
+    },
+    {
+      "screen": 51,
+      "sha256": "ab28ad3e000ec055c24097853d0249fc67cfa4006d90e07eff1d3140d0f982b4",
+      "meaning_ja": "リープンLv9・EXP450・HP16/26"
+    },
+    {
+      "screen": 52,
+      "sha256": "23361b2611f21381db8501281ec49d62b853a259f1ae4632074ebb54d5ae6662",
+      "meaning_ja": "リープンのPP35/30/22"
+    },
+    {
+      "screen": 53,
+      "sha256": "378a33849ae76344c4f8a7d972cdac7fda5007a103c72efab585b6bceb930646",
+      "meaning_ja": "ツツケラのPP33/38"
+    },
+    {
+      "screen": 54,
+      "sha256": "701dffddf70088e3b9d23685543805396b70effe15baadb953f0d15a67f389a2",
+      "meaning_ja": "ツツケラLv3・EXP27・HP4/15"
+    },
+    {
+      "screen": 55,
+      "sha256": "96324992c27806a4127cbd9c098393fd1fa202e8140c29e9fa37681b48bce9c8",
+      "meaning_ja": "ツツケラの入手場所501番道路・地域図鑑No???"
+    },
+    {
+      "screen": 58,
+      "sha256": "9ddb9839adfe98916395bab53904a0bccc30a01206081d69a27889a1fcfd9b04",
+      "meaning_ja": "残りのボール3個"
+    },
+    {
+      "screen": 59,
+      "sha256": "58cdb2e7e53db8731c001772e0b9610d4bc5bdb0cab556bf5f5786494aa41b93",
+      "meaning_ja": "通常レポート確認・地域図鑑1匹"
+    },
+    {
+      "screen": 60,
+      "sha256": "1a47626ba28f29048e7be450295c76a944dde7f74c8bf59b1688bf0d6afc5e9e",
+      "meaning_ja": "上書き確認"
+    },
+    {
+      "screen": 61,
+      "sha256": "beaa4e6544a75e1fb993ab0db5d492988fbe059b9328c97575546950819ea664",
+      "meaning_ja": "書込み中・counter10"
+    },
+    {
+      "screen": 62,
+      "sha256": "beaa4e6544a75e1fb993ab0db5d492988fbe059b9328c97575546950819ea664",
+      "meaning_ja": "書込み中"
+    },
+    {
+      "screen": 63,
+      "sha256": "beaa4e6544a75e1fb993ab0db5d492988fbe059b9328c97575546950819ea664",
+      "meaning_ja": "書込み中"
+    },
+    {
+      "screen": 64,
+      "sha256": "beaa4e6544a75e1fb993ab0db5d492988fbe059b9328c97575546950819ea664",
+      "meaning_ja": "書込み中"
+    },
+    {
+      "screen": 65,
+      "sha256": "beaa4e6544a75e1fb993ab0db5d492988fbe059b9328c97575546950819ea664",
+      "meaning_ja": "書込み中"
+    },
+    {
+      "screen": 66,
+      "sha256": "beaa4e6544a75e1fb993ab0db5d492988fbe059b9328c97575546950819ea664",
+      "meaning_ja": "書込み中"
+    },
+    {
+      "screen": 67,
+      "sha256": "beaa4e6544a75e1fb993ab0db5d492988fbe059b9328c97575546950819ea664",
+      "meaning_ja": "書込み中"
+    },
+    {
+      "screen": 68,
+      "sha256": "beaa4e6544a75e1fb993ab0db5d492988fbe059b9328c97575546950819ea664",
+      "meaning_ja": "書込み中"
+    },
+    {
+      "screen": 69,
+      "sha256": "849a7828d2f892155166e97c071a25250874b7cec4afe8f7733fc10f439dcbbe",
+      "meaning_ja": "保存完了表示・counter11・lock1"
+    }
+  ],
+  "cold_anchors": [
+    {
+      "screen": 0,
+      "sha256": "66035e603c9cb39a3bb5e9d2146464ddc0eee554a4aae441d38d316d102fb255",
+      "meaning_ja": "独立Continue直後のfield"
+    },
+    {
+      "screen": 1,
+      "sha256": "717387b1dc935e818c00da4b7df6fbe8d15c5ea04e043e1c505a87db81411973",
+      "meaning_ja": "手持ち2体"
+    },
+    {
+      "screen": 2,
+      "sha256": "b326be6d2db7ab9f5a374d6b6cb9fbbc6f3ad6a9b0599643872ae51fd686419b",
+      "meaning_ja": "リープンの情報"
+    },
+    {
+      "screen": 3,
+      "sha256": "ab28ad3e000ec055c24097853d0249fc67cfa4006d90e07eff1d3140d0f982b4",
+      "meaning_ja": "リープンの能力/経験値"
+    },
+    {
+      "screen": 4,
+      "sha256": "23361b2611f21381db8501281ec49d62b853a259f1ae4632074ebb54d5ae6662",
+      "meaning_ja": "リープンの技/PP"
+    },
+    {
+      "screen": 5,
+      "sha256": "378a33849ae76344c4f8a7d972cdac7fda5007a103c72efab585b6bceb930646",
+      "meaning_ja": "ツツケラの技/PP"
+    },
+    {
+      "screen": 6,
+      "sha256": "701dffddf70088e3b9d23685543805396b70effe15baadb953f0d15a67f389a2",
+      "meaning_ja": "ツツケラの能力/経験値"
+    },
+    {
+      "screen": 7,
+      "sha256": "96324992c27806a4127cbd9c098393fd1fa202e8140c29e9fa37681b48bce9c8",
+      "meaning_ja": "ツツケラの入手情報"
+    },
+    {
+      "screen": 8,
+      "sha256": "fd8367c8a2391fa4f179dc5b258e445c8be8d3ee37d34463021af85651bc468c",
+      "meaning_ja": "スタートメニュー"
+    },
+    {
+      "screen": 9,
+      "sha256": "a199eb8a37ca6b90abe5ac2010361063d0162ceafa4440b8519384019e5a3010",
+      "meaning_ja": "道具ポケット空"
+    },
+    {
+      "screen": 10,
+      "sha256": "17a47499f0be459cd7a39029f6cec42ca758bd9fbba56901c38e65090e74199e",
+      "meaning_ja": "大切な物"
+    },
+    {
+      "screen": 11,
+      "sha256": "7855b0dfab7fb8bd03ca9b3580d1ef55f0629e958b1890cc7593dfbb79ac39d4",
+      "meaning_ja": "ボール3個"
+    },
+    {
+      "screen": 12,
+      "sha256": "688cd598e214ea17f30824b43bae9b1bf1a486051c60ab6ee781e333bd02c0b9",
+      "meaning_ja": "未保存のままfield復帰"
+    }
+  ],
+  "notes_ja": [
+    "初投失敗を捕獲/逃走/勝利としない。二投目の捕獲後も、名前確認からfieldへ戻るまで手持ち増加は未確定。",
+    "保存完了観測69はlock1の完了メッセージ。unlocked field復帰は独立Continueで確認。",
+    "地域図鑑No???・レポート図鑑1匹という表示を保持し、図鑑全統合を受入したとしない。",
+    "cold RAMのledger時計は進むが、保存ファイルとRTCの全131088bytesは変更なし。"
+  ]
+}

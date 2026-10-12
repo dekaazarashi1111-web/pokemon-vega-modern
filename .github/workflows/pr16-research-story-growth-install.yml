@@ -1,0 +1,86 @@
+name: pr16-research-story-growth-install
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-growth-install.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  install:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install exact reviewed growth text without accepted test or native replay
+        run: |
+          python3 -B - <<'PY'
+          import ast,base64,json,lzma,os,pathlib,subprocess,sys
+          root=pathlib.Path.cwd();sys.path[:0]=[str(root/'scripts'),str(root)]
+          import pr16_research_lifecycle_actions as d
+          import pr16_research_story as m
+          d.current()
+          out=root/'.local/pr16-story-growth-run';out.mkdir(parents=True)
+          subprocess.run(['git','merge-base','--is-ancestor','33b16552961b9360236d6e8085683a60537e009a','HEAD'],check=True)
+          nested=[p for p in d.git('ls-files').decode().splitlines() if p.endswith('/AGENTS.md') and p.split('/')[0] in ('scripts','tools','tests','content','docs','design')]
+          m.need(not nested,'nested agent rules require explicit review')
+          state=d.read(root/d.STATE);protected=dict(state['source_bindings'])
+          m.need(d.bindings(set(protected))==protected,'accepted sources unchanged before install')
+          specs=[('5408049a280e41e36936640598b4ffe70fdffb0f',4000,'98f186e4afce2d57086686103711235e0936ec3102f694b89e33040e39934d9a'),('357cd0ea9a0ec8f64a35da84260cb2f8f685d581',4000,'3efaf67d3873d631ba52165bfd47aaf8ffcd3677fd78cf4f605c5c9d6a1cbcc6'),('a9f15105a166eafd296aaa377868622db48f90ca',4000,'4fe789dec1f999b2f1879b6d8280b257cf099d37ee7f156b61a4bca02c3e9f75'),('e73d635b659525424a80390ab1c3b57ac61b56e0',4000,'b8a5f35adff0313fc15ed0e290b763416662d979d8574c9795060aed8f219649'),('30f7b52b294fc850362f0471fecffe5fb82c5f93',4000,'cbca77e9b2e48406bea95eb33a338709ad5eead38d04ba64193782b39429cd5f'),('12d5a8ae5da8dbfe6932efa84a02ff5ef503ea01',4000,'f44f34660edf2085ad8c0661f692f097e302634595bc3cfecd2eebdb731b051c'),('9ad4cc93d1849155eca927d1a988da4205bd3de8',4000,'cd8f4977261c5284d58eded2b0603302e8cb61b9809ef8b0cabe796857dc37fa'),('baf7495871ec304b33a2cb062af529c8f89c2623',1584,'5a1bf84fa0f7be4af260c83478cc01670038fec5557f5064a3bcc063a67fd9bf')]
+          pieces=[]
+          for sha,size,digest in specs:
+            value=d.inputs.api('git/blobs/'+sha)
+            m.need(value['sha']==sha and value['encoding']=='base64','fixed text transport blob')
+            raw=base64.b64decode(''.join(value['content'].split()),validate=True)
+            m.need(m.identity(raw)==dict(size=size,sha256=digest),'exact text chunk')
+            pieces.append(raw)
+          packed=b''.join(pieces)
+          m.need(m.identity(packed)==dict(size=29584,sha256='3b6875adc125b92e52e2e06428d7919d8a73770c315f7c281151ba39f081db27'),'whole bounded compressed text')
+          decoder=lzma.LZMADecompressor(memlimit=134217728);raw=decoder.decompress(packed,max_length=187617)
+          m.need(decoder.eof and not decoder.unused_data and m.identity(raw)==dict(size=187616,sha256='396c5024a322db376886a761490b38c645880b6fefc4d141e375682e8f776c40'),'whole reviewed UTF8 payload')
+          payload=json.loads(raw,object_pairs_hook=m.unique);base='content/modernization/pr16_research_story_growth_development/'
+          names={'scripts/pr16_research_story_growth.py','tests/test_pr16_research_story_growth.py','scripts/pr16_research_story_growth_actions.py','docs/PR16_RESEARCH_STORY_GROWTH_JA.md'}|{base+n for n in ('commands.txt','continue-commands.txt','continue.stderr.txt','continue.stdout.txt','progress.stderr.txt','progress.stdout.txt','setup.json','unit.stderr.txt','unit.stdout.txt','verification.json','visual-review.json')}
+          m.need(set(payload)=={'schema_version','task','files'} and type(payload['schema_version']) is int and payload['schema_version']==1 and payload['task']=='USER-20260928-RESEARCH-STORY-GROWTH' and set(payload['files'])==names,'closed 15-file new text payload')
+          for name,row in payload['files'].items():
+            path=root/name
+            m.need(set(row)=={'before','content'} and row['before'] is None and not path.exists() and type(row['content']) is str and '\0' not in row['content'],'new UTF8 text only')
+            path.parent.mkdir(parents=True,exist_ok=True);path.write_text(row['content'],encoding='utf-8')
+            if name.endswith('.py'):ast.parse(row['content'])
+          m.need(d.bindings(set(protected))==protected,'unrelated accepted originals unchanged')
+          import pr16_research_story_growth_actions as s
+          s.checkpoint_source(names,'.github/workflows/pr16-research-story-growth-install.yml')
+          print('PASS: reviewed growth source and original 118 tests retained; native/unit replay 0')
+          PY
+      - name: Validate fixed resume graph and append-only scoped index
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t paths < <(python3 -B scripts/pr16_research_story_growth_actions.py paths)
+          git add -- "${paths[@]}"
+          python3 -B scripts/pr16_research_story_growth_actions.py guard
+      - name: Non-force source checkpoint commit
+        run: |
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260928-RESEARCH-STORY-GROWTH: 通常成長oracleと118検査・開発原本を保存'
+          git push origin "HEAD:$GITHUB_REF"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-story-growth-run/completion-head.txt
+          python3 -B scripts/pr16_research_story_growth_actions.py snapshot
+          printf 'RESULT=DONE TASK=USER-20260928-RESEARCH-STORY-GROWTH VERIFY=SOURCE_PASS COMMIT=%s\n' "$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-story-growth-source-checkpoint
+          path: .local/pr16-story-growth-run
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

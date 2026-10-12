@@ -1,0 +1,38 @@
+# 現JP候補2組の実測checkpoint
+
+source dd69e1253b7705ad2fc5ebe9c69723b3308e114a、run37688855091／job113023572648、初回全10step成功。新59試験を通過し、current0641を1回再構成、全115ownerを照合した。native／旧全ROMscan／旧heap試験は0。正式779分類／95未知、正式ROM／Save101、安全容量0は不変。
+
+原本はpr16_dex_hof_jp_consumer_probe_evidence内のmeasurement.jsonとprobe-tests.json。artifact11512656180は7863bytes、ZIP SHA-256 30abe9cfde2d7e69f3eb25566110a78a264ee9f59967f363860ddef22121f8fc。取得時API metadata・全stepはterminal.jsonへ保存。receipt validatorは原本再計測なしで照合する。
+
+## 初めて観測した現物
+
+- sCursorOptionsのENTER cell08419E0C＝08124931、FIELD_MOVES_FIRST cell08419E3C＝08124F09。両Thumb pointerは予測と一致した。
+- CantUseUntilNewBadge:083DDEC6からEOS込み30byte、EOS083DDEE3。
+- NoMoreThanThreeMayEnter:083DDEE4から27byte、EOS083DDEFE。既存stock_limit_roots原本とSHAが一致。
+- SwitchedPkmnItem:083DE016から24byte、EOS083DE02D。FD03＝STR_VAR_2、FD02＝STR_VAR_1を含む。
+- PkmnHoldingItemCantHoldMail:083DE02Eから38byte、EOS083DE053。
+- held4byte083DDEE1／083DE02Bの役割は実字句解析でそれぞれ「左FC09の2byte／左EOS／右先頭glyph」。隣接差を長さに転用した推測ではない。
+
+14entry、653命令、28連続窓の有限直接CFGを採取した。BL後は構文上のfallthroughにすぎず、外部callee正常復帰・枝の実到達は未証明。
+
+## 現literal／APIとhook差
+
+- FieldMove: LDR08124F96→cell08124FB0→083DDEC6、BL08124F9A→DisplayPartyMenuMessage08120AE8。
+- 交換: LDR08120D84→cell08120DB4→083DE016、BL08120D88→StringExpandPlaceholders08008B48、BL08120D90→DisplayPartyMenuMessage。原文読取と展開後gStringVar4読取を分離する。
+- mailbox拒否: LDR08127D7C→cell08127DA0→083DE02E、BL08127D80→DisplayPartyMenuMessage。
+- Task_SwitchItemsYesNoはLDR081240F8→cell08124108→Task_HandleSwitchItemsYesNoInput0812410D。選択入力側BL081241E2→DisplaySwitchedHeldItemMessage。
+- mailbox登録はLDR08127D18→cell08127D34→Task_HandleChooseMonInput08120319、BL08127D28→InitPartyMenu0811F24C。
+- 共通はBL08120AEE→PartyMenuPrintText0812278C、BL081227C8→Parameterized2 080F7D28。
+- ENTERの08124930は現LDR/BX patternでcell08124934→09121C91。cleanJP stock本体への暗黙同一視を拒否する。
+- choose-monの081203D4近傍はcell081203D8→09097A81。現hookは既存callback_party_task証拠と結び直す。
+- StringExpandPlaceholdersは08008B62の間接dispatchで今回の静的探索を停止。FD再帰・FC09 copy・全文EOSの実readerを未証明として保持する。
+
+## 次の最小実装
+
+最初に083DDEE1だけを閉じる。party_takeitemの既存StartMenu／constructor／state20／RunTasks／selector共通証拠を同identityで参照し、field moveを1個だけ追加する。旧TakeItem profileはfield-moveなしなので、その正の結果を流用しない。
+
+badge不足枝の必要条件はfieldMoveFunc非NULL、link非active、UnionRoom外、fieldMove<=WATERFALL、badge未取得。fieldMoveFunc本体は拒否枝では呼ばない。実field-move producer・1選択cell・caller引数・独立日本語全文serializer・window6 readerのFC09待機からEOSまでを新scopeで結ぶ。右083DDEE4は既存CFRU root／27byte証拠を参照し、stock ENTERを再実行しない。
+
+その後083DE02Bを扱う。交換はYes＋AddBagItem成功＋新item非mail、mailboxはGIVE_MAILBOX_MAIL action＋非egg＋held item非0に限定する。StringExpandPlaceholdersの原文全読取／placeholder再帰と、展開後printer読取の別traceを必要future-live資源と正常ABI条件で閉じる。
+
+自然全play、全callee、普遍IRQ／heap寿命証明へ拡張しない。現観測だけで2件の型受入や安全容量に加算しない。旧egg15118全域保護・donor不可を維持。最終controller／保存runtimeとtrainer131後半→シオウ通常回復・保存・coldContinueは引き続き未完。

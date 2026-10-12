@@ -1,0 +1,3778 @@
+{
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "parent_candidate": {
+    "size": 33554432,
+    "sha256": "12ab27e4b83c86ce09f88fe887716e5c3a9eba1320bce927dc7b85b28fee9a03"
+  },
+  "link": {
+    "actual_payload_bytes": 8364,
+    "status": "LINKED_CURRENT_SAVE_SUCCESSOR_AND_HJ_CODEC",
+    "extra_lease_size": 0,
+    "extra_lease_base": 157284696,
+    "sections": [
+      {
+        "name": ".text.DexImpl_Stage61State_HandleReplaceSector",
+        "address": 155487248,
+        "size": 288,
+        "alignment": 8
+      },
+      {
+        "name": ".text.stage61_save_validate_slot",
+        "address": 155487560,
+        "size": 480,
+        "alignment": 8
+      },
+      {
+        "name": ".text.stage61_save_reject_written_target_sector",
+        "address": 155488064,
+        "size": 168,
+        "alignment": 8
+      },
+      {
+        "name": ".text.DexImpl_Stage61State_HandleWriteSector",
+        "address": 155488288,
+        "size": 156,
+        "alignment": 8
+      },
+      {
+        "name": ".text.stage61_save_normal_copy_on_write",
+        "address": 155488464,
+        "size": 616,
+        "alignment": 8
+      },
+      {
+        "name": ".text.stage61_save_validations_match",
+        "address": 155489080,
+        "size": 80,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_state_clear",
+        "address": 155489200,
+        "size": 120,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_save_clone_record_sector",
+        "address": 155489360,
+        "size": 616,
+        "alignment": 8
+      },
+      {
+        "name": ".text.DexImpl_Stage61State_GetSaveValidStatus",
+        "address": 155489976,
+        "size": 16,
+        "alignment": 2
+      },
+      {
+        "name": ".text.stage61_dex_live_valid",
+        "address": 155492772,
+        "size": 40,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_save_expected_chunk_data",
+        "address": 155492908,
+        "size": 128,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_save_chunk_descriptor_is_valid",
+        "address": 155493036,
+        "size": 72,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_crc_byte",
+        "address": 155493108,
+        "size": 36,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_successor_verify_generation",
+        "address": 155493144,
+        "size": 400,
+        "alignment": 8
+      },
+      {
+        "name": ".text.stage61_state_inject_tail.part.0",
+        "address": 155493552,
+        "size": 80,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_save_select_generation",
+        "address": 155493632,
+        "size": 144,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_save_mark_damaged",
+        "address": 155493776,
+        "size": 40,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_save_all_descriptors_are_valid",
+        "address": 155493820,
+        "size": 36,
+        "alignment": 2
+      },
+      {
+        "name": ".text.stage61_state_crc",
+        "address": 155493856,
+        "size": 104,
+        "alignment": 4
+      },
+      {
+        "name": ".text.crc.constprop.0",
+        "address": 155493960,
+        "size": 56,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_save_section_crc32",
+        "address": 155494048,
+        "size": 34,
+        "alignment": 2
+      },
+      {
+        "name": ".text.DexImpl_Stage61State_HJ_Rollback",
+        "address": 155494084,
+        "size": 124,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_save_clear_damaged",
+        "address": 155494372,
+        "size": 24,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_save_build_live_descriptors.part.0",
+        "address": 155494484,
+        "size": 56,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_state_record_byte",
+        "address": 155494540,
+        "size": 148,
+        "alignment": 4
+      },
+      {
+        "name": ".text.DexImpl_Stage61State_EnsureBackupGeneration",
+        "address": 155494688,
+        "size": 192,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_dex_program_body",
+        "address": 155494952,
+        "size": 68,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_save_readback_matches_prepared",
+        "address": 155496040,
+        "size": 300,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_save_write_normal_live_sector",
+        "address": 155496344,
+        "size": 256,
+        "alignment": 8
+      },
+      {
+        "name": ".text.stage61_successor_prepare_live",
+        "address": 155496600,
+        "size": 248,
+        "alignment": 8
+      },
+      {
+        "name": ".text.DexImpl_Stage61State_HJ_Validate",
+        "address": 155496848,
+        "size": 242,
+        "alignment": 2
+      },
+      {
+        "name": ".text.stage61_save_clone_complete_generation.constprop.0",
+        "address": 155497092,
+        "size": 196,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_state_load_compatible_record",
+        "address": 155497292,
+        "size": 460,
+        "alignment": 4
+      },
+      {
+        "name": ".text.DexImpl_Stage61State_HJ_Build",
+        "address": 155497752,
+        "size": 408,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_dex_fail_live",
+        "address": 155498160,
+        "size": 116,
+        "alignment": 4
+      },
+      {
+        "name": ".text.stage61_save_ensure_live_backup_generation",
+        "address": 155498284,
+        "size": 30,
+        "alignment": 2
+      },
+      {
+        "name": ".text.read32",
+        "address": 155498314,
+        "size": 22,
+        "alignment": 2
+      },
+      {
+        "name": ".text.write32",
+        "address": 155498336,
+        "size": 16,
+        "alignment": 2
+      },
+      {
+        "name": ".text.DexImpl_Stage61State_HandleLoadSector",
+        "address": 157284696,
+        "size": 372,
+        "alignment": 4
+      },
+      {
+        "name": ".text.DexImpl_Stage61State_UpdateRecordOnly",
+        "address": 157285072,
+        "size": 328,
+        "alignment": 8
+      },
+      {
+        "name": ".text.DexImpl_Stage61State_CommitSignatureByte",
+        "address": 157285400,
+        "size": 304,
+        "alignment": 8
+      },
+      {
+        "name": ".text.stage61_save_physical_sector_for_id",
+        "address": 157285704,
+        "size": 64,
+        "alignment": 8
+      },
+      {
+        "name": ".text.DexImpl_Stage61State_HandleSavingData",
+        "address": 167517496,
+        "size": 240,
+        "alignment": 8
+      },
+      {
+        "name": ".text.stage61_successor_footer_matches",
+        "address": 167517736,
+        "size": 144,
+        "alignment": 8
+      },
+      {
+        "name": ".text.stage61_successor_program_committed",
+        "address": 167517880,
+        "size": 144,
+        "alignment": 8
+      },
+      {
+        "name": ".text.stage61_state_tail_matches_live_crc",
+        "address": 167518024,
+        "size": 128,
+        "alignment": 8
+      },
+      {
+        "name": ".text.stage61_save_update_live_record_only",
+        "address": 167518152,
+        "size": 108,
+        "alignment": 8
+      }
+    ],
+    "payload_bytes": 8576,
+    "free_bytes": 804,
+    "exports": {
+      "Stage61State_HandleWriteSector": 155487232,
+      "Stage61State_HandleReplaceSector": 155487544,
+      "Stage61State_CommitSignatureByte": 155488044,
+      "Stage61State_EnsureBackupGeneration": 155488272,
+      "Stage61State_UpdateRecordOnly": 155488448,
+      "Stage61State_HandleSavingData": 155489184,
+      "Stage61State_GetSaveValidStatus": 155489324,
+      "Stage61State_HandleLoadSector": 155489340
+    },
+    "source": {
+      "size": 99975,
+      "sha256": "6db3a14a54ace925103aad6f1412c0fe67c167b0e1d78d125b489889463f21c3"
+    },
+    "symbols": {
+      "DexImpl_Stage61State_HandleReplaceSector": {
+        "address": 155487248,
+        "size": 266,
+        "kind": "T"
+      },
+      "stage61_save_validate_slot": {
+        "address": 155487560,
+        "size": 468,
+        "kind": "t"
+      },
+      "____aeabi_idivmod_from_thumb": {
+        "address": 155488032,
+        "size": 8,
+        "kind": "t"
+      },
+      "stage61_save_reject_written_target_sector": {
+        "address": 155488064,
+        "size": 130,
+        "kind": "t"
+      },
+      "DexImpl_Stage61State_HandleWriteSector": {
+        "address": 155488288,
+        "size": 134,
+        "kind": "T"
+      },
+      "stage61_save_normal_copy_on_write": {
+        "address": 155488464,
+        "size": 592,
+        "kind": "t"
+      },
+      "____aeabi_uidivmod_from_thumb": {
+        "address": 155489056,
+        "size": 8,
+        "kind": "t"
+      },
+      "stage61_save_validations_match": {
+        "address": 155489080,
+        "size": 80,
+        "kind": "t"
+      },
+      "stage61_state_clear": {
+        "address": 155489200,
+        "size": 118,
+        "kind": "t"
+      },
+      "stage61_save_clone_record_sector": {
+        "address": 155489360,
+        "size": 546,
+        "kind": "t"
+      },
+      "__stage61_state_tail_matches_live_crc_veneer": {
+        "address": 155489912,
+        "size": 16,
+        "kind": "t"
+      },
+      "__stage61_successor_footer_matches_veneer": {
+        "address": 155489928,
+        "size": 16,
+        "kind": "t"
+      },
+      "__stage61_successor_program_committed_veneer": {
+        "address": 155489944,
+        "size": 16,
+        "kind": "t"
+      },
+      "DexImpl_Stage61State_GetSaveValidStatus": {
+        "address": 155489976,
+        "size": 16,
+        "kind": "T"
+      },
+      "stage61_dex_live_valid": {
+        "address": 155492772,
+        "size": 38,
+        "kind": "t"
+      },
+      "stage61_save_expected_chunk_data": {
+        "address": 155492908,
+        "size": 128,
+        "kind": "t"
+      },
+      "stage61_save_chunk_descriptor_is_valid": {
+        "address": 155493036,
+        "size": 72,
+        "kind": "t"
+      },
+      "stage61_crc_byte": {
+        "address": 155493108,
+        "size": 36,
+        "kind": "t"
+      },
+      "stage61_successor_verify_generation": {
+        "address": 155493144,
+        "size": 330,
+        "kind": "t"
+      },
+      "__stage61_state_tail_matches_live_crc_veneer@0944a468": {
+        "address": 155493480,
+        "size": 16,
+        "kind": "t"
+      },
+      "__stage61_successor_footer_matches_veneer@0944a478": {
+        "address": 155493496,
+        "size": 16,
+        "kind": "t"
+      },
+      "____aeabi_uidivmod_from_thumb@0944a488": {
+        "address": 155493512,
+        "size": 8,
+        "kind": "t"
+      },
+      "____aeabi_idivmod_from_thumb@0944a490": {
+        "address": 155493520,
+        "size": 8,
+        "kind": "t"
+      },
+      "stage61_state_inject_tail.part.0": {
+        "address": 155493552,
+        "size": 80,
+        "kind": "t"
+      },
+      "stage61_save_select_generation": {
+        "address": 155493632,
+        "size": 144,
+        "kind": "t"
+      },
+      "stage61_save_mark_damaged": {
+        "address": 155493776,
+        "size": 40,
+        "kind": "t"
+      },
+      "stage61_save_all_descriptors_are_valid": {
+        "address": 155493820,
+        "size": 36,
+        "kind": "t"
+      },
+      "stage61_state_crc": {
+        "address": 155493856,
+        "size": 104,
+        "kind": "t"
+      },
+      "crc.constprop.0": {
+        "address": 155493960,
+        "size": 56,
+        "kind": "t"
+      },
+      "stage61_save_section_crc32": {
+        "address": 155494048,
+        "size": 34,
+        "kind": "t"
+      },
+      "HJ_Rollback": {
+        "address": 155494084,
+        "size": 124,
+        "kind": "T"
+      },
+      "stage61_save_clear_damaged": {
+        "address": 155494372,
+        "size": 24,
+        "kind": "t"
+      },
+      "stage61_save_build_live_descriptors.part.0": {
+        "address": 155494484,
+        "size": 56,
+        "kind": "t"
+      },
+      "stage61_state_record_byte": {
+        "address": 155494540,
+        "size": 148,
+        "kind": "t"
+      },
+      "DexImpl_Stage61State_EnsureBackupGeneration": {
+        "address": 155494688,
+        "size": 192,
+        "kind": "T"
+      },
+      "stage61_dex_program_body": {
+        "address": 155494952,
+        "size": 66,
+        "kind": "t"
+      },
+      "stage61_save_readback_matches_prepared": {
+        "address": 155496040,
+        "size": 298,
+        "kind": "t"
+      },
+      "stage61_save_write_normal_live_sector": {
+        "address": 155496344,
+        "size": 212,
+        "kind": "t"
+      },
+      "__stage61_successor_program_committed_veneer@0944b070": {
+        "address": 155496560,
+        "size": 16,
+        "kind": "t"
+      },
+      "____aeabi_idivmod_from_thumb@0944b080": {
+        "address": 155496576,
+        "size": 8,
+        "kind": "t"
+      },
+      "stage61_successor_prepare_live": {
+        "address": 155496600,
+        "size": 226,
+        "kind": "t"
+      },
+      "HJ_Validate": {
+        "address": 155496848,
+        "size": 242,
+        "kind": "T"
+      },
+      "stage61_save_clone_complete_generation.constprop.0": {
+        "address": 155497092,
+        "size": 196,
+        "kind": "t"
+      },
+      "stage61_state_load_compatible_record": {
+        "address": 155497292,
+        "size": 458,
+        "kind": "t"
+      },
+      "HJ_Build": {
+        "address": 155497752,
+        "size": 408,
+        "kind": "T"
+      },
+      "stage61_dex_fail_live": {
+        "address": 155498160,
+        "size": 116,
+        "kind": "t"
+      },
+      "stage61_save_ensure_live_backup_generation": {
+        "address": 155498284,
+        "size": 30,
+        "kind": "t"
+      },
+      "read32": {
+        "address": 155498314,
+        "size": 22,
+        "kind": "t"
+      },
+      "write32": {
+        "address": 155498336,
+        "size": 16,
+        "kind": "t"
+      },
+      "DexImpl_Stage61State_HandleLoadSector": {
+        "address": 157284696,
+        "size": 372,
+        "kind": "T"
+      },
+      "DexImpl_Stage61State_UpdateRecordOnly": {
+        "address": 157285072,
+        "size": 308,
+        "kind": "T"
+      },
+      "DexImpl_Stage61State_CommitSignatureByte": {
+        "address": 157285400,
+        "size": 282,
+        "kind": "T"
+      },
+      "stage61_save_physical_sector_for_id": {
+        "address": 157285704,
+        "size": 44,
+        "kind": "t"
+      },
+      "____aeabi_idivmod_from_thumb@095ffd78": {
+        "address": 157285752,
+        "size": 8,
+        "kind": "t"
+      },
+      "DexImpl_Stage61State_HandleSavingData": {
+        "address": 167517496,
+        "size": 154,
+        "kind": "T"
+      },
+      "__stage61_dex_fail_live_veneer": {
+        "address": 167517656,
+        "size": 16,
+        "kind": "t"
+      },
+      "__stage61_save_ensure_live_backup_generation_veneer": {
+        "address": 167517672,
+        "size": 16,
+        "kind": "t"
+      },
+      "__stage61_save_mark_damaged_veneer": {
+        "address": 167517688,
+        "size": 16,
+        "kind": "t"
+      },
+      "__stage61_save_normal_copy_on_write_veneer": {
+        "address": 167517704,
+        "size": 16,
+        "kind": "t"
+      },
+      "__stage61_dex_live_valid_veneer": {
+        "address": 167517720,
+        "size": 16,
+        "kind": "t"
+      },
+      "stage61_successor_footer_matches": {
+        "address": 167517736,
+        "size": 122,
+        "kind": "t"
+      },
+      "__stage61_read32_veneer": {
+        "address": 167517864,
+        "size": 16,
+        "kind": "t"
+      },
+      "stage61_successor_program_committed": {
+        "address": 167517880,
+        "size": 112,
+        "kind": "t"
+      },
+      "__stage61_dex_program_body_veneer": {
+        "address": 167517992,
+        "size": 16,
+        "kind": "t"
+      },
+      "__stage61_save_reject_written_target_sector_veneer": {
+        "address": 167518008,
+        "size": 16,
+        "kind": "t"
+      },
+      "stage61_state_tail_matches_live_crc": {
+        "address": 167518024,
+        "size": 108,
+        "kind": "t"
+      },
+      "__stage61_state_record_byte_veneer": {
+        "address": 167518136,
+        "size": 16,
+        "kind": "t"
+      },
+      "stage61_save_update_live_record_only": {
+        "address": 167518152,
+        "size": 40,
+        "kind": "t"
+      },
+      "__DexImpl_Stage61State_UpdateRecordOnly_veneer": {
+        "address": 167518192,
+        "size": 16,
+        "kind": "t"
+      },
+      "__stage61_save_build_live_descriptors.part.0_veneer": {
+        "address": 167518208,
+        "size": 16,
+        "kind": "t"
+      },
+      "__stage61_save_mark_damaged_veneer@09fc2010": {
+        "address": 167518224,
+        "size": 16,
+        "kind": "t"
+      },
+      "__stage61_save_physical_sector_for_id_veneer": {
+        "address": 167518240,
+        "size": 16,
+        "kind": "t"
+      }
+    },
+    "total_owner_capacity": 9560,
+    "preserved_hof_bytes": 180,
+    "fixed_entry_bytes": 128,
+    "available_body_bytes": 9252,
+    "new_additional_rom_bytes": 0,
+    "controller_rom_placed": false,
+    "controller_runtime_wired": false
+  },
+  "placement": {
+    "allocation": {
+      "schema_version": 1,
+      "regions": [
+        {
+          "name": "vega_base",
+          "start": 0,
+          "end_exclusive": 16777216,
+          "size": 16777216,
+          "alignment": 4,
+          "kind": "reserved",
+          "owner": "Vega",
+          "purpose": "Vega IPS output and original data",
+          "gba_start": 134217728,
+          "gba_end_exclusive": 150994944
+        },
+        {
+          "name": "cfru_payload",
+          "start": 16777216,
+          "end_exclusive": 18874368,
+          "size": 2097152,
+          "alignment": 4,
+          "kind": "reserved",
+          "owner": "CFRU-JP",
+          "purpose": "T01 CFRU linked payload envelope",
+          "gba_start": 150994944,
+          "gba_end_exclusive": 153092096
+        },
+        {
+          "name": "integration_modules",
+          "start": 18874368,
+          "end_exclusive": 23068672,
+          "size": 4194304,
+          "alignment": 4,
+          "kind": "allocatable",
+          "owner": "project",
+          "purpose": "relocated adapters and integration modules",
+          "gba_start": 153092096,
+          "gba_end_exclusive": 157286400
+        },
+        {
+          "name": "dpe_payload",
+          "start": 23068672,
+          "end_exclusive": 32833536,
+          "size": 9764864,
+          "alignment": 4,
+          "kind": "reserved",
+          "owner": "DPE-JP",
+          "purpose": "T01 DPE linked payload envelope",
+          "gba_start": 157286400,
+          "gba_end_exclusive": 167051264
+        },
+        {
+          "name": "future_tail",
+          "start": 32833536,
+          "end_exclusive": 33554432,
+          "size": 720896,
+          "alignment": 4,
+          "kind": "allocatable",
+          "owner": "project",
+          "purpose": "future small generated tables and metadata",
+          "gba_start": 167051264,
+          "gba_end_exclusive": 167772160
+        }
+      ],
+      "allocations": [
+        {
+          "name": "vega_adapter_module",
+          "region": "integration_modules",
+          "start": 18874368,
+          "end_exclusive": 18874402,
+          "size": 34,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "vega_adapter",
+          "purpose": "T03 deterministic no-op harness module",
+          "content_sha256": "16ab88fb53956eccba0cb99a9621c14e9f04282535f8c7cc74ee4b5dd010e350",
+          "sequence": 0,
+          "gba_start": 153092096,
+          "gba_end_exclusive": 153092130
+        },
+        {
+          "name": "move_table_bridge",
+          "region": "integration_modules",
+          "start": 18874404,
+          "end_exclusive": 18918436,
+          "size": 44032,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T04",
+          "purpose": "Vega move tables with V3 adjustments and canonical repoints",
+          "content_sha256": "3714b6df11dab92069829afbf201bdad25d976980969aa0cac58fc042496a30b",
+          "sequence": 1,
+          "gba_start": 153092132,
+          "gba_end_exclusive": 153136164
+        },
+        {
+          "name": "species_surface_front",
+          "region": "future_tail",
+          "start": 32833536,
+          "end_exclusive": 32846504,
+          "size": 12968,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 front",
+          "content_sha256": "58d8e581d625eed139e35f589282d5581bd3c48d632b194fe7497750910ab895",
+          "sequence": 2,
+          "gba_start": 167051264,
+          "gba_end_exclusive": 167064232
+        },
+        {
+          "name": "species_surface_back",
+          "region": "future_tail",
+          "start": 32846504,
+          "end_exclusive": 32859472,
+          "size": 12968,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 back",
+          "content_sha256": "59d6131c1a0eb7a8f43af824d2bc97a2bbbe0c532baf69a491cf62774289c691",
+          "sequence": 3,
+          "gba_start": 167064232,
+          "gba_end_exclusive": 167077200
+        },
+        {
+          "name": "species_surface_palette",
+          "region": "future_tail",
+          "start": 32859472,
+          "end_exclusive": 32872440,
+          "size": 12968,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 palette",
+          "content_sha256": "942cba43f8e932580f2ea252d778a335ca17505ca3e8ddc87ea1224796dbb4d3",
+          "sequence": 4,
+          "gba_start": 167077200,
+          "gba_end_exclusive": 167090168
+        },
+        {
+          "name": "species_surface_shiny_palette",
+          "region": "future_tail",
+          "start": 32872440,
+          "end_exclusive": 32885408,
+          "size": 12968,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 shiny_palette",
+          "content_sha256": "e8c9320e74dc87ee0bed31bb00966a81fd80a99f63696090625f9df2ee75dea0",
+          "sequence": 5,
+          "gba_start": 167090168,
+          "gba_end_exclusive": 167103136
+        },
+        {
+          "name": "species_surface_icon",
+          "region": "future_tail",
+          "start": 32885408,
+          "end_exclusive": 32891892,
+          "size": 6484,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 icon",
+          "content_sha256": "dfd234e85e6fa02fe5f3f4f7ac34080137cfcd627c77e3986cf624290a3d06ca",
+          "sequence": 6,
+          "gba_start": 167103136,
+          "gba_end_exclusive": 167109620
+        },
+        {
+          "name": "species_surface_icon_palette",
+          "region": "future_tail",
+          "start": 32891892,
+          "end_exclusive": 32893513,
+          "size": 1621,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 icon_palette",
+          "content_sha256": "1a1d28cc365f5ca478d964d4e521976d42889128735222cd85ae7ba690a04d89",
+          "sequence": 7,
+          "gba_start": 167109620,
+          "gba_end_exclusive": 167111241
+        },
+        {
+          "name": "species_surface_front_coords",
+          "region": "future_tail",
+          "start": 32893516,
+          "end_exclusive": 32900000,
+          "size": 6484,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 front_coords",
+          "content_sha256": "f60fac43883f17304bdb3f69f4a8d96f3f3f2f9001aea8efcebbc2561d4d8382",
+          "sequence": 8,
+          "gba_start": 167111244,
+          "gba_end_exclusive": 167117728
+        },
+        {
+          "name": "species_surface_back_coords",
+          "region": "future_tail",
+          "start": 32900000,
+          "end_exclusive": 32906484,
+          "size": 6484,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 back_coords",
+          "content_sha256": "3cbe584de6ae1f0d94b5cf198e43a038e060477e3b30da00bad7beb2fb496379",
+          "sequence": 9,
+          "gba_start": 167117728,
+          "gba_end_exclusive": 167124212
+        },
+        {
+          "name": "species_surface_elevation",
+          "region": "future_tail",
+          "start": 32906484,
+          "end_exclusive": 32908105,
+          "size": 1621,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 elevation",
+          "content_sha256": "dcfc617f0708dd218e36dedb14b97f60a17b1fb71479e344d21e7a0774bca607",
+          "sequence": 10,
+          "gba_start": 167124212,
+          "gba_end_exclusive": 167125833
+        },
+        {
+          "name": "species_surface_footprint",
+          "region": "future_tail",
+          "start": 32908108,
+          "end_exclusive": 32914592,
+          "size": 6484,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 footprint",
+          "content_sha256": "aa4f048339199ebc8b63fe45e2de4630316701158c180d72ab7d749ce79518ef",
+          "sequence": 11,
+          "gba_start": 167125836,
+          "gba_end_exclusive": 167132320
+        },
+        {
+          "name": "species_surface_cry",
+          "region": "future_tail",
+          "start": 32914592,
+          "end_exclusive": 32934044,
+          "size": 19452,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 cry",
+          "content_sha256": "d1a4e5a1e566391dc8bc923b086f992fd238c16faedfe3933aec7dd299c7a504",
+          "sequence": 12,
+          "gba_start": 167132320,
+          "gba_end_exclusive": 167151772
+        },
+        {
+          "name": "species_surface_cry2",
+          "region": "future_tail",
+          "start": 32934044,
+          "end_exclusive": 32953496,
+          "size": 19452,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 cry2",
+          "content_sha256": "3dddbc0be651cc63bd726aea30c31cfb58c79e6957b1dd6181f9df997455e138",
+          "sequence": 13,
+          "gba_start": 167151772,
+          "gba_end_exclusive": 167171224
+        },
+        {
+          "name": "species_surface_dex_entries",
+          "region": "future_tail",
+          "start": 32953496,
+          "end_exclusive": 32998884,
+          "size": 45388,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 dex_entries",
+          "content_sha256": "399fc94c3cf1f8f5f28b80d990c52bc48bc28037881390c026abe8d0db0d46b2",
+          "sequence": 14,
+          "gba_start": 167171224,
+          "gba_end_exclusive": 167216612
+        },
+        {
+          "name": "species_surface_national_dex",
+          "region": "future_tail",
+          "start": 32998884,
+          "end_exclusive": 33002126,
+          "size": 3242,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 national_dex",
+          "content_sha256": "4eb1fc7ea17d7af1df1ce0d965bfbf8936d066538e870196d486cf25b624f4f3",
+          "sequence": 15,
+          "gba_start": 167216612,
+          "gba_end_exclusive": 167219854
+        },
+        {
+          "name": "species_surface_national_dex_runtime",
+          "region": "future_tail",
+          "start": 33002128,
+          "end_exclusive": 33005368,
+          "size": 3240,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 national_dex_runtime",
+          "content_sha256": "5b700e46500eddd8ac59a91c366beee9e4210057cab231007ae1262dffab7170",
+          "sequence": 16,
+          "gba_start": 167219856,
+          "gba_end_exclusive": 167223096
+        },
+        {
+          "name": "species_surface_evolutions",
+          "region": "future_tail",
+          "start": 33005368,
+          "end_exclusive": 33212856,
+          "size": 207488,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 evolutions",
+          "content_sha256": "3fc4c8cd5d21c5b7f1fa2972223288ec1040f115321298a19e168694ee45e002",
+          "sequence": 17,
+          "gba_start": 167223096,
+          "gba_end_exclusive": 167430584
+        },
+        {
+          "name": "species_surface_level_up_data",
+          "region": "future_tail",
+          "start": 33212856,
+          "end_exclusive": 33294741,
+          "size": 81885,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 level_up_data",
+          "content_sha256": "4544753386775f0330073d879222e4bf9527a49183c3a06d83559a32d73440c3",
+          "sequence": 18,
+          "gba_start": 167430584,
+          "gba_end_exclusive": 167512469
+        },
+        {
+          "name": "pr16_dex_runtime_reserved",
+          "region": "future_tail",
+          "start": 33294744,
+          "end_exclusive": 33301228,
+          "size": 6484,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20261004-DEX-PLACEMENT",
+          "purpose": "PR16 codec plus current save scheduler sections; free subspans derived from current linker sections, never historical suffix labels",
+          "content_sha256": "27bdc448e8d3ce074f12297ef599a9d3f26ad0a730877564e8c19f8d16e8b813",
+          "sequence": 19,
+          "gba_start": 167512472,
+          "gba_end_exclusive": 167518956
+        },
+        {
+          "name": "species_surface_egg_moves",
+          "region": "future_tail",
+          "start": 33301228,
+          "end_exclusive": 33315982,
+          "size": 14754,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 egg_moves",
+          "content_sha256": "715c6676fece3846db21a0779cdf77128cb825f80d49d5d6071ca27b53d5d2fa",
+          "sequence": 20,
+          "gba_start": 167518956,
+          "gba_end_exclusive": 167533710
+        },
+        {
+          "name": "species_surface_tmhm",
+          "region": "future_tail",
+          "start": 33315984,
+          "end_exclusive": 33341920,
+          "size": 25936,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 tmhm",
+          "content_sha256": "a24cebced039ef5bb36da6104a678a26fe3ea3adba538622b5f3402f09b49768",
+          "sequence": 21,
+          "gba_start": 167533712,
+          "gba_end_exclusive": 167559648
+        },
+        {
+          "name": "species_surface_tutor",
+          "region": "future_tail",
+          "start": 33341920,
+          "end_exclusive": 33367856,
+          "size": 25936,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 tutor",
+          "content_sha256": "a44431aea3f197a030bd496482aa91b747f260d19822d8ab4eedc0a8363b441f",
+          "sequence": 22,
+          "gba_start": 167559648,
+          "gba_end_exclusive": 167585584
+        },
+        {
+          "name": "species_surface_species_names",
+          "region": "future_tail",
+          "start": 33367856,
+          "end_exclusive": 33385687,
+          "size": 17831,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 species_names",
+          "content_sha256": "2f0a184e6b566a3196a1d064c8c40c451de758f75e14b1a584a1891d14e889da",
+          "sequence": 23,
+          "gba_start": 167585584,
+          "gba_end_exclusive": 167603415
+        },
+        {
+          "name": "species_surface_species_names_legacy",
+          "region": "future_tail",
+          "start": 33385688,
+          "end_exclusive": 33398656,
+          "size": 12968,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 species_names_legacy",
+          "content_sha256": "fd479f125007841683556ffc2a4478a5df1d941d65d83b4bfa922566d4f4a237",
+          "sequence": 24,
+          "gba_start": 167603416,
+          "gba_end_exclusive": 167616384
+        },
+        {
+          "name": "species_surface_species_runtime",
+          "region": "future_tail",
+          "start": 33398656,
+          "end_exclusive": 33399356,
+          "size": 700,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 species_runtime",
+          "content_sha256": "1a462029beef54897525230a1d57403ba059c9038e790bd8467634b548af42b6",
+          "sequence": 25,
+          "gba_start": 167616384,
+          "gba_end_exclusive": 167617084
+        },
+        {
+          "name": "content_population_payload",
+          "region": "integration_modules",
+          "start": 18918436,
+          "end_exclusive": 18995530,
+          "size": 77094,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T16",
+          "purpose": "dual-region manifests and runtime lookup payload",
+          "content_sha256": "6058a8b222ae3cbdc50269fd5fc0f089075ad5896d91f99c061d8c4ef4f9c4a2",
+          "sequence": 26,
+          "gba_start": 153136164,
+          "gba_end_exclusive": 153213258
+        },
+        {
+          "name": "regression_runtime_payload",
+          "region": "integration_modules",
+          "start": 18995532,
+          "end_exclusive": 19710932,
+          "size": 715400,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T17",
+          "purpose": "Kanto map roots/assets/wild tables, portal, and QOL-B runtime",
+          "content_sha256": "4272ce6d22e977dbbbcf3da4886b65213c0c5b833baafa97cca9f45b3db413ae",
+          "sequence": 27,
+          "gba_start": 153213260,
+          "gba_end_exclusive": 153928660
+        },
+        {
+          "name": "trainer_rebalance_v4_parties",
+          "region": "integration_modules",
+          "start": 19710932,
+          "end_exclusive": 19719108,
+          "size": 8176,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260814-TRAINER-V4",
+          "purpose": "V4 main-story trainer party rows",
+          "content_sha256": "b03de7b7c2dd310852ae864ef5fdc8ebccbb03217a66e26bff7cffbb85b7ac35",
+          "sequence": 28,
+          "gba_start": 153928660,
+          "gba_end_exclusive": 153936836
+        },
+        {
+          "name": "facility_runtime_payload",
+          "region": "integration_modules",
+          "start": 19719108,
+          "end_exclusive": 19724318,
+          "size": 5210,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260814-FACILITY-RUNTIME",
+          "purpose": "実ROM Factory受付、6候補/3選択、交換、3連戦、保存復元",
+          "content_sha256": "03d7b3ca8025954bf111f7a876d4937bf932f0b3330b0dfa86e4e30915ab9b10",
+          "sequence": 29,
+          "gba_start": 153936836,
+          "gba_end_exclusive": 153942046
+        },
+        {
+          "name": "first_battle_priority_guard",
+          "region": "integration_modules",
+          "start": 19724320,
+          "end_exclusive": 19724512,
+          "size": 192,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260814-FIRST-BATTLE-LOOP",
+          "purpose": "Quick Draw indicatorと実特性を照合するturn scheduler wrapper",
+          "content_sha256": "e24bf0a1c4cd0ff96981d8a434c2155fc747248f0e2abc051421798a01944832",
+          "sequence": 30,
+          "gba_start": 153942048,
+          "gba_end_exclusive": 153942240
+        },
+        {
+          "name": "hm_field_access_runtime",
+          "region": "integration_modules",
+          "start": 19724512,
+          "end_exclusive": 19724920,
+          "size": 408,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260814-HM-FIELD-ACCESS",
+          "purpose": "Vega HM01..08所持を正本とするfield能力とparty callback guard",
+          "content_sha256": "002a4f140852bcca8d7f3552132ad9f42a50f3e8aa11883c47db26fbab3684d5",
+          "sequence": 31,
+          "gba_start": 153942240,
+          "gba_end_exclusive": 153942648
+        },
+        {
+          "name": "battle_ui_runtime",
+          "region": "integration_modules",
+          "start": 19724920,
+          "end_exclusive": 19726120,
+          "size": 1200,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260814-BATTLE-UI",
+          "purpose": "固定CFRU move type/effectiveness/STAB表示adapter",
+          "content_sha256": "67100cbdfd05eca9f4534888efadebab9804c12035d52aaa802d769a3091f55f",
+          "sequence": 32,
+          "gba_start": 153942648,
+          "gba_end_exclusive": 153943848
+        },
+        {
+          "name": "move_memory_runtime",
+          "region": "integration_modules",
+          "start": 19726128,
+          "end_exclusive": 19729096,
+          "size": 2968,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260814-MOVE-MEMORY",
+          "purpose": "item/NPC共通の技思い出し・技忘れ・タマゴ技管理core",
+          "content_sha256": "6152439799fe625ffbfedfa14e88a87fc187e6d6cc159403740446ca2eca9e97",
+          "sequence": 33,
+          "gba_start": 153943856,
+          "gba_end_exclusive": 153946824
+        },
+        {
+          "name": "acquisition_runtime",
+          "region": "integration_modules",
+          "start": 19729104,
+          "end_exclusive": 19774165,
+          "size": 45061,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260816-ACQUISITION-EVENTS",
+          "purpose": "201取得event transaction/menu/save runtime",
+          "content_sha256": "b49996fd455a46dd8d4d195f84a589c063ef9136fd6893a4e601cc7b6e6f464b",
+          "sequence": 34,
+          "gba_start": 153946832,
+          "gba_end_exclusive": 153991893
+        },
+        {
+          "name": "acquisition_map_scripts",
+          "region": "integration_modules",
+          "start": 19774168,
+          "end_exclusive": 19776036,
+          "size": 1868,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260816-ACQUISITION-EVENTS",
+          "purpose": "24取得host scripts/restored objects/event headers",
+          "content_sha256": "b0801e6682455a6294e61cfe49c6828ef015346b3774473c74a11bea2f8f4301",
+          "sequence": 35,
+          "gba_start": 153991896,
+          "gba_end_exclusive": 153993764
+        },
+        {
+          "name": "bp_shop_runtime_payload",
+          "region": "integration_modules",
+          "start": 19776048,
+          "end_exclusive": 19780472,
+          "size": 4424,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260817-BP-SHOP-RUNTIME",
+          "purpose": "Factory BP catalog/menu/purchase/save runtime and physical shop NPC",
+          "content_sha256": "b8ca4ba9d62f19c2b49cda603ad386800e2cdeb77587719296af6b5287a48cc5",
+          "sequence": 36,
+          "gba_start": 153993776,
+          "gba_end_exclusive": 153998200
+        },
+        {
+          "name": "factory_reward_runtime_payload",
+          "region": "integration_modules",
+          "start": 19780480,
+          "end_exclusive": 19782152,
+          "size": 1672,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260818-FACTORY-REWARD-RUNTIME",
+          "purpose": "Factory Trial first-clear item/BP and streak encounter-credit wrapper",
+          "content_sha256": "8094ce3dd299752c6ec99a74efd3f2cc8d3bb6db162c417f3b96c7d649a95d88",
+          "sequence": 37,
+          "gba_start": 153998208,
+          "gba_end_exclusive": 153999880
+        },
+        {
+          "name": "factory_repeat_reward_runtime_payload",
+          "region": "integration_modules",
+          "start": 19782160,
+          "end_exclusive": 19782732,
+          "size": 572,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260818-FACTORY-REPEAT-REWARD-RUNTIME",
+          "purpose": "Factory Trial repeat item/BP reward wrapper",
+          "content_sha256": "6ce2ff15aa77f10b86ac61e4fe0c3f08b4bccc0b5b887f8f9036a2e04ee32fec",
+          "sequence": 38,
+          "gba_start": 153999888,
+          "gba_end_exclusive": 154000460
+        },
+        {
+          "name": "factory_special_event_runtime_payload",
+          "region": "integration_modules",
+          "start": 19782736,
+          "end_exclusive": 19783160,
+          "size": 424,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260818-FACTORY-SPECIAL-EVENT-RUNTIME",
+          "purpose": "Factory Trial 49-streak special-event claim wrapper",
+          "content_sha256": "6c97dd30b6fc6885f4085c61abb32402dcb337185fa0d6125283a1cc2757a30e",
+          "sequence": 39,
+          "gba_start": 154000464,
+          "gba_end_exclusive": 154000888
+        },
+        {
+          "name": "factory_shiny_memorial_runtime_payload",
+          "region": "integration_modules",
+          "start": 19783168,
+          "end_exclusive": 19786490,
+          "size": 3322,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260818-FACTORY-SHINY-MEMORIAL-RUNTIME",
+          "purpose": "Factory Trial 100-streak shiny memorial transaction runtime",
+          "content_sha256": "985d450165c7bdc4fe6a3447bc10ba8e088b44111a4bc00673fe51148717f5f4",
+          "sequence": 40,
+          "gba_start": 154000896,
+          "gba_end_exclusive": 154004218
+        },
+        {
+          "name": "trainer_v5_stage31_foundation_payload",
+          "region": "integration_modules",
+          "start": 19786496,
+          "end_exclusive": 19833744,
+          "size": 47248,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-TRAINER-V5-STAGE31-INTEGRATION-FOUNDATION",
+          "purpose": "Trainer V5 25 encounters, expanded trainer table, sidecar runtime, save-compatible hooks",
+          "content_sha256": "23d922c55eaadadd95e572096c2f1e36ac397e756de1ff968ee6141247bdf562",
+          "sequence": 41,
+          "gba_start": 154004224,
+          "gba_end_exclusive": 154051472
+        },
+        {
+          "name": "trainer_v5_stage32_tohoku_batch02_payload",
+          "region": "integration_modules",
+          "start": 19833744,
+          "end_exclusive": 19882720,
+          "size": 48976,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-TRAINER-V5-STAGE32-TOHOKU-BATCH02",
+          "purpose": "Trainer V5 cumulative 39 encounters, exact command rebind table, sidecar runtime, save-compatible hooks",
+          "content_sha256": "f1374c489749c1906122a97c5116e9541c356693a3953bd1ff0170649693bb4e",
+          "sequence": 42,
+          "gba_start": 154051472,
+          "gba_end_exclusive": 154100448
+        },
+        {
+          "name": "trainer_v5_stage33_tohoku_batch03_payload",
+          "region": "integration_modules",
+          "start": 19882720,
+          "end_exclusive": 19934032,
+          "size": 51312,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-TRAINER-V5-STAGE33-TOHOKU-BATCH03",
+          "purpose": "Trainer V5 cumulative 54 encounters, RematchMap V2, exact command rebind table, sidecar runtime, save-compatible hooks",
+          "content_sha256": "ff4c0096241cf99ad163a57f2bc0022e4280d46896a7adb8f249899f3992c7ea",
+          "sequence": 43,
+          "gba_start": 154100448,
+          "gba_end_exclusive": 154151760
+        },
+        {
+          "name": "trainer_changekit_final_stage35_payload",
+          "region": "integration_modules",
+          "start": 19934032,
+          "end_exclusive": 20409646,
+          "size": 475614,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260819-TRAINER-CHANGEKIT-FINAL-INTEGRATION",
+          "purpose": "Trainer ChangeKit 1302 physical battles, 4284 trainer table, 6490-member sidecars, Kanto/Archive events, dialogue and four-mechanic policy runtime",
+          "content_sha256": "1c6fdddbc4415d67cb6ba1fcf9e60db53ebb93e5e16a83eb4a3f17a461cbd945",
+          "sequence": 44,
+          "gba_start": 154151760,
+          "gba_end_exclusive": 154627374
+        },
+        {
+          "name": "qol_production_stage36_payload",
+          "region": "integration_modules",
+          "start": 20409648,
+          "end_exclusive": 20479088,
+          "size": 69440,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T19",
+          "purpose": "QOL 35 production UI/PC/daycare/battle/save runtime and authored research table",
+          "content_sha256": "0a9ec8c12050fac341b264db6e9d47ea457eca6ea21d876b7c5be94296e77fa8",
+          "sequence": 45,
+          "gba_start": 154627376,
+          "gba_end_exclusive": 154696816
+        },
+        {
+          "name": "event_design_stage37_payload",
+          "region": "integration_modules",
+          "start": 20479088,
+          "end_exclusive": 20513648,
+          "size": 34560,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T20",
+          "purpose": "76 authored events, 326 dialogue strings, 63 rooted physical bindings, dispatcher scripts, and monotonic state runtime",
+          "content_sha256": "48daa966ac390f72f1edb0a4f7526428c0d6ec87f65a00d34df1a5cbecccaa81",
+          "sequence": 46,
+          "gba_start": 154696816,
+          "gba_end_exclusive": 154731376
+        },
+        {
+          "name": "mirage_production_stage38_payload",
+          "region": "integration_modules",
+          "start": 20513648,
+          "end_exclusive": 20522144,
+          "size": 8496,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T21",
+          "purpose": "Mirage carried-party 4-round/28-battle field scripts, isolated save transaction, virtual-item adapter, badge-exact cleanup and load chain",
+          "content_sha256": "4e019d950517ecb4cc012e796fd224e582ccf9d3222f53754e33683257260a12",
+          "sequence": 47,
+          "gba_start": 154731376,
+          "gba_end_exclusive": 154739872
+        },
+        {
+          "name": "move_distribution_v4_stage39_payload",
+          "region": "integration_modules",
+          "start": 20522144,
+          "end_exclusive": 20699248,
+          "size": 177104,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T22",
+          "purpose": "Move Distribution V4 canonical learnsets, form policy, wild-only adapter",
+          "content_sha256": "d2b11236d8c586986c44329c6772337e1cc0e32ed782a615f61a52b208a21227",
+          "sequence": 48,
+          "gba_start": 154739872,
+          "gba_end_exclusive": 154916976
+        },
+        {
+          "name": "research_economy_v1_stage40_payload",
+          "region": "integration_modules",
+          "start": 20699248,
+          "end_exclusive": 20711816,
+          "size": 12568,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T23",
+          "purpose": "Research Economy V1 runtime, six activities, seven ranks, 23-row shop, 35 dialogues and nine Stage39-rooted field bindings",
+          "content_sha256": "0f8186357d36cc363edfc9a970246de441765c1b337437e6150dfc62074bbc3f",
+          "sequence": 49,
+          "gba_start": 154916976,
+          "gba_end_exclusive": 154929544
+        },
+        {
+          "name": "reward_encounters_v2_stage41_payload",
+          "region": "integration_modules",
+          "start": 20711824,
+          "end_exclusive": 20722596,
+          "size": 10772,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T24",
+          "purpose": "Reward Encounters V2 runtime, four services, 24-entry pool, 56 dialogues and Vermilion Scientist field root",
+          "content_sha256": "17adb88a0df2e5bd336aa104c85113e116c4ac900a01f5a235576a21b2fbe1ea",
+          "sequence": 50,
+          "gba_start": 154929552,
+          "gba_end_exclusive": 154940324
+        },
+        {
+          "name": "factory_high_modes_v2_stage42_payload",
+          "region": "integration_modules",
+          "start": 20722608,
+          "end_exclusive": 20747563,
+          "size": 24955,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T25",
+          "purpose": "Factory High Modes V2 runtime, 24 modes, 248 rentals, 55 profiles, 16 rewards, 28 dialogues and receptionist field graph",
+          "content_sha256": "e05f53be976a9f9223108221edc08610643bd1d3d9e2994ed781ac2ee78553c3",
+          "sequence": 51,
+          "gba_start": 154940336,
+          "gba_end_exclusive": 154965291
+        },
+        {
+          "name": "codex_battle_bridge_stage43_payload",
+          "region": "integration_modules",
+          "start": 20747568,
+          "end_exclusive": 20749136,
+          "size": 1568,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T26",
+          "purpose": "Stage43 gameplay-neutral versioned Codex Battle mailbox, ReadKeys delegate wrapper and PING/PONG validator",
+          "content_sha256": "f07c92eb55aa7258599b7c482cbcddb7c496f9ee43d35d14119023fff58784a3",
+          "sequence": 52,
+          "gba_start": 154965296,
+          "gba_end_exclusive": 154966864
+        },
+        {
+          "name": "codex_battle_runtime_stage44_payload",
+          "region": "integration_modules",
+          "start": 20749136,
+          "end_exclusive": 20765488,
+          "size": 16352,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T27",
+          "purpose": "Stage44 Codex 6-to-3 runtime, private action seal, controller interposer, UPSTREAM_OPEN adapters and production reception",
+          "content_sha256": "370ef7f03885c1a92654b5270eecbede733b733b8a857fa4ebe9b5cfb79ae917",
+          "sequence": 53,
+          "gba_start": 154966864,
+          "gba_end_exclusive": 154983216
+        },
+        {
+          "name": "codex_battle_rewards_stage45_payload",
+          "region": "integration_modules",
+          "start": 20765488,
+          "end_exclusive": 20773712,
+          "size": 8224,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T28",
+          "purpose": "Stage45 match-bound optional reward journal, normal bag/party/PC delivery, replay recovery and field completion adapters",
+          "content_sha256": "441017c04cd89f9af320aa3c10e34e107430a3c8f8d0c2d307c7062d44b1fc5c",
+          "sequence": 54,
+          "gba_start": 154983216,
+          "gba_end_exclusive": 154991440
+        },
+        {
+          "name": "windows_battle_catalog_stage46_payload",
+          "region": "integration_modules",
+          "start": 20773712,
+          "end_exclusive": 20782336,
+          "size": 8624,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T29",
+          "purpose": "Stage46 reusable Windows catalog context over the T28 normal bag/party/PC exactly-once transaction owner",
+          "content_sha256": "4a73f05d101fc7b6fb8e6e8af4648d8b9cf30659872a6111cb4e22c47e4172cb",
+          "sequence": 55,
+          "gba_start": 154991440,
+          "gba_end_exclusive": 155000064
+        },
+        {
+          "name": "windows_box14_vault_stage47_payload",
+          "region": "integration_modules",
+          "start": 20782336,
+          "end_exclusive": 20792096,
+          "size": 9760,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T30",
+          "purpose": "Stage47 Box14 exact 80-byte export/remove/import protocol over the Stage46 normal field runtime",
+          "content_sha256": "a44ba25dc01dc8d141589261de48793a19e57d00274aa76f4db94c6b4731325a",
+          "sequence": 56,
+          "gba_start": 155000064,
+          "gba_end_exclusive": 155009824
+        },
+        {
+          "name": "world_item_recovery_stage49_payload",
+          "region": "integration_modules",
+          "start": 20792096,
+          "end_exclusive": 20827652,
+          "size": 35556,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260824-STAGE48-WORLD-ITEM-RECOVERY",
+          "purpose": "Stage48 world event復旧、低レベルRaid host、会話・店・回復script",
+          "content_sha256": "3446004594ea4d6cb6f2b63347e147afdd975aae79e3f9ce1c3ba4057b924d00",
+          "sequence": 57,
+          "gba_start": 155009824,
+          "gba_end_exclusive": 155045380
+        },
+        {
+          "name": "interaction_ownership_repair_stage50_payload",
+          "region": "integration_modules",
+          "start": 20827664,
+          "end_exclusive": 20899384,
+          "size": 71720,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260824-STAGE49-INTERACTION-OWNERSHIP-REPAIR",
+          "purpose": "Stage49 interaction owner撤回、field object・遭遇・視線補正",
+          "content_sha256": "586d17d7d0dde699b63f8daf97a793411370bbb2d6922518a3897e1da8e4cc06",
+          "sequence": 58,
+          "gba_start": 155045392,
+          "gba_end_exclusive": 155117112
+        },
+        {
+          "name": "world_runtime_e2e_repair_stage55_payload",
+          "region": "integration_modules",
+          "start": 20899392,
+          "end_exclusive": 20994536,
+          "size": 95144,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR",
+          "purpose": "678 mapのtrainer/item/dialogue/field/wild owner根本修復",
+          "content_sha256": "fb6a1e05bd07f3a560d79ad648cfbc05098da8a60955f5ed91f4fc4347490116",
+          "sequence": 59,
+          "gba_start": 155117120,
+          "gba_end_exclusive": 155212264
+        },
+        {
+          "name": "collection_supply_v1_stage56_payload",
+          "region": "integration_modules",
+          "start": 20994544,
+          "end_exclusive": 21053344,
+          "size": 58800,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION",
+          "purpose": "388 form・34 G-Max・999 Item・14 Raid hostのStage56 production runtime",
+          "content_sha256": "3322be52ab63ab96aa0cb4640519ec1fed3db0801c7cf1e60e9753242ee0c43c",
+          "sequence": 60,
+          "gba_start": 155212272,
+          "gba_end_exclusive": 155271072
+        },
+        {
+          "name": "comprehensive_debug_repair_stage57_payload",
+          "region": "integration_modules",
+          "start": 21053344,
+          "end_exclusive": 21054064,
+          "size": 720,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR",
+          "purpose": "NPC/menu/wild identity横断修復とBG安全script",
+          "content_sha256": "e82e3fb6781acef0b0c867924125f40783335150b192f769deed447f6b6b547d",
+          "sequence": 61,
+          "gba_start": 155271072,
+          "gba_end_exclusive": 155271792
+        },
+        {
+          "name": "qol_world_convenience_stage58_payload",
+          "region": "integration_modules",
+          "start": 21054064,
+          "end_exclusive": 21067312,
+          "size": 13248,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG",
+          "purpose": "Codex拠点PC・全回復・money mart、Kanto野生方式/確率、薄い場所イベント",
+          "content_sha256": "12fdf78b4c9831ac84560b6e5af0645db923c41906ea1ddeb2cb523f9c42e4d4",
+          "sequence": 62,
+          "gba_start": 155271792,
+          "gba_end_exclusive": 155285040
+        },
+        {
+          "name": "root_cause_repair_stage59_payload",
+          "region": "integration_modules",
+          "start": 21067312,
+          "end_exclusive": 21067348,
+          "size": 36,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260829-STAGE58-ROOT-CAUSE-REPAIR",
+          "purpose": "kind9 trainerbattleの既存敗北継続flagsをstock callback用RAMへ橋渡し",
+          "content_sha256": "b06f000e393091bd4a0b69ddf7a03844b12ddcfe06004b28eab00e002c5f9777",
+          "sequence": 63,
+          "gba_start": 155285040,
+          "gba_end_exclusive": 155285076
+        },
+        {
+          "name": "wild_species_root_repair_stage60_payload",
+          "region": "integration_modules",
+          "start": 21067360,
+          "end_exclusive": 21067952,
+          "size": 592,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260829-STAGE59-WILD-SPECIES-ROOT-REPAIR",
+          "purpose": "global BuildTrainerParty ChangeKit ownership gate",
+          "content_sha256": "6ad66a1b3be584c5a7b83b865a3e1e2577e68de26ee2624443a02dd941867168",
+          "sequence": 64,
+          "gba_start": 155285088,
+          "gba_end_exclusive": 155285680
+        },
+        {
+          "name": "display_npc_event_audit_stage61_payload",
+          "region": "integration_modules",
+          "start": 21067952,
+          "end_exclusive": 21281408,
+          "size": 213456,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT",
+          "purpose": "表示名名前空間、全SOURCE_DIRECT event、最終NPC配置、カビゴン固定遭遇の統合修復",
+          "content_sha256": "40863990bbd102709557cf03bfa3a73869e09165b31e497f24e9ba506f124140",
+          "sequence": 65,
+          "gba_start": 155285680,
+          "gba_end_exclusive": 155499136
+        },
+        {
+          "name": "stage61_runtime_hotfix_payload",
+          "region": "integration_modules",
+          "start": 21281408,
+          "end_exclusive": 21307984,
+          "size": 26576,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260903-STAGE61-RUNTIME-HOTFIX",
+          "purpose": "TM120+HM8・教え技64の実行時tableと互換bitset",
+          "content_sha256": "ef6d1b9ea5d5954fbf02d88dcff622f481ae3fc1c4aacf80400c8087b3e0535a",
+          "sequence": 66,
+          "gba_start": 155499136,
+          "gba_end_exclusive": 155525712
+        },
+        {
+          "name": "modernization_p03_stage65_caterpie_level_up",
+          "region": "future_tail",
+          "start": 33399356,
+          "end_exclusive": 33399368,
+          "size": 12,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+          "purpose": "P03 representative Caterpie replacement level-up rows",
+          "content_sha256": "bfc502059916a7b645801191ef9625396942167b1566536c63bf8abe95fc00bb",
+          "sequence": 67,
+          "gba_start": 167617084,
+          "gba_end_exclusive": 167617096
+        },
+        {
+          "name": "modernization_p03_stage66_bulk_level_up",
+          "region": "future_tail",
+          "start": 33399368,
+          "end_exclusive": 33459484,
+          "size": 60116,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
+          "purpose": "P03 corrected targetsのruntime-ready level-up replacement rows",
+          "content_sha256": "0bde103cdbc375ec7842a72b79ba9cd85a9ea54e2d489848f5e098696281a09b",
+          "sequence": 68,
+          "gba_start": 167617096,
+          "gba_end_exclusive": 167677212
+        },
+        {
+          "name": "modernization_p03_stage67_evolution_level_rows",
+          "region": "future_tail",
+          "start": 33459484,
+          "end_exclusive": 33476803,
+          "size": 17319,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+          "purpose": "進化時level0 rowsとStage66通常level rowsの結合表",
+          "content_sha256": "bc2546ffb6cc68c0e678da572a24df1ac0be7793a60d92d6673719c4e41e11ee",
+          "sequence": 69,
+          "gba_start": 167677212,
+          "gba_end_exclusive": 167694531
+        },
+        {
+          "name": "modernization_p03_stage67_normal_egg_rows",
+          "region": "future_tail",
+          "start": 33476804,
+          "end_exclusive": 33491922,
+          "size": 15118,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+          "purpose": "安全450 targetの通常egg replacementと未採用Vega record保存表",
+          "content_sha256": "d9feba3494b83578dab53ab260705fada1f6ca64a18b5b5e52e37c3abab1f3a8",
+          "sequence": 70,
+          "gba_start": 167694532,
+          "gba_end_exclusive": 167709650
+        },
+        {
+          "name": "modernization_mega_shop_stage68_payload",
+          "region": "integration_modules",
+          "start": 21307984,
+          "end_exclusive": 21375408,
+          "size": 67424,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-MEGA-STONE-BP-SHOP",
+          "purpose": "45 Mega Stone item tables/assets, BP shop runtime, and Factory NPC",
+          "content_sha256": "3ed9991c2f8f56cbd1ad1c1d304fae0e5d7c5cc2f23f887f997009ce35c01882",
+          "sequence": 71,
+          "gba_start": 155525712,
+          "gba_end_exclusive": 155593136
+        },
+        {
+          "name": "modernization_floette_gift_stage69_payload",
+          "region": "integration_modules",
+          "start": 21375408,
+          "end_exclusive": 21377380,
+          "size": 1972,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT",
+          "purpose": "Floette Eternal one-time gift runtime, scripts, and Factory NPC",
+          "content_sha256": "c11517d3a05514970cbee20e2d07501ecab3383cc08d0fbc845271299036941b",
+          "sequence": 72,
+          "gba_start": 155593136,
+          "gba_end_exclusive": 155595108
+        },
+        {
+          "name": "modernization_p04_species_runtime_stage70_payload",
+          "region": "integration_modules",
+          "start": 21377392,
+          "end_exclusive": 22227936,
+          "size": 850544,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70",
+          "purpose": "P04 Mega 49 species fixed tables/assets and Ability 312..317 UI-safe rows",
+          "content_sha256": "642fa4f37ace84c2f735a6449b9cb33b90f7401db6a0c5165973d59e508ab695",
+          "sequence": 73,
+          "gba_start": 155595120,
+          "gba_end_exclusive": 156445664
+        },
+        {
+          "name": "modernization_p05_ability_rom_runtime_stage72_payload",
+          "region": "integration_modules",
+          "start": 22227936,
+          "end_exclusive": 22235076,
+          "size": 7140,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72",
+          "purpose": "Ability 312..317 thin CFRU-JP battle adapters and final descriptions",
+          "content_sha256": "0d2e7fb9e238ba339c9494e8159bf1eed31f3525bc95a8c13854a64a747f2190",
+          "sequence": 74,
+          "gba_start": 156445664,
+          "gba_end_exclusive": 156452804
+        },
+        {
+          "name": "modernization_p03_stage73_consumer_runtime_payload",
+          "region": "integration_modules",
+          "start": 22235088,
+          "end_exclusive": 22256766,
+          "size": 21678,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+          "purpose": "conditional/shared/reminder consumer hooks and Rotom form-move transaction adapter",
+          "content_sha256": "aff0b17e3b1c243d084c3a412ccac9a74d2fa599600d6efe70b3f652f66e0f45",
+          "sequence": 75,
+          "gba_start": 156452816,
+          "gba_end_exclusive": 156474494
+        },
+        {
+          "name": "modernization_p03_stage73_exact_egg_rows",
+          "region": "future_tail",
+          "start": 33491924,
+          "end_exclusive": 33506942,
+          "size": 15018,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+          "purpose": "Stage67 egg table with seven audited alias/incense conflict species replaced exactly",
+          "content_sha256": "0aeb5095cbfe717dc360bd50433bb0475ea334254d85d0d326731383e6f19778",
+          "sequence": 76,
+          "gba_start": 167709652,
+          "gba_end_exclusive": 167724670
+        },
+        {
+          "name": "modernization_p03_stage74_supply_runtime_payload",
+          "region": "integration_modules",
+          "start": 22256768,
+          "end_exclusive": 22327340,
+          "size": 70572,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME",
+          "purpose": "family-separated direct machine/tutor archive tables, BuildLearnable-only preservation table, paged dispatcher, and bag UI scripts",
+          "content_sha256": "714a4fdb3b2cb1781b516d072773f38c865e706bc6c49b7c09215860dadcb0dc",
+          "sequence": 77,
+          "gba_start": 156474496,
+          "gba_end_exclusive": 156545068
+        },
+        {
+          "name": "modernization_rockruff_own_tempo_stage75_payload",
+          "region": "integration_modules",
+          "start": 22327344,
+          "end_exclusive": 22892624,
+          "size": 565280,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75",
+          "purpose": "Own Tempo Rockruff internal form species tables, evolution, breeding, acquisition, and P03 owner runtime",
+          "content_sha256": "cc40c531609c1443502f722d239e14f20c3fd9ae26cba0db1acf505553f7009e",
+          "sequence": 78,
+          "gba_start": 156545072,
+          "gba_end_exclusive": 157110352
+        },
+        {
+          "name": "modernization_p05_stage76_edges_payload",
+          "region": "integration_modules",
+          "start": 22892624,
+          "end_exclusive": 22894690,
+          "size": 2066,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P05-STAGE76-EDGES",
+          "purpose": "Mega Sol production Solar Beam popup plus Piercing Drill and Spicy Spray AI edge adapters",
+          "content_sha256": "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e",
+          "sequence": 79,
+          "gba_start": 157110352,
+          "gba_end_exclusive": 157112418
+        },
+        {
+          "name": "modernization_p05_stage77_circus_suppression_payload",
+          "region": "integration_modules",
+          "start": 22894704,
+          "end_exclusive": 22895924,
+          "size": 1220,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION",
+          "purpose": "Battle Circus global ability-suppression dispatch for all 29 Stage72 ability hooks",
+          "content_sha256": "933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672",
+          "sequence": 80,
+          "gba_start": 157112432,
+          "gba_end_exclusive": 157113652
+        },
+        {
+          "name": "modernization_p05_stage78_eelevate_switch_ai_payload",
+          "region": "integration_modules",
+          "start": 22895936,
+          "end_exclusive": 22896624,
+          "size": 688,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI",
+          "purpose": "Eelevate-aware FindMonThatAbsorbsOpponentsMove adapters and stable runtime probe",
+          "content_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+          "sequence": 81,
+          "gba_start": 157113664,
+          "gba_end_exclusive": 157114352
+        },
+        {
+          "name": "modernization-p07-preserved-level",
+          "region": "integration_modules",
+          "start": 22896624,
+          "end_exclusive": 22912761,
+          "size": 16137,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "P07",
+          "purpose": "exact adopted V4 preservation level",
+          "content_sha256": "a53aa7ced55de4a1333245678ee3060b230cea898b8246483960659bac19dd12",
+          "sequence": 82,
+          "gba_start": 157114352,
+          "gba_end_exclusive": 157130489
+        },
+        {
+          "name": "modernization-p07-preserved-egg",
+          "region": "integration_modules",
+          "start": 22912764,
+          "end_exclusive": 22928160,
+          "size": 15396,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "P07",
+          "purpose": "exact adopted V4 preservation egg",
+          "content_sha256": "348d7903446a01b8e7bdf25e78458c382aac8d5d85da08b9713503a2b6f6fe7b",
+          "sequence": 83,
+          "gba_start": 157130492,
+          "gba_end_exclusive": 157145888
+        },
+        {
+          "name": "modernization-p07-preserved-runtime",
+          "region": "integration_modules",
+          "start": 22928160,
+          "end_exclusive": 22928558,
+          "size": 398,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "P07",
+          "purpose": "exact adopted V4 preservation runtime",
+          "content_sha256": "bc96478be1386d04e04feb42c2be778863f41bcb293c568542ed2a2676ba6c57",
+          "sequence": 84,
+          "gba_start": 157145888,
+          "gba_end_exclusive": 157146286
+        },
+        {
+          "name": "modernization-p03-native-evolution-dispatch",
+          "region": "integration_modules",
+          "start": 22928560,
+          "end_exclusive": 22928600,
+          "size": 40,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "P03",
+          "purpose": "two real evolution callers use accepted level-0 learning",
+          "content_sha256": "17e7b93648efc04e1f0cd538a11612061681d78264e1d749322a1bfaf53a2ccb",
+          "sequence": 85,
+          "gba_start": 157146288,
+          "gba_end_exclusive": 157146328
+        },
+        {
+          "name": "pr16-shop-display-safe-content",
+          "region": "integration_modules",
+          "start": 22928600,
+          "end_exclusive": 22933116,
+          "size": 4516,
+          "alignment": 4,
+          "placement": "FIRST_FIT",
+          "owner": "P05",
+          "purpose": "safe field-shop renderer: bounded tiles 1..336 and top border 1",
+          "content_sha256": "4b9e8a45a541218d51346c9bd5e0e454e8bc4779750dbb61d3c51795f8b61876",
+          "sequence": 86,
+          "gba_start": 157146328,
+          "gba_end_exclusive": 157150844
+        },
+        {
+          "name": "pr16_factory_loss_return",
+          "region": "future_tail",
+          "start": 33506944,
+          "end_exclusive": 33507124,
+          "size": 180,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260913-BP-LOSS-RETURN",
+          "purpose": "Bounded Trial loss script continuation; ordinary WhiteOut preserved",
+          "content_sha256": "1c989258f2d1f8ce1e487bf3be817065f0eb106b1a48aff90a842c5dcf72fb30",
+          "sequence": 87,
+          "gba_start": 167724672,
+          "gba_end_exclusive": 167724852
+        },
+        {
+          "name": "pr16_factory_party_retention_trampoline",
+          "region": "integration_modules",
+          "start": 19726120,
+          "end_exclusive": 19726128,
+          "size": 8,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260914-BP-PARTY-RETENTION",
+          "purpose": "Near Thumb tail jump for the verified player predicate callsite",
+          "content_sha256": "9044e7978b40e75834cbb31fd0293a238e4563a187d9df49f9fdae92ca1cf6bf",
+          "sequence": 88,
+          "gba_start": 153943848,
+          "gba_end_exclusive": 153943856
+        },
+        {
+          "name": "pr16_factory_party_retention_runtime",
+          "region": "future_tail",
+          "start": 33507124,
+          "end_exclusive": 33507312,
+          "size": 188,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260914-BP-PARTY-RETENTION",
+          "purpose": "Read-only exchange-party retention predicate wrapper",
+          "content_sha256": "54292e541bf58e0572825f6b18aa86aa1e2cf3e38c7c213167238f1a2bf0eda5",
+          "sequence": 89,
+          "gba_start": 167724852,
+          "gba_end_exclusive": 167725040
+        },
+        {
+          "name": "pr16_ring_npc_runtime",
+          "region": "future_tail",
+          "start": 33507312,
+          "end_exclusive": 33507864,
+          "size": 552,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260918-RING-NPC",
+          "purpose": "Safe Ring NPC; regular Bag grant; no policy or save-layout write",
+          "content_sha256": "8d9af0fe66a9b00b7240b687b85c9c03aec8335deafdc8945f783f201897d06b",
+          "sequence": 90,
+          "gba_start": 167725040,
+          "gba_end_exclusive": 167725592
+        },
+        {
+          "name": "pr16_ring_ordinary_policy_runtime",
+          "region": "future_tail",
+          "start": 33507864,
+          "end_exclusive": 33508036,
+          "size": 172,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260918-RING-POLICY",
+          "purpose": "Ring ordinary begin bridge; no NPC/save/UI replacement",
+          "content_sha256": "a3a0f2ce19462c697e1d0fb7b01e93db7dd51f5a715a671624d3ab32d9c9907e",
+          "sequence": 91,
+          "gba_start": 167725592,
+          "gba_end_exclusive": 167725764
+        },
+        {
+          "name": "pr16_circus_reception_runtime",
+          "region": "future_tail",
+          "start": 33508048,
+          "end_exclusive": 33509062,
+          "size": 1014,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260918-CIRCUS-ENTRY",
+          "purpose": "Circus optional real reception and exact pending/draw sequence",
+          "content_sha256": "840c891514fc1073b089e355932c4f8af538643673e472ab5d54cccae6d4cff4",
+          "sequence": 92,
+          "gba_start": 167725776,
+          "gba_end_exclusive": 167726790
+        },
+        {
+          "name": "pr16_circus_party_retention_runtime",
+          "region": "future_tail",
+          "start": 33509064,
+          "end_exclusive": 33509344,
+          "size": 280,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260919-CIRCUS-RETENTION",
+          "purpose": "Circus-only read-only party predicate; previous Factory predicate retained",
+          "content_sha256": "13875fb82cbae6d7ae79fd07918567041ce481f66ffee68ff3572a55217fb70d",
+          "sequence": 93,
+          "gba_start": 167726792,
+          "gba_end_exclusive": 167727072
+        },
+        {
+          "name": "pr16_circus_streak_runtime",
+          "region": "future_tail",
+          "start": 33509344,
+          "end_exclusive": 33515984,
+          "size": 6640,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260919-CIRCUS-STREAK",
+          "purpose": "Circus-owned streak/save and isolated reception runtime",
+          "content_sha256": "a501c3c18af7a1d0f35e05db7dd93086f42dea5376e6aa1a8b8d29f0965b9afa",
+          "sequence": 94,
+          "gba_start": 167727072,
+          "gba_end_exclusive": 167733712
+        },
+        {
+          "name": "pr16_circus_streak_get_veneer",
+          "region": "integration_modules",
+          "start": 19729096,
+          "end_exclusive": 19729104,
+          "size": 8,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260919-CIRCUS-STREAK",
+          "purpose": "sp072 read-only Circus streak getter long-call veneer",
+          "content_sha256": "c8ff9377bc6536e8bbf7d284621758fb74934f1a592ce2e4de1b0e6f999658ef",
+          "sequence": 95,
+          "gba_start": 153946824,
+          "gba_end_exclusive": 153946832
+        },
+        {
+          "name": "pr16_circus_cold_load_bridge",
+          "region": "future_tail",
+          "start": 33515984,
+          "end_exclusive": 33516348,
+          "size": 364,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260919-CIRCUS-COLD-LOAD",
+          "purpose": "CRC-valid Circus64 prime before legacy automatic recovery Saves",
+          "content_sha256": "4c1953e00dd046396c401c33ada42f1f988e84d74a748018a5d298fcbe54b5f6",
+          "sequence": 96,
+          "gba_start": 167733712,
+          "gba_end_exclusive": 167734076
+        },
+        {
+          "name": "pr16_circus_drought_empty_loader",
+          "region": "future_tail",
+          "start": 33516348,
+          "end_exclusive": 33517616,
+          "size": 1268,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260920-CIRCUS-SELECTION-RUN35451609631",
+          "purpose": "Circus WIN only native empty Drought loader termination",
+          "content_sha256": "2823449e80d55dd74643741f7982e8fc27a9a32ec941ed009f05e1cc047db840",
+          "sequence": 97,
+          "gba_start": 167734076,
+          "gba_end_exclusive": 167735344
+        },
+        {
+          "name": "pr16_circus_rental_drought",
+          "region": "future_tail",
+          "start": 33517616,
+          "end_exclusive": 33519388,
+          "size": 1772,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260920-CIRCUS-RENTAL-DROUGHT-RUN35456028016",
+          "purpose": "Circus READY six-rental field return empty Drought loader termination",
+          "content_sha256": "7a0d04377d80920052e1f036dc8952dd6d891f29c00058aa4e6506898f793693",
+          "sequence": 98,
+          "gba_start": 167735344,
+          "gba_end_exclusive": 167737116
+        },
+        {
+          "name": "pr16_circus_getter_preserve_r3",
+          "region": "integration_modules",
+          "start": 19776036,
+          "end_exclusive": 19776048,
+          "size": 12,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260920-CIRCUS-GETTER-REACH",
+          "purpose": "Circus getter five-argument preserving ARM interworking tail",
+          "content_sha256": "8bde5f74b38d833cec080ef107d265755969066ff494743b21dfa8fea059711b",
+          "sequence": 99,
+          "gba_start": 153993764,
+          "gba_end_exclusive": 153993776
+        },
+        {
+          "name": "pr16_learnset_runtime_two_entrypoints",
+          "region": "integration_modules",
+          "start": 22933116,
+          "end_exclusive": 23042020,
+          "size": 108904,
+          "alignment": 4,
+          "placement": "FIRST_FIT",
+          "owner": "USER-20260922-LEARNSET-RUNTIME",
+          "purpose": "PLR1 owner-gated level listing and existing machine slots",
+          "content_sha256": "a61d933f52a785088b5dc8dac81d0bc96f3eb9850d07929e9e4fc460a747992c",
+          "sequence": 100,
+          "gba_start": 157150844,
+          "gba_end_exclusive": 157259748
+        },
+        {
+          "name": "pr16_learnset_initial_and_natural",
+          "region": "integration_modules",
+          "start": 23042020,
+          "end_exclusive": 23042696,
+          "size": 676,
+          "alignment": 4,
+          "placement": "FIRST_FIT",
+          "owner": "USER-20260922-LEARNSET-PROGRESS",
+          "purpose": "owner-gated initial and natural learning",
+          "content_sha256": "680a798efac2c03f7eb643aaa7f5dce0e8dd89bd1a5bed93f55db8eeabdcc2ff",
+          "sequence": 101,
+          "gba_start": 157259748,
+          "gba_end_exclusive": 157260424
+        },
+        {
+          "name": "pr16_conditional_plc2",
+          "region": "future_tail",
+          "start": 33519388,
+          "end_exclusive": 33550402,
+          "size": 31014,
+          "alignment": 4,
+          "placement": "FIRST_FIT",
+          "owner": "USER-20260922-LEARNSET-COMPACT",
+          "purpose": "PLC2四条件consumerの分割配置",
+          "content_sha256": "3fb75ac95022f2cfa9ea1a0bda13dd57f8ed883564b95271e97ba45489b7aa90",
+          "sequence": 102,
+          "gba_start": 167737116,
+          "gba_end_exclusive": 167768130
+        },
+        {
+          "name": "pr16_conditional_plc2_code",
+          "region": "integration_modules",
+          "start": 23042696,
+          "end_exclusive": 23045368,
+          "size": 2672,
+          "alignment": 4,
+          "placement": "FIRST_FIT",
+          "owner": "USER-20260922-LEARNSET-COMPACT",
+          "purpose": "PLC2四条件consumerの分割配置",
+          "content_sha256": "34d0d3a42dc7ebab3ec6f396bc9c4aba3457fec204262b8c4264d228436f6bda",
+          "sequence": 103,
+          "gba_start": 157260424,
+          "gba_end_exclusive": 157263096
+        },
+        {
+          "name": "pr16_supply_pla1",
+          "region": "integration_modules",
+          "start": 23045368,
+          "end_exclusive": 23066751,
+          "size": 21383,
+          "alignment": 4,
+          "placement": "FIRST_FIT",
+          "owner": "USER-20260922-LEARNSET-SUPPLY-ABI",
+          "purpose": "PLA1供給とTutor特殊ABIの明示owner接続",
+          "content_sha256": "499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13",
+          "sequence": 104,
+          "gba_start": 157263096,
+          "gba_end_exclusive": 157284479
+        },
+        {
+          "name": "pr16_supply_arm",
+          "region": "future_tail",
+          "start": 33550404,
+          "end_exclusive": 33553192,
+          "size": 2788,
+          "alignment": 4,
+          "placement": "FIRST_FIT",
+          "owner": "USER-20260922-LEARNSET-SUPPLY-ABI",
+          "purpose": "PLA1供給とTutor特殊ABIの明示owner接続",
+          "content_sha256": "14b2e916522ce3cda1e624676edf5f73e95e1da045bcaa14ed1a24be78ba95aa",
+          "sequence": 105,
+          "gba_start": 167768132,
+          "gba_end_exclusive": 167770920
+        },
+        {
+          "name": "pr16_original_wild_initial",
+          "region": "integration_modules",
+          "start": 23066752,
+          "end_exclusive": 23066968,
+          "size": 216,
+          "alignment": 4,
+          "placement": "FIRST_FIT",
+          "owner": "USER-20260925-LEARNSET-WILD-REPAIR",
+          "purpose": "V4 wild-only override isolated; original prepared owner reset",
+          "content_sha256": "62457f22d0ed246bb9c241994f21ae93f50e41bfc3d9cd6609c5c608418459c9",
+          "sequence": 106,
+          "gba_start": 157284480,
+          "gba_end_exclusive": 157284696
+        },
+        {
+          "name": "pr16_dex_scheduler_bridge",
+          "region": "integration_modules",
+          "start": 23066968,
+          "end_exclusive": 23068052,
+          "size": 1084,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20261004-DEX-SCHEDULER",
+          "purpose": "Bounded save scheduler bridge; all original exported addresses remain fixed",
+          "content_sha256": "f94c9d4d938676c94b605ccd40e862065f6625a8aa5109c97e36e2c2e4f74cce",
+          "sequence": 107,
+          "gba_start": 157284696,
+          "gba_end_exclusive": 157285780
+        },
+        {
+          "name": "pr16_dex_load_newgame_boundary",
+          "region": "integration_modules",
+          "start": 23068052,
+          "end_exclusive": 23068240,
+          "size": 188,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20261004-DEX-LIFECYCLE",
+          "purpose": "Post-QOL fail-closed MDX load and post-wipe newgame tail boundary",
+          "content_sha256": "e1859d0867f79522f31b7a55d5e2e75ff7786394146329d76b549c711d670793",
+          "sequence": 108,
+          "gba_start": 157285780,
+          "gba_end_exclusive": 157285968
+        },
+        {
+          "name": "pr16_dex_battle_consumers",
+          "region": "integration_modules",
+          "start": 23068240,
+          "end_exclusive": 23068400,
+          "size": 160,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20261004-DEX-CONSUMERS",
+          "purpose": "Raw SID battle seen and CFRU official count gateways",
+          "content_sha256": "1780872298c0e446888f1dc2398c15fc1d93d417e85bbfbec66692599fbe2f28",
+          "sequence": 109,
+          "gba_start": 157285968,
+          "gba_end_exclusive": 157286128
+        },
+        {
+          "name": "pr16_dex_save_failure_gates",
+          "region": "integration_modules",
+          "start": 23068400,
+          "end_exclusive": 23068624,
+          "size": 224,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20261004-DEX-SAVE-FAILURE",
+          "purpose": "Fail-closed save result and invalid-MDX non-destructive SaveFailed guard",
+          "content_sha256": "b2b05d18151fd48420a16268cef8187651efdfabdd89a888d5f0ebe6aef602b7",
+          "sequence": 110,
+          "gba_start": 157286128,
+          "gba_end_exclusive": 157286352
+        },
+        {
+          "name": "pr16_dex_outer_qol_failure",
+          "region": "integration_modules",
+          "start": 23068640,
+          "end_exclusive": 23068660,
+          "size": 20,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20261004-DEX-OUTER-QOL",
+          "purpose": "Outer QOL common result tail, return and attempt propagation only",
+          "content_sha256": "00d9fd6fc60433c36e7ce1e67bea9b6d1edca06a7d059f51969f6a6a95c6e8da",
+          "sequence": 111,
+          "gba_start": 157286368,
+          "gba_end_exclusive": 157286388
+        },
+        {
+          "name": "pr16_dex_nonstart_notifications",
+          "region": "future_tail",
+          "start": 33553192,
+          "end_exclusive": 33553600,
+          "size": 408,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20261005-DEX-UNION-FAILURE",
+          "purpose": "Relocated Mystery and Union truthful failure/result notification gates",
+          "content_sha256": "5aa487b6cfa770d7adc27106a4f670ff4000b6ef272efc7d952c155012f5bf3d",
+          "sequence": 112,
+          "gba_start": 167770920,
+          "gba_end_exclusive": 167771328
+        },
+        {
+          "name": "pr16_dex_hof_notification",
+          "region": "future_tail",
+          "start": 33553600,
+          "end_exclusive": 33553860,
+          "size": 260,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20261005-DEX-HOF-FAILURE",
+          "purpose": "HOF truthful failure wait and exact caller result guard",
+          "content_sha256": "a83b6966fbdd5940d62999b654872f70659b84730bd3e7089e256ce159d4bf66",
+          "sequence": 113,
+          "gba_start": 167771328,
+          "gba_end_exclusive": 167771588
+        },
+        {
+          "name": "pr16_dex_fallback_qol",
+          "region": "future_tail",
+          "start": 33553860,
+          "end_exclusive": 33554156,
+          "size": 296,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20261005-DEX-FALLBACK-QOL",
+          "purpose": "Selected fallback255 idle durable QOL ledger restoration",
+          "content_sha256": "52fbefaf1b3f0613e6b42285e69eaf17f53086c85840a544f152194afd11bcc4",
+          "sequence": 114,
+          "gba_start": 167771588,
+          "gba_end_exclusive": 167771884
+        }
+      ],
+      "summaries": {
+        "rom_size": 33554432,
+        "gba_rom_base": 134217728,
+        "region_count": 5,
+        "allocatable_region_count": 2,
+        "reserved_region_count": 3,
+        "region_bytes": 33554432,
+        "allocatable_bytes": 4915200,
+        "reserved_bytes": 28639232,
+        "allocation_count": 115,
+        "allocated_bytes": 4914689,
+        "remaining_allocatable_bytes": 511,
+        "overlap_count": 0,
+        "region_usage": [
+          {
+            "region": "vega_base",
+            "kind": "reserved",
+            "size": 16777216,
+            "allocated_bytes": 0,
+            "remaining_bytes": 0,
+            "allocation_count": 0
+          },
+          {
+            "region": "cfru_payload",
+            "kind": "reserved",
+            "size": 2097152,
+            "allocated_bytes": 0,
+            "remaining_bytes": 0,
+            "allocation_count": 0
+          },
+          {
+            "region": "integration_modules",
+            "kind": "allocatable",
+            "size": 4194304,
+            "allocated_bytes": 4194104,
+            "remaining_bytes": 200,
+            "allocation_count": 71
+          },
+          {
+            "region": "dpe_payload",
+            "kind": "reserved",
+            "size": 9764864,
+            "allocated_bytes": 0,
+            "remaining_bytes": 0,
+            "allocation_count": 0
+          },
+          {
+            "region": "future_tail",
+            "kind": "allocatable",
+            "size": 720896,
+            "allocated_bytes": 720585,
+            "remaining_bytes": 311,
+            "allocation_count": 44
+          }
+        ]
+      }
+    },
+    "owner_byte_audit": [
+      {
+        "name": "vega_adapter_module",
+        "address": 153092096,
+        "size": 34,
+        "before_sha256": "16ab88fb53956eccba0cb99a9621c14e9f04282535f8c7cc74ee4b5dd010e350",
+        "after_sha256": "16ab88fb53956eccba0cb99a9621c14e9f04282535f8c7cc74ee4b5dd010e350",
+        "unchanged": true
+      },
+      {
+        "name": "move_table_bridge",
+        "address": 153092132,
+        "size": 44032,
+        "before_sha256": "3714b6df11dab92069829afbf201bdad25d976980969aa0cac58fc042496a30b",
+        "after_sha256": "3714b6df11dab92069829afbf201bdad25d976980969aa0cac58fc042496a30b",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_front",
+        "address": 167051264,
+        "size": 12968,
+        "before_sha256": "58d8e581d625eed139e35f589282d5581bd3c48d632b194fe7497750910ab895",
+        "after_sha256": "58d8e581d625eed139e35f589282d5581bd3c48d632b194fe7497750910ab895",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_back",
+        "address": 167064232,
+        "size": 12968,
+        "before_sha256": "59d6131c1a0eb7a8f43af824d2bc97a2bbbe0c532baf69a491cf62774289c691",
+        "after_sha256": "59d6131c1a0eb7a8f43af824d2bc97a2bbbe0c532baf69a491cf62774289c691",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_palette",
+        "address": 167077200,
+        "size": 12968,
+        "before_sha256": "942cba43f8e932580f2ea252d778a335ca17505ca3e8ddc87ea1224796dbb4d3",
+        "after_sha256": "942cba43f8e932580f2ea252d778a335ca17505ca3e8ddc87ea1224796dbb4d3",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_shiny_palette",
+        "address": 167090168,
+        "size": 12968,
+        "before_sha256": "e8c9320e74dc87ee0bed31bb00966a81fd80a99f63696090625f9df2ee75dea0",
+        "after_sha256": "e8c9320e74dc87ee0bed31bb00966a81fd80a99f63696090625f9df2ee75dea0",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_icon",
+        "address": 167103136,
+        "size": 6484,
+        "before_sha256": "dfd234e85e6fa02fe5f3f4f7ac34080137cfcd627c77e3986cf624290a3d06ca",
+        "after_sha256": "dfd234e85e6fa02fe5f3f4f7ac34080137cfcd627c77e3986cf624290a3d06ca",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_icon_palette",
+        "address": 167109620,
+        "size": 1621,
+        "before_sha256": "1a1d28cc365f5ca478d964d4e521976d42889128735222cd85ae7ba690a04d89",
+        "after_sha256": "1a1d28cc365f5ca478d964d4e521976d42889128735222cd85ae7ba690a04d89",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_front_coords",
+        "address": 167111244,
+        "size": 6484,
+        "before_sha256": "f60fac43883f17304bdb3f69f4a8d96f3f3f2f9001aea8efcebbc2561d4d8382",
+        "after_sha256": "f60fac43883f17304bdb3f69f4a8d96f3f3f2f9001aea8efcebbc2561d4d8382",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_back_coords",
+        "address": 167117728,
+        "size": 6484,
+        "before_sha256": "3cbe584de6ae1f0d94b5cf198e43a038e060477e3b30da00bad7beb2fb496379",
+        "after_sha256": "3cbe584de6ae1f0d94b5cf198e43a038e060477e3b30da00bad7beb2fb496379",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_elevation",
+        "address": 167124212,
+        "size": 1621,
+        "before_sha256": "dcfc617f0708dd218e36dedb14b97f60a17b1fb71479e344d21e7a0774bca607",
+        "after_sha256": "dcfc617f0708dd218e36dedb14b97f60a17b1fb71479e344d21e7a0774bca607",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_footprint",
+        "address": 167125836,
+        "size": 6484,
+        "before_sha256": "aa4f048339199ebc8b63fe45e2de4630316701158c180d72ab7d749ce79518ef",
+        "after_sha256": "aa4f048339199ebc8b63fe45e2de4630316701158c180d72ab7d749ce79518ef",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_cry",
+        "address": 167132320,
+        "size": 19452,
+        "before_sha256": "d1a4e5a1e566391dc8bc923b086f992fd238c16faedfe3933aec7dd299c7a504",
+        "after_sha256": "d1a4e5a1e566391dc8bc923b086f992fd238c16faedfe3933aec7dd299c7a504",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_cry2",
+        "address": 167151772,
+        "size": 19452,
+        "before_sha256": "3dddbc0be651cc63bd726aea30c31cfb58c79e6957b1dd6181f9df997455e138",
+        "after_sha256": "3dddbc0be651cc63bd726aea30c31cfb58c79e6957b1dd6181f9df997455e138",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_dex_entries",
+        "address": 167171224,
+        "size": 45388,
+        "before_sha256": "399fc94c3cf1f8f5f28b80d990c52bc48bc28037881390c026abe8d0db0d46b2",
+        "after_sha256": "399fc94c3cf1f8f5f28b80d990c52bc48bc28037881390c026abe8d0db0d46b2",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_national_dex",
+        "address": 167216612,
+        "size": 3242,
+        "before_sha256": "4eb1fc7ea17d7af1df1ce0d965bfbf8936d066538e870196d486cf25b624f4f3",
+        "after_sha256": "4eb1fc7ea17d7af1df1ce0d965bfbf8936d066538e870196d486cf25b624f4f3",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_national_dex_runtime",
+        "address": 167219856,
+        "size": 3240,
+        "before_sha256": "5b700e46500eddd8ac59a91c366beee9e4210057cab231007ae1262dffab7170",
+        "after_sha256": "5b700e46500eddd8ac59a91c366beee9e4210057cab231007ae1262dffab7170",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_evolutions",
+        "address": 167223096,
+        "size": 207488,
+        "before_sha256": "3fc4c8cd5d21c5b7f1fa2972223288ec1040f115321298a19e168694ee45e002",
+        "after_sha256": "3fc4c8cd5d21c5b7f1fa2972223288ec1040f115321298a19e168694ee45e002",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_level_up_data",
+        "address": 167430584,
+        "size": 81885,
+        "before_sha256": "4544753386775f0330073d879222e4bf9527a49183c3a06d83559a32d73440c3",
+        "after_sha256": "4544753386775f0330073d879222e4bf9527a49183c3a06d83559a32d73440c3",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_dex_runtime_reserved",
+        "address": 167512472,
+        "size": 6484,
+        "before_sha256": "f8749cd465079789df9753f28322c08cb9b02d0de04bbaec8b84ba813872c43e",
+        "after_sha256": "27bdc448e8d3ce074f12297ef599a9d3f26ad0a730877564e8c19f8d16e8b813",
+        "unchanged": false
+      },
+      {
+        "name": "species_surface_egg_moves",
+        "address": 167518956,
+        "size": 14754,
+        "before_sha256": "715c6676fece3846db21a0779cdf77128cb825f80d49d5d6071ca27b53d5d2fa",
+        "after_sha256": "715c6676fece3846db21a0779cdf77128cb825f80d49d5d6071ca27b53d5d2fa",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_tmhm",
+        "address": 167533712,
+        "size": 25936,
+        "before_sha256": "a24cebced039ef5bb36da6104a678a26fe3ea3adba538622b5f3402f09b49768",
+        "after_sha256": "a24cebced039ef5bb36da6104a678a26fe3ea3adba538622b5f3402f09b49768",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_tutor",
+        "address": 167559648,
+        "size": 25936,
+        "before_sha256": "a44431aea3f197a030bd496482aa91b747f260d19822d8ab4eedc0a8363b441f",
+        "after_sha256": "a44431aea3f197a030bd496482aa91b747f260d19822d8ab4eedc0a8363b441f",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_species_names",
+        "address": 167585584,
+        "size": 17831,
+        "before_sha256": "2f0a184e6b566a3196a1d064c8c40c451de758f75e14b1a584a1891d14e889da",
+        "after_sha256": "2f0a184e6b566a3196a1d064c8c40c451de758f75e14b1a584a1891d14e889da",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_species_names_legacy",
+        "address": 167603416,
+        "size": 12968,
+        "before_sha256": "fd479f125007841683556ffc2a4478a5df1d941d65d83b4bfa922566d4f4a237",
+        "after_sha256": "fd479f125007841683556ffc2a4478a5df1d941d65d83b4bfa922566d4f4a237",
+        "unchanged": true
+      },
+      {
+        "name": "species_surface_species_runtime",
+        "address": 167616384,
+        "size": 700,
+        "before_sha256": "1a462029beef54897525230a1d57403ba059c9038e790bd8467634b548af42b6",
+        "after_sha256": "1a462029beef54897525230a1d57403ba059c9038e790bd8467634b548af42b6",
+        "unchanged": true
+      },
+      {
+        "name": "content_population_payload",
+        "address": 153136164,
+        "size": 77094,
+        "before_sha256": "6058a8b222ae3cbdc50269fd5fc0f089075ad5896d91f99c061d8c4ef4f9c4a2",
+        "after_sha256": "6058a8b222ae3cbdc50269fd5fc0f089075ad5896d91f99c061d8c4ef4f9c4a2",
+        "unchanged": true
+      },
+      {
+        "name": "regression_runtime_payload",
+        "address": 153213260,
+        "size": 715400,
+        "before_sha256": "ddb412021416634d451c525ac24eec9bebc07ac3b857e8ed5366ca75ee8a7572",
+        "after_sha256": "ddb412021416634d451c525ac24eec9bebc07ac3b857e8ed5366ca75ee8a7572",
+        "unchanged": true
+      },
+      {
+        "name": "trainer_rebalance_v4_parties",
+        "address": 153928660,
+        "size": 8176,
+        "before_sha256": "b03de7b7c2dd310852ae864ef5fdc8ebccbb03217a66e26bff7cffbb85b7ac35",
+        "after_sha256": "b03de7b7c2dd310852ae864ef5fdc8ebccbb03217a66e26bff7cffbb85b7ac35",
+        "unchanged": true
+      },
+      {
+        "name": "facility_runtime_payload",
+        "address": 153936836,
+        "size": 5210,
+        "before_sha256": "03d7b3ca8025954bf111f7a876d4937bf932f0b3330b0dfa86e4e30915ab9b10",
+        "after_sha256": "03d7b3ca8025954bf111f7a876d4937bf932f0b3330b0dfa86e4e30915ab9b10",
+        "unchanged": true
+      },
+      {
+        "name": "first_battle_priority_guard",
+        "address": 153942048,
+        "size": 192,
+        "before_sha256": "e24bf0a1c4cd0ff96981d8a434c2155fc747248f0e2abc051421798a01944832",
+        "after_sha256": "e24bf0a1c4cd0ff96981d8a434c2155fc747248f0e2abc051421798a01944832",
+        "unchanged": true
+      },
+      {
+        "name": "hm_field_access_runtime",
+        "address": 153942240,
+        "size": 408,
+        "before_sha256": "002a4f140852bcca8d7f3552132ad9f42a50f3e8aa11883c47db26fbab3684d5",
+        "after_sha256": "002a4f140852bcca8d7f3552132ad9f42a50f3e8aa11883c47db26fbab3684d5",
+        "unchanged": true
+      },
+      {
+        "name": "battle_ui_runtime",
+        "address": 153942648,
+        "size": 1200,
+        "before_sha256": "67100cbdfd05eca9f4534888efadebab9804c12035d52aaa802d769a3091f55f",
+        "after_sha256": "67100cbdfd05eca9f4534888efadebab9804c12035d52aaa802d769a3091f55f",
+        "unchanged": true
+      },
+      {
+        "name": "move_memory_runtime",
+        "address": 153943856,
+        "size": 2968,
+        "before_sha256": "6152439799fe625ffbfedfa14e88a87fc187e6d6cc159403740446ca2eca9e97",
+        "after_sha256": "6152439799fe625ffbfedfa14e88a87fc187e6d6cc159403740446ca2eca9e97",
+        "unchanged": true
+      },
+      {
+        "name": "acquisition_runtime",
+        "address": 153946832,
+        "size": 45061,
+        "before_sha256": "b49996fd455a46dd8d4d195f84a589c063ef9136fd6893a4e601cc7b6e6f464b",
+        "after_sha256": "b49996fd455a46dd8d4d195f84a589c063ef9136fd6893a4e601cc7b6e6f464b",
+        "unchanged": true
+      },
+      {
+        "name": "acquisition_map_scripts",
+        "address": 153991896,
+        "size": 1868,
+        "before_sha256": "b0801e6682455a6294e61cfe49c6828ef015346b3774473c74a11bea2f8f4301",
+        "after_sha256": "b0801e6682455a6294e61cfe49c6828ef015346b3774473c74a11bea2f8f4301",
+        "unchanged": true
+      },
+      {
+        "name": "bp_shop_runtime_payload",
+        "address": 153993776,
+        "size": 4424,
+        "before_sha256": "b8ca4ba9d62f19c2b49cda603ad386800e2cdeb77587719296af6b5287a48cc5",
+        "after_sha256": "b8ca4ba9d62f19c2b49cda603ad386800e2cdeb77587719296af6b5287a48cc5",
+        "unchanged": true
+      },
+      {
+        "name": "factory_reward_runtime_payload",
+        "address": 153998208,
+        "size": 1672,
+        "before_sha256": "8094ce3dd299752c6ec99a74efd3f2cc8d3bb6db162c417f3b96c7d649a95d88",
+        "after_sha256": "8094ce3dd299752c6ec99a74efd3f2cc8d3bb6db162c417f3b96c7d649a95d88",
+        "unchanged": true
+      },
+      {
+        "name": "factory_repeat_reward_runtime_payload",
+        "address": 153999888,
+        "size": 572,
+        "before_sha256": "6ce2ff15aa77f10b86ac61e4fe0c3f08b4bccc0b5b887f8f9036a2e04ee32fec",
+        "after_sha256": "6ce2ff15aa77f10b86ac61e4fe0c3f08b4bccc0b5b887f8f9036a2e04ee32fec",
+        "unchanged": true
+      },
+      {
+        "name": "factory_special_event_runtime_payload",
+        "address": 154000464,
+        "size": 424,
+        "before_sha256": "6c97dd30b6fc6885f4085c61abb32402dcb337185fa0d6125283a1cc2757a30e",
+        "after_sha256": "6c97dd30b6fc6885f4085c61abb32402dcb337185fa0d6125283a1cc2757a30e",
+        "unchanged": true
+      },
+      {
+        "name": "factory_shiny_memorial_runtime_payload",
+        "address": 154000896,
+        "size": 3322,
+        "before_sha256": "985d450165c7bdc4fe6a3447bc10ba8e088b44111a4bc00673fe51148717f5f4",
+        "after_sha256": "985d450165c7bdc4fe6a3447bc10ba8e088b44111a4bc00673fe51148717f5f4",
+        "unchanged": true
+      },
+      {
+        "name": "trainer_v5_stage31_foundation_payload",
+        "address": 154004224,
+        "size": 47248,
+        "before_sha256": "23d922c55eaadadd95e572096c2f1e36ac397e756de1ff968ee6141247bdf562",
+        "after_sha256": "23d922c55eaadadd95e572096c2f1e36ac397e756de1ff968ee6141247bdf562",
+        "unchanged": true
+      },
+      {
+        "name": "trainer_v5_stage32_tohoku_batch02_payload",
+        "address": 154051472,
+        "size": 48976,
+        "before_sha256": "f1374c489749c1906122a97c5116e9541c356693a3953bd1ff0170649693bb4e",
+        "after_sha256": "f1374c489749c1906122a97c5116e9541c356693a3953bd1ff0170649693bb4e",
+        "unchanged": true
+      },
+      {
+        "name": "trainer_v5_stage33_tohoku_batch03_payload",
+        "address": 154100448,
+        "size": 51312,
+        "before_sha256": "ff4c0096241cf99ad163a57f2bc0022e4280d46896a7adb8f249899f3992c7ea",
+        "after_sha256": "ff4c0096241cf99ad163a57f2bc0022e4280d46896a7adb8f249899f3992c7ea",
+        "unchanged": true
+      },
+      {
+        "name": "trainer_changekit_final_stage35_payload",
+        "address": 154151760,
+        "size": 475614,
+        "before_sha256": "1c6fdddbc4415d67cb6ba1fcf9e60db53ebb93e5e16a83eb4a3f17a461cbd945",
+        "after_sha256": "1c6fdddbc4415d67cb6ba1fcf9e60db53ebb93e5e16a83eb4a3f17a461cbd945",
+        "unchanged": true
+      },
+      {
+        "name": "qol_production_stage36_payload",
+        "address": 154627376,
+        "size": 69440,
+        "before_sha256": "0a9ec8c12050fac341b264db6e9d47ea457eca6ea21d876b7c5be94296e77fa8",
+        "after_sha256": "0a9ec8c12050fac341b264db6e9d47ea457eca6ea21d876b7c5be94296e77fa8",
+        "unchanged": true
+      },
+      {
+        "name": "event_design_stage37_payload",
+        "address": 154696816,
+        "size": 34560,
+        "before_sha256": "48daa966ac390f72f1edb0a4f7526428c0d6ec87f65a00d34df1a5cbecccaa81",
+        "after_sha256": "48daa966ac390f72f1edb0a4f7526428c0d6ec87f65a00d34df1a5cbecccaa81",
+        "unchanged": true
+      },
+      {
+        "name": "mirage_production_stage38_payload",
+        "address": 154731376,
+        "size": 8496,
+        "before_sha256": "4e019d950517ecb4cc012e796fd224e582ccf9d3222f53754e33683257260a12",
+        "after_sha256": "4e019d950517ecb4cc012e796fd224e582ccf9d3222f53754e33683257260a12",
+        "unchanged": true
+      },
+      {
+        "name": "move_distribution_v4_stage39_payload",
+        "address": 154739872,
+        "size": 177104,
+        "before_sha256": "da99b4b2a074038aefb57bdd18b82e29b839383f7e73278fe95e5843c52598b2",
+        "after_sha256": "da99b4b2a074038aefb57bdd18b82e29b839383f7e73278fe95e5843c52598b2",
+        "unchanged": true
+      },
+      {
+        "name": "research_economy_v1_stage40_payload",
+        "address": 154916976,
+        "size": 12568,
+        "before_sha256": "5acebf3ea0ce35fa25c6a865eff92f937c132b027ff7424b63f40d15d415dd25",
+        "after_sha256": "5acebf3ea0ce35fa25c6a865eff92f937c132b027ff7424b63f40d15d415dd25",
+        "unchanged": true
+      },
+      {
+        "name": "reward_encounters_v2_stage41_payload",
+        "address": 154929552,
+        "size": 10772,
+        "before_sha256": "17adb88a0df2e5bd336aa104c85113e116c4ac900a01f5a235576a21b2fbe1ea",
+        "after_sha256": "17adb88a0df2e5bd336aa104c85113e116c4ac900a01f5a235576a21b2fbe1ea",
+        "unchanged": true
+      },
+      {
+        "name": "factory_high_modes_v2_stage42_payload",
+        "address": 154940336,
+        "size": 24955,
+        "before_sha256": "e05f53be976a9f9223108221edc08610643bd1d3d9e2994ed781ac2ee78553c3",
+        "after_sha256": "e05f53be976a9f9223108221edc08610643bd1d3d9e2994ed781ac2ee78553c3",
+        "unchanged": true
+      },
+      {
+        "name": "codex_battle_bridge_stage43_payload",
+        "address": 154965296,
+        "size": 1568,
+        "before_sha256": "f07c92eb55aa7258599b7c482cbcddb7c496f9ee43d35d14119023fff58784a3",
+        "after_sha256": "f07c92eb55aa7258599b7c482cbcddb7c496f9ee43d35d14119023fff58784a3",
+        "unchanged": true
+      },
+      {
+        "name": "codex_battle_runtime_stage44_payload",
+        "address": 154966864,
+        "size": 16352,
+        "before_sha256": "370ef7f03885c1a92654b5270eecbede733b733b8a857fa4ebe9b5cfb79ae917",
+        "after_sha256": "370ef7f03885c1a92654b5270eecbede733b733b8a857fa4ebe9b5cfb79ae917",
+        "unchanged": true
+      },
+      {
+        "name": "codex_battle_rewards_stage45_payload",
+        "address": 154983216,
+        "size": 8224,
+        "before_sha256": "441017c04cd89f9af320aa3c10e34e107430a3c8f8d0c2d307c7062d44b1fc5c",
+        "after_sha256": "441017c04cd89f9af320aa3c10e34e107430a3c8f8d0c2d307c7062d44b1fc5c",
+        "unchanged": true
+      },
+      {
+        "name": "windows_battle_catalog_stage46_payload",
+        "address": 154991440,
+        "size": 8624,
+        "before_sha256": "4a73f05d101fc7b6fb8e6e8af4648d8b9cf30659872a6111cb4e22c47e4172cb",
+        "after_sha256": "4a73f05d101fc7b6fb8e6e8af4648d8b9cf30659872a6111cb4e22c47e4172cb",
+        "unchanged": true
+      },
+      {
+        "name": "windows_box14_vault_stage47_payload",
+        "address": 155000064,
+        "size": 9760,
+        "before_sha256": "a44ba25dc01dc8d141589261de48793a19e57d00274aa76f4db94c6b4731325a",
+        "after_sha256": "a44ba25dc01dc8d141589261de48793a19e57d00274aa76f4db94c6b4731325a",
+        "unchanged": true
+      },
+      {
+        "name": "world_item_recovery_stage49_payload",
+        "address": 155009824,
+        "size": 35556,
+        "before_sha256": "3446004594ea4d6cb6f2b63347e147afdd975aae79e3f9ce1c3ba4057b924d00",
+        "after_sha256": "3446004594ea4d6cb6f2b63347e147afdd975aae79e3f9ce1c3ba4057b924d00",
+        "unchanged": true
+      },
+      {
+        "name": "interaction_ownership_repair_stage50_payload",
+        "address": 155045392,
+        "size": 71720,
+        "before_sha256": "586d17d7d0dde699b63f8daf97a793411370bbb2d6922518a3897e1da8e4cc06",
+        "after_sha256": "586d17d7d0dde699b63f8daf97a793411370bbb2d6922518a3897e1da8e4cc06",
+        "unchanged": true
+      },
+      {
+        "name": "world_runtime_e2e_repair_stage55_payload",
+        "address": 155117120,
+        "size": 95144,
+        "before_sha256": "fb6a1e05bd07f3a560d79ad648cfbc05098da8a60955f5ed91f4fc4347490116",
+        "after_sha256": "fb6a1e05bd07f3a560d79ad648cfbc05098da8a60955f5ed91f4fc4347490116",
+        "unchanged": true
+      },
+      {
+        "name": "collection_supply_v1_stage56_payload",
+        "address": 155212272,
+        "size": 58800,
+        "before_sha256": "1d116db388037de9840ec40658bd3eabc4d1c938e9703594a2911099649430f0",
+        "after_sha256": "1d116db388037de9840ec40658bd3eabc4d1c938e9703594a2911099649430f0",
+        "unchanged": true
+      },
+      {
+        "name": "comprehensive_debug_repair_stage57_payload",
+        "address": 155271072,
+        "size": 720,
+        "before_sha256": "e82e3fb6781acef0b0c867924125f40783335150b192f769deed447f6b6b547d",
+        "after_sha256": "e82e3fb6781acef0b0c867924125f40783335150b192f769deed447f6b6b547d",
+        "unchanged": true
+      },
+      {
+        "name": "qol_world_convenience_stage58_payload",
+        "address": 155271792,
+        "size": 13248,
+        "before_sha256": "12fdf78b4c9831ac84560b6e5af0645db923c41906ea1ddeb2cb523f9c42e4d4",
+        "after_sha256": "12fdf78b4c9831ac84560b6e5af0645db923c41906ea1ddeb2cb523f9c42e4d4",
+        "unchanged": true
+      },
+      {
+        "name": "root_cause_repair_stage59_payload",
+        "address": 155285040,
+        "size": 36,
+        "before_sha256": "b06f000e393091bd4a0b69ddf7a03844b12ddcfe06004b28eab00e002c5f9777",
+        "after_sha256": "b06f000e393091bd4a0b69ddf7a03844b12ddcfe06004b28eab00e002c5f9777",
+        "unchanged": true
+      },
+      {
+        "name": "wild_species_root_repair_stage60_payload",
+        "address": 155285088,
+        "size": 592,
+        "before_sha256": "6ad66a1b3be584c5a7b83b865a3e1e2577e68de26ee2624443a02dd941867168",
+        "after_sha256": "6ad66a1b3be584c5a7b83b865a3e1e2577e68de26ee2624443a02dd941867168",
+        "unchanged": true
+      },
+      {
+        "name": "display_npc_event_audit_stage61_payload",
+        "address": 155285680,
+        "size": 213456,
+        "before_sha256": "ac9bf16198a4ed5f30ac10d5e54fe48e7cadb9f18c2466624a0267ed70295e88",
+        "after_sha256": "40863990bbd102709557cf03bfa3a73869e09165b31e497f24e9ba506f124140",
+        "unchanged": false
+      },
+      {
+        "name": "stage61_runtime_hotfix_payload",
+        "address": 155499136,
+        "size": 26576,
+        "before_sha256": "ef6d1b9ea5d5954fbf02d88dcff622f481ae3fc1c4aacf80400c8087b3e0535a",
+        "after_sha256": "ef6d1b9ea5d5954fbf02d88dcff622f481ae3fc1c4aacf80400c8087b3e0535a",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_p03_stage65_caterpie_level_up",
+        "address": 167617084,
+        "size": 12,
+        "before_sha256": "bfc502059916a7b645801191ef9625396942167b1566536c63bf8abe95fc00bb",
+        "after_sha256": "bfc502059916a7b645801191ef9625396942167b1566536c63bf8abe95fc00bb",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_p03_stage66_bulk_level_up",
+        "address": 167617096,
+        "size": 60116,
+        "before_sha256": "0bde103cdbc375ec7842a72b79ba9cd85a9ea54e2d489848f5e098696281a09b",
+        "after_sha256": "0bde103cdbc375ec7842a72b79ba9cd85a9ea54e2d489848f5e098696281a09b",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_p03_stage67_evolution_level_rows",
+        "address": 167677212,
+        "size": 17319,
+        "before_sha256": "bc2546ffb6cc68c0e678da572a24df1ac0be7793a60d92d6673719c4e41e11ee",
+        "after_sha256": "bc2546ffb6cc68c0e678da572a24df1ac0be7793a60d92d6673719c4e41e11ee",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_p03_stage67_normal_egg_rows",
+        "address": 167694532,
+        "size": 15118,
+        "before_sha256": "d9feba3494b83578dab53ab260705fada1f6ca64a18b5b5e52e37c3abab1f3a8",
+        "after_sha256": "d9feba3494b83578dab53ab260705fada1f6ca64a18b5b5e52e37c3abab1f3a8",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_mega_shop_stage68_payload",
+        "address": 155525712,
+        "size": 67424,
+        "before_sha256": "3ed9991c2f8f56cbd1ad1c1d304fae0e5d7c5cc2f23f887f997009ce35c01882",
+        "after_sha256": "3ed9991c2f8f56cbd1ad1c1d304fae0e5d7c5cc2f23f887f997009ce35c01882",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_floette_gift_stage69_payload",
+        "address": 155593136,
+        "size": 1972,
+        "before_sha256": "c11517d3a05514970cbee20e2d07501ecab3383cc08d0fbc845271299036941b",
+        "after_sha256": "c11517d3a05514970cbee20e2d07501ecab3383cc08d0fbc845271299036941b",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_p04_species_runtime_stage70_payload",
+        "address": 155595120,
+        "size": 850544,
+        "before_sha256": "642fa4f37ace84c2f735a6449b9cb33b90f7401db6a0c5165973d59e508ab695",
+        "after_sha256": "642fa4f37ace84c2f735a6449b9cb33b90f7401db6a0c5165973d59e508ab695",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_p05_ability_rom_runtime_stage72_payload",
+        "address": 156445664,
+        "size": 7140,
+        "before_sha256": "0d2e7fb9e238ba339c9494e8159bf1eed31f3525bc95a8c13854a64a747f2190",
+        "after_sha256": "0d2e7fb9e238ba339c9494e8159bf1eed31f3525bc95a8c13854a64a747f2190",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_p03_stage73_consumer_runtime_payload",
+        "address": 156452816,
+        "size": 21678,
+        "before_sha256": "aff0b17e3b1c243d084c3a412ccac9a74d2fa599600d6efe70b3f652f66e0f45",
+        "after_sha256": "aff0b17e3b1c243d084c3a412ccac9a74d2fa599600d6efe70b3f652f66e0f45",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_p03_stage73_exact_egg_rows",
+        "address": 167709652,
+        "size": 15018,
+        "before_sha256": "0aeb5095cbfe717dc360bd50433bb0475ea334254d85d0d326731383e6f19778",
+        "after_sha256": "0aeb5095cbfe717dc360bd50433bb0475ea334254d85d0d326731383e6f19778",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_p03_stage74_supply_runtime_payload",
+        "address": 156474496,
+        "size": 70572,
+        "before_sha256": "714a4fdb3b2cb1781b516d072773f38c865e706bc6c49b7c09215860dadcb0dc",
+        "after_sha256": "714a4fdb3b2cb1781b516d072773f38c865e706bc6c49b7c09215860dadcb0dc",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_rockruff_own_tempo_stage75_payload",
+        "address": 156545072,
+        "size": 565280,
+        "before_sha256": "cc40c531609c1443502f722d239e14f20c3fd9ae26cba0db1acf505553f7009e",
+        "after_sha256": "cc40c531609c1443502f722d239e14f20c3fd9ae26cba0db1acf505553f7009e",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_p05_stage76_edges_payload",
+        "address": 157110352,
+        "size": 2066,
+        "before_sha256": "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e",
+        "after_sha256": "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_p05_stage77_circus_suppression_payload",
+        "address": 157112432,
+        "size": 1220,
+        "before_sha256": "933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672",
+        "after_sha256": "933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672",
+        "unchanged": true
+      },
+      {
+        "name": "modernization_p05_stage78_eelevate_switch_ai_payload",
+        "address": 157113664,
+        "size": 688,
+        "before_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+        "after_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+        "unchanged": true
+      },
+      {
+        "name": "modernization-p07-preserved-level",
+        "address": 157114352,
+        "size": 16137,
+        "before_sha256": "a53aa7ced55de4a1333245678ee3060b230cea898b8246483960659bac19dd12",
+        "after_sha256": "a53aa7ced55de4a1333245678ee3060b230cea898b8246483960659bac19dd12",
+        "unchanged": true
+      },
+      {
+        "name": "modernization-p07-preserved-egg",
+        "address": 157130492,
+        "size": 15396,
+        "before_sha256": "348d7903446a01b8e7bdf25e78458c382aac8d5d85da08b9713503a2b6f6fe7b",
+        "after_sha256": "348d7903446a01b8e7bdf25e78458c382aac8d5d85da08b9713503a2b6f6fe7b",
+        "unchanged": true
+      },
+      {
+        "name": "modernization-p07-preserved-runtime",
+        "address": 157145888,
+        "size": 398,
+        "before_sha256": "bc96478be1386d04e04feb42c2be778863f41bcb293c568542ed2a2676ba6c57",
+        "after_sha256": "bc96478be1386d04e04feb42c2be778863f41bcb293c568542ed2a2676ba6c57",
+        "unchanged": true
+      },
+      {
+        "name": "modernization-p03-native-evolution-dispatch",
+        "address": 157146288,
+        "size": 40,
+        "before_sha256": "17e7b93648efc04e1f0cd538a11612061681d78264e1d749322a1bfaf53a2ccb",
+        "after_sha256": "17e7b93648efc04e1f0cd538a11612061681d78264e1d749322a1bfaf53a2ccb",
+        "unchanged": true
+      },
+      {
+        "name": "pr16-shop-display-safe-content",
+        "address": 157146328,
+        "size": 4516,
+        "before_sha256": "4b9e8a45a541218d51346c9bd5e0e454e8bc4779750dbb61d3c51795f8b61876",
+        "after_sha256": "4b9e8a45a541218d51346c9bd5e0e454e8bc4779750dbb61d3c51795f8b61876",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_factory_loss_return",
+        "address": 167724672,
+        "size": 180,
+        "before_sha256": "1c989258f2d1f8ce1e487bf3be817065f0eb106b1a48aff90a842c5dcf72fb30",
+        "after_sha256": "1c989258f2d1f8ce1e487bf3be817065f0eb106b1a48aff90a842c5dcf72fb30",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_factory_party_retention_trampoline",
+        "address": 153943848,
+        "size": 8,
+        "before_sha256": "9044e7978b40e75834cbb31fd0293a238e4563a187d9df49f9fdae92ca1cf6bf",
+        "after_sha256": "9044e7978b40e75834cbb31fd0293a238e4563a187d9df49f9fdae92ca1cf6bf",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_factory_party_retention_runtime",
+        "address": 167724852,
+        "size": 188,
+        "before_sha256": "54292e541bf58e0572825f6b18aa86aa1e2cf3e38c7c213167238f1a2bf0eda5",
+        "after_sha256": "54292e541bf58e0572825f6b18aa86aa1e2cf3e38c7c213167238f1a2bf0eda5",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_ring_npc_runtime",
+        "address": 167725040,
+        "size": 552,
+        "before_sha256": "8d9af0fe66a9b00b7240b687b85c9c03aec8335deafdc8945f783f201897d06b",
+        "after_sha256": "8d9af0fe66a9b00b7240b687b85c9c03aec8335deafdc8945f783f201897d06b",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_ring_ordinary_policy_runtime",
+        "address": 167725592,
+        "size": 172,
+        "before_sha256": "a3a0f2ce19462c697e1d0fb7b01e93db7dd51f5a715a671624d3ab32d9c9907e",
+        "after_sha256": "a3a0f2ce19462c697e1d0fb7b01e93db7dd51f5a715a671624d3ab32d9c9907e",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_circus_reception_runtime",
+        "address": 167725776,
+        "size": 1014,
+        "before_sha256": "840c891514fc1073b089e355932c4f8af538643673e472ab5d54cccae6d4cff4",
+        "after_sha256": "840c891514fc1073b089e355932c4f8af538643673e472ab5d54cccae6d4cff4",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_circus_party_retention_runtime",
+        "address": 167726792,
+        "size": 280,
+        "before_sha256": "13875fb82cbae6d7ae79fd07918567041ce481f66ffee68ff3572a55217fb70d",
+        "after_sha256": "13875fb82cbae6d7ae79fd07918567041ce481f66ffee68ff3572a55217fb70d",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_circus_streak_runtime",
+        "address": 167727072,
+        "size": 6640,
+        "before_sha256": "a501c3c18af7a1d0f35e05db7dd93086f42dea5376e6aa1a8b8d29f0965b9afa",
+        "after_sha256": "a501c3c18af7a1d0f35e05db7dd93086f42dea5376e6aa1a8b8d29f0965b9afa",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_circus_streak_get_veneer",
+        "address": 153946824,
+        "size": 8,
+        "before_sha256": "c8ff9377bc6536e8bbf7d284621758fb74934f1a592ce2e4de1b0e6f999658ef",
+        "after_sha256": "c8ff9377bc6536e8bbf7d284621758fb74934f1a592ce2e4de1b0e6f999658ef",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_circus_cold_load_bridge",
+        "address": 167733712,
+        "size": 364,
+        "before_sha256": "4c1953e00dd046396c401c33ada42f1f988e84d74a748018a5d298fcbe54b5f6",
+        "after_sha256": "4c1953e00dd046396c401c33ada42f1f988e84d74a748018a5d298fcbe54b5f6",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_circus_drought_empty_loader",
+        "address": 167734076,
+        "size": 1268,
+        "before_sha256": "2823449e80d55dd74643741f7982e8fc27a9a32ec941ed009f05e1cc047db840",
+        "after_sha256": "2823449e80d55dd74643741f7982e8fc27a9a32ec941ed009f05e1cc047db840",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_circus_rental_drought",
+        "address": 167735344,
+        "size": 1772,
+        "before_sha256": "7a0d04377d80920052e1f036dc8952dd6d891f29c00058aa4e6506898f793693",
+        "after_sha256": "7a0d04377d80920052e1f036dc8952dd6d891f29c00058aa4e6506898f793693",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_circus_getter_preserve_r3",
+        "address": 153993764,
+        "size": 12,
+        "before_sha256": "8bde5f74b38d833cec080ef107d265755969066ff494743b21dfa8fea059711b",
+        "after_sha256": "8bde5f74b38d833cec080ef107d265755969066ff494743b21dfa8fea059711b",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_learnset_runtime_two_entrypoints",
+        "address": 157150844,
+        "size": 108904,
+        "before_sha256": "a61d933f52a785088b5dc8dac81d0bc96f3eb9850d07929e9e4fc460a747992c",
+        "after_sha256": "a61d933f52a785088b5dc8dac81d0bc96f3eb9850d07929e9e4fc460a747992c",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_learnset_initial_and_natural",
+        "address": 157259748,
+        "size": 676,
+        "before_sha256": "680a798efac2c03f7eb643aaa7f5dce0e8dd89bd1a5bed93f55db8eeabdcc2ff",
+        "after_sha256": "680a798efac2c03f7eb643aaa7f5dce0e8dd89bd1a5bed93f55db8eeabdcc2ff",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_conditional_plc2",
+        "address": 167737116,
+        "size": 31014,
+        "before_sha256": "3fb75ac95022f2cfa9ea1a0bda13dd57f8ed883564b95271e97ba45489b7aa90",
+        "after_sha256": "3fb75ac95022f2cfa9ea1a0bda13dd57f8ed883564b95271e97ba45489b7aa90",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_conditional_plc2_code",
+        "address": 157260424,
+        "size": 2672,
+        "before_sha256": "34d0d3a42dc7ebab3ec6f396bc9c4aba3457fec204262b8c4264d228436f6bda",
+        "after_sha256": "34d0d3a42dc7ebab3ec6f396bc9c4aba3457fec204262b8c4264d228436f6bda",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_supply_pla1",
+        "address": 157263096,
+        "size": 21383,
+        "before_sha256": "499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13",
+        "after_sha256": "499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_supply_arm",
+        "address": 167768132,
+        "size": 2788,
+        "before_sha256": "14b2e916522ce3cda1e624676edf5f73e95e1da045bcaa14ed1a24be78ba95aa",
+        "after_sha256": "14b2e916522ce3cda1e624676edf5f73e95e1da045bcaa14ed1a24be78ba95aa",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_original_wild_initial",
+        "address": 157284480,
+        "size": 216,
+        "before_sha256": "62457f22d0ed246bb9c241994f21ae93f50e41bfc3d9cd6609c5c608418459c9",
+        "after_sha256": "62457f22d0ed246bb9c241994f21ae93f50e41bfc3d9cd6609c5c608418459c9",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_dex_scheduler_bridge",
+        "address": 157284696,
+        "size": 1084,
+        "before_sha256": "114633f7da4e2b98ea419f6c2de364a99a32ade2c6898d0de297a9eeda2b1590",
+        "after_sha256": "f94c9d4d938676c94b605ccd40e862065f6625a8aa5109c97e36e2c2e4f74cce",
+        "unchanged": false
+      },
+      {
+        "name": "pr16_dex_load_newgame_boundary",
+        "address": 157285780,
+        "size": 188,
+        "before_sha256": "e1859d0867f79522f31b7a55d5e2e75ff7786394146329d76b549c711d670793",
+        "after_sha256": "e1859d0867f79522f31b7a55d5e2e75ff7786394146329d76b549c711d670793",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_dex_battle_consumers",
+        "address": 157285968,
+        "size": 160,
+        "before_sha256": "1780872298c0e446888f1dc2398c15fc1d93d417e85bbfbec66692599fbe2f28",
+        "after_sha256": "1780872298c0e446888f1dc2398c15fc1d93d417e85bbfbec66692599fbe2f28",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_dex_save_failure_gates",
+        "address": 157286128,
+        "size": 224,
+        "before_sha256": "b2b05d18151fd48420a16268cef8187651efdfabdd89a888d5f0ebe6aef602b7",
+        "after_sha256": "b2b05d18151fd48420a16268cef8187651efdfabdd89a888d5f0ebe6aef602b7",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_dex_outer_qol_failure",
+        "address": 157286368,
+        "size": 20,
+        "before_sha256": "00d9fd6fc60433c36e7ce1e67bea9b6d1edca06a7d059f51969f6a6a95c6e8da",
+        "after_sha256": "00d9fd6fc60433c36e7ce1e67bea9b6d1edca06a7d059f51969f6a6a95c6e8da",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_dex_nonstart_notifications",
+        "address": 167770920,
+        "size": 408,
+        "before_sha256": "5aa487b6cfa770d7adc27106a4f670ff4000b6ef272efc7d952c155012f5bf3d",
+        "after_sha256": "5aa487b6cfa770d7adc27106a4f670ff4000b6ef272efc7d952c155012f5bf3d",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_dex_hof_notification",
+        "address": 167771328,
+        "size": 260,
+        "before_sha256": "a83b6966fbdd5940d62999b654872f70659b84730bd3e7089e256ce159d4bf66",
+        "after_sha256": "a83b6966fbdd5940d62999b654872f70659b84730bd3e7089e256ce159d4bf66",
+        "unchanged": true
+      },
+      {
+        "name": "pr16_dex_fallback_qol",
+        "address": 167771588,
+        "size": 296,
+        "before_sha256": "52fbefaf1b3f0613e6b42285e69eaf17f53086c85840a544f152194afd11bcc4",
+        "after_sha256": "52fbefaf1b3f0613e6b42285e69eaf17f53086c85840a544f152194afd11bcc4",
+        "unchanged": true
+      }
+    ],
+    "inherited_allocator_hash_differences": [
+      "regression_runtime_payload",
+      "move_distribution_v4_stage39_payload",
+      "research_economy_v1_stage40_payload",
+      "collection_supply_v1_stage56_payload"
+    ],
+    "modified_owners": [
+      "pr16_dex_runtime_reserved",
+      "display_npc_event_audit_stage61_payload",
+      "pr16_dex_scheduler_bridge"
+    ],
+    "unchanged_owners": 112,
+    "preserved_hof_sections": [
+      {
+        "name": ".text.hof_cow_entry",
+        "address": 155488232,
+        "size": 36
+      },
+      {
+        "name": ".text.hof_cow_return",
+        "address": 155489160,
+        "size": 16
+      },
+      {
+        "name": ".text.hof_cow_second",
+        "address": 155494016,
+        "size": 32
+      },
+      {
+        "name": ".text.hof_cow_prepare",
+        "address": 155494900,
+        "size": 48
+      },
+      {
+        "name": ".text.hof_cow_first",
+        "address": 155495024,
+        "size": 48
+      }
+    ],
+    "whole_rom_rollback_exact": true,
+    "patches": [
+      {
+        "address": 155487232,
+        "size": 16,
+        "sha256": "8fdd5f3ab10efc4b020f4c29d78dde0abbd5b7d25a798bac0a95eb0bf352b3b0"
+      },
+      {
+        "address": 155487248,
+        "size": 268,
+        "sha256": "93ac9694221c5ad5f38086e41c91e74474dd84937cfdac51c66073b3e3a4aba5"
+      },
+      {
+        "address": 155487544,
+        "size": 16,
+        "sha256": "b038c2409d597ba1acc0b34cc317a46f929050ea5a559cf6e3e0555d0206d068"
+      },
+      {
+        "address": 155487560,
+        "size": 480,
+        "sha256": "516a945710abf316614f30d606ef3c6a45f66b67a720e1a2e86b15e2e26de795"
+      },
+      {
+        "address": 155488044,
+        "size": 16,
+        "sha256": "28cb6c488a884a5e47085c56324347af2285d1e35c75e077e86f0af6000e5373"
+      },
+      {
+        "address": 155488064,
+        "size": 132,
+        "sha256": "cfca28bc3d82251017980c5d4bc0df3c53ff11d88790f8e40cc42903bc7be2d2"
+      },
+      {
+        "address": 155488272,
+        "size": 16,
+        "sha256": "435fafa8d99d6566f81b68f8926b1e8d10e2342031248843491398b237505302"
+      },
+      {
+        "address": 155488288,
+        "size": 136,
+        "sha256": "18001a099994dc183783614651ca9dffdd5406b51ddbcfe186fc0a44c4070a3a"
+      },
+      {
+        "address": 155488448,
+        "size": 16,
+        "sha256": "a333a8868fd4ddfc71e8b749604443770f8ef9384d4ce25401a20cd9b751af4c"
+      },
+      {
+        "address": 155488464,
+        "size": 600,
+        "sha256": "5cf2d2d450c5d8b070a4a440d7f079bdb584ec63605c7107544f3c8f26c4bcde"
+      },
+      {
+        "address": 155489080,
+        "size": 80,
+        "sha256": "dd076a527ed08a483aeaccea526c688b015295951447df5774844578bc855683"
+      },
+      {
+        "address": 155489184,
+        "size": 16,
+        "sha256": "71fc8611d529decad37fe147d1657cafaf052d95fce498682402b04f5e31b0c8"
+      },
+      {
+        "address": 155489200,
+        "size": 120,
+        "sha256": "a7c2d98cf2a3c1492c5b28ef6a0d80549cc638827477c96c5f1c4d588305d722"
+      },
+      {
+        "address": 155489324,
+        "size": 16,
+        "sha256": "b53a286bb11640ed9fbe0efeb8a3b2a5ded351624ce73d217491d7c59a61acb0"
+      },
+      {
+        "address": 155489340,
+        "size": 16,
+        "sha256": "6b4187ca703c9f2734d3d12c24dee53ccddb4b29e50375ecb8832cdc73017301"
+      },
+      {
+        "address": 155489360,
+        "size": 600,
+        "sha256": "fd64f424b22d6efe5eee987d75e2488a2bb2b913bb6c2c0d60512318e09f31e0"
+      },
+      {
+        "address": 155489976,
+        "size": 16,
+        "sha256": "a25d16a30892ee72dcaead1f9d2c3677f7f5985899384b5993c005a3b132285b"
+      },
+      {
+        "address": 155492772,
+        "size": 40,
+        "sha256": "e85c806834748a9d379f2ae5c9538a9c84312f71f68046eb49d6c188eb47a2a4"
+      },
+      {
+        "address": 155492908,
+        "size": 128,
+        "sha256": "b5fe14f51acdda4d22197417eb8002221b5b34e0a9bbd22ded639d7b8add4308"
+      },
+      {
+        "address": 155493036,
+        "size": 72,
+        "sha256": "4f8ff9d70f507b0f1b76b8241f494a6a0cd150118cb1ce9e98581ba4eed99f9f"
+      },
+      {
+        "address": 155493108,
+        "size": 36,
+        "sha256": "249a884f4343d73d5394d391103458e659f6b0230b64371195a760d5b3bed36e"
+      },
+      {
+        "address": 155493144,
+        "size": 384,
+        "sha256": "39c544712d73b6094b80c61202181e0559fd86c81b153f207fdfcaae6d81e712"
+      },
+      {
+        "address": 155493552,
+        "size": 80,
+        "sha256": "6b47d3246cc2f204b94984cf5360ab21a3fb128c08ecfe019d2ec09316a37d91"
+      },
+      {
+        "address": 155493632,
+        "size": 144,
+        "sha256": "bc220ecc55fb0f6352aff18d8191b36e091034f055244b4b5a0f38118789799f"
+      },
+      {
+        "address": 155493776,
+        "size": 40,
+        "sha256": "4747c3f0c6b26109c74f7867bf9dd4a8554d569b19ffa79bb006d90974803824"
+      },
+      {
+        "address": 155493820,
+        "size": 36,
+        "sha256": "278c5661429707052ee7e401f7236c2bd1829435cdc5313bf0d3244b0c282c31"
+      },
+      {
+        "address": 155493856,
+        "size": 104,
+        "sha256": "edba18302aef2e17540cb61c0d0b5f7952252ff47e74951c5e2e16e9a7f8864f"
+      },
+      {
+        "address": 155493960,
+        "size": 56,
+        "sha256": "b3332a234ff6bc9781a190b8323fa2c9e0a0184916cce95d1876d74dc6659781"
+      },
+      {
+        "address": 155494048,
+        "size": 34,
+        "sha256": "14798ac466f94f4788ac4e78c96f95fd1391d61b24296b9be6cfd854aba1ab39"
+      },
+      {
+        "address": 155494084,
+        "size": 124,
+        "sha256": "b3a944f1f6be9e4b8b0ed25c7033e11e8e391c704b09b45b2672a1494a29c3d7"
+      },
+      {
+        "address": 155494372,
+        "size": 24,
+        "sha256": "9e3144832b135eb983e0d26fafc412775bb6794d2c6fe907a7702fe3e22c17e8"
+      },
+      {
+        "address": 155494484,
+        "size": 56,
+        "sha256": "e4d33e7e1c838554aa24b6924dd5c856c662c4771c53c97b8e794d4feccd877a"
+      },
+      {
+        "address": 155494540,
+        "size": 148,
+        "sha256": "4aca0d10d6f94fb5d2646ca8853b63a4eb9efaf604ab991d12ac7f2488caa5fb"
+      },
+      {
+        "address": 155494688,
+        "size": 192,
+        "sha256": "f5875f781876bd47e23d018bbb4e3cad4e06163fb152e0babc5e145a4ba52a89"
+      },
+      {
+        "address": 155494952,
+        "size": 68,
+        "sha256": "7f83a5f416d104b7f10f0ce45856e74729fdd2af52061d555ac58152ba4e409a"
+      },
+      {
+        "address": 155496040,
+        "size": 300,
+        "sha256": "a7d11540c5bf8ab51690cdac85686ca233811e722cf936183295f8be65132608"
+      },
+      {
+        "address": 155496344,
+        "size": 240,
+        "sha256": "2ea47099b96b26b35ad0f2dd900aad871de9f962e962dba5289af32ee281a2c5"
+      },
+      {
+        "address": 155496600,
+        "size": 228,
+        "sha256": "686a36f16d9430b4a35d32c352e0bf561ac2d69284c5a45ee815c2d64dd478bb"
+      },
+      {
+        "address": 155496848,
+        "size": 242,
+        "sha256": "9bb3b11e0dbd2f5d4ed9e3048fc71714e29a121c5944886ddaf5c80b77bef8ab"
+      },
+      {
+        "address": 155497092,
+        "size": 196,
+        "sha256": "f003d4fe6233b171e3afe773c16cd1d041998ce68d50e6b424e850b193a5c5f1"
+      },
+      {
+        "address": 155497292,
+        "size": 460,
+        "sha256": "a2b57cf03406c2eb772c4f4ae379ffe41da73081bbf6bbe7c81408972ffc60bd"
+      },
+      {
+        "address": 155497752,
+        "size": 408,
+        "sha256": "6e753e722780a9749c2d846b9f6c059c0aaf94e19a23dc834bf1cd6c18c5e78a"
+      },
+      {
+        "address": 155498160,
+        "size": 116,
+        "sha256": "dbc4d4d090d93315566e682f6c25987f55d490b5072bfaf2e33cb8efe8ad734a"
+      },
+      {
+        "address": 155498284,
+        "size": 30,
+        "sha256": "5dff9f73d5db15a5cd2a64c65e59ec81fb012b9bdf8dc73e21be111eea1dedbd"
+      },
+      {
+        "address": 155498314,
+        "size": 22,
+        "sha256": "13ca18f1add2641102417fec8608f618fa38dfd772189a6e4114f4b9ed595f71"
+      },
+      {
+        "address": 155498336,
+        "size": 16,
+        "sha256": "2aa99f289e123de697a16f5f22f7e22bb6d059b1d6c40d54a377a85a9a23a927"
+      },
+      {
+        "address": 157284696,
+        "size": 372,
+        "sha256": "322d92c65ed9308533a50f7961b837de153a02a759cacd7f2de8857cc18e60b4"
+      },
+      {
+        "address": 157285072,
+        "size": 308,
+        "sha256": "ffb878db87497c0d9d7111db574bfefe0c5d0c25153b799056d4c7d58d2683eb"
+      },
+      {
+        "address": 157285400,
+        "size": 284,
+        "sha256": "3abe1705e3bfb8be97847afc02a5eaf28cf2699bfaa180140ca1fbd8658a1d1d"
+      },
+      {
+        "address": 157285704,
+        "size": 56,
+        "sha256": "0f57a62ab802173fb2e8eea9fae1fe7ec60c254c4cfbea2f1a4c16185dc4abf4"
+      },
+      {
+        "address": 167517496,
+        "size": 240,
+        "sha256": "42eb213e5399010e7933868dddbdc73fa983ac3c6e0c4de4c73631891b6328d4"
+      },
+      {
+        "address": 167517736,
+        "size": 144,
+        "sha256": "982994dbd13e9e364d1125c6f7d0fd94561acfabae90c27e28d3e3b9619240d1"
+      },
+      {
+        "address": 167517880,
+        "size": 144,
+        "sha256": "c3f481c982b80f10223893489f565add805ddb779149a3e742f90a7d2b2cd7a0"
+      },
+      {
+        "address": 167518024,
+        "size": 128,
+        "sha256": "cd6b39d948cde737a5f5725c2140445ee2d32aa08c051b4a3fc0ed7714e6d03f"
+      },
+      {
+        "address": 167518152,
+        "size": 104,
+        "sha256": "0f78aac510feeb1d711490fb9c65f3149ea0026777064b5c34d50ff6a0a0c824"
+      }
+    ],
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "controller_runtime_wired": false
+  },
+  "capacity_reclaimed_bytes": 512
+}

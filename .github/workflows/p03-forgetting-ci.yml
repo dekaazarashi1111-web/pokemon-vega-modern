@@ -1,0 +1,47 @@
+name: p03-forgetting-ci
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: p03-forgetting-ci-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  forgetting-acceptance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Restore exact pinned integration originals for current acceptance
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/restore_modernization_final_originals.py
+      - name: Forty regression checks and exact accepted originals
+        env:
+          SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-forgetting-ci
+          printf '%s\n' "$SOURCE_HEAD" > .local/p03-forgetting-ci/source-head.txt
+          git rev-parse HEAD > .local/p03-forgetting-ci/checkout-head.txt
+          test "$(git rev-parse HEAD)" = "$SOURCE_HEAD"
+          python3 -m unittest discover -s tests -p test_modernization_remaining_routes.py -v 2>&1 | tee .local/p03-forgetting-ci/runtime-contracts.log
+          python3 -m unittest discover -s tests -p test_modernization_p08_forgetting_evidence.py -v 2>&1 | tee .local/p03-forgetting-ci/original-mutations.log
+          python3 scripts/record_modernization_p03_forgetting.py | tee .local/p03-forgetting-ci/check.json
+          python3 scripts/validate_task_graph.py
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-forgetting-ci-${{ github.event_name }}
+          path: .local/p03-forgetting-ci/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

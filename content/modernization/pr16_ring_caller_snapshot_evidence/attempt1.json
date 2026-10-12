@@ -1,0 +1,76 @@
+{
+  "classification": "FAILED_TRANSPORT_WITH_BOUNDED_NO_HIT_NOT_ABSENCE_PROOF",
+  "run_id": 35059235641,
+  "job_id": 104675829781,
+  "source_head": "80019e2ba09342a642abbabb592245a7a98bb905",
+  "run_conclusion": "failure",
+  "artifact_id": 10432365087,
+  "archive": {
+    "size": 13451,
+    "sha256": "77fa7da259535201e5558bfccf02e296f7a134b2b359e8c1280ddd23bea87842"
+  },
+  "members": {
+    "native.stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "preflight.json": {
+      "size": 5394,
+      "sha256": "6f7b78cfe3f711836ecfd935aa70d43276ca22fadaf59e429a049ac102337771"
+    },
+    "process.json": {
+      "size": 380,
+      "sha256": "9563c2d47bd418a8e4a7ab22139c4f0b40e519003a3d8d5d746832181bb085f8"
+    },
+    "tests.txt": {
+      "size": 4677,
+      "sha256": "bea7962d1f9c36a32df6636ae033ad18540d7471a633e07c6087ec2ceffdfe9b"
+    },
+    "trace.jsonl": {
+      "size": 673936,
+      "sha256": "eb8e2f9a552192b8435a40236d57fee0283a013a0ede78aa6584dd3a6e5dda83"
+    }
+  },
+  "process": {
+    "actual_new_processes": 1,
+    "fresh_cores_started": 1,
+    "timed_out": false,
+    "returncode": 0,
+    "elapsed_seconds": 9.038,
+    "rom_before": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b"
+    },
+    "rom_after": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 42,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "raw_stdout_path": "content/modernization/pr16_ring_caller_snapshot_evidence/attempt1-stdout.txt",
+  "summary_projected_for_diagnosis_only": {
+    "kind": "summary",
+    "hits": 0,
+    "search_steps": 240000000,
+    "search_limit": 240000000,
+    "unobserved_title_frames": 1200,
+    "host_memory_writes": 0,
+    "host_register_writes": 0,
+    "host_function_calls": 0,
+    "savestate_loads": 0,
+    "ring_acquisition_accepted": false
+  },
+  "failure": "mGBA default logger mixed non-JSON lines into stdout; strict parser rejected it",
+  "revision": "redirect logger to stderr and observe the previously unobserved reset prefix with corrected keypad sequence",
+  "new_emulator_processes": 1,
+  "candidate_reconstructions": 1,
+  "unchanged_native_retry": false,
+  "actual_caller_observed": false,
+  "ring_acquisition_accepted": false,
+  "release_ready": false
+}

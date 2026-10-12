@@ -1,0 +1,1070 @@
+{
+  "accepted_cases": 8,
+  "accepted_test_reruns": 0,
+  "actions_completion_confirmed": true,
+  "arm_compiles": 0,
+  "artifact": {
+    "digest": "sha256:69ae7e9324bd5cbe2772b296de53bf0ae1ce89ac69876b1493ccfed782ca9370",
+    "id": 10740527650,
+    "name": "pr16-learnset-egg-gameplay-proof",
+    "size_in_bytes": 28196
+  },
+  "bag_reruns": 0,
+  "battle_reruns": 0,
+  "candidate": {
+    "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+    "size": 33554432
+  },
+  "compiled_sources": {
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "completed_actions_path": "content/modernization/pr16_learnset_impact_completed_actions.json",
+  "completed_job_id": 107104139470,
+  "failures": [],
+  "fresh_cores": 24,
+  "generated_sources": {
+    "controller.c": {
+      "sha256": "d3eac4e7348c9cbd1d95ef35910433c9759cddce42489096f2d14b273d0e240b",
+      "size": 20004
+    },
+    "p03_learning_embedded.c": {
+      "sha256": "ff7d026ba5d5dd4879f4e625e10f816a20847224c82e8aa2fa3486db77790ec1",
+      "size": 8000
+    },
+    "p03_p02_embedded.c": {
+      "sha256": "2775267b2955b3120bafcce39a7b9c01ef508c8df8a97343d05cc8668f7a2e0d",
+      "size": 39682
+    },
+    "p03a_fullslots_embedded.c": {
+      "sha256": "53f2d9dd2297fc11f802aca8f43bdeb2a60dd464f89a7daeebc1febf07270bee",
+      "size": 12881
+    },
+    "p03b_archive_embedded.c": {
+      "sha256": "8c15bcfddbf88f460e5c1f5029f5103f42f2b4296b36dcf23289ce9289c925c0",
+      "size": 20167
+    }
+  },
+  "host_compiles": 1,
+  "issue19_complete": false,
+  "native_processes": 8,
+  "new_unit_tests": 18,
+  "next_step_ja": "Issue19: 条件付きタマゴの8ケースは保存原本/最新Actionsから判定し、成功ケースを繰り返さない。次はBag一覧/summary撮影の限定修復と、未受入consumerの変更影響を絞る。Bag23/通常戦闘/Wiki/4hook/ARM/PLA1/PLC2の再実行禁止。",
+  "oracle": {
+    "canonical_pp": {
+      "0": 0,
+      "1": 35,
+      "175": 15,
+      "204": 20,
+      "273": 10,
+      "343": 25,
+      "344": 15,
+      "39": 30,
+      "539": 20,
+      "549": 15,
+      "69": 20,
+      "84": 30
+    },
+    "conditional_not_flattened": true,
+    "light_ball_item": 202,
+    "luck_incense_item": 862,
+    "source_spans": {
+      "24/egg": {
+        "moves": [
+          175,
+          217,
+          252,
+          268,
+          273,
+          321,
+          549
+        ],
+        "pool": {
+          "sha256": "7771fdc2a6d96d1f467f36137abea69571000837ee14fa44afab124bb01f81d3",
+          "size": 11678
+        },
+        "row": {
+          "consumer": "egg",
+          "payload": {
+            "file": "egg.bin",
+            "offset": 312,
+            "size": 16
+          },
+          "routes": 8,
+          "species_id": 24,
+          "species_key": "SPECIES_KEY_PICHU",
+          "status": "PAYLOAD_PREPARED_NOT_INSTALLED"
+        },
+        "span": {
+          "sha256": "4952e45893bb43a5a3d0cd4d9e12db4ea1374f9141b3e7386248c4a34f5e477d",
+          "size": 16
+        }
+      },
+      "24/level_up": {
+        "moves": [
+          39,
+          84
+        ],
+        "pool": {
+          "sha256": "f83ccf22b312ed46dbc4c3dd965f27360d040d7b6aadc7eb53c1549a3f8d556f",
+          "size": 69165
+        },
+        "row": {
+          "consumer": "level_up",
+          "payload": {
+            "file": "level_up.bin",
+            "offset": 1227,
+            "size": 24
+          },
+          "routes": 7,
+          "species_id": 24,
+          "species_key": "SPECIES_KEY_PICHU",
+          "status": "PAYLOAD_PREPARED_NOT_INSTALLED"
+        },
+        "span": {
+          "sha256": "2aac2579a03b8f24179902ed018a8df612aec49dca3526353db10fac01d1f30f",
+          "size": 24
+        }
+      },
+      "364/egg": {
+        "moves": [
+          69,
+          215,
+          217,
+          716
+        ],
+        "pool": {
+          "sha256": "7771fdc2a6d96d1f467f36137abea69571000837ee14fa44afab124bb01f81d3",
+          "size": 11678
+        },
+        "row": {
+          "consumer": "egg",
+          "payload": {
+            "file": "egg.bin",
+            "offset": 4762,
+            "size": 10
+          },
+          "routes": 4,
+          "species_id": 364,
+          "species_key": "SPECIES_KEY_HAPPINY",
+          "status": "PAYLOAD_PREPARED_NOT_INSTALLED"
+        },
+        "span": {
+          "sha256": "d32e464a4902b0a9916c0c6ec3ef70ee35a8ce988fc60d54ea455f1bd6d12c3b",
+          "size": 10
+        }
+      },
+      "364/level_up": {
+        "moves": [
+          1,
+          539
+        ],
+        "pool": {
+          "sha256": "f83ccf22b312ed46dbc4c3dd965f27360d040d7b6aadc7eb53c1549a3f8d556f",
+          "size": 69165
+        },
+        "row": {
+          "consumer": "level_up",
+          "payload": {
+            "file": "level_up.bin",
+            "offset": 16977,
+            "size": 24
+          },
+          "routes": 7,
+          "species_id": 364,
+          "species_key": "SPECIES_KEY_HAPPINY",
+          "status": "PAYLOAD_PREPARED_NOT_INSTALLED"
+        },
+        "span": {
+          "sha256": "067d2fc53ddd70a7c80ad6acb8b70a57f6bad183228e5cfb0bdbfc74d65720e2",
+          "size": 24
+        }
+      },
+      "365/egg": {
+        "moves": [],
+        "pool": {
+          "sha256": "7771fdc2a6d96d1f467f36137abea69571000837ee14fa44afab124bb01f81d3",
+          "size": 11678
+        },
+        "row": {
+          "consumer": "egg",
+          "payload": {
+            "file": "egg.bin",
+            "offset": 4772,
+            "size": 2
+          },
+          "routes": 0,
+          "species_id": 365,
+          "species_key": "SPECIES_KEY_CHANSEY",
+          "status": "PAYLOAD_PREPARED_NOT_INSTALLED"
+        },
+        "span": {
+          "sha256": "9c52d369ab48bebe8bb662d9c0f815cb4370d197110bf47e28d91a02ac0a0790",
+          "size": 2
+        }
+      },
+      "365/level_up": {
+        "moves": [
+          1,
+          111,
+          186,
+          204,
+          343,
+          539,
+          549
+        ],
+        "pool": {
+          "sha256": "f83ccf22b312ed46dbc4c3dd965f27360d040d7b6aadc7eb53c1549a3f8d556f",
+          "size": 69165
+        },
+        "row": {
+          "consumer": "level_up",
+          "payload": {
+            "file": "level_up.bin",
+            "offset": 17001,
+            "size": 63
+          },
+          "routes": 20,
+          "species_id": 365,
+          "species_key": "SPECIES_KEY_CHANSEY",
+          "status": "PAYLOAD_PREPARED_NOT_INSTALLED"
+        },
+        "span": {
+          "sha256": "581882455b103ca080d4634f6548909d2ad5e5ca24b6ff578f808bf9ad5e967a",
+          "size": 63
+        }
+      }
+    }
+  },
+  "proof_bindings": {
+    "compile.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "duplicate-full-control.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "duplicate-full-control.stderr.txt": {
+      "sha256": "66a6355534c626fc3980b568619c23abf9f9942caf5ec812b8901841c3c51e45",
+      "size": 2204
+    },
+    "duplicate-full-control.stdout.txt": {
+      "sha256": "bbf2542edae426f00165a5ca1d9ba6f76b50531d8b76ec56a66fa552b5a66998",
+      "size": 1190
+    },
+    "executed-controller.c": {
+      "sha256": "d3eac4e7348c9cbd1d95ef35910433c9759cddce42489096f2d14b273d0e240b",
+      "size": 20004
+    },
+    "father-incense-removed.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "father-incense-removed.stderr.txt": {
+      "sha256": "698efc56b488393be33e11f7b59973fb157c4fa0ab856b3e1ff934b8eecdb350",
+      "size": 4981
+    },
+    "father-incense-removed.stdout.txt": {
+      "sha256": "4fc2d3ccb5fbf4ddf1bbd91a7d82a3eb8d05cdcb80c113279e2f52a16ee8b1bf",
+      "size": 1188
+    },
+    "lightball-father.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "lightball-father.stderr.txt": {
+      "sha256": "a059ff6b2dc5021a8954254406f98b299b8bfd10853e5f5429f639cc8a3bb96a",
+      "size": 2212
+    },
+    "lightball-father.stdout.txt": {
+      "sha256": "85eb3263fd280b267623e184c0e6de3cc892c37cf1d04cfa0b7c173787dc485a",
+      "size": 1187
+    },
+    "lightball-mother.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "lightball-mother.stderr.txt": {
+      "sha256": "a059ff6b2dc5021a8954254406f98b299b8bfd10853e5f5429f639cc8a3bb96a",
+      "size": 2212
+    },
+    "lightball-mother.stdout.txt": {
+      "sha256": "0a56f76b742d7fc918f9611c0a11dffb7067852565d60557ab4e30722905e225",
+      "size": 1187
+    },
+    "lightball-only-removed.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "lightball-only-removed.stderr.txt": {
+      "sha256": "cc1e709eea6a1f183875d013d18867fe869eb15433a626cb0c84a5bcd067cda7",
+      "size": 2180
+    },
+    "lightball-only-removed.stdout.txt": {
+      "sha256": "27af2c770313f9cff1be5f636ab05bec53d8158daf8e0afae700554e70591826",
+      "size": 1189
+    },
+    "mother-incense-eligible.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "mother-incense-eligible.stderr.txt": {
+      "sha256": "1bc2f01be5f1a09a92e223902d54dbbac53d3a8a28db9f46ab45cda98c785cb0",
+      "size": 4997
+    },
+    "mother-incense-eligible.stdout.txt": {
+      "sha256": "edd781ea37f5eea8429e51a59103acab50d0855906fca1464064bebf91c5a6a6",
+      "size": 1191
+    },
+    "no-incense-control.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "no-incense-control.stderr.txt": {
+      "sha256": "7ecb8cef4c41c86f838199300153c4f724815541f15d20e6b37aa2cde6f84a2a",
+      "size": 5045
+    },
+    "no-incense-control.stdout.txt": {
+      "sha256": "8ce1a979c66e2d27bb49aefbb8d9b8c753549d589f192690ba62a7571b4229d3",
+      "size": 1190
+    },
+    "no-lightball-removed.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "no-lightball-removed.stderr.txt": {
+      "sha256": "545e5c70fc0f27b978329b51ae89b6bebeaaa64b55bb8cc5b3028ff0b5838e76",
+      "size": 2156
+    },
+    "no-lightball-removed.stdout.txt": {
+      "sha256": "8c8a3bb80453c5007525f80214a4b4789dfc773f26d129e7ecba5df1d183b649",
+      "size": 1182
+    },
+    "oracle.json": {
+      "sha256": "db5ad8286596b80a57941c5447a19f7afb60e95c5275c4b06a64f2f0623c9a66",
+      "size": 4314
+    },
+    "unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "unit.stderr.txt": {
+      "sha256": "47675694dd680d55f4d22d187b0380bd2d55cbebdc75d554ccac381ea61ad656",
+      "size": 2099
+    },
+    "unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    }
+  },
+  "protected_bindings": {
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_learnset_battle_checkpoint.json": {
+      "sha256": "a1f99fae7693dd5f51d34e774d9c6bf43985b7e9515226f747ec3230c24b8b59",
+      "size": 17707
+    },
+    "content/modernization/pr16_learnset_battle_completed_actions.json": {
+      "sha256": "58b0eae5ddd10a76d427e0574189bf20a0068104a8197abbba6abd2db2fda571",
+      "size": 4300
+    },
+    "content/modernization/pr16_learnset_gameplay_checkpoint.json": {
+      "sha256": "ea69013f782168a52a0a9f5936468f87b2afd34aa3625cf74223202c6054f878",
+      "size": 92196
+    },
+    "content/modernization/pr16_learnset_supply_native_checkpoint.json": {
+      "sha256": "75f6fd498056a7b2c60822fb99f2d36a47fd8eab0b8d0422e12dda58efc22dd8",
+      "size": 57961
+    },
+    "content/modernization/pr16_learnset_wiki_checkpoint.json": {
+      "sha256": "71b538f186b03ca3a725a84cd87baa41d72ca2ef0fb43ce22dec0e198cdefbe7",
+      "size": 45627
+    },
+    "content/modernization/pr16_learnset_wiki_completed_actions.json": {
+      "sha256": "4c200406ab0a3895a44a82cb81d71dde1f99aaa1a281eba1da3e851062bf1808",
+      "size": 9673
+    }
+  },
+  "public_evidence_bindings": {
+    "compile.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "duplicate-full-control.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "duplicate-full-control.stderr.txt": {
+      "sha256": "66a6355534c626fc3980b568619c23abf9f9942caf5ec812b8901841c3c51e45",
+      "size": 2204
+    },
+    "duplicate-full-control.stdout.txt": {
+      "sha256": "bbf2542edae426f00165a5ca1d9ba6f76b50531d8b76ec56a66fa552b5a66998",
+      "size": 1190
+    },
+    "executed-controller.c": {
+      "sha256": "d3eac4e7348c9cbd1d95ef35910433c9759cddce42489096f2d14b273d0e240b",
+      "size": 20004
+    },
+    "father-incense-removed.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "father-incense-removed.stderr.txt": {
+      "sha256": "698efc56b488393be33e11f7b59973fb157c4fa0ab856b3e1ff934b8eecdb350",
+      "size": 4981
+    },
+    "father-incense-removed.stdout.txt": {
+      "sha256": "4fc2d3ccb5fbf4ddf1bbd91a7d82a3eb8d05cdcb80c113279e2f52a16ee8b1bf",
+      "size": 1188
+    },
+    "lightball-father.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "lightball-father.stderr.txt": {
+      "sha256": "a059ff6b2dc5021a8954254406f98b299b8bfd10853e5f5429f639cc8a3bb96a",
+      "size": 2212
+    },
+    "lightball-father.stdout.txt": {
+      "sha256": "85eb3263fd280b267623e184c0e6de3cc892c37cf1d04cfa0b7c173787dc485a",
+      "size": 1187
+    },
+    "lightball-mother.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "lightball-mother.stderr.txt": {
+      "sha256": "a059ff6b2dc5021a8954254406f98b299b8bfd10853e5f5429f639cc8a3bb96a",
+      "size": 2212
+    },
+    "lightball-mother.stdout.txt": {
+      "sha256": "0a56f76b742d7fc918f9611c0a11dffb7067852565d60557ab4e30722905e225",
+      "size": 1187
+    },
+    "lightball-only-removed.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "lightball-only-removed.stderr.txt": {
+      "sha256": "cc1e709eea6a1f183875d013d18867fe869eb15433a626cb0c84a5bcd067cda7",
+      "size": 2180
+    },
+    "lightball-only-removed.stdout.txt": {
+      "sha256": "27af2c770313f9cff1be5f636ab05bec53d8158daf8e0afae700554e70591826",
+      "size": 1189
+    },
+    "mother-incense-eligible.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "mother-incense-eligible.stderr.txt": {
+      "sha256": "1bc2f01be5f1a09a92e223902d54dbbac53d3a8a28db9f46ab45cda98c785cb0",
+      "size": 4997
+    },
+    "mother-incense-eligible.stdout.txt": {
+      "sha256": "edd781ea37f5eea8429e51a59103acab50d0855906fca1464064bebf91c5a6a6",
+      "size": 1191
+    },
+    "no-incense-control.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "no-incense-control.stderr.txt": {
+      "sha256": "7ecb8cef4c41c86f838199300153c4f724815541f15d20e6b37aa2cde6f84a2a",
+      "size": 5045
+    },
+    "no-incense-control.stdout.txt": {
+      "sha256": "8ce1a979c66e2d27bb49aefbb8d9b8c753549d589f192690ba62a7571b4229d3",
+      "size": 1190
+    },
+    "no-lightball-removed.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "no-lightball-removed.stderr.txt": {
+      "sha256": "545e5c70fc0f27b978329b51ae89b6bebeaaa64b55bb8cc5b3028ff0b5838e76",
+      "size": 2156
+    },
+    "no-lightball-removed.stdout.txt": {
+      "sha256": "8c8a3bb80453c5007525f80214a4b4789dfc773f26d129e7ecba5df1d183b649",
+      "size": 1182
+    },
+    "oracle.json": {
+      "sha256": "db5ad8286596b80a57941c5447a19f7afb60e95c5275c4b06a64f2f0623c9a66",
+      "size": 4314
+    },
+    "unit.process.json": {
+      "sha256": "6b54b527fe94cb273d14dc7cd8dbf7e95580f9ae22fa7f3f119ec85099a49485",
+      "size": 44
+    },
+    "unit.stderr.txt": {
+      "sha256": "47675694dd680d55f4d22d187b0380bd2d55cbebdc75d554ccac381ea61ad656",
+      "size": 2099
+    },
+    "unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "verification.json": {
+      "sha256": "2c76a19e7869ec54642d19971f7c5be16830b8675d2867a5588846bdbb15790f",
+      "size": 27573
+    }
+  },
+  "public_evidence_path": "content/modernization/pr16_learnset_egg_gameplay_evidence/35837431004",
+  "reflected_head": "3e05281b8adc824f736a6f3c712d346e65afbc90",
+  "release_ready": false,
+  "results": [
+    {
+      "all_breeding_paths_accepted": false,
+      "case": "duplicate-full-control",
+      "child_level": 1,
+      "child_species": 24,
+      "egg_and_hatched_save_reload": true,
+      "father_item": 0,
+      "fresh_cores": 3,
+      "full_p03_acceptance": false,
+      "generation_steps": 509,
+      "hatch_callback_frames": 525,
+      "hatch_clock_start": 22,
+      "hatch_state_mask": 8191,
+      "hatch_steps": 2793,
+      "host_write_barriers": 7,
+      "initial_egg_cycles": 10,
+      "manual_save_counter_delta": 2,
+      "mother_item": 0,
+      "moves": [
+        39,
+        84,
+        175,
+        273
+      ],
+      "native_hatch": true,
+      "native_hatch_save_counter_delta": 1,
+      "ordinary_claim": true,
+      "ordinary_deposit": true,
+      "parent_fixture_only": true,
+      "parent_queue_byte_identity": true,
+      "pp": [
+        30,
+        30,
+        15,
+        10
+      ],
+      "release_ready": false,
+      "rom_sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "rtc_flash_bytes_preserved": 131072,
+      "schema_version": 1,
+      "scope": "ISSUE19_CONDITIONAL_EGG_DAYCARE_HATCH_SAVE_CONTINUE",
+      "status": "PASS",
+      "total_frames": 134876,
+      "total_save_counter_delta": 3,
+      "warnings_errors": 0,
+      "witness": {
+        "claim_menu": 20827,
+        "claimed": 21280,
+        "deposit_menu": 446,
+        "egg_reloaded": 25894,
+        "egg_saved": 23472,
+        "first_deposit": 759,
+        "generated": 20220,
+        "hatch_begin": 129880,
+        "hatch_end": 130992,
+        "hatch_reloaded": 134876,
+        "hatch_saved": 132454,
+        "nickname": 130256,
+        "second_deposit": 1299
+      }
+    },
+    {
+      "all_breeding_paths_accepted": false,
+      "case": "father-incense-removed",
+      "child_level": 1,
+      "child_species": 364,
+      "egg_and_hatched_save_reload": true,
+      "father_item": 862,
+      "fresh_cores": 3,
+      "full_p03_acceptance": false,
+      "generation_steps": 509,
+      "hatch_callback_frames": 454,
+      "hatch_clock_start": 22,
+      "hatch_state_mask": 6143,
+      "hatch_steps": 10473,
+      "host_write_barriers": 7,
+      "initial_egg_cycles": 40,
+      "manual_save_counter_delta": 2,
+      "mother_item": 0,
+      "moves": [
+        1,
+        539,
+        0,
+        0
+      ],
+      "native_hatch": true,
+      "native_hatch_save_counter_delta": 1,
+      "ordinary_claim": true,
+      "ordinary_deposit": true,
+      "parent_fixture_only": true,
+      "parent_queue_byte_identity": true,
+      "pp": [
+        35,
+        20,
+        0,
+        0
+      ],
+      "release_ready": false,
+      "rom_sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "rtc_flash_bytes_preserved": 131072,
+      "schema_version": 1,
+      "scope": "ISSUE19_CONDITIONAL_EGG_DAYCARE_HATCH_SAVE_CONTINUE",
+      "status": "PASS",
+      "total_frames": 419069,
+      "total_save_counter_delta": 3,
+      "warnings_errors": 0,
+      "witness": {
+        "claim_menu": 20827,
+        "claimed": 21280,
+        "deposit_menu": 446,
+        "egg_reloaded": 25894,
+        "egg_saved": 23472,
+        "first_deposit": 759,
+        "generated": 20220,
+        "hatch_begin": 414142,
+        "hatch_end": 415185,
+        "hatch_reloaded": 419069,
+        "hatch_saved": 416647,
+        "nickname": 414553,
+        "second_deposit": 1299
+      }
+    },
+    {
+      "all_breeding_paths_accepted": false,
+      "case": "lightball-father",
+      "child_level": 1,
+      "child_species": 24,
+      "egg_and_hatched_save_reload": true,
+      "father_item": 202,
+      "fresh_cores": 3,
+      "full_p03_acceptance": false,
+      "generation_steps": 509,
+      "hatch_callback_frames": 525,
+      "hatch_clock_start": 22,
+      "hatch_state_mask": 8191,
+      "hatch_steps": 2793,
+      "host_write_barriers": 7,
+      "initial_egg_cycles": 10,
+      "manual_save_counter_delta": 2,
+      "mother_item": 0,
+      "moves": [
+        84,
+        175,
+        273,
+        344
+      ],
+      "native_hatch": true,
+      "native_hatch_save_counter_delta": 1,
+      "ordinary_claim": true,
+      "ordinary_deposit": true,
+      "parent_fixture_only": true,
+      "parent_queue_byte_identity": true,
+      "pp": [
+        30,
+        15,
+        10,
+        15
+      ],
+      "release_ready": false,
+      "rom_sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "rtc_flash_bytes_preserved": 131072,
+      "schema_version": 1,
+      "scope": "ISSUE19_CONDITIONAL_EGG_DAYCARE_HATCH_SAVE_CONTINUE",
+      "status": "PASS",
+      "total_frames": 134876,
+      "total_save_counter_delta": 3,
+      "warnings_errors": 0,
+      "witness": {
+        "claim_menu": 20827,
+        "claimed": 21280,
+        "deposit_menu": 446,
+        "egg_reloaded": 25894,
+        "egg_saved": 23472,
+        "first_deposit": 759,
+        "generated": 20220,
+        "hatch_begin": 129880,
+        "hatch_end": 130992,
+        "hatch_reloaded": 134876,
+        "hatch_saved": 132454,
+        "nickname": 130256,
+        "second_deposit": 1299
+      }
+    },
+    {
+      "all_breeding_paths_accepted": false,
+      "case": "lightball-mother",
+      "child_level": 1,
+      "child_species": 24,
+      "egg_and_hatched_save_reload": true,
+      "father_item": 0,
+      "fresh_cores": 3,
+      "full_p03_acceptance": false,
+      "generation_steps": 509,
+      "hatch_callback_frames": 525,
+      "hatch_clock_start": 22,
+      "hatch_state_mask": 8191,
+      "hatch_steps": 2793,
+      "host_write_barriers": 7,
+      "initial_egg_cycles": 10,
+      "manual_save_counter_delta": 2,
+      "mother_item": 202,
+      "moves": [
+        84,
+        175,
+        273,
+        344
+      ],
+      "native_hatch": true,
+      "native_hatch_save_counter_delta": 1,
+      "ordinary_claim": true,
+      "ordinary_deposit": true,
+      "parent_fixture_only": true,
+      "parent_queue_byte_identity": true,
+      "pp": [
+        30,
+        15,
+        10,
+        15
+      ],
+      "release_ready": false,
+      "rom_sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "rtc_flash_bytes_preserved": 131072,
+      "schema_version": 1,
+      "scope": "ISSUE19_CONDITIONAL_EGG_DAYCARE_HATCH_SAVE_CONTINUE",
+      "status": "PASS",
+      "total_frames": 134876,
+      "total_save_counter_delta": 3,
+      "warnings_errors": 0,
+      "witness": {
+        "claim_menu": 20827,
+        "claimed": 21280,
+        "deposit_menu": 446,
+        "egg_reloaded": 25894,
+        "egg_saved": 23472,
+        "first_deposit": 759,
+        "generated": 20220,
+        "hatch_begin": 129880,
+        "hatch_end": 130992,
+        "hatch_reloaded": 134876,
+        "hatch_saved": 132454,
+        "nickname": 130256,
+        "second_deposit": 1299
+      }
+    },
+    {
+      "all_breeding_paths_accepted": false,
+      "case": "lightball-only-removed",
+      "child_level": 1,
+      "child_species": 24,
+      "egg_and_hatched_save_reload": true,
+      "father_item": 202,
+      "fresh_cores": 3,
+      "full_p03_acceptance": false,
+      "generation_steps": 509,
+      "hatch_callback_frames": 525,
+      "hatch_clock_start": 22,
+      "hatch_state_mask": 8191,
+      "hatch_steps": 2793,
+      "host_write_barriers": 7,
+      "initial_egg_cycles": 10,
+      "manual_save_counter_delta": 2,
+      "mother_item": 0,
+      "moves": [
+        39,
+        84,
+        344,
+        0
+      ],
+      "native_hatch": true,
+      "native_hatch_save_counter_delta": 1,
+      "ordinary_claim": true,
+      "ordinary_deposit": true,
+      "parent_fixture_only": true,
+      "parent_queue_byte_identity": true,
+      "pp": [
+        30,
+        30,
+        15,
+        0
+      ],
+      "release_ready": false,
+      "rom_sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "rtc_flash_bytes_preserved": 131072,
+      "schema_version": 1,
+      "scope": "ISSUE19_CONDITIONAL_EGG_DAYCARE_HATCH_SAVE_CONTINUE",
+      "status": "PASS",
+      "total_frames": 134875,
+      "total_save_counter_delta": 3,
+      "warnings_errors": 0,
+      "witness": {
+        "claim_menu": 20826,
+        "claimed": 21279,
+        "deposit_menu": 446,
+        "egg_reloaded": 25893,
+        "egg_saved": 23471,
+        "first_deposit": 759,
+        "generated": 20219,
+        "hatch_begin": 129879,
+        "hatch_end": 130991,
+        "hatch_reloaded": 134875,
+        "hatch_saved": 132453,
+        "nickname": 130255,
+        "second_deposit": 1299
+      }
+    },
+    {
+      "all_breeding_paths_accepted": false,
+      "case": "mother-incense-eligible",
+      "child_level": 1,
+      "child_species": 364,
+      "egg_and_hatched_save_reload": true,
+      "father_item": 0,
+      "fresh_cores": 3,
+      "full_p03_acceptance": false,
+      "generation_steps": 509,
+      "hatch_callback_frames": 454,
+      "hatch_clock_start": 22,
+      "hatch_state_mask": 6143,
+      "hatch_steps": 10473,
+      "host_write_barriers": 7,
+      "initial_egg_cycles": 40,
+      "manual_save_counter_delta": 2,
+      "mother_item": 862,
+      "moves": [
+        1,
+        539,
+        69,
+        0
+      ],
+      "native_hatch": true,
+      "native_hatch_save_counter_delta": 1,
+      "ordinary_claim": true,
+      "ordinary_deposit": true,
+      "parent_fixture_only": true,
+      "parent_queue_byte_identity": true,
+      "pp": [
+        35,
+        20,
+        20,
+        0
+      ],
+      "release_ready": false,
+      "rom_sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "rtc_flash_bytes_preserved": 131072,
+      "schema_version": 1,
+      "scope": "ISSUE19_CONDITIONAL_EGG_DAYCARE_HATCH_SAVE_CONTINUE",
+      "status": "PASS",
+      "total_frames": 419070,
+      "total_save_counter_delta": 3,
+      "warnings_errors": 0,
+      "witness": {
+        "claim_menu": 20827,
+        "claimed": 21280,
+        "deposit_menu": 446,
+        "egg_reloaded": 25894,
+        "egg_saved": 23472,
+        "first_deposit": 759,
+        "generated": 20220,
+        "hatch_begin": 414143,
+        "hatch_end": 415186,
+        "hatch_reloaded": 419070,
+        "hatch_saved": 416648,
+        "nickname": 414554,
+        "second_deposit": 1299
+      }
+    },
+    {
+      "all_breeding_paths_accepted": false,
+      "case": "no-incense-control",
+      "child_level": 1,
+      "child_species": 365,
+      "egg_and_hatched_save_reload": true,
+      "father_item": 0,
+      "fresh_cores": 3,
+      "full_p03_acceptance": false,
+      "generation_steps": 509,
+      "hatch_callback_frames": 530,
+      "hatch_clock_start": 22,
+      "hatch_state_mask": 8191,
+      "hatch_steps": 10473,
+      "host_write_barriers": 7,
+      "initial_egg_cycles": 40,
+      "manual_save_counter_delta": 2,
+      "mother_item": 0,
+      "moves": [
+        204,
+        343,
+        539,
+        549
+      ],
+      "native_hatch": true,
+      "native_hatch_save_counter_delta": 1,
+      "ordinary_claim": true,
+      "ordinary_deposit": true,
+      "parent_fixture_only": true,
+      "parent_queue_byte_identity": true,
+      "pp": [
+        20,
+        25,
+        20,
+        15
+      ],
+      "release_ready": false,
+      "rom_sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "rtc_flash_bytes_preserved": 131072,
+      "schema_version": 1,
+      "scope": "ISSUE19_CONDITIONAL_EGG_DAYCARE_HATCH_SAVE_CONTINUE",
+      "status": "PASS",
+      "total_frames": 419145,
+      "total_save_counter_delta": 3,
+      "warnings_errors": 0,
+      "witness": {
+        "claim_menu": 20827,
+        "claimed": 21280,
+        "deposit_menu": 446,
+        "egg_reloaded": 25894,
+        "egg_saved": 23472,
+        "first_deposit": 759,
+        "generated": 20220,
+        "hatch_begin": 414143,
+        "hatch_end": 415261,
+        "hatch_reloaded": 419145,
+        "hatch_saved": 416723,
+        "nickname": 414585,
+        "second_deposit": 1299
+      }
+    },
+    {
+      "all_breeding_paths_accepted": false,
+      "case": "no-lightball-removed",
+      "child_level": 1,
+      "child_species": 24,
+      "egg_and_hatched_save_reload": true,
+      "father_item": 0,
+      "fresh_cores": 3,
+      "full_p03_acceptance": false,
+      "generation_steps": 509,
+      "hatch_callback_frames": 525,
+      "hatch_clock_start": 22,
+      "hatch_state_mask": 8191,
+      "hatch_steps": 2793,
+      "host_write_barriers": 7,
+      "initial_egg_cycles": 10,
+      "manual_save_counter_delta": 2,
+      "mother_item": 0,
+      "moves": [
+        39,
+        84,
+        0,
+        0
+      ],
+      "native_hatch": true,
+      "native_hatch_save_counter_delta": 1,
+      "ordinary_claim": true,
+      "ordinary_deposit": true,
+      "parent_fixture_only": true,
+      "parent_queue_byte_identity": true,
+      "pp": [
+        30,
+        30,
+        0,
+        0
+      ],
+      "release_ready": false,
+      "rom_sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+      "rtc_flash_bytes_preserved": 131072,
+      "schema_version": 1,
+      "scope": "ISSUE19_CONDITIONAL_EGG_DAYCARE_HATCH_SAVE_CONTINUE",
+      "status": "PASS",
+      "total_frames": 134875,
+      "total_save_counter_delta": 3,
+      "warnings_errors": 0,
+      "witness": {
+        "claim_menu": 20826,
+        "claimed": 21279,
+        "deposit_menu": 446,
+        "egg_reloaded": 25893,
+        "egg_saved": 23471,
+        "first_deposit": 759,
+        "generated": 20219,
+        "hatch_begin": 129879,
+        "hatch_end": 130991,
+        "hatch_reloaded": 134875,
+        "hatch_saved": 132453,
+        "nickname": 130255,
+        "second_deposit": 1299
+      }
+    }
+  ],
+  "rom_changes": 0,
+  "run_id": 35837431004,
+  "schema_version": 1,
+  "scope": "ISSUE19_CONDITIONAL_EGG_DAYCARE_HATCH_SAVE_CONTINUE",
+  "source_bindings": {
+    ".github/workflows/pr16-learnset-egg-gameplay.yml": {
+      "sha256": "b92f2863bde8341cfe9054978909a4969bde1f1813b5ef2e5a564e7e05328127",
+      "size": 3085
+    },
+    "scripts/pr16_learnset_egg_gameplay.py": {
+      "sha256": "2466bd9816534f195824b91ba44412d155ec70d0422ed19fc56ee8ae23ee51d6",
+      "size": 21265
+    },
+    "tests/test_pr16_learnset_egg_gameplay.py": {
+      "sha256": "54e7a38f4f3e6f167d40e05f5ac8045526ce86e3d0e5b2366ad3186dc81027de",
+      "size": 4191
+    },
+    "tools/mgba_modernization_p03_breeding_e2e.c": {
+      "sha256": "a99cafd942f958c932709bed6099695f067dc292401b3bfb91e60afe4d6823de",
+      "size": 19614
+    }
+  },
+  "source_head": "d9227eeb0ff92e523e4d2f848909b50ec83f022f",
+  "status": "PASS_SCOPED",
+  "task": "USER-20260923-LEARNSET-EGG-GAMEPLAY",
+  "wiki_generations": 0
+}

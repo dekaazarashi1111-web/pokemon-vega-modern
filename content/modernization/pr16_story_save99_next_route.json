@@ -1,0 +1,423 @@
+{
+  "status": "SAVE99_DYNAMIC_RANGER_FRONT_REQUIRED_NOT_NATIVE",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "18de364bd911a9470965cf571e10aab899e8f4236bcaef327586e965b3a02b6b"
+  },
+  "map": [
+    3,
+    23
+  ],
+  "start": [
+    18,
+    28
+  ],
+  "facing": 3,
+  "route": null,
+  "interaction": null,
+  "ranger": {
+    "local_id": 9,
+    "xy": [
+      18,
+      27
+    ],
+    "script": 149013360,
+    "flag": 0,
+    "movement_type": 2,
+    "movement_ranges": [
+      2,
+      2
+    ],
+    "trainer_type": 0,
+    "trainer_range_or_berry_id": 0,
+    "raw": "0929000012001b00030222000000000070c3e10800000000"
+  },
+  "ranger_static_owner": {
+    "graph": {
+      "root_count": 1,
+      "unique_root_address_count": 1,
+      "visited_script_count": 4,
+      "nodes": [
+        {
+          "address": 143297480,
+          "end_reason": "end",
+          "instruction_count": 9,
+          "edges": [],
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "address": 149013360,
+          "end_reason": "goto",
+          "instruction_count": 7,
+          "edges": [
+            143297480,
+            149013380,
+            149013392
+          ],
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "address": 149013380,
+          "end_reason": "goto",
+          "instruction_count": 1,
+          "edges": [
+            143297480
+          ],
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "address": 149013392,
+          "end_reason": "end",
+          "instruction_count": 9,
+          "edges": [],
+          "roots": [
+            "Route505_local9"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "category": "flag",
+          "value": 4352,
+          "access": "clear",
+          "instruction_address": 149013407,
+          "opcode": 42,
+          "command": "clearflag",
+          "script_address": 149013392,
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4380,
+          "access": "read",
+          "instruction_address": 149013362,
+          "opcode": 43,
+          "command": "checkflag",
+          "script_address": 149013360,
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4382,
+          "access": "read",
+          "instruction_address": 149013371,
+          "opcode": 43,
+          "command": "checkflag",
+          "script_address": 149013360,
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "category": "map",
+          "value": [
+            3,
+            2
+          ],
+          "access": "warp",
+          "instruction_address": 149013410,
+          "opcode": 58,
+          "command": "warpsilent",
+          "map_id_class": "PHYSICAL",
+          "script_address": 149013392,
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "category": "special",
+          "value": 0,
+          "access": "call",
+          "instruction_address": 143297488,
+          "opcode": 37,
+          "command": "special",
+          "script_address": 143297480,
+          "roots": [
+            "Route505_local9"
+          ]
+        },
+        {
+          "category": "var",
+          "value": 16498,
+          "access": "write",
+          "instruction_address": 149013402,
+          "opcode": 22,
+          "command": "setvar",
+          "operand": 2,
+          "script_address": 149013392,
+          "roots": [
+            "Route505_local9"
+          ]
+        }
+      ],
+      "diagnostics": []
+    },
+    "instructions": [
+      {
+        "address": 143297480,
+        "opcode": 15,
+        "size": 6,
+        "hex": "0f0055bbe108",
+        "node": 143297480
+      },
+      {
+        "address": 143297486,
+        "opcode": 9,
+        "size": 2,
+        "hex": "0904",
+        "node": 143297480
+      },
+      {
+        "address": 143297488,
+        "opcode": 37,
+        "size": 3,
+        "hex": "250000",
+        "node": 143297480
+      },
+      {
+        "address": 143297491,
+        "opcode": 47,
+        "size": 3,
+        "hex": "2f5f00",
+        "node": 143297480
+      },
+      {
+        "address": 143297494,
+        "opcode": 48,
+        "size": 1,
+        "hex": "30",
+        "node": 143297480
+      },
+      {
+        "address": 143297495,
+        "opcode": 15,
+        "size": 6,
+        "hex": "0f00908b8a08",
+        "node": 143297480
+      },
+      {
+        "address": 143297501,
+        "opcode": 9,
+        "size": 2,
+        "hex": "0906",
+        "node": 143297480
+      },
+      {
+        "address": 143297503,
+        "opcode": 108,
+        "size": 1,
+        "hex": "6c",
+        "node": 143297480
+      },
+      {
+        "address": 143297504,
+        "opcode": 2,
+        "size": 1,
+        "hex": "02",
+        "node": 143297480
+      },
+      {
+        "address": 149013360,
+        "opcode": 106,
+        "size": 1,
+        "hex": "6a",
+        "node": 149013360
+      },
+      {
+        "address": 149013361,
+        "opcode": 90,
+        "size": 1,
+        "hex": "5a",
+        "node": 149013360
+      },
+      {
+        "address": 149013362,
+        "opcode": 43,
+        "size": 3,
+        "hex": "2b1c11",
+        "node": 149013360
+      },
+      {
+        "address": 149013365,
+        "opcode": 6,
+        "size": 6,
+        "hex": "060184c3e108",
+        "node": 149013360
+      },
+      {
+        "address": 149013371,
+        "opcode": 43,
+        "size": 3,
+        "hex": "2b1e11",
+        "node": 149013360
+      },
+      {
+        "address": 149013374,
+        "opcode": 6,
+        "size": 6,
+        "hex": "060190c3e108",
+        "node": 149013360
+      },
+      {
+        "address": 149013380,
+        "opcode": 5,
+        "size": 5,
+        "hex": "05c88b8a08",
+        "node": 149013360
+      },
+      {
+        "address": 149013380,
+        "opcode": 5,
+        "size": 5,
+        "hex": "05c88b8a08",
+        "node": 149013380
+      },
+      {
+        "address": 149013392,
+        "opcode": 15,
+        "size": 6,
+        "hex": "0f007fbbe108",
+        "node": 149013392
+      },
+      {
+        "address": 149013398,
+        "opcode": 9,
+        "size": 2,
+        "hex": "0902",
+        "node": 149013392
+      },
+      {
+        "address": 149013400,
+        "opcode": 151,
+        "size": 2,
+        "hex": "9701",
+        "node": 149013392
+      },
+      {
+        "address": 149013402,
+        "opcode": 22,
+        "size": 5,
+        "hex": "1672400200",
+        "node": 149013392
+      },
+      {
+        "address": 149013407,
+        "opcode": 42,
+        "size": 3,
+        "hex": "2a0011",
+        "node": 149013392
+      },
+      {
+        "address": 149013410,
+        "opcode": 58,
+        "size": 8,
+        "hex": "3a03029905001000",
+        "node": 149013392
+      },
+      {
+        "address": 149013418,
+        "opcode": 39,
+        "size": 1,
+        "hex": "27",
+        "node": 149013392
+      },
+      {
+        "address": 149013419,
+        "opcode": 108,
+        "size": 1,
+        "hex": "6c",
+        "node": 149013392
+      },
+      {
+        "address": 149013420,
+        "opcode": 2,
+        "size": 1,
+        "hex": "02",
+        "node": 149013392
+      }
+    ],
+    "texts": {
+      "149011285": {
+        "hex": "4a081a009f59737e7a7e8d84ae41fe0a1901102819009f59737e19fa1136030b2d000c1302292e41ff",
+        "decoded": "ぼくは ポケモンレンジャーだ\\nこのあたりの ポケモンの\\lちょうさを しているんだ"
+      },
+      "143297424": {
+        "hex": "1a02abfe072019009f59737efa15371047440012062a13fa02292603004150100627fa06021c08000b0e130005021026abff",
+        "decoded": "はい！\\nきみの ポケモン\\lながたびで つかれて\\lいるよう だったから\\lかいふく させて おいたよ！"
+      },
+      "149011327": {
+        "hex": "7079001a084812062e190025033d2e0627fe5d605277ae160072ae793700071026fb91896478552d0057849d61840c13fe20112d000109130023270446fa02022e412618acfb3d3401004a0816001202130713abff",
+        "decoded": "ミル はくぶつかんの ゆうじんから\\nスタイラーに メールが きたよ\\pダグトリオを キャプチャして\\nみちを あけて もらえば\\lいいんだよね？\\pじゃあ ぼくに ついてきて！"
+      }
+    }
+  },
+  "visual_observations": [
+    {
+      "lane": "progress",
+      "observation": 101,
+      "xy": [
+        20,
+        28
+      ]
+    },
+    {
+      "lane": "continue",
+      "observation": 0,
+      "xy": [
+        20,
+        28
+      ]
+    },
+    {
+      "lane": "continue",
+      "observation": 1,
+      "xy": [
+        20,
+        29
+      ]
+    }
+  ],
+  "runtime_object_array_observed": false,
+  "museum_admission_var4061": 1,
+  "paper_quantity": 0,
+  "paper_delivered_flag4382": true,
+  "paper_obtain_flag4383": true,
+  "completion_flag4380": false,
+  "money": 23114,
+  "walk_maintenance": {
+    "owner": "content/modernization/pr16_story_save98_walk_owner.json",
+    "happiness_counter": 91,
+    "poison_counter": 1,
+    "next_happiness_wrap_after_steps": 37
+  },
+  "script_effects_static_only": {
+    "var4072_after": 2,
+    "clear_expanded_flag4352": true,
+    "warp_map": [
+      3,
+      2
+    ],
+    "warp_xy": [
+      5,
+      16
+    ],
+    "healing_branch_taken": false
+  },
+  "native_event_accepted": false,
+  "transition_preflight_rule_ja": "warp-tableの座標だけで発火可能と判断しない。毎回固定ROMのtile behaviorと必要方向を確認し、通常着地/矢印/方向階段/境界connectionを区別する。実画面の出口は裏付け。無入力自動歩行は実測まで未確認。",
+  "next_action_ja": "Save99の18,28西から。Rangerは初期18,27ではなく実画面20,28、Continue120frame後20,29。まず移動NPCの実位置と正面隣接を確認してから通常A。北Aを盲送しない。4382set/4380falseの分岐は4072=2/4352clear/町3,2へwarp5,16だが未測定。会話→最初の新field→通常Save100/独立Continueで止める。回復台詞は別分岐であり今回の会話でHP/PP回復を仮定しない。61歩接近の再走なし。"
+}

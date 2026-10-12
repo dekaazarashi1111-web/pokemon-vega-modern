@@ -1,0 +1,391 @@
+{
+  "arm_builds": 0,
+  "candidate": {
+    "crc32": "CC068B4A",
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+    "size": 33554432
+  },
+  "local_sources": {
+    "overlays/qol_production/qol_production.c": {
+      "contexts": [
+        {
+          "end_line": 782,
+          "start_line": 774,
+          "text": "    case VEGA_QOL_EXP_CANDY_M_REPEAT:\n        return FN_FLAG_GET(FLAG_BADGE_6);\n    case VEGA_QOL_EXP_CANDY_L_SILVER_CAP:\n        return FN_FLAG_GET(FLAG_BADGE_7);\n    case VEGA_QOL_ABILITY_PATCH_ALL_MINTS:\n    case VEGA_QOL_EV_RESET_ITEMS:\n    case VEGA_QOL_STANDARD_TRAINING_SHOP:\n        return FN_FLAG_GET(FLAG_BADGE_8);\n    case VEGA_QOL_EXP_CANDY_XL_ONCE:\n"
+        }
+      ],
+      "sha256": "fc69ca2ff94e98ffb46f1b4117c73156683e83bbc777e9f8527c027c70399423",
+      "size": 164678
+    },
+    "overlays/qol_production/qol_production.h": {
+      "contexts": [
+        {
+          "end_line": 40,
+          "start_line": 32,
+          "text": "    VEGA_QOL_OVAL_CHARM,\n    VEGA_QOL_POWER_ITEMS,\n    VEGA_QOL_EXP_CANDY_M_REPEAT,\n    VEGA_QOL_EXP_CANDY_L_SILVER_CAP,\n    VEGA_QOL_ABILITY_PATCH_ALL_MINTS,\n    VEGA_QOL_EV_RESET_ITEMS,\n    VEGA_QOL_STANDARD_TRAINING_SHOP,\n    VEGA_QOL_EXP_CANDY_XL_ONCE,\n    VEGA_QOL_RESEARCH_PROFILE,\n"
+        }
+      ],
+      "sha256": "d659645003fc4da6611815f2071e83185a334a78f7e9981533135a9aef6fde7f",
+      "size": 7233
+    },
+    "scripts/build_battle_core.py": {
+      "contexts": [
+        {
+          "end_line": 60,
+          "start_line": 52,
+          "text": "    make_vega_species_model,\n)\nfrom tools.engine.cfru_move_effect_lowering import (  # noqa: E402\n    apply_required_native_patches,\n    lower_t04_move_effects,\n    validate_linked_adapter_disassembly,\n)\nfrom tools.engine.cfru_qol_runtime import build_qol_runtime  # noqa: E402\nfrom tools.engine.cfru_script_table_gate import (  # noqa: E402\n"
+        },
+        {
+          "end_line": 1178,
+          "start_line": 1170,
+          "text": "\ndef render_vega_effect_dispatch(move_model: Mapping[str, Any]) -> tuple[str, list[dict[str, int]]]:\n    \"\"\"T04 pending 70件をCFRU-native symbolへbindするresolverを生成する。\"\"\"\n\n    bundle = lower_t04_move_effects(move_model)\n    bindings = list(bundle[\"bindings\"])\n\n    lines = [\n        '#include \"defines_battle.h\"',\n"
+        },
+        {
+          "end_line": 1212,
+          "start_line": 1204,
+          "text": "    return source, bindings\n\n\ndef install_vega_effect_dispatch(tree: Path, move_model: Mapping[str, Any]) -> dict[str, Any]:\n    bundle = lower_t04_move_effects(move_model)\n    for logical, generated in bundle[\"sources\"].items():\n        destination = tree / logical\n        destination.parent.mkdir(parents=True, exist_ok=True)\n        destination.write_text(generated, encoding=\"utf-8\", newline=\"\\n\")\n"
+        },
+        {
+          "end_line": 4944,
+          "start_line": 4936,
+          "text": "def build(root: Path) -> dict[str, Any]:\n    config = _load_config(root)\n    fixed = validate_fixed_inputs(root, config)\n    moves, ids = _load_models(root, config)\n    move_effect_lowering = lower_t04_move_effects(moves)\n    runtime_moves = apply_native_effect_overrides(moves, move_effect_lowering)\n    patchset = _battle_patchset(root, config)\n    audit = list(patchset.selected_audit_rows())\n    fingerprint_inputs = _fingerprint_inputs(root, config, fixed)\n"
+        },
+        {
+          "end_line": 5473,
+          "start_line": 5465,
+          "text": "    if hook_metadata.get(\"coverage\") != coverage:\n        _fail(\"published changed-byte coverage snapshot differs\")\n\n    # Re-lower and inspect all 70 T04 effect adapters against the linked bytes.\n    lowering = lower_t04_move_effects(moves)\n    linked_effects = validate_linked_move_effect_adapters(\n        linked_reference, offsets, lowering, moves\n    )\n    move_effect_metadata = _mapping(\n"
+        }
+      ],
+      "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0",
+      "size": 239192
+    },
+    "scripts/build_move_port.py": {
+      "contexts": [
+        {
+          "end_line": 393,
+          "start_line": 385,
+          "text": "\n\ndef _z_effect_values(root: Path) -> dict[str, int]:\n    result = {\"0\": 0}\n    text = (root / \"vendor/upstream/CFRU-JP/include/new/z_move_effects.h\").read_text(\n        encoding=\"utf-8\"\n    )\n    for match in re.finditer(r\"^#define\\s+(Z_EFFECT_[A-Z0-9_]+)\\s+(\\d+)\\b\", text, re.MULTILINE):\n        result[match.group(1)] = int(match.group(2))\n"
+        }
+      ],
+      "sha256": "3880b373b32bbcd2340243f6aebc1927d1a42b84ca264a45468acdcc8993c0cd",
+      "size": 55655
+    },
+    "scripts/build_stage58_qol_world_convenience_debug.py": {
+      "contexts": [
+        {
+          "end_line": 1933,
+          "start_line": 1925,
+          "text": "        \"low_raid_unlock_rows\": sum(\n            row[\"key\"] == \"LOW_RAID_EXP_CANDY_XS_UNLOCK\" for row in rows\n        ),\n        \"ability_patch_reacquisition_rows\": sum(\n            row[\"key\"] == \"QOL_ABILITY_PATCH_REACQUISITION\" for row in rows\n        ),\n    }\n    if categories != {\n        \"collection_qol_owner_rows\": 47,\n"
+        }
+      ],
+      "sha256": "9178bd3b096bb1c6c395103631b5781e959f6226987c212d448106d2ad5c3176",
+      "size": 132743
+    },
+    "scripts/validate_manifests.py": {
+      "contexts": [
+        {
+          "end_line": 127,
+          "start_line": 119,
+          "text": "        'CAREFUL', 'SASSY', 'TIMID', 'HASTY', 'JOLLY', 'NAIVE', 'SERIOUS',\n    )\n}\n\nABILITY_ITEMS = {'ITEM_KEY_ABILITY_CAPSULE', 'ITEM_KEY_ABILITY_PATCH'}\nHYPER_TRAINING_ITEMS = {'ITEM_KEY_BOTTLE_CAP', 'ITEM_KEY_GOLD_BOTTLE_CAP'}\nOVAL_CHARM_ITEMS = {'ITEM_KEY_OVAL_CHARM'}\nEV_RESET_ITEMS = {\n    'ITEM_KEY_EV_RESET_HP',\n"
+        },
+        {
+          "end_line": 155,
+          "start_line": 147,
+          "text": "    'ITEM_KEY_DESTINY_KNOT': 'BREEDING_INHERIT_FIVE_IVS',\n    **{key: 'BREEDING_FORCE_IV' for key in BREEDING_ITEMS if key.startswith('ITEM_KEY_POWER_')},\n    **{key: 'NATURE_MODIFIER_SET_KEEP_PERSONALITY' for key in MINT_ITEMS},\n    'ITEM_KEY_ABILITY_CAPSULE': 'ABILITY_NORMAL_SWAP',\n    'ITEM_KEY_ABILITY_PATCH': 'ABILITY_HIDDEN_SET',\n    'ITEM_KEY_BOTTLE_CAP': 'HYPER_TRAIN_ONE',\n    'ITEM_KEY_GOLD_BOTTLE_CAP': 'HYPER_TRAIN_ALL',\n    'ITEM_KEY_OVAL_CHARM': 'BREEDING_CHECK_MULTIPLIER_X2_CAP100',\n    **{key: 'EV_SET_ZERO' for key in EV_RESET_ITEMS},\n"
+        }
+      ],
+      "sha256": "a5635aa6c3ef3dcd4326fed88da2ecc05e55bba2f5dc8bd2613d3753d6c7b8d3",
+      "size": 66866
+    }
+  },
+  "move_categories": {
+    "gBallBombMoves": [
+      488,
+      366,
+      140,
+      652,
+      331,
+      121,
+      605,
+      382,
+      381,
+      586,
+      301,
+      406,
+      296,
+      393,
+      190,
+      672,
+      767,
+      350,
+      403,
+      646,
+      372,
+      247,
+      188,
+      1047,
+      311,
+      192
+    ],
+    "gBitingMoves": [
+      44,
+      242,
+      424,
+      158,
+      423,
+      305,
+      675,
+      422,
+      751,
+      760
+    ],
+    "gDanceMoves": [
+      14,
+      80,
+      297,
+      298,
+      349,
+      553,
+      497,
+      523,
+      677,
+      762,
+      823,
+      995
+    ],
+    "gPowderMoves": [
+      178,
+      755,
+      77,
+      723,
+      537,
+      79,
+      147,
+      78
+    ],
+    "gPulseAuraMoves": [
+      366,
+      369,
+      376,
+      534,
+      589,
+      792,
+      352
+    ],
+    "gPunchingMoves": [
+      4,
+      5,
+      7,
+      8,
+      9,
+      146,
+      183,
+      223,
+      264,
+      309,
+      325,
+      327,
+      362,
+      379,
+      388,
+      642,
+      664,
+      734,
+      744,
+      804,
+      805,
+      824,
+      1015,
+      1027
+    ],
+    "gSlicingMoves": [
+      994,
+      15,
+      314,
+      373,
+      817,
+      768,
+      163,
+      421,
+      394,
+      1026,
+      494,
+      374,
+      619,
+      614,
+      682,
+      1054,
+      370,
+      332,
+      1016,
+      1024,
+      75,
+      1053,
+      831,
+      998,
+      348,
+      210
+    ],
+    "gSoundMoves": [
+      45,
+      46,
+      47,
+      48,
+      103,
+      173,
+      195,
+      215,
+      253,
+      304,
+      319,
+      320,
+      336,
+      375,
+      634,
+      580,
+      609,
+      618,
+      520,
+      629,
+      549,
+      631,
+      555,
+      635,
+      683,
+      655,
+      885,
+      762,
+      773,
+      809,
+      1039,
+      1059,
+      1062
+    ],
+    "gWindMoves": [
+      314,
+      177,
+      16,
+      833,
+      832,
+      196,
+      239,
+      834,
+      257,
+      569,
+      835,
+      18,
+      59,
+      518,
+      543,
+      318,
+      420
+    ]
+  },
+  "new_native_runs": 0,
+  "physicality_table": {
+    "blob_sha": "efadafd029731238469d204dbb0705a53a46efcd",
+    "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "file_sha256": "1506b69f4a524d21432d670e0c4f21e2a45d102edf06970ec994c11fb03fba8c",
+    "path": "assembly/data/move_tables.s",
+    "start_line": 1229,
+    "text": "gMovesThatChangePhysicality:\n.hword MOVE_PHOTONGEYSER\n.hword MOVE_LIGHT_THAT_BURNS_THE_SKY\n.hword MOVE_TABLES_TERMIN\n"
+  },
+  "rom_changes": 0,
+  "schema_version": 1,
+  "scope": "LOCKED_SOURCE_INVENTORY_NOT_RUNTIME_ACCEPTANCE",
+  "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+  "source_head": "ae92584b07317530ba585772be6fb9879102a94f",
+  "source_repository": "kapibarasan000/CFRU-JP",
+  "units": {
+    "CalcMoveSplit": {
+      "proof": {
+        "candidate_native_acceptance": "DEFERRED_AUDIT",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "end_line": 1529,
+        "evidence": "GENERATED_CANONICAL",
+        "file_sha256": "558c9a85d067e984c96bf83fb0c652a58df3b0b5fbf63620e4ea694195458ed3",
+        "path": "src/battle_util.c",
+        "repository": "kapibarasan000/CFRU-JP",
+        "start_line": 1498,
+        "symbol": "CalcMoveSplit",
+        "unit_sha256": "00c993929b4add1eabbabbd5b0143529d62fce724d6a4a3d3fa9c383b3ce92ba"
+      },
+      "text": "u8 CalcMoveSplit(u8 bankAtk, u16 move, u8 bankDef)\n{\n\tif ((CheckTableForMove(move, gMovesThatChangePhysicality)\n\t|| ((move == MOVE_TERABLAST || move == MOVE_TERASTARSTORM) && TeraTypeActive(bankAtk)))\n\t&&  SPLIT(move) != SPLIT_STATUS)\n\t{\n\t\tu32 attack = gBattleMons[bankAtk].attack;\n\t\tu32 spAttack = gBattleMons[bankAtk].spAttack;\n\n\t\tAPPLY_QUICK_STAT_MOD(attack, STAT_STAGE(bankAtk, STAT_STAGE_ATK));\n\t\tAPPLY_QUICK_STAT_MOD(spAttack, STAT_STAGE(bankAtk, STAT_STAGE_SPATK));\n\n\t\tif (spAttack >= attack)\n\t\t\treturn SPLIT_SPECIAL;\n\t\telse\n\t\t\treturn SPLIT_PHYSICAL;\n\t}\n\telse if (move == MOVE_SHELLSIDEARM\n\t&& bankAtk != bankDef) //Indicator to just use the base physicality\n\t{\n\t\treturn gNewBS->shellSideArmSplit[bankAtk][bankDef];\n\t}\n\n\t#ifdef OLD_MOVE_SPLIT\n\t\tif (gBattleMoves[move].type < TYPE_FIRE)\n\t\t\treturn SPLIT_PHYSICAL;\n\t\telse\n\t\t\treturn SPLIT_SPECIAL;\n\t#else\n\t\treturn SPLIT(move);\n\t#endif\n}\n"
+    },
+    "CanUseZMove": {
+      "proof": {
+        "candidate_native_acceptance": "DEFERRED_AUDIT",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "end_line": 306,
+        "evidence": "GENERATED_CANONICAL",
+        "file_sha256": "578ff365e1b8695303ee62fdc27745d537f1c3d5682053c0b6376a989d0c67b3",
+        "path": "src/set_z_effect.c",
+        "repository": "kapibarasan000/CFRU-JP",
+        "start_line": 259,
+        "symbol": "CanUseZMove",
+        "unit_sha256": "e1760477b18bad1660db676aab77f73286a6518e1860d21291b82301c78d4016"
+      },
+      "text": "move_t CanUseZMove(u8 bank, u8 moveIndex, u16 move)\n{\n\tif (IS_TRANSFORMED(bank))\n\t\treturn MOVE_NONE;\n\n\tif (move == MOVE_NONE)\n\t\tmove = gBattleMons[bank].moves[moveIndex];\n\n\t#if (defined VAR_KEYSTONE && !defined DEBUG_MEGA)\n\t//Z-Moves can't be used until receieving a Keystone\n\tif (!(gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_LINK))) //Z-Moves can always be used in these battles\n\t{\n\t\tu8 position = GetBattlerPosition(bank);\n\t\tif (position == B_POSITION_PLAYER_LEFT || (!IsTagBattle() && position == B_POSITION_PLAYER_RIGHT))\n\t\t{\n\t\t\tu16 keystone = VarGet(VAR_KEYSTONE);\n\t\t\tif (keystone == ITEM_NONE)\n\t\t\t\treturn MOVE_NONE;\n\t\t}\n\t}\n\t#endif\n\n\tif (IsMegaZMoveBannedBattle()\n\t|| IsMega(bank)\n\t|| IsRedPrimal(bank)\n\t|| IsBluePrimal(bank))\n\t\treturn MOVE_NONE;\n\n\tu16 item = GetBankPartyData(bank)->item; //Direct access for runtime speed\n\n\tif (IsZCrystal(item) || item == ITEM_ULTRANECROZIUM_Z) //The only \"Mega Stone\" that let's you use a Z-Move\n\t{\n\t\tu16 zMove = GetSpecialZMove(move, SPECIES(bank), item);\n\t\tif (zMove != MOVE_NONE && zMove != 0xFFFF) //There's a special Z-Move\n\t\t\treturn zMove;\n\n\t\tif (move != MOVE_NONE && zMove != 0xFFFF //Special Z-Crystal\n\t\t&& gBattleMoves[move].type == ItemId_GetHoldEffectParam(item))\n\t\t{\n\t\t\tif (SPLIT(move) == SPLIT_STATUS)\n\t\t\t\treturn 0xFFFF;\n\t\t\telse\n\t\t\t\treturn GetTypeBasedZMove(move, bank);\n\t\t}\n\t}\n\n\treturn MOVE_NONE;\n}\n"
+    },
+    "CreateWildMon": {
+      "proof": {
+        "candidate_native_acceptance": "DEFERRED_AUDIT",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "end_line": 379,
+        "evidence": "GENERATED_CANONICAL",
+        "file_sha256": "a2e57daf75961a550faa034e7f668443b519787d289044e5e0a32d3c933a6249",
+        "path": "src/wild_encounter.c",
+        "repository": "kapibarasan000/CFRU-JP",
+        "start_line": 289,
+        "symbol": "CreateWildMon",
+        "unit_sha256": "3836954ce303e44723007ac772cd808fd0ed5dd13be9a62f9dfb2eb3cf8813a8"
+      },
+      "text": "void CreateWildMon(u16 species, u8 level, u8 monHeaderIndex, bool8 purgeParty)\n{\n\tu8 enemyMonIndex = 0;\n\tbool8 checkCuteCharm = TRUE;\n\n\tif (purgeParty)\n\t\tZeroEnemyPartyMons();\n\telse\n\t\tenemyMonIndex = 1;\n\n\tswitch (gBaseStats[species].genderRatio) {\n\t\tcase MON_MALE:\n\t\tcase MON_FEMALE:\n\t\tcase MON_GENDERLESS:\n\t\t\tcheckCuteCharm = FALSE;\n\t\t\tbreak;\n\t}\n\n\tif (checkCuteCharm\n\t&& !GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL)\n\t&&  GetMonAbility(&gPlayerParty[0]) == ABILITY_CUTECHARM\n\t&& (Random() % 3) > 0) //2/3 of the time\n\t{\n\t\tu16 leadingMonSpecies = gPlayerParty[0].species;\n\t\tu32 leadingMonPersonality = gPlayerParty[0].personality;\n\t\tu8 gender = GetGenderFromSpeciesAndPersonality(leadingMonSpecies, leadingMonPersonality);\n\n\t\tif (gender == MON_FEMALE)\n\t\t\tgender = MON_MALE;\n\t\telse if (gender == MON_MALE)\n\t\t\tgender = MON_FEMALE;\n\t\telse //Genderless\n\t\t\tgoto REGULAR_NATURE_CREATION;\n\n\t\tCreateMonWithGenderNatureLetter(&gEnemyParty[enemyMonIndex], species, level, 32, gender, PickWildMonNature(), PickUnownLetter(species, monHeaderIndex));\n\t}\n\telse\n\t{\n\t\tREGULAR_NATURE_CREATION:\n\t\tCreateMonWithNatureLetter(&gEnemyParty[enemyMonIndex], species, level, 32, PickWildMonNature(), PickUnownLetter(species, monHeaderIndex));\n\t}\n\n\t#ifdef FLAG_HIDDEN_ABILITY\n\tif (FlagGet(FLAG_HIDDEN_ABILITY))\n\t\tgEnemyParty[enemyMonIndex].hiddenAbility = TRUE;\n\t#endif\n\n\t#ifdef FLAG_GIGANTAMAXABLE\n\tif (FlagGet(FLAG_GIGANTAMAXABLE))\n\t\tgEnemyParty[enemyMonIndex].gigantamax = TRUE;\n\t#endif\n\n\t#ifdef FLAG_CUSTOM_TERA_TYPE\n\tif (FlagGet(FLAG_CUSTOM_TERA_TYPE))\n\t\tgEnemyParty[enemyMonIndex].teratype = VarGet(Var8008);\n\t#endif\n\n\t#ifdef FLAG_WILD_CUSTOM_MOVES\n\t//Custom moves\n\tif (FlagGet(FLAG_WILD_CUSTOM_MOVES)\n\t#ifdef FLAG_POKEMON_RANDOMIZER\n\t&& (!FlagGet(FLAG_POKEMON_RANDOMIZER) //When species are changed, the custom moves no longer make sense\n\t#ifdef FLAG_TEMP_DISABLE_RANDOMIZER\n\t|| FlagGet(FLAG_TEMP_DISABLE_RANDOMIZER)\n\t#endif\n\t)\n\t#endif\n\t)\n\t{\n\t\tu16* moves = (enemyMonIndex == 0) ? &Var8000 : &Var8004;\n\t\tfor (int i = 0; i < MAX_MON_MOVES; ++i)\n\t\t{\n\t\t\tif (moves[i] != 0xFFFF)\n\t\t\t\tgEnemyParty[enemyMonIndex].moves[i] = moves[i];\n\t\t}\n\t}\n\t#endif\n\n\t//Prevent Uncatchable Shinies (they're mean)\n\tif (CantCatchBecauseFlag())\n\t{\n\t\twhile (IsMonShiny(&gEnemyParty[enemyMonIndex]))\n\t\t{\n\t\t\tu32 otId = Random(); //Randomize otId because it's not like the player can catch it anyway\n\t\t\tSetMonData(&gEnemyParty[enemyMonIndex], MON_DATA_OT_ID, &otId);\n\t\t}\n\t}\n\n\t//Status Inducers\n\tTryStatusInducer(&gEnemyParty[enemyMonIndex]);\n}\n"
+    },
+    "DetermineEggAbility": {
+      "proof": {
+        "candidate_native_acceptance": "DEFERRED_AUDIT",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "end_line": 650,
+        "evidence": "GENERATED_CANONICAL",
+        "file_sha256": "3533614a49b2025a299c6446b6fb303b2eeccd76dfc102dc8197097a1023fe5a",
+        "path": "src/daycare.c",
+        "repository": "kapibarasan000/CFRU-JP",
+        "start_line": 627,
+        "symbol": "DetermineEggAbility",
+        "unit_sha256": "99437dc3de3725af26be47fb75082c3bd3e4107e3591e02b31c6cf7fe2882ff8"
+      },
+      "text": "static void DetermineEggAbility(struct Pokemon* egg, unusedArg struct BoxPokemon* father, struct BoxPokemon* mother)\n{\n\t#ifdef SPECIES_DITTO\n\tif (GetBoxMonData(mother, MON_DATA_SPECIES, NULL) == SPECIES_DITTO)\n\t\tmother = father; //Get Hidden Ability from father instead\n\t#endif\n\n\tif (((struct Pokemon*) mother)->hiddenAbility)\n\t{\n\t\tif (Random() % 100 < 60) //60 % chance to pass down Hidden Ability\n\t\t\tegg->hiddenAbility = TRUE;\n\t}\n\telse\n\t{\n\t\tif (gBaseStats[GetMonData(egg, MON_DATA_SPECIES, NULL)].ability2)\n\t\t{\n\t\t\tu8 abilityNum = GetBoxMonData(mother, MON_DATA_ALT_ABILITY, NULL);\n\n\t\t\tif (Random() % 100 >= 80) //80 % chance to pass down slotted ability\n\t\t\t\tabilityNum ^= 1;\n\t\t\tSetMonData(egg, MON_DATA_ALT_ABILITY, &abilityNum);\n\t\t}\n\t}\n}\n"
+    },
+    "GetTypeBasedZMove": {
+      "proof": {
+        "candidate_native_acceptance": "DEFERRED_AUDIT",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "end_line": 203,
+        "evidence": "GENERATED_CANONICAL",
+        "file_sha256": "578ff365e1b8695303ee62fdc27745d537f1c3d5682053c0b6376a989d0c67b3",
+        "path": "src/set_z_effect.c",
+        "repository": "kapibarasan000/CFRU-JP",
+        "start_line": 190,
+        "symbol": "GetTypeBasedZMove",
+        "unit_sha256": "feaab49200ce21e4fa53d19e16d2ba59051f88c5aeb2a1e3ea0156f68b5cd8c7"
+      },
+      "text": "move_t GetTypeBasedZMove(u16 move, u8 bank)\n{\n\tu8 moveType = gBattleMoves[move].type;\n\n\tif (move == MOVE_WEATHERBALL || move == MOVE_AURAWHEEL || move == MOVE_TERRAINPULSE)\n\t\tmoveType = GetMoveTypeSpecial(bank, move);\n\n\tif (moveType < TYPE_FIRE)\n\t\treturn MOVE_BREAKNECK_BLITZ_P + (moveType * 2) + CalcMoveSplit(bank, move, bank);\n\telse if (moveType >= TYPE_FAIRY)\n\t\treturn MOVE_TWINKLE_TACKLE_P + ((moveType - TYPE_FAIRY) * 2) + CalcMoveSplit(bank, move, bank);\n\telse\n\t\treturn MOVE_BREAKNECK_BLITZ_P + ((moveType - 1) * 2) + CalcMoveSplit(bank, move, bank);\n}\n"
+    },
+    "ScriptGiveMon": {
+      "proof": {
+        "candidate_native_acceptance": "DEFERRED_AUDIT",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "end_line": 3936,
+        "evidence": "GENERATED_CANONICAL",
+        "file_sha256": "ac81e3a9a8c7a58105573e6ee2abf62a4b22922e88c6c7d3a1ecdc6c9431e824",
+        "path": "src/build_pokemon.c",
+        "repository": "kapibarasan000/CFRU-JP",
+        "start_line": 3844,
+        "symbol": "ScriptGiveMon",
+        "unit_sha256": "fc06ba1ffb91ef0c8759fe2becfc3bb24a4d406f84c42492b95469e5e8499e5f"
+      },
+      "text": "u8 ScriptGiveMon(u16 species, u8 level, u16 item, unusedArg u32 unused1, unusedArg u32 customGivePokemon, unusedArg u8 ballType)\n{\n\tu8 sentToPc;\n\tstruct Pokemon mon;\n\n\tCreateMon(&mon, species, level, 32, 0, 0, 0, 0);\n\tSetMonData(&mon, MON_DATA_HELD_ITEM, &item);\n\n\t#ifdef GIVEPOKEMON_BALL_HACK\n\tif (ballType != 0)\n\t\tmon.pokeball = ballType;\n\t#endif\n\n\t#ifdef FLAG_HIDDEN_ABILITY\n\tif (FlagGet(FLAG_HIDDEN_ABILITY))\n\t{\n\t\tmon.hiddenAbility = TRUE;\n\t\tFlagClear(FLAG_HIDDEN_ABILITY);\n\t}\n\t#endif\n\n\t#ifdef FLAG_GIGANTAMAXABLE\n\tif (FlagGet(FLAG_GIGANTAMAXABLE))\n\t{\n\t\tmon.gigantamax = TRUE;\n\t\tFlagClear(FLAG_GIGANTAMAXABLE);\n\t}\n\t#endif\n\n\t#ifdef FLAG_CUSTOM_TERA_TYPE\n\tif (FlagGet(FLAG_CUSTOM_TERA_TYPE))\n\t{\n\t\tmon.teratype = VarGet(Var8008);\n\t\tFlagClear(FLAG_CUSTOM_TERA_TYPE);\n\t}\n\t#endif\n\n\t#ifdef GIVEPOKEMON_CUSTOM_HACK\n\tif (customGivePokemon != 0)\n\t{\n\t\tu8 i;\n\t\tu16* moves = &Var8000; //-0x8003\n\t\tu8 nature = Var8004;\n\t\tbool8 shiny = Var8005;\n\t\tu16* ivs = &Var8006; //-0x800B\n\n\t\tfor (i = 0; i < MAX_MON_MOVES; ++i)\n\t\t{\n\t\t\tif (moves[i] < MOVES_COUNT)\n\t\t\t\tSetMonData(&mon, MON_DATA_MOVE1 + i, &moves[i]);\n\t\t}\n\n\t\tfor (i = 0; i < NUM_STATS; ++i)\n\t\t\tSetMonData(&mon, MON_DATA_HP_IV + i, &ivs[i]);\n\n\t\tif (nature >= NUM_NATURES)\n\t\t{\n\t\t\t#ifdef SYNCHRONIZE_GIFT_POKEMON\n\t\t\tif (GetMonAbility(&gPlayerParty[0]) == ABILITY_SYNCHRONIZE) //Lead has Synchronize\n\t\t\t\tnature = GetNature(&gPlayerParty[0]); //Match lead\n\t\t\telse\n\t\t\t#endif\n\t\t\tnature = Random() % NUM_NATURES;\n\t\t}\n\n\t\tGiveMonNatureAndAbility(&mon, nature, GetMonData(&mon, MON_DATA_PERSONALITY, NULL) & 1, shiny ? TRUE : IsMonShiny(&mon), FALSE, FALSE);\n\t\tCalculateMonStats(&mon);\n\t}\n\telse\n\t#endif\n\t{\n\t\t#ifdef SYNCHRONIZE_GIFT_POKEMON\n\t\tif (GetMonAbility(&gPlayerParty[0]) == ABILITY_SYNCHRONIZE) //Lead has Synchronize\n\t\t{\n\t\t\tu8 nature = GetNature(&gPlayerParty[0]); //Match lead\n\t\t\tGiveMonNatureAndAbility(&mon, nature, GetMonData(&mon, MON_DATA_PERSONALITY, NULL) & 1, IsMonShiny(&mon), FALSE, FALSE);\n\t\t\tCalculateMonStats(&mon);\n\t\t}\n\t\t#endif\n\t}\n\n\tHealMon(&mon);\n\tsentToPc = GiveMonToPlayer(&mon);\n\n\tswitch(sentToPc) {\n\t\tcase 0:\n\t\tcase 1:\n\t\t\tSetMonPokedexFlags(&mon);\n\t\t\tbreak;\n\t}\n\n\treturn sentToPc;\n}\n"
+    }
+  }
+}

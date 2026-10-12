@@ -1,0 +1,321 @@
+{
+  "status": "MEASURED_SAVE77_AWAITING_VISUAL_AND_INDEPENDENT_ACCEPTANCE",
+  "source_head": "4f11ebcc0481013051cf83c092fabc7737915b2f",
+  "run_id": 37172406819,
+  "input_save": {
+    "size": 131088,
+    "sha256": "10c7d4b96e2b36db13158ba3a8d8929caabac28275e98e01a93c586b0315d836"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "11632f541a4c8b6a7782c32b5e30b0c4c9414a8cc4323da0e263e6454cc867e6"
+  },
+  "inspection": {
+    "status": "STATIC_SAVE77_FIRST_DIGLETT_ONLY",
+    "preparation": {
+      "size": 6321,
+      "sha256": "d97cdbb24201f74045492997d429052196dd63e4ba42266376d936ade68f8c11"
+    },
+    "route": [
+      [
+        6,
+        18
+      ],
+      [
+        6,
+        17
+      ],
+      [
+        6,
+        16
+      ],
+      [
+        6,
+        15
+      ]
+    ],
+    "terrain": [
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          6,
+          18
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 101
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          6,
+          17
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          6,
+          16
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          6,
+          15
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      },
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          6,
+          14
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      }
+    ],
+    "interaction": {
+      "target": [
+        6,
+        14
+      ],
+      "local_id": 5,
+      "script": 141220048,
+      "visibility_flag": 4372,
+      "first_use_flag": 4378,
+      "button": "A",
+      "from_xy": [
+        6,
+        15
+      ],
+      "facing": 2
+    },
+    "initial_flags": {
+      "4372": 0,
+      "4373": 0,
+      "4374": 0,
+      "4375": 0,
+      "4376": 0,
+      "4377": 0,
+      "4378": 0
+    },
+    "expected_flag_changes": [
+      [
+        4372,
+        0,
+        1
+      ],
+      [
+        4378,
+        0,
+        1
+      ]
+    ],
+    "expected_removed_local_id": 5,
+    "instruction_count": 29,
+    "text_count": 2,
+    "native_route_accepted": false
+  },
+  "route": [
+    [
+      6,
+      18
+    ],
+    [
+      6,
+      17
+    ],
+    [
+      6,
+      16
+    ],
+    [
+      6,
+      15
+    ],
+    [
+      6,
+      15
+    ]
+  ],
+  "battle": null,
+  "teleport": [],
+  "frontier": {
+    "kind": "first_diglett_event",
+    "trigger": [
+      6,
+      14
+    ],
+    "map": [
+      10,
+      16
+    ],
+    "xy": [
+      6,
+      15
+    ],
+    "observation": 6,
+    "local_id": 5,
+    "facing": 2
+  },
+  "final": {
+    "observe": 28,
+    "frame": 2860,
+    "map": [
+      10,
+      16
+    ],
+    "xy": [
+      6,
+      15
+    ],
+    "live_xy": [
+      13,
+      22
+    ],
+    "facing": 2,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 77,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "39106a1e9a02c23433b376ad2a467b39df00d08854d241472355e0f6b337eb82",
+    "flash_sha256": "d3de224f91333e022626261d482a066f56985f988c9c8eac14d039738f6b68de",
+    "ledger_sha256": "6270e89696f6f9772615bafcb7f2c84ad3d0d37b78444c099e04d139a4e244b0"
+  },
+  "continued": {
+    "observe": 1,
+    "frame": 1510,
+    "map": [
+      10,
+      16
+    ],
+    "xy": [
+      6,
+      15
+    ],
+    "live_xy": [
+      13,
+      22
+    ],
+    "facing": 2,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 77,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "39106a1e9a02c23433b376ad2a467b39df00d08854d241472355e0f6b337eb82",
+    "flash_sha256": "d3de224f91333e022626261d482a066f56985f988c9c8eac14d039738f6b68de",
+    "ledger_sha256": "6027627107d4372b8f105caf2e5afbeafe1fe86b6d34bfb2a1931e0e3628f5bf"
+  },
+  "progress": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "10c7d4b96e2b36db13158ba3a8d8929caabac28275e98e01a93c586b0315d836"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "11632f541a4c8b6a7782c32b5e30b0c4c9414a8cc4323da0e263e6454cc867e6"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 2860,
+      "inputs": 54,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 29
+  },
+  "independent_continue": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "11632f541a4c8b6a7782c32b5e30b0c4c9414a8cc4323da0e263e6454cc867e6"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "11632f541a4c8b6a7782c32b5e30b0c4c9414a8cc4323da0e263e6454cc867e6"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 1510,
+      "inputs": 13,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 2
+  },
+  "screen_count": 31,
+  "native_processes": 2,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "rom_changes": 0,
+  "fixture_writes": 0,
+  "ordinary_saves": 1,
+  "cave_crossing_complete": true,
+  "outside_route503_reached": true,
+  "inner_floor_entered": true,
+  "hole_descent_observed": false,
+  "hole_descent_previously_accepted": true,
+  "mansion_exit_previously_accepted": true,
+  "gym_entry_previously_accepted": true,
+  "first_diglett_interacted": true,
+  "gym_entered": true,
+  "letter_consumer_resolved": true,
+  "letter_handoff_requires_badge": true,
+  "statue_paper_observed": true,
+  "paper_obtained": true,
+  "paper_consumed_or_delivered": false,
+  "paper_acceptance_pending": false,
+  "normal_recovery_required": false,
+  "pp_recovery_accepted": true,
+  "full_story_accepted": false,
+  "release_ready": false,
+  "artifact_excludes": [
+    "existing ROM",
+    "runner",
+    "runtime",
+    "input Save76"
+  ]
+}

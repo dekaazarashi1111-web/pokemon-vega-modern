@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "status": "PASS_TERMINAL_SOURCE_ONLY_JP_SYMBOL_GATE",
+  "source_head": "f9780b534f2562518c64d6a14d9950ef4e8402c5",
+  "parent_head": "8a7c82babf017ae1518b4a81c96d101e5c7faffd",
+  "tree_sha": "57819c828dfcd66b2407e084ab0de2da281e5fa9",
+  "workflow": ".github/workflows/pr16-dex-hof-jp-symbol-gate.yml",
+  "run_id": 37674533900,
+  "job_id": 112974501079,
+  "run_attempt": 1,
+  "conclusion": "success",
+  "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37674533900",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Fixed public source and complete deterministic report",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Japanese address and inherited English extent rejection",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Full checkout resume bindings",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Lightweight task graph and read-only checks",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actual_focused_tests": 34,
+  "full_checkout_resume_check": "PASS",
+  "task_graph": "PASS",
+  "read_only_tracked_check": "PASS",
+  "source_only": true,
+  "newly_classified": 0,
+  "classified": 779,
+  "unclassified": 95,
+  "rom_reconstructions": 0,
+  "native_processes": 0,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "donor_safe_bytes": 0,
+  "full_byte_readback_blobs": [
+    {
+      "path": "scripts/pr16_dex_hof_jp_symbol_gate.py",
+      "sha": "4d9a2583e354ea925a190481cc833824aa5a02cb"
+    },
+    {
+      "path": ".github/workflows/pr16-dex-hof-jp-symbol-gate.yml",
+      "sha": "8f69ed6e4533310adf438f62229a8d595cc1bb0b"
+    },
+    {
+      "path": "content/modernization/pr16_dex_hof_jp_symbol_gate_checkpoint.json",
+      "sha": "9dafc0b4b3ea4dea25b678d303b0607e2ecbb3e2"
+    },
+    {
+      "path": "docs/PR16_DEX_HOF_JP_SYMBOL_GATE_JA.md",
+      "sha": "bdd0d61eda1c8883a777b8657effd9ca43c5e33e"
+    },
+    {
+      "path": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+      "sha": "eb5d558831438241a073d0609585fc37604e498e"
+    },
+    {
+      "path": "tests/test_pr16_dex_hof_jp_symbol_gate.py",
+      "sha": "f6914b0ea736bc0891b968835fa6178093bf1182"
+    },
+    {
+      "path": "content/modernization/pr16_native_supply_resume_20260913.json",
+      "sha": "0af1e47c4c7e5fa0eeee0ffe0d60948ffa1b9c77"
+    },
+    {
+      "path": "design/run_log.md",
+      "sha": "097a4872c3ee2b3390c8a7062bfc8754c8072cb2"
+    },
+    {
+      "path": "design/version_log.md",
+      "sha": "c2bd2e199566b16b75e5de94def96315866368b5"
+    }
+  ],
+  "reference_update": {
+    "force": false,
+    "expected_old_head": "8a7c82babf017ae1518b4a81c96d101e5c7faffd",
+    "verified_new_head": "f9780b534f2562518c64d6a14d9950ef4e8402c5"
+  },
+  "automatic_other_runs": [
+    {
+      "run_id": 37674546588,
+      "workflow": ".github/workflows/ci.yml",
+      "event": "pull_request",
+      "conclusion": "failure",
+      "head_sha": "f9780b534f2562518c64d6a14d9950ef4e8402c5"
+    },
+    {
+      "run_id": 37674546570,
+      "workflow": ".github/workflows/p03-forgetting-ci.yml",
+      "event": "pull_request",
+      "conclusion": "success",
+      "head_sha": "f9780b534f2562518c64d6a14d9950ef4e8402c5"
+    },
+    {
+      "run_id": 37674533728,
+      "workflow": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "event": "push",
+      "conclusion": "success",
+      "head_sha": "f9780b534f2562518c64d6a14d9950ef4e8402c5"
+    },
+    {
+      "run_id": 37674533860,
+      "workflow": ".github/workflows/pr16-resume-maintenance.yml",
+      "event": "push",
+      "conclusion": "success",
+      "head_sha": "f9780b534f2562518c64d6a14d9950ef4e8402c5"
+    },
+    {
+      "run_id": 37674533828,
+      "workflow": ".github/workflows/ci.yml",
+      "event": "push",
+      "conclusion": "failure",
+      "head_sha": "f9780b534f2562518c64d6a14d9950ef4e8402c5"
+    },
+    {
+      "run_id": 37674533752,
+      "workflow": ".github/workflows/p03-forgetting-ci.yml",
+      "event": "push",
+      "conclusion": "success",
+      "head_sha": "f9780b534f2562518c64d6a14d9950ef4e8402c5"
+    },
+    {
+      "run_id": 37674534016,
+      "workflow": ".github/workflows/modernization-stage79-mgba.yml",
+      "event": "push",
+      "conclusion": "success",
+      "head_sha": "f9780b534f2562518c64d6a14d9950ef4e8402c5"
+    }
+  ],
+  "known_general_ci_source_binding_failure": "overlays/qol_production/qol_production.c",
+  "stage79_run": 37674534016,
+  "stage79_cached_domains": 7,
+  "stage79_new_domain_native_processes": 0,
+  "full_product_or_general_ci_pass_claimed": false
+}

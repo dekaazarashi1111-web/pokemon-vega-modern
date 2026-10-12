@@ -1,0 +1,62 @@
+name: pr16-story-acceleration-workbench
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-acceleration-workbench.yml]
+permissions:
+  contents: read
+concurrency:
+  group: pr16-story-acceleration-workbench
+  cancel-in-progress: false
+jobs:
+  source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Check unchanged resume and export exact tracked text
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py check
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess, zipfile
+          roots = {'scripts', 'tools', 'tests', 'src', 'config', 'manifests', 'content', 'infra', 'state', 'tasks', 'design', 'docs', '.github'}
+          suffixes = {'.py', '.c', '.h', '.s', '.S', '.json', '.md', '.toml', '.yml', '.yaml', '.sh', '.txt', '.inc', '.csv', '.tsv'}
+          files = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          manifest = {'source_head': os.environ['GITHUB_SHA'], 'run_id': int(os.environ['GITHUB_RUN_ID']), 'files': {}, 'native_processes': 0, 'accepted_case_reruns': 0, 'rom_changes': 0}
+          pathlib.Path('build/pr16-story-workbench').mkdir(parents=True, exist_ok=True)
+          with zipfile.ZipFile('build/pr16-story-workbench/source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for name in sorted(filter(None, files)):
+                  path = pathlib.Path(name)
+                  if name not in {'AGENTS.md', 'CHATGPT_RESUME.md', 'Makefile', 'pyproject.toml'}:
+                      if path.parts[0] not in roots or path.suffix not in suffixes:
+                          continue
+                      if any('evidence' in part or 'development' in part for part in path.parts[1:-1]) or name.startswith('docs/wiki/'):
+                          continue
+                  if path.is_symlink():
+                      continue
+                  raw = path.read_bytes()
+                  try:
+                      raw.decode('utf-8')
+                  except UnicodeDecodeError:
+                      continue
+                  if b'\0' in raw:
+                      continue
+                  archive.writestr(name, raw)
+                  manifest['files'][name] = {'sha256': hashlib.sha256(raw).hexdigest(), 'size': len(raw)}
+              archive.writestr('WORKBENCH_MANIFEST.json', json.dumps(manifest, indent=2) + '\n')
+          print('SOURCE_HEAD=' + manifest['source_head'])
+          print('TRACKED_TEXT_FILES=' + str(len(manifest['files'])))
+          print('NATIVE_PROCESSES=0 ACCEPTED_RERUNS=0 ROM_CHANGES=0')
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-story-workbench-${{ github.run_id }}
+          path: build/pr16-story-workbench/source.zip
+          if-no-files-found: error
+          retention-days: 7

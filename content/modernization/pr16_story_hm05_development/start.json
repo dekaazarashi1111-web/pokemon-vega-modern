@@ -1,0 +1,39 @@
+{
+  "task": "USER-20260929-STORY-HM05",
+  "status": "WIP_NOT_ACCEPTED",
+  "source_head": "d2a977212bc66ab982941e0a6fa81b0642005125",
+  "input_artifact_id": 11028517527,
+  "input_save": {"size": 131088, "sha256": "dd7adddc09555c2232299075bba657e9e7261ad3b868d9cabb5f0edccc8ed06d"},
+  "goal_ja": "未所持HM05をmap3/20 object5の通常会話で取得し、通常Save20と独立Continueまで。正式開始点はSave19だけ。",
+  "development_native_processes_started": 1,
+  "initial_observation": {"map": [5,4], "xy": [7,4], "save_counter": 19, "party_count": 4, "rp": 0, "lock": 0},
+  "accepted_case_reruns": 0,
+  "automatic_retry": false,
+  "prior_save19_closeout": {
+    "run_id": 36567761064,
+    "job_id": 109403831006,
+    "conclusion": "success",
+    "all_11_steps_success": true,
+    "record_commit": "d2a977212bc66ab982941e0a6fa81b0642005125",
+    "artifact_id": 11032527346,
+    "size": 901615,
+    "sha256": "4d59cf89baa4983f43312df2f7514b8ce0d994ab0785d0a0e6e5b36b63ac1b54",
+    "nonforce_push_and_exact_text_readback_confirmed": true
+  },
+  "prior_visual_annotation_correction": {
+    "incorrect_label": "エリナバッジ",
+    "correct_display_label": "エルナトバッジ",
+    "original_artifact_id": 11028517527,
+    "source_screens": ["progress/screen-0146.ppm", "progress/screen-0174.ppm", "progress/screen-0175.ppm"],
+    "reason_ja": "保存済み画面を再読して注釈の誤字だけを訂正。badge1/flag2080の測定、原本、受入値は不変。ゲーム再走なし。"
+  },
+  "inherited_general_ci": {
+    "run_id": 36559155007,
+    "artifact_id": 11029247686,
+    "status": "FAILURE_SEPARATE_SCOPE",
+    "error": "ValueError: tested source changed: overlays/qol_production/qol_production.c",
+    "reason_ja": "P03 capacityの旧原本sourceと現checkoutの不一致。25試験中2ERROR。Save19専用結果で隠さず、旧原本の照合規約を緩めない。"
+  },
+  "release_ready": false,
+  "active_baseline_changed": false
+}

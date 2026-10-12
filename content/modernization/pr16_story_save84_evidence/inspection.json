@@ -1,0 +1,147 @@
+{
+  "status": "STATIC_SAVE84_SIXTH_DIGLETT_ONLY",
+  "preparation": {
+    "size": 16181,
+    "sha256": "3e2f9bee5faae87bffa3ea6308867670ea7e44b15d3cf3d905f6e523056bce29"
+  },
+  "route": [
+    [
+      11,
+      7
+    ],
+    [
+      11,
+      6
+    ],
+    [
+      11,
+      5
+    ],
+    [
+      11,
+      4
+    ],
+    [
+      11,
+      3
+    ]
+  ],
+  "terrain": [
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        6
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        5
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        4
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    }
+  ],
+  "interaction": {
+    "local_id": 11,
+    "target": [
+      10,
+      3
+    ],
+    "script": 136400416,
+    "visibility_flag": 4377,
+    "button": "A",
+    "from_xy": [
+      11,
+      3
+    ],
+    "facing": 3,
+    "object_address": 155169828,
+    "object_hex": "0b8100000a0003000308110000000000204e210819110000"
+  },
+  "initial_flags": {
+    "4372": 0,
+    "4373": 0,
+    "4374": 0,
+    "4375": 0,
+    "4376": 1,
+    "4377": 0,
+    "4378": 1
+  },
+  "expected_flag_changes": [
+    [
+      4374,
+      0,
+      1
+    ],
+    [
+      4376,
+      1,
+      0
+    ]
+  ],
+  "expected_object_changes": [
+    {
+      "local_id": 8,
+      "operation": "removeobject"
+    },
+    {
+      "local_id": 10,
+      "operation": "addobject"
+    }
+  ],
+  "instruction_count": 39,
+  "text_count": 2,
+  "native_route_accepted": false
+}

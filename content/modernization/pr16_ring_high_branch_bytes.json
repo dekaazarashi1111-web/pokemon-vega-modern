@@ -1,0 +1,505 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-HIGH-BRANCH-BYTES",
+  "source_head": "fad0e881c26ec79a937be0c657d02c268809cec6",
+  "run_id": 35012559981,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "HIGH_BRANCH_BYTES_NOT_ABI_PROOF",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "target": 134667857,
+    "graph": {
+      "entry": 134667857,
+      "window": 16,
+      "window_identity": {
+        "size": 16,
+        "sha256": "aea605f059b9102709c616cfdc6846cfa160ff0723f7ef48d0df02e1a6f6be97"
+      },
+      "nodes": [
+        {
+          "address": 134667856,
+          "size": 2,
+          "hex": "0549",
+          "kind": "ordinary",
+          "literal_address": 134667880,
+          "literal_value": 4294950912,
+          "memory_write": false,
+          "successors": [
+            134667858
+          ]
+        },
+        {
+          "address": 134667858,
+          "size": 2,
+          "hex": "7018",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667860
+          ]
+        },
+        {
+          "address": 134667860,
+          "size": 2,
+          "hex": "0028",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667862
+          ]
+        },
+        {
+          "address": 134667862,
+          "size": 2,
+          "hex": "01da",
+          "kind": "conditional",
+          "target": 134667868,
+          "memory_write": false,
+          "successors": [
+            134667864,
+            134667868
+          ]
+        },
+        {
+          "address": 134667864,
+          "size": 2,
+          "hex": "044a",
+          "kind": "ordinary",
+          "literal_address": 134667884,
+          "literal_value": 4294950919,
+          "memory_write": false,
+          "successors": [
+            134667866
+          ]
+        },
+        {
+          "address": 134667866,
+          "size": 2,
+          "hex": "b018",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667868
+          ]
+        },
+        {
+          "address": 134667868,
+          "size": 2,
+          "hex": "c010",
+          "kind": "ordinary",
+          "memory_write": false,
+          "successors": [
+            134667870
+          ]
+        },
+        {
+          "address": 134667870,
+          "size": 2,
+          "hex": "0449",
+          "kind": "ordinary",
+          "literal_address": 134667888,
+          "literal_value": 33779732,
+          "memory_write": false,
+          "successors": []
+        }
+      ],
+      "external_edges": [
+        {
+          "site": 134667870,
+          "kind": "window_fallthrough",
+          "target": 134667873,
+          "resolved_to_code_address_only": true,
+          "stop_reason": "SAVED_OR_DEFERRED_OR_WINDOW_BOUNDARY_NOT_DECODED"
+        }
+      ],
+      "memory_write_sites": [],
+      "deferred_unread_roots": [
+        135346313,
+        134667549,
+        135346425
+      ],
+      "deferred_roots_decoded": 0,
+      "saved_instruction_bytes_redecoded": 0,
+      "side_effects_excluded": false
+    },
+    "sampled_ranges": [
+      {
+        "address": 134667856,
+        "hex": "0549",
+        "size": 2,
+        "sha256": "ada02b8b82c7faf24597e90c7b6dc34d35c9ea972ae7a02a0f28fc813b590f7d"
+      },
+      {
+        "address": 134667858,
+        "hex": "7018",
+        "size": 2,
+        "sha256": "3992d774a594668a20d1216ed079ceec1ae4e91f3490a32740cadb82e87ff55e"
+      },
+      {
+        "address": 134667860,
+        "hex": "0028",
+        "size": 2,
+        "sha256": "2ee788372518190a6ab539cbb20331df1040f21846e3ba836c269aee907c894c"
+      },
+      {
+        "address": 134667862,
+        "hex": "01da",
+        "size": 2,
+        "sha256": "8f06da7276d80da22a8e6a77c7d21eb22c2ea3442642bcbdfc2b88c4df0bce41"
+      },
+      {
+        "address": 134667864,
+        "hex": "044a",
+        "size": 2,
+        "sha256": "bc95c2a08f0a78cad3b103913c9d62c7dd959fcd67789f052ab240eddb87c427"
+      },
+      {
+        "address": 134667866,
+        "hex": "b018",
+        "size": 2,
+        "sha256": "3962bb53569e69a62e3213c1a29e8a95bb7f7be3754e5b77168e10672cd844d7"
+      },
+      {
+        "address": 134667868,
+        "hex": "c010",
+        "size": 2,
+        "sha256": "56209a3e8e1a083d4776ede2f28ade7f19ea1a209ca380e7138e1741a05d3a97"
+      },
+      {
+        "address": 134667870,
+        "hex": "0449",
+        "size": 2,
+        "sha256": "039f2c519d87eaa01db07c3792baf082572cbe04e34da945aee4a8aad839e869"
+      },
+      {
+        "address": 134667880,
+        "hex": "00c0ffff",
+        "size": 4,
+        "sha256": "74d62790724e89a54dc532ea572944ba89129db94e0580fefc6866c760e58b18"
+      },
+      {
+        "address": 134667884,
+        "hex": "07c0ffff",
+        "size": 4,
+        "sha256": "4749dd76f694d58e9a8bd6d8a9d250be49f213592471540d1fa39e10645889d8"
+      },
+      {
+        "address": 134667888,
+        "hex": "14700302",
+        "size": 4,
+        "sha256": "670819485fe75a97ab5bdb8b90c468f6df5fdf8e4af7c56ef3db5f7a7c897e83"
+      }
+    ],
+    "sampled_instruction_bytes": 16,
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "old_frontier_removed": false,
+    "known_sampled_boundary_targets": [
+      134667873
+    ],
+    "remaining_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      134667549,
+      135346165,
+      135346313,
+      135346425,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "priority_unread_targets": [
+      135346313,
+      134667549,
+      135346425
+    ],
+    "callee_return_proven": false,
+    "callee_return_observed": false,
+    "saved_slot_preservation_proven": false,
+    "return_pointer_non_alias_proven": false,
+    "all_runtime_owners_excluded": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "candidate_reconstructions": 1,
+    "new_graph_decodes": 1,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_high_branch_bytes.py": {
+      "size": 3969,
+      "sha256": "fa7c0d97ceeec35dcedeef6df1dfecbb0408f2ab3f00c32d501c22d056566fd2"
+    },
+    "tests/test_pr16_ring_high_branch_bytes.py": {
+      "size": 2481,
+      "sha256": "fbb6cab0509880091e10ccdbdf95b750a356975fb321248689d977bddb706beb"
+    },
+    ".github/workflows/pr16-ring-high-branch-bytes.yml": {
+      "size": 1403,
+      "sha256": "ca9cf355598a85c60a1fc062d43d875ecc6dbb0c2314cb6ac13db17b57ea8c65"
+    },
+    "content/modernization/pr16_ring_epilogue_abi.json": {
+      "size": 11160,
+      "sha256": "a336594a386f5b9f69c2832e35646daad5ff8ca33f2ce4d83a219ed36207f5cc"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_epilogue_bytes.py": {
+      "size": 8818,
+      "sha256": "d3926520bc0ada025bd38ba8b2210490ad075c4b605861f60811a12d9e1caaf1"
+    },
+    "scripts/pr16_ring_followup_support.py": {
+      "size": 10781,
+      "sha256": "0bccc5651230aba3199f7b2c2463f684371d568b90e3807f82389a2644fc1751"
+    },
+    "content/modernization/pr16_ring_epilogue_bytes.json": {
+      "size": 11229,
+      "sha256": "f34fcaa88d03be1ba487ab331e62ef35a5958ce6866101d390a2262842249d61"
+    },
+    "content/modernization/pr16_ring_common_tail_bytes.json": {
+      "size": 15198,
+      "sha256": "d20be32b02bbc9e6e134f3edaa9fdfad467258ab7c9c6211c5993c1758d87745"
+    },
+    "scripts/pr16_ring_common_tail_bytes.py": {
+      "size": 22681,
+      "sha256": "f848158142e23645c9ebdc9aa56e84f1a21a8d886630cdb6998fd4ab8ab2d806"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_callee_bytes.py": {
+      "size": 15678,
+      "sha256": "d15bcb04e4d3ca1d05ad5738f20a96274b4e33a8cae5caca97659ac5d53fa32a"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 8,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35012341851,
+      "head_sha": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35012563138,
+      "name": "source-validation",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35012563135,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35012559864,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012559981,
+      "name": "未読高域分岐1根の採取検証記録・非force push",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35012559921,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35012559843,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35012559897,
+      "name": "source-validation",
+      "head_sha": "fad0e881c26ec79a937be0c657d02c268809cec6",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35012415707,
+      "name": "source-validation",
+      "head_sha": "cc8e3bb00db195df3498668371669aa62123ce84",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35012415755,
+      "name": "p03-forgetting-ci",
+      "head_sha": "cc8e3bb00db195df3498668371669aa62123ce84",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35012344013,
+      "name": "p03-forgetting-ci",
+      "head_sha": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35012344120,
+      "name": "source-validation",
+      "head_sha": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012341968,
+      "name": "p03-forgetting-ci",
+      "head_sha": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35012341851,
+      "name": "保存末尾3命令の条件付きABI検証記録・非force push",
+      "head_sha": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012341876,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012342005,
+      "name": "source-validation",
+      "head_sha": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012341973,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012137423,
+      "name": "p03-forgetting-ci",
+      "head_sha": "cd3204464ebee6839e34c6e25e73204c13b0c9f4",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35012137424,
+      "name": "source-validation",
+      "head_sha": "cd3204464ebee6839e34c6e25e73204c13b0c9f4",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012133647,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "cd3204464ebee6839e34c6e25e73204c13b0c9f4",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35012133695,
+      "name": "保存末尾3命令の条件付きABI検証記録・非force push",
+      "head_sha": "cd3204464ebee6839e34c6e25e73204c13b0c9f4",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ]
+}

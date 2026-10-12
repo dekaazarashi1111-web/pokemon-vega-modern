@@ -1,0 +1,284 @@
+{
+  "active_baseline_changed": false,
+  "artifact_id": 11665870186,
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "claims": {
+    "actual_bios_cpu_executed": false,
+    "actual_runtime_execution_observed": false,
+    "actual_screen_rendered": false,
+    "conditional_finite_reader_only": true,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "full_story_reachability_claimed": false,
+    "indirect_reference_completeness_claimed": false,
+    "opaque_callee_effects_proven": false,
+    "universal_heap_or_irq_lifetime_proven": false
+  },
+  "classified": 784,
+  "closeout_code_bindings": {
+    ".github/workflows/pr16-weather-bubble-closeout.yml": {
+      "sha256": "6790ffd76242c889144e9a344052cfc7f8bfc72c51e50359ca88c577b9617b46",
+      "size": 1504
+    },
+    "scripts/pr16_weather_bubble_closeout.py": {
+      "sha256": "a6bd03fd12d423b4a9c5f32e923556634e840a710dd4805aa5587607ce2b8371",
+      "size": 17583
+    },
+    "scripts/pr16_weather_bubble_receipt.py": {
+      "sha256": "101c841322b777b27891567e77f1149f65fc8c952fca384b03289c55e32edce2",
+      "size": 13368
+    },
+    "tests/test_pr16_weather_bubble_receipt.py": {
+      "sha256": "f419d1337152a51abde03897c376889119640a582011a5bdb0b058e07b205133",
+      "size": 7254
+    }
+  },
+  "closeout_recovery": {
+    "commits_created": 0,
+    "failed_job_id": 114183945767,
+    "failed_run_id": 38042005576,
+    "reason": "gh refused ANSI in saved log; fixed job PIPE-only --allow-escape-sequences",
+    "rom_reconstructions": 0,
+    "tests_executed": 0
+  },
+  "closeout_run_id": 38042356309,
+  "closeout_source_head": "26e024d602650b1776c9d9e0e00de18b047a4efc",
+  "conclusion": "success",
+  "current_session_rom_reconstructions": 0,
+  "delta_identity": {
+    "sha256": "e0e13340d6200e832365036adb08687286079e32bb6f2500e62fd752a082f1b5",
+    "size": 4912
+  },
+  "dependency_files_frozen": 143,
+  "donor_safe_bytes": 0,
+  "evidence_bindings": {
+    "content/modernization/pr16_weather_bubble_evidence/measurement.json": {
+      "sha256": "9b3d4036968f5e88c5e69afee88a8e65d44281b68d86995b060be19bcaed2205",
+      "size": 42289
+    },
+    "content/modernization/pr16_weather_bubble_evidence/parent.json": {
+      "sha256": "80b7c65e97fe74417879e96e59bbe83db76eabfd1bea62f05477b0a80edbdc6b",
+      "size": 12927
+    },
+    "content/modernization/pr16_weather_bubble_evidence/provenance.json": {
+      "sha256": "54df49cc2a52273c98e2339c9ad173ea2d0787477630060e28aea07c7ebf985b",
+      "size": 34477
+    },
+    "content/modernization/pr16_weather_bubble_evidence/tests.json": {
+      "sha256": "a07f29f4245fd164952de33f336cd0b8984f8125492eb3a3c89d3a4658cd303e",
+      "size": 2610
+    }
+  },
+  "failed_previous_run": {
+    "conclusion": "failure",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "6cf13ee2f032862ff97ae55ca62a85d05fbcc800",
+    "id": 38039867181,
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "full_audit_identity": {
+    "sha256": "be38da073c9a124de94506091d0ce9fe090c407e4ec85d05037f61d36109d850",
+    "size": 5405033
+  },
+  "general_ci": {
+    "all_general_ci_success": false,
+    "capacity_step": 14,
+    "preexisting_job_id": 114179438028,
+    "preexisting_run_id": 38040440825,
+    "secondary_missing_upload_step": 17,
+    "source_mismatch": "overlays/qol_production/qol_production.c",
+    "unrelated_sources_unchanged": true
+  },
+  "generated_validated_file_identities": {
+    "measurement.json": {
+      "sha256": "9b3d4036968f5e88c5e69afee88a8e65d44281b68d86995b060be19bcaed2205",
+      "size": 42289
+    },
+    "parent.json": {
+      "sha256": "80b7c65e97fe74417879e96e59bbe83db76eabfd1bea62f05477b0a80edbdc6b",
+      "size": 12927
+    },
+    "provenance.json": {
+      "sha256": "54df49cc2a52273c98e2339c9ad173ea2d0787477630060e28aea07c7ebf985b",
+      "size": 34477
+    },
+    "tests.json": {
+      "sha256": "a07f29f4245fd164952de33f336cd0b8984f8125492eb3a3c89d3a4658cd303e",
+      "size": 2610
+    }
+  },
+  "guide": "docs/PR16_WEATHER_BUBBLE_ACCEPTANCE_JA.md",
+  "historical_success_reconstructions": 1,
+  "historical_task_reconstructions_including_failed_run": 2,
+  "inherited_changes": 164,
+  "inherited_classified": 783,
+  "inherited_reference_stages": 30,
+  "inherited_saved_inputs": 62,
+  "inherited_unclassified": 91,
+  "inherited_witnesses": 154,
+  "job_id": 114179438484,
+  "job_log_identity": {
+    "sha256": "052de887c17d2424d6c975a5e49cb565cfe999b541ea9d3d80a28723093e6a78",
+    "size": 28554
+  },
+  "measurement_replays": 0,
+  "measurement_source_files_frozen": 6,
+  "measurement_tests_inherited": 32,
+  "merge_performed": false,
+  "native_processes": 0,
+  "newly_classified": 1,
+  "next_ja": "正式784分類/90未知の保存親から次は08397492の1件。pr16_weather_bubble_receipt.restore_parentで62旧原本と今回4原本/差分を復元し、独立公開source・全asset・実table/literal/readerへ結ぶ。近傍名/参考size/距離だけで型へ昇格しない。Bubble成功32試験/実reader/ROM再構成は再走しない。Blastoise083D6B61の既知未消費tail診断も反復しない。保存入口ready/退避53300前Free/同期非再入/controller6528本番配線、正式切替後trainer131後半→シオウ回復保存coldContinueは別gate。",
+  "old_scope_test_reruns": 0,
+  "previous_checkpoint": "content/modernization/pr16_dex_hof_diploma_checkpoint.json",
+  "published_file_identities": {
+    "measurement.json": {
+      "sha256": "9b3d4036968f5e88c5e69afee88a8e65d44281b68d86995b060be19bcaed2205",
+      "size": 42289
+    },
+    "parent.json": {
+      "sha256": "80b7c65e97fe74417879e96e59bbe83db76eabfd1bea62f05477b0a80edbdc6b",
+      "size": 12927
+    },
+    "provenance.json": {
+      "sha256": "54df49cc2a52273c98e2339c9ad173ea2d0787477630060e28aea07c7ebf985b",
+      "size": 34477
+    },
+    "tests.json": {
+      "sha256": "a07f29f4245fd164952de33f336cd0b8984f8125492eb3a3c89d3a4658cd303e",
+      "size": 2610
+    }
+  },
+  "receipt_tests": {
+    "errors": 0,
+    "failures": 0,
+    "native_processes": 0,
+    "old_scope_test_reruns": 0,
+    "rom_reconstructions": 0,
+    "skipped": 0,
+    "tests": [
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_all_old_namespaces_and_safety_claims",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_claim_actual_bios_cpu_executed",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_claim_actual_runtime_execution_observed",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_claim_actual_screen_rendered",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_claim_conditional_finite_reader_only",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_claim_donor_eligible",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_claim_donor_leased",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_claim_formal_rom_changed",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_claim_formal_save_changed",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_claim_full_story_reachability_claimed",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_claim_indirect_reference_completeness_claimed",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_claim_opaque_callee_effects_proven",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_claim_universal_heap_or_irq_lifetime_proven",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_counter_classified",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_counter_donor_safe_bytes",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_counter_measurement_replays",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_counter_native_processes",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_counter_newly_classified",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_counter_old_full_rom_scan_runs",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_counter_old_scope_test_reruns",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_counter_unclassified",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_current_source_bindings",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_deep_type_strictness",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_delta_extra_and_missing_fields",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_diagnostic_namespace_contamination_rejected",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_exact_originals",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_frontier_retains_remaining_full_rows_and_order",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_json_rejects_ambiguous_values",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_log_hashes_and_order",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_missing_extra_and_renamed_originals",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_no_measurement_or_old_test_execution",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_original_bytes_measurement_json",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_original_bytes_parent_json",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_original_bytes_provenance_json",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_original_bytes_tests_json",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_parent_counter_tampering_rejected",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_regular_file_rejects_escape_and_symlink",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_repeated_application_rejected",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_singleton_only_and_all_873_rows_retained",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_target_geometry_and_witness_identity",
+      "test_pr16_weather_bubble_receipt.ReceiptTests.test_zip_rejects_unpinned_and_appended_envelopes"
+    ],
+    "tests_run": 41
+  },
+  "reference_stages": 31,
+  "release_ready": false,
+  "run_attempt": 1,
+  "run_id": 38040440848,
+  "schema_version": 1,
+  "source_head": "3aada9217cc80627496adf33756d8fc2de3b5765",
+  "status": "ACCEPTED_ONE_CONDITIONAL_WEATHER_BUBBLE_MINIMUM_ASSET_TYPE",
+  "steps": [
+    {
+      "conclusion": "success",
+      "name": "Set up job",
+      "number": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/checkout@v4",
+      "number": 2,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Closed first scope and unchanged saved resume",
+      "number": 3,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Official compiler and independent PNG checker",
+      "number": 4,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "New bubble source, ARM ABI, 32 tests and finite reader only",
+      "number": 5,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Closed successful text publication guard",
+      "number": 6,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/upload-artifact@v4",
+      "number": 7,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Post Run actions/checkout@v4",
+      "number": 14,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Complete job",
+      "number": 15,
+      "status": "completed"
+    }
+  ],
+  "task": "USER-20261010-WEATHER-BUBBLE",
+  "total_changes": 165,
+  "total_witnesses": 155,
+  "unclassified": 90,
+  "unknown_identity": {
+    "sha256": "fe22c780ecc5a9c23c61eda3e1384ccf63560936d45d7afecf0686bd0106ba76",
+    "size": 39525
+  },
+  "zip_identity": {
+    "sha256": "f3d0cfed7517d5a1c73d6eadf9c1fa0024ccbcd9bc36c915cc07edf099ef681f",
+    "size": 21420
+  }
+}

@@ -1,0 +1,1346 @@
+{
+  "status": "STATIC_SAVE88_NINTH_DIGLETT_FROM_SAVE87_NOT_NATIVE",
+  "map": [
+    10,
+    16
+  ],
+  "start": [
+    7,
+    3
+  ],
+  "facing": 3,
+  "route": [
+    [
+      7,
+      3
+    ],
+    [
+      8,
+      3
+    ],
+    [
+      9,
+      3
+    ],
+    [
+      10,
+      3
+    ],
+    [
+      11,
+      3
+    ],
+    [
+      11,
+      4
+    ],
+    [
+      11,
+      5
+    ],
+    [
+      11,
+      6
+    ],
+    [
+      11,
+      7
+    ],
+    [
+      10,
+      7
+    ],
+    [
+      9,
+      7
+    ],
+    [
+      8,
+      7
+    ],
+    [
+      7,
+      7
+    ],
+    [
+      6,
+      7
+    ]
+  ],
+  "terrain": [
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        7,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        8,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        9,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        10,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        4
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        5
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        6
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        11,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        10,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        9,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        8,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        7,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        7
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    }
+  ],
+  "interaction": {
+    "local_id": 10,
+    "target": [
+      6,
+      8
+    ],
+    "script": 136400224,
+    "visibility_flag": 4376,
+    "button": "A",
+    "from_xy": [
+      6,
+      7
+    ],
+    "facing": 1,
+    "object_address": 155169804,
+    "object_hex": "0a810000060008000308110000000000604d210818110000"
+  },
+  "expected_flag_changes": [
+    [
+      4373,
+      1,
+      0
+    ],
+    [
+      4376,
+      0,
+      1
+    ],
+    [
+      4377,
+      1,
+      0
+    ]
+  ],
+  "expected_object_changes": [
+    {
+      "local_id": 10,
+      "operation": "removeobject"
+    },
+    {
+      "local_id": 6,
+      "operation": "addobject"
+    },
+    {
+      "local_id": 11,
+      "operation": "addobject"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "address": 136400176,
+        "end_reason": "return",
+        "instruction_count": 9,
+        "edges": [],
+        "roots": [
+          "map_(10, 16)_npc_10",
+          "map_(10, 16)_npc_11",
+          "map_(10, 16)_npc_5",
+          "map_(10, 16)_npc_6",
+          "map_(10, 16)_npc_8",
+          "map_(10, 16)_npc_9"
+        ]
+      },
+      {
+        "address": 136400224,
+        "end_reason": "goto",
+        "instruction_count": 13,
+        "edges": [
+          136400288,
+          136400328,
+          136400392,
+          136400400,
+          136400408,
+          141219312,
+          141219331
+        ],
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "address": 136400328,
+        "end_reason": "goto",
+        "instruction_count": 6,
+        "edges": [
+          136400360,
+          136400376,
+          141219331,
+          141219914
+        ],
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "address": 136400376,
+        "end_reason": "goto",
+        "instruction_count": 2,
+        "edges": [
+          141219331,
+          141219968
+        ],
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "address": 141219312,
+        "end_reason": "return",
+        "instruction_count": 5,
+        "edges": [
+          136400176
+        ],
+        "roots": [
+          "map_(10, 16)_npc_10",
+          "map_(10, 16)_npc_11",
+          "map_(10, 16)_npc_5",
+          "map_(10, 16)_npc_6",
+          "map_(10, 16)_npc_8",
+          "map_(10, 16)_npc_9"
+        ]
+      },
+      {
+        "address": 141219331,
+        "end_reason": "end",
+        "instruction_count": 5,
+        "edges": [],
+        "roots": [
+          "map_(10, 16)_npc_10",
+          "map_(10, 16)_npc_11",
+          "map_(10, 16)_npc_5",
+          "map_(10, 16)_npc_6",
+          "map_(10, 16)_npc_8",
+          "map_(10, 16)_npc_9"
+        ]
+      },
+      {
+        "address": 141219968,
+        "end_reason": "return",
+        "instruction_count": 7,
+        "edges": [],
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      }
+    ],
+    "references": [
+      {
+        "category": "flag",
+        "value": 4372,
+        "access": "read",
+        "instruction_address": 136400230,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400224,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4373,
+        "access": "read",
+        "instruction_address": 136400239,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400224,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4373,
+        "access": "clear",
+        "instruction_address": 141219974,
+        "opcode": 42,
+        "command": "clearflag",
+        "script_address": 141219968,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4374,
+        "access": "read",
+        "instruction_address": 136400248,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400224,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4375,
+        "access": "read",
+        "instruction_address": 136400257,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400224,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4375,
+        "access": "read",
+        "instruction_address": 136400328,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400328,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4376,
+        "access": "set",
+        "instruction_address": 141219968,
+        "opcode": 41,
+        "command": "setflag",
+        "script_address": 141219968,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4377,
+        "access": "read",
+        "instruction_address": 136400266,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400224,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4377,
+        "access": "read",
+        "instruction_address": 136400337,
+        "opcode": 43,
+        "command": "checkflag",
+        "script_address": 136400328,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "flag",
+        "value": 4377,
+        "access": "clear",
+        "instruction_address": 141219980,
+        "opcode": 42,
+        "command": "clearflag",
+        "script_address": 141219968,
+        "roots": [
+          "map_(10, 16)_npc_10"
+        ]
+      },
+      {
+        "category": "species",
+        "value": 16,
+        "access": "cry",
+        "instruction_address": 136400176,
+        "opcode": 161,
+        "command": "playmoncry",
+        "script_address": 136400176,
+        "roots": [
+          "map_(10, 16)_npc_10",
+          "map_(10, 16)_npc_11",
+          "map_(10, 16)_npc_5",
+          "map_(10, 16)_npc_6",
+          "map_(10, 16)_npc_8",
+          "map_(10, 16)_npc_9"
+        ]
+      }
+    ]
+  },
+  "instructions": [
+    {
+      "address": 136400176,
+      "opcode": 161,
+      "size": 5,
+      "hex": "a110000200",
+      "node": 136400176
+    },
+    {
+      "address": 136400181,
+      "opcode": 151,
+      "size": 2,
+      "hex": "9701",
+      "node": 136400176
+    },
+    {
+      "address": 136400183,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b050001",
+      "node": 136400176
+    },
+    {
+      "address": 136400187,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b060001",
+      "node": 136400176
+    },
+    {
+      "address": 136400191,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b080001",
+      "node": 136400176
+    },
+    {
+      "address": 136400195,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b090001",
+      "node": 136400176
+    },
+    {
+      "address": 136400199,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b0a0001",
+      "node": 136400176
+    },
+    {
+      "address": 136400203,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b0b0001",
+      "node": 136400176
+    },
+    {
+      "address": 136400207,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 136400176
+    },
+    {
+      "address": 136400224,
+      "opcode": 106,
+      "size": 1,
+      "hex": "6a",
+      "node": 136400224
+    },
+    {
+      "address": 136400225,
+      "opcode": 4,
+      "size": 5,
+      "hex": "04f0d56a08",
+      "node": 136400224
+    },
+    {
+      "address": 136400230,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1411",
+      "node": 136400224
+    },
+    {
+      "address": 136400233,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601a04d2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400239,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1511",
+      "node": 136400224
+    },
+    {
+      "address": 136400242,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601c84d2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400248,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1611",
+      "node": 136400224
+    },
+    {
+      "address": 136400251,
+      "opcode": 7,
+      "size": 6,
+      "hex": "0701084e2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400257,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1711",
+      "node": 136400224
+    },
+    {
+      "address": 136400260,
+      "opcode": 7,
+      "size": 6,
+      "hex": "0701104e2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400266,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1911",
+      "node": 136400224
+    },
+    {
+      "address": 136400269,
+      "opcode": 7,
+      "size": 6,
+      "hex": "0701184e2108",
+      "node": 136400224
+    },
+    {
+      "address": 136400275,
+      "opcode": 5,
+      "size": 5,
+      "hex": "0503d66a08",
+      "node": 136400224
+    },
+    {
+      "address": 136400328,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1711",
+      "node": 136400328
+    },
+    {
+      "address": 136400331,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601e84d2108",
+      "node": 136400328
+    },
+    {
+      "address": 136400337,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1911",
+      "node": 136400328
+    },
+    {
+      "address": 136400340,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601f84d2108",
+      "node": 136400328
+    },
+    {
+      "address": 136400346,
+      "opcode": 4,
+      "size": 5,
+      "hex": "044ad86a08",
+      "node": 136400328
+    },
+    {
+      "address": 136400351,
+      "opcode": 5,
+      "size": 5,
+      "hex": "0503d66a08",
+      "node": 136400328
+    },
+    {
+      "address": 136400376,
+      "opcode": 4,
+      "size": 5,
+      "hex": "0480d86a08",
+      "node": 136400376
+    },
+    {
+      "address": 136400381,
+      "opcode": 5,
+      "size": 5,
+      "hex": "0503d66a08",
+      "node": 136400376
+    },
+    {
+      "address": 141219312,
+      "opcode": 106,
+      "size": 1,
+      "hex": "6a",
+      "node": 141219312
+    },
+    {
+      "address": 141219313,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00084f2108",
+      "node": 141219312
+    },
+    {
+      "address": 141219319,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0902",
+      "node": 141219312
+    },
+    {
+      "address": 141219321,
+      "opcode": 4,
+      "size": 5,
+      "hex": "04304d2108",
+      "node": 141219312
+    },
+    {
+      "address": 141219326,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 141219312
+    },
+    {
+      "address": 141219331,
+      "opcode": 151,
+      "size": 2,
+      "hex": "9700",
+      "node": 141219331
+    },
+    {
+      "address": 141219333,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00214f2108",
+      "node": 141219331
+    },
+    {
+      "address": 141219339,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0906",
+      "node": 141219331
+    },
+    {
+      "address": 141219341,
+      "opcode": 108,
+      "size": 1,
+      "hex": "6c",
+      "node": 141219331
+    },
+    {
+      "address": 141219342,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 141219331
+    },
+    {
+      "address": 141219968,
+      "opcode": 41,
+      "size": 3,
+      "hex": "291811",
+      "node": 141219968
+    },
+    {
+      "address": 141219971,
+      "opcode": 83,
+      "size": 3,
+      "hex": "530a00",
+      "node": 141219968
+    },
+    {
+      "address": 141219974,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1511",
+      "node": 141219968
+    },
+    {
+      "address": 141219977,
+      "opcode": 85,
+      "size": 3,
+      "hex": "550600",
+      "node": 141219968
+    },
+    {
+      "address": 141219980,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1911",
+      "node": 141219968
+    },
+    {
+      "address": 141219983,
+      "opcode": 85,
+      "size": 3,
+      "hex": "550b00",
+      "node": 141219968
+    },
+    {
+      "address": 141219986,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 141219968
+    }
+  ],
+  "texts": {
+    "136400648": {
+      "hex": "fd011a0022191f0419fe9480899116001a150c00060910ff",
+      "decoded": "<fd>あは めのまえの\\nディグダに はなし かけた"
+    },
+    "136400673": {
+      "hex": "152e14abfe9480899119001a021137001d2e060c10ff",
+      "decoded": "なんと！\\nディグダの はいちが へんかした"
+    }
+  },
+  "source_graph_binding": {
+    "size": 181052,
+    "sha256": "a4a832dd7f2b8e16b4bc618244a957d1c17244b1a6a12a8d6d6a33c07aecd6a3"
+  },
+  "gym": {
+    "map": [
+      10,
+      16
+    ],
+    "header": 137450584,
+    "layout": 136946720,
+    "scripts": 135815079,
+    "width": 13,
+    "height": 20,
+    "connections": [],
+    "warps": [
+      {
+        "id": 0,
+        "xy": [
+          5,
+          18
+        ],
+        "elevation": 3,
+        "target_warp": 2,
+        "target_map": [
+          3,
+          2
+        ]
+      },
+      {
+        "id": 1,
+        "xy": [
+          6,
+          18
+        ],
+        "elevation": 3,
+        "target_warp": 2,
+        "target_map": [
+          3,
+          2
+        ]
+      },
+      {
+        "id": 2,
+        "xy": [
+          7,
+          18
+        ],
+        "elevation": 3,
+        "target_warp": 2,
+        "target_map": [
+          3,
+          2
+        ]
+      }
+    ],
+    "objects": [
+      {
+        "local_id": 1,
+        "xy": [
+          3,
+          7
+        ],
+        "script": 154584484,
+        "flag": 0
+      },
+      {
+        "local_id": 2,
+        "xy": [
+          1,
+          4
+        ],
+        "script": 154596220,
+        "flag": 0
+      },
+      {
+        "local_id": 3,
+        "xy": [
+          11,
+          9
+        ],
+        "script": 154587296,
+        "flag": 0
+      },
+      {
+        "local_id": 4,
+        "xy": [
+          7,
+          16
+        ],
+        "script": 142951424,
+        "flag": 0
+      },
+      {
+        "local_id": 5,
+        "xy": [
+          6,
+          14
+        ],
+        "script": 141220048,
+        "flag": 4372
+      },
+      {
+        "local_id": 6,
+        "xy": [
+          4,
+          12
+        ],
+        "script": 141220288,
+        "flag": 4373
+      },
+      {
+        "local_id": 7,
+        "xy": [
+          6,
+          3
+        ],
+        "script": 142951392,
+        "flag": 0
+      },
+      {
+        "local_id": 8,
+        "xy": [
+          9,
+          12
+        ],
+        "script": 141220512,
+        "flag": 4374
+      },
+      {
+        "local_id": 9,
+        "xy": [
+          2,
+          9
+        ],
+        "script": 141220736,
+        "flag": 4375
+      },
+      {
+        "local_id": 10,
+        "xy": [
+          6,
+          8
+        ],
+        "script": 136400224,
+        "flag": 4376
+      },
+      {
+        "local_id": 11,
+        "xy": [
+          10,
+          3
+        ],
+        "script": 136400416,
+        "flag": 4377
+      }
+    ],
+    "collision_grid": [
+      "#############",
+      "#############",
+      "#############",
+      "#.#...O...O.#",
+      "#O#.......#.#",
+      "#.#.......#.#",
+      "#.#########.#",
+      "#.#O........#",
+      "#.####O####.#",
+      "#.O.......#O#",
+      "#.#.#########",
+      "#.#........##",
+      "#.##O####O###",
+      "#...........#",
+      "######O######",
+      "#...........#",
+      "#...#..O#...#",
+      "#...........#",
+      "#....WWW....#",
+      "#############"
+    ],
+    "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+  },
+  "route_native_accepted": false,
+  "exit_accepted": false,
+  "old_switch_inputs_replayed": false,
+  "required_badge_present": true,
+  "paper_delivered": false,
+  "future_static_hint": {
+    "status": "STATIC_PATH_ONLY_NOT_NATIVE",
+    "interactions": 3,
+    "states_examined": 18,
+    "history": [
+      {
+        "local_id": 10,
+        "from_xy": [
+          6,
+          7
+        ],
+        "target": [
+          6,
+          8
+        ],
+        "route": [
+          [
+            7,
+            3
+          ],
+          [
+            8,
+            3
+          ],
+          [
+            9,
+            3
+          ],
+          [
+            10,
+            3
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            9,
+            7
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "initial_flags": [
+          4373,
+          4377,
+          4378
+        ],
+        "final_flags": [
+          4376,
+          4378
+        ],
+        "nodes": [
+          136400176,
+          136400224,
+          136400328,
+          136400376,
+          141219312,
+          141219331,
+          141219968
+        ]
+      },
+      {
+        "local_id": 8,
+        "from_xy": [
+          9,
+          11
+        ],
+        "target": [
+          9,
+          12
+        ],
+        "route": [
+          [
+            6,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            4,
+            9
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            4,
+            11
+          ],
+          [
+            5,
+            11
+          ],
+          [
+            6,
+            11
+          ],
+          [
+            7,
+            11
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            9,
+            11
+          ]
+        ],
+        "initial_flags": [
+          4376,
+          4378
+        ],
+        "final_flags": [
+          4375,
+          4378
+        ],
+        "nodes": [
+          136400176,
+          141219312,
+          141219331,
+          141219692,
+          141220512,
+          141220720
+        ]
+      },
+      {
+        "local_id": 8,
+        "from_xy": [
+          9,
+          11
+        ],
+        "target": [
+          9,
+          12
+        ],
+        "route": [
+          [
+            9,
+            11
+          ]
+        ],
+        "initial_flags": [
+          4375,
+          4378
+        ],
+        "final_flags": [
+          4372,
+          4374,
+          4378
+        ],
+        "nodes": [
+          136400176,
+          141219312,
+          141219331,
+          141219670,
+          141220512,
+          141220680
+        ]
+      }
+    ],
+    "exit_route": [
+      [
+        9,
+        11
+      ],
+      [
+        9,
+        12
+      ],
+      [
+        9,
+        13
+      ],
+      [
+        8,
+        13
+      ],
+      [
+        7,
+        13
+      ],
+      [
+        6,
+        13
+      ],
+      [
+        6,
+        14
+      ],
+      [
+        6,
+        15
+      ],
+      [
+        6,
+        16
+      ],
+      [
+        6,
+        17
+      ]
+    ]
+  },
+  "next_action_ja": "Save87/7,3西から東4/南4/西5の13歩で6,7へ、南旋回してlocal10/6,8へ通常A。未入力4373true分岐は4373/4377clear・4376set、local6/11復帰・local10除去。これは退出に必要な新stateの第9switch。最初の新event後保存。旧4375/4374/4372true受入を再走しない。退出は静的にはさらにlocal8へ13歩と2相互作用、その後出口へ。未測定なので次の1eventに限定。",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "9c49fdef23b321415e82bffe0b239b5acff9cb4356e7cc3aea1a9aa25027028c"
+  },
+  "parent_route_binding": {
+    "size": 22761,
+    "sha256": "8e5fc4f01e02f43184581ef8ce59d4d88990c456a6276886f1a1995b0491cc82"
+  },
+  "initial_flags": {
+    "4372": 0,
+    "4373": 1,
+    "4374": 0,
+    "4375": 0,
+    "4376": 0,
+    "4377": 1,
+    "4378": 1
+  },
+  "native_route_accepted": false
+}

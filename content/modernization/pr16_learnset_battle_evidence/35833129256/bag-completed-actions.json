@@ -1,0 +1,116 @@
+{
+  "actions_completion_confirmed": true,
+  "artifact": {
+    "digest": "sha256:2fb104c444440ec47a11c9d2194a512c6aeb1079036ec66ee849d2a00f19722b",
+    "id": 10736439669,
+    "name": "pr16-learnset-gameplay-proof",
+    "size_in_bytes": 599038
+  },
+  "candidate": {
+    "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+    "size": 33554432
+  },
+  "fixture_party_source": {
+    "case": "floette-replace-420",
+    "identity": {
+      "sha256": "e19c16d9192efa69c033ac281507f777efc5cc179b4dcbb8408b77b00dfbcc2e",
+      "size": 100
+    },
+    "phase": "continued"
+  },
+  "fresh_cores": 46,
+  "inherited_unit_tests": 20,
+  "issue19_complete": false,
+  "job_id": 107084145752,
+  "job_steps": [
+    {
+      "conclusion": "success",
+      "name": "Set up job",
+      "number": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/checkout@v4",
+      "number": 2,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/setup-python@v5",
+      "number": 3,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "未受入通常操作用のhost libraryだけ導入",
+      "number": 4,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "20試験を継承し12境界試験と未受入23ケースを検証",
+      "number": 5,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "成功prefixと失敗原本を区別し固定引継ぎ・両ログへ記録",
+      "number": 6,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "同branchへ非force commit/pushし最新refを照合",
+      "number": 7,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/upload-artifact@v4",
+      "number": 8,
+      "status": "completed"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "失敗した実測を成功へ読み替えずrun終端へ反映",
+      "number": 9,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Post Run actions/setup-python@v5",
+      "number": 17,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Post Run actions/checkout@v4",
+      "number": 18,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Complete job",
+      "number": 19,
+      "status": "completed"
+    }
+  ],
+  "native_reruns": 0,
+  "new_unit_tests": 12,
+  "raw_verification": {
+    "sha256": "d3a7f83bc0db79309c85d8e378e8b10ce7ef2e42b05f9f86c66653994b798b0b",
+    "size": 78441
+  },
+  "reflected_head": "574975b3ea189ae37c4258c583ba5d1efb1c5d82",
+  "release_ready": false,
+  "run_id": 35831256129,
+  "screen_review": {
+    "field_and_continue_sample": "visible normal field",
+    "list": "no state6 capture in positive cases; state4/input/list/slot evidence accepted, layout review remains pending",
+    "summary": "16 transition frames are black; not accepted as layout evidence"
+  },
+  "source_head": "059826fec559df3c543dd20cc549b470418ad5dd",
+  "status": "PASS_COMPLETED_ACTIONS_SCOPED_BAG_SAVE_CONTINUE",
+  "verified_cases": 23
+}

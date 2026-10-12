@@ -1,0 +1,703 @@
+{
+  "schema_version": 1,
+  "method": "DIRECT_PIXEL_REVIEW_NO_OCR",
+  "development_base_head": "2b52d4a3ea136eb69ebb27138d0d516a2e72d245",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "runner": {
+    "size": 73792,
+    "sha256": "9c62d9664d50ea58a150b59b1c2d5465e6a50f5b0824ce4728f92656331ee14d"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "fe238bfa190cecd4111b461424f1e50b42afac8e3381663292717ecb6e25baa0"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "66d46ea79f6c72588b766385ec4a0851822e6b57815da60882ce53ba5901e13b"
+  },
+  "claims": {
+    "wild_victories": 1,
+    "party_faints": 1,
+    "losses": 0,
+    "captures": 0,
+    "escapes": 0,
+    "trainer_victories": 0,
+    "normal_battle_switches": 2,
+    "forced_replacements": 1,
+    "party_order_changes": 0,
+    "experience_gained_by_species": {
+      "1129": 0,
+      "1": 37
+    },
+    "mother_heal_visits": 1,
+    "ordinary_saves": 1,
+    "natural_research_arrival": false,
+    "regional_pokedex_integration": false,
+    "full_story": false,
+    "release_ready": false
+  },
+  "full_image_pairs": [
+    [
+      71,
+      2
+    ],
+    [
+      72,
+      3
+    ],
+    [
+      73,
+      4
+    ],
+    [
+      74,
+      5
+    ],
+    [
+      75,
+      6
+    ],
+    [
+      76,
+      7
+    ],
+    [
+      77,
+      8
+    ]
+  ],
+  "files": {
+    "commands.txt": {
+      "size": 3675,
+      "sha256": "f47eea9407c3af439afd8c72868f6f7f38f8ad88bd9ee29271be1b831618df6f"
+    },
+    "continue-commands.txt": {
+      "size": 353,
+      "sha256": "94841fce50006c1e6d3aec28d80f40cdae3842de072a38db0d9b010c3bdeb544"
+    },
+    "progress.stdout.txt": {
+      "size": 63053,
+      "sha256": "3cdb0f253459f894f73315d766037decd524e61212ea5a5f0293ad0c17235929"
+    },
+    "continue.stdout.txt": {
+      "size": 7744,
+      "sha256": "dfb34ceb55f2e0d048a7fcb9903d11241052d1e51e592657b277545ce13cfbd6"
+    }
+  },
+  "progress_end": {
+    "end": "STORY_INPUT_CHECKPOINT",
+    "frames": 23105,
+    "inputs": 303,
+    "warnings_errors": 0,
+    "host_write_barriers": 7,
+    "guarded_host_writes": 0,
+    "fixture_calls": 0,
+    "natural_research_arrival_accepted": false
+  },
+  "continue_end": {
+    "end": "STORY_INPUT_CHECKPOINT",
+    "frames": 3054,
+    "inputs": 40,
+    "warnings_errors": 0,
+    "host_write_barriers": 7,
+    "guarded_host_writes": 0,
+    "fixture_calls": 0,
+    "natural_research_arrival_accepted": false
+  },
+  "anchors": [
+    {
+      "screen": 0,
+      "frame": 1390,
+      "sha256": "e8bccedd6d971cb3cd1aaa63f2f5e0aede6465004fb8c3f10865ed311bebcfc6",
+      "note_ja": "自宅Save13から開始、母親前。"
+    },
+    {
+      "screen": 1,
+      "frame": 1746,
+      "sha256": "aa58c2bfb6b81d10848ca6189d3c0f42cf841feb6257cab54b8ae88f75c56bd9",
+      "note_ja": "通常出口からハクジタウン。"
+    },
+    {
+      "screen": 2,
+      "frame": 2620,
+      "sha256": "b795627a60d68eaccc104a98767c423644515cd4bed9044b7da4d5e148f2bcc1",
+      "note_ja": "東へ移動、NPC付近で予定位置と異なる。"
+    },
+    {
+      "screen": 3,
+      "frame": 3403,
+      "sha256": "c70a65b77517c102e5cc6ce3f9fcf2f4c8b59d4e0eca608e311bc4aecc8a98b8",
+      "note_ja": "木に阻まれた探索位置。"
+    },
+    {
+      "screen": 4,
+      "frame": 4087,
+      "sha256": "5e89639d4c0d6c71375ee22191eff9085cb89234311561907a3bfffe620db4cc",
+      "note_ja": "同じ木の位置から左右操作、未到達を保持。"
+    },
+    {
+      "screen": 5,
+      "frame": 4419,
+      "sha256": "f0881f67e7f3ceb908f0f0b96bae9dfe78d195a3f62e70dff6e3964e1d5ec163",
+      "note_ja": "501番道路へ通常接続。"
+    },
+    {
+      "screen": 6,
+      "frame": 4593,
+      "sha256": "d357105312ab1f5fa9f01f2bb26736af4fdf35b7057bea5aa742bb58fc190b3e",
+      "note_ja": "上向き、木で移動制限。"
+    },
+    {
+      "screen": 7,
+      "frame": 4735,
+      "sha256": "f055e868086404580248d66613b28974cc88861cfefef7a43ee9ea32854c4401",
+      "note_ja": "通路へ回り込む。"
+    },
+    {
+      "screen": 8,
+      "frame": 4991,
+      "sha256": "8b07a0d4a7a47013b6c38c4f06d74593c13aac67926113708054cb01cd4ffc63",
+      "note_ja": "草地西の通路。"
+    },
+    {
+      "screen": 9,
+      "frame": 5361,
+      "sha256": "1f1cc98eb8f214a614899bd7ff49a17e882ce6f6afa43e575810b67755fd117f",
+      "note_ja": "草地で野生を探す。"
+    },
+    {
+      "screen": 10,
+      "frame": 5665,
+      "sha256": "7e9de0ee2d458e6d1c1319ab36da6684daeb30850636b6fc1b5052846a092ab4",
+      "note_ja": "草地で通常歩行。"
+    },
+    {
+      "screen": 11,
+      "frame": 6061,
+      "sha256": "07591e7951c569cc59d697710a8136ff3b7b3cb2424d0048082f692d921b0e9c",
+      "note_ja": "草地で通常歩行。"
+    },
+    {
+      "screen": 12,
+      "frame": 6483,
+      "sha256": "a24fcb88edef4777464e1f41055eb6890c4ca986fec95bc9bc794273f7a9dcaa",
+      "note_ja": "野生ツツケラ雌Lv5出現。"
+    },
+    {
+      "screen": 13,
+      "frame": 6725,
+      "sha256": "b4717dd8ee8a5d5c99fb9b16a517a58d03920f960f302cf462d69faf3628255a",
+      "note_ja": "ツツケラ雄Lv4/HP17、戦闘メニュー。"
+    },
+    {
+      "screen": 14,
+      "frame": 6925,
+      "sha256": "3c5804580b722aab38be37530e635ebe0263ae54467da8d604631e507287d602",
+      "note_ja": "通常交代の手持ちUI、リープンHP26。"
+    },
+    {
+      "screen": 15,
+      "frame": 7005,
+      "sha256": "c5dbf5bf326f9d012662cf966da6bd1e8f1a004c87f195a5b34b017e5f8c7ca4",
+      "note_ja": "リープンへいれかえる選択。"
+    },
+    {
+      "screen": 16,
+      "frame": 7307,
+      "sha256": "4ccca9e5758155f2137ca2e6c12c396cb4db1528733bd75e1c480076ac00eeac",
+      "note_ja": "リープン登場、野生のつつく。"
+    },
+    {
+      "screen": 17,
+      "frame": 7429,
+      "sha256": "a53e5cfa69bd4f5c668c6c2895f887bb66d3315ad3ead6f4141a78007af1338b",
+      "note_ja": "効果抜群、リープンHP15/26。"
+    },
+    {
+      "screen": 18,
+      "frame": 7569,
+      "sha256": "4cf4419c48afca0de767374d31584a0d99908ed4329348de233fe122d64a3450",
+      "note_ja": "リープンHP15で戦闘メニュー。"
+    },
+    {
+      "screen": 19,
+      "frame": 7691,
+      "sha256": "492a43c3156e486aae9c794cc41035d7ffba71dab4e4a621268fae1105235013",
+      "note_ja": "ひっかく35/35の技選択。"
+    },
+    {
+      "screen": 20,
+      "frame": 7993,
+      "sha256": "5193bbe6a5e188a7d3fef5189a723133a18c63204edf0b130974e24d6285e671",
+      "note_ja": "ひっかく後、相手のつつくでHP5/26。"
+    },
+    {
+      "screen": 21,
+      "frame": 8115,
+      "sha256": "de0513ba38870432333f2d6b2ffc539a416842ed622191f22151ea0605822558",
+      "note_ja": "リープンHP5、相手HP緑。"
+    },
+    {
+      "screen": 22,
+      "frame": 8315,
+      "sha256": "4c29391722fe3c91a4743d04f982380651b1f40008f03224de652b9c80304626",
+      "note_ja": "手持ちUIが戦闘中の先頭を左へ一時表示。"
+    },
+    {
+      "screen": 23,
+      "frame": 8395,
+      "sha256": "f339b2bdf66588ae2a4d11f6960f530782f22f7433095b095f54ef0adcb7b7e7",
+      "note_ja": "方向誤操作による取消、交代未成立。"
+    },
+    {
+      "screen": 24,
+      "frame": 8697,
+      "sha256": "1d7a8260f2029db6c340a8c86f63a5fd2b89d638010e48b68c9645ff285ae825",
+      "note_ja": "リープンのまま、ポケモンへ戻る。"
+    },
+    {
+      "screen": 25,
+      "frame": 8819,
+      "sha256": "27245f2a5dbf288ad9a4720721269b66105eab5905e08631846dbca2e4211723",
+      "note_ja": "再び手持ち、ツツケラHP17。"
+    },
+    {
+      "screen": 26,
+      "frame": 8899,
+      "sha256": "b6b5d45763ec75d7be9ef1c9edc89afcaf2831df6afc7bd7c0396b15bacc1628",
+      "note_ja": "ツツケラへいれかえる。"
+    },
+    {
+      "screen": 27,
+      "frame": 9201,
+      "sha256": "85713ff825f30d288369ec98028d2f2b41807f69bb2914a874dcebeb651d46ab",
+      "note_ja": "野生のなきごえ。"
+    },
+    {
+      "screen": 28,
+      "frame": 9323,
+      "sha256": "87efc952f12036a67791c55456ad64b182a90baf4d0c4d4dc893acaf43e6591e",
+      "note_ja": "ツツケラの攻撃低下、HP17。"
+    },
+    {
+      "screen": 29,
+      "frame": 9445,
+      "sha256": "1e9f2f0350662d0150d7b0c9aca9f723e76732ec642411c825f0ec3c6c1088d1",
+      "note_ja": "ツツケラ戦闘メニュー。"
+    },
+    {
+      "screen": 30,
+      "frame": 9567,
+      "sha256": "986f38faded78803c6feb3d717977a6a4b5dc38f786cac637f39e009f6b2485b",
+      "note_ja": "つつく35/35の技選択。"
+    },
+    {
+      "screen": 31,
+      "frame": 9869,
+      "sha256": "d8e1dc8f258fe62388d6279713a6898d25f1cd6f22137bc861c1309870499f6c",
+      "note_ja": "ツツケラのつつく攻撃。"
+    },
+    {
+      "screen": 32,
+      "frame": 10111,
+      "sha256": "e4707a8ae267675433635f23d78f5e022131ec3e914d0640d6f376122508c93c",
+      "note_ja": "相手HP黄、味方HP17。"
+    },
+    {
+      "screen": 33,
+      "frame": 10735,
+      "sha256": "9e2c2b1ca4e92460d5062c4877baee21f354252ed6e14a1cb28f74a2d9bc4303",
+      "note_ja": "次の攻撃後、味方HP9。"
+    },
+    {
+      "screen": 34,
+      "frame": 11359,
+      "sha256": "d067a066c9ddf9e3a38b1ce3db58164e4c78cf02f97f45cf73a0acd547666acc",
+      "note_ja": "さらに攻撃後、相手HP赤、味方HP9。"
+    },
+    {
+      "screen": 35,
+      "frame": 11983,
+      "sha256": "396ce9c7622b90ba69002f8dba84dbb15e5af3185a9011d176873c4016a46b4c",
+      "note_ja": "味方ツツケラが倒れた。勝利ではない。"
+    },
+    {
+      "screen": 36,
+      "frame": 12165,
+      "sha256": "0b045040601f83bbe949f4136725f2049d5c64c8133f0d514c4a4f4b78d6b59f",
+      "note_ja": "次のポケモンを使う通常確認。"
+    },
+    {
+      "screen": 37,
+      "frame": 12287,
+      "sha256": "bc4d3e12ef99ab147682e6bbfcba5adf5ba7bce17e02f13fb12ce457befabf16",
+      "note_ja": "ツツケラ0/17ひんし、リープン5/26。"
+    },
+    {
+      "screen": 38,
+      "frame": 12367,
+      "sha256": "40ca84297dde4598a2805c360bf3b400f7ae9a68835796443e354c0c31835d4e",
+      "note_ja": "リープンをたたかわせる強制交代。"
+    },
+    {
+      "screen": 39,
+      "frame": 12609,
+      "sha256": "55f79bf8f20372d08556f7b3e4ae88a85cc226bef83b290425392cecc06cfc3b",
+      "note_ja": "リープンHP5で戦闘復帰。"
+    },
+    {
+      "screen": 40,
+      "frame": 12731,
+      "sha256": "87aff1afb36ebf616cc4e5a6155d98b16ce1fac7e45bccca1a70675343d18efd",
+      "note_ja": "ひっかく34/35を選択。"
+    },
+    {
+      "screen": 41,
+      "frame": 13133,
+      "sha256": "c0cfdf5dbc201ea2f7d0d590e0c835e56a8fc8b9fea9bfb636675ece7360777e",
+      "note_ja": "野生のツツケラが倒れた。まだoutcome0。"
+    },
+    {
+      "screen": 42,
+      "frame": 13375,
+      "sha256": "6b97e5a132cc103b5c62b66dceeff0d06ff03a6465a3e66710fb4e189601d4a8",
+      "note_ja": "リープン37経験値。味方ひんし個体の獲得はなし。"
+    },
+    {
+      "screen": 43,
+      "frame": 13617,
+      "sha256": "948109ba3f113d0c68c340dbd89e68cd04bc17dfed90c5aabcd4a767e57ceec7",
+      "note_ja": "通常fieldへ復帰、初めてoutcome1。"
+    },
+    {
+      "screen": 44,
+      "frame": 13925,
+      "sha256": "32251c0b9543acd5563ae8d8c51cb5418960dee4bf77aca404919ff91d564a22",
+      "note_ja": "草地から離れる。勝利残留を追加計上しない。"
+    },
+    {
+      "screen": 45,
+      "frame": 14241,
+      "sha256": "cdac19f768aad4046d6926b70d026f65b0a46e6f11c23091a6fa4b6e97f8dc90",
+      "note_ja": "西の通路へ戻る。"
+    },
+    {
+      "screen": 46,
+      "frame": 14609,
+      "sha256": "07224e47294f704269557ec9066c2a4c137c9c2358ae1a4b3c05d4b9a8e96ce2",
+      "note_ja": "ハクジタウンへ通常接続。"
+    },
+    {
+      "screen": 47,
+      "frame": 15269,
+      "sha256": "e1167cc8640069a68ead10b7c8937b4614147d5ded7d38ea5b18a6ff9b58ec92",
+      "note_ja": "帰宅中、水辺で迂回。"
+    },
+    {
+      "screen": 48,
+      "frame": 15993,
+      "sha256": "8c0e63557f123e00174f4da1b721d0f27833fc169b47bc251092741f3a61a2d4",
+      "note_ja": "自宅に通常入室。"
+    },
+    {
+      "screen": 49,
+      "frame": 16165,
+      "sha256": "358330234befcf8879e59fa9d85d3b1bcfb0217094cae506407a9c0011c921d5",
+      "note_ja": "母親の前へ移動。"
+    },
+    {
+      "screen": 50,
+      "frame": 16469,
+      "sha256": "346cf0a4f40b1cc78ec853ba098fc49a8b8e126fb0bf7adf6638c82da4a2133c",
+      "note_ja": "Start誤選択で図鑑目次、見つけた7/捕まえた1。統合未受入。"
+    },
+    {
+      "screen": 51,
+      "frame": 16591,
+      "sha256": "e400ca14e29517613b03b2fe963f198df366ad968abe9e7cf24da2002f2aab06",
+      "note_ja": "図鑑からStartメニューへ戻る。"
+    },
+    {
+      "screen": 52,
+      "frame": 16791,
+      "sha256": "b8aed34bcb46322704cd0af7ecf4db8e24393cd3240a5020c24ed0657cc55922",
+      "note_ja": "回復前手持ち、ツツケラひんし/リープンHP5。"
+    },
+    {
+      "screen": 53,
+      "frame": 17035,
+      "sha256": "d0529d1f71b81e1a3d62056e1a882aee89fcaaeeaeb30b4fd660e6aa8127d431",
+      "note_ja": "ツツケラ情報、図鑑No???、Lv4。"
+    },
+    {
+      "screen": 54,
+      "frame": 17157,
+      "sha256": "877c8020bddc5f94bb35b1caf1a2655d832e0e8a5fc5e44465f22145266d30cc",
+      "note_ja": "ツツケラHP0/17、EXP80、次Lv45。"
+    },
+    {
+      "screen": 55,
+      "frame": 17279,
+      "sha256": "4b14e860d6fe96b2cbc9ea531c792d66ea6227ca80b99f9bf8963dbaf950f852",
+      "note_ja": "ツツケラつつく32/35、なきごえ40/40。"
+    },
+    {
+      "screen": 56,
+      "frame": 17401,
+      "sha256": "75337cf70e063def38bac91c6dd4e3e234f0246422d161bc443bb0a396bc3e21",
+      "note_ja": "リープンひっかく33/35、しっぽ30/30、すいとる25/25。"
+    },
+    {
+      "screen": 57,
+      "frame": 17523,
+      "sha256": "d91d383c5a0d160f20b816b3051a896a36700688e240e31fd0cd0a10bcccf3ba",
+      "note_ja": "リープンLv9/HP5/26、EXP516、次Lv44。"
+    },
+    {
+      "screen": 58,
+      "frame": 17645,
+      "sha256": "b326be6d2db7ab9f5a374d6b6cb9fbbc6f3ad6a9b0599643872ae51fd686419b",
+      "note_ja": "リープン情報、図鑑No001。"
+    },
+    {
+      "screen": 59,
+      "frame": 18011,
+      "sha256": "1bc5b74a7f3aefa0a107ab71ef392009b340e182c4d46f86b1b3a4c421af5b1a",
+      "note_ja": "情報画面からStartへ。"
+    },
+    {
+      "screen": 60,
+      "frame": 18557,
+      "sha256": "d0529d1f71b81e1a3d62056e1a882aee89fcaaeeaeb30b4fd660e6aa8127d431",
+      "note_ja": "誤選択でツツケラ情報を再表示。回復未実施。"
+    },
+    {
+      "screen": 61,
+      "frame": 18799,
+      "sha256": "3f1c016a860de3f8fd01493ae95b153a654dd6949afda17b74006267d49aa4d3",
+      "note_ja": "ツツケラ手持ちメニュー、未回復を保持。"
+    },
+    {
+      "screen": 62,
+      "frame": 19165,
+      "sha256": "358330234befcf8879e59fa9d85d3b1bcfb0217094cae506407a9c0011c921d5",
+      "note_ja": "Bで通常fieldへ戻る。"
+    },
+    {
+      "screen": 63,
+      "frame": 19347,
+      "sha256": "5fa4f9de6546c0dd4834a1fbc1fcec5e9b93aec4044971a20e5750fe16a4cbb1",
+      "note_ja": "母親との通常会話開始。"
+    },
+    {
+      "screen": 64,
+      "frame": 19589,
+      "sha256": "a918cd4979cafd2592bd071b9ee2837ea8dc7aa0a80204e2147fff16a8bf0fe4",
+      "note_ja": "母親の休憩案内。"
+    },
+    {
+      "screen": 65,
+      "frame": 19831,
+      "sha256": "045295d98d5eebf7ba6be2bbebbea56383070f7dba06f3cb08307338e5882ed9",
+      "note_ja": "母親の休憩中の表示。"
+    },
+    {
+      "screen": 66,
+      "frame": 20073,
+      "sha256": "e23f2d728c9b33f46ed0188a834e7acb8e0c271a635edc9c7d3fac6c95af342b",
+      "note_ja": "母親の回復後会話。全partyはここで回復。"
+    },
+    {
+      "screen": 67,
+      "frame": 20195,
+      "sha256": "1090527b7433fab7b24db865f447789690f5eb0e671126c2eb4069d0692265ff",
+      "note_ja": "元気いっぱいの会話。"
+    },
+    {
+      "screen": 68,
+      "frame": 20317,
+      "sha256": "3a3c292fb511cee4823cc5c050e94b3d1a2382c9cbb40dee1954743df521cf20",
+      "note_ja": "気を付けての会話。"
+    },
+    {
+      "screen": 69,
+      "frame": 20439,
+      "sha256": "d89987c3169616b5e2c339f4efc75347e8a66f0e0369330a821b1dc1e2eac31c",
+      "note_ja": "行ってらっしゃいの会話。"
+    },
+    {
+      "screen": 70,
+      "frame": 20561,
+      "sha256": "e8bccedd6d971cb3cd1aaa63f2f5e0aede6465004fb8c3f10865ed311bebcfc6",
+      "note_ja": "母親会話終了、lock0。"
+    },
+    {
+      "screen": 71,
+      "frame": 20865,
+      "sha256": "490aeb5df294866967f30b48c476e477505e20f24cae331e289951de2fd7c75e",
+      "note_ja": "回復後手持ち、17/17・26/26。"
+    },
+    {
+      "screen": 72,
+      "frame": 21109,
+      "sha256": "05af0a2b0c04ad4d290b0329f6fe1dd903d361ad5a166f3eba53fcdf87a3f4a2",
+      "note_ja": "ツツケラ情報、No???は保持。"
+    },
+    {
+      "screen": 73,
+      "frame": 21231,
+      "sha256": "7613a37687a87d5566fcdd19d4f5d96305aa83957ca4877c6d0b6c5b34e7b9bc",
+      "note_ja": "ツツケラLv4/EXP80/HP17、全能力保持。"
+    },
+    {
+      "screen": 74,
+      "frame": 21353,
+      "sha256": "fb4b0d30b483227dd47e0449f77922d2b10bd00a0bb9f77e27574edee01ee751",
+      "note_ja": "ツツケラPP35/40全回復。"
+    },
+    {
+      "screen": 75,
+      "frame": 21475,
+      "sha256": "226c163b3d2e97ec389a27acfa4c2b43eaee6e4e71e41d9e72d8976274bdea9f",
+      "note_ja": "リープンPP35/30/25全回復。"
+    },
+    {
+      "screen": 76,
+      "frame": 21597,
+      "sha256": "99a134d2c716e77ef4ecdfbff14bf352c216b9b6e65d6125ace18cf0fec40788",
+      "note_ja": "リープンLv9/EXP516/HP26、全能力保持。"
+    },
+    {
+      "screen": 77,
+      "frame": 21719,
+      "sha256": "b326be6d2db7ab9f5a374d6b6cb9fbbc6f3ad6a9b0599643872ae51fd686419b",
+      "note_ja": "リープン情報。"
+    },
+    {
+      "screen": 78,
+      "frame": 22085,
+      "sha256": "db516b1e6bee35266ee5ea0872576ab3e8be1765f21d03a61c28247188c01ead",
+      "note_ja": "通常Startメニューへ。"
+    },
+    {
+      "screen": 79,
+      "frame": 22261,
+      "sha256": "7db89ae2792dfebae0026c73740006deee9ec621dfe78cb79fd12be94c7ca20a",
+      "note_ja": "通常レポート書込確認。図鑑1匹は統合受入にしない。"
+    },
+    {
+      "screen": 80,
+      "frame": 22383,
+      "sha256": "ff4397b5418b8d5f06d758e4f70c1ac5e413fb72b1ffaca5e121e59185b3bba2",
+      "note_ja": "通常上書き確認。"
+    },
+    {
+      "screen": 81,
+      "frame": 22505,
+      "sha256": "65c1b9f565ff417e9b6091f7b094baa623d84041a07f1b0d9824f7ff331c5854",
+      "note_ja": "書込中1。"
+    },
+    {
+      "screen": 82,
+      "frame": 22625,
+      "sha256": "65c1b9f565ff417e9b6091f7b094baa623d84041a07f1b0d9824f7ff331c5854",
+      "note_ja": "書込中2。"
+    },
+    {
+      "screen": 83,
+      "frame": 22745,
+      "sha256": "65c1b9f565ff417e9b6091f7b094baa623d84041a07f1b0d9824f7ff331c5854",
+      "note_ja": "書込中3。"
+    },
+    {
+      "screen": 84,
+      "frame": 22865,
+      "sha256": "65c1b9f565ff417e9b6091f7b094baa623d84041a07f1b0d9824f7ff331c5854",
+      "note_ja": "書込中4。"
+    },
+    {
+      "screen": 85,
+      "frame": 22985,
+      "sha256": "bf0d7d0f2dd71aff1953278fc1de939807daa2bb148b8400e5a7c4aa96bf7b99",
+      "note_ja": "しっかり書き残した完了表示、counter14/lock1。"
+    },
+    {
+      "screen": 86,
+      "frame": 23105,
+      "sha256": "e8bccedd6d971cb3cd1aaa63f2f5e0aede6465004fb8c3f10865ed311bebcfc6",
+      "note_ja": "自宅の通常fieldへ復帰、counter14/lock0。"
+    }
+  ],
+  "cold_anchors": [
+    {
+      "screen": 0,
+      "frame": 1390,
+      "sha256": "e8bccedd6d971cb3cd1aaa63f2f5e0aede6465004fb8c3f10865ed311bebcfc6",
+      "note_ja": "独立Continueの自宅、RAM時計13分。"
+    },
+    {
+      "screen": 1,
+      "frame": 1512,
+      "sha256": "f25c4fed22d2f5f62a1a7e3dfdbe0d35e78c996b96ef82f258d4eaa7f2f1d08c",
+      "note_ja": "Startの図鑑カーソル。"
+    },
+    {
+      "screen": 2,
+      "frame": 1712,
+      "sha256": "490aeb5df294866967f30b48c476e477505e20f24cae331e289951de2fd7c75e",
+      "note_ja": "手持ち17/17・26/26、元の順序。"
+    },
+    {
+      "screen": 3,
+      "frame": 1956,
+      "sha256": "05af0a2b0c04ad4d290b0329f6fe1dd903d361ad5a166f3eba53fcdf87a3f4a2",
+      "note_ja": "ツツケラ情報、保存前と全画像一致。"
+    },
+    {
+      "screen": 4,
+      "frame": 2078,
+      "sha256": "7613a37687a87d5566fcdd19d4f5d96305aa83957ca4877c6d0b6c5b34e7b9bc",
+      "note_ja": "ツツケラ能力/EXP80、保存前と全画像一致。"
+    },
+    {
+      "screen": 5,
+      "frame": 2200,
+      "sha256": "fb4b0d30b483227dd47e0449f77922d2b10bd00a0bb9f77e27574edee01ee751",
+      "note_ja": "ツツケラPP35/40、保存前と全画像一致。"
+    },
+    {
+      "screen": 6,
+      "frame": 2322,
+      "sha256": "226c163b3d2e97ec389a27acfa4c2b43eaee6e4e71e41d9e72d8976274bdea9f",
+      "note_ja": "リープンPP35/30/25、保存前と全画像一致。"
+    },
+    {
+      "screen": 7,
+      "frame": 2444,
+      "sha256": "99a134d2c716e77ef4ecdfbff14bf352c216b9b6e65d6125ace18cf0fec40788",
+      "note_ja": "リープン能力/EXP516、保存前と全画像一致。"
+    },
+    {
+      "screen": 8,
+      "frame": 2566,
+      "sha256": "b326be6d2db7ab9f5a374d6b6cb9fbbc6f3ad6a9b0599643872ae51fd686419b",
+      "note_ja": "リープン情報、保存前と全画像一致。"
+    },
+    {
+      "screen": 9,
+      "frame": 3054,
+      "sha256": "e8bccedd6d971cb3cd1aaa63f2f5e0aede6465004fb8c3f10865ed311bebcfc6",
+      "note_ja": "独立Continueの最終field、全Save/RTC不変。"
+    }
+  ],
+  "limitations_ja": [
+    "味方ひんし1と全滅0を分離。ツツケラへ経験値を捏造しない。",
+    "二度の通常交代とひんし後の強制交代1回を分離。通常手持ち並替0。",
+    "No???・図鑑目次7/1・レポート1匹を図鑑統合受入へ転用しない。",
+    "coldのRAM時計13分と保存時12分を分離。全Save/RTC131088bytesは不変。",
+    "通常キーだけ。97画面、開発2process。元Save13の255/cold40等は再実行しない。"
+  ]
+}

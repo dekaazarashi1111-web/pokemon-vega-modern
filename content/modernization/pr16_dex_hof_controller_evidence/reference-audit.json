@@ -1,0 +1,66 @@
+{
+  "candidate": {
+    "size": 33554432,
+    "sha256": "88be88116bd452bd70cffaf2a820d5c6c6b6b7410fa603a9a0228b694725d5de"
+  },
+  "scope": "whole ROM aligned u32 and Thumb BL shape into replaced save-only body",
+  "hits": [
+    {
+      "address": 159741552,
+      "target": 157284864,
+      "scan_kind": "ALIGNED_U32",
+      "size": 4,
+      "sha256": "f2fcd80e9421c2909124a3caecd598db525d648a8dc260cc28c1d134fefa07ab",
+      "classification": "FALSE_POSITIVE_LZ10_PALETTE_LITERAL",
+      "accepted": true
+    },
+    {
+      "address": 162951636,
+      "target": 167518758,
+      "scan_kind": "ALIGNED_U32",
+      "size": 4,
+      "sha256": "1a0b9e9126ef055487706206e03c371db3e8bf7818f13fb2d20eb5bada4788fd",
+      "classification": "FALSE_POSITIVE_DPCM_CRY_SAMPLE",
+      "accepted": true
+    },
+    {
+      "address": 164542052,
+      "target": 155489564,
+      "scan_kind": "ALIGNED_U32",
+      "size": 4,
+      "sha256": "955040d6e96f2fd307f4eab10c43d78a1fed21d27b53bdeddea1ec88154914d0",
+      "classification": "FALSE_POSITIVE_DPCM_CRY_SAMPLE",
+      "accepted": true
+    },
+    {
+      "address": 153448576,
+      "target": 155488358,
+      "scan_kind": "THUMB_BL_SHAPE",
+      "size": 4,
+      "sha256": "1f790a84e3a1dcc1ca0d3f1f9bf0871ee33e6d382f496b1049c068429863e040",
+      "classification": "FALSE_POSITIVE_LZ77_TILESET_GFX",
+      "accepted": true
+    },
+    {
+      "address": 159626216,
+      "target": 155497070,
+      "scan_kind": "THUMB_BL_SHAPE",
+      "size": 4,
+      "sha256": "2ca07f7e51f03032ca0c8828ab6d52b272a3baeb96645e8643b00f598950ebaa",
+      "classification": "FALSE_POSITIVE_LZ77_SPECIES_FRONT_GFX",
+      "accepted": true
+    },
+    {
+      "address": 163464128,
+      "target": 167517770,
+      "scan_kind": "THUMB_BL_SHAPE",
+      "size": 4,
+      "sha256": "ab92557db8b5f5c42fcc6dab65ecd25db4c2fddbd8dc97e96a8c777de9001e4d",
+      "classification": "FALSE_POSITIVE_DPCM_CRY_SAMPLE",
+      "accepted": true
+    }
+  ],
+  "unclassified": 0,
+  "indirect_reference_completeness_claimed": false,
+  "raw_rom_included": false
+}

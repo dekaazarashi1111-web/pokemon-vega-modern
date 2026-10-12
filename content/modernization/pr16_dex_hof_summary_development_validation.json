@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_SUMMARY_REVIEW",
+  "review_scope": "new_summary_sources_only",
+  "old_independent_final_review_retried": false,
+  "initial_head": "d142bfbe27bcda61ea709eac1894a0fd8dfa47f6",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-summary-references.yml": {
+      "size": 3032,
+      "sha256": "4e56f90483abc79fb6bec2262019ede740c946959a183cc1c089fca45ef0eb49"
+    },
+    "content/modernization/pr16_dex_hof_summary_nature_review.json": {
+      "size": 101366,
+      "sha256": "491aeb107b360f0ac151268584c764f01cf0205578224832a14198375c70c30e"
+    },
+    "content/modernization/pr16_dex_hof_summary_sources.json": {
+      "size": 3030,
+      "sha256": "81ab36c4dd58ffd6559d61628b073e438100a4e13ba4cab74ea9fe6e824906c0"
+    },
+    "content/modernization/pr16_dex_hof_summary_type_review.json": {
+      "size": 90485,
+      "sha256": "adb4e1628a4a0577ebf5afee78ee452abe10348074c5d294c1f3985b59410d44"
+    },
+    "docs/PR16_DEX_HOF_SUMMARY_REFERENCES_JA.md": {
+      "size": 2998,
+      "sha256": "769a3b8e742e77f67fc059a8349c68e0bf972571bb5db5e4f9d0f385c0d5751c"
+    },
+    "scripts/pr16_dex_hof_summary_capacity.py": {
+      "size": 5095,
+      "sha256": "ba76e75182f8a8caa608ab9d0947769ab73bfc61f2d50a6dea8d79ea896a9299"
+    },
+    "scripts/pr16_dex_hof_summary_chain.py": {
+      "size": 11748,
+      "sha256": "0d48f0ae79fffbb124d8b8912afdd9fbaa94a3be42831cf062717a64c6027ffd"
+    },
+    "scripts/pr16_dex_hof_summary_nature.py": {
+      "size": 24869,
+      "sha256": "0783c5203abca54ab85cf8c8c3a0a640c030d3500690066b9c9dbb398888bbf7"
+    },
+    "scripts/pr16_dex_hof_summary_references.py": {
+      "size": 4115,
+      "sha256": "0c653334925a4669426416f80a0878bd42c8388f7e245d837a67b21ac6db261e"
+    },
+    "scripts/pr16_dex_hof_summary_references_actions.py": {
+      "size": 26752,
+      "sha256": "f30c4be2bd54148f3dbcc93b25c38074ae50b77795405700b15f0f4566d81cb8"
+    },
+    "scripts/pr16_dex_hof_summary_type.py": {
+      "size": 67283,
+      "sha256": "82f3dc6af635fd80fac5800c83ca861822af05c2d24d2c52045bc11ccbf323e6"
+    },
+    "tests/test_pr16_dex_hof_summary_capacity.py": {
+      "size": 9848,
+      "sha256": "6a56ddab7f48898fdb72f97c625f13b6e8e0954e0bc1a1a10d7c1544c84e0ddd"
+    },
+    "tests/test_pr16_dex_hof_summary_chain.py": {
+      "size": 14270,
+      "sha256": "01ae2081aad0d5d9b7279f4390af7f76987cf64e5046bae9d3dff4c7994e01d4"
+    },
+    "tests/test_pr16_dex_hof_summary_nature.py": {
+      "size": 10990,
+      "sha256": "7d62ba04421dd54b9086cccacecffe2d2780bc89ce80350e84ec3455f8c4bec2"
+    },
+    "tests/test_pr16_dex_hof_summary_references.py": {
+      "size": 4966,
+      "sha256": "60add8ad9ebf10ea6447bfd45ecef20754bbdb82f9c557f3752d184a2876151f"
+    },
+    "tests/test_pr16_dex_hof_summary_references_actions.py": {
+      "size": 12253,
+      "sha256": "6c0b59ce8bb1db9e8118129946af130844a2390be803bd1ff20a40f73ef87721"
+    },
+    "tests/test_pr16_dex_hof_summary_type.py": {
+      "size": 12181,
+      "sha256": "ad4316c6e65e718dde1faf951941829b060b09ec77be5366b0bdd45374016c6b"
+    }
+  },
+  "diagnostic": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "unit_tests": 250,
+    "classifications": [
+      737,
+      137
+    ],
+    "newly_classified": 2,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "identity_source": "previous_verified_recovery_not_current_measurement"
+    },
+    "delta_identity": {
+      "size": 200140,
+      "sha256": "1030e310996585d07c284ac46822f96f16ab6a95e3c13fe4f3ead325e3e9ff5f"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false
+  },
+  "diagnostic_test_log": {
+    "size": 33342,
+    "sha256": "62b2f6b66c2ecba1a600700f06f83291d2c0c0f93faddd3366953d42596680cc"
+  },
+  "source_only_review": {
+    "status": "PASS",
+    "files": 17,
+    "open_findings": 0,
+    "current_rom_measured": false,
+    "old_independent_final_review_retried": false,
+    "scope": "new_summary_sources_only",
+    "method_ja": "実Summary登録hook・最小型・有限callee条件・必要fieldと資源保存、全親保持・容量・公開guardを新sourceのみ静的確認。current全ROMは別Actions測定。"
+  },
+  "development_history": [
+    {
+      "stage": "minimum_conditional_live_projection",
+      "status": "RESOLVED_BEFORE_CURRENT_RECONSTRUCTION",
+      "detail_ja": "新source-onlyレビューでopaque callの暗黙RAM保持と説明文だけの必須fieldを検出。Summaryは実境界read-before-write射影と全非live破壊再実行へ、Natureは具体45field射影とplaceholder/stackの必要時点寿命へ接続。live破壊拒否・非live全破壊許可の反証を追加。全自然play/全IRQ/heap生涯保証へ拡張しない。"
+    },
+    {
+      "stage": "record_review_status_boundary",
+      "status": "RESOLVED_BEFORE_CURRENT_RECONSTRUCTION",
+      "detail_ja": "record側に旧独立最終review is False、新Summary review is True、現在development全byte identityの厳密検査を追加。boolと整数0/1を区別する5負例を追加。以前拒否された独立最終sourceレビューは再試行せず未実施を保持。"
+    },
+    {
+      "stage": "new_parent_capacity_scaffold",
+      "status": "PASS",
+      "tests": 75,
+      "detail_ja": "735親21input・全11namespace/116changes/106witness・874hitを独立identityから保持し、全donor15118byte保護/安全0を新scopeで検証。旧suite/nativeは再実行しない。"
+    }
+  ],
+  "publication_budget": {
+    "status": "PRECURRENT_CONSERVATIVE_SIZE_CHECK_NOT_ACCEPTANCE",
+    "files": {
+      "reference-chain.json": 678452,
+      "measurement.json": 682661,
+      "fixed-checkpoint.json": 722661,
+      "fixed-state.json": 3557296,
+      "fixed-resume.md": 165771,
+      "fixed-run-log.md": 2049406,
+      "fixed-version-log.md": 1660804,
+      "summary-references-tests.txt": 33342,
+      "unknown-frontier.json": 100000,
+      "partial-space.json": 50000,
+      "record.json": 30000
+    },
+    "total": 9730393,
+    "max_file": 4000000,
+    "max_total": 12000000,
+    "state_uses_complete_proof_reference": true
+  },
+  "unchanged_parent": {
+    "classified": 735,
+    "unclassified": 139,
+    "parent_inputs": 21,
+    "retained_proof_families": 11,
+    "changes": 116,
+    "witnesses": 106,
+    "owner_count": 115,
+    "hit_count": 874,
+    "song_models": 133,
+    "assets": 50
+  },
+  "acceptance_boundary": {
+    "current_candidate_verified": false,
+    "current_actions_required": true,
+    "natural_play_reachability_proven": false,
+    "universal_epoch_irq_proven": false,
+    "old_independent_final_source_review_completed": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "controller_runtime_wired": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}

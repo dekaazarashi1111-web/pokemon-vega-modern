@@ -1,0 +1,279 @@
+{
+  "status": "MEASURED_SAVE90_AWAITING_VISUAL_AND_INDEPENDENT_ACCEPTANCE",
+  "source_head": "c387d11ef725e6877844c83cf56508188b97b9a1",
+  "run_id": 37184752937,
+  "input_save": {
+    "size": 131088,
+    "sha256": "981089324f749ae85d82a42e41743fc529edf45c95ac510f3aef53fd1e0412b2"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "5ac6f0f42f6f0cb43e984e34eb6fe5d17667abb29a3b465934e03cd708f20d47"
+  },
+  "inspection": {
+    "status": "STATIC_SAVE90_ELEVENTH_DIGLETT_ONLY",
+    "preparation": {
+      "size": 16417,
+      "sha256": "e6ff40a2167ec5c924802c345c30a024f5df187ef7ed37e4dab9e64d0f15d905"
+    },
+    "route": [
+      [
+        9,
+        11
+      ]
+    ],
+    "terrain": [
+      {
+        "map": [
+          10,
+          16
+        ],
+        "xy": [
+          9,
+          11
+        ],
+        "elevation": 3,
+        "collision": 0,
+        "behavior": 0
+      }
+    ],
+    "interaction": {
+      "local_id": 8,
+      "target": [
+        9,
+        12
+      ],
+      "script": 141220512,
+      "visibility_flag": 4374,
+      "button": "A",
+      "from_xy": [
+        9,
+        11
+      ],
+      "facing": 1,
+      "object_address": 155169756,
+      "object_hex": "0881000009000c000308110000000000a0da6a0816110000"
+    },
+    "initial_flags": {
+      "4372": 0,
+      "4373": 0,
+      "4374": 0,
+      "4375": 1,
+      "4376": 0,
+      "4377": 0,
+      "4378": 1
+    },
+    "expected_flag_changes": [
+      [
+        4372,
+        0,
+        1
+      ],
+      [
+        4374,
+        0,
+        1
+      ],
+      [
+        4375,
+        1,
+        0
+      ]
+    ],
+    "expected_object_changes": [
+      {
+        "local_id": 5,
+        "operation": "removeobject"
+      },
+      {
+        "local_id": 8,
+        "operation": "removeobject"
+      },
+      {
+        "local_id": 9,
+        "operation": "addobject"
+      }
+    ],
+    "instruction_count": 43,
+    "text_count": 2,
+    "native_route_accepted": false
+  },
+  "route": [
+    [
+      9,
+      11
+    ],
+    [
+      9,
+      11
+    ]
+  ],
+  "battle": null,
+  "teleport": [],
+  "frontier": {
+    "kind": "eleventh_diglett_event",
+    "trigger": [
+      9,
+      12
+    ],
+    "map": [
+      10,
+      16
+    ],
+    "xy": [
+      9,
+      11
+    ],
+    "observation": 3,
+    "local_id": 8,
+    "facing": 1
+  },
+  "final": {
+    "observe": 25,
+    "frame": 2692,
+    "map": [
+      10,
+      16
+    ],
+    "xy": [
+      9,
+      11
+    ],
+    "live_xy": [
+      16,
+      18
+    ],
+    "facing": 1,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 90,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "565b246bde44f27bd3ae40958aaba32c96f8ed0287d5c5c053f38e9798491676",
+    "flash_sha256": "17e6b6f029eac864137ab7b18e4a0aee01da38a97b558cf47019fa2caaf4fab8",
+    "ledger_sha256": "25e14aa8952190dae350858541a406b7ddcb2a9539af79800a82581ac0819b8d"
+  },
+  "continued": {
+    "observe": 1,
+    "frame": 1510,
+    "map": [
+      10,
+      16
+    ],
+    "xy": [
+      9,
+      11
+    ],
+    "live_xy": [
+      16,
+      18
+    ],
+    "facing": 1,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 90,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "565b246bde44f27bd3ae40958aaba32c96f8ed0287d5c5c053f38e9798491676",
+    "flash_sha256": "17e6b6f029eac864137ab7b18e4a0aee01da38a97b558cf47019fa2caaf4fab8",
+    "ledger_sha256": "25e14aa8952190dae350858541a406b7ddcb2a9539af79800a82581ac0819b8d"
+  },
+  "progress": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "981089324f749ae85d82a42e41743fc529edf45c95ac510f3aef53fd1e0412b2"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "5ac6f0f42f6f0cb43e984e34eb6fe5d17667abb29a3b465934e03cd708f20d47"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 2692,
+      "inputs": 48,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 26
+  },
+  "independent_continue": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "5ac6f0f42f6f0cb43e984e34eb6fe5d17667abb29a3b465934e03cd708f20d47"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "5ac6f0f42f6f0cb43e984e34eb6fe5d17667abb29a3b465934e03cd708f20d47"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 1510,
+      "inputs": 13,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 2
+  },
+  "screen_count": 28,
+  "native_processes": 2,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "rom_changes": 0,
+  "fixture_writes": 0,
+  "ordinary_saves": 1,
+  "cave_crossing_complete": true,
+  "outside_route503_reached": true,
+  "inner_floor_entered": true,
+  "hole_descent_observed": false,
+  "hole_descent_previously_accepted": true,
+  "mansion_exit_previously_accepted": true,
+  "gym_entry_previously_accepted": true,
+  "first_diglett_previously_accepted": true,
+  "second_diglett_previously_accepted": true,
+  "third_diglett_previously_accepted": true,
+  "fourth_diglett_previously_accepted": true,
+  "fifth_diglett_previously_accepted": true,
+  "sixth_diglett_previously_accepted": true,
+  "seventh_diglett_previously_accepted": true,
+  "trainer132_previously_accepted": true,
+  "trainer160_previously_accepted": true,
+  "eighth_diglett_previously_accepted": true,
+  "leader417_previously_accepted": true,
+  "ninth_diglett_previously_accepted": true,
+  "tenth_diglett_previously_accepted": true,
+  "eleventh_diglett_interacted": true,
+  "gym_leader_defeated": true,
+  "gym_exit_accepted": false,
+  "gym_entered": true,
+  "letter_consumer_resolved": true,
+  "letter_handoff_requires_badge": true,
+  "statue_paper_observed": true,
+  "paper_obtained": true,
+  "paper_consumed_or_delivered": false,
+  "paper_acceptance_pending": false,
+  "normal_recovery_required": false,
+  "pp_recovery_accepted": true,
+  "full_story_accepted": false,
+  "release_ready": false,
+  "artifact_excludes": [
+    "existing ROM",
+    "runner",
+    "runtime",
+    "input Save89"
+  ]
+}

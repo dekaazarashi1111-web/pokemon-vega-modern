@@ -1,0 +1,58 @@
+name: pr16-research-standard-list-accept
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-standard-list-accept.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-standard-list-accept
+  cancel-in-progress: false
+jobs:
+  accept:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify saved evidence and record scoped acceptance without native rerun
+        run: python3 -B scripts/pr16_research_standard_list_accept.py record
+      - name: Task graph resume and final scoped index
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t owned < <(python3 -B scripts/pr16_research_standard_list_accept.py paths)
+          git add -- "${owned[@]}"
+          python3 -B scripts/pr16_research_standard_list_accept.py guard
+      - name: Non-force acceptance checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260927-RESEARCH-STANDARD-LIST: 22画面と終端を照合し選択取消再訪を限定受入'
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          echo "RESULT=DONE TASK=USER-20260927-RESEARCH-STANDARD-LIST VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+      - name: Focused next-boundary source context
+        if: always()
+        run: python3 -B scripts/pr16_research_standard_list_accept.py snapshot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-standard-list-acceptance
+          path: |
+            .local/pr16-standard-list-accept/
+            content/modernization/pr16_research_standard_list_acceptance.json
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "status": "SIGNED_OUTER_QOL_BOUNDARY_NOT_ACCEPTED",
+  "formal_candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_ref": "517d45045d6030e22a3615d9bbb095f004b50c20",
+  "windows": [
+    {
+      "id": "normal_save_root",
+      "address": 135115596,
+      "size": 8,
+      "sha256": "875d57f6a8d72e6f8172e31a4421706f13011898de3cfd41dc1966677090e059"
+    },
+    {
+      "id": "qol_save_adapter",
+      "address": 154629728,
+      "size": 52,
+      "sha256": "bf430c8e1e3986e52e62134a46aa4dbdf1df288ed6d40b4a3dc17f0889212ac6"
+    },
+    {
+      "id": "outer_common_epilogue",
+      "address": 154629762,
+      "size": 6,
+      "sha256": "adf2ebef69b1c796d19387667cd48616ad0c1656e33c5e31eb2f946d0a65f93c"
+    },
+    {
+      "id": "sector31_persist_helper",
+      "address": 154638272,
+      "size": 84,
+      "sha256": "756c48d45bbd75e7c0691972eb5e33d9352e4ff52480ef5ca648d0d2e9f64306"
+    },
+    {
+      "id": "stock_save_attempt_write",
+      "address": 135115630,
+      "size": 30,
+      "sha256": "1b5854ebb7036b2895eb63bd86d7055522b2e87e88cd38920da89193163aee1d"
+    },
+    {
+      "id": "start_attempt_dispatch",
+      "address": 134672748,
+      "size": 60,
+      "sha256": "4e0c5865d2d477176f8be42dc012c00d1fd9b0127152d5782df82ed7634fdfe0"
+    }
+  ],
+  "adapter": 154629728,
+  "patch_call": 154629762,
+  "helper": 154638272,
+  "attempt": 50353264,
+  "base": 157286368,
+  "end_exclusive": 157286400,
+  "scope_ja": "QOL adapter共通出口でnon1をreturn255/attempt255へ整合し、既存8byte frameから直接callerへ復帰する。ensure_save早期0も含む。main/helperの呼出回数・transaction bypass/補償・wipe/retryは変更しない。",
+  "qol_owner_preimage": {
+    "address": 154627376,
+    "size": 69440,
+    "sha256": "b49f2716f5958287efbc9fa0b3173d105f5a41b52d30cbb55ba2dac7d9fc67ad",
+    "allocation_legacy_sha256": "bf7829c7bf28844de186e0d5cb12509c3b892cba2031bd8a722695c36d42a01f",
+    "reason_ja": "既存allocatorのcontent_sha256は旧Stage36生成時点。現formal全ROM SHAを固定したowner全byte署名を使う。accepted START後段の既存変更窓はQOL owner外。旧台帳を現byteの証明へ読み替えない。"
+  },
+  "retry_scope": {
+    "main_status": 0,
+    "save_mode": 0,
+    "callback": 134672689,
+    "damaged_mask": 2147483648,
+    "mask_modified": false,
+    "final_sector31_write_required": true
+  }
+}

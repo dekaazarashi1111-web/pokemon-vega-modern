@@ -1,0 +1,55 @@
+name: pr16-story-trainer-closeout
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-trainer-closeout.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-trainer-closeout
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  closeout:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 4
+      - name: Exact closeout source guard
+        run: python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_trainer_closeout as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
+      - name: Close terminal recording and prepare one text receipt
+        run: python3 -B scripts/pr16_story_trainer_closeout.py close
+      - name: Fixed resume and scoped index guard
+        run: python3 -B scripts/pr16_story_trainer_closeout.py guard
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - name: Commit and nonforce push same branch
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20261004-STORY-TRAINER: close recording and recover metadata receipt'
+          git push origin HEAD:codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$(git rev-parse HEAD)"
+      - name: Exact committed bytes
+        run: python3 -B scripts/pr16_story_trainer_closeout.py snapshot
+      - name: Publish validated receipt after final index guard
+        run: python3 -B scripts/pr16_story_trainer_closeout.py export
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-story-trainer-closeout-receipts
+          path: public-story-trainer-closeout-receipts
+          retention-days: 90
+          if-no-files-found: error

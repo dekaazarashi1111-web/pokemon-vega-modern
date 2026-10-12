@@ -1,0 +1,44 @@
+{
+  "collision": {
+    "artifact_id": 10650181681,
+    "artifact_name": "pr16-vega-adjudication",
+    "artifact_sha256": "40ee5b7d28e4df36906957a0394c1820e85f9dcd90dd91679a80616f0a477b0c",
+    "job_name": "adjudicate",
+    "run_id": 35621880869,
+    "source_head": "c8af78b793c554d43230cddeab5ce33ae515a742",
+    "workflow": ".github/workflows/pr16-vega-adjudication.yml"
+  },
+  "expected_outputs": {
+    "adopted_vega_original_baseline.jsonl": {
+      "sha256": "9daaea8c97a744c0522afc03c157392b3179b5d0a359df97de2f3b1c0da6524f",
+      "size": 1744195
+    },
+    "breeding_families.json": {
+      "sha256": "c40133e37b9bb7c55af841daadcd913879ee71842a770081867bf8132eda4ec5",
+      "size": 338899
+    },
+    "nondirect_egg.jsonl": {
+      "sha256": "50850de6383731d5c9087f8821e2a4e3c5d5123b7e50ea75556358f654acebd8",
+      "size": 2111990
+    },
+    "receipt.json": {
+      "sha256": "de0b78942ecb48a0d9cfb8542d461f180d30f69c12311df78a65ed556881c1a9",
+      "size": 1730
+    },
+    "source_collisions.json": {
+      "sha256": "7e53ca0d4bddfbaa9b641a635dda562f482250b98fc19a2b3c0226c7d9dd2311",
+      "size": 37030
+    }
+  },
+  "schema_version": 1,
+  "task": "USER-20260921-LEARNSET-BASELINE-RESET",
+  "verification": {
+    "artifact_id": 10649469671,
+    "artifact_name": "pr16-vega-breeding-adjudicated",
+    "artifact_sha256": "73389b7ef882728233182ae039242fa882775143f8cf6734cb63fa2d090bc4e1",
+    "job_name": "breeding-audit",
+    "run_id": 35623180576,
+    "source_head": "04b8ea96ac7244fd0940e9f9075026198869cdf4",
+    "workflow": ".github/workflows/pr16-vega-breeding-audit.yml"
+  }
+}

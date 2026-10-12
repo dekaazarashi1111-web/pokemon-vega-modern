@@ -1,0 +1,162 @@
+{
+  "formal_artifact": {
+    "digest": "sha256:e78ed5327d55427cca992406d43fa488f92065d11fe0bc0636493a83c97fb4db",
+    "expires_at": "2026-12-28T02:03:16Z",
+    "id": 11008723945,
+    "name": "pr16-story-after-maori-checkpoint",
+    "size_in_bytes": 18112423,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "id": 36510782954,
+      "repository_id": 1358127462
+    }
+  },
+  "general_ci_all_success_claimed": false,
+  "job": {
+    "conclusion": "success",
+    "id": 109222190727,
+    "name": "continuation",
+    "run_id": 36510782954,
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-29T02:03:20Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-29T02:03:19Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T02:03:33Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-29T02:03:20Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T02:04:14Z",
+        "conclusion": "success",
+        "name": "New Save17 interval and independent Continue only",
+        "number": 3,
+        "started_at": "2026-09-29T02:03:33Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T02:04:14Z",
+        "conclusion": "success",
+        "name": "Lightweight task graph",
+        "number": 4,
+        "started_at": "2026-09-29T02:04:14Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T02:04:17Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 5,
+        "started_at": "2026-09-29T02:04:14Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T02:04:17Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 10,
+        "started_at": "2026-09-29T02:04:17Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T02:04:17Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 11,
+        "started_at": "2026-09-29T02:04:17Z",
+        "status": "completed"
+      }
+    ]
+  },
+  "measured_head_actions": [
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "id": 36510793440,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "id": 36510793435,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "id": 36510783058,
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "id": 36510783086,
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "id": 36510782954,
+      "path": ".github/workflows/pr16-story-after-maori.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "id": 36510782921,
+      "path": ".github/workflows/ci.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "id": 36510782957,
+      "path": ".github/workflows/modernization-stage79-mgba.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "record_accepted_test_reruns": 0,
+  "record_compiles": 0,
+  "record_native_processes": 0,
+  "record_new_gate_tests": 16,
+  "record_run_id": 36511503554,
+  "record_source_head": "c4095e34e024c9331fea32c0135a201b98395bbd",
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+    "id": 36510782954,
+    "path": ".github/workflows/pr16-story-after-maori.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  }
+}

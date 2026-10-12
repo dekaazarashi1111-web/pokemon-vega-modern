@@ -1,0 +1,73 @@
+{
+  "status": "DIAGNOSTIC_STOP_NOT_MILESTONE",
+  "reason": "trainer131_entry_observed_no_battle_input",
+  "detail": {
+    "context": {
+      "stack_depth": 0,
+      "mode": 1,
+      "native": 134656345,
+      "pc": 135868189
+    },
+    "observation": {
+      "observe": 84,
+      "frame": 7093,
+      "map": [
+        3,
+        24
+      ],
+      "xy": [
+        38,
+        6
+      ],
+      "live_xy": [
+        45,
+        13
+      ],
+      "facing": 2,
+      "field": false,
+      "lock": 1,
+      "callback2": 134285761,
+      "party_count": 4,
+      "save_counter": 101,
+      "rp": 0,
+      "battle_flags": 12,
+      "battle_outcome": 0,
+      "party_sha256": "cc578decea5bda186c4838d58b48c06974a69dded044d3f0c01b0b45b224178c",
+      "flash_sha256": "8b44629f94877b5aac2e23ff15a903e66e19b74e236aa89e1f590849ed509b4d",
+      "ledger_sha256": "348850887319655b8449f16526606b928a3866892d92efe2a6f8bfc019c51368"
+    },
+    "ui": {
+      "live": 84,
+      "frame": 7093,
+      "battle_main": 134294377,
+      "controller": 134409905,
+      "execution": 3,
+      "command": 7,
+      "action_cursor": 0,
+      "move_cursor": 0,
+      "enemy_count": 4,
+      "chosen_move": 89
+    },
+    "decisions": [
+      {
+        "observation": 82,
+        "kind": "approach_no_input"
+      },
+      {
+        "observation": 83,
+        "kind": "known_intro_waitbuttonpress"
+      }
+    ],
+    "no_battle_input_sent": true
+  },
+  "milestone_reached": false,
+  "ordinary_save_authorized": false,
+  "source_head": "4ddcdc44aabb704f542f4e37bf2f58cbfaca7573",
+  "run_id": 37210491215,
+  "native_processes": 1,
+  "host_tests_reused": 80,
+  "new_compiles": 1,
+  "accepted_case_reruns": 0,
+  "ordinary_saves": 0,
+  "native_multi_battle_accepted": false
+}

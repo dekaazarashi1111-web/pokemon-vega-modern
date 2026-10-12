@@ -1,0 +1,76 @@
+name: PR16 Circus getter field contract
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-getter-fields.yml
+      - scripts/pr16_circus_getter_fields.py
+      - tests/test_pr16_circus_getter_fields.py
+      - tests/fixtures/pr16_circus_getter_fields.json
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-suppression
+  cancel-in-progress: false
+jobs:
+  getter:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 未起動の記録境界だけをexact修復（START commitに含める）
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/pr16_circus_getter_fields.py');s=p.read_text()
+          before='    for name in (*FILES,p.REPORT,immutable,*evidence,b.resume.BACKLOG):\n        state[\'source_bindings\'][name]=b.identity((ROOT/name).read_bytes())'
+          after='    for name in (*FILES,p.REPORT,immutable,*evidence):\n        state[\'source_bindings\'][name]=b.identity((ROOT/name).read_bytes())\n    if b.resume.BACKLOG in state[\'source_bindings\']:\n        state[\'source_bindings\'][b.resume.BACKLOG]=b.identity((ROOT/b.resume.BACKLOG).read_bytes())'
+          assert s.count(before)==1 and after not in s
+          s=s.replace(before,after)
+          marker="(35503126098,BASE_HEAD,'success')):"
+          assert s.count(marker)==1
+          s=s.replace(marker,"(35503126098,BASE_HEAD,'success'),\n                              (35503435444,'7b38bf550266d63cd2e11d51b57726a08ec915b9','failure')):")
+          p.write_text(s)
+          PY
+      - name: getter-zero原本・新field20契約・source mirrorを開始checkpointへ非force記録
+        id: prepare
+        run: |
+          mkdir -p .local/pr16-circus-getter
+          python3 scripts/pr16_circus_getter_fields.py prepare > .local/pr16-circus-getter/prepare.stdout 2> .local/pr16-circus-getter/prepare.stderr
+      - name: 検証済み真正Save30のexact cacheのみ復元（bootstrap禁止）
+        uses: actions/cache/restore@v4
+        with:
+          path: .local/pr16-circus-suppression/resume/
+          key: pr16-circus-save30-2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183-35494023398
+          fail-on-cache-miss: true
+      - name: host mGBA依存のみ導入（ARM compiler不要）
+        run: |
+          sudo apt-get update > .local/pr16-circus-getter/apt-update.log 2>&1
+          sudo apt-get install -y libmgba-dev > .local/pr16-circus-getter/apt-install.log 2>&1
+      - name: ５field literal修復・自然getter30・正規抑制・通常Save継続
+        run: python3 scripts/pr16_circus_getter_fields.py native
+      - name: 成功と未達を分離し原本・引継ぎ・両ログを非force記録
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_getter_fields.py finish
+      - name: ROM・save・cacheを除外して原本を保存
+        if: always()
+        run: python3 scripts/pr16_circus_getter_fields.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-getter
+          path: .local/pr16-circus-getter/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: 未達をActions成功へ読み替えない
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_getter_fields.py result

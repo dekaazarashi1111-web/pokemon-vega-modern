@@ -1,0 +1,44 @@
+name: pr16-fixed-form-owner-static
+run-name: Pinned Necrozma/Crowned move-owner source inspection (zero emulator runs)
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-fixed-form-owner-static.yml
+      - scripts/pr16_fixed_form_owner_static.py
+permissions:
+  contents: read
+jobs:
+  fixed-form-owner-static:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Restore only the existing pinned state archive, never publish it
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/fixed-owner-input .local/fixed-owner-log
+          tag=$(python3 -c 'import json;print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-state.zip --dir .local/fixed-owner-input
+          python3 scripts/pr16_fixed_form_owner_static.py \
+            --archive .local/fixed-owner-input/pokemon-vega-private-env-v1-state.zip \
+            > .local/fixed-owner-log/stdout.json 2> .local/fixed-owner-log/stderr.log
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-fixed-form-owner-static
+          path: |
+            .local/pr16-fixed-form-owner-static/
+            .local/fixed-owner-log/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

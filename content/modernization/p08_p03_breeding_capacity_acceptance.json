@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "status": "VERIFIED_WITH_DECLARED_LIMITS",
+  "source_run_id": 34439826111,
+  "tested_code_commit": "40dec97d5360422e66d02a3ae0261a00df566f86",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+  },
+  "evidence_root": "content/modernization/p08_breeding_capacity_evidence/34439826111",
+  "closed_conditions": [
+    "Five physically generated eggs retain FIFO order through 512 overflow steps",
+    "Normal dialogue fills the final two party slots",
+    "Full party sends the next egg to PC first or last vacant slot without overwrites",
+    "Full party and full PC preserve the pending egg; retry after Continue also preserves it",
+    "Two normal saves and two new-core Continues preserve party, all 420 PC slots, queue and parents"
+  ],
+  "cases": [
+    "pc-first",
+    "pc-last",
+    "pc-full"
+  ],
+  "fresh_processes_in_original": 3,
+  "fresh_cores_in_original": 9,
+  "cached_passes_in_original": 0,
+  "new_mgba_processes_during_integration": 0,
+  "parent_and_pc_fixture_only": true,
+  "full_p03_acceptance": false,
+  "release_ready": false,
+  "active_stage62_baseline_changed": false,
+  "files": {
+    "actions-artifact.json": {
+      "size": 848,
+      "sha256": "c8ae1d4eec4675656569d8404dcec7386436edc470683ec653ee3fee64fafadf"
+    },
+    "actions-jobs.json": {
+      "size": 3197,
+      "sha256": "b006425b22f5524e42df1fa4c4e8825c29078d568022478cd414eac326814c19"
+    },
+    "actions-run.json": {
+      "size": 16778,
+      "sha256": "c403d9eab8cc199f6eef8a9e168facf0945336aded0b7a515417edeada250649"
+    },
+    "original.zip": {
+      "size": 33550,
+      "sha256": "b0995f68a5ef75936ebc379c8d0f74f3e6f31a5d793a1fc3bab352f1b48cb04a"
+    }
+  }
+}

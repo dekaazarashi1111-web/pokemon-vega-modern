@@ -1,0 +1,675 @@
+{
+  "actual_payload_bytes": 8364,
+  "status": "LINKED_CURRENT_SAVE_SUCCESSOR_AND_HJ_CODEC",
+  "extra_lease_size": 0,
+  "extra_lease_base": 157284696,
+  "sections": [
+    {
+      "name": ".text.DexImpl_Stage61State_HandleReplaceSector",
+      "address": 155487248,
+      "size": 288,
+      "alignment": 8
+    },
+    {
+      "name": ".text.stage61_save_validate_slot",
+      "address": 155487560,
+      "size": 480,
+      "alignment": 8
+    },
+    {
+      "name": ".text.stage61_save_reject_written_target_sector",
+      "address": 155488064,
+      "size": 168,
+      "alignment": 8
+    },
+    {
+      "name": ".text.DexImpl_Stage61State_HandleWriteSector",
+      "address": 155488288,
+      "size": 156,
+      "alignment": 8
+    },
+    {
+      "name": ".text.stage61_save_normal_copy_on_write",
+      "address": 155488464,
+      "size": 616,
+      "alignment": 8
+    },
+    {
+      "name": ".text.stage61_save_validations_match",
+      "address": 155489080,
+      "size": 80,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_state_clear",
+      "address": 155489200,
+      "size": 120,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_save_clone_record_sector",
+      "address": 155489360,
+      "size": 616,
+      "alignment": 8
+    },
+    {
+      "name": ".text.DexImpl_Stage61State_GetSaveValidStatus",
+      "address": 155489976,
+      "size": 16,
+      "alignment": 2
+    },
+    {
+      "name": ".text.stage61_dex_live_valid",
+      "address": 155492772,
+      "size": 40,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_save_expected_chunk_data",
+      "address": 155492908,
+      "size": 128,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_save_chunk_descriptor_is_valid",
+      "address": 155493036,
+      "size": 72,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_crc_byte",
+      "address": 155493108,
+      "size": 36,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_successor_verify_generation",
+      "address": 155493144,
+      "size": 400,
+      "alignment": 8
+    },
+    {
+      "name": ".text.stage61_state_inject_tail.part.0",
+      "address": 155493552,
+      "size": 80,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_save_select_generation",
+      "address": 155493632,
+      "size": 144,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_save_mark_damaged",
+      "address": 155493776,
+      "size": 40,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_save_all_descriptors_are_valid",
+      "address": 155493820,
+      "size": 36,
+      "alignment": 2
+    },
+    {
+      "name": ".text.stage61_state_crc",
+      "address": 155493856,
+      "size": 104,
+      "alignment": 4
+    },
+    {
+      "name": ".text.crc.constprop.0",
+      "address": 155493960,
+      "size": 56,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_save_section_crc32",
+      "address": 155494048,
+      "size": 34,
+      "alignment": 2
+    },
+    {
+      "name": ".text.DexImpl_Stage61State_HJ_Rollback",
+      "address": 155494084,
+      "size": 124,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_save_clear_damaged",
+      "address": 155494372,
+      "size": 24,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_save_build_live_descriptors.part.0",
+      "address": 155494484,
+      "size": 56,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_state_record_byte",
+      "address": 155494540,
+      "size": 148,
+      "alignment": 4
+    },
+    {
+      "name": ".text.DexImpl_Stage61State_EnsureBackupGeneration",
+      "address": 155494688,
+      "size": 192,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_dex_program_body",
+      "address": 155494952,
+      "size": 68,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_save_readback_matches_prepared",
+      "address": 155496040,
+      "size": 300,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_save_write_normal_live_sector",
+      "address": 155496344,
+      "size": 256,
+      "alignment": 8
+    },
+    {
+      "name": ".text.stage61_successor_prepare_live",
+      "address": 155496600,
+      "size": 248,
+      "alignment": 8
+    },
+    {
+      "name": ".text.DexImpl_Stage61State_HJ_Validate",
+      "address": 155496848,
+      "size": 242,
+      "alignment": 2
+    },
+    {
+      "name": ".text.stage61_save_clone_complete_generation.constprop.0",
+      "address": 155497092,
+      "size": 196,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_state_load_compatible_record",
+      "address": 155497292,
+      "size": 460,
+      "alignment": 4
+    },
+    {
+      "name": ".text.DexImpl_Stage61State_HJ_Build",
+      "address": 155497752,
+      "size": 408,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_dex_fail_live",
+      "address": 155498160,
+      "size": 116,
+      "alignment": 4
+    },
+    {
+      "name": ".text.stage61_save_ensure_live_backup_generation",
+      "address": 155498284,
+      "size": 30,
+      "alignment": 2
+    },
+    {
+      "name": ".text.read32",
+      "address": 155498314,
+      "size": 22,
+      "alignment": 2
+    },
+    {
+      "name": ".text.write32",
+      "address": 155498336,
+      "size": 16,
+      "alignment": 2
+    },
+    {
+      "name": ".text.DexImpl_Stage61State_HandleLoadSector",
+      "address": 157284696,
+      "size": 372,
+      "alignment": 4
+    },
+    {
+      "name": ".text.DexImpl_Stage61State_UpdateRecordOnly",
+      "address": 157285072,
+      "size": 328,
+      "alignment": 8
+    },
+    {
+      "name": ".text.DexImpl_Stage61State_CommitSignatureByte",
+      "address": 157285400,
+      "size": 304,
+      "alignment": 8
+    },
+    {
+      "name": ".text.stage61_save_physical_sector_for_id",
+      "address": 157285704,
+      "size": 64,
+      "alignment": 8
+    },
+    {
+      "name": ".text.DexImpl_Stage61State_HandleSavingData",
+      "address": 167517496,
+      "size": 240,
+      "alignment": 8
+    },
+    {
+      "name": ".text.stage61_successor_footer_matches",
+      "address": 167517736,
+      "size": 144,
+      "alignment": 8
+    },
+    {
+      "name": ".text.stage61_successor_program_committed",
+      "address": 167517880,
+      "size": 144,
+      "alignment": 8
+    },
+    {
+      "name": ".text.stage61_state_tail_matches_live_crc",
+      "address": 167518024,
+      "size": 128,
+      "alignment": 8
+    },
+    {
+      "name": ".text.stage61_save_update_live_record_only",
+      "address": 167518152,
+      "size": 108,
+      "alignment": 8
+    }
+  ],
+  "payload_bytes": 8576,
+  "free_bytes": 804,
+  "exports": {
+    "Stage61State_HandleWriteSector": 155487232,
+    "Stage61State_HandleReplaceSector": 155487544,
+    "Stage61State_CommitSignatureByte": 155488044,
+    "Stage61State_EnsureBackupGeneration": 155488272,
+    "Stage61State_UpdateRecordOnly": 155488448,
+    "Stage61State_HandleSavingData": 155489184,
+    "Stage61State_GetSaveValidStatus": 155489324,
+    "Stage61State_HandleLoadSector": 155489340
+  },
+  "source": {
+    "size": 99975,
+    "sha256": "6db3a14a54ace925103aad6f1412c0fe67c167b0e1d78d125b489889463f21c3"
+  },
+  "symbols": {
+    "DexImpl_Stage61State_HandleReplaceSector": {
+      "address": 155487248,
+      "size": 266,
+      "kind": "T"
+    },
+    "stage61_save_validate_slot": {
+      "address": 155487560,
+      "size": 468,
+      "kind": "t"
+    },
+    "____aeabi_idivmod_from_thumb": {
+      "address": 155488032,
+      "size": 8,
+      "kind": "t"
+    },
+    "stage61_save_reject_written_target_sector": {
+      "address": 155488064,
+      "size": 130,
+      "kind": "t"
+    },
+    "DexImpl_Stage61State_HandleWriteSector": {
+      "address": 155488288,
+      "size": 134,
+      "kind": "T"
+    },
+    "stage61_save_normal_copy_on_write": {
+      "address": 155488464,
+      "size": 592,
+      "kind": "t"
+    },
+    "____aeabi_uidivmod_from_thumb": {
+      "address": 155489056,
+      "size": 8,
+      "kind": "t"
+    },
+    "stage61_save_validations_match": {
+      "address": 155489080,
+      "size": 80,
+      "kind": "t"
+    },
+    "stage61_state_clear": {
+      "address": 155489200,
+      "size": 118,
+      "kind": "t"
+    },
+    "stage61_save_clone_record_sector": {
+      "address": 155489360,
+      "size": 546,
+      "kind": "t"
+    },
+    "__stage61_state_tail_matches_live_crc_veneer": {
+      "address": 155489912,
+      "size": 16,
+      "kind": "t"
+    },
+    "__stage61_successor_footer_matches_veneer": {
+      "address": 155489928,
+      "size": 16,
+      "kind": "t"
+    },
+    "__stage61_successor_program_committed_veneer": {
+      "address": 155489944,
+      "size": 16,
+      "kind": "t"
+    },
+    "DexImpl_Stage61State_GetSaveValidStatus": {
+      "address": 155489976,
+      "size": 16,
+      "kind": "T"
+    },
+    "stage61_dex_live_valid": {
+      "address": 155492772,
+      "size": 38,
+      "kind": "t"
+    },
+    "stage61_save_expected_chunk_data": {
+      "address": 155492908,
+      "size": 128,
+      "kind": "t"
+    },
+    "stage61_save_chunk_descriptor_is_valid": {
+      "address": 155493036,
+      "size": 72,
+      "kind": "t"
+    },
+    "stage61_crc_byte": {
+      "address": 155493108,
+      "size": 36,
+      "kind": "t"
+    },
+    "stage61_successor_verify_generation": {
+      "address": 155493144,
+      "size": 330,
+      "kind": "t"
+    },
+    "__stage61_state_tail_matches_live_crc_veneer@0944a468": {
+      "address": 155493480,
+      "size": 16,
+      "kind": "t"
+    },
+    "__stage61_successor_footer_matches_veneer@0944a478": {
+      "address": 155493496,
+      "size": 16,
+      "kind": "t"
+    },
+    "____aeabi_uidivmod_from_thumb@0944a488": {
+      "address": 155493512,
+      "size": 8,
+      "kind": "t"
+    },
+    "____aeabi_idivmod_from_thumb@0944a490": {
+      "address": 155493520,
+      "size": 8,
+      "kind": "t"
+    },
+    "stage61_state_inject_tail.part.0": {
+      "address": 155493552,
+      "size": 80,
+      "kind": "t"
+    },
+    "stage61_save_select_generation": {
+      "address": 155493632,
+      "size": 144,
+      "kind": "t"
+    },
+    "stage61_save_mark_damaged": {
+      "address": 155493776,
+      "size": 40,
+      "kind": "t"
+    },
+    "stage61_save_all_descriptors_are_valid": {
+      "address": 155493820,
+      "size": 36,
+      "kind": "t"
+    },
+    "stage61_state_crc": {
+      "address": 155493856,
+      "size": 104,
+      "kind": "t"
+    },
+    "crc.constprop.0": {
+      "address": 155493960,
+      "size": 56,
+      "kind": "t"
+    },
+    "stage61_save_section_crc32": {
+      "address": 155494048,
+      "size": 34,
+      "kind": "t"
+    },
+    "HJ_Rollback": {
+      "address": 155494084,
+      "size": 124,
+      "kind": "T"
+    },
+    "stage61_save_clear_damaged": {
+      "address": 155494372,
+      "size": 24,
+      "kind": "t"
+    },
+    "stage61_save_build_live_descriptors.part.0": {
+      "address": 155494484,
+      "size": 56,
+      "kind": "t"
+    },
+    "stage61_state_record_byte": {
+      "address": 155494540,
+      "size": 148,
+      "kind": "t"
+    },
+    "DexImpl_Stage61State_EnsureBackupGeneration": {
+      "address": 155494688,
+      "size": 192,
+      "kind": "T"
+    },
+    "stage61_dex_program_body": {
+      "address": 155494952,
+      "size": 66,
+      "kind": "t"
+    },
+    "stage61_save_readback_matches_prepared": {
+      "address": 155496040,
+      "size": 298,
+      "kind": "t"
+    },
+    "stage61_save_write_normal_live_sector": {
+      "address": 155496344,
+      "size": 212,
+      "kind": "t"
+    },
+    "__stage61_successor_program_committed_veneer@0944b070": {
+      "address": 155496560,
+      "size": 16,
+      "kind": "t"
+    },
+    "____aeabi_idivmod_from_thumb@0944b080": {
+      "address": 155496576,
+      "size": 8,
+      "kind": "t"
+    },
+    "stage61_successor_prepare_live": {
+      "address": 155496600,
+      "size": 226,
+      "kind": "t"
+    },
+    "HJ_Validate": {
+      "address": 155496848,
+      "size": 242,
+      "kind": "T"
+    },
+    "stage61_save_clone_complete_generation.constprop.0": {
+      "address": 155497092,
+      "size": 196,
+      "kind": "t"
+    },
+    "stage61_state_load_compatible_record": {
+      "address": 155497292,
+      "size": 458,
+      "kind": "t"
+    },
+    "HJ_Build": {
+      "address": 155497752,
+      "size": 408,
+      "kind": "T"
+    },
+    "stage61_dex_fail_live": {
+      "address": 155498160,
+      "size": 116,
+      "kind": "t"
+    },
+    "stage61_save_ensure_live_backup_generation": {
+      "address": 155498284,
+      "size": 30,
+      "kind": "t"
+    },
+    "read32": {
+      "address": 155498314,
+      "size": 22,
+      "kind": "t"
+    },
+    "write32": {
+      "address": 155498336,
+      "size": 16,
+      "kind": "t"
+    },
+    "DexImpl_Stage61State_HandleLoadSector": {
+      "address": 157284696,
+      "size": 372,
+      "kind": "T"
+    },
+    "DexImpl_Stage61State_UpdateRecordOnly": {
+      "address": 157285072,
+      "size": 308,
+      "kind": "T"
+    },
+    "DexImpl_Stage61State_CommitSignatureByte": {
+      "address": 157285400,
+      "size": 282,
+      "kind": "T"
+    },
+    "stage61_save_physical_sector_for_id": {
+      "address": 157285704,
+      "size": 44,
+      "kind": "t"
+    },
+    "____aeabi_idivmod_from_thumb@095ffd78": {
+      "address": 157285752,
+      "size": 8,
+      "kind": "t"
+    },
+    "DexImpl_Stage61State_HandleSavingData": {
+      "address": 167517496,
+      "size": 154,
+      "kind": "T"
+    },
+    "__stage61_dex_fail_live_veneer": {
+      "address": 167517656,
+      "size": 16,
+      "kind": "t"
+    },
+    "__stage61_save_ensure_live_backup_generation_veneer": {
+      "address": 167517672,
+      "size": 16,
+      "kind": "t"
+    },
+    "__stage61_save_mark_damaged_veneer": {
+      "address": 167517688,
+      "size": 16,
+      "kind": "t"
+    },
+    "__stage61_save_normal_copy_on_write_veneer": {
+      "address": 167517704,
+      "size": 16,
+      "kind": "t"
+    },
+    "__stage61_dex_live_valid_veneer": {
+      "address": 167517720,
+      "size": 16,
+      "kind": "t"
+    },
+    "stage61_successor_footer_matches": {
+      "address": 167517736,
+      "size": 122,
+      "kind": "t"
+    },
+    "__stage61_read32_veneer": {
+      "address": 167517864,
+      "size": 16,
+      "kind": "t"
+    },
+    "stage61_successor_program_committed": {
+      "address": 167517880,
+      "size": 112,
+      "kind": "t"
+    },
+    "__stage61_dex_program_body_veneer": {
+      "address": 167517992,
+      "size": 16,
+      "kind": "t"
+    },
+    "__stage61_save_reject_written_target_sector_veneer": {
+      "address": 167518008,
+      "size": 16,
+      "kind": "t"
+    },
+    "stage61_state_tail_matches_live_crc": {
+      "address": 167518024,
+      "size": 108,
+      "kind": "t"
+    },
+    "__stage61_state_record_byte_veneer": {
+      "address": 167518136,
+      "size": 16,
+      "kind": "t"
+    },
+    "stage61_save_update_live_record_only": {
+      "address": 167518152,
+      "size": 40,
+      "kind": "t"
+    },
+    "__DexImpl_Stage61State_UpdateRecordOnly_veneer": {
+      "address": 167518192,
+      "size": 16,
+      "kind": "t"
+    },
+    "__stage61_save_build_live_descriptors.part.0_veneer": {
+      "address": 167518208,
+      "size": 16,
+      "kind": "t"
+    },
+    "__stage61_save_mark_damaged_veneer@09fc2010": {
+      "address": 167518224,
+      "size": 16,
+      "kind": "t"
+    },
+    "__stage61_save_physical_sector_for_id_veneer": {
+      "address": 167518240,
+      "size": 16,
+      "kind": "t"
+    }
+  },
+  "total_owner_capacity": 9560,
+  "preserved_hof_bytes": 180,
+  "fixed_entry_bytes": 128,
+  "available_body_bytes": 9252,
+  "new_additional_rom_bytes": 0,
+  "controller_rom_placed": false,
+  "controller_runtime_wired": false
+}

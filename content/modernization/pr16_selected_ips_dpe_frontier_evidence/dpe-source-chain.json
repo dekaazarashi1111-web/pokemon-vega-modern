@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261012-DPE-PINNED-SOURCE-CHAIN",
+  "status": "PINNED_UPSTREAM_INSERTION_SOURCE_CONFIRMED_BLOB_EXTENT_UNPROVEN",
+  "upstream": {
+    "repo_full_name": "kapibarasan000/DPE-JP",
+    "commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+    "sha1_blobs": {
+      "scripts/make.py": "11e8da1f7205612349e7134a1640df122661e9ce",
+      "scripts/insert.py": "b26d6358d35272f2348e3a677ebede2540285153",
+      "linker.ld": "6ad0361f82fd3bd28fa2cbc17124fd53496eb646"
+    },
+    "source_lock": "state/source-lock.json",
+    "source_lock_pinned": true
+  },
+  "build_contract": {
+    "local_script": "scripts/build_upstream.py",
+    "rom_base": 134217728,
+    "dpe_insert_offset": 23068672,
+    "insert_address": 157286400,
+    "free_space_scan_requested": false,
+    "make_edits_linker_to_selected_offset": true,
+    "make_edits_insert_to_selected_offset": true,
+    "insert_copies_build_output_bin_contiguously": true,
+    "upstream_linker_source_default_offset": 25165824,
+    "source_default_is_overwritten_by_make": true,
+    "source_static_read_only": true
+  },
+  "target": {
+    "address": 157759072,
+    "offset_from_insert": 472672,
+    "raw_saved_pointer_value": 142667728,
+    "output_bin_size_bytes": null,
+    "actual_output_bin_contains_target": null,
+    "exact_linked_symbol_owner": null,
+    "live_reader_instruction": null,
+    "donor_safe_bytes": 0
+  },
+  "verification": {
+    "pinned_commit_match": true,
+    "pinned_blob_sha1_match": true,
+    "all_source_contract_predicates_passed": true,
+    "no_upstream_build_rerun": true,
+    "no_emulator_or_candidate_reconstruction": true,
+    "source_fetch_only": true
+  },
+  "limitations_ja": [
+    "make/insertの静的ソース記述の確認で、実行結果output.binサイズ/対象byte同一性を検証していない。",
+    "元linker.ldの0x1800000はmake.pyの選択offsetで書き換えられるため、現固定配置の根拠には使わない。",
+    "予約座標内のpointer外形は実owner/reader、asset全範囲、容量退役を証明しない。"
+  ],
+  "observed_at": "2026-10-12T09:38:41.913Z"
+}

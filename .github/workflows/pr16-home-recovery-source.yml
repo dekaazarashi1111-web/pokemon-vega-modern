@@ -1,0 +1,175 @@
+name: pr16-home-recovery-source
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-home-recovery-source.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-home-recovery-source
+  cancel-in-progress: false
+jobs:
+  source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Validate protected originals and integrate original mother owner
+        shell: python
+        run: |
+          import hashlib, pathlib, sys
+          sys.path[:0]=['scripts','.']
+          import pr16_research_story_route_actions as helper
+          helper.d.current(); state=helper.source_check()
+          out=pathlib.Path('.local/pr16-home-source');out.mkdir(parents=True)
+          helper.put(out/'protected-before.json',state['source_bindings'])
+          p=pathlib.Path('tools/regression/rom_runtime.py');raw=p.read_bytes()
+          assert hashlib.sha256(raw).hexdigest()=='8110772b2df98115e4efd353547150171204270965fd7b0f723a8b9b3aa4c7ba'
+          s=raw.decode()
+          changes=[
+            ('from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv','from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv\nfrom tools.regression.home_recovery import original_mother_script, fallback as mother_fallback'),
+            ('portal_warp: str, return_warp: str) -> None:','portal_warp: str, return_warp: str, mother_script: int) -> None:'),
+            ('    locked = bytearray([0x0F, 0x00]) + bytes(4) + bytes([0x09, 0x04, 0x6C, 0x02])\n    locked_offset = blob.add("script_portal_locked", bytes(locked), 4)\n    blob.pointer(locked_offset + 2, "text_portal_locked")','    # 未解禁時は元の母親へ。旧10byte幅と後続symbolの配置を保持する。\n    blob.add("script_portal_locked", mother_fallback(mother_script, reserved=5), 4)'),
+            ('    prompt += bytes([0x06, 0x01]) + bytes(4) + bytes([0x6C, 0x02])','    # 渡航を断ると元会話・回復へ。旧release/endと直後3byte paddingだけを使う。\n    prompt += bytes([0x06, 0x01]) + bytes(4) + mother_fallback(mother_script)'),
+            ('                 "qol::QolB_PortalWarp", "qol::QolB_ReturnWarp")','                 "qol::QolB_PortalWarp", "qol::QolB_ReturnWarp",\n                 original_mother_script(stage, _find_portal_object(stage)[1]))'),
+            ('"Hakuji research object local-id 1 portal script", patches,','"Vega mother local-id 1: original recovery and gated travel", patches,')]
+          for before,after in changes:
+              assert s.count(before)==1,before
+              s=s.replace(before,after)
+          assert hashlib.sha256(s.encode()).hexdigest()=='f1ace4562ebea22ca24957e0561f9cc410fc737833e7c1bec467ad48bc569672'
+          p.write_text(s)
+          # Private integration tests are opt-in for generic discovery; dedicated invocation below requires 52 actual passes.
+          p=pathlib.Path('tests/test_pr16_home_recovery.py');s=p.read_text()
+          assert s.count('class HomeRecoveryTests(unittest.TestCase):')==1
+          s=s.replace('class HomeRecoveryTests(unittest.TestCase):','@unittest.skipUnless(os.environ.get("PR16_HOME_INPUTS"), "dedicated fixed-input integration suite")\nclass HomeRecoveryTests(unittest.TestCase):')
+          p.write_text(s)
+      - name: Recover pinned inputs and compile ordinary guarded driver
+        shell: python
+        run: |
+          import hashlib, pathlib, shutil, subprocess, sys
+          sys.path[:0]=['scripts','.']
+          import pr16_home_recovery as m
+          import pr16_research_story_actions as old
+          import pr16_research_story_route_actions as helper
+          out=pathlib.Path('.local/pr16-home-source').resolve();public=out/'public';public.mkdir();art=out/'artifact';art.mkdir()
+          old.OUT=out;old.PUBLIC=public
+          runtime,data=old.restore()
+          parent=(data/'candidate.gba').read_bytes();assert m.identity(parent)==m.PARENT
+          def archive(number,size,sha,maxsize):
+              meta=helper.d.inputs.api('actions/artifacts/'+str(number))
+              assert not meta['expired'] and meta['size_in_bytes']==size and meta['digest']=='sha256:'+sha
+              raw=helper.d.inputs.api('actions/artifacts/'+str(number)+'/zip',True)
+              assert m.identity(raw)==dict(size=size,sha256=sha)
+              helper.put(public/(str(number)+'.json'),meta)
+              return helper.safe_zip(raw,maxsize)
+          with archive(10946690893,8502521,'55e5dccd6acaaadb6922c8cc8f30ceb72ef5aa0d2ed9a20a0bc3a4c03ca6292c',25000000) as z:
+              original=z.read('original.gba');(public/'owner-input.json').write_bytes(z.read('owner-input.json'))
+          with archive(10946201851,1179243,'875a68c85e3f22ed0adfb3b5f782c094d569f6721f9ccda93e4433b13957d81c',24000000) as z:
+              saved=z.read('training.srm');runner=z.read('runner')
+              assert m.identity(saved)==m.INPUT_SAVE and m.identity(runner)==m.PARENT_RUNNER
+          inputs=out/'inputs';inputs.mkdir()
+          for name,raw in [('original.gba',original),('parent.gba',parent),('parent-runner',runner)]:
+              (inputs/name).write_bytes(raw)
+          candidate,recipe=m.apply(parent,original);assert m.identity(candidate)==m.CANDIDATE
+          (art/'candidate.gba').write_bytes(candidate);(art/'training.srm').write_bytes(saved)
+          helper.put(public/'recipe.json',recipe)
+          source=out/'generated.c';source.write_bytes(m.generate());(public/'generated.c.txt').write_bytes(source.read_bytes())
+          exe=art/'runner'
+          command=['cc','-std=c11','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-Itools','-I.','-I'+str(runtime/'include'),str(source),'-L'+str(runtime/'lib'),'-lmgba','-lm','-Wl,--allow-shlib-undefined','-o',str(exe)]
+          p=subprocess.run(command,capture_output=True,timeout=120)
+          (public/'compile.stdout.txt').write_bytes(p.stdout);(public/'compile.stderr.txt').write_bytes(p.stderr)
+          assert p.returncode==0 and not p.stdout and not p.stderr,'strict ordinary source compile'
+          helper.put(public/'compile.json',dict(returncode=p.returncode,source=m.identity(source.read_bytes()),executable=m.identity(exe.read_bytes()),compiler=subprocess.check_output(['cc','--version']).decode(),host_compiles=1,arm_compiles=0,binary_rewriting=False,old_guard_subprocess_reruns=0))
+      - name: Run only the new 52 owner and gate tests
+        shell: bash
+        run: |
+          export PR16_HOME_INPUTS="$PWD/.local/pr16-home-source/inputs"
+          python -B -m unittest discover -s tests -p test_pr16_home_recovery.py -v > .local/pr16-home-source/public/unit.stdout.txt 2> .local/pr16-home-source/public/unit.stderr.txt
+          python - <<'PY'
+          from pathlib import Path
+          raw=Path('.local/pr16-home-source/public/unit.stderr.txt').read_bytes()
+          assert raw.count(b' ... ok\n')==52 and b'\nOK\n' in raw and b'FAILED' not in raw and b'skipped' not in raw
+          assert not Path('.local/pr16-home-source/public/unit.stdout.txt').read_bytes()
+          PY
+      - name: Record owner implementation and fixed resume without native acceptance
+        shell: python
+        run: |
+          import datetime, os, pathlib, shutil, sys
+          sys.path[:0]=['scripts','.']
+          import pr16_home_recovery as m
+          import pr16_research_story_route_actions as h
+          from pr16_learnset_compact_record import publish_resume
+          d=h.d;d.current();out=pathlib.Path('.local/pr16-home-source');public=out/'public'
+          state=d.read(d.STATE);prior=d.read(out/'protected-before.json')
+          changed={'tools/regression/rom_runtime.py'}
+          assert all(m.identity(pathlib.Path(n).read_bytes())==v for n,v in prior.items() if n not in changed)
+          base='content/modernization/pr16_home_recovery_source_evidence/'+os.environ['GITHUB_RUN_ID']
+          target=pathlib.Path(base);target.mkdir(parents=True)
+          for p in public.iterdir():
+              if p.is_file():
+                  raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw;shutil.copy2(p,target/p.name)
+          guide='docs/PR16_HOME_RECOVERY_JA.md';cp='content/modernization/pr16_home_recovery_checkpoint.json'
+          goal='母親previous_script0x0817BCBBを固定Vega原本で確認。未解禁時と渡航辞退時を元会話/回復へ15bytesで委譲し、canonical全179bytes一致と52専用検査を確認。次はtraining.srmから新候補で実会話・回復・Save・独立Continueだけを測定する。研究施設自然到達/実渡航nativeは未受入。旧194/367/301/114入力と旧RP/UI/BP/P08は再生しない。'
+          pathlib.Path(guide).write_text('# PR16 母親回復と渡航の共存\n\n'+goal+'\n\n原本取得run36363658910、artifact10946690893。元script/会話1024bytes・回復subscript12bytes・movement8bytesは現候補と原本で一致。NPC位置・解禁flag・承諾時渡航・帰還・保存codeは不変。goto委譲のみで回復を注入しない。旧locked text領域と全symbol配置は保持。\n\n候補SHA '+m.CANDIDATE['sha256']+'。52試験、全ROM rollback、変更外不変、16通りのflag/yes-no、canonical一致を確認。driverは候補SHAを固定したCから通常compileし、実行ファイルは書換えない。初期探索の実行ファイル文字列更新方式は正式採用しない。\n\nこのsource checkpointはnative受入ではない。一般CIの既存失敗/action_requiredとは区別する。merge/release/active baseline変更は禁止。\n')
+          code={'.github/workflows/pr16-home-recovery-context.yml','.github/workflows/pr16-home-recovery-owner.yml','.github/workflows/pr16-home-recovery-source.yml','tools/regression/home_recovery.py','scripts/pr16_home_recovery.py','tests/test_pr16_home_recovery.py','tools/regression/rom_runtime.py'}
+          evidence={str(p) for p in target.iterdir()}
+          record=dict(schema_version=1,status='PASS_HOME_RECOVERY_SOURCE_NATIVE_PENDING',source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),candidate=m.CANDIDATE,parent_candidate=m.PARENT,input_save=m.INPUT_SAVE,unit_tests=52,host_compiles=1,arm_compiles=0,native_processes=0,accepted_case_reruns=0,changed_rom_bytes=15,recipe=base+'/recipe.json',compile=base+'/compile.json',source_bindings=d.bindings(code|evidence),builder_change=dict(before=prior[m.BUILDER],after=m.identity(pathlib.Path(m.BUILDER).read_bytes()),impact='mother locked/declined gate only; old candidate evidence retained historically'),retained_artifact_name='pr16-home-recovery-build',retained_artifact_id=None,actions_completion_confirmed=False,natural_recovery_accepted=False,travel_native_accepted=False,natural_research_arrival_accepted=False,release_ready=False,active_baseline_changed=False)
+          d.write(cp,record)
+          state['home_recovery']=dict(path=cp,status=record['status'],candidate=m.CANDIDATE,source_head=record['source_head'],run_id=record['run_id'])
+          state['bp']['current_stop']=record['status'];state['bp']['next_step']=goal
+          state['next_action']=dict(state['next_action'],id='HOME_RECOVERY_NATIVE_SAVE_NEXT',goal_ja=goal,read_paths=[guide,cp,'scripts/pr16_home_recovery.py'],stop_rule_ja='source build artifactと終端を確認。正式native runが存在したら回収のみ。training.srmの作業コピーから新しい回復区間のみ。旧候補/Save/受入を改変しない。')
+          state['do_not_repeat'].insert(0,'原本owner照合と母親15byte source修正は '+cp+'。52専用試験はこのsource runで測定済み。次は回復の新native区間だけ。旧完走入力は再生しない。')
+          for n in code|evidence|{guide,cp}:state['source_bindings'][n]=m.identity(pathlib.Path(n).read_bytes())
+          state['observed_head']=os.environ['GITHUB_SHA'];state['observed_head_semantics']='source統合worktreeの出発HEAD。builderの前後bindingと全試験sourceは専用checkpointへ固定。native受入/最終製品SHAではない。'
+          state['logs_synchronized']=True;publish_resume(state)
+          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20260928-HOME-RECOVERY\n- Version: home-recovery-source-v1\n- Status: DONE（原本owner/canonical/専用52検査、native未受入）\n- Summary: {goal}\n- Files changed: mother helper/recipe/52 tests/canonical、専用証拠/MD/JSON、固定引継ぎ、両ログ。\n- Verify: 52 new tests PASS; strict host compile1; ARM/native/accepted-case reruns0; 15byte rollback/outside preservation PASS.\n- Commit: source={os.environ["GITHUB_SHA"]}; run={os.environ["GITHUB_RUN_ID"]}; same branch non-force.\n- Network: fixed GitHub artifacts/API only. Global private guard/一般CI全PASS/merge/release/baseline変更は主張しない。\n'
+          for n in d.LOGS:
+              with open(n,'a') as f:f.write(entry)
+          owned=code|evidence|{guide,cp,d.STATE,d.DOC}|d.LOGS
+          d.write(out/'owned.json',sorted(owned))
+          for name in ['candidate.gba','training.srm','runner']:assert (out/'artifact'/name).is_file()
+          shutil.copy2(cp,out/'artifact'/'checkpoint.json')
+      - name: Verify scoped index and non-force commit
+        shell: bash
+        run: |
+          python scripts/validate_task_graph.py --check
+          python scripts/pr16_resume.py check
+          python - <<'PY'
+          import json,subprocess,sys
+          from pathlib import Path
+          sys.path[:0]=['scripts','.']
+          import pr16_learnset_runtime_record as g
+          paths=json.loads(Path('.local/pr16-home-source/owned.json').read_text())
+          subprocess.run(['git','add','--',*paths],check=True)
+          g.START='f598555fcbdf6729539e7ee6cd3372e41e1d9142';g.CODE=set();g.OWNED=set(paths);g.guard()
+          PY
+          git diff --cached --check
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260928-HOME-RECOVERY: 原本母親と渡航を15byteで共存、52検査と引継ぎを固定'
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          git rev-parse HEAD > .local/pr16-home-source/artifact/completion-head.txt
+          python - <<'PY'
+          import json,pathlib,zipfile
+          paths=json.loads(pathlib.Path('.local/pr16-home-source/owned.json').read_text())
+          with zipfile.ZipFile('.local/pr16-home-source/artifact/record.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for n in paths:z.write(n,n)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-home-recovery-build
+          path: .local/pr16-home-source/artifact
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

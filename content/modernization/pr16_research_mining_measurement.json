@@ -1,0 +1,984 @@
+{
+  "all_activities_accepted": false,
+  "candidate": {
+    "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+    "size": 33554432
+  },
+  "cases": {
+    "mining-earn-cold-cap": {
+      "elapsed_seconds": 8.985,
+      "execution": {
+        "returncode": 0,
+        "timeout": false
+      },
+      "generated_source": {
+        "sha256": "e878b1e3e050aa4ca5f03f5efefb1bfdd935e40360dc85e95f6a291069ef4c98",
+        "size": 66650
+      },
+      "screens": {
+        "mining-cold_cap-outcome.ppm": {
+          "sha256": "30d8316915742af8b4de5f6ba08414d09eae8bc5a58e74d2357fae7834b64e48",
+          "size": 115215
+        },
+        "mining-cold_cap-prompt.ppm": {
+          "sha256": "b46ad50b405d455456f84602fb7d334ed9236342696c673faa74b86b89d0d039",
+          "size": 115215
+        },
+        "mining-continued-field.ppm": {
+          "sha256": "f39db8b929bb1f621b5a0e7db32409e1e6fb3021c0f86feece3abcb820ea1244",
+          "size": 115215
+        },
+        "mining-decline-prompt.ppm": {
+          "sha256": "b46ad50b405d455456f84602fb7d334ed9236342696c673faa74b86b89d0d039",
+          "size": 115215
+        },
+        "mining-earn-outcome.ppm": {
+          "sha256": "55f4908027e23a8b2ccd6ac6236ba0be2fb110a62b4250a93c9dc285e31d0155",
+          "size": 115215
+        },
+        "mining-earn-prompt.ppm": {
+          "sha256": "b46ad50b405d455456f84602fb7d334ed9236342696c673faa74b86b89d0d039",
+          "size": 115215
+        },
+        "mining-fixture-field.ppm": {
+          "sha256": "4048c868091cc587cabaf1e9e503ec8fed6abd925da4991d4a9c7ed6e7a36ea6",
+          "size": 115215
+        }
+      },
+      "stderr": "",
+      "stderr_identity": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": "{\"setup\":\"mining\",\"events\":155269952,\"record\":155269500,\"script\":154928396,\"badge\":1,\"move\":249,\"party_count\":1,\"progression_is_fixture\":true,\"rp_injected\":false}\n{\"event\":\"fixture\",\"counter\":2,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc\",\"party_count\":1,\"owner\":\"01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"fixture\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"screen\":\"mining-fixture-field.ppm\",\"sha256\":\"4048c868091cc587cabaf1e9e503ec8fed6abd925da4991d4a9c7ed6e7a36ea6\"}\n{\"screen\":\"mining-decline-prompt.ppm\",\"sha256\":\"b46ad50b405d455456f84602fb7d334ed9236342696c673faa74b86b89d0d039\"}\n{\"visit\":\"decline\",\"confirmed\":false,\"eligible\":true,\"result\":0,\"rp\":0,\"counter\":2,\"rock_count\":1,\"frame\":1118}\n{\"event\":\"declined\",\"counter\":2,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc\",\"party_count\":1,\"owner\":\"01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"declined\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"screen\":\"mining-earn-prompt.ppm\",\"sha256\":\"b46ad50b405d455456f84602fb7d334ed9236342696c673faa74b86b89d0d039\"}\n{\"screen\":\"mining-earn-outcome.ppm\",\"sha256\":\"55f4908027e23a8b2ccd6ac6236ba0be2fb110a62b4250a93c9dc285e31d0155\"}\n{\"visit\":\"earn\",\"confirmed\":true,\"eligible\":true,\"result\":0,\"rp\":10,\"counter\":4,\"rock_count\":0,\"frame\":2732,\"stopped_before_wild_tail\":true}\n{\"event\":\"earned\",\"counter\":4,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc\",\"party_count\":1,\"owner\":\"014000000a00010100000a00000000000000000000000a0000000002000000000000000002000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"earned\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"e99966043f6740bcac26ee3a88e1ee1676c1a9e31b897c4efefc323298ece0f8\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"event\":\"continued\",\"counter\":4,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc\",\"party_count\":1,\"owner\":\"014000000a00010100000a00000000000000000000000a0000000002000000000000000002000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"continued\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"e99966043f6740bcac26ee3a88e1ee1676c1a9e31b897c4efefc323298ece0f8\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"screen\":\"mining-continued-field.ppm\",\"sha256\":\"f39db8b929bb1f621b5a0e7db32409e1e6fb3021c0f86feece3abcb820ea1244\"}\n{\"reentry_fixture\":true,\"stock_warps\":2,\"rp_injected\":false,\"natural_reentry_accepted\":false}\n{\"event\":\"reentered\",\"counter\":4,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc\",\"party_count\":1,\"owner\":\"014000000a00010100000a00000000000000000000000a0000000002000000000000000002000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"reentered\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"e99966043f6740bcac26ee3a88e1ee1676c1a9e31b897c4efefc323298ece0f8\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"screen\":\"mining-cold_cap-prompt.ppm\",\"sha256\":\"b46ad50b405d455456f84602fb7d334ed9236342696c673faa74b86b89d0d039\"}\n{\"screen\":\"mining-cold_cap-outcome.ppm\",\"sha256\":\"30d8316915742af8b4de5f6ba08414d09eae8bc5a58e74d2357fae7834b64e48\"}\n{\"visit\":\"cold_cap\",\"confirmed\":true,\"eligible\":true,\"result\":4,\"rp\":10,\"counter\":4,\"rock_count\":0,\"frame\":5090,\"stopped_before_wild_tail\":true}\n{\"event\":\"cold_cap\",\"counter\":4,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc\",\"party_count\":1,\"owner\":\"014000000a00010100000a00000000000000000000000a0000000002000000000000000002000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"cold_cap\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"e99966043f6740bcac26ee3a88e1ee1676c1a9e31b897c4efefc323298ece0f8\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"status\":\"PASS\",\"case\":\"mining-earn-cold-cap\",\"candidate_sha256\":\"26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da\",\"fresh_cores\":3,\"earned_rp\":10,\"transaction_saves\":2,\"manual_saves\":0,\"guarded_host_writes\":0,\"accepted_case_reruns\":0,\"natural_arrival_accepted\":false,\"all_activities_accepted\":false,\"warnings_errors\":0}\n",
+      "stdout_identity": {
+        "sha256": "d15a0cf7df28b868f007f3f1196ea2ba03ac16ce503c5f3747aa4e97f9450ad1",
+        "size": 6336
+      },
+      "validated": {
+        "accepted_case_reruns": 0,
+        "all_activities_accepted": false,
+        "candidate_sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+        "case": "mining-earn-cold-cap",
+        "earned_rp": 10,
+        "fresh_cores": 3,
+        "guarded_host_writes": 0,
+        "ledger_observations": [
+          {
+            "checksum_valid": true,
+            "ledger_event": "fixture",
+            "ledger_sha256": "14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913",
+            "migration_dirty": 0,
+            "recovery_blocked": 0,
+            "size": 2048,
+            "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+            "version": 2
+          },
+          {
+            "checksum_valid": true,
+            "ledger_event": "declined",
+            "ledger_sha256": "bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce",
+            "migration_dirty": 0,
+            "recovery_blocked": 0,
+            "size": 2048,
+            "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+            "version": 2
+          },
+          {
+            "checksum_valid": true,
+            "ledger_event": "earned",
+            "ledger_sha256": "e99966043f6740bcac26ee3a88e1ee1676c1a9e31b897c4efefc323298ece0f8",
+            "migration_dirty": 0,
+            "recovery_blocked": 0,
+            "size": 2048,
+            "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+            "version": 2
+          },
+          {
+            "checksum_valid": true,
+            "ledger_event": "continued",
+            "ledger_sha256": "e99966043f6740bcac26ee3a88e1ee1676c1a9e31b897c4efefc323298ece0f8",
+            "migration_dirty": 0,
+            "recovery_blocked": 0,
+            "size": 2048,
+            "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+            "version": 2
+          },
+          {
+            "checksum_valid": true,
+            "ledger_event": "reentered",
+            "ledger_sha256": "e99966043f6740bcac26ee3a88e1ee1676c1a9e31b897c4efefc323298ece0f8",
+            "migration_dirty": 0,
+            "recovery_blocked": 0,
+            "size": 2048,
+            "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+            "version": 2
+          },
+          {
+            "checksum_valid": true,
+            "ledger_event": "cold_cap",
+            "ledger_sha256": "e99966043f6740bcac26ee3a88e1ee1676c1a9e31b897c4efefc323298ece0f8",
+            "migration_dirty": 0,
+            "recovery_blocked": 0,
+            "size": 2048,
+            "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+            "version": 2
+          }
+        ],
+        "manual_saves": 0,
+        "natural_arrival_accepted": false,
+        "natural_reentry_accepted": false,
+        "observations": [
+          {
+            "counter": 2,
+            "event": "fixture",
+            "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "item_quantity": 0,
+            "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "owner": "01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+            "party_count": 1,
+            "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+          },
+          {
+            "counter": 2,
+            "event": "declined",
+            "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "item_quantity": 0,
+            "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+            "party_count": 1,
+            "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+          },
+          {
+            "counter": 4,
+            "event": "earned",
+            "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "item_quantity": 0,
+            "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "owner": "014000000a00010100000a00000000000000000000000a0000000002000000000000000002000000000000000000000000000000000000000000000000000000",
+            "party_count": 1,
+            "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+          },
+          {
+            "counter": 4,
+            "event": "continued",
+            "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "item_quantity": 0,
+            "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "owner": "014000000a00010100000a00000000000000000000000a0000000002000000000000000002000000000000000000000000000000000000000000000000000000",
+            "party_count": 1,
+            "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+          },
+          {
+            "counter": 4,
+            "event": "reentered",
+            "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "item_quantity": 0,
+            "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "owner": "014000000a00010100000a00000000000000000000000a0000000002000000000000000002000000000000000000000000000000000000000000000000000000",
+            "party_count": 1,
+            "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+          },
+          {
+            "counter": 4,
+            "event": "cold_cap",
+            "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "item_quantity": 0,
+            "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "owner": "014000000a00010100000a00000000000000000000000a0000000002000000000000000002000000000000000000000000000000000000000000000000000000",
+            "party_count": 1,
+            "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+          }
+        ],
+        "screens": [
+          {
+            "screen": "mining-fixture-field.ppm",
+            "sha256": "4048c868091cc587cabaf1e9e503ec8fed6abd925da4991d4a9c7ed6e7a36ea6"
+          },
+          {
+            "screen": "mining-decline-prompt.ppm",
+            "sha256": "b46ad50b405d455456f84602fb7d334ed9236342696c673faa74b86b89d0d039"
+          },
+          {
+            "screen": "mining-earn-prompt.ppm",
+            "sha256": "b46ad50b405d455456f84602fb7d334ed9236342696c673faa74b86b89d0d039"
+          },
+          {
+            "screen": "mining-earn-outcome.ppm",
+            "sha256": "55f4908027e23a8b2ccd6ac6236ba0be2fb110a62b4250a93c9dc285e31d0155"
+          },
+          {
+            "screen": "mining-continued-field.ppm",
+            "sha256": "f39db8b929bb1f621b5a0e7db32409e1e6fb3021c0f86feece3abcb820ea1244"
+          },
+          {
+            "screen": "mining-cold_cap-prompt.ppm",
+            "sha256": "b46ad50b405d455456f84602fb7d334ed9236342696c673faa74b86b89d0d039"
+          },
+          {
+            "screen": "mining-cold_cap-outcome.ppm",
+            "sha256": "30d8316915742af8b4de5f6ba08414d09eae8bc5a58e74d2357fae7834b64e48"
+          }
+        ],
+        "status": "PASS",
+        "stdout": {
+          "sha256": "d15a0cf7df28b868f007f3f1196ea2ba03ac16ce503c5f3747aa4e97f9450ad1",
+          "size": 6336
+        },
+        "transaction_saves": 2,
+        "visits": [
+          {
+            "confirmed": false,
+            "counter": 2,
+            "eligible": true,
+            "frame": 1118,
+            "result": 0,
+            "rock_count": 1,
+            "rp": 0,
+            "visit": "decline"
+          },
+          {
+            "confirmed": true,
+            "counter": 4,
+            "eligible": true,
+            "frame": 2732,
+            "result": 0,
+            "rock_count": 0,
+            "rp": 10,
+            "stopped_before_wild_tail": true,
+            "visit": "earn"
+          },
+          {
+            "confirmed": true,
+            "counter": 4,
+            "eligible": true,
+            "frame": 5090,
+            "result": 4,
+            "rock_count": 0,
+            "rp": 10,
+            "stopped_before_wild_tail": true,
+            "visit": "cold_cap"
+          }
+        ],
+        "warnings_errors": 0,
+        "wild_tail_accepted": false
+      }
+    },
+    "mining-missing-badge": {
+      "elapsed_seconds": 2.478,
+      "execution": {
+        "returncode": 0,
+        "timeout": false
+      },
+      "generated_source": {
+        "sha256": "e878b1e3e050aa4ca5f03f5efefb1bfdd935e40360dc85e95f6a291069ef4c98",
+        "size": 66650
+      },
+      "screens": {
+        "mining-fixture-field.ppm": {
+          "sha256": "4048c868091cc587cabaf1e9e503ec8fed6abd925da4991d4a9c7ed6e7a36ea6",
+          "size": 115215
+        },
+        "mining-locked-prompt.ppm": {
+          "sha256": "c2f5e0297c57f9eea6109b98ea1095fa7901da431aeddd391a81fce94641d554",
+          "size": 115215
+        }
+      },
+      "stderr": "",
+      "stderr_identity": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": "{\"setup\":\"mining\",\"events\":155269952,\"record\":155269500,\"script\":154928396,\"badge\":0,\"move\":249,\"party_count\":1,\"progression_is_fixture\":true,\"rp_injected\":false}\n{\"event\":\"fixture\",\"counter\":2,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc\",\"party_count\":1,\"owner\":\"01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"fixture\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"screen\":\"mining-fixture-field.ppm\",\"sha256\":\"4048c868091cc587cabaf1e9e503ec8fed6abd925da4991d4a9c7ed6e7a36ea6\"}\n{\"screen\":\"mining-locked-prompt.ppm\",\"sha256\":\"c2f5e0297c57f9eea6109b98ea1095fa7901da431aeddd391a81fce94641d554\"}\n{\"visit\":\"locked\",\"confirmed\":true,\"eligible\":false,\"result\":0,\"rp\":0,\"counter\":2,\"rock_count\":1,\"frame\":1086}\n{\"event\":\"rejected\",\"counter\":2,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc\",\"party_count\":1,\"owner\":\"01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"rejected\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"status\":\"PASS\",\"case\":\"mining-missing-badge\",\"candidate_sha256\":\"26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da\",\"fresh_cores\":1,\"earned_rp\":0,\"transaction_saves\":0,\"manual_saves\":0,\"guarded_host_writes\":0,\"accepted_case_reruns\":0,\"natural_arrival_accepted\":false,\"all_activities_accepted\":false,\"warnings_errors\":0}\n",
+      "stdout_identity": {
+        "sha256": "3e7f04ad7449d9cfac944829e4a29738863d18e7f46f21dd94f038628ca46e6d",
+        "size": 2351
+      },
+      "validated": {
+        "accepted_case_reruns": 0,
+        "all_activities_accepted": false,
+        "candidate_sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+        "case": "mining-missing-badge",
+        "earned_rp": 0,
+        "fresh_cores": 1,
+        "guarded_host_writes": 0,
+        "ledger_observations": [
+          {
+            "checksum_valid": true,
+            "ledger_event": "fixture",
+            "ledger_sha256": "14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913",
+            "migration_dirty": 0,
+            "recovery_blocked": 0,
+            "size": 2048,
+            "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+            "version": 2
+          },
+          {
+            "checksum_valid": true,
+            "ledger_event": "rejected",
+            "ledger_sha256": "bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce",
+            "migration_dirty": 0,
+            "recovery_blocked": 0,
+            "size": 2048,
+            "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+            "version": 2
+          }
+        ],
+        "manual_saves": 0,
+        "natural_arrival_accepted": false,
+        "natural_reentry_accepted": false,
+        "observations": [
+          {
+            "counter": 2,
+            "event": "fixture",
+            "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "item_quantity": 0,
+            "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "owner": "01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+            "party_count": 1,
+            "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+          },
+          {
+            "counter": 2,
+            "event": "rejected",
+            "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "item_quantity": 0,
+            "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+            "party_count": 1,
+            "party_sha256": "d87f63c3bf5fa33e6b0702923541fd5e502f8b19f8f1c30f527effe9388102bc"
+          }
+        ],
+        "screens": [
+          {
+            "screen": "mining-fixture-field.ppm",
+            "sha256": "4048c868091cc587cabaf1e9e503ec8fed6abd925da4991d4a9c7ed6e7a36ea6"
+          },
+          {
+            "screen": "mining-locked-prompt.ppm",
+            "sha256": "c2f5e0297c57f9eea6109b98ea1095fa7901da431aeddd391a81fce94641d554"
+          }
+        ],
+        "status": "PASS",
+        "stdout": {
+          "sha256": "3e7f04ad7449d9cfac944829e4a29738863d18e7f46f21dd94f038628ca46e6d",
+          "size": 2351
+        },
+        "transaction_saves": 0,
+        "visits": [
+          {
+            "confirmed": true,
+            "counter": 2,
+            "eligible": false,
+            "frame": 1086,
+            "result": 0,
+            "rock_count": 1,
+            "rp": 0,
+            "visit": "locked"
+          }
+        ],
+        "warnings_errors": 0,
+        "wild_tail_accepted": false
+      }
+    },
+    "mining-missing-move": {
+      "elapsed_seconds": 2.526,
+      "execution": {
+        "returncode": 0,
+        "timeout": false
+      },
+      "generated_source": {
+        "sha256": "e878b1e3e050aa4ca5f03f5efefb1bfdd935e40360dc85e95f6a291069ef4c98",
+        "size": 66650
+      },
+      "screens": {
+        "mining-fixture-field.ppm": {
+          "sha256": "4048c868091cc587cabaf1e9e503ec8fed6abd925da4991d4a9c7ed6e7a36ea6",
+          "size": 115215
+        },
+        "mining-locked-prompt.ppm": {
+          "sha256": "c2f5e0297c57f9eea6109b98ea1095fa7901da431aeddd391a81fce94641d554",
+          "size": 115215
+        }
+      },
+      "stderr": "",
+      "stderr_identity": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": "{\"setup\":\"mining\",\"events\":155269952,\"record\":155269500,\"script\":154928396,\"badge\":1,\"move\":33,\"party_count\":1,\"progression_is_fixture\":true,\"rp_injected\":false}\n{\"event\":\"fixture\",\"counter\":2,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"f55719006008d0c6f12da4c63bfd652637f5420240bf8cdb1f14222bc48fd5af\",\"party_count\":1,\"owner\":\"01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"fixture\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"screen\":\"mining-fixture-field.ppm\",\"sha256\":\"4048c868091cc587cabaf1e9e503ec8fed6abd925da4991d4a9c7ed6e7a36ea6\"}\n{\"screen\":\"mining-locked-prompt.ppm\",\"sha256\":\"c2f5e0297c57f9eea6109b98ea1095fa7901da431aeddd391a81fce94641d554\"}\n{\"visit\":\"locked\",\"confirmed\":true,\"eligible\":false,\"result\":0,\"rp\":0,\"counter\":2,\"rock_count\":1,\"frame\":1086}\n{\"event\":\"rejected\",\"counter\":2,\"item_quantity\":0,\"inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"other_inventory_sha256\":\"688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec\",\"party_sha256\":\"f55719006008d0c6f12da4c63bfd652637f5420240bf8cdb1f14222bc48fd5af\",\"party_count\":1,\"owner\":\"01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000\"}\n{\"ledger_event\":\"rejected\",\"version\":2,\"size\":2048,\"checksum_valid\":true,\"ledger_sha256\":\"bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce\",\"unrelated_ledger_sha256\":\"f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e\",\"migration_dirty\":0,\"recovery_blocked\":0}\n{\"status\":\"PASS\",\"case\":\"mining-missing-move\",\"candidate_sha256\":\"26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da\",\"fresh_cores\":1,\"earned_rp\":0,\"transaction_saves\":0,\"manual_saves\":0,\"guarded_host_writes\":0,\"accepted_case_reruns\":0,\"natural_arrival_accepted\":false,\"all_activities_accepted\":false,\"warnings_errors\":0}\n",
+      "stdout_identity": {
+        "sha256": "dd31f7e6b97fc61f0ab39e303326d507679ff11ae6fe9d468c69f656b778a73c",
+        "size": 2349
+      },
+      "validated": {
+        "accepted_case_reruns": 0,
+        "all_activities_accepted": false,
+        "candidate_sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+        "case": "mining-missing-move",
+        "earned_rp": 0,
+        "fresh_cores": 1,
+        "guarded_host_writes": 0,
+        "ledger_observations": [
+          {
+            "checksum_valid": true,
+            "ledger_event": "fixture",
+            "ledger_sha256": "14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913",
+            "migration_dirty": 0,
+            "recovery_blocked": 0,
+            "size": 2048,
+            "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+            "version": 2
+          },
+          {
+            "checksum_valid": true,
+            "ledger_event": "rejected",
+            "ledger_sha256": "bdaae0a71b80b9dd0f133c1633bf13863fd6d42a9f3364c557e2db0ea12356ce",
+            "migration_dirty": 0,
+            "recovery_blocked": 0,
+            "size": 2048,
+            "unrelated_ledger_sha256": "f94facc9b8c3ff8c744aab1065f7662b386e5ab8d78646d17d60f495ff26884e",
+            "version": 2
+          }
+        ],
+        "manual_saves": 0,
+        "natural_arrival_accepted": false,
+        "natural_reentry_accepted": false,
+        "observations": [
+          {
+            "counter": 2,
+            "event": "fixture",
+            "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "item_quantity": 0,
+            "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "owner": "01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+            "party_count": 1,
+            "party_sha256": "f55719006008d0c6f12da4c63bfd652637f5420240bf8cdb1f14222bc48fd5af"
+          },
+          {
+            "counter": 2,
+            "event": "rejected",
+            "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "item_quantity": 0,
+            "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+            "owner": "01400000000001010000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+            "party_count": 1,
+            "party_sha256": "f55719006008d0c6f12da4c63bfd652637f5420240bf8cdb1f14222bc48fd5af"
+          }
+        ],
+        "screens": [
+          {
+            "screen": "mining-fixture-field.ppm",
+            "sha256": "4048c868091cc587cabaf1e9e503ec8fed6abd925da4991d4a9c7ed6e7a36ea6"
+          },
+          {
+            "screen": "mining-locked-prompt.ppm",
+            "sha256": "c2f5e0297c57f9eea6109b98ea1095fa7901da431aeddd391a81fce94641d554"
+          }
+        ],
+        "status": "PASS",
+        "stdout": {
+          "sha256": "dd31f7e6b97fc61f0ab39e303326d507679ff11ae6fe9d468c69f656b778a73c",
+          "size": 2349
+        },
+        "transaction_saves": 0,
+        "visits": [
+          {
+            "confirmed": true,
+            "counter": 2,
+            "eligible": false,
+            "frame": 1086,
+            "result": 0,
+            "rock_count": 1,
+            "rp": 0,
+            "visit": "locked"
+          }
+        ],
+        "warnings_errors": 0,
+        "wild_tail_accepted": false
+      }
+    }
+  },
+  "compile": {
+    "command": [
+      "cc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wno-misleading-indentation",
+      "-Itools",
+      "-I.",
+      "-I.local/pr16-research-lifecycle/runtime/include",
+      ".local/pr16-research-mining-capture/runner.c",
+      "-L.local/pr16-research-lifecycle/runtime/lib",
+      "-lmgba",
+      "-lm",
+      "-Wl,--allow-shlib-undefined",
+      "-o",
+      ".local/pr16-research-mining-capture/runner"
+    ],
+    "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "generated_source": {
+      "sha256": "e878b1e3e050aa4ca5f03f5efefb1bfdd935e40360dc85e95f6a291069ef4c98",
+      "size": 66650
+    },
+    "returncode": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "counts": {
+    "accepted_case_reruns": 0,
+    "accepted_native_processes": 3,
+    "arm_compiles": 0,
+    "failed_native_processes": 0,
+    "host_compiles": 1,
+    "native_processes": 3,
+    "rom_changes": 0
+  },
+  "environment": "GitHub Actions; new measurement, not recovered local evidence",
+  "failures": {},
+  "fixture": {
+    "balance_credit_injected": false,
+    "fixture": {
+      "sha256": "434076d0db74c4c5bf1b63e3aa4cc336d17e1f2dbb894160e840c721aa337a38",
+      "size": 131072
+    },
+    "initial_lifetime": 0,
+    "initial_rp": 0,
+    "ledger": {
+      "sha256": "14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913",
+      "size": 2048
+    },
+    "natural_arrival_claimed": false,
+    "offset": 127076,
+    "outside_ledger_changes": 0,
+    "progression_is_fixture": true,
+    "seed": {
+      "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+      "size": 131072
+    }
+  },
+  "local_development": "content/modernization/pr16_research_mining_local_development.json",
+  "natural_arrival_accepted": false,
+  "physical": {
+    "candidate": {
+      "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+      "size": 33554432
+    },
+    "dialogues": [
+      {
+        "binding_key": "BINDING_KEY_ACTIVITY_MINING",
+        "dialogue_key": "DIALOGUE_KEY_MINING_PROMPT",
+        "encoded_hex": "0a19022c2dfe0c27491f0d06acff",
+        "notes": "standard Rock Smashへ。",
+        "runtime_address": 154927533,
+        "text": "このいわを\\nしらべますか？",
+        "usage": "ACTIVITY"
+      },
+      {
+        "binding_key": "BINDING_KEY_ACTIVITY_MINING",
+        "dialogue_key": "DIALOGUE_KEY_MINING_LOCKED",
+        "encoded_hex": "021f1a0a19022c2dfe0a2c0e1502adff",
+        "notes": "field action不可。",
+        "runtime_address": 154927547,
+        "text": "いまはこのいわを\\nこわせない。",
+        "usage": "LOCKED"
+      },
+      {
+        "binding_key": "BINDING_KEY_ACTIVITY_MINING",
+        "dialogue_key": "DIALOGUE_KEY_MINING_REWARD",
+        "encoded_hex": "0a030e0719072b08adfea2a19f527e644126adff",
+        "notes": "commit後。",
+        "runtime_address": 154927563,
+        "text": "こうせきのきろく。\\n10ポイントだよ。",
+        "usage": "REWARD"
+      },
+      {
+        "binding_key": "BINDING_KEY_ACTIVITY_MINING",
+        "dialogue_key": "DIALOGUE_KEY_MINING_CAP",
+        "encoded_hex": "073603190b0208121afe052c50130229adff",
+        "notes": "daily claim済み。",
+        "runtime_address": 154927583,
+        "text": "きょうのさいくつは\\nおわっている。",
+        "usage": "DAILY_CAP"
+      }
+    ],
+    "events": 155269952,
+    "natural_arrival_accepted": false,
+    "object_templates": 17,
+    "record": 155269500,
+    "rom_changes": 0,
+    "script": 154928396,
+    "wild_tail_accepted": false
+  },
+  "protected_bindings": {
+    "CHATGPT_RESUME.md": {
+      "sha256": "963f3d4b12d184aaa9be7decbdd98cfe7b89317bfa8396008c8e1ab3581359f6",
+      "size": 7562
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_research_bug_checkpoint.json": {
+      "sha256": "25b059887205f6c94931d255ecc7f684082bcff7ac4ddf2b168e819960f9c6c3",
+      "size": 76316
+    },
+    "content/modernization/pr16_research_map_view_checkpoint.json": {
+      "sha256": "0425069158fc4977fb756e8ecaee355058393b5f3370f40a107e67a099830704",
+      "size": 82134
+    },
+    "content/modernization/pr16_research_photo_checkpoint.json": {
+      "sha256": "8d61968b8dfba2cbbe6cc82379cd35313693bad6ec21eb9768eccd8fc56c0ec6",
+      "size": 71834
+    },
+    "content/modernization/pr16_research_save_impact_checkpoint.json": {
+      "sha256": "7fad32c544c8aae20401665934c19b4e7ac6e3a712bd885dbd4c35afbc0aef13",
+      "size": 10809
+    },
+    "content/modernization/pr16_special_wild_ui_checkpoint.json": {
+      "sha256": "69c403857d191d28984a07ff4e3b0714cd3ad0ac8f5affe8b9b6ac9c0cde7ff9",
+      "size": 19502
+    },
+    "design/active_play_baseline.md": {
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8",
+      "size": 5551
+    }
+  },
+  "reconstruction": {
+    "allocations": 0,
+    "arm_compiles": 0,
+    "arm_links": 0,
+    "candidate": {
+      "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+      "size": 33554432
+    },
+    "changed_bytes": 1,
+    "new_allocations": 0,
+    "parent": {
+      "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+      "size": 33554432
+    },
+    "patches": 1,
+    "whole_rom_rollback_matches_parent": true
+  },
+  "release_ready": false,
+  "run_id": 36267515706,
+  "runtime_artifacts": [
+    {
+      "digest": "sha256:a6aeccb72fa15411d956b418ca5f030aa5020a466303a25e0f8814ba2eeb5c4d",
+      "id": 10898620034,
+      "name": "pr16-special-wild-gameplay-runtime",
+      "size_in_bytes": 102586759,
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "8660fe70f4354333cf7647186663cacafa04451b",
+        "id": 36218655601,
+        "repository_id": 1358127462
+      }
+    },
+    {
+      "digest": "sha256:7d3de78d4e852583eb35551076021630c1343aa623e91fe1529d73f4cf1471ed",
+      "id": 10898510128,
+      "name": "pr16-special-wild-gameplay-data",
+      "size_in_bytes": 17366330,
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "8660fe70f4354333cf7647186663cacafa04451b",
+        "id": 36218655601,
+        "repository_id": 1358127462
+      }
+    }
+  ],
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-research-activities-20260927.yml": {
+      "sha256": "9895dbd36928262208ed0b25e702a4cc75330b4c99b5fc7e6b36850736281c93",
+      "size": 2738
+    },
+    ".github/workflows/pr16-research-mining-20260927.yml": {
+      "sha256": "2bbe0bdc500096d962f66ef63ae794b434123de84e441673ba410ca5b36b47fd",
+      "size": 1580
+    },
+    ".github/workflows/pr16-research-new-game-20260926.yml": {
+      "sha256": "4df6defd4c99f6e8fff8d5296d7f85f11f2b6cc0bd701fd872b4546c36c9db6e",
+      "size": 7415
+    },
+    ".github/workflows/pr16-research-phase0-load-20260926.yml": {
+      "sha256": "6903f073ca53adaf81fca14e1fe28e2ae52c862f5e83c71a62fa0d2b23e681e6",
+      "size": 3240
+    },
+    ".github/workflows/pr16-research-photo-visual-20260927.yml": {
+      "sha256": "3b720ad7ba69efcbcc824d6c708c941503a9f1498d362fc0a18a0782c94ce5eb",
+      "size": 2823
+    },
+    ".github/workflows/pr16-research-purchase-20260926.yml": {
+      "sha256": "06bbc166b8fbeec42c83cc0f63a9a15fb7b957add925b32bf03d21529da90906",
+      "size": 4033
+    },
+    ".github/workflows/pr16-research-shop-cancel-20260926.yml": {
+      "sha256": "cb53a514619deb9f1fa6e23bf545cd4b07c82c185521e0feb2f4cace9a2aeea3",
+      "size": 3237
+    },
+    ".github/workflows/pr16-research-supply-20260927.yml": {
+      "sha256": "f2738ffbb33f539c7b5ba05995458eccfad8f051dc9e59f3c996b258fb2454c7",
+      "size": 2958
+    },
+    "content/modernization/pr16_research_map_view_controls.json": {
+      "sha256": "f70479ae1938889b6acd956eaafc89c6586df0922814bf2b0ae0691be03f67ac",
+      "size": 9741
+    },
+    "content/modernization/pr16_research_map_view_local_measurement.json": {
+      "sha256": "e407c504de36f55f46c1aacd260e341047124f9239f2955b147478c14175024b",
+      "size": 12227
+    },
+    "content/modernization/pr16_research_map_view_recipe.json": {
+      "sha256": "8f00e483abff17e1352d58776ee7f567b0935f6c9a8ae78cbb5fcfad9ebc670e",
+      "size": 1513
+    },
+    "content/modernization/pr16_research_map_view_unit.json": {
+      "sha256": "27625c560d34d95f6b4dcf72599ab53fdd806ff8644f81a69c70994f40af7201",
+      "size": 7143
+    },
+    "content/modernization/pr16_research_retry_recipe.json": {
+      "sha256": "b5416ee17f702e4c220b9db34174fed571add9920bb58e12e6b691c6c0d60f5f",
+      "size": 3444
+    },
+    "content/modernization/pr16_research_v1_corrupt_load_recipe.json": {
+      "sha256": "763c64de7023dfa4b04bdda8f35bd0a41e71e757ac8475f648cb82cd331c79b4",
+      "size": 3306
+    },
+    "content/research_economy_v1/canonical_model.json": {
+      "sha256": "4b49923047ed5494784b5c2a49ba672f1b7e7c12ff91cf7edc8a416f745d9efd",
+      "size": 46529
+    },
+    "manifests/item_ids.csv": {
+      "sha256": "f3c12e66256d29b675f1bd4f8e68bd0a90e20eb49b5715b8ecbfbc65aa8b2b90",
+      "size": 447424
+    },
+    "overlays/research_economy_v1/research_economy_v1.c": {
+      "sha256": "08375e4c9c65f698358b92c4eb1c8439fe5e70e7d7ddd9d17854edce4b58abda",
+      "size": 63636
+    },
+    "scripts/pr16_research_bug.py": {
+      "sha256": "c71d37aaff27720257f82c0920197dfbbdd0e22d52eed53def872781266c64df",
+      "size": 8465
+    },
+    "scripts/pr16_research_bug_capture.py": {
+      "sha256": "7b5dcee951963281ef9de8ef25136fba56aa9f1264fb58a65ecc4036c1d08930",
+      "size": 6336
+    },
+    "scripts/pr16_research_bug_finish.py": {
+      "sha256": "c5333083c5accd00162776b9c2e61f5e9133d97cfceedc0183f06335daedd0ca",
+      "size": 9675
+    },
+    "scripts/pr16_research_bug_record.py": {
+      "sha256": "d1dafa222450a9dcb01a8f3c450290cd56bc924498e32d2b6bce1c9a5bb70516",
+      "size": 20334
+    },
+    "scripts/pr16_research_catalog.py": {
+      "sha256": "150af4452054b3446f3db92afb8a70e2c1553c9db246934e4979555d2f985b0c",
+      "size": 10182
+    },
+    "scripts/pr16_research_catalog_actions.py": {
+      "sha256": "23a49e092d0e1d9b0d7321dcd4bfa90504ee199788f817a6ae5d55975fd29c48",
+      "size": 14879
+    },
+    "scripts/pr16_research_lifecycle_v2.py": {
+      "sha256": "234e9a26bb918a0333b475725256dd3bff4d5866756b4098a54b4daf216e9238",
+      "size": 14295
+    },
+    "scripts/pr16_research_map_view.py": {
+      "sha256": "9eac432c0ae4a3e468a1ac22db1fbe6f92f8c7eb87f3c5410e44f8911d6c2e10",
+      "size": 9239
+    },
+    "scripts/pr16_research_map_view_actions.py": {
+      "sha256": "504d07c15a05b3b0fbfe20dda5c4283cbd72937842065919d90c46cc25858d46",
+      "size": 23663
+    },
+    "scripts/pr16_research_mining.py": {
+      "sha256": "f3da9ac734d65946275d1f9e94d386caa130d6e32860ef8de43306df2f67694b",
+      "size": 8213
+    },
+    "scripts/pr16_research_mining_capture.py": {
+      "sha256": "6faad7bcc2524926d0a7bbec6f06b0996059988416dfd328e6f4a11b049e3f8d",
+      "size": 7060
+    },
+    "scripts/pr16_research_new_game.py": {
+      "sha256": "190e52ce97d8159e0bb7907d64512dbd2ab9f66ca17ce33b102296bab455ecae",
+      "size": 5981
+    },
+    "scripts/pr16_research_new_game_actions.py": {
+      "sha256": "2f867cbabd0507b75110c9035c79e80a46a1b10a4242d954221322324626a7ba",
+      "size": 17205
+    },
+    "scripts/pr16_research_phase0_load.py": {
+      "sha256": "29d9e9de9e23e4b86d4a89059d77986875c887fac5ac77b34b1231d7b7d57e63",
+      "size": 10182
+    },
+    "scripts/pr16_research_phase0_load_actions.py": {
+      "sha256": "952040d2b95fd91cf39e81f39b0af973511ef31702512a4191f6e35d8a80af78",
+      "size": 18138
+    },
+    "scripts/pr16_research_phase0_load_preflight.py": {
+      "sha256": "9ae52ce34a1a1a69bca22e255ea5a38f52381057e57a93e5b07890d1b328e269",
+      "size": 2741
+    },
+    "scripts/pr16_research_photo.py": {
+      "sha256": "19672285f8cd32550b6aec202b737af7e9e061dbe82ef93866e1ee62eaa15a5b",
+      "size": 8406
+    },
+    "scripts/pr16_research_photo_actions.py": {
+      "sha256": "e39e1c3c71da7bcda19a0bc9cdfb7be9e31c7ff750044bd67525bc02bf573566",
+      "size": 16174
+    },
+    "scripts/pr16_research_purchase.py": {
+      "sha256": "6493572f7fcdd53984d3296c095e20fcb38d28839bf29a4ac7c1c887446c7272",
+      "size": 6361
+    },
+    "scripts/pr16_research_purchase_actions.py": {
+      "sha256": "74f7c2720b6e48ac5cddf54bfd6c58de25e675555dd81bf266aeccd736d8d9ac",
+      "size": 16594
+    },
+    "scripts/pr16_research_shop_cancel.py": {
+      "sha256": "2b765b0db1cb67fad98f0bf6011e545b928a08e2ab31cfe3e2d52961a8830d42",
+      "size": 5783
+    },
+    "scripts/pr16_research_shop_cancel_actions.py": {
+      "sha256": "55d108e8fab729f42635aea0b4ea0446a43bc84fef70761c4097654505fe07c4",
+      "size": 15128
+    },
+    "scripts/pr16_research_shop_cancel_followup.py": {
+      "sha256": "83f97d120f9c8d6393d7d0a38c70fafddfded21ebce9c40c915d1bd9239bb2fe",
+      "size": 3905
+    },
+    "scripts/pr16_research_ui_boundary_actions.py": {
+      "sha256": "b51e9e44fcb7962cb25181e0e07139a2178a502e81d5536d52545c32286aab2b",
+      "size": 11270
+    },
+    "scripts/pr16_research_v1_corrupt_load.py": {
+      "sha256": "8c8e041170638626a2d261a39596e954ac7b58dc2afc380ae61814c0a8f5f030",
+      "size": 5491
+    },
+    "scripts/pr16_research_v1_load_followup.py": {
+      "sha256": "08f4587aa3598f2be8bc2a1d16e4f44b247029a29b943841995a962b0dc735ca",
+      "size": 3391
+    },
+    "tests/test_pr16_research_bug.py": {
+      "sha256": "70e56383cb72742cad1fb205564c7773bc46d408d2df86d92e5be21812dd940c",
+      "size": 6250
+    },
+    "tests/test_pr16_research_catalog.py": {
+      "sha256": "5aaffa0262d93cf932a79064ac92ae541e58d63a971542aa3048708b0acbc78a",
+      "size": 7509
+    },
+    "tests/test_pr16_research_map_view.py": {
+      "sha256": "841a331ffe48254feb173da75c27b26eb6fb8a7074c22bbee892d42b6766b8ec",
+      "size": 10197
+    },
+    "tests/test_pr16_research_mining.py": {
+      "sha256": "adab838e09739d7cf13eb1cd86c9a0687838478bd47f474bcb71388f48e19369",
+      "size": 6418
+    },
+    "tests/test_pr16_research_new_game.py": {
+      "sha256": "edafcd705a870b5cf34d1e9044a54039813eacaf1ea85ad96a9464a04d623482",
+      "size": 6385
+    },
+    "tests/test_pr16_research_phase0_load.py": {
+      "sha256": "edea5de718a5475f869810d22461b79dd15b906df6619781cb29bd08e4e37d5a",
+      "size": 13592
+    },
+    "tests/test_pr16_research_photo.py": {
+      "sha256": "e002d8f7d92519676a7fedb85b8f1c48deba52d56118e457341932eb9cce251b",
+      "size": 7407
+    },
+    "tests/test_pr16_research_purchase.py": {
+      "sha256": "74c5fe864c124e74b83989401917d57fa20e8c055461b0751daf71b32b25471b",
+      "size": 6733
+    },
+    "tests/test_pr16_research_shop_cancel.py": {
+      "sha256": "65d59688f63a5a9ed0972ab5a730395291f4e2c7e5d526bab49c38d9462e5cb4",
+      "size": 3661
+    },
+    "tests/test_pr16_research_v1_corrupt_load.py": {
+      "sha256": "0341b313aec8755390a7c6d79482faee471c345c66ac4e333bde1b7c5ce78b44",
+      "size": 5810
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_research_bug.c": {
+      "sha256": "93082b29ce1fc8a1d7f4db623e09b72e1e2a68136a3ce825340b92f93ccb2a29",
+      "size": 6432
+    },
+    "tools/mgba_pr16_research_catalog.c": {
+      "sha256": "eca0268576411c8ac3c1156dd8e04ae5b4f0c29baae4f36bb8d8065fa4592492",
+      "size": 2997
+    },
+    "tools/mgba_pr16_research_map_view.c": {
+      "sha256": "b0af4083d9785499b67deda9e15e11bede8eca911f36886753321eed661e94b5",
+      "size": 5035
+    },
+    "tools/mgba_pr16_research_mining.c": {
+      "sha256": "9f23760f7dded3e5ed712f0f8bf1426f4e6f44594dd78974b9418a916102457a",
+      "size": 9316
+    },
+    "tools/mgba_pr16_research_new_game.c": {
+      "sha256": "462ecb6fbbc33fcc99192c100455b86f019bc7a27e6585a5145e186951d46a56",
+      "size": 5472
+    },
+    "tools/mgba_pr16_research_phase0_load.c": {
+      "sha256": "17bf7f80906585fb13484af96c35711639dd0b8f7ddecea12fc6c19073222ce6",
+      "size": 9319
+    },
+    "tools/mgba_pr16_research_photo.c": {
+      "sha256": "b4b24b5650ab416e06f485bcbc902754bf4fcc3cd789a3f6ffc504147fce523a",
+      "size": 6605
+    },
+    "tools/mgba_pr16_research_purchase.c": {
+      "sha256": "c41a998d967041dc345efb9e040dd7f8fdacca155e3f4b1475bd08b378a251ec",
+      "size": 8044
+    },
+    "tools/mgba_pr16_research_shop_cancel.c": {
+      "sha256": "945e78264ccbbf08e4ffe5b6e3b3d3af89be5627c6cae4ee37a11c46c77ec629",
+      "size": 8308
+    },
+    "tools/mgba_pr16_research_v1_load.c": {
+      "sha256": "b227a92258a59d1f4261b8872b80d3f27f359bc2a42ca391c76a11fcddcec0d2",
+      "size": 7553
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "source_head": "8fdda1bb5e4f559cf71120f17e7fc947116e8f69",
+  "status": "PASS_MINING_MEASUREMENT_SCOPED",
+  "unit": {
+    "compiles": 0,
+    "native_processes": 0,
+    "passed": 64,
+    "returncode": 0,
+    "stderr": "test_all_owner_bytes (test_pr16_research_mining.MiningTests.test_all_owner_bytes) ... ok\ntest_all_three_originals (test_pr16_research_mining.MiningTests.test_all_three_originals) ... ok\ntest_duplicate_json_key (test_pr16_research_mining.MiningTests.test_duplicate_json_key) ... ok\ntest_duplicate_rows (test_pr16_research_mining.MiningTests.test_duplicate_rows) ... ok\ntest_every_row_closed (test_pr16_research_mining.MiningTests.test_every_row_closed) ... ok\ntest_every_row_required (test_pr16_research_mining.MiningTests.test_every_row_required) ... ok\ntest_missing_badge_cannot_credit (test_pr16_research_mining.MiningTests.test_missing_badge_cannot_credit) ... ok\ntest_missing_move_cannot_credit (test_pr16_research_mining.MiningTests.test_missing_move_cannot_credit) ... ok\ntest_reject_all_activities (test_pr16_research_mining.MiningTests.test_reject_all_activities) ... ok\ntest_reject_badge (test_pr16_research_mining.MiningTests.test_reject_badge) ... ok\ntest_reject_bag (test_pr16_research_mining.MiningTests.test_reject_bag) ... ok\ntest_reject_bool_badge (test_pr16_research_mining.MiningTests.test_reject_bool_badge) ... ok\ntest_reject_bool_counter (test_pr16_research_mining.MiningTests.test_reject_bool_counter) ... ok\ntest_reject_bool_rp (test_pr16_research_mining.MiningTests.test_reject_bool_rp) ... ok\ntest_reject_cancel_removes_rock (test_pr16_research_mining.MiningTests.test_reject_cancel_removes_rock) ... ok\ntest_reject_cancel_rp (test_pr16_research_mining.MiningTests.test_reject_cancel_rp) ... ok\ntest_reject_cancel_save (test_pr16_research_mining.MiningTests.test_reject_cancel_save) ... ok\ntest_reject_candidate (test_pr16_research_mining.MiningTests.test_reject_candidate) ... ok\ntest_reject_cap_credit (test_pr16_research_mining.MiningTests.test_reject_cap_credit) ... ok\ntest_reject_cap_result (test_pr16_research_mining.MiningTests.test_reject_cap_result) ... ok\ntest_reject_checksum (test_pr16_research_mining.MiningTests.test_reject_checksum) ... ok\ntest_reject_cold_owner (test_pr16_research_mining.MiningTests.test_reject_cold_owner) ... ok\ntest_reject_cores (test_pr16_research_mining.MiningTests.test_reject_cores) ... ok\ntest_reject_earn_credit (test_pr16_research_mining.MiningTests.test_reject_earn_credit) ... ok\ntest_reject_earn_no_removal (test_pr16_research_mining.MiningTests.test_reject_earn_no_removal) ... ok\ntest_reject_earn_no_save (test_pr16_research_mining.MiningTests.test_reject_earn_no_save) ... ok\ntest_reject_earn_result (test_pr16_research_mining.MiningTests.test_reject_earn_result) ... ok\ntest_reject_event_root (test_pr16_research_mining.MiningTests.test_reject_event_root) ... ok\ntest_reject_extra_save (test_pr16_research_mining.MiningTests.test_reject_extra_save) ... ok\ntest_reject_frame_bool (test_pr16_research_mining.MiningTests.test_reject_frame_bool) ... ok\ntest_reject_frame_bound (test_pr16_research_mining.MiningTests.test_reject_frame_bound) ... ok\ntest_reject_frame_fraction (test_pr16_research_mining.MiningTests.test_reject_frame_fraction) ... ok\ntest_reject_frame_regression (test_pr16_research_mining.MiningTests.test_reject_frame_regression) ... ok\ntest_reject_host_write (test_pr16_research_mining.MiningTests.test_reject_host_write) ... ok\ntest_reject_injected_credit (test_pr16_research_mining.MiningTests.test_reject_injected_credit) ... ok\ntest_reject_items (test_pr16_research_mining.MiningTests.test_reject_items) ... ok\ntest_reject_ledger (test_pr16_research_mining.MiningTests.test_reject_ledger) ... ok\ntest_reject_ledger_size (test_pr16_research_mining.MiningTests.test_reject_ledger_size) ... ok\ntest_reject_ledger_version (test_pr16_research_mining.MiningTests.test_reject_ledger_version) ... ok\ntest_reject_manual_save (test_pr16_research_mining.MiningTests.test_reject_manual_save) ... ok\ntest_reject_migration (test_pr16_research_mining.MiningTests.test_reject_migration) ... ok\ntest_reject_move (test_pr16_research_mining.MiningTests.test_reject_move) ... ok\ntest_reject_natural_arrival (test_pr16_research_mining.MiningTests.test_reject_natural_arrival) ... ok\ntest_reject_natural_reentry (test_pr16_research_mining.MiningTests.test_reject_natural_reentry) ... ok\ntest_reject_no_progress_fixture (test_pr16_research_mining.MiningTests.test_reject_no_progress_fixture) ... ok\ntest_reject_no_warp (test_pr16_research_mining.MiningTests.test_reject_no_warp) ... ok\ntest_reject_not_eligible (test_pr16_research_mining.MiningTests.test_reject_not_eligible) ... ok\ntest_reject_old_rerun (test_pr16_research_mining.MiningTests.test_reject_old_rerun) ... ok\ntest_reject_other_bag (test_pr16_research_mining.MiningTests.test_reject_other_bag) ... ok\ntest_reject_party (test_pr16_research_mining.MiningTests.test_reject_party) ... ok\ntest_reject_party_count (test_pr16_research_mining.MiningTests.test_reject_party_count) ... ok\ntest_reject_record_root (test_pr16_research_mining.MiningTests.test_reject_record_root) ... ok\ntest_reject_recovery (test_pr16_research_mining.MiningTests.test_reject_recovery) ... ok\ntest_reject_reentry_rp (test_pr16_research_mining.MiningTests.test_reject_reentry_rp) ... ok\ntest_reject_screen (test_pr16_research_mining.MiningTests.test_reject_screen) ... ok\ntest_reject_script_root (test_pr16_research_mining.MiningTests.test_reject_script_root) ... ok\ntest_reject_total_saves (test_pr16_research_mining.MiningTests.test_reject_total_saves) ... ok\ntest_reject_unrelated_owner (test_pr16_research_mining.MiningTests.test_reject_unrelated_owner) ... ok\ntest_reject_warnings (test_pr16_research_mining.MiningTests.test_reject_warnings) ... ok\ntest_reject_wild_tail (test_pr16_research_mining.MiningTests.test_reject_wild_tail) ... ok\ntest_stage_order (test_pr16_research_mining.MiningTests.test_stage_order) ... ok\ntest_unbounded_and_malformed (test_pr16_research_mining.MiningTests.test_unbounded_and_malformed) ... ok\ntest_wrong_case (test_pr16_research_mining.MiningTests.test_wrong_case) ... ok\ntest_wrong_fixture (test_pr16_research_mining.MiningTests.test_wrong_fixture) ... ok\n\n----------------------------------------------------------------------\nRan 64 tests in 0.087s\n\nOK\n",
+    "stdout": ""
+  },
+  "visual_method": "original PPM hash equality to four locally vision-reviewed dialogue captures",
+  "visual_review_pending": false
+}

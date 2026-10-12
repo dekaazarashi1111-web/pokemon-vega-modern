@@ -1,0 +1,103 @@
+{
+  "run": {
+    "id": 37185746332,
+    "head_sha": "38c2c0f931d3c8c17e0ded5eb8192501d8857145",
+    "head_branch": "codex/modernization-followup-20260908",
+    "path": ".github/workflows/pr16-story-save91.yml",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_attempt": 1
+  },
+  "job": {
+    "id": 111387159162,
+    "run_id": 37185746332,
+    "workflow_name": "pr16-story-save91",
+    "head_branch": "codex/modernization-followup-20260908",
+    "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37185746332",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOUPNhZs8AAAAZ7zEqeg",
+    "head_sha": "38c2c0f931d3c8c17e0ded5eb8192501d8857145",
+    "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111387159162",
+    "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37185746332/job/111387159162",
+    "status": "completed",
+    "conclusion": "failure",
+    "created_at": "2026-10-04T07:25:41Z",
+    "started_at": "2026-10-04T07:25:42Z",
+    "completed_at": "2026-10-04T07:26:09Z",
+    "name": "continuation",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-04T07:25:43Z",
+        "completed_at": "2026-10-04T07:25:44Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-04T07:25:44Z",
+        "completed_at": "2026-10-04T07:25:57Z"
+      },
+      {
+        "name": "Save90から新10歩・ジム退出controller",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-04T07:25:57Z",
+        "completed_at": "2026-10-04T07:25:59Z"
+      },
+      {
+        "name": "最初の町到着後Save91と独立Continue",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 4,
+        "started_at": "2026-10-04T07:25:59Z",
+        "completed_at": "2026-10-04T07:26:07Z"
+      },
+      {
+        "name": "Lightweight task graph",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 5,
+        "started_at": "2026-10-04T07:26:07Z",
+        "completed_at": "2026-10-04T07:26:07Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-04T07:26:07Z",
+        "completed_at": "2026-10-04T07:26:07Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-10-04T07:26:07Z",
+        "completed_at": "2026-10-04T07:26:08Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-10-04T07:26:08Z",
+        "completed_at": "2026-10-04T07:26:08Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111387159162",
+    "labels": [
+      "ubuntu-24.04"
+    ],
+    "runner_id": 1000021459,
+    "runner_name": "GitHub Actions 1000021459",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  }
+}

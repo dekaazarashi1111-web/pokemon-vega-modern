@@ -1,0 +1,53 @@
+name: pr16-ring-ui-leaf-contracts
+run-name: heap分割完了・window連結・実描画callback境界
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-ui-leaf-contracts.yml
+      - scripts/pr16_ring_ui_leaf_contracts.py
+      - tests/test_pr16_ring_ui_leaf_contracts.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-ui-leaf-contracts
+  cancel-in-progress: false
+jobs:
+  focused:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 30tests・609保存契約・正本更新と非force記録
+        run: python3 scripts/pr16_ring_ui_leaf_contracts.py run
+      - name: 診断text export境界
+        if: always()
+        id: export
+        run: |
+          python3 - <<'PY'
+          import pathlib,re
+          root=pathlib.Path('.local/pr16-ring-ui-leaf-contracts')
+          assert root.is_dir()
+          for p in root.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.txt'}
+              raw=p.read_bytes();raw.decode('utf-8')
+              assert b'\0' not in raw and len(raw)<=2000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN [A-Z ]*PRIVATE KEY-----',raw)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.export.outcome == 'success'
+        with:
+          name: pr16-ring-ui-leaf-contracts
+          path: .local/pr16-ring-ui-leaf-contracts/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

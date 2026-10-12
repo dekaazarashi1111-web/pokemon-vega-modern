@@ -1,0 +1,2101 @@
+{
+  "status": "FIXED_ROM_WALK_MAINTENANCE_MECHANISM_BOUND_WITH_SAVE98_EVIDENCE",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_lock_pokefirered": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+  "upstream_sources": [
+    {
+      "path": "src/field_control_avatar.c",
+      "blob_sha": "b1b6465941133b927505be92d189a7c283e4722f"
+    },
+    {
+      "path": "src/pokemon.c",
+      "blob_sha": "66a5c3d233e8b1b85fe5045aeb6667332cd61d4c"
+    },
+    {
+      "path": "include/pokemon.h",
+      "blob_sha": "414dc41767295aed38f299e8495c5e2f8d25ddc9"
+    }
+  ],
+  "bindings": [
+    {
+      "address": 134663842,
+      "size": 4,
+      "hex": "00f04df8",
+      "meaning": "field-step caller"
+    },
+    {
+      "address": 134663904,
+      "size": 4,
+      "hex": "00f056f8",
+      "meaning": "poison-step caller"
+    },
+    {
+      "address": 134664000,
+      "size": 60,
+      "hex": "30b50c4800f080fe01880131018001887f2211400180002909d1074d0524281c0521d5f729ff6435013c002cf7da30bc01bc004721400000e4410202",
+      "meaning": "happiness counter and six-party event5 loop"
+    },
+    {
+      "address": 134664080,
+      "size": 78,
+      "hex": "10b50e48c07d09281cd00d4800f054fe041c208801302080208805215bf1fafa2080000400280dd134f09afc012809d0012807dd022805d1012004e0306d030222400000002010bc02bc084700b5",
+      "meaning": "poison counter modulo5"
+    },
+    {
+      "address": 134491576,
+      "size": 384,
+      "hex": "f0b581b0071c09060d0e41210022fcf7c5fa0004060c381c0c210022fcf7befa0004000caf281bd1054806494018017802200840002809d00348c47914e000003031000339040000b43e02020248006802494018047807e0485000031a31000057f08afa0006040e002e00d185e0ce204000864200d180e00026381c20210022fcf78cfa0004000c6946088000040014632800dd0126c72802dd701c0006060e052d05d101f016fb01210140002964d1032d11d1334800680821084000285cd0314932480088400140184078542803d0572801d05a2850d12d496800401930184018027800214156002908dd1b2c06d196204843642185f143f80006020e1206121668460021405e801869460880002a1edd381c26210022fcf740fa0a2805d168460021405e013069460880381c23210022fcf733fa041c12f016fe0006000e844205d168460021405e01306946088068460021405e002802da00216846018068460021405eff2802ddff2168460180381c20216a46fcf79ffd01b0f0bc01bc",
+      "meaning": "AdjustFriendship body"
+    },
+    {
+      "address": 134491976,
+      "size": 4,
+      "hex": "fea92108",
+      "meaning": "delta table pointer"
+    },
+    {
+      "address": 136423934,
+      "size": 30,
+      "hex": "050302050302010100030201010100010101030303fffffffbfbf6fbfbf6",
+      "meaning": "friendship event delta table"
+    },
+    {
+      "address": 134475948,
+      "size": 40,
+      "hex": "70b5051c081c1206140e00260020c046c046172800d943e1800002494018006887460000d4f00308",
+      "meaning": "GetSubstruct personality forced zero"
+    },
+    {
+      "address": 134475988,
+      "size": 4,
+      "hex": "34f10308",
+      "meaning": "permutation0 entry"
+    },
+    {
+      "address": 134476084,
+      "size": 24,
+      "hex": "281c2030012c00d102e1012c03dc002c00d100e100e1022c",
+      "meaning": "substruct0 = mon+32"
+    },
+    {
+      "address": 134476962,
+      "size": 12,
+      "hex": "201c191c00f003f810bc02bc",
+      "meaning": "GetMonData delegates box"
+    },
+    {
+      "address": 134477008,
+      "size": 10,
+      "hex": "01680022fff7eafd8046",
+      "meaning": "box getter substruct0 setup"
+    },
+    {
+      "address": 134477252,
+      "size": 4,
+      "hex": "4af70308",
+      "meaning": "get field32 jump"
+    },
+    {
+      "address": 134477642,
+      "size": 6,
+      "hex": "47467c7a7fe1",
+      "meaning": "get substruct0+9"
+    },
+    {
+      "address": 134478772,
+      "size": 12,
+      "hex": "181c211c00f004f810bc01bc",
+      "meaning": "SetMonData delegates box"
+    },
+    {
+      "address": 134478818,
+      "size": 12,
+      "hex": "3968381c0022fff760fa8046",
+      "meaning": "box setter substruct0 setup"
+    },
+    {
+      "address": 134479068,
+      "size": 4,
+      "hex": "a4fe0308",
+      "meaning": "set field32 jump"
+    },
+    {
+      "address": 134479524,
+      "size": 8,
+      "hex": "20784146487290e1",
+      "meaning": "set substruct0+9"
+    },
+    {
+      "address": 134667336,
+      "size": 8,
+      "hex": "00490847dd700909",
+      "meaning": "GetVarPointer trampoline"
+    },
+    {
+      "address": 151613660,
+      "size": 40,
+      "hex": "70b50004040c261c201c91f09bf8012804d0002801d10248004770bd0148004751dc060857dc0608",
+      "meaning": "variable dispatch"
+    },
+    {
+      "address": 152207904,
+      "size": 60,
+      "hex": "80220b4bc3181b0492001b0c93420ad3084b9c46fc2360440004000c9b019842804140427047044b9c4640006044f9e700b0ffff00bfffffe8120302",
+      "meaning": "managed variable classifier"
+    },
+    {
+      "address": 134667490,
+      "size": 32,
+      "hex": "05487100054a8918006840180de000c0ffffbc500003485000030090ffff0448",
+      "meaning": "legacy variable pointer"
+    }
+  ],
+  "disassembly": {
+    "0x806cea2": [
+      {
+        "address": 134663842,
+        "hex": "00f04df8",
+        "instruction": "bl #0x806cf40"
+      }
+    ],
+    "0x806cee0": [
+      {
+        "address": 134663904,
+        "hex": "00f056f8",
+        "instruction": "bl #0x806cf90"
+      }
+    ],
+    "0x806cf40": [
+      {
+        "address": 134664000,
+        "hex": "30b5",
+        "instruction": "push {r4, r5, lr}"
+      },
+      {
+        "address": 134664002,
+        "hex": "0c48",
+        "instruction": "ldr r0, [pc, #0x30]"
+      },
+      {
+        "address": 134664004,
+        "hex": "00f080fe",
+        "instruction": "bl #0x806dc48"
+      },
+      {
+        "address": 134664008,
+        "hex": "0188",
+        "instruction": "ldrh r1, [r0]"
+      },
+      {
+        "address": 134664010,
+        "hex": "0131",
+        "instruction": "adds r1, #1"
+      },
+      {
+        "address": 134664012,
+        "hex": "0180",
+        "instruction": "strh r1, [r0]"
+      },
+      {
+        "address": 134664014,
+        "hex": "0188",
+        "instruction": "ldrh r1, [r0]"
+      },
+      {
+        "address": 134664016,
+        "hex": "7f22",
+        "instruction": "movs r2, #0x7f"
+      },
+      {
+        "address": 134664018,
+        "hex": "1140",
+        "instruction": "ands r1, r2"
+      },
+      {
+        "address": 134664020,
+        "hex": "0180",
+        "instruction": "strh r1, [r0]"
+      },
+      {
+        "address": 134664022,
+        "hex": "0029",
+        "instruction": "cmp r1, #0"
+      },
+      {
+        "address": 134664024,
+        "hex": "09d1",
+        "instruction": "bne #0x806cf6e"
+      },
+      {
+        "address": 134664026,
+        "hex": "074d",
+        "instruction": "ldr r5, [pc, #0x1c]"
+      },
+      {
+        "address": 134664028,
+        "hex": "0524",
+        "instruction": "movs r4, #5"
+      },
+      {
+        "address": 134664030,
+        "hex": "281c",
+        "instruction": "adds r0, r5, #0"
+      },
+      {
+        "address": 134664032,
+        "hex": "0521",
+        "instruction": "movs r1, #5"
+      },
+      {
+        "address": 134664034,
+        "hex": "d5f729ff",
+        "instruction": "bl #0x8042db8"
+      },
+      {
+        "address": 134664038,
+        "hex": "6435",
+        "instruction": "adds r5, #0x64"
+      },
+      {
+        "address": 134664040,
+        "hex": "013c",
+        "instruction": "subs r4, #1"
+      },
+      {
+        "address": 134664042,
+        "hex": "002c",
+        "instruction": "cmp r4, #0"
+      },
+      {
+        "address": 134664044,
+        "hex": "f7da",
+        "instruction": "bge #0x806cf5e"
+      },
+      {
+        "address": 134664046,
+        "hex": "30bc",
+        "instruction": "pop {r4, r5}"
+      },
+      {
+        "address": 134664048,
+        "hex": "01bc",
+        "instruction": "pop {r0}"
+      },
+      {
+        "address": 134664050,
+        "hex": "0047",
+        "instruction": "bx r0"
+      },
+      {
+        "address": 134664052,
+        "hex": "2140",
+        "instruction": "ands r1, r4"
+      },
+      {
+        "address": 134664054,
+        "hex": "0000",
+        "instruction": "movs r0, r0"
+      },
+      {
+        "address": 134664056,
+        "hex": "e441",
+        "instruction": "rors r4, r4"
+      },
+      {
+        "address": 134664058,
+        "hex": "0202",
+        "instruction": "lsls r2, r0, #8"
+      }
+    ],
+    "0x806cf90": [
+      {
+        "address": 134664080,
+        "hex": "10b5",
+        "instruction": "push {r4, lr}"
+      },
+      {
+        "address": 134664082,
+        "hex": "0e48",
+        "instruction": "ldr r0, [pc, #0x38]"
+      },
+      {
+        "address": 134664084,
+        "hex": "c07d",
+        "instruction": "ldrb r0, [r0, #0x17]"
+      },
+      {
+        "address": 134664086,
+        "hex": "0928",
+        "instruction": "cmp r0, #9"
+      },
+      {
+        "address": 134664088,
+        "hex": "1cd0",
+        "instruction": "beq #0x806cfd4"
+      },
+      {
+        "address": 134664090,
+        "hex": "0d48",
+        "instruction": "ldr r0, [pc, #0x34]"
+      },
+      {
+        "address": 134664092,
+        "hex": "00f054fe",
+        "instruction": "bl #0x806dc48"
+      },
+      {
+        "address": 134664096,
+        "hex": "041c",
+        "instruction": "adds r4, r0, #0"
+      },
+      {
+        "address": 134664098,
+        "hex": "2088",
+        "instruction": "ldrh r0, [r4]"
+      },
+      {
+        "address": 134664100,
+        "hex": "0130",
+        "instruction": "adds r0, #1"
+      },
+      {
+        "address": 134664102,
+        "hex": "2080",
+        "instruction": "strh r0, [r4]"
+      },
+      {
+        "address": 134664104,
+        "hex": "2088",
+        "instruction": "ldrh r0, [r4]"
+      },
+      {
+        "address": 134664106,
+        "hex": "0521",
+        "instruction": "movs r1, #5"
+      },
+      {
+        "address": 134664108,
+        "hex": "5bf1fafa",
+        "instruction": "bl #0x81c85a4"
+      },
+      {
+        "address": 134664112,
+        "hex": "2080",
+        "instruction": "strh r0, [r4]"
+      },
+      {
+        "address": 134664114,
+        "hex": "0004",
+        "instruction": "lsls r0, r0, #0x10"
+      },
+      {
+        "address": 134664116,
+        "hex": "0028",
+        "instruction": "cmp r0, #0"
+      },
+      {
+        "address": 134664118,
+        "hex": "0dd1",
+        "instruction": "bne #0x806cfd4"
+      },
+      {
+        "address": 134664120,
+        "hex": "34f09afc",
+        "instruction": "bl #0x80a18f0"
+      },
+      {
+        "address": 134664124,
+        "hex": "0128",
+        "instruction": "cmp r0, #1"
+      },
+      {
+        "address": 134664126,
+        "hex": "09d0",
+        "instruction": "beq #0x806cfd4"
+      },
+      {
+        "address": 134664128,
+        "hex": "0128",
+        "instruction": "cmp r0, #1"
+      },
+      {
+        "address": 134664130,
+        "hex": "07dd",
+        "instruction": "ble #0x806cfd4"
+      },
+      {
+        "address": 134664132,
+        "hex": "0228",
+        "instruction": "cmp r0, #2"
+      },
+      {
+        "address": 134664134,
+        "hex": "05d1",
+        "instruction": "bne #0x806cfd4"
+      },
+      {
+        "address": 134664136,
+        "hex": "0120",
+        "instruction": "movs r0, #1"
+      },
+      {
+        "address": 134664138,
+        "hex": "04e0",
+        "instruction": "b #0x806cfd6"
+      },
+      {
+        "address": 134664140,
+        "hex": "306d",
+        "instruction": "ldr r0, [r6, #0x50]"
+      },
+      {
+        "address": 134664142,
+        "hex": "0302",
+        "instruction": "lsls r3, r0, #8"
+      },
+      {
+        "address": 134664144,
+        "hex": "2240",
+        "instruction": "ands r2, r4"
+      },
+      {
+        "address": 134664146,
+        "hex": "0000",
+        "instruction": "movs r0, r0"
+      },
+      {
+        "address": 134664148,
+        "hex": "0020",
+        "instruction": "movs r0, #0"
+      },
+      {
+        "address": 134664150,
+        "hex": "10bc",
+        "instruction": "pop {r4}"
+      },
+      {
+        "address": 134664152,
+        "hex": "02bc",
+        "instruction": "pop {r1}"
+      },
+      {
+        "address": 134664154,
+        "hex": "0847",
+        "instruction": "bx r1"
+      },
+      {
+        "address": 134664156,
+        "hex": "00b5",
+        "instruction": "push {lr}"
+      }
+    ],
+    "0x8042db8": [
+      {
+        "address": 134491576,
+        "hex": "f0b5",
+        "instruction": "push {r4, r5, r6, r7, lr}"
+      },
+      {
+        "address": 134491578,
+        "hex": "81b0",
+        "instruction": "sub sp, #4"
+      },
+      {
+        "address": 134491580,
+        "hex": "071c",
+        "instruction": "adds r7, r0, #0"
+      },
+      {
+        "address": 134491582,
+        "hex": "0906",
+        "instruction": "lsls r1, r1, #0x18"
+      },
+      {
+        "address": 134491584,
+        "hex": "0d0e",
+        "instruction": "lsrs r5, r1, #0x18"
+      },
+      {
+        "address": 134491586,
+        "hex": "4121",
+        "instruction": "movs r1, #0x41"
+      },
+      {
+        "address": 134491588,
+        "hex": "0022",
+        "instruction": "movs r2, #0"
+      },
+      {
+        "address": 134491590,
+        "hex": "fcf7c5fa",
+        "instruction": "bl #0x803f354"
+      },
+      {
+        "address": 134491594,
+        "hex": "0004",
+        "instruction": "lsls r0, r0, #0x10"
+      },
+      {
+        "address": 134491596,
+        "hex": "060c",
+        "instruction": "lsrs r6, r0, #0x10"
+      },
+      {
+        "address": 134491598,
+        "hex": "381c",
+        "instruction": "adds r0, r7, #0"
+      },
+      {
+        "address": 134491600,
+        "hex": "0c21",
+        "instruction": "movs r1, #0xc"
+      },
+      {
+        "address": 134491602,
+        "hex": "0022",
+        "instruction": "movs r2, #0"
+      },
+      {
+        "address": 134491604,
+        "hex": "fcf7befa",
+        "instruction": "bl #0x803f354"
+      },
+      {
+        "address": 134491608,
+        "hex": "0004",
+        "instruction": "lsls r0, r0, #0x10"
+      },
+      {
+        "address": 134491610,
+        "hex": "000c",
+        "instruction": "lsrs r0, r0, #0x10"
+      },
+      {
+        "address": 134491612,
+        "hex": "af28",
+        "instruction": "cmp r0, #0xaf"
+      },
+      {
+        "address": 134491614,
+        "hex": "1bd1",
+        "instruction": "bne #0x8042e18"
+      },
+      {
+        "address": 134491616,
+        "hex": "0548",
+        "instruction": "ldr r0, [pc, #0x14]"
+      },
+      {
+        "address": 134491618,
+        "hex": "0649",
+        "instruction": "ldr r1, [pc, #0x18]"
+      },
+      {
+        "address": 134491620,
+        "hex": "4018",
+        "instruction": "adds r0, r0, r1"
+      },
+      {
+        "address": 134491622,
+        "hex": "0178",
+        "instruction": "ldrb r1, [r0]"
+      },
+      {
+        "address": 134491624,
+        "hex": "0220",
+        "instruction": "movs r0, #2"
+      },
+      {
+        "address": 134491626,
+        "hex": "0840",
+        "instruction": "ands r0, r1"
+      },
+      {
+        "address": 134491628,
+        "hex": "0028",
+        "instruction": "cmp r0, #0"
+      },
+      {
+        "address": 134491630,
+        "hex": "09d0",
+        "instruction": "beq #0x8042e04"
+      },
+      {
+        "address": 134491632,
+        "hex": "0348",
+        "instruction": "ldr r0, [pc, #0xc]"
+      },
+      {
+        "address": 134491634,
+        "hex": "c479",
+        "instruction": "ldrb r4, [r0, #7]"
+      },
+      {
+        "address": 134491636,
+        "hex": "14e0",
+        "instruction": "b #0x8042e20"
+      },
+      {
+        "address": 134491638,
+        "hex": "0000",
+        "instruction": "movs r0, r0"
+      },
+      {
+        "address": 134491640,
+        "hex": "3031",
+        "instruction": "adds r1, #0x30"
+      },
+      {
+        "address": 134491642,
+        "hex": "0003",
+        "instruction": "lsls r0, r0, #0xc"
+      },
+      {
+        "address": 134491644,
+        "hex": "3904",
+        "instruction": "lsls r1, r7, #0x10"
+      },
+      {
+        "address": 134491646,
+        "hex": "0000",
+        "instruction": "movs r0, r0"
+      },
+      {
+        "address": 134491648,
+        "hex": "b43e",
+        "instruction": "subs r6, #0xb4"
+      },
+      {
+        "address": 134491650,
+        "hex": "0202",
+        "instruction": "lsls r2, r0, #8"
+      },
+      {
+        "address": 134491652,
+        "hex": "0248",
+        "instruction": "ldr r0, [pc, #8]"
+      },
+      {
+        "address": 134491654,
+        "hex": "0068",
+        "instruction": "ldr r0, [r0]"
+      },
+      {
+        "address": 134491656,
+        "hex": "0249",
+        "instruction": "ldr r1, [pc, #8]"
+      },
+      {
+        "address": 134491658,
+        "hex": "4018",
+        "instruction": "adds r0, r0, r1"
+      },
+      {
+        "address": 134491660,
+        "hex": "0478",
+        "instruction": "ldrb r4, [r0]"
+      },
+      {
+        "address": 134491662,
+        "hex": "07e0",
+        "instruction": "b #0x8042e20"
+      },
+      {
+        "address": 134491664,
+        "hex": "4850",
+        "instruction": "str r0, [r1, r1]"
+      },
+      {
+        "address": 134491666,
+        "hex": "0003",
+        "instruction": "lsls r0, r0, #0xc"
+      },
+      {
+        "address": 134491668,
+        "hex": "1a31",
+        "instruction": "adds r1, #0x1a"
+      },
+      {
+        "address": 134491670,
+        "hex": "0000",
+        "instruction": "movs r0, r0"
+      },
+      {
+        "address": 134491672,
+        "hex": "57f08afa",
+        "instruction": "bl #0x809a330"
+      },
+      {
+        "address": 134491676,
+        "hex": "0006",
+        "instruction": "lsls r0, r0, #0x18"
+      },
+      {
+        "address": 134491678,
+        "hex": "040e",
+        "instruction": "lsrs r4, r0, #0x18"
+      },
+      {
+        "address": 134491680,
+        "hex": "002e",
+        "instruction": "cmp r6, #0"
+      },
+      {
+        "address": 134491682,
+        "hex": "00d1",
+        "instruction": "bne #0x8042e26"
+      },
+      {
+        "address": 134491684,
+        "hex": "85e0",
+        "instruction": "b #0x8042f32"
+      },
+      {
+        "address": 134491686,
+        "hex": "ce20",
+        "instruction": "movs r0, #0xce"
+      },
+      {
+        "address": 134491688,
+        "hex": "4000",
+        "instruction": "lsls r0, r0, #1"
+      },
+      {
+        "address": 134491690,
+        "hex": "8642",
+        "instruction": "cmp r6, r0"
+      },
+      {
+        "address": 134491692,
+        "hex": "00d1",
+        "instruction": "bne #0x8042e30"
+      },
+      {
+        "address": 134491694,
+        "hex": "80e0",
+        "instruction": "b #0x8042f32"
+      },
+      {
+        "address": 134491696,
+        "hex": "0026",
+        "instruction": "movs r6, #0"
+      },
+      {
+        "address": 134491698,
+        "hex": "381c",
+        "instruction": "adds r0, r7, #0"
+      },
+      {
+        "address": 134491700,
+        "hex": "2021",
+        "instruction": "movs r1, #0x20"
+      },
+      {
+        "address": 134491702,
+        "hex": "0022",
+        "instruction": "movs r2, #0"
+      },
+      {
+        "address": 134491704,
+        "hex": "fcf78cfa",
+        "instruction": "bl #0x803f354"
+      },
+      {
+        "address": 134491708,
+        "hex": "0004",
+        "instruction": "lsls r0, r0, #0x10"
+      },
+      {
+        "address": 134491710,
+        "hex": "000c",
+        "instruction": "lsrs r0, r0, #0x10"
+      },
+      {
+        "address": 134491712,
+        "hex": "6946",
+        "instruction": "mov r1, sp"
+      },
+      {
+        "address": 134491714,
+        "hex": "0880",
+        "instruction": "strh r0, [r1]"
+      },
+      {
+        "address": 134491716,
+        "hex": "0004",
+        "instruction": "lsls r0, r0, #0x10"
+      },
+      {
+        "address": 134491718,
+        "hex": "0014",
+        "instruction": "asrs r0, r0, #0x10"
+      },
+      {
+        "address": 134491720,
+        "hex": "6328",
+        "instruction": "cmp r0, #0x63"
+      },
+      {
+        "address": 134491722,
+        "hex": "00dd",
+        "instruction": "ble #0x8042e4e"
+      },
+      {
+        "address": 134491724,
+        "hex": "0126",
+        "instruction": "movs r6, #1"
+      },
+      {
+        "address": 134491726,
+        "hex": "c728",
+        "instruction": "cmp r0, #0xc7"
+      },
+      {
+        "address": 134491728,
+        "hex": "02dd",
+        "instruction": "ble #0x8042e58"
+      },
+      {
+        "address": 134491730,
+        "hex": "701c",
+        "instruction": "adds r0, r6, #1"
+      },
+      {
+        "address": 134491732,
+        "hex": "0006",
+        "instruction": "lsls r0, r0, #0x18"
+      },
+      {
+        "address": 134491734,
+        "hex": "060e",
+        "instruction": "lsrs r6, r0, #0x18"
+      },
+      {
+        "address": 134491736,
+        "hex": "052d",
+        "instruction": "cmp r5, #5"
+      },
+      {
+        "address": 134491738,
+        "hex": "05d1",
+        "instruction": "bne #0x8042e68"
+      },
+      {
+        "address": 134491740,
+        "hex": "01f016fb",
+        "instruction": "bl #0x804448c"
+      },
+      {
+        "address": 134491744,
+        "hex": "0121",
+        "instruction": "movs r1, #1"
+      },
+      {
+        "address": 134491746,
+        "hex": "0140",
+        "instruction": "ands r1, r0"
+      },
+      {
+        "address": 134491748,
+        "hex": "0029",
+        "instruction": "cmp r1, #0"
+      },
+      {
+        "address": 134491750,
+        "hex": "64d1",
+        "instruction": "bne #0x8042f32"
+      },
+      {
+        "address": 134491752,
+        "hex": "032d",
+        "instruction": "cmp r5, #3"
+      },
+      {
+        "address": 134491754,
+        "hex": "11d1",
+        "instruction": "bne #0x8042e90"
+      },
+      {
+        "address": 134491756,
+        "hex": "3348",
+        "instruction": "ldr r0, [pc, #0xcc]"
+      },
+      {
+        "address": 134491758,
+        "hex": "0068",
+        "instruction": "ldr r0, [r0]"
+      },
+      {
+        "address": 134491760,
+        "hex": "0821",
+        "instruction": "movs r1, #8"
+      },
+      {
+        "address": 134491762,
+        "hex": "0840",
+        "instruction": "ands r0, r1"
+      },
+      {
+        "address": 134491764,
+        "hex": "0028",
+        "instruction": "cmp r0, #0"
+      },
+      {
+        "address": 134491766,
+        "hex": "5cd0",
+        "instruction": "beq #0x8042f32"
+      },
+      {
+        "address": 134491768,
+        "hex": "3149",
+        "instruction": "ldr r1, [pc, #0xc4]"
+      },
+      {
+        "address": 134491770,
+        "hex": "3248",
+        "instruction": "ldr r0, [pc, #0xc8]"
+      },
+      {
+        "address": 134491772,
+        "hex": "0088",
+        "instruction": "ldrh r0, [r0]"
+      },
+      {
+        "address": 134491774,
+        "hex": "4001",
+        "instruction": "lsls r0, r0, #5"
+      },
+      {
+        "address": 134491776,
+        "hex": "4018",
+        "instruction": "adds r0, r0, r1"
+      },
+      {
+        "address": 134491778,
+        "hex": "4078",
+        "instruction": "ldrb r0, [r0, #1]"
+      },
+      {
+        "address": 134491780,
+        "hex": "5428",
+        "instruction": "cmp r0, #0x54"
+      },
+      {
+        "address": 134491782,
+        "hex": "03d0",
+        "instruction": "beq #0x8042e90"
+      },
+      {
+        "address": 134491784,
+        "hex": "5728",
+        "instruction": "cmp r0, #0x57"
+      },
+      {
+        "address": 134491786,
+        "hex": "01d0",
+        "instruction": "beq #0x8042e90"
+      },
+      {
+        "address": 134491788,
+        "hex": "5a28",
+        "instruction": "cmp r0, #0x5a"
+      },
+      {
+        "address": 134491790,
+        "hex": "50d1",
+        "instruction": "bne #0x8042f32"
+      },
+      {
+        "address": 134491792,
+        "hex": "2d49",
+        "instruction": "ldr r1, [pc, #0xb4]"
+      },
+      {
+        "address": 134491794,
+        "hex": "6800",
+        "instruction": "lsls r0, r5, #1"
+      },
+      {
+        "address": 134491796,
+        "hex": "4019",
+        "instruction": "adds r0, r0, r5"
+      },
+      {
+        "address": 134491798,
+        "hex": "3018",
+        "instruction": "adds r0, r6, r0"
+      },
+      {
+        "address": 134491800,
+        "hex": "4018",
+        "instruction": "adds r0, r0, r1"
+      },
+      {
+        "address": 134491802,
+        "hex": "0278",
+        "instruction": "ldrb r2, [r0]"
+      },
+      {
+        "address": 134491804,
+        "hex": "0021",
+        "instruction": "movs r1, #0"
+      },
+      {
+        "address": 134491806,
+        "hex": "4156",
+        "instruction": "ldrsb r1, [r0, r1]"
+      },
+      {
+        "address": 134491808,
+        "hex": "0029",
+        "instruction": "cmp r1, #0"
+      },
+      {
+        "address": 134491810,
+        "hex": "08dd",
+        "instruction": "ble #0x8042eb6"
+      },
+      {
+        "address": 134491812,
+        "hex": "1b2c",
+        "instruction": "cmp r4, #0x1b"
+      },
+      {
+        "address": 134491814,
+        "hex": "06d1",
+        "instruction": "bne #0x8042eb6"
+      },
+      {
+        "address": 134491816,
+        "hex": "9620",
+        "instruction": "movs r0, #0x96"
+      },
+      {
+        "address": 134491818,
+        "hex": "4843",
+        "instruction": "muls r0, r1, r0"
+      },
+      {
+        "address": 134491820,
+        "hex": "6421",
+        "instruction": "movs r1, #0x64"
+      },
+      {
+        "address": 134491822,
+        "hex": "85f143f8",
+        "instruction": "bl #0x81c7f38"
+      },
+      {
+        "address": 134491826,
+        "hex": "0006",
+        "instruction": "lsls r0, r0, #0x18"
+      },
+      {
+        "address": 134491828,
+        "hex": "020e",
+        "instruction": "lsrs r2, r0, #0x18"
+      },
+      {
+        "address": 134491830,
+        "hex": "1206",
+        "instruction": "lsls r2, r2, #0x18"
+      },
+      {
+        "address": 134491832,
+        "hex": "1216",
+        "instruction": "asrs r2, r2, #0x18"
+      },
+      {
+        "address": 134491834,
+        "hex": "6846",
+        "instruction": "mov r0, sp"
+      },
+      {
+        "address": 134491836,
+        "hex": "0021",
+        "instruction": "movs r1, #0"
+      },
+      {
+        "address": 134491838,
+        "hex": "405e",
+        "instruction": "ldrsh r0, [r0, r1]"
+      },
+      {
+        "address": 134491840,
+        "hex": "8018",
+        "instruction": "adds r0, r0, r2"
+      },
+      {
+        "address": 134491842,
+        "hex": "6946",
+        "instruction": "mov r1, sp"
+      },
+      {
+        "address": 134491844,
+        "hex": "0880",
+        "instruction": "strh r0, [r1]"
+      },
+      {
+        "address": 134491846,
+        "hex": "002a",
+        "instruction": "cmp r2, #0"
+      },
+      {
+        "address": 134491848,
+        "hex": "1edd",
+        "instruction": "ble #0x8042f08"
+      },
+      {
+        "address": 134491850,
+        "hex": "381c",
+        "instruction": "adds r0, r7, #0"
+      },
+      {
+        "address": 134491852,
+        "hex": "2621",
+        "instruction": "movs r1, #0x26"
+      },
+      {
+        "address": 134491854,
+        "hex": "0022",
+        "instruction": "movs r2, #0"
+      },
+      {
+        "address": 134491856,
+        "hex": "fcf740fa",
+        "instruction": "bl #0x803f354"
+      },
+      {
+        "address": 134491860,
+        "hex": "0a28",
+        "instruction": "cmp r0, #0xa"
+      },
+      {
+        "address": 134491862,
+        "hex": "05d1",
+        "instruction": "bne #0x8042ee4"
+      },
+      {
+        "address": 134491864,
+        "hex": "6846",
+        "instruction": "mov r0, sp"
+      },
+      {
+        "address": 134491866,
+        "hex": "0021",
+        "instruction": "movs r1, #0"
+      },
+      {
+        "address": 134491868,
+        "hex": "405e",
+        "instruction": "ldrsh r0, [r0, r1]"
+      },
+      {
+        "address": 134491870,
+        "hex": "0130",
+        "instruction": "adds r0, #1"
+      },
+      {
+        "address": 134491872,
+        "hex": "6946",
+        "instruction": "mov r1, sp"
+      },
+      {
+        "address": 134491874,
+        "hex": "0880",
+        "instruction": "strh r0, [r1]"
+      },
+      {
+        "address": 134491876,
+        "hex": "381c",
+        "instruction": "adds r0, r7, #0"
+      },
+      {
+        "address": 134491878,
+        "hex": "2321",
+        "instruction": "movs r1, #0x23"
+      },
+      {
+        "address": 134491880,
+        "hex": "0022",
+        "instruction": "movs r2, #0"
+      },
+      {
+        "address": 134491882,
+        "hex": "fcf733fa",
+        "instruction": "bl #0x803f354"
+      },
+      {
+        "address": 134491886,
+        "hex": "041c",
+        "instruction": "adds r4, r0, #0"
+      },
+      {
+        "address": 134491888,
+        "hex": "12f016fe",
+        "instruction": "bl #0x8055b20"
+      },
+      {
+        "address": 134491892,
+        "hex": "0006",
+        "instruction": "lsls r0, r0, #0x18"
+      },
+      {
+        "address": 134491894,
+        "hex": "000e",
+        "instruction": "lsrs r0, r0, #0x18"
+      },
+      {
+        "address": 134491896,
+        "hex": "8442",
+        "instruction": "cmp r4, r0"
+      },
+      {
+        "address": 134491898,
+        "hex": "05d1",
+        "instruction": "bne #0x8042f08"
+      },
+      {
+        "address": 134491900,
+        "hex": "6846",
+        "instruction": "mov r0, sp"
+      },
+      {
+        "address": 134491902,
+        "hex": "0021",
+        "instruction": "movs r1, #0"
+      },
+      {
+        "address": 134491904,
+        "hex": "405e",
+        "instruction": "ldrsh r0, [r0, r1]"
+      },
+      {
+        "address": 134491906,
+        "hex": "0130",
+        "instruction": "adds r0, #1"
+      },
+      {
+        "address": 134491908,
+        "hex": "6946",
+        "instruction": "mov r1, sp"
+      },
+      {
+        "address": 134491910,
+        "hex": "0880",
+        "instruction": "strh r0, [r1]"
+      },
+      {
+        "address": 134491912,
+        "hex": "6846",
+        "instruction": "mov r0, sp"
+      },
+      {
+        "address": 134491914,
+        "hex": "0021",
+        "instruction": "movs r1, #0"
+      },
+      {
+        "address": 134491916,
+        "hex": "405e",
+        "instruction": "ldrsh r0, [r0, r1]"
+      },
+      {
+        "address": 134491918,
+        "hex": "0028",
+        "instruction": "cmp r0, #0"
+      },
+      {
+        "address": 134491920,
+        "hex": "02da",
+        "instruction": "bge #0x8042f18"
+      },
+      {
+        "address": 134491922,
+        "hex": "0021",
+        "instruction": "movs r1, #0"
+      },
+      {
+        "address": 134491924,
+        "hex": "6846",
+        "instruction": "mov r0, sp"
+      },
+      {
+        "address": 134491926,
+        "hex": "0180",
+        "instruction": "strh r1, [r0]"
+      },
+      {
+        "address": 134491928,
+        "hex": "6846",
+        "instruction": "mov r0, sp"
+      },
+      {
+        "address": 134491930,
+        "hex": "0021",
+        "instruction": "movs r1, #0"
+      },
+      {
+        "address": 134491932,
+        "hex": "405e",
+        "instruction": "ldrsh r0, [r0, r1]"
+      },
+      {
+        "address": 134491934,
+        "hex": "ff28",
+        "instruction": "cmp r0, #0xff"
+      },
+      {
+        "address": 134491936,
+        "hex": "02dd",
+        "instruction": "ble #0x8042f28"
+      },
+      {
+        "address": 134491938,
+        "hex": "ff21",
+        "instruction": "movs r1, #0xff"
+      },
+      {
+        "address": 134491940,
+        "hex": "6846",
+        "instruction": "mov r0, sp"
+      },
+      {
+        "address": 134491942,
+        "hex": "0180",
+        "instruction": "strh r1, [r0]"
+      },
+      {
+        "address": 134491944,
+        "hex": "381c",
+        "instruction": "adds r0, r7, #0"
+      },
+      {
+        "address": 134491946,
+        "hex": "2021",
+        "instruction": "movs r1, #0x20"
+      },
+      {
+        "address": 134491948,
+        "hex": "6a46",
+        "instruction": "mov r2, sp"
+      },
+      {
+        "address": 134491950,
+        "hex": "fcf79ffd",
+        "instruction": "bl #0x803fa70"
+      },
+      {
+        "address": 134491954,
+        "hex": "01b0",
+        "instruction": "add sp, #4"
+      },
+      {
+        "address": 134491956,
+        "hex": "f0bc",
+        "instruction": "pop {r4, r5, r6, r7}"
+      },
+      {
+        "address": 134491958,
+        "hex": "01bc",
+        "instruction": "pop {r0}"
+      }
+    ],
+    "0x803f0ac": [
+      {
+        "address": 134475948,
+        "hex": "70b5",
+        "instruction": "push {r4, r5, r6, lr}"
+      },
+      {
+        "address": 134475950,
+        "hex": "051c",
+        "instruction": "adds r5, r0, #0"
+      },
+      {
+        "address": 134475952,
+        "hex": "081c",
+        "instruction": "adds r0, r1, #0"
+      },
+      {
+        "address": 134475954,
+        "hex": "1206",
+        "instruction": "lsls r2, r2, #0x18"
+      },
+      {
+        "address": 134475956,
+        "hex": "140e",
+        "instruction": "lsrs r4, r2, #0x18"
+      },
+      {
+        "address": 134475958,
+        "hex": "0026",
+        "instruction": "movs r6, #0"
+      },
+      {
+        "address": 134475960,
+        "hex": "0020",
+        "instruction": "movs r0, #0"
+      },
+      {
+        "address": 134475962,
+        "hex": "c046",
+        "instruction": "mov r8, r8"
+      },
+      {
+        "address": 134475964,
+        "hex": "c046",
+        "instruction": "mov r8, r8"
+      },
+      {
+        "address": 134475966,
+        "hex": "1728",
+        "instruction": "cmp r0, #0x17"
+      },
+      {
+        "address": 134475968,
+        "hex": "00d9",
+        "instruction": "bls #0x803f0c4"
+      },
+      {
+        "address": 134475970,
+        "hex": "43e1",
+        "instruction": "b #0x803f34c"
+      },
+      {
+        "address": 134475972,
+        "hex": "8000",
+        "instruction": "lsls r0, r0, #2"
+      },
+      {
+        "address": 134475974,
+        "hex": "0249",
+        "instruction": "ldr r1, [pc, #8]"
+      },
+      {
+        "address": 134475976,
+        "hex": "4018",
+        "instruction": "adds r0, r0, r1"
+      },
+      {
+        "address": 134475978,
+        "hex": "0068",
+        "instruction": "ldr r0, [r0]"
+      },
+      {
+        "address": 134475980,
+        "hex": "8746",
+        "instruction": "mov pc, r0"
+      },
+      {
+        "address": 134475982,
+        "hex": "0000",
+        "instruction": "movs r0, r0"
+      }
+    ],
+    "0x803f134": [
+      {
+        "address": 134476084,
+        "hex": "281c",
+        "instruction": "adds r0, r5, #0"
+      },
+      {
+        "address": 134476086,
+        "hex": "2030",
+        "instruction": "adds r0, #0x20"
+      },
+      {
+        "address": 134476088,
+        "hex": "012c",
+        "instruction": "cmp r4, #1"
+      },
+      {
+        "address": 134476090,
+        "hex": "00d1",
+        "instruction": "bne #0x803f13e"
+      },
+      {
+        "address": 134476092,
+        "hex": "02e1",
+        "instruction": "b #0x803f344"
+      },
+      {
+        "address": 134476094,
+        "hex": "012c",
+        "instruction": "cmp r4, #1"
+      },
+      {
+        "address": 134476096,
+        "hex": "03dc",
+        "instruction": "bgt #0x803f14a"
+      },
+      {
+        "address": 134476098,
+        "hex": "002c",
+        "instruction": "cmp r4, #0"
+      },
+      {
+        "address": 134476100,
+        "hex": "00d1",
+        "instruction": "bne #0x803f148"
+      },
+      {
+        "address": 134476102,
+        "hex": "00e1",
+        "instruction": "b #0x803f34a"
+      },
+      {
+        "address": 134476104,
+        "hex": "00e1",
+        "instruction": "b #0x803f34c"
+      },
+      {
+        "address": 134476106,
+        "hex": "022c",
+        "instruction": "cmp r4, #2"
+      }
+    ],
+    "0x803f4a2": [
+      {
+        "address": 134476962,
+        "hex": "201c",
+        "instruction": "adds r0, r4, #0"
+      },
+      {
+        "address": 134476964,
+        "hex": "191c",
+        "instruction": "adds r1, r3, #0"
+      },
+      {
+        "address": 134476966,
+        "hex": "00f003f8",
+        "instruction": "bl #0x803f4b0"
+      },
+      {
+        "address": 134476970,
+        "hex": "10bc",
+        "instruction": "pop {r4}"
+      },
+      {
+        "address": 134476972,
+        "hex": "02bc",
+        "instruction": "pop {r1}"
+      }
+    ],
+    "0x803f4d0": [
+      {
+        "address": 134477008,
+        "hex": "0168",
+        "instruction": "ldr r1, [r0]"
+      },
+      {
+        "address": 134477010,
+        "hex": "0022",
+        "instruction": "movs r2, #0"
+      },
+      {
+        "address": 134477012,
+        "hex": "fff7eafd",
+        "instruction": "bl #0x803f0ac"
+      },
+      {
+        "address": 134477016,
+        "hex": "8046",
+        "instruction": "mov r8, r0"
+      }
+    ],
+    "0x803f74a": [
+      {
+        "address": 134477642,
+        "hex": "4746",
+        "instruction": "mov r7, r8"
+      },
+      {
+        "address": 134477644,
+        "hex": "7c7a",
+        "instruction": "ldrb r4, [r7, #9]"
+      },
+      {
+        "address": 134477646,
+        "hex": "7fe1",
+        "instruction": "b #0x803fa50"
+      }
+    ],
+    "0x803fbb4": [
+      {
+        "address": 134478772,
+        "hex": "181c",
+        "instruction": "adds r0, r3, #0"
+      },
+      {
+        "address": 134478774,
+        "hex": "211c",
+        "instruction": "adds r1, r4, #0"
+      },
+      {
+        "address": 134478776,
+        "hex": "00f004f8",
+        "instruction": "bl #0x803fbc4"
+      },
+      {
+        "address": 134478780,
+        "hex": "10bc",
+        "instruction": "pop {r4}"
+      },
+      {
+        "address": 134478782,
+        "hex": "01bc",
+        "instruction": "pop {r0}"
+      }
+    ],
+    "0x803fbe2": [
+      {
+        "address": 134478818,
+        "hex": "3968",
+        "instruction": "ldr r1, [r7]"
+      },
+      {
+        "address": 134478820,
+        "hex": "381c",
+        "instruction": "adds r0, r7, #0"
+      },
+      {
+        "address": 134478822,
+        "hex": "0022",
+        "instruction": "movs r2, #0"
+      },
+      {
+        "address": 134478824,
+        "hex": "fff760fa",
+        "instruction": "bl #0x803f0ac"
+      },
+      {
+        "address": 134478828,
+        "hex": "8046",
+        "instruction": "mov r8, r0"
+      }
+    ],
+    "0x803fea4": [
+      {
+        "address": 134479524,
+        "hex": "2078",
+        "instruction": "ldrb r0, [r4]"
+      },
+      {
+        "address": 134479526,
+        "hex": "4146",
+        "instruction": "mov r1, r8"
+      },
+      {
+        "address": 134479528,
+        "hex": "4872",
+        "instruction": "strb r0, [r1, #9]"
+      },
+      {
+        "address": 134479530,
+        "hex": "90e1",
+        "instruction": "b #0x80401ce"
+      }
+    ],
+    "0x806dc48": [
+      {
+        "address": 134667336,
+        "hex": "0049",
+        "instruction": "ldr r1, [pc, #0]"
+      },
+      {
+        "address": 134667338,
+        "hex": "0847",
+        "instruction": "bx r1"
+      },
+      {
+        "address": 134667340,
+        "hex": "dd70",
+        "instruction": "strb r5, [r3, #3]"
+      },
+      {
+        "address": 134667342,
+        "hex": "0909",
+        "instruction": "lsrs r1, r1, #4"
+      }
+    ],
+    "0x90970dc": [
+      {
+        "address": 151613660,
+        "hex": "70b5",
+        "instruction": "push {r4, r5, r6, lr}"
+      },
+      {
+        "address": 151613662,
+        "hex": "0004",
+        "instruction": "lsls r0, r0, #0x10"
+      },
+      {
+        "address": 151613664,
+        "hex": "040c",
+        "instruction": "lsrs r4, r0, #0x10"
+      },
+      {
+        "address": 151613666,
+        "hex": "261c",
+        "instruction": "adds r6, r4, #0"
+      },
+      {
+        "address": 151613668,
+        "hex": "201c",
+        "instruction": "adds r0, r4, #0"
+      },
+      {
+        "address": 151613670,
+        "hex": "91f09bf8",
+        "instruction": "bl #0x9128220"
+      },
+      {
+        "address": 151613674,
+        "hex": "0128",
+        "instruction": "cmp r0, #1"
+      },
+      {
+        "address": 151613676,
+        "hex": "04d0",
+        "instruction": "beq #0x90970f8"
+      },
+      {
+        "address": 151613678,
+        "hex": "0028",
+        "instruction": "cmp r0, #0"
+      },
+      {
+        "address": 151613680,
+        "hex": "01d1",
+        "instruction": "bne #0x90970f6"
+      },
+      {
+        "address": 151613682,
+        "hex": "0248",
+        "instruction": "ldr r0, [pc, #8]"
+      },
+      {
+        "address": 151613684,
+        "hex": "0047",
+        "instruction": "bx r0"
+      },
+      {
+        "address": 151613686,
+        "hex": "70bd",
+        "instruction": "pop {r4, r5, r6, pc}"
+      },
+      {
+        "address": 151613688,
+        "hex": "0148",
+        "instruction": "ldr r0, [pc, #4]"
+      },
+      {
+        "address": 151613690,
+        "hex": "0047",
+        "instruction": "bx r0"
+      },
+      {
+        "address": 151613692,
+        "hex": "51dc",
+        "instruction": "bgt #0x90971a2"
+      },
+      {
+        "address": 151613694,
+        "hex": "0608",
+        "instruction": "lsrs r6, r0, #0x20"
+      },
+      {
+        "address": 151613696,
+        "hex": "57dc",
+        "instruction": "bgt #0x90971b2"
+      },
+      {
+        "address": 151613698,
+        "hex": "0608",
+        "instruction": "lsrs r6, r0, #0x20"
+      }
+    ],
+    "0x9128220": [
+      {
+        "address": 152207904,
+        "hex": "8022",
+        "instruction": "movs r2, #0x80"
+      },
+      {
+        "address": 152207906,
+        "hex": "0b4b",
+        "instruction": "ldr r3, [pc, #0x2c]"
+      },
+      {
+        "address": 152207908,
+        "hex": "c318",
+        "instruction": "adds r3, r0, r3"
+      },
+      {
+        "address": 152207910,
+        "hex": "1b04",
+        "instruction": "lsls r3, r3, #0x10"
+      },
+      {
+        "address": 152207912,
+        "hex": "9200",
+        "instruction": "lsls r2, r2, #2"
+      },
+      {
+        "address": 152207914,
+        "hex": "1b0c",
+        "instruction": "lsrs r3, r3, #0x10"
+      },
+      {
+        "address": 152207916,
+        "hex": "9342",
+        "instruction": "cmp r3, r2"
+      },
+      {
+        "address": 152207918,
+        "hex": "0ad3",
+        "instruction": "blo #0x9128246"
+      },
+      {
+        "address": 152207920,
+        "hex": "084b",
+        "instruction": "ldr r3, [pc, #0x20]"
+      },
+      {
+        "address": 152207922,
+        "hex": "9c46",
+        "instruction": "mov ip, r3"
+      },
+      {
+        "address": 152207924,
+        "hex": "fc23",
+        "instruction": "movs r3, #0xfc"
+      },
+      {
+        "address": 152207926,
+        "hex": "6044",
+        "instruction": "add r0, ip"
+      },
+      {
+        "address": 152207928,
+        "hex": "0004",
+        "instruction": "lsls r0, r0, #0x10"
+      },
+      {
+        "address": 152207930,
+        "hex": "000c",
+        "instruction": "lsrs r0, r0, #0x10"
+      },
+      {
+        "address": 152207932,
+        "hex": "9b01",
+        "instruction": "lsls r3, r3, #6"
+      },
+      {
+        "address": 152207934,
+        "hex": "9842",
+        "instruction": "cmp r0, r3"
+      },
+      {
+        "address": 152207936,
+        "hex": "8041",
+        "instruction": "sbcs r0, r0"
+      },
+      {
+        "address": 152207938,
+        "hex": "4042",
+        "instruction": "rsbs r0, r0, #0"
+      },
+      {
+        "address": 152207940,
+        "hex": "7047",
+        "instruction": "bx lr"
+      },
+      {
+        "address": 152207942,
+        "hex": "044b",
+        "instruction": "ldr r3, [pc, #0x10]"
+      },
+      {
+        "address": 152207944,
+        "hex": "9c46",
+        "instruction": "mov ip, r3"
+      },
+      {
+        "address": 152207946,
+        "hex": "4000",
+        "instruction": "lsls r0, r0, #1"
+      },
+      {
+        "address": 152207948,
+        "hex": "6044",
+        "instruction": "add r0, ip"
+      },
+      {
+        "address": 152207950,
+        "hex": "f9e7",
+        "instruction": "b #0x9128244"
+      },
+      {
+        "address": 152207952,
+        "hex": "00b0",
+        "instruction": "add sp, #0"
+      }
+    ],
+    "0x806dce2": [
+      {
+        "address": 134667490,
+        "hex": "0548",
+        "instruction": "ldr r0, [pc, #0x14]"
+      },
+      {
+        "address": 134667492,
+        "hex": "7100",
+        "instruction": "lsls r1, r6, #1"
+      },
+      {
+        "address": 134667494,
+        "hex": "054a",
+        "instruction": "ldr r2, [pc, #0x14]"
+      },
+      {
+        "address": 134667496,
+        "hex": "8918",
+        "instruction": "adds r1, r1, r2"
+      },
+      {
+        "address": 134667498,
+        "hex": "0068",
+        "instruction": "ldr r0, [r0]"
+      },
+      {
+        "address": 134667500,
+        "hex": "4018",
+        "instruction": "adds r0, r0, r1"
+      },
+      {
+        "address": 134667502,
+        "hex": "0de0",
+        "instruction": "b #0x806dd0c"
+      }
+    ]
+  },
+  "decoder": "capstone 5.0.6 Thumb; literal pools interpreted separately",
+  "fields": {
+    "var4021": "VAR_HAPPINESS_STEP_COUNTER",
+    "var4022": "VAR_POISON_STEP_COUNTER",
+    "mon_data32": "FRIENDSHIP",
+    "raw_party_offset41": "unshuffled substruct0 at mon+32; friendship member+9"
+  },
+  "mechanism": {
+    "happiness": {
+      "function": 134664000,
+      "var": 16417,
+      "increment": 1,
+      "modulus": 128,
+      "trigger_value": 0,
+      "party_base": 33702372,
+      "party_stride": 100,
+      "party_slots": 6,
+      "call": 134491576,
+      "event": 5
+    },
+    "friendship": {
+      "function": 134491576,
+      "getter": 134476628,
+      "setter": 134478448,
+      "field": 32,
+      "random_call": 134497420,
+      "skip_when_random_low_bit": 1,
+      "event5_deltas": [
+        1,
+        1,
+        1
+      ],
+      "getter_case": 134477642,
+      "setter_case": 134479524
+    },
+    "poison": {
+      "function": 134664080,
+      "var": 16418,
+      "increment": 1,
+      "modulus": 5
+    }
+  },
+  "observed_save98": {
+    "input_save": {
+      "size": 131088,
+      "sha256": "4871ba79e718ea8dc8bc701394846ce1b393cd41a5961564ed4d670437a52139"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "af8190f911ef0e182b22860531c8d0f1a160a57556600a16044edcfca8553cec"
+    },
+    "approach_steps": 35,
+    "connection_steps": 1,
+    "total_steps": 36,
+    "happiness_before": 122,
+    "happiness_after": 30,
+    "poison_before": 4,
+    "poison_after": 0,
+    "first_happiness_wrap_step": 6,
+    "party_changed_observation": 8,
+    "party_deltas": [
+      [
+        41,
+        48,
+        49
+      ],
+      [
+        141,
+        13,
+        14
+      ],
+      [
+        241,
+        111,
+        112
+      ]
+    ],
+    "party_fourth_friendship": [
+      65,
+      65
+    ],
+    "normal_gameplay_only": true
+  },
+  "arithmetic": {
+    "happiness": "(122 + 36) % 128 = 30",
+    "poison": "(4 + 36) % 5 = 0",
+    "first_happiness_wrap": "122 + 6 = 128"
+  },
+  "common_mechanism_resolved": true,
+  "save98_party_field_owner_resolved": true,
+  "save98_auxiliary_variable_owners_resolved": true,
+  "individual_random_branch_pc_trace_captured": false,
+  "every_historical_occurrence_traced": false,
+  "prior_raw_evidence_changed": false,
+  "unresolved_ja": [
+    "Save98観測42のRAM ledger差分全体は引き続きowner未解明。",
+    "physical2056と他の過去RAM ownerは本証拠で解決した扱いにしない。",
+    "4体目が不変の個別乱数branchはPC trace未採取。分岐機構と全save差分だけを証明。"
+  ],
+  "historical_links": [
+    {
+      "path": "content/modernization/pr16_story_save85_checkpoint.json",
+      "scope": "raw241/341+1は同じfield mappingを適用可能。過去時点のunresolved表記と原本は不変。個別call再traceなし。"
+    },
+    {
+      "path": "content/modernization/pr16_story_save96_checkpoint.json",
+      "scope": "4021:96→109と4022:3→1は13歩のmod128/mod5と整合。過去原本不変。"
+    },
+    {
+      "path": "content/modernization/pr16_story_save97_checkpoint.json",
+      "scope": "4021:109→122と4022:1→4は13歩と整合。14,9→町warp移動のtile/counter差は過去原本のまま。"
+    }
+  ],
+  "future_guard_ja": "通常歩数と保存4021/4022からwrapを事前計算し、固定ROMのevent5/field32/有効partyとhold/item/location補正を照合する。今回の歩行では6歩目に確定した3byte差と正確hashだけ許容。任意のparty変化を許可しない。次回は現counter30から再開し新しいwrapまで98歩ある。"
+}

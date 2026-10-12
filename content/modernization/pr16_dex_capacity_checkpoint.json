@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "status": "PASS_COMPACT_ARM_AND_HASH_BOUND_RETIRED_OWNER_CONTRACT_PLACEMENT_PENDING",
+  "source_head": "3073f0e038c2659491889ac41521fbaf10205adb",
+  "record_run": 37220657694,
+  "measurement_source": "8822a20ba6233bce79d23c54c499461ec0e8fd44",
+  "measurement_run": 37219630045,
+  "measurement_job": 111487163702,
+  "measurement_artifact": 11309287135,
+  "measurement_all10_steps_success": true,
+  "compact_tests": 51,
+  "lease_tests": 25,
+  "c_mapping_comparisons": 262144,
+  "arm_translation_units": 4,
+  "arm_links": 1,
+  "compact_data_bytes": 1801,
+  "previous_data_bytes": 7597,
+  "full_api_arm_footprint_bytes": 4638,
+  "donor_bytes": 6484,
+  "remaining_within_donor_bytes": 1846,
+  "lease_validation": {
+    "status": "PASS_EXACT_RETIRED_OWNER_PREIMAGE_ONLY",
+    "donor": {
+      "offset": 33294744,
+      "size": 6484,
+      "sha256": "a3559c327f61a0f9ced3f676b6f646cc2250e37577c62334fd8dc1bdacf1a70f"
+    },
+    "false_pointer_candidates": 35,
+    "known_roots": 5,
+    "old_data_preserved": true,
+    "allocator_transferred": false,
+    "rom_changed": false,
+    "native_processes": 0,
+    "whole_program_unreachability_claimed": false
+  },
+  "placement_plan": {
+    "parent": "species_surface_level_up_pointers",
+    "new_owner": "USER-20261004-DEX-CAPACITY",
+    "offset": 33294744,
+    "size": 4638,
+    "exclusive_lease_size": 6484,
+    "remaining": 1846,
+    "allocator_transfer_required": true
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-capacity-record.yml": {
+      "size": 2378,
+      "sha256": "9fbdb6b7d22033e8a9ee3fb710a715350a3f996a1addaa921f639abba0013fba"
+    },
+    ".github/workflows/pr16-dex-capacity.yml": {
+      "size": 1590,
+      "sha256": "44a82327fff7de6fca8ad25cc510274313055110739e1636c992379a95499fa7"
+    },
+    "content/modernization/pr16_dex_capacity_lease.json": {
+      "size": 56797,
+      "sha256": "be49a2518504bf3f9640b216bbcec0f11aadb718e3f72cfff3d4fd55de98fe0d"
+    },
+    "content/modernization/pr16_dex_compact_mapping.json": {
+      "size": 1215,
+      "sha256": "f181cec3401a07739f87317bf482202ce62e8aaf2ad553c918e691cbb032bd43"
+    },
+    "docs/PR16_DEX_COMPACT_CAPACITY_JA.md": {
+      "size": 4609,
+      "sha256": "65eda164d0064c53b357666a951d9a15f29cc08c9ff01151de63e7cdf3a3ecea"
+    },
+    "overlays/dex_owner/dex_compact_adapter.c": {
+      "size": 4735,
+      "sha256": "e45926d8d2efde9b13055636e0b3378f0104bae515f9e26424a798600b5c4ffb"
+    },
+    "overlays/dex_owner/dex_compact_map.c": {
+      "size": 1249,
+      "sha256": "52097452309c3b80427d1883e9d57f693f5fc1fe97d82618d8bf0db665e76e3b"
+    },
+    "overlays/dex_owner/dex_compact_map.h": {
+      "size": 333,
+      "sha256": "4447599dcc405e77df078aaa36b37429195e3885f345e030583cce07ade9a42f"
+    },
+    "overlays/dex_owner/dex_compact_tables.h": {
+      "size": 8232,
+      "sha256": "3127563d5d5786ff88dfee26d376f37624d29a3936076345ba6cd14de782f901"
+    },
+    "scripts/pr16_dex_capacity.py": {
+      "size": 6379,
+      "sha256": "bb17a9d961c6d14209b5c77e397b9759e312e2a3432576039a80b29dc4d78fb9"
+    },
+    "scripts/pr16_dex_capacity_record.py": {
+      "size": 12339,
+      "sha256": "ee6045e8e391501ea8ff98f1c9555e04c93775e7ff05c57433be157016c41f88"
+    },
+    "scripts/pr16_dex_compact.py": {
+      "size": 6551,
+      "sha256": "0d3120196dc04daa18002b5a761eb7c4766912f31cf24f5b8cd47406d7c566f9"
+    },
+    "scripts/pr16_dex_lease.py": {
+      "size": 7656,
+      "sha256": "d80db50543bbaadeba2dce3fab34ce3dc2c219ca4bb4aac2f55d0271b372b4f6"
+    },
+    "tests/test_pr16_dex_compact.py": {
+      "size": 4621,
+      "sha256": "76efc77f27637fe71869e198f89ce064fa67551274246b9effa9f90216d1a7cc"
+    },
+    "tests/test_pr16_dex_lease.py": {
+      "size": 4921,
+      "sha256": "919fd6220bda91ed2dcfd9cafba210fa544cc3aaf5705a8fffeeea53f4d7b1ee"
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_dex_capacity_evidence/compact-host-tests.txt": {
+      "size": 5381,
+      "sha256": "154eaa2374f0f5b780c30c2b0935f3d042a4a497a4cc13a8b858250375c1e45d"
+    },
+    "content/modernization/pr16_dex_capacity_evidence/lease-host-tests.txt": {
+      "size": 2595,
+      "sha256": "47b1e46c42b2f192237e486ff45904c50b01629dd5b4977624da432ef834f32a"
+    },
+    "content/modernization/pr16_dex_capacity_evidence/lease-validation.json": {
+      "size": 414,
+      "sha256": "15c5f87737591d6e9fb7ee4f015120e80b1f91c58085640febcaee22d05b5eb1"
+    },
+    "content/modernization/pr16_dex_capacity_evidence/measurement.json": {
+      "size": 8959,
+      "sha256": "6daeafa3396e00582a29d7b357533b71d0dbc7b2965fef1f7be213a2f5b0a0c0"
+    },
+    "content/modernization/pr16_dex_capacity_evidence/placement-plan.json": {
+      "size": 227,
+      "sha256": "984f3c20b35ab896db94f511cc7f032a5ccb8216069766c2a92b1d46182aea8b"
+    }
+  },
+  "rom_changed": false,
+  "formal_save_changed": false,
+  "native_processes": 0,
+  "record_arm_compiles": 0,
+  "old_compact_tests_rerun": 0,
+  "allocator_transferred": false,
+  "actual_placement_linked": false,
+  "save_scheduler_wired": false,
+  "consumer_callsites_wired": false,
+  "repair_native_accepted": false,
+  "formal_story_save": 101,
+  "release_ready": false,
+  "public_artifacts": "validated text only",
+  "unresolved": [
+    "実配置addressでのrelink/stub/veneerとallocator owner移管",
+    "候補全diff監査と影響learnset回帰",
+    "Stage61既存owner内置換と全保存mode接続",
+    "全SID/official/direct consumer接続",
+    "通常Save/独立cold Continue限定native",
+    "シオウPokecenter回復milestone"
+  ]
+}

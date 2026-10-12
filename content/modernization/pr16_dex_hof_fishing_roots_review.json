@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "pret-field_player_avatar.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "ef086dda3a6bf2d175861d6a7be1831790208ecb",
+      "local": "pret-field_player_avatar.c",
+      "path": "src/field_player_avatar.c",
+      "repository": "pret/pokefirered",
+      "sha256": "d36588c4d02385393a5e8dc74d78f907944ca556700b5c67b39f8304f4dde08e",
+      "size": 67969
+    },
+    "pret-task.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944",
+      "local": "pret-task.c",
+      "path": "src/task.c",
+      "repository": "pret/pokefirered",
+      "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+      "size": 5029
+    }
+  },
+  "hits": [
+    {
+      "address": 134598959,
+      "target": 167701494,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "ffe1a7d22ebefb411c3322b97bd9e7686dbe78ed872e57ea9d02021af13114d7",
+      "classification": "UNCLASSIFIED",
+      "accepted": false,
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "owner_candidates": []
+    }
+  ],
+  "root": {
+    "constructor": 134597500,
+    "create_task_call": 134597514,
+    "registered_task": 134597569,
+    "rod_writer": 134597532,
+    "initial_interwork": 134597534,
+    "task_dispatch": 134704400,
+    "state_dispatch": 134597568,
+    "state_table": 137492820,
+    "initial_state_entry": 134597624,
+    "initial_state_writer": 134597642,
+    "bypass_entry": 134598196,
+    "bypass_add": 134598198,
+    "bypass_store": 134598200,
+    "timeout_entry": 134598208,
+    "timeout_increment": 134598244,
+    "timeout_store": 134598300,
+    "timeout_value": 12,
+    "consumer": 134598904,
+    "stop": 134598958,
+    "local_instruction_geometry": [
+      134598958,
+      6
+    ]
+  },
+  "windows": [
+    {
+      "address": 134597500,
+      "size": 58,
+      "sha256": "c8953d40300ad6cb815f165cad99b8592c2f10a179167525cdb4ebcb23368628"
+    },
+    {
+      "address": 134597560,
+      "size": 54,
+      "sha256": "1b8d306cd1c72077a95851144586227c0a59e8c15be30b79a4cb2c0e526514d4"
+    },
+    {
+      "address": 134597616,
+      "size": 40,
+      "sha256": "1c9e247de246fe167ba37033d6c8f29cef8b6e872f939749644468048c7308e7"
+    },
+    {
+      "address": 134598196,
+      "size": 10,
+      "sha256": "5bfed069242777e1066a0ebb8e12f31514895f8fb00b0b20aa1fbdbc49f4c888"
+    },
+    {
+      "address": 134598208,
+      "size": 108,
+      "sha256": "d2a0f2b4de7430ad0df34c3bbd818b4f6efdee0bb45fe2a4909515216d0691b6"
+    },
+    {
+      "address": 134598904,
+      "size": 60,
+      "sha256": "6a24bf4f8a70cbf1f950cd4c702f27e3a940aac0d33d7cdbfb44b6e23593e158"
+    },
+    {
+      "address": 134599008,
+      "size": 12,
+      "sha256": "09cab221c0d010fce720be10657b319657afe39dbcc55750b97444ec6338a758"
+    },
+    {
+      "address": 134704052,
+      "size": 58,
+      "sha256": "57dd0dd02f18dfa2596c6b8be992554dcb9cd1918d375551a103e857b1f3376f"
+    },
+    {
+      "address": 134704112,
+      "size": 22,
+      "sha256": "98c0cc607f9a017464534cf6efd7f927c0cec15e69f4e2b8ad05a7bf6708cd25"
+    },
+    {
+      "address": 134704136,
+      "size": 42,
+      "sha256": "4022125b648f807970fcf148a08b00ac94fdc743b095c5c75a4624e995feba1e"
+    },
+    {
+      "address": 134704180,
+      "size": 106,
+      "sha256": "ba2115c705cb9a8c046004c3896adc05c575db5baf87ad902790e56dd2edd342"
+    },
+    {
+      "address": 134704400,
+      "size": 42,
+      "sha256": "dc1a90615dae67b96669e1bea0f8914a05d040247682b3af9f3a8e52b1437be6"
+    },
+    {
+      "address": 134704444,
+      "size": 64,
+      "sha256": "36598d6fa4549882ffc20fa57b0a3e41768af4bd69907c6cd487aedc2a78eaf1"
+    },
+    {
+      "address": 136084172,
+      "size": 2,
+      "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5"
+    },
+    {
+      "address": 136084188,
+      "size": 2,
+      "sha256": "d2303cc637145389f9626b15bf95396724b01e62d09d3cf3f08b3e9c2e91207f"
+    },
+    {
+      "address": 136093080,
+      "size": 12,
+      "sha256": "926028b3f21bd0f80566fce18e4f680d5c550cd5f4246b9e936e23b9c15976fb"
+    },
+    {
+      "address": 136093144,
+      "size": 30,
+      "sha256": "6f5ba72763a807f651eb8a7b8a25cd66434661cd71e7ee9b536376cdfe2fdee5"
+    },
+    {
+      "address": 136093176,
+      "size": 82,
+      "sha256": "0ccd21cac6507fbe65a9fac16340d8d1ab01a78985ad0bef230bde0c93dba88c"
+    },
+    {
+      "address": 137492820,
+      "size": 64,
+      "sha256": "bf90d4e9e0590c5d9adbbef0a12daf12520e607b89aa89bc81d9e54f87ef6794"
+    },
+    {
+      "address": 137492898,
+      "size": 6,
+      "sha256": "209ce0b2cfaf7296ca990a5ce42986cd6d95269a45abdbb4243f55ac08d5c943"
+    }
+  ],
+  "claims": {
+    "proof_scope": "diagnostic_actual_registration_and_unconnected_timeout_consumer",
+    "root_context_is_precondition": true,
+    "root_to_timeout_composed": false,
+    "full_story_reachability_claimed": false,
+    "unreachable_in_all_gameplay_proven": false,
+    "actual_runtime_execution_observed": false,
+    "universal_heap_or_irq_lifetime_proven": false,
+    "opaque_callee_effects_proven": false,
+    "hit_callee_executed": false,
+    "type_classification_only": false,
+    "classifications_added": 0,
+    "donor_eligible": false,
+    "donor_leased": false
+  },
+  "input_contract": {
+    "root": "StartFishing API呼出、rod0/1/2、有効な空task listを前提とする。非active callback/dataを汚染し、実CreateTask/memsetだけがcallback/active/state0を作る。実初回dispatchがFishing1でstate1を書き、constructorはstack正常復帰する。QuestLog判定falseは条件である。",
+    "bypass": "Fishing7入口のstep6は孤立した局所診断入力である。実add3/storeでstep9になり復帰する。StartFishing根からstep6まで全経路を実行した証明ではない。",
+    "timeout": "別に確認した登録を保った局所suffix診断へstate7/frameCounter0、spriteId0、newKeys0を注入する。実RunTasks/状態dispatch、実byte-copyによるtimeout表のstackコピー、実加算/比較/storeで36/33/30frame後にstate12になる。次のscheduler frameでhit call直前へ至る。注入値は外側producerではなく、分類根拠に使えない。",
+    "boundaries": "opaque呼出の正常復帰、ABI callee-saved registerと将来read-before-writeの具体的RAMだけの保存を条件とし、再実行では他RAMを全消去する。live時の同task世代および局所suffix中のavatar/sprite resource identityは条件である。普遍非同期効果は未証明。",
+    "held": "固定sourceと実ROMのFishing7はstep+=3で、想定されたstep7を迂回する。state7を作る正当な外側writer、またはstate12へ至る別の独立根は未結合。全game不達、code型、退役、donor、paddingを主張しない。"
+  }
+}

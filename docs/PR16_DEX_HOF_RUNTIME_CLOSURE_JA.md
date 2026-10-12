@@ -1,0 +1,35 @@
+# 実consumerの型と最小寿命境界
+
+## 目的と採用範囲
+
+固定入口は `CHATGPT_RESUME.md`。可変正本は固定再開MD/JSONとする。本scopeは旧egg874参照の729分類/145未知、全八段110changes/100witness、133曲/50assetを独立identityで継承し、未分類wordを実consumerの型へ結び付ける。
+
+現候補は33554432byte / SHA-256 `0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583`。正式ROM、Save101、donor、controller実配線を変更しない。ローカル診断と現候補Actionsの全identity照合は区別する。
+
+必要な結論は、当該wordを含むbyteが実登録rootからどの命令または構造として消費されるかである。自然プレイ全体の到達、任意入力、全frame/IRQ、全allocator状態の安全性は、それ自体を採用条件へ無制限に追加しない。一方、人工PCをhitへ置くだけの試験、近傍symbol名、線形逆アセンブル、任意のcallback保存値だけでは型分類しない。
+
+新証拠は、実root・実dispatch・callback fieldまたは固定table・分岐条件・命令幅と全4byte包含を要求する。callee正常returnや有効な入力状態を条件とする場合は、必要な保護射影と未実証範囲を明記する。既受入のallocation-success-path-only/full_story_reachability=falseの型証拠と同じ意味であり、実動作の普遍保証や自然プレイ受入へ読み替えない。前scopeの未採用診断は原本のまま保持する。
+
+## 今回の最小境界
+
+- Party allocation: 初期化済みarena、要求0x238byte、返却範囲、16byte headerと分割条件を実命令へ束縛する。同addressへのFree→再Allocは同epochではないため、ABA反例を追加する。
+- Task: state20直前の正常なlinked listと空き1slotが必要条件である。ResetTasks以後全16slotが不変であることまで要求しない。満杯戻り0をslot0成功と解釈しない。
+- ReadMail: object+4の終了callbackをmainへコピーしてからparty objectを解放する。party allocationの必要寿命はcopy時点までであり、hitまでlive保持するという過剰な義務は置かない。copy後はmain callbackと実consumer側入力の条件へ切り替える。
+- Leer: 実DoMoveAnim登録から前置command、待機callback、tile/palette登録、createspriteと同slot同期callbackへ接続する。BIOS意味モデル、allocator成功、描画/音声calleeのreturn/frame条件を、実命令を解釈した部分と別欄で残す。
+- 直接dispatch: QuestLogの実event ID、固定function table、実index計算とBX、およびhandlerの最小命令窓へ束縛する。GetMapName等の全動作や全保存bufferの妥当性まで受入範囲を広げない。
+
+各reviewはaddress/size/SHAと固定public sourceだけを持ち、ROM断片やrawhexを持たない。合成は保存済み旧原本の全identityを参照し、旧setup/129モデル/全ROMscan/nativeを無影響に再実行しない。新型窓と全133曲/50assetの役割交差だけを再確認する。
+
+## 継承・反証・容量
+
+`pr16_dex_hof_runtime_chain.py` は独立checkpoint付きの全15入力から親を復元し、全874行・旧分類・残未知全fieldと八段namespaceを保存する。新deltaは新changes/witnessと新scopeのproofだけを保持する。元619原本や旧deltaを複製しない。欠落、異なる親、自己署名envelope、未参照witness、部分包含、型競合、架空の分類増加を拒否する。
+
+型の確定とdonor leaseは別gateである。残未知の最大アクセス幅、間接参照完全性、対象退役とowner移管は未証明なので旧egg15118byte全域保護・安全容量0を保持する。origin幅4byteをtargetのread幅へ流用しない。点保護の仮想空隙、古いnominal/suffixを安全容量として使わない。global511＋save804の上限1315も、単一controller6528byteを満たさない。
+
+全115actual owner・52save section・残804byteを保持する。heap13352を0x0804B85Cの保存退避53300byte入口へ跨いで保持しない。実配置の後に全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL、全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/全出口Freeを接続する。正式切替後、trainer131後半からシオウ通常回復・保存・独立cold Continueへ進む。雑魚ごとのcheckpointは作らない。
+
+## 公開と検証の境界
+
+専用Actionsで現候補全size/SHA、全115actual owner、全874hitと新試験を照合する。producer/guard/upload/recordのpathとartifact名を一致させ、成功11textの閉集合を全size/SHA/LFで検査する。終端は再測定せず6textへ記録する。空、部分成功、hidden、symlink、未知file、NULを拒否し、guard成功の専用directoryだけ公開する。
+
+公開は自作source、最小address-size-SHAとtextのみ。ROM断片/rawhex/ROM/入力save/runtime/私有archiveやmember path/runner/credentialを追加公開しない。旧song/battle/Surfの独立最終review未実施という制限を引き継ぎ、過去に拒否された同操作は再現しない。今回の新コードだけの独立source reviewは別scopeとして記録する。

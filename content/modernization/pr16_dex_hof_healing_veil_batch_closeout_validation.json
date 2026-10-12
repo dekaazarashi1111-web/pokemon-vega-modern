@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_HEALING_VEIL_CLOSEOUT_SOURCE_REVIEW",
+  "review_scope": "new_healing_veil_closeout_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-healing-veil-batch-closeout.yml": {
+      "size": 2945,
+      "sha256": "43def33e8b58a11f81769c12defa83186738ae784913781636ee092241e17616"
+    },
+    ".github/workflows/pr16-dex-hof-healing-veil-batch.yml": {
+      "size": 2946,
+      "sha256": "54f4a5845d57fedaec8f1e3bfb137df7d8a1814a7b8004c6121ad7e54aa02657"
+    },
+    "scripts/pr16_dex_hof_healing_veil_batch_closeout.py": {
+      "size": 16075,
+      "sha256": "16ca479963a4947a70c7ebc4c4b81f78944ca70e12f8394fdddcd4d282f76110"
+    },
+    "tests/test_pr16_dex_hof_healing_veil_batch_closeout.py": {
+      "size": 8951,
+      "sha256": "9611a6c513bc490597387f68ca3f68f3fc9d04f83815164d552448b8edf62483"
+    }
+  },
+  "source_only_review_identity": {
+    "size": 7285,
+    "sha256": "db52055683adefd3d62b456667d10cfd18b544444cde1b4899372d863b769725"
+  },
+  "unit_tests": 22,
+  "test_log_identity": {
+    "size": 3360,
+    "sha256": "d27448535258fdd7a7a5cb35d3de8c3bc73d3dbba08ad25c6e35dab47e3d4be3"
+  },
+  "measurement_source": "718d9795bee3bf43129e1d3d39d922cb45e54a37",
+  "measurement_run": 37421487687,
+  "measurement_job": 112131603914,
+  "record_head": "3feabe26a69d810c0caeec91fbdaa798a16ecd68",
+  "measurement_unit_tests": 207,
+  "old_tests_rerun": 0,
+  "current_rom_reconstructions": 0,
+  "arm_compiles": 0,
+  "native_processes": 0,
+  "receipt_body_bound_to_committed_recording": true,
+  "source_review_unresolved_findings_rejected": true,
+  "source_layout_prediction_not_current_rom_proof": true
+}

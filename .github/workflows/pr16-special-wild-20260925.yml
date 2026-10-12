@@ -1,0 +1,103 @@
+name: pr16-special-wild-20260925
+# 既受入は実行しない。特殊技順の直接診断は通常取得受入と区別する。
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-special-wild-20260925.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-special-wild-20260925
+  cancel-in-progress: false
+jobs:
+  special-wild:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 新規probeのhost依存だけ（旧ARM buildなし）
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev binutils-arm-none-eabi
+      - name: 既受入candidate保存recipeを復元し特殊野生の実呼出順を新規観測
+        run: python3 -B scripts/pr16_special_wild.py execute
+      - name: 保存成功と失敗を固定引継ぎ・両ログへ記録
+        if: always()
+        run: |
+          set -euo pipefail
+          test -f .local/pr16-special-wild/proof/verification.json
+          python3 -B scripts/pr16_special_wild.py record
+      - name: 引継ぎ整合・task graph・最終index限定guard
+        if: always()
+        run: |
+          set -euo pipefail
+          test -f content/modernization/pr16_special_wild_checkpoint.json
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_special_wild.py paths | tr '\n' '\0' >.local/pr16-special-wild/paths.z
+          git add --pathspec-from-file=.local/pr16-special-wild/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_special_wild.py guard
+      - name: 同branch非force commit/push・remote照合
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_special_wild.py guard
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260925-SPECIAL-WILD: 特殊野生診断の原本と固定引継ぎ・両ログを記録（通常取得未受入）'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-special-wild/proof/reflected-head.txt
+      - name: 診断の限定source・既存Actions終端を保存（再実行なし）
+        if: always()
+        run: |
+          python3 -B - <<'PY'
+          import json, pathlib, sys, zipfile
+          sys.path.insert(0,'scripts')
+          from pr16_wiki_reconcile import fetch
+          import pr16_special_wild as s
+          out=pathlib.Path('.local/pr16-special-wild/context');out.mkdir(parents=True,exist_ok=True)
+          paths=s.SOURCES|s.CODE|{s.CP,s.GUIDE,s.STATE,s.DOC,'design/run_log.md','design/version_log.md','manifests/research_encounters.csv','manifests/species_ids.csv','content/map_bindings.csv','overlays/wild_overlay/wild_overlay.c'}
+          index={}
+          with zipfile.ZipFile(out/'context.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(paths):
+                  p=pathlib.Path(name)
+                  if not p.is_file():continue
+                  raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw
+                  z.writestr(name,raw);index[name]=s.identity(raw)
+              z.writestr('index.json',s.encode(index))
+          prior=fetch('actions/runs/36147481394')
+          latest=fetch('actions/runs?per_page=20')['workflow_runs']
+          slim=lambda r:{k:r[k] for k in ('id','name','head_sha','head_branch','path','status','conclusion')}
+          s.write(out/'actions.json',{'research_hatch_terminal':slim(prior),'recent_runs':[slim(r) for r in latest]})
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-special-wild-proof
+          path: .local/pr16-special-wild/proof/
+          retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-special-wild-context
+          path: .local/pr16-special-wild/context/
+          retention-days: 7
+          if-no-files-found: error

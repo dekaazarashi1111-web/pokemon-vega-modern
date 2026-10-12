@@ -1,0 +1,100 @@
+NATURAL_SLOT level=10 slot=0 move=53 pp=15 expected=53 expected_pp=15
+NATURAL_SLOT level=10 slot=1 move=0 pp=0 expected=0 expected_pp=0
+NATURAL_SLOT level=10 slot=2 move=0 pp=0 expected=0 expected_pp=0
+NATURAL_SLOT level=10 slot=3 move=0 pp=0 expected=0 expected_pp=0
+NATURAL_PARTY stage=fixture counter=2 hex=bce91ce5d535be4096606c78aeffff00000001020101010101ff0000000000009e010000320500000032040035000000000000000f00000000000000000000000000000000050a020000000000000000000000000affe703e703e703e703e703e703e703
+EXP_STATE frame=1961 cb=080109c1 newbs=02017634 field=0 lock=1 quest=0 playback=0 avatar=0 active=193 running=2 transition=2 outcome=0 hp=999 level=10 summary=00000000
+BOUNDARY_CALLBACK frame=1961 callback=080109c1
+EXP_STATE frame=3000 cb=080109c1 newbs=02017634 field=0 lock=1 quest=0 playback=0 avatar=0 active=193 running=2 transition=2 outcome=0 hp=1001 level=12 summary=00000000
+EXP_STATE frame=4537 cb=081363fd newbs=02017634 field=0 lock=1 quest=0 playback=0 avatar=0 active=193 running=2 transition=2 outcome=0 hp=1010 level=16 summary=0200e734
+BOUNDARY_CALLBACK frame=4537 callback=081363fd
+BOUNDARY_PROGRESS frame=5025 callback=081363fd command=16 outcome=0 level=16 hp=0 pending=60
+EXP_STATE frame=6000 cb=081363fd newbs=02017634 field=0 lock=1 quest=0 playback=0 avatar=0 active=193 running=2 transition=2 outcome=0 hp=1010 level=16 summary=0200e734
+EXP_STATE frame=7436 cb=0813868d newbs=02017634 field=0 lock=1 quest=0 playback=0 avatar=0 active=193 running=2 transition=2 outcome=0 hp=1010 level=16 summary=0200e734
+BOUNDARY_CALLBACK frame=7436 callback=0813868d
+BOUNDARY_SELECTION frame=7514 cursor=1 key=1 mode=0
+EXP_ASSERT frame=7537 pc=081c7a60 lr=081c7a33 sp=03007d9c r0=081c7a5d r1=03007d74 r2=00000001 r3=0000fffe r4=02012a8c r5=00000000 r6=02000000 r7=03007d9c
+EXP_ASSERT_STACK frame=7537 s0=081cde88 s1=000000d3 s2=081cdee8 s3=00000001 s4=0000a3a3 s5=08002a73 s6=0203b0c0 s7=00000001 s8=0203b0bc s9=03003130 s10=08002bd1 s11=0813aa15 s12=030050d0 s13=00000000 s14=03003124 s15=0813b77f s16=08138617 s17=030050d0 s18=0203b0b4 s19=08139f2f s20=09407289 s21=14cac687 s22=00000000 s23=03003130 s24=03003124 s25=030050d0 s26=030050d0 s27=08076d2f s28=03003130 s29=03003124 s30=08138693 s31=0800053b s32=00000000 s33=080004c1 s34=08000483 s35=00000000 s36=00000000 s37=00000000 s38=00000000 s39=00000000 s40=08000234 s41=00000000 s42=00000000 s43=00000000 s44=00000000 s45=00000000 s46=00000000 s47=00000000
+ EXP_ASSERT_STRING name=arg0 address=081cde88 text=../gflib/malloc.c
+ EXP_ASSERT_STRING name=arg2 address=081cdee8 text=pos->next->magic_number == MALLOC_SYSTEM_ID
+ EXP_ASSERT_STRING name=arg3 address=00000001 text=
+EXP_ASSERT_HEAP address=02012a8c h0=02012a8c h1=02020684 h2=00640000 h3=00000064 h4=a3a30000 h5=0000000c h6=0201279c h7=02082aa8 h8=020206c8 h9=00650001 h10=00000064 h11=a3a30001 h12=0400000c h13=02012a8c h14=02012ac4 h15=0202070c
+mGBA[GBA][0x04] pc=081c7a60: Illegal opcode: 0000efff
+EXP_ASSERT frame=7537 pc=081c7a60 lr=081c7a33 sp=03007d88 r0=081c7a5d r1=03007d60 r2=00000001 r3=0000fffe r4=83428342 r5=0203acd0 r6=02000000 r7=03007d88
+EXP_ASSERT_STACK frame=7537 s0=081cde88 s1=000000cc s2=081cdeac s3=00000001 s4=0000a3a3 s5=08002a3f s6=0000001e s7=0203acd0 s8=000001e0 s9=02011b3c s10=08002bd1 s11=0810cb03 s12=00000001 s13=030050d0 s14=00000000 s15=03003124 s16=03003130 s17=0810ccf7 s18=0813a469 s19=030050d0 s20=0813b78b s21=08138617 s22=030050d0 s23=0203b0b4 s24=08139f2f s25=09407289 s26=14cac687 s27=00000000 s28=03003130 s29=03003124 s30=030050d0 s31=030050d0 s32=08076d2f s33=03003130 s34=03003124 s35=08138693 s36=0800053b s37=00000000 s38=080004c1 s39=08000483 s40=00000000 s41=00000000 s42=00000000 s43=00000000 s44=00000000 s45=08000234 s46=00000000 s47=00000000
+ EXP_ASSERT_STRING name=arg0 address=081cde88 text=../gflib/malloc.c
+ EXP_ASSERT_STRING name=arg2 address=081cdeac text=pos->magic_number == MALLOC_SYSTEM_ID
+ EXP_ASSERT_STRING name=arg3 address=00000001 text=
+mGBA[GBA][0x04] pc=081c7a60: Illegal opcode: 0000efff
+EXP_ASSERT frame=7538 pc=081c7a60 lr=081c7a33 sp=03007d90 r0=081c7a5d r1=03007d68 r2=00000001 r3=0000fffe r4=42834283 r5=00000003 r6=02000000 r7=03007d90
+EXP_ASSERT_STACK frame=7538 s0=081cde88 s1=000000cc s2=081cdeac s3=00000001 s4=0000a3a3 s5=08002a3f s6=0202045c s7=00000003 s8=00000003 s9=00000000 s10=08002bd1 s11=08003e79 s12=00000003 s13=0203b0b4 s14=03003124 s15=03003130 s16=08138bc7 s17=0203b0b4 s18=00000000 s19=0813863b s20=030050d0 s21=0203b0b4 s22=08139f2f s23=09407289 s24=14cac687 s25=00000000 s26=03003130 s27=03003124 s28=030050d0 s29=030050d0 s30=08076d2f s31=03003130 s32=03003124 s33=08138693 s34=0800053b s35=00000000 s36=080004c1 s37=08000483 s38=00000000 s39=00000000 s40=00000000 s41=00000000 s42=00000000 s43=08000234 s44=00000000 s45=00000000 s46=00000000 s47=00000000
+ EXP_ASSERT_STRING name=arg0 address=081cde88 text=../gflib/malloc.c
+ EXP_ASSERT_STRING name=arg2 address=081cdeac text=pos->magic_number == MALLOC_SYSTEM_ID
+ EXP_ASSERT_STRING name=arg3 address=00000001 text=
+mGBA[GBA][0x04] pc=081c7a60: Illegal opcode: 0000efff
+EXP_ASSERT frame=7538 pc=081c7a60 lr=081c7a33 sp=03007d90 r0=081c7a5d r1=03007d68 r2=00000001 r3=0000fffe r4=42834283 r5=00000002 r6=02000000 r7=03007d90
+EXP_ASSERT_STACK frame=7538 s0=081cde88 s1=000000cc s2=081cdeac s3=00000001 s4=0000a3a3 s5=08002a3f s6=02020468 s7=00000002 s8=00000004 s9=00000000 s10=08002bd1 s11=08003e79 s12=00000004 s13=0203b0b4 s14=03003124 s15=03003130 s16=08138bc7 s17=0203b0b4 s18=00000000 s19=0813863b s20=030050d0 s21=0203b0b4 s22=08139f2f s23=09407289 s24=14cac687 s25=00000000 s26=03003130 s27=03003124 s28=030050d0 s29=030050d0 s30=08076d2f s31=03003130 s32=03003124 s33=08138693 s34=0800053b s35=00000000 s36=080004c1 s37=08000483 s38=00000000 s39=00000000 s40=00000000 s41=00000000 s42=00000000 s43=08000234 s44=00000000 s45=00000000 s46=00000000 s47=00000000
+ EXP_ASSERT_STRING name=arg0 address=081cde88 text=../gflib/malloc.c
+ EXP_ASSERT_STRING name=arg2 address=081cdeac text=pos->magic_number == MALLOC_SYSTEM_ID
+ EXP_ASSERT_STRING name=arg3 address=00000001 text=
+mGBA[GBA][0x04] pc=081c7a60: Illegal opcode: 0000efff
+EXP_ASSERT frame=7538 pc=081c7a60 lr=081c7a33 sp=03007d90 r0=081c7a5d r1=03007d68 r2=00000001 r3=0000fffe r4=83428342 r5=00000001 r6=02000000 r7=03007d90
+EXP_ASSERT_STACK frame=7538 s0=081cde88 s1=000000cc s2=081cdeac s3=00000001 s4=0000a3a3 s5=08002a3f s6=02020474 s7=00000001 s8=00000005 s9=00000000 s10=08002bd1 s11=08003e79 s12=00000005 s13=0203b0b4 s14=03003124 s15=03003130 s16=08138bc7 s17=0203b0b4 s18=00000000 s19=0813863b s20=030050d0 s21=0203b0b4 s22=08139f2f s23=09407289 s24=14cac687 s25=00000000 s26=03003130 s27=03003124 s28=030050d0 s29=030050d0 s30=08076d2f s31=03003130 s32=03003124 s33=08138693 s34=0800053b s35=00000000 s36=080004c1 s37=08000483 s38=00000000 s39=00000000 s40=00000000 s41=00000000 s42=00000000 s43=08000234 s44=00000000 s45=00000000 s46=00000000 s47=00000000
+ EXP_ASSERT_STRING name=arg0 address=081cde88 text=../gflib/malloc.c
+ EXP_ASSERT_STRING name=arg2 address=081cdeac text=pos->magic_number == MALLOC_SYSTEM_ID
+ EXP_ASSERT_STRING name=arg3 address=00000001 text=
+mGBA[GBA][0x04] pc=081c7a60: Illegal opcode: 0000efff
+EXP_ASSERT frame=7538 pc=081c7a60 lr=081c7a33 sp=03007d90 r0=081c7a5d r1=03007d68 r2=00000001 r3=0000fffe r4=42834283 r5=00000000 r6=02000000 r7=03007d90
+EXP_ASSERT_STACK frame=7538 s0=081cde88 s1=000000cc s2=081cdeac s3=00000001 s4=0000a3a3 s5=08002a3f s6=03003e80 s7=00000000 s8=00000006 s9=00000000 s10=08002bd1 s11=08003e61 s12=00000006 s13=0203b0b4 s14=03003124 s15=03003130 s16=08138bc7 s17=0203b0b4 s18=00000000 s19=0813863b s20=030050d0 s21=0203b0b4 s22=08139f2f s23=09407289 s24=14cac687 s25=00000000 s26=03003130 s27=03003124 s28=030050d0 s29=030050d0 s30=08076d2f s31=03003130 s32=03003124 s33=08138693 s34=0800053b s35=00000000 s36=080004c1 s37=08000483 s38=00000000 s39=00000000 s40=00000000 s41=00000000 s42=00000000 s43=08000234 s44=00000000 s45=00000000 s46=00000000 s47=00000000
+ EXP_ASSERT_STRING name=arg0 address=081cde88 text=../gflib/malloc.c
+ EXP_ASSERT_STRING name=arg2 address=081cdeac text=pos->magic_number == MALLOC_SYSTEM_ID
+ EXP_ASSERT_STRING name=arg3 address=00000001 text=
+mGBA[GBA][0x04] pc=081c7a60: Illegal opcode: 0000efff
+EXP_STATE frame=7539 cb=08076efd newbs=02017634 field=0 lock=1 quest=0 playback=0 avatar=0 active=193 running=2 transition=2 outcome=0 hp=1010 level=16 summary=00000000
+BOUNDARY_CALLBACK frame=7539 callback=08076efd
+EXP_STATE frame=7540 cb=08076f81 newbs=02017634 field=0 lock=1 quest=0 playback=0 avatar=0 active=193 running=2 transition=2 outcome=0 hp=1010 level=16 summary=00000000
+BOUNDARY_CALLBACK frame=7540 callback=08076f81
+EXP_STATE frame=7570 cb=080109c1 newbs=02017634 field=0 lock=1 quest=0 playback=0 avatar=0 active=193 running=2 transition=2 outcome=0 hp=1010 level=16 summary=00000000
+BOUNDARY_CALLBACK frame=7570 callback=080109c1
+BOUNDARY_PROGRESS frame=8025 callback=080109c1 command=25 outcome=0 level=17 hp=0 pending=60
+EXP_ASSERT frame=8632 pc=081c7a60 lr=081c7a33 sp=03007d84 r0=081c7a5d r1=03007d5c r2=00000001 r3=0000fffe r4=02017624 r5=00000000 r6=02000000 r7=03007d84
+EXP_ASSERT_STACK frame=8632 s0=081cde88 s1=000000d3 s2=081cdee8 s3=00000001 s4=0000a3a3 s5=08002a73 s6=00000000 s7=0202443c s8=020241e4 s9=0203dfb0 s10=08002bd1 s11=090f70a3 s12=0203e03e s13=030036ec s14=080706b5 s15=081142b3 s16=00000000 s17=00000001 s18=0000a3a3 s19=00000001 s20=0000a3a3 s21=08002a3f s22=00000000 s23=02023b24 s24=00000058 s25=02023b44 s26=02023b74 s27=090f7b13 s28=02023b24 s29=0900227d s30=03003130 s31=03003124 s32=03003124 s33=03003130 s34=08011c3f s35=03003130 s36=03003124 s37=08000531 s38=00000000 s39=080004c1 s40=08000483 s41=00000000 s42=00000000 s43=00000000 s44=00000000 s45=00000000 s46=08000234 s47=00000000
+ EXP_ASSERT_STRING name=arg0 address=081cde88 text=../gflib/malloc.c
+ EXP_ASSERT_STRING name=arg2 address=081cdee8 text=pos->next->magic_number == MALLOC_SYSTEM_ID
+ EXP_ASSERT_STRING name=arg3 address=00000001 text=
+EXP_ASSERT_HEAP address=02017624 h0=00000000 h1=00000000 h2=00000000 h3=00000000 h4=a3a30000 h5=000008e4 h6=0201765c h7=02017f18 h8=00000000 h9=00000000 h10=00000000 h11=00000000 h12=00000002 h13=00000000 h14=00000000 h15=00000000
+mGBA[GBA][0x04] pc=081c7a60: Illegal opcode: 0000efff
+EXP_STATE frame=8671 cb=0805609d newbs=02017634 field=0 lock=1 quest=0 playback=0 avatar=0 active=193 running=2 transition=2 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_CALLBACK frame=8671 callback=0805609d
+EXP_STATE frame=8672 cb=080560c9 newbs=02017634 field=0 lock=1 quest=0 playback=0 avatar=0 active=193 running=2 transition=2 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_CALLBACK frame=8672 callback=080560c9
+EXP_STATE frame=8683 cb=08055e75 newbs=02017634 field=0 lock=1 quest=0 playback=0 avatar=0 active=5 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_CALLBACK frame=8683 callback=08055e75
+EXP_STATE frame=9000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=11025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=12000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=14025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=15000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=17025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=18000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=20025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=21000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=23025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=24000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=26025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=27000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=29025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=30000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=32025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=33000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=35025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=36000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=38025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=39000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=41025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=42000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=44025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=45000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+BOUNDARY_PROGRESS frame=47025 callback=08055e75 command=25 outcome=1 level=18 hp=0 pending=60
+EXP_STATE frame=48000 cb=08055e75 newbs=02017634 field=1 lock=0 quest=0 playback=0 avatar=0 active=193 running=0 transition=0 outcome=1 hp=1014 level=18 summary=00000000
+P03 archive: ordinary victory/EXP/field witness

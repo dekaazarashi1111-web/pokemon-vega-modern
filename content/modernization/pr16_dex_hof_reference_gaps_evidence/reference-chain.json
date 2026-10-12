@@ -1,0 +1,2685 @@
+{
+  "schema_version": 1,
+  "status": "PASS_PARENT_BOUND_REFERENCE_CHAIN",
+  "baseline": {
+    "path": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent": {
+    "path": "content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json",
+    "size": 149772,
+    "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 644,
+  "inherited_unclassified": 230,
+  "changes": [
+    {
+      "address": 139171712,
+      "target": 167708438,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "a45b21fcdf49b90ce641203e2570c54cf3febc4c34a3fe9a87c5238ad4671844",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_PCM8",
+      "accepted": true,
+      "witness_ids": [
+        0
+      ]
+    },
+    {
+      "address": 139270993,
+      "target": 167706384,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "457a6ff4f8ecc65a747dc44453dad13e15a86db2228dfb4b84cc50a40d1f23d9",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_PCM8",
+      "accepted": true,
+      "witness_ids": [
+        1
+      ]
+    },
+    {
+      "address": 139271501,
+      "target": 167702246,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "0458b3adea51dbce1bf677cd34573d933d252509c0413309a5cb094ee6cae6db",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_PCM8",
+      "accepted": true,
+      "witness_ids": [
+        1
+      ]
+    },
+    {
+      "address": 153232687,
+      "target": 167706878,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "2e0630295ca3dbc491207c42049df76c0196cd92632a8a4372e3315e09a1d346",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_TRAINER_NAME_ITEM_CROSS_FIELD",
+      "accepted": true,
+      "witness_ids": [
+        2
+      ]
+    },
+    {
+      "address": 153239823,
+      "target": 167706878,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "2e0630295ca3dbc491207c42049df76c0196cd92632a8a4372e3315e09a1d346",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_TRAINER_NAME_ITEM_CROSS_FIELD",
+      "accepted": true,
+      "witness_ids": [
+        3
+      ]
+    },
+    {
+      "address": 153334268,
+      "target": 167706930,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "83e4e74df7ec2f3735f72b74ad3ead66f91297c67c9ad4ead6eea22dbad62b5b",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_TILESET_LZ77",
+      "accepted": true,
+      "witness_ids": [
+        4
+      ]
+    },
+    {
+      "address": 153526269,
+      "target": 167707408,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "530b80cb85421e84f33b59bd8cbbe963d01eaebd0fca73f78c8c124db1455da6",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_TILESET_LZ77",
+      "accepted": true,
+      "witness_ids": [
+        5
+      ]
+    },
+    {
+      "address": 153552088,
+      "target": 167706930,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "83e4e74df7ec2f3735f72b74ad3ead66f91297c67c9ad4ead6eea22dbad62b5b",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_TILESET_LZ77",
+      "accepted": true,
+      "witness_ids": [
+        6
+      ]
+    },
+    {
+      "address": 154002811,
+      "target": 167709174,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "786dfd394480bd6c25458b30c1c1ac9a9e4c41acbf0366e9f27e096b16022643",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_THUMB_INSTRUCTION_STREAM",
+      "accepted": true,
+      "witness_ids": [
+        7
+      ]
+    },
+    {
+      "address": 154157266,
+      "target": 167707954,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "089c4b2e3947dca2d2f4c463fbc10fd645f5b0e83026a49fe7d0b11075f606b6",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_PACKED_U16_CROSS_ROW",
+      "accepted": true,
+      "witness_ids": [
+        8
+      ]
+    },
+    {
+      "address": 154948441,
+      "target": 167699696,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "7dba30dd99e7d721f38afd29853869f007fd3fdeeed6c4f28d3632cfb3953e3b",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_THUMB_INSTRUCTION_STREAM",
+      "accepted": true,
+      "witness_ids": [
+        9
+      ]
+    },
+    {
+      "address": 155332902,
+      "target": 167706624,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "3ea4906792e7bcff120a5cb608b1a021496197463fc54c920e20b49deb986b58",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_SPRITE_4BPP_FRAME",
+      "accepted": true,
+      "witness_ids": [
+        10
+      ]
+    },
+    {
+      "address": 155419316,
+      "target": 167706900,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "bfb66b81f34d8b4e68bb140d073bc453ce24f649dece78b3bcf78a846159052d",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ADJACENT_JP_TEXT_CROSSING",
+      "accepted": true,
+      "witness_ids": [
+        11
+      ]
+    },
+    {
+      "address": 155435090,
+      "target": 167707188,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "ee6178805d8e8c97f3ee2a63daf1f8664adc53e374cbb838dda85e157aeed7ee",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ADJACENT_JP_TEXT_CROSSING",
+      "accepted": true,
+      "witness_ids": [
+        12
+      ]
+    },
+    {
+      "address": 155463432,
+      "target": 167707146,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "8384d2df9fcb565379b3924fd999f6a85ba63fa99141cd2063b97b20eadef851",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ADJACENT_JP_TEXT_CROSSING",
+      "accepted": true,
+      "witness_ids": [
+        13
+      ]
+    },
+    {
+      "address": 156455490,
+      "target": 167709180,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "21dd7c635a39a537a7060ffea5b336638dfc6e5e5a18abde9c33c9ba7e01653b",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_INDEXED_U16_PAIR",
+      "accepted": true,
+      "witness_ids": [
+        14
+      ]
+    },
+    {
+      "address": 167730273,
+      "target": 167705334,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "2ce9317e6b1d44a5c01338965a576c8e922a76c51b84af8a196aae603b8c11dc",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_THUMB_INSTRUCTION_STREAM",
+      "accepted": true,
+      "witness_ids": [
+        15
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": 0,
+      "address": 139167036,
+      "size": 7135,
+      "kind": "pcm8",
+      "evidence": {
+        "asset": {
+          "address": 139167020,
+          "size": 7151,
+          "sha256": "3025729ea55d33d2f48804da39dead1eaf4641da2e3400697c68312a6ec7a08a"
+        },
+        "header": {
+          "address": 139167020,
+          "size": 16,
+          "sha256": "f208edf0e687a430dbad95296f7f91931d10c3e4e99ee4079b4279dbae31441d"
+        },
+        "decoded": {
+          "size": 7135,
+          "sha256": "2de4afab6f6652873d477c11ecf5235a0c147583de68673a2aaaacce9a8c7a29"
+        },
+        "codec": "pcm8",
+        "minimal_encoded_prefix_only": true,
+        "complete_runtime_read_footprint_claimed": false,
+        "consumers": [
+          {
+            "song": 123,
+            "track": 0,
+            "key": 76,
+            "sample_count": 0,
+            "mutable_parent": {
+              "size": 12,
+              "sha256": "bc5846e22a2361755e7c233311adddf9c38fcbb297f17587b3bc4a29ac784944"
+            },
+            "unshifted_key": 76,
+            "keyshift": 0,
+            "latest_byte_sources": [
+              {
+                "tone_offset": 0,
+                "source": {
+                  "address": 138743756,
+                  "size": 1,
+                  "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                }
+              },
+              {
+                "tone_offset": 1,
+                "source": {
+                  "address": 138743757,
+                  "size": 1,
+                  "sha256": "dabd3aff769f07eb2965401eb029974ebba3407afd02b26ddb564ea5f8efae72"
+                }
+              },
+              {
+                "tone_offset": 2,
+                "source": {
+                  "address": 138743758,
+                  "size": 1,
+                  "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                }
+              },
+              {
+                "tone_offset": 3,
+                "source": {
+                  "address": 138743759,
+                  "size": 1,
+                  "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                }
+              },
+              {
+                "tone_offset": 4,
+                "source": {
+                  "address": 138743760,
+                  "size": 1,
+                  "sha256": "d03502c43d74a30b936740a9517dc4ea2b2ad7168caa0a774cefe793ce0b33e7"
+                }
+              },
+              {
+                "tone_offset": 5,
+                "source": {
+                  "address": 138743761,
+                  "size": 1,
+                  "sha256": "c00e7f889cfc9216ec818bf2e1682fc6af0d89939c91776669478caf27c9727c"
+                }
+              },
+              {
+                "tone_offset": 6,
+                "source": {
+                  "address": 138743762,
+                  "size": 1,
+                  "sha256": "86be9a55762d316a3026c2836d044f5fc76e34da10e1b45feee5f18be7edb177"
+                }
+              },
+              {
+                "tone_offset": 7,
+                "source": {
+                  "address": 138743763,
+                  "size": 1,
+                  "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+                }
+              },
+              {
+                "tone_offset": 8,
+                "source": {
+                  "address": 138743764,
+                  "size": 1,
+                  "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+                }
+              },
+              {
+                "tone_offset": 9,
+                "source": {
+                  "address": 138743765,
+                  "size": 1,
+                  "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                }
+              },
+              {
+                "tone_offset": 10,
+                "source": {
+                  "address": 138743766,
+                  "size": 1,
+                  "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+                }
+              },
+              {
+                "tone_offset": 11,
+                "source": {
+                  "address": 138743767,
+                  "size": 1,
+                  "sha256": "620bfdaa346b088fb49998d92f19a7eaf6bfc2fb0aee015753966da1028cb731"
+                }
+              }
+            ],
+            "last_voice_copy": {
+              "address": 138743756,
+              "size": 12,
+              "sha256": "bc5846e22a2361755e7c233311adddf9c38fcbb297f17587b3bc4a29ac784944"
+            },
+            "pointer_byte_sources": [
+              {
+                "tone_offset": 4,
+                "source": {
+                  "address": 138743760,
+                  "size": 1,
+                  "sha256": "d03502c43d74a30b936740a9517dc4ea2b2ad7168caa0a774cefe793ce0b33e7"
+                }
+              },
+              {
+                "tone_offset": 5,
+                "source": {
+                  "address": 138743761,
+                  "size": 1,
+                  "sha256": "c00e7f889cfc9216ec818bf2e1682fc6af0d89939c91776669478caf27c9727c"
+                }
+              },
+              {
+                "tone_offset": 6,
+                "source": {
+                  "address": 138743762,
+                  "size": 1,
+                  "sha256": "86be9a55762d316a3026c2836d044f5fc76e34da10e1b45feee5f18be7edb177"
+                }
+              },
+              {
+                "tone_offset": 7,
+                "source": {
+                  "address": 138743763,
+                  "size": 1,
+                  "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+                }
+              }
+            ],
+            "selected_tone": {
+              "size": 12,
+              "sha256": "bc5846e22a2361755e7c233311adddf9c38fcbb297f17587b3bc4a29ac784944"
+            },
+            "tone_type": 0,
+            "wave_address": 139167020,
+            "commands": [
+              141019178,
+              141019203,
+              141019227,
+              141019252
+            ]
+          },
+          {
+            "song": 123,
+            "track": 0,
+            "key": 79,
+            "sample_count": 0,
+            "mutable_parent": {
+              "size": 12,
+              "sha256": "bc5846e22a2361755e7c233311adddf9c38fcbb297f17587b3bc4a29ac784944"
+            },
+            "unshifted_key": 79,
+            "keyshift": 0,
+            "latest_byte_sources": [
+              {
+                "tone_offset": 0,
+                "source": {
+                  "address": 138743756,
+                  "size": 1,
+                  "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                }
+              },
+              {
+                "tone_offset": 1,
+                "source": {
+                  "address": 138743757,
+                  "size": 1,
+                  "sha256": "dabd3aff769f07eb2965401eb029974ebba3407afd02b26ddb564ea5f8efae72"
+                }
+              },
+              {
+                "tone_offset": 2,
+                "source": {
+                  "address": 138743758,
+                  "size": 1,
+                  "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                }
+              },
+              {
+                "tone_offset": 3,
+                "source": {
+                  "address": 138743759,
+                  "size": 1,
+                  "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                }
+              },
+              {
+                "tone_offset": 4,
+                "source": {
+                  "address": 138743760,
+                  "size": 1,
+                  "sha256": "d03502c43d74a30b936740a9517dc4ea2b2ad7168caa0a774cefe793ce0b33e7"
+                }
+              },
+              {
+                "tone_offset": 5,
+                "source": {
+                  "address": 138743761,
+                  "size": 1,
+                  "sha256": "c00e7f889cfc9216ec818bf2e1682fc6af0d89939c91776669478caf27c9727c"
+                }
+              },
+              {
+                "tone_offset": 6,
+                "source": {
+                  "address": 138743762,
+                  "size": 1,
+                  "sha256": "86be9a55762d316a3026c2836d044f5fc76e34da10e1b45feee5f18be7edb177"
+                }
+              },
+              {
+                "tone_offset": 7,
+                "source": {
+                  "address": 138743763,
+                  "size": 1,
+                  "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+                }
+              },
+              {
+                "tone_offset": 8,
+                "source": {
+                  "address": 138743764,
+                  "size": 1,
+                  "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+                }
+              },
+              {
+                "tone_offset": 9,
+                "source": {
+                  "address": 138743765,
+                  "size": 1,
+                  "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                }
+              },
+              {
+                "tone_offset": 10,
+                "source": {
+                  "address": 138743766,
+                  "size": 1,
+                  "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+                }
+              },
+              {
+                "tone_offset": 11,
+                "source": {
+                  "address": 138743767,
+                  "size": 1,
+                  "sha256": "620bfdaa346b088fb49998d92f19a7eaf6bfc2fb0aee015753966da1028cb731"
+                }
+              }
+            ],
+            "last_voice_copy": {
+              "address": 138743756,
+              "size": 12,
+              "sha256": "bc5846e22a2361755e7c233311adddf9c38fcbb297f17587b3bc4a29ac784944"
+            },
+            "pointer_byte_sources": [
+              {
+                "tone_offset": 4,
+                "source": {
+                  "address": 138743760,
+                  "size": 1,
+                  "sha256": "d03502c43d74a30b936740a9517dc4ea2b2ad7168caa0a774cefe793ce0b33e7"
+                }
+              },
+              {
+                "tone_offset": 5,
+                "source": {
+                  "address": 138743761,
+                  "size": 1,
+                  "sha256": "c00e7f889cfc9216ec818bf2e1682fc6af0d89939c91776669478caf27c9727c"
+                }
+              },
+              {
+                "tone_offset": 6,
+                "source": {
+                  "address": 138743762,
+                  "size": 1,
+                  "sha256": "86be9a55762d316a3026c2836d044f5fc76e34da10e1b45feee5f18be7edb177"
+                }
+              },
+              {
+                "tone_offset": 7,
+                "source": {
+                  "address": 138743763,
+                  "size": 1,
+                  "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+                }
+              }
+            ],
+            "selected_tone": {
+              "size": 12,
+              "sha256": "bc5846e22a2361755e7c233311adddf9c38fcbb297f17587b3bc4a29ac784944"
+            },
+            "tone_type": 0,
+            "wave_address": 139167020,
+            "commands": [
+              141019191,
+              141019215,
+              141019239,
+              141019265
+            ]
+          }
+        ]
+      },
+      "evidence_identity": {
+        "size": 5855,
+        "sha256": "f721d4a9cd203c5b6a3df221e51366fe5ea8ffbc8cc27c744a25b14743f112ec"
+      }
+    },
+    {
+      "id": 1,
+      "address": 139270972,
+      "size": 2231,
+      "kind": "pcm8",
+      "evidence": {
+        "asset": {
+          "address": 139270956,
+          "size": 2247,
+          "sha256": "71017defcb8ef4a8772c54448237424cc09e9d58b5b04f697b696e23e7490b76"
+        },
+        "header": {
+          "address": 139270956,
+          "size": 16,
+          "sha256": "5d3e09407efec4759a9d084fd56df9f7e0fcf352f8c7006dfc5bb98f52b19771"
+        },
+        "decoded": {
+          "size": 2231,
+          "sha256": "3a90017933b11077b4c320c0ef06a1583fc5df2652d15eec71ffa891e987aee6"
+        },
+        "codec": "pcm8",
+        "minimal_encoded_prefix_only": true,
+        "complete_runtime_read_footprint_claimed": false,
+        "consumers": [
+          {
+            "song": 86,
+            "track": 0,
+            "key": 62,
+            "sample_count": 0,
+            "mutable_parent": {
+              "size": 12,
+              "sha256": "b99fbd9c8939b3108bfcb3bcd8d724b43eba02bc895be311e8620e2989e4b006"
+            },
+            "unshifted_key": 62,
+            "keyshift": 0,
+            "latest_byte_sources": [
+              {
+                "tone_offset": 0,
+                "source": {
+                  "address": 138744392,
+                  "size": 1,
+                  "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                }
+              },
+              {
+                "tone_offset": 1,
+                "source": {
+                  "address": 138744393,
+                  "size": 1,
+                  "sha256": "dabd3aff769f07eb2965401eb029974ebba3407afd02b26ddb564ea5f8efae72"
+                }
+              },
+              {
+                "tone_offset": 2,
+                "source": {
+                  "address": 138744394,
+                  "size": 1,
+                  "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                }
+              },
+              {
+                "tone_offset": 3,
+                "source": {
+                  "address": 138744395,
+                  "size": 1,
+                  "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                }
+              },
+              {
+                "tone_offset": 4,
+                "source": {
+                  "address": 138744396,
+                  "size": 1,
+                  "sha256": "d03502c43d74a30b936740a9517dc4ea2b2ad7168caa0a774cefe793ce0b33e7"
+                }
+              },
+              {
+                "tone_offset": 5,
+                "source": {
+                  "address": 138744397,
+                  "size": 1,
+                  "sha256": "77adfc95029e73b173f60e556f915b0cd8850848111358b1c370fb7c154e61fd"
+                }
+              },
+              {
+                "tone_offset": 6,
+                "source": {
+                  "address": 138744398,
+                  "size": 1,
+                  "sha256": "08f271887ce94707da822d5263bae19d5519cb3614e0daedc4c7ce5dab7473f1"
+                }
+              },
+              {
+                "tone_offset": 7,
+                "source": {
+                  "address": 138744399,
+                  "size": 1,
+                  "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+                }
+              },
+              {
+                "tone_offset": 8,
+                "source": {
+                  "address": 138744400,
+                  "size": 1,
+                  "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+                }
+              },
+              {
+                "tone_offset": 9,
+                "source": {
+                  "address": 138744401,
+                  "size": 1,
+                  "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+                }
+              },
+              {
+                "tone_offset": 10,
+                "source": {
+                  "address": 138744402,
+                  "size": 1,
+                  "sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89"
+                }
+              },
+              {
+                "tone_offset": 11,
+                "source": {
+                  "address": 138744403,
+                  "size": 1,
+                  "sha256": "620bfdaa346b088fb49998d92f19a7eaf6bfc2fb0aee015753966da1028cb731"
+                }
+              }
+            ],
+            "last_voice_copy": {
+              "address": 138744392,
+              "size": 12,
+              "sha256": "b99fbd9c8939b3108bfcb3bcd8d724b43eba02bc895be311e8620e2989e4b006"
+            },
+            "pointer_byte_sources": [
+              {
+                "tone_offset": 4,
+                "source": {
+                  "address": 138744396,
+                  "size": 1,
+                  "sha256": "d03502c43d74a30b936740a9517dc4ea2b2ad7168caa0a774cefe793ce0b33e7"
+                }
+              },
+              {
+                "tone_offset": 5,
+                "source": {
+                  "address": 138744397,
+                  "size": 1,
+                  "sha256": "77adfc95029e73b173f60e556f915b0cd8850848111358b1c370fb7c154e61fd"
+                }
+              },
+              {
+                "tone_offset": 6,
+                "source": {
+                  "address": 138744398,
+                  "size": 1,
+                  "sha256": "08f271887ce94707da822d5263bae19d5519cb3614e0daedc4c7ce5dab7473f1"
+                }
+              },
+              {
+                "tone_offset": 7,
+                "source": {
+                  "address": 138744399,
+                  "size": 1,
+                  "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+                }
+              }
+            ],
+            "selected_tone": {
+              "size": 12,
+              "sha256": "b99fbd9c8939b3108bfcb3bcd8d724b43eba02bc895be311e8620e2989e4b006"
+            },
+            "tone_type": 0,
+            "wave_address": 139270956,
+            "commands": [
+              141014960
+            ]
+          }
+        ]
+      },
+      "evidence_identity": {
+        "size": 3121,
+        "sha256": "78e62796f10d85e36defc174a5fd1233f0992da0790deb504ca01326044d6f14"
+      }
+    },
+    {
+      "id": 2,
+      "address": 153232687,
+      "size": 4,
+      "kind": "trainer_name_item_cross_field",
+      "evidence": {
+        "row": {
+          "index": 191,
+          "address": 153232680,
+          "size": 32,
+          "sha256": "256e5a562c3c3e2ed975eae1dddbb28726ae71e5bfa71203a4b0aba6b73a6546"
+        },
+        "table": {
+          "name": "regression_runtime_payload",
+          "address": 153226568,
+          "count": 917,
+          "size": 29344,
+          "sha256": "dc984541778410bc106786f10a5a9b3faf74258519802141ea107ca7e6e9096a"
+        },
+        "layout": {
+          "stride": 32,
+          "name_offset": 4,
+          "name_size": 6,
+          "item_offset": 10,
+          "item_size": 2,
+          "origin_offset": 7,
+          "origin_size": 4,
+          "party_pointer_offset": 28
+        },
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "historical_typing_only": true,
+        "current_consumer_reachability_claimed": false,
+        "independent_accepted_row": {
+          "address": 154012704,
+          "index": 191,
+          "sha256": "256e5a562c3c3e2ed975eae1dddbb28726ae71e5bfa71203a4b0aba6b73a6546",
+          "size": 32
+        },
+        "scope_ja": "name[3..5]のu8三つとitems[0]下位byte。party pointer row+28は別。"
+      },
+      "evidence_identity": {
+        "size": 829,
+        "sha256": "4e44051435715cb79a0c62469fe87fb7908ccebf5a60bbdf8b57acb2dcc9ec2b"
+      }
+    },
+    {
+      "id": 3,
+      "address": 153239823,
+      "size": 4,
+      "kind": "trainer_name_item_cross_field",
+      "evidence": {
+        "row": {
+          "index": 414,
+          "address": 153239816,
+          "size": 32,
+          "sha256": "1d8866f4eeb87c709d89d04c402d15b57cf2492e4d2c695513a08fcd0d6b5a1f"
+        },
+        "table": {
+          "name": "regression_runtime_payload",
+          "address": 153226568,
+          "count": 917,
+          "size": 29344,
+          "sha256": "dc984541778410bc106786f10a5a9b3faf74258519802141ea107ca7e6e9096a"
+        },
+        "layout": {
+          "stride": 32,
+          "name_offset": 4,
+          "name_size": 6,
+          "item_offset": 10,
+          "item_size": 2,
+          "origin_offset": 7,
+          "origin_size": 4,
+          "party_pointer_offset": 28
+        },
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "historical_typing_only": true,
+        "current_consumer_reachability_claimed": false,
+        "independent_accepted_row": {
+          "address": 154019840,
+          "index": 414,
+          "sha256": "1d8866f4eeb87c709d89d04c402d15b57cf2492e4d2c695513a08fcd0d6b5a1f",
+          "size": 32
+        },
+        "scope_ja": "name[3..5]のu8三つとitems[0]下位byte。party pointer row+28は別。"
+      },
+      "evidence_identity": {
+        "size": 829,
+        "sha256": "ad486b5798a2cdbfc0f0109d8c265bc83e55afe5f8c743e1bd314db3a31c59a2"
+      }
+    },
+    {
+      "id": 4,
+      "address": 153332164,
+      "size": 4595,
+      "kind": "rooted_tileset_lz77",
+      "evidence": {
+        "asset": {
+          "address": 153332160,
+          "size": 4599,
+          "sha256": "70e8f889b499899e8315946cc0c4a9df71e18eb9a78474db1a7592d871b832d0"
+        },
+        "decoded": {
+          "size": 12288,
+          "sha256": "0d3481d31c413a1a04985472364485da7c50f3d8f0d5ff7018624163a333e3a8"
+        },
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "layout_id": 385,
+        "actual_screen_rendered": false
+      },
+      "evidence_identity": {
+        "size": 347,
+        "sha256": "b44e5954cca50796e33d40d5b4e27337913db9bb24d6a366d317613407daff22"
+      }
+    },
+    {
+      "id": 5,
+      "address": 153523792,
+      "size": 3005,
+      "kind": "rooted_tileset_lz77",
+      "evidence": {
+        "asset": {
+          "address": 153523788,
+          "size": 3009,
+          "sha256": "58edba2dfcf72ced1c0ee8d30b4f515bf9b322c48f32c365aaa956a7d01727cb"
+        },
+        "decoded": {
+          "size": 8384,
+          "sha256": "51eed52d33fbfd1edecbc203ff28a90ad86b05761e3eee57cfb08be450c414a3"
+        },
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "layout_id": 514,
+        "actual_screen_rendered": false
+      },
+      "evidence_identity": {
+        "size": 346,
+        "sha256": "293145c42b7d25a4df1bc59ec14cf1ea6d74bea63d6a845b390a28904def1024"
+      }
+    },
+    {
+      "id": 6,
+      "address": 153549984,
+      "size": 4595,
+      "kind": "rooted_tileset_lz77",
+      "evidence": {
+        "asset": {
+          "address": 153549980,
+          "size": 4599,
+          "sha256": "70e8f889b499899e8315946cc0c4a9df71e18eb9a78474db1a7592d871b832d0"
+        },
+        "decoded": {
+          "size": 12288,
+          "sha256": "0d3481d31c413a1a04985472364485da7c50f3d8f0d5ff7018624163a333e3a8"
+        },
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "layout_id": 395,
+        "actual_screen_rendered": false
+      },
+      "evidence_identity": {
+        "size": 347,
+        "sha256": "092999716ab0d3336aa2292230c1ad2b6bdf41d36574e022e85a882b7f29fb64"
+      }
+    },
+    {
+      "id": 7,
+      "address": 154002810,
+      "size": 6,
+      "kind": "rooted_thumb_instruction_stream",
+      "evidence": {
+        "instruction_window": {
+          "address": 154002810,
+          "size": 6,
+          "sha256": "b3aeb0a74f4a7deececee18996e3f3923c282d7ec8607c3ba6f09d950c9b5e53"
+        },
+        "instructions": [
+          {
+            "address": 154002810,
+            "size": 4
+          },
+          {
+            "address": 154002814,
+            "size": 2
+          }
+        ],
+        "root_verified": true,
+        "literal_pool_included": false,
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "source_root": {
+          "address": 153941904,
+          "size": 5,
+          "sha256": "0c2f17fa9bdf6e0edef6d131a8d0ab01f21b7236d6099f1c883451f707f87490",
+          "target_pointer_address": 153941905,
+          "target": 154944201,
+          "opcode_matches_source_macro": true
+        },
+        "resolved_delegate": {
+          "address": 154944320,
+          "size": 4,
+          "sha256": "40f93ea37f6dde37a329f4d9b271421b7f792bcb7aa4e9911c1a2e0cb92049d0",
+          "value": 154002257,
+          "value_equals_current_source_config": true
+        },
+        "full_story_reachability_claimed": false
+      },
+      "evidence_identity": {
+        "size": 776,
+        "sha256": "afbc00d528feb273e51bc4f8996c888bb286a875d388e4a640dcbfe4b1e1d7c0"
+      }
+    },
+    {
+      "id": 8,
+      "address": 154157266,
+      "size": 4,
+      "kind": "packed_u16_cross_row",
+      "evidence": {
+        "selected_rows": {
+          "address": 154157264,
+          "size": 8,
+          "sha256": "6f382b71c81254ca4696de84aa16c4c251f222c6143ca73b37eafb799baf8ace"
+        },
+        "record_size": 4,
+        "field_offsets": [
+          0,
+          2
+        ],
+        "table": {
+          "address": 154156200,
+          "size": 1488,
+          "sha256": "1a5540bb6f62693af40e6c8375199a9bd4d148f71188277eb7b19a3696733c24"
+        },
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "source_pointer_interpretation": false
+      },
+      "evidence_identity": {
+        "size": 398,
+        "sha256": "028907f297f6d70ce944b2583d000afd980741b3c5a3b7d79c7fe5e876b9b187"
+      }
+    },
+    {
+      "id": 9,
+      "address": 154948440,
+      "size": 6,
+      "kind": "rooted_thumb_instruction_stream",
+      "evidence": {
+        "instruction_window": {
+          "address": 154948440,
+          "size": 6,
+          "sha256": "1ded0b57b33e6cdbe5430ff9c7d067e7a3e25c3b1d00748fa6b8423bcd75f23b"
+        },
+        "instructions": [
+          {
+            "address": 154948440,
+            "size": 4
+          },
+          {
+            "address": 154948444,
+            "size": 2
+          }
+        ],
+        "root_verified": true,
+        "literal_pool_included": false,
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "source_root": {
+          "address": 154964936,
+          "size": 5,
+          "sha256": "8038ca1e6f9a4e7c175635121336ac1935513096c96c7582c3ee154c00e568f8",
+          "target_pointer_address": 154964937,
+          "target": 154941049,
+          "opcode_matches_source_macro": true
+        },
+        "full_story_reachability_claimed": false
+      },
+      "evidence_identity": {
+        "size": 589,
+        "sha256": "add1d2a81374ee714468f4051fd9f0b196452c56b1d239e6ce07b2f84b857fc2"
+      }
+    },
+    {
+      "id": 10,
+      "address": 155332680,
+      "size": 256,
+      "kind": "rooted_sprite_4bpp_frame",
+      "evidence": {
+        "asset": {
+          "address": 155332680,
+          "size": 256,
+          "sha256": "a03989eab60da8e1024db1e20c8d36fe397851c42595c21065fb230fe3f8c93d"
+        },
+        "width": 16,
+        "height": 32,
+        "frame_index": 8,
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "actual_screen_rendered": false
+      },
+      "evidence_identity": {
+        "size": 268,
+        "sha256": "d2b4d928c9ab67016235456ff3cd5cbbb587c014831983f8a03212024c3e16c2"
+      }
+    },
+    {
+      "id": 11,
+      "address": 155419316,
+      "size": 4,
+      "kind": "adjacent_jp_text_crossing",
+      "evidence": {
+        "left": {
+          "address": 155419283,
+          "size": 36,
+          "sha256": "fd1406a3e760f20f0f81cd18077e4aacea0e4b04a8aefe09f4a0e971dcd828a8"
+        },
+        "right": {
+          "address": 155419319,
+          "size": 34,
+          "sha256": "f64d8552f34e5312993ddbade36d3ab96393acaf9a4021babb0600f1b6e0d3ae"
+        },
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "both_text_consumers_verified": true,
+        "source_pointer_interpretation": false,
+        "full_story_reachability_claimed": false
+      },
+      "evidence_identity": {
+        "size": 426,
+        "sha256": "06be0af7448d53a347c232e83ef9de988bb13fd39ab334b4fec940d0245c6c82"
+      }
+    },
+    {
+      "id": 12,
+      "address": 155435090,
+      "size": 4,
+      "kind": "adjacent_jp_text_crossing",
+      "evidence": {
+        "left": {
+          "address": 155435068,
+          "size": 25,
+          "sha256": "76a0778a7185be0db018cfdc27ccef1c543ca89818c7d74633ceab80ac0e5f78"
+        },
+        "right": {
+          "address": 155435093,
+          "size": 78,
+          "sha256": "66cc1204dce7df3f36beec31468577d6d8d7bd3a7b3235f6cbcd9fe0795cda36"
+        },
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "both_text_consumers_verified": true,
+        "source_pointer_interpretation": false,
+        "full_story_reachability_claimed": false
+      },
+      "evidence_identity": {
+        "size": 426,
+        "sha256": "63f1f3612fc52804f413093ed3cf7b1b8a150ee0a8e3c4c83e670f1a56459d9e"
+      }
+    },
+    {
+      "id": 13,
+      "address": 155463432,
+      "size": 4,
+      "kind": "adjacent_jp_text_crossing",
+      "evidence": {
+        "left": {
+          "address": 155463419,
+          "size": 16,
+          "sha256": "02a90bc2672560e09ebb87e6559a6afa8134c0dd5e9f82658eba60ed856816ad"
+        },
+        "right": {
+          "address": 155463435,
+          "size": 25,
+          "sha256": "cc264ac73f0ab86be8b6ef5405cde62b555aeb92f2561ec8bddf1b32e593da50"
+        },
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "both_text_consumers_verified": true,
+        "source_pointer_interpretation": false,
+        "full_story_reachability_claimed": false
+      },
+      "evidence_identity": {
+        "size": 426,
+        "sha256": "ef4430387efd6247a51b464c5f9d55d3951f6eaf475e8b7899d68b8559a135df"
+      }
+    },
+    {
+      "id": 14,
+      "address": 156455490,
+      "size": 4,
+      "kind": "indexed_u16_pair",
+      "evidence": {
+        "selected_elements": {
+          "address": 156455490,
+          "size": 4,
+          "sha256": "21dd7c635a39a537a7060ffea5b336638dfc6e5e5a18abde9c33c9ba7e01653b"
+        },
+        "element_size": 2,
+        "table": {
+          "address": 156454046,
+          "size": 3244,
+          "sha256": "99fa76765e552c9566986ee04b31b448f2c50cdbb1673961fd444395b9bb5353"
+        },
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "historical_typing_only": true,
+        "current_live_reachability_claimed": false
+      },
+      "evidence_identity": {
+        "size": 415,
+        "sha256": "78e8a95d47a6431a3aee9c85b0ee996ff51d2da722caed2123a6eb68fa82b387"
+      }
+    },
+    {
+      "id": 15,
+      "address": 167730272,
+      "size": 6,
+      "kind": "rooted_thumb_instruction_stream",
+      "evidence": {
+        "instruction_window": {
+          "address": 167730272,
+          "size": 6,
+          "sha256": "0aafc61d89755468f9ffcea5cc3c78a4743f61a6318bda6af7c3e771a5588999"
+        },
+        "instructions": [
+          {
+            "address": 167730272,
+            "size": 4
+          },
+          {
+            "address": 167730276,
+            "size": 2
+          }
+        ],
+        "root_verified": true,
+        "literal_pool_included": false,
+        "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_review.json",
+        "source_root": {
+          "address": 167726736,
+          "size": 5,
+          "sha256": "76f95eb5bf3f67edb23d085f4d2c9ffc7ec8bf30c6d0342e33a9422711432424",
+          "target_pointer_address": 167726737,
+          "target": 167728701,
+          "opcode_matches_source_macro": true
+        },
+        "full_story_reachability_claimed": false
+      },
+      "evidence_identity": {
+        "size": 589,
+        "sha256": "1b15eb78dd261ff01c6b156fa6799cb81fab842ed948304e249cd05106391525"
+      }
+    }
+  ],
+  "classified": 661,
+  "unclassified": 213,
+  "newly_classified": 17,
+  "proof": {
+    "data": {
+      "regression": {
+        "status": "PASS_HISTORICAL_REGRESSION_TRAINER_SCALARS",
+        "table": {
+          "name": "regression_runtime_payload",
+          "owner": "regression_runtime_payload",
+          "address": 153226568,
+          "size": 29344,
+          "sha256": "dc984541778410bc106786f10a5a9b3faf74258519802141ea107ca7e6e9096a",
+          "count": 917,
+          "stride": 32,
+          "serializer": "tools/regression/rom_runtime.py#_trainer_runtime",
+          "layout": {
+            "name_offset": 4,
+            "name_size": 6,
+            "item_offset": 10,
+            "item_size": 2,
+            "party_pointer_offset": 28,
+            "origin_offset": 7,
+            "origin_size": 4
+          },
+          "rows": [
+            {
+              "index": 191,
+              "address": 153232680,
+              "size": 32,
+              "sha256": "256e5a562c3c3e2ed975eae1dddbb28726ae71e5bfa71203a4b0aba6b73a6546"
+            },
+            {
+              "index": 414,
+              "address": 153239816,
+              "size": 32,
+              "sha256": "1d8866f4eeb87c709d89d04c402d15b57cf2492e4d2c695513a08fcd0d6b5a1f"
+            }
+          ]
+        },
+        "owner": "regression_runtime_payload",
+        "current_consumer_reachability_claimed": false
+      },
+      "stage61": {
+        "status": "PASS_EXACT_ADJACENT_JP_TEXT_OPERAND_ROOTS",
+        "roots": [
+          {
+            "instructions": 5,
+            "source_root": 155381739,
+            "consumer": {
+              "address": 155381752,
+              "size": 8,
+              "sha256": "5b6f0d2a1cf57707aab0adfaf0a79b6f751a7d233b52ba62d5b2b3158f4841eb",
+              "data_index": 0,
+              "pointer": 155419283,
+              "standard": 4
+            }
+          },
+          {
+            "instructions": 5,
+            "source_root": 155381739,
+            "consumer": {
+              "address": 155381762,
+              "size": 8,
+              "sha256": "5eae6bb8cf23d362c1be97adc881fd661fa9b6fa0c997e79511ce857348e0765",
+              "data_index": 0,
+              "pointer": 155419319,
+              "standard": 4
+            }
+          },
+          {
+            "instructions": 29,
+            "source_root": 155388508,
+            "consumer": {
+              "address": 155388879,
+              "size": 8,
+              "sha256": "1fa6e55e0dd6e6f8072a9d48aad171b48c9eb7ad18bbf0ce7364c78faa0563fe",
+              "data_index": 0,
+              "pointer": 155435068,
+              "standard": 4
+            }
+          },
+          {
+            "instructions": 13,
+            "source_root": 155388508,
+            "consumer": {
+              "address": 155388775,
+              "size": 8,
+              "sha256": "4bf31ec9f8c99dfc98afc2df4e6d27c8385a3773cfe2bb82187d0ea2ecb0a411",
+              "data_index": 0,
+              "pointer": 155435093,
+              "standard": 4
+            }
+          },
+          {
+            "instructions": 31,
+            "source_root": 155409254,
+            "consumer": {
+              "address": 155411141,
+              "size": 8,
+              "sha256": "b1df691a49078226f5d69251881bf80ac5400f01cb4b72e92e71f8c5cbc641b3",
+              "data_index": 0,
+              "pointer": 155463419,
+              "standard": 4
+            }
+          },
+          {
+            "instructions": 61,
+            "source_root": 155409254,
+            "consumer": {
+              "address": 155411157,
+              "size": 8,
+              "sha256": "a02e68091c764644c1e62934d2f4c063aeccdc95be8b0edd4becb9efea78263a",
+              "data_index": 0,
+              "pointer": 155463435,
+              "standard": 4
+            }
+          }
+        ],
+        "full_story_reachability_claimed": false
+      },
+      "text_consumer": {
+        "status": "PASS_ACTUAL_JP_TEXT_CONSUMER_CHAIN",
+        "windows": [
+          {
+            "label": "ScriptContext1_SetupScript_entry",
+            "address": 134648740,
+            "size": 52,
+            "sha256": "373a1c596f1790e706591c4738ebc353a356a8a1151ee0b74f8b356617b879ab"
+          },
+          {
+            "label": "InitScriptContext_dispatch_stores",
+            "address": 134647916,
+            "size": 18,
+            "sha256": "019053902e4a03a6e70e21baa5e701db1099faac63e9ae320ee6b02606c4b178"
+          },
+          {
+            "label": "RunScriptCommand_opcode_dispatch",
+            "address": 134648088,
+            "size": 26,
+            "sha256": "c23e12489eeb9a5ddc85d4216365fb60541ae3b9d43eb3181fe4fa0b7ca84ace"
+          },
+          {
+            "label": "r1_interwork_dispatch",
+            "address": 136084172,
+            "size": 2,
+            "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5"
+          },
+          {
+            "label": "ScrCmd_loadword_whole_code",
+            "address": 134650740,
+            "size": 34,
+            "sha256": "6632a06bebc6c051ba0f1d400cb47767a9237d0bd2dcee6a9023e04b2a227b61"
+          },
+          {
+            "label": "ScriptReadWord_whole_code",
+            "address": 134648272,
+            "size": 48,
+            "sha256": "1d6f67baf6aff67172ec8c2580bdd5ab743a7224f461ff4e68431c1d9e105f2c"
+          },
+          {
+            "label": "ScrCmd_callstd_whole_code",
+            "address": 134650432,
+            "size": 38,
+            "sha256": "a56ab43f56bba187706c31510aa5bd742c77459127cba73001da353919fc3841"
+          },
+          {
+            "label": "ScriptCall_whole_code",
+            "address": 134648212,
+            "size": 20,
+            "sha256": "77ef01de4a48da25e8f463a63a684fc5799bab3168a85d936768641bd0129ac8"
+          },
+          {
+            "label": "ScrCmd_message_whole_code",
+            "address": 134656204,
+            "size": 26,
+            "sha256": "ffd9c927490654600bb682ee6c17dbb27b44e381204466610ee88937136bdb5c"
+          },
+          {
+            "label": "ShowFieldMessage_entry",
+            "address": 134647036,
+            "size": 26,
+            "sha256": "e6aaa949d40fe0a8a0ea5a3cb5603833c1e31c88c44316c6132ff855ee2a39b1"
+          },
+          {
+            "label": "ShowFieldMessage_exit",
+            "address": 134647068,
+            "size": 8,
+            "sha256": "d2c04f5fb1692b4be2966ea1c6d8938e447b449c61d97b5c8cf77eeb14086fa0"
+          },
+          {
+            "label": "field_message_preprocess_whole_code",
+            "address": 134647176,
+            "size": 24,
+            "sha256": "13959c3cfa40d9d7ede7ec6199f4d4cbbd1227d0b12f39a138386b1b59ad1002"
+          },
+          {
+            "label": "StringExpandPlaceholders_entry_dispatch",
+            "address": 134253384,
+            "size": 28,
+            "sha256": "4f4aa8c6222cdd23d279c97962760c874f79d84dadd1eba6f442b3e02db616dc"
+          },
+          {
+            "label": "StringExpandPlaceholders_scalar_byte_loop",
+            "address": 134253602,
+            "size": 6,
+            "sha256": "ec7ebaaeeef7b4a08fa789c1ee40c1c0606a29bf52d28523b64a8d43925d1f5a"
+          },
+          {
+            "label": "StringExpandPlaceholders_eos_return",
+            "address": 134253608,
+            "size": 12,
+            "sha256": "e1cb5e9c6da25871dd0dc912233e139ffdd3442e6625338fc03c3858c7e174d9"
+          }
+        ],
+        "data_windows": [
+          {
+            "label": "setup_dispatch_base_literal",
+            "address": 134648796,
+            "size": 4,
+            "sha256": "f3a2e42ea6586eb0b767196f074500301ee4eaa08f268b68504e42be63060092",
+            "value": 135670980
+          },
+          {
+            "label": "setup_dispatch_end_literal",
+            "address": 134648800,
+            "size": 4,
+            "sha256": "d94a894e0f8ae6331a663d7b6340ec1fc75739a6a6209829a957fe7b2d637e50",
+            "value": 135671824
+          },
+          {
+            "label": "callstd_slot",
+            "address": 135671016,
+            "size": 4,
+            "sha256": "25dd52f3be6308884dd9180d47a4ca1860449f2bd0827e3b52dd0541da6c8476",
+            "value": 134650433
+          },
+          {
+            "label": "loadword_slot",
+            "address": 135671040,
+            "size": 4,
+            "sha256": "589e15f487c95a94b42e75dd09c3ea3952ed1ad18639243d8b79d3f81e599983",
+            "value": 134650741
+          },
+          {
+            "label": "message_slot",
+            "address": 135671392,
+            "size": 4,
+            "sha256": "920c41671abfc966bc6788c9868829592c7bfb3c951dc31e5dcc78f5e11a1d46",
+            "value": 134656205
+          },
+          {
+            "label": "callstd_table_literal",
+            "address": 134650472,
+            "size": 4,
+            "sha256": "8390ce335f9607847bd5dade6e3714ad75f68f131cfc169e6e310b9d2428b72a",
+            "value": 135673688
+          },
+          {
+            "label": "callstd_end_literal",
+            "address": 134650476,
+            "size": 4,
+            "sha256": "02b22bf8ae091521e184f6cc6425a8ed8e930a75f60cc1c880515052fdd9d179",
+            "value": 135673728
+          },
+          {
+            "label": "std4_slot",
+            "address": 135673704,
+            "size": 4,
+            "sha256": "7cc413b64c6552062304957e0f82c5297595d5c4ce0e1eddb78feaa06a6f2aa9",
+            "value": 135867813
+          },
+          {
+            "label": "std4_exact_script",
+            "address": 135867813,
+            "size": 8,
+            "sha256": "f740301a394637a38744ce56918c9b5334c317b0e3ac36424549fef8b66166db"
+          },
+          {
+            "label": "string_switch_table_literal",
+            "address": 134253412,
+            "size": 4,
+            "sha256": "6eb276a5fe334cec1b178c9e49c134d70fddc34cedf5972c96cfe11b9770cfb1",
+            "value": 134253416
+          },
+          {
+            "label": "string_switch_FA",
+            "address": 134253416,
+            "size": 4,
+            "sha256": "2271a668bf1595e05d4192e47c382581318750786e2e449a48dc72c492d76a6f",
+            "value": 134253602
+          },
+          {
+            "label": "string_switch_FB",
+            "address": 134253420,
+            "size": 4,
+            "sha256": "2271a668bf1595e05d4192e47c382581318750786e2e449a48dc72c492d76a6f",
+            "value": 134253602
+          },
+          {
+            "label": "string_switch_FE",
+            "address": 134253432,
+            "size": 4,
+            "sha256": "2271a668bf1595e05d4192e47c382581318750786e2e449a48dc72c492d76a6f",
+            "value": 134253602
+          },
+          {
+            "label": "string_switch_FF",
+            "address": 134253436,
+            "size": 4,
+            "sha256": "b127345df1bd7d0720004aa5f5caedc834b9a958049905ed010299029225c6a4",
+            "value": 134253608
+          }
+        ],
+        "direct_calls": [
+          {
+            "address": 134648744,
+            "size": 4,
+            "target": 134648504
+          },
+          {
+            "address": 134648748,
+            "size": 4,
+            "target": 134648456
+          },
+          {
+            "address": 134648752,
+            "size": 4,
+            "target": 134648368
+          },
+          {
+            "address": 134648764,
+            "size": 4,
+            "target": 134647916
+          },
+          {
+            "address": 134648772,
+            "size": 4,
+            "target": 134647976
+          },
+          {
+            "address": 134648776,
+            "size": 4,
+            "target": 134648320
+          },
+          {
+            "address": 134648110,
+            "size": 4,
+            "target": 136084172
+          },
+          {
+            "address": 134650754,
+            "size": 4,
+            "target": 134648272
+          },
+          {
+            "address": 134650460,
+            "size": 4,
+            "target": 134648212
+          },
+          {
+            "address": 134648220,
+            "size": 4,
+            "target": 134648132
+          },
+          {
+            "address": 134656208,
+            "size": 4,
+            "target": 134648272
+          },
+          {
+            "address": 134656218,
+            "size": 4,
+            "target": 134647036
+          },
+          {
+            "address": 134647050,
+            "size": 4,
+            "target": 134647176
+          },
+          {
+            "address": 134647182,
+            "size": 4,
+            "target": 134253384
+          },
+          {
+            "address": 134647188,
+            "size": 4,
+            "target": 135232956
+          },
+          {
+            "address": 134647192,
+            "size": 4,
+            "target": 134646988
+          }
+        ]
+      },
+      "flagmap": {
+        "status": "PASS_CURRENT_PACKED_U16_FLAGMAP",
+        "root": {
+          "hook": {
+            "address": 134740632,
+            "size": 8,
+            "sha256": "77c0286ef8354f90884a0dca18e901810705ee8123aec37ee2817fe506523b88"
+          },
+          "kind": "EXACT_8_BYTE_THUMB_TRAMPOLINE",
+          "target": 155117185,
+          "hook_source": "tools/world_runtime_e2e_repair.py#TRAINER_SCRIPT_FLAG_SCANNER_OFFSET and build_payload trainer_sight_physical_flag_scanner",
+          "entry": {
+            "address": 155117184,
+            "size": 96,
+            "sha256": "2ddce9bcaa8464a1d3715b07ac519f2c785e570128056cf2c6b185def5549c77"
+          },
+          "table_literal": {
+            "address": 155117268,
+            "size": 4,
+            "sha256": "2e8478ae5b3701af2001c9ab96464fd2555da69ceb0fbab1cc0d4ceb9ff9f674",
+            "value": 154156200
+          },
+          "bound_count_literal": {
+            "address": 155117264,
+            "size": 4,
+            "sha256": "56c3ad8c9471c09492859f6c8de4c752170d6958b7b0fef66ee5079f33cd1dcb",
+            "value": 372
+          }
+        },
+        "consumers": [
+          {
+            "field": "external_flag",
+            "instruction": {
+              "address": 155117224,
+              "size": 2,
+              "sha256": "55e0a9f22f36e94615bd086b6dd68839f1f0aef5e4f90395d3738b8d03e81f89"
+            },
+            "kind": "THUMB_LDRH",
+            "field_offset": 0
+          },
+          {
+            "field": "physical_flag",
+            "instruction": {
+              "address": 155117240,
+              "size": 2,
+              "sha256": "044c3177c44a3e1454abc2b69292b6113dc665064cf41ef4920704af567179d6"
+            },
+            "kind": "THUMB_LDRH",
+            "field_offset": 2
+          }
+        ]
+      },
+      "circus": {
+        "status": "PASS_SOURCE_ROOTED_THUMB_PATH",
+        "root": {
+          "address": 167726736,
+          "size": 5,
+          "sha256": "76f95eb5bf3f67edb23d085f4d2c9ffc7ec8bf30c6d0342e33a9422711432424",
+          "target_pointer_address": 167726737,
+          "target": 167728701,
+          "opcode_matches_source_macro": true
+        },
+        "path_instructions": 31,
+        "window": {
+          "address": 167730272,
+          "size": 6,
+          "sha256": "0aafc61d89755468f9ffcea5cc3c78a4743f61a6318bda6af7c3e771a5588999"
+        }
+      },
+      "factory": {
+        "status": "PASS_SOURCE_ROOTED_THUMB_PATH",
+        "root": {
+          "address": 154964936,
+          "size": 5,
+          "sha256": "8038ca1e6f9a4e7c175635121336ac1935513096c96c7582c3ee154c00e568f8",
+          "target_pointer_address": 154964937,
+          "target": 154941049,
+          "opcode_matches_source_macro": true
+        },
+        "path_instructions": 194,
+        "window": {
+          "address": 154948440,
+          "size": 6,
+          "sha256": "1ded0b57b33e6cdbe5430ff9c7d067e7a3e25c3b1d00748fa6b8423bcd75f23b"
+        }
+      },
+      "shiny": {
+        "status": "PASS_EXPLICIT_RESOLVED_DELEGATE_THUMB_PATH",
+        "root": {
+          "address": 153941904,
+          "size": 5,
+          "sha256": "0c2f17fa9bdf6e0edef6d131a8d0ab01f21b7236d6099f1c883451f707f87490",
+          "target_pointer_address": 153941905,
+          "target": 154944201,
+          "opcode_matches_source_macro": true
+        },
+        "delegate": {
+          "address": 154944320,
+          "size": 4,
+          "sha256": "40f93ea37f6dde37a329f4d9b271421b7f792bcb7aa4e9911c1a2e0cb92049d0",
+          "value": 154002257,
+          "value_equals_current_source_config": true
+        },
+        "path_instructions": 214,
+        "window": {
+          "address": 154002810,
+          "size": 6,
+          "sha256": "b3aeb0a74f4a7deececee18996e3f3923c282d7ec8607c3ba6f09d950c9b5e53"
+        }
+      },
+      "shared": {
+        "status": "PASS_SERIALIZED_HISTORICAL_SHARED_INDEX",
+        "geometry": {
+          "table": {
+            "address": 156454046,
+            "size": 3244,
+            "sha256": "99fa76765e552c9566986ee04b31b448f2c50cdbb1673961fd444395b9bb5353"
+          },
+          "element_type": "u16",
+          "element_count": 1622,
+          "element_size": 2,
+          "index_semantics": "move-table element offsets; adjacent entries delimit species list",
+          "selected_index": 722,
+          "selected_elements": {
+            "address": 156455490,
+            "size": 4,
+            "sha256": "21dd7c635a39a537a7060ffea5b336638dfc6e5e5a18abde9c33c9ba7e01653b"
+          },
+          "move_table": {
+            "address": 156457290,
+            "size": 10046,
+            "sha256": "2dae0bca8745be94ee45a9484184af1f51776deb7338d741317d010e8e6055fa"
+          },
+          "move_element_count": 5023,
+          "u32_rom_pointer_field": false
+        },
+        "consumer": {
+          "entry": {
+            "address": 156453184,
+            "size": 12,
+            "sha256": "0ed647b7aa772d98ff31031935c2488c2107832d90067ced24fdeb2cc60f2a56"
+          },
+          "source": "Stage73_GetMoveRelearnerMoves mode1 passes SharedIndex/SharedMoves to Stage73_AppendTable",
+          "root_setup": {
+            "address": 156453386,
+            "size": 6,
+            "sha256": "72954bbc804c0b2dea8dc21111dd71a52a605e5368e4471305d959bd21dac862"
+          },
+          "index_literal": {
+            "address": 156453448,
+            "size": 4,
+            "sha256": "a7c9582c4a716758404ff4a65fe3fcdab62965656bf98ddd1b718603b1fc3d10",
+            "value": 156454046
+          },
+          "move_literal": {
+            "address": 156453444,
+            "size": 4,
+            "sha256": "798ca89df2e43f38f3e95c96daa8da3ff07cdcb66ac4d715582e12ff64f7471a",
+            "value": 156457290
+          },
+          "argument_setup_and_call": {
+            "address": 156453300,
+            "size": 18,
+            "sha256": "108af02ad290e9999b74386315417ef510782dc94e0b4dceeb58bb4e5b2e747f"
+          },
+          "direct_call": {
+            "address": 156453314,
+            "size": 4,
+            "sha256": "0301bcd4674fa8c0da2107a11fa8fd73044b34acaaa19773909e5385b5950303",
+            "target": 156452940
+          },
+          "append_table_entry": {
+            "address": 156452940,
+            "size": 48,
+            "sha256": "e0c112e1cd7ca278e496c58ef95fe5c8624bb8019f8abd80b5150f32e5331d1c"
+          },
+          "indexed_u16_loads": [
+            {
+              "instruction": {
+                "address": 156452968,
+                "size": 2,
+                "sha256": "77b40b137c5627ea9233b2250b996d428e92e17b11030c20d024a76737a52389"
+              },
+              "field": "index[species]",
+              "element_size": 2
+            },
+            {
+              "instruction": {
+                "address": 156452976,
+                "size": 2,
+                "sha256": "6db59d73fe428b0e7885301d6f59207d0bf2438f2efec98dbe37a9a51419fd77"
+              },
+              "field": "index[species+1]",
+              "element_size": 2
+            }
+          ]
+        },
+        "current_live_reachability_claimed": false
+      },
+      "tilesets": {
+        "status": "PASS_ROOTED_EXACT_TILESET_LZ77",
+        "assets": [
+          {
+            "layout": {
+              "address": 153590380,
+              "size": 28,
+              "sha256": "50c3f444d0dbd9eaa06d065cfe275235750bec02cf3215c62415d6bb93b7bf1c",
+              "tileset_field_offset": 20,
+              "tileset": 153341572
+            },
+            "tileset": {
+              "address": 153341572,
+              "size": 24,
+              "sha256": "4e5d277ec60a2aa6bddc51327c9e5fa72c53db53c13da5c5cdd89431e984d459",
+              "is_compressed": 1,
+              "is_secondary": 1,
+              "graphics_field_offset": 4,
+              "graphics": 153332160
+            },
+            "asset": {
+              "address": 153332160,
+              "size": 4599,
+              "sha256": "70e8f889b499899e8315946cc0c4a9df71e18eb9a78474db1a7592d871b832d0",
+              "decoded": {
+                "size": 12288,
+                "sha256": "0d3481d31c413a1a04985472364485da7c50f3d8f0d5ff7018624163a333e3a8"
+              }
+            }
+          },
+          {
+            "layout": {
+              "address": 153810016,
+              "size": 28,
+              "sha256": "64fff7b9e3a2dbd2c21708ea3f0f765502bbd644e3c8a6bbc59528cf18fb01d4",
+              "tileset_field_offset": 20,
+              "tileset": 153531312
+            },
+            "tileset": {
+              "address": 153531312,
+              "size": 24,
+              "sha256": "f9b75fc558320204a9a5d5449e28a831fafd1dbcae40097eff43b9ea481f9619",
+              "is_compressed": 1,
+              "is_secondary": 1,
+              "graphics_field_offset": 4,
+              "graphics": 153523788
+            },
+            "asset": {
+              "address": 153523788,
+              "size": 3009,
+              "sha256": "58edba2dfcf72ced1c0ee8d30b4f515bf9b322c48f32c365aaa956a7d01727cb",
+              "decoded": {
+                "size": 8384,
+                "sha256": "51eed52d33fbfd1edecbc203ff28a90ad86b05761e3eee57cfb08be450c414a3"
+              }
+            }
+          },
+          {
+            "layout": {
+              "address": 153594820,
+              "size": 28,
+              "sha256": "e35fafbe683a065743712888cef9f64492897579d078c0535b7f8145b11f5bd2",
+              "tileset_field_offset": 20,
+              "tileset": 153562652
+            },
+            "tileset": {
+              "address": 153562652,
+              "size": 24,
+              "sha256": "be816d27fc57a4e2b4ff323ba6db0c95cfd7adb8e81316521242596bd37d8e4c",
+              "is_compressed": 1,
+              "is_secondary": 1,
+              "graphics_field_offset": 4,
+              "graphics": 153549980
+            },
+            "asset": {
+              "address": 153549980,
+              "size": 4599,
+              "sha256": "70e8f889b499899e8315946cc0c4a9df71e18eb9a78474db1a7592d871b832d0",
+              "decoded": {
+                "size": 12288,
+                "sha256": "0d3481d31c413a1a04985472364485da7c50f3d8f0d5ff7018624163a333e3a8"
+              }
+            }
+          }
+        ],
+        "actual_screen_rendered": false
+      },
+      "sprite": {
+        "status": "PASS_ROOTED_RAW_SPRITE_FRAME",
+        "graphics": {
+          "source_graphics_id": 49,
+          "source_symbol": "OBJ_EVENT_GFX_ROCKET_M",
+          "runtime_graphics_id": 153,
+          "table_literal": {
+            "address": 134605748,
+            "size": 4,
+            "sha256": "3ba1b424349b545e36a7114852c048ff3b5947527e16d41b616d5b19ee8a1971",
+            "value": 155352600
+          },
+          "slot": {
+            "address": 155353212,
+            "size": 4,
+            "sha256": "a9a11bd60899f52537f4db29752d4e34126ac7a4b6c4fe7804ae1750b9f65c0c",
+            "value": 155351096
+          },
+          "info": {
+            "address": 155351096,
+            "size": 36,
+            "sha256": "a22572e706c85b8733a1aa168f2deb5705103bb99bb319a2dfdaefb1aa5c4c5e"
+          },
+          "images_offset": 28,
+          "animations_offset": 24,
+          "width": 16,
+          "height": 32,
+          "frame_table": {
+            "address": 155347192,
+            "size": 72,
+            "sha256": "7d4b3ffca0230a353a718ed5e91fc788069dabf0a3137fbebce3baef47c5dc6c",
+            "count": 9,
+            "stride": 8
+          },
+          "animation_slot": {
+            "address": 155350328,
+            "size": 4,
+            "sha256": "f218ff5d208d8b083944347863598e5393877f02e15567f8cc588d1eadff663f",
+            "value": 155349812
+          },
+          "animation": {
+            "address": 155349812,
+            "size": 20,
+            "sha256": "5e0a90b845dce86ff25b27b77459d9967e36b042ca4ee88a88b2662d67214ed2",
+            "frame_indices": [
+              7,
+              2,
+              8,
+              2
+            ],
+            "jump_to": 0
+          },
+          "frame": {
+            "index": 8,
+            "address": 155347256,
+            "size": 8,
+            "sha256": "4bb25f67bf964a23fa318f32a618bc97e49d2f1b883905130e73bec19c2d9f44",
+            "data": 155332680,
+            "data_size": 256
+          },
+          "asset": {
+            "address": 155332680,
+            "size": 256,
+            "sha256": "a03989eab60da8e1024db1e20c8d36fe397851c42595c21065fb230fe3f8c93d"
+          }
+        },
+        "actual_screen_rendered": false
+      },
+      "source_bindings": {
+        "tools/regression/rom_runtime.py": {
+          "size": 102121,
+          "sha256": "f1ace4562ebea22ca24957e0561f9cc410fc737833e7c1bec467ad48bc569672",
+          "git_blob_sha": "5d78cfb13310523f55c93a16d0e9bd86f3ae81f6"
+        },
+        "vendor/upstream/CFRU-JP/include/battle.h": {
+          "size": 52228,
+          "sha256": "8c6b332ef73bc545297b4f6c5bedc1ad11fa4470901f39cf386c1be53f4abdc9",
+          "git_blob_sha": "7add3e78535b105d9d08d3d601da4e1d784f526a"
+        },
+        "vendor/upstream/pokefirered/asm/macros/event.inc": {
+          "size": 56947,
+          "sha256": "848e5e791adeddbe7ae7fe2717729af666a8d8aa163ab7781c74bfd49ce58671",
+          "git_blob_sha": "142ad979d7d3093244087a247fa2b4883424f77f",
+          "local": "gaps-pret-event.inc"
+        },
+        "vendor/upstream/pokefirered/src/scrcmd.c": {
+          "size": 56954,
+          "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+          "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814",
+          "local": "gaps-pret-scrcmd.c"
+        },
+        "vendor/upstream/pokefirered/src/text.c": {
+          "size": 63210,
+          "sha256": "5696f49443eeaaac74b530421ac7f0cbfc71996c557399583788111c322dd80c",
+          "git_blob_sha": "f3eef07ce6dea8269980a5ecfdd6902c1c9c13d2",
+          "local": "gaps-pret-text.c"
+        },
+        "vendor/upstream/pokefirered/data/scripts/std_msgbox.inc": {
+          "size": 1040,
+          "sha256": "090541cfc3a47272ea8203f0f6c18f19f8062d407388a23fcf103e93b196b431",
+          "git_blob_sha": "18ad553c85b66975e0c05763c6145082c8c13dde",
+          "local": "gaps-pret-std_msgbox.inc"
+        },
+        "vendor/upstream/pokefirered/include/characters.h": {
+          "size": 12798,
+          "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98",
+          "git_blob_sha": "d00ecf0a3afcd9fc1fa9534c00f4b74793d5f06f",
+          "local": "gaps-pret-characters.h"
+        },
+        "vendor/upstream/CFRU-JP/BPRJ.ld": {
+          "size": 68505,
+          "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+          "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+          "local": "BPRJ.ld"
+        },
+        "scripts/build_trainer_changekit_final.py": {
+          "size": 109603,
+          "sha256": "06b7609f957f3a6942b3b35e5a6388a365b4be5175dce4afe04d5df4eefe891b",
+          "git_blob_sha": "e846697a52e51c2ec3c8df3c12d1ad1646d77479"
+        },
+        "overlays/trainer_changekit_final_runtime/trainer_changekit_final_runtime.c": {
+          "size": 53259,
+          "sha256": "bd20bff34ea2656fa9646fcf4fef977422a339a3805308f4863c3754199b635f",
+          "git_blob_sha": "d401c74d9101c6232501ef7de783cb7a886c7030"
+        },
+        "tools/world_runtime_e2e_repair.py": {
+          "size": 58982,
+          "sha256": "ca141c2a4e32679fbfc107d613a2860eaa3161c4ec363167bd40d5d683530442",
+          "git_blob_sha": "ce05e354f2b2a4f694f91dc721ebe471885bc3a4"
+        },
+        "scripts/pr16_circus_streak.py": {
+          "size": 18586,
+          "sha256": "35e96e0fbca856cf74afbcda56f7b220ebaccc050bc907431f91b0020ad1bcf5",
+          "git_blob_sha": "8e8f381d63158e5a521a2776a8eba516425af5b0"
+        },
+        "overlays/circus_streak/circus_facility_policy.c": {
+          "size": 3480,
+          "sha256": "092cfac9c09f8859659ad8070dd7567b0615997601042c739e02b095a97828cb",
+          "git_blob_sha": "b48692742d94460b27ab805d0daae984b1470b49"
+        },
+        "overlays/facility_runtime/facility_runtime.c": {
+          "size": 18139,
+          "sha256": "28603b55a0573dd376e1acdc4310591c017d158c69ade92393020781271e7cb0",
+          "git_blob_sha": "e0292d9ca9f4fc178233303664c1237377366d95"
+        },
+        "vendor/upstream/pokefirered/include/global.fieldmap.h": {
+          "size": 12127,
+          "sha256": "34a8c91e10803ba48b97a2df8a721ca37fad7572b2ff951a4ab7ec15a5f050eb",
+          "git_blob_sha": "e2828ec0cb1439718e830fbef4366770b3b77b1c",
+          "local": "gaps-pret-global.fieldmap.h"
+        },
+        "vendor/upstream/pokefirered/src/fieldmap.c": {
+          "size": 28166,
+          "sha256": "bbe15c7af1059a9f796dddaca28bdaaf206b715895029e189fa6ae012272ce68",
+          "git_blob_sha": "41567772299000ba5855419e5c39ad9373a34c20",
+          "local": "gaps-pret-fieldmap.c"
+        },
+        "vendor/upstream/pokefirered/include/sprite.h": {
+          "size": 9368,
+          "sha256": "a77aa1c837dfb58cf60b3eac299c7cc29a23ce27735ba710b9e8eeed102bf773",
+          "git_blob_sha": "6a1b272119ce6e3a8dcf45adf2eef8923a6d5175",
+          "local": "gaps-pret-sprite.h"
+        },
+        "vendor/upstream/pokefirered/include/constants/event_objects.h": {
+          "size": 7965,
+          "sha256": "5f552a754182788f21ee00fe9460d5dbc73303239cc06743fbed96c93b6e6947",
+          "git_blob_sha": "9d8c514f9e2d634d40d215bf657f33041c55c28e",
+          "local": "gaps-pret-event_objects.h"
+        },
+        "vendor/upstream/pokefirered/src/data/object_events/object_event_pic_tables.h": {
+          "size": 82763,
+          "sha256": "7210ac3a847600c1e2778d6dcd5896e641e3b19f1d203841c4911bfe50769995",
+          "git_blob_sha": "70889d7a2064653d96d257aad804ebcbfdb26d68",
+          "local": "gaps-pret-object_event_pic_tables.h"
+        },
+        "vendor/upstream/pokefirered/src/data/object_events/object_event_graphics_info.h": {
+          "size": 97115,
+          "sha256": "fc19a22d4471e83653e80257145f08c3b6d0b59868974399541a8bc3119ef512",
+          "git_blob_sha": "78ee95a47bddc92fcb098ccaeaa039a92fe3ec47",
+          "local": "gaps-pret-object_event_graphics_info.h"
+        },
+        "vendor/upstream/pokefirered/src/data/object_events/object_event_graphics_info_pointers.h": {
+          "size": 23651,
+          "sha256": "a5e006f4855f19bf42c27e78f5c1866fdecccb687d228fbe608376f09ee7547c",
+          "git_blob_sha": "af2f8afb6db8ed75bcc849922c911d858b92999a",
+          "local": "gaps-pret-object_event_graphics_info_pointers.h"
+        },
+        "vendor/upstream/pokefirered/src/event_object_movement.c": {
+          "size": 326145,
+          "sha256": "920f96b45569e702dd00997e7984effb3a7677ba2b68512b939eda69c2294254",
+          "git_blob_sha": "8e82824d376d566dbff5ac863f1013d10ad5ec8b",
+          "local": "gaps-pret-event_object_movement.c"
+        },
+        "vendor/upstream/pokefirered/src/sprite.c": {
+          "size": 48783,
+          "sha256": "2a804302eb5a89d31c3ec2f33dc645a80a0c645113d4b33b9bd571064c0286ae",
+          "git_blob_sha": "d0198d53004775c8664dcccf57833e178833776e",
+          "local": "gaps-pret-sprite.c"
+        },
+        "tools/modernization_p03_stage73_runtime.py": {
+          "size": 65661,
+          "sha256": "3505e912c00faf1b60cf79d3c3932d9ca0dc8779ff7d6ebc5088452dafa49785",
+          "git_blob_sha": "b3f7d41e846ebfb5d44e7f1d1030d86c7e9434a7"
+        },
+        "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.c": {
+          "size": 15217,
+          "sha256": "4dff171c4998dcb8fee113674cc99d7b80f2666e0ded6de21aa56108d3a3e0d5",
+          "git_blob_sha": "57985ba633e5e67de4bdb34d921bd738bdc2110a"
+        },
+        "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.h": {
+          "size": 684,
+          "sha256": "fb58f643f716669d4e52313c3de923e9e186bd8ac55c786881020a46b94bfb42",
+          "git_blob_sha": "3c60d6bf94c9140d181c451298a0def63f7c3c0b"
+        },
+        "generated/runtime/modernization_p03_stage73_consumer_runtime_symbols.json": {
+          "size": 1692,
+          "sha256": "5a9113d2450a6c1aed5559176faa88a3cea4aac9a8c886e8e72a7546384bec72",
+          "git_blob_sha": "f56f667f52ebbe495cb7bf659c81a616afd8929c"
+        },
+        "content/modernization/p03_stage73_consumer_runtime_route_audit.json": {
+          "size": 12992,
+          "sha256": "d3af91e38635c12e0f985ab8f1f2467d81cb1acd8e2716c5dd285eda98044275",
+          "git_blob_sha": "f030e37cc16f6bab41af76e008698825a51d65aa"
+        },
+        "scripts/build_factory_high_modes_v2.py": {
+          "size": 94857,
+          "sha256": "9f7deb8dcc5347e70e84f17e0a31d188ccc7c7d382788fb0c46dd38b23474983",
+          "git_blob_sha": "c032a79c2bd982a76e2a05f90c8e2aeb4d75c5ba"
+        },
+        "overlays/factory_high_modes_v2/factory_high_modes_v2.c": {
+          "size": 76769,
+          "sha256": "681b53d6199ab8ec3dc03a47f4a1a6457412603dc032679930111e18e738268b",
+          "git_blob_sha": "ed3707cdfd4e34f2ab318b97d10d9cd000f04345"
+        },
+        "config/factory_high_modes_v2.json": {
+          "size": 5741,
+          "sha256": "58cb98afb685d7f0d9c41071872ed3c59d7771f8437d793b5b4eebd1f977863f",
+          "git_blob_sha": "d6e63565273ed898af08cf8e12c2bd551e6800ab"
+        },
+        "scripts/build_factory_shiny_memorial_runtime.py": {
+          "size": 47090,
+          "sha256": "b9f0a8865662d98357b7d76445f7f23c09c2f0182002ae30390a7990cb78d4c0",
+          "git_blob_sha": "d083a8acc8a44e7b924d541ca5ee9b14fedfc607"
+        },
+        "overlays/factory_shiny_memorial_runtime/factory_shiny_memorial_runtime.c": {
+          "size": 27162,
+          "sha256": "2f0445d9a2479f18f7c05325359ea3d96e94690f127535204f26ec2664b084f2",
+          "git_blob_sha": "e7212bfdca2470de366bf25115cc865150b511d8"
+        }
+      },
+      "donor_leased": false
+    },
+    "song": {
+      "status": "PASS_FINITE_JP_ROOTS_WITH_COMPLETE_CROSS_SONG_ROLE_CHECK",
+      "fixed_review": "content/modernization/pr16_dex_hof_reference_gaps_song_review.json",
+      "inherited_song_count": 130,
+      "additional_song_ids": [
+        86,
+        123
+      ],
+      "combined_song_count": 132,
+      "complete_modeled_songs": 132,
+      "full_rom_inventory_runs": 0,
+      "previous_accepted_hits_unchanged": true,
+      "old_sample_witnesses_preserved": 47,
+      "protected_read_windows": 194401,
+      "finite_root_windows": 185,
+      "protected_read_identity": {
+        "size": 25885494,
+        "sha256": "ccbb499c62dcd39b386d7d7342cd1d7f0d3f05723029e5af33261c55c9b0e6bb"
+      },
+      "new_songs": [
+        {
+          "id": 86,
+          "source_names": [
+            {
+              "name": "JP_EXPLICIT_FINITE_ANIMATION_86",
+              "source_review": "content/modernization/pr16_dex_hof_reference_gaps_song_review.json"
+            }
+          ],
+          "song_row": {
+            "address": 138838460,
+            "size": 8,
+            "sha256": "424d8158ca8d23d140ba2f0bbd82006bba938ee288645c770e2f3e58d2f23425"
+          },
+          "header": {
+            "address": 141015020,
+            "size": 12,
+            "sha256": "e358bbf7ff765e2c773d68fd78ba2987fd8bca228cfcd743b283c3e73163ae22"
+          },
+          "player_row": {
+            "address": 138837748,
+            "size": 12,
+            "sha256": "4d41600e9db85ad4255db47b3cdeafc96efb0fccab11c5198253925da8c36cb4"
+          },
+          "declared_tracks": 1,
+          "consumed_tracks": 1,
+          "tracks": [
+            {
+              "index": 0,
+              "root": 141014948,
+              "status": "FINE",
+              "steps": 42,
+              "commands": {
+                "0xbc": 1,
+                "0xbb": 1,
+                "0xbd": 1,
+                "0xc1": 1,
+                "0xbe": 12,
+                "0xc0": 12,
+                "0xf7": 1,
+                "0x86": 12,
+                "0xb1": 1
+              }
+            }
+          ],
+          "command_windows": [
+            {
+              "address": 141014948,
+              "size": 72,
+              "sha256": "992e9e47f7583c0e4e020fa609aeb6aae8c44c97bd9e7fdc6a189cc192462dc7"
+            }
+          ],
+          "compatible_data_aliases": [],
+          "xcmd_counts": {}
+        },
+        {
+          "id": 123,
+          "source_names": [
+            {
+              "name": "JP_EXPLICIT_FINITE_ANIMATION_123",
+              "source_review": "content/modernization/pr16_dex_hof_reference_gaps_song_review.json"
+            }
+          ],
+          "song_row": {
+            "address": 138838756,
+            "size": 8,
+            "sha256": "fb83400c2406de4e96077a7108c0c8a3d1992b560673eb8dd81b75587d249b81"
+          },
+          "header": {
+            "address": 141019316,
+            "size": 16,
+            "sha256": "73061368c3349f32f8c4665224c80c99a85aef8fae2b0d7d30993e658b139a64"
+          },
+          "player_row": {
+            "address": 138837736,
+            "size": 12,
+            "sha256": "25841829c8c674178523a420afd7b43c1f2562d4f576b311b9c942d2f73c8caf"
+          },
+          "declared_tracks": 2,
+          "consumed_tracks": 2,
+          "tracks": [
+            {
+              "index": 0,
+              "root": 141019164,
+              "status": "FINE",
+              "steps": 74,
+              "commands": {
+                "0xbc": 1,
+                "0xbb": 1,
+                "0xbd": 1,
+                "0xc1": 1,
+                "0xbe": 1,
+                "0xbf": 8,
+                "0xc0": 24,
+                "0xd8": 8,
+                "0x83": 16,
+                "0x85": 4,
+                "0x81": 4,
+                "0x86": 4,
+                "0xb1": 1
+              }
+            },
+            {
+              "index": 1,
+              "root": 141019275,
+              "status": "FINE",
+              "steps": 33,
+              "commands": {
+                "0xbc": 1,
+                "0xbd": 1,
+                "0xbe": 1,
+                "0xbf": 8,
+                "0xd8": 8,
+                "0x8c": 8,
+                "0xb4": 3,
+                "0xb3": 2,
+                "0xb1": 1
+              }
+            }
+          ],
+          "command_windows": [
+            {
+              "address": 141019164,
+              "size": 151,
+              "sha256": "c274cdde349323405b2933d4633c4c7dca3051f5b12aa8c52dc70bac28a85e90"
+            }
+          ],
+          "compatible_data_aliases": [],
+          "xcmd_counts": {}
+        }
+      ],
+      "diagnostics_by_scope": {
+        "unsupported_selected_tone": 230
+      },
+      "jp_song_table_extent_claimed": false,
+      "actual_playback_claimed": false,
+      "complete_runtime_read_footprint_claimed": false,
+      "donor_leased": false
+    },
+    "public_source_bindings": {
+      "insert.py": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "scripts/insert.py",
+        "git_blob_sha": "73222c0c56e3ad462b9ad1b5084764c9ac0ef565",
+        "size": 28014,
+        "sha256": "b29fd801bd4f05c474d61af878767af6269edba37bca0f76c6d2509b76286bb0"
+      },
+      "m4a_internal.h": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "include/gba/m4a_internal.h",
+        "git_blob_sha": "2e4b359a6a810d91be7abe657e8704d702e679ad",
+        "size": 12790,
+        "sha256": "d44864a68794db83a039c06556fa34594f7c74d306eaa844e4bb9e1c896f8226"
+      },
+      "MPlayDef.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "MPlayDef.s",
+        "git_blob_sha": "21168a2a7571838f2b11794b64d58ab08eb80c2f",
+        "size": 9112,
+        "sha256": "507de5a5ea32f208824ef566fbd29d614a985812365a616e0420b35d39791ec4"
+      },
+      "songs.h": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "include/constants/songs.h",
+        "git_blob_sha": "aeffc0456c224a9608116ba0374158003d802d6e",
+        "size": 8732,
+        "sha256": "55cf54688769cc34f16d60a68c4046853944e220525862463195bf58ef4f97f6"
+      },
+      "BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a"
+      },
+      "songs": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "songs",
+        "git_blob_sha": "9c14d658fa57a3a8a292e0b87f1a2ec8a1236561",
+        "size": 55,
+        "sha256": "17de16f5d27d8987cf90576149bc951fd2a514b1e16865f1a85c25d65cdca190"
+      },
+      "pret-m4a.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/m4a.c",
+        "git_blob_sha": "ebd3afe291b6c4e9f2ac62250a87c6a0482086d4",
+        "size": 46383,
+        "sha256": "db6bea72be02870e19a9c95f5895c6f34b75af36e6bf7f3b75b10f5b4877fe92"
+      },
+      "pret-m4a_1.s": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/m4a_1.s",
+        "git_blob_sha": "4cbbf08129ed6f85f3c730429f6b430627109117",
+        "size": 39597,
+        "sha256": "348ed832bb30b24fa3ad9cf90242cc708ad972c19dff43b4dd550de4e5716dbf"
+      },
+      "pret-m4a_tables.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/m4a_tables.c",
+        "git_blob_sha": "286e938bad9cb498a6838ab18c3d2138ce2f5d28",
+        "size": 6171,
+        "sha256": "2ce635365c1dcd704a1c7fc7d24e9e92589c87fee2152676edfaf7319e48a07b"
+      },
+      "pret-m4a_constants.inc": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "constants/m4a_constants.inc",
+        "git_blob_sha": "3add621759c270a28ad60eb3e5fae08fe9c4fd6b",
+        "size": 9233,
+        "sha256": "636dd743022764efffc7e04e7e05e51fa6137aecad2d5bece61106dae2dfbece"
+      },
+      "pret-song_table.inc": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "sound/song_table.inc",
+        "git_blob_sha": "000cc41b99f419fa043d3730d37b657ac6c48a57",
+        "size": 9204,
+        "sha256": "015887679404738d0bbe02ee20c891d79d28284ef29d4f180cfec46510e8e061"
+      },
+      "build.py": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "scripts/build.py",
+        "git_blob_sha": "d0b6b6b1f341ec76bca446680baf2a0a91fc26f8",
+        "size": 14115,
+        "sha256": "09f8d0c5fbb8e0ebbff4177c70891e955aa2cf5a021bfe7134d033b9ef5d13a3"
+      },
+      "repoints": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "repoints",
+        "git_blob_sha": "e56ff804cca49e38aa7d18466dceb54e776cc662",
+        "size": 7547,
+        "sha256": "b387e4239d00a59698407b1837b5573504bcb172fb41cae6afb7265c1008a12d"
+      },
+      "grass_footstep_flags.txt": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "audio/sounds/grass_footstep_flags.txt",
+        "git_blob_sha": "f664b9b8d8573ecc0b5fc06ef2e5c077246a173d",
+        "size": 19,
+        "sha256": "96cdc31227b12d479325e14396db433002879dc4092831b4df4f84dad68a54e6"
+      },
+      "sand_footstep_flags.txt": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "audio/sounds/sand_footstep_flags.txt",
+        "git_blob_sha": "f664b9b8d8573ecc0b5fc06ef2e5c077246a173d",
+        "size": 19,
+        "sha256": "96cdc31227b12d479325e14396db433002879dc4092831b4df4f84dad68a54e6"
+      },
+      "Wav_grass_footstep_sample.wav": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "audio/sounds/Wav_grass_footstep_sample.wav",
+        "git_blob_sha": "a6ed5a7ca8facd5c1eb2525768ab54a48d70314a",
+        "size": 4426,
+        "sha256": "592ad886eed8bc775a8c92d788f6526c1206867606f3020e9f3dbcc99d2094f9"
+      },
+      "Wav_sand_footstep_sample.wav": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "audio/sounds/Wav_sand_footstep_sample.wav",
+        "git_blob_sha": "1ad298c9004adcb2930b3d2c48bf1229944939df",
+        "size": 1646,
+        "sha256": "823459576d6daa49b30d5f9f71247a8a1b812240edaf83ed100bdaf4f920b504"
+      },
+      "grass_footstep.mid": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "audio/sounds/grass_footstep.mid",
+        "git_blob_sha": "1b49999ad432037899b61250d1ef6ab846b47471",
+        "size": 121,
+        "sha256": "bcf1db9ae867f511cf0471d2ff7f1669cbeaf9af5a560b5005a94855dfa8e983"
+      },
+      "sand_footstep.mid": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "audio/sounds/sand_footstep.mid",
+        "git_blob_sha": "17b9334f179004f5f66075a4a856d4696d1e0c8e",
+        "size": 61,
+        "sha256": "24fd4dcb5044ced9d4d3ef2382413a2c414ea99004b133b1187d5c4ca761c46e"
+      },
+      "pret-sound.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/sound.c",
+        "git_blob_sha": "9060aa513d2946d5a59c34f24658da96e0ab6a8e",
+        "size": 15232,
+        "sha256": "851313931ebdbf2f0933b52295707f82e948735813fac84fdba74c0446ada958"
+      },
+      "pret-hall_of_fame.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/hall_of_fame.c",
+        "git_blob_sha": "05c7d75384c2ad8481b6819f71faaf089f683bbf",
+        "size": 36837,
+        "sha256": "00dd00b63f3edf8e0ee617a09936d1a51306cc9dc33e6021da8f1042af5dd4ab"
+      },
+      "pret-battle_anim.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/battle_anim.c",
+        "git_blob_sha": "30f9a7ad2482d1767f5c70ee30a3c85528605bb3",
+        "size": 46944,
+        "sha256": "5883d9ee0483120ef67461952f5880499f322fb1c706cc213ca13c0c2b0e88c5"
+      },
+      "pret-battle_anim_script.inc": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "asm/macros/battle_anim_script.inc",
+        "git_blob_sha": "15c48c39f5860efe132e782c22a6cedb0f8d5ac3",
+        "size": 4279,
+        "sha256": "cb193c567289983c26ed8acaa8dd64501c64c7e088e28995c49439333b52b27c"
+      },
+      "cfru-battle_anims.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/battle_anims.c",
+        "git_blob_sha": "096a8763a4260052566ed029f841bc68e561d269",
+        "size": 192535,
+        "sha256": "4893fda793e75356672e8b1be3bca4bd54fe562774fd8b07ed9f8f9ba501aff3"
+      },
+      "cfru-hooks.txt": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "hooks",
+        "git_blob_sha": "51a0f10dd4cccad235b476edd534a0e3e7e612ad",
+        "size": 21787,
+        "sha256": "19c730e12bcc8ee614b43745a1a6478429c1876a025fdce23b80a49599d8deb5"
+      },
+      "cfru-moves.h": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "include/constants/moves.h",
+        "git_blob_sha": "444712bfec68c13fabffd3e167d380b6c23770ba",
+        "size": 30601,
+        "sha256": "bc2ae17e444625fa2e1727d42c50a24f6758da26e44229a6f12a3afa3a275d79"
+      },
+      "pret-overworld.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/overworld.c",
+        "git_blob_sha": "339014da46ae8543143edc99ab72bf7496203a0d",
+        "size": 103643,
+        "sha256": "df352e738b56856765aec65adc6fdea0a4b25fe567bc760d4ce2d34afc6ff7e2"
+      },
+      "cfru-trainer-battle.h": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "include/battle.h",
+        "git_blob_sha": "7add3e78535b105d9d08d3d601da4e1d784f526a",
+        "size": 52228,
+        "sha256": "8c6b332ef73bc545297b4f6c5bedc1ad11fa4470901f39cf386c1be53f4abdc9"
+      },
+      "pret-task.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/task.c",
+        "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944",
+        "size": 5029,
+        "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b"
+      },
+      "pret-sprite.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/sprite.c",
+        "git_blob_sha": "d0198d53004775c8664dcccf57833e178833776e",
+        "size": 48783,
+        "sha256": "2a804302eb5a89d31c3ec2f33dc645a80a0c645113d4b33b9bd571064c0286ae"
+      },
+      "pret-battle_anim_mons.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/battle_anim_mons.c",
+        "git_blob_sha": "87e71d0ad627009e68574cbe1a7ec5008dd6d098",
+        "size": 70676,
+        "sha256": "fcb002acc48b8cd6b8cf8b7eddcb3034d721ff5887eb6bdeedfe183b7b3908bb"
+      },
+      "pret-battle_anim_utility_funcs.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/battle_anim_utility_funcs.c",
+        "git_blob_sha": "896c6411ac00b7c0cb8cd447813624b6ea70de00",
+        "size": 34923,
+        "sha256": "8dbf0d05319980658ac1f698b1fed5a9dba02d1bda5aba487fec42d9ae16d297"
+      },
+      "gaps-pret-event.inc": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "asm/macros/event.inc",
+        "git_blob_sha": "142ad979d7d3093244087a247fa2b4883424f77f",
+        "size": 56947,
+        "sha256": "848e5e791adeddbe7ae7fe2717729af666a8d8aa163ab7781c74bfd49ce58671"
+      },
+      "gaps-pret-scrcmd.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/scrcmd.c",
+        "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814",
+        "size": 56954,
+        "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553"
+      },
+      "gaps-pret-text.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/text.c",
+        "git_blob_sha": "f3eef07ce6dea8269980a5ecfdd6902c1c9c13d2",
+        "size": 63210,
+        "sha256": "5696f49443eeaaac74b530421ac7f0cbfc71996c557399583788111c322dd80c"
+      },
+      "gaps-pret-std_msgbox.inc": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "data/scripts/std_msgbox.inc",
+        "git_blob_sha": "18ad553c85b66975e0c05763c6145082c8c13dde",
+        "size": 1040,
+        "sha256": "090541cfc3a47272ea8203f0f6c18f19f8062d407388a23fcf103e93b196b431"
+      },
+      "gaps-pret-characters.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "include/characters.h",
+        "git_blob_sha": "d00ecf0a3afcd9fc1fa9534c00f4b74793d5f06f",
+        "size": 12798,
+        "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98"
+      },
+      "gaps-pret-global.fieldmap.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "include/global.fieldmap.h",
+        "git_blob_sha": "e2828ec0cb1439718e830fbef4366770b3b77b1c",
+        "size": 12127,
+        "sha256": "34a8c91e10803ba48b97a2df8a721ca37fad7572b2ff951a4ab7ec15a5f050eb"
+      },
+      "gaps-pret-fieldmap.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/fieldmap.c",
+        "git_blob_sha": "41567772299000ba5855419e5c39ad9373a34c20",
+        "size": 28166,
+        "sha256": "bbe15c7af1059a9f796dddaca28bdaaf206b715895029e189fa6ae012272ce68"
+      },
+      "gaps-pret-sprite.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "include/sprite.h",
+        "git_blob_sha": "6a1b272119ce6e3a8dcf45adf2eef8923a6d5175",
+        "size": 9368,
+        "sha256": "a77aa1c837dfb58cf60b3eac299c7cc29a23ce27735ba710b9e8eeed102bf773"
+      },
+      "gaps-pret-event_objects.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "include/constants/event_objects.h",
+        "git_blob_sha": "9d8c514f9e2d634d40d215bf657f33041c55c28e",
+        "size": 7965,
+        "sha256": "5f552a754182788f21ee00fe9460d5dbc73303239cc06743fbed96c93b6e6947"
+      },
+      "gaps-pret-object_event_pic_tables.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/data/object_events/object_event_pic_tables.h",
+        "git_blob_sha": "70889d7a2064653d96d257aad804ebcbfdb26d68",
+        "size": 82763,
+        "sha256": "7210ac3a847600c1e2778d6dcd5896e641e3b19f1d203841c4911bfe50769995"
+      },
+      "gaps-pret-object_event_graphics_info.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/data/object_events/object_event_graphics_info.h",
+        "git_blob_sha": "78ee95a47bddc92fcb098ccaeaa039a92fe3ec47",
+        "size": 97115,
+        "sha256": "fc19a22d4471e83653e80257145f08c3b6d0b59868974399541a8bc3119ef512"
+      },
+      "gaps-pret-object_event_graphics_info_pointers.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/data/object_events/object_event_graphics_info_pointers.h",
+        "git_blob_sha": "af2f8afb6db8ed75bcc849922c911d858b92999a",
+        "size": 23651,
+        "sha256": "a5e006f4855f19bf42c27e78f5c1866fdecccb687d228fbe608376f09ee7547c"
+      },
+      "gaps-pret-event_object_movement.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/event_object_movement.c",
+        "git_blob_sha": "8e82824d376d566dbff5ac863f1013d10ad5ec8b",
+        "size": 326145,
+        "sha256": "920f96b45569e702dd00997e7984effb3a7677ba2b68512b939eda69c2294254"
+      },
+      "gaps-pret-sprite.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/sprite.c",
+        "git_blob_sha": "d0198d53004775c8664dcccf57833e178833776e",
+        "size": 48783,
+        "sha256": "2a804302eb5a89d31c3ec2f33dc645a80a0c645113d4b33b9bd571064c0286ae"
+      }
+    }
+  },
+  "proof_identity": {
+    "size": 38780,
+    "sha256": "9f81971add02dc0572f9ad3fdb57cbd95ee31c9f3fd4a7ecefe7fd7053c794e2"
+  },
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0
+}

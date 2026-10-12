@@ -1,0 +1,57 @@
+name: PR16 Wiki audit inputs
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-wiki-audit-inputs.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wiki残件のtracked textだけを取得（ROM・native・buildなし）
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import hashlib, json, os, pathlib, subprocess, zipfile
+          patterns = [
+              'AGENTS.md', 'CHATGPT_RESUME.md', 'Makefile', 'state/source-lock.json',
+              'scripts/*.py', 'tests/test_pr16*wiki*.py',
+              'content/modernization/*.json', 'content/collection_supply_v1/canonical_model.json',
+              'config/modernization*.json', 'config/active_play_baseline.json',
+              'manifests/*.csv', 'vendor/vega_acquisition/content/*.csv',
+              'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
+              'docs/wiki/p08-candidate-46487d98/*.md',
+              'docs/wiki/p08-candidate-46487d98/data/*.json',
+              'docs/wiki/p08-candidate-46487d98/data/*.jsonl',
+              '.github/workflows/pr16-candidate-wiki.yml',
+          ]
+          names = subprocess.check_output(['git', 'ls-files', '-z', '--', *patterns]).decode().split('\0')
+          out = pathlib.Path('.local/pr16-wiki-audit-inputs'); out.mkdir(parents=True)
+          manifest = {'head': os.environ['GITHUB_SHA'], 'rom_changes': 0, 'native_runs': 0, 'files': {}}
+          with zipfile.ZipFile(out/'sources.zip', 'w', compression=zipfile.ZIP_DEFLATED) as archive:
+              for name in sorted(set(filter(None, names))):
+                  p = pathlib.Path(name)
+                  if p.suffix not in {'.py', '.json', '.jsonl', '.csv', '.md', '.yml'} and name != 'Makefile':
+                      continue
+                  if p.is_symlink() or not p.is_file():
+                      raise ValueError('not regular tracked text: '+name)
+                  raw = p.read_bytes(); raw.decode('utf-8-sig')
+                  if b'\0' in raw: raise ValueError('NUL: '+name)
+                  manifest['files'][name] = {'size': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()}
+                  info = zipfile.ZipInfo(name, date_time=(2020,1,1,0,0,0)); info.compress_type = zipfile.ZIP_DEFLATED
+                  archive.writestr(info, raw)
+              archive.writestr('AUDIT_SOURCE_MANIFEST.json', json.dumps(manifest, ensure_ascii=False, sort_keys=True, indent=2)+'\n')
+          print(json.dumps({'head':manifest['head'], 'tracked_text_files':len(manifest['files']), 'bytes':sum(x['size'] for x in manifest['files'].values()), 'rom_changes':0, 'native_runs':0}))
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-wiki-audit-inputs
+          path: .local/pr16-wiki-audit-inputs/sources.zip
+          retention-days: 3
+          if-no-files-found: error

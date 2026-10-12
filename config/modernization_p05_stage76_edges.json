@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P05-STAGE76-EDGES",
+  "stage": 76,
+  "status": "STAGE75_IDENTITY_PINNED",
+  "parent_identity": {
+    "stage75_commit": "595909446b6ad67749c9894b23fdc536f82c638e",
+    "rom": {"path": "build/stages/75_modernization_rockruff_own_tempo.gba", "size": 33554432, "sha256": "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3"},
+    "metadata": {"path": "build/stages/75_modernization_rockruff_own_tempo.json", "size": 151435, "sha256": "be84b5a54c7ea8de23d4245402a427cc0dd444949363b8b6ca3e206b5ecd93f4"},
+    "allocation": {"path": "build/stages/75_modernization_rockruff_own_tempo_allocation.json", "size": 45230, "sha256": "90a68321eebbebde765077eca81643f176d91152f331be77360cb8c52e188f09"},
+    "checkpoint": {"path": "content/modernization/rockruff_own_tempo_stage75_checkpoint.json", "size": 4874, "sha256": "c4f6d822950cd27fa65134d3806c2cbed3409b6de4b2358a8f12924524d65705"},
+    "tracked_config": {"path": "config/modernization_rockruff_own_tempo_stage75.json", "size": 8066, "sha256": "2accef3c5cb3e45e3b032035acfbc727b2785deafd652a45f56ca0db3ebbf121"},
+    "policy": "FAIL_CLOSED_EXACT_STAGE75_IMPLEMENTATION_COMMIT_AND_FIVE_IDENTITIES"
+  },
+  "source_pins": {
+    "fixed_cfru_jp_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "pokeemerald_expansion_commit": "cafe0221cefb2a991cc0ece429174ade877d037d",
+    "stage72_symbols": {"path": "generated/runtime/modernization_p05_ability_rom_runtime_symbols.json", "sha256": "9204f33ab9b6109d94ee7a19f1b6d96f5ab872d576b034bdb46c40b6547af029"},
+    "rom_regions": {"path": "config/rom_regions.csv", "sha256": "f5dcb0ecf2f726bfff1e9c8382204e79b1354ee9071f8d9ac00a83de7a9b3553"},
+    "move_manifest": {"path": "manifests/move_ids.csv", "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20"},
+    "p05_host_header": {"path": "overlays/modernization_p05_abilities/modernization_p05_abilities.h", "sha256": "4fceaed3e9000111ab3ab66b82559ca2198a167eec904f51bb0a5eeffe1c552b"},
+    "p05_host_source": {"path": "overlays/modernization_p05_abilities/modernization_p05_abilities.c", "sha256": "7448cf6cc3b0bcca94f13b94cc3fb754d667882d38e45c90e6e2f6dc1b3df27e"},
+    "fixed_cfru_ai_util": {"path": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_util.c", "sha256": "3479dda29bf49c548ba590fb1a8fe501176ab17a934e88d2b04cd7112c2eea61"},
+    "fixed_cfru_ai_scripts": {"path": "vendor/upstream/CFRU-JP/include/new/ai_scripts.h", "sha256": "6b406abd337bf653478c4bc4b8efcf72eef8eeb74d020ea2255caa4f7ba32e1b"},
+    "fixed_cfru_ai_partner": {"path": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_partner.c", "size": 17749, "sha256": "f813c3ae78d190db5ef43d46f143801cba6cc6bb0a894c91dc0336f27ae7e8a5"},
+    "fixed_cfru_dynamax": {"path": "vendor/upstream/CFRU-JP/src/dynamax.c", "size": 66919, "sha256": "ef0eb85047ec0a7d74b5df38bce8481367828508e2104aa7615de62ddecc2c0a"},
+    "fixed_cfru_battle_move_effects": {"path": "vendor/upstream/CFRU-JP/include/constants/battle_move_effects.h", "size": 8736, "sha256": "17422df2ad75185493d11325f94f833a656265c7a9d23091260bb3677763b036"},
+    "fixed_cfru_battle_util": {"path": "vendor/upstream/CFRU-JP/src/battle_util.c", "sha256": "558c9a85d067e984c96bf83fb0c652a58df3b0b5fbf63620e4ea694195458ed3"},
+    "active_play_baseline_json": {"path": "config/active_play_baseline.json", "size": 394, "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"},
+    "active_play_baseline_md": {"path": "design/active_play_baseline.md", "size": 5551, "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8"}
+  },
+  "edges": {
+    "mega_sol_solar_charge_popup": "IMPLEMENT",
+    "piercing_drill_ai_virtual_protect_quarter": "IMPLEMENT",
+    "spicy_spray_friendly_fire_ai_score": "IMPLEMENT",
+    "eelevate_dedicated_switch": "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT"
+  },
+  "parent_abi": {
+    "fixed_functions": {
+      "IsZMove": "0x090D6684",
+      "IsAnyMaxMove": "0x090F1CF4",
+      "IsValidMovePrediction": "0x090B0AFC",
+      "AI_SpecialTypeCalc": "0x090E6278",
+      "DoesProtectionMoveBlockMove": "0x090BC4C0",
+      "MoveWouldHitFirst": "0x090AFF88",
+      "IsAbilitySuppressed": "0x090D7BB0",
+      "TryReplaceMoveWithZMove": "0x090B2E88",
+      "GetAIChosenMove": "0x090B042C",
+      "GetAIAbility": "0x090B09C4",
+      "IsTargetAbilityIgnored": "0x090BBB78",
+      "IsDynamaxed": "0x090F1894",
+      "Stage72_OriginalDoesProtectionMoveBlockMove": "0x095341B5"
+    },
+    "fixed_layout": {
+      "gBattleStruct_pointer": "0x02023F48",
+      "BattleStruct_monToSwitchIntoId_offset": "0x5C",
+      "BattleStruct_moveTarget_offset": "0x0C",
+      "gChosenMovesByBanks": "0x02023D24",
+      "AIScript_atkPartnerAbility_offset": "0x40",
+      "AIScript_foe1_offset": "0x44",
+      "AIScript_partnerMove_offset": "0x46",
+      "DamageCalc_atkAbility_offset": "0x10",
+      "party_size_sentinel": 6
+    },
+    "fixed_function_preimages": [
+      {"name": "DoesProtectionMoveBlockMove", "address": "0x090BC4C0", "width": 16, "parent_hex": "9c46014b1847c046194153091e006300"},
+      {"name": "MoveWouldHitFirst", "address": "0x090AFF88", "width": 16, "parent_hex": "f0b50d00c646060014001f0002000021"},
+      {"name": "IsAbilitySuppressed", "address": "0x090D7BB0", "width": 16, "parent_hex": "074b8000c35801201b0107d4054b1b68"},
+      {"name": "TryReplaceMoveWithZMove", "address": "0x090B2E88", "width": 16, "parent_hex": "f8b5050010000e0014003ef02fff0028"},
+      {"name": "GetAIChosenMove", "address": "0x090B042C", "width": 16, "parent_hex": "1b4b420070b5d55a1a4e04003368002d"},
+      {"name": "GetAIAbility", "address": "0x090B09C4", "width": 16, "parent_hex": "70b504000d00fff77dff002805d05822"},
+      {"name": "IsTargetAbilityIgnored", "address": "0x090BBB78", "width": 16, "parent_hex": "0b00a43b1b0470b51b0c05000c001600"},
+      {"name": "IsDynamaxed", "address": "0x090F1894", "width": 16, "parent_hex": "054b064a1b6894461b18002063441856"}
+    ],
+    "pointer_patches": [
+      {"name": "SolarBeamEffectScript", "address": "0x0903FCA4", "width": 4, "target": "Stage76_BattleScriptSolarBeam", "parent_hex": "c1500009"}
+    ],
+    "hooks": [
+      {"name": "AI_CalcDmg", "address": "0x090E9E64", "width": 12, "target": "Stage76_EntryAICalcDmg", "parent_hex": "f0b5de464e4645465746e0b5", "continuation_thumb": "0x090E9E71"},
+      {"name": "AIScript_Partner", "address": "0x090A95E4", "width": 12, "target": "Stage76_EntryAIScriptPartner", "parent_hex": "f0b5de4657464e464546e0b5", "continuation_thumb": "0x090A95F1"},
+      {"name": "RangeMoveCanHurtPartner", "address": "0x090B0048", "width": 8, "target": "Stage76_EntryRangeMoveCanHurtPartner", "parent_hex": "70b5140058226243", "continuation_thumb": "0x090B0051"}
+    ],
+    "negative_preservation_sites": [
+      {"name": "FindMonAbsorberActiveAbilityBlock", "address": "0x090A03E4", "width": 16, "parent_hex": "95235b009b463100280010f0bffa5b46", "reason": "Eelevate mapping cannot safely preserve Thousand Arrows, grounding, Mold Breaker, and Ability Shield semantics at this callsite"},
+      {"name": "FindMonAbsorberPartyAbilityBlock", "address": "0x090A0426", "width": 12, "parent_hex": "3000984639f007ffe38e0700", "reason": "party callsite lacks the complete runtime context required for a sound Eelevate absorption decision"}
+    ]
+  },
+  "edge_contract": {
+    "mega_sol": {
+      "production_pointer_only": true,
+      "generic_attacks_this_turn_side_effect": false,
+      "popup_only_when_personal_sun_changes_charge_result": true,
+      "second_turn_routes_to_original_script": true
+    },
+    "piercing_drill": {
+      "ability_source": "DamageCalc.atkAbility when provided; otherwise effective active ability",
+      "prediction_source": "IsValidMovePrediction(defender, attacker)",
+      "requires_original_protection_block": true,
+      "requires_contact_single_target": true,
+      "real_protect_damage_not_double_quartered": true,
+      "individual_protect_moves_include_detect_197": true,
+      "detect_197_normalized_to_protect_182_for_original_gate": true,
+      "chosen_move_resolved_via_get_ai_chosen_move": true,
+      "rejects_unselected_prediction_while_defender_dynamaxed": true,
+      "predicted_damage_fraction": "1/4_minimum_1"
+    },
+    "spicy_spray": {
+      "direct_partner_score_bonus": 3,
+      "direct_target_ranges": ["SELECTED", "USER_OR_PARTNER"],
+      "excluded_direct_target_ranges": ["RANDOM", "DEPENDS", "USER", "BOTH", "ALL", "OPPONENTS_FIELD"],
+      "spread_partner_penalty_removed": 3,
+      "direct_and_spread_adjustments_are_exclusive": true,
+      "requires_partner_staying_in": true,
+      "direct_partner_move_source": "AIScript.partnerMove+0x46",
+      "spread_partner_move_source": "GetAIChosenMove(partner, gBattleStruct->moveTarget[partner])",
+      "direct_move_source": "TryReplaceMoveWithZMove(attacker, partner, originalMove)",
+      "direct_attacker_ability_source": "GetAIAbility(attacker, AIScript.foe1, resolvedMove)",
+      "spread_attacker_ability_source": "GetAIAbility(attacker, attacker XOR 1 opposing bank, resolvedMove)",
+      "burn_benefit_ability_source": "effective GetAIAbility result for resolved move",
+      "rejects_planned_protection_or_earlier_semi_invulnerable_move": true,
+      "planned_detect_197_normalized_to_protect_182_for_protection_gate": true,
+      "resolved_max_guard_891_is_not_hit": true,
+      "direct_heal_target_effect_233_is_not_damage": true,
+      "direct_present_effect_122_is_not_guaranteed_damage": true,
+      "direct_future_sight_effect_148_is_not_instant_damage": true,
+      "direct_effect_policy": "instant damaging only; excludes Present, Future Sight, and Heal Target effects",
+      "requires_effective_unsuppressed_partner_ability": true,
+      "rejects_target_ability_ignore_unless_partner_holds_ability_shield": true,
+      "requires_actual_damaging_move": true,
+      "rejects_substitute_block": true,
+      "rejects_partner_ko": true,
+      "rejects_self_sacrifice_and_half_hp_recoil": true,
+      "rejects_flame_orb_and_burn_healing_items": true,
+      "benefit": "Marvel Scale or Quick Feet; Guts with physical move; Flare Boost with special move; or Facade"
+    },
+    "eelevate": {
+      "status": "PENDING",
+      "reason": "ability-only 313->298 mapping is unsound when Ground damage, Thousand Arrows, grounding, Gravity, Mold Breaker, and Ability Shield conditions differ",
+      "preserved_parent_sites": ["0x090A03E4", "0x090A0426"],
+      "release_blocker": true
+    }
+  },
+  "allocation": {
+    "name": "modernization_p05_stage76_edges_payload",
+    "region": "integration_modules",
+    "alignment": 16,
+    "owner": "USER-MODERNIZATION-P05-STAGE76-EDGES",
+    "purpose": "Mega Sol production Solar Beam popup plus Piercing Drill and Spicy Spray AI edge adapters"
+  },
+  "outputs": {
+    "rom": "build/stages/76_modernization_p05_edges.gba",
+    "metadata": "build/stages/76_modernization_p05_edges.json",
+    "allocation": "build/stages/76_modernization_p05_edges_allocation.json",
+    "incremental_bps": "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
+    "payload": "generated/runtime/modernization_p05_stage76_edges.bin",
+    "symbols": "generated/runtime/modernization_p05_stage76_edges_symbols.json",
+    "audit": "generated/runtime/modernization_p05_stage76_edges_audit.json",
+    "contract": "content/modernization/p05_stage76_edges_contract.json",
+    "checkpoint": "content/modernization/p05_stage76_edges_checkpoint.json"
+  }
+}

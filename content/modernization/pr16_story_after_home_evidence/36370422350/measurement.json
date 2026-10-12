@@ -1,0 +1,176 @@
+{
+  "accepted_case_reruns": 0,
+  "arm_compiles": 0,
+  "development_focused_test_executions": 106,
+  "development_native_processes": 2,
+  "focused_tests": 53,
+  "host_compiles": 0,
+  "new_guard_processes": 0,
+  "new_native_processes": 2,
+  "result": {
+    "active_baseline_changed": false,
+    "candidate": {
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "size": 33554432
+    },
+    "continued": {
+      "battle_flags": 0,
+      "battle_outcome": 0,
+      "callback2": 134569589,
+      "facing": 2,
+      "field": true,
+      "flash_sha256": "9e2d05c9b0ef1aa59b6b48401d3d25793b5e5f2aad244365a3a991fa97745fa9",
+      "frame": 2852,
+      "ledger_sha256": "443243516ef981215fe6230a41254e5d7d2db8e71f29d3413aa9e1e028ac218a",
+      "live_xy": [
+        15,
+        12
+      ],
+      "lock": 0,
+      "map": [
+        4,
+        0
+      ],
+      "observe": 8,
+      "party_count": 1,
+      "party_sha256": "e2f52f3035f57334def4f412aa8c8c757a1b63fc3e7d52bbfe2ee34f28b1eaa8",
+      "rp": 0,
+      "save_counter": 7,
+      "xy": [
+        8,
+        5
+      ]
+    },
+    "experience": 270,
+    "first_save": {
+      "battle_flags": 12,
+      "battle_outcome": 2,
+      "callback2": 134569589,
+      "facing": 2,
+      "field": false,
+      "flash_sha256": "9e2d05c9b0ef1aa59b6b48401d3d25793b5e5f2aad244365a3a991fa97745fa9",
+      "frame": 28012,
+      "ledger_sha256": "e96e9925138cec5100e413b3d053eccbd44f208778075f2f6fa252f40aa79997",
+      "live_xy": [
+        15,
+        12
+      ],
+      "lock": 0,
+      "map": [
+        4,
+        0
+      ],
+      "observe": 100,
+      "party_count": 1,
+      "party_sha256": "e2f52f3035f57334def4f412aa8c8c757a1b63fc3e7d52bbfe2ee34f28b1eaa8",
+      "rp": 0,
+      "save_counter": 7,
+      "xy": [
+        8,
+        5
+      ]
+    },
+    "fixture_calls": 0,
+    "full_story_accepted": false,
+    "hp": [
+      23,
+      23
+    ],
+    "independent_ui_pairs": 4,
+    "input_save": {
+      "sha256": "0de597b9e95fd33d62de19610a166ed6dd650a5ba6a4309770083cefe9560773",
+      "size": 131088
+    },
+    "legacy_field_telemetry_preserved": true,
+    "level": 7,
+    "manual_save_keys_only": true,
+    "moves_pp": [
+      35,
+      30,
+      25
+    ],
+    "native_guarded_host_writes": 0,
+    "natural_research_arrival_accepted": false,
+    "new_native_processes": 2,
+    "opponents_defeated": 1,
+    "ordinary_saves": 1,
+    "output_save": {
+      "sha256": "226865775c9a9eae143eaeac65354170e9d8868469cbd528af852ce05412c8a3",
+      "size": 131088
+    },
+    "release_ready": false,
+    "save_counter": 7,
+    "screen_count": 110,
+    "status": "PASS_STORY_AFTER_HOME_LOSS_SAVE_SCOPED",
+    "trainer_losses": 1,
+    "trainer_victories": 0,
+    "wild_escapes": 1
+  },
+  "reused_runner_barriers": 7,
+  "rom_changes": 0,
+  "run_id": 36370422350,
+  "save_byte_proof": {
+    "after_party_offset": 90168,
+    "all_save_rtc_preserved_after_continue": true,
+    "before_party_offset": 28728,
+    "experience_after": 270,
+    "experience_before": 245,
+    "hp": [
+      23,
+      23
+    ],
+    "level": 7,
+    "moves_pp": [
+      35,
+      30,
+      25
+    ],
+    "other_party_bytes_preserved": 597,
+    "party_changed_bytes": [
+      {
+        "after": 14,
+        "before": 245,
+        "offset": 36
+      },
+      {
+        "after": 1,
+        "before": 0,
+        "offset": 37
+      },
+      {
+        "after": 86,
+        "before": 85,
+        "offset": 41
+      }
+    ],
+    "saved_minutes_after": 39,
+    "saved_minutes_before": 32
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-story-after-home.yml": {
+      "sha256": "2b53696b4f9692580e37aa88332e803e3f0fd20a3deb276a4c4e710d30cdef9a",
+      "size": 2473
+    },
+    "content/modernization/pr16_story_after_home_development/commands.txt": {
+      "sha256": "4fa2db3ee24d2f93596ac5a8884f2ce5721fee211af82eebe515538a8ac26947",
+      "size": 3529
+    },
+    "content/modernization/pr16_story_after_home_development/continue-commands.txt": {
+      "sha256": "7e0b801addf81efac500dc02ead4709547e59a15dc7fa61361cbc5160df9e98e",
+      "size": 283
+    },
+    "scripts/pr16_story_after_home.py": {
+      "sha256": "653e1409a1dd479436da9fb1f23cb97b6624f4e884fb52cf910c425e65a88b1e",
+      "size": 16755
+    },
+    "scripts/pr16_story_after_home_actions.py": {
+      "sha256": "997f8f18544e1269d96b893cdf8bb132b16907d37bf6336d2e61291e83f211d3",
+      "size": 20822
+    },
+    "tests/test_pr16_story_after_home.py": {
+      "sha256": "03b1c10d7b48859e2723bb0cd0c7dc054ec342f83009ab3c95574fa5a8b4f9bf",
+      "size": 6848
+    }
+  },
+  "source_head": "5b378dcae45d7f92307d27ea07ab7041ebce25f5"
+}

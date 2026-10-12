@@ -1,0 +1,29 @@
+{
+  "status": "PENDING_POST_LETTER_CONSUMER_INSPECTION_NO_NATIVE_ROUTE",
+  "map": [
+    3,
+    2
+  ],
+  "start": [
+    15,
+    20
+  ],
+  "facing": 1,
+  "paper_item": 274,
+  "paper_quantity": 1,
+  "paper_flag": 4383,
+  "mansion_exit_observed": true,
+  "arrival_xy_native_accepted": true,
+  "native_route_accepted": false,
+  "paper_consumed_or_delivered": false,
+  "new_rom_reads": 0,
+  "new_terrain_cells": 0,
+  "new_map_views": 0,
+  "route": null,
+  "next_action_ja": "保存済script graph/tableからitem274/flag4383のcheck/remove/clearと後続story4071=9/4072=1の入口を限定照合し、未読consumerだけ同一候補ROMで読む。受取人/町出口を推測せず、正規次イベントのownerと歩行経路を固定してからSave75以降の最初の新境界へ。旧館経路を再走しない。",
+  "read_paths": [
+    "content/modernization/pr16_story_save56_preparation.json",
+    "content/modernization/pr16_story_save57_preparation.json"
+  ],
+  "stop_at_first_new_battle_event_or_exit": true
+}

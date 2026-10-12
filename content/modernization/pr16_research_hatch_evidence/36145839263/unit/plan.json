@@ -1,0 +1,70 @@
+{
+  "inherited": [
+    "research-egg-1201",
+    "research-egg-1204",
+    "research-egg-1206",
+    "research-egg-1208",
+    "research-egg-1210"
+  ],
+  "input_checkpoint": {
+    "sha256": "e0704d6f547cb46e69607523b1d78d0477389b262956639e85bfeb056c8bd3d0",
+    "size": 142067
+  },
+  "native_processes": 0,
+  "new_unit_tests": 23,
+  "old_unit_tests": 0,
+  "recovery_terminal": {
+    "artifact": {
+      "digest": "sha256:bd10431d44eb01f7f0111166c06e4974de51242c083e47b94ed5a2b32b86bc71",
+      "id": 10868912683,
+      "name": "pr16-research-hatch-recovery-proof",
+      "size_in_bytes": 14118
+    },
+    "conclusion": "success",
+    "reflected_head": "a4e6f31b3dbca377f47669eebbfcf764cdc978bc",
+    "run_id": 36144612816,
+    "source_head": "7356849af80057c4fe6dd05db73ea21df7d4fd40"
+  },
+  "run_id": 36145839263,
+  "source_bindings": {
+    ".github/workflows/pr16-research-hatch-20260925.yml": {
+      "sha256": "8389d93ad1b5e31cfa29da7da043bb3b035e2ec723843340eb935e55959b2f4b",
+      "size": 5321
+    },
+    "scripts/pr16_research_hatch_matrix.py": {
+      "sha256": "1c5b61a31e649948c25ac580a73afe29fab0ab067c236d8973a0f44b4e9a248c",
+      "size": 17077
+    },
+    "scripts/pr16_research_hatch_proof.py": {
+      "sha256": "c5e104a3889c32d42095cb3392b9b96dd2f4b28f4b90e3c0c9fb4708453b2cf5",
+      "size": 3390
+    },
+    "tests/test_pr16_research_hatch_matrix.py": {
+      "sha256": "17f0423f0ed72ddd5fbeea4e58c1f335d4f3c9f403a5c53e23c00867888f86fd",
+      "size": 4859
+    }
+  },
+  "source_head": "258a0afc2be9c3428e2a0671bb151551e5c96fe2",
+  "todo": [
+    "research-egg-1212",
+    "research-egg-1215",
+    "research-egg-1394",
+    "research-egg-1396",
+    "research-egg-1407",
+    "research-egg-1410",
+    "research-egg-1414",
+    "research-egg-1415",
+    "research-egg-1417",
+    "research-egg-1425"
+  ],
+  "unit_bindings": {
+    "matrix-unit.stderr.txt": {
+      "sha256": "e7fc1fcac7f0409591ad30d9f4f38109f0d2791ffa82e97415a8920d6b22ae1a",
+      "size": 2632
+    },
+    "matrix-unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    }
+  }
+}

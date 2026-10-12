@@ -1,0 +1,624 @@
+{
+  "schema_version": 1,
+  "status": "PASS_726_PARENT_BOUND_SPACE_REFERENCE_CHAIN",
+  "baseline": {
+    "path": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent": {
+    "path": "content/modernization/pr16_dex_hof_consumer_references_evidence/reference-chain.json",
+    "size": 28406,
+    "sha256": "20a394e6ce825113bbfd833989c18528a44f665f79eaf1c91f1ab6899a796dc7"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 726,
+  "inherited_unclassified": 148,
+  "changes": [
+    {
+      "address": 135216191,
+      "target": 167696886,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "2feb7114ccabe4a88c813a7d405f5eb4d1adc02fe704e32803a073c7adbae954",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_THUMB_INSTRUCTION_STREAM",
+      "accepted": true,
+      "witness_ids": [
+        0
+      ]
+    },
+    {
+      "address": 146857777,
+      "target": 167697920,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "25786b9ec7b89108831b8473a9168346f04d211b87e22272eec5e6d8284e045b",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_BATTLE_ANIMATION_LZ77",
+      "accepted": true,
+      "witness_ids": [
+        1
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": 0,
+      "address": 135216190,
+      "size": 6,
+      "kind": "rooted_thumb_instruction_stream",
+      "evidence": {
+        "root": {
+          "kind": "special_function",
+          "entry": 135051072,
+          "opcode": 37,
+          "special_id": 263,
+          "slot": {
+            "address": 135672964,
+            "size": 4,
+            "sha256": "fb1a6540d02d3680339107792ec58168cd5c18120c0a8b78c25bcd6e251110c3",
+            "value": 135051073
+          }
+        },
+        "instruction_window": {
+          "address": 135216190,
+          "size": 6,
+          "sha256": "61dbf49dc12287cffb191e194bc1a8d719a58640481f6f9ef19b99f2952518df"
+        },
+        "instructions": [
+          {
+            "address": 135216190,
+            "size": 4
+          },
+          {
+            "address": 135216194,
+            "size": 2
+          }
+        ],
+        "root_verified": true,
+        "literal_pool_included": false,
+        "path_instructions": 200,
+        "typed_indirect_edges": 5,
+        "full_story_reachability_claimed": false,
+        "full_hof_pc_lifetime_claimed": false
+      },
+      "evidence_identity": {
+        "size": 600,
+        "sha256": "565885e8afa71d665baa98dca1a80b6ee6acf1c8e962b009ed609379196cef3e"
+      }
+    },
+    {
+      "id": 1,
+      "address": 146857368,
+      "size": 1721,
+      "kind": "rooted_battle_animation_lz77",
+      "evidence": {
+        "asset": {
+          "address": 146857364,
+          "size": 1725,
+          "sha256": "7290f1e8474951c3022f75e2e7cd8aae442dd61b4dfac5b9d44fe7cace76bff2"
+        },
+        "decoded": {
+          "size": 4096,
+          "sha256": "d99c7d9e90665de0bb3b7330068768f1510ed5899b45dd1a208b1873f4eab844"
+        },
+        "selection": {
+          "move_id": 133,
+          "move_symbol": "MOVE_AMNESIA",
+          "command_opcode": 0,
+          "tag": 10093,
+          "tag_symbol": "ANIM_TAG_AMNESIA",
+          "table_index": 93
+        },
+        "table_row": {
+          "address": 151037420,
+          "size": 8,
+          "sha256": "1dc2de6ed29d3c5bd1b91e906e55aebb5b60b9666d15ac16eeeaafbdf1df68e3"
+        },
+        "command": {
+          "address": 135982001,
+          "size": 3,
+          "sha256": "6673f4c17bb349e9522eae37afc026385eb3aef74b090941e614a6270a6816dc"
+        },
+        "hit": {
+          "address": 146857777,
+          "target": 167697920,
+          "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+          "size": 4,
+          "sha256": "25786b9ec7b89108831b8473a9168346f04d211b87e22272eec5e6d8284e045b",
+          "classification": "UNCLASSIFIED",
+          "accepted": false,
+          "reason": "no_complete_typed_asset_consumer_witness",
+          "owner_candidates": []
+        },
+        "claims": {
+          "finite_static_consumer_root": true,
+          "allocation_success_path_only": true,
+          "actual_screen_rendered": false,
+          "natural_battle_reachability": false,
+          "whole_animation_table_extent": false,
+          "indirect_reference_completeness_claimed": false,
+          "donor_leased": false
+        },
+        "root_verified": true
+      },
+      "evidence_identity": {
+        "size": 1168,
+        "sha256": "1b487dc912c738cb87457ffa3dec74521c21090a785092dd6ceec3ebf44bbbe6"
+      }
+    }
+  ],
+  "classified": 728,
+  "unclassified": 146,
+  "newly_classified": 2,
+  "proof": {
+    "data": {
+      "status": "PASS_NEW_FINITE_SPACE_ROOTS",
+      "engine": {
+        "status": "PASS_ONE_FINITE_HOF_PC_TASK_CODE_WINDOW",
+        "count": 1,
+        "full_story_reachability_claimed": false,
+        "full_hof_pc_lifetime_claimed": false
+      },
+      "assets": {
+        "status": "PASS_FINITE_AMNESIA_ANIMATION_LZ77_CONSUMER",
+        "count": 1,
+        "hit": 146857777,
+        "asset": {
+          "address": 146857364,
+          "size": 1725,
+          "sha256": "7290f1e8474951c3022f75e2e7cd8aae442dd61b4dfac5b9d44fe7cace76bff2"
+        },
+        "decoded": {
+          "size": 4096,
+          "sha256": "d99c7d9e90665de0bb3b7330068768f1510ed5899b45dd1a208b1873f4eab844"
+        },
+        "source_bindings": [
+          {
+            "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+            "git_blob_sha": "fc4168cbc9f43ef084afb04ff4ec8c81f9390592",
+            "local": "cfru-anim-defines.s",
+            "repository": "kapibarasan000/CFRU-JP",
+            "sha256": "166cbae334e3c45cb0d694fb483b8ac13b9cc84dc4bd64eb8d04ee696c1e84e4",
+            "size": 33164,
+            "source": "anim_defines.s"
+          },
+          {
+            "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+            "git_blob_sha": "814f613a56d1314a462d5a4aebcca8bb3cdf9010",
+            "local": "cfru-particle-table.s",
+            "repository": "kapibarasan000/CFRU-JP",
+            "sha256": "ee2d106484b531e17c52d9edb2d966ed1a214685c19fbf6d186328e67372d9fa",
+            "size": 39352,
+            "source": "assembly/data/anim_particle_table.s"
+          },
+          {
+            "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+            "git_blob_sha": "444712bfec68c13fabffd3e167d380b6c23770ba",
+            "local": "cfru-moves.h",
+            "repository": "kapibarasan000/CFRU-JP",
+            "sha256": "bc2ae17e444625fa2e1727d42c50a24f6758da26e44229a6f12a3afa3a275d79",
+            "size": 30601,
+            "source": "include/constants/moves.h"
+          },
+          {
+            "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+            "git_blob_sha": "096a8763a4260052566ed029f841bc68e561d269",
+            "local": "cfru-battle-anims.c",
+            "repository": "kapibarasan000/CFRU-JP",
+            "sha256": "4893fda793e75356672e8b1be3bca4bd54fe562774fd8b07ed9f8f9ba501aff3",
+            "size": 192535,
+            "source": "src/battle_anims.c"
+          },
+          {
+            "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+            "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+            "local": "cfru-BPRJ.ld",
+            "repository": "kapibarasan000/CFRU-JP",
+            "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+            "size": 68505,
+            "source": "BPRJ.ld"
+          },
+          {
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "git_blob_sha": "f4740f917ed9ae7e0fd967107e1e63733bb8c66a",
+            "local": "pret-decompress.c",
+            "repository": "pret/pokefirered",
+            "sha256": "f190145b3948c1c22213e1a540f261aba89592ed9f30b6d13fa25b78ac417c7f",
+            "size": 11157,
+            "source": "src/decompress.c"
+          },
+          {
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "git_blob_sha": "6a1b272119ce6e3a8dcf45adf2eef8923a6d5175",
+            "local": "pret-sprite.h",
+            "repository": "pret/pokefirered",
+            "sha256": "a77aa1c837dfb58cf60b3eac299c7cc29a23ce27735ba710b9e8eeed102bf773",
+            "size": 9368,
+            "source": "include/sprite.h"
+          },
+          {
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "git_blob_sha": "15c48c39f5860efe132e782c22a6cedb0f8d5ac3",
+            "local": "pret-battle-anim-script.inc",
+            "repository": "pret/pokefirered",
+            "sha256": "cb193c567289983c26ed8acaa8dd64501c64c7e088e28995c49439333b52b27c",
+            "size": 4279,
+            "source": "asm/macros/battle_anim_script.inc"
+          },
+          {
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "git_blob_sha": "30f9a7ad2482d1767f5c70ee30a3c85528605bb3",
+            "local": "pret-battle-anim.c",
+            "repository": "pret/pokefirered",
+            "sha256": "5883d9ee0483120ef67461952f5880499f322fb1c706cc213ca13c0c2b0e88c5",
+            "size": 46944,
+            "source": "src/battle_anim.c"
+          },
+          {
+            "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+            "git_blob_sha": "68822edced83efcff0dc1893ec5052ba59875750",
+            "local": "cfru-include_battle_anim.h",
+            "repository": "kapibarasan000/CFRU-JP",
+            "sha256": "fd80eac8342c2452e9cb62f7b86b6db651d8136c25c9a6eb1369c1a92e4afb98",
+            "size": 28504,
+            "source": "include/battle_anim.h"
+          }
+        ],
+        "protected_read_windows": [
+          {
+            "address": 134683968,
+            "size": 8,
+            "sha256": "49f5ad8c23fd3cde74a61c80a3f0ce6660a0e30b4510dd7f87b741a0433f122d",
+            "name": "DoMoveAnim_hook"
+          },
+          {
+            "address": 151807572,
+            "size": 184,
+            "sha256": "bebb232f59ebad97540ab2e220e029b9af0f14c297518423d88e87c58bb7dfba",
+            "name": "CFRU_DoMoveAnim"
+          },
+          {
+            "address": 134684024,
+            "size": 364,
+            "sha256": "f2e2b2b6ae42b8097f2702177cf6eaddc34321751f0b7b9b99511d80358d5a81",
+            "name": "LaunchBattleAnimation_with_installed_illusion_hook"
+          },
+          {
+            "address": 134684620,
+            "size": 64,
+            "sha256": "27772fec185d49ba508113901c1616f3d235859c83f78149ced851c75dbec373",
+            "name": "RunAnimScriptCommand"
+          },
+          {
+            "address": 136084168,
+            "size": 2,
+            "sha256": "81904e68a8b9a2427e9e87e2c61b1098057608d18357d70d9281e8513941cf53",
+            "name": "dispatch_r0_trampoline"
+          },
+          {
+            "address": 134684684,
+            "size": 8,
+            "sha256": "a967117a620150f01dad5e9a2ebe7db090d31b6b116622715237c47362bc7d51",
+            "name": "loadspritegfx_hook"
+          },
+          {
+            "name": "DoMoveAnim_hook_target",
+            "value": 151807573,
+            "address": 134683972,
+            "size": 4,
+            "sha256": "ced8923c1d96b56dc337e782a8673195825f03416fabdd13d3b9dcd4c1f7aae6"
+          },
+          {
+            "name": "DoMoveAnim_gMoveAnimations",
+            "value": 151299796,
+            "address": 151807736,
+            "size": 4,
+            "sha256": "e4f60993ecb18f7008ffec660be5e9e5a8a8351852d24d1ecfb53887359e7798"
+          },
+          {
+            "name": "DoMoveAnim_LaunchBattleAnimation",
+            "value": 134684025,
+            "address": 151807740,
+            "size": 4,
+            "sha256": "2cf5f74b5ee549be6d83059375a4e61c657426c1d547b36ae1158e6116e50974"
+          },
+          {
+            "name": "legacy_gMoveAnimations_repoint",
+            "value": 151299796,
+            "address": 134684020,
+            "size": 4,
+            "sha256": "e4f60993ecb18f7008ffec660be5e9e5a8a8351852d24d1ecfb53887359e7798"
+          },
+          {
+            "name": "LaunchBattleAnimation_RunAnimScriptCommand",
+            "value": 134684621,
+            "address": 134684284,
+            "size": 4,
+            "sha256": "9123bb2247f043f7ec29eda5a32854a1c4bdc96e14251b416e7fd0f52ab29e4f"
+          },
+          {
+            "name": "RunAnimScriptCommand_table",
+            "value": 137830284,
+            "address": 134684668,
+            "size": 4,
+            "sha256": "beaaff41ecf5ef84cca2b3d87296388efa6a8837b19cdfdfc4b8bd04ed1aaa85"
+          },
+          {
+            "name": "dispatch_slot0_loadspritegfx",
+            "value": 134684685,
+            "address": 137830284,
+            "size": 4,
+            "sha256": "968aaa65b1263cc6d6ac9adedfae8ca85cb6d84a16969999e8951beb3bf627cd"
+          },
+          {
+            "name": "loadspritegfx_hook_target",
+            "value": 151805193,
+            "address": 134684688,
+            "size": 4,
+            "sha256": "f98a9db627744c7ee3a0d794618655b9ec4182e4e9dac6799ddb0564c5218f10"
+          },
+          {
+            "label": "loadspritegfx_first_sheet",
+            "address": 151805192,
+            "size": 36,
+            "sha256": "e6b5a4e0863cf97647a732778b4a0cf83c3a716765b21623ab7e4542be9ed452"
+          },
+          {
+            "label": "interwork_r3",
+            "address": 151808464,
+            "size": 2,
+            "sha256": "477db9ac7ca5efc12e37f882656b8fe5a363ffeb99b2e565a953d10c3c91ab21"
+          },
+          {
+            "label": "sheet_decompress_to_bios",
+            "address": 134277608,
+            "size": 30,
+            "sha256": "3fd352eb1176c73f6dc8e7604571435f7d37a56124d8cc27df9b167e102c8cef"
+          },
+          {
+            "label": "bios_lz77_wram",
+            "address": 136084112,
+            "size": 4,
+            "sha256": "ec6d14bbc6d782be7f74aa1a98008404ecc1d3324187a7989458b17708869e80"
+          },
+          {
+            "label": "script_pointer",
+            "address": 151805268,
+            "size": 4,
+            "sha256": "4b1d5702b44c2e900c6dabd4d0411ff12bfa3710a48b50c3294c1af108accb8d",
+            "value": 33783304
+          },
+          {
+            "label": "negative_tag_base",
+            "address": 151805272,
+            "size": 4,
+            "sha256": "17d084e9b356a3ff35d464ccab95727ff7a2bf4853c920b7c03a184d0bfa54bf",
+            "value": 4294957296
+          },
+          {
+            "label": "pic_table",
+            "address": 151805276,
+            "size": 4,
+            "sha256": "365347e778a4818895bbed8e9f1b8e6fd63bdb4a6cf81f7c46348f0b745e0921",
+            "value": 151036676
+          },
+          {
+            "label": "sheet_loader",
+            "address": 151805280,
+            "size": 4,
+            "sha256": "5a4639adf264611518320ca0bb2fb7b2143ea941a9a2bf5d772e29e8b6cf964c",
+            "value": 134277609
+          },
+          {
+            "address": 151300328,
+            "size": 4,
+            "sha256": "b61b3202ae8f489d1e4bf02f79a9031ff2f08268d1088802dc3fe9d434286858",
+            "value": 135982001
+          },
+          {
+            "address": 135982001,
+            "size": 3,
+            "sha256": "6673f4c17bb349e9522eae37afc026385eb3aef74b090941e614a6270a6816dc"
+          },
+          {
+            "address": 151037420,
+            "size": 8,
+            "sha256": "1dc2de6ed29d3c5bd1b91e906e55aebb5b60b9666d15ac16eeeaafbdf1df68e3"
+          },
+          {
+            "address": 146857364,
+            "size": 4,
+            "sha256": "1d43ee26e5c4e09d9e05d2be2de7bde7804b3121ede735a7f6630071eabdb2b9"
+          }
+        ],
+        "claims": {
+          "finite_static_consumer_root": true,
+          "allocation_success_path_only": true,
+          "actual_screen_rendered": false,
+          "natural_battle_reachability": false,
+          "whole_animation_table_extent": false,
+          "indirect_reference_completeness_claimed": false,
+          "donor_leased": false
+        }
+      },
+      "new_data": 1,
+      "new_code": 1,
+      "independent_old_final_source_review_completed": false,
+      "donor_leased": false,
+      "indirect_reference_completeness_claimed": false
+    },
+    "song": {
+      "status": "PASS_RETAINED_133_MODELS_50_ASSETS_NEW_CONSUMER_INTERSECTION",
+      "combined_song_models": 133,
+      "retained_sample_witnesses": 50,
+      "model_identity": {
+        "size": 213296,
+        "sha256": "71f01cee0a344409445e17fdea268371269a3e622c6b93563d04b35677e0b975"
+      },
+      "sample_identity": {
+        "size": 1121492,
+        "sha256": "9f765e8eee8ad78eaac8902ccafbf9e14c7c694f842e9ae6b2002583181b70ee"
+      },
+      "old_protected_read_windows": 198334,
+      "old_protected_read_identity": {
+        "size": 26409459,
+        "sha256": "26ae440b2d8456747f59e7fd73679a17b6289ef1a733bdd51c1f9ff668fc8914"
+      },
+      "all133_models_exact": true,
+      "all50_sample_identities_exact": true,
+      "old_and_new_root_windows": 3196,
+      "old_and_new_root_identity": {
+        "size": 342191,
+        "sha256": "02ba65b4ac7b5cc92eed88c2647d5c798819a5320a20a996fb280a8798342e3f"
+      },
+      "new_song_discovery_runs": 0,
+      "new_songs": [],
+      "new_audio_classified": 0,
+      "native_processes": 0,
+      "donor_leased": false
+    },
+    "public_source_bindings": {
+      "BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "gaps-pret-scrcmd.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/scrcmd.c",
+        "size": 56954,
+        "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+        "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814"
+      },
+      "pret-task.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/task.c",
+        "size": 5029,
+        "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+        "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+      },
+      "pret-main.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/main.c",
+        "size": 11699,
+        "sha256": "0bfa6c662b1cbd49bd31020b6c2509208004611e6701ad64badce22eca371139",
+        "git_blob_sha": "542b0f5d16dd93107523d11163bfcb70a42b707a"
+      },
+      "pret-crt0.s": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/crt0.s",
+        "size": 2573,
+        "sha256": "a13a09dab32f5f073387183ca5072e009e997223c7eba16d65dd6ecf2d575d73",
+        "git_blob_sha": "a0d8a4b55237b38afc5b69d4e9aad0c2df232e14"
+      },
+      "pret-hall_of_fame.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/hall_of_fame.c",
+        "size": 36837,
+        "sha256": "00dd00b63f3edf8e0ee617a09936d1a51306cc9dc33e6021da8f1042af5dd4ab",
+        "git_blob_sha": "05c7d75384c2ad8481b6819f71faaf089f683bbf"
+      },
+      "cfru-anim-defines.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "anim_defines.s",
+        "size": 33164,
+        "sha256": "166cbae334e3c45cb0d694fb483b8ac13b9cc84dc4bd64eb8d04ee696c1e84e4",
+        "git_blob_sha": "fc4168cbc9f43ef084afb04ff4ec8c81f9390592"
+      },
+      "cfru-particle-table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/anim_particle_table.s",
+        "size": 39352,
+        "sha256": "ee2d106484b531e17c52d9edb2d966ed1a214685c19fbf6d186328e67372d9fa",
+        "git_blob_sha": "814f613a56d1314a462d5a4aebcca8bb3cdf9010"
+      },
+      "cfru-moves.h": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "include/constants/moves.h",
+        "size": 30601,
+        "sha256": "bc2ae17e444625fa2e1727d42c50a24f6758da26e44229a6f12a3afa3a275d79",
+        "git_blob_sha": "444712bfec68c13fabffd3e167d380b6c23770ba"
+      },
+      "cfru-battle-anims.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/battle_anims.c",
+        "size": 192535,
+        "sha256": "4893fda793e75356672e8b1be3bca4bd54fe562774fd8b07ed9f8f9ba501aff3",
+        "git_blob_sha": "096a8763a4260052566ed029f841bc68e561d269"
+      },
+      "cfru-BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "pret-decompress.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/decompress.c",
+        "size": 11157,
+        "sha256": "f190145b3948c1c22213e1a540f261aba89592ed9f30b6d13fa25b78ac417c7f",
+        "git_blob_sha": "f4740f917ed9ae7e0fd967107e1e63733bb8c66a"
+      },
+      "pret-sprite.h": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "include/sprite.h",
+        "size": 9368,
+        "sha256": "a77aa1c837dfb58cf60b3eac299c7cc29a23ce27735ba710b9e8eeed102bf773",
+        "git_blob_sha": "6a1b272119ce6e3a8dcf45adf2eef8923a6d5175"
+      },
+      "pret-battle-anim-script.inc": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "asm/macros/battle_anim_script.inc",
+        "size": 4279,
+        "sha256": "cb193c567289983c26ed8acaa8dd64501c64c7e088e28995c49439333b52b27c",
+        "git_blob_sha": "15c48c39f5860efe132e782c22a6cedb0f8d5ac3"
+      },
+      "pret-battle-anim.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/battle_anim.c",
+        "size": 46944,
+        "sha256": "5883d9ee0483120ef67461952f5880499f322fb1c706cc213ca13c0c2b0e88c5",
+        "git_blob_sha": "30f9a7ad2482d1767f5c70ee30a3c85528605bb3"
+      },
+      "cfru-include_battle_anim.h": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "include/battle_anim.h",
+        "size": 28504,
+        "sha256": "fd80eac8342c2452e9cb62f7b86b6db651d8136c25c9a6eb1369c1a92e4afb98",
+        "git_blob_sha": "68822edced83efcff0dc1893ec5052ba59875750"
+      }
+    }
+  },
+  "proof_identity": {
+    "size": 13099,
+    "sha256": "81c72a2831f54d605c6eee3f987985b6b962b7bc69baec33dd51e988089a0cfa"
+  },
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0
+}

@@ -1,0 +1,163 @@
+{
+  "status": "MEASURED_COORD_TELEPORT_SAVE28_AWAITING_ACCEPTANCE",
+  "source_head": "1cc88ec763b69ada00bc4f5da4b5c632c5ccd9c8",
+  "run_id": 37117145212,
+  "input_save": {
+    "size": 131088,
+    "sha256": "fb3c41c4178a04cee89301c74ecf2a646dc4d5633eefa8086664ca0057d7b1d4"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "a5cfc5714bcc447550d78ff45f42c74109f12d607bad1d94dbf61fe96b06f4a4"
+  },
+  "owner": {
+    "root": 136398433,
+    "flag_id": 4367,
+    "flag_value": 0,
+    "condition": 1,
+    "branch_taken": false,
+    "fallthrough_destination": [
+      27,
+      7
+    ],
+    "branch_destination": [
+      8,
+      10
+    ],
+    "expected_destination": [
+      27,
+      7
+    ]
+  },
+  "teleport": {
+    "trigger": [
+      19,
+      14
+    ],
+    "destination": [
+      27,
+      7
+    ],
+    "observation": 6
+  },
+  "final": {
+    "observe": 14,
+    "frame": 2462,
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      27,
+      7
+    ],
+    "live_xy": [
+      34,
+      14
+    ],
+    "facing": 1,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 28,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "cfb0b8b6fda99569e3cd08f0f8c414473a6691ae0f05889396bcba9073edb851",
+    "flash_sha256": "aeeb39f7fba8d5e056afce8d1fa61ecc056fd590a4c092be4abf906ccbf2bc71",
+    "ledger_sha256": "2547b0fee32fe13ebdf70bc2e29724ed30f1895e0448e3f5ea1a408fda604fae"
+  },
+  "continued": {
+    "observe": 1,
+    "frame": 1510,
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      27,
+      7
+    ],
+    "live_xy": [
+      34,
+      14
+    ],
+    "facing": 1,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 28,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "cfb0b8b6fda99569e3cd08f0f8c414473a6691ae0f05889396bcba9073edb851",
+    "flash_sha256": "aeeb39f7fba8d5e056afce8d1fa61ecc056fd590a4c092be4abf906ccbf2bc71",
+    "ledger_sha256": "2547b0fee32fe13ebdf70bc2e29724ed30f1895e0448e3f5ea1a408fda604fae"
+  },
+  "progress": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "fb3c41c4178a04cee89301c74ecf2a646dc4d5633eefa8086664ca0057d7b1d4"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "a5cfc5714bcc447550d78ff45f42c74109f12d607bad1d94dbf61fe96b06f4a4"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 2462,
+      "inputs": 40,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 15
+  },
+  "independent_continue": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "a5cfc5714bcc447550d78ff45f42c74109f12d607bad1d94dbf61fe96b06f4a4"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "a5cfc5714bcc447550d78ff45f42c74109f12d607bad1d94dbf61fe96b06f4a4"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 1510,
+      "inputs": 13,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 2
+  },
+  "screen_count": 17,
+  "native_processes": 2,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "development_controller_rechecks": 16,
+  "compiles": 0,
+  "rom_changes": 0,
+  "fixture_writes": 0,
+  "ordinary_saves": 1,
+  "wild_victories": 0,
+  "trainer_victories": 0,
+  "cave_crossing_complete": false,
+  "full_story_accepted": false,
+  "release_ready": false,
+  "artifact_excludes": [
+    "existing ROM",
+    "runner",
+    "runtime",
+    "input Save27"
+  ]
+}

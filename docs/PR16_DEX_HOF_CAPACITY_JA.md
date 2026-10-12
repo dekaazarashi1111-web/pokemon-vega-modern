@@ -1,0 +1,11 @@
+# HOF容量と実heap事前検査
+
+旧Stage67 egg表は現P07へ移行済みでも、全byte開始位置・ROM mirror・Thumb BL形の見かけ参照を分類する前に再利用しない。現候補0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583を全byte再構築し、現ownerのafter_sha256を基準に全参照を再束縛する。型付きassetにはtable root/consumer/extentと全圧縮・復号hashを要求し、未知はそのまま残す。allocator ownerに含まれるだけではdataと見なさない。間接参照完全性を証明するまではdonor未使用。
+
+13,352byte workspace向けread-only admissionを純Cで実装する。要求は13,359byte、実allocatorの4byte丸め後13,360byte。16byte headerのused/magic/size/prev/nextを全chainで検証し、first-fitより後の破損も拒否する。root.prevはroot自己参照であり末尾ではない。余り31byte以下は全block、32byte以上はheader16byteで分割する。断片化や不足時はassertを持つAllocを呼ばない。返されたraw pointerと8byte整列arenaを別に保持し、Freeにはrawを渡す。
+
+実ROM隔離試験はInitHeap/Alloc/Freeを実行し、hostの事前Planと実結果を照合する。実保存退避入口0804B85Cのprefixも実行し、3回のMemcpyがheap先頭53,300byteを上書きすることを観測する。MallocInitに達する前にarena13,352byteが破壊されるので、heap reset直前の解放では遅い。全保存入口のheap-ready、admissionからAllocまでの排他、IRQ/callback再入、同期controller全出口のFree、全loader/INITIAL/Linkへの配線は別の未完条件である。
+
+本試験は合成heapの隔離ARMであり、game boot/実save/本番heap所有の受入ではない。正式ROM/Save101、50HOF履歴、opaque suffix1,936byte、release/merge/baselineは変更しない。新しい有効容量が証明できた後だけ必要分を明示移管し、Ccontroller接続へ進む。最終目標はシオウで通常回復・保存・独立cold Continue、雑魚毎checkpointは再導入しない。
+
+公開はsourceと最小address-size-SHA/textのみ。ROM断片、rawhex、ROM、入力save、runtime、runner、credentialは追加公開しない。producer/guard/upload/recordのpath/nameと非空を機械検査し、guard成功専用dirだけをuploadする。

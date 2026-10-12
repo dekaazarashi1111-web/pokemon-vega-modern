@@ -1,0 +1,49 @@
+name: pr16-story-save79
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-save79.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-save79
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  continuation:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 4
+      - name: Save78から新東5歩・第3ディグダcontroller
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s tests -p test_pr16_story_save79_measure.py -v
+          python3 -B -c "import sys; sys.path.insert(0,'scripts'); import pr16_story_save79_measure as m; import pr16_learnset_runtime_record as g; g.START=m.BASE; g.CODE=m.CODE; g.OWNED=set(); g.guard()"
+      - name: 第3ディグダとSave79・独立Continue
+        run: python3 -B scripts/pr16_story_save79_measure.py
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-save79-checkpoint
+          path: .local/pr16-story-save79/artifact
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error
+
+
+
+

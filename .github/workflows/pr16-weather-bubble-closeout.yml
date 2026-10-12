@@ -1,0 +1,41 @@
+name: pr16-weather-bubble-closeout
+run-name: weather-bubble-saved-evidence-closeout
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-weather-bubble-closeout.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-weather-bubble-closeout
+  cancel-in-progress: false
+jobs:
+  saved-evidence-closeout:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 16
+          show-progress: false
+          persist-credentials: true
+      - name: 保存4原本・新receipt試験・固定resume・最終index検証後に同branch非force反映
+        shell: bash
+        run: |
+          set -euo pipefail
+          # 38042005576は保存logのANSI出力拒否。測定・旧32試験・ROMを再走しない。
+          python3 -B scripts/pr16_weather_bubble_closeout.py
+      - name: 確定commitと実検証結果だけを公開
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-weather-bubble-closeout-result
+          path: /tmp/bubble-closeout-result/result.json
+          retention-days: 90
+          if-no-files-found: error

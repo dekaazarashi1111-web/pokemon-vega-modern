@@ -1,0 +1,156 @@
+{
+  "physical_admission_accepted": true,
+  "suppression_accepted": true,
+  "scope": "SCOPED_CIRCUS_ACTUAL_RECEPTION_SUPPRESSION_RETURN_SAVE_CONTINUE",
+  "prefix_candidate": {
+    "size": 33554432,
+    "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+  },
+  "prefix_not_relabelled_to_successor": true,
+  "native_battles_inherited": 3,
+  "bp_before": 90,
+  "bp_after": 99,
+  "best_streak_after": 33,
+  "party_bytes": 600,
+  "owner_bytes": 64,
+  "save_counter_before": 3,
+  "save_counter_after": 4,
+  "normal_battle_after_exit_newly_tested": false,
+  "final_candidate_transfer_complete": false,
+  "release_ready": false,
+  "new_emulator_processes": 0,
+  "new_fresh_cores": 0,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "rom_changes": 0,
+  "accepted_standalone_replays": 0,
+  "prior_receipt_failure": {
+    "run_id": 35505906219,
+    "head_sha": "82b9f723fa9ed4a6dc8ba0e1eaf64e55b1a825f6",
+    "conclusion": "failure",
+    "artifact_id": 10604105487,
+    "archive_sha256": "11b1846a8419dfac44b7f5c691a1cead39245ddab85562090a1c33a6d2594ba2",
+    "cause_ja": "原本照合後、合成resume fixtureがCircus未完を固定し0件を拒否。checkpoint/backlogの合成bindingと独立した未完/閉鎖fixtureへ修復。",
+    "new_emulator_processes": 0
+  },
+  "prior_routing_failure": {
+    "run_id": 35506191441,
+    "conclusion": "failure",
+    "artifact_id": 10604040930,
+    "archive_sha256": "81e5934d96a8faa8fd685f9c2fcde86828cac59faafd3df4fd7afe99b4c91802",
+    "cause_ja": "26検査中24成功、installがP08を更新してもbindingを同期しない既存不具合で2失敗。事前照合と変更対象限定同期を修復。",
+    "new_emulator_processes": 0
+  },
+  "prior_unbound_source_failure": {
+    "run_id": 35506544430,
+    "conclusion": "failure",
+    "artifact_id": 10603743757,
+    "archive_sha256": "26d0eb3e4c9009df148c31fe3e79db3e92ff4b05e8290fdb5ee951eb43dca33b",
+    "cause_ja": "新たにbindingへ追加するresume実装を既登録と仮定したKeyError。既登録はBASE照合、未登録は固定BASEの親を保持して新規登録に修復。",
+    "new_emulator_processes": 0
+  },
+  "visual_review": {
+    "completed": true,
+    "screen_count": 29,
+    "source": "content/modernization/pr16_circus_visual_review.json",
+    "archive_sha256": "39481869e73b6685b964d58c8a24143f90c6650ee7e2c444f14207c11c8865e0",
+    "pixels_not_inferred_from_filename": true
+  },
+  "schema_version": 1,
+  "task": "USER-20260920-CIRCUS-ACCEPTANCE",
+  "classification": "SCOPED_ACCEPTANCE",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+  },
+  "source_head": "5a3ea6bfddbee41b745046c634bdf41d50946839",
+  "recording_run": 35506654695,
+  "source_runs": [
+    {
+      "run_id": 35503514936,
+      "tested_head": "5618a38f6854aa4551e5c518509f5f97cf2a79b0",
+      "status": "completed",
+      "conclusion": "failure",
+      "artifact_id": 10602823295,
+      "archive": {
+        "size": 332538,
+        "sha256": "c16ef7c1e05e5dad1ba4169016a9bbd863c97098eae9c2cb6c7d94d71d905eba"
+      },
+      "jobs": [
+        {
+          "id": 106059329846,
+          "name": "getter",
+          "status": "completed",
+          "conclusion": "failure"
+        }
+      ]
+    },
+    {
+      "run_id": 35504302893,
+      "tested_head": "cc5d6822266a9663b0e368c9cff2c94d2ede3435",
+      "status": "completed",
+      "conclusion": "success",
+      "artifact_id": 10603527226,
+      "archive": {
+        "size": 299507,
+        "sha256": "39481869e73b6685b964d58c8a24143f90c6650ee7e2c444f14207c11c8865e0"
+      },
+      "jobs": [
+        {
+          "id": 106061386465,
+          "name": "lifecycle",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "originals_unchanged": true,
+  "native_revalidation_passed": true,
+  "inherited_suppression": {
+    "predicate_returns": 8,
+    "suppressed_dispatches": 12,
+    "hook_names": [
+      "AI_SpecialTypeCalc",
+      "AccuracyCalc",
+      "CheckGrounding",
+      "GetMoveTypeSpecialPostAbility",
+      "GetMoveTypeSpecialPreAbility"
+    ],
+    "observed": true
+  },
+  "source_bindings": {
+    "scripts/pr16_circus_acceptance.py": {
+      "size": 22328,
+      "sha256": "9cf16632efe68a68b1e6c1ec655f86ac5cee01e6cd64e79851196a6a0a85f241"
+    },
+    "tests/test_pr16_circus_acceptance.py": {
+      "size": 5302,
+      "sha256": "911a5e6009e6183a16dfdb3a1eeee71d49b9f3dcb3fd241cca65749c4f9b6eb3"
+    },
+    "content/modernization/pr16_circus_visual_review.json": {
+      "size": 11208,
+      "sha256": "ed378d2cdf677fd1be931b666f79aa0f00c85f65424344d7c7478223c7f70427"
+    },
+    ".github/workflows/pr16-circus-acceptance.yml": {
+      "size": 4617,
+      "sha256": "941a124395166d3ce17f74711125d1b5086dd534e8169b480281273fd9e79b6b"
+    },
+    "tests/test_pr16_resume.py": {
+      "size": 12258,
+      "sha256": "7f31a83f3d92805ba547827f862f376b485db991758ed0763963b7ecc5e1fadf"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 27351,
+      "sha256": "385822716e7bbe1e3430ad778768a9ae0e1d2176d8bd3e3bdb09f1faf2b45252"
+    },
+    "content/modernization/pr16_circus_getter_followup.json": {
+      "size": 117299,
+      "sha256": "856881aa9b0156f391736de4748733395f493fe3de48ac23596e828c5745ba27"
+    },
+    "content/modernization/pr16_circus_suppression_lifecycle.json": {
+      "size": 65187,
+      "sha256": "186ffa2d54e587de953922d89cede9e86182b354b8aa704255b8242518525a02"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+name: pr16-research-retry-source-20260926
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-retry-source-20260926.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+jobs:
+  source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: 必要なtracked textと最新Actionsだけを取得（検証済みnative再実行なし）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,urllib.request,zipfile
+          root=pathlib.Path('.');out=root/'.local/retry-source';out.mkdir(parents=True)
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          fixed={'AGENTS.md','CHATGPT_RESUME.md','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','config/active_play_baseline.json','design/active_play_baseline.md'}
+          selected=[]
+          for p in paths:
+              if not p:continue
+              take=p in fixed or (p.startswith(('scripts/','tools/','overlays/')) and p.endswith(('.py','.c','.h','.ld','.s','.S'))) or (p.startswith('tests/') and ('research' in p or p=='tests/__init__.py')) or (p.startswith('config/') and 'research' in p) or (p.startswith('content/modernization/') and 'research' in p and p.endswith('.json')) or (p.startswith('docs/PR16_RESEARCH') and p.endswith('.md')) or (p.startswith('.github/workflows/pr16-research') and p.endswith('.yml'))
+              if take:
+                  raw=(root/p).read_bytes();raw.decode('utf-8');assert b'\0' not in raw
+                  selected.append(p)
+          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in selected:z.write(root/p,p)
+              for p in ['design/run_log.md','design/version_log.md']:
+                  z.writestr(p+'.tail','\n'.join((root/p).read_text().splitlines()[-60:])+'\n')
+              z.writestr('source-manifest.json',json.dumps({'head':os.environ['GITHUB_SHA'],'files':{p:{'size':(root/p).stat().st_size,'sha256':hashlib.sha256((root/p).read_bytes()).hexdigest()} for p in selected}},sort_keys=True))
+          def api(route):
+              req=urllib.request.Request('https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']+'/'+route,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              with urllib.request.urlopen(req,timeout=30) as f:return json.load(f)
+          pr=api('pulls/16');runs=api('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=15')['workflow_runs']
+          summary={'head':os.environ['GITHUB_SHA'],'pr':{k:pr[k] for k in ('number','state','draft','merged')},'pr_head':pr['head']['sha'],'runs':[{k:r[k] for k in ('id','name','head_sha','path','status','conclusion','run_attempt','created_at','updated_at')} for r in runs],'selected_files':len(selected),'accepted_native_reruns':0}
+          (out/'context.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n');print(json.dumps(summary,ensure_ascii=False,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-research-retry-source
+          path: .local/retry-source/
+          retention-days: 3
+          if-no-files-found: error

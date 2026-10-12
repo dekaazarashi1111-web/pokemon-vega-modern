@@ -1,0 +1,984 @@
+{
+  "actions_completion_confirmed": true,
+  "actions_conclusion": "success",
+  "active_baseline_changed": false,
+  "artifact": {
+    "digest": "sha256:2ed9efdd23374911bcb23e5092147231ba0af5f06f9280e84ee6a091868e2b05",
+    "expires_at": "2026-12-29T03:00:49Z",
+    "id": 11073849807,
+    "name": "pr16-story-save21-checkpoint",
+    "size_in_bytes": 17794173,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "b58a6356c9b100a9180a9af955d25e1c6be48d0c",
+      "id": 36662466133,
+      "repository_id": 1358127462
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_save21_evidence/continue-development.commands.txt": {
+      "sha256": "5879265fb697c8bdf5aaa38837ea5c3bf97b23e51899b4614c9dc7f8afc91512",
+      "size": 209
+    },
+    "content/modernization/pr16_story_save21_evidence/continue-development.stdout.txt": {
+      "sha256": "11ccbfa0602366c6cf4af6adf3c839c8c7fc78a13ca317bf0abe8ce660ec4127",
+      "size": 4546
+    },
+    "content/modernization/pr16_story_save21_evidence/continue/commands.txt": {
+      "sha256": "21ba705b9c099d058f645be2d0b25a2cf71b78004e023232fceeccfdb8e0bf1d",
+      "size": 247
+    },
+    "content/modernization/pr16_story_save21_evidence/continue/execution.json": {
+      "sha256": "60a19610edcd0095e4dffb6e51ff93c5320f269f00e2b490cd94dd72fc235de3",
+      "size": 325
+    },
+    "content/modernization/pr16_story_save21_evidence/continue/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save21_evidence/continue/stdout.txt": {
+      "sha256": "56507af77aafbb01d1fb507f0aa17c262f58ee2f747e097f027925d082d67120",
+      "size": 5237
+    },
+    "content/modernization/pr16_story_save21_evidence/manifest.json": {
+      "sha256": "a425551c3bf487a6057c12afd7bbc09576280f45fcc4fd90bb95e82c60d09f93",
+      "size": 11701
+    },
+    "content/modernization/pr16_story_save21_evidence/measurement.json": {
+      "sha256": "aaf9341da9a2f998264c7c135052ac6669a7eaa289e6578d28afbeb591efef29",
+      "size": 21807
+    },
+    "content/modernization/pr16_story_save21_evidence/parent.json": {
+      "sha256": "dad2e28c6f53fa92f8fdf1dc2a86b45aa30d25201225359d214353a57a3f2c20",
+      "size": 458
+    },
+    "content/modernization/pr16_story_save21_evidence/progress-development.commands.txt": {
+      "sha256": "51d0651cca0fc1682b9796d53cca5682c5721c82e10c724a5528df8ca0cb58b9",
+      "size": 2140
+    },
+    "content/modernization/pr16_story_save21_evidence/progress-development.stdout.txt": {
+      "sha256": "448e7f8b7952b274213fed9b72b4dc07d4b0d173375d0c5e3dd5d7ea3ba28e32",
+      "size": 39436
+    },
+    "content/modernization/pr16_story_save21_evidence/progress/commands.txt": {
+      "sha256": "51d0651cca0fc1682b9796d53cca5682c5721c82e10c724a5528df8ca0cb58b9",
+      "size": 2140
+    },
+    "content/modernization/pr16_story_save21_evidence/progress/execution.json": {
+      "sha256": "c3803301e503ec4f34976018da6abc218c87a24e61d1b3a96643875c5be4adde",
+      "size": 325
+    },
+    "content/modernization/pr16_story_save21_evidence/progress/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save21_evidence/progress/stdout.txt": {
+      "sha256": "448e7f8b7952b274213fed9b72b4dc07d4b0d173375d0c5e3dd5d7ea3ba28e32",
+      "size": 39436
+    },
+    "content/modernization/pr16_story_save21_evidence/record-unit.stderr.txt": {
+      "sha256": "8ea9e93dbb6aa0a8d56a2a8e1e0aec6cc86df5227c20315566311f62a779d88c",
+      "size": 1641
+    },
+    "content/modernization/pr16_story_save21_evidence/record-unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save21_evidence/terminal.json": {
+      "sha256": "4136c9a0dbd81ae45474a73b27c5063ad3992ea562f2c45e8d04c11134eb7a75",
+      "size": 10590
+    },
+    "content/modernization/pr16_story_save21_evidence/unit.stderr.txt": {
+      "sha256": "fc165364029370dfca2cde1a9bfe5c10983cee1f9e89ea46355f4fd950a3e32f",
+      "size": 6436
+    },
+    "content/modernization/pr16_story_save21_evidence/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_save21_evidence/verification.json": {
+      "sha256": "c0924a43bc243dbf3e6ec55cc1abd01a5a39d3458669030773d104c62db3840d",
+      "size": 18595
+    },
+    "content/modernization/pr16_story_save21_evidence/visual-review.json": {
+      "sha256": "9b17057c739b7abb4788c6c69548ca87b0be8a1e5ef967812c6d7adc7211c843",
+      "size": 6013
+    }
+  },
+  "general_ci_all_success_claimed": false,
+  "job_id": 109719980409,
+  "next_goal_ja": "story-fastの唯一の開始点はartifact11073849807のstory-fast.srm（Save21、131088bytes、SHA256 c9cb14fa73a38e105a0e6553f7fc1dc82c9bdd182e0409e28022c8ffe44b3d20）。503番道路map3/21・24,17西・party4/RP0、6256円・badge1、var4071=6/4072=1。ミュウツーHP349/354・サイコブレイクPP5、他3体HP満タン。トシヒデ1勝/240円・電話会話/自動移動・通常Save21/独立Continueは完了。HM05所持、通常UIで4体とも非適合表示・ミュウ選択拒否。習得/使用/原因解決は未完。同じ拒否入力を繰り返さず、必要時は固定ROMの互換性判定ownerを限定照合し、自然取得条件を満たす承認済みfield-utility分離fixtureの適用条件を読む。基準外の習得を盲追加しない。現在地から通常storyの未完区間だけをSave/cold境界で進める。181/cold33入力・62試験・Save1〜20/旧BP/P08は無影響に再走しない。分離progression原本Axew Lv37/EXP68589とNationalDex magic0・grant ownerを保全し、flag/var注入で解禁しない。正規全国図鑑解禁、自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
+  "record_run_id": 36663051577,
+  "record_source_head": "dd00a9d0a585849c4395645ee0384944526d2272",
+  "release_ready": false,
+  "run_id": 36662466133,
+  "save21_accepted": true,
+  "save_byte_ledger": {
+    "artifact_only": true,
+    "binding": {
+      "sha256": "db82c8f7e64dcfc29de7641ac88e61abeae1ac1f87ad8ccbfcf6ea2c1811c7f9",
+      "size": 190702
+    },
+    "changed_bytes": 6988,
+    "ranges": 1783
+  },
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-story-save21.yml": {
+      "sha256": "47279cde93b354a7b4a6fcead3771a44d41126c438d2ab3b6a7d119a088c48c5",
+      "size": 1532
+    },
+    "content/modernization/pr16_story_save21_development/expected.json": {
+      "sha256": "09159896706c9631d80c4ba21a610b14c74dff9e61b58e8c44f22318ec1f025a",
+      "size": 16822
+    },
+    "content/modernization/pr16_story_save21_development/local-validation.json": {
+      "sha256": "801edee8ad88b655b86696d9d850bbff778aab6ca68a13fd1ca8dc2ed68304e4",
+      "size": 1735
+    },
+    "scripts/pr16_story_save21_accept.py": {
+      "sha256": "fbabf34b071d91f38b9ad49b7c4c6215f043e6c36c4b9bda52cfb51bdac61151",
+      "size": 20577
+    },
+    "scripts/pr16_story_save21_measure.py": {
+      "sha256": "4e25b70c350e70c518cfff2b861b97f92c58383320f1caee547b4c22cd374f8d",
+      "size": 7344
+    },
+    "tests/test_pr16_story_save21_accept.py": {
+      "sha256": "9ff15673c569a8f8bacf9bbf6847dd3f6ee703d471c4d547d7b181d15fe5e78e",
+      "size": 9318
+    }
+  },
+  "source_head": "b58a6356c9b100a9180a9af955d25e1c6be48d0c",
+  "status": "PASS_ROUTE503_PHONE_SAVE21_SCOPED",
+  "task": "USER-20260930-STORY-SAVE21",
+  "verification": {
+    "accepted_case_reruns": 0,
+    "battles": [
+      {
+        "field_return": 38,
+        "flags": 12,
+        "outcome": 1,
+        "party_menu": 24,
+        "resolved": 35,
+        "start": 19
+      }
+    ],
+    "candidate": {
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "size": 33554432
+    },
+    "captures": 0,
+    "cold_frames": 2760,
+    "cold_inputs": 33,
+    "compiles": 0,
+    "continued": {
+      "battle_flags": 0,
+      "battle_outcome": 0,
+      "callback2": 134569589,
+      "facing": 3,
+      "field": true,
+      "flash_sha256": "0c89e42976fc91c7a76be3d055bdd053f235b03c8e6b677ae805fec76e96b6d5",
+      "frame": 2760,
+      "ledger_sha256": "6209190e76a87dda213464e48d9f187744c5605069dd0f1f9f629330d9670aed",
+      "live_xy": [
+        31,
+        24
+      ],
+      "lock": 0,
+      "map": [
+        3,
+        21
+      ],
+      "observe": 5,
+      "party_count": 4,
+      "party_sha256": "2f97dcf5846ac8375f80e8b0a357ed6a3f6e17d5c6a4861b01a9fdb7798a2dab",
+      "rp": 0,
+      "save_counter": 21,
+      "xy": [
+        24,
+        17
+      ]
+    },
+    "development_cold_menu_end_accepted": false,
+    "final_save_observation": {
+      "battle_flags": 12,
+      "battle_outcome": 1,
+      "callback2": 134569589,
+      "facing": 3,
+      "field": true,
+      "flash_sha256": "0c89e42976fc91c7a76be3d055bdd053f235b03c8e6b677ae805fec76e96b6d5",
+      "frame": 16528,
+      "ledger_sha256": "6209190e76a87dda213464e48d9f187744c5605069dd0f1f9f629330d9670aed",
+      "live_xy": [
+        31,
+        24
+      ],
+      "lock": 0,
+      "map": [
+        3,
+        21
+      ],
+      "observe": 54,
+      "party_count": 4,
+      "party_sha256": "2f97dcf5846ac8375f80e8b0a357ed6a3f6e17d5c6a4861b01a9fdb7798a2dab",
+      "rp": 0,
+      "save_counter": 21,
+      "xy": [
+        24,
+        17
+      ]
+    },
+    "full_story_accepted": false,
+    "hm05_attempt_rejected": true,
+    "hm05_compatibility_fixed": false,
+    "hm05_four_slots_incompatible_displayed": true,
+    "hm05_mew_rejection_explicit": true,
+    "hm05_root_cause_resolved": false,
+    "hm05_taught_or_used": false,
+    "input_save": {
+      "sha256": "2ed14acca7a475598bde7098f68f4c8a8f0fb131ad8f2bc8ad6e4b508c1d08e5",
+      "size": 131088
+    },
+    "legacy_field_predicate_preserved": true,
+    "losses": 0,
+    "national_dex_unlocked": false,
+    "natural_evolution_accepted": false,
+    "natural_growth_accepted": false,
+    "natural_research_arrival_accepted": false,
+    "ordinary_heals": 0,
+    "ordinary_hm05_grants": 0,
+    "ordinary_saves": 1,
+    "output_save": {
+      "sha256": "c9cb14fa73a38e105a0e6553f7fc1dc82c9bdd182e0409e28022c8ffe44b3d20",
+      "size": 131088
+    },
+    "phone_event_observed": true,
+    "progress_frames": 16528,
+    "progress_inputs": 181,
+    "release_ready": false,
+    "rom_changes": 0,
+    "rom_owners": {
+      "coord_table": [
+        {
+          "elevation": 3,
+          "script": 149007520,
+          "value": 5,
+          "var": 16497,
+          "x": 21,
+          "y": 17
+        },
+        {
+          "elevation": 3,
+          "script": 149007616,
+          "value": 5,
+          "var": 16497,
+          "x": 22,
+          "y": 17
+        },
+        {
+          "elevation": 3,
+          "script": 149007712,
+          "value": 5,
+          "var": 16497,
+          "x": 23,
+          "y": 17
+        },
+        {
+          "elevation": 3,
+          "script": 149007808,
+          "value": 5,
+          "var": 16497,
+          "x": 24,
+          "y": 17
+        }
+      ],
+      "expanded_flag": {
+        "bit": 6,
+        "index": 2062,
+        "payload_offset": 257,
+        "source_id": 4366
+      },
+      "hm05_compatibility_root_cause_resolved": false,
+      "map": [
+        3,
+        21
+      ],
+      "observed_coord_index": 2,
+      "other_coord_paths_accepted": false,
+      "phone_graph": {
+        "diagnostics": [],
+        "nodes": [
+          {
+            "address": 149007446,
+            "edges": [],
+            "end_reason": "return",
+            "instruction_count": 17,
+            "roots": [
+              "phone-x23"
+            ]
+          },
+          {
+            "address": 149007712,
+            "edges": [
+              149007446
+            ],
+            "end_reason": "end",
+            "instruction_count": 27,
+            "roots": [
+              "phone-x23"
+            ]
+          }
+        ],
+        "references": [
+          {
+            "access": "set",
+            "category": "flag",
+            "command": "setflag",
+            "instruction_address": 149007781,
+            "opcode": 41,
+            "roots": [
+              "phone-x23"
+            ],
+            "script_address": 149007712,
+            "value": 4366
+          },
+          {
+            "access": "call",
+            "category": "special",
+            "command": "special",
+            "instruction_address": 149007716,
+            "opcode": 37,
+            "roots": [
+              "phone-x23"
+            ],
+            "script_address": 149007712,
+            "value": 275
+          },
+          {
+            "access": "call",
+            "category": "special",
+            "command": "special",
+            "instruction_address": 149007784,
+            "opcode": 37,
+            "roots": [
+              "phone-x23"
+            ],
+            "script_address": 149007712,
+            "value": 275
+          },
+          {
+            "access": "call",
+            "category": "special",
+            "command": "special",
+            "instruction_address": 149007729,
+            "opcode": 37,
+            "roots": [
+              "phone-x23"
+            ],
+            "script_address": 149007712,
+            "value": 276
+          },
+          {
+            "access": "call",
+            "category": "special",
+            "command": "special",
+            "instruction_address": 149007797,
+            "opcode": 37,
+            "roots": [
+              "phone-x23"
+            ],
+            "script_address": 149007712,
+            "value": 276
+          },
+          {
+            "access": "write",
+            "category": "var",
+            "command": "setvar",
+            "instruction_address": 149007489,
+            "opcode": 22,
+            "operand": 6,
+            "roots": [
+              "phone-x23"
+            ],
+            "script_address": 149007446,
+            "value": 16497
+          }
+        ],
+        "root_count": 1,
+        "unique_root_address_count": 1,
+        "visited_script_count": 2
+      },
+      "trainer_graph": {
+        "diagnostics": [],
+        "nodes": [
+          {
+            "address": 148910990,
+            "edges": [
+              148911016
+            ],
+            "end_reason": "end",
+            "instruction_count": 6,
+            "roots": [
+              "trainer101"
+            ]
+          },
+          {
+            "address": 148911016,
+            "edges": [
+              154580416
+            ],
+            "end_reason": "goto",
+            "instruction_count": 1,
+            "roots": [
+              "trainer101"
+            ]
+          },
+          {
+            "address": 148911030,
+            "edges": [],
+            "end_reason": "end",
+            "instruction_count": 3,
+            "roots": [
+              "trainer101"
+            ]
+          },
+          {
+            "address": 154580387,
+            "edges": [
+              148910990
+            ],
+            "end_reason": "goto",
+            "instruction_count": 2,
+            "roots": [
+              "trainer101"
+            ]
+          },
+          {
+            "address": 154580416,
+            "edges": [
+              154580451
+            ],
+            "end_reason": "goto",
+            "instruction_count": 1,
+            "roots": [
+              "trainer101"
+            ]
+          },
+          {
+            "address": 154580451,
+            "edges": [
+              148911030
+            ],
+            "end_reason": "goto",
+            "instruction_count": 2,
+            "roots": [
+              "trainer101"
+            ]
+          }
+        ],
+        "references": [
+          {
+            "access": "call",
+            "category": "special",
+            "command": "specialvar",
+            "instruction_address": 148910990,
+            "opcode": 38,
+            "roots": [
+              "trainer101"
+            ],
+            "script_address": 148910990,
+            "value": 57
+          },
+          {
+            "access": "battle",
+            "battle_type": 0,
+            "category": "trainer",
+            "command": "trainerbattle",
+            "instruction_address": 154580387,
+            "opcode": 92,
+            "roots": [
+              "trainer101"
+            ],
+            "script_address": 154580387,
+            "value": 101
+          },
+          {
+            "access": "battle",
+            "battle_type": 5,
+            "category": "trainer",
+            "command": "trainerbattle",
+            "instruction_address": 154580451,
+            "opcode": 92,
+            "roots": [
+              "trainer101"
+            ],
+            "script_address": 154580451,
+            "value": 1027
+          },
+          {
+            "access": "write",
+            "category": "var",
+            "command": "specialvar",
+            "instruction_address": 148910990,
+            "opcode": 38,
+            "roots": [
+              "trainer101"
+            ],
+            "script_address": 148910990,
+            "value": 32781
+          },
+          {
+            "access": "read",
+            "category": "var",
+            "command": "compare_var_to_value",
+            "instruction_address": 148910995,
+            "opcode": 33,
+            "operand": 1,
+            "roots": [
+              "trainer101"
+            ],
+            "script_address": 148910990,
+            "value": 32781
+          }
+        ],
+        "root_count": 1,
+        "unique_root_address_count": 1,
+        "visited_script_count": 6
+      },
+      "trainer_object": {
+        "flag": 0,
+        "local_id": 3,
+        "script": 154580387,
+        "xy": [
+          13,
+          12
+        ]
+      },
+      "trainer_physical_mapping": [
+        [
+          101,
+          1381
+        ]
+      ],
+      "unexecuted_rematches_accepted": false
+    },
+    "save_counter": 21,
+    "save_structure": {
+      "all_bag_slots_preserved": false,
+      "all_other_bag_slots_preserved": true,
+      "all_save_rtc_preserved_after_continue": true,
+      "badge_count": 1,
+      "hm05_retained": true,
+      "inventory_items_counts_preserved": true,
+      "legacy_var_deltas": [
+        [
+          16417,
+          24,
+          92
+        ],
+        [
+          16418,
+          0,
+          2
+        ],
+        [
+          16497,
+          5,
+          6
+        ]
+      ],
+      "machine_slot_sort_after": [
+        [
+          343,
+          1
+        ],
+        [
+          303,
+          1
+        ]
+      ],
+      "machine_slot_sort_before": [
+        [
+          303,
+          1
+        ],
+        [
+          343,
+          1
+        ]
+      ],
+      "money_after": 6256,
+      "money_before": 6016,
+      "national_dex_magic": 0,
+      "national_flag840": 0,
+      "national_var404e": 0,
+      "party_changed_bytes": [
+        [
+          52,
+          10,
+          5
+        ],
+        [
+          86,
+          98,
+          93
+        ],
+        [
+          258,
+          1,
+          2
+        ],
+        [
+          358,
+          1,
+          2
+        ]
+      ],
+      "party_ev_delta_scope": "slots2/3のEV欄offset58:1→2。EV因果全ケース/自然育成の受入ではない。",
+      "party_exp_species_level_unchanged": true,
+      "pc_chunk13_payload_preserved_bytes": 2000,
+      "pc_full_sections_preserved": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "physical_flag_deltas": [
+        [
+          1381,
+          0,
+          1
+        ]
+      ],
+      "previous_bank_preserved_bytes": 57344,
+      "s61e_crc_and_complement_verified": true,
+      "s61e_flag4366_index2062_set": true,
+      "s61e_payload_deltas": [
+        [
+          257,
+          1,
+          65
+        ]
+      ],
+      "sector_checksum_checks": 42,
+      "sector_reports": {
+        "input20": [
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 0,
+            "section": 8
+          },
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 4096,
+            "section": 9
+          },
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 8192,
+            "section": 10
+          },
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 12288,
+            "section": 11
+          },
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 16384,
+            "section": 12
+          },
+          {
+            "checksum": 27650,
+            "counter": 20,
+            "payload_bytes": 2000,
+            "physical_offset": 20480,
+            "section": 13
+          },
+          {
+            "checksum": 1186,
+            "counter": 20,
+            "payload_bytes": 3876,
+            "physical_offset": 24576,
+            "section": 0
+          },
+          {
+            "checksum": 63028,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 28672,
+            "section": 1
+          },
+          {
+            "checksum": 4961,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 32768,
+            "section": 2
+          },
+          {
+            "checksum": 23529,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 36864,
+            "section": 3
+          },
+          {
+            "checksum": 3491,
+            "counter": 20,
+            "payload_bytes": 3776,
+            "physical_offset": 40960,
+            "section": 4
+          },
+          {
+            "checksum": 19640,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 45056,
+            "section": 5
+          },
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 49152,
+            "section": 6
+          },
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 53248,
+            "section": 7
+          }
+        ],
+        "output21": [
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 57344,
+            "section": 7
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 61440,
+            "section": 8
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 65536,
+            "section": 9
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 69632,
+            "section": 10
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 73728,
+            "section": 11
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 77824,
+            "section": 12
+          },
+          {
+            "checksum": 27650,
+            "counter": 21,
+            "payload_bytes": 2000,
+            "physical_offset": 81920,
+            "section": 13
+          },
+          {
+            "checksum": 24507,
+            "counter": 21,
+            "payload_bytes": 3876,
+            "physical_offset": 86016,
+            "section": 0
+          },
+          {
+            "checksum": 37874,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 90112,
+            "section": 1
+          },
+          {
+            "checksum": 33401,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 94208,
+            "section": 2
+          },
+          {
+            "checksum": 23529,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 98304,
+            "section": 3
+          },
+          {
+            "checksum": 34751,
+            "counter": 21,
+            "payload_bytes": 3776,
+            "physical_offset": 102400,
+            "section": 4
+          },
+          {
+            "checksum": 19640,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 106496,
+            "section": 5
+          },
+          {
+            "checksum": 0,
+            "counter": 21,
+            "payload_bytes": 3968,
+            "physical_offset": 110592,
+            "section": 6
+          }
+        ],
+        "retained20": [
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 0,
+            "section": 8
+          },
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 4096,
+            "section": 9
+          },
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 8192,
+            "section": 10
+          },
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 12288,
+            "section": 11
+          },
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 16384,
+            "section": 12
+          },
+          {
+            "checksum": 27650,
+            "counter": 20,
+            "payload_bytes": 2000,
+            "physical_offset": 20480,
+            "section": 13
+          },
+          {
+            "checksum": 1186,
+            "counter": 20,
+            "payload_bytes": 3876,
+            "physical_offset": 24576,
+            "section": 0
+          },
+          {
+            "checksum": 63028,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 28672,
+            "section": 1
+          },
+          {
+            "checksum": 4961,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 32768,
+            "section": 2
+          },
+          {
+            "checksum": 23529,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 36864,
+            "section": 3
+          },
+          {
+            "checksum": 3491,
+            "counter": 20,
+            "payload_bytes": 3776,
+            "physical_offset": 40960,
+            "section": 4
+          },
+          {
+            "checksum": 19640,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 45056,
+            "section": 5
+          },
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 49152,
+            "section": 6
+          },
+          {
+            "checksum": 0,
+            "counter": 20,
+            "payload_bytes": 3968,
+            "physical_offset": 53248,
+            "section": 7
+          }
+        ]
+      },
+      "unused_party_bytes_preserved": 200
+    },
+    "save_success_wording_frame_captured": false,
+    "screens": 61,
+    "status": "PASS_ROUTE503_PHONE_SAVE21_SCOPED",
+    "story_var4071_after": 6,
+    "story_var4071_before": 5,
+    "trainer_victories": 1,
+    "visual_review_anchors": 38,
+    "wild_escapes": 0,
+    "wild_victories": 0
+  }
+}

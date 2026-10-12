@@ -1,0 +1,477 @@
+name: pr16-story-acceleration-plan
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-acceleration-plan.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-acceleration-plan
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Resolve immutable decision base
+        run: |
+          set -euo pipefail
+          echo "DECISION_BASE_HEAD=$(git rev-parse HEAD^)" >> "$GITHUB_ENV"
+          test "$(git branch --show-current)" = "codex/modernization-followup-20260908"
+      - name: Record owner-approved accelerated acceptance plan
+        run: |
+          python3 - <<'PY'
+          from __future__ import annotations
+
+          import datetime as dt
+          import json
+          import os
+          import textwrap
+          from pathlib import Path
+
+          root = Path('.')
+          branch = 'codex/modernization-followup-20260908'
+          source_head = os.environ['GITHUB_SHA']
+          decision_base = os.environ['DECISION_BASE_HEAD']
+          run_id = int(os.environ['GITHUB_RUN_ID'])
+          timestamp = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z')
+
+          plan_doc = textwrap.dedent('''\
+          # PR #16 ストーリー高速走破・自然成長分離計画
+
+          > 所有者決定。固定入口は `CHATGPT_RESUME.md`。正式停止点 `PASS_STORY_SAVE14_SCOPED` と保存済みSave14原本は変更しない。
+          > この文書は実行方針の正本であり、既受入の自然育成、難易度、入手経路、releaseを追加受入したものではない。
+
+          ## 目的
+
+          ストーリー接続確認と、戦闘EXP・レベルアップ・技習得・進化の検証を別レーンへ分離する。
+          ストーリー側は自己OTのLv100テスト個体で戦闘時間を縮め、成長側は通常の野生戦開始、通常コマンド、EXP付与、技習得UI、進化、field復帰、通常Save、fresh Continueを通す。
+          低レベル自然育成を全ストーリー走破の前提にせず、変更境界をデータから生成して一戦単位で検査する。
+
+          ## 不変境界
+
+          - Save14原本artifact `10999218544`、`training.srm`、97画面、303/cold40入力、110検査を再実行・上書きしない。
+          - 作業は原本から複製した `story-fast.srm` と `progression.srm` で行う。原本hash、作業コピーhash、全変更byteを記録する。
+          - party fixtureは戦闘開始前だけ許可する。戦闘開始後はparty、EXP、level、技、PP、進化状態、story flag、outcomeへのhost書込みを禁止する。
+          - 自己OTはSave14のOT ID、OT名、OT性別、言語を完全一致させ、暗号化とchecksumを正規処理で再計算する。単なる表示名一致で代用しない。
+          - story-fastの結果を難易度、自然捕獲、自然加入、自然な資金・用品、自然レベル曲線の受入へ昇格しない。
+          - progressionのfixture戦を野生テーブル、自然遭遇率、相手の自然初期技の受入へ昇格しない。
+          - key item、badge、HM取得flag、story flag、money、RPはfixtureで与えない。配布・入手イベントを飛ばさない。
+
+          ## レーンA: Lv100自己OTによるストーリー高速走破
+
+          Save14作業コピーでは、既存のツツケラとリープンを消去せずPCの空きslotへ退避し、次の4体をpartyへ置く。2枠は固定配布、強制加入、捕獲等のため空ける。数値IDは現行identityの確認値であり、実装時は必ずstable keyから再解決する。
+
+          | 役割 | 個体 | 現行canonical ID | 能力・育成 | 持ち物 | 技構成 |
+          |---|---|---:|---|---|---|
+          | 主力特殊 | `SPECIES_KEY_MEWTWO` | 151 | Lv100、自己OT、ひかえめ、31IV、特攻252/素早さ252/HP4、通常フォーム、Pressure | ものしりメガネ | サイコブレイク(ID600) / はどうだん(ID366) / かえんほうしゃ(ID53) / れいとうビーム(ID58) |
+          | 物理・ability対策 | `SPECIES_KEY_HAXORUS` | 851 | Lv100、自己OT、いじっぱり、31IV、攻撃252/素早さ252/HP4、Mold Breaker | ちからのハチマキ | ドラゴンクロー(ID337) / じしん(ID89) / かわらわり(ID280) / つばめがえし(ID332) |
+          | field utility A | `SPECIES_KEY_MEW` | 152 | Lv100、自己OT、戦闘主力にはしない | けむりだま | なみのり(ID57) / そらをとぶ(ID19) / かいりき(ID70) / いわくだき(ID249) |
+          | field utility B | `SPECIES_KEY_BIBAREL` | 691 | Lv100、自己OT、戦闘主力にはしない | なし | いあいぎり(ID15) / たきのぼり(ID127) / ダイビング(ID291) / ロッククライム(ID398) |
+
+          ### 編成理由
+
+          - Mewtwoは反動、溜め、命中不安、Choice固定を避け、ほぼ全相手を一手で処理する。DarkにはAura Sphere、SteelにはAura Sphere/Flamethrower、Dragon/GroundにはIce Beamを使う。
+          - Haxorusは特殊耐久の高い相手とability依存の停止要因を担当する。Mold BreakerでLevitate/Sturdy等の影響を減らす。自動入力の安定性を優先し、Stone Edge等の命中不安技や反動技を使わない。
+          - Double BattleではHaxorusのEarthquakeを味方へ当てない。Mewtwoの単体技とHaxorusのDragon Claw/Brick Break/Aerial Aceで順に処理する。
+          - Mega、Z、Dynamax、Terastal、伝説専用変身は高速走破の必須条件にしない。通常フォームと通常戦闘だけで進め、追加mechanicの受入と混同しない。
+          - field moveは、対応するHM・key item・badge・story authorizationをゲーム内で自然取得した後の区間だけ有効化する。先に技だけ入れてsequence breakしない。区間間の作業コピー更新は新しいfixture境界として記録する。
+
+          ### 支援用品
+
+          `story-fast.srm` に限り、通常Bag UIで使う支援用品として Max Repel 99、Full Restore 30、Max Elixir 10、Escape Rope 10を追加してよい。追加前後の全Bag差分を記録する。Master Ball、key item、HM、badge、money、RPは追加しない。支援用品の存在を通常経済・自然供給の受入に数えない。
+
+          ### Story受入
+
+          最初に自己OT服従、通常技選択、勝利、field復帰、通常Save、fresh Continueを1戦だけsmokeする。その後はマオリ勝利、主要badge、重要施設、region/warp境界、殿堂入り、エンディング等の意味ある区切りで保存する。全雑魚戦ごとのcheckpointは作らない。失敗時は最後の成功Saveから失敗区間だけ再現する。
+
+          ## レーンB: 通常戦闘EXPによる技習得・進化境界
+
+          各ケースは対象個体を「次の境界まで残り1または計算済み少量EXP」にしたpre-battle fixtureから開始する。通常のwild battle入口、通常コマンド、相手撃破、EXP加算、level-up、技習得UI、進化、field復帰を通す。期待EXPは候補ROMのgrowth rate、相手base EXP、level、参加状態、Lucky Egg、Exp. Share等から事前計算し、想定外のlevel飛越しをfail-closedにする。
+
+          ### 連続育成の基準個体
+
+          `SPECIES_KEY_AXEW`（現行canonical ID 849）を自己OTで用い、現行進化契約からAxew→Fraxure→Haxorusの閾値を再解決する。性格いじっぱり、31IV、攻撃252/素早さ252、持ち物しあわせタマゴ。固定ハーネス技は、りゅうのいかり(ID82) / つばめがえし(ID332) / かわらわり(ID280) / ドラゴンクロー(ID337) とする。
+
+          - 低levelはDragon Rage、通常帯はAerial Ace、Audino/Chansey/Blissey帯はBrick Break/Dragon Clawを使う。
+          - long soakではハーネス技を失わないため新技を既定で拒否し、技受入・置換・拒否は別の一戦境界ケースで全て検証する。
+          - Max PP等のfixture設定は開始時に固定し、戦闘中に補充しない。PP切れ前に通常回復またはSave区切りを入れる。
+
+          ### 相手切替
+
+          | 帯 | 相手候補 | 用途 |
+          |---|---|---|
+          | 厳密な1level境界 | `SPECIES_KEY_CATERPIE` / 低level通常種 | EXP過剰を避ける |
+          | 中盤 | `SPECIES_KEY_AUDINO`（現行ID789） | 中程度の高速化 |
+          | 高level | `SPECIES_KEY_CHANSEY`（現行ID366） | 物理技で安定して高EXP |
+          | 終盤・意図的複数level | `SPECIES_KEY_BLISSEY`（現行ID367） | Lv100までのsoakと複数levelケース |
+
+          相手speciesとlevelは固定表だけでなくEXP予測器が選ぶ。相手の技は安全な非攻撃技へfixture化してよいが、その結果を自然初期技受入に使わない。base EXPやgrowth tableを直接書き換えない。
+
+          ### 必須境界ケース
+
+          1. 1level上昇のみ、技・進化なし。
+          2. 空きslotへのlevel技習得。
+          3. 4枠満杯からの置換。
+          4. 技習得拒否。
+          5. level-up進化。
+          6. 同じ勝利内で技習得と進化が連続。
+          7. 進化キャンセルと次levelでの再試行。
+          8. Lucky Eggなし/ありの同一相手差分。
+          9. Exp. Shareで非戦闘個体が受け取る経路。直接参加経路とは別受入。
+          10. 意図的な複数level上昇で中間level技の順序と進化を確認。
+          11. Lv99→100、さらに1戦してlevel/EXP overflowなし。
+          12. 技習得・進化後の通常Save、fresh Continue、次の通常戦闘。
+
+          Nincada/Shedinja、Tyrogueの能力値分岐、Eeveeの友情・時間帯、性別・フォーム・所持道具等は、現行変更影響台帳に該当する場合だけ独立fixtureを生成する。全1671 ownerを同じsoakで回すのではなく、変更された経路と条件classを網羅する。
+
+          ## レーンC: 長時間soak
+
+          Axew系を低levelからLv100まで自動連戦させ、10levelごと、全技習得点、全進化点、Lv100でcheckpointを残す。Lucky Eggはbase EXP対照を通過した後だけ使用する。各戦の前後でspecies/form、level、EXP、moves/PP、ability、stats、personality、OT、held item、party order、battle outcome、field復帰を記録する。
+
+          一つのprocessで連続実行してよいが、失敗位置を限定できるよう戦闘ごとのcompact ledgerと定期Saveを残す。soak成功をstory自然進行や全species受入へ拡張しない。
+
+          ## 次の実装単位
+
+          1. Save14 artifactとROM/save hashを読戻し、`story-fast.srm` と `progression.srm` を別identityで生成する。
+          2. stable species/move/item keyを現在のmanifestから再解決し、数値ID・item ABI・自己OT・checksumを検証する。
+          3. story-fastで自己OT Lv100の服従、1戦勝利、field復帰、通常Save/fresh Continueをsmokeする。
+          4. progressionで最初の一戦縦切りを行う。現行進化契約で解決したAxew第一進化直前から通常wild EXPで進化し、Save/Continueまで確認する。
+          5. 3と4が通った後、storyはマオリ勝利まで、progressionはLucky Egg対照・技空きslot/置換/拒否・複数levelへ広げる。
+
+          ## 完了主張の境界
+
+          この計画記録だけではnative process、ROM生成、story勝利、level-up、進化、releaseの新規受入は0。`release_ready=false`、mergeなし、active baseline切替なしを維持する。
+          ''')
+
+          story_party = [
+              {
+                  'role': 'primary_special_sweeper',
+                  'species_key': 'SPECIES_KEY_MEWTWO',
+                  'current_canonical_id': 151,
+                  'level': 100,
+                  'nature': 'MODEST',
+                  'ability': 'PRESSURE',
+                  'evs': {'hp': 4, 'spa': 252, 'spe': 252},
+                  'ivs': '31_all',
+                  'held_item_name': 'ものしりメガネ',
+                  'moves': [
+                      {'key': 'MOVE_PSYSTRIKE', 'current_id': 600},
+                      {'key': 'MOVE_AURA_SPHERE', 'current_id': 366},
+                      {'key': 'MOVE_FLAMETHROWER', 'current_id': 53},
+                      {'key': 'MOVE_ICE_BEAM', 'current_id': 58},
+                  ],
+              },
+              {
+                  'role': 'physical_mold_breaker_backup',
+                  'species_key': 'SPECIES_KEY_HAXORUS',
+                  'current_canonical_id': 851,
+                  'level': 100,
+                  'nature': 'ADAMANT',
+                  'ability': 'MOLD_BREAKER',
+                  'evs': {'hp': 4, 'atk': 252, 'spe': 252},
+                  'ivs': '31_all',
+                  'held_item_name': 'ちからのハチマキ',
+                  'moves': [
+                      {'key': 'MOVE_DRAGON_CLAW', 'current_id': 337},
+                      {'key': 'MOVE_EARTHQUAKE', 'current_id': 89},
+                      {'key': 'MOVE_BRICK_BREAK', 'current_id': 280},
+                      {'key': 'MOVE_AERIAL_ACE', 'current_id': 332},
+                  ],
+              },
+              {
+                  'role': 'field_utility_a',
+                  'species_key': 'SPECIES_KEY_MEW',
+                  'current_canonical_id': 152,
+                  'level': 100,
+                  'held_item_name': 'けむりだま',
+                  'moves': [
+                      {'key': 'MOVE_SURF', 'current_id': 57},
+                      {'key': 'MOVE_FLY', 'current_id': 19},
+                      {'key': 'MOVE_STRENGTH', 'current_id': 70},
+                      {'key': 'MOVE_ROCK_SMASH', 'current_id': 249},
+                  ],
+                  'authorization_rule': 'enable only after the corresponding story-owned HM/key-item/badge authorization',
+              },
+              {
+                  'role': 'field_utility_b',
+                  'species_key': 'SPECIES_KEY_BIBAREL',
+                  'current_canonical_id': 691,
+                  'level': 100,
+                  'held_item_name': None,
+                  'moves': [
+                      {'key': 'MOVE_CUT', 'current_id': 15},
+                      {'key': 'MOVE_WATERFALL', 'current_id': 127},
+                      {'key': 'MOVE_DIVE', 'current_id': 291},
+                      {'key': 'MOVE_ROCK_CLIMB', 'current_id': 398},
+                  ],
+                  'authorization_rule': 'enable only after the corresponding story-owned HM/key-item/badge authorization',
+              },
+          ]
+
+          plan = {
+              'schema_version': 1,
+              'task': 'USER-20260929-STORY-ACCELERATION-PLAN',
+              'status': 'OWNER_APPROVED_EXECUTION_PLAN_RECORDED',
+              'branch': branch,
+              'workflow_source_head': source_head,
+              'decision_base_head': decision_base,
+              'recording_run_id': run_id,
+              'recorded_at_utc': timestamp,
+              'source_stop': 'PASS_STORY_SAVE14_SCOPED',
+              'source_artifact_id': 10999218544,
+              'source_save_immutable': True,
+              'accepted_case_reruns': 0,
+              'new_native_processes': 0,
+              'rom_changes': 0,
+              'release_ready': False,
+              'merge_performed': False,
+              'active_baseline_changed': False,
+              'documents': {
+                  'plan': 'docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md',
+                  'resume_state': 'content/modernization/pr16_native_supply_resume_20260913.json',
+                  'resume_doc': 'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
+                  'save14_checkpoint': 'content/modernization/pr16_story_save14_checkpoint.json',
+                  'learnset_progression': 'content/modernization/pr16_learnset_progression_checkpoint.json',
+                  'learnset_battle': 'content/modernization/pr16_learnset_battle_checkpoint.json',
+              },
+              'decisions': {
+                  'separate_story_and_growth_lanes': True,
+                  'story_fast_uses_self_ot_level100_party': True,
+                  'growth_uses_normal_wild_battle_exp': True,
+                  'lucky_egg_soak_after_base_exp_control': True,
+                  'changed_boundary_vectors_before_blanket_grind': True,
+                  'preserve_two_open_party_slots': True,
+                  'no_key_item_badge_story_flag_money_rp_fixture': True,
+              },
+              'fixture_contract': {
+                  'copies': ['story-fast.srm', 'progression.srm'],
+                  'self_ot_fields': ['ot_id_32bit', 'ot_name', 'ot_gender', 'language'],
+                  'allowed_before_battle': ['party construction', 'ordinary held items', 'support medicine/repel/PP items', 'exact EXP boundary setup', 'safe opponent species/level/moves'],
+                  'forbidden_after_battle_start': ['party writes', 'EXP writes', 'level writes', 'move or PP writes', 'evolution/form writes', 'story flag writes', 'battle outcome writes'],
+                  'hash_and_byte_ledger_required': True,
+              },
+              'story_fast': {
+                  'party': story_party,
+                  'pc_preservation': 'move original Toucannon and Leafeon to empty PC slots without rewriting their 100-byte identities',
+                  'open_party_slots': 2,
+                  'support_items': [
+                      {'name': 'Max Repel', 'quantity': 99},
+                      {'name': 'Full Restore', 'quantity': 30},
+                      {'name': 'Max Elixir', 'quantity': 10},
+                      {'name': 'Escape Rope', 'quantity': 10},
+                  ],
+                  'first_acceptance': ['self-OT obedience', 'ordinary move selection', 'victory', 'field return', 'ordinary save', 'fresh continue'],
+                  'not_claimed': ['natural party acquisition', 'natural difficulty', 'natural economy', 'natural level curve', 'natural capture'],
+              },
+              'progression': {
+                  'primary_soak_species_key': 'SPECIES_KEY_AXEW',
+                  'current_canonical_id': 849,
+                  'held_item_name': 'しあわせタマゴ',
+                  'moves': [
+                      {'key': 'MOVE_DRAGON_RAGE', 'current_id': 82},
+                      {'key': 'MOVE_AERIAL_ACE', 'current_id': 332},
+                      {'key': 'MOVE_BRICK_BREAK', 'current_id': 280},
+                      {'key': 'MOVE_DRAGON_CLAW', 'current_id': 337},
+                  ],
+                  'opponent_ladder': [
+                      {'species_key': 'SPECIES_KEY_CATERPIE', 'purpose': 'exact low-EXP boundary'},
+                      {'species_key': 'SPECIES_KEY_AUDINO', 'current_canonical_id': 789, 'purpose': 'mid-level acceleration'},
+                      {'species_key': 'SPECIES_KEY_CHANSEY', 'current_canonical_id': 366, 'purpose': 'high-level physical farm'},
+                      {'species_key': 'SPECIES_KEY_BLISSEY', 'current_canonical_id': 367, 'purpose': 'late and intentional multi-level cases'},
+                  ],
+                  'opponent_selection': 'calculate exact expected EXP and choose the smallest level that meets the case without unintended skips',
+                  'first_vertical_slice': 'resolve the current Axew first-evolution threshold, start one EXP short, win one normal wild battle, evolve, save, and fresh-continue',
+                  'required_case_count': 12,
+                  'post_level_100_extra_battle': True,
+              },
+              'next_action_id': 'STORY_FAST_E2E_AND_NATURAL_EXP_EVOLUTION_SPLIT',
+          }
+
+          doc_path = root / 'docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md'
+          json_path = root / 'content/modernization/pr16_story_acceleration_plan.json'
+          doc_path.write_text(plan_doc, encoding='utf-8')
+          json_path.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          goal = (
+              '所有者決定の3レーンへ切替える。Save14原本を不変に保ち、'
+              '(A) 自己OT Lv100のMewtwo/Haxorusと段階解禁utilityでマオリ以降の通常storyを高速走破、'
+              '(B) 別fixtureで通常wild battle EXP→level-up/技習得/進化→通常Save/fresh Continueを変更境界ごとに自動検証、'
+              '(C) Axew系+しあわせタマゴとAudino/Chansey/Blissey段階切替でLv100までsoakする。'
+              'まず作業コピー2本を生成し、服従/戦闘復帰/保存再開smokeと最初のEXP進化縦切りを受入する。'
+          )
+          stop_rule = (
+              'Save14原本artifactと受入済みSave1〜14は不変。story-fastとprogressionを混同しない。'
+              'fixture書込みは戦闘開始前だけとし、開始後のparty/EXP/level/技/進化/story flag/outcomeへのhost書込みを禁止する。'
+              'Lv100走破を自然難易度・自然入手・自然育成へ、fixture戦を野生テーブル・自然初期技へ読み替えない。'
+          )
+          host_policy = (
+              '受入済み公式/Vega原本・旧候補Wiki・ROM/saveは不変。Save14は作業コピーだけを使用する。'
+              '自己OT party、通常支援用品、EXP境界、safe opponentはpre-battle fixtureとして全byteを台帳化してよい。'
+              '戦闘開始後は通常入力とゲーム内処理だけを使い、成功区間を変更影響なしに再実行しない。'
+          )
+          state_path = root / 'content/modernization/pr16_native_supply_resume_20260913.json'
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['bp']['next_step'] = goal
+          state['next_action']['id'] = 'STORY_FAST_E2E_AND_NATURAL_EXP_EVOLUTION_SPLIT'
+          state['next_action']['goal_ja'] = goal
+          state['next_action']['stop_rule_ja'] = stop_rule
+          state['next_action']['host_write_policy_ja'] = host_policy
+          state['next_action']['read_paths'] = [
+              'docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md',
+              'content/modernization/pr16_story_acceleration_plan.json',
+              'docs/PR16_STORY_SAVE14_JA.md',
+              'content/modernization/pr16_story_save14_checkpoint.json',
+              'content/modernization/pr16_story_save14_working.json',
+              'content/modernization/pr16_learnset_progression_checkpoint.json',
+              'content/modernization/pr16_learnset_battle_checkpoint.json',
+          ]
+          state['story_acceleration_plan'] = {
+              'path': 'content/modernization/pr16_story_acceleration_plan.json',
+              'document': 'docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md',
+              'status': 'OWNER_APPROVED_EXECUTION_PLAN_RECORDED',
+              'decision_base_head': decision_base,
+              'recording_run_id': run_id,
+              'source_stop': 'PASS_STORY_SAVE14_SCOPED',
+              'source_artifact_id': 10999218544,
+              'accepted_case_reruns': 0,
+              'new_native_processes': 0,
+              'rom_changes': 0,
+              'release_ready': False,
+          }
+          no_repeat = (
+              '所有者決定後はSave14原本から自然育成を漫然と継続しない。'
+              'story-fastは自己OT Lv100作業コピー、成長受入は別progression fixtureの通常戦闘EXPで行い、'
+              '両レーンの主張を混同しない。'
+          )
+          if no_repeat not in state['do_not_repeat']:
+              state['do_not_repeat'].insert(0, no_repeat)
+          state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          resume_path = root / 'CHATGPT_RESUME.md'
+          resume = resume_path.read_text(encoding='utf-8')
+          start = '<!-- owner-story-acceleration-plan -->'
+          end = '<!-- /owner-story-acceleration-plan -->'
+          section = textwrap.dedent('''\
+          <!-- owner-story-acceleration-plan -->
+          ## 所有者決定: ストーリー走破と自然成長検証を分離
+
+          - Save14原本は上書きせず、`story-fast.srm` と `progression.srm` の2作業コピーへ分ける。
+          - story-fastはSave14の自己OTを正確に継承したLv100主力で戦闘を短縮し、イベント・warp・trainer勝利・通常Save/fresh Continue・全story接続を確認する。難易度や自然育成の受入にはしない。
+          - progressionは通常wild battleを直接開始し、通常入力による撃破からEXP、level-up、技習得、進化、field復帰、通常Save/fresh Continueを検証する。しあわせタマゴとAudino/Chansey/Blissey段階切替によるsoakはbase EXP対照後に行う。
+          - 主力、技、持ち物、自己OT、field utility、相手切替、host-write境界、最初の縦切りは `docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md` と `content/modernization/pr16_story_acceleration_plan.json` を正とする。
+          - 次作業は、作業コピー2本の生成、stable key再解決、自己OT Lv100服従smoke、Axew第一進化直前からの通常戦闘EXP縦切りである。受入済みSave14以前を再生しない。
+          <!-- /owner-story-acceleration-plan -->
+          ''')
+          if start in resume:
+              left, rest = resume.split(start, 1)
+              _, right = rest.split(end, 1)
+              resume = left + section + right.lstrip('\n')
+          else:
+              anchor = '## 次回そのまま渡す指示'
+              if anchor not in resume:
+                  raise ValueError('CHATGPT_RESUME insertion anchor missing')
+              resume = resume.replace(anchor, section + '\n' + anchor, 1)
+          resume_path.write_text(resume, encoding='utf-8')
+
+          run_entry = textwrap.dedent(f'''\
+
+          ## {timestamp}
+
+          - Task: `USER-20260929-STORY-ACCELERATION-PLAN` / ストーリー高速走破と自然EXP・技習得・進化検証の分離
+          - Status: DONE
+          - Summary:
+            - Save14原本を不変にし、自己OT Lv100によるstory-fast、通常wild battle EXPによるprogression、Axew系Lv100 soakの3レーンを所有者決定として固定した。
+            - story-fastの4体編成、技、持ち物、EV/IV、2空きparty slot、段階解禁field move、支援用品と非受入範囲を機械可読JSONとMarkdownへ記録した。
+            - progressionはpre-battle fixtureだけを許可し、戦闘開始後のparty/EXP/level/技/進化/flag/outcome host-writeを禁止した。Lucky Egg対照、Exp. Share、技空き/置換/拒否、進化/cancel、複数level、Lv100 overflowを必須境界にした。
+            - 固定再開JSONの次作業とread pathを新計画へ切替え、`CHATGPT_RESUME.md` と生成再開MDを同期した。既受入native/ROM/Saveの再実行・変更は0。
+          - Files changed:
+            - `docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md`
+            - `content/modernization/pr16_story_acceleration_plan.json`
+            - `content/modernization/pr16_native_supply_resume_20260913.json`
+            - `docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md`
+            - `CHATGPT_RESUME.md`
+            - `design/run_log.md`, `design/version_log.md`
+          - Verify:
+            - `python3 scripts/pr16_resume.py render/check`: PASS
+            - `python3 -m unittest discover -s tests -p test_pr16_resume.py -v`: PASS
+            - `python3 scripts/validate_task_graph.py --check`: PASS
+            - plan JSON schema/required stable keys and `git diff --check`: PASS
+          - Runtime accounting: new native process 0 / ROM change 0 / accepted-case rerun 0 / release・merge・baseline切替0。
+          - Commit: `-`（本エントリを含むActions commit、run `{run_id}`）
+          ''')
+          version_entry = textwrap.dedent(f'''\
+
+          ## {timestamp} — Story fast E2E / natural EXP-evolution split
+
+          - `USER-20260929-STORY-ACCELERATION-PLAN`: Save14以降を、自己OT Lv100によるstory接続確認と、通常戦闘EXPによるlevel-up・技習得・進化検証へ分離した。
+          - Mewtwo/Haxorus/Mew/Bibarelのstory-fast編成、Axew+Lucky EggとAudino/Chansey/Blisseyのsoak、pre-battle fixture境界、必須12ケースを固定した。
+          - 固定再開の次作業を作業コピー2本、服従/勝利/保存再開smoke、最初のEXP進化縦切りへ更新した。runtime受入・release状態は不変。
+          - Recording run: `{run_id}` / decision base `{decision_base}`。
+          ''')
+          with (root / 'design/run_log.md').open('a', encoding='utf-8') as stream:
+              stream.write(run_entry)
+          with (root / 'design/version_log.md').open('a', encoding='utf-8') as stream:
+              stream.write(version_entry)
+          PY
+      - name: Render and validate fixed resume
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py render
+          python3 -B scripts/pr16_resume.py check
+          python3 -B -m unittest discover -s tests -p test_pr16_resume.py -v
+          python3 -B scripts/validate_task_graph.py --check
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          plan = json.loads(Path('content/modernization/pr16_story_acceleration_plan.json').read_text(encoding='utf-8'))
+          assert plan['status'] == 'OWNER_APPROVED_EXECUTION_PLAN_RECORDED'
+          assert plan['source_save_immutable'] is True
+          assert plan['new_native_processes'] == 0
+          assert len(plan['story_fast']['party']) == 4
+          assert plan['story_fast']['open_party_slots'] == 2
+          assert plan['progression']['primary_soak_species_key'] == 'SPECIES_KEY_AXEW'
+          assert plan['progression']['required_case_count'] == 12
+          state = json.loads(Path('content/modernization/pr16_native_supply_resume_20260913.json').read_text(encoding='utf-8'))
+          assert state['next_action']['id'] == 'STORY_FAST_E2E_AND_NATURAL_EXP_EVOLUTION_SPLIT'
+          assert state['story_acceleration_plan']['release_ready'] is False
+          PY
+          git diff --check
+      - name: Non-force commit and remote readback
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add CHATGPT_RESUME.md \
+            docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md \
+            docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md \
+            content/modernization/pr16_story_acceleration_plan.json \
+            content/modernization/pr16_native_supply_resume_20260913.json \
+            design/run_log.md design/version_log.md
+          test -n "$(git status --short)"
+          git commit -m "USER-20260929-STORY-ACCELERATION: Lv100走破とEXP進化専用レーンへ固定 run=$GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/$branch
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 -B scripts/pr16_resume.py check
+          echo "RESULT=DONE TASK=USER-20260929-STORY-ACCELERATION-PLAN VERIFY=PLAN_RESUME_LOGS_PASS COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-acceleration-plan
+          path: |
+            docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md
+            content/modernization/pr16_story_acceleration_plan.json
+          if-no-files-found: error
+          retention-days: 90

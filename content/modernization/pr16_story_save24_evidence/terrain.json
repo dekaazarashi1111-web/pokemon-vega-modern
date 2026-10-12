@@ -1,0 +1,171 @@
+{
+  "scope": "STATIC_DIRECTION_ELEVATION_AND_NATIVE_BLOCK_NOT_FULL_PATH_ACCEPTANCE",
+  "map": [
+    1,
+    73
+  ],
+  "rows": [
+    {
+      "xy": [
+        20,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 663,
+      "behavior": 97
+    },
+    {
+      "xy": [
+        21,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 641,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        22,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 641,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        23,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 771,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        24,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 768,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        25,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 764,
+      "behavior": 43
+    },
+    {
+      "xy": [
+        26,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 764,
+      "behavior": 43
+    },
+    {
+      "xy": [
+        27,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 769,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        28,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 773,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        29,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 641,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        30,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 641,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        31,
+        3
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 641,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        31,
+        4
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 641,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        27,
+        4
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "metatile": 773,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        27,
+        5
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "metatile": 649,
+      "behavior": 50
+    },
+    {
+      "xy": [
+        23,
+        14
+      ],
+      "elevation": 0,
+      "collision": 0,
+      "metatile": 145,
+      "behavior": 42
+    }
+  ],
+  "primary_reference": "https://github.com/pret/pokefirered/blob/master/include/constants/metatile_behaviors.h",
+  "conclusion_ja": "27,4→27,5は高さ3→4かつ北側進入不可。runtimeで3回停止した証拠と整合。collision-only候補を可達性に昇格しない。23,14岩階段からの先は未測定。"
+}

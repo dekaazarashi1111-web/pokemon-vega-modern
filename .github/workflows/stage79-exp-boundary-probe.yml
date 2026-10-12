@@ -1,0 +1,56 @@
+name: stage79-exp-boundary-probe
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/stage79-exp-boundary-probe.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: bash infra/setup_github_actions.sh --install
+      - name: Observe native EXP without changing product or acceptance
+        shell: python
+        run: |
+          import importlib.util
+          import sys
+          spec = importlib.util.spec_from_file_location('probe', '.github/scripts/stage79_runtime_probe.py')
+          probe = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(probe)
+          original = probe.instrument
+          def instrument(domain, text):
+              text = original(domain, text)
+              marker = '    create_mon(core, QOL_PLAYER_PARTY, species, level);'
+              text = probe.once(text, marker, marker + '''
+              fprintf(stderr, "EXP_FIXTURE species=%u level=%u mon_exp=%u native_current=%u native_next=%u\\n",
+                      species, level, (unsigned)p02s_data(core, QOL_MON_DATA_EXP),
+                      (unsigned)call_preserving(core, 0x090FC505U, species, level, 0U, 0U),
+                      (unsigned)call_preserving(core, 0x090FC505U, species, level + 1U, 0U, 0U));
+          ''')
+              marker = '        uint32_t callback = read32(core, BATTLE_CORE_MAIN_CALLBACK2);'
+              text = probe.once(text, marker, marker + '''
+                  if (frame % 30U == 0U && frame <= 1200U)
+                      fprintf(stderr, "EXP_SCENE frame=%u cb=%08x level=%u exp=%u native16=%u native100=%u\\n",
+                              frame, callback, (unsigned)p02s_data(core, QOL_MON_DATA_LEVEL),
+                              (unsigned)p02s_data(core, QOL_MON_DATA_EXP),
+                              (unsigned)call_preserving(core, 0x090FC505U, source, 16U, 0U, 0U),
+                              (unsigned)call_preserving(core, 0x090FC505U, source, 100U, 0U, 0U));
+          ''')
+              return text
+          probe.instrument = instrument
+          sys.argv = ['probe', 'p02']
+          raise SystemExit(probe.main())
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-exp-boundary-probe
+          path: .local/stage79-runtime-probe/p02
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

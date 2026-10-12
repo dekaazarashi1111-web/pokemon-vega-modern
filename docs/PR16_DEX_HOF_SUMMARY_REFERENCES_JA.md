@@ -1,0 +1,27 @@
+# Summary実consumerの必要最小型
+
+対象は現候補0641、旧egg範囲15118byteに見える874参照のうち、735分類/139未知の次の限定batchである。既受入party TakeItem/MoveTutorを再実行せず、実Summary登録taskとNature文字列consumerの新根を調べる。
+
+## 受入境界
+
+- Summaryの旧入力関数への直登録を仮定せず、0x08137570の実literalが指す0x09378491を使う。
+- 0x081357A7は完全なBL 0x081357A6と静的return successor命令を含む最小6byteの型だけを扱う。
+- 0x0842D18AはNature文字列tableの実consumerと、隣接する独立終端文字列の境界を扱う。近傍だけからassetや文字列と決めない。
+- 根は明示した有限状態・成功出力・必要field保存の条件付き構成である。全自然play到達、普遍IRQ非干渉、全heap生涯、calleeの未調査効果を証明済みにしない。
+- 保存済みの全11親delta、全116changes/106witness、874hit全field、115actual owner、133曲/50assetを保持する。新規型の根と旧音源のread窓が矛盾しないことを照合する。
+
+## 証跡と測定
+
+新source専用のsemantic mutationと親保持・容量・公開guardを診断旧候補で先に検査する。診断結果は現0641受入ではない。同branchの新workflowは現候補を一回再構築し、whole identity・実owner・全hit・新scopeだけを測定する。
+
+型証跡はaddress/size/SHAと意味sourceで保存する。ROM断片、rawhex、ROM本体、入力save、runtime、私有archive/member path、credentialを公開しない。公開directoryは成功receiptが揃う非空closed text setだけで、hidden file・symlink・未知拡張子・不足snapshotを拒否する。
+
+全blob本文と末尾LFを読戻してから非force ref更新する。measurementは新delta・独立envelope・固定MD/JSON・append-only両ログを保存する。終端処理は全stepと全原本bytesを照合してpendingを解除し、測定workflowをmanual-onlyへ戻す。旧独立最終sourceレビュー未実施は継承し、以前拒否された同操作を再現しない。
+
+## 容量と次工程
+
+未知参照の最大accessが未証明なら全15118byteを保護する。間接参照完全性、退役、明示owner移管も未完で、安全donor容量は0byte。点targetを残した楽観的空隙は安全容量ではない。
+
+全global余白511byteとsave内部804byteの上限1315は、単一controller6528byteに5213byte不足する。C controllerを配線せず、正式ROM/Save101は不変。heap13352byteをstock53300byteの保存退避入口へ跨いで保持しない。
+
+容量確保後も全S61E/MDX writer/loader/Link exact-source/no-main/INITIAL/全mode/早期31/species9bit、全保存入口heap-ready/同期非再入/Free境界が必要である。正式切替後の進行はtrainer131後半からシオウ通常回復・保存・独立cold Continueへ。全雑魚ごとのcheckpointは作らない。

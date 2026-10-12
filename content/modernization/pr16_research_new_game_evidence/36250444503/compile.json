@@ -1,0 +1,30 @@
+{
+  "command": [
+    "cc",
+    "-std=c11",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-misleading-indentation",
+    "-Itools",
+    "-I.",
+    "-I.local/pr16-research-lifecycle/runtime/include",
+    ".local/pr16-research-lifecycle/new-game.c",
+    "-L.local/pr16-research-lifecycle/runtime/lib",
+    "-lmgba",
+    "-lm",
+    "-Wl,--allow-shlib-undefined",
+    "-o",
+    ".local/pr16-research-lifecycle/new-game"
+  ],
+  "executable": {
+    "sha256": "9c5873b1126dde9fa293cddb2fbbfe48c87fa148bcf5fa484a84d636b9bcc2f0",
+    "size": 69280
+  },
+  "generated": {
+    "sha256": "f60dfe9bb893c0ae5c69926713a12566fcf5f94b77fcc6ee2d5f09c4111ce8c5",
+    "size": 28437
+  },
+  "returncode": 0
+}

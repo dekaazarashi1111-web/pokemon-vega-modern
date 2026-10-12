@@ -1,0 +1,118 @@
+name: modernization-stage81-mgba
+run-name: Stage79 mGBA (Stage81 native PP, seven fresh domains)
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/modernization-stage81-mgba.yml
+      - scripts/run_modernization_stage81_github_domain.py
+      - tests/test_modernization_stage81_github_domain.py
+      - tools/modernization_p03_native_pp_repair.py
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: modernization-stage81-mgba-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      fingerprint: ${{ steps.plan.outputs.fingerprint }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Regression tests for exact candidate and unchanged contracts
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage81-plan
+          python3 -m unittest discover -s tests -p test_modernization_stage81_github_domain.py -v > .local/stage81-plan/tests.log 2>&1
+      - id: plan
+        name: Validate full parent chain and Stage81 matrix plan
+        run: |
+          set -euo pipefail
+          python3 scripts/run_modernization_stage81_github_domain.py prepare > .local/stage81-plan/prepare.json
+          python3 scripts/run_modernization_stage81_github_domain.py plan > .local/stage81-plan/plan.json
+          cp .local/stage81-native-pp/config.json .local/stage81-plan/config.json
+          cp .local/stage81-native-pp/candidate.json .local/stage81-plan/candidate.json
+          git rev-parse HEAD > .local/stage81-plan/tested-head.txt
+          echo "fingerprint=$(python3 -c 'import json;print(json.load(open(".local/stage81-plan/plan.json"))["plan_fingerprint"])')" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage81-plan
+          path: .local/stage81-plan/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+  domain:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        domain: [p02, mega_shop, floette, p03, p04_mega_runtime, battle_policy, p05]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Fixed toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage81-domain
+          bash infra/setup_github_actions.sh --install > .local/stage81-domain/toolchain.log 2>&1
+      - name: Verify identical Stage81 plan
+        env:
+          EXPECTED_FINGERPRINT: ${{ needs.plan.outputs.fingerprint }}
+        run: |
+          set -euo pipefail
+          python3 scripts/run_modernization_stage81_github_domain.py prepare > .local/stage81-domain/prepare.json
+          python3 scripts/run_modernization_stage81_github_domain.py plan > .local/stage81-domain/plan.json
+          python3 -c 'import json,os; p=json.load(open(".local/stage81-domain/plan.json")); assert p["plan_fingerprint"] == os.environ["EXPECTED_FINGERPRINT"]'
+          git rev-parse HEAD > .local/stage81-domain/tested-head.txt
+      - name: Fresh mGBA execution with unchanged Stage79 contract
+        env:
+          DOMAIN: ${{ matrix.domain }}
+        run: |
+          set -euo pipefail
+          python3 scripts/run_modernization_stage81_github_domain.py run-domain --domain "$DOMAIN" --output-directory .local/stage81-domain > .local/stage81-domain/job-summary.json 2> .local/stage81-domain/job.stderr.log
+          python3 scripts/run_modernization_stage81_github_domain.py validate-domain --domain "$DOMAIN" --record .local/stage81-domain/result.json > .local/stage81-domain/validation.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage81-domain-${{ matrix.domain }}
+          path: .local/stage81-domain/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+  merge:
+    needs: [plan, domain]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: stage81-domain-*
+          path: .local/stage81-input
+      - name: Merge and check all seven results, preserving historical gate
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage81-merged
+          python3 scripts/run_modernization_stage81_github_domain.py prepare > .local/stage81-merged/prepare.json
+          python3 scripts/run_modernization_stage81_github_domain.py merge --input-directory .local/stage81-input --output-directory .local/stage81-merged > .local/stage81-merged/merge-summary.json
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/stage79_cumulative_mgba_runtime_gate.json build/stages
+          git rev-parse HEAD > .local/stage81-merged/tested-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage81-cumulative-result
+          path: .local/stage81-merged/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

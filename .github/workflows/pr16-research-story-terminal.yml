@@ -1,0 +1,120 @@
+name: pr16-research-story-terminal
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-terminal.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  terminal:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify terminal run original artifact and retained Save without replay
+        run: |
+          python3 -B - <<'PY'
+          import datetime,io,json,os,pathlib,subprocess,sys,zipfile
+          root=pathlib.Path.cwd();sys.path[:0]=[str(root/'scripts'),str(root)]
+          import pr16_research_story as m
+          import pr16_research_story_actions as s
+          import pr16_research_lifecycle_actions as d
+          from pr16_learnset_compact_record import publish_resume
+          d.current();out=root/'.local/pr16-story-terminal';out.mkdir(parents=True)
+          RUN=36320959294;SOURCE='653d59e897c8ac366a68888b2c9128595b9b34de';COMPLETION='3ca75c106928d10838111b8454734befc1235b66'
+          ART=10932059074;WF='.github/workflows/pr16-research-story-terminal.yml';RECEIPT='content/modernization/pr16_research_story_terminal.json'
+          subprocess.run(['git','merge-base','--is-ancestor',COMPLETION,'HEAD'],check=True)
+          state=d.read(root/d.STATE);cp=d.read(root/s.CP)
+          m.need(cp['status']=='PASS_NATURAL_STARTER_STORY_PENDING_TERMINAL' and not cp['actions_completion_confirmed'] and cp['source_head']==SOURCE and cp['run_id']==RUN,'one pending exact story result')
+          m.need(d.bindings(set(state['source_bindings']))==state['source_bindings'],'all accepted original bindings before terminal')
+          m.need(d.bindings(set(cp['source_bindings']))==cp['source_bindings'],'new story source and raw evidence unchanged')
+          run=d.inputs.api('actions/runs/'+str(RUN));m.need(run['head_sha']==SOURCE and run['head_branch']=='codex/modernization-followup-20260908' and run['path']=='.github/workflows/pr16-research-story.yml' and run['status']=='completed' and run['conclusion']=='success' and run['run_attempt']==1,'external run terminal success')
+          jobs=d.inputs.api('actions/runs/'+str(RUN)+'/jobs?per_page=100');m.need(jobs['total_count']==len(jobs['jobs'])==1,'one complete story job')
+          job=jobs['jobs'][0];m.need(job['id']==108624554711 and job['name']=='story' and job['status']=='completed' and job['conclusion']=='success','story job terminal')
+          expected=['Set up job','Run actions/checkout@v4','Measure new natural starter Save and independent Continue only','Record immutable evidence fixed resume and append-only logs','Task graph and scoped final index','Non-force scoped completion commit','Preserve text completion snapshot','Preserve successful partial inputs even if later oracle or writer fails','Run actions/upload-artifact@v4','Post Run actions/checkout@v4','Complete job']
+          m.need([x['name'] for x in job['steps']]==expected and all(x['status']=='completed' and x['conclusion']=='success' for x in job['steps']),'all required steps truly executed successfully')
+          meta=d.inputs.api('actions/artifacts/'+str(ART));m.need(meta['name']=='pr16-research-story-checkpoint' and not meta['expired'] and meta['workflow_run']['id']==RUN and meta['workflow_run']['head_sha']==SOURCE and meta['size_in_bytes']==1345883 and meta['digest']=='sha256:057f3c5630d1951a529bfba7e36318578b943049419eceffaf0601f77eb1f84b','retained archive metadata')
+          raw=d.inputs.api('actions/artifacts/'+str(ART)+'/zip',True);m.need(m.identity(raw)=={'size':1345883,'sha256':'057f3c5630d1951a529bfba7e36318578b943049419eceffaf0601f77eb1f84b'},'downloaded original archive identity')
+          with zipfile.ZipFile(io.BytesIO(raw)) as z:
+            m.need(len(z.namelist())==len(set(z.namelist())) and sum(i.file_size for i in z.infolist())<12000000,'unique bounded retained files')
+            for i in z.infolist():
+              p=pathlib.PurePosixPath(i.filename);m.need(not p.is_absolute() and '..' not in p.parts and '\\' not in i.filename and i.external_attr>>28!=10,'safe retained member')
+            saved=json.loads(z.read('checkpoint.json'));m.need(saved==cp['checkpoint'] and saved['save']=={'size':131088,'sha256':'113f04e9e5222360687e28868fb78f394650aa5c85b357675737544d49ad346b'},'exact normal generated Save checkpoint')
+            for name,key in [('starter.srm','save'),('runner','executable')]:m.need(m.identity(z.read(name))==saved[key],'retained '+name)
+            m.need(z.read('completion-head.txt').decode().strip()==COMPLETION,'pushed measurement completion HEAD')
+            for name in ('compile.stderr.txt','compile.stdout.txt','new-game.stderr.txt','continue.stderr.txt','measure.stderr.txt'):m.need(not z.read(name),'no compiler/native/record error '+name)
+            first=m.observations(z.read('new-game.stdout.txt'));second=m.observations(z.read('continue.stdout.txt'),'continue-story');result=m.retained(first,second)
+            m.need(result['first_save']==cp['first_save'] and result['continued']==cp['continued'],'raw native oracle agrees with committed result')
+            count=0
+            for directory,v in [('new-game',first),('continue',second)]:
+              for screen in v['screens']:
+                b=z.read(directory+'/screen-%04d.ppm'%screen['screen']);m.need(len(b)==115215 and b.startswith(b'P6\n240 160\n255\n') and len(set(b[15:]))>1 and m.identity(b)['sha256']==screen['sha256'],'same-frame nonblank screenshot');count+=1
+            m.need(count==19,'all 19 original screens')
+            with zipfile.ZipFile(io.BytesIO(z.read('record.zip'))) as original:
+              m.need(original.read('record-head.txt').decode().strip()==COMPLETION,'Git HEAD snapshot identity')
+              m.need(len(original.namelist())==len(set(original.namelist())),'unique committed text snapshot')
+              for name in original.namelist():
+                if name=='record-head.txt':continue
+                b=original.read(name);b.decode('utf-8');m.need(subprocess.check_output(['git','show',COMPLETION+':'+name])==b,'read-back committed original '+name)
+          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          receipt=dict(schema_version=1,task='USER-20260927-RESEARCH-STORY',status='PASS_NATURAL_STARTER_STORY_SCOPED',verified_at=stamp,source_head=SOURCE,completion_commit=COMPLETION,run=d.run_summary(run),job_id=job['id'],steps=[{k:x[k] for k in ('name','status','conclusion')} for x in job['steps']],artifact={k:meta[k] for k in ('id','name','size_in_bytes','digest','created_at','expires_at','expired','workflow_run')},checkpoint=saved,original_screens_verified=19,continue_visual_review=dict(method='current-session direct original PPM inspection, not OCR',sha256='adef9c497decd9d06d3b19e1f2e4fe9b8ea66d956d9967724e78eb1d0682e159',finding_ja='序盤研究所の保存位置へ戻った実画面。RP研究活動到達ではない。'),new_native_processes=0,new_host_compiles=0,new_arm_compiles=0,new_unit_tests=0,accepted_case_reruns=0,full_natural_research_activity_route_accepted=False,release_ready=False,active_baseline_changed=False)
+          d.write(root/RECEIPT,receipt)
+          cp.update(status=receipt['status'],actions_completion_confirmed=True,retained_artifact_id=ART,retained_artifact=receipt['artifact'],terminal_receipt=RECEIPT)
+          d.write(root/s.CP,cp)
+          guide=root/s.GUIDE;text=guide.read_text();old='Actionsの外部終端確認前であり全体完成ではない。';m.need(text.count(old)==1,'terminal prose boundary');text=text.replace(old,'Actionsのrun・job・全必須stepの成功終端を外部照合済み。全体完成ではない。')
+          text+='\n## 保存先の確定と次の直接入力\n\n成功run `36320959294` / job `108624554711`、artifact `10932059074` (`pr16-research-story-checkpoint`)。ZIPは1345883bytes / SHA-256 `057f3c5630d1951a529bfba7e36318578b943049419eceffaf0601f77eb1f84b`、有効期限はmetadataのexpires_atを再確認する。全体原本は `'+RECEIPT+'`。\n\n通常生成 `starter.srm` は131088bytes（Flash128KiBとRTC付加16bytes）、SHA-256 `113f04e9e5222360687e28868fb78f394650aa5c85b357675737544d49ad346b`。元saveを保全し作業コピーだけをrunnerへ渡す。artifactの `checkpoint.json` がsave/runner/candidate/runtime/dataのidentityを束縛する。\n\n```text\n<fixed-runtime>/ld.so --library-path <fixed-runtime>/lib <checkpoint>/runner <candidate> <working-copy-of-starter.srm> continue-story 113f04e9e5222360687e28868fb78f394650aa5c85b357675737544d49ad346b\n```\n\nstdinは `key <mask> <frames>`、`observe <連番>`、`save`、最後に `quit`。maskは0/1/2/8/16/32/64/128、framesは1〜600。観測0はContinue後に自動出力されるので追加観測は1から。固定入力の再生ではなく未完ストーリーの先へ進む。ROM/save本体のtracked追加は禁止。\n'
+          guide.write_text(text)
+          state['research_story'].update(status=receipt['status'],actions_completion_confirmed=True,retained_artifact_id=ART,terminal_receipt=RECEIPT)
+          state['bp']['current_stop']=receipt['status']
+          state['observed_head_semantics']='自然starter進行の成功Actionsが実行したsource HEAD。終端・保存artifact・全stepの確認は '+RECEIPT+'。自己記録commitや製品最終SHAではない。'
+          runs=d.inputs.api('actions/runs?head_sha='+SOURCE+'&per_page=50');m.need(runs['total_count']==len(runs['workflow_runs'])<=50,'complete measured-source run collection')
+          state['observed_head_checks']=dict(scope_head=SOURCE,runs=[d.run_summary(r) for r in runs['workflow_runs']],reason_ja='自然starter限定run36320959294は全step SUCCESS。一般CIはこのrunsの実status/conclusionを保持し、action_required・未完・失敗を成功へ読み替えない。全体private guard/releaseは別。')
+          state['pending_runs']=[dict(run_id=r['id'],tested_head=r['head_sha'],status=r['status']) for r in runs['workflow_runs'] if r['status'] in ('queued','in_progress')]
+          for p in (s.CP,s.GUIDE,RECEIPT,WF):state['source_bindings'][p]=m.identity((root/p).read_bytes())
+          state['logs_synchronized']=True;publish_resume(state)
+          entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20260927-RESEARCH-STORY / 自然スターター保存の成功終端確定\n- Version: research-natural-starter-v1-terminal\n- Status: DONE（自然スターター取得・通常Save・独立Continue限定）\n- Summary: run36320959294/job108624554711の全11step成功とcommit3ca75c106928d10838111b8454734befc1235b66を照合。artifact10932059074のZIP/通常生成save/runner/19画面/原本JSON/全Git HEAD snapshotを読戻し検証。次はmap4/3 (8,5)、party1/RP0/counter1のstarter.srmからContinueして未完ストーリーへ進む。\n- Files changed: starter checkpoint/終端receipt/専用guide/固定引継ぎMD JSON、両ログ。\n- Verify: artifact1345883bytes/SHA-256 057f3c5630d1951a529bfba7e36318578b943049419eceffaf0601f77eb1f84b PASS。raw oracle/全party600/Flash128KiB/位置/RP/counter保持PASS。59新検査と7guard拒否は原本/source一致再利用。今回の終端照合は新native/compile/unit/旧受入再実行すべて0。続けてrender/check/task graph/scoped indexを検査。\n- Commit: source={os.environ["GITHUB_SHA"]}; terminal_run={os.environ["GITHUB_RUN_ID"]}; 同branchへ非force push。\n- Network: GitHub原本run/job/artifact/HEADのみ。RP研究活動までの通常ストーリー到達・全体完成・releaseは未受入。merge/draft解除/baseline変更0。\n'
+          for p in d.LOGS:
+            with (root/p).open('a') as f:f.write(entry)
+          owned={s.CP,s.GUIDE,RECEIPT,d.STATE,d.DOC}|d.LOGS
+          (out/'paths.txt').write_text('\n'.join(sorted(owned))+'\n');d.write(out/'verification.json',receipt)
+          print('PASS: independent Actions terminal, immutable checkpoint, all original evidence; native replay 0')
+          PY
+      - name: Validate final resume task graph and append-only scoped index
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t paths < .local/pr16-story-terminal/paths.txt
+          git add -- "${paths[@]}"
+          python3 -B - <<'PY'
+          import pathlib,sys
+          sys.path.insert(0,'scripts')
+          import pr16_learnset_runtime_record as g
+          g.START='3ca75c106928d10838111b8454734befc1235b66';g.CODE={'.github/workflows/pr16-research-story-terminal.yml'};g.OWNED=set(pathlib.Path('.local/pr16-story-terminal/paths.txt').read_text().splitlines());g.guard()
+          PY
+          git diff --cached --check
+      - name: Commit and non-force push terminal checkpoint
+        run: |
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260927-RESEARCH-STORY: Actions成功終端と再開用Saveを確定'
+          git push origin "HEAD:$GITHUB_REF"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-story-terminal/committed-head.txt
+          printf 'RESULT=DONE TASK=USER-20260927-RESEARCH-STORY VERIFY=PASS COMMIT=%s\n' "$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-story-terminal
+          path: .local/pr16-story-terminal
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

@@ -1,0 +1,55 @@
+name: pr16-research-story-continue
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-continue.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  continue-story:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Measure new saved-story interval and independent successor Continue
+        run: |
+          mkdir -p .local/pr16-story-continue-run
+          python3 -B scripts/pr16_research_story_continue_actions.py measure > .local/pr16-story-continue-run/measure.stdout.txt 2> .local/pr16-story-continue-run/measure.stderr.txt
+      - name: Record immutable evidence fixed resume and append-only logs
+        run: python3 -B scripts/pr16_research_story_continue_actions.py record
+      - name: Task graph and scoped final index
+        run: |
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t paths < <(python3 -B scripts/pr16_research_story_continue_actions.py paths)
+          git add -- "${paths[@]}"
+          python3 -B scripts/pr16_research_story_continue_actions.py guard
+      - name: Non-force scoped completion commit
+        run: |
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260927-RESEARCH-STORY-CONTINUE: 通常道路保存と独立Continueを限定受入'
+          git push origin "HEAD:$GITHUB_REF"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-story-continue-run/completion-head.txt
+      - name: Preserve text completion snapshot
+        run: python3 -B scripts/pr16_research_story_continue_actions.py snapshot
+      - name: Preserve partial progress without replay
+        if: always()
+        run: python3 -B scripts/pr16_research_story_continue_actions.py preserve
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-story-continue-checkpoint
+          path: .local/pr16-story-continue-run/checkpoint
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

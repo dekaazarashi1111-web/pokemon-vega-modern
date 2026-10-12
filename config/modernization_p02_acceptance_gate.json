@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P02-ACCEPTANCE",
+  "inputs": {
+    "parent_rom": {
+      "path": "build/stages/66_modernization_p03_bulk_learnsets.gba",
+      "size": 33554432,
+      "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e"
+    },
+    "rayquaza_runtime_gate": {
+      "path": "content/modernization/p02_stage64_mgba_runtime_gate.json",
+      "size": 5206,
+      "sha256": "640c6579365e682c59849392a8d2d15e4061ecbccaaff1094ab997aa91b762ea"
+    },
+    "static_evolution_contract": {
+      "path": "content/modernization/p02_evolution_contract.json",
+      "size": 1440826,
+      "sha256": "007f80996ad1a758e0f5365e65cd4685a6c9eb7c8a072d25544b86f2f613181b"
+    }
+  },
+  "repair": {
+    "classification": "TABLE_SLOT_PRIORITY_ROOT_FIX",
+    "table_rom_offset": "0x01F79F38",
+    "stride": 128,
+    "entry_size": 8,
+    "repairs": [
+      {
+        "species_id": 499,
+        "source": "SPECIES_KEY_QUILAVA",
+        "conditional_before": [35, 36, 1419, 710],
+        "regular_before": [4, 36, 500, 0]
+      },
+      {
+        "species_id": 759,
+        "source": "SPECIES_KEY_DEWOTT",
+        "conditional_before": [35, 36, 1422, 719],
+        "regular_before": [4, 36, 760, 0]
+      },
+      {
+        "species_id": 861,
+        "source": "SPECIES_KEY_RUFFLET",
+        "conditional_before": [35, 54, 1427, 716],
+        "regular_before": [4, 54, 862, 0]
+      },
+      {
+        "species_id": 993,
+        "source": "SPECIES_KEY_GOOMY",
+        "conditional_before": [35, 40, 1428, 711],
+        "regular_before": [4, 40, 994, 0]
+      },
+      {
+        "species_id": 1001,
+        "source": "SPECIES_KEY_BERGMITE",
+        "conditional_before": [35, 37, 1430, 708],
+        "regular_before": [4, 37, 1002, 0]
+      },
+      {
+        "species_id": 1121,
+        "source": "SPECIES_KEY_DARTRIX",
+        "conditional_before": [35, 34, 1431, 704],
+        "regular_before": [4, 34, 1122, 0]
+      }
+    ]
+  },
+  "candidate_rom": {
+    "classification": "IN_MEMORY_P02_OVERLAY_PARENT_FOR_STAGE67",
+    "base_stage": 66,
+    "intended_child_stage": 67,
+    "size": 33554432,
+    "sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb"
+  },
+  "runtime": {
+    "gate_script": "scripts/run_modernization_p02_acceptance.py",
+    "runner_source": "tools/mgba_modernization_p02_acceptance_smoke.c",
+    "transitive_sources": [
+      "tools/mgba_battle_core_smoke.c",
+      "tools/mgba_ai_fixture_runner.c"
+    ],
+    "compiler": "cc",
+    "compile_flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "link_flags": [
+      "-lmgba"
+    ],
+    "libmgba": {
+      "path": "/lib/x86_64-linux-gnu/libmgba.so.0.10.2",
+      "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d"
+    },
+    "process_runs": 2,
+    "timeout_seconds": 45,
+    "symbols": {
+      "GetEvolutionTargetSpecies": "0x090FB774",
+      "ItemEvolutionRemoval": "0x090FB630",
+      "GetMonAbility": "0x090DA23C",
+      "CalculateMonStats": "0x090D939C"
+    },
+    "expected_entry_bytes": {
+      "GetEvolutionTargetSpecies": "f0b557464e464546",
+      "ItemEvolutionRemoval": "10b50c4b040082b0",
+      "GetMonAbility": "f8b500220b21144f",
+      "CalculateMonStats": "f0b5de4657464e46"
+    }
+  },
+  "output": "content/modernization/p02_acceptance_checkpoint.json"
+}

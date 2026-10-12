@@ -1,0 +1,3357 @@
+{
+  "schema_version": 1,
+  "status": "PASS_766_PARENT_BOUND_REGISTERED_TABLE_BATCH_REFERENCE_CHAIN",
+  "baseline": {
+    "path": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent": {
+    "path": "content/modernization/pr16_dex_hof_registered_callback_batch_evidence/reference-chain.json",
+    "size": 229898,
+    "sha256": "87d249a19a81c83560d660c623a6fdc3866c219d2143450809c12395353cfd70"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 766,
+  "inherited_unclassified": 108,
+  "changes": [
+    {
+      "address": 151258537,
+      "target": 167706116,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "2ceb85104eacfeecfddf213304ff0bda629f3c7ee73a15440c36b5ca9844305c",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_REGISTERED_CRITICAL_MOVE_LIST_BOUNDARY",
+      "accepted": true,
+      "witness_ids": [
+        0
+      ]
+    },
+    {
+      "address": 152560537,
+      "target": 167707120,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "2444281266349c37b5afdfcbed61c48309da3d388635193df08c0780da7f2603",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_REGISTERED_ANIMATION_BACKGROUND_MINIMUM_LZ_PAYLOAD",
+      "accepted": true,
+      "witness_ids": [
+        1
+      ]
+    },
+    {
+      "address": 152616403,
+      "target": 167709252,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "5d98e6b2dbcf4da280660fab6114884eb166087b91ce1ff597158f2c499a2078",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_REGISTERED_ANIMATION_BACKGROUND_MINIMUM_LZ_PAYLOAD",
+      "accepted": true,
+      "witness_ids": [
+        2
+      ]
+    },
+    {
+      "address": 152632226,
+      "target": 167709450,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "b04ac6cb02102f9920c3e98dbaf278253fd54c32468446682894d6b51d866de4",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_REGISTERED_ANIMATION_BACKGROUND_MINIMUM_LZ_PAYLOAD",
+      "accepted": true,
+      "witness_ids": [
+        3
+      ]
+    },
+    {
+      "address": 152633310,
+      "target": 167700736,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "c259741d12103350cf749f6261cca4539b406ec33985e5fb3260a085b52fb340",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_REGISTERED_ANIMATION_BACKGROUND_MINIMUM_LZ_PAYLOAD",
+      "accepted": true,
+      "witness_ids": [
+        4
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": 0,
+      "address": 151258537,
+      "size": 4,
+      "kind": "registered_critical_move_list_boundary",
+      "evidence": {
+        "root": {
+          "kind": "primary_battle_command_registered_api_entry",
+          "opcode": 4,
+          "dispatch_slot": 151254112,
+          "registered_handler": 151929881,
+          "entry": 151929880,
+          "calls": [
+            151930280,
+            151930328
+          ],
+          "reader": 152244024,
+          "stop": 151930332
+        },
+        "root_verified": true,
+        "classified_window": {
+          "address": 151258537,
+          "size": 4
+        },
+        "complete_halfword_fields": [
+          {
+            "address": 151258536,
+            "size": 2,
+            "symbol": "MOVE_IVYCUDGEL",
+            "table": "gHighCriticalChanceMoves",
+            "hit_offset": 1,
+            "covered_bytes": 1
+          },
+          {
+            "address": 151258538,
+            "size": 2,
+            "symbol": "MOVE_TABLES_TERMIN",
+            "table": "gHighCriticalChanceMoves",
+            "hit_offset": 0,
+            "covered_bytes": 2
+          },
+          {
+            "address": 151258540,
+            "size": 2,
+            "symbol": "MOVE_STORMTHROW",
+            "table": "gAlwaysCriticalMoves",
+            "hit_offset": 0,
+            "covered_bytes": 1
+          }
+        ],
+        "table_layout": [
+          {
+            "label": "gHighCriticalChanceMoves",
+            "address": 151258488,
+            "halfword_count": 26,
+            "size": 52
+          },
+          {
+            "label": "gAlwaysCriticalMoves",
+            "address": 151258540,
+            "halfword_count": 6,
+            "size": 12
+          }
+        ],
+        "source_current_ids_required": true,
+        "input_contract": {
+          "entry_ja": "primary opcode4の実登録cellを検証したhandler API入口。自然battle/effect0 prefix/dispatcher全体の到達は未証明。",
+          "profile_ja": "single battle、attacker0/target1/count2、move1、ability0、LuckyChant0、status2とchiStrike0の十分条件。内部reader引数をhost追加せずhandler実LDRHとstack保存から生成する。",
+          "calls_ja": "6個の外部callは明示戻り値と通常ABI復帰のみ条件。callee本体の成功や副作用を証明しない。SIDEは実r3=GetBattlerSide|1を受けたveneerの結果1。",
+          "memory_ja": "全opaque境界で実future read-before-write RAMのみ維持し、非live RAMをUnknownへ消去。gNewBSの同battle context epochとlive stack epochを条件にする。全RAM保持は要求しない。",
+          "extent_ja": "固定公開table sourceの全.hword順序と独立current Move ID resolverから52/12byteをserialize。末尾だけFEFE。move1非memberにより両表を最後まで読む。",
+          "minimum_ja": "分類は090405A9から4byteだけ。high最終member上位byte、FEFE全2byte、always先頭member下位byte。半word全3fieldと全表は根拠であり追加分類しない。"
+        },
+        "proof_scope": "conditional_registered_critical_move_lists",
+        "conditional_registered_api_entry": true,
+        "actual_opcode_dispatch_executed": false,
+        "whole_candidate_identity_checked_by_parent_required": true,
+        "actual_runtime_execution_observed": false,
+        "full_story_reachability_claimed": false,
+        "full_battle_script_prefix_executed": false,
+        "opaque_callee_effects_proven": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "whole_table_classified": false,
+        "pointer_interpretation_claimed": false,
+        "retirement_proven": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      },
+      "evidence_identity": {
+        "size": 2694,
+        "sha256": "a2fc0bd4224707c3a95489ce25926bcc5104d46af4967d2f4acd9781772f2463"
+      }
+    },
+    {
+      "id": 1,
+      "address": 152560537,
+      "size": 4,
+      "kind": "registered_animation_background_minimum_lz_payload",
+      "evidence": {
+        "root_verified": true,
+        "root": {
+          "bg_id": 33,
+          "cell": 151301340,
+          "command": 151057562,
+          "frames": 11,
+          "handler": 134688648,
+          "index": 386,
+          "next_cursor": 151057568,
+          "opcode": 37,
+          "script": 151057536
+        },
+        "asset": {
+          "address": 152557028,
+          "bg_id": 33,
+          "decoded": {
+            "sha256": "c4ad2f3057ab14f69e4ea2969a1c9b7b26e011f53953ae9c5ddffd82394e7b64",
+            "size": 8928
+          },
+          "descriptor_address": 151036148,
+          "descriptor_values": [
+            152557028,
+            152561544,
+            152560840
+          ],
+          "hits": [
+            152560537
+          ],
+          "sha256": "7003087ccf3155a3f3b871e8ff38fb2e363930961be4eab38ca27f843dca3eca",
+          "size": 3811,
+          "source_png": "Giga_Impact_Opponent.png"
+        },
+        "classified_window": {
+          "address": 152560537,
+          "size": 4
+        },
+        "input_contract": {
+          "entry_ja": "実animation table cell386/678/874とsource全field serializerから得たBG command処理時を条件付きAPI入口とする。公開move indexや一律offsetを現在値に代用しない。前段animation全実行、自然move選択、時刻の生成は未証明。",
+          "producer_ja": "全16slot inactive、未使用callback/dataを非zeroに汚染。実CreateTask/InsertTask/FindFirstActiveTask/memsetがcallback/priority/state0を作り、実command byte readerがBG IDを書き込む。次pause/wait/gotoを実dispatcherで処理してstack復帰し、RunTasks3回がstate0→1→2を作る。",
+          "conditions_ja": "gBattleAnimTarget=1、有効script context。GigaImpactだけGetBattlerSide(1)=1の正常ABI復帰。BeginHardwarePaletteFadeがactiveを生成し、次の選択scheduler invocationまでに通常fade更新が完了してinactiveとなることを明示出力条件とする。隣接frameで完了するとは主張しない。先行tilemap LZ call正常復帰と有効VRAMを条件に、実image pointer→SWI12入力へ進む。",
+          "memory_ja": "各ABI/frame境界のfuture-read-before-write RAMと最終useまで同task epochだけを保存し、他RAMはreplayでUnknownへ消す。palette完了出力と事前保存fieldを分離。全callee/heap/IRQ効果は成功証明しない。",
+          "lz_ja": "公開固定PNGを独立4bpp/8x8/flip除去serializerで全tile列へ変換し、厳密LZ10 decoderの全展開結果と完全一致する。終端paddingを含めない。BIOS SWI12の標準LZ10入力型だけを証明し、画面描画/native実行は未証明。",
+          "geometry_ja": "4hit各4byteだけ。LZ全streamを証拠保護するが全assetや隣接header/paddingを分類しない。"
+        },
+        "proof_scope": "conditional_registered_background_minimum_payload",
+        "conditional_api_entry": true,
+        "complete_selected_source_serializer": true,
+        "actual_command_task_and_bg_reader": true,
+        "asset_source_pixels_independently_serialized": true,
+        "source_asset_full_decoded_match": true,
+        "whole_candidate_identity_checked_by_parent_required": true,
+        "actual_runtime_execution_observed": false,
+        "full_animation_prefix_executed": false,
+        "natural_battle_reachability_claimed": false,
+        "graphics_rendering_success_claimed": false,
+        "opaque_callee_effects_proven": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "whole_asset_classified": false,
+        "padding_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      },
+      "evidence_identity": {
+        "size": 3065,
+        "sha256": "966349b4805173fc2cc6c6a36cdf88479e77b51674009cb928e026a7f6c84901"
+      }
+    },
+    {
+      "id": 2,
+      "address": 152616403,
+      "size": 4,
+      "kind": "registered_animation_background_minimum_lz_payload",
+      "evidence": {
+        "root_verified": true,
+        "root": {
+          "bg_id": 29,
+          "cell": 151302508,
+          "command": 151123014,
+          "frames": 1,
+          "handler": 134688580,
+          "index": 678,
+          "next_cursor": 151123016,
+          "opcode": 20,
+          "script": 151123008
+        },
+        "asset": {
+          "address": 152613208,
+          "bg_id": 29,
+          "decoded": {
+            "sha256": "35b583bf59cb860e6604ce269984165e3e9fdece4e71319b125d4341690627fc",
+            "size": 9664
+          },
+          "descriptor_address": 151036100,
+          "descriptor_values": [
+            152613208,
+            152617980,
+            152617224
+          ],
+          "hits": [
+            152616403
+          ],
+          "sha256": "4188ccccf0c25a7b7202a62dd095c6a84e470552711d05f9a3af57299e1a348f",
+          "size": 4015,
+          "source_png": "Nightmare.png"
+        },
+        "classified_window": {
+          "address": 152616403,
+          "size": 4
+        },
+        "input_contract": {
+          "entry_ja": "実animation table cell386/678/874とsource全field serializerから得たBG command処理時を条件付きAPI入口とする。公開move indexや一律offsetを現在値に代用しない。前段animation全実行、自然move選択、時刻の生成は未証明。",
+          "producer_ja": "全16slot inactive、未使用callback/dataを非zeroに汚染。実CreateTask/InsertTask/FindFirstActiveTask/memsetがcallback/priority/state0を作り、実command byte readerがBG IDを書き込む。次pause/wait/gotoを実dispatcherで処理してstack復帰し、RunTasks3回がstate0→1→2を作る。",
+          "conditions_ja": "gBattleAnimTarget=1、有効script context。GigaImpactだけGetBattlerSide(1)=1の正常ABI復帰。BeginHardwarePaletteFadeがactiveを生成し、次の選択scheduler invocationまでに通常fade更新が完了してinactiveとなることを明示出力条件とする。隣接frameで完了するとは主張しない。先行tilemap LZ call正常復帰と有効VRAMを条件に、実image pointer→SWI12入力へ進む。",
+          "memory_ja": "各ABI/frame境界のfuture-read-before-write RAMと最終useまで同task epochだけを保存し、他RAMはreplayでUnknownへ消す。palette完了出力と事前保存fieldを分離。全callee/heap/IRQ効果は成功証明しない。",
+          "lz_ja": "公開固定PNGを独立4bpp/8x8/flip除去serializerで全tile列へ変換し、厳密LZ10 decoderの全展開結果と完全一致する。終端paddingを含めない。BIOS SWI12の標準LZ10入力型だけを証明し、画面描画/native実行は未証明。",
+          "geometry_ja": "4hit各4byteだけ。LZ全streamを証拠保護するが全assetや隣接header/paddingを分類しない。"
+        },
+        "proof_scope": "conditional_registered_background_minimum_payload",
+        "conditional_api_entry": true,
+        "complete_selected_source_serializer": true,
+        "actual_command_task_and_bg_reader": true,
+        "asset_source_pixels_independently_serialized": true,
+        "source_asset_full_decoded_match": true,
+        "whole_candidate_identity_checked_by_parent_required": true,
+        "actual_runtime_execution_observed": false,
+        "full_animation_prefix_executed": false,
+        "natural_battle_reachability_claimed": false,
+        "graphics_rendering_success_claimed": false,
+        "opaque_callee_effects_proven": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "whole_asset_classified": false,
+        "padding_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      },
+      "evidence_identity": {
+        "size": 3053,
+        "sha256": "81fed7364574522599f8322d2cc8dcd10844736fe4048291f91488199157022d"
+      }
+    },
+    {
+      "id": 3,
+      "address": 152632226,
+      "size": 4,
+      "kind": "registered_animation_background_minimum_lz_payload",
+      "evidence": {
+        "root_verified": true,
+        "root": {
+          "bg_id": 58,
+          "cell": 151303292,
+          "command": 151191214,
+          "frames": 1,
+          "handler": 134688580,
+          "index": 874,
+          "next_cursor": 151191230,
+          "opcode": 20,
+          "script": 151191088
+        },
+        "asset": {
+          "address": 152625300,
+          "bg_id": 58,
+          "decoded": {
+            "sha256": "c528c7385cec1c2c60631c5b1964ff92bfd748281abe466e56298652f991f92f",
+            "size": 14304
+          },
+          "descriptor_address": 151036448,
+          "descriptor_values": [
+            152625300,
+            152618384,
+            152634860
+          ],
+          "hits": [
+            152632226,
+            152633310
+          ],
+          "sha256": "a630ddc5f934a5b31963f51f39fbbd658e93792830c55b39fb9474e5e9c2516f",
+          "size": 9558,
+          "source_png": "Sky_Day.png"
+        },
+        "classified_window": {
+          "address": 152632226,
+          "size": 4
+        },
+        "input_contract": {
+          "entry_ja": "実animation table cell386/678/874とsource全field serializerから得たBG command処理時を条件付きAPI入口とする。公開move indexや一律offsetを現在値に代用しない。前段animation全実行、自然move選択、時刻の生成は未証明。",
+          "producer_ja": "全16slot inactive、未使用callback/dataを非zeroに汚染。実CreateTask/InsertTask/FindFirstActiveTask/memsetがcallback/priority/state0を作り、実command byte readerがBG IDを書き込む。次pause/wait/gotoを実dispatcherで処理してstack復帰し、RunTasks3回がstate0→1→2を作る。",
+          "conditions_ja": "gBattleAnimTarget=1、有効script context。GigaImpactだけGetBattlerSide(1)=1の正常ABI復帰。BeginHardwarePaletteFadeがactiveを生成し、次の選択scheduler invocationまでに通常fade更新が完了してinactiveとなることを明示出力条件とする。隣接frameで完了するとは主張しない。先行tilemap LZ call正常復帰と有効VRAMを条件に、実image pointer→SWI12入力へ進む。",
+          "memory_ja": "各ABI/frame境界のfuture-read-before-write RAMと最終useまで同task epochだけを保存し、他RAMはreplayでUnknownへ消す。palette完了出力と事前保存fieldを分離。全callee/heap/IRQ効果は成功証明しない。",
+          "lz_ja": "公開固定PNGを独立4bpp/8x8/flip除去serializerで全tile列へ変換し、厳密LZ10 decoderの全展開結果と完全一致する。終端paddingを含めない。BIOS SWI12の標準LZ10入力型だけを証明し、画面描画/native実行は未証明。",
+          "geometry_ja": "4hit各4byteだけ。LZ全streamを証拠保護するが全assetや隣接header/paddingを分類しない。"
+        },
+        "proof_scope": "conditional_registered_background_minimum_payload",
+        "conditional_api_entry": true,
+        "complete_selected_source_serializer": true,
+        "actual_command_task_and_bg_reader": true,
+        "asset_source_pixels_independently_serialized": true,
+        "source_asset_full_decoded_match": true,
+        "whole_candidate_identity_checked_by_parent_required": true,
+        "actual_runtime_execution_observed": false,
+        "full_animation_prefix_executed": false,
+        "natural_battle_reachability_claimed": false,
+        "graphics_rendering_success_claimed": false,
+        "opaque_callee_effects_proven": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "whole_asset_classified": false,
+        "padding_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      },
+      "evidence_identity": {
+        "size": 3062,
+        "sha256": "ae0bbb8a554b257028bd54abe018c2caf6b1006ea8de695545ff13da7071d774"
+      }
+    },
+    {
+      "id": 4,
+      "address": 152633310,
+      "size": 4,
+      "kind": "registered_animation_background_minimum_lz_payload",
+      "evidence": {
+        "root_verified": true,
+        "root": {
+          "bg_id": 58,
+          "cell": 151303292,
+          "command": 151191214,
+          "frames": 1,
+          "handler": 134688580,
+          "index": 874,
+          "next_cursor": 151191230,
+          "opcode": 20,
+          "script": 151191088
+        },
+        "asset": {
+          "address": 152625300,
+          "bg_id": 58,
+          "decoded": {
+            "sha256": "c528c7385cec1c2c60631c5b1964ff92bfd748281abe466e56298652f991f92f",
+            "size": 14304
+          },
+          "descriptor_address": 151036448,
+          "descriptor_values": [
+            152625300,
+            152618384,
+            152634860
+          ],
+          "hits": [
+            152632226,
+            152633310
+          ],
+          "sha256": "a630ddc5f934a5b31963f51f39fbbd658e93792830c55b39fb9474e5e9c2516f",
+          "size": 9558,
+          "source_png": "Sky_Day.png"
+        },
+        "classified_window": {
+          "address": 152633310,
+          "size": 4
+        },
+        "input_contract": {
+          "entry_ja": "実animation table cell386/678/874とsource全field serializerから得たBG command処理時を条件付きAPI入口とする。公開move indexや一律offsetを現在値に代用しない。前段animation全実行、自然move選択、時刻の生成は未証明。",
+          "producer_ja": "全16slot inactive、未使用callback/dataを非zeroに汚染。実CreateTask/InsertTask/FindFirstActiveTask/memsetがcallback/priority/state0を作り、実command byte readerがBG IDを書き込む。次pause/wait/gotoを実dispatcherで処理してstack復帰し、RunTasks3回がstate0→1→2を作る。",
+          "conditions_ja": "gBattleAnimTarget=1、有効script context。GigaImpactだけGetBattlerSide(1)=1の正常ABI復帰。BeginHardwarePaletteFadeがactiveを生成し、次の選択scheduler invocationまでに通常fade更新が完了してinactiveとなることを明示出力条件とする。隣接frameで完了するとは主張しない。先行tilemap LZ call正常復帰と有効VRAMを条件に、実image pointer→SWI12入力へ進む。",
+          "memory_ja": "各ABI/frame境界のfuture-read-before-write RAMと最終useまで同task epochだけを保存し、他RAMはreplayでUnknownへ消す。palette完了出力と事前保存fieldを分離。全callee/heap/IRQ効果は成功証明しない。",
+          "lz_ja": "公開固定PNGを独立4bpp/8x8/flip除去serializerで全tile列へ変換し、厳密LZ10 decoderの全展開結果と完全一致する。終端paddingを含めない。BIOS SWI12の標準LZ10入力型だけを証明し、画面描画/native実行は未証明。",
+          "geometry_ja": "4hit各4byteだけ。LZ全streamを証拠保護するが全assetや隣接header/paddingを分類しない。"
+        },
+        "proof_scope": "conditional_registered_background_minimum_payload",
+        "conditional_api_entry": true,
+        "complete_selected_source_serializer": true,
+        "actual_command_task_and_bg_reader": true,
+        "asset_source_pixels_independently_serialized": true,
+        "source_asset_full_decoded_match": true,
+        "whole_candidate_identity_checked_by_parent_required": true,
+        "actual_runtime_execution_observed": false,
+        "full_animation_prefix_executed": false,
+        "natural_battle_reachability_claimed": false,
+        "graphics_rendering_success_claimed": false,
+        "opaque_callee_effects_proven": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "whole_asset_classified": false,
+        "padding_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      },
+      "evidence_identity": {
+        "size": 3062,
+        "sha256": "5a2964d7614f23ddc26714a072e67d97d12a437e728e1621ba0a13d3f30e99ef"
+      }
+    }
+  ],
+  "classified": 771,
+  "unclassified": 103,
+  "newly_classified": 5,
+  "proof": {
+    "data": {
+      "status": "PASS_NEW_REGISTERED_TABLE_MINIMUM_FIELDS",
+      "consumers": {
+        "registered_critical_move_list_boundary": {
+          "status": "PASS_REGISTERED_CRITICAL_MOVE_LIST",
+          "count": 1,
+          "hits": [
+            151258537
+          ],
+          "serialization": {
+            "status": "PASS_SOURCE_CURRENT_ID_SERIALIZATION",
+            "tables": [
+              {
+                "label": "gHighCriticalChanceMoves",
+                "address": 151258488,
+                "size": 52,
+                "sha256": "082c43d940efef0ca2fc346f1eafd6f038e1f0e34057ced738aead600b89211a",
+                "halfword_count": 26,
+                "final_terminator_address": 151258538,
+                "source_symbols": [
+                  "MOVE_KARATECHOP",
+                  "MOVE_RAZORWIND",
+                  "MOVE_RAZORLEAF",
+                  "MOVE_SKYATTACK",
+                  "MOVE_CRABHAMMER",
+                  "MOVE_SLASH",
+                  "MOVE_AEROBLAST",
+                  "MOVE_CROSSCHOP",
+                  "MOVE_BLAZEKICK",
+                  "MOVE_AIRCUTTER",
+                  "MOVE_POISONTAIL",
+                  "MOVE_LEAFBLADE",
+                  "MOVE_NIGHTSLASH",
+                  "MOVE_SHADOWCLAW",
+                  "MOVE_PSYCHOCUT",
+                  "MOVE_CROSSPOISON",
+                  "MOVE_STONEEDGE",
+                  "MOVE_ATTACKORDER",
+                  "MOVE_SPACIALREND",
+                  "MOVE_DRILLRUN",
+                  "MOVE_SNIPESHOT",
+                  "MOVE_ESPERWING",
+                  "MOVE_TRIPLEARROWS",
+                  "MOVE_AQUACUTTER",
+                  "MOVE_IVYCUDGEL",
+                  "MOVE_TABLES_TERMIN"
+                ],
+                "independent_current_ids": true,
+                "only_final_terminator": true,
+                "move1_not_member": true
+              },
+              {
+                "label": "gAlwaysCriticalMoves",
+                "address": 151258540,
+                "size": 12,
+                "sha256": "cd67506878b499dd68829033f4870bc18e4520c0767f93a86fbaab7d4266b137",
+                "halfword_count": 6,
+                "final_terminator_address": 151258550,
+                "source_symbols": [
+                  "MOVE_STORMTHROW",
+                  "MOVE_FROSTBREATH",
+                  "MOVE_SURGINGSTRIKES",
+                  "MOVE_WICKEDBLOW",
+                  "MOVE_FLOWERTRICK",
+                  "MOVE_TABLES_TERMIN"
+                ],
+                "independent_current_ids": true,
+                "only_final_terminator": true,
+                "move1_not_member": true
+              }
+            ],
+            "instruction_count": 133,
+            "instruction_bytes": 282,
+            "table_bytes": 64,
+            "public_upstream_id_substitution": false,
+            "observed_value_input": false,
+            "uniform_id_offset_used": false
+          },
+          "composition": {
+            "status": "PASS_CONDITIONAL_CRITICAL_LIST_CONSUMER",
+            "instruction_steps": 340,
+            "endpoint": 151930332,
+            "reader_calls": [
+              [
+                151930280,
+                1,
+                151258540
+              ],
+              [
+                151930328,
+                1,
+                151258488
+              ]
+            ],
+            "conditional_call_groups": [
+              {
+                "site": 151929912,
+                "target": 151863276,
+                "source_role": "GetBattlerItemEffect",
+                "return_value": 0,
+                "required_fields": [
+                  {
+                    "address": 33619986,
+                    "size": 1
+                  },
+                  {
+                    "address": 33620136,
+                    "size": 1
+                  },
+                  {
+                    "address": 33696428,
+                    "size": 4
+                  },
+                  {
+                    "address": 33700652,
+                    "size": 1
+                  },
+                  {
+                    "address": 33700756,
+                    "size": 4
+                  },
+                  {
+                    "address": 33700820,
+                    "size": 2
+                  },
+                  {
+                    "address": 33701034,
+                    "size": 2
+                  },
+                  {
+                    "address": 33701067,
+                    "size": 2
+                  },
+                  {
+                    "address": 33808304,
+                    "size": 4
+                  },
+                  {
+                    "address": 50360228,
+                    "size": 4
+                  },
+                  {
+                    "address": 50360244,
+                    "size": 4
+                  }
+                ],
+                "normal_abi_return_required": true,
+                "same_battle_context_epoch_required": true,
+                "same_stack_epoch_required": true,
+                "effects_discharged": false
+              },
+              {
+                "site": 151929926,
+                "target": 151867412,
+                "source_role": "GetBaseMoveTarget",
+                "return_value": 0,
+                "required_fields": [
+                  {
+                    "address": 33619986,
+                    "size": 1
+                  },
+                  {
+                    "address": 33620136,
+                    "size": 1
+                  },
+                  {
+                    "address": 33696428,
+                    "size": 4
+                  },
+                  {
+                    "address": 33700652,
+                    "size": 1
+                  },
+                  {
+                    "address": 33700756,
+                    "size": 4
+                  },
+                  {
+                    "address": 33700820,
+                    "size": 2
+                  },
+                  {
+                    "address": 33701034,
+                    "size": 2
+                  },
+                  {
+                    "address": 33701067,
+                    "size": 2
+                  },
+                  {
+                    "address": 33808304,
+                    "size": 4
+                  },
+                  {
+                    "address": 50360228,
+                    "size": 4
+                  },
+                  {
+                    "address": 50360244,
+                    "size": 8
+                  }
+                ],
+                "normal_abi_return_required": true,
+                "same_battle_context_epoch_required": true,
+                "same_stack_epoch_required": true,
+                "effects_discharged": false
+              },
+              {
+                "site": 151930014,
+                "target": 151878620,
+                "source_role": "CantScoreACrit",
+                "return_value": 0,
+                "required_fields": [
+                  {
+                    "address": 33619986,
+                    "size": 1
+                  },
+                  {
+                    "address": 33620136,
+                    "size": 1
+                  },
+                  {
+                    "address": 33696428,
+                    "size": 4
+                  },
+                  {
+                    "address": 33700756,
+                    "size": 4
+                  },
+                  {
+                    "address": 33701034,
+                    "size": 2
+                  },
+                  {
+                    "address": 33701067,
+                    "size": 1
+                  },
+                  {
+                    "address": 33808304,
+                    "size": 4
+                  },
+                  {
+                    "address": 50360228,
+                    "size": 8
+                  },
+                  {
+                    "address": 50360244,
+                    "size": 8
+                  }
+                ],
+                "normal_abi_return_required": true,
+                "same_battle_context_epoch_required": true,
+                "same_stack_epoch_required": true,
+                "effects_discharged": false
+              },
+              {
+                "site": 151930222,
+                "target": 151955338,
+                "source_role": "SIDE_GetBattlerSide_veneer",
+                "return_value": 1,
+                "required_fields": [
+                  {
+                    "address": 33619986,
+                    "size": 1
+                  },
+                  {
+                    "address": 33620136,
+                    "size": 1
+                  },
+                  {
+                    "address": 33700756,
+                    "size": 4
+                  },
+                  {
+                    "address": 33701034,
+                    "size": 2
+                  },
+                  {
+                    "address": 33701067,
+                    "size": 1
+                  },
+                  {
+                    "address": 33808304,
+                    "size": 4
+                  },
+                  {
+                    "address": 50360228,
+                    "size": 4
+                  },
+                  {
+                    "address": 50360240,
+                    "size": 12
+                  }
+                ],
+                "normal_abi_return_required": true,
+                "same_battle_context_epoch_required": true,
+                "same_stack_epoch_required": true,
+                "effects_discharged": false
+              },
+              {
+                "site": 151930256,
+                "target": 151878528,
+                "source_role": "IsLaserFocused",
+                "return_value": 0,
+                "required_fields": [
+                  {
+                    "address": 33620136,
+                    "size": 1
+                  },
+                  {
+                    "address": 33700756,
+                    "size": 4
+                  },
+                  {
+                    "address": 33701034,
+                    "size": 2
+                  },
+                  {
+                    "address": 33701067,
+                    "size": 1
+                  },
+                  {
+                    "address": 33808304,
+                    "size": 4
+                  },
+                  {
+                    "address": 50360228,
+                    "size": 4
+                  },
+                  {
+                    "address": 50360248,
+                    "size": 4
+                  }
+                ],
+                "normal_abi_return_required": true,
+                "same_battle_context_epoch_required": true,
+                "same_stack_epoch_required": true,
+                "effects_discharged": false
+              },
+              {
+                "site": 151930302,
+                "target": 151878756,
+                "source_role": "GetCriticalRank",
+                "return_value": 0,
+                "required_fields": [
+                  {
+                    "address": 33620136,
+                    "size": 1
+                  },
+                  {
+                    "address": 33701034,
+                    "size": 2
+                  },
+                  {
+                    "address": 33701067,
+                    "size": 1
+                  },
+                  {
+                    "address": 33808304,
+                    "size": 4
+                  },
+                  {
+                    "address": 50360228,
+                    "size": 4
+                  },
+                  {
+                    "address": 50360248,
+                    "size": 4
+                  }
+                ],
+                "normal_abi_return_required": true,
+                "same_battle_context_epoch_required": true,
+                "same_stack_epoch_required": true,
+                "effects_discharged": false
+              }
+            ],
+            "current_move_loads": [
+              [
+                151929922,
+                33701034,
+                2,
+                1
+              ],
+              [
+                151930278,
+                33701034,
+                2,
+                1
+              ],
+              [
+                151930326,
+                33701034,
+                2,
+                1
+              ]
+            ],
+            "complete_halfword_reads": 32,
+            "consumed_bytes": 64,
+            "includes_both_final_terminators": true,
+            "reader_trace_identity": {
+              "size": 899,
+              "sha256": "5c68171de932c4f5de1a781650dd4796d96da2101eb69b73404689e9ba871e4e"
+            },
+            "nonlive_ram_erased_at_each_boundary": true,
+            "internal_reader_arguments_host_seeded": false,
+            "actual_runtime_execution_observed": false
+          },
+          "protected_windows": 12,
+          "protected_bytes": 406,
+          "proof_scope": "conditional_registered_critical_move_lists",
+          "conditional_registered_api_entry": true,
+          "actual_opcode_dispatch_executed": false,
+          "whole_candidate_identity_checked_by_parent_required": true,
+          "actual_runtime_execution_observed": false,
+          "full_story_reachability_claimed": false,
+          "full_battle_script_prefix_executed": false,
+          "opaque_callee_effects_proven": false,
+          "universal_heap_or_irq_lifetime_proven": false,
+          "whole_table_classified": false,
+          "pointer_interpretation_claimed": false,
+          "retirement_proven": false,
+          "indirect_reference_completeness_claimed": false,
+          "donor_eligible": false,
+          "donor_leased": false
+        },
+        "registered_animation_background_minimum_lz_payload": {
+          "status": "PASS_REGISTERED_BACKGROUND_MINIMUM_PAYLOADS",
+          "count": 4,
+          "hits": [
+            152560537,
+            152616403,
+            152632226,
+            152633310
+          ],
+          "serialization": {
+            "blocks": [
+              {
+                "label": "ANIM_SHADOWBONE",
+                "address": 151123008,
+                "size": 9,
+                "command_count": 4,
+                "commands": [
+                  {
+                    "address": 151123008,
+                    "size": 3,
+                    "sha256": "960928cb1fe202194a31632ef30c8d4eb4faa65ef81dca5e3c4a53ef9affe40e",
+                    "source": "loadparticle ANIM_TAG_BONE",
+                    "macro": "loadparticle",
+                    "fields": [
+                      {
+                        "address": 151123008,
+                        "size": 1,
+                        "source_expression": "0x0",
+                        "source_macro_field": "0x0",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                      },
+                      {
+                        "address": 151123009,
+                        "size": 2,
+                        "source_expression": "ANIM_TAG_BONE",
+                        "source_macro_field": "loadparticleID",
+                        "value": 10000,
+                        "derivation": "source_equ",
+                        "sha256": "68df2a4ef366e1ab463246d151397840c34e3e02471ca3179b31a9f270dc4d54"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151123011,
+                    "size": 3,
+                    "sha256": "1caaade4820a0f6969e9d6abf19c5309be02ef8e4fba4c3d7d83a2810356e07a",
+                    "source": "loadparticle ANIM_TAG_IMPACT",
+                    "macro": "loadparticle",
+                    "fields": [
+                      {
+                        "address": 151123011,
+                        "size": 1,
+                        "source_expression": "0x0",
+                        "source_macro_field": "0x0",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                      },
+                      {
+                        "address": 151123012,
+                        "size": 2,
+                        "source_expression": "ANIM_TAG_IMPACT",
+                        "source_macro_field": "loadparticleID",
+                        "value": 10135,
+                        "derivation": "source_equ",
+                        "sha256": "7fffe0b8b488ed1839d67e0b01be5db07d3d77a716a1e0227db4d662aa9b28e2"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151123014,
+                    "size": 2,
+                    "sha256": "cf8435d55f37385edef46d09a7bcfa40518816a308258ab0753d7db0da3c2482",
+                    "source": "loadBG1 BG_NIGHTMARE",
+                    "macro": "loadBG1",
+                    "fields": [
+                      {
+                        "address": 151123014,
+                        "size": 1,
+                        "source_expression": "0x14",
+                        "source_macro_field": "0x14",
+                        "value": 20,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "83891d7fe85c33e52c8b4e5814c92fb6a3b9467299200538a6babaa8b452d879"
+                      },
+                      {
+                        "address": 151123015,
+                        "size": 1,
+                        "source_expression": "BG_NIGHTMARE",
+                        "source_macro_field": "loadBG1ID",
+                        "value": 29,
+                        "derivation": "source_equ",
+                        "sha256": "1f18d650d205d71d934c3646ff5fac1c096ba52eba4cf758b865364f4167d3cd"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151123016,
+                    "size": 1,
+                    "sha256": "8f11b05da785e43e713d03774c6bd3405d99cd3024af334ffd68db663aa37034",
+                    "source": "waitbgfadein",
+                    "macro": "waitbgfadein",
+                    "fields": [
+                      {
+                        "address": 151123016,
+                        "size": 1,
+                        "source_expression": "0x17",
+                        "source_macro_field": "0x17",
+                        "value": 23,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "8f11b05da785e43e713d03774c6bd3405d99cd3024af334ffd68db663aa37034"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "ANIM_GIGAIMPACT",
+                "address": 151057536,
+                "size": 32,
+                "command_count": 8,
+                "commands": [
+                  {
+                    "address": 151057536,
+                    "size": 3,
+                    "sha256": "1caaade4820a0f6969e9d6abf19c5309be02ef8e4fba4c3d7d83a2810356e07a",
+                    "source": "loadparticle ANIM_TAG_IMPACT",
+                    "macro": "loadparticle",
+                    "fields": [
+                      {
+                        "address": 151057536,
+                        "size": 1,
+                        "source_expression": "0x0",
+                        "source_macro_field": "0x0",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                      },
+                      {
+                        "address": 151057537,
+                        "size": 2,
+                        "source_expression": "ANIM_TAG_IMPACT",
+                        "source_macro_field": "loadparticleID",
+                        "value": 10135,
+                        "derivation": "source_equ",
+                        "sha256": "7fffe0b8b488ed1839d67e0b01be5db07d3d77a716a1e0227db4d662aa9b28e2"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151057539,
+                    "size": 2,
+                    "sha256": "f5ced90fd1be73a76a86323730da48d6206631af07b5e73cccc92a9f5288de8b",
+                    "source": "pokespritetoBG target_partner",
+                    "macro": "pokespritetoBG",
+                    "fields": [
+                      {
+                        "address": 151057539,
+                        "size": 1,
+                        "source_expression": "0xA",
+                        "source_macro_field": "0xA",
+                        "value": 10,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+                      },
+                      {
+                        "address": 151057540,
+                        "size": 1,
+                        "source_expression": "target_partner",
+                        "source_macro_field": "animABank",
+                        "value": 3,
+                        "derivation": "source_equ",
+                        "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151057541,
+                    "size": 3,
+                    "sha256": "45bd35273b4ecbce883c73a8a92ffce04f6356821b2be227edae32fd9d4a8512",
+                    "source": "setblends 0x80c",
+                    "macro": "setblends",
+                    "fields": [
+                      {
+                        "address": 151057541,
+                        "size": 1,
+                        "source_expression": "0xC",
+                        "source_macro_field": "0xC",
+                        "value": 12,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "ef6cbd2161eaea7943ce8693b9824d23d1793ffb1c0fca05b600d3899b44c977"
+                      },
+                      {
+                        "address": 151057542,
+                        "size": 2,
+                        "source_expression": "0x80c",
+                        "source_macro_field": "setblends_value",
+                        "value": 2060,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "9c9ab1903bd128857c6fee15716de2b3c734e67c37148ef4bde0e56386168e63"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151057544,
+                    "size": 4,
+                    "sha256": "482baef399f5cc20de9c1cdac7732a6d65127821975d3805d90fc7bcac6501f7",
+                    "source": "playsound2 0x91 SOUND_PAN_ATTACKER",
+                    "macro": "playsound2",
+                    "fields": [
+                      {
+                        "address": 151057544,
+                        "size": 1,
+                        "source_expression": "0x19",
+                        "source_macro_field": "0x19",
+                        "value": 25,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "68aa2e2ee5dff96e3355e6c7ee373e3d6a4e17f75f9518d843709c0c9bc3e3d4"
+                      },
+                      {
+                        "address": 151057545,
+                        "size": 2,
+                        "source_expression": "0x91",
+                        "source_macro_field": "playsound2ID",
+                        "value": 145,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "1d25d76040a1e986b1d60f2cf3209a81bfbf32007d63ff461535a9d73d90ebf4"
+                      },
+                      {
+                        "address": 151057547,
+                        "size": 1,
+                        "source_expression": "SOUND_PAN_ATTACKER",
+                        "source_macro_field": "playsound2Unkown",
+                        "value": 192,
+                        "derivation": "source_equ",
+                        "sha256": "e4ff5e7d7a7f08e9800a3e25cb774533cb20040df30b6ba10f956f9acd0eb3f7"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151057548,
+                    "size": 13,
+                    "sha256": "6545e2b019749e7107025b65c15620fa03e796357c8e1fd03c40328ec87f02ed",
+                    "source": "launchtemplate Template_VerticalDip 0x2 0x3 0x6 0x1 0x0",
+                    "macro": "launchtemplate",
+                    "fields": [
+                      {
+                        "address": 151057548,
+                        "size": 1,
+                        "source_expression": "0x2",
+                        "source_macro_field": "0x2",
+                        "value": 2,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                      },
+                      {
+                        "address": 151057549,
+                        "size": 4,
+                        "source_expression": "Template_VerticalDip",
+                        "source_macro_field": "launchtemplatePtr",
+                        "value": 138007412,
+                        "derivation": "source_equ",
+                        "sha256": "a50e3169c97222a06e4b15c1c1df36ab5f6a0c002b5cb433e0e2756856d15667"
+                      },
+                      {
+                        "address": 151057553,
+                        "size": 1,
+                        "source_expression": "0x2",
+                        "source_macro_field": "launchtemplatePriority",
+                        "value": 2,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                      },
+                      {
+                        "address": 151057554,
+                        "size": 1,
+                        "source_expression": "0x3",
+                        "source_macro_field": "launchtemplateArgsNo",
+                        "value": 3,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+                      },
+                      {
+                        "address": 151057555,
+                        "size": 2,
+                        "source_expression": "0x6",
+                        "source_macro_field": "launchtemplatearg0",
+                        "value": 6,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "ceb827ad3d3884fd4d50ae6099d6d50c09a21e72ebd309708e8b69d93df19e55"
+                      },
+                      {
+                        "address": 151057557,
+                        "size": 2,
+                        "source_expression": "0x1",
+                        "source_macro_field": "launchtemplatearg1",
+                        "value": 1,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "47dc540c94ceb704a23875c11273e16bb0b8a87aed84de911f2133568115f254"
+                      },
+                      {
+                        "address": 151057559,
+                        "size": 2,
+                        "source_expression": "0x0",
+                        "source_macro_field": "launchtemplatearg2",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151057561,
+                    "size": 1,
+                    "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db",
+                    "source": "waitanimation",
+                    "macro": "waitanimation",
+                    "fields": [
+                      {
+                        "address": 151057561,
+                        "size": 1,
+                        "source_expression": "0x5",
+                        "source_macro_field": "0x5",
+                        "value": 5,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151057562,
+                    "size": 4,
+                    "sha256": "71cf59e3d177f5ddab98c6a96999f9206398de481119404ded00dc41d1206931",
+                    "source": "chooseBG BG_GIGA_IMPACT_ON_OPPONENT, BG_GIGA_IMPACT_ON_PLAYER, BG_GIGA_IMPACT_ON_OPPONENT",
+                    "macro": "chooseBG",
+                    "fields": [
+                      {
+                        "address": 151057562,
+                        "size": 1,
+                        "source_expression": "0x25",
+                        "source_macro_field": "0x25",
+                        "value": 37,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "bbf3f11cb5b43e700273a78d12de55e4a7eab741ed2abf13787a4d2dc832b8ec"
+                      },
+                      {
+                        "address": 151057563,
+                        "size": 1,
+                        "source_expression": "BG_GIGA_IMPACT_ON_OPPONENT",
+                        "source_macro_field": "chooseBG1",
+                        "value": 33,
+                        "derivation": "source_equ",
+                        "sha256": "bb7208bc9b5d7c04f1236a82a0093a5e33f40423d5ba8d4266f7092c3ba43b62"
+                      },
+                      {
+                        "address": 151057564,
+                        "size": 1,
+                        "source_expression": "BG_GIGA_IMPACT_ON_PLAYER",
+                        "source_macro_field": "chooseBG2",
+                        "value": 34,
+                        "derivation": "source_equ",
+                        "sha256": "8a331fdde7032f33a71e1b2e257d80166e348e00fcb17914f48bdb57a1c63007"
+                      },
+                      {
+                        "address": 151057565,
+                        "size": 1,
+                        "source_expression": "BG_GIGA_IMPACT_ON_OPPONENT",
+                        "source_macro_field": "chooseBG3",
+                        "value": 33,
+                        "derivation": "source_equ",
+                        "sha256": "bb7208bc9b5d7c04f1236a82a0093a5e33f40423d5ba8d4266f7092c3ba43b62"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151057566,
+                    "size": 2,
+                    "sha256": "8553b42f632bfb7fa1f436ce6f697bf238fcb5c11ef90100138459639a6e57d3",
+                    "source": "pause 0xb",
+                    "macro": "pause",
+                    "fields": [
+                      {
+                        "address": 151057566,
+                        "size": 1,
+                        "source_expression": "0x4",
+                        "source_macro_field": "0x4",
+                        "value": 4,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "e52d9c508c502347344d8c07ad91cbd6068afc75ff6292f062a09ca381c89e71"
+                      },
+                      {
+                        "address": 151057567,
+                        "size": 1,
+                        "source_expression": "0xb",
+                        "source_macro_field": "pause_cmdToWait",
+                        "value": 11,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "e7cf46a078fed4fafd0b5e3aff144802b853f8ae459a4f0c14add3314b7cc3a6"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "ANIM_CATASTROPIKA",
+                "address": 151191088,
+                "size": 126,
+                "command_count": 22,
+                "commands": [
+                  {
+                    "address": 151191088,
+                    "size": 3,
+                    "sha256": "caa64221caddb0e02a3d76e8a26efa2c44c305accad8bc386159f17aa8174c72",
+                    "source": "loadparticle ANIM_TAG_FOCUS_ENERGY",
+                    "macro": "loadparticle",
+                    "fields": [
+                      {
+                        "address": 151191088,
+                        "size": 1,
+                        "source_expression": "0x0",
+                        "source_macro_field": "0x0",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                      },
+                      {
+                        "address": 151191089,
+                        "size": 2,
+                        "source_expression": "ANIM_TAG_FOCUS_ENERGY",
+                        "source_macro_field": "loadparticleID",
+                        "value": 10184,
+                        "derivation": "source_equ",
+                        "sha256": "fb444b80035d005b35c3873ab68f9560a594fcb31e128c6f3df586673dbb3c46"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191091,
+                    "size": 3,
+                    "sha256": "972ba45ca1d0810c2ef75f9e7b303de81d9f23ae9a05fe31749b816d9f09ad89",
+                    "source": "loadparticle ANIM_TAG_ROUND_SHADOW",
+                    "macro": "loadparticle",
+                    "fields": [
+                      {
+                        "address": 151191091,
+                        "size": 1,
+                        "source_expression": "0x0",
+                        "source_macro_field": "0x0",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                      },
+                      {
+                        "address": 151191092,
+                        "size": 2,
+                        "source_expression": "ANIM_TAG_ROUND_SHADOW",
+                        "source_macro_field": "loadparticleID",
+                        "value": 10156,
+                        "derivation": "source_equ",
+                        "sha256": "5fdf347859611a1beac8d4ba0e61b5d0ba90ec05604e881c3ac66f110d4be0e3"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191094,
+                    "size": 2,
+                    "sha256": "26eab3ff86cd372176af888295f9a99aa62e92ae233a741c5e26aeed365ad5b3",
+                    "source": "makebankinvisible bank_target",
+                    "macro": "makebankinvisible",
+                    "fields": [
+                      {
+                        "address": 151191094,
+                        "size": 1,
+                        "source_expression": "0x2B",
+                        "source_macro_field": "0x2B",
+                        "value": 43,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "a318c24216defe206feeb73ef5be00033fa9c4a74d0b967f6532a26ca5906d3b"
+                      },
+                      {
+                        "address": 151191095,
+                        "size": 1,
+                        "source_expression": "bank_target",
+                        "source_macro_field": "makebankinvisibleBank",
+                        "value": 1,
+                        "derivation": "source_equ",
+                        "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191096,
+                    "size": 7,
+                    "sha256": "ece576abde24c686405ea8afb9bcd25efee398d03b46ea68fe0a743c7acba905",
+                    "source": "launchtask AnimTask_AllBanksInvisibleExceptAttackerAndTarget 0xA 0x0",
+                    "macro": "launchtask",
+                    "fields": [
+                      {
+                        "address": 151191096,
+                        "size": 1,
+                        "source_expression": "0x3",
+                        "source_macro_field": "0x3",
+                        "value": 3,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+                      },
+                      {
+                        "address": 151191097,
+                        "size": 4,
+                        "source_expression": "AnimTask_AllBanksInvisibleExceptAttackerAndTarget",
+                        "source_macro_field": "launchtaskPtr",
+                        "value": 151804045,
+                        "derivation": "actual_registered_pointer_field",
+                        "sha256": "b4861991166b4f486f6a1d705bc060e584e62803f73c7b304cdd3eeda94ad288"
+                      },
+                      {
+                        "address": 151191101,
+                        "size": 1,
+                        "source_expression": "0xA",
+                        "source_macro_field": "launchtaskPriority",
+                        "value": 10,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+                      },
+                      {
+                        "address": 151191102,
+                        "size": 1,
+                        "source_expression": "0x0",
+                        "source_macro_field": "launchtaskArgsNo",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191103,
+                    "size": 1,
+                    "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db",
+                    "source": "waitanimation",
+                    "macro": "waitanimation",
+                    "fields": [
+                      {
+                        "address": 151191103,
+                        "size": 1,
+                        "source_expression": "0x5",
+                        "source_macro_field": "0x5",
+                        "value": 5,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191104,
+                    "size": 4,
+                    "sha256": "7bc7411b7eddd0d4cb0a530a81268f8980af3f7827e6b93dd414967cf2176e15",
+                    "source": "playsound2 0xa4 SOUND_PAN_ATTACKER",
+                    "macro": "playsound2",
+                    "fields": [
+                      {
+                        "address": 151191104,
+                        "size": 1,
+                        "source_expression": "0x19",
+                        "source_macro_field": "0x19",
+                        "value": 25,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "68aa2e2ee5dff96e3355e6c7ee373e3d6a4e17f75f9518d843709c0c9bc3e3d4"
+                      },
+                      {
+                        "address": 151191105,
+                        "size": 2,
+                        "source_expression": "0xa4",
+                        "source_macro_field": "playsound2ID",
+                        "value": 164,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "a756c2a0de4a80c7e6edc29be63096505d892092751334cac92cf5d7f62b255b"
+                      },
+                      {
+                        "address": 151191107,
+                        "size": 1,
+                        "source_expression": "SOUND_PAN_ATTACKER",
+                        "source_macro_field": "playsound2Unkown",
+                        "value": 192,
+                        "derivation": "source_equ",
+                        "sha256": "e4ff5e7d7a7f08e9800a3e25cb774533cb20040df30b6ba10f956f9acd0eb3f7"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191108,
+                    "size": 5,
+                    "sha256": "233b617979ec4478366771aae038570203d9208220110aa76f3514d3b5c6c355",
+                    "source": "call BUFF_EFFECT",
+                    "macro": "call",
+                    "fields": [
+                      {
+                        "address": 151191108,
+                        "size": 1,
+                        "source_expression": "0xE",
+                        "source_macro_field": "0xE",
+                        "value": 14,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "4d7b3ef7300acf70c892d8327db8272f54434adbc61a4e130a563cb59a0d0f47"
+                      },
+                      {
+                        "address": 151191109,
+                        "size": 4,
+                        "source_expression": "BUFF_EFFECT",
+                        "source_macro_field": "call_cmd_ptr",
+                        "value": 135983651,
+                        "derivation": "source_equ",
+                        "sha256": "c2e6eaac921c0b2053dfdc016bdf7d8a72a1b8bbd5391f35b2d7b965d8990809"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191113,
+                    "size": 2,
+                    "sha256": "d6eb61185349af5834ca3f40c31b06cd74bcb64cb16feece4cc369b7c31245ec",
+                    "source": "pause 0x8",
+                    "macro": "pause",
+                    "fields": [
+                      {
+                        "address": 151191113,
+                        "size": 1,
+                        "source_expression": "0x4",
+                        "source_macro_field": "0x4",
+                        "value": 4,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "e52d9c508c502347344d8c07ad91cbd6068afc75ff6292f062a09ca381c89e71"
+                      },
+                      {
+                        "address": 151191114,
+                        "size": 1,
+                        "source_expression": "0x8",
+                        "source_macro_field": "pause_cmdToWait",
+                        "value": 8,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191115,
+                    "size": 19,
+                    "sha256": "97dc441344180d7a48199d9d66d8101b87c7ef0f6e29f2c4a417f23eb9486084",
+                    "source": "launchtask AnimTask_pal_fade_complex 0x2 0x6 0x2 0x2 0x2 0x0 0xb 0x5bff",
+                    "macro": "launchtask",
+                    "fields": [
+                      {
+                        "address": 151191115,
+                        "size": 1,
+                        "source_expression": "0x3",
+                        "source_macro_field": "0x3",
+                        "value": 3,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+                      },
+                      {
+                        "address": 151191116,
+                        "size": 4,
+                        "source_expression": "AnimTask_pal_fade_complex",
+                        "source_macro_field": "launchtaskPtr",
+                        "value": 134983325,
+                        "derivation": "source_equ",
+                        "sha256": "0c6b491453ef439bb5d91f4de2a682815e4c88b72b1e0959cfa1dcb80e2a2de0"
+                      },
+                      {
+                        "address": 151191120,
+                        "size": 1,
+                        "source_expression": "0x2",
+                        "source_macro_field": "launchtaskPriority",
+                        "value": 2,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                      },
+                      {
+                        "address": 151191121,
+                        "size": 1,
+                        "source_expression": "0x6",
+                        "source_macro_field": "launchtaskArgsNo",
+                        "value": 6,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "67586e98fad27da0b9968bc039a1ef34c939b9b8e523a8bef89d478608c5ecf6"
+                      },
+                      {
+                        "address": 151191122,
+                        "size": 2,
+                        "source_expression": "0x2",
+                        "source_macro_field": "launchtaskarg0",
+                        "value": 2,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "99be5efb88ca2013bd8e4eb035fd42d5245468fe9afa70d8ba9c1c419a48c4e8"
+                      },
+                      {
+                        "address": 151191124,
+                        "size": 2,
+                        "source_expression": "0x2",
+                        "source_macro_field": "launchtaskarg1",
+                        "value": 2,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "99be5efb88ca2013bd8e4eb035fd42d5245468fe9afa70d8ba9c1c419a48c4e8"
+                      },
+                      {
+                        "address": 151191126,
+                        "size": 2,
+                        "source_expression": "0x2",
+                        "source_macro_field": "launchtaskarg2",
+                        "value": 2,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "99be5efb88ca2013bd8e4eb035fd42d5245468fe9afa70d8ba9c1c419a48c4e8"
+                      },
+                      {
+                        "address": 151191128,
+                        "size": 2,
+                        "source_expression": "0x0",
+                        "source_macro_field": "launchtaskarg3",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                      },
+                      {
+                        "address": 151191130,
+                        "size": 2,
+                        "source_expression": "0xb",
+                        "source_macro_field": "launchtaskarg4",
+                        "value": 11,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "cbe2268747c9c8072c7f9926f2288f270637dc55bb9d14d3368361d5e47d25be"
+                      },
+                      {
+                        "address": 151191132,
+                        "size": 2,
+                        "source_expression": "0x5bff",
+                        "source_macro_field": "launchtaskarg5",
+                        "value": 23551,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "30c5a38fd5abf6bc399a87881778809d07cb13b1cd0219d4e3a6e418b9b922e6"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191134,
+                    "size": 17,
+                    "sha256": "fd1be28384106b497702406ea69d6e4d276b70a4dbbc0465799b5bb84d365709",
+                    "source": "launchtask AnimTask_move_bank_2 0x2 0x5 0x0 0x1 0x0 0x20 0x1",
+                    "macro": "launchtask",
+                    "fields": [
+                      {
+                        "address": 151191134,
+                        "size": 1,
+                        "source_expression": "0x3",
+                        "source_macro_field": "0x3",
+                        "value": 3,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+                      },
+                      {
+                        "address": 151191135,
+                        "size": 4,
+                        "source_expression": "AnimTask_move_bank_2",
+                        "source_macro_field": "launchtaskPtr",
+                        "value": 134841637,
+                        "derivation": "source_equ",
+                        "sha256": "c8432033fba5ab7d83a68d19cb13be75374cf8011a74d1d417c968be5136ca90"
+                      },
+                      {
+                        "address": 151191139,
+                        "size": 1,
+                        "source_expression": "0x2",
+                        "source_macro_field": "launchtaskPriority",
+                        "value": 2,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                      },
+                      {
+                        "address": 151191140,
+                        "size": 1,
+                        "source_expression": "0x5",
+                        "source_macro_field": "launchtaskArgsNo",
+                        "value": 5,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db"
+                      },
+                      {
+                        "address": 151191141,
+                        "size": 2,
+                        "source_expression": "0x0",
+                        "source_macro_field": "launchtaskarg0",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                      },
+                      {
+                        "address": 151191143,
+                        "size": 2,
+                        "source_expression": "0x1",
+                        "source_macro_field": "launchtaskarg1",
+                        "value": 1,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "47dc540c94ceb704a23875c11273e16bb0b8a87aed84de911f2133568115f254"
+                      },
+                      {
+                        "address": 151191145,
+                        "size": 2,
+                        "source_expression": "0x0",
+                        "source_macro_field": "launchtaskarg2",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                      },
+                      {
+                        "address": 151191147,
+                        "size": 2,
+                        "source_expression": "0x20",
+                        "source_macro_field": "launchtaskarg3",
+                        "value": 32,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "869f1dfb999a452f497a4cf7f44db2d6ee661f74a9e7e05251bc1420e50672d4"
+                      },
+                      {
+                        "address": 151191149,
+                        "size": 2,
+                        "source_expression": "0x1",
+                        "source_macro_field": "launchtaskarg4",
+                        "value": 1,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "47dc540c94ceb704a23875c11273e16bb0b8a87aed84de911f2133568115f254"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191151,
+                    "size": 5,
+                    "sha256": "233b617979ec4478366771aae038570203d9208220110aa76f3514d3b5c6c355",
+                    "source": "call BUFF_EFFECT",
+                    "macro": "call",
+                    "fields": [
+                      {
+                        "address": 151191151,
+                        "size": 1,
+                        "source_expression": "0xE",
+                        "source_macro_field": "0xE",
+                        "value": 14,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "4d7b3ef7300acf70c892d8327db8272f54434adbc61a4e130a563cb59a0d0f47"
+                      },
+                      {
+                        "address": 151191152,
+                        "size": 4,
+                        "source_expression": "BUFF_EFFECT",
+                        "source_macro_field": "call_cmd_ptr",
+                        "value": 135983651,
+                        "derivation": "source_equ",
+                        "sha256": "c2e6eaac921c0b2053dfdc016bdf7d8a72a1b8bbd5391f35b2d7b965d8990809"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191156,
+                    "size": 2,
+                    "sha256": "d6eb61185349af5834ca3f40c31b06cd74bcb64cb16feece4cc369b7c31245ec",
+                    "source": "pause 0x8",
+                    "macro": "pause",
+                    "fields": [
+                      {
+                        "address": 151191156,
+                        "size": 1,
+                        "source_expression": "0x4",
+                        "source_macro_field": "0x4",
+                        "value": 4,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "e52d9c508c502347344d8c07ad91cbd6068afc75ff6292f062a09ca381c89e71"
+                      },
+                      {
+                        "address": 151191157,
+                        "size": 1,
+                        "source_expression": "0x8",
+                        "source_macro_field": "pause_cmdToWait",
+                        "value": 8,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191158,
+                    "size": 5,
+                    "sha256": "233b617979ec4478366771aae038570203d9208220110aa76f3514d3b5c6c355",
+                    "source": "call BUFF_EFFECT",
+                    "macro": "call",
+                    "fields": [
+                      {
+                        "address": 151191158,
+                        "size": 1,
+                        "source_expression": "0xE",
+                        "source_macro_field": "0xE",
+                        "value": 14,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "4d7b3ef7300acf70c892d8327db8272f54434adbc61a4e130a563cb59a0d0f47"
+                      },
+                      {
+                        "address": 151191159,
+                        "size": 4,
+                        "source_expression": "BUFF_EFFECT",
+                        "source_macro_field": "call_cmd_ptr",
+                        "value": 135983651,
+                        "derivation": "source_equ",
+                        "sha256": "c2e6eaac921c0b2053dfdc016bdf7d8a72a1b8bbd5391f35b2d7b965d8990809"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191163,
+                    "size": 2,
+                    "sha256": "d6eb61185349af5834ca3f40c31b06cd74bcb64cb16feece4cc369b7c31245ec",
+                    "source": "pause 0x8",
+                    "macro": "pause",
+                    "fields": [
+                      {
+                        "address": 151191163,
+                        "size": 1,
+                        "source_expression": "0x4",
+                        "source_macro_field": "0x4",
+                        "value": 4,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "e52d9c508c502347344d8c07ad91cbd6068afc75ff6292f062a09ca381c89e71"
+                      },
+                      {
+                        "address": 151191164,
+                        "size": 1,
+                        "source_expression": "0x8",
+                        "source_macro_field": "pause_cmdToWait",
+                        "value": 8,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "beead77994cf573341ec17b58bbf7eb34d2711c993c1d976b128b3188dc1829a"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191165,
+                    "size": 4,
+                    "sha256": "6c628c3ab2c4158ed5b8594c36415b672c98434d9be0d7d676fb1651a6a085d7",
+                    "source": "playsound2 0x97 SOUND_PAN_ATTACKER",
+                    "macro": "playsound2",
+                    "fields": [
+                      {
+                        "address": 151191165,
+                        "size": 1,
+                        "source_expression": "0x19",
+                        "source_macro_field": "0x19",
+                        "value": 25,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "68aa2e2ee5dff96e3355e6c7ee373e3d6a4e17f75f9518d843709c0c9bc3e3d4"
+                      },
+                      {
+                        "address": 151191166,
+                        "size": 2,
+                        "source_expression": "0x97",
+                        "source_macro_field": "playsound2ID",
+                        "value": 151,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "8c087a101de6d78e4c367a5c6a21c1b25deafece410837e75b892e9b6c6bbb4e"
+                      },
+                      {
+                        "address": 151191168,
+                        "size": 1,
+                        "source_expression": "SOUND_PAN_ATTACKER",
+                        "source_macro_field": "playsound2Unkown",
+                        "value": 192,
+                        "derivation": "source_equ",
+                        "sha256": "e4ff5e7d7a7f08e9800a3e25cb774533cb20040df30b6ba10f956f9acd0eb3f7"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191169,
+                    "size": 15,
+                    "sha256": "34b564fa08dae1c71a0301a6b184be0cbbc8d7611a41dd215232e61a3584f53b",
+                    "source": "launchtemplate 0x83AE0FC 0x2 0x4 0x0 0x0 0xd 0x150",
+                    "macro": "launchtemplate",
+                    "fields": [
+                      {
+                        "address": 151191169,
+                        "size": 1,
+                        "source_expression": "0x2",
+                        "source_macro_field": "0x2",
+                        "value": 2,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                      },
+                      {
+                        "address": 151191170,
+                        "size": 4,
+                        "source_expression": "0x83AE0FC",
+                        "source_macro_field": "launchtemplatePtr",
+                        "value": 138076412,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "5bc5dadfe9184af9ecc7d6783d29923995c29c08c3142ae2188cf91adc7ce9d2"
+                      },
+                      {
+                        "address": 151191174,
+                        "size": 1,
+                        "source_expression": "0x2",
+                        "source_macro_field": "launchtemplatePriority",
+                        "value": 2,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                      },
+                      {
+                        "address": 151191175,
+                        "size": 1,
+                        "source_expression": "0x4",
+                        "source_macro_field": "launchtemplateArgsNo",
+                        "value": 4,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "e52d9c508c502347344d8c07ad91cbd6068afc75ff6292f062a09ca381c89e71"
+                      },
+                      {
+                        "address": 151191176,
+                        "size": 2,
+                        "source_expression": "0x0",
+                        "source_macro_field": "launchtemplatearg0",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                      },
+                      {
+                        "address": 151191178,
+                        "size": 2,
+                        "source_expression": "0x0",
+                        "source_macro_field": "launchtemplatearg1",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                      },
+                      {
+                        "address": 151191180,
+                        "size": 2,
+                        "source_expression": "0xd",
+                        "source_macro_field": "launchtemplatearg2",
+                        "value": 13,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "f566cc6fccc657365c0197accf3a7d6f80f85209ff666ff774f4dcbc524aa842"
+                      },
+                      {
+                        "address": 151191182,
+                        "size": 2,
+                        "source_expression": "0x150",
+                        "source_macro_field": "launchtemplatearg3",
+                        "value": 336,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "5be9f96cecf3f618a6be49e939858b1638b3f57b76a3b10028af9189921808ea"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191184,
+                    "size": 1,
+                    "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db",
+                    "source": "waitanimation",
+                    "macro": "waitanimation",
+                    "fields": [
+                      {
+                        "address": 151191184,
+                        "size": 1,
+                        "source_expression": "0x5",
+                        "source_macro_field": "0x5",
+                        "value": 5,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "e77b9a9ae9e30b0dbdb6f510a264ef9de781501d7b6b92ae89eb059c5ab743db"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191185,
+                    "size": 3,
+                    "sha256": "99b0eefa77b6e1d297a00b17abc0a6a8ae4af89d2621490ff6652000d5d39893",
+                    "source": "unloadparticle ANIM_TAG_FOCUS_ENERGY",
+                    "macro": "unloadparticle",
+                    "fields": [
+                      {
+                        "address": 151191185,
+                        "size": 1,
+                        "source_expression": "0x1",
+                        "source_macro_field": "0x1",
+                        "value": 1,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+                      },
+                      {
+                        "address": 151191186,
+                        "size": 2,
+                        "source_expression": "ANIM_TAG_FOCUS_ENERGY",
+                        "source_macro_field": "unloadparticleID",
+                        "value": 10184,
+                        "derivation": "source_equ",
+                        "sha256": "fb444b80035d005b35c3873ab68f9560a594fcb31e128c6f3df586673dbb3c46"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191188,
+                    "size": 3,
+                    "sha256": "8b7e01b546f1936d3e63779e7e9e6c105cf9c43cfbb478e9834ed854147c37be",
+                    "source": "unloadparticle ANIM_TAG_ROUND_SHADOW",
+                    "macro": "unloadparticle",
+                    "fields": [
+                      {
+                        "address": 151191188,
+                        "size": 1,
+                        "source_expression": "0x1",
+                        "source_macro_field": "0x1",
+                        "value": 1,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+                      },
+                      {
+                        "address": 151191189,
+                        "size": 2,
+                        "source_expression": "ANIM_TAG_ROUND_SHADOW",
+                        "source_macro_field": "unloadparticleID",
+                        "value": 10156,
+                        "derivation": "source_equ",
+                        "sha256": "5fdf347859611a1beac8d4ba0e61b5d0ba90ec05604e881c3ac66f110d4be0e3"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191191,
+                    "size": 7,
+                    "sha256": "a4e97780b32e2938280c3f34120828de19c69fd4eccb944aef39500141b286c2",
+                    "source": "launchtask AnimTask_GetTimeOfDay 0x2 0x0",
+                    "macro": "launchtask",
+                    "fields": [
+                      {
+                        "address": 151191191,
+                        "size": 1,
+                        "source_expression": "0x3",
+                        "source_macro_field": "0x3",
+                        "value": 3,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5"
+                      },
+                      {
+                        "address": 151191192,
+                        "size": 4,
+                        "source_expression": "AnimTask_GetTimeOfDay",
+                        "source_macro_field": "launchtaskPtr",
+                        "value": 151799085,
+                        "derivation": "actual_registered_pointer_field",
+                        "sha256": "dea18eeab8d6cb4f243223b675b836956d12acfe0534d6724f8e5aad65836690"
+                      },
+                      {
+                        "address": 151191196,
+                        "size": 1,
+                        "source_expression": "0x2",
+                        "source_macro_field": "launchtaskPriority",
+                        "value": 2,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "dbc1b4c900ffe48d575b5da5c638040125f65db0fe3e24494b76ea986457d986"
+                      },
+                      {
+                        "address": 151191197,
+                        "size": 1,
+                        "source_expression": "0x0",
+                        "source_macro_field": "launchtaskArgsNo",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191198,
+                    "size": 8,
+                    "sha256": "547d2f53beb20f25c93f4f12d968e1f10c18e0c98509304b5c9634e0a77acd10",
+                    "source": "jumpifargmatches 0x0 0x0 CATASTROPIKA_DAY",
+                    "macro": "jumpifargmatches",
+                    "fields": [
+                      {
+                        "address": 151191198,
+                        "size": 1,
+                        "source_expression": "0x21",
+                        "source_macro_field": "0x21",
+                        "value": 33,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "bb7208bc9b5d7c04f1236a82a0093a5e33f40423d5ba8d4266f7092c3ba43b62"
+                      },
+                      {
+                        "address": 151191199,
+                        "size": 1,
+                        "source_expression": "0x0",
+                        "source_macro_field": "jumpifargmatchesargID",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                      },
+                      {
+                        "address": 151191200,
+                        "size": 2,
+                        "source_expression": "0x0",
+                        "source_macro_field": "jumpifargmatchesValue",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+                      },
+                      {
+                        "address": 151191202,
+                        "size": 4,
+                        "source_expression": "CATASTROPIKA_DAY",
+                        "source_macro_field": "jumpifargmatchesPtr",
+                        "value": 151191221,
+                        "derivation": "actual_registered_pointer_field",
+                        "sha256": "980abd152ddc7826dca3555d1c3a5dd3b2df21b4139fdd497e1dab655b35b254"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191206,
+                    "size": 8,
+                    "sha256": "a2dff7e332679645224517aca730a0e9d6f8f8dc5a37f24648dadd1bb3821ccb",
+                    "source": "jumpifargmatches 0x0 0x2 CATASTROPIKA_AFTERNOON",
+                    "macro": "jumpifargmatches",
+                    "fields": [
+                      {
+                        "address": 151191206,
+                        "size": 1,
+                        "source_expression": "0x21",
+                        "source_macro_field": "0x21",
+                        "value": 33,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "bb7208bc9b5d7c04f1236a82a0093a5e33f40423d5ba8d4266f7092c3ba43b62"
+                      },
+                      {
+                        "address": 151191207,
+                        "size": 1,
+                        "source_expression": "0x0",
+                        "source_macro_field": "jumpifargmatchesargID",
+                        "value": 0,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+                      },
+                      {
+                        "address": 151191208,
+                        "size": 2,
+                        "source_expression": "0x2",
+                        "source_macro_field": "jumpifargmatchesValue",
+                        "value": 2,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "99be5efb88ca2013bd8e4eb035fd42d5245468fe9afa70d8ba9c1c419a48c4e8"
+                      },
+                      {
+                        "address": 151191210,
+                        "size": 4,
+                        "source_expression": "CATASTROPIKA_AFTERNOON",
+                        "source_macro_field": "jumpifargmatchesPtr",
+                        "value": 151191228,
+                        "derivation": "actual_registered_pointer_field",
+                        "sha256": "05f6888eebcbe26dcd1f97aed7ef56c32bac72b83497309150969a07f555a2c9"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "CATASTROPIKA_NIGHT",
+                "address": 151191214,
+                "size": 7,
+                "command_count": 2,
+                "commands": [
+                  {
+                    "address": 151191214,
+                    "size": 2,
+                    "sha256": "8153421a5be49b9b927cfd9ee8d3ae1a7c10c816c4e1aff84d6f4cb5c3165665",
+                    "source": "loadBG1 BG_BLUE_SKY_NIGHT",
+                    "macro": "loadBG1",
+                    "fields": [
+                      {
+                        "address": 151191214,
+                        "size": 1,
+                        "source_expression": "0x14",
+                        "source_macro_field": "0x14",
+                        "value": 20,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "83891d7fe85c33e52c8b4e5814c92fb6a3b9467299200538a6babaa8b452d879"
+                      },
+                      {
+                        "address": 151191215,
+                        "size": 1,
+                        "source_expression": "BG_BLUE_SKY_NIGHT",
+                        "source_macro_field": "loadBG1ID",
+                        "value": 58,
+                        "derivation": "source_equ",
+                        "sha256": "e7ac0786668e0ff0f02b62bd04f45ff636fd82db63b1104601c975dc005f3a67"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191216,
+                    "size": 5,
+                    "sha256": "cabe6d3830641e0db8b8d2b3d95877ba7c4630a9d716bcabc585e89921ed1de0",
+                    "source": "goto FINISH_CATASTROPIKA",
+                    "macro": "goto",
+                    "fields": [
+                      {
+                        "address": 151191216,
+                        "size": 1,
+                        "source_expression": "0x13",
+                        "source_macro_field": "0x13",
+                        "value": 19,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "ab897fbdedfa502b2d839b6a56100887dccdc507555c282e59589e06300a62e2"
+                      },
+                      {
+                        "address": 151191217,
+                        "size": 4,
+                        "source_expression": "FINISH_CATASTROPIKA",
+                        "source_macro_field": "goto_cmdPtr",
+                        "value": 151191230,
+                        "derivation": "actual_registered_pointer_field",
+                        "sha256": "8b1bbc141947d427ec26f017af3b0b76587d6c0a08954ff35691b9b8e710af75"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "CATASTROPIKA_DAY",
+                "address": 151191221,
+                "size": 7,
+                "command_count": 2,
+                "commands": [
+                  {
+                    "address": 151191221,
+                    "size": 2,
+                    "sha256": "795b1e69387de33773fa449ed9ab3e1c5819bed4880c9f23ffbd475a2f6b0645",
+                    "source": "loadBG1 BG_BLUE_SKY_DAY",
+                    "macro": "loadBG1",
+                    "fields": [
+                      {
+                        "address": 151191221,
+                        "size": 1,
+                        "source_expression": "0x14",
+                        "source_macro_field": "0x14",
+                        "value": 20,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "83891d7fe85c33e52c8b4e5814c92fb6a3b9467299200538a6babaa8b452d879"
+                      },
+                      {
+                        "address": 151191222,
+                        "size": 1,
+                        "source_expression": "BG_BLUE_SKY_DAY",
+                        "source_macro_field": "loadBG1ID",
+                        "value": 56,
+                        "derivation": "source_equ",
+                        "sha256": "2c624232cdd221771294dfbb310aca000a0df6ac8b66b696d90ef06fdefb64a3"
+                      }
+                    ]
+                  },
+                  {
+                    "address": 151191223,
+                    "size": 5,
+                    "sha256": "cabe6d3830641e0db8b8d2b3d95877ba7c4630a9d716bcabc585e89921ed1de0",
+                    "source": "goto FINISH_CATASTROPIKA",
+                    "macro": "goto",
+                    "fields": [
+                      {
+                        "address": 151191223,
+                        "size": 1,
+                        "source_expression": "0x13",
+                        "source_macro_field": "0x13",
+                        "value": 19,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "ab897fbdedfa502b2d839b6a56100887dccdc507555c282e59589e06300a62e2"
+                      },
+                      {
+                        "address": 151191224,
+                        "size": 4,
+                        "source_expression": "FINISH_CATASTROPIKA",
+                        "source_macro_field": "goto_cmdPtr",
+                        "value": 151191230,
+                        "derivation": "actual_registered_pointer_field",
+                        "sha256": "8b1bbc141947d427ec26f017af3b0b76587d6c0a08954ff35691b9b8e710af75"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "CATASTROPIKA_AFTERNOON",
+                "address": 151191228,
+                "size": 2,
+                "command_count": 1,
+                "commands": [
+                  {
+                    "address": 151191228,
+                    "size": 2,
+                    "sha256": "a19bd0444027c6ac5b1c2a37b2bf910f2b0d07a8807b927c9198bb04366a2767",
+                    "source": "loadBG1 BG_BLUE_SKY_AFTERNOON",
+                    "macro": "loadBG1",
+                    "fields": [
+                      {
+                        "address": 151191228,
+                        "size": 1,
+                        "source_expression": "0x14",
+                        "source_macro_field": "0x14",
+                        "value": 20,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "83891d7fe85c33e52c8b4e5814c92fb6a3b9467299200538a6babaa8b452d879"
+                      },
+                      {
+                        "address": 151191229,
+                        "size": 1,
+                        "source_expression": "BG_BLUE_SKY_AFTERNOON",
+                        "source_macro_field": "loadBG1ID",
+                        "value": 57,
+                        "derivation": "source_equ",
+                        "sha256": "19581e27de7ced00ff1ce50b2047e7a567c76b1cbaebabe5ef03f7c3017bb5b7"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "FINISH_CATASTROPIKA",
+                "address": 151191230,
+                "size": 1,
+                "command_count": 1,
+                "commands": [
+                  {
+                    "address": 151191230,
+                    "size": 1,
+                    "sha256": "7cb7c4547cf2653590d7a9ace60cc623d25148adfbc88a89aeb0ef88da7839ba",
+                    "source": "waitbgfadeout",
+                    "macro": "waitbgfadeout",
+                    "fields": [
+                      {
+                        "address": 151191230,
+                        "size": 1,
+                        "source_expression": "0x16",
+                        "source_macro_field": "0x16",
+                        "value": 22,
+                        "derivation": "source_numeric_expression",
+                        "sha256": "7cb7c4547cf2653590d7a9ace60cc623d25148adfbc88a89aeb0ef88da7839ba"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "assets": [
+              {
+                "name": "giga",
+                "source_png": "Giga_Impact_Opponent.png",
+                "asset": {
+                  "address": 152557028,
+                  "size": 3811,
+                  "sha256": "7003087ccf3155a3f3b871e8ff38fb2e363930961be4eab38ca27f843dca3eca"
+                },
+                "decoded": {
+                  "sha256": "c4ad2f3057ab14f69e4ea2969a1c9b7b26e011f53953ae9c5ddffd82394e7b64",
+                  "size": 8928
+                },
+                "source_tile_count": 279,
+                "whole_decoded_equal": true,
+                "padding_excluded": true
+              },
+              {
+                "name": "nightmare",
+                "source_png": "Nightmare.png",
+                "asset": {
+                  "address": 152613208,
+                  "size": 4015,
+                  "sha256": "4188ccccf0c25a7b7202a62dd095c6a84e470552711d05f9a3af57299e1a348f"
+                },
+                "decoded": {
+                  "sha256": "35b583bf59cb860e6604ce269984165e3e9fdece4e71319b125d4341690627fc",
+                  "size": 9664
+                },
+                "source_tile_count": 302,
+                "whole_decoded_equal": true,
+                "padding_excluded": true
+              },
+              {
+                "name": "sky",
+                "source_png": "Sky_Day.png",
+                "asset": {
+                  "address": 152625300,
+                  "size": 9558,
+                  "sha256": "a630ddc5f934a5b31963f51f39fbbd658e93792830c55b39fb9474e5e9c2516f"
+                },
+                "decoded": {
+                  "sha256": "c528c7385cec1c2c60631c5b1964ff92bfd748281abe466e56298652f991f92f",
+                  "size": 14304
+                },
+                "source_tile_count": 447,
+                "whole_decoded_equal": true,
+                "padding_excluded": true
+              }
+            ],
+            "full_source_serialized_bytes": 184,
+            "public_move_index_translation_used": false
+          },
+          "composition": {
+            "status": "PASS_THREE_REGISTERED_BACKGROUND_CONSUMERS",
+            "cases": [
+              {
+                "case": "giga",
+                "endpoint": 136084108,
+                "instruction_steps": 604,
+                "scheduler_invocations": 3,
+                "real_task_registration": true,
+                "nonlive_ram_erased_at_every_boundary": true,
+                "callback_or_bg_host_seeded": false,
+                "reads": [
+                  [
+                    134688658,
+                    151057563,
+                    1,
+                    33
+                  ],
+                  [
+                    134688660,
+                    151057564,
+                    1,
+                    34
+                  ],
+                  [
+                    134704424,
+                    50352336,
+                    4,
+                    134688757
+                  ],
+                  [
+                    134704424,
+                    50352336,
+                    4,
+                    134688757
+                  ],
+                  [
+                    134704424,
+                    50352336,
+                    4,
+                    134688757
+                  ],
+                  [
+                    134688852,
+                    50352344,
+                    2,
+                    33
+                  ],
+                  [
+                    134688988,
+                    151036156,
+                    4,
+                    152560840
+                  ],
+                  [
+                    134688998,
+                    151036148,
+                    4,
+                    152557028
+                  ]
+                ],
+                "writes": [
+                  [
+                    134704078,
+                    50352336,
+                    4,
+                    134688757
+                  ],
+                  [
+                    134688734,
+                    50352344,
+                    2,
+                    33
+                  ],
+                  [
+                    134688804,
+                    50352364,
+                    2,
+                    1
+                  ],
+                  [
+                    134688830,
+                    50352364,
+                    2,
+                    2
+                  ]
+                ],
+                "conditional_call_groups": [
+                  {
+                    "site": 134688682,
+                    "target": 134695272,
+                    "required_fields": [
+                      [
+                        33783304,
+                        4
+                      ],
+                      [
+                        33783316,
+                        2
+                      ],
+                      [
+                        50352336,
+                        8
+                      ],
+                      [
+                        50352364,
+                        2
+                      ],
+                      [
+                        50360296,
+                        24
+                      ]
+                    ],
+                    "conditional_outputs": [],
+                    "return_value": 1,
+                    "normal_abi_return_required": true,
+                    "frame_interval_completion_condition": false,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "required_fields": [
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        2
+                      ],
+                      [
+                        50352364,
+                        2
+                      ]
+                    ],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": false,
+                    "frame_interval_completion_condition": true,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134688796,
+                    "target": 134679048,
+                    "required_fields": [
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        2
+                      ],
+                      [
+                        50352364,
+                        2
+                      ],
+                      [
+                        50360288,
+                        32
+                      ]
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 33782259,
+                        "size": 1,
+                        "value": 128
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": true,
+                    "frame_interval_completion_condition": false,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "required_fields": [
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        2
+                      ],
+                      [
+                        50352364,
+                        2
+                      ]
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 33782259,
+                        "size": 1,
+                        "value": 0
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": false,
+                    "frame_interval_completion_condition": true,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "required_fields": [
+                      [
+                        33782259,
+                        1
+                      ],
+                      [
+                        50352336,
+                        6
+                      ],
+                      [
+                        50352344,
+                        2
+                      ],
+                      [
+                        50352364,
+                        2
+                      ]
+                    ],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": false,
+                    "frame_interval_completion_condition": true,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134688992,
+                    "target": 134276468,
+                    "required_fields": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": true,
+                    "frame_interval_completion_condition": false,
+                    "task_epoch_required": false,
+                    "effects_discharged": false
+                  }
+                ],
+                "trace_identity": {
+                  "size": 3824,
+                  "sha256": "bcb2d3f02fd83f995d7b9bc2c54b1db7e4726d43424ba1e94ed50d9f0c53f35f"
+                }
+              },
+              {
+                "case": "nightmare",
+                "endpoint": 136084108,
+                "instruction_steps": 588,
+                "scheduler_invocations": 3,
+                "real_task_registration": true,
+                "nonlive_ram_erased_at_every_boundary": true,
+                "callback_or_bg_host_seeded": false,
+                "reads": [
+                  [
+                    134688590,
+                    151123015,
+                    1,
+                    29
+                  ],
+                  [
+                    134704424,
+                    50352336,
+                    4,
+                    134688757
+                  ],
+                  [
+                    134704424,
+                    50352336,
+                    4,
+                    134688757
+                  ],
+                  [
+                    134704424,
+                    50352336,
+                    4,
+                    134688757
+                  ],
+                  [
+                    134688852,
+                    50352344,
+                    2,
+                    29
+                  ],
+                  [
+                    134688988,
+                    151036108,
+                    4,
+                    152617224
+                  ],
+                  [
+                    134688998,
+                    151036100,
+                    4,
+                    152613208
+                  ]
+                ],
+                "writes": [
+                  [
+                    134704078,
+                    50352336,
+                    4,
+                    134688757
+                  ],
+                  [
+                    134688618,
+                    50352344,
+                    2,
+                    29
+                  ],
+                  [
+                    134688804,
+                    50352364,
+                    2,
+                    1
+                  ],
+                  [
+                    134688830,
+                    50352364,
+                    2,
+                    2
+                  ]
+                ],
+                "conditional_call_groups": [
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "required_fields": [
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        2
+                      ],
+                      [
+                        50352364,
+                        2
+                      ]
+                    ],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": false,
+                    "frame_interval_completion_condition": true,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134688796,
+                    "target": 134679048,
+                    "required_fields": [
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        2
+                      ],
+                      [
+                        50352364,
+                        2
+                      ],
+                      [
+                        50360288,
+                        32
+                      ]
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 33782259,
+                        "size": 1,
+                        "value": 128
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": true,
+                    "frame_interval_completion_condition": false,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "required_fields": [
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        2
+                      ],
+                      [
+                        50352364,
+                        2
+                      ]
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 33782259,
+                        "size": 1,
+                        "value": 0
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": false,
+                    "frame_interval_completion_condition": true,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "required_fields": [
+                      [
+                        33782259,
+                        1
+                      ],
+                      [
+                        50352336,
+                        6
+                      ],
+                      [
+                        50352344,
+                        2
+                      ],
+                      [
+                        50352364,
+                        2
+                      ]
+                    ],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": false,
+                    "frame_interval_completion_condition": true,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134688992,
+                    "target": 134276468,
+                    "required_fields": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": true,
+                    "frame_interval_completion_condition": false,
+                    "task_epoch_required": false,
+                    "effects_discharged": false
+                  }
+                ],
+                "trace_identity": {
+                  "size": 3601,
+                  "sha256": "0329cddc0024859fe9bab5d6fd3663ade8c78f46293b738acd750344be922d98"
+                }
+              },
+              {
+                "case": "sky",
+                "endpoint": 136084108,
+                "instruction_steps": 622,
+                "scheduler_invocations": 3,
+                "real_task_registration": true,
+                "nonlive_ram_erased_at_every_boundary": true,
+                "callback_or_bg_host_seeded": false,
+                "reads": [
+                  [
+                    134688590,
+                    151191215,
+                    1,
+                    58
+                  ],
+                  [
+                    134704424,
+                    50352336,
+                    4,
+                    134688757
+                  ],
+                  [
+                    134704424,
+                    50352336,
+                    4,
+                    134688757
+                  ],
+                  [
+                    134704424,
+                    50352336,
+                    4,
+                    134688757
+                  ],
+                  [
+                    134688852,
+                    50352344,
+                    2,
+                    58
+                  ],
+                  [
+                    134688988,
+                    151036456,
+                    4,
+                    152634860
+                  ],
+                  [
+                    134688998,
+                    151036448,
+                    4,
+                    152625300
+                  ]
+                ],
+                "writes": [
+                  [
+                    134704078,
+                    50352336,
+                    4,
+                    134688757
+                  ],
+                  [
+                    134688618,
+                    50352344,
+                    2,
+                    58
+                  ],
+                  [
+                    134688804,
+                    50352364,
+                    2,
+                    1
+                  ],
+                  [
+                    134688830,
+                    50352364,
+                    2,
+                    2
+                  ]
+                ],
+                "conditional_call_groups": [
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "required_fields": [
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        2
+                      ],
+                      [
+                        50352364,
+                        2
+                      ]
+                    ],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": false,
+                    "frame_interval_completion_condition": true,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134688796,
+                    "target": 134679048,
+                    "required_fields": [
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        2
+                      ],
+                      [
+                        50352364,
+                        2
+                      ],
+                      [
+                        50360288,
+                        32
+                      ]
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 33782259,
+                        "size": 1,
+                        "value": 128
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": true,
+                    "frame_interval_completion_condition": false,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "required_fields": [
+                      [
+                        50352336,
+                        7
+                      ],
+                      [
+                        50352344,
+                        2
+                      ],
+                      [
+                        50352364,
+                        2
+                      ]
+                    ],
+                    "conditional_outputs": [
+                      {
+                        "address": 33782259,
+                        "size": 1,
+                        "value": 0
+                      }
+                    ],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": false,
+                    "frame_interval_completion_condition": true,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 0,
+                    "target": 0,
+                    "required_fields": [
+                      [
+                        33782259,
+                        1
+                      ],
+                      [
+                        50352336,
+                        6
+                      ],
+                      [
+                        50352344,
+                        2
+                      ],
+                      [
+                        50352364,
+                        2
+                      ]
+                    ],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": false,
+                    "frame_interval_completion_condition": true,
+                    "task_epoch_required": true,
+                    "effects_discharged": false
+                  },
+                  {
+                    "site": 134688992,
+                    "target": 134276468,
+                    "required_fields": [],
+                    "conditional_outputs": [],
+                    "return_value": "unspecified",
+                    "normal_abi_return_required": true,
+                    "frame_interval_completion_condition": false,
+                    "task_epoch_required": false,
+                    "effects_discharged": false
+                  }
+                ],
+                "trace_identity": {
+                  "size": 3723,
+                  "sha256": "60972005dc030369a61f745c4bc275ef45d1dd1fa5805ac43e8a5f93fce341ab"
+                }
+              }
+            ],
+            "actual_runtime_execution_observed": false
+          },
+          "protected_windows": 58,
+          "protected_bytes": 18528,
+          "proof_scope": "conditional_registered_background_minimum_payload",
+          "conditional_api_entry": true,
+          "complete_selected_source_serializer": true,
+          "actual_command_task_and_bg_reader": true,
+          "asset_source_pixels_independently_serialized": true,
+          "source_asset_full_decoded_match": true,
+          "whole_candidate_identity_checked_by_parent_required": true,
+          "actual_runtime_execution_observed": false,
+          "full_animation_prefix_executed": false,
+          "natural_battle_reachability_claimed": false,
+          "graphics_rendering_success_claimed": false,
+          "opaque_callee_effects_proven": false,
+          "universal_heap_or_irq_lifetime_proven": false,
+          "whole_asset_classified": false,
+          "padding_classified": false,
+          "indirect_reference_completeness_claimed": false,
+          "donor_eligible": false,
+          "donor_leased": false
+        }
+      },
+      "held_roots": {},
+      "new_data": 5,
+      "new_code": 0,
+      "new_boundary": 0,
+      "natural_gameplay_reachability_claimed": false,
+      "universal_heap_or_irq_lifetime_claimed": false,
+      "independent_old_final_source_review_completed": false,
+      "donor_leased": false,
+      "indirect_reference_completeness_claimed": false
+    },
+    "song": {
+      "status": "PASS_RETAINED_133_MODELS_50_ASSETS_NEW_CONSUMER_INTERSECTION",
+      "combined_song_models": 133,
+      "retained_sample_witnesses": 50,
+      "model_identity": {
+        "size": 213296,
+        "sha256": "71f01cee0a344409445e17fdea268371269a3e622c6b93563d04b35677e0b975"
+      },
+      "sample_identity": {
+        "size": 1121492,
+        "sha256": "9f765e8eee8ad78eaac8902ccafbf9e14c7c694f842e9ae6b2002583181b70ee"
+      },
+      "old_protected_read_windows": 198334,
+      "old_protected_read_identity": {
+        "size": 26409459,
+        "sha256": "26ae440b2d8456747f59e7fd73679a17b6289ef1a733bdd51c1f9ff668fc8914"
+      },
+      "all133_models_exact": true,
+      "all50_sample_identities_exact": true,
+      "old_and_new_root_windows": 8065,
+      "old_and_new_root_identity": {
+        "size": 863918,
+        "sha256": "215efc00dd4204817b6994583793f8e366872e4ebbcfb77a083d4b07c4ac345e"
+      },
+      "new_song_discovery_runs": 0,
+      "new_songs": [],
+      "new_audio_classified": 0,
+      "native_processes": 0,
+      "donor_leased": false
+    },
+    "public_source_bindings": {
+      "BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "Giga_Impact_Opponent.png": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "graphics/Backgrounds/Animation_Backgrounds/Giga_Impact_Opponent.png",
+        "size": 3239,
+        "sha256": "6cca39328f09db740bad5710d3f80e9c6121fbfc38c56402841e9b29d133ca2a",
+        "git_blob_sha": "e5ed2e5f3e599b5e8861cba80bbb27a6fd71bcc3"
+      },
+      "Nightmare.png": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "graphics/Backgrounds/Animation_Backgrounds/Nightmare.png",
+        "size": 3626,
+        "sha256": "4715865d3b8032772764983a86400d3c24dbaa86f9c4405b4e9278fd70ea5bea",
+        "git_blob_sha": "153d919678dd03d8b3a08480b05731c66dbcf599"
+      },
+      "Sky_Day.png": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "graphics/Backgrounds/Animation_Backgrounds/Sky_Day.png",
+        "size": 7388,
+        "sha256": "f0bf8757263094d900b43f11d137a44b5a6e2c562afd9b07f2a7bd5a982c81e1",
+        "git_blob_sha": "d0b0f2c3f58878c31f31a51400b225898b1ffa6a"
+      },
+      "cfru-anim_background_table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/anim_background_table.s",
+        "size": 5808,
+        "sha256": "427be85c29b46f63195a1e67bb611be6218f5ef019af8eae2b34d713532331cc",
+        "git_blob_sha": "2aa74a775408cda1f8ffae1b2bfe60873ffbb856"
+      },
+      "cfru-anim_backgrounds_graphics_defines.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/anim_backgrounds_graphics_defines.s",
+        "size": 6456,
+        "sha256": "2b3b79ddacb3380bc22158cbd56cfaa20e79fbb7e871b98630eafd624483b86f",
+        "git_blob_sha": "d5412780635c97ed44679dbd60bb231d8f20ae02"
+      },
+      "cfru-anim_defines.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "anim_defines.s",
+        "size": 33164,
+        "sha256": "166cbae334e3c45cb0d694fb483b8ac13b9cc84dc4bd64eb8d04ee696c1e84e4",
+        "git_blob_sha": "fc4168cbc9f43ef084afb04ff4ec8c81f9390592"
+      },
+      "cfru-asm_defines.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "asm_defines.s",
+        "size": 131732,
+        "sha256": "1beb8b1cce26e302eb17b6907951fc4ae0a1a0ae94cffb168a12c648ca45c8a7",
+        "git_blob_sha": "67f802d777e348e74c0f2d6c7ae2227fdf849f6f"
+      },
+      "cfru-attack-anim-table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/attack_anim_table.s",
+        "size": 1232828,
+        "sha256": "9c5ef07b85c3a0cbf809ad18cfeddf59d548a970d2df12f480ea93b6de9febb2",
+        "git_blob_sha": "2049efe7d416113b0b5be496e6a9c5ed6b305d1a"
+      },
+      "cfru-battle_script_commands_table.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/battle_script_commands_table.s",
+        "size": 11083,
+        "sha256": "ef6615d20d0768e23828b941fcd2a4f04ba06507a7ed498ab51b8db10e71f5f6",
+        "git_blob_sha": "10e8cf9821e5be79798b3ab1d02ea3e44ce44f05"
+      },
+      "cfru-damage_calc.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/damage_calc.c",
+        "size": 143093,
+        "sha256": "21aff6f8dd64161786b5b6d8b1f31d094e86643fd2bbc3752d447f9e6019cf04",
+        "git_blob_sha": "b51484b5b6d0071a39fded2dbcedbcd5850f7389"
+      },
+      "cfru-move_tables.s": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "assembly/data/move_tables.s",
+        "size": 32614,
+        "sha256": "1506b69f4a524d21432d670e0c4f21e2a45d102edf06970ec994c11fb03fba8c",
+        "git_blob_sha": "efadafd029731238469d204dbb0705a53a46efcd"
+      },
+      "cfru-moves.h": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "include/constants/moves.h",
+        "size": 30601,
+        "sha256": "bc2ae17e444625fa2e1727d42c50a24f6758da26e44229a6f12a3afa3a275d79",
+        "git_blob_sha": "444712bfec68c13fabffd3e167d380b6c23770ba"
+      },
+      "cfru-util.c": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "src/util.c",
+        "size": 12448,
+        "sha256": "bc47039408357c384d88dbbce4a9b3420f231c618c6e3a90395c9d7a5800d6cc",
+        "git_blob_sha": "75c2e599e700ebf19ebfeb820c02c1363862110a"
+      },
+      "config--battle_core.json": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "e565b80c492521d3bd8199c115dc7895018eff36",
+        "source": "config/battle_core.json",
+        "size": 5827,
+        "sha256": "94926e8ab022176a1bd8d410e082a804dec54037ad9f5a9fb7da469175d4f363",
+        "git_blob_sha": "718793e57d82052916715ddc1c0a2a392ff36ec3"
+      },
+      "config--move_port.json": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "e565b80c492521d3bd8199c115dc7895018eff36",
+        "source": "config/move_port.json",
+        "size": 3752,
+        "sha256": "ded26093f0e5b67443e11ec20691f9a8887e50bd3f693439e311f9a7aac32d72",
+        "git_blob_sha": "e66a55f15feaebbd6ecc501cb42060f83e861c54"
+      },
+      "gritflags.txt": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "graphics/Backgrounds/Animation_Backgrounds/gritflags.txt",
+        "size": 75,
+        "sha256": "3085e9dbd3464b8824af9dc4a456ef5781c60bcb70a3085c930389dea29b538a",
+        "git_blob_sha": "4a5b409b8bc381761df59f4a75a7cc84b5c9ba90"
+      },
+      "manifests--move_ids.csv": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "e565b80c492521d3bd8199c115dc7895018eff36",
+        "source": "manifests/move_ids.csv",
+        "size": 128694,
+        "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20",
+        "git_blob_sha": "48e248aed492791bd1c90d7327764b62293683ec"
+      },
+      "pret-battle_anim.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/battle_anim.c",
+        "size": 46944,
+        "sha256": "5883d9ee0483120ef67461952f5880499f322fb1c706cc213ca13c0c2b0e88c5",
+        "git_blob_sha": "30f9a7ad2482d1767f5c70ee30a3c85528605bb3"
+      },
+      "pret-task.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/task.c",
+        "size": 5029,
+        "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+        "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+      },
+      "scripts--build_battle_core.py": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "e565b80c492521d3bd8199c115dc7895018eff36",
+        "source": "scripts/build_battle_core.py",
+        "size": 239192,
+        "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0",
+        "git_blob_sha": "09bde3df2e2d33701141da7cec6eb53a6562f91c"
+      },
+      "scripts--build_move_port.py": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "e565b80c492521d3bd8199c115dc7895018eff36",
+        "source": "scripts/build_move_port.py",
+        "size": 55655,
+        "sha256": "3880b373b32bbcd2340243f6aebc1927d1a42b84ca264a45468acdcc8993c0cd",
+        "git_blob_sha": "f43632b46bcd48049047736702d8ded4c1597fd6"
+      },
+      "tools--engine--cfru_canonical_ids.py": {
+        "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+        "commit": "e565b80c492521d3bd8199c115dc7895018eff36",
+        "source": "tools/engine/cfru_canonical_ids.py",
+        "size": 17159,
+        "sha256": "f9b4236b6652f66214b85370fa709b7fb2bdacff84a503b0979d9465941a1b6f",
+        "git_blob_sha": "ba6dd920e701e9928d23ee2701769fc3d14049ee"
+      }
+    }
+  },
+  "proof_identity": {
+    "size": 56301,
+    "sha256": "6dab9345fd23de094e78cf8611e25155d83dd254d2f42d433b8179e2d599aee6"
+  },
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "donor_safe_bytes": 0,
+  "controller_runtime_wired": false,
+  "universal_irq_or_heap_lifetime_claimed": false,
+  "natural_play_universal_reachability_claimed": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false
+}

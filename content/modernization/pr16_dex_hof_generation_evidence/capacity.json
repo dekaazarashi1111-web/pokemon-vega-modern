@@ -1,0 +1,62 @@
+{
+  "status": "PASS_SOURCE_BOUND_CAPACITY_REFUSAL_NOT_ROM_ACCEPTANCE",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "88be88116bd452bd70cffaf2a820d5c6c6b6b7410fa603a9a0228b694725d5de"
+  },
+  "flash_bytes": 131072,
+  "flash_sectors": 32,
+  "main_banks": 2,
+  "main_sectors_per_bank": 14,
+  "hof_payload_bytes": 7936,
+  "hof_current_sectors": 2,
+  "other_current_sectors": [
+    30,
+    31
+  ],
+  "simple_dual_hof_required_sectors": 34,
+  "simple_dual_hof_deficit_bytes": 8192,
+  "main_tail_potential_bytes_per_bank": 1740,
+  "main_tail_new_owner_authorized": false,
+  "logical13_available_bytes": 0,
+  "sector31_historical_candidate_bytes": 1100,
+  "sector31_mdx_shadow_bytes": 522,
+  "sector31_remaining_candidate_bytes": 578,
+  "sector31_new_owner_authorized": false,
+  "sector30_unowned_claim": false,
+  "current_rom_owners": 115,
+  "current_scheduler_subowners": 43,
+  "current_scheduler_free_bytes": 186,
+  "runtime_generation_binding": false,
+  "runtime_cross_store_atomicity": false,
+  "source_bindings": {
+    "overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c": {
+      "size": 129221,
+      "sha256": "7ad33b6b00aacb30088b7a0cc528a7fb41c947a709bb4006ab225d82d4e271bf"
+    },
+    "overlays/dex_owner/dex_owner.h": {
+      "size": 2130,
+      "sha256": "9b6458882cfa70129fbc4e0a489b0dfacdfa587dcde6272e0d0c3c80a6d8a2d9"
+    },
+    "overlays/qol_production/qol_production.c": {
+      "size": 164877,
+      "sha256": "6a07635ca20dcd37365a2393910eb610d4f9c5a682585149ecb1243738cce23a"
+    },
+    "content/modernization/pr16_dex_storage_audit.json": {
+      "size": 1492,
+      "sha256": "a21526808be34928098119fd3bec57185e1ce1edc1663a21608ee37eec3568f7"
+    },
+    "content/modernization/pr16_dex_loadchain_audit.json": {
+      "size": 31785,
+      "sha256": "92cb84f0fd1a26e04dec3f26d424c4b8ed5b3bbdcc412e65137dbd985e6505d6"
+    },
+    "content/modernization/pr16_dex_hof_main_checkpoint.json": {
+      "size": 305499,
+      "sha256": "2d9fdb898411a961985bef441c5793b372b1d9233f87fcbdd9eb4937c231fecd"
+    }
+  },
+  "rom_reads": 0,
+  "save_reads": 0,
+  "rom_writes": 0,
+  "save_writes": 0
+}

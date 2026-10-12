@@ -1,0 +1,701 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261004-STORY-TRAINER",
+  "status": "PASS_TRAINER131_ENTRY_BLOCKED_UNSAFE_DEX_STORAGE",
+  "measurement_source": "4ddcdc44aabb704f542f4e37bf2f58cbfaca7573",
+  "cases": [
+    {
+      "run": 37210189574,
+      "source": "6cca4bf338d73dad815f4f911d7de19f66d607d7",
+      "artifact": {
+        "id": 11307010183,
+        "node_id": "MDg6QXJ0aWZhY3QxMTMwNzAxMDE4Mw==",
+        "name": "pr16-story-trainer-adapter-save101",
+        "size_in_bytes": 739753,
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11307010183",
+        "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11307010183/zip",
+        "expired": false,
+        "digest": "sha256:f7510feab675bc8d0bc0ee1d0fa9c861bf4fec7e310fba0633223e8f4134a359",
+        "created_at": "2026-10-04T14:42:25Z",
+        "updated_at": "2026-10-04T14:42:25Z",
+        "expires_at": "2027-01-02T14:41:25Z",
+        "workflow_run": {
+          "id": 37210189574,
+          "repository_id": 1358127462,
+          "head_repository_id": 1358127462,
+          "head_branch": "codex/modernization-followup-20260908",
+          "head_sha": "6cca4bf338d73dad815f4f911d7de19f66d607d7"
+        }
+      },
+      "reason": "unowned_trainer_field_save1",
+      "screens": 84,
+      "inputs": 165,
+      "frames": 6911,
+      "formal_story_save": 101,
+      "save_unchanged": true,
+      "ordinary_saves": 0,
+      "native_processes": 1,
+      "compiles": 1,
+      "trainer_victory_accepted": false,
+      "milestone_reached": false,
+      "scoped_verified": {
+        "sight": {
+          "owner": "trainer131_sight_before_player_step_maintenance",
+          "position_step": 1,
+          "walking_counter_steps": 0,
+          "clock": {
+            "ticks": 56,
+            "minute_rollovers": 0,
+            "frame_budget": 56
+          },
+          "save_requested": false
+        },
+        "approach": {
+          "ticks": 178,
+          "minute_rollovers": 0,
+          "frame_budget": 180
+        }
+      },
+      "last_observation": {
+        "observe": 83,
+        "frame": 6911,
+        "map": [
+          3,
+          24
+        ],
+        "xy": [
+          38,
+          6
+        ],
+        "live_xy": [
+          45,
+          13
+        ],
+        "facing": 2,
+        "field": false,
+        "lock": 1,
+        "callback2": 134569589,
+        "party_count": 4,
+        "save_counter": 101,
+        "rp": 0,
+        "battle_flags": 4,
+        "battle_outcome": 1,
+        "party_sha256": "cc578decea5bda186c4838d58b48c06974a69dded044d3f0c01b0b45b224178c",
+        "flash_sha256": "8b44629f94877b5aac2e23ff15a903e66e19b74e236aa89e1f590849ed509b4d",
+        "ledger_sha256": "348850887319655b8449f16526606b928a3866892d92efe2a6f8bfc019c51368"
+      },
+      "last_party": [
+        {
+          "species": 850,
+          "item": 888,
+          "exp": 1250000,
+          "friendship": 50,
+          "moves": [
+            337,
+            89,
+            280,
+            332
+          ],
+          "pp": [
+            3,
+            8,
+            8,
+            2
+          ],
+          "status": 0,
+          "level": 100,
+          "hp": 277,
+          "max_hp": 294,
+          "identity": "6a9376daa8c1d4052f15d5083ace0cdf06ad2a8a4958c1719ea7c7f32efd3e69"
+        },
+        {
+          "species": 150,
+          "item": 889,
+          "exp": 1250000,
+          "friendship": 14,
+          "moves": [
+            600,
+            366,
+            53,
+            58
+          ],
+          "pp": [
+            10,
+            20,
+            15,
+            10
+          ],
+          "status": 0,
+          "level": 100,
+          "hp": 354,
+          "max_hp": 354,
+          "identity": "f1b791e0b2d8acdd3bf720966d9870aab0e0c0af3546e0295b39236c83f7b6f8"
+        },
+        {
+          "species": 151,
+          "item": 194,
+          "exp": 1059860,
+          "friendship": 112,
+          "moves": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "pp": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": 0,
+          "level": 100,
+          "hp": 342,
+          "max_hp": 342,
+          "identity": "0a5bcc7556b9b1986d8cd7df651c1b594948f53ed53d1995dc1d95f0cd8e61b7"
+        },
+        {
+          "species": 690,
+          "item": 0,
+          "exp": 1000000,
+          "friendship": 65,
+          "moves": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "pp": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": 0,
+          "level": 100,
+          "hp": 300,
+          "max_hp": 300,
+          "identity": "8e3b7746f0afc0a8bf7065aa64d9e366ce63f307b54c4df392fdc29f4217a162"
+        }
+      ]
+    },
+    {
+      "run": 37210491215,
+      "source": "4ddcdc44aabb704f542f4e37bf2f58cbfaca7573",
+      "artifact": {
+        "id": 11306222294,
+        "node_id": "MDg6QXJ0aWZhY3QxMTMwNjIyMjI5NA==",
+        "name": "pr16-story-trainer-adapter-save101",
+        "size_in_bytes": 749048,
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11306222294",
+        "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11306222294/zip",
+        "expired": false,
+        "digest": "sha256:7114cb968d4576f670b55c6bd4b76bee5233e9a5a695158fda08fa3ceb1d4ef6",
+        "created_at": "2026-10-04T14:47:05Z",
+        "updated_at": "2026-10-04T14:47:05Z",
+        "expires_at": "2027-01-02T14:46:20Z",
+        "workflow_run": {
+          "id": 37210491215,
+          "repository_id": 1358127462,
+          "head_repository_id": 1358127462,
+          "head_branch": "codex/modernization-followup-20260908",
+          "head_sha": "4ddcdc44aabb704f542f4e37bf2f58cbfaca7573"
+        }
+      },
+      "reason": "trainer131_entry_observed_no_battle_input",
+      "screens": 85,
+      "inputs": 167,
+      "frames": 7093,
+      "formal_story_save": 101,
+      "save_unchanged": true,
+      "ordinary_saves": 0,
+      "native_processes": 1,
+      "compiles": 1,
+      "trainer_victory_accepted": false,
+      "milestone_reached": false,
+      "scoped_verified": {
+        "sight": {
+          "owner": "trainer131_sight_before_player_step_maintenance",
+          "position_step": 1,
+          "walking_counter_steps": 0,
+          "clock": {
+            "ticks": 56,
+            "minute_rollovers": 0,
+            "frame_budget": 56
+          },
+          "save_requested": false
+        },
+        "approach": {
+          "ticks": 178,
+          "minute_rollovers": 0,
+          "frame_budget": 180
+        },
+        "entry": {
+          "owner": "trainer131_normal_entry",
+          "actual_enemy_species": [
+            481,
+            528,
+            1537,
+            1147
+          ],
+          "game_stats_incremented": [
+            7,
+            9
+          ],
+          "poison_step_counter_reset": true,
+          "clock": {
+            "ticks": 161,
+            "minute_rollovers": 0,
+            "frame_budget": 182
+          },
+          "rekey_plaintext_preserved": true,
+          "party_preserved": true,
+          "battle_commands_sent": 0,
+          "trainer_victory_accepted": false,
+          "save_requested": false
+        },
+        "post_record_fail_closed_replay": {
+          "status": "DIAGNOSTIC_STOP_NOT_MILESTONE",
+          "reason": "unsafe_legacy_dex_seen_target",
+          "detail": {
+            "trainer_id": 131,
+            "unsafe_party": [
+              {
+                "slot": 2,
+                "species": 1537,
+                "level": 15,
+                "national": 963,
+                "byte_index": 120,
+                "bit": 4,
+                "stock_physical_capacity": 416,
+                "physical_in_bounds": false,
+                "legacy_species_number": false,
+                "writes": [
+                  {
+                    "mirror": "save2",
+                    "offset": 212,
+                    "mask": 4
+                  },
+                  {
+                    "mirror": "save1_seen1",
+                    "offset": 1648,
+                    "mask": 4
+                  },
+                  {
+                    "mirror": "save1_seen2",
+                    "offset": 14992,
+                    "mask": 4
+                  }
+                ]
+              },
+              {
+                "slot": 3,
+                "species": 1147,
+                "level": 16,
+                "national": 749,
+                "byte_index": 93,
+                "bit": 16,
+                "stock_physical_capacity": 416,
+                "physical_in_bounds": false,
+                "legacy_species_number": false,
+                "writes": [
+                  {
+                    "mirror": "save2",
+                    "offset": 185,
+                    "mask": 16
+                  },
+                  {
+                    "mirror": "save1_seen1",
+                    "offset": 1621,
+                    "mask": 16
+                  },
+                  {
+                    "mirror": "save1_seen2",
+                    "offset": 14965,
+                    "mask": 16
+                  }
+                ]
+              }
+            ],
+            "no_battle_input_sent": true,
+            "ordinary_save_permitted": false,
+            "repair_required": true
+          },
+          "milestone_reached": false,
+          "ordinary_save_authorized": false
+        }
+      },
+      "last_observation": {
+        "observe": 84,
+        "frame": 7093,
+        "map": [
+          3,
+          24
+        ],
+        "xy": [
+          38,
+          6
+        ],
+        "live_xy": [
+          45,
+          13
+        ],
+        "facing": 2,
+        "field": false,
+        "lock": 1,
+        "callback2": 134285761,
+        "party_count": 4,
+        "save_counter": 101,
+        "rp": 0,
+        "battle_flags": 12,
+        "battle_outcome": 0,
+        "party_sha256": "cc578decea5bda186c4838d58b48c06974a69dded044d3f0c01b0b45b224178c",
+        "flash_sha256": "8b44629f94877b5aac2e23ff15a903e66e19b74e236aa89e1f590849ed509b4d",
+        "ledger_sha256": "348850887319655b8449f16526606b928a3866892d92efe2a6f8bfc019c51368"
+      },
+      "last_party": [
+        {
+          "species": 850,
+          "item": 888,
+          "exp": 1250000,
+          "friendship": 50,
+          "moves": [
+            337,
+            89,
+            280,
+            332
+          ],
+          "pp": [
+            3,
+            8,
+            8,
+            2
+          ],
+          "status": 0,
+          "level": 100,
+          "hp": 277,
+          "max_hp": 294,
+          "identity": "6a9376daa8c1d4052f15d5083ace0cdf06ad2a8a4958c1719ea7c7f32efd3e69"
+        },
+        {
+          "species": 150,
+          "item": 889,
+          "exp": 1250000,
+          "friendship": 14,
+          "moves": [
+            600,
+            366,
+            53,
+            58
+          ],
+          "pp": [
+            10,
+            20,
+            15,
+            10
+          ],
+          "status": 0,
+          "level": 100,
+          "hp": 354,
+          "max_hp": 354,
+          "identity": "f1b791e0b2d8acdd3bf720966d9870aab0e0c0af3546e0295b39236c83f7b6f8"
+        },
+        {
+          "species": 151,
+          "item": 194,
+          "exp": 1059860,
+          "friendship": 112,
+          "moves": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "pp": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": 0,
+          "level": 100,
+          "hp": 342,
+          "max_hp": 342,
+          "identity": "0a5bcc7556b9b1986d8cd7df651c1b594948f53ed53d1995dc1d95f0cd8e61b7"
+        },
+        {
+          "species": 690,
+          "item": 0,
+          "exp": 1000000,
+          "friendship": 65,
+          "moves": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "pp": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "status": 0,
+          "level": 100,
+          "hp": 300,
+          "max_hp": 300,
+          "identity": "8e3b7746f0afc0a8bf7065aa64d9e366ce63f307b54c4df392fdc29f4217a162"
+        }
+      ]
+    }
+  ],
+  "formal_story_save": 101,
+  "input_save": {
+    "size": 131088,
+    "sha256": "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
+  },
+  "host_tests": 48,
+  "new_native_processes": 2,
+  "new_compiles": 2,
+  "record_native_processes": 0,
+  "record_compiles": 0,
+  "source_bindings": {
+    ".github/workflows/pr16-story-trainer-record.yml": {
+      "size": 2485,
+      "sha256": "c48ab6b527c248f4171f300ae7f6fbb566c02bf158729a0eb94352b38c3d0b56"
+    },
+    "content/modernization/pr16_story_dex_guard_unit.json": {
+      "size": 2273,
+      "sha256": "db24b772066ecf43f1cc1ddf27df34e5eba339a5da776c0d71386f5a4673ace9"
+    },
+    "content/modernization/pr16_story_dex_seen_audit.json": {
+      "size": 12277,
+      "sha256": "6c62d99c7e835de93fe01a5bbd97162e7af18290dbadb99668a1d7086c975bff"
+    },
+    "content/modernization/pr16_story_dex_seen_repair_plan.json": {
+      "size": 2048,
+      "sha256": "1d11d94f2ac8b1c5ca17da085d40be262d960cb454ffaa42fec053f80f5783a8"
+    },
+    "content/modernization/pr16_story_rom_metadata_unit.json": {
+      "size": 1127,
+      "sha256": "3977cc1ba78f0a7852490a316c35bdba104312625d131777384e5f6d34bfb0f8"
+    },
+    "content/modernization/pr16_story_trainer_owner_diagnosis.json": {
+      "size": 53365,
+      "sha256": "7e31713b110ca493eb0ea345bfa8a2b042a7951639cde4e511fff635da1124c3"
+    },
+    "content/modernization/pr16_story_trainer_owners.json": {
+      "size": 3738,
+      "sha256": "1cfa82e62507853a6f7df3f8d46fca4c9c997b017e699d484570b5e411c66403"
+    },
+    "content/modernization/pr16_story_trainer_record_inputs.json": {
+      "size": 3513,
+      "sha256": "24c1750bd1eb579c3faa456e4e857a8726452c25de656f8aa500f8796f284dd1"
+    },
+    "content/modernization/pr16_story_trainer_unit.json": {
+      "size": 4980,
+      "sha256": "8f03d05e38f8d262cc4a9d26969b1bb0e0fb3ed72664bb2c5632839b12831719"
+    },
+    "docs/PR16_DEX_SEEN_REPAIR_JA.md": {
+      "size": 5275,
+      "sha256": "050beb0932f2112e47283574282df0f8e1be76423d35cdc491b3d4fd7c52ac89"
+    },
+    "scripts/pr16_story_dex_guard.py": {
+      "size": 3619,
+      "sha256": "dff697d560732cee593685acdf6644e59a8d6ff624f0d2630dd4244d1b1fe4a3"
+    },
+    "scripts/pr16_story_rom_metadata.py": {
+      "size": 888,
+      "sha256": "178bb04d04ec831f910033fb4452e7eaa6da991c1b1ae8dc1535e18f038c056e"
+    },
+    "scripts/pr16_story_trainer_adapter.py": {
+      "size": 6624,
+      "sha256": "1998df0490c519696fe509de0c0dbf5ff6780d28fbee7c043165ee1d86dc436c"
+    },
+    "scripts/pr16_story_trainer_probe.py": {
+      "size": 6222,
+      "sha256": "afe2a7d90058aaf3199ed09222d097a88e930e6da8505b89220d89f4a57c9e62"
+    },
+    "scripts/pr16_story_trainer_record.py": {
+      "size": 14844,
+      "sha256": "7907195d6358b6015b12ca7bc7486e232a0698407cd58e7c4a0acfed70f0feed"
+    },
+    "scripts/pr16_story_trainer_session.py": {
+      "size": 2386,
+      "sha256": "54d381829fe8c9c83716c1aea2748cfc674e665f66e6ce05b64a305e01879086"
+    },
+    "scripts/pr16_story_trainer_trace.py": {
+      "size": 3400,
+      "sha256": "f007f671b7cfa4db46d94fbeafc98ed47dc4010a3cd38b60b45aca88e9a6a272"
+    },
+    "tests/test_pr16_story_dex_guard.py": {
+      "size": 2834,
+      "sha256": "c27c4f04b1ad5e07e17df4335fc381fdb5c899ca243a1877050c847476eacf0b"
+    },
+    "tests/test_pr16_story_rom_metadata.py": {
+      "size": 933,
+      "sha256": "701c64a7569198bedbf4ee690897e4a659724cc5420af2639737d0f6e9d419e9"
+    },
+    "tests/test_pr16_story_trainer_adapter.py": {
+      "size": 6083,
+      "sha256": "897f7bc4b420594c335b0fff2940c2a2328cb43239cff0aca5a5f7c05099ea6c"
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_trainer_evidence/37210189574/battle-entry.json": {
+      "size": 140,
+      "sha256": "3d107548221086dde9148efedfff5f5b302e51044c5c8793204b5f3fc598152f"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/battle-ledger.json": {
+      "size": 2086,
+      "sha256": "2b49d706ae11681422f2916cb9b0be8a9aaf8e402e200d1c2e9c35579199d81b"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/compile.json": {
+      "size": 308,
+      "sha256": "e229a37d7b8704cf11ab7b329af73857a271bd49e1b607dfbc7ed98295d97025"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/compile.stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/compile.stdout.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/diagnostic.json": {
+      "size": 504,
+      "sha256": "1a9921690df4911a5d5e90d136276fd44f385d7aacdee76d858dbc21e9468d71"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/execution.json": {
+      "size": 550,
+      "sha256": "5ff418b21445db3ad91fbb1dde07d9052257bf301a5e558bd4ce7e7db83d8731"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/manifest.json": {
+      "size": 13265,
+      "sha256": "54132bbb2adc236b7ffbeedff4204f289e9207acf2af3a8eca3952d30664b1da"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/publication-policy.json": {
+      "size": 198,
+      "sha256": "56f6188ef1dcfe7fd45b55e89b6a5762377d1f56945fc3f056a0e895c33b747a"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/publication-projection.json": {
+      "size": 168,
+      "sha256": "7fa00c9f25b03988bfddda0a2cc02ea622cba72660d7c38b69b8d101e1708986"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/route/commands.txt": {
+      "size": 2297,
+      "sha256": "80aac7b52f766481b2788e90b097d1fe7277f026d322cc893686807a3850f1fe"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/route/execution.json": {
+      "size": 550,
+      "sha256": "5ff418b21445db3ad91fbb1dde07d9052257bf301a5e558bd4ce7e7db83d8731"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/route/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/route/stdout.txt": {
+      "size": 4838784,
+      "sha256": "98f362944c0796b6880b2d7a134b1250f3b5a8706b41f4241266f16bacb0fd13"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/terminal.json": {
+      "size": 20372,
+      "sha256": "fb44f6c57a2212b334341109b54cd5fae64cef85ce1f85576cf6ee3d944094d2"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/trainer-sight.json": {
+      "size": 265,
+      "sha256": "e8923e4eafa304152262bfc316c1bee8de35a3ad0ca08ea0e64db27a39bcef2d"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/verification.json": {
+      "size": 3946,
+      "sha256": "1e802c3b499538af373cfa167c4ea9261a80824a8958e6b702c5bb2204023457"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210189574/walking-ledger.json": {
+      "size": 19109,
+      "sha256": "ce6df6463bde805724c2920d3060482fe35837de9bed21b17d1582b5333c0364"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/battle-entry.json": {
+      "size": 140,
+      "sha256": "3d107548221086dde9148efedfff5f5b302e51044c5c8793204b5f3fc598152f"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/battle-ledger.json": {
+      "size": 2086,
+      "sha256": "2b49d706ae11681422f2916cb9b0be8a9aaf8e402e200d1c2e9c35579199d81b"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/compile.json": {
+      "size": 308,
+      "sha256": "135812d6cc343e3f5809a1cc119a07b32ef4a14fd833e022242c20e15b4e0a5f"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/compile.stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/compile.stdout.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/diagnostic.json": {
+      "size": 1735,
+      "sha256": "4684fdcc50909321aaa079a4a59218a269e93d3500018fbeb0f4fcd49a56cb84"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/execution.json": {
+      "size": 550,
+      "sha256": "ccc8e97c4a3480f7fcb279904687f2a67580e77d6fa540a67d40266df8a26908"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/manifest.json": {
+      "size": 13532,
+      "sha256": "91354b7661d09c942cfcd28c2e846fe3d27cc7ef395f2f8b2a3a6514255307aa"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/publication-policy.json": {
+      "size": 198,
+      "sha256": "56f6188ef1dcfe7fd45b55e89b6a5762377d1f56945fc3f056a0e895c33b747a"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/publication-projection.json": {
+      "size": 168,
+      "sha256": "7fa00c9f25b03988bfddda0a2cc02ea622cba72660d7c38b69b8d101e1708986"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/route/commands.txt": {
+      "size": 2326,
+      "sha256": "827ba366cc4e1dabbab185a1ee1f29a9765613f913ec625d67af371223e8b391"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/route/execution.json": {
+      "size": 550,
+      "sha256": "ccc8e97c4a3480f7fcb279904687f2a67580e77d6fa540a67d40266df8a26908"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/route/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/route/stdout.txt": {
+      "size": 4901868,
+      "sha256": "6e38609f6e224e18b16c4433fe2dae29e40bdddffc512316d3d428e02631ed53"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/terminal.json": {
+      "size": 20375,
+      "sha256": "a07cc57c666e6e8f66b6f9fab992462e6e3ad64af8a8dcfa18db4023209c86f9"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/trainer-sight.json": {
+      "size": 265,
+      "sha256": "e8923e4eafa304152262bfc316c1bee8de35a3ad0ca08ea0e64db27a39bcef2d"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/verification.json": {
+      "size": 6411,
+      "sha256": "4f488a86bf4629b4ce5ace10c754f9467cfb8d299fb5abe2eef6bc7a873d70db"
+    },
+    "content/modernization/pr16_story_trainer_evidence/37210491215/walking-ledger.json": {
+      "size": 19109,
+      "sha256": "ce6df6463bde805724c2920d3060482fe35837de9bed21b17d1582b5333c0364"
+    },
+    "content/modernization/pr16_story_trainer_evidence/visual-review.json": {
+      "size": 413,
+      "sha256": "5ba0fd076f857eef7c335cc2b28ebd18f4e470b71f06ff46dfb673582d6c42cf"
+    }
+  },
+  "trainer_entry_accepted": true,
+  "trainer_victory_accepted": false,
+  "reward_accepted": false,
+  "milestone_reached": false,
+  "unsafe_dex_writes_executed": false,
+  "rom_changed": false,
+  "release_ready": false
+}

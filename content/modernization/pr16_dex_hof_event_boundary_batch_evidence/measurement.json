@@ -1,0 +1,706 @@
+{
+  "status": "PASS_CURRENT_749_PARENT_EVENT_BOUNDARY_BATCH_AND_PARTIAL_SPACE_REFUSAL",
+  "source_head": "2fd483961fa00da2d6fb320eb7af82fe337a6575",
+  "run_id": 37415713302,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "candidate_changed": false,
+  "unit_tests": 282,
+  "classified": 751,
+  "unclassified": 123,
+  "newly_classified": 2,
+  "new_data": 2,
+  "new_code": 0,
+  "new_boundary": 0,
+  "new_song": 0,
+  "old_inventory_candidates": 874,
+  "previous_classified": 749,
+  "previous_unknown": 125,
+  "owner_unknown": 0,
+  "unowned_unknown": 123,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "old_full_rom_inventory_reused": true,
+  "delta_identity": {
+    "size": 26093,
+    "sha256": "b93206ff3a84d498746a571e9e874441ee2e0397d030baa7f46c9b283b0ac0fb"
+  },
+  "baseline_identity": {
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent_identity": {
+    "size": 75712,
+    "sha256": "f2b07ad37d428bb4d1be56da6fb65b3a9086a6957c60056697c32ecfc38d8fb3"
+  },
+  "earlier_identity": {
+    "size": 149772,
+    "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+  },
+  "unknown_identity": {
+    "size": 53915,
+    "sha256": "65c28b232f6c658dec0fc653e97ebfacd07e3dcd378c513f920aae1cc1c55b94"
+  },
+  "capacity_identity": {
+    "size": 27710,
+    "sha256": "927af5f2ccd60e78b3a953e2e47ad84a63537079796e528427aa9f9955efc3ea"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-event-boundary-batch.yml": {
+      "size": 3060,
+      "sha256": "2a26bfbe25ec9209d80c0bdccbd0bd60a080ff8067fe1bf9d639043f593dafcc"
+    },
+    "content/modernization/pr16_dex_hof_battle_tail_roots_review.json": {
+      "size": 44401,
+      "sha256": "fa824c5c3639cfdf8e65aa82ea6e701019f0c07e2a9bbb06159c6f07dde1656b"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_development_validation.json": {
+      "size": 7907,
+      "sha256": "07fa8a4b25293a2dd3621b8c474179c12f4cde641c08c688adc08a49f29cc1d5"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_sources.json": {
+      "size": 5344,
+      "sha256": "d69b7f4b0e7225026305176d90ed44e1764900d9de6d599c47dfe02fa1df38cc"
+    },
+    "content/modernization/pr16_dex_hof_event_placeholder_roots_review.json": {
+      "size": 16500,
+      "sha256": "ff1d18e0ac201ac276435b28f2935089df7cdbbe6862d9db1f68f92ba3d773d6"
+    },
+    "docs/PR16_DEX_HOF_EVENT_BOUNDARY_BATCH_JA.md": {
+      "size": 5861,
+      "sha256": "48c604a3a7c504e44bc8b38a70b0f75d95720d4bf057a6bd4bcf2da7f7c99c65"
+    },
+    "scripts/pr16_dex_hof_battle_tail_roots.py": {
+      "size": 18556,
+      "sha256": "9058cf8089678f379df13b81f33c6fe0ebb029208853d259c93b7aa2d4930264"
+    },
+    "scripts/pr16_dex_hof_event_boundary_batch.py": {
+      "size": 6568,
+      "sha256": "8edbf8b1c7517203f32941e1a1586b888446fd003c6093245ee45350ede31184"
+    },
+    "scripts/pr16_dex_hof_event_boundary_batch_actions.py": {
+      "size": 28586,
+      "sha256": "13e32c7f84b79f40ca1a31645ced1da7b2617f86b5e80dab22e7a0ec45ccf53d"
+    },
+    "scripts/pr16_dex_hof_event_boundary_batch_capacity.py": {
+      "size": 10664,
+      "sha256": "724e7b7c25049131a5fef6f642c9845e44a8aeaff2d6f3570244e5fa32b7df29"
+    },
+    "scripts/pr16_dex_hof_event_boundary_batch_chain.py": {
+      "size": 25218,
+      "sha256": "5119240e6fb36f0f0e789c5ae721dda2dc24c0b94871f76a9127acce4bb7da1b"
+    },
+    "scripts/pr16_dex_hof_event_placeholder_roots.py": {
+      "size": 38030,
+      "sha256": "095c8e8d9fc1f98cd7823e0e198c8c9c42c3c243a378890a9d5158b5948416ac"
+    },
+    "tests/test_pr16_dex_hof_battle_tail_roots.py": {
+      "size": 12298,
+      "sha256": "0cec5029ff5ca37f7ca221817952593d12784cf3ec8fe472bd3d3023141b56c4"
+    },
+    "tests/test_pr16_dex_hof_event_boundary_batch.py": {
+      "size": 8555,
+      "sha256": "ee42831454c9a10b52b914cf49c1aaeae9c485bb451627e42f27d249d5ea2eda"
+    },
+    "tests/test_pr16_dex_hof_event_boundary_batch_actions.py": {
+      "size": 17372,
+      "sha256": "9a6229a28d4c92ed3bd293361f1bb4b191fbec1edad4b7e27c96673d1841487f"
+    },
+    "tests/test_pr16_dex_hof_event_boundary_batch_capacity.py": {
+      "size": 12663,
+      "sha256": "fe3a6803a43de77ea974c14057a63d440469f27bf979e81dab7bfa57286a128f"
+    },
+    "tests/test_pr16_dex_hof_event_boundary_batch_chain.py": {
+      "size": 16425,
+      "sha256": "abec42dcf694202015eb7168d12450b89dd6fdfe5e988a3267256ebda7ef1739"
+    },
+    "tests/test_pr16_dex_hof_event_placeholder_roots.py": {
+      "size": 17519,
+      "sha256": "a65e8a84820f28b19b0b2f2ff2ed446d6a703e41a70a71e2144521ec8839bafa"
+    }
+  },
+  "inherited_bindings": {
+    "content/modernization/pr16_dex_hof_boundary_references_checkpoint.json": {
+      "size": 14687,
+      "sha256": "d97afe368fecf0b369e3630180dc1f579501ac6a2d276cfcbe5647a973703f7a"
+    },
+    "content/modernization/pr16_dex_hof_boundary_references_evidence/reference-chain.json": {
+      "size": 13165,
+      "sha256": "5b9ff2600caec75c226e720010e772725c76ec52da2391024176d01f19892eb7"
+    },
+    "content/modernization/pr16_dex_hof_boundary_references_evidence/unknown-frontier.json": {
+      "size": 61763,
+      "sha256": "ef91033ce77034dffa6b1155011bbe7df86f26df79c5ea8f630288cae8462a1f"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_checkpoint.json": {
+      "size": 52637,
+      "sha256": "974f9bc2cb87f30112a40e6c5df29ad4734336216a2e64f3568aeddb5150705a"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/reference-chain.json": {
+      "size": 60153,
+      "sha256": "06595ebf5830e45334dbb83ec1fb96658d40879f6f4a0126e3718a8d5ae6100a"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/unknown-frontier.json": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_checkpoint.json": {
+      "size": 10439,
+      "sha256": "f6530690ae80c432d94aef8288273eb8f5a1bbf7b4c80115146a9cac9329e464"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_evidence/reference-chain.json": {
+      "size": 22816,
+      "sha256": "c49c05072bb5dcf19de4620440bfde82ad66e3c1269566a9b6184ebc9870bbc6"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_evidence/unknown-frontier.json": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_checkpoint.json": {
+      "size": 11195,
+      "sha256": "660b6dc8b99c0005e8804998ad962772358233338eb2876d12853d75507342b9"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/reference-chain.json": {
+      "size": 28406,
+      "sha256": "20a394e6ce825113bbfd833989c18528a44f665f79eaf1c91f1ab6899a796dc7"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/unknown-frontier.json": {
+      "size": 64815,
+      "sha256": "435ae082b4cba009029f452e0bffcc365a73c66a439241842dd12107f54bab06"
+    },
+    "content/modernization/pr16_dex_hof_controller_evidence/controller-footprint.json": {
+      "size": 9353,
+      "sha256": "5ec5d9b72d25dcd249c3d6cf8af75544749748a8bdcee6da2092c3e583223d6c"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_checkpoint.json": {
+      "size": 9621,
+      "sha256": "a81a17085d98690f9e397c02f6334680e8064f76e0e7e24cc9f9fabb520ef631"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_evidence/reference-chain.json": {
+      "size": 23481,
+      "sha256": "1ede9031a30c4c5f52ec2b6cbf47ad177c4117931fb72796ce597c2786c01476"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_evidence/unknown-frontier.json": {
+      "size": 63943,
+      "sha256": "9a58057a3d7d8c18661270902c00c478da298ba65f0b637cc99a1d09a32df85f"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_checkpoint.json": {
+      "size": 75332,
+      "sha256": "608c5faa5f2f2b8ff988ef25dbbf77ad5fffbcafc4da4aee8809a521251f098f"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/partial-space.json": {
+      "size": 25234,
+      "sha256": "dd198330e486045d12e8d554e787c0614d795f72b2b0fc443f0c4962d4a39164"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/reference-chain.json": {
+      "size": 75712,
+      "sha256": "f2b07ad37d428bb4d1be56da6fb65b3a9086a6957c60056697c32ecfc38d8fb3"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/unknown-frontier.json": {
+      "size": 54787,
+      "sha256": "036a9bd87ea101d84fada4d1fbd65f29bec00cf6ab1a6c00f6d16226d27e931d"
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_checkpoint.json": {
+      "size": 335169,
+      "sha256": "dff4dcab9cd7fadce44cbc6456d00ade32b724f9553455e3d66acfe9850e547f"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_evidence/partial-space.json": {
+      "size": 19893,
+      "sha256": "52a352d391906df2fbbc8eec3abce5be00087a9947b55216e7234fdcc69c24f1"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_evidence/reference-chain.json": {
+      "size": 352753,
+      "sha256": "53f4789fb532d93791fa7e0962b7feea9f74003d342f5175d00e1b07de7aa5d0"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_evidence/unknown-frontier.json": {
+      "size": 57403,
+      "sha256": "50358bbd4cc7b0a5bdd7d4e85bb0f57a79b038d35f5394734e85a4d9c9271e8e"
+    },
+    "content/modernization/pr16_dex_hof_party_references_checkpoint.json": {
+      "size": 349521,
+      "sha256": "5236fec1ccd849b4110093ba2587885913a3f0eb767759d21a6932ef21ba8cda"
+    },
+    "content/modernization/pr16_dex_hof_party_references_evidence/reference-chain.json": {
+      "size": 375903,
+      "sha256": "55bc39b3b22ad61654fa24dbf37e5c44b33aae16357acf70e823af5baf4a748c"
+    },
+    "content/modernization/pr16_dex_hof_party_references_evidence/unknown-frontier.json": {
+      "size": 60891,
+      "sha256": "acb5cbea26a6eaba403dd3fc3e3215f54a9ad7dde440b8dfd3636dd697241621"
+    },
+    "content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json": {
+      "size": 149772,
+      "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json": {
+      "size": 95619,
+      "sha256": "c38d8e67a6718cacc17a3999922dca9edd9977734711b3cf5a74f85c1b76bb32"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_checkpoint.json": {
+      "size": 809502,
+      "sha256": "55cfbf03e124c26f78ed00b52b9d2da7604642c892dc8c85f0754b3e1a82aca3"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_evidence/partial-space.json": {
+      "size": 17993,
+      "sha256": "dea8c62dfb5e9b608ead9ade52bf1a907e29920d946990146f15ba4e58094115"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_evidence/reference-chain.json": {
+      "size": 875373,
+      "sha256": "1fb58b88ac19198de7ef29fc0728908c1fb720915bfa53d265b78994252a6917"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_evidence/unknown-frontier.json": {
+      "size": 58275,
+      "sha256": "55bee1d2fbe5f830cd23acb58ec0f09d56ac0e4d2fe7af9ea798894a14c13adf"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_checkpoint.json": {
+      "size": 8001,
+      "sha256": "62411cded366aa43cb449af76b13166e2df6476532b3997664c22baa00e1d226"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_evidence/reference-chain.json": {
+      "size": 71138,
+      "sha256": "185e66b6e93eb94a6d1850b7f29b4ccfd00dfd3b3a5668a6021dbf5059fd3bd2"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_checkpoint.json": {
+      "size": 444776,
+      "sha256": "5fadebac1cd15e645ce5cb047148e1e59fa193af735518138fc8373beb565d55"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_evidence/partial-space.json": {
+      "size": 22817,
+      "sha256": "895250c668b17b8063c23fd87871c4e6a464f0885fe559eb37d9cf581e4184df"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_evidence/reference-chain.json": {
+      "size": 478118,
+      "sha256": "2089134cff6c3f920bea3476e8c0b9e883901eff42eb7f933fd86c91e71f485e"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_evidence/unknown-frontier.json": {
+      "size": 56095,
+      "sha256": "8e463394c3ff6160d15f4d89d8b97153766e7c1b5af13d51d323abdb1ad5e2c0"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_checkpoint.json": {
+      "size": 55238,
+      "sha256": "b9252156201ab5c7506396270d9757522240767a3a781a7330237b1c9ba50927"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_evidence/reference-chain.json": {
+      "size": 68925,
+      "sha256": "7fdc8ed846f529fd7dfd5b35b322ddf8bd1eb46e18f5fd45239e21e998adae8e"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_evidence/unknown-frontier.json": {
+      "size": 62199,
+      "sha256": "53ea3d2a47a3066f72278de164c8cbc19ba5a6ebf3ec815cde921db50a65aa6d"
+    },
+    "content/modernization/pr16_dex_hof_script_references_checkpoint.json": {
+      "size": 8864,
+      "sha256": "026944a1ae8d2bfeca0eb3105868d9ebe3fc1b8f0d7669fc18b7fb69fddc58ff"
+    },
+    "content/modernization/pr16_dex_hof_script_references_evidence/reference-chain.json": {
+      "size": 134951,
+      "sha256": "da105fd05e4ddb51bd7648af890db509c9b8f1e7e79112dbc1b295ce15b51279"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_checkpoint.json": {
+      "size": 627652,
+      "sha256": "e63d3dfda20758d9a2f120a06bfc870183adf1cd997d887462babdae9af6529a"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_evidence/partial-space.json": {
+      "size": 15194,
+      "sha256": "0c02f86656a4bfc4f16a73e09c9eff9ae0f382989b89deeed99bfcc81f6c2da7"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_evidence/reference-chain.json": {
+      "size": 681669,
+      "sha256": "c11d71495d60fda8fed98464eb6962f7b57be75dc39e8b479be3d57903d68586"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_evidence/unknown-frontier.json": {
+      "size": 60019,
+      "sha256": "8e9a910b72b855ae7115a28b279abeddf82612f8f975e6085b6bb17fafd1093d"
+    },
+    "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json": {
+      "size": 4063919,
+      "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+    },
+    "content/modernization/pr16_story_route_adapter_checkpoint.json": {
+      "size": 45222,
+      "sha256": "ff7094f278de5502b40bca5ceaccb1a29ba6776b9b5eedc5ccdcb5ea03be19c7"
+    },
+    "state/source-lock.json": {
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    }
+  },
+  "current_owner_count": 115,
+  "current_rom_reconstructions": 1,
+  "historical_rom_reconstructions": 0,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "accepted_heap_reruns": 0,
+  "independent_final_source_review_completed": false,
+  "new_event_boundary_batch_source_review_completed": true,
+  "development_validation": {
+    "size": 7907,
+    "sha256": "07fa8a4b25293a2dd3621b8c474179c12f4cde641c08c688adc08a49f29cc1d5"
+  },
+  "validation_scope": "新scope専用unit、現候補全SHA/115actual owner/874hit/新Embargo-Powder/Recycle battle境界最小型・event候補根未結合guard・保存容量原本の機械検証。旧最終song/battle/Surf独立再レビュー未実施を保持。",
+  "combined_song_models": 133,
+  "retained_sample_witnesses": 50,
+  "old_models_reused_for_new_cross_song_role_safety": true,
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "controller_runtime_wired": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "event_boundary_batch_diagnostics": {
+    "status": "PASS_NEW_REGISTERED_BATTLE_BOUNDARIES_AND_HELD_EVENT_ROOT",
+    "consumers": {
+      "rooted_battle_tail_minimum_cross_field": {
+        "status": "PASS_TWO_SOURCE_ROOTED_BATTLE_TAIL_TYPES",
+        "count": 2,
+        "hits": [
+          151018900,
+          151024241
+        ],
+        "typed_bytes": 8,
+        "embargo_commands": 13,
+        "embargo_serialized_bytes": 61,
+        "recycle_prefix_serialized_bytes": 23,
+        "source_serialized_root": true,
+        "native_pointer_read_proofs": [
+          {
+            "command": 151024243,
+            "handler": 152153960,
+            "stop": 152154004,
+            "pointer": 151031313,
+            "pointer_bytes": 4,
+            "bank_operand": 0,
+            "resolver_slot": 152441872,
+            "bank_read_address": 33701068,
+            "actual_resolver_table": true,
+            "distinct_bank_value_cases": 4
+          },
+          {
+            "command": 151018902,
+            "handler": 152153960,
+            "stop": 152154004,
+            "pointer": 151031313,
+            "pointer_bytes": 4,
+            "bank_operand": 1,
+            "resolver_slot": 152441876,
+            "bank_read_address": 33701067,
+            "actual_resolver_table": true,
+            "distinct_bank_value_cases": 4
+          }
+        ],
+        "native_selector_models": [
+          {
+            "command": 151024059,
+            "opcode": 42,
+            "edge": "taken",
+            "entry": 134356752,
+            "next_cursor": 151024358
+          },
+          {
+            "command": 151024059,
+            "opcode": 42,
+            "edge": "next",
+            "entry": 134356752,
+            "next_cursor": 151024071
+          },
+          {
+            "command": 151024071,
+            "opcode": 42,
+            "edge": "taken",
+            "entry": 134356752,
+            "next_cursor": 151024182
+          },
+          {
+            "command": 151024071,
+            "opcode": 42,
+            "edge": "next",
+            "entry": 134356752,
+            "next_cursor": 151024083
+          },
+          {
+            "command": 151024083,
+            "opcode": 42,
+            "edge": "taken",
+            "entry": 134356752,
+            "next_cursor": 151024243
+          },
+          {
+            "command": 151024083,
+            "opcode": 42,
+            "edge": "next",
+            "entry": 134356752,
+            "next_cursor": 151024095
+          },
+          {
+            "command": 151024095,
+            "opcode": 42,
+            "edge": "taken",
+            "entry": 134356752,
+            "next_cursor": 151024301
+          },
+          {
+            "command": 151024095,
+            "opcode": 42,
+            "edge": "next",
+            "entry": 134356752,
+            "next_cursor": 151024107
+          },
+          {
+            "command": 151024107,
+            "opcode": 42,
+            "edge": "taken",
+            "entry": 134356752,
+            "next_cursor": 151024409
+          },
+          {
+            "command": 151024107,
+            "opcode": 42,
+            "edge": "next",
+            "entry": 134356752,
+            "next_cursor": 151024119
+          },
+          {
+            "command": 151024238,
+            "opcode": 40,
+            "edge": "taken",
+            "entry": 134356560,
+            "next_cursor": 136030474
+          },
+          {
+            "command": 151018880,
+            "opcode": 42,
+            "edge": "taken",
+            "entry": 134356752,
+            "next_cursor": 151018902
+          },
+          {
+            "command": 151018880,
+            "opcode": 42,
+            "edge": "next",
+            "entry": 134356752,
+            "next_cursor": 151018892
+          },
+          {
+            "command": 151018897,
+            "opcode": 40,
+            "edge": "taken",
+            "entry": 134356560,
+            "next_cursor": 136030435
+          }
+        ],
+        "protected_windows": 247,
+        "protected_bytes": 718,
+        "donor_leased": false,
+        "donor_eligible": false,
+        "full_story_reachability_claimed": false,
+        "natural_battle_entry_reachability_claimed": false,
+        "whole_script_range_classified": false,
+        "attackcanceler_success_proven": false,
+        "indirect_reference_completeness_claimed": false,
+        "callasm_success_proven": false,
+        "goto_fallthrough_claimed": false,
+        "all_prefix_execution_claimed": false,
+        "owner_transfer_proven": false
+      }
+    },
+    "held_roots": {
+      "held_event_placeholder_unbound_roots": {
+        "status": "PASS_EVENT_PLACEHOLDER_ONE_HIT_REMAINS_UNKNOWN",
+        "count": 0,
+        "hits": [],
+        "held_hits": [
+          135847261
+        ],
+        "new_classified_bytes": 0,
+        "source_bindings": {
+          "pret-std_msgbox.inc": {
+            "local": "pret-std_msgbox.inc",
+            "repository": "pret/pokefirered",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "path": "data/scripts/std_msgbox.inc",
+            "size": 1040,
+            "sha256": "090541cfc3a47272ea8203f0f6c18f19f8062d407388a23fcf103e93b196b431",
+            "git_blob_sha": "18ad553c85b66975e0c05763c6145082c8c13dde"
+          },
+          "pret-script.c": {
+            "local": "pret-script.c",
+            "repository": "pret/pokefirered",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "path": "src/script.c",
+            "size": 13713,
+            "sha256": "1cc4aade1f821e5f218ba7c191b1217e5a3cf942d0bfd0f32f775ce1f808437c",
+            "git_blob_sha": "d0433bdda062b138e53d1a1d3184b4566ad7d9dc"
+          },
+          "pret-event_scripts.s": {
+            "local": "pret-event_scripts.s",
+            "repository": "pret/pokefirered",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "path": "data/event_scripts.s",
+            "size": 55643,
+            "sha256": "3b1bd10d26c0a74fb3452ab42fc9d14dfca785f8b71389db06c71f5dfdd50a27",
+            "git_blob_sha": "88d75946a7300ccf952f4a36c283966c6aebf5c0"
+          },
+          "pret-string_util.c": {
+            "local": "pret-string_util.c",
+            "repository": "pret/pokefirered",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "path": "src/string_util.c",
+            "size": 14320,
+            "sha256": "ed9519d4eaf51ed660a522915366dc0ebf2916d592a91a1d7fc2a012e4f3f17e",
+            "git_blob_sha": "5c26d151a61274caac3a16c3b9c4eb73bf9a9e26"
+          },
+          "pret-characters.h": {
+            "local": "pret-characters.h",
+            "repository": "pret/pokefirered",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "path": "include/characters.h",
+            "size": 12798,
+            "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98",
+            "git_blob_sha": "d00ecf0a3afcd9fc1fa9534c00f4b74793d5f06f"
+          },
+          "pret-scrcmd.c": {
+            "local": "pret-scrcmd.c",
+            "repository": "pret/pokefirered",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "path": "src/scrcmd.c",
+            "size": 56954,
+            "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+            "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814"
+          },
+          "BPRJ.ld": {
+            "local": "BPRJ.ld",
+            "repository": "kapibarasan000/CFRU-JP",
+            "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+            "path": "BPRJ.ld",
+            "size": 68505,
+            "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+            "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+          }
+        },
+        "root": {
+          "kind": "two_current_object_roots_end_after_other_message",
+          "registration_scope": "only_OBJECT_3_10_0_and_OBJECT_23_0_0",
+          "map_literal": 134564620,
+          "dispatch": 134648088,
+          "standard2": 135867792,
+          "standard2_slot": 135673696,
+          "end_handler": 134649752,
+          "return_handler": 134649992,
+          "stop_script": 134647996
+        },
+        "registration_paths": [
+          {
+            "owner_id": "OBJECT:3/10:0",
+            "script": 135845930,
+            "registration_bound": true
+          },
+          {
+            "owner_id": "OBJECT:23/0:0",
+            "script": 135845874,
+            "registration_bound": true
+          }
+        ],
+        "conditional_root_probes": [
+          {
+            "owner_id": "OBJECT:3/10:0",
+            "script": 135845930,
+            "text_pointer": 141172340,
+            "standard_index": 2,
+            "standard_script": 135867792,
+            "return_address": 135845938,
+            "prefix_machine_instructions": 237,
+            "conditional_terminal_machine_instructions": 50,
+            "standard_script_structural_commands": 7,
+            "standard_handlers_executed": false,
+            "terminal_probe_entry": "direct_return_handler_with_prefix_stack_preserved_after_assumed_standard_completion",
+            "actual_end_dispatch_executed": true,
+            "terminal_mode": 0,
+            "terminal_script_pointer": 0,
+            "target_text_bytes_consumed": 0,
+            "valid_target_suffix_context_established": false,
+            "root_to_target_structural_path_found": false,
+            "all_other_roots_excluded": false
+          },
+          {
+            "owner_id": "OBJECT:23/0:0",
+            "script": 135845874,
+            "text_pointer": 141172985,
+            "standard_index": 2,
+            "standard_script": 135867792,
+            "return_address": 135845882,
+            "prefix_machine_instructions": 237,
+            "conditional_terminal_machine_instructions": 50,
+            "standard_script_structural_commands": 7,
+            "standard_handlers_executed": false,
+            "terminal_probe_entry": "direct_return_handler_with_prefix_stack_preserved_after_assumed_standard_completion",
+            "actual_end_dispatch_executed": true,
+            "terminal_mode": 0,
+            "terminal_script_pointer": 0,
+            "target_text_bytes_consumed": 0,
+            "valid_target_suffix_context_established": false,
+            "root_to_target_structural_path_found": false,
+            "all_other_roots_excluded": false
+          }
+        ],
+        "placeholder": {
+          "text": 135847204,
+          "offset": 8,
+          "id": 3,
+          "source_meaning": "gStringVar2",
+          "public_jp_symbol": 33692768,
+          "source_role": "public_semantic_only_not_actual_branch_or_source_extent_proof",
+          "actual_branch_bound": false,
+          "replacement_extent_bound": false,
+          "replacement_eos_bound": false,
+          "replacement_producer_bound": false,
+          "replacement_source_byte_consumer_executed": false
+        },
+        "required_obligations": [
+          "両対象LOADWORDへ接続する別の現登録rootと完全な有限script path。候補2根の近傍だけでは代用しない。",
+          "左FD03の現GetExpandedPlaceholder分岐、gStringVar2生成元、有限置換元extent/EOS、実source-byte consumer。",
+          "valid suffix contextを自然到達・special/flag効果と区別し、左右の完全消費が閉じるまで4byteも分類しない。",
+          "全root不達・間接参照完全性・未使用・退役・owner移管・普遍lifetimeは別義務。"
+        ],
+        "protected_windows": 35,
+        "protected_bytes": 619,
+        "all_inherited_fields_unchanged": true,
+        "current_candidate_measured": false,
+        "proof_scope": "two_registered_roots_and_conditional_terminal_probes_only",
+        "registration_bound": true,
+        "structural_prefix_only": true,
+        "registered_loadword_callstd_prefix_machine_executed": true,
+        "standard2_handler_runtime_effects_proven": false,
+        "conditional_return_probe_requires_standard2_completion_and_stack_preservation": true,
+        "conditional_return_and_end_machine_executed": true,
+        "selected_target_root_paths_bound": false,
+        "selected_target_consumer_executed": false,
+        "placeholder_branch_and_replacement_source_bound": false,
+        "all_roots_unreachable_claimed": false,
+        "whole_script_unreachable_claimed": false,
+        "full_story_reachability_claimed": false,
+        "actual_runtime_execution_observed": false,
+        "opaque_callee_effects_proven": false,
+        "universal_heap_or_irq_lifetime_proven": false,
+        "source_pointer_interpretation": false,
+        "whole_text_classified": false,
+        "indirect_reference_completeness_claimed": false,
+        "donor_eligible": false,
+        "donor_leased": false
+      }
+    },
+    "new_data": 2,
+    "new_code": 0,
+    "new_boundary": 0,
+    "natural_gameplay_reachability_claimed": false,
+    "universal_heap_or_irq_lifetime_claimed": false,
+    "independent_old_final_source_review_completed": false,
+    "donor_leased": false,
+    "indirect_reference_completeness_claimed": false
+  }
+}

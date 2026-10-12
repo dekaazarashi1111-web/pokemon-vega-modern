@@ -1,0 +1,39 @@
+name: PR16 Circus streak build record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-streak-record.yml
+      - scripts/pr16_streak_record.py
+      - scripts/pr16_streak_archive.py
+      - tests/test_pr16_streak_record.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-streak-record
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 既存の構築原本だけを検証し固定引継ぎと両ログを非force記録
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p .local/pr16-streak-record
+          python3 scripts/pr16_streak_record.py > .local/pr16-streak-record/stdout.txt 2> .local/pr16-streak-record/stderr.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-streak-record
+          path: .local/pr16-streak-record/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

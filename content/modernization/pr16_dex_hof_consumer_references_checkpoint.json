@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "status": "PASS_CURRENT_723_PARENT_BOUND_CONSUMER_REFERENCES",
+  "source_head": "c9d442c21aa85a4ae170fd05a478d742247cf8fc",
+  "run_id": 37341731986,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "candidate_changed": false,
+  "unit_tests": 193,
+  "classified": 726,
+  "unclassified": 148,
+  "newly_classified": 3,
+  "new_data": 2,
+  "new_code": 1,
+  "new_song": 0,
+  "old_inventory_candidates": 874,
+  "previous_classified": 723,
+  "previous_unknown": 151,
+  "owner_unknown": 0,
+  "unowned_unknown": 148,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "old_full_rom_inventory_reused": true,
+  "delta_identity": {
+    "size": 28406,
+    "sha256": "20a394e6ce825113bbfd833989c18528a44f665f79eaf1c91f1ab6899a796dc7"
+  },
+  "baseline_identity": {
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent_identity": {
+    "size": 134951,
+    "sha256": "da105fd05e4ddb51bd7648af890db509c9b8f1e7e79112dbc1b295ce15b51279"
+  },
+  "earlier_identity": {
+    "size": 149772,
+    "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+  },
+  "unknown_identity": {
+    "size": 64815,
+    "sha256": "435ae082b4cba009029f452e0bffcc365a73c66a439241842dd12107f54bab06"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-consumer-references.yml": {
+      "size": 3001,
+      "sha256": "97c68d810b7ab6fa6c076c8b4e5c4ac7a146eda1ae33109c4d20234747b5ac12"
+    },
+    ".github/workflows/pr16-dex-hof-tutor-history.yml": {
+      "size": 1444,
+      "sha256": "20693664a0037570f9855dd153d8c1951efb8cbeb3bd52214529d8f9b8554f05"
+    },
+    "content/modernization/pr16_dex_hof_battle_continuation_review.json": {
+      "size": 32535,
+      "sha256": "f0a65d9e29c4b282ab05d7a44a2d645eaa7292a4c78f58e16eabbe0daa6363da"
+    },
+    "content/modernization/pr16_dex_hof_consumer_audio_negative.json": {
+      "size": 6141,
+      "sha256": "178002bef8f611bc2f59006437abd31d8b4e3c5b7d181f2e8e16d415bb02bdcf"
+    },
+    "content/modernization/pr16_dex_hof_consumer_engine_review.json": {
+      "size": 45528,
+      "sha256": "693ea836afb07d6536bdac03c47debda862699d9fd5d656a3ca43d98b982f78d"
+    },
+    "content/modernization/pr16_dex_hof_consumer_palette_review.json": {
+      "size": 3669,
+      "sha256": "365e2c726d5ff40cd96be98daf9ca3c38ea7bb5762f9053617bee484bdf1551b"
+    },
+    "content/modernization/pr16_dex_hof_consumer_sources.json": {
+      "size": 9586,
+      "sha256": "0c9050cb797b11ad3663460ef5b7ce89055d7325d186517253c32574c5efb206"
+    },
+    "content/modernization/pr16_dex_hof_tutor_history_checkpoint.json": {
+      "size": 2150,
+      "sha256": "fafa663988e3c255fc77b01650b97a4924cefbf9759769294721914f04faad92"
+    },
+    "content/modernization/pr16_dex_hof_tutor_history_evidence/historical.json": {
+      "size": 4485,
+      "sha256": "1cc261f62b9e00b50de232ec4a07bb4533a91dc36c3b9ec50857b6832aee1ab6"
+    },
+    "content/modernization/pr16_dex_hof_tutor_history_evidence/host-tests.txt": {
+      "size": 1957,
+      "sha256": "0b82aaa227e0a2d42a4dd30f202aa55ef62ab11a820f297e438cb729ff4809c7"
+    },
+    "content/modernization/pr16_dex_hof_tutor_history_evidence/receipt.json": {
+      "size": 1602,
+      "sha256": "d9c3ffde6fd7d308a4c63b9818a34f9a5870baa5cd45a0e23ff07c2d66ede5e9"
+    },
+    "docs/PR16_DEX_HOF_CONSUMER_REFERENCES_JA.md": {
+      "size": 4637,
+      "sha256": "6059657c9fda930c304892f518a3f2780583ba824321ffac8da7fde467ad8135"
+    },
+    "docs/PR16_DEX_HOF_TUTOR_HISTORY_JA.md": {
+      "size": 1770,
+      "sha256": "dcd7c5781f0d636d1b0cd222a8a4f97d593c297f2dde4d47fbafb5f6e8505f91"
+    },
+    "scripts/pr16_dex_hof_battle_continuation.py": {
+      "size": 11036,
+      "sha256": "4e48ad5bdf119fa1b78cf246500de72c035f20831bf68dbc36add7726c90bfcf"
+    },
+    "scripts/pr16_dex_hof_consumer_chain.py": {
+      "size": 10839,
+      "sha256": "bece8b74f849095cb6ae5ffac92d24a2619c756ebab5486de2a9efb057a1d057"
+    },
+    "scripts/pr16_dex_hof_consumer_engine.py": {
+      "size": 9411,
+      "sha256": "f50d679d5e782f1875d00a4c06fe456438a10a83b6398e7d6458660be1768af5"
+    },
+    "scripts/pr16_dex_hof_consumer_palette.py": {
+      "size": 8451,
+      "sha256": "ac26b8a825eba8df6fe375ae36a951bb3dd33b7a5b2d09a22570ce896834a37f"
+    },
+    "scripts/pr16_dex_hof_consumer_references.py": {
+      "size": 6822,
+      "sha256": "63f5d308cbcb317f4009ce32d145c2ba14c8c68d900e9c15822e370407ec1896"
+    },
+    "scripts/pr16_dex_hof_consumer_references_actions.py": {
+      "size": 27960,
+      "sha256": "8b7f2a36dedf493be580dd48438236e10804409cd9d2127da3fc7c70056b1bdd"
+    },
+    "scripts/pr16_dex_hof_consumer_song.py": {
+      "size": 6190,
+      "sha256": "d62cdc8bfcf34572cf2ab4f919c9f0ad79c16a8028ad77809639458ab52dead3"
+    },
+    "scripts/pr16_dex_hof_consumer_tutor.py": {
+      "size": 15956,
+      "sha256": "5f1a0e3b2c5e0c90f0e42adc3b8746709d71638b69a34cf688553d0b6ecedfcf"
+    },
+    "scripts/pr16_dex_hof_tutor_history_actions.py": {
+      "size": 5213,
+      "sha256": "b2981aad67b1aa839cb8af2dee681384aaf248053e5eeb9be4f49d33b14664be"
+    },
+    "tests/test_pr16_dex_hof_battle_continuation.py": {
+      "size": 5421,
+      "sha256": "830fcd84caf483d43785d67a524baff8fbb950dd64627f7830b1422c0a6c222d"
+    },
+    "tests/test_pr16_dex_hof_consumer_chain.py": {
+      "size": 5423,
+      "sha256": "0b867a83522241652d06a8d1ee8b03019303ae391da6b1332f342a01988375fd"
+    },
+    "tests/test_pr16_dex_hof_consumer_engine.py": {
+      "size": 7153,
+      "sha256": "34c97eca82b2b3232f1c1bb5e8dd60b7019edd83b40ad8a1610b7d3b63b5ba53"
+    },
+    "tests/test_pr16_dex_hof_consumer_palette.py": {
+      "size": 3971,
+      "sha256": "f2fe3c27f24013b90a3579c2c0181deaf105b480896cd47a9e415bca79089fe7"
+    },
+    "tests/test_pr16_dex_hof_consumer_references.py": {
+      "size": 4445,
+      "sha256": "0235225735998b1fbf40e855b1c24d9b2d936f0fb86ef76ed91f73a5a825698a"
+    },
+    "tests/test_pr16_dex_hof_consumer_references_actions.py": {
+      "size": 8850,
+      "sha256": "32ae330b7c1ece850fb6de9ebe93eb14711b0749880c6e3888797dc9c658932d"
+    },
+    "tests/test_pr16_dex_hof_consumer_song.py": {
+      "size": 3530,
+      "sha256": "2a28309daed6fcda693807de989cc757a9525e9badf43a8bea76d45a4dcae4cb"
+    },
+    "tests/test_pr16_dex_hof_consumer_tutor.py": {
+      "size": 4828,
+      "sha256": "6d6cc81948543a11b0d8ab4d797abd33c08392c4b7a06b01dd471ecb3efdb845"
+    }
+  },
+  "inherited_bindings": {
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json": {
+      "size": 149772,
+      "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json": {
+      "size": 95619,
+      "sha256": "c38d8e67a6718cacc17a3999922dca9edd9977734711b3cf5a74f85c1b76bb32"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_checkpoint.json": {
+      "size": 8001,
+      "sha256": "62411cded366aa43cb449af76b13166e2df6476532b3997664c22baa00e1d226"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_evidence/reference-chain.json": {
+      "size": 71138,
+      "sha256": "185e66b6e93eb94a6d1850b7f29b4ccfd00dfd3b3a5668a6021dbf5059fd3bd2"
+    },
+    "content/modernization/pr16_dex_hof_script_references_checkpoint.json": {
+      "size": 8864,
+      "sha256": "026944a1ae8d2bfeca0eb3105868d9ebe3fc1b8f0d7669fc18b7fb69fddc58ff"
+    },
+    "content/modernization/pr16_dex_hof_script_references_evidence/reference-chain.json": {
+      "size": 134951,
+      "sha256": "da105fd05e4ddb51bd7648af890db509c9b8f1e7e79112dbc1b295ce15b51279"
+    },
+    "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json": {
+      "size": 4063919,
+      "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+    },
+    "content/modernization/pr16_story_route_adapter_checkpoint.json": {
+      "size": 45222,
+      "sha256": "ff7094f278de5502b40bca5ceaccb1a29ba6776b9b5eedc5ccdcb5ea03be19c7"
+    },
+    "state/source-lock.json": {
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    }
+  },
+  "current_owner_count": 115,
+  "current_rom_reconstructions": 1,
+  "historical_rom_reconstructions": 0,
+  "historical_input_run": 37338921508,
+  "historical_input_tests_reused": 16,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "accepted_heap_reruns": 0,
+  "independent_final_source_review_completed": false,
+  "validation_scope": "新scope専用unit、独立歴史入力と現候補全SHA/115actual owner/874hit/有限consumerの機械検証。旧最終song/battle/Surfの独立再レビュー未実施を保持。",
+  "combined_song_models": 133,
+  "retained_sample_witnesses": 50,
+  "old_models_reused_for_new_cross_song_role_safety": true,
+  "tutor_upper_word_remains_unknown": false,
+  "battle_unknown_count": 10,
+  "battle_partial_models": 16,
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "controller_runtime_wired": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "guide": "docs/PR16_DEX_HOF_CONSUMER_REFERENCES_JA.md",
+  "evidence_bindings": {
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/consumer-references-tests.txt": {
+      "size": 23732,
+      "sha256": "6becc40e6f39ab2909ed3f64b8535e7a2e61947c7446ff14cac71c63550bfeef"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/measurement.json": {
+      "size": 9390,
+      "sha256": "c515013e7cb9a385c22f00c5a87ba65b9249374563628586bfdd10edfdcd1755"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/reference-chain.json": {
+      "size": 28406,
+      "sha256": "20a394e6ce825113bbfd833989c18528a44f665f79eaf1c91f1ab6899a796dc7"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/unknown-frontier.json": {
+      "size": 64815,
+      "sha256": "435ae082b4cba009029f452e0bffcc365a73c66a439241842dd12107f54bab06"
+    }
+  },
+  "previous_checkpoint": "content/modernization/pr16_dex_hof_script_references_checkpoint.json",
+  "current_owner_checkpoint": "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
+  "record_source": "c9d442c21aa85a4ae170fd05a478d742247cf8fc",
+  "record_run": 37341731986,
+  "reference_baseline": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+  "reference_parent": "content/modernization/pr16_dex_hof_script_references_evidence/reference-chain.json",
+  "prior_failed_runs": [
+    {
+      "run": 37341260412,
+      "source": "8b55df58afa85d693d29b17d523948e097f51a53",
+      "job": 111868632404,
+      "status": "failure",
+      "reason": "SOURCE_GUARD_DECLARATION_INCLUDED_FOUR_UNCHANGED_HISTORY_FILES",
+      "current_rom_reconstructions": 0,
+      "native_processes": 0,
+      "published_artifacts": 0
+    }
+  ]
+}

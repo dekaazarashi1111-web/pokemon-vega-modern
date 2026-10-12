@@ -1,0 +1,1011 @@
+{
+  "catalog": {
+    "claim_flags": [
+      5280,
+      5281,
+      5282,
+      5283,
+      5284,
+      5285,
+      5286,
+      5287,
+      5288,
+      5289,
+      5290,
+      5291,
+      5292,
+      5293,
+      5294,
+      5295,
+      5296,
+      5297,
+      5298,
+      5299,
+      5300,
+      5301,
+      5302,
+      5303,
+      5304,
+      5305,
+      5306,
+      5307,
+      5308,
+      5309,
+      5310,
+      5311,
+      5312,
+      5313,
+      5314,
+      5315,
+      5316,
+      5317,
+      5318,
+      5319,
+      5320,
+      5321,
+      5322,
+      5323,
+      5324
+    ],
+    "entry_count": 45,
+    "item_ids": [
+      999,
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010,
+      1011,
+      1012,
+      1013,
+      1014,
+      1015,
+      1016,
+      1017,
+      1018,
+      1019,
+      1020,
+      1021,
+      1022,
+      1023,
+      1024,
+      1025,
+      1026,
+      1027,
+      1028,
+      1029,
+      1030,
+      1031,
+      1032,
+      1033,
+      1034,
+      1035,
+      1036,
+      1037,
+      1038,
+      1039,
+      1040,
+      1041,
+      1042,
+      1043
+    ],
+    "key_stone_item_id": 580,
+    "page_count": 9,
+    "page_size": 5,
+    "path": "content/modernization/mega_shop_catalog.json",
+    "prices_bp": [
+      16
+    ]
+  },
+  "cfru_item_bounds": {
+    "all_contexts_exact": true,
+    "all_item_c_cluster_998_literals_allowlisted": true,
+    "explicit_exclusions": {
+      "cfru_mirage_item_validation": "retain 998; new stones are excluded from Mirage virtual item ABI",
+      "codex_and_collection_overlays": "retain 998; dedicated Stage68 claim flags avoid their fixed catalogs",
+      "debug_and_tm_scan": "not required for held Mega Stone shop/battle/bag path"
+    },
+    "first_rejected": 1044,
+    "new_max_inclusive": 1043,
+    "old_max_inclusive": 998,
+    "semantic_owners": [
+      "CFRU_COMPARE_ITEMS_ALPHABETICALLY",
+      "CFRU_SANITIZE_ITEM_ID",
+      "CFRU_ITEM_ID_GET_NAME",
+      "CFRU_ITEM_ID_GET_HOLD_EFFECT",
+      "CFRU_ITEM_ID_GET_HOLD_EFFECT_PARAM",
+      "CFRU_IS_MEGA_STONE",
+      "CFRU_IS_PRIMAL_ORB",
+      "CFRU_IS_Z_CRYSTAL",
+      "CFRU_IS_TYPE_Z_CRYSTAL",
+      "CFRU_IS_GEM",
+      "CFRU_BAG_BUILD_LIST_MENU",
+      "CFRU_BAG_LIST_ITEM_NAME_COLORED"
+    ],
+    "site_count": 12,
+    "site_offsets": [
+      17889268,
+      17890732,
+      17890760,
+      17890792,
+      17890824,
+      17890864,
+      17890904,
+      17890944,
+      17891012,
+      17891108,
+      17895612,
+      17898368
+    ]
+  },
+  "payload": {
+    "address": 155525712,
+    "code_address": 155525968,
+    "code_offset": 21308240,
+    "code_sha256": "123afa8395dcc1ab3a991eae721eba89aae83d009d21267b494a042547f0545f",
+    "code_size": 4524,
+    "magic": "VEGAMS68",
+    "offset": 21307984,
+    "sha256": "47d3e15605c4c29196fec5e58f36ab409f8036eb29275e9a3f92bdf8729de048",
+    "size": 67424
+  },
+  "rom": {
+    "path": "build/stages/68_modernization_mega_shop.gba",
+    "sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+    "size": 33554432
+  },
+  "runtime_boundaries": {
+    "codex": {
+      "current_safe_max_item_id": 998,
+      "new_item_ids_admitted": 0,
+      "reason": "NEW_ITEMS_EXCLUDED_BY_EXISTING_HELD_ITEM_SAFE_MAX_998",
+      "status": "EXPLICITLY_EXCLUDED_NOT_TRUNCATED",
+      "ten_bit_public_event_reached_by_new_items": false
+    },
+    "item_obtained_bitmap": {
+      "claim_owner": "expanded event flags 0x14A0..0x14CC",
+      "reason": "SHOP_CLAIMS_USE_EXPANDED_FLAGS_NOT_999_ITEM_BITMAP",
+      "status": "UNCHANGED_BY_DESIGN"
+    },
+    "mirage": {
+      "new_item_ids_admitted": 0,
+      "reason": "NEW_ITEMS_NEVER_ENTER_VIRTUAL_ITEM_ARRAY_OR_10_BIT_PROBE",
+      "status": "EXPLICITLY_EXCLUDED_NOT_TRUNCATED",
+      "ten_bit_probe_reached_by_new_items": false
+    }
+  },
+  "schema_version": 1,
+  "source_bindings": {
+    "arm_toolchain": {
+      "compile_flags": [
+        "-mthumb",
+        "-mcpu=arm7tdmi",
+        "-mthumb-interwork",
+        "-Os",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-ffreestanding",
+        "-fno-builtin",
+        "-fno-unwind-tables",
+        "-fno-asynchronous-unwind-tables",
+        "-fdata-sections",
+        "-ffunction-sections",
+        "-fno-common",
+        "-DVEGA_SAVE_ROM_RUNTIME=1"
+      ],
+      "executables": {
+        "compiler": {
+          "path": "/usr/bin/arm-none-eabi-gcc",
+          "resolved_path": "/usr/bin/arm-none-eabi-gcc",
+          "sha256": "38fc178604a84beb10f9adb8ea243bd5e0475a9e6e31c9270f53e2fcaa79ec59",
+          "size": 1280856,
+          "version": "arm-none-eabi-gcc (15:13.2.rel1-2) 13.2.1 20231009"
+        },
+        "nm": {
+          "path": "/usr/bin/arm-none-eabi-nm",
+          "resolved_path": "/usr/bin/arm-none-eabi-nm",
+          "sha256": "379b7d2d6ac1d8bab793d76970adb4678b490bc9b9836f4862c04577177c0f1d",
+          "size": 1075504,
+          "version": "GNU nm (2.42-1ubuntu1+23) 2.42"
+        },
+        "objcopy": {
+          "path": "/usr/bin/arm-none-eabi-objcopy",
+          "resolved_path": "/usr/bin/arm-none-eabi-objcopy",
+          "sha256": "782d8a0a03424f5b54ea10d269b253b4506f85cb48cd40b2de1b9635ce16a821",
+          "size": 1209784,
+          "version": "GNU objcopy (2.42-1ubuntu1+23) 2.42"
+        }
+      },
+      "include_roots": [
+        "<temporary-generated-header-directory>",
+        ".",
+        "overlays/modernization_mega_shop",
+        "overlays/save_migration"
+      ],
+      "link_flags": [
+        "-mthumb",
+        "-mcpu=arm7tdmi",
+        "-mthumb-interwork",
+        "-nostdlib",
+        "-Wl,--build-id=none",
+        "-Wl,--gc-sections",
+        "-Wl,-e,MegaShop_Probe",
+        "-Wl,-T,<generated-linker-script>"
+      ],
+      "link_libraries": [
+        "libgcc"
+      ],
+      "linker_script_sha256": "dc86d4856d540a40940ba449edadc5f8504beed83fa09a034a537c33dae10a56",
+      "load_address": 155525968
+    },
+    "file_count": 26,
+    "file_inventory_sha256": "406ca16ac6854abe99b0ea3e6953ee710fdbc914fc1b496b628eab2355644fe4",
+    "files": [
+      {
+        "path": "build/stages/67_modernization_p02_p03_consumers.gba",
+        "sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
+        "size": 33554432
+      },
+      {
+        "path": "build/stages/67_modernization_p02_p03_consumers.json",
+        "sha256": "0172ee5b4abd6afe275a6767a92f483e48b828037d7a35350b9baee3e92592ef",
+        "size": 11007
+      },
+      {
+        "path": "build/stages/67_modernization_p03_allocation.json",
+        "sha256": "3fe8f763c4c35dcdf15c2bcd256af569ef064ac051110ce3ed73ec62b9dcdac8",
+        "size": 40521
+      },
+      {
+        "path": "config/modernization_mega_shop.json",
+        "sha256": "ac60c5941e2d510d9473353290a51b019c35198bf7f6466fae17b8f32cfb5fc3",
+        "size": 4298
+      },
+      {
+        "path": "config/modernization_mega_shop_item_bounds.json",
+        "sha256": "f0ce972f39ec12fe5a2259ea588e954fed0a40f84916bb6662eabe5092573ec6",
+        "size": 6508
+      },
+      {
+        "path": "config/modernization_mega_shop_pointer_sites.json",
+        "sha256": "a5bd12b2ae08bbb7bcc1bbb6e14441ba8f9edcc4d43fad4b1cfebaefc2b59019",
+        "size": 30219
+      },
+      {
+        "path": "config/rom_regions.csv",
+        "sha256": "f5dcb0ecf2f726bfff1e9c8382204e79b1354ee9071f8d9ac00a83de7a9b3553",
+        "size": 513
+      },
+      {
+        "path": "content/modernization/p04_asset_import_manifest.json",
+        "sha256": "d175514c66ee66d055d8457d6f15ff19b8a0d60f4bceb621e2f8c5e9a5aa8cc0",
+        "size": 498512
+      },
+      {
+        "path": "content/modernization/p04_candidate_manifest.json",
+        "sha256": "95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac",
+        "size": 60095
+      },
+      {
+        "path": "content/modernization/p04_capacity_allocation_manifest.json",
+        "sha256": "8377afbe70ff3a1da1c805f51f5e83d49fd0a5befd271e6c549cf0f76bf082fe",
+        "size": 437769
+      },
+      {
+        "path": "manifests/flags.csv",
+        "sha256": "9bbaf18e36b41bede706cf55564bb70a7fcf0313a0e5f4ce8c2430070775fbb6",
+        "size": 63729
+      },
+      {
+        "path": "manifests/species_ids.csv",
+        "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366",
+        "size": 207095
+      },
+      {
+        "path": "overlays/bp_shop_runtime/bp_shop_libc.c",
+        "sha256": "fa89f9a8f7b2aa1abdd2529db7dfc5fed26a2ccc9630d01014da9b19f94d8c3d",
+        "size": 633
+      },
+      {
+        "path": "overlays/modernization_mega_shop/README.md",
+        "sha256": "ffcb4d7346a02473a677b22ccf3f0e684697e87ad87fc78105aeb5ea4fd14b08",
+        "size": 1001
+      },
+      {
+        "path": "overlays/modernization_mega_shop/modernization_mega_shop.c",
+        "sha256": "116bafdf4b3e736d5baf42870a30ce7069d2aafbbf33548a97bf1640c88b4b2d",
+        "size": 20929
+      },
+      {
+        "path": "overlays/modernization_mega_shop/modernization_mega_shop.h",
+        "sha256": "960aeaf9f4a7ddc0efb3c4acc6e8c800b637c34db2282c889b939397a964d4a5",
+        "size": 1309
+      },
+      {
+        "path": "overlays/modernization_mega_shop/modernization_mega_shop_host_harness.c",
+        "sha256": "3cb5df15d9dd4498fbd96084caf02c07d9a306900c896bde38043f22a4fdafe1",
+        "size": 11280
+      },
+      {
+        "path": "overlays/save_migration/save_migration.c",
+        "sha256": "78e6a74c05ecf652d82e43c1e7ce196de3f6694731bbbabeeead76eef27b6320",
+        "size": 25098
+      },
+      {
+        "path": "overlays/save_migration/save_migration.h",
+        "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67",
+        "size": 12497
+      },
+      {
+        "path": "scripts/build_modernization_mega_shop.py",
+        "sha256": "146145aea6b9f42e49471215d66dfca3841a2ae96e2753e5e2250f7291f4e9e3",
+        "size": 360
+      },
+      {
+        "path": "tests/test_modernization_mega_shop.py",
+        "sha256": "b685bb1ce5b3bdf5f4dddb011aba1516f52e17748c3a287e0f4be60409dc1730",
+        "size": 12642
+      },
+      {
+        "path": "tools/modernization_mega_shop.py",
+        "sha256": "b2e0cf9d107551a04d7f589b982afc6c587729a504deaa395f9b9f7643caeb35",
+        "size": 63275
+      },
+      {
+        "path": "tools/regression/rom_runtime.py",
+        "sha256": "8110772b2df98115e4efd353547150171204270965fd7b0f723a8b9b3aa4c7ba",
+        "size": 101835
+      },
+      {
+        "path": "tools/release/bps.py",
+        "sha256": "49818ca722499ce508a9caa3578ef42081c53235d92ecdcd0d6df05b8604c054",
+        "size": 8606
+      },
+      {
+        "path": "tools/rom_allocator.py",
+        "sha256": "65b26fe7339c8be19fe9c13973157cb90157ab4a28838afb93d43d2c5e6668e8",
+        "size": 22314
+      },
+      {
+        "path": "vendor/upstream/CFRU-JP/charmap.tbl",
+        "sha256": "35c1b978f7004129679751a79cf4b40d7edd2fcd678bc81a29483b64b75b7ed5",
+        "size": 1639
+      }
+    ],
+    "generated_catalog_header": {
+      "sha256": "aa85d2145a575826d04f178ea9ea6be9c0c2d19a4b4e1bc4b39963d6a1f19602",
+      "size": 9550
+    },
+    "p04_asset_payload": {
+      "file_count": 90,
+      "files": [
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_ABSOLITE_Z/icon.4bpp",
+          "role": "icon",
+          "sha256": "6ddd0b41ee675db06032fb6eea055f1c3c41e505e7f0e2a9666291b6b28fc341",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_ABSOLITE_Z/palette.gbapal",
+          "role": "palette",
+          "sha256": "ddf13a2acf2464bd255a31a022f3215052ef6a39582fba46d6b99854d4192adc",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_BARBARACITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_BARBARACITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "1df4f6313db20c45ae52354086d96276cb756020d3ac9f5c51f84e3d8feaf151",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_BAXCALIBRITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_BAXCALIBRITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "85cb42d12ad89e47ad6876bb785158a56a1c456b3f871a5ac92fdcadb1130737",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_CHANDELURITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_CHANDELURITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "d52acbc64a29b53dcb320aad75535f71eae8167ea8370b8694dd972e5957e077",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_CHESNAUGHTITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_CHESNAUGHTITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "625dd17037a589dc631596052c4356072014cb1092bd95946e01ebb458594b98",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_CHIMECHITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_CHIMECHITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "75a996f9c7ca6ee33954321d0914a4fdded642fb12106abb4a9e4ad8ddcb3754",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_CLEFABLITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "5f3983fea9e05db058b62a16cc501afcab58caa97f0febc22d6bc565d2abdb90",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_CLEFABLITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "9c7e7ecd792a621b1648ec01016ef896c505f9126f4df0bbc32958ecdb085755",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_CRABOMINITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_CRABOMINITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "427070f305f453e6ca982ec2114590039413dc9076466a0d9898f9ddfea102d2",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_DARKRANITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_DARKRANITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "bdeb02e13db54eec54bc5853bb776e04957a37cda5add0c55fb2020c8ec13e2b",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_DELPHOXITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_DELPHOXITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "b05e7fa371cdad10f2a8b80ab8fe25ce76a3958cbc69cff5422634d33033f1aa",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_DRAGALGITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_DRAGALGITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "58e9f8aef93d4f9970c01403762ebb037d8d93431fffbf91049462746c2f1932",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_DRAGONINITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "5f3983fea9e05db058b62a16cc501afcab58caa97f0febc22d6bc565d2abdb90",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_DRAGONINITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "7391ef10830e202de3bcb60c3c8afa2c7d2b3172b70e94cb37387114c3a9da91",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_DRAMPANITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_DRAMPANITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "08427bb055a28b3fe2e50ab0124fcb847b636e225ab6bddab638b6ed5864ace5",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_EELEKTROSSITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_EELEKTROSSITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "3960f9554cbf4d52a60b55cb5611411bd579eb87e271d6d02c0c2a3736c84f51",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_EMBOARITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_EMBOARITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "5ccca5cf7d21c484627920fb049f1ff5568e13a59cf4bd0ec4f61e7d30558f60",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_EXCADRITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_EXCADRITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "c1707b0b1fc17707501c1b15994c6061ffbe722ffc0147eacc3d5224c56f866c",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_FALINKSITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_FALINKSITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "c29015511dd835255110d88554d1f81af61ea8b3e786ce6ea71e668f3e0a203e",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_FERALIGITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "5f3983fea9e05db058b62a16cc501afcab58caa97f0febc22d6bc565d2abdb90",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_FERALIGITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "cc076df3ed6dccc150d87c7ac77c7a8edec7804a400c91b76f57f88722e20b6c",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_FLOETTITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_FLOETTITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "355b220e9a230543ab3a8679a8b87d25e49e2abbae3d28e5f10380939f4e20a4",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_FROSLASSITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_FROSLASSITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "30fc64dff7b3988558772c8c1bebed7a4aa1e1ea3246a104072a2b74fb35670c",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_GARCHOMPITE_Z/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_GARCHOMPITE_Z/palette.gbapal",
+          "role": "palette",
+          "sha256": "5113a1b36cc5fa310c6bfe9290b361c4483e026005bb0b9ced87590fdf6711d7",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_GLIMMORANITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_GLIMMORANITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "b0bc906eab54d27a104d1c244776565895ec89151ea6c9f370724daf2efc2a3b",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_GOLISOPITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_GOLISOPITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "df71abfd4365cfa86a1ba9368985172e547959f72a384a2404d14e9b0af7b33f",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_GOLURKITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_GOLURKITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "713ef041c581cf98bda9f31d5d7761155446b7f0d5b120b70ddae2f885ec17da",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_GRENINJITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_GRENINJITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "1e81d0d2c01a165b3726225973b32a7be770d821f09006f278d061cd067619e5",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_HAWLUCHANITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_HAWLUCHANITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "975976d58854409c598c1c6bcc3e7fb03fa06849109d62e9ee0bc27024b5b483",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_HEATRANITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_HEATRANITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "906acaa3671b96f994f4bdd366247f6a3bf7286f4442f4076cfa6cbc941a7901",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_LUCARIONITE_Z/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_LUCARIONITE_Z/palette.gbapal",
+          "role": "palette",
+          "sha256": "118e9421bb85666dc649d5203ab26ed5c04ebf448c00583a68106e5134825801",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_MAGEARNITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_MAGEARNITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "727eebe6aa8f7f766af656133a74edb82cbcd1816cfd86e6e037b819019906f0",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_MALAMARITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_MALAMARITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "13cab6f5f5c1588071259b748848b942d1790c03609aa12f020aacafa0379424",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_MEGANIUMITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "5f3983fea9e05db058b62a16cc501afcab58caa97f0febc22d6bc565d2abdb90",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_MEGANIUMITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "e0501e7f87216553c55a8f5119de33825bc484b2a1cdc0cdf14a81b11b3fadfa",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_MEOWSTICITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_MEOWSTICITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "856c3f30e3f1dc4cbf2a795175dfff32a3e8524b12e4b4af36d194cfd9868106",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_PYROARITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_PYROARITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "6dfed1029d0d98a1df6cfee095b72809352b3923d547353e2650e5eb741a61f6",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_RAICHUNITE_X/icon.4bpp",
+          "role": "icon",
+          "sha256": "b88c31b8158e1a4fb33fbfe542f00b3a2665829fd9158fecf4d666d5ea01443f",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_RAICHUNITE_X/palette.gbapal",
+          "role": "palette",
+          "sha256": "72b82ce8d00c39398fefc8c9fc2441dedc6ca43b2744451876bc095575c53fab",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_RAICHUNITE_Y/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_RAICHUNITE_Y/palette.gbapal",
+          "role": "palette",
+          "sha256": "f641fb039b165e82a54493c822be5695cd3e577e2903847330ce94ddeea0ea64",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_SCOLIPITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_SCOLIPITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "c60ec671a2a5397d9d498f7dd76ccb2cb1d012212d64d8dd739e685d2a077046",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_SCOVILLAINITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "6ddd0b41ee675db06032fb6eea055f1c3c41e505e7f0e2a9666291b6b28fc341",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_SCOVILLAINITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "531301e640b49b8489e7b517ad315e011e5d91c1645e4281ee883e504edff93d",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_SCRAFTINITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_SCRAFTINITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "e16cd8a6d346bf0482353f43dbb674f4a02bc920ae3ba47878bd938adc902dd2",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_SKARMORITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_SKARMORITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "74cf6294a44d88eaa2379ab9ee3bc01395ff4103e4704c66e568eb47d7adaf20",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_STARAPTITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_STARAPTITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "3bbbdbe97a523812ac6eb03b7a2c3811ffd653d2296ff554acffec6dd5532f66",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_STARMINITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "5f3983fea9e05db058b62a16cc501afcab58caa97f0febc22d6bc565d2abdb90",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_STARMINITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "b2e0f77168ec5a0f61129557886f4db8a50d7037ac95c1c9c591f682e06e85ee",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_TATSUGIRINITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_TATSUGIRINITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "13d5b60fd5ea70b61639c91c131551ca624edd940e11c1a127460847057a44ee",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_VICTREEBELITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "43ca473ea49511100f25128eb157defe8c1230b5f1a3c15ac69ef4cbe6f25e56",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_VICTREEBELITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "c2132350a5122c08d30c1fa5c83bb34e82d8f482f66bac67cacbd9de1e47c3e3",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_ZERAORITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_ZERAORITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "4dd6102427b84bf95395f2c139f95771a5442b5c31ce71332bc17dd5b894a5d4",
+          "size": 32
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_ZYGARDITE/icon.4bpp",
+          "role": "icon",
+          "sha256": "0d202805aa56c4e52214aa96a63990943e2689ba31b1a1934e2d9cc1a7bbceef",
+          "size": 288
+        },
+        {
+          "path": "userfile/generated/modernization_p04_assets/stones/ITEM_KEY_ZYGARDITE/palette.gbapal",
+          "role": "palette",
+          "sha256": "1cf05876c86a36b4a5125d819a47b1c81b9915fdb5fdd28d53f3d8ba5adb7117",
+          "size": 32
+        }
+      ],
+      "inventory_sha256": "c50a79a986e233d25937f88c8a0f7214b5371242d215a65274600090d93ea1f2",
+      "total_bytes": 14400
+    }
+  },
+  "stage": 68,
+  "status": "PASS_HOST_STATIC_EXACT_ROM_PENDING",
+  "table_repoint_counts": {
+    "item_data": 32,
+    "item_effect_pointer2": 8,
+    "item_fling": 4,
+    "item_graphics": 3,
+    "item_type_by_id": 10
+  },
+  "task": "USER-MODERNIZATION-MEGA-STONE-BP-SHOP",
+  "transaction": {
+    "initialized_save_no_mutation_results": [
+      3,
+      5,
+      14,
+      15,
+      17
+    ],
+    "one_per_save_owner": "expanded event flags 0x14A0..0x14CC",
+    "order": [
+      "AddBagItem",
+      "VegaFactorySpendBattlePoints",
+      "FlagSet(claim)",
+      "TrySavingData(0)",
+      "TryWriteSector(31)"
+    ],
+    "pure_preflight_results_even_on_empty_save": [
+      3,
+      5,
+      17
+    ],
+    "rollback": [
+      "FlagClear(claim)",
+      "restore exact BP",
+      "VegaSaveFinalize",
+      "RemoveBagItem",
+      "best-effort standard save",
+      "best-effort sector31"
+    ]
+  },
+  "validation": {
+    "exact_rom_runtime_smoke": "PENDING",
+    "heavy_test_runs": 0,
+    "host_harness": {
+      "assertions": 244,
+      "cases": [
+        "45 catalog success paths",
+        "locked and invalid pure preflight on empty save",
+        "once rejection before and after fresh load",
+        "insufficient BP and bag full pure on initialized save",
+        "standard-save first-write failure compensation",
+        "sector31 first-write failure compensation",
+        "empty unlocked save initialization distinguished"
+      ],
+      "catalog_entries": 45,
+      "compiler": {
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror"
+        ],
+        "path": "/usr/bin/cc",
+        "resolved_path": "/usr/bin/x86_64-linux-gnu-gcc-13",
+        "sha256": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26",
+        "size": 1023032,
+        "version": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+      },
+      "failure_injection_cases": 2,
+      "failures": 0,
+      "generated_header_sha256": "aa85d2145a575826d04f178ea9ea6be9c0c2d19a4b4e1bc4b39963d6a1f19602",
+      "status": "PASS"
+    },
+    "static_and_host_checks": "PASS"
+  }
+}

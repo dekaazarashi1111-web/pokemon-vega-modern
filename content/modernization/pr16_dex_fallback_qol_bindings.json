@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "status": "SIGNED_FALLBACK_BOUNDARIES_NOT_ACCEPTED",
+  "source_ref": "9e9a7cc6adf6ad80127db56f346f9c9fc3d0c0f0",
+  "previous_load": 157285781,
+  "windows": [
+    {
+      "name": "validate_veneer",
+      "address": 153948896,
+      "size": 8,
+      "sha256": "7ec3f7f938b85ef5ef6f5152314ebf346e66a93ea4bc4ca8a8d6bd3a5ec6999d",
+      "id": "validate_veneer"
+    },
+    {
+      "name": "research_validate_prefix_768bytes",
+      "address": 154917288,
+      "size": 768,
+      "sha256": "f4fea96dbc7442c46357b792599170c7d603ba644727053f79056f615a2485b9",
+      "id": "research_validate_prefix_768bytes"
+    },
+    {
+      "name": "qol_load",
+      "address": 154629780,
+      "size": 104,
+      "sha256": "c360571f6777afee59f3fa17b192a5740a8c52369b494f0b033b276f574f87b3",
+      "id": "qol_load"
+    },
+    {
+      "name": "read_flash",
+      "address": 136063572,
+      "size": 132,
+      "sha256": "0b4fb7f74bbb6fefc23d94282d4ac0da883a845deda289468230a9b95629ca1e",
+      "id": "read_flash"
+    },
+    {
+      "name": "mirage_journal_clear",
+      "address": 154735308,
+      "size": 16,
+      "sha256": "07bb603cdd3fd027507c839315b46502156cd7e6b365130830b3b1bcd36b2752",
+      "id": "mirage_journal_clear"
+    },
+    {
+      "name": "mirage_journal_active",
+      "address": 154735388,
+      "size": 52,
+      "sha256": "46053fd47547a2cfbdc0d35e94a14d182d0c9216b33a9e1ff8abe1ad6ac2c207",
+      "id": "mirage_journal_active"
+    }
+  ],
+  "cause": "QOL load result==1 guard skips restore on stock valid-main fallback255; resulting cold ledger is all-zero; lifecycle allows255 when newly loaded MDX is valid",
+  "idle_ledger_ranges": [
+    {
+      "name": "acquisition pending, including Factory shiny mode0xF1",
+      "start": "0x120",
+      "size": 20,
+      "rule": "all-zero strict idle"
+    },
+    {
+      "name": "raid retry bits",
+      "start": "0x163",
+      "size": 16,
+      "rule": "all-zero conservative pending exclusion"
+    },
+    {
+      "name": "raid in-progress bits",
+      "start": "0x173",
+      "size": 16,
+      "rule": "all-zero conservative pending exclusion"
+    },
+    {
+      "name": "Factory marker/snapshot_valid/party_count/reward_pending",
+      "start": "0x400",
+      "size": 4,
+      "rule": "all-zero strict idle; marker low3 bits encode base, high bits options"
+    },
+    {
+      "name": "Factory shiny restoration journal",
+      "start": "0x404",
+      "size": 8,
+      "rule": "reject leading u32 0x54534846 FHST; can require all snapshot zero as narrower scope"
+    },
+    {
+      "name": "Factory reward claims",
+      "start": "0x3F4",
+      "size": 4,
+      "rule": "bit18 DUE must be zero for strict idle; bit9 already-claimed is durable data"
+    },
+    {
+      "name": "Mirage journal",
+      "start": "0x664",
+      "size": 8,
+      "rule": "all-zero matches actual clear helper; active magic u16 0x4D50/0xB2AF then packed u16 and complement"
+    },
+    {
+      "name": "Pending encounter",
+      "start": "0x694",
+      "size": 46,
+      "rule": "valid byte0 must be0; all46zero is stricter canonical cleared state"
+    },
+    {
+      "name": "Research pending",
+      "start": "0x76B",
+      "size": 16,
+      "rule": "all-zero exactly matches Research clear_pending; kind0x76F/phase0x770"
+    }
+  ],
+  "external_pending_owners": [
+    {
+      "name": "CodexReward",
+      "ram": "0x0203D800",
+      "sector31_offset": "0x864",
+      "size": 128,
+      "pending_offsets": {
+        "window": "0x14",
+        "journal_phase": "0x15",
+        "pending_sequence": "0x28",
+        "pending_payload_hash": "0x2C"
+      },
+      "boundary": "stable-field restore/recover is independent; COMMITTED3 is distinct from active PREPARED1/STAGED2"
+    },
+    {
+      "name": "CollectionSupply",
+      "ram": "0x0203D900",
+      "sector31_offset": "0x964",
+      "size": 512,
+      "pending_offsets": {
+        "phase": "0x14",
+        "kind": "0x15",
+        "pending_reward_host": "0x52"
+      },
+      "boundary": "load255 currently initializes cache and restore_pending0; physical owner not restored by same success-only path"
+    },
+    {
+      "name": "Circus",
+      "ram": "0x0203DB00",
+      "sector31_offset": "0xB64",
+      "size": 64,
+      "pending_offsets": {
+        "prepared": "0x18",
+        "settled": "0x1C",
+        "phase": "0x24"
+      },
+      "boundary": "stable-field restores independently and non-IDLE invokes recovery; READY1/ARMED2 require separate safety contract"
+    }
+  ],
+  "limits": [
+    "sector31 ledger has no binding to selected main SaveCounter",
+    "ledger generation is an independent transaction counter, not main generation",
+    "ledger-only restoration does not establish all cold owner safety or multi-store atomicity",
+    "preserve healthy result1 path; no implicit migration for v1",
+    "old valid RAM must never outrank physical ledger on fallback"
+  ],
+  "buffer": {
+    "address": 33790384,
+    "read_sector": 31,
+    "read_offset": 100,
+    "read_size": 3996,
+    "publish_bytes": 2048,
+    "validator": 153948897,
+    "must_be_version": 2,
+    "forbidden_side_effect_pointers": [
+      33804288,
+      33790484
+    ]
+  },
+  "source_bindings": {
+    "overlays/save_migration/save_migration.h": {
+      "size": 12497,
+      "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67"
+    },
+    "overlays/save_migration/save_migration.c": {
+      "size": 25098,
+      "sha256": "78e6a74c05ecf652d82e43c1e7ce196de3f6694731bbbabeeead76eef27b6320"
+    },
+    "overlays/qol_production/qol_production.c": {
+      "size": 164877,
+      "sha256": "6a07635ca20dcd37365a2393910eb610d4f9c5a682585149ecb1243738cce23a"
+    }
+  }
+}

@@ -1,0 +1,5546 @@
+{
+  "arm_builds": 0,
+  "input_receipts": [
+    {
+      "manifest_sha256": "9c7f05d1f7819a908f0b369278a3c395f8e425bf1d6b4fae121aba38f907adc5",
+      "run": 35534340606,
+      "source_head": "69f577628f2f9e7704776da68568d21df4760655"
+    },
+    {
+      "manifest_sha256": "77a14d1cadd5dd22c494de579e739f3f098e7f61658d8e3512992f2e4eccdfd3",
+      "run": 35534758684,
+      "source_head": "cb12e4ea045f26ea108875596d3d69873c385b16"
+    }
+  ],
+  "local_bindings": {
+    "overlays/cfru/rom_bridge.c": {
+      "sha256": "e7ca33758235005d66b3a73f864ed97d18f876f56935d1d86e42c99c78cd28c0",
+      "size": 20530
+    },
+    "overlays/collection_supply_v1/collection_supply_v1.c": {
+      "sha256": "14c27f895b9ae8d1b3d9d077ce49999fc17a1422a83e8ddb87657c66ebab06d3",
+      "size": 65077
+    },
+    "overlays/modernization_p03_stage74_supply_runtime/modernization_p03_stage74_supply_runtime.c": {
+      "sha256": "71c1760f6b65e81cfb79813a34515e343637546099e04b3d2766856a14f298a1",
+      "size": 18095
+    },
+    "scripts/build_battle_core.py": {
+      "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0",
+      "size": 239192
+    }
+  },
+  "local_units": {
+    "overlays/cfru/rom_bridge.c": [
+      {
+        "end_line": 633,
+        "sha256": "69b32d589df1f3af52c051c98596cd4f1f086fd68b616b3282a95e6dceadc2ef",
+        "start_line": 629,
+        "symbol": "VegaBattlePolicyCanZ",
+        "text": "bool8 VegaBattlePolicyCanZ(u8 battler, bool8 upstream_allowed)\n{\n    return VegaBattlePolicyCanMechanic(\n        battler, upstream_allowed, CFRU_MECHANIC_Z_MOVE);\n}\n"
+      },
+      {
+        "end_line": 638,
+        "sha256": "3feb8dc0a9c725553cc5aba9c6554b3dd3b305c78f7bc19d7f7742fc7afe0219",
+        "start_line": 635,
+        "symbol": "VegaBattlePolicyMarkZ",
+        "text": "bool8 VegaBattlePolicyMarkZ(u8 battler)\n{\n    return VegaBattlePolicyMarkMechanic(battler, CFRU_MECHANIC_Z_MOVE);\n}\n"
+      }
+    ],
+    "overlays/collection_supply_v1/collection_supply_v1.c": [
+      {
+        "end_line": 970,
+        "sha256": "8fc9c10c513fa72c1e055c68b1607262bf7fa30118916c832be9eaba748d4a9c",
+        "start_line": 902,
+        "symbol": "deliver_gift",
+        "text": "static u16 deliver_gift(u16 gift_index)\n{\n    const CollectionGiftRow *gift;\n    const CollectionFormRow *form;\n    CollectionSupplyOwnerV1 before_owner;\n    CollectionSupplyOwnerV1 committed_owner;\n    u8 mon[COLLECTION_MON_SIZE];\n    u8 egg = 1u;\n    u8 destination;\n    u32 personality;\n    if (!ensure_owner() || gift_index >= COLLECTION_GIFT_COUNT)\n        return COLLECTION_RESULT_INVALID;\n    gift = &gCollectionGiftRows[gift_index];\n    form = &gCollectionFormRows[gift->form_index];\n    if (!unlock_satisfied(gift->unlock))\n        return COLLECTION_RESULT_LOCKED;\n    if (gift->kind == COLLECTION_GIFT_FIXED\n        && (G_OWNER->form_gift_bits & (u8)(1u << gift->claim_bit)) != 0u)\n        return COLLECTION_RESULT_EFFECTLESS;\n    copy_bytes(&before_owner, G_OWNER, sizeof(before_owner));\n    clear_bytes(mon, sizeof(mon));\n    FN_CREATE_MON(mon, form->target_species,\n                  gift->kind == COLLECTION_GIFT_RESEARCH_EGG ? 1u : 50u,\n                  32u, 0u, 0u, 0u, 0u);\n    if (gift->kind == COLLECTION_GIFT_RESEARCH_EGG)\n        FN_SET_MON_DATA(mon, COLLECTION_MON_DATA_IS_EGG, &egg);\n    personality = FN_GET_MON_DATA(mon, COLLECTION_MON_DATA_PERSONALITY,\n                                  (u8 *)0);\n    G_OWNER->pending_phase = COLLECTION_PENDING_PREPARED;\n    G_OWNER->pending_kind = COLLECTION_PENDING_GIFT;\n    G_OWNER->pending_claim_kind = gift->kind == COLLECTION_GIFT_FIXED\n        ? COLLECTION_CLAIM_FORM_GIFT : COLLECTION_CLAIM_NONE;\n    G_OWNER->pending_key = gift->claim_bit;\n    G_OWNER->pending_species = form->target_species;\n    G_OWNER->pending_personality = personality;\n    owner_finalize();\n    if (!persist_sector()) {\n        copy_bytes(G_OWNER, &before_owner, sizeof(before_owner));\n        return COLLECTION_RESULT_PERSIST_FAILED;\n    }\n    if (G_STATE->test_mode) {\n        destination = 0u;\n        G_STATE->test_gift_species = form->target_species;\n        G_STATE->test_gift_personality = personality;\n    } else {\n        destination = FN_GIVE_MON(mon);\n    }\n    if (destination >= 2u) {\n        copy_bytes(G_OWNER, &before_owner, sizeof(before_owner));\n        owner_finalize();\n        (void)persist_sector();\n        return COLLECTION_RESULT_STORAGE_FULL;\n    }\n    G_OWNER->pending_phase = COLLECTION_PENDING_STAGED;\n    if (gift->kind == COLLECTION_GIFT_FIXED)\n        G_OWNER->form_gift_bits |= (u8)(1u << gift->claim_bit);\n    owner_finalize();\n    if (!persist_sector() || !persist_standard())\n        return COLLECTION_RESULT_PERSIST_FAILED;\n    copy_bytes(&committed_owner, G_OWNER, sizeof(committed_owner));\n    clear_pending();\n    ++G_OWNER->generation;\n    owner_finalize();\n    if (!persist_sector()) {\n        copy_bytes(G_OWNER, &committed_owner, sizeof(committed_owner));\n        return COLLECTION_RESULT_SUCCESS;\n    }\n    return COLLECTION_RESULT_SUCCESS;\n}\n"
+      }
+    ]
+  },
+  "new_native_runs": 0,
+  "rom_changes": 0,
+  "schema_version": 1,
+  "scope_ja": "固定原文の静的監査。候補の各consumerが実行済みという意味ではない。",
+  "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+  "source_repository": "kapibarasan000/CFRU-JP",
+  "sources": {
+    "include/constants/hold_effects.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "defines": [
+        {
+          "expression": "130",
+          "line": 134,
+          "symbol": "ITEM_EFFECT_Z_CRYSTAL"
+        }
+      ],
+      "sha256": "779f5456f65683ee023f2b56fb3b69fb931d94cf17814e8c41a64097c64b8720",
+      "size": 6450
+    },
+    "include/constants/moves.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "defines": [
+        {
+          "expression": "15",
+          "line": 3,
+          "symbol": "MOVE_NAME_LENGTH"
+        },
+        {
+          "expression": "0x0",
+          "line": 5,
+          "symbol": "MOVE_NONE"
+        },
+        {
+          "expression": "0x1",
+          "line": 6,
+          "symbol": "MOVE_POUND"
+        },
+        {
+          "expression": "0x2",
+          "line": 7,
+          "symbol": "MOVE_KARATECHOP"
+        },
+        {
+          "expression": "0x3",
+          "line": 8,
+          "symbol": "MOVE_DOUBLESLAP"
+        },
+        {
+          "expression": "0x4",
+          "line": 9,
+          "symbol": "MOVE_COMETPUNCH"
+        },
+        {
+          "expression": "0x5",
+          "line": 10,
+          "symbol": "MOVE_MEGAPUNCH"
+        },
+        {
+          "expression": "0x6",
+          "line": 11,
+          "symbol": "MOVE_PAYDAY"
+        },
+        {
+          "expression": "0x7",
+          "line": 12,
+          "symbol": "MOVE_FIREPUNCH"
+        },
+        {
+          "expression": "0x8",
+          "line": 13,
+          "symbol": "MOVE_ICEPUNCH"
+        },
+        {
+          "expression": "0x9",
+          "line": 14,
+          "symbol": "MOVE_THUNDERPUNCH"
+        },
+        {
+          "expression": "0xA",
+          "line": 15,
+          "symbol": "MOVE_SCRATCH"
+        },
+        {
+          "expression": "0xB",
+          "line": 16,
+          "symbol": "MOVE_VICEGRIP"
+        },
+        {
+          "expression": "0xC",
+          "line": 17,
+          "symbol": "MOVE_GUILLOTINE"
+        },
+        {
+          "expression": "0xD",
+          "line": 18,
+          "symbol": "MOVE_RAZORWIND"
+        },
+        {
+          "expression": "0xE",
+          "line": 19,
+          "symbol": "MOVE_SWORDSDANCE"
+        },
+        {
+          "expression": "0xF",
+          "line": 20,
+          "symbol": "MOVE_CUT"
+        },
+        {
+          "expression": "0x10",
+          "line": 21,
+          "symbol": "MOVE_GUST"
+        },
+        {
+          "expression": "0x11",
+          "line": 22,
+          "symbol": "MOVE_WINGATTACK"
+        },
+        {
+          "expression": "0x12",
+          "line": 23,
+          "symbol": "MOVE_WHIRLWIND"
+        },
+        {
+          "expression": "0x13",
+          "line": 24,
+          "symbol": "MOVE_FLY"
+        },
+        {
+          "expression": "0x14",
+          "line": 25,
+          "symbol": "MOVE_BIND"
+        },
+        {
+          "expression": "0x15",
+          "line": 26,
+          "symbol": "MOVE_SLAM"
+        },
+        {
+          "expression": "0x16",
+          "line": 27,
+          "symbol": "MOVE_VINEWHIP"
+        },
+        {
+          "expression": "0x17",
+          "line": 28,
+          "symbol": "MOVE_STOMP"
+        },
+        {
+          "expression": "0x18",
+          "line": 29,
+          "symbol": "MOVE_DOUBLEKICK"
+        },
+        {
+          "expression": "0x19",
+          "line": 30,
+          "symbol": "MOVE_MEGAKICK"
+        },
+        {
+          "expression": "0x1A",
+          "line": 31,
+          "symbol": "MOVE_JUMPKICK"
+        },
+        {
+          "expression": "0x1B",
+          "line": 32,
+          "symbol": "MOVE_ROLLINGKICK"
+        },
+        {
+          "expression": "0x1C",
+          "line": 33,
+          "symbol": "MOVE_SANDATTACK"
+        },
+        {
+          "expression": "0x1D",
+          "line": 34,
+          "symbol": "MOVE_HEADBUTT"
+        },
+        {
+          "expression": "0x1E",
+          "line": 35,
+          "symbol": "MOVE_HORNATTACK"
+        },
+        {
+          "expression": "0x1F",
+          "line": 36,
+          "symbol": "MOVE_FURYATTACK"
+        },
+        {
+          "expression": "0x20",
+          "line": 37,
+          "symbol": "MOVE_HORNDRILL"
+        },
+        {
+          "expression": "0x21",
+          "line": 38,
+          "symbol": "MOVE_TACKLE"
+        },
+        {
+          "expression": "0x22",
+          "line": 39,
+          "symbol": "MOVE_BODYSLAM"
+        },
+        {
+          "expression": "0x23",
+          "line": 40,
+          "symbol": "MOVE_WRAP"
+        },
+        {
+          "expression": "0x24",
+          "line": 41,
+          "symbol": "MOVE_TAKEDOWN"
+        },
+        {
+          "expression": "0x25",
+          "line": 42,
+          "symbol": "MOVE_THRASH"
+        },
+        {
+          "expression": "0x26",
+          "line": 43,
+          "symbol": "MOVE_DOUBLEEDGE"
+        },
+        {
+          "expression": "0x27",
+          "line": 44,
+          "symbol": "MOVE_TAILWHIP"
+        },
+        {
+          "expression": "0x28",
+          "line": 45,
+          "symbol": "MOVE_POISONSTING"
+        },
+        {
+          "expression": "0x29",
+          "line": 46,
+          "symbol": "MOVE_TWINEEDLE"
+        },
+        {
+          "expression": "0x2A",
+          "line": 47,
+          "symbol": "MOVE_PINMISSILE"
+        },
+        {
+          "expression": "0x2B",
+          "line": 48,
+          "symbol": "MOVE_LEER"
+        },
+        {
+          "expression": "0x2C",
+          "line": 49,
+          "symbol": "MOVE_BITE"
+        },
+        {
+          "expression": "0x2D",
+          "line": 50,
+          "symbol": "MOVE_GROWL"
+        },
+        {
+          "expression": "0x2E",
+          "line": 51,
+          "symbol": "MOVE_ROAR"
+        },
+        {
+          "expression": "0x2F",
+          "line": 52,
+          "symbol": "MOVE_SING"
+        },
+        {
+          "expression": "0x30",
+          "line": 53,
+          "symbol": "MOVE_SUPERSONIC"
+        },
+        {
+          "expression": "0x31",
+          "line": 54,
+          "symbol": "MOVE_SONICBOOM"
+        },
+        {
+          "expression": "0x32",
+          "line": 55,
+          "symbol": "MOVE_DISABLE"
+        },
+        {
+          "expression": "0x33",
+          "line": 56,
+          "symbol": "MOVE_ACID"
+        },
+        {
+          "expression": "0x34",
+          "line": 57,
+          "symbol": "MOVE_EMBER"
+        },
+        {
+          "expression": "0x35",
+          "line": 58,
+          "symbol": "MOVE_FLAMETHROWER"
+        },
+        {
+          "expression": "0x36",
+          "line": 59,
+          "symbol": "MOVE_MIST"
+        },
+        {
+          "expression": "0x37",
+          "line": 60,
+          "symbol": "MOVE_WATERGUN"
+        },
+        {
+          "expression": "0x38",
+          "line": 61,
+          "symbol": "MOVE_HYDROPUMP"
+        },
+        {
+          "expression": "0x39",
+          "line": 62,
+          "symbol": "MOVE_SURF"
+        },
+        {
+          "expression": "0x3A",
+          "line": 63,
+          "symbol": "MOVE_ICEBEAM"
+        },
+        {
+          "expression": "0x3B",
+          "line": 64,
+          "symbol": "MOVE_BLIZZARD"
+        },
+        {
+          "expression": "0x3C",
+          "line": 65,
+          "symbol": "MOVE_PSYBEAM"
+        },
+        {
+          "expression": "0x3D",
+          "line": 66,
+          "symbol": "MOVE_BUBBLEBEAM"
+        },
+        {
+          "expression": "0x3E",
+          "line": 67,
+          "symbol": "MOVE_AURORABEAM"
+        },
+        {
+          "expression": "0x3F",
+          "line": 68,
+          "symbol": "MOVE_HYPERBEAM"
+        },
+        {
+          "expression": "0x40",
+          "line": 69,
+          "symbol": "MOVE_PECK"
+        },
+        {
+          "expression": "0x41",
+          "line": 70,
+          "symbol": "MOVE_DRILLPECK"
+        },
+        {
+          "expression": "0x42",
+          "line": 71,
+          "symbol": "MOVE_SUBMISSION"
+        },
+        {
+          "expression": "0x43",
+          "line": 72,
+          "symbol": "MOVE_LOWKICK"
+        },
+        {
+          "expression": "0x44",
+          "line": 73,
+          "symbol": "MOVE_COUNTER"
+        },
+        {
+          "expression": "0x45",
+          "line": 74,
+          "symbol": "MOVE_SEISMICTOSS"
+        },
+        {
+          "expression": "0x46",
+          "line": 75,
+          "symbol": "MOVE_STRENGTH"
+        },
+        {
+          "expression": "0x47",
+          "line": 76,
+          "symbol": "MOVE_ABSORB"
+        },
+        {
+          "expression": "0x48",
+          "line": 77,
+          "symbol": "MOVE_MEGADRAIN"
+        },
+        {
+          "expression": "0x49",
+          "line": 78,
+          "symbol": "MOVE_LEECHSEED"
+        },
+        {
+          "expression": "0x4A",
+          "line": 79,
+          "symbol": "MOVE_GROWTH"
+        },
+        {
+          "expression": "0x4B",
+          "line": 80,
+          "symbol": "MOVE_RAZORLEAF"
+        },
+        {
+          "expression": "0x4C",
+          "line": 81,
+          "symbol": "MOVE_SOLARBEAM"
+        },
+        {
+          "expression": "0x4D",
+          "line": 82,
+          "symbol": "MOVE_POISONPOWDER"
+        },
+        {
+          "expression": "0x4E",
+          "line": 83,
+          "symbol": "MOVE_STUNSPORE"
+        },
+        {
+          "expression": "0x4F",
+          "line": 84,
+          "symbol": "MOVE_SLEEPPOWDER"
+        },
+        {
+          "expression": "0x50",
+          "line": 85,
+          "symbol": "MOVE_PETALDANCE"
+        },
+        {
+          "expression": "0x51",
+          "line": 86,
+          "symbol": "MOVE_STRINGSHOT"
+        },
+        {
+          "expression": "0x52",
+          "line": 87,
+          "symbol": "MOVE_DRAGONRAGE"
+        },
+        {
+          "expression": "0x53",
+          "line": 88,
+          "symbol": "MOVE_FIRESPIN"
+        },
+        {
+          "expression": "0x54",
+          "line": 89,
+          "symbol": "MOVE_THUNDERSHOCK"
+        },
+        {
+          "expression": "0x55",
+          "line": 90,
+          "symbol": "MOVE_THUNDERBOLT"
+        },
+        {
+          "expression": "0x56",
+          "line": 91,
+          "symbol": "MOVE_THUNDERWAVE"
+        },
+        {
+          "expression": "0x57",
+          "line": 92,
+          "symbol": "MOVE_THUNDER"
+        },
+        {
+          "expression": "0x58",
+          "line": 93,
+          "symbol": "MOVE_ROCKTHROW"
+        },
+        {
+          "expression": "0x59",
+          "line": 94,
+          "symbol": "MOVE_EARTHQUAKE"
+        },
+        {
+          "expression": "0x5A",
+          "line": 95,
+          "symbol": "MOVE_FISSURE"
+        },
+        {
+          "expression": "0x5B",
+          "line": 96,
+          "symbol": "MOVE_DIG"
+        },
+        {
+          "expression": "0x5C",
+          "line": 97,
+          "symbol": "MOVE_TOXIC"
+        },
+        {
+          "expression": "0x5D",
+          "line": 98,
+          "symbol": "MOVE_CONFUSION"
+        },
+        {
+          "expression": "0x5E",
+          "line": 99,
+          "symbol": "MOVE_PSYCHIC"
+        },
+        {
+          "expression": "0x5F",
+          "line": 100,
+          "symbol": "MOVE_HYPNOSIS"
+        },
+        {
+          "expression": "0x60",
+          "line": 101,
+          "symbol": "MOVE_MEDITATE"
+        },
+        {
+          "expression": "0x61",
+          "line": 102,
+          "symbol": "MOVE_AGILITY"
+        },
+        {
+          "expression": "0x62",
+          "line": 103,
+          "symbol": "MOVE_QUICKATTACK"
+        },
+        {
+          "expression": "0x63",
+          "line": 104,
+          "symbol": "MOVE_RAGE"
+        },
+        {
+          "expression": "0x64",
+          "line": 105,
+          "symbol": "MOVE_TELEPORT"
+        },
+        {
+          "expression": "0x65",
+          "line": 106,
+          "symbol": "MOVE_NIGHTSHADE"
+        },
+        {
+          "expression": "0x66",
+          "line": 107,
+          "symbol": "MOVE_MIMIC"
+        },
+        {
+          "expression": "0x67",
+          "line": 108,
+          "symbol": "MOVE_SCREECH"
+        },
+        {
+          "expression": "0x68",
+          "line": 109,
+          "symbol": "MOVE_DOUBLETEAM"
+        },
+        {
+          "expression": "0x69",
+          "line": 110,
+          "symbol": "MOVE_RECOVER"
+        },
+        {
+          "expression": "0x6A",
+          "line": 111,
+          "symbol": "MOVE_HARDEN"
+        },
+        {
+          "expression": "0x6B",
+          "line": 112,
+          "symbol": "MOVE_MINIMIZE"
+        },
+        {
+          "expression": "0x6C",
+          "line": 113,
+          "symbol": "MOVE_SMOKESCREEN"
+        },
+        {
+          "expression": "0x6D",
+          "line": 114,
+          "symbol": "MOVE_CONFUSERAY"
+        },
+        {
+          "expression": "0x6E",
+          "line": 115,
+          "symbol": "MOVE_WITHDRAW"
+        },
+        {
+          "expression": "0x6F",
+          "line": 116,
+          "symbol": "MOVE_DEFENSECURL"
+        },
+        {
+          "expression": "0x70",
+          "line": 117,
+          "symbol": "MOVE_BARRIER"
+        },
+        {
+          "expression": "0x71",
+          "line": 118,
+          "symbol": "MOVE_LIGHTSCREEN"
+        },
+        {
+          "expression": "0x72",
+          "line": 119,
+          "symbol": "MOVE_HAZE"
+        },
+        {
+          "expression": "0x73",
+          "line": 120,
+          "symbol": "MOVE_REFLECT"
+        },
+        {
+          "expression": "0x74",
+          "line": 121,
+          "symbol": "MOVE_FOCUSENERGY"
+        },
+        {
+          "expression": "0x75",
+          "line": 122,
+          "symbol": "MOVE_BIDE"
+        },
+        {
+          "expression": "0x76",
+          "line": 123,
+          "symbol": "MOVE_METRONOME"
+        },
+        {
+          "expression": "0x77",
+          "line": 124,
+          "symbol": "MOVE_MIRRORMOVE"
+        },
+        {
+          "expression": "0x78",
+          "line": 125,
+          "symbol": "MOVE_SELFDESTRUCT"
+        },
+        {
+          "expression": "0x79",
+          "line": 126,
+          "symbol": "MOVE_EGGBOMB"
+        },
+        {
+          "expression": "0x7A",
+          "line": 127,
+          "symbol": "MOVE_LICK"
+        },
+        {
+          "expression": "0x7B",
+          "line": 128,
+          "symbol": "MOVE_SMOG"
+        },
+        {
+          "expression": "0x7C",
+          "line": 129,
+          "symbol": "MOVE_SLUDGE"
+        },
+        {
+          "expression": "0x7D",
+          "line": 130,
+          "symbol": "MOVE_BONECLUB"
+        },
+        {
+          "expression": "0x7E",
+          "line": 131,
+          "symbol": "MOVE_FIREBLAST"
+        },
+        {
+          "expression": "0x7F",
+          "line": 132,
+          "symbol": "MOVE_WATERFALL"
+        },
+        {
+          "expression": "0x80",
+          "line": 133,
+          "symbol": "MOVE_CLAMP"
+        },
+        {
+          "expression": "0x81",
+          "line": 134,
+          "symbol": "MOVE_SWIFT"
+        },
+        {
+          "expression": "0x82",
+          "line": 135,
+          "symbol": "MOVE_SKULLBASH"
+        },
+        {
+          "expression": "0x83",
+          "line": 136,
+          "symbol": "MOVE_SPIKECANNON"
+        },
+        {
+          "expression": "0x84",
+          "line": 137,
+          "symbol": "MOVE_CONSTRICT"
+        },
+        {
+          "expression": "0x85",
+          "line": 138,
+          "symbol": "MOVE_AMNESIA"
+        },
+        {
+          "expression": "0x86",
+          "line": 139,
+          "symbol": "MOVE_KINESIS"
+        },
+        {
+          "expression": "0x87",
+          "line": 140,
+          "symbol": "MOVE_SOFTBOILED"
+        },
+        {
+          "expression": "0x88",
+          "line": 141,
+          "symbol": "MOVE_HIGHJUMPKICK"
+        },
+        {
+          "expression": "0x89",
+          "line": 142,
+          "symbol": "MOVE_GLARE"
+        },
+        {
+          "expression": "0x8A",
+          "line": 143,
+          "symbol": "MOVE_DREAMEATER"
+        },
+        {
+          "expression": "0x8B",
+          "line": 144,
+          "symbol": "MOVE_POISONGAS"
+        },
+        {
+          "expression": "0x8C",
+          "line": 145,
+          "symbol": "MOVE_BARRAGE"
+        },
+        {
+          "expression": "0x8D",
+          "line": 146,
+          "symbol": "MOVE_LEECHLIFE"
+        },
+        {
+          "expression": "0x8E",
+          "line": 147,
+          "symbol": "MOVE_LOVELYKISS"
+        },
+        {
+          "expression": "0x8F",
+          "line": 148,
+          "symbol": "MOVE_SKYATTACK"
+        },
+        {
+          "expression": "0x90",
+          "line": 149,
+          "symbol": "MOVE_TRANSFORM"
+        },
+        {
+          "expression": "0x91",
+          "line": 150,
+          "symbol": "MOVE_BUBBLE"
+        },
+        {
+          "expression": "0x92",
+          "line": 151,
+          "symbol": "MOVE_DIZZYPUNCH"
+        },
+        {
+          "expression": "0x93",
+          "line": 152,
+          "symbol": "MOVE_SPORE"
+        },
+        {
+          "expression": "0x94",
+          "line": 153,
+          "symbol": "MOVE_FLASH"
+        },
+        {
+          "expression": "0x95",
+          "line": 154,
+          "symbol": "MOVE_PSYWAVE"
+        },
+        {
+          "expression": "0x96",
+          "line": 155,
+          "symbol": "MOVE_SPLASH"
+        },
+        {
+          "expression": "0x97",
+          "line": 156,
+          "symbol": "MOVE_ACIDARMOR"
+        },
+        {
+          "expression": "0x98",
+          "line": 157,
+          "symbol": "MOVE_CRABHAMMER"
+        },
+        {
+          "expression": "0x99",
+          "line": 158,
+          "symbol": "MOVE_EXPLOSION"
+        },
+        {
+          "expression": "0x9A",
+          "line": 159,
+          "symbol": "MOVE_FURYSWIPES"
+        },
+        {
+          "expression": "0x9B",
+          "line": 160,
+          "symbol": "MOVE_BONEMERANG"
+        },
+        {
+          "expression": "0x9C",
+          "line": 161,
+          "symbol": "MOVE_REST"
+        },
+        {
+          "expression": "0x9D",
+          "line": 162,
+          "symbol": "MOVE_ROCKSLIDE"
+        },
+        {
+          "expression": "0x9E",
+          "line": 163,
+          "symbol": "MOVE_HYPERFANG"
+        },
+        {
+          "expression": "0x9F",
+          "line": 164,
+          "symbol": "MOVE_SHARPEN"
+        },
+        {
+          "expression": "0xA0",
+          "line": 165,
+          "symbol": "MOVE_CONVERSION"
+        },
+        {
+          "expression": "0xA1",
+          "line": 166,
+          "symbol": "MOVE_TRIATTACK"
+        },
+        {
+          "expression": "0xA2",
+          "line": 167,
+          "symbol": "MOVE_SUPERFANG"
+        },
+        {
+          "expression": "0xA3",
+          "line": 168,
+          "symbol": "MOVE_SLASH"
+        },
+        {
+          "expression": "0xA4",
+          "line": 169,
+          "symbol": "MOVE_SUBSTITUTE"
+        },
+        {
+          "expression": "0xA5",
+          "line": 170,
+          "symbol": "MOVE_STRUGGLE"
+        },
+        {
+          "expression": "0xA6",
+          "line": 171,
+          "symbol": "MOVE_SKETCH"
+        },
+        {
+          "expression": "0xA7",
+          "line": 172,
+          "symbol": "MOVE_TRIPLEKICK"
+        },
+        {
+          "expression": "0xA8",
+          "line": 173,
+          "symbol": "MOVE_THIEF"
+        },
+        {
+          "expression": "0xA9",
+          "line": 174,
+          "symbol": "MOVE_SPIDERWEB"
+        },
+        {
+          "expression": "0xAA",
+          "line": 175,
+          "symbol": "MOVE_MINDREADER"
+        },
+        {
+          "expression": "0xAB",
+          "line": 176,
+          "symbol": "MOVE_NIGHTMARE"
+        },
+        {
+          "expression": "0xAC",
+          "line": 177,
+          "symbol": "MOVE_FLAMEWHEEL"
+        },
+        {
+          "expression": "0xAD",
+          "line": 178,
+          "symbol": "MOVE_SNORE"
+        },
+        {
+          "expression": "0xAE",
+          "line": 179,
+          "symbol": "MOVE_CURSE"
+        },
+        {
+          "expression": "0xAF",
+          "line": 180,
+          "symbol": "MOVE_FLAIL"
+        },
+        {
+          "expression": "0xB0",
+          "line": 181,
+          "symbol": "MOVE_CONVERSION2"
+        },
+        {
+          "expression": "0xB1",
+          "line": 182,
+          "symbol": "MOVE_AEROBLAST"
+        },
+        {
+          "expression": "0xB2",
+          "line": 183,
+          "symbol": "MOVE_COTTONSPORE"
+        },
+        {
+          "expression": "0xB3",
+          "line": 184,
+          "symbol": "MOVE_REVERSAL"
+        },
+        {
+          "expression": "0xB4",
+          "line": 185,
+          "symbol": "MOVE_SPITE"
+        },
+        {
+          "expression": "0xB5",
+          "line": 186,
+          "symbol": "MOVE_POWDERSNOW"
+        },
+        {
+          "expression": "0xB6",
+          "line": 187,
+          "symbol": "MOVE_PROTECT"
+        },
+        {
+          "expression": "0xB7",
+          "line": 188,
+          "symbol": "MOVE_MACHPUNCH"
+        },
+        {
+          "expression": "0xB8",
+          "line": 189,
+          "symbol": "MOVE_SCARYFACE"
+        },
+        {
+          "expression": "0xB9",
+          "line": 190,
+          "symbol": "MOVE_FEINTATTACK"
+        },
+        {
+          "expression": "0xBA",
+          "line": 191,
+          "symbol": "MOVE_SWEETKISS"
+        },
+        {
+          "expression": "0xBB",
+          "line": 192,
+          "symbol": "MOVE_BELLYDRUM"
+        },
+        {
+          "expression": "0xBC",
+          "line": 193,
+          "symbol": "MOVE_SLUDGEBOMB"
+        },
+        {
+          "expression": "0xBD",
+          "line": 194,
+          "symbol": "MOVE_MUDSLAP"
+        },
+        {
+          "expression": "0xBE",
+          "line": 195,
+          "symbol": "MOVE_OCTAZOOKA"
+        },
+        {
+          "expression": "0xBF",
+          "line": 196,
+          "symbol": "MOVE_SPIKES"
+        },
+        {
+          "expression": "0xC0",
+          "line": 197,
+          "symbol": "MOVE_ZAPCANNON"
+        },
+        {
+          "expression": "0xC1",
+          "line": 198,
+          "symbol": "MOVE_FORESIGHT"
+        },
+        {
+          "expression": "0xC2",
+          "line": 199,
+          "symbol": "MOVE_DESTINYBOND"
+        },
+        {
+          "expression": "0xC3",
+          "line": 200,
+          "symbol": "MOVE_PERISHSONG"
+        },
+        {
+          "expression": "0xC4",
+          "line": 201,
+          "symbol": "MOVE_ICYWIND"
+        },
+        {
+          "expression": "0xC5",
+          "line": 202,
+          "symbol": "MOVE_DETECT"
+        },
+        {
+          "expression": "0xC6",
+          "line": 203,
+          "symbol": "MOVE_BONERUSH"
+        },
+        {
+          "expression": "0xC7",
+          "line": 204,
+          "symbol": "MOVE_LOCKON"
+        },
+        {
+          "expression": "0xC8",
+          "line": 205,
+          "symbol": "MOVE_OUTRAGE"
+        },
+        {
+          "expression": "0xC9",
+          "line": 206,
+          "symbol": "MOVE_SANDSTORM"
+        },
+        {
+          "expression": "0xCA",
+          "line": 207,
+          "symbol": "MOVE_GIGADRAIN"
+        },
+        {
+          "expression": "0xCB",
+          "line": 208,
+          "symbol": "MOVE_ENDURE"
+        },
+        {
+          "expression": "0xCC",
+          "line": 209,
+          "symbol": "MOVE_CHARM"
+        },
+        {
+          "expression": "0xCD",
+          "line": 210,
+          "symbol": "MOVE_ROLLOUT"
+        },
+        {
+          "expression": "0xCE",
+          "line": 211,
+          "symbol": "MOVE_FALSESWIPE"
+        },
+        {
+          "expression": "0xCF",
+          "line": 212,
+          "symbol": "MOVE_SWAGGER"
+        },
+        {
+          "expression": "0xD0",
+          "line": 213,
+          "symbol": "MOVE_MILKDRINK"
+        },
+        {
+          "expression": "0xD1",
+          "line": 214,
+          "symbol": "MOVE_SPARK"
+        },
+        {
+          "expression": "0xD2",
+          "line": 215,
+          "symbol": "MOVE_FURYCUTTER"
+        },
+        {
+          "expression": "0xD3",
+          "line": 216,
+          "symbol": "MOVE_STEELWING"
+        },
+        {
+          "expression": "0xD4",
+          "line": 217,
+          "symbol": "MOVE_MEANLOOK"
+        },
+        {
+          "expression": "0xD5",
+          "line": 218,
+          "symbol": "MOVE_ATTRACT"
+        },
+        {
+          "expression": "0xD6",
+          "line": 219,
+          "symbol": "MOVE_SLEEPTALK"
+        },
+        {
+          "expression": "0xD7",
+          "line": 220,
+          "symbol": "MOVE_HEALBELL"
+        },
+        {
+          "expression": "0xD8",
+          "line": 221,
+          "symbol": "MOVE_RETURN"
+        },
+        {
+          "expression": "0xD9",
+          "line": 222,
+          "symbol": "MOVE_PRESENT"
+        },
+        {
+          "expression": "0xDA",
+          "line": 223,
+          "symbol": "MOVE_FRUSTRATION"
+        },
+        {
+          "expression": "0xDB",
+          "line": 224,
+          "symbol": "MOVE_SAFEGUARD"
+        },
+        {
+          "expression": "0xDC",
+          "line": 225,
+          "symbol": "MOVE_PAINSPLIT"
+        },
+        {
+          "expression": "0xDD",
+          "line": 226,
+          "symbol": "MOVE_SACREDFIRE"
+        },
+        {
+          "expression": "0xDE",
+          "line": 227,
+          "symbol": "MOVE_MAGNITUDE"
+        },
+        {
+          "expression": "0xDF",
+          "line": 228,
+          "symbol": "MOVE_DYNAMICPUNCH"
+        },
+        {
+          "expression": "0xE0",
+          "line": 229,
+          "symbol": "MOVE_MEGAHORN"
+        },
+        {
+          "expression": "0xE1",
+          "line": 230,
+          "symbol": "MOVE_DRAGONBREATH"
+        },
+        {
+          "expression": "0xE2",
+          "line": 231,
+          "symbol": "MOVE_BATONPASS"
+        },
+        {
+          "expression": "0xE3",
+          "line": 232,
+          "symbol": "MOVE_ENCORE"
+        },
+        {
+          "expression": "0xE4",
+          "line": 233,
+          "symbol": "MOVE_PURSUIT"
+        },
+        {
+          "expression": "0xE5",
+          "line": 234,
+          "symbol": "MOVE_RAPIDSPIN"
+        },
+        {
+          "expression": "0xE6",
+          "line": 235,
+          "symbol": "MOVE_SWEETSCENT"
+        },
+        {
+          "expression": "0xE7",
+          "line": 236,
+          "symbol": "MOVE_IRONTAIL"
+        },
+        {
+          "expression": "0xE8",
+          "line": 237,
+          "symbol": "MOVE_METALCLAW"
+        },
+        {
+          "expression": "0xE9",
+          "line": 238,
+          "symbol": "MOVE_VITALTHROW"
+        },
+        {
+          "expression": "0xEA",
+          "line": 239,
+          "symbol": "MOVE_MORNINGSUN"
+        },
+        {
+          "expression": "0xEB",
+          "line": 240,
+          "symbol": "MOVE_SYNTHESIS"
+        },
+        {
+          "expression": "0xEC",
+          "line": 241,
+          "symbol": "MOVE_MOONLIGHT"
+        },
+        {
+          "expression": "0xED",
+          "line": 242,
+          "symbol": "MOVE_HIDDENPOWER"
+        },
+        {
+          "expression": "0xEE",
+          "line": 243,
+          "symbol": "MOVE_CROSSCHOP"
+        },
+        {
+          "expression": "0xEF",
+          "line": 244,
+          "symbol": "MOVE_TWISTER"
+        },
+        {
+          "expression": "0xF0",
+          "line": 245,
+          "symbol": "MOVE_RAINDANCE"
+        },
+        {
+          "expression": "0xF1",
+          "line": 246,
+          "symbol": "MOVE_SUNNYDAY"
+        },
+        {
+          "expression": "0xF2",
+          "line": 247,
+          "symbol": "MOVE_CRUNCH"
+        },
+        {
+          "expression": "0xF3",
+          "line": 248,
+          "symbol": "MOVE_MIRRORCOAT"
+        },
+        {
+          "expression": "0xF4",
+          "line": 249,
+          "symbol": "MOVE_PSYCHUP"
+        },
+        {
+          "expression": "0xF5",
+          "line": 250,
+          "symbol": "MOVE_EXTREMESPEED"
+        },
+        {
+          "expression": "0xF6",
+          "line": 251,
+          "symbol": "MOVE_ANCIENTPOWER"
+        },
+        {
+          "expression": "0xF7",
+          "line": 252,
+          "symbol": "MOVE_SHADOWBALL"
+        },
+        {
+          "expression": "0xF8",
+          "line": 253,
+          "symbol": "MOVE_FUTURESIGHT"
+        },
+        {
+          "expression": "0xF9",
+          "line": 254,
+          "symbol": "MOVE_ROCKSMASH"
+        },
+        {
+          "expression": "0xFA",
+          "line": 255,
+          "symbol": "MOVE_WHIRLPOOL"
+        },
+        {
+          "expression": "0xFB",
+          "line": 256,
+          "symbol": "MOVE_BEATUP"
+        },
+        {
+          "expression": "0xFC",
+          "line": 257,
+          "symbol": "MOVE_FAKEOUT"
+        },
+        {
+          "expression": "0xFD",
+          "line": 258,
+          "symbol": "MOVE_UPROAR"
+        },
+        {
+          "expression": "0xFE",
+          "line": 259,
+          "symbol": "MOVE_STOCKPILE"
+        },
+        {
+          "expression": "0xFF",
+          "line": 260,
+          "symbol": "MOVE_SPITUP"
+        },
+        {
+          "expression": "0x100",
+          "line": 261,
+          "symbol": "MOVE_SWALLOW"
+        },
+        {
+          "expression": "0x101",
+          "line": 262,
+          "symbol": "MOVE_HEATWAVE"
+        },
+        {
+          "expression": "0x102",
+          "line": 263,
+          "symbol": "MOVE_HAIL"
+        },
+        {
+          "expression": "0x103",
+          "line": 264,
+          "symbol": "MOVE_TORMENT"
+        },
+        {
+          "expression": "0x104",
+          "line": 265,
+          "symbol": "MOVE_FLATTER"
+        },
+        {
+          "expression": "0x105",
+          "line": 266,
+          "symbol": "MOVE_WILLOWISP"
+        },
+        {
+          "expression": "0x106",
+          "line": 267,
+          "symbol": "MOVE_MEMENTO"
+        },
+        {
+          "expression": "0x107",
+          "line": 268,
+          "symbol": "MOVE_FACADE"
+        },
+        {
+          "expression": "0x108",
+          "line": 269,
+          "symbol": "MOVE_FOCUSPUNCH"
+        },
+        {
+          "expression": "0x109",
+          "line": 270,
+          "symbol": "MOVE_SMELLINGSALTS"
+        },
+        {
+          "expression": "0x10A",
+          "line": 271,
+          "symbol": "MOVE_FOLLOWME"
+        },
+        {
+          "expression": "0x10B",
+          "line": 272,
+          "symbol": "MOVE_NATUREPOWER"
+        },
+        {
+          "expression": "0x10C",
+          "line": 273,
+          "symbol": "MOVE_CHARGE"
+        },
+        {
+          "expression": "0x10D",
+          "line": 274,
+          "symbol": "MOVE_TAUNT"
+        },
+        {
+          "expression": "0x10E",
+          "line": 275,
+          "symbol": "MOVE_HELPINGHAND"
+        },
+        {
+          "expression": "0x10F",
+          "line": 276,
+          "symbol": "MOVE_TRICK"
+        },
+        {
+          "expression": "0x110",
+          "line": 277,
+          "symbol": "MOVE_ROLEPLAY"
+        },
+        {
+          "expression": "0x111",
+          "line": 278,
+          "symbol": "MOVE_WISH"
+        },
+        {
+          "expression": "0x112",
+          "line": 279,
+          "symbol": "MOVE_ASSIST"
+        },
+        {
+          "expression": "0x113",
+          "line": 280,
+          "symbol": "MOVE_INGRAIN"
+        },
+        {
+          "expression": "0x114",
+          "line": 281,
+          "symbol": "MOVE_SUPERPOWER"
+        },
+        {
+          "expression": "0x115",
+          "line": 282,
+          "symbol": "MOVE_MAGICCOAT"
+        },
+        {
+          "expression": "0x116",
+          "line": 283,
+          "symbol": "MOVE_RECYCLE"
+        },
+        {
+          "expression": "0x117",
+          "line": 284,
+          "symbol": "MOVE_REVENGE"
+        },
+        {
+          "expression": "0x118",
+          "line": 285,
+          "symbol": "MOVE_BRICKBREAK"
+        },
+        {
+          "expression": "0x119",
+          "line": 286,
+          "symbol": "MOVE_YAWN"
+        },
+        {
+          "expression": "0x11A",
+          "line": 287,
+          "symbol": "MOVE_KNOCKOFF"
+        },
+        {
+          "expression": "0x11B",
+          "line": 288,
+          "symbol": "MOVE_ENDEAVOR"
+        },
+        {
+          "expression": "0x11C",
+          "line": 289,
+          "symbol": "MOVE_ERUPTION"
+        },
+        {
+          "expression": "0x11D",
+          "line": 290,
+          "symbol": "MOVE_SKILLSWAP"
+        },
+        {
+          "expression": "0x11E",
+          "line": 291,
+          "symbol": "MOVE_IMPRISON"
+        },
+        {
+          "expression": "0x11F",
+          "line": 292,
+          "symbol": "MOVE_REFRESH"
+        },
+        {
+          "expression": "0x120",
+          "line": 293,
+          "symbol": "MOVE_GRUDGE"
+        },
+        {
+          "expression": "0x121",
+          "line": 294,
+          "symbol": "MOVE_SNATCH"
+        },
+        {
+          "expression": "0x122",
+          "line": 295,
+          "symbol": "MOVE_SECRETPOWER"
+        },
+        {
+          "expression": "0x123",
+          "line": 296,
+          "symbol": "MOVE_DIVE"
+        },
+        {
+          "expression": "0x124",
+          "line": 297,
+          "symbol": "MOVE_ARMTHRUST"
+        },
+        {
+          "expression": "0x125",
+          "line": 298,
+          "symbol": "MOVE_CAMOUFLAGE"
+        },
+        {
+          "expression": "0x126",
+          "line": 299,
+          "symbol": "MOVE_TAILGLOW"
+        },
+        {
+          "expression": "0x127",
+          "line": 300,
+          "symbol": "MOVE_LUSTERPURGE"
+        },
+        {
+          "expression": "0x128",
+          "line": 301,
+          "symbol": "MOVE_MISTBALL"
+        },
+        {
+          "expression": "0x129",
+          "line": 302,
+          "symbol": "MOVE_FEATHERDANCE"
+        },
+        {
+          "expression": "0x12A",
+          "line": 303,
+          "symbol": "MOVE_TEETERDANCE"
+        },
+        {
+          "expression": "0x12B",
+          "line": 304,
+          "symbol": "MOVE_BLAZEKICK"
+        },
+        {
+          "expression": "0x12C",
+          "line": 305,
+          "symbol": "MOVE_MUDSPORT"
+        },
+        {
+          "expression": "0x12D",
+          "line": 306,
+          "symbol": "MOVE_ICEBALL"
+        },
+        {
+          "expression": "0x12E",
+          "line": 307,
+          "symbol": "MOVE_NEEDLEARM"
+        },
+        {
+          "expression": "0x12F",
+          "line": 308,
+          "symbol": "MOVE_SLACKOFF"
+        },
+        {
+          "expression": "0x130",
+          "line": 309,
+          "symbol": "MOVE_HYPERVOICE"
+        },
+        {
+          "expression": "0x131",
+          "line": 310,
+          "symbol": "MOVE_POISONFANG"
+        },
+        {
+          "expression": "0x132",
+          "line": 311,
+          "symbol": "MOVE_CRUSHCLAW"
+        },
+        {
+          "expression": "0x133",
+          "line": 312,
+          "symbol": "MOVE_BLASTBURN"
+        },
+        {
+          "expression": "0x134",
+          "line": 313,
+          "symbol": "MOVE_HYDROCANNON"
+        },
+        {
+          "expression": "0x135",
+          "line": 314,
+          "symbol": "MOVE_METEORMASH"
+        },
+        {
+          "expression": "0x136",
+          "line": 315,
+          "symbol": "MOVE_ASTONISH"
+        },
+        {
+          "expression": "0x137",
+          "line": 316,
+          "symbol": "MOVE_WEATHERBALL"
+        },
+        {
+          "expression": "0x138",
+          "line": 317,
+          "symbol": "MOVE_AROMATHERAPY"
+        },
+        {
+          "expression": "0x139",
+          "line": 318,
+          "symbol": "MOVE_FAKETEARS"
+        },
+        {
+          "expression": "0x13A",
+          "line": 319,
+          "symbol": "MOVE_AIRCUTTER"
+        },
+        {
+          "expression": "0x13B",
+          "line": 320,
+          "symbol": "MOVE_OVERHEAT"
+        },
+        {
+          "expression": "0x13C",
+          "line": 321,
+          "symbol": "MOVE_ODORSLEUTH"
+        },
+        {
+          "expression": "0x13D",
+          "line": 322,
+          "symbol": "MOVE_ROCKTOMB"
+        },
+        {
+          "expression": "0x13E",
+          "line": 323,
+          "symbol": "MOVE_SILVERWIND"
+        },
+        {
+          "expression": "0x13F",
+          "line": 324,
+          "symbol": "MOVE_METALSOUND"
+        },
+        {
+          "expression": "0x140",
+          "line": 325,
+          "symbol": "MOVE_GRASSWHISTLE"
+        },
+        {
+          "expression": "0x141",
+          "line": 326,
+          "symbol": "MOVE_TICKLE"
+        },
+        {
+          "expression": "0x142",
+          "line": 327,
+          "symbol": "MOVE_COSMICPOWER"
+        },
+        {
+          "expression": "0x143",
+          "line": 328,
+          "symbol": "MOVE_WATERSPOUT"
+        },
+        {
+          "expression": "0x144",
+          "line": 329,
+          "symbol": "MOVE_SIGNALBEAM"
+        },
+        {
+          "expression": "0x145",
+          "line": 330,
+          "symbol": "MOVE_SHADOWPUNCH"
+        },
+        {
+          "expression": "0x146",
+          "line": 331,
+          "symbol": "MOVE_EXTRASENSORY"
+        },
+        {
+          "expression": "0x147",
+          "line": 332,
+          "symbol": "MOVE_SKYUPPERCUT"
+        },
+        {
+          "expression": "0x148",
+          "line": 333,
+          "symbol": "MOVE_SANDTOMB"
+        },
+        {
+          "expression": "0x149",
+          "line": 334,
+          "symbol": "MOVE_SHEERCOLD"
+        },
+        {
+          "expression": "0x14A",
+          "line": 335,
+          "symbol": "MOVE_MUDDYWATER"
+        },
+        {
+          "expression": "0x14B",
+          "line": 336,
+          "symbol": "MOVE_BULLETSEED"
+        },
+        {
+          "expression": "0x14C",
+          "line": 337,
+          "symbol": "MOVE_AERIALACE"
+        },
+        {
+          "expression": "0x14D",
+          "line": 338,
+          "symbol": "MOVE_ICICLESPEAR"
+        },
+        {
+          "expression": "0x14E",
+          "line": 339,
+          "symbol": "MOVE_IRONDEFENSE"
+        },
+        {
+          "expression": "0x14F",
+          "line": 340,
+          "symbol": "MOVE_BLOCK"
+        },
+        {
+          "expression": "0x150",
+          "line": 341,
+          "symbol": "MOVE_HOWL"
+        },
+        {
+          "expression": "0x151",
+          "line": 342,
+          "symbol": "MOVE_DRAGONCLAW"
+        },
+        {
+          "expression": "0x152",
+          "line": 343,
+          "symbol": "MOVE_FRENZYPLANT"
+        },
+        {
+          "expression": "0x153",
+          "line": 344,
+          "symbol": "MOVE_BULKUP"
+        },
+        {
+          "expression": "0x154",
+          "line": 345,
+          "symbol": "MOVE_BOUNCE"
+        },
+        {
+          "expression": "0x155",
+          "line": 346,
+          "symbol": "MOVE_MUDSHOT"
+        },
+        {
+          "expression": "0x156",
+          "line": 347,
+          "symbol": "MOVE_POISONTAIL"
+        },
+        {
+          "expression": "0x157",
+          "line": 348,
+          "symbol": "MOVE_COVET"
+        },
+        {
+          "expression": "0x158",
+          "line": 349,
+          "symbol": "MOVE_VOLTTACKLE"
+        },
+        {
+          "expression": "0x159",
+          "line": 350,
+          "symbol": "MOVE_MAGICALLEAF"
+        },
+        {
+          "expression": "0x15A",
+          "line": 351,
+          "symbol": "MOVE_WATERSPORT"
+        },
+        {
+          "expression": "0x15B",
+          "line": 352,
+          "symbol": "MOVE_CALMMIND"
+        },
+        {
+          "expression": "0x15C",
+          "line": 353,
+          "symbol": "MOVE_LEAFBLADE"
+        },
+        {
+          "expression": "0x15D",
+          "line": 354,
+          "symbol": "MOVE_DRAGONDANCE"
+        },
+        {
+          "expression": "0x15E",
+          "line": 355,
+          "symbol": "MOVE_ROCKBLAST"
+        },
+        {
+          "expression": "0x15F",
+          "line": 356,
+          "symbol": "MOVE_SHOCKWAVE"
+        },
+        {
+          "expression": "0x160",
+          "line": 357,
+          "symbol": "MOVE_WATERPULSE"
+        },
+        {
+          "expression": "0x161",
+          "line": 358,
+          "symbol": "MOVE_DOOMDESIRE"
+        },
+        {
+          "expression": "0x162",
+          "line": 359,
+          "symbol": "MOVE_PSYCHOBOOST"
+        },
+        {
+          "expression": "0x163",
+          "line": 360,
+          "symbol": "MOVE_LEECHFANG"
+        },
+        {
+          "expression": "0x164",
+          "line": 361,
+          "symbol": "MOVE_AIRSLASH"
+        },
+        {
+          "expression": "0x165",
+          "line": 362,
+          "symbol": "MOVE_AQUAJET"
+        },
+        {
+          "expression": "0x166",
+          "line": 363,
+          "symbol": "MOVE_AQUATAIL"
+        },
+        {
+          "expression": "0x167",
+          "line": 364,
+          "symbol": "MOVE_AURASPHERE"
+        },
+        {
+          "expression": "0x168",
+          "line": 365,
+          "symbol": "MOVE_AVALANCHE"
+        },
+        {
+          "expression": "0x169",
+          "line": 366,
+          "symbol": "MOVE_BRAVEBIRD"
+        },
+        {
+          "expression": "0x16A",
+          "line": 367,
+          "symbol": "MOVE_BUGBUZZ"
+        },
+        {
+          "expression": "0x16B",
+          "line": 368,
+          "symbol": "MOVE_BULLETPUNCH"
+        },
+        {
+          "expression": "0x16C",
+          "line": 369,
+          "symbol": "MOVE_CHARGEBEAM"
+        },
+        {
+          "expression": "0x16D",
+          "line": 370,
+          "symbol": "MOVE_CLOSECOMBAT"
+        },
+        {
+          "expression": "0x16E",
+          "line": 371,
+          "symbol": "MOVE_CROSSPOISON"
+        },
+        {
+          "expression": "0x16F",
+          "line": 372,
+          "symbol": "MOVE_DARKPULSE"
+        },
+        {
+          "expression": "0x170",
+          "line": 373,
+          "symbol": "MOVE_DISCHARGE"
+        },
+        {
+          "expression": "0x171",
+          "line": 374,
+          "symbol": "MOVE_DRACOMETEOR"
+        },
+        {
+          "expression": "0x172",
+          "line": 375,
+          "symbol": "MOVE_DRAGONPULSE"
+        },
+        {
+          "expression": "0x173",
+          "line": 376,
+          "symbol": "MOVE_DRAINPUNCH"
+        },
+        {
+          "expression": "0x174",
+          "line": 377,
+          "symbol": "MOVE_EARTHPOWER"
+        },
+        {
+          "expression": "0x175",
+          "line": 378,
+          "symbol": "MOVE_ENERGYBALL"
+        },
+        {
+          "expression": "0x176",
+          "line": 379,
+          "symbol": "MOVE_FOCUSBLAST"
+        },
+        {
+          "expression": "0x177",
+          "line": 380,
+          "symbol": "MOVE_FORCEPALM"
+        },
+        {
+          "expression": "0x178",
+          "line": 381,
+          "symbol": "MOVE_GIGAIMPACT"
+        },
+        {
+          "expression": "0x179",
+          "line": 382,
+          "symbol": "MOVE_GRASSKNOT"
+        },
+        {
+          "expression": "0x17A",
+          "line": 383,
+          "symbol": "MOVE_GUNKSHOT"
+        },
+        {
+          "expression": "0x17B",
+          "line": 384,
+          "symbol": "MOVE_HAMMERARM"
+        },
+        {
+          "expression": "0x17C",
+          "line": 385,
+          "symbol": "MOVE_HEADSMASH"
+        },
+        {
+          "expression": "0x17D",
+          "line": 386,
+          "symbol": "MOVE_ICESHARD"
+        },
+        {
+          "expression": "0x17E",
+          "line": 387,
+          "symbol": "MOVE_IRONHEAD"
+        },
+        {
+          "expression": "0x17F",
+          "line": 388,
+          "symbol": "MOVE_LAVAPLUME"
+        },
+        {
+          "expression": "0x180",
+          "line": 389,
+          "symbol": "MOVE_MAGNETBOMB"
+        },
+        {
+          "expression": "0x181",
+          "line": 390,
+          "symbol": "MOVE_MUDBOMB"
+        },
+        {
+          "expression": "0x182",
+          "line": 391,
+          "symbol": "MOVE_NASTYPLOT"
+        },
+        {
+          "expression": "0x183",
+          "line": 392,
+          "symbol": "MOVE_NIGHTSLASH"
+        },
+        {
+          "expression": "0x184",
+          "line": 393,
+          "symbol": "MOVE_OMINOUSWIND"
+        },
+        {
+          "expression": "0x185",
+          "line": 394,
+          "symbol": "MOVE_POWERGEM"
+        },
+        {
+          "expression": "0x186",
+          "line": 395,
+          "symbol": "MOVE_POWERWHIP"
+        },
+        {
+          "expression": "0x187",
+          "line": 396,
+          "symbol": "MOVE_PSYCHOCUT"
+        },
+        {
+          "expression": "0x188",
+          "line": 397,
+          "symbol": "MOVE_ROCKCLIMB"
+        },
+        {
+          "expression": "0x189",
+          "line": 398,
+          "symbol": "MOVE_ROCKPOLISH"
+        },
+        {
+          "expression": "0x18A",
+          "line": 399,
+          "symbol": "MOVE_ROCKWRECKER"
+        },
+        {
+          "expression": "0x18B",
+          "line": 400,
+          "symbol": "MOVE_ROOST"
+        },
+        {
+          "expression": "0x18C",
+          "line": 401,
+          "symbol": "MOVE_SEEDBOMB"
+        },
+        {
+          "expression": "0x18D",
+          "line": 402,
+          "symbol": "MOVE_SHADOWCLAW"
+        },
+        {
+          "expression": "0x18E",
+          "line": 403,
+          "symbol": "MOVE_SHADOWSNEAK"
+        },
+        {
+          "expression": "0x18F",
+          "line": 404,
+          "symbol": "MOVE_VACUUMWAVE"
+        },
+        {
+          "expression": "0x190",
+          "line": 405,
+          "symbol": "MOVE_XSCISSOR"
+        },
+        {
+          "expression": "0x191",
+          "line": 406,
+          "symbol": "MOVE_ZENHEADBUTT"
+        },
+        {
+          "expression": "0x192",
+          "line": 407,
+          "symbol": "MOVE_SWITCHEROO"
+        },
+        {
+          "expression": "0x193",
+          "line": 408,
+          "symbol": "MOVE_DRILLRUN"
+        },
+        {
+          "expression": "0x194",
+          "line": 409,
+          "symbol": "MOVE_BULLDOZE"
+        },
+        {
+          "expression": "0x195",
+          "line": 410,
+          "symbol": "MOVE_ELECTROWEB"
+        },
+        {
+          "expression": "0x196",
+          "line": 411,
+          "symbol": "MOVE_FLAMECHARGE"
+        },
+        {
+          "expression": "0x197",
+          "line": 412,
+          "symbol": "MOVE_FROSTBREATH"
+        },
+        {
+          "expression": "0x198",
+          "line": 413,
+          "symbol": "MOVE_HEARTSTAMP"
+        },
+        {
+          "expression": "0x199",
+          "line": 414,
+          "symbol": "MOVE_HONECLAWS"
+        },
+        {
+          "expression": "0x19A",
+          "line": 415,
+          "symbol": "MOVE_HORNLEECH"
+        },
+        {
+          "expression": "0x19B",
+          "line": 416,
+          "symbol": "MOVE_COIL"
+        },
+        {
+          "expression": "0x19C",
+          "line": 417,
+          "symbol": "MOVE_HURRICANE"
+        },
+        {
+          "expression": "0x19D",
+          "line": 418,
+          "symbol": "MOVE_ICICLECRASH"
+        },
+        {
+          "expression": "0x19E",
+          "line": 419,
+          "symbol": "MOVE_WORKUP"
+        },
+        {
+          "expression": "0x19F",
+          "line": 420,
+          "symbol": "MOVE_QUIVERDANCE"
+        },
+        {
+          "expression": "0x1A0",
+          "line": 421,
+          "symbol": "MOVE_LEAFTORNADO"
+        },
+        {
+          "expression": "0x1A1",
+          "line": 422,
+          "symbol": "MOVE_LOWSWEEP"
+        },
+        {
+          "expression": "0x1A2",
+          "line": 423,
+          "symbol": "MOVE_SNARL"
+        },
+        {
+          "expression": "0x1A3",
+          "line": 424,
+          "symbol": "MOVE_STRUGGLEBUG"
+        },
+        {
+          "expression": "0x1A4",
+          "line": 425,
+          "symbol": "MOVE_STEAMROLLER"
+        },
+        {
+          "expression": "0x1A5",
+          "line": 426,
+          "symbol": "MOVE_STORMTHROW"
+        },
+        {
+          "expression": "0x1A6",
+          "line": 427,
+          "symbol": "MOVE_VENOSHOCK"
+        },
+        {
+          "expression": "0x1A7",
+          "line": 428,
+          "symbol": "MOVE_WILDCHARGE"
+        },
+        {
+          "expression": "0x1A8",
+          "line": 429,
+          "symbol": "MOVE_POISONJAB"
+        },
+        {
+          "expression": "0x1A9",
+          "line": 430,
+          "symbol": "MOVE_ACIDSPRAY"
+        },
+        {
+          "expression": "0x1AA",
+          "line": 431,
+          "symbol": "MOVE_FIERYDANCE"
+        },
+        {
+          "expression": "0x1AB",
+          "line": 432,
+          "symbol": "MOVE_CLEARSMOG"
+        },
+        {
+          "expression": "0x1AC",
+          "line": 433,
+          "symbol": "MOVE_LEAFSTORM"
+        },
+        {
+          "expression": "0x1AD",
+          "line": 434,
+          "symbol": "MOVE_STONEEDGE"
+        },
+        {
+          "expression": "0x1AE",
+          "line": 435,
+          "symbol": "MOVE_PAYBACK"
+        },
+        {
+          "expression": "0x1AF",
+          "line": 436,
+          "symbol": "MOVE_FIREFANG"
+        },
+        {
+          "expression": "0x1B0",
+          "line": 437,
+          "symbol": "MOVE_ICEFANG"
+        },
+        {
+          "expression": "0x1B1",
+          "line": 438,
+          "symbol": "MOVE_THUNDERFANG"
+        },
+        {
+          "expression": "0x1B2",
+          "line": 439,
+          "symbol": "MOVE_FLAREBLITZ"
+        },
+        {
+          "expression": "0x1B3",
+          "line": 440,
+          "symbol": "MOVE_INFERNO"
+        },
+        {
+          "expression": "0x1B4",
+          "line": 441,
+          "symbol": "MOVE_HEX"
+        },
+        {
+          "expression": "0x1B5",
+          "line": 442,
+          "symbol": "MOVE_DUALCHOP"
+        },
+        {
+          "expression": "0x1B6",
+          "line": 443,
+          "symbol": "MOVE_DOUBLEHIT"
+        },
+        {
+          "expression": "0x1B7",
+          "line": 444,
+          "symbol": "MOVE_COTTONGUARD"
+        },
+        {
+          "expression": "0x1B8",
+          "line": 445,
+          "symbol": "MOVE_ACROBATICS"
+        },
+        {
+          "expression": "0x1B9",
+          "line": 446,
+          "symbol": "MOVE_FLAMEBURST"
+        },
+        {
+          "expression": "0x1BA",
+          "line": 447,
+          "symbol": "MOVE_UTURN"
+        },
+        {
+          "expression": "0x1BB",
+          "line": 448,
+          "symbol": "MOVE_VOLTSWITCH"
+        },
+        {
+          "expression": "0x1BC",
+          "line": 449,
+          "symbol": "MOVE_DRAGONTAIL"
+        },
+        {
+          "expression": "0x1BD",
+          "line": 450,
+          "symbol": "MOVE_CIRCLETHROW"
+        },
+        {
+          "expression": "0x1BE",
+          "line": 451,
+          "symbol": "MOVE_MIRRORSHOT"
+        },
+        {
+          "expression": "0x1BF",
+          "line": 452,
+          "symbol": "MOVE_WOODHAMMER"
+        },
+        {
+          "expression": "0x1C0",
+          "line": 453,
+          "symbol": "MOVE_HEALPULSE"
+        },
+        {
+          "expression": "0x1C1",
+          "line": 454,
+          "symbol": "MOVE_FLASHCANNON"
+        },
+        {
+          "expression": "0x1C2",
+          "line": 455,
+          "symbol": "MOVE_BUGBITE"
+        },
+        {
+          "expression": "0x1C3",
+          "line": 456,
+          "symbol": "MOVE_PLUCK"
+        },
+        {
+          "expression": "0x1C4",
+          "line": 457,
+          "symbol": "MOVE_SHELLSMASH"
+        },
+        {
+          "expression": "0x1C5",
+          "line": 458,
+          "symbol": "MOVE_RAGEPOWDER"
+        },
+        {
+          "expression": "0x1C6",
+          "line": 459,
+          "symbol": "MOVE_WAKEUPSLAP"
+        },
+        {
+          "expression": "0x1C7",
+          "line": 460,
+          "symbol": "MOVE_RAZORSHELL"
+        },
+        {
+          "expression": "0x1C8",
+          "line": 461,
+          "symbol": "MOVE_COPYCAT"
+        },
+        {
+          "expression": "0x1C9",
+          "line": 462,
+          "symbol": "MOVE_MIRACLEEYE"
+        },
+        {
+          "expression": "0x1CA",
+          "line": 463,
+          "symbol": "MOVE_SUCKERPUNCH"
+        },
+        {
+          "expression": "0x1CB",
+          "line": 464,
+          "symbol": "MOVE_SCALD"
+        },
+        {
+          "expression": "0x1CC",
+          "line": 465,
+          "symbol": "MOVE_BRINE"
+        },
+        {
+          "expression": "0x1CD",
+          "line": 466,
+          "symbol": "MOVE_FAIRYWIND"
+        },
+        {
+          "expression": "0x1CE",
+          "line": 467,
+          "symbol": "MOVE_BABYDOLLEYES"
+        },
+        {
+          "expression": "0x1CF",
+          "line": 468,
+          "symbol": "MOVE_PLAYROUGH"
+        },
+        {
+          "expression": "0x1D0",
+          "line": 469,
+          "symbol": "MOVE_MOONBLAST"
+        },
+        {
+          "expression": "0x1D1",
+          "line": 470,
+          "symbol": "MOVE_DRAININGKISS"
+        },
+        {
+          "expression": "0x1D2",
+          "line": 471,
+          "symbol": "MOVE_DAZZLINGGLEAM"
+        },
+        {
+          "expression": "0x1D3",
+          "line": 472,
+          "symbol": "MOVE_DISARMINGVOICE"
+        },
+        {
+          "expression": "0x1D4",
+          "line": 473,
+          "symbol": "MOVE_STEALTHROCK"
+        },
+        {
+          "expression": "0x1D5",
+          "line": 474,
+          "symbol": "MOVE_TOXICSPIKES"
+        },
+        {
+          "expression": "0x1D6",
+          "line": 475,
+          "symbol": "MOVE_HEALINGWISH"
+        },
+        {
+          "expression": "0x1D7",
+          "line": 476,
+          "symbol": "MOVE_LUNARDANCE"
+        },
+        {
+          "expression": "0x1D8",
+          "line": 477,
+          "symbol": "MOVE_TAILWIND"
+        },
+        {
+          "expression": "0x1D9",
+          "line": 478,
+          "symbol": "MOVE_BOOMBURST"
+        },
+        {
+          "expression": "0x1DA",
+          "line": 479,
+          "symbol": "MOVE_INCINERATE"
+        },
+        {
+          "expression": "0x1DB",
+          "line": 480,
+          "symbol": "MOVE_WORRYSEED"
+        },
+        {
+          "expression": "0x1DC",
+          "line": 481,
+          "symbol": "MOVE_GASTROACID"
+        },
+        {
+          "expression": "0x1DD",
+          "line": 482,
+          "symbol": "MOVE_GEOMANCY"
+        },
+        {
+          "expression": "0x1DE",
+          "line": 483,
+          "symbol": "MOVE_FLOWERSHIELD"
+        },
+        {
+          "expression": "0x1DF",
+          "line": 484,
+          "symbol": "MOVE_ROTOTILLER"
+        },
+        {
+          "expression": "0x1E0",
+          "line": 485,
+          "symbol": "MOVE_SHIFTGEAR"
+        },
+        {
+          "expression": "0x1E1",
+          "line": 486,
+          "symbol": "MOVE_STICKYWEB"
+        },
+        {
+          "expression": "0x1E2",
+          "line": 487,
+          "symbol": "MOVE_STOREDPOWER"
+        },
+        {
+          "expression": "0x1E3",
+          "line": 488,
+          "symbol": "MOVE_ACUPRESSURE"
+        },
+        {
+          "expression": "0x1E4",
+          "line": 489,
+          "symbol": "MOVE_PUNISHMENT"
+        },
+        {
+          "expression": "0x1E5",
+          "line": 490,
+          "symbol": "MOVE_ASSURANCE"
+        },
+        {
+          "expression": "0x1E6",
+          "line": 491,
+          "symbol": "MOVE_DRAGONRUSH"
+        },
+        {
+          "expression": "0x1E7",
+          "line": 492,
+          "symbol": "MOVE_DARKVOID"
+        },
+        {
+          "expression": "0x1E8",
+          "line": 493,
+          "symbol": "MOVE_FEINT"
+        },
+        {
+          "expression": "0x1E9",
+          "line": 494,
+          "symbol": "MOVE_PHANTOMFORCE"
+        },
+        {
+          "expression": "0x1EA",
+          "line": 495,
+          "symbol": "MOVE_PETALBLIZZARD"
+        },
+        {
+          "expression": "0x1EB",
+          "line": 496,
+          "symbol": "MOVE_PLAYNICE"
+        },
+        {
+          "expression": "0x1EC",
+          "line": 497,
+          "symbol": "MOVE_ROAROFTIME"
+        },
+        {
+          "expression": "0x1ED",
+          "line": 498,
+          "symbol": "MOVE_SPACIALREND"
+        },
+        {
+          "expression": "0x1EE",
+          "line": 499,
+          "symbol": "MOVE_MAGMASTORM"
+        },
+        {
+          "expression": "0x1EF",
+          "line": 500,
+          "symbol": "MOVE_FINALGAMBIT"
+        },
+        {
+          "expression": "0x1F0",
+          "line": 501,
+          "symbol": "MOVE_SHADOWFORCE"
+        },
+        {
+          "expression": "0x1F1",
+          "line": 502,
+          "symbol": "MOVE_NUZZLE"
+        },
+        {
+          "expression": "0x1F2",
+          "line": 503,
+          "symbol": "MOVE_RETALIATE"
+        },
+        {
+          "expression": "0x1F3",
+          "line": 504,
+          "symbol": "MOVE_STEELYHIT"
+        },
+        {
+          "expression": "0x1F4",
+          "line": 505,
+          "symbol": "MOVE_JUDGMENT"
+        },
+        {
+          "expression": "0x1F5",
+          "line": 506,
+          "symbol": "MOVE_FREEZEDRY"
+        },
+        {
+          "expression": "0x1F6",
+          "line": 507,
+          "symbol": "MOVE_PSYSHOCK"
+        },
+        {
+          "expression": "0x1F7",
+          "line": 508,
+          "symbol": "MOVE_ROUND"
+        },
+        {
+          "expression": "0x1F8",
+          "line": 509,
+          "symbol": "MOVE_TAILSLAP"
+        },
+        {
+          "expression": "0x1F9",
+          "line": 510,
+          "symbol": "MOVE_GEARGRIND"
+        },
+        {
+          "expression": "0x1FA",
+          "line": 511,
+          "symbol": "MOVE_NATURALGIFT"
+        },
+        {
+          "expression": "0x1FB",
+          "line": 512,
+          "symbol": "MOVE_CHIPAWAY"
+        },
+        {
+          "expression": "0x1FC",
+          "line": 513,
+          "symbol": "MOVE_SMACKDOWN"
+        },
+        {
+          "expression": "0x1FD",
+          "line": 514,
+          "symbol": "MOVE_HYPERSPACEHOLE"
+        },
+        {
+          "expression": "0x1FE",
+          "line": 515,
+          "symbol": "MOVE_GYROBALL"
+        },
+        {
+          "expression": "0x1FF",
+          "line": 516,
+          "symbol": "MOVE_HYPERSPACEFURY"
+        },
+        {
+          "expression": "0x200",
+          "line": 517,
+          "symbol": "MOVE_ATTACKORDER"
+        },
+        {
+          "expression": "0x201",
+          "line": 518,
+          "symbol": "MOVE_DEFENDORDER"
+        },
+        {
+          "expression": "0x202",
+          "line": 519,
+          "symbol": "MOVE_HEALORDER"
+        },
+        {
+          "expression": "0x203",
+          "line": 520,
+          "symbol": "MOVE_CAPTIVATE"
+        },
+        {
+          "expression": "0x204",
+          "line": 521,
+          "symbol": "MOVE_DEFOG"
+        },
+        {
+          "expression": "0x205",
+          "line": 522,
+          "symbol": "MOVE_ORIGINPULSE"
+        },
+        {
+          "expression": "0x206",
+          "line": 523,
+          "symbol": "MOVE_PRECIPICEBLADES"
+        },
+        {
+          "expression": "0x207",
+          "line": 524,
+          "symbol": "MOVE_GUARDSWAP"
+        },
+        {
+          "expression": "0x208",
+          "line": 525,
+          "symbol": "MOVE_STEAMERUPTION"
+        },
+        {
+          "expression": "0x209",
+          "line": 526,
+          "symbol": "MOVE_METALBURST"
+        },
+        {
+          "expression": "0x20A",
+          "line": 527,
+          "symbol": "MOVE_MEFIRST"
+        },
+        {
+          "expression": "0x20B",
+          "line": 528,
+          "symbol": "MOVE_POWERSWAP"
+        },
+        {
+          "expression": "0x20C",
+          "line": 529,
+          "symbol": "MOVE_POWERTRICK"
+        },
+        {
+          "expression": "0x20D",
+          "line": 530,
+          "symbol": "MOVE_PSYCHOSHIFT"
+        },
+        {
+          "expression": "0x20E",
+          "line": 531,
+          "symbol": "MOVE_WRINGOUT"
+        },
+        {
+          "expression": "0x20F",
+          "line": 532,
+          "symbol": "MOVE_KINGSSHIELD"
+        },
+        {
+          "expression": "0x210",
+          "line": 533,
+          "symbol": "MOVE_PSYSTRIKE"
+        },
+        {
+          "expression": "0x211",
+          "line": 534,
+          "symbol": "MOVE_AUTOTOMIZE"
+        },
+        {
+          "expression": "0x212",
+          "line": 535,
+          "symbol": "MOVE_DIAMONDSTORM"
+        },
+        {
+          "expression": "0x213",
+          "line": 536,
+          "symbol": "MOVE_SLUDGEWAVE"
+        },
+        {
+          "expression": "0x214",
+          "line": 537,
+          "symbol": "MOVE_HEAVYSLAM"
+        },
+        {
+          "expression": "0x215",
+          "line": 538,
+          "symbol": "MOVE_SYNCHRONOISE"
+        },
+        {
+          "expression": "0x216",
+          "line": 539,
+          "symbol": "MOVE_ELECTROBALL"
+        },
+        {
+          "expression": "0x217",
+          "line": 540,
+          "symbol": "MOVE_FOULPLAY"
+        },
+        {
+          "expression": "0x218",
+          "line": 541,
+          "symbol": "MOVE_ENTRAINMENT"
+        },
+        {
+          "expression": "0x219",
+          "line": 542,
+          "symbol": "MOVE_NIGHTDAZE"
+        },
+        {
+          "expression": "0x21A",
+          "line": 543,
+          "symbol": "MOVE_ECHOEDVOICE"
+        },
+        {
+          "expression": "0x21B",
+          "line": 544,
+          "symbol": "MOVE_LANDSWRATH"
+        },
+        {
+          "expression": "0x21C",
+          "line": 545,
+          "symbol": "MOVE_OBLIVIONWING"
+        },
+        {
+          "expression": "0x21D",
+          "line": 546,
+          "symbol": "MOVE_HEARTSWAP"
+        },
+        {
+          "expression": "0x21E",
+          "line": 547,
+          "symbol": "MOVE_CRUSHGRIP"
+        },
+        {
+          "expression": "0x21F",
+          "line": 548,
+          "symbol": "MOVE_SACREDSWORD"
+        },
+        {
+          "expression": "0x220",
+          "line": 549,
+          "symbol": "MOVE_HEATCRASH"
+        },
+        {
+          "expression": "0x221",
+          "line": 550,
+          "symbol": "MOVE_HEADCHARGE"
+        },
+        {
+          "expression": "0x222",
+          "line": 551,
+          "symbol": "MOVE_TECHNOBLAST"
+        },
+        {
+          "expression": "0x223",
+          "line": 552,
+          "symbol": "MOVE_RELICSONG"
+        },
+        {
+          "expression": "0x224",
+          "line": 553,
+          "symbol": "MOVE_SECRETSWORD"
+        },
+        {
+          "expression": "0x225",
+          "line": 554,
+          "symbol": "MOVE_GLACIATE"
+        },
+        {
+          "expression": "0x226",
+          "line": 555,
+          "symbol": "MOVE_BOLTSTRIKE"
+        },
+        {
+          "expression": "0x227",
+          "line": 556,
+          "symbol": "MOVE_BLUEFLARE"
+        },
+        {
+          "expression": "0x228",
+          "line": 557,
+          "symbol": "MOVE_FREEZESHOCK"
+        },
+        {
+          "expression": "0x229",
+          "line": 558,
+          "symbol": "MOVE_ICEBURN"
+        },
+        {
+          "expression": "0x22A",
+          "line": 559,
+          "symbol": "MOVE_VCREATE"
+        },
+        {
+          "expression": "0x22B",
+          "line": 560,
+          "symbol": "MOVE_FUSIONFLARE"
+        },
+        {
+          "expression": "0x22C",
+          "line": 561,
+          "symbol": "MOVE_FUSIONBOLT"
+        },
+        {
+          "expression": "0x22D",
+          "line": 562,
+          "symbol": "MOVE_FELLSTINGER"
+        },
+        {
+          "expression": "0x22E",
+          "line": 563,
+          "symbol": "MOVE_NOBLEROAR"
+        },
+        {
+          "expression": "0x22F",
+          "line": 564,
+          "symbol": "MOVE_DRAGONASCENT"
+        },
+        {
+          "expression": "0x230",
+          "line": 565,
+          "symbol": "MOVE_PARTINGSHOT"
+        },
+        {
+          "expression": "0x231",
+          "line": 566,
+          "symbol": "MOVE_TOPSYTURVY"
+        },
+        {
+          "expression": "0x232",
+          "line": 567,
+          "symbol": "MOVE_COREENFORCER"
+        },
+        {
+          "expression": "0x233",
+          "line": 568,
+          "symbol": "MOVE_CHATTER"
+        },
+        {
+          "expression": "0x234",
+          "line": 569,
+          "symbol": "MOVE_CONFIDE"
+        },
+        {
+          "expression": "0x235",
+          "line": 570,
+          "symbol": "MOVE_WATERSHURIKEN"
+        },
+        {
+          "expression": "0x236",
+          "line": 571,
+          "symbol": "MOVE_MYSTICALFIRE"
+        },
+        {
+          "expression": "0x237",
+          "line": 572,
+          "symbol": "MOVE_SPIKYSHIELD"
+        },
+        {
+          "expression": "0x238",
+          "line": 573,
+          "symbol": "MOVE_EERIEIMPULSE"
+        },
+        {
+          "expression": "0x239",
+          "line": 574,
+          "symbol": "MOVE_HOLDBACK"
+        },
+        {
+          "expression": "0x23A",
+          "line": 575,
+          "symbol": "MOVE_INFESTATION"
+        },
+        {
+          "expression": "0x23B",
+          "line": 576,
+          "symbol": "MOVE_POWERUPPUNCH"
+        },
+        {
+          "expression": "0x23C",
+          "line": 577,
+          "symbol": "MOVE_THOUSANDARROWS"
+        },
+        {
+          "expression": "0x23D",
+          "line": 578,
+          "symbol": "MOVE_THOUSANDWAVES"
+        },
+        {
+          "expression": "0x23E",
+          "line": 579,
+          "symbol": "MOVE_PARABOLICCHARGE"
+        },
+        {
+          "expression": "0x23F",
+          "line": 580,
+          "symbol": "MOVE_SEARINGSHOT"
+        },
+        {
+          "expression": "0x240",
+          "line": 581,
+          "symbol": "MOVE_SEEDFLARE"
+        },
+        {
+          "expression": "0x241",
+          "line": 582,
+          "symbol": "MOVE_ACCELEROCK"
+        },
+        {
+          "expression": "0x242",
+          "line": 583,
+          "symbol": "MOVE_ANCHORSHOT"
+        },
+        {
+          "expression": "0x243",
+          "line": 584,
+          "symbol": "MOVE_AURORAVEIL"
+        },
+        {
+          "expression": "0x244",
+          "line": 585,
+          "symbol": "MOVE_BANEFULBUNKER"
+        },
+        {
+          "expression": "0x245",
+          "line": 586,
+          "symbol": "MOVE_BEAKBLAST"
+        },
+        {
+          "expression": "0x246",
+          "line": 587,
+          "symbol": "MOVE_BRUTALSWING"
+        },
+        {
+          "expression": "0x247",
+          "line": 588,
+          "symbol": "MOVE_BURNUP"
+        },
+        {
+          "expression": "0x248",
+          "line": 589,
+          "symbol": "MOVE_CLANGINGSCALES"
+        },
+        {
+          "expression": "0x249",
+          "line": 590,
+          "symbol": "MOVE_DARKESTLARIAT"
+        },
+        {
+          "expression": "0x24A",
+          "line": 591,
+          "symbol": "MOVE_DRAGONHAMMER"
+        },
+        {
+          "expression": "0x24B",
+          "line": 592,
+          "symbol": "MOVE_FIRELASH"
+        },
+        {
+          "expression": "0x24C",
+          "line": 593,
+          "symbol": "MOVE_FIRSTIMPRESSION"
+        },
+        {
+          "expression": "0x24D",
+          "line": 594,
+          "symbol": "MOVE_FLEURCANNON"
+        },
+        {
+          "expression": "0x24E",
+          "line": 595,
+          "symbol": "MOVE_FLORALHEALING"
+        },
+        {
+          "expression": "0x24F",
+          "line": 596,
+          "symbol": "MOVE_GEARUP"
+        },
+        {
+          "expression": "0x250",
+          "line": 597,
+          "symbol": "MOVE_HIGHHORSEPOWER"
+        },
+        {
+          "expression": "0x251",
+          "line": 598,
+          "symbol": "MOVE_ICEHAMMER"
+        },
+        {
+          "expression": "0x252",
+          "line": 599,
+          "symbol": "MOVE_LASERFOCUS"
+        },
+        {
+          "expression": "0x253",
+          "line": 600,
+          "symbol": "MOVE_LEAFAGE"
+        },
+        {
+          "expression": "0x254",
+          "line": 601,
+          "symbol": "MOVE_LIQUIDATION"
+        },
+        {
+          "expression": "0x255",
+          "line": 602,
+          "symbol": "MOVE_LUNGE"
+        },
+        {
+          "expression": "0x256",
+          "line": 603,
+          "symbol": "MOVE_MOONGEISTBEAM"
+        },
+        {
+          "expression": "0x257",
+          "line": 604,
+          "symbol": "MOVE_MULTIATTACK"
+        },
+        {
+          "expression": "0x258",
+          "line": 605,
+          "symbol": "MOVE_NATURESMADNESS"
+        },
+        {
+          "expression": "0x259",
+          "line": 606,
+          "symbol": "MOVE_POLLENPUFF"
+        },
+        {
+          "expression": "0x25A",
+          "line": 607,
+          "symbol": "MOVE_POWERTRIP"
+        },
+        {
+          "expression": "0x25B",
+          "line": 608,
+          "symbol": "MOVE_PRISMATICLASER"
+        },
+        {
+          "expression": "0x25C",
+          "line": 609,
+          "symbol": "MOVE_PSYCHICFANGS"
+        },
+        {
+          "expression": "0x25D",
+          "line": 610,
+          "symbol": "MOVE_PURIFY"
+        },
+        {
+          "expression": "0x25E",
+          "line": 611,
+          "symbol": "MOVE_REVELATIONDANCE"
+        },
+        {
+          "expression": "0x25F",
+          "line": 612,
+          "symbol": "MOVE_SHADOWBONE"
+        },
+        {
+          "expression": "0x260",
+          "line": 613,
+          "symbol": "MOVE_SHELLTRAP"
+        },
+        {
+          "expression": "0x261",
+          "line": 614,
+          "symbol": "MOVE_SHOREUP"
+        },
+        {
+          "expression": "0x262",
+          "line": 615,
+          "symbol": "MOVE_SMARTSTRIKE"
+        },
+        {
+          "expression": "0x263",
+          "line": 616,
+          "symbol": "MOVE_SOLARBLADE"
+        },
+        {
+          "expression": "0x264",
+          "line": 617,
+          "symbol": "MOVE_SPARKLINGARIA"
+        },
+        {
+          "expression": "0x265",
+          "line": 618,
+          "symbol": "MOVE_SPECTRALTHIEF"
+        },
+        {
+          "expression": "0x266",
+          "line": 619,
+          "symbol": "MOVE_SPEEDSWAP"
+        },
+        {
+          "expression": "0x267",
+          "line": 620,
+          "symbol": "MOVE_SPIRITSHACKLE"
+        },
+        {
+          "expression": "0x268",
+          "line": 621,
+          "symbol": "MOVE_SPOTLIGHT"
+        },
+        {
+          "expression": "0x269",
+          "line": 622,
+          "symbol": "MOVE_STOMPINGTANTRUM"
+        },
+        {
+          "expression": "0x26A",
+          "line": 623,
+          "symbol": "MOVE_STRENGTHSAP"
+        },
+        {
+          "expression": "0x26b",
+          "line": 624,
+          "symbol": "MOVE_SUNSTEELSTRIKE"
+        },
+        {
+          "expression": "0x26C",
+          "line": 625,
+          "symbol": "MOVE_TEARFULLOOK"
+        },
+        {
+          "expression": "0x26D",
+          "line": 626,
+          "symbol": "MOVE_THROATCHOP"
+        },
+        {
+          "expression": "0x26E",
+          "line": 627,
+          "symbol": "MOVE_TOXICTHREAD"
+        },
+        {
+          "expression": "0x26F",
+          "line": 628,
+          "symbol": "MOVE_TROPKICK"
+        },
+        {
+          "expression": "0x270",
+          "line": 629,
+          "symbol": "MOVE_ZINGZAP"
+        },
+        {
+          "expression": "0x271",
+          "line": 630,
+          "symbol": "MOVE_ELECTRICTERRAIN"
+        },
+        {
+          "expression": "0x272",
+          "line": 631,
+          "symbol": "MOVE_GRASSYTERRAIN"
+        },
+        {
+          "expression": "0x273",
+          "line": 632,
+          "symbol": "MOVE_MISTYTERRAIN"
+        },
+        {
+          "expression": "0x274",
+          "line": 633,
+          "symbol": "MOVE_PSYCHICTERRAIN"
+        },
+        {
+          "expression": "0x275",
+          "line": 634,
+          "symbol": "MOVE_GRASSPLEDGE"
+        },
+        {
+          "expression": "0x276",
+          "line": 635,
+          "symbol": "MOVE_FIREPLEDGE"
+        },
+        {
+          "expression": "0x277",
+          "line": 636,
+          "symbol": "MOVE_WATERPLEDGE"
+        },
+        {
+          "expression": "0x278",
+          "line": 637,
+          "symbol": "MOVE_TRICKROOM"
+        },
+        {
+          "expression": "0x279",
+          "line": 638,
+          "symbol": "MOVE_MAGICROOM"
+        },
+        {
+          "expression": "0x27A",
+          "line": 639,
+          "symbol": "MOVE_WONDERROOM"
+        },
+        {
+          "expression": "0x27B",
+          "line": 640,
+          "symbol": "MOVE_CRAFTYSHIELD"
+        },
+        {
+          "expression": "0x27C",
+          "line": 641,
+          "symbol": "MOVE_MATBLOCK"
+        },
+        {
+          "expression": "0x27D",
+          "line": 642,
+          "symbol": "MOVE_QUICKGUARD"
+        },
+        {
+          "expression": "0x27E",
+          "line": 643,
+          "symbol": "MOVE_WIDEGUARD"
+        },
+        {
+          "expression": "0x27F",
+          "line": 644,
+          "symbol": "MOVE_AQUARING"
+        },
+        {
+          "expression": "0x280",
+          "line": 645,
+          "symbol": "MOVE_AROMATICMIST"
+        },
+        {
+          "expression": "0x281",
+          "line": 646,
+          "symbol": "MOVE_BELCH"
+        },
+        {
+          "expression": "0x282",
+          "line": 647,
+          "symbol": "MOVE_BESTOW"
+        },
+        {
+          "expression": "0x283",
+          "line": 648,
+          "symbol": "MOVE_FLING"
+        },
+        {
+          "expression": "0x284",
+          "line": 649,
+          "symbol": "MOVE_FLYINGPRESS"
+        },
+        {
+          "expression": "0x285",
+          "line": 650,
+          "symbol": "MOVE_GRAVITY"
+        },
+        {
+          "expression": "0x286",
+          "line": 651,
+          "symbol": "MOVE_GUARDSPLIT"
+        },
+        {
+          "expression": "0x287",
+          "line": 652,
+          "symbol": "MOVE_HEALBLOCK"
+        },
+        {
+          "expression": "0x288",
+          "line": 653,
+          "symbol": "MOVE_IONDELUGE"
+        },
+        {
+          "expression": "0x289",
+          "line": 654,
+          "symbol": "MOVE_LUCKYCHANT"
+        },
+        {
+          "expression": "0x28A",
+          "line": 655,
+          "symbol": "MOVE_MAGNETRISE"
+        },
+        {
+          "expression": "0x28B",
+          "line": 656,
+          "symbol": "MOVE_MAGNETICFLUX"
+        },
+        {
+          "expression": "0x28C",
+          "line": 657,
+          "symbol": "MOVE_POWDER"
+        },
+        {
+          "expression": "0x28D",
+          "line": 658,
+          "symbol": "MOVE_POWERSPLIT"
+        },
+        {
+          "expression": "0x28E",
+          "line": 659,
+          "symbol": "MOVE_REFLECTTYPE"
+        },
+        {
+          "expression": "0x28F",
+          "line": 660,
+          "symbol": "MOVE_SIMPLEBEAM"
+        },
+        {
+          "expression": "0x290",
+          "line": 661,
+          "symbol": "MOVE_SOAK"
+        },
+        {
+          "expression": "0x291",
+          "line": 662,
+          "symbol": "MOVE_TELEKINESIS"
+        },
+        {
+          "expression": "0x292",
+          "line": 663,
+          "symbol": "MOVE_TRICKORTREAT"
+        },
+        {
+          "expression": "0x293",
+          "line": 664,
+          "symbol": "MOVE_VENOMDRENCH"
+        },
+        {
+          "expression": "0x294",
+          "line": 665,
+          "symbol": "MOVE_FORESTSCURSE"
+        },
+        {
+          "expression": "0x295",
+          "line": 666,
+          "symbol": "MOVE_MINDBLOWN"
+        },
+        {
+          "expression": "0x296",
+          "line": 667,
+          "symbol": "MOVE_PHOTONGEYSER"
+        },
+        {
+          "expression": "0x297",
+          "line": 668,
+          "symbol": "MOVE_PLASMAFISTS"
+        },
+        {
+          "expression": "0x298",
+          "line": 669,
+          "symbol": "MOVE_ELECTRIFY"
+        },
+        {
+          "expression": "0x299",
+          "line": 670,
+          "symbol": "MOVE_EMBARGO"
+        },
+        {
+          "expression": "0x29A",
+          "line": 671,
+          "symbol": "MOVE_FAIRYLOCK"
+        },
+        {
+          "expression": "0x29B",
+          "line": 672,
+          "symbol": "MOVE_LIGHTOFRUIN"
+        },
+        {
+          "expression": "0x29C",
+          "line": 673,
+          "symbol": "MOVE_TRUMPCARD"
+        },
+        {
+          "expression": "0x29D",
+          "line": 674,
+          "symbol": "MOVE_AFTERYOU"
+        },
+        {
+          "expression": "0x29E",
+          "line": 675,
+          "symbol": "MOVE_INSTRUCT"
+        },
+        {
+          "expression": "0x29F",
+          "line": 676,
+          "symbol": "MOVE_QUASH"
+        },
+        {
+          "expression": "0x2A0",
+          "line": 677,
+          "symbol": "MOVE_HAPPYHOUR"
+        },
+        {
+          "expression": "0x2A1",
+          "line": 678,
+          "symbol": "MOVE_DOUBLEIRONBASH"
+        },
+        {
+          "expression": "0x2A2",
+          "line": 679,
+          "symbol": "MOVE_LASTRESORT"
+        },
+        {
+          "expression": "0x2A3",
+          "line": 680,
+          "symbol": "MOVE_SKYDROP"
+        },
+        {
+          "expression": "0x2A4",
+          "line": 681,
+          "symbol": "MOVE_CELEBRATE"
+        },
+        {
+          "expression": "0x2A5",
+          "line": 682,
+          "symbol": "MOVE_HOLDHANDS"
+        },
+        {
+          "expression": "0x2A6",
+          "line": 685,
+          "symbol": "MOVE_DYNAMAXCANNON"
+        },
+        {
+          "expression": "0x2A7",
+          "line": 686,
+          "symbol": "MOVE_SNIPESHOT"
+        },
+        {
+          "expression": "0x2A8",
+          "line": 687,
+          "symbol": "MOVE_JAWLOCK"
+        },
+        {
+          "expression": "0x2A9",
+          "line": 688,
+          "symbol": "MOVE_STUFFCHEEKS"
+        },
+        {
+          "expression": "0x2AA",
+          "line": 689,
+          "symbol": "MOVE_NORETREAT"
+        },
+        {
+          "expression": "0x2AB",
+          "line": 690,
+          "symbol": "MOVE_TARSHOT"
+        },
+        {
+          "expression": "0x2AC",
+          "line": 691,
+          "symbol": "MOVE_MAGICPOWDER"
+        },
+        {
+          "expression": "0x2AD",
+          "line": 692,
+          "symbol": "MOVE_DRAGONDARTS"
+        },
+        {
+          "expression": "0x2AE",
+          "line": 693,
+          "symbol": "MOVE_TEATIME"
+        },
+        {
+          "expression": "0x2AF",
+          "line": 694,
+          "symbol": "MOVE_OCTOLOCK"
+        },
+        {
+          "expression": "0x2B0",
+          "line": 695,
+          "symbol": "MOVE_BOLTBEAK"
+        },
+        {
+          "expression": "0x2B1",
+          "line": 696,
+          "symbol": "MOVE_FISHIOUSREND"
+        },
+        {
+          "expression": "0x2B2",
+          "line": 697,
+          "symbol": "MOVE_COURTCHANGE"
+        },
+        {
+          "expression": "0x2B3",
+          "line": 698,
+          "symbol": "MOVE_CLANGOROUSSOUL"
+        },
+        {
+          "expression": "0x2B4",
+          "line": 699,
+          "symbol": "MOVE_BODYPRESS"
+        },
+        {
+          "expression": "0x2B5",
+          "line": 700,
+          "symbol": "MOVE_DECORATE"
+        },
+        {
+          "expression": "0x2B6",
+          "line": 701,
+          "symbol": "MOVE_DRUMBEATING"
+        },
+        {
+          "expression": "0x2B7",
+          "line": 702,
+          "symbol": "MOVE_SNAPTRAP"
+        },
+        {
+          "expression": "0x2B8",
+          "line": 703,
+          "symbol": "MOVE_PYROBALL"
+        },
+        {
+          "expression": "0x2B9",
+          "line": 704,
+          "symbol": "MOVE_BEHEMOTHBLADE"
+        },
+        {
+          "expression": "0x2BA",
+          "line": 705,
+          "symbol": "MOVE_BEHEMOTHBASH"
+        },
+        {
+          "expression": "0x2BB",
+          "line": 706,
+          "symbol": "MOVE_AURAWHEEL"
+        },
+        {
+          "expression": "0x2BC",
+          "line": 707,
+          "symbol": "MOVE_BREAKINGSWIPE"
+        },
+        {
+          "expression": "0x2BD",
+          "line": 708,
+          "symbol": "MOVE_BRANCHPOKE"
+        },
+        {
+          "expression": "0x2BE",
+          "line": 709,
+          "symbol": "MOVE_OVERDRIVE"
+        },
+        {
+          "expression": "0x2BF",
+          "line": 710,
+          "symbol": "MOVE_APPLEACID"
+        },
+        {
+          "expression": "0x2C0",
+          "line": 711,
+          "symbol": "MOVE_GRAVAPPLE"
+        },
+        {
+          "expression": "0x2C1",
+          "line": 712,
+          "symbol": "MOVE_SPIRITBREAK"
+        },
+        {
+          "expression": "0x2C2",
+          "line": 713,
+          "symbol": "MOVE_STRANGESTEAM"
+        },
+        {
+          "expression": "0x2C3",
+          "line": 714,
+          "symbol": "MOVE_LIFEDEW"
+        },
+        {
+          "expression": "0x2C4",
+          "line": 715,
+          "symbol": "MOVE_OBSTRUCT"
+        },
+        {
+          "expression": "0x2C5",
+          "line": 716,
+          "symbol": "MOVE_FALSESURRENDER"
+        },
+        {
+          "expression": "0x2C6",
+          "line": 717,
+          "symbol": "MOVE_METEORASSAULT"
+        },
+        {
+          "expression": "0x2C7",
+          "line": 718,
+          "symbol": "MOVE_ETERNABEAM"
+        },
+        {
+          "expression": "0x2C8",
+          "line": 719,
+          "symbol": "MOVE_STEELBEAM"
+        },
+        {
+          "expression": "0x2C9",
+          "line": 720,
+          "symbol": "MOVE_EXPANDINGFORCE"
+        },
+        {
+          "expression": "0x2CA",
+          "line": 721,
+          "symbol": "MOVE_STEELROLLER"
+        },
+        {
+          "expression": "0x2CB",
+          "line": 722,
+          "symbol": "MOVE_SCALESHOT"
+        },
+        {
+          "expression": "0x2CC",
+          "line": 723,
+          "symbol": "MOVE_METEORBEAM"
+        },
+        {
+          "expression": "0x2CD",
+          "line": 724,
+          "symbol": "MOVE_SHELLSIDEARM"
+        },
+        {
+          "expression": "0x2CE",
+          "line": 725,
+          "symbol": "MOVE_MISTYEXPLOSION"
+        },
+        {
+          "expression": "0x2CF",
+          "line": 726,
+          "symbol": "MOVE_GRASSYGLIDE"
+        },
+        {
+          "expression": "0x2D0",
+          "line": 727,
+          "symbol": "MOVE_RISINGVOLTAGE"
+        },
+        {
+          "expression": "0x2D1",
+          "line": 728,
+          "symbol": "MOVE_TERRAINPULSE"
+        },
+        {
+          "expression": "0x2D2",
+          "line": 729,
+          "symbol": "MOVE_SKITTERSMACK"
+        },
+        {
+          "expression": "0x2D3",
+          "line": 730,
+          "symbol": "MOVE_BURNINGJEALOUSY"
+        },
+        {
+          "expression": "0x2D4",
+          "line": 731,
+          "symbol": "MOVE_LASHOUT"
+        },
+        {
+          "expression": "0x2D5",
+          "line": 732,
+          "symbol": "MOVE_POLTERGEIST"
+        },
+        {
+          "expression": "0x2D6",
+          "line": 733,
+          "symbol": "MOVE_CORROSIVEGAS"
+        },
+        {
+          "expression": "0x2D7",
+          "line": 734,
+          "symbol": "MOVE_COACHING"
+        },
+        {
+          "expression": "0x2D8",
+          "line": 735,
+          "symbol": "MOVE_FLIPTURN"
+        },
+        {
+          "expression": "0x2D9",
+          "line": 736,
+          "symbol": "MOVE_TRIPLEAXEL"
+        },
+        {
+          "expression": "0x2DA",
+          "line": 737,
+          "symbol": "MOVE_DUALWINGBEAT"
+        },
+        {
+          "expression": "0x2DB",
+          "line": 738,
+          "symbol": "MOVE_SCORCHINGSANDS"
+        },
+        {
+          "expression": "0x2DC",
+          "line": 739,
+          "symbol": "MOVE_JUNGLEHEALING"
+        },
+        {
+          "expression": "0x2DD",
+          "line": 740,
+          "symbol": "MOVE_WICKEDBLOW"
+        },
+        {
+          "expression": "0x2DE",
+          "line": 741,
+          "symbol": "MOVE_SURGINGSTRIKES"
+        },
+        {
+          "expression": "0x2DF",
+          "line": 742,
+          "symbol": "MOVE_FREEZINGGLARE"
+        },
+        {
+          "expression": "0x2E0",
+          "line": 743,
+          "symbol": "MOVE_THUNDEROUSKICK"
+        },
+        {
+          "expression": "0x2E1",
+          "line": 744,
+          "symbol": "MOVE_FIERYWRATH"
+        },
+        {
+          "expression": "0x2E2",
+          "line": 745,
+          "symbol": "MOVE_EERIESPELL"
+        },
+        {
+          "expression": "0x2E3",
+          "line": 746,
+          "symbol": "MOVE_THUNDERCAGE"
+        },
+        {
+          "expression": "0x2E4",
+          "line": 747,
+          "symbol": "MOVE_DRAGONENERGY"
+        },
+        {
+          "expression": "0x2E5",
+          "line": 748,
+          "symbol": "MOVE_ASTRALBARRAGE"
+        },
+        {
+          "expression": "0x2E6",
+          "line": 749,
+          "symbol": "MOVE_GLACIALLANCE"
+        },
+        {
+          "expression": "0x2E7",
+          "line": 752,
+          "symbol": "MOVE_DIRECLAW"
+        },
+        {
+          "expression": "0x2E8",
+          "line": 753,
+          "symbol": "MOVE_PSYSHIELDBASH"
+        },
+        {
+          "expression": "0x2E9",
+          "line": 754,
+          "symbol": "MOVE_POWERSHIFT"
+        },
+        {
+          "expression": "0x2EA",
+          "line": 755,
+          "symbol": "MOVE_STONEAXE"
+        },
+        {
+          "expression": "0x2EB",
+          "line": 756,
+          "symbol": "MOVE_MYSTICALPOWER"
+        },
+        {
+          "expression": "0x2EC",
+          "line": 757,
+          "symbol": "MOVE_RAGINGFURY"
+        },
+        {
+          "expression": "0x2ED",
+          "line": 758,
+          "symbol": "MOVE_WAVECRASH"
+        },
+        {
+          "expression": "0x2EE",
+          "line": 759,
+          "symbol": "MOVE_CHLOROBLAST"
+        },
+        {
+          "expression": "0x2EF",
+          "line": 760,
+          "symbol": "MOVE_MOUNTAINGALE"
+        },
+        {
+          "expression": "0x2F0",
+          "line": 761,
+          "symbol": "MOVE_VICTORYDANCE"
+        },
+        {
+          "expression": "0x2F1",
+          "line": 762,
+          "symbol": "MOVE_HEADLONGRUSH"
+        },
+        {
+          "expression": "0x2F2",
+          "line": 763,
+          "symbol": "MOVE_BARBBARRAGE"
+        },
+        {
+          "expression": "0x2F3",
+          "line": 764,
+          "symbol": "MOVE_ESPERWING"
+        },
+        {
+          "expression": "0x2F4",
+          "line": 765,
+          "symbol": "MOVE_BITTERMALICE"
+        },
+        {
+          "expression": "0x2F5",
+          "line": 766,
+          "symbol": "MOVE_SHELTER"
+        },
+        {
+          "expression": "0x2F6",
+          "line": 767,
+          "symbol": "MOVE_TRIPLEARROWS"
+        },
+        {
+          "expression": "0x2F7",
+          "line": 768,
+          "symbol": "MOVE_INFERNALPARADE"
+        },
+        {
+          "expression": "0x2F8",
+          "line": 769,
+          "symbol": "MOVE_CEASELESSEDGE"
+        },
+        {
+          "expression": "0x2F9",
+          "line": 770,
+          "symbol": "MOVE_BLEAKWINDSTORM"
+        },
+        {
+          "expression": "0x2FA",
+          "line": 771,
+          "symbol": "MOVE_WILDBOLTSTORM"
+        },
+        {
+          "expression": "0x2FB",
+          "line": 772,
+          "symbol": "MOVE_SANDSEARSTORM"
+        },
+        {
+          "expression": "0x2FC",
+          "line": 773,
+          "symbol": "MOVE_SPRINGTIDESTORM"
+        },
+        {
+          "expression": "0x2FD",
+          "line": 774,
+          "symbol": "MOVE_LUNARBLESSING"
+        },
+        {
+          "expression": "0x2FE",
+          "line": 775,
+          "symbol": "MOVE_TAKEHEART"
+        },
+        {
+          "expression": "0x2FF",
+          "line": 779,
+          "symbol": "MOVE_BREAKNECK_BLITZ_P"
+        },
+        {
+          "expression": "0x300",
+          "line": 780,
+          "symbol": "MOVE_BREAKNECK_BLITZ_S"
+        },
+        {
+          "expression": "0x301",
+          "line": 781,
+          "symbol": "MOVE_ALL_OUT_PUMMELING_P"
+        },
+        {
+          "expression": "0x302",
+          "line": 782,
+          "symbol": "MOVE_ALL_OUT_PUMMELING_S"
+        },
+        {
+          "expression": "0x303",
+          "line": 783,
+          "symbol": "MOVE_SUPERSONIC_SKYSTRIKE_P"
+        },
+        {
+          "expression": "0x304",
+          "line": 784,
+          "symbol": "MOVE_SUPERSONIC_SKYSTRIKE_S"
+        },
+        {
+          "expression": "0x305",
+          "line": 785,
+          "symbol": "MOVE_ACID_DOWNPOUR_P"
+        },
+        {
+          "expression": "0x306",
+          "line": 786,
+          "symbol": "MOVE_ACID_DOWNPOUR_S"
+        },
+        {
+          "expression": "0x307",
+          "line": 787,
+          "symbol": "MOVE_TECTONIC_RAGE_P"
+        },
+        {
+          "expression": "0x308",
+          "line": 788,
+          "symbol": "MOVE_TECTONIC_RAGE_S"
+        },
+        {
+          "expression": "0x309",
+          "line": 789,
+          "symbol": "MOVE_CONTINENTAL_CRUSH_P"
+        },
+        {
+          "expression": "0x30A",
+          "line": 790,
+          "symbol": "MOVE_CONTINENTAL_CRUSH_S"
+        },
+        {
+          "expression": "0x30B",
+          "line": 791,
+          "symbol": "MOVE_SAVAGE_SPIN_OUT_P"
+        },
+        {
+          "expression": "0x30C",
+          "line": 792,
+          "symbol": "MOVE_SAVAGE_SPIN_OUT_S"
+        },
+        {
+          "expression": "0x30D",
+          "line": 793,
+          "symbol": "MOVE_NEVER_ENDING_NIGHTMARE_P"
+        },
+        {
+          "expression": "0x30E",
+          "line": 794,
+          "symbol": "MOVE_NEVER_ENDING_NIGHTMARE_S"
+        },
+        {
+          "expression": "0x30F",
+          "line": 795,
+          "symbol": "MOVE_CORKSCREW_CRASH_P"
+        },
+        {
+          "expression": "0x310",
+          "line": 796,
+          "symbol": "MOVE_CORKSCREW_CRASH_S"
+        },
+        {
+          "expression": "0x311",
+          "line": 797,
+          "symbol": "MOVE_INFERNO_OVERDRIVE_P"
+        },
+        {
+          "expression": "0x312",
+          "line": 798,
+          "symbol": "MOVE_INFERNO_OVERDRIVE_S"
+        },
+        {
+          "expression": "0x313",
+          "line": 799,
+          "symbol": "MOVE_HYDRO_VORTEX_P"
+        },
+        {
+          "expression": "0x314",
+          "line": 800,
+          "symbol": "MOVE_HYDRO_VORTEX_S"
+        },
+        {
+          "expression": "0x315",
+          "line": 801,
+          "symbol": "MOVE_BLOOM_DOOM_P"
+        },
+        {
+          "expression": "0x316",
+          "line": 802,
+          "symbol": "MOVE_BLOOM_DOOM_S"
+        },
+        {
+          "expression": "0x317",
+          "line": 803,
+          "symbol": "MOVE_GIGAVOLT_HAVOC_P"
+        },
+        {
+          "expression": "0x318",
+          "line": 804,
+          "symbol": "MOVE_GIGAVOLT_HAVOC_S"
+        },
+        {
+          "expression": "0x319",
+          "line": 805,
+          "symbol": "MOVE_SHATTERED_PSYCHE_P"
+        },
+        {
+          "expression": "0x31A",
+          "line": 806,
+          "symbol": "MOVE_SHATTERED_PSYCHE_S"
+        },
+        {
+          "expression": "0x31B",
+          "line": 807,
+          "symbol": "MOVE_SUBZERO_SLAMMER_P"
+        },
+        {
+          "expression": "0x31C",
+          "line": 808,
+          "symbol": "MOVE_SUBZERO_SLAMMER_S"
+        },
+        {
+          "expression": "0x31D",
+          "line": 809,
+          "symbol": "MOVE_DEVASTATING_DRAKE_P"
+        },
+        {
+          "expression": "0x31E",
+          "line": 810,
+          "symbol": "MOVE_DEVASTATING_DRAKE_S"
+        },
+        {
+          "expression": "0x31F",
+          "line": 811,
+          "symbol": "MOVE_BLACK_HOLE_ECLIPSE_P"
+        },
+        {
+          "expression": "0x320",
+          "line": 812,
+          "symbol": "MOVE_BLACK_HOLE_ECLIPSE_S"
+        },
+        {
+          "expression": "0x321",
+          "line": 813,
+          "symbol": "MOVE_TWINKLE_TACKLE_P"
+        },
+        {
+          "expression": "0x322",
+          "line": 814,
+          "symbol": "MOVE_TWINKLE_TACKLE_S"
+        },
+        {
+          "expression": "0x323",
+          "line": 816,
+          "symbol": "MOVE_CATASTROPIKA"
+        },
+        {
+          "expression": "0x324",
+          "line": 817,
+          "symbol": "MOVE_10000000_VOLT_THUNDERBOLT"
+        },
+        {
+          "expression": "0x325",
+          "line": 818,
+          "symbol": "MOVE_STOKED_SPARKSURFER"
+        },
+        {
+          "expression": "0x326",
+          "line": 819,
+          "symbol": "MOVE_EXTREME_EVOBOOST"
+        },
+        {
+          "expression": "0x327",
+          "line": 820,
+          "symbol": "MOVE_PULVERIZING_PANCAKE"
+        },
+        {
+          "expression": "0x328",
+          "line": 821,
+          "symbol": "MOVE_GENESIS_SUPERNOVA"
+        },
+        {
+          "expression": "0x329",
+          "line": 822,
+          "symbol": "MOVE_SINISTER_ARROW_RAID"
+        },
+        {
+          "expression": "0x32A",
+          "line": 823,
+          "symbol": "MOVE_MALICIOUS_MOONSAULT"
+        },
+        {
+          "expression": "0x32B",
+          "line": 824,
+          "symbol": "MOVE_OCEANIC_OPERETTA"
+        },
+        {
+          "expression": "0x32C",
+          "line": 825,
+          "symbol": "MOVE_SPLINTERED_STORMSHARDS"
+        },
+        {
+          "expression": "0x32D",
+          "line": 826,
+          "symbol": "MOVE_LETS_SNUGGLE_FOREVER"
+        },
+        {
+          "expression": "0x32E",
+          "line": 827,
+          "symbol": "MOVE_CLANGOROUS_SOULBLAZE"
+        },
+        {
+          "expression": "0x32F",
+          "line": 828,
+          "symbol": "MOVE_GUARDIAN_OF_ALOLA"
+        },
+        {
+          "expression": "0x330",
+          "line": 829,
+          "symbol": "MOVE_SEARING_SUNRAZE_SMASH"
+        },
+        {
+          "expression": "0x331",
+          "line": 830,
+          "symbol": "MOVE_MENACING_MOONRAZE_MAELSTROM"
+        },
+        {
+          "expression": "0x332",
+          "line": 831,
+          "symbol": "MOVE_LIGHT_THAT_BURNS_THE_SKY"
+        },
+        {
+          "expression": "0x333",
+          "line": 832,
+          "symbol": "MOVE_SOUL_STEALING_7_STAR_STRIKE"
+        },
+        {
+          "expression": "MOVE_BREAKNECK_BLITZ_P",
+          "line": 834,
+          "symbol": "FIRST_Z_MOVE"
+        },
+        {
+          "expression": "MOVE_SOUL_STEALING_7_STAR_STRIKE",
+          "line": 835,
+          "symbol": "LAST_Z_MOVE"
+        },
+        {
+          "expression": "0x334",
+          "line": 838,
+          "symbol": "MOVE_MAX_GUARD"
+        },
+        {
+          "expression": "0x335",
+          "line": 839,
+          "symbol": "MOVE_MAX_STRIKE_P"
+        },
+        {
+          "expression": "0x336",
+          "line": 840,
+          "symbol": "MOVE_MAX_STRIKE_S"
+        },
+        {
+          "expression": "0x337",
+          "line": 841,
+          "symbol": "MOVE_MAX_KNUCKLE_P"
+        },
+        {
+          "expression": "0x338",
+          "line": 842,
+          "symbol": "MOVE_MAX_KNUCKLE_S"
+        },
+        {
+          "expression": "0x339",
+          "line": 843,
+          "symbol": "MOVE_MAX_AIRSTREAM_P"
+        },
+        {
+          "expression": "0x33A",
+          "line": 844,
+          "symbol": "MOVE_MAX_AIRSTREAM_S"
+        },
+        {
+          "expression": "0x33B",
+          "line": 845,
+          "symbol": "MOVE_MAX_OOZE_P"
+        },
+        {
+          "expression": "0x33C",
+          "line": 846,
+          "symbol": "MOVE_MAX_OOZE_S"
+        },
+        {
+          "expression": "0x33D",
+          "line": 847,
+          "symbol": "MOVE_MAX_QUAKE_P"
+        },
+        {
+          "expression": "0x33E",
+          "line": 848,
+          "symbol": "MOVE_MAX_QUAKE_S"
+        },
+        {
+          "expression": "0x33F",
+          "line": 849,
+          "symbol": "MOVE_MAX_ROCKFALL_P"
+        },
+        {
+          "expression": "0x340",
+          "line": 850,
+          "symbol": "MOVE_MAX_ROCKFALL_S"
+        },
+        {
+          "expression": "0x341",
+          "line": 851,
+          "symbol": "MOVE_MAX_FLUTTERBY_P"
+        },
+        {
+          "expression": "0x342",
+          "line": 852,
+          "symbol": "MOVE_MAX_FLUTTERBY_S"
+        },
+        {
+          "expression": "0x343",
+          "line": 853,
+          "symbol": "MOVE_MAX_PHANTASM_P"
+        },
+        {
+          "expression": "0x344",
+          "line": 854,
+          "symbol": "MOVE_MAX_PHANTASM_S"
+        },
+        {
+          "expression": "0x345",
+          "line": 855,
+          "symbol": "MOVE_MAX_STEELSPIKE_P"
+        },
+        {
+          "expression": "0x346",
+          "line": 856,
+          "symbol": "MOVE_MAX_STEELSPIKE_S"
+        },
+        {
+          "expression": "0x347",
+          "line": 857,
+          "symbol": "MOVE_MAX_FLARE_P"
+        },
+        {
+          "expression": "0x348",
+          "line": 858,
+          "symbol": "MOVE_MAX_FLARE_S"
+        },
+        {
+          "expression": "0x349",
+          "line": 859,
+          "symbol": "MOVE_MAX_GEYSER_P"
+        },
+        {
+          "expression": "0x34A",
+          "line": 860,
+          "symbol": "MOVE_MAX_GEYSER_S"
+        },
+        {
+          "expression": "0x34B",
+          "line": 861,
+          "symbol": "MOVE_MAX_OVERGROWTH_P"
+        },
+        {
+          "expression": "0x34C",
+          "line": 862,
+          "symbol": "MOVE_MAX_OVERGROWTH_S"
+        },
+        {
+          "expression": "0x34D",
+          "line": 863,
+          "symbol": "MOVE_MAX_LIGHTNING_P"
+        },
+        {
+          "expression": "0x34E",
+          "line": 864,
+          "symbol": "MOVE_MAX_LIGHTNING_S"
+        },
+        {
+          "expression": "0x34F",
+          "line": 865,
+          "symbol": "MOVE_MAX_MINDSTORM_P"
+        },
+        {
+          "expression": "0x350",
+          "line": 866,
+          "symbol": "MOVE_MAX_MINDSTORM_S"
+        },
+        {
+          "expression": "0x351",
+          "line": 867,
+          "symbol": "MOVE_MAX_HAILSTORM_P"
+        },
+        {
+          "expression": "0x352",
+          "line": 868,
+          "symbol": "MOVE_MAX_HAILSTORM_S"
+        },
+        {
+          "expression": "0x353",
+          "line": 869,
+          "symbol": "MOVE_MAX_WYRMWIND_P"
+        },
+        {
+          "expression": "0x354",
+          "line": 870,
+          "symbol": "MOVE_MAX_WYRMWIND_S"
+        },
+        {
+          "expression": "0x355",
+          "line": 871,
+          "symbol": "MOVE_MAX_DARKNESS_P"
+        },
+        {
+          "expression": "0x356",
+          "line": 872,
+          "symbol": "MOVE_MAX_DARKNESS_S"
+        },
+        {
+          "expression": "0x357",
+          "line": 873,
+          "symbol": "MOVE_MAX_STARFALL_P"
+        },
+        {
+          "expression": "0x358",
+          "line": 874,
+          "symbol": "MOVE_MAX_STARFALL_S"
+        },
+        {
+          "expression": "0x359",
+          "line": 875,
+          "symbol": "MOVE_G_MAX_VINE_LASH_P"
+        },
+        {
+          "expression": "0x35A",
+          "line": 876,
+          "symbol": "MOVE_G_MAX_VINE_LASH_S"
+        },
+        {
+          "expression": "0x35B",
+          "line": 877,
+          "symbol": "MOVE_G_MAX_WILDFIRE_P"
+        },
+        {
+          "expression": "0x35C",
+          "line": 878,
+          "symbol": "MOVE_G_MAX_WILDFIRE_S"
+        },
+        {
+          "expression": "0x35D",
+          "line": 879,
+          "symbol": "MOVE_G_MAX_CANNONADE_P"
+        },
+        {
+          "expression": "0x35E",
+          "line": 880,
+          "symbol": "MOVE_G_MAX_CANNONADE_S"
+        },
+        {
+          "expression": "0x35F",
+          "line": 881,
+          "symbol": "MOVE_G_MAX_BEFUDDLE_P"
+        },
+        {
+          "expression": "0x360",
+          "line": 882,
+          "symbol": "MOVE_G_MAX_BEFUDDLE_S"
+        },
+        {
+          "expression": "0x361",
+          "line": 883,
+          "symbol": "MOVE_G_MAX_VOLT_CRASH_P"
+        },
+        {
+          "expression": "0x362",
+          "line": 884,
+          "symbol": "MOVE_G_MAX_VOLT_CRASH_S"
+        },
+        {
+          "expression": "0x363",
+          "line": 885,
+          "symbol": "MOVE_G_MAX_GOLD_RUSH_P"
+        },
+        {
+          "expression": "0x364",
+          "line": 886,
+          "symbol": "MOVE_G_MAX_GOLD_RUSH_S"
+        },
+        {
+          "expression": "0x365",
+          "line": 887,
+          "symbol": "MOVE_G_MAX_CHI_STRIKE_P"
+        },
+        {
+          "expression": "0x366",
+          "line": 888,
+          "symbol": "MOVE_G_MAX_CHI_STRIKE_S"
+        },
+        {
+          "expression": "0x367",
+          "line": 889,
+          "symbol": "MOVE_G_MAX_TERROR_P"
+        },
+        {
+          "expression": "0x368",
+          "line": 890,
+          "symbol": "MOVE_G_MAX_TERROR_S"
+        },
+        {
+          "expression": "0x369",
+          "line": 891,
+          "symbol": "MOVE_G_MAX_FOAM_BURST_P"
+        },
+        {
+          "expression": "0x36A",
+          "line": 892,
+          "symbol": "MOVE_G_MAX_FOAM_BURST_S"
+        },
+        {
+          "expression": "0x36B",
+          "line": 893,
+          "symbol": "MOVE_G_MAX_RESONANCE_P"
+        },
+        {
+          "expression": "0x36C",
+          "line": 894,
+          "symbol": "MOVE_G_MAX_RESONANCE_S"
+        },
+        {
+          "expression": "0x36D",
+          "line": 895,
+          "symbol": "MOVE_G_MAX_CUDDLE_P"
+        },
+        {
+          "expression": "0x36E",
+          "line": 896,
+          "symbol": "MOVE_G_MAX_CUDDLE_S"
+        },
+        {
+          "expression": "0x36F",
+          "line": 897,
+          "symbol": "MOVE_G_MAX_REPLENISH_P"
+        },
+        {
+          "expression": "0x370",
+          "line": 898,
+          "symbol": "MOVE_G_MAX_REPLENISH_S"
+        },
+        {
+          "expression": "0x371",
+          "line": 899,
+          "symbol": "MOVE_G_MAX_MALODOR_P"
+        },
+        {
+          "expression": "0x372",
+          "line": 900,
+          "symbol": "MOVE_G_MAX_MALODOR_S"
+        },
+        {
+          "expression": "0x373",
+          "line": 901,
+          "symbol": "MOVE_G_MAX_MELTDOWN_P"
+        },
+        {
+          "expression": "0x374",
+          "line": 902,
+          "symbol": "MOVE_G_MAX_MELTDOWN_S"
+        },
+        {
+          "expression": "0x375",
+          "line": 903,
+          "symbol": "MOVE_G_MAX_DRUM_SOLO_P"
+        },
+        {
+          "expression": "0x376",
+          "line": 904,
+          "symbol": "MOVE_G_MAX_DRUM_SOLO_S"
+        },
+        {
+          "expression": "0x377",
+          "line": 905,
+          "symbol": "MOVE_G_MAX_FIREBALL_P"
+        },
+        {
+          "expression": "0x378",
+          "line": 906,
+          "symbol": "MOVE_G_MAX_FIREBALL_S"
+        },
+        {
+          "expression": "0x379",
+          "line": 907,
+          "symbol": "MOVE_G_MAX_HYDROSNIPE_P"
+        },
+        {
+          "expression": "0x37A",
+          "line": 908,
+          "symbol": "MOVE_G_MAX_HYDROSNIPE_S"
+        },
+        {
+          "expression": "0x37B",
+          "line": 909,
+          "symbol": "MOVE_G_MAX_WIND_RAGE_P"
+        },
+        {
+          "expression": "0x37C",
+          "line": 910,
+          "symbol": "MOVE_G_MAX_WIND_RAGE_S"
+        },
+        {
+          "expression": "0x37D",
+          "line": 911,
+          "symbol": "MOVE_G_MAX_GRAVITAS_P"
+        },
+        {
+          "expression": "0x37E",
+          "line": 912,
+          "symbol": "MOVE_G_MAX_GRAVITAS_S"
+        },
+        {
+          "expression": "0x37F",
+          "line": 913,
+          "symbol": "MOVE_G_MAX_STONESURGE_P"
+        },
+        {
+          "expression": "0x380",
+          "line": 914,
+          "symbol": "MOVE_G_MAX_STONESURGE_S"
+        },
+        {
+          "expression": "0x381",
+          "line": 915,
+          "symbol": "MOVE_G_MAX_VOLCALITH_P"
+        },
+        {
+          "expression": "0x382",
+          "line": 916,
+          "symbol": "MOVE_G_MAX_VOLCALITH_S"
+        },
+        {
+          "expression": "0x383",
+          "line": 917,
+          "symbol": "MOVE_G_MAX_TARTNESS_P"
+        },
+        {
+          "expression": "0x384",
+          "line": 918,
+          "symbol": "MOVE_G_MAX_TARTNESS_S"
+        },
+        {
+          "expression": "0x385",
+          "line": 919,
+          "symbol": "MOVE_G_MAX_SWEETNESS_P"
+        },
+        {
+          "expression": "0x386",
+          "line": 920,
+          "symbol": "MOVE_G_MAX_SWEETNESS_S"
+        },
+        {
+          "expression": "0x387",
+          "line": 921,
+          "symbol": "MOVE_G_MAX_SANDBLAST_P"
+        },
+        {
+          "expression": "0x388",
+          "line": 922,
+          "symbol": "MOVE_G_MAX_SANDBLAST_S"
+        },
+        {
+          "expression": "0x389",
+          "line": 923,
+          "symbol": "MOVE_G_MAX_STUN_SHOCK_P"
+        },
+        {
+          "expression": "0x38A",
+          "line": 924,
+          "symbol": "MOVE_G_MAX_STUN_SHOCK_S"
+        },
+        {
+          "expression": "0x38B",
+          "line": 925,
+          "symbol": "MOVE_G_MAX_CENTIFERNO_P"
+        },
+        {
+          "expression": "0x38C",
+          "line": 926,
+          "symbol": "MOVE_G_MAX_CENTIFERNO_S"
+        },
+        {
+          "expression": "0x38D",
+          "line": 927,
+          "symbol": "MOVE_G_MAX_SMITE_P"
+        },
+        {
+          "expression": "0x38E",
+          "line": 928,
+          "symbol": "MOVE_G_MAX_SMITE_S"
+        },
+        {
+          "expression": "0x38F",
+          "line": 929,
+          "symbol": "MOVE_G_MAX_SNOOZE_P"
+        },
+        {
+          "expression": "0x390",
+          "line": 930,
+          "symbol": "MOVE_G_MAX_SNOOZE_S"
+        },
+        {
+          "expression": "0x391",
+          "line": 931,
+          "symbol": "MOVE_G_MAX_FINALE_P"
+        },
+        {
+          "expression": "0x392",
+          "line": 932,
+          "symbol": "MOVE_G_MAX_FINALE_S"
+        },
+        {
+          "expression": "0x393",
+          "line": 933,
+          "symbol": "MOVE_G_MAX_STEELSURGE_P"
+        },
+        {
+          "expression": "0x394",
+          "line": 934,
+          "symbol": "MOVE_G_MAX_STEELSURGE_S"
+        },
+        {
+          "expression": "0x395",
+          "line": 935,
+          "symbol": "MOVE_G_MAX_DEPLETION_P"
+        },
+        {
+          "expression": "0x396",
+          "line": 936,
+          "symbol": "MOVE_G_MAX_DEPLETION_S"
+        },
+        {
+          "expression": "0x397",
+          "line": 937,
+          "symbol": "MOVE_G_MAX_ONE_BLOW_P"
+        },
+        {
+          "expression": "0x398",
+          "line": 938,
+          "symbol": "MOVE_G_MAX_ONE_BLOW_S"
+        },
+        {
+          "expression": "0x399",
+          "line": 939,
+          "symbol": "MOVE_G_MAX_RAPID_FLOW_P"
+        },
+        {
+          "expression": "0x39A",
+          "line": 940,
+          "symbol": "MOVE_G_MAX_RAPID_FLOW_S"
+        },
+        {
+          "expression": "0x39B",
+          "line": 943,
+          "symbol": "MOVE_AQUACUTTER"
+        },
+        {
+          "expression": "0x39C",
+          "line": 944,
+          "symbol": "MOVE_AQUASTEP"
+        },
+        {
+          "expression": "0x39D",
+          "line": 945,
+          "symbol": "MOVE_ARMORCANNON"
+        },
+        {
+          "expression": "0x39E",
+          "line": 946,
+          "symbol": "MOVE_AXEKICK"
+        },
+        {
+          "expression": "0x39F",
+          "line": 947,
+          "symbol": "MOVE_BITTERBLADE"
+        },
+        {
+          "expression": "0x3A0",
+          "line": 948,
+          "symbol": "MOVE_BLAZINGTORQUE"
+        },
+        {
+          "expression": "0x3A1",
+          "line": 949,
+          "symbol": "MOVE_CHILLINGWATER"
+        },
+        {
+          "expression": "0x3A2",
+          "line": 950,
+          "symbol": "MOVE_CHILLYRECEPTION"
+        },
+        {
+          "expression": "0x3A3",
+          "line": 951,
+          "symbol": "MOVE_COLLISIONCOURSE"
+        },
+        {
+          "expression": "0x3A4",
+          "line": 952,
+          "symbol": "MOVE_COMBATTORQUE"
+        },
+        {
+          "expression": "0x3A5",
+          "line": 953,
+          "symbol": "MOVE_COMEUPPANCE"
+        },
+        {
+          "expression": "0x3A6",
+          "line": 954,
+          "symbol": "MOVE_DOODLE"
+        },
+        {
+          "expression": "0x3A7",
+          "line": 955,
+          "symbol": "MOVE_DOUBLESHOCK"
+        },
+        {
+          "expression": "0x3A8",
+          "line": 956,
+          "symbol": "MOVE_ELECTRODRIFT"
+        },
+        {
+          "expression": "0x3A9",
+          "line": 957,
+          "symbol": "MOVE_FILLETAWAY"
+        },
+        {
+          "expression": "0x3AA",
+          "line": 958,
+          "symbol": "MOVE_FLOWERTRICK"
+        },
+        {
+          "expression": "0x3AB",
+          "line": 959,
+          "symbol": "MOVE_GIGATONHAMMER"
+        },
+        {
+          "expression": "0x3AC",
+          "line": 960,
+          "symbol": "MOVE_GLAIVERUSH"
+        },
+        {
+          "expression": "0x3AD",
+          "line": 961,
+          "symbol": "MOVE_HYDROSTEAM"
+        },
+        {
+          "expression": "0x3AE",
+          "line": 962,
+          "symbol": "MOVE_HYPERDRILL"
+        },
+        {
+          "expression": "0x3AF",
+          "line": 963,
+          "symbol": "MOVE_ICESPINNER"
+        },
+        {
+          "expression": "0x3B0",
+          "line": 964,
+          "symbol": "MOVE_JETPUNCH"
+        },
+        {
+          "expression": "0x3B1",
+          "line": 965,
+          "symbol": "MOVE_KOWTOWCLEAVE"
+        },
+        {
+          "expression": "0x3B2",
+          "line": 966,
+          "symbol": "MOVE_LASTRESPECTS"
+        },
+        {
+          "expression": "0x3B3",
+          "line": 967,
+          "symbol": "MOVE_LUMINACRASH"
+        },
+        {
+          "expression": "0x3B4",
+          "line": 968,
+          "symbol": "MOVE_MAGICALTORQUE"
+        },
+        {
+          "expression": "0x3B5",
+          "line": 969,
+          "symbol": "MOVE_MAKEITRAIN"
+        },
+        {
+          "expression": "0x3B6",
+          "line": 970,
+          "symbol": "MOVE_MORTALSPIN"
+        },
+        {
+          "expression": "0x3B7",
+          "line": 971,
+          "symbol": "MOVE_NOXIOUSTORQUE"
+        },
+        {
+          "expression": "0x3B8",
+          "line": 972,
+          "symbol": "MOVE_ORDERUP"
+        },
+        {
+          "expression": "0x3B9",
+          "line": 973,
+          "symbol": "MOVE_POPULATIONBOMB"
+        },
+        {
+          "expression": "0x3BA",
+          "line": 974,
+          "symbol": "MOVE_POUNCE"
+        },
+        {
+          "expression": "0x3BB",
+          "line": 975,
+          "symbol": "MOVE_PSYBLADE"
+        },
+        {
+          "expression": "0x3BC",
+          "line": 976,
+          "symbol": "MOVE_RAGEFIST"
+        },
+        {
+          "expression": "0x3BD",
+          "line": 977,
+          "symbol": "MOVE_RAGINGBULL"
+        },
+        {
+          "expression": "0x3BE",
+          "line": 978,
+          "symbol": "MOVE_REVIVALBLESSING"
+        },
+        {
+          "expression": "0x3BF",
+          "line": 979,
+          "symbol": "MOVE_RUINATION"
+        },
+        {
+          "expression": "0x3C0",
+          "line": 980,
+          "symbol": "MOVE_SALTCURE"
+        },
+        {
+          "expression": "0x3C1",
+          "line": 981,
+          "symbol": "MOVE_SHEDTAIL"
+        },
+        {
+          "expression": "0x3C2",
+          "line": 982,
+          "symbol": "MOVE_SILKTRAP"
+        },
+        {
+          "expression": "0x3C3",
+          "line": 983,
+          "symbol": "MOVE_SNOWSCAPE"
+        },
+        {
+          "expression": "0x3C4",
+          "line": 984,
+          "symbol": "MOVE_SPICYEXTRACT"
+        },
+        {
+          "expression": "0x3C5",
+          "line": 985,
+          "symbol": "MOVE_SPINOUT"
+        },
+        {
+          "expression": "0x3C6",
+          "line": 986,
+          "symbol": "MOVE_TERABLAST"
+        },
+        {
+          "expression": "0x3C7",
+          "line": 987,
+          "symbol": "MOVE_TIDYUP"
+        },
+        {
+          "expression": "0x3C8",
+          "line": 988,
+          "symbol": "MOVE_TORCHSONG"
+        },
+        {
+          "expression": "0x3C9",
+          "line": 989,
+          "symbol": "MOVE_TRAILBLAZE"
+        },
+        {
+          "expression": "0x3CA",
+          "line": 990,
+          "symbol": "MOVE_TRIPLEDIVE"
+        },
+        {
+          "expression": "0x3CB",
+          "line": 991,
+          "symbol": "MOVE_TWINBEAM"
+        },
+        {
+          "expression": "0x3CC",
+          "line": 992,
+          "symbol": "MOVE_WICKEDTORQUE"
+        },
+        {
+          "expression": "0x3CD",
+          "line": 993,
+          "symbol": "MOVE_BLOODMOON"
+        },
+        {
+          "expression": "0x3CE",
+          "line": 994,
+          "symbol": "MOVE_UPPERHAND"
+        },
+        {
+          "expression": "0x3CF",
+          "line": 995,
+          "symbol": "MOVE_MATCHAGOTCHA"
+        },
+        {
+          "expression": "0x3D0",
+          "line": 996,
+          "symbol": "MOVE_SYRUPBOMB"
+        },
+        {
+          "expression": "0x3D1",
+          "line": 997,
+          "symbol": "MOVE_IVYCUDGEL"
+        },
+        {
+          "expression": "0x3D2",
+          "line": 998,
+          "symbol": "MOVE_ELECTROSHOT"
+        },
+        {
+          "expression": "0x3D3",
+          "line": 999,
+          "symbol": "MOVE_TERASTARSTORM"
+        },
+        {
+          "expression": "0x3D4",
+          "line": 1000,
+          "symbol": "MOVE_FICKLEBEAM"
+        },
+        {
+          "expression": "0x3D5",
+          "line": 1001,
+          "symbol": "MOVE_BURNINGBULWARK"
+        },
+        {
+          "expression": "0x3D6",
+          "line": 1002,
+          "symbol": "MOVE_MIGHTYCLEAVE"
+        },
+        {
+          "expression": "0x3D7",
+          "line": 1003,
+          "symbol": "MOVE_TACHYONCUTTER"
+        },
+        {
+          "expression": "0x3D8",
+          "line": 1004,
+          "symbol": "MOVE_DRAGONCHEER"
+        },
+        {
+          "expression": "0x3D9",
+          "line": 1005,
+          "symbol": "MOVE_MALIGNANTCHAIN"
+        },
+        {
+          "expression": "0x3DA",
+          "line": 1006,
+          "symbol": "MOVE_THUNDERCLAP"
+        },
+        {
+          "expression": "0x3DB",
+          "line": 1007,
+          "symbol": "MOVE_HARDPRESS"
+        },
+        {
+          "expression": "0x3DC",
+          "line": 1008,
+          "symbol": "MOVE_ALLURINGVOICE"
+        },
+        {
+          "expression": "0x3DD",
+          "line": 1009,
+          "symbol": "MOVE_TEMPERFLARE"
+        },
+        {
+          "expression": "0x3DE",
+          "line": 1010,
+          "symbol": "MOVE_SUPERCELLSLAM"
+        },
+        {
+          "expression": "0x3DF",
+          "line": 1011,
+          "symbol": "MOVE_PSYCHICNOISE"
+        },
+        {
+          "expression": "MOVE_MAX_GUARD",
+          "line": 1013,
+          "symbol": "FIRST_MAX_MOVE"
+        },
+        {
+          "expression": "MOVE_MAX_STARFALL_S",
+          "line": 1014,
+          "symbol": "LAST_MAX_MOVE"
+        },
+        {
+          "expression": "MOVE_G_MAX_VINE_LASH_P",
+          "line": 1015,
+          "symbol": "FIRST_G_MAX_MOVE"
+        },
+        {
+          "expression": "MOVE_G_MAX_RAPID_FLOW_S",
+          "line": 1016,
+          "symbol": "LAST_G_MAX_MOVE"
+        },
+        {
+          "expression": "MOVE_PSYCHICNOISE",
+          "line": 1018,
+          "symbol": "LAST_MOVE_INDEX"
+        }
+      ],
+      "sha256": "bc2ae17e444625fa2e1727d42c50a24f6758da26e44229a6f12a3afa3a275d79",
+      "size": 30601
+    },
+    "include/constants/pokemon.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "defines": [
+        {
+          "expression": "0x00",
+          "line": 4,
+          "symbol": "TYPE_NORMAL"
+        },
+        {
+          "expression": "0x01",
+          "line": 5,
+          "symbol": "TYPE_FIGHTING"
+        },
+        {
+          "expression": "0x02",
+          "line": 6,
+          "symbol": "TYPE_FLYING"
+        },
+        {
+          "expression": "0x03",
+          "line": 7,
+          "symbol": "TYPE_POISON"
+        },
+        {
+          "expression": "0x04",
+          "line": 8,
+          "symbol": "TYPE_GROUND"
+        },
+        {
+          "expression": "0x05",
+          "line": 9,
+          "symbol": "TYPE_ROCK"
+        },
+        {
+          "expression": "0x06",
+          "line": 10,
+          "symbol": "TYPE_BUG"
+        },
+        {
+          "expression": "0x07",
+          "line": 11,
+          "symbol": "TYPE_GHOST"
+        },
+        {
+          "expression": "0x08",
+          "line": 12,
+          "symbol": "TYPE_STEEL"
+        },
+        {
+          "expression": "0x09",
+          "line": 13,
+          "symbol": "TYPE_MYSTERY"
+        },
+        {
+          "expression": "0x0a",
+          "line": 14,
+          "symbol": "TYPE_FIRE"
+        },
+        {
+          "expression": "0x0b",
+          "line": 15,
+          "symbol": "TYPE_WATER"
+        },
+        {
+          "expression": "0x0c",
+          "line": 16,
+          "symbol": "TYPE_GRASS"
+        },
+        {
+          "expression": "0x0d",
+          "line": 17,
+          "symbol": "TYPE_ELECTRIC"
+        },
+        {
+          "expression": "0x0e",
+          "line": 18,
+          "symbol": "TYPE_PSYCHIC"
+        },
+        {
+          "expression": "0x0f",
+          "line": 19,
+          "symbol": "TYPE_ICE"
+        },
+        {
+          "expression": "0x10",
+          "line": 20,
+          "symbol": "TYPE_DRAGON"
+        },
+        {
+          "expression": "0x11",
+          "line": 21,
+          "symbol": "TYPE_DARK"
+        },
+        {
+          "expression": "0x13",
+          "line": 22,
+          "symbol": "TYPE_ROOSTLESS"
+        },
+        {
+          "expression": "0x14",
+          "line": 23,
+          "symbol": "TYPE_BLANK"
+        },
+        {
+          "expression": "0x17",
+          "line": 24,
+          "symbol": "TYPE_FAIRY"
+        },
+        {
+          "expression": "0x18",
+          "line": 25,
+          "symbol": "TYPE_STELLAR"
+        },
+        {
+          "expression": "5",
+          "line": 29,
+          "symbol": "TYPE_NAME_LENGTH"
+        }
+      ],
+      "sha256": "e22c8b86b94ee2c8c3272f7a395dc12761e052b83d142e00669c3649fd032417",
+      "size": 2940
+    },
+    "include/new/z_move_effects.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "defines": [
+        {
+          "expression": "0",
+          "line": 9,
+          "symbol": "Z_EFFECT_NONE"
+        },
+        {
+          "expression": "1",
+          "line": 10,
+          "symbol": "Z_EFFECT_RESET_STATS"
+        },
+        {
+          "expression": "2",
+          "line": 11,
+          "symbol": "Z_EFFECT_ALL_STATS_UP_1"
+        },
+        {
+          "expression": "3",
+          "line": 12,
+          "symbol": "Z_EFFECT_BOOST_CRITS"
+        },
+        {
+          "expression": "4",
+          "line": 13,
+          "symbol": "Z_EFFECT_FOLLOW_ME"
+        },
+        {
+          "expression": "5",
+          "line": 14,
+          "symbol": "Z_EFFECT_CURSE"
+        },
+        {
+          "expression": "6",
+          "line": 15,
+          "symbol": "Z_EFFECT_RECOVER_HP"
+        },
+        {
+          "expression": "7",
+          "line": 16,
+          "symbol": "Z_EFFECT_RESTORE_REPLACEMENT_HP"
+        },
+        {
+          "expression": "8",
+          "line": 18,
+          "symbol": "Z_EFFECT_ATK_UP_1"
+        },
+        {
+          "expression": "9",
+          "line": 19,
+          "symbol": "Z_EFFECT_DEF_UP_1"
+        },
+        {
+          "expression": "10",
+          "line": 20,
+          "symbol": "Z_EFFECT_SPD_UP_1"
+        },
+        {
+          "expression": "11",
+          "line": 21,
+          "symbol": "Z_EFFECT_SPATK_UP_1"
+        },
+        {
+          "expression": "12",
+          "line": 22,
+          "symbol": "Z_EFFECT_SPDEF_UP_1"
+        },
+        {
+          "expression": "13",
+          "line": 23,
+          "symbol": "Z_EFFECT_ACC_UP_1"
+        },
+        {
+          "expression": "14",
+          "line": 24,
+          "symbol": "Z_EFFECT_EVSN_UP_1"
+        },
+        {
+          "expression": "15",
+          "line": 26,
+          "symbol": "Z_EFFECT_ATK_UP_2"
+        },
+        {
+          "expression": "16",
+          "line": 27,
+          "symbol": "Z_EFFECT_DEF_UP_2"
+        },
+        {
+          "expression": "17",
+          "line": 28,
+          "symbol": "Z_EFFECT_SPD_UP_2"
+        },
+        {
+          "expression": "18",
+          "line": 29,
+          "symbol": "Z_EFFECT_SPATK_UP_2"
+        },
+        {
+          "expression": "19",
+          "line": 30,
+          "symbol": "Z_EFFECT_SPDEF_UP_2"
+        },
+        {
+          "expression": "20",
+          "line": 31,
+          "symbol": "Z_EFFECT_ACC_UP_2"
+        },
+        {
+          "expression": "21",
+          "line": 32,
+          "symbol": "Z_EFFECT_EVSN_UP_2"
+        },
+        {
+          "expression": "22",
+          "line": 34,
+          "symbol": "Z_EFFECT_ATK_UP_3"
+        },
+        {
+          "expression": "23",
+          "line": 35,
+          "symbol": "Z_EFFECT_DEF_UP_3"
+        },
+        {
+          "expression": "24",
+          "line": 36,
+          "symbol": "Z_EFFECT_SPD_UP_3"
+        },
+        {
+          "expression": "25",
+          "line": 37,
+          "symbol": "Z_EFFECT_SPATK_UP_3"
+        },
+        {
+          "expression": "26",
+          "line": 38,
+          "symbol": "Z_EFFECT_SPDEF_UP_3"
+        },
+        {
+          "expression": "27",
+          "line": 39,
+          "symbol": "Z_EFFECT_ACC_UP_3"
+        },
+        {
+          "expression": "28",
+          "line": 40,
+          "symbol": "Z_EFFECT_EVSN_UP_3"
+        }
+      ],
+      "sha256": "75669f5f8c4c58774e2d43d2ca1917116666b568f9c1cfbb78d305b89288c1f1",
+      "size": 1020
+    },
+    "src/battle_util.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "sha256": "558c9a85d067e984c96bf83fb0c652a58df3b0b5fbf63620e4ea694195458ed3",
+      "size": 67724,
+      "units": [
+        {
+          "end_line": 1529,
+          "sha256": "00c993929b4add1eabbabbd5b0143529d62fce724d6a4a3d3fa9c383b3ce92ba",
+          "start_line": 1498,
+          "symbol": "CalcMoveSplit",
+          "text": "u8 CalcMoveSplit(u8 bankAtk, u16 move, u8 bankDef)\n{\n\tif ((CheckTableForMove(move, gMovesThatChangePhysicality)\n\t|| ((move == MOVE_TERABLAST || move == MOVE_TERASTARSTORM) && TeraTypeActive(bankAtk)))\n\t&&  SPLIT(move) != SPLIT_STATUS)\n\t{\n\t\tu32 attack = gBattleMons[bankAtk].attack;\n\t\tu32 spAttack = gBattleMons[bankAtk].spAttack;\n\n\t\tAPPLY_QUICK_STAT_MOD(attack, STAT_STAGE(bankAtk, STAT_STAGE_ATK));\n\t\tAPPLY_QUICK_STAT_MOD(spAttack, STAT_STAGE(bankAtk, STAT_STAGE_SPATK));\n\n\t\tif (spAttack >= attack)\n\t\t\treturn SPLIT_SPECIAL;\n\t\telse\n\t\t\treturn SPLIT_PHYSICAL;\n\t}\n\telse if (move == MOVE_SHELLSIDEARM\n\t&& bankAtk != bankDef) //Indicator to just use the base physicality\n\t{\n\t\treturn gNewBS->shellSideArmSplit[bankAtk][bankDef];\n\t}\n\n\t#ifdef OLD_MOVE_SPLIT\n\t\tif (gBattleMoves[move].type < TYPE_FIRE)\n\t\t\treturn SPLIT_PHYSICAL;\n\t\telse\n\t\t\treturn SPLIT_SPECIAL;\n\t#else\n\t\treturn SPLIT(move);\n\t#endif\n}\n"
+        }
+      ]
+    },
+    "src/build_pokemon.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "sha256": "ac81e3a9a8c7a58105573e6ee2abf62a4b22922e88c6c7d3a1ecdc6c9431e824",
+      "size": 138366,
+      "units": [
+        {
+          "end_line": 3936,
+          "sha256": "fc06ba1ffb91ef0c8759fe2becfc3bb24a4d406f84c42492b95469e5e8499e5f",
+          "start_line": 3844,
+          "symbol": "ScriptGiveMon",
+          "text": "u8 ScriptGiveMon(u16 species, u8 level, u16 item, unusedArg u32 unused1, unusedArg u32 customGivePokemon, unusedArg u8 ballType)\n{\n\tu8 sentToPc;\n\tstruct Pokemon mon;\n\n\tCreateMon(&mon, species, level, 32, 0, 0, 0, 0);\n\tSetMonData(&mon, MON_DATA_HELD_ITEM, &item);\n\n\t#ifdef GIVEPOKEMON_BALL_HACK\n\tif (ballType != 0)\n\t\tmon.pokeball = ballType;\n\t#endif\n\n\t#ifdef FLAG_HIDDEN_ABILITY\n\tif (FlagGet(FLAG_HIDDEN_ABILITY))\n\t{\n\t\tmon.hiddenAbility = TRUE;\n\t\tFlagClear(FLAG_HIDDEN_ABILITY);\n\t}\n\t#endif\n\n\t#ifdef FLAG_GIGANTAMAXABLE\n\tif (FlagGet(FLAG_GIGANTAMAXABLE))\n\t{\n\t\tmon.gigantamax = TRUE;\n\t\tFlagClear(FLAG_GIGANTAMAXABLE);\n\t}\n\t#endif\n\n\t#ifdef FLAG_CUSTOM_TERA_TYPE\n\tif (FlagGet(FLAG_CUSTOM_TERA_TYPE))\n\t{\n\t\tmon.teratype = VarGet(Var8008);\n\t\tFlagClear(FLAG_CUSTOM_TERA_TYPE);\n\t}\n\t#endif\n\n\t#ifdef GIVEPOKEMON_CUSTOM_HACK\n\tif (customGivePokemon != 0)\n\t{\n\t\tu8 i;\n\t\tu16* moves = &Var8000; //-0x8003\n\t\tu8 nature = Var8004;\n\t\tbool8 shiny = Var8005;\n\t\tu16* ivs = &Var8006; //-0x800B\n\n\t\tfor (i = 0; i < MAX_MON_MOVES; ++i)\n\t\t{\n\t\t\tif (moves[i] < MOVES_COUNT)\n\t\t\t\tSetMonData(&mon, MON_DATA_MOVE1 + i, &moves[i]);\n\t\t}\n\n\t\tfor (i = 0; i < NUM_STATS; ++i)\n\t\t\tSetMonData(&mon, MON_DATA_HP_IV + i, &ivs[i]);\n\n\t\tif (nature >= NUM_NATURES)\n\t\t{\n\t\t\t#ifdef SYNCHRONIZE_GIFT_POKEMON\n\t\t\tif (GetMonAbility(&gPlayerParty[0]) == ABILITY_SYNCHRONIZE) //Lead has Synchronize\n\t\t\t\tnature = GetNature(&gPlayerParty[0]); //Match lead\n\t\t\telse\n\t\t\t#endif\n\t\t\tnature = Random() % NUM_NATURES;\n\t\t}\n\n\t\tGiveMonNatureAndAbility(&mon, nature, GetMonData(&mon, MON_DATA_PERSONALITY, NULL) & 1, shiny ? TRUE : IsMonShiny(&mon), FALSE, FALSE);\n\t\tCalculateMonStats(&mon);\n\t}\n\telse\n\t#endif\n\t{\n\t\t#ifdef SYNCHRONIZE_GIFT_POKEMON\n\t\tif (GetMonAbility(&gPlayerParty[0]) == ABILITY_SYNCHRONIZE) //Lead has Synchronize\n\t\t{\n\t\t\tu8 nature = GetNature(&gPlayerParty[0]); //Match lead\n\t\t\tGiveMonNatureAndAbility(&mon, nature, GetMonData(&mon, MON_DATA_PERSONALITY, NULL) & 1, IsMonShiny(&mon), FALSE, FALSE);\n\t\t\tCalculateMonStats(&mon);\n\t\t}\n\t\t#endif\n\t}\n\n\tHealMon(&mon);\n\tsentToPc = GiveMonToPlayer(&mon);\n\n\tswitch(sentToPc) {\n\t\tcase 0:\n\t\tcase 1:\n\t\t\tSetMonPokedexFlags(&mon);\n\t\t\tbreak;\n\t}\n\n\treturn sentToPc;\n}\n"
+        }
+      ]
+    },
+    "src/config.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "defines": [
+        {
+          "expression": "0x90B",
+          "line": 43,
+          "symbol": "FLAG_WILD_CUSTOM_MOVES"
+        },
+        {
+          "expression": "0x90F",
+          "line": 47,
+          "symbol": "FLAG_HIDDEN_ABILITY"
+        }
+      ],
+      "sha256": "49ea2d82bbd5e0040e39b83e044ff3e4e21e09222bcc0a6879a786cc99da4f6e",
+      "size": 30444
+    },
+    "src/daycare.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "sha256": "3533614a49b2025a299c6446b6fb303b2eeccd76dfc102dc8197097a1023fe5a",
+      "size": 30650,
+      "units": [
+        {
+          "end_line": 650,
+          "sha256": "99437dc3de3725af26be47fb75082c3bd3e4107e3591e02b31c6cf7fe2882ff8",
+          "start_line": 627,
+          "symbol": "DetermineEggAbility",
+          "text": "static void DetermineEggAbility(struct Pokemon* egg, unusedArg struct BoxPokemon* father, struct BoxPokemon* mother)\n{\n\t#ifdef SPECIES_DITTO\n\tif (GetBoxMonData(mother, MON_DATA_SPECIES, NULL) == SPECIES_DITTO)\n\t\tmother = father; //Get Hidden Ability from father instead\n\t#endif\n\n\tif (((struct Pokemon*) mother)->hiddenAbility)\n\t{\n\t\tif (Random() % 100 < 60) //60 % chance to pass down Hidden Ability\n\t\t\tegg->hiddenAbility = TRUE;\n\t}\n\telse\n\t{\n\t\tif (gBaseStats[GetMonData(egg, MON_DATA_SPECIES, NULL)].ability2)\n\t\t{\n\t\t\tu8 abilityNum = GetBoxMonData(mother, MON_DATA_ALT_ABILITY, NULL);\n\n\t\t\tif (Random() % 100 >= 80) //80 % chance to pass down slotted ability\n\t\t\t\tabilityNum ^= 1;\n\t\t\tSetMonData(egg, MON_DATA_ALT_ABILITY, &abilityNum);\n\t\t}\n\t}\n}\n"
+        }
+      ]
+    },
+    "src/dexnav.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "sha256": "8049836072f5f3469cb134ade1d864ab0c2241f6162930ba76028d8b3d1dbd17",
+      "size": 113502,
+      "units": [
+        {
+          "end_line": 1435,
+          "sha256": "b196642f3804ee477b009a2c5bcd62853b904871d5296b2d488761935c0868dc",
+          "start_line": 1362,
+          "symbol": "DexNavGenerateHiddenAbility",
+          "text": "static u16 DexNavGenerateHiddenAbility(u16 species, u8 searchLevel)\n{\n\tbool8 genAbility = FALSE;\n\tu16 randVal = Random() % 100;\n\n\tif (searchLevel < 5)\n\t{\n\t\t#if (SEARCHLEVEL0_ABILITYCHANCE != 0)\n\t\tif (randVal < SEARCHLEVEL0_ABILITYCHANCE)\n\t\t\tgenAbility = TRUE;\n\t\t#endif\n\t}\n\telse if (searchLevel < 10)\n\t{\n\t\t#if (SEARCHLEVEL5_ABILITYCHANCE != 0)\n\t\tif (randVal < SEARCHLEVEL5_ABILITYCHANCE)\n\t\t\tgenAbility = TRUE;\n\t\t#endif\n\t}\n\telse if (searchLevel < 25)\n\t{\n\t\t#if (SEARCHLEVEL10_ABILITYCHANCE != 0)\n\t\tif (randVal < SEARCHLEVEL10_ABILITYCHANCE)\n\t\t\tgenAbility = TRUE;\n\t\t#endif\n\t}\n\telse if (searchLevel < 50)\n\t{\n\t\t#if (SEARCHLEVEL25_ABILITYCHANCE != 0)\n\t\tif (randVal < SEARCHLEVEL25_ABILITYCHANCE)\n\t\t\tgenAbility = TRUE;\n\t\t#endif\n\t}\n\telse if (searchLevel < 100)\n\t{\n\t\t#if (SEARCHLEVEL50_ABILITYCHANCE != 0)\n\t\tif (randVal < SEARCHLEVEL50_ABILITYCHANCE)\n\t\t\tgenAbility = TRUE;\n\t\t#endif\n\t}\n\telse\n\t{\n\t\t#if (SEARCHLEVEL100_ABILITYCHANCE != 0)\n\t\tif (randVal < SEARCHLEVEL100_ABILITYCHANCE)\n\t\t\tgenAbility = TRUE;\n\t\t#endif\n\t}\n\n\t#ifdef UNBOUND\n\tif (genAbility\n\t&& !FlagGet(FLAG_SYS_GAME_CLEAR)\n\t&& VarGet(VAR_GAME_DIFFICULTY) >= OPTIONS_EXPERT_DIFFICULTY\n\t&& gBaseStats[species].hiddenAbility == ABILITY_IMPOSTER)\n\t\tgenAbility = FALSE; //Don't allow Imposter until the post-game\n\t#endif\n\n\tif (genAbility && gBaseStats[species].hiddenAbility != ABILITY_NONE\n\t&& GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT)) //Only give hidden ability if Pokemon has been caught before\n\t\treturn GetHiddenAbility(species);\n\telse\n\t{\n\t\t//Pick a normal ability of that Pokemon\n\t\tu16 ability;\n\t\tu16 ability1 = GetAbility1(species);\n\t\tu16 ability2 = GetAbility2(species);\n\t\t\n\t\tif (ability2 != ABILITY_NONE)\n\t\t\tability = (randVal & 1) == 0 ? ability1 : ability2;\n\t\telse\n\t\t\tability = ability1;\n\n\t\treturn ability;\n\t}\n}\n"
+        }
+      ]
+    },
+    "src/dynamax.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "sha256": "165a51cf016a690a17c8fa981cb65db67e1ea853ad0a92a6ec374bbd6843c490",
+      "size": 66919,
+      "units": [
+        {
+          "end_line": 2122,
+          "sha256": "1c05afa062d0856a9c6941ec4f0fff9eca2fdc11e7ad74c727efef16ab78ee5e",
+          "start_line": 2103,
+          "symbol": "GetRaidSpeciesAbilityNum",
+          "text": "u8 GetRaidSpeciesAbilityNum(u16 species)\n{\n\tu32 i = 0;\n\tu8 numStars = gRaidBattleStars;\n\tconst struct RaidData* raid = &gRaidsByMapSection[GetRaidMapSectionId()][numStars];\n\n\tif (IsGigantamaxSpecies(species))\n\t\treturn RAID_ABILITY_RANDOM_ALL; //Gigantamax Pokemon can have any one of their abilities\n\n\tif (raid->data != NULL)\n\t{\n\t\tfor (i = 0; i < raid->amount; ++i)\n\t\t{\n\t\t\tif (raid->data[i].species == species) //Max one species per dataset\n\t\t\t\treturn raid->data[i].ability;\n\t\t}\n\t}\n\n\treturn RAID_ABILITY_RANDOM_1_2;\n}\n"
+        },
+        {
+          "end_line": 2127,
+          "sha256": "af07235d5453738ab70fdb3483a62bdc0e3f587cd589b8b7cd5d220a35c8459b",
+          "start_line": 2124,
+          "symbol": "GetRaidEggMoveChance",
+          "text": "u8 GetRaidEggMoveChance(void)\n{\n\treturn gRaidBattleEggMoveChances[gRaidBattleStars];\n}\n"
+        }
+      ]
+    },
+    "src/item.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "sha256": "885c2ae9fa78d145eec1eca4333104b6fdd90a1d5afbbe191e0bc3398e740922",
+      "size": 55431,
+      "units": [
+        {
+          "end_line": 119,
+          "sha256": "86b22622ba9c278b04a181dca0d52b6b0348a40791ab05e64290ad61e45343bd",
+          "start_line": 116,
+          "symbol": "IsZCrystal",
+          "text": "bool8 IsZCrystal(u16 item)\n{\n\treturn ItemId_GetHoldEffect(item) == ITEM_EFFECT_Z_CRYSTAL;\n}\n"
+        },
+        {
+          "end_line": 124,
+          "sha256": "0ba7c2c66a4a3f768985d07ce587b4b33fa0930be214e01c46004a3a2fdfdc84",
+          "start_line": 121,
+          "symbol": "IsTypeZCrystal",
+          "text": "bool8 IsTypeZCrystal(u16 item, u8 moveType)\n{\n\treturn IsZCrystal(item) && ItemId_GetHoldEffectParam(item) == moveType && !IsSpecialZCrystal(item);\n}\n"
+        }
+      ]
+    },
+    "src/set_z_effect.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "sha256": "578ff365e1b8695303ee62fdc27745d537f1c3d5682053c0b6376a989d0c67b3",
+      "size": 11278,
+      "units": [
+        {
+          "end_line": 203,
+          "sha256": "feaab49200ce21e4fa53d19e16d2ba59051f88c5aeb2a1e3ea0156f68b5cd8c7",
+          "start_line": 190,
+          "symbol": "GetTypeBasedZMove",
+          "text": "move_t GetTypeBasedZMove(u16 move, u8 bank)\n{\n\tu8 moveType = gBattleMoves[move].type;\n\n\tif (move == MOVE_WEATHERBALL || move == MOVE_AURAWHEEL || move == MOVE_TERRAINPULSE)\n\t\tmoveType = GetMoveTypeSpecial(bank, move);\n\n\tif (moveType < TYPE_FIRE)\n\t\treturn MOVE_BREAKNECK_BLITZ_P + (moveType * 2) + CalcMoveSplit(bank, move, bank);\n\telse if (moveType >= TYPE_FAIRY)\n\t\treturn MOVE_TWINKLE_TACKLE_P + ((moveType - TYPE_FAIRY) * 2) + CalcMoveSplit(bank, move, bank);\n\telse\n\t\treturn MOVE_BREAKNECK_BLITZ_P + ((moveType - 1) * 2) + CalcMoveSplit(bank, move, bank);\n}\n"
+        },
+        {
+          "end_line": 227,
+          "sha256": "0801bb9c17bd4c205a11fc74ba1dd6b75a62a5f70c41aa0900a9ce7b2d6a50ba",
+          "start_line": 205,
+          "symbol": "GetSpecialZMove",
+          "text": "move_t GetSpecialZMove(u16 move, u16 species, u16 item)\n{\n\tbool8 isSpecialZCrystal = FALSE;\n\n\tfor (u32 i = 0; i < ARRAY_COUNT(sSpecialZMoveTable); ++i)\n\t{\n\t\tif (sSpecialZMoveTable[i].item == item)\n\t\t{\n\t\t\tisSpecialZCrystal = TRUE;\n\n\t\t\tif (sSpecialZMoveTable[i].species == species\n\t\t\t&&  sSpecialZMoveTable[i].move == move)\n\t\t\t{\n\t\t\t\treturn sSpecialZMoveTable[i].zmove;\n\t\t\t}\n\t\t}\n\t}\n\n\tif (isSpecialZCrystal)\n\t\treturn 0xFFFF;\n\telse\n\t\treturn MOVE_NONE;\n}\n"
+        },
+        {
+          "end_line": 306,
+          "sha256": "e1760477b18bad1660db676aab77f73286a6518e1860d21291b82301c78d4016",
+          "start_line": 259,
+          "symbol": "CanUseZMove",
+          "text": "move_t CanUseZMove(u8 bank, u8 moveIndex, u16 move)\n{\n\tif (IS_TRANSFORMED(bank))\n\t\treturn MOVE_NONE;\n\n\tif (move == MOVE_NONE)\n\t\tmove = gBattleMons[bank].moves[moveIndex];\n\n\t#if (defined VAR_KEYSTONE && !defined DEBUG_MEGA)\n\t//Z-Moves can't be used until receieving a Keystone\n\tif (!(gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_LINK))) //Z-Moves can always be used in these battles\n\t{\n\t\tu8 position = GetBattlerPosition(bank);\n\t\tif (position == B_POSITION_PLAYER_LEFT || (!IsTagBattle() && position == B_POSITION_PLAYER_RIGHT))\n\t\t{\n\t\t\tu16 keystone = VarGet(VAR_KEYSTONE);\n\t\t\tif (keystone == ITEM_NONE)\n\t\t\t\treturn MOVE_NONE;\n\t\t}\n\t}\n\t#endif\n\n\tif (IsMegaZMoveBannedBattle()\n\t|| IsMega(bank)\n\t|| IsRedPrimal(bank)\n\t|| IsBluePrimal(bank))\n\t\treturn MOVE_NONE;\n\n\tu16 item = GetBankPartyData(bank)->item; //Direct access for runtime speed\n\n\tif (IsZCrystal(item) || item == ITEM_ULTRANECROZIUM_Z) //The only \"Mega Stone\" that let's you use a Z-Move\n\t{\n\t\tu16 zMove = GetSpecialZMove(move, SPECIES(bank), item);\n\t\tif (zMove != MOVE_NONE && zMove != 0xFFFF) //There's a special Z-Move\n\t\t\treturn zMove;\n\n\t\tif (move != MOVE_NONE && zMove != 0xFFFF //Special Z-Crystal\n\t\t&& gBattleMoves[move].type == ItemId_GetHoldEffectParam(item))\n\t\t{\n\t\t\tif (SPLIT(move) == SPLIT_STATUS)\n\t\t\t\treturn 0xFFFF;\n\t\t\telse\n\t\t\t\treturn GetTypeBasedZMove(move, bank);\n\t\t}\n\t}\n\n\treturn MOVE_NONE;\n}\n"
+        },
+        {
+          "end_line": 188,
+          "sha256": "4f38a10b358d59928ee74b3375bf90ed57ae3f158ed63565d491dcc180d69b02",
+          "start_line": 67,
+          "symbol": "SetZEffect",
+          "text": "void SetZEffect(void)\n{\n\tint i;\n\n\tgNewBS->zMoveData.runningZEffect = TRUE;\n\n\tif (gNewBS->zMoveData.effect == Z_EFFECT_CURSE) {\n\t\tif (IsOfType(gBankAttacker, TYPE_GHOST))\n\t\t\tgNewBS->zMoveData.effect = Z_EFFECT_RECOVER_HP;\n\t\telse\n\t\t\tgNewBS->zMoveData.effect = Z_EFFECT_ATK_UP_1;\n\t}\n\n\tgBattleScripting.bank = gBankAttacker;\n\n\tswitch (gNewBS->zMoveData.effect) {\n\t\tcase Z_EFFECT_RESET_STATS:\n\t\t\tfor (i = 0; i < BATTLE_STATS_NO-1; ++i)\n\t\t\t{\n\t\t\t\tif (gBattleMons[gBankAttacker].statStages[i] < 6)\n\t\t\t\t\tgBattleMons[gBankAttacker].statStages[i] = 6;\n\t\t\t\t}\n\t\t\tBattleScriptPush(gBattlescriptCurrInstr + 5);\n\t\t\tgBattlescriptCurrInstr = BattleScript_StatsResetZMove - 5;\n\t\t\tbreak;\n\n\t\tcase Z_EFFECT_ALL_STATS_UP_1:\n\t\t\tif (!MainStatsMaxed(gBankAttacker))\n\t\t\t{\n\t\t\t\tfor (i = 0; i < STAT_ACC-1; ++i) //Doesn't increase Acc or Evsn\n\t\t\t\t{\n\t\t\t\t\tif (gBattleMons[gBankAttacker].statStages[i] < STAT_STAGE_MAX)\n\t\t\t\t\t\t++gBattleMons[gBankAttacker].statStages[i];\n\t\t\t\t}\n\n\t\t\t\tBattleScriptPush(gBattlescriptCurrInstr + 5);\n\t\t\t\tgBattlescriptCurrInstr = BattleScript_AllStatsUpZMove - 5;\n\t\t\t}\n\t\t\tbreak;\n\n\t\tcase Z_EFFECT_BOOST_CRITS:\n\t\t\tif (!(gBattleMons[gBankAttacker].status2 & STATUS2_FOCUS_ENERGY))\n\t\t\t{\n\t\t\t\tgBattleMons[gBankAttacker].status2 |= STATUS2_FOCUS_ENERGY;\n\t\t\t\tBattleScriptPush(gBattlescriptCurrInstr + 5);\n\t\t\t\tgBattlescriptCurrInstr = BattleScript_BoostCritsZMove - 5;\n\t\t\t}\n\t\t\tbreak;\n\n\t\tcase Z_EFFECT_FOLLOW_ME:\n\t\t\tgSideTimers[SIDE(gBankAttacker)].followmeTimer = 1;\n\t\t\tgSideTimers[SIDE(gBankAttacker)].followmeTarget = gBankAttacker;\n\t\t\tBattleScriptPush(gBattlescriptCurrInstr + 5);\n\t\t\tgBattlescriptCurrInstr = BattleScript_FollowMeZMove - 5;\n\t\t\tbreak;\n\n\t\tcase Z_EFFECT_RECOVER_HP:\n\t\t\tif (!BATTLER_MAX_HP(gBankAttacker))\n\t\t\t{\n\t\t\t\tgBattleMoveDamage = (-1) * gBattleMons[gBankAttacker].maxHP;\n\t\t\t\tBattleScriptPush(gBattlescriptCurrInstr + 5);\n\t\t\t\tgBattlescriptCurrInstr = BattleScript_RecoverHPZMove - 5;\n\t\t\t}\n\t\t\tbreak;\n\n\t\tcase Z_EFFECT_RESTORE_REPLACEMENT_HP:\n\t\t\tgNewBS->zMoveData.healReplacement = TRUE;\n\t\t\tBattleScriptPush(gBattlescriptCurrInstr + 5);\n\t\t\tgBattlescriptCurrInstr = BattleScript_SetUpHealReplacementZMove - 5;\n\t\t\tbreak;\n\n\t\tcase Z_EFFECT_ATK_UP_1:\n\t\tcase Z_EFFECT_DEF_UP_1:\n\t\tcase Z_EFFECT_SPD_UP_1:\n\t\tcase Z_EFFECT_SPATK_UP_1:\n\t\tcase Z_EFFECT_SPDEF_UP_1:\n\t\tcase Z_EFFECT_ACC_UP_1:\n\t\tcase Z_EFFECT_EVSN_UP_1:\n\t\t\tif (!ChangeStatBuffs(SET_STAT_BUFF_VALUE(1), gNewBS->zMoveData.effect - Z_EFFECT_ATK_UP_1 + 1, MOVE_EFFECT_AFFECTS_USER, 0))\n\t\t\t{\n\t\t\t\tgBattleScripting.animArg1 = 0xE + (gNewBS->zMoveData.effect - Z_EFFECT_ATK_UP_1 + 1);\n\t\t\t\tgBattleScripting.animArg2 = 0;\n\t\t\t\tBattleScriptPush(gBattlescriptCurrInstr + 5);\n\t\t\t\tgBattlescriptCurrInstr = BattleScript_StatUpZMove - 5;\n\t\t\t}\n\t\t\tbreak;\n\n\t\tcase Z_EFFECT_ATK_UP_2:\n\t\tcase Z_EFFECT_DEF_UP_2:\n\t\tcase Z_EFFECT_SPD_UP_2:\n\t\tcase Z_EFFECT_SPATK_UP_2:\n\t\tcase Z_EFFECT_SPDEF_UP_2:\n\t\tcase Z_EFFECT_ACC_UP_2:\n\t\tcase Z_EFFECT_EVSN_UP_2:\n\t\t\tif (!ChangeStatBuffs(SET_STAT_BUFF_VALUE(2), gNewBS->zMoveData.effect - Z_EFFECT_ATK_UP_2 + 1, MOVE_EFFECT_AFFECTS_USER, 0))\n\t\t\t{\n\t\t\t\tgBattleScripting.animArg1 = 0xE + (gNewBS->zMoveData.effect - Z_EFFECT_ATK_UP_2 + 1);\n\t\t\t\tgBattleScripting.animArg2 = 0;\n\t\t\t\tBattleScriptPush(gBattlescriptCurrInstr + 5);\n\t\t\t\tgBattlescriptCurrInstr = BattleScript_StatUpZMove - 5;\n\t\t\t}\n\t\t\tbreak;\n\n\t\tcase Z_EFFECT_ATK_UP_3:\n\t\tcase Z_EFFECT_DEF_UP_3:\n\t\tcase Z_EFFECT_SPD_UP_3:\n\t\tcase Z_EFFECT_SPATK_UP_3:\n\t\tcase Z_EFFECT_SPDEF_UP_3:\n\t\tcase Z_EFFECT_ACC_UP_3:\n\t\tcase Z_EFFECT_EVSN_UP_3:\n\t\t\tif (!ChangeStatBuffs(SET_STAT_BUFF_VALUE(3), gNewBS->zMoveData.effect - Z_EFFECT_ATK_UP_3 + 1, MOVE_EFFECT_AFFECTS_USER, 0))\n\t\t\t{\n\t\t\t\tgBattleScripting.animArg1 = 0xE + (gNewBS->zMoveData.effect - Z_EFFECT_ATK_UP_3 + 1);\n\t\t\t\tgBattleScripting.animArg2 = 0;\n\t\t\t\tBattleScriptPush(gBattlescriptCurrInstr + 5);\n\t\t\t\tgBattlescriptCurrInstr = BattleScript_StatUpZMove - 5;\n\t\t\t}\n\t\t\tbreak;\n\t}\n\n\tgNewBS->zMoveData.runningZEffect = FALSE;\n}\n"
+        },
+        {
+          "end_line": 329,
+          "sha256": "5c8081286f851ab5462127b596eb74f4ffc4914e47905be81260d19abea5eb68",
+          "start_line": 308,
+          "symbol": "ReplaceWithZMoveRuntime",
+          "text": "u16 ReplaceWithZMoveRuntime(u8 bankAtk, u16 move)\n{\n\tif (gNewBS->zMoveData.toBeUsed[bankAtk]\n\t&& !gNewBS->zMoveData.used[bankAtk]\n\t&& SPLIT(move) != SPLIT_STATUS)\n\t{\n\t\tu16 zMove = CanUseZMove(bankAtk, 0xFF, move);\n\t\tif (zMove != MOVE_NONE)\n\t\t\tmove = zMove;\n\t}\n\telse if (IsDynamaxed(bankAtk) || (gNewBS->dynamaxData.toBeUsed[bankAtk] && !gNewBS->dynamaxData.used[bankAtk]))\n\t{\n\t\tif (IsRaidBattle() && bankAtk == BANK_RAID_BOSS && IsRaidBossUsingRegularMove(bankAtk, move))\n\t\t\treturn move; //This turn the raid boss isn't using a Max Move\n\n\t\tu16 maxMove = GetMaxMoveByMove(bankAtk, move);\n\t\tif (maxMove != MOVE_NONE)\n\t\t\tmove = maxMove;\n\t}\n\n\treturn move;\n}\n"
+        },
+        {
+          "end_line": 252,
+          "sha256": "e98b22c1403fd13d0584f043c9b1f0d1ad52b1138512f5fd9a67e800bb67aa46",
+          "start_line": 248,
+          "symbol": "DoesZMoveUsageStopMegaEvolution",
+          "text": "bool8 DoesZMoveUsageStopMegaEvolution(u8 bank)\n{\n\treturn gNewBS->zMoveData.used[bank]\n\t\t&& gNewBS->zMoveData.partyIndex[SIDE(bank)] & gBitTable[gBattlerPartyIndexes[bank]];\n}\n"
+        }
+      ]
+    },
+    "src/wild_encounter.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "sha256": "a2e57daf75961a550faa034e7f668443b519787d289044e5e0a32d3c933a6249",
+      "size": 45366,
+      "units": [
+        {
+          "end_line": 379,
+          "sha256": "3836954ce303e44723007ac772cd808fd0ed5dd13be9a62f9dfb2eb3cf8813a8",
+          "start_line": 289,
+          "symbol": "CreateWildMon",
+          "text": "void CreateWildMon(u16 species, u8 level, u8 monHeaderIndex, bool8 purgeParty)\n{\n\tu8 enemyMonIndex = 0;\n\tbool8 checkCuteCharm = TRUE;\n\n\tif (purgeParty)\n\t\tZeroEnemyPartyMons();\n\telse\n\t\tenemyMonIndex = 1;\n\n\tswitch (gBaseStats[species].genderRatio) {\n\t\tcase MON_MALE:\n\t\tcase MON_FEMALE:\n\t\tcase MON_GENDERLESS:\n\t\t\tcheckCuteCharm = FALSE;\n\t\t\tbreak;\n\t}\n\n\tif (checkCuteCharm\n\t&& !GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, NULL)\n\t&&  GetMonAbility(&gPlayerParty[0]) == ABILITY_CUTECHARM\n\t&& (Random() % 3) > 0) //2/3 of the time\n\t{\n\t\tu16 leadingMonSpecies = gPlayerParty[0].species;\n\t\tu32 leadingMonPersonality = gPlayerParty[0].personality;\n\t\tu8 gender = GetGenderFromSpeciesAndPersonality(leadingMonSpecies, leadingMonPersonality);\n\n\t\tif (gender == MON_FEMALE)\n\t\t\tgender = MON_MALE;\n\t\telse if (gender == MON_MALE)\n\t\t\tgender = MON_FEMALE;\n\t\telse //Genderless\n\t\t\tgoto REGULAR_NATURE_CREATION;\n\n\t\tCreateMonWithGenderNatureLetter(&gEnemyParty[enemyMonIndex], species, level, 32, gender, PickWildMonNature(), PickUnownLetter(species, monHeaderIndex));\n\t}\n\telse\n\t{\n\t\tREGULAR_NATURE_CREATION:\n\t\tCreateMonWithNatureLetter(&gEnemyParty[enemyMonIndex], species, level, 32, PickWildMonNature(), PickUnownLetter(species, monHeaderIndex));\n\t}\n\n\t#ifdef FLAG_HIDDEN_ABILITY\n\tif (FlagGet(FLAG_HIDDEN_ABILITY))\n\t\tgEnemyParty[enemyMonIndex].hiddenAbility = TRUE;\n\t#endif\n\n\t#ifdef FLAG_GIGANTAMAXABLE\n\tif (FlagGet(FLAG_GIGANTAMAXABLE))\n\t\tgEnemyParty[enemyMonIndex].gigantamax = TRUE;\n\t#endif\n\n\t#ifdef FLAG_CUSTOM_TERA_TYPE\n\tif (FlagGet(FLAG_CUSTOM_TERA_TYPE))\n\t\tgEnemyParty[enemyMonIndex].teratype = VarGet(Var8008);\n\t#endif\n\n\t#ifdef FLAG_WILD_CUSTOM_MOVES\n\t//Custom moves\n\tif (FlagGet(FLAG_WILD_CUSTOM_MOVES)\n\t#ifdef FLAG_POKEMON_RANDOMIZER\n\t&& (!FlagGet(FLAG_POKEMON_RANDOMIZER) //When species are changed, the custom moves no longer make sense\n\t#ifdef FLAG_TEMP_DISABLE_RANDOMIZER\n\t|| FlagGet(FLAG_TEMP_DISABLE_RANDOMIZER)\n\t#endif\n\t)\n\t#endif\n\t)\n\t{\n\t\tu16* moves = (enemyMonIndex == 0) ? &Var8000 : &Var8004;\n\t\tfor (int i = 0; i < MAX_MON_MOVES; ++i)\n\t\t{\n\t\t\tif (moves[i] != 0xFFFF)\n\t\t\t\tgEnemyParty[enemyMonIndex].moves[i] = moves[i];\n\t\t}\n\t}\n\t#endif\n\n\t//Prevent Uncatchable Shinies (they're mean)\n\tif (CantCatchBecauseFlag())\n\t{\n\t\twhile (IsMonShiny(&gEnemyParty[enemyMonIndex]))\n\t\t{\n\t\t\tu32 otId = Random(); //Randomize otId because it's not like the player can catch it anyway\n\t\t\tSetMonData(&gEnemyParty[enemyMonIndex], MON_DATA_OT_ID, &otId);\n\t\t}\n\t}\n\n\t//Status Inducers\n\tTryStatusInducer(&gEnemyParty[enemyMonIndex]);\n}\n"
+        },
+        {
+          "end_line": 428,
+          "sha256": "2181a29dbcca1262e9238ed73ed118c2508ad394f1fd93aae670b853bbd61833",
+          "start_line": 381,
+          "symbol": "sp117_CreateRaidMon",
+          "text": "void sp117_CreateRaidMon(void)\n{\n\tif (FlagGet(FLAG_BATTLE_FACILITY)) //Battle Frontier Demo\n\t{\n\t\tVarSet(VAR_BATTLE_FACILITY_POKE_LEVEL, gRaidBattleLevel);\n\t\tCreateFrontierRaidMon(gRaidBattleSpecies);\n\t\treturn;\n\t}\n\n\tu32 numEggMoves;\n\tu16 eggMoveBuffer[EGG_MOVES_ARRAY_COUNT];\n\n\tu8 eggMoveChance = GetRaidEggMoveChance();\n\tu8 abilityNum = GetRaidSpeciesAbilityNum(gRaidBattleSpecies);\n\tstruct Pokemon* mon = &gEnemyParty[0];\n\n\tif (abilityNum == RAID_ABILITY_HIDDEN\n\t|| (abilityNum == RAID_ABILITY_RANDOM_ALL && Random() & 1)) //50% chance of hidden ability\n\t\tFlagSet(FLAG_HIDDEN_ABILITY);\n\telse\n\t\tFlagClear(FLAG_HIDDEN_ABILITY);\n\n\t#ifdef FLAG_WILD_CUSTOM_MOVES\n\tFlagClear(FLAG_WILD_CUSTOM_MOVES); //We'll set custom moves later\n\t#endif\n\n\tCreateWildMon(gRaidBattleSpecies, gRaidBattleLevel, 0, TRUE);\n\n\tif (abilityNum == RAID_ABILITY_1 || abilityNum == RAID_ABILITY_2)\n\t\tGiveMonNatureAndAbility(mon, GetNature(mon), abilityNum - RAID_ABILITY_1, IsMonShiny(mon), FALSE, FALSE);\n\n\t//Try to give a random Egg move\n\tnumEggMoves = GetAllEggMoves(mon, eggMoveBuffer, TRUE);\n\tif (numEggMoves != 0 && Random() % 100 < eggMoveChance)\n\t{\n\t\tu16 eggMove = eggMoveBuffer[RandRange(0, numEggMoves)];\n\n\t\tif (MoveInMonMoveset(eggMove, mon)) //Try to reroll once if mon already knows move\n\t\t\teggMove = eggMoveBuffer[RandRange(0, numEggMoves)];\n\n\t\tif (!MoveInMonMoveset(eggMove, mon)\n\t\t&& GiveMoveToBoxMon((struct BoxPokemon*) mon, eggMove) == 0xFFFF)\n\t\t\tDeleteFirstMoveAndGiveMoveToBoxMon((struct BoxPokemon*) mon, eggMove);\n\t}\n\n\t//Give perfect IVs based on the number of Raid stars\n\tGiveMonXPerfectIVs(mon, MathMin(gRaidBattleStars - 1, NUM_STATS)); //Max 5 perfect IVs for 6-star raid\n}\n"
+        }
+      ]
+    }
+  }
+}

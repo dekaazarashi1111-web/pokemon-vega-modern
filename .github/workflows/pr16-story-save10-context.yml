@@ -1,0 +1,69 @@
+name: pr16-story-save10-context
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-save10-context.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-save10-context
+  cancel-in-progress: false
+jobs:
+  context:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Save9後継の限定textとActions終端を保存（native・旧検査なし）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-story-save10-context
+          python3 -B - <<'PY'
+          import fnmatch,hashlib,json,os,pathlib,subprocess,zipfile
+          root=pathlib.Path('.')
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          exact={'AGENTS.md','CHATGPT_RESUME.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json','design/run_log.md','design/version_log.md','scripts/pr16_resume.py','scripts/pr16_learnset_compact_record.py','scripts/pr16_learnset_runtime_native_record.py','scripts/private_file_guard.py','scripts/validate_task_graph.py','config/active_play_baseline.json','design/active_play_baseline.md','infra/toolchain_manifest.json','tests/__init__.py','scripts/__init__.py','content/modernization/pr16_special_wild_ui_checkpoint.json'}
+          patterns=['*/AGENTS.md','scripts/pr16_story*.py','scripts/pr16_home_recovery*.py','scripts/pr16_research_story*.py','scripts/pr16_research_save_impact*.py','tests/test_pr16_story_save9.py','content/modernization/pr16_story_save9*.json','content/modernization/pr16_story_save9_development/*','content/modernization/pr16_story_safe_training_checkpoint.json','content/modernization/pr16_story_after_home_checkpoint.json','content/modernization/pr16_home_recovery_native_checkpoint.json','content/modernization/pr16_research_save_impact_checkpoint.json','docs/PR16_STORY_SAVE9_JA.md','.github/workflows/pr16-story-save9*.yml','.github/workflows/pr16-story-save8-context.yml']
+          chosen=sorted(p for p in paths if p and (p in exact or any(fnmatch.fnmatchcase(p,pat) for pat in patterns)))
+          manifest={'source_head':os.environ['GITHUB_SHA'],'base_head':subprocess.check_output(['git','rev-parse','HEAD^']).decode().strip(),'files':{}}
+          assert manifest['base_head']=='5ac20f71a3c12cd4afdef482a93cdf1c25046c1b'
+          with zipfile.ZipFile('.local/pr16-story-save10-context/source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in chosen:
+                  raw=(root/p).read_bytes();raw.decode('utf-8')
+                  manifest['files'][p]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()};z.writestr(p,raw)
+          pathlib.Path('.local/pr16-story-save10-context/manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+          print('Scoped text:',len(chosen),'native/tests: 0')
+          PY
+          gh api repos/${{ github.repository }}/pulls/16 --jq '{number,state,draft,merged,head:{ref:.head.ref,sha:.head.sha,repo:.head.repo.full_name}}' > .local/pr16-story-save10-context/pr.json
+          gh api --paginate 'repos/${{ github.repository }}/actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=100&created=%3E%3D2026-09-28T10%3A00%3A00Z' --jq '.workflow_runs[] | {id,name,head_sha,event,status,conclusion,created_at,updated_at,run_attempt}' > .local/pr16-story-save10-context/actions.jsonl
+          for id in 36408354430 36408678103; do
+            gh api repos/${{ github.repository }}/actions/runs/$id > .local/pr16-story-save10-context/run-$id.json
+            gh api repos/${{ github.repository }}/actions/runs/$id/jobs > .local/pr16-story-save10-context/jobs-$id.json
+            gh api repos/${{ github.repository }}/actions/runs/$id/artifacts > .local/pr16-story-save10-context/artifacts-$id.json
+          done
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Save9と同じ配布版libraryを取得（ゲーム実行なし）
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y libmgba0.10
+          mkdir -p .local/pr16-story-save10-context/lib
+          cp -L /usr/lib/x86_64-linux-gnu/libmgba.so.0.10 .local/pr16-story-save10-context/lib/
+          dpkg-query -W libmgba0.10 > .local/pr16-story-save10-context/lib/package.txt
+          sha256sum .local/pr16-story-save10-context/lib/libmgba.so.0.10 > .local/pr16-story-save10-context/lib/sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-story-save10-context
+          path: .local/pr16-story-save10-context
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

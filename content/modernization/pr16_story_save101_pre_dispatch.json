@@ -1,0 +1,14 @@
+{
+  "status": "EXACT_COMMITTED_BYTES_BEFORE_REF_UPDATE",
+  "measurement_source": "b7e2946492948914f1bbd1079df195790d96a9e3",
+  "parent": "c2cf8d5d22ec13a4de7fc8fc427396bbc16d4ac1",
+  "all_7_new_blobs_readback_equal": true,
+  "final_newline_included": true,
+  "normalization_used": false,
+  "parent_fixture_path": "content/modernization/pr16_story_save100_next_route.json",
+  "parent_fixture_binding": {
+    "size": 36597,
+    "sha256": "7c9266d0311fd297848088bf7d34bc6c41bcde163b336b202ce9c616897f514f"
+  },
+  "rule_ja": "全textの最終改行込みUTF8 byteを新commitから読戻し一致確認後だけbranch非force反映。旧Save100のcopy改行失敗を繰り返さない。"
+}

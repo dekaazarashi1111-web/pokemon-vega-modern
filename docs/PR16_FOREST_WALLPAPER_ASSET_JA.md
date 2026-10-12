@@ -1,0 +1,329 @@
+# Forest壁紙：全asset・実table・LZ tokenの照合
+
+**全asset・有限条件付きreader・対象4byteの正式型受領を完了。保存容量と保存controller統合は未完です。**
+
+入力HEAD `30a1edc5dc3cbbf0852a9ec955a1d77d32dc3e88`、Actions `38066038086`、新34境界試験とtask graph PASS。先行bindingのActionsはcompleted/successを照合済み。
+
+公開PNGは64×56で56tile相当ですが、固定ビルドルールは`-num_tiles 53`です。最後の空3tileを除いた1696byteから生成し、消費973byte、整列込み976byteを確定しました。Pillow全pixel照合と固定公開C compressorでも同一結果です。
+
+現候補0641af70…を新scopeのためだけに再構成し、全32MiB SHAと115ownerを照合しました。0x08397188の全976byte、sWallpapers先頭の12byte tuple、保存hit0x08397492の4byteが一致しました。対象はLZ参照2byte・literal1byte・flags1byteで、整列paddingではありません。ROM/PNG/生byte列は公開せずhashとtoken型だけを記録します。
+
+[機械可読checkpoint](../content/modernization/pr16_forest_wallpaper_asset_checkpoint.json)に全source/依存/親のidentity、symbol行、tokenごとの範囲と展開位置を保存しました。
+
+## 全asset受入時の停止点（履歴）
+
+Forest全asset976byte・実table先頭tuple・LZ消費973byte/展開1696byteは保存checkpointから継承し再測定しない。次はLoadWallpaperGfxの実literal/table選択→DecompressAndLoadBgGfxUsingHeap→LZ77境界を有限命令・caller状態・heap成功/失敗で結ぶ。成立するまで正式784/90・安全容量0を保持。全クリ/旧Bubble/Blastoiseの再走は禁止。
+
+このtoken parserはBIOSやゲームentryの実行ではありません。sourceでcallがあることとtable一致だけからreader成立へ昇格しません。controller6528byte配置、同期heap寿命、保存writer/loaderと局所Save/fresh Continueは別gateです。所有者調整承認0、正式ROM/Save101・baseline不変、merge/releaseなし。
+
+## 実readerの測定結果
+
+入力HEAD `948e3773b4909eb7a5baaf77388686a61549e255`、Actions `38081577392`。新33境界試験とtask graph PASS。前回asset run38066038086の全job/必須step成功を受領。
+
+固定公開headerをARM向けにコンパイルしたlayoutと、実JP symbol/候補全SHAを束縛。オフセット0/1×確保成功/NULLの4条件を実Thumb 130/131/130/131命令で追跡。LoadWallpaperGfxの実table全3fieldと5引数、MallocAndDecompressのheader→1696byte確保要求、実malloc stack/保存レジスタ帰還を照合。成功側はSWI11仕様モデルが973byteを消費して1696byteを展開し、継承済み独立hashと一致。対象08397492全4byteを消費。NULL側はheaderのみでasset展開/heap書込なし、実loader帰還を確認。
+
+これは明示した正常同期ABIと非alias caller/heap状態に対する有限条件付き証明であり、実allocator/BIOS本体/描画/DMA/Freeのnative受入ではない。成功はCreateTask直前で止め、heap生存を記録する。
+
+[新reader checkpoint](../content/modernization/pr16_forest_wallpaper_reader_checkpoint.json)。正式型受領は未完のため784分類/90未知/安全容量0を維持。旧asset/PNG/受入済みreaderの再走0、新scope候補再構成1、native0。
+
+## reader測定時の停止点（履歴）
+
+Forest新readerの成功run完了・原本hash・4profileの実call/stack/全4byte消費を読取専用で受領し、条件付き最小型1件だけを正式差分へ追加する。測定済みreader/ROM再構成/33試験と旧assetは再走しない。784/90・安全容量0は正式receiptまで維持。task/DMA/Freeと保存controllerは別gate。
+
+## Forest条件付き最小型の正式受領
+
+測定Actions `38081577392` / job `114299405185` の全9step成功、artifact `11680930584` の全ZIP/3member hash、公開commit `bc10f50ea7e3ce338f63d6ab5823644cd4fbe931` のcheckpoint完全byteを照合。オフセット0/1×確保成功/NULL、実call/table/stack帰還、973byte消費/1696byte展開と対象4byteを原本から受領しました。測定原本のpending表記は履歴として改作していません。
+
+[正式receipt](../content/modernization/pr16_forest_wallpaper_receipt.json) / [singleton差分](../content/modernization/pr16_forest_wallpaper_receipt_evidence/reference-chain.json) / [未知89行](../content/modernization/pr16_forest_wallpaper_receipt_evidence/unknown-frontier.json)。正式784/90から785/89へ対象1件だけを追加し、他873行と全旧受入namespaceを保持。安全容量0、ROM/Save101/Wiki R0/baseline不変です。
+
+新39受領試験と13統合境界検査、決定的差分、保存後read-only復元、task graphを検証。新native/ROM再構成/旧reader/旧試験再走は0。BIOS本体・allocator・task/DMA/Free・自然PC描画・全story・releaseの受入ではありません。
+
+受領処理自身のActions完了は[外部読戻しreceipt](../content/modernization/pr16_forest_wallpaper_receipt_evidence/actions-completion.json)で別記録します。生成中のrunを成功と先取りしません。
+
+## Forest受領時の停止点（履歴）
+
+正式785分類/89未知・安全容量0の保存親から、保存controller6528byteに必要な候補窓のowner/間接参照を有限範囲で絞る。未知frontier先頭0x0805D12Fを採用する場合もsource/asset identityから開始し、未知削減だけを容量確保としない。Forest測定・受領39試験・旧asset/旧readerを再走しない。必要範囲の退役/移管、heap寿命、保存接続と局所受入は未完。
+
+## 保存controllerの有限候補窓
+
+入力HEAD `1aa6966db7f6ca647e5c665d6794179aba7a2822`。保存785/89親から全2148整列窓を比較し、[0x09FED0C4,0x09FEEA44)の6528byteを調査候補に固定しました。窓内の未知target点は最小10行です。これは安全容量や退役証明ではありません。
+
+[窓計画](../content/modernization/pr16_donor_window_evidence/windows.json) / [検証checkpoint](../content/modernization/pr16_donor_window_checkpoint.json)。新49試験、150組の総当たり対照、実2148窓の独立総当たり、決定的read-only check、task graphを検証。窓外targetからの跨りread、旧inventoryで除外された旧owner内origin、計算参照は未証明として保持。正式785/89/安全容量0、旧受入/R0/ROM/Save101は不変です。
+
+## 窓選定時の停止点（履歴）
+
+候補窓[0x09FED0C4,0x09FEEA44)の6528byteについて、保存未知target 10行（先頭0x080A006F）のsource/asset identityと実consumerを限定して結ぶ。窓外targetからの跨りread・旧owner内originの除外・間接参照を残し、owner退役/部分移管を証明する。全874scan/Forest/Bubble/49窓試験の無変更再走は禁止。安全容量0を維持し、controller/heap/保存接続は別gate。
+
+## 選定10originの固定公開symbol近傍
+
+入力HEAD `3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65`。保存済み10行と固定公開JP symbol全hashを照合しました。先頭0x080A006Fの直前labelは `HideMoneyBox` です。これは現ROMの関数/asset ownerや命令境界の証明ではありません。
+
+[対応表](../content/modernization/pr16_donor_origins_evidence/symbol-frontier.json) / [checkpoint](../content/modernization/pr16_donor_origins_checkpoint.json)。新20試験、同入力決定性、読取専用byte/mtime、task graphを検証。正式785/89・安全容量0、旧窓計画/reader/R0/ROM/Save101不変。新native/ROM再構成/旧試験再走0。
+
+## 以前の停止点（履歴）
+
+選定窓10originの公開JP symbol近傍を保存済み。先頭0x080A006Fについてsymbol-frontierの出典/行を読み、固定公開関数sourceと現候補0641af70の有限命令範囲を束縛し、実consumer/命令境界を確認する。近傍labelだけでownerやFALSE_POSITIVEに昇格しない。窓外跨りread/旧owner内origin/間接参照は残す。正式785/89・安全容量0。全874scan/Forest/Bubble/窓49試験/symbol20試験の無変更再走禁止。
+
+## 先頭originの現候補有限範囲
+
+新候補復元1回で全SHA/115ownerと保存10originを照合。4個の有限範囲、前entryの条件付きCFG、first originと交差する命令形を記録しました。前entryの公開money呼出順一致=True、境界数=1。形を実consumer証明には昇格していません。初回run38090391926はGNU未定義命令コメントの表現差で未受入停止。adapterと5試験を追加し、失敗1回を含む本taskの復元は計2回です。
+
+[有限事実](../content/modernization/pr16_first_origin_evidence/bounded-code-facts.json) / [checkpoint](../content/modernization/pr16_first_origin_checkpoint.json) / [symbol成功Actions受領](../content/modernization/pr16_donor_origins_evidence/actions-completion.json)。新40試験・読取専用byte/mtime・task graph・全旧原本保全。native0、旧受入再走0、正式785/89、安全容量0。
+
+## 以前の停止点（履歴）
+
+保存したfirst-origin有限命令/owner事実から0x080A006Fの実型とconsumerを確定する。前後labelや逆アセンブル形だけの分類は禁止。実必要reader/配置元へ閉じる。正式785/89、安全容量0。既受入symbol20試験/今回40試験/有限ROM測定をsource不変なら再走しない。全874scanと旧Forest/Bubbleは再走せず、窓外跨りread/旧owner内origin/間接参照を残す。
+
+## 選定二originの実型reader
+
+先頭は0x00001111上位1byteと0x0809FED5下位3byteのliteral跨りです。実LDRとSetGpuRegのu16 buffer store、SetVBlankCallbackのcallback field書込/帰還を有限解釈しました。0x081C96E9は公開__subsf3の実BLと直後ADDを、同期callee帰還条件で解釈しました。自然入口/IRQ/GPU flush/浮動callee本体/全alias不在は証明していません。
+
+[新3reader](../content/modernization/pr16_typed_origins_evidence/reader-profiles.json) / [checkpoint](../content/modernization/pr16_typed_origins_checkpoint.json) / [直前Actions受領](../content/modernization/pr16_first_origin_evidence/actions-completion.json)。新20試験、候補復元1、native0、旧試験/測定再走0、読取専用byte/mtimeとtask graph。旧GNU形の有限窓末尾BL幅は型証明に用いず、実解釈器の同一範囲内完全命令幅で検証しました。正式785/89・安全容量0は完了受領まで据置。
+
+## 以前の停止点（履歴）
+
+二originの新3条件付き実readerを保存済み。成功Actions/ZIP全memberとsourceを別受領し、正式785/89親へ二件だけの型分類差分を適用する。literalの上位1byte+callback下位3byteと、__subsf3のBL下位3byte+直後ADD上位ではなく先頭1byteを照合する。自然entry/IRQ/GPU flush/浮動callee/全alias不在は主張しない。安全容量0。今回reader/20試験と旧全scopeの無変更再走を禁止する。
+
+## 二originの正式型受領
+
+測定run 38092235316 / job 114330857734 の全9step成功、artifact 11683989837 の全ZIP/9memberと同梱16sourceを公開commitへ照合しました。測定原本のpending表記は改作せず、別receiptで完了を受領しています。
+
+0x080A006Fはaligned literal末尾1byte+Thumb callback先頭3byte、0x081C96E9はBL末尾3byte+ADD先頭1byteです。実LDR/GPU u16 buffer store/callback書込帰還と、同期callee帰還条件のinstruction fetchだけを正式分類へ移しました。自然entry/IRQ/GPU flush/浮動callee本体/全alias不在は受入していません。
+
+[正式receipt](../content/modernization/pr16_typed_origins_receipt.json) / [二件差分](../content/modernization/pr16_typed_origins_receipt_evidence/reference-chain.json) / [未知87行](../content/modernization/pr16_typed_origins_receipt_evidence/unknown-frontier.json) / [選定窓の残8origin](../content/modernization/pr16_typed_origins_receipt_evidence/window-progress.json)。785/89から787/87へ二件だけ追加し、他872行と全旧namespaceを保全。新63受領試験、決定性、保存後読取専用復元、task graphを検証。旧測定/reader/旧試験/native/ROM再構成は0。安全容量0、保存controller/heap/保存接続は未完です。
+
+受領Actions自身の完了は、runが実際に完了した後の外部読戻しで別記録します。生成中のrunを成功と先取りしません。
+
+## 二origin受領Actionsの完了読戻し
+
+正式受領run 38094042257 の全job/step成功、公開commit `1903747cac9cbce66fa700b0401b329238da172f`、artifact全memberと同梱sourceを別途照合しました。[完了receipt](../content/modernization/pr16_typed_origins_receipt_evidence/actions-completion.json)。63受領試験/旧reader/ROMを再走せず、測定原本も正式receipt原本も改作していません。
+
+## 以前の停止点（履歴）
+
+正式787/87・安全容量0の保存親から、同じ6528byte選定窓の残8origin（次は0x084723AF）を進める。保存symbol-frontierと固定公開source/asset identityから現候補の有限consumer範囲を束縛する。近傍labelだけで型分類しない。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Save/fresh Continueは未完。新二originの3reader/20試験/63受領試験、全874scan、Forest/Bubble/窓最適化をsource不変なら再走しない。
+
+## 選定窓の音声asset全体束縛
+
+固定WAVと実audio_rules.mkの非圧縮規則を、独立整数変換と固定C++ wav2agb -bで全byte照合。現候補0641af70の全SHA/配置ownerを照合後、0x08471C78からの全13820byteが一致しました。対象0x084723AFはPCM sample index 1831からの4byteで、header/整列paddingではありません。
+
+[全asset証拠](../content/modernization/pr16_sound_origin_asset_evidence/asset-binding.json) / [checkpoint](../content/modernization/pr16_sound_origin_asset_checkpoint.json)。固定sourceのvoicegroup参照行も記録しましたが、現ROMの実table/実PCM readerは未受入です。unused名を未使用証明にはしません。新32人工境界試験、C++独立対照、全asset/4byte、決定的read-only check、task graph。新scope候補再構成1、native0、旧受入再走0。正式787/87・選定未分類8・安全容量0、全旧原本/R0/ROM/Save101/baselineを維持。
+
+## 以前の停止点（履歴）
+
+0x084723AFを含む固定音声asset全byteとWAV/C++/独立PCM生成を束縛済み。保存assetを再生成せず、固定voicegroup使用行から現候補の実table/音声channel/有限PCM readerへ結ぶ。unused名を不使用証明にしない。正式787/87・選定未知8件・安全容量0を維持。音声32試験/全asset/旧reader/全874scan/Forest/Bubble/窓最適化の無変更再走は禁止。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。
+
+## 音声実readerの有限検証（完了原本の受領待ち）
+
+保存assetは再生成せず、固定voice macroの3行と現候補の全12byteを束縛。固定SoundMainRAM全bodyをJP配置へリンクして現ROMと全byte一致。実ROM命令をmGBAで26ケース（20 ARM補間・6 Thumb波形初期化）だけ実行し、対象4byteの実LDRSB、全読取順、符号拡張、出力全byte、cursor/count/phase、非所有RAM不変を独立整数modelと比較しました。[reader証拠](../content/modernization/pr16_sound_origin_reader_evidence/reader-proof.json) / [checkpoint](../content/modernization/pr16_sound_origin_reader_checkpoint.json)。これは自然note dispatchや通常IWRAMコピー実行の受入ではありません。新33試験/26ケース、新native1、旧受入再走0。正式分類はrun成功完了の外部受領まで787/87・選定8・安全容量0のままです。
+
+## 以前の停止点（履歴）
+
+音声実readerの完了runと公開artifactを一度受領し、保存した787/87と選定8行から0x084723AFだけを正式788/86・残7行へ移す。33試験/26native/asset32試験/既受入reader/ROM全scanは再走しない。安全容量0、自然dispatch/IWRAM通常配置/全alias/退役/保存統合は未完。
+
+## 音声originの成功原本受領と正式分類
+
+run 38097726375 の完了success、全job/必須step、公開artifactの全hash、測定commitと全textを照合。保存原本を再走せず0x084723AFだけを符号付きPCMの条件付き実readerとして正式追加しました。**正式788分類/86未知、選定窓は残7行、安全容量0**。3voice table→WaveData→有限ARM補間の証拠であり、自然dispatch・通常IWRAM配置・全代替reader不在は主張しません。[受領checkpoint](../content/modernization/pr16_sound_origin_reader_receipt.json) / [reference chain](../content/modernization/pr16_sound_origin_reader_evidence/reference-chain.json) / [次の7行](../content/modernization/pr16_sound_origin_reader_evidence/window-progress.json)。この受領で新native/旧試験/ROM再構成は0。全旧原本/R0/ROM/Save101/baseline不変。
+
+## 以前の停止点（履歴）
+
+残る選定窓7行の先頭0x086C51BFを保存symbol近傍から固定公開asset/現候補へ束縛し、実consumerを有限scopeで検証する。正式788分類/86未知・安全容量0。音声asset32試験/reader33試験/26 native・旧受入・全874scan・窓最適化は無変更再走しない。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller・heap・局所Saveは未完。
+
+## Berry近傍の限定identityと公開locale差
+
+保存JPsymbol間13452byteと現候補全SHA/配置owner/対象4byteを束縛。固定公開assetは15348byte、全asset一致=False。長さ差・同位置差・局所一致・header/Thumb形・実consumer候補の有限literalを記録。形だけでは分類しない。
+
+[限定証拠](../content/modernization/pr16_berry_origin_evidence/bounded-binding.json) / [checkpoint](../content/modernization/pr16_berry_origin_checkpoint.json) / [直前受領Actions完了](../content/modernization/pr16_berry_origin_evidence/prior-actions.json)。新20人工境界試験・task graph・決定的保存後read-only検査・旧原本保全。新scope候補復元1、native0、旧受入再走0。正式788/86・選定残7・安全容量0。公開assetをJP/現候補と盲目的に同一視せず、実owner/readerは未完。
+
+## 以前の停止点（履歴）
+
+保存したBerry近傍の限定identity・公開assetとのlocale差・consumer frontierから、0x086C51BFの現ownerと実readerを有限範囲で結ぶ。公開EN assetや近傍JPsymbolを現ownerと同一視しない。今回の候補復元/限定測定/20試験と旧受入は再走せず、実readerの新scopeだけを検証する。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役・移管/保存controller/heap/局所Saveは未完。
+
+## Berry実TaskからBIOS直前の転送境界
+
+実Taskのstart/size/masterpとMultiBootInit、timer179/180、StartMasterの8境界、client-ready/不成立の2境界を有限解釈。13,260byteを13,264byteへ切上げ、label外4byteを含むboot_endp=0x086C7D3Cを実命令で確認。実MultiBootMain→SWI25直前をmode1で束縛。対象4byteの実readは0なので型分類は増やさない。
+
+[有限証拠](../content/modernization/pr16_berry_transfer_evidence/transfer-boundary.json) / [checkpoint](../content/modernization/pr16_berry_transfer_checkpoint.json) / [旧run完了受領](../content/modernization/pr16_berry_transfer_evidence/binding-completion.json)。新26人工試験・13profile・ARM header layout・保存後read-only・task graph。新scope候補復元1、native0、旧受入再走0。SetSceneは明示した同期ABI条件、serial値はfixture。BIOS本体/子機/自然接続/全4byte readは未受入。正式788/86・残7・安全容量0を維持。
+
+## 以前の停止点（履歴）
+
+保存した実Task→MultiBootMain→SWI25直前の引数/13profileを再走せず、boot_srcp=0x086C496C、boot_endp=0x086C7D3Cを使うBIOS payload readerまたは子機配置後の実readerへ有限に結ぶ。対象0x086C51BFの全4byteとlabel外tail4byteを区別し、自然リンク/転送成功は未証明。正式788/86・選定残7・安全容量0。窓外跨りread/旧owner内origin/間接参照/退役移管/controller/heap/局所Save未完。
+
+## Berry子機entryの条件付きnative
+
+現Taskが渡す13456byteを子機RAMへ事前配置し、ARM header entryから393220stepをnativeで有限観測。対象0x086C51BFに対応する0x02000913の0/4byteが実命令発行spanに含まれた。停止理由=REPEATED_PC_BUDGET、PC=0x02000120。entry後host書込7APIを拒否。
+
+[子機reader証拠](../content/modernization/pr16_berry_child_evidence/child-reader.json) / [checkpoint](../content/modernization/pr16_berry_child_checkpoint.json) / [親転送run受領](../content/modernization/pr16_berry_child_evidence/transfer-completion.json)。
+
+配置はfixture。mGBA builtin BIOSであり、元BIOSや実Ruby/Sapphire cart/自然リンク/実転送成功ではない。新20試験・native1・候補復元1、旧26試験/13profile/native再走0。正式型と安全容量は増やさない。
+
+## 以前の停止点（履歴）
+
+保存した子機entryの発行span・停止PC/registerを継承し、未発行byteへ続く実callee/配置/入力条件だけを有限に接続する。成功した親13profileと今回の同一entryを再走しない。 実BIOS転送/自然リンク/元cart/全間接参照/容量移管/heap/controller/局所Saveは未完。正式788/86・残7・安全容量0。
+
+## USER-20261011-BERRY-CHILD-LZ
+
+保存PC0x02000120から通信32readを明示fixtureとする新nativeを実行。実ARM caller→SWI11→0x020001D8帰還を287279stepで観測。展開元12698byteを全て1回ずつ実readし、対象0x086C51BF全4byteをLZ tokenとして消費。展開18036byteは独立parserと完全一致。親13profile/旧393220stepは再走0。初回JSON読取失敗の未受入native1/復元1を別保存し、本taskは累計native2/復元2。成功した無変更25試験は原本から再利用。
+
+[checkpoint](../content/modernization/pr16_berry_child_lz_checkpoint.json) / [実reader](../content/modernization/pr16_berry_child_lz_evidence/lz-reader.json)。
+
+## 以前の停止点（履歴）
+
+新LZ測定の完了run/全artifactを再走せず受領し、正式788/86親へ対象1件だけの条件付き圧縮token型差分を適用する。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。
+
+## USER-20261011-BERRY-CHILD-LZ-RECEIPT
+
+子機継続LZ測定runの完了・全ZIP/member・公開commit/contextを受領。対象全4byteは実SWI11の展開元token。測定原本のpending表記は改作せず、別receiptで完了を確定。新native/復元/旧試験再走0。
+
+[checkpoint](../content/modernization/pr16_berry_child_lz_receipt.json) / [実reader](../content/modernization/pr16_berry_child_lz_evidence/lz-reader.json)。
+
+## 以前の停止点（履歴）
+
+保存済みLZ readerと完了receiptから、正式788/86のreference-chain/unknown-frontier/window-progressへ対象0x086C51BFの1件だけの型差分を追加し、他873行と原本を保持する。reader/native/25試験は再走しない。容量移管/heap/controller/局所Saveは未完。残7・安全容量0。
+
+## Berry子機LZ tokenの単一正式型登録
+
+対象0x086C51BFの4byteを、実子機ARM callerからSWI11が消費する条件付きLZ77 tokenとして正式型登録。旧788/86のreference-chainを原本のまま継承し、1件だけ追加して789/85、選定窓の残り7→6。他の未知85行/選定6行は完全不変。新25型差分試験PASS。新native/候補復元/旧受入再走0、安全容量0。
+
+[正式型差分](../content/modernization/pr16_berry_lz_type_evidence/reference-chain.json) / [残る選定窓](../content/modernization/pr16_berry_lz_type_evidence/window-progress.json) / [checkpoint](../content/modernization/pr16_berry_lz_type_checkpoint.json)。
+
+通信値は明示fixture、mGBA HLE readerの条件付き証拠です。自然リンク/元BIOS CPU/実cart/代替reader完全排除/領域退役の成功ではありません。
+
+## 以前の停止点（履歴）
+
+次の選定窓origin 0x0880FA64を保存symbol近傍から固定asset/現候補の実consumerへ限定的に結ぶ。残る選定窓6行・正式789分類/85未知・安全容量0。Berryの親13profile/子機entry/LZ native/25 reader試験/25型差分試験は変更影響がない限り再走しない。全874scan/窓最適化は再走不要。旧owner退役・移管、窓外跨りread/間接参照、heap/controller、局所Save/fresh Continueは未完。
+
+## 0880FA64の有限asset候補とdescriptor
+
+対象0880FA64の全候補SHA/4byteを束縛し、前後64KiBの有限探索でLZ構文候補0件、一致Tileset descriptor0件を保存。実reader受入や型分類増加は未主張。新30試験、候補復元1、native/旧受入再走0。
+
+[限定証拠](../content/modernization/pr16_selected_asset_evidence/bounded-asset.json) / [checkpoint](../content/modernization/pr16_selected_asset_checkpoint.json)。前回Berry型登録Actionsの全8member/68text/公開commitを受領。
+
+## 以前の停止点（履歴）
+
+0x0880FA64の保存済みLZ構文候補0件/一致Tileset descriptor0件とconsumer frontierから、実asset owner/実caller/readerへ有限に結ぶ。今回の前後64KiB探索/30試験は再走せず保存hashを継承する。正式789/85・選定残6・安全容量0。窓外跨りread/間接参照/旧owner退役・移管/heap/controller/局所Saveは未完。
+
+## Tileset ABI訂正と現map lookup
+
+旧Tileset decoderのcallback/属性offset逆転を固定公開headerのARM compileで確認し、後継だけを修正。68 descriptor候補中data field妥当68件。現lookupの実命令とroot、有限入力矩形から0選定候補を保存。実asset readや分類増加は未主張。新32試験、候補復元1、native/旧受入/旧LZ探索再走0。
+
+[後継証拠](../content/modernization/pr16_selected_map_asset_evidence/map-asset.json) / [checkpoint](../content/modernization/pr16_selected_map_asset_checkpoint.json)。前回run全8member/77text/公開commitを受領。旧測定原本は不変。
+
+## 以前の停止点（履歴）
+
+正しいARM Tileset ABI（callback+0x10/属性+0x14）と保存した実map lookup/descriptor候補から、0x0880FA64の実asset extentとcaller/read全4byteを限定して閉じる。旧0件原本はABI不整合の履歴であり不存在証明ではない。今回のlookup/probe/32試験、旧LZ探索/30試験を無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+
+## map後継測定の完了受領と0件の継続点
+
+run 38177623055の全job/必須step成功、artifact9member/87textと公開commit 290c2d16c45d6cea2617e91216966a2329a5d566を受領。訂正後68 descriptor妥当。実lookup由来の128×128有限入力で678 header/486 layout/110 descriptor、対象一致0。旧decoderの逆offsetは後継で修正済み、原本は不変。一致したmap候補があるかのような停止点を修正。新受領24試験のみ実行し、受入32試験・lookup/probe・ARM compile・ROM再構成・native・旧LZ再走0。
+
+[受領JSON](../content/modernization/pr16_selected_map_asset_receipt.json) / [範囲要約](../content/modernization/pr16_selected_map_receipt_evidence/scope-summary.json)。原本checkpointのin-progress記録は測定時点の履歴として保持し、完了は受領JSONを参照する。一般CIや全index既存違反をgreenへ読み替えない。
+
+## 以前の停止点（履歴）
+
+0x0880FA64の実asset所有元と全4byteの実readerを特定する。訂正後の旧68 descriptorと実lookup由来128×128有限入力では一致0件。一致したmap候補は保存されていないので、候補がある前提では再開しない。未調査の入力・他asset経路を具体的な参照元から絞る。0件は全map不存在証明ではない。受入済みmap32試験/ARM配置/lookup/probe、旧LZ探索/30試験、Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+
+## 選定assetの対象限定逆参照
+
+対象近傍へ全byte開始/3mirrorの逆参照11件、第2段1件、Thumb literal形0件。全候補SHA/115owner配置、各参照wordのhash、固定JP symbol近傍を束縛。新30境界試験・task graph PASS。新scope復元1回、native/旧inventory/map/LZ/Wiki再走0。pointer形は実reader受入ではない。
+
+[checkpoint](../content/modernization/pr16_selected_asset_xrefs_checkpoint.json) / [逆参照](../content/modernization/pr16_selected_asset_xrefs_evidence/inverse-references.json)。
+
+## 以前の停止点（履歴）
+
+0x0880FA64の前4096byteから全4byteまでへの逆参照11件、第2段1件、Thumb literal形0件を保存。inverse-references.jsonの具体的なorigin/targetから実table・caller・asset境界を特定し、全4byteのreaderへ結ぶ。pointer形と旧symbol近傍だけではowner/型を確定しない。前4096byte外のasset開始・計算参照は未網羅。今回の逆参照/30試験と受入済みmap/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+
+## 整列2起点からのrecord/base候補
+
+保存済み逆参照から整列2起点のみの構造体/連続pointer窓を検査し、新base参照0件、Thumb literal形0件。全候補SHA/115owner配置と旧pointer全4byteを束縛。新22境界試験・task graph PASS。新scope復元1回、native/旧逆参照/map/LZ/Wiki再走0。構造体形は実reader受入ではない。
+
+[checkpoint](../content/modernization/pr16_selected_asset_records_checkpoint.json) / [record候補](../content/modernization/pr16_selected_asset_records_evidence/record-candidates.json)。
+
+## 以前の停止点（履歴）
+
+0x095FE848/0x09673660の2整列pointer起点からrecord/base候補を保存。新base参照0件、Thumb literal形0件。record-candidates.jsonの具体的構造体・参照元から、0x0880FA64を含む実asset境界と実caller/readerを特定する。構造体形やliteral形だけでは正式型にしない。保存した旧11起点への逆参照/30試験と今回22試験・base探索を再走しない。map/ARM/LZ/Wikiも無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+
+## 有限音声rootの0件測定と保存境界の復旧
+
+有限音声root73群・13194record・非圧縮PCM88sampleを照合し、対象3範囲との一致0件。初回run38193578259は新32試験と測定後、tuple/list保存照合で失敗。失敗原本は保持し、6保存境界試験とbyte不変受領で復旧。復旧時のROM再構成/測定/旧32試験再走0、task全体では候補復元1・音声測定1。実reader・保存統合は未完。
+
+[checkpoint](../content/modernization/pr16_selected_sound_roots_checkpoint.json) / [改作なしの測定JSON](../content/modernization/pr16_selected_sound_roots_evidence/sound-roots.json) / [失敗原本と復旧根拠](../content/modernization/pr16_selected_sound_roots_evidence/measurement-recovery.json)。
+
+## 以前の停止点（履歴）
+
+有限音声root73群・13194音色recordのうち非圧縮PCM宣言範囲への一致0件を保存。実asset/reader未特定。0x0880FA64と0x095FE848/0x09673660の元ROM・Vega IPS・現代化ownerの配置元を束縛し、実asset境界/consumerへ進む。圧縮/未対応音色・有限root外は未証明。0件を不存在や正式型と扱わない。保存した32試験/音声測定/今回6保存試験と旧record/base/逆参照/map/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+
+## 選定3地点の入力系譜と現代化owner
+
+0x0880FA64: current=Vega True, current=clean False, owner  / 0x095FE848: current=Vega False, current=clean False, owner pr16_supply_pla1 / 0x09673660: current=Vega False, current=clean False, owner 。
+
+IPS全recordの上書き順と現115owner境界を検証。値一致は中間の書込不存在証明ではなく、実asset/readerの型受入も未完。
+
+[checkpoint](../content/modernization/pr16_selected_asset_provenance_checkpoint.json) / [入力系譜](../content/modernization/pr16_selected_asset_provenance_evidence/provenance.json)。
+
+## 以前の停止点（履歴）
+
+入力系譜の3地点はprovenance.jsonに保存。0x0880FA64: current=Vega True, current=clean False, owner  / 0x095FE848: current=Vega False, current=clean False, owner pr16_supply_pla1 / 0x09673660: current=Vega False, current=clean False, owner 。配置owner/IPS区間はasset型ではない。保存した具体的ownerを生成するsourceとasset台帳を読む。音声は既存73群の未対応圧縮WaveData(type1)だけを既存DPCM decoderの正確な消費範囲で照合し、PCM測定を再走しない。0件なら一致を創作しない。全4byteの実reader束縛後だけ正式型差分へ進む。今回28試験/入力系譜と旧音声32/保存6/record/base/逆参照/map/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。保存統合は未完。
+
+## 保存音声type1 DPCMの0件測定とPLA1台帳照合
+
+保存済み音声73bank・13194 recordのtype1だけを、新しいDPCM 64sample/33byte消費境界で照合。妥当なtype1 WaveData 0件、選定3地点との全4byte一致0件。旧PCM測定/旧28試験/旧map・LZ・逆参照・Wiki再走0。0x095FE848はarchive-image.bin SHAと現PLA1(owner_offset 17232)が既存台帳・115owner配置と一致。実caller/readerは未証明。
+
+[checkpoint](../content/modernization/pr16_selected_compressed_asset_checkpoint.json) / [type1測定](../content/modernization/pr16_selected_compressed_asset_evidence/compressed-asset.json) / [完了run受領](../content/modernization/pr16_selected_compressed_asset_evidence/actions-completion.json)。失敗run38200730808はARM compiler未導入による未受入原本のまま保持。成功run38200881853の22試験/task graph/候補復元1/静的type1計測1を新scopeとして受領し、受入済みPCM測定・系譜28試験の再走0。CI全体greenや正式分類の受入を主張しない。
+
+## 以前の停止点（履歴）
+
+保存73bankのtype1は一致0件（type1不在の全域証明ではない）。次はpr16_supply_pla1のarchive-image.bin内+17232(0x095FE848)を現代化learnset供給consumerの具体的ABI/読取命令へ束縛し、0x0880FA64のIPS記録11873に由来する実asset境界と0x09673660の未所有配置元も個別に調べる。形/所有者だけで正式型・安全容量に昇格しない。今回22境界試験/type1新1計測と受入済み音声/系譜/map/LZ/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存統合/窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+
+## PLA1二次逆参照の条件付き実reader
+
+選定二次逆参照0x095FE848はPLA1 owner530/family0のrecord17227..17239にあり、末尾selector1byteとXOR mask3byteを実ARM LDRB 0x09FFF2EC/0x09FFF328で全4byte消費。実配置の保存2788byte ARM/21383byte image/現候補全SHA一致。正常容量160で32件、容量31では出力/count無変更で拒否。明示ABIの条件付きdecoder実行であり自然入口の新受入ではない。
+
+[checkpoint](../content/modernization/pr16_selected_pla1_reader_checkpoint.json) / [改作しない実測](../content/modernization/pr16_selected_pla1_reader_evidence/pla1-reader.json) / [完了受領](../content/modernization/pr16_selected_pla1_reader_evidence/actions-completion.json)。run38203143951の36試験・2profile成功を受領。新受領14試験のみ。正式origin分類の増減0、ROM/Save変更0。
+
+## 以前の停止点（履歴）
+
+PLA1二次逆参照の全4byte読取は受領済み。0x0880FA64のIPS記録11873から実asset境界とcallerを特定し、0x09673660はDPE予約envelope内の配置元/具体的asset readerを照合する。予約regionは実ownerではなく未所有は空き容量ではない。この二次参照の解決で主対象の全reader/正式分類を完了扱いにしない。新36境界試験/2実ARM profile/14受領試験と受入済みtype1/PCM/系譜/map/LZ/逆参照/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。
+
+## IPS recordとDPE配置予約境界の限定受領（2026-10-12T09:26:31.798Z）
+
+新しい12境界試験とtask graphをActions run [38229002566](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/38229002566) / job 114743529593 の全step成功で確認。保存IPS記録11873の書込区間は [0x0880B7B0,0x0880FAD0)・17184byteで、0x0880FA64は+17076、末尾の4byte後104byte。保存逆参照11起点のtargetは全件区間内。DPE予約envelopeは[0x09600000,0x0A000000)、対象0x09673660は+0x73660（保存pointer 0x0880EFD0）。これは書込範囲と予約座標の**限定証明のみ**で、IPS recordを実asset境界・DPE予約を実ownerや空きと誤認しない。artifact 11737542403（metadata digest受領、ZIP member全hash未回収）。
+
+[checkpoint](../content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json) / [Actions受領](../content/modernization/pr16_selected_ips_dpe_frontier_evidence/actions-completion.json) / [検証script](../scripts/pr16_selected_ips_dpe_frontier.py)。新規12試験と旧受入検証は混同しない。正式789/85・選定残6・安全容量0、ROM/Save/baseline/Wiki不変。
+
+## DPE固定上流sourceと最新CIの境界（2026-10-12T09:38:41.913Z）
+
+固定source-lockのDPE commit `10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e` に対し、上流 `scripts/make.py`（blob `11e8da1f7205612349e7134a1640df122661e9ce`）、`scripts/insert.py`（`b26d6358d35272f2348e3a677ebede2540285153`）、`linker.ld`（`6ad0361f82fd3bd28fa2cbc17124fd53496eb646`）を直接照合。make.pyの空き領域走査false/固定offset 0x1600000、linker/insert上書き、insert.pyの `build/output.bin` 連続挿入を確認。linker元ファイルの+0x1800000はmakeで上書きされる。実output.binの長さと0x09673660のblob包含・symbol owner・reader命令は**未証明**。
+
+[pin source-chain](../content/modernization/pr16_selected_ips_dpe_frontier_evidence/dpe-source-chain.json) / [記録後Actions状態](../content/modernization/pr16_selected_ips_dpe_frontier_evidence/ci-context.json)。記録コミット後の引継ぎ旧検証run38229956465は旧20260913台帳がroot再開MDに9236byte/旧SHAを要求して失敗。開始HEADでは当該MDが2634byteだったため旧不一致は事前から存在。旧受入台帳を修正してgreenにはしない。source-validationの古いQOL source binding失敗とP03復元失敗も継続。限定12試験成功とは区別する。
+
+## 最終index private差分guardの受領（2026-10-12T09:51:17.387Z）
+
+新規7試験PASS、[GitHub Actions run 38231902939](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/38231902939) / job 114753156040 全step成功、artifact 11739310971（digest metadata受領、ZIP全member未検査）。開始時固定HEAD `6acbf1d` と今回の検証HEAD `cd5c249` の各独立indexへ標準guardを実行し、**双方exit code 1**。旧違反は不変で、全index greenとは主張しない。一方、このscopeで増えたtracked text15pathはUTF-8・形式・機器固有ユーザpath増分検査に合格し、**新規private違反0件**。原本ROM/Save・承認済みnativeを再実行しない。
+
+[guard checkpoint](../content/modernization/pr16_ips_dpe_private_guard_checkpoint.json) / [run完了証拠](../content/modernization/pr16_ips_dpe_private_guard_evidence/actions-completion.json) / [guard本体](../scripts/pr16_ips_dpe_private_guard.py)。正式789/85・選定残6・容量0、実caller/ownerは未証明のまま維持。
+
+## 以前の停止点（履歴）
+
+IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。
+
+## IPS/DPE実ROM有限命令形の新規限定測定（2026-10-12）
+
+新scope専用workflowで11人工境界試験とtask graphが成功。初回run [38243855751](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/38243855751) はAPI token未設定のKeyErrorで候補復元前停止（未受入）。workflowへ読取token/権限を限定付与後の成功run [38244314715](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/38244314715) / job114794296522全10step成功。公開artifact 11743528607はZIP 2334byte・sha256 `5f468ba3901d1d496962f9cc3985b4aa42639b282813e11aa4baca26c9013cbd` を取得・全3member hashで照合。
+
+全候補32MiB SHA一致、保存11起点の各4byte SHAとpointer値一致。うち非4byte整列9件、有限ARM±4104byte/Thumb±1028byte PC相対LDR literal**形0件**。形0は実caller不在・CPU/DMA/計算table参照不在の証明ではない。DPE予約地点は固定source chainのみ静的証明、今回のcache内に対象`output.bin`候補0件で実blob長/包含/owner/reader未証明。該当型・安全容量は増やさない。candidate復元成功1、native0、既受入試験再走0、ROM/Save/Wiki/baseline変更0。
+
+[限定checkpoint](../content/modernization/pr16_ips_dpe_instruction_extent_checkpoint.json) / [Actions証拠](../content/modernization/pr16_ips_dpe_instruction_extent_evidence/actions-completion.json) / [測定スクリプト](../scripts/pr16_ips_dpe_instruction_probe.py)。全CIではsource-validation/p03-forgetting-ci失敗が残り、旧private guardも全index greenではない。今回の限定測定と混同しない。
+
+## 次の未完作業
+
+保存11参照地点の現候補実word SHAと非整列9件を確認。限定±4104byte ARM/±1028byte Thumb PC相対literal LDR形は0件で、実callerが存在しない証明ではない。DPE固定予約内0x09673660からの実output.bin候補は今回のbuild/upstream-cacheに0件、包含/owner/asset readerは未証明。次は固定DPE pin 10ff98c8の対応output.bin実体とビルド系譜/長さ/ROM包含を取得して照合し、IPS record11873の実asset開始/終端および保存11起点以外のtable/計算参照から元asset readerの実命令・経路を有限に追う。新規11試験・今回の成功候補復元・既受入PLA1/12境界/7 private guard/全旧音声・map・LZ・Wikiは変更影響なしに再走しない。正式789/85・選定残6・安全容量0、保存controller/窓外跨り/heap/局所Saveは未完。
+
+## 2026-10-12 固定DPE output実体と旧resume CIの分離（USER-20261012-LEGACY-RESUME-SOURCE-BOUNDARY / USER-20261012-DPE-PINNED-OUTPUT-GAP）
+
+- 正本の前提は変更なし: 789分類・85未分類、選定未知6、donor-safe 0byte。実ROM・IPS・Save・旧Wiki・PLA1受入証拠への書込/再走0。
+- 固定DPE上流 `kapibarasan000/DPE-JP@10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e` のGit tree 5934項目を照合（truncated=false）。追跡済み `output.bin` は0。前回run38244314715の `build/upstream-cache` 候補も0。**実output.binの生成/長さ/SHA、ROMへの包含、0x09673660の所有者とasset readerは未証明**であり、配置予約0x09600000を安全な空き容量とはしない。
+- IPS record 11873 [0x0880B7B0,0x0880FAD0) はpatch書込区間でありasset実境界ではない。対象0x0880FA64と先行11参照のうち非整列9件/ARM+Thumbの限定literal形0件は前回証拠を継承、reader確定0。owner/caller/表間接参照は未完。
+- 独立CIの旧resume束縛は、既存 `CHATGPT_RESUME.md` の9236byte原本コピーに加え、旧 `scripts/pr16_resume.py` および `tests/test_pr16_resume.py` のbyte同一証拠を専用 `.txt` に固定した。旧巨大JSONのhashは更新していない。現行root入口は新方針JSONの独立hashで検証し、原本退避を書き換えて成功にしない。
+- 実Actions run [38253880695](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/38253880695) / job 114826813228 は **success**: focused 32 tests、resume読み取り専用check、task graph、git diff clean。新コード影響の必要回帰のみで、変更しない受入済みnative/ROM試験を再走しない。
+- 同HEADの `source-validation` run 38253882331 は旧QOL source SHA相違でfailure、`p03-forgetting-ci` run 38253880866 はartifact 10152134447取得失敗でfailure。Stage79の2ワークフローはsuccess。**全体CI greenではない**。
+- 新しい限定記録: `content/modernization/pr16_legacy_resume_ci_evidence/actions-completion.json` と `content/modernization/pr16_dpe_output_gap_checkpoint.json`。後続は固定DPE実build出力/系譜と具体readerが得られて初めて源の容量を評価する。新scopeなく旧11/36/12/7や旧Wikiを再実行しない。

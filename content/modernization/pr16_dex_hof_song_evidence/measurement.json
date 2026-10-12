@@ -1,0 +1,303 @@
+{
+  "status": "PASS_CURRENT_ROOTED_SONG_TYPED_CLASSIFICATION",
+  "source_head": "483f973928fc63866634dd30035f78c1d26a5895",
+  "run_id": 37294165661,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "candidate_changed": false,
+  "unit_tests": 63,
+  "classified": 560,
+  "unclassified": 314,
+  "newly_classified": 105,
+  "explicit_source_ids": 114,
+  "complete_modeled_songs": 89,
+  "sample_witnesses": 39,
+  "footsteps": [
+    {
+      "song": 250,
+      "current_programs": [
+        24
+      ],
+      "current_keys": [
+        74,
+        78,
+        81,
+        85,
+        86
+      ],
+      "expected_program": 14,
+      "expected_key": 60,
+      "source_midi_equivalence": false,
+      "status": "CURRENT_SONG_DIFFERS_FROM_FIXED_CFRU_MIDI",
+      "source_midi": {
+        "size": 61,
+        "sha256": "24fd4dcb5044ced9d4d3ef2382413a2c414ea99004b133b1187d5c4ca761c46e"
+      },
+      "source_wav": {
+        "size": 1646,
+        "sha256": "823459576d6daa49b30d5f9f71247a8a1b812240edaf83ed100bdaf4f920b504"
+      },
+      "signed_pcm": {
+        "size": 1562,
+        "sha256": "61e81e63cbb377fb12984d729f15fbdf7ecc23b931e1fbbcdc0807d7d7fa6423"
+      }
+    },
+    {
+      "song": 251,
+      "current_programs": [
+        24
+      ],
+      "current_keys": [
+        74,
+        76,
+        78,
+        81,
+        86
+      ],
+      "expected_program": 13,
+      "expected_key": 60,
+      "source_midi_equivalence": false,
+      "status": "CURRENT_SONG_DIFFERS_FROM_FIXED_CFRU_MIDI",
+      "source_midi": {
+        "size": 121,
+        "sha256": "bcf1db9ae867f511cf0471d2ff7f1669cbeaf9af5a560b5005a94855dfa8e983"
+      },
+      "source_wav": {
+        "size": 4426,
+        "sha256": "592ad886eed8bc775a8c92d788f6526c1206867606f3020e9f3dbcc99d2094f9"
+      },
+      "signed_pcm": {
+        "size": 4342,
+        "sha256": "562799c5db53ec13194d7ccfa4fc6b792d28a21162d49d45eeb1329e314a4529"
+      }
+    }
+  ],
+  "old_inventory_candidates": 874,
+  "all_prior_accepted_retained": true,
+  "old_full_rom_inventory_reused": true,
+  "typed_audit_identity": {
+    "size": 3132353,
+    "sha256": "bf0a3ff668f6fd2e97639c99db86cb7744ea16a97fb6aa9133d3f9fc9aa591aa"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-song.yml": {
+      "size": 2741,
+      "sha256": "d666abb5925a8c9aa2f8bbf38d8a1307e568775c5e81d746479f1253022b6c11"
+    },
+    "content/modernization/pr16_dex_hof_song_engine_review.json": {
+      "size": 34386,
+      "sha256": "82df4be3a78df3ef7e11f9d94dfc76f2883891b66442aeb38420de76b00e756e"
+    },
+    "content/modernization/pr16_dex_hof_song_sources.json": {
+      "size": 8883,
+      "sha256": "9e5a45bd8566289c962ab6e908ebf79050dabae9008bef041794785b7398881b"
+    },
+    "docs/PR16_DEX_HOF_SONG_JA.md": {
+      "size": 5211,
+      "sha256": "9af1f415937a4036f39be4f7a60fb50627d4e356a8f1b709124d83342100340e"
+    },
+    "scripts/pr16_dex_hof_song.py": {
+      "size": 25083,
+      "sha256": "2d009e51637ea8d59b00b803f75363dd009ecd9c6b6023dfca79e17ec862b323"
+    },
+    "scripts/pr16_dex_hof_song_actions.py": {
+      "size": 13695,
+      "sha256": "266f6e3bd844c5ab096dab0fc4b5be7efd2e96f678251c0a9612b7703803b84b"
+    },
+    "tests/test_pr16_dex_hof_song.py": {
+      "size": 13060,
+      "sha256": "2ff5ae7fe8173bc085d433dcfb345a66389a816dee479310bbf822298023bbd1"
+    }
+  },
+  "inherited_bindings": {
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "content/modernization/pr16_dex_hof_numeric_checkpoint.json": {
+      "size": 5095,
+      "sha256": "68a9b8b9e541c1e260c6f8842cb9e7cae05016c142e4c776ef1fa9d6c9646579"
+    },
+    "content/modernization/pr16_dex_hof_numeric_evidence/egg-typed-audit.json": {
+      "size": 843430,
+      "sha256": "f33e2e1e752f535b94ccb59a14321698e683a40dc3af877c435433e1200a3a66"
+    },
+    "state/source-lock.json": {
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    }
+  },
+  "public_source_bindings": {
+    "insert.py": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "scripts/insert.py",
+      "git_blob_sha": "73222c0c56e3ad462b9ad1b5084764c9ac0ef565",
+      "size": 28014,
+      "sha256": "b29fd801bd4f05c474d61af878767af6269edba37bca0f76c6d2509b76286bb0"
+    },
+    "m4a_internal.h": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "include/gba/m4a_internal.h",
+      "git_blob_sha": "2e4b359a6a810d91be7abe657e8704d702e679ad",
+      "size": 12790,
+      "sha256": "d44864a68794db83a039c06556fa34594f7c74d306eaa844e4bb9e1c896f8226"
+    },
+    "MPlayDef.s": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "MPlayDef.s",
+      "git_blob_sha": "21168a2a7571838f2b11794b64d58ab08eb80c2f",
+      "size": 9112,
+      "sha256": "507de5a5ea32f208824ef566fbd29d614a985812365a616e0420b35d39791ec4"
+    },
+    "songs.h": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "include/constants/songs.h",
+      "git_blob_sha": "aeffc0456c224a9608116ba0374158003d802d6e",
+      "size": 8732,
+      "sha256": "55cf54688769cc34f16d60a68c4046853944e220525862463195bf58ef4f97f6"
+    },
+    "BPRJ.ld": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "BPRJ.ld",
+      "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+      "size": 68505,
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a"
+    },
+    "songs": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "songs",
+      "git_blob_sha": "9c14d658fa57a3a8a292e0b87f1a2ec8a1236561",
+      "size": 55,
+      "sha256": "17de16f5d27d8987cf90576149bc951fd2a514b1e16865f1a85c25d65cdca190"
+    },
+    "pret-m4a.c": {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "source": "src/m4a.c",
+      "git_blob_sha": "ebd3afe291b6c4e9f2ac62250a87c6a0482086d4",
+      "size": 46383,
+      "sha256": "db6bea72be02870e19a9c95f5895c6f34b75af36e6bf7f3b75b10f5b4877fe92"
+    },
+    "pret-m4a_1.s": {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "source": "src/m4a_1.s",
+      "git_blob_sha": "4cbbf08129ed6f85f3c730429f6b430627109117",
+      "size": 39597,
+      "sha256": "348ed832bb30b24fa3ad9cf90242cc708ad972c19dff43b4dd550de4e5716dbf"
+    },
+    "pret-m4a_tables.c": {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "source": "src/m4a_tables.c",
+      "git_blob_sha": "286e938bad9cb498a6838ab18c3d2138ce2f5d28",
+      "size": 6171,
+      "sha256": "2ce635365c1dcd704a1c7fc7d24e9e92589c87fee2152676edfaf7319e48a07b"
+    },
+    "pret-m4a_constants.inc": {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "source": "constants/m4a_constants.inc",
+      "git_blob_sha": "3add621759c270a28ad60eb3e5fae08fe9c4fd6b",
+      "size": 9233,
+      "sha256": "636dd743022764efffc7e04e7e05e51fa6137aecad2d5bece61106dae2dfbece"
+    },
+    "pret-song_table.inc": {
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "source": "sound/song_table.inc",
+      "git_blob_sha": "000cc41b99f419fa043d3730d37b657ac6c48a57",
+      "size": 9204,
+      "sha256": "015887679404738d0bbe02ee20c891d79d28284ef29d4f180cfec46510e8e061"
+    },
+    "build.py": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "scripts/build.py",
+      "git_blob_sha": "d0b6b6b1f341ec76bca446680baf2a0a91fc26f8",
+      "size": 14115,
+      "sha256": "09f8d0c5fbb8e0ebbff4177c70891e955aa2cf5a021bfe7134d033b9ef5d13a3"
+    },
+    "repoints": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "repoints",
+      "git_blob_sha": "e56ff804cca49e38aa7d18466dceb54e776cc662",
+      "size": 7547,
+      "sha256": "b387e4239d00a59698407b1837b5573504bcb172fb41cae6afb7265c1008a12d"
+    },
+    "grass_footstep_flags.txt": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "audio/sounds/grass_footstep_flags.txt",
+      "git_blob_sha": "f664b9b8d8573ecc0b5fc06ef2e5c077246a173d",
+      "size": 19,
+      "sha256": "96cdc31227b12d479325e14396db433002879dc4092831b4df4f84dad68a54e6"
+    },
+    "sand_footstep_flags.txt": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "audio/sounds/sand_footstep_flags.txt",
+      "git_blob_sha": "f664b9b8d8573ecc0b5fc06ef2e5c077246a173d",
+      "size": 19,
+      "sha256": "96cdc31227b12d479325e14396db433002879dc4092831b4df4f84dad68a54e6"
+    },
+    "Wav_grass_footstep_sample.wav": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "audio/sounds/Wav_grass_footstep_sample.wav",
+      "git_blob_sha": "a6ed5a7ca8facd5c1eb2525768ab54a48d70314a",
+      "size": 4426,
+      "sha256": "592ad886eed8bc775a8c92d788f6526c1206867606f3020e9f3dbcc99d2094f9"
+    },
+    "Wav_sand_footstep_sample.wav": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "audio/sounds/Wav_sand_footstep_sample.wav",
+      "git_blob_sha": "1ad298c9004adcb2930b3d2c48bf1229944939df",
+      "size": 1646,
+      "sha256": "823459576d6daa49b30d5f9f71247a8a1b812240edaf83ed100bdaf4f920b504"
+    },
+    "grass_footstep.mid": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "audio/sounds/grass_footstep.mid",
+      "git_blob_sha": "1b49999ad432037899b61250d1ef6ab846b47471",
+      "size": 121,
+      "sha256": "bcf1db9ae867f511cf0471d2ff7f1669cbeaf9af5a560b5005a94855dfa8e983"
+    },
+    "sand_footstep.mid": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "source": "audio/sounds/sand_footstep.mid",
+      "git_blob_sha": "17b9334f179004f5f66075a4a856d4696d1e0c8e",
+      "size": 61,
+      "sha256": "24fd4dcb5044ced9d4d3ef2382413a2c414ea99004b133b1187d5c4ca761c46e"
+    }
+  },
+  "engine_review_binding": {
+    "size": 34386,
+    "sha256": "82df4be3a78df3ef7e11f9d94dfc76f2883891b66442aeb38420de76b00e756e"
+  },
+  "current_owner_count": 115,
+  "current_rom_reconstructions": 1,
+  "accepted_link_reconstruction_for_new_read_only_scope": true,
+  "unaffected_native_reruns": 0,
+  "native_processes": 0,
+  "old_full_rom_scan_runs": 0,
+  "donor_leased": false,
+  "donor_eligible": false,
+  "complete_runtime_audio_read_footprint_claimed": false,
+  "indirect_reference_completeness_claimed": false,
+  "controller_runtime_wired": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false
+}

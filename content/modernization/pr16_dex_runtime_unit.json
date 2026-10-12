@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "tests": 102,
+  "passed": 102,
+  "host_c_compiles": 2,
+  "arm_compiles": 0,
+  "native_processes": 0,
+  "test_ids": [
+    "test_bad_screen_hash (test_pr16_dex_lifetime.LifetimeEvidence.test_bad_screen_hash)",
+    "test_barrier_missing (test_pr16_dex_lifetime.LifetimeEvidence.test_barrier_missing)",
+    "test_blank_screen (test_pr16_dex_lifetime.LifetimeEvidence.test_blank_screen)",
+    "test_boolean_native (test_pr16_dex_lifetime.LifetimeEvidence.test_boolean_native)",
+    "test_duplicate_fixture (test_pr16_dex_lifetime.LifetimeEvidence.test_duplicate_fixture)",
+    "test_duplicate_terminal (test_pr16_dex_lifetime.LifetimeEvidence.test_duplicate_terminal)",
+    "test_input_order (test_pr16_dex_lifetime.LifetimeEvidence.test_input_order)",
+    "test_missing_frames_check (test_pr16_dex_lifetime.LifetimeEvidence.test_missing_frames_check)",
+    "test_missing_native (test_pr16_dex_lifetime.LifetimeEvidence.test_missing_native)",
+    "test_missing_ui (test_pr16_dex_lifetime.LifetimeEvidence.test_missing_ui)",
+    "test_native_clobber_rejected (test_pr16_dex_lifetime.LifetimeEvidence.test_native_clobber_rejected)",
+    "test_not_field_return (test_pr16_dex_lifetime.LifetimeEvidence.test_not_field_return)",
+    "test_partial_owner_rejected (test_pr16_dex_lifetime.LifetimeEvidence.test_partial_owner_rejected)",
+    "test_path_traversal (test_pr16_dex_lifetime.LifetimeEvidence.test_path_traversal)",
+    "test_rom_change_not_allowed (test_pr16_dex_lifetime.LifetimeEvidence.test_rom_change_not_allowed)",
+    "test_save_not_allowed (test_pr16_dex_lifetime.LifetimeEvidence.test_save_not_allowed)",
+    "test_store_count_rejected (test_pr16_dex_lifetime.LifetimeEvidence.test_store_count_rejected)",
+    "test_story_not_claimed (test_pr16_dex_lifetime.LifetimeEvidence.test_story_not_claimed)",
+    "test_terminal_failure (test_pr16_dex_lifetime.LifetimeEvidence.test_terminal_failure)",
+    "test_undeclared_call (test_pr16_dex_lifetime.LifetimeEvidence.test_undeclared_call)",
+    "test_unknown_record (test_pr16_dex_lifetime.LifetimeEvidence.test_unknown_record)",
+    "test_unowned_store_rejected (test_pr16_dex_lifetime.LifetimeEvidence.test_unowned_store_rejected)",
+    "test_valid_scoped_evidence (test_pr16_dex_lifetime.LifetimeEvidence.test_valid_scoped_evidence)",
+    "test_wired_not_claimed (test_pr16_dex_lifetime.LifetimeEvidence.test_wired_not_claimed)",
+    "test_wrong_callback (test_pr16_dex_lifetime.LifetimeEvidence.test_wrong_callback)",
+    "test_wrong_case (test_pr16_dex_lifetime.LifetimeEvidence.test_wrong_case)",
+    "test_wrong_fixture_address (test_pr16_dex_lifetime.LifetimeEvidence.test_wrong_fixture_address)",
+    "test_wrong_fixture_hash (test_pr16_dex_lifetime.LifetimeEvidence.test_wrong_fixture_hash)",
+    "test_wrong_fixture_rejected (test_pr16_dex_lifetime.LifetimeEvidence.test_wrong_fixture_rejected)",
+    "test_wrong_frame (test_pr16_dex_lifetime.LifetimeEvidence.test_wrong_frame)",
+    "test_bad_verified_mode (test_pr16_dex_save_bridge.SaveBridge.test_bad_verified_mode)",
+    "test_blank_erased_allowed (test_pr16_dex_save_bridge.SaveBridge.test_blank_erased_allowed)",
+    "test_blank_zero_allowed (test_pr16_dex_save_bridge.SaveBridge.test_blank_zero_allowed)",
+    "test_corrupt_load_no_mutation (test_pr16_dex_save_bridge.SaveBridge.test_corrupt_load_no_mutation)",
+    "test_counter_wrap (test_pr16_dex_save_bridge.SaveBridge.test_counter_wrap)",
+    "test_crc_rejected (test_pr16_dex_save_bridge.SaveBridge.test_crc_rejected)",
+    "test_failed_load_invalidation_not_newgame (test_pr16_dex_save_bridge.SaveBridge.test_failed_load_invalidation_not_newgame)",
+    "test_final_record_byte_crc (test_pr16_dex_save_bridge.SaveBridge.test_final_record_byte_crc)",
+    "test_inject_alias_reject (test_pr16_dex_save_bridge.SaveBridge.test_inject_alias_reject)",
+    "test_inject_bad_live_atomic (test_pr16_dex_save_bridge.SaveBridge.test_inject_bad_live_atomic)",
+    "test_inject_bad_parent_atomic (test_pr16_dex_save_bridge.SaveBridge.test_inject_bad_parent_atomic)",
+    "test_inject_only522 (test_pr16_dex_save_bridge.SaveBridge.test_inject_only522)",
+    "test_invalid_version_rejected (test_pr16_dex_save_bridge.SaveBridge.test_invalid_version_rejected)",
+    "test_invalidation_short_no_mutation (test_pr16_dex_save_bridge.SaveBridge.test_invalidation_short_no_mutation)",
+    "test_load_alias_reject (test_pr16_dex_save_bridge.SaveBridge.test_load_alias_reject)",
+    "test_load_bad_saveblock_size_no_mutation (test_pr16_dex_save_bridge.SaveBridge.test_load_bad_saveblock_size_no_mutation)",
+    "test_load_preserves_all_input_bytes (test_pr16_dex_save_bridge.SaveBridge.test_load_preserves_all_input_bytes)",
+    "test_mixed_blank_rejected (test_pr16_dex_save_bridge.SaveBridge.test_mixed_blank_rejected)",
+    "test_newgame_explicit_init_only (test_pr16_dex_save_bridge.SaveBridge.test_newgame_explicit_init_only)",
+    "test_null_and_short_classify (test_pr16_dex_save_bridge.SaveBridge.test_null_and_short_classify)",
+    "test_sector_size_bounds (test_pr16_dex_save_bridge.SaveBridge.test_sector_size_bounds)",
+    "test_signature_missing (test_pr16_dex_save_bridge.SaveBridge.test_signature_missing)",
+    "test_snapshot_selected_saveblocks (test_pr16_dex_save_bridge.SaveBridge.test_snapshot_selected_saveblocks)",
+    "test_tail_bad_record_output_unchanged (test_pr16_dex_save_bridge.SaveBridge.test_tail_bad_record_output_unchanged)",
+    "test_tail_different_valid_record (test_pr16_dex_save_bridge.SaveBridge.test_tail_different_valid_record)",
+    "test_tail_match (test_pr16_dex_save_bridge.SaveBridge.test_tail_match)",
+    "test_tail_output_alias_live (test_pr16_dex_save_bridge.SaveBridge.test_tail_output_alias_live)",
+    "test_tail_output_alias_sector (test_pr16_dex_save_bridge.SaveBridge.test_tail_output_alias_sector)",
+    "test_unknown_flags_rejected (test_pr16_dex_save_bridge.SaveBridge.test_unknown_flags_rejected)",
+    "test_unverified_parent (test_pr16_dex_save_bridge.SaveBridge.test_unverified_parent)",
+    "test_valid_load_does_not_resnapshot (test_pr16_dex_save_bridge.SaveBridge.test_valid_load_does_not_resnapshot)",
+    "test_valid_record_allowed (test_pr16_dex_save_bridge.SaveBridge.test_valid_record_allowed)",
+    "test_wrong_counter (test_pr16_dex_save_bridge.SaveBridge.test_wrong_counter)",
+    "test_wrong_logical_id (test_pr16_dex_save_bridge.SaveBridge.test_wrong_logical_id)",
+    "test_alias129_distinct (test_pr16_dex_adapter.Adapter.test_alias129_distinct)",
+    "test_all_1206_count_only1025 (test_pr16_dex_adapter.Adapter.test_all_1206_count_only1025)",
+    "test_all_sid_bindings (test_pr16_dex_adapter.Adapter.test_all_sid_bindings)",
+    "test_codex_alias_rejected (test_pr16_dex_adapter.Adapter.test_codex_alias_rejected)",
+    "test_codex_bad_padding (test_pr16_dex_adapter.Adapter.test_codex_bad_padding)",
+    "test_codex_bad_sizes (test_pr16_dex_adapter.Adapter.test_codex_bad_sizes)",
+    "test_codex_new_caught_reject_atomic (test_pr16_dex_adapter.Adapter.test_codex_new_caught_reject_atomic)",
+    "test_codex_seen_rollback (test_pr16_dex_adapter.Adapter.test_codex_seen_rollback)",
+    "test_count_invalid_mode (test_pr16_dex_adapter.Adapter.test_count_invalid_mode)",
+    "test_count_output_alias (test_pr16_dex_adapter.Adapter.test_count_output_alias)",
+    "test_factory_alias_rejected (test_pr16_dex_adapter.Adapter.test_factory_alias_rejected)",
+    "test_factory_bad_size (test_pr16_dex_adapter.Adapter.test_factory_bad_size)",
+    "test_factory_bad_snapshot_atomic (test_pr16_dex_adapter.Adapter.test_factory_bad_snapshot_atomic)",
+    "test_factory_bad_tag (test_pr16_dex_adapter.Adapter.test_factory_bad_tag)",
+    "test_factory_rollback_caught (test_pr16_dex_adapter.Adapter.test_factory_rollback_caught)",
+    "test_factory_rollback_empty (test_pr16_dex_adapter.Adapter.test_factory_rollback_empty)",
+    "test_factory_rollback_seen (test_pr16_dex_adapter.Adapter.test_factory_rollback_seen)",
+    "test_factory_unrelated_preserved (test_pr16_dex_adapter.Adapter.test_factory_unrelated_preserved)",
+    "test_factory_wrong_owner_atomic (test_pr16_dex_adapter.Adapter.test_factory_wrong_owner_atomic)",
+    "test_generated_bytes (test_pr16_dex_adapter.Adapter.test_generated_bytes)",
+    "test_national_bounds (test_pr16_dex_adapter.Adapter.test_national_bounds)",
+    "test_native_official_count (test_pr16_dex_adapter.Adapter.test_native_official_count)",
+    "test_official129_same_as_sid481 (test_pr16_dex_adapter.Adapter.test_official129_same_as_sid481)",
+    "test_original_vega_not_official_count (test_pr16_dex_adapter.Adapter.test_original_vega_not_official_count)",
+    "test_representative_caterpie_649 (test_pr16_dex_adapter.Adapter.test_representative_caterpie_649)",
+    "test_representative_invalid (test_pr16_dex_adapter.Adapter.test_representative_invalid)",
+    "test_representative_native_152 (test_pr16_dex_adapter.Adapter.test_representative_native_152)",
+    "test_representatives_stable_base (test_pr16_dex_adapter.Adapter.test_representatives_stable_base)",
+    "test_reward_clear_caught_preserves_seen (test_pr16_dex_adapter.Adapter.test_reward_clear_caught_preserves_seen)",
+    "test_seen_not_caught (test_pr16_dex_adapter.Adapter.test_seen_not_caught)",
+    "test_species_bounds (test_pr16_dex_adapter.Adapter.test_species_bounds)",
+    "test_stage75_count_deduplicated (test_pr16_dex_adapter.Adapter.test_stage75_count_deduplicated)",
+    "test_stage75_extension_owner (test_pr16_dex_adapter.Adapter.test_stage75_extension_owner)",
+    "test_stage75_factory_same_owner_restore (test_pr16_dex_adapter.Adapter.test_stage75_factory_same_owner_restore)",
+    "test_stage75_form_maps_base (test_pr16_dex_adapter.Adapter.test_stage75_form_maps_base)",
+    "test_stage75_mismatch_rejected (test_pr16_dex_adapter.Adapter.test_stage75_mismatch_rejected)",
+    "test_stage75_representative_remains_base (test_pr16_dex_adapter.Adapter.test_stage75_representative_remains_base)",
+    "test_stage75_unknown_count_rejected (test_pr16_dex_adapter.Adapter.test_stage75_unknown_count_rejected)"
+  ],
+  "groups": {
+    "test_pr16_dex_lifetime.py": {
+      "tests": 30,
+      "passed": 30,
+      "stderr_sha256": "92fc814a5b627a3871c5df5969f80c6ee6eb4c5748fc47f47da46324a08fba9a"
+    },
+    "test_pr16_dex_save_bridge.py": {
+      "tests": 34,
+      "passed": 34,
+      "stderr_sha256": "98cc3801a4c87e01fcbe40ec1cb39524287ffb1601fbc5365495776552bdb461"
+    },
+    "test_pr16_dex_adapter.py": {
+      "tests": 38,
+      "passed": 38,
+      "stderr_sha256": "c7950727a282f55ba81f722e0b506446f0011441e9907fd5cb4ac5fc168e6465"
+    }
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-lifetime.yml": {
+      "size": 1496,
+      "sha256": "2792cf4abf5e57b15e5bb90f1e69163f4ccf4d28d24e21ce24efea23dc77f099"
+    },
+    ".github/workflows/pr16-dex-runtime-record.yml": {
+      "size": 2301,
+      "sha256": "16cf8bd272a6ad32226f11b46372cf81ba64c5bff3ca9a9234ee124568fd7bc3"
+    },
+    "config/modernization_rockruff_own_tempo_stage75.json": {
+      "size": 8066,
+      "sha256": "2accef3c5cb3e45e3b032035acfbc727b2785deafd652a45f56ca0db3ebbf121"
+    },
+    "content/modernization/pr16_dex_placement_audit.json": {
+      "size": 23318,
+      "sha256": "91f90ded3790992ef7df054005575482df8ec040788224b1e17cd52c737517ae"
+    },
+    "content/modernization/rockruff_own_tempo_stage75_contract.json": {
+      "size": 5799,
+      "sha256": "f57efb88124fdf18681a012d520d4382b715763c917fd40eb56a30ba6dce5684"
+    },
+    "docs/PR16_DEX_RUNTIME_INTEGRATION_JA.md": {
+      "size": 6815,
+      "sha256": "cce5fd5337df562f110cdba07d1a829b84abae1273d256929cb5a05fd1a30b5c"
+    },
+    "overlays/dex_owner/dex_adapter.c": {
+      "size": 4685,
+      "sha256": "aa4ac552bcb0b4cb768c54b840240822db4e5038e1e7577558bbc34c86c361f2"
+    },
+    "overlays/dex_owner/dex_adapter.h": {
+      "size": 1232,
+      "sha256": "7a59d170571f07a595000fc7c1eedf56b7c2f3ce9a909948ab7cd0d2c447a140"
+    },
+    "overlays/dex_owner/dex_adapter_tables.h": {
+      "size": 25068,
+      "sha256": "39086f0eb2e3b2319b4961a69293b691f4039e62d20eb6b4793687d461dde056"
+    },
+    "overlays/dex_owner/dex_save_bridge.c": {
+      "size": 4305,
+      "sha256": "e95477302ac5ff1f6dc34f47d2a8d2a5d6ae17aa3115427f260bdac5c0847975"
+    },
+    "overlays/dex_owner/dex_save_bridge.h": {
+      "size": 1651,
+      "sha256": "c365ee5d69958497361d59f634fd56cf647181a02336f0e2ab14dea14a887373"
+    },
+    "scripts/pr16_dex_adapter_tables.py": {
+      "size": 2991,
+      "sha256": "1e95aed2c88eeba05f1636307998eda75c00b3eeaa5c0794ad91ed09183b910d"
+    },
+    "scripts/pr16_dex_lifetime.py": {
+      "size": 9484,
+      "sha256": "1c148294a55ec45fdeec2f3e3b0594544f8c8f09d660a67508e20b93230ca3a5"
+    },
+    "scripts/pr16_dex_runtime_record.py": {
+      "size": 13498,
+      "sha256": "5c2711dd75d2f6cb5c648f98212ed6ad1d13f79c9363ad5f771e744afbb21ad6"
+    },
+    "tests/test_pr16_dex_adapter.py": {
+      "size": 9033,
+      "sha256": "468bd82fce9a156b94cb4b447ba5751fd17b49f62c860524e638363e8b6abb01"
+    },
+    "tests/test_pr16_dex_lifetime.py": {
+      "size": 4702,
+      "sha256": "3a598130dec556183fef0612f9b82a00fe5b8f9dfd3dabaf387c71737c9ed050"
+    },
+    "tests/test_pr16_dex_save_bridge.py": {
+      "size": 7575,
+      "sha256": "f821ddcd237739d015ada8fb3d072fd9b5b82829c5f47c60f96ad9350d869520"
+    },
+    "tools/mgba_pr16_dex_lifetime.c": {
+      "size": 13504,
+      "sha256": "5622f1bf43afed02cde9a7e669f507085d54d702cabcc1c780dbbfed8901b6d8"
+    }
+  },
+  "scope": "HOST_ADAPTER_BRIDGE_AND_NEW_UI_EVIDENCE_VALIDATOR"
+}

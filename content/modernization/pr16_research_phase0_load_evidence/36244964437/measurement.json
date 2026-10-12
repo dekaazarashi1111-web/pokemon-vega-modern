@@ -1,0 +1,207 @@
+{
+  "accepted": {
+    "load-pending-phase0-unavailable": {
+      "availability_fixture_byte_writes": 4,
+      "availability_fixture_words": 1,
+      "candidate_sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+      "case": "load-pending-phase0-unavailable",
+      "failure_state": {
+        "checksum_valid": true,
+        "counter": 2,
+        "last_result": 13,
+        "ledger_sha256": "8e068a23604cc7b9ae6a7c58264c2a7e9b8561fe1fd9c45094fd55c7b4f543be",
+        "load_state": "failed",
+        "migration_dirty": 0,
+        "recovery_blocked": 1,
+        "version": 2
+      },
+      "fresh_cores": 4,
+      "guarded_host_writes": 0,
+      "host_write_barriers": 7,
+      "normal_new_game_accepted": false,
+      "observations": [
+        {
+          "counter": 3,
+          "event": "continued",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000050001000000050000000500000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 6,
+          "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+        },
+        {
+          "counter": 3,
+          "event": "continued_again",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000050001000000050000000500000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 6,
+          "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+        },
+        {
+          "counter": 3,
+          "event": "continued_third",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000050001000000050000000500000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000",
+          "party_count": 6,
+          "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+        }
+      ],
+      "physical_flash_fault_accepted": false,
+      "ram_ledger_fixture_writes": 0,
+      "recovery_state": {
+        "checksum_valid": true,
+        "counter": 3,
+        "last_result": 0,
+        "ledger_sha256": "d4c118b3ff1b723068d27f5c5ddbb41476216e32aaaa33e79f5ba89ad2eb8d76",
+        "load_state": "recovered",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "version": 2
+      },
+      "register_fixture_writes": 0,
+      "same_core_menu_retry_accepted": false,
+      "scope": "ORDINARY_LOAD_PHASE0_AVAILABILITY_FIXTURE_AND_COLD_RECOVERY",
+      "status": "PASS",
+      "stdout": {
+        "sha256": "be998245b7c39e806e3977b4aaa235dba5ac82404206626cedf3ad2b385753ce",
+        "size": 5880
+      },
+      "transaction_ui_accepted": false,
+      "warnings_errors": 0
+    },
+    "load-v1-phase0-unavailable": {
+      "availability_fixture_byte_writes": 4,
+      "availability_fixture_words": 1,
+      "candidate_sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+      "case": "load-v1-phase0-unavailable",
+      "failure_state": {
+        "checksum_valid": true,
+        "counter": 2,
+        "last_result": 13,
+        "ledger_sha256": "3692eea2434a7452f08ba729c2bfc6105b03f9a25e4dfcbd6b8bbd6ffb977749",
+        "load_state": "failed",
+        "migration_dirty": 0,
+        "recovery_blocked": 1,
+        "version": 1
+      },
+      "fresh_cores": 4,
+      "guarded_host_writes": 0,
+      "host_write_barriers": 7,
+      "normal_new_game_accepted": false,
+      "observations": [
+        {
+          "counter": 3,
+          "event": "continued",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 6,
+          "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+        },
+        {
+          "counter": 3,
+          "event": "continued_again",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 6,
+          "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+        },
+        {
+          "counter": 3,
+          "event": "continued_third",
+          "inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "item_quantity": 0,
+          "other_inventory_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+          "owner": "01400000000001000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000",
+          "party_count": 6,
+          "party_sha256": "55514c6b16a517c723e3cdfe4826075020b214905950ada9cd65b41a97419430"
+        }
+      ],
+      "physical_flash_fault_accepted": false,
+      "ram_ledger_fixture_writes": 0,
+      "recovery_state": {
+        "checksum_valid": true,
+        "counter": 3,
+        "last_result": 0,
+        "ledger_sha256": "db4a2a34c134a47e9de926163d976f0c4c40a27012f3c4359a26b0df27bea817",
+        "load_state": "recovered",
+        "migration_dirty": 0,
+        "recovery_blocked": 0,
+        "version": 2
+      },
+      "register_fixture_writes": 0,
+      "same_core_menu_retry_accepted": false,
+      "scope": "ORDINARY_LOAD_PHASE0_AVAILABILITY_FIXTURE_AND_COLD_RECOVERY",
+      "status": "PASS",
+      "stdout": {
+        "sha256": "d3a237e456e2d87aea76beec0b68af9b4aa1eeee27c1474e95139c33e25d4854",
+        "size": 5875
+      },
+      "transaction_ui_accepted": false,
+      "warnings_errors": 0
+    }
+  },
+  "accepted_case_reruns": 0,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "candidate": {
+    "sha256": "5d1fc9c47225ae8c0a369514b899a062af3699fa3c9a2f617e94ffd5f7dcc1ab",
+    "size": 33554432
+  },
+  "cases": {
+    "load-pending-phase0-unavailable": {
+      "elapsed_seconds": 6.686,
+      "private_save_after": {
+        "sha256": "37f0454c9297fc312bba1fe9dcb2c8abc6dc0620b7e32a5c8213d705528eb3bf",
+        "size": 131088
+      },
+      "returncode": 0,
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "sha256": "be998245b7c39e806e3977b4aaa235dba5ac82404206626cedf3ad2b385753ce",
+        "size": 5880
+      },
+      "timeout": false
+    },
+    "load-v1-phase0-unavailable": {
+      "elapsed_seconds": 6.798,
+      "private_save_after": {
+        "sha256": "c12197717183f22cb023befeb5d5f9359619d2e802c0a10dcf1a060e9507bb55",
+        "size": 131088
+      },
+      "returncode": 0,
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "sha256": "d3a237e456e2d87aea76beec0b68af9b4aa1eeee27c1474e95139c33e25d4854",
+        "size": 5875
+      },
+      "timeout": false
+    }
+  },
+  "failures": {},
+  "fresh_cores_accepted": 8,
+  "guard_processes": 7,
+  "host_compiles": 3,
+  "host_compiles_this_run": 1,
+  "initial_runner_compile_failures": 1,
+  "native_processes": 2,
+  "new_unit_tests": 43,
+  "rom_changes": 0,
+  "run_id": 36244964437,
+  "source_head": "187bb4a87fc4ad63f06022355c2d3be9ac47c2b5",
+  "unit_processes_this_run": 0
+}

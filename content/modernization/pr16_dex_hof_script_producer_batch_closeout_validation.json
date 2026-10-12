@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SCRIPT_PRODUCER_CLOSEOUT_SOURCE_REVIEW",
+  "review_scope": "new_script_producer_closeout_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-script-producer-batch-closeout.yml": {
+      "size": 2990,
+      "sha256": "54f548dad1550754305fb12f3d9bc31783b8044c6ebcbc268f6c44d546d05c06"
+    },
+    ".github/workflows/pr16-dex-hof-script-producer-batch.yml": {
+      "size": 2972,
+      "sha256": "355f2a356ce039496b6ac22e025ee74663679a2aaa393ff3797c1e64fc1421d3"
+    },
+    "scripts/pr16_dex_hof_script_producer_batch_closeout.py": {
+      "size": 15645,
+      "sha256": "4017bf4786e492daa7ebaf31f4db47e61a46ae6725bc1085bd095a4965ee1f96"
+    },
+    "tests/test_pr16_dex_hof_script_producer_batch_closeout.py": {
+      "size": 8972,
+      "sha256": "b2da8fa32c53d0e7ad4500d2932baaa00ce04d2ef9f96c310acdb9a9d625904e"
+    }
+  },
+  "independent_source_review_identity": {
+    "size": 6764,
+    "sha256": "2c5bb3f769cc5b743816dea60e9dd8d0bf1510671dbf6fddb28e6c9f06f6afd2"
+  },
+  "source_tests": {
+    "tests": 22,
+    "log_identity": {
+      "size": 3426,
+      "sha256": "d4df32afc3b5e32edd4095646600a2e04a1ca24ca3683d425fb9b9b28a03e014"
+    },
+    "source_label_only_change_verified": true,
+    "old_tests_rerun": 0,
+    "current_rom_reconstructions": 0,
+    "native_processes": 0
+  },
+  "review_summary_ja": "新4sourceだけ独立確認。receipt全本文と実commit済みrecording全field、実snapshot byte/Git blob、空pending、非空LF/CR/size/closed6file、source-review未解決finding拒否を束縛。checkpoint選択field照合flagを正確な名称へ訂正し、公開guard実装は不変。旧独立最終reviewは未実施を保持。"
+}

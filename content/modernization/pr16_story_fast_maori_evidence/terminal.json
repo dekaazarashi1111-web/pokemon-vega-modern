@@ -1,0 +1,103 @@
+{
+  "formal_artifact": {
+    "digest": "sha256:304cae07573563abfb93e4bd7f1bfd5bc7e8348b374380fa487ffe20fd382d1d",
+    "expires_at": "2026-12-28T00:37:59Z",
+    "id": 11006311891,
+    "name": "pr16-story-fast-maori-checkpoint",
+    "size_in_bytes": 17717828,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
+      "id": 36504040292,
+      "repository_id": 1358127462
+    }
+  },
+  "job": {
+    "conclusion": "success",
+    "id": 109201289995,
+    "name": "measurement",
+    "run_id": 36504040292,
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-29T00:38:03Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-29T00:38:03Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T00:38:17Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-29T00:38:03Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T00:38:18Z",
+        "conclusion": "success",
+        "name": "Fixed resume integrity without native acceptance replay",
+        "number": 3,
+        "started_at": "2026-09-29T00:38:17Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T00:38:46Z",
+        "conclusion": "success",
+        "name": "New Maori176 and independent cold20 only",
+        "number": 4,
+        "started_at": "2026-09-29T00:38:18Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T00:38:46Z",
+        "conclusion": "success",
+        "name": "Lightweight task graph",
+        "number": 5,
+        "started_at": "2026-09-29T00:38:46Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T00:38:49Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 6,
+        "started_at": "2026-09-29T00:38:46Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T00:38:49Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 12,
+        "started_at": "2026-09-29T00:38:49Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-29T00:38:49Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 13,
+        "started_at": "2026-09-29T00:38:49Z",
+        "status": "completed"
+      }
+    ]
+  },
+  "record_accepted_test_reruns": 0,
+  "record_compiles": 0,
+  "record_native_processes": 0,
+  "record_run_id": 36504857429,
+  "record_source_head": "598c5a7b0fd5202fdee4a8fde519aab268ac3114",
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "383ce0f49f4761f6db875e1a2f0a89692d2966e8",
+    "id": 36504040292,
+    "path": ".github/workflows/pr16-story-fast-maori.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  }
+}

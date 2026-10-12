@@ -1,0 +1,56 @@
+name: pr16-story-save10-record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-save10-record.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-save10-record
+  cancel-in-progress: false
+jobs:
+  record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Recover completed originals and fix publisher mirror only
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/pr16_story_save10_record.py collect
+      - name: Resume mirrors, task graph, and scoped final index
+        run: |
+          python3 -B scripts/validate_task_graph.py --check
+          python3 -B scripts/pr16_story_save10_record.py guard
+      - name: Non-force record commit and readback
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260928-STORY-SAVE10: 保存済み32検査とSave10を記録回復、mirror修正・引継ぎと両ログ同期 native0 run=$GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/$branch
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 -B scripts/pr16_story_save10_record.py snapshot
+          echo "RESULT=DONE TASK=USER-20260928-STORY-SAVE10 VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+      - name: Preserve without native or tests
+        if: always()
+        run: python3 -B scripts/pr16_story_save10_record.py preserve
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-save10-record
+          path: .local/pr16-story-save10/checkpoint
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

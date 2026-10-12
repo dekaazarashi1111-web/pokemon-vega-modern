@@ -1,0 +1,693 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-STORY-CALLER-FRONTIER",
+  "source_head": "292799756b34df838ed0943eb50dabd9bbfbb7d2",
+  "run_id": 35316123836,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "BOUNDED_STORY_CALLER_REFERENCE_INDEX_NOT_CANDIDATE_REACHABILITY",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "saved_node_count": 8628,
+    "saved_inbound": {
+      "SetDefaultFontsPointer": {
+        "entry": 135236137,
+        "saved_inbound": [],
+        "all_callers_excluded": false
+      },
+      "DeactivateAllTextPrinters": {
+        "entry": 134229033,
+        "saved_inbound": [],
+        "all_callers_excluded": false
+      },
+      "ScrCmd_message": {
+        "entry": 134656205,
+        "saved_inbound": [],
+        "all_callers_excluded": false
+      }
+    },
+    "reference_callers": {
+      "edges": [
+        {
+          "path": "src/new_menu_helpers.c",
+          "caller": "InitTextBoxGfxAndPrinters",
+          "definition_line": 388,
+          "site_line": 392,
+          "callee": "DeactivateAllTextPrinters",
+          "depth": 1,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "InitOverworldBgs",
+          "definition_line": 1335,
+          "site_line": 1351,
+          "callee": "InitTextBoxGfxAndPrinters",
+          "depth": 2,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "InitOverworldBgs_NoResetHeap",
+          "definition_line": 1355,
+          "site_line": 1369,
+          "callee": "InitTextBoxGfxAndPrinters",
+          "depth": 2,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "LoadMapInStepsLink",
+          "definition_line": 1771,
+          "site_line": 1776,
+          "callee": "InitOverworldBgs",
+          "depth": 3,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "LoadMapInStepsLocal",
+          "definition_line": 1848,
+          "site_line": 1853,
+          "callee": "InitOverworldBgs",
+          "depth": 3,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "ReturnToFieldLocal",
+          "definition_line": 1936,
+          "site_line": 1941,
+          "callee": "InitOverworldBgs",
+          "depth": 3,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "ReturnToFieldLink",
+          "definition_line": 1966,
+          "site_line": 1971,
+          "callee": "InitOverworldBgs",
+          "depth": 3,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "LoadMap_QLPlayback",
+          "definition_line": 2246,
+          "site_line": 2251,
+          "callee": "InitOverworldBgs",
+          "depth": 3,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "MapLdr_Credits",
+          "definition_line": 2428,
+          "site_line": 2434,
+          "callee": "InitOverworldBgs_NoResetHeap",
+          "depth": 3,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "CB2_LoadMapOnReturnToFieldCableClub",
+          "definition_line": 1600,
+          "site_line": 1602,
+          "callee": "LoadMapInStepsLink",
+          "depth": 4,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "CB2_ReturnToFieldLocal",
+          "definition_line": 1624,
+          "site_line": 1626,
+          "callee": "ReturnToFieldLocal",
+          "depth": 4,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": 134570185,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "CB2_ReturnToFieldLink",
+          "definition_line": 1633,
+          "site_line": 1635,
+          "callee": "ReturnToFieldLink",
+          "depth": 4,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": 134570261,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "DoMapLoadLoop",
+          "definition_line": 2043,
+          "site_line": 2045,
+          "callee": "LoadMapInStepsLocal",
+          "depth": 4,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "DoLoadMap_QLPlayback",
+          "definition_line": 2240,
+          "site_line": 2242,
+          "callee": "LoadMap_QLPlayback",
+          "depth": 4,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        },
+        {
+          "path": "src/overworld.c",
+          "caller": "SetUpScrollSceneForCredits",
+          "definition_line": 2384,
+          "site_line": 2413,
+          "callee": "MapLdr_Credits",
+          "depth": 4,
+          "reference_only_not_candidate_binding": true,
+          "jp_symbol_entry": null,
+          "candidate_byte_binding_proven": false
+        }
+      ],
+      "waves": [
+        {
+          "depth": 1,
+          "edges": 1
+        },
+        {
+          "depth": 2,
+          "edges": 2
+        },
+        {
+          "depth": 3,
+          "edges": 6
+        },
+        {
+          "depth": 4,
+          "edges": 6
+        }
+      ],
+      "parsed_function_count": 608,
+      "bounded_paths": [
+        "src/overworld.c",
+        "src/scrcmd.c",
+        "src/script.c",
+        "src/text_window.c",
+        "src/new_menu_helpers.c",
+        "src/field_message_box.c",
+        "data/script_cmd_table.inc"
+      ],
+      "maximum_depth": 4,
+      "all_reference_callers_enumerated": false
+    },
+    "reference_script_table": {
+      "count": 213,
+      "message_opcode": 103,
+      "message_symbol": "ScrCmd_message",
+      "waitmessage_opcode": 102,
+      "candidate_table_address": null
+    },
+    "jp_symbol_candidates": {
+      "CB2_LoadMapOnReturnToFieldCableClub": null,
+      "CB2_ReturnToFieldLink": 134570261,
+      "CB2_ReturnToFieldLocal": 134570185,
+      "DeactivateAllTextPrinters": 134229033,
+      "DoLoadMap_QLPlayback": null,
+      "DoMapLoadLoop": null,
+      "InitOverworldBgs": null,
+      "InitOverworldBgs_NoResetHeap": null,
+      "InitScriptContext": null,
+      "InitTextBoxGfxAndPrinters": null,
+      "LoadMapInStepsLink": null,
+      "LoadMapInStepsLocal": null,
+      "LoadMap_QLPlayback": null,
+      "MapLdr_Credits": null,
+      "ReturnToFieldLink": null,
+      "ReturnToFieldLocal": null,
+      "RunScriptCommand": null,
+      "ScrCmd_message": null,
+      "ScriptContext1_RunScript": null,
+      "SetDefaultFontsPointer": null,
+      "SetUpScrollSceneForCredits": null,
+      "SetupBytecodeScript": null,
+      "gScriptCmdTable": null
+    },
+    "source_provenance": {
+      "src/overworld.c": {
+        "git_blob": "339014da46ae8543143edc99ab72bf7496203a0d",
+        "size": 103643,
+        "sha256": "df352e738b56856765aec65adc6fdea0a4b25fe567bc760d4ce2d34afc6ff7e2",
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788"
+      },
+      "src/scrcmd.c": {
+        "git_blob": "97b695ee2f6fca80a3b78f52f6a444f696fe5814",
+        "size": 56954,
+        "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788"
+      },
+      "src/script.c": {
+        "git_blob": "d0433bdda062b138e53d1a1d3184b4566ad7d9dc",
+        "size": 13713,
+        "sha256": "1cc4aade1f821e5f218ba7c191b1217e5a3cf942d0bfd0f32f775ce1f808437c",
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788"
+      },
+      "src/text_window.c": {
+        "git_blob": "431ac55202cf22f80283ffdebbc1a305f832eb97",
+        "size": 7580,
+        "sha256": "acf6f9262e1684530109a428394a6cfaae00db3c6445d4c81b3ca3bab58fb591",
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788"
+      },
+      "src/new_menu_helpers.c": {
+        "git_blob": "08c032027cda2c34bf0dded37458adeb250aa553",
+        "size": 27834,
+        "sha256": "d115f81a76f93ba1a34894acd58f266a1920215784176f94188e4bad8ba51b1c",
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788"
+      },
+      "src/field_message_box.c": {
+        "git_blob": "74f441c889d59775f0a4bb16567685b5f78a9ef2",
+        "size": 3461,
+        "sha256": "38969672a37611f46b7ff54ba2172129d8a9690f7a6ce4587b02203233ea1c0e",
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788"
+      },
+      "data/script_cmd_table.inc": {
+        "git_blob": "c5d112d9ea66d258d5a372dda89b9ad96ed2b1e1",
+        "size": 11359,
+        "sha256": "6b59babf9b8a33bdc37a322a1a4b6e2261426126097330f305823e53415b1389",
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788"
+      }
+    },
+    "saved_jp_symbol_provenance": {
+      "repository": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+      "size": 68505,
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+      "path": "BPRJ.ld",
+      "relevant_lines": [
+        {
+          "line": 253,
+          "text": "gWindows = 0x2020430;"
+        },
+        {
+          "line": 600,
+          "text": "CompleteOnInactiveTextPrinter = 0x802F614 | 1;"
+        },
+        {
+          "line": 602,
+          "text": "DestroyExpTaskAndCompleteOnInactiveTextPrinter = 0x802FAD0 | 1;"
+        },
+        {
+          "line": 971,
+          "text": "BuyMenuInitWindows = 0x813FD90 | 1;"
+        },
+        {
+          "line": 1221,
+          "text": "DeactivateAllTextPrinters = 0x8002C28 | 1;"
+        },
+        {
+          "line": 1222,
+          "text": "AddTextPrinterParameterized = 0x8002C44 | 1;"
+        },
+        {
+          "line": 1223,
+          "text": "RunTextPrinters = 0x8002DD0 | 1;"
+        },
+        {
+          "line": 1224,
+          "text": "IsTextPrinterActive = 0x8002E3C | 1;"
+        },
+        {
+          "line": 1225,
+          "text": "TextPrinterDrawDownArrow = 0x80054C4 | 1;"
+        },
+        {
+          "line": 1226,
+          "text": "TextPrinterWaitAutoMode = 0x80055D4 | 1;"
+        },
+        {
+          "line": 1245,
+          "text": "RunTextPrintersAndIsPrinter0Active = 0x80F7D14 | 1;"
+        },
+        {
+          "line": 1247,
+          "text": "AddTextPrinterForMessage = 0x80F7DBC | 1;"
+        },
+        {
+          "line": 1251,
+          "text": "AddTextPrinterParameterized4 = 0x812EDAC | 1;"
+        },
+        {
+          "line": 1421,
+          "text": "IsPartyMenuTextPrinterActive = 0x8120B60 | 1;"
+        },
+        {
+          "line": 1432,
+          "text": "PartyMenuRemoveWindow = 0x81224B0 | 1;"
+        },
+        {
+          "line": 1469,
+          "text": "InitWindows = 0x8003AF0 | 1;"
+        },
+        {
+          "line": 1470,
+          "text": "AddWindow = 0x8003CB0 | 1;"
+        },
+        {
+          "line": 1471,
+          "text": "RemoveWindow = 0x8003E08 | 1;"
+        },
+        {
+          "line": 1472,
+          "text": "FreeAllWindowBuffers = 0x8003E98 | 1;"
+        },
+        {
+          "line": 1505,
+          "text": "SetWindowTemplateFields = 0x8110984 | 1;"
+        },
+        {
+          "line": 1506,
+          "text": "CreateWindowTemplate = 0x8110A38 | 1;"
+        },
+        {
+          "line": 1875,
+          "text": "AddTextPrinterParameterized2 = 0x80F7D28 | 1;"
+        },
+        {
+          "line": 1934,
+          "text": "sTextPrinters = 0x2020030;"
+        },
+        {
+          "line": 1946,
+          "text": "AddTextPrinterParameterized3 = 0x812ED24 | 1;"
+        }
+      ]
+    },
+    "remaining_initial_input_assumptions": [
+      "config0203D000",
+      "global0300504C->object02010000",
+      "window/resource queue allocation",
+      "script context and literal source entry"
+    ],
+    "bootstrap_origin": {
+      "run_id": 35313824566,
+      "artifact_id": 10534283048,
+      "zip_sha256": "c042ed78e09ddc0b5a5518800fb75008ea01d32bbc5bdc49aa8604dd1bb87ce9",
+      "context_sha256": "c72a47cc475f5f5a73381c7efce22ddb847710f8a01a4ee4ffd088f612a12f8d"
+    },
+    "new_upstream_source_files": 7,
+    "accepted_upstream_sources_refetched": 0,
+    "failed_original_attempt": {
+      "run_id": 35315330711,
+      "job_id": 105505636383,
+      "head": "71f5d89a5a2b5ccd9a4b2b18a1d8c0b25bfb8471",
+      "conclusion": "failure",
+      "artifact_id": 10535110418,
+      "zip_sha256": "0dd7e1d6bf388a7d7b507ca317972238e2bc16087312d98903f2e963f3dd2faf",
+      "failure_boundary": "制御構文と入れ子関数候補の区別不足・解析時にfail closed",
+      "tests_passed": 31,
+      "record_commit_created": false
+    },
+    "cancelled_parser_attempt": {
+      "run_id": 35315698648,
+      "head": "fdab11854123eafecc7635d16dba297896a20d3e",
+      "conclusion": "cancelled",
+      "cause": "長い空白の宣言で字句正規表現が過剰backtracking。37testsへ追加して置換。"
+    },
+    "candidate_reconstructions": 0,
+    "rom_changes": 0,
+    "new_window_bytes": 0,
+    "new_node_count": 0,
+    "new_emulator_processes": 0,
+    "saved_nodes_redecoded": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "accepted_native_cases_replayed": 0,
+    "normal_story_observed": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "boundary_ja": "7固定referenceファイル/深さ4の字句call索引。JP symbolの別名/欠落は未解決。実candidate caller/table byte照合と通常story実行は次工程。",
+    "export_manifest": {
+      "size": 53135,
+      "sha256": "a780503424a89620395f5b6058e8dfc216ce2912497aebcf0435fa80386131c9"
+    }
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_bios_record.py": {
+      "size": 11374,
+      "sha256": "448e17fa82fbe031d9202fd6045315e88c590202ae4f3c4f864283052a414ffa"
+    },
+    "scripts/pr16_ring_story_caller_frontier.py": {
+      "size": 14052,
+      "sha256": "a3a344fed68068d672c70d1368589807913d513baf2c07384a10089dcca4a84e"
+    },
+    "tests/test_pr16_ring_story_caller_frontier.py": {
+      "size": 6385,
+      "sha256": "e21ea4219fd7c3a525adba71e122b1938fc21caf6c42829a62af67c00c798cbe"
+    },
+    ".github/workflows/pr16-ring-story-caller-frontier.yml": {
+      "size": 1834,
+      "sha256": "9d47d7b914b0db32aff171139212b5ecd6a0a1370f5df79c43d44be33b92dae0"
+    },
+    "content/modernization/pr16_ring_bootstrap_lifecycle_contracts.json": {
+      "size": 75719,
+      "sha256": "7fee98bb5f889b31f86af3a374e0d675c39898d9465b40d81724823453272f19"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_ui_owners.py": {
+      "size": 12961,
+      "sha256": "6bb82a9057e01845ef1f4efcce8e41d77856f1cf74c5fe601af9b9b509566bbf"
+    },
+    "scripts/pr16_ring_text_export_recovery.py": {
+      "size": 12559,
+      "sha256": "39156d99a541fe6df74d264df0f08d3f014c3558edff1fa30d576887a97da595"
+    },
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_message_task_frontier.py": {
+      "size": 11023,
+      "sha256": "281514fa091e8a6082a37024fd6aa54869ff39b996ef15517e7132ce750322ee"
+    },
+    "state/source-lock.json": {
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    },
+    "content/modernization/pr16_ring_ui_owners.json": {
+      "size": 35218,
+      "sha256": "e9d346a174b619ca121c4aa545977fcf1ab14fdd19d3adfbc3137051aa1c5e2e"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 37,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35313824566,
+      "head_sha": "da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35316128434,
+      "name": "source-validation",
+      "head_sha": "292799756b34df838ed0943eb50dabd9bbfbb7d2",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35316128490,
+      "name": "p03-forgetting-ci",
+      "head_sha": "292799756b34df838ed0943eb50dabd9bbfbb7d2",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35316123855,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "292799756b34df838ed0943eb50dabd9bbfbb7d2",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35316123824,
+      "name": "source-validation",
+      "head_sha": "292799756b34df838ed0943eb50dabd9bbfbb7d2",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35316123812,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "292799756b34df838ed0943eb50dabd9bbfbb7d2",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35316123794,
+      "name": "p03-forgetting-ci",
+      "head_sha": "292799756b34df838ed0943eb50dabd9bbfbb7d2",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35316123836,
+      "name": "保存原本からstory初期化callerとscript dispatchの未読接続を限定",
+      "head_sha": "292799756b34df838ed0943eb50dabd9bbfbb7d2",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35315702265,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fdab11854123eafecc7635d16dba297896a20d3e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35315702271,
+      "name": "source-validation",
+      "head_sha": "fdab11854123eafecc7635d16dba297896a20d3e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35315698666,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fdab11854123eafecc7635d16dba297896a20d3e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35315698661,
+      "name": "source-validation",
+      "head_sha": "fdab11854123eafecc7635d16dba297896a20d3e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35315698657,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "fdab11854123eafecc7635d16dba297896a20d3e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35315698691,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "fdab11854123eafecc7635d16dba297896a20d3e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35315698648,
+      "name": "保存原本からstory初期化callerとscript dispatchの未読接続を限定",
+      "head_sha": "fdab11854123eafecc7635d16dba297896a20d3e",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 35315336221,
+      "name": "p03-forgetting-ci",
+      "head_sha": "71f5d89a5a2b5ccd9a4b2b18a1d8c0b25bfb8471",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35315336184,
+      "name": "source-validation",
+      "head_sha": "71f5d89a5a2b5ccd9a4b2b18a1d8c0b25bfb8471",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35315330594,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "71f5d89a5a2b5ccd9a4b2b18a1d8c0b25bfb8471",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35315330603,
+      "name": "p03-forgetting-ci",
+      "head_sha": "71f5d89a5a2b5ccd9a4b2b18a1d8c0b25bfb8471",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35315330711,
+      "name": "保存原本からstory初期化callerとscript dispatchの未読接続を限定",
+      "head_sha": "71f5d89a5a2b5ccd9a4b2b18a1d8c0b25bfb8471",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35315330582,
+      "name": "source-validation",
+      "head_sha": "71f5d89a5a2b5ccd9a4b2b18a1d8c0b25bfb8471",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

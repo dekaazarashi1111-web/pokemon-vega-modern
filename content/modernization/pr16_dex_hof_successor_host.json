@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-10-05T06:54:39Z",
+  "task": "USER-PR16-DEX-HOF-SAVE-SUCCESSOR",
+  "status": "PASS_SYNTHETIC_HOST_SUCCESSOR_EQUIVALENCE",
+  "command": "python scripts/pr16_dex_hof_successor_source.py --verify-host",
+  "source_bindings": {
+    "content/modernization/pr16_dex_stage61_relink_inputs.json": {
+      "size": 32743,
+      "sha256": "1d9aeb880c178ea05facf5aa8b4487dd83dd462054d7089f0f8dc22567a304a2"
+    },
+    "overlays/dex_owner/dex_compact_adapter.c": {
+      "size": 4735,
+      "sha256": "e45926d8d2efde9b13055636e0b3378f0104bae515f9e26424a798600b5c4ffb"
+    },
+    "overlays/dex_owner/dex_compact_map.c": {
+      "size": 1249,
+      "sha256": "52097452309c3b80427d1883e9d57f693f5fc1fe97d82618d8bf0db665e76e3b"
+    },
+    "overlays/dex_owner/dex_owner.c": {
+      "size": 7563,
+      "sha256": "d3442445141d8724b6ba36d34619ce955d17923935d832d328222e0906da6bd4"
+    },
+    "overlays/dex_owner/dex_owner.h": {
+      "size": 2130,
+      "sha256": "9b6458882cfa70129fbc4e0a489b0dfacdfa587dcde6272e0d0c3c80a6d8a2d9"
+    },
+    "overlays/dex_owner/dex_save_bridge.c": {
+      "size": 4305,
+      "sha256": "e95477302ac5ff1f6dc34f47d2a8d2a5d6ae17aa3115427f260bdac5c0847975"
+    },
+    "overlays/dex_owner/dex_save_bridge.h": {
+      "size": 1651,
+      "sha256": "c365ee5d69958497361d59f634fd56cf647181a02336f0e2ab14dea14a887373"
+    },
+    "overlays/dex_owner/dex_stage61_scheduler.h": {
+      "size": 2224,
+      "sha256": "c2fc2dc938a9571b5d84b010beb726c8d6a4297dc3e3f0d38a357670fd7a643d"
+    },
+    "overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c": {
+      "size": 129221,
+      "sha256": "7ad33b6b00aacb30088b7a0cc528a7fb41c947a709bb4006ab225d82d4e271bf"
+    },
+    "scripts/pr16_dex_hof_successor_source.py": {
+      "size": 22573,
+      "sha256": "2c2090185928acf05e72390e30924b3476b0a7d2d54ec345e894ffb489851d2a"
+    },
+    "scripts/pr16_dex_scheduler.py": {
+      "size": 24289,
+      "sha256": "5a099e95f45328dcaeffae7ab0d6039b581a7ba5865ac4ee5fb46358e8dcf8b2"
+    },
+    "tools/pr16_dex_scheduler_host.c": {
+      "size": 7165,
+      "sha256": "3e44cf20b7f44057140e7a5a6447bfe0ee5c40a140eac53431a43beddf2fd44b"
+    }
+  },
+  "results": {
+    "status": "PASS_SYNTHETIC_HOST_SUCCESSOR_EQUIVALENCE",
+    "existing_scheduler_cases_per_source": 20,
+    "differential_cases": 183,
+    "full_output_sha256": "7650681c759c8fa66955c1eb72a5d76d7e16f099cb9eede31f116f95888f0972",
+    "host_compiles": 2,
+    "native_game_runs": 0,
+    "real_rom_or_save_inputs": 0,
+    "arm_capacity_reclaimed_bytes": null,
+    "runtime_controller_integrated": false
+  },
+  "coverage_ja": [
+    "元schedulerの合成20caseを旧/新sourceで各1回検証",
+    "通常/Link/eReaderの14rotation、u32wrap、初回no-main/既存main、program失敗と成功偽装16境界、破損only mainの183caseを旧/新一致比較",
+    "比較対象は全32sector flash、live MDX、selector counter/first、damaged bit、read/erase/program/stock/update/serialize callback件数",
+    "全caseは合成データ。実ROM/save/ゲーム起動/native検証は0"
+  ],
+  "source_refactor_only": true,
+  "runtime_controller_integrated": false,
+  "rom_placed": false,
+  "rom_capacity_reclaimed_bytes": null,
+  "boundaries_ja": [
+    "本結果だけではARM命令同値性・全fault境界・実callback順序を証明しない",
+    "新controller/codecのruntime呼出し、workspace RAM、INITIAL absence、HOF-only loaderの受入は未完",
+    "固定8exports/mode3五sectionを維持するROM配置と参照監査は親工程"
+  ],
+  "integration_contract": {
+    "schema_version": 1,
+    "status": "SOURCE_REFACTOR_ONLY_NOT_RUNTIME_INTEGRATED",
+    "fixed_export_names": [
+      "Stage61State_HandleWriteSector",
+      "Stage61State_HandleReplaceSector",
+      "Stage61State_CommitSignatureByte",
+      "Stage61State_EnsureBackupGeneration",
+      "Stage61State_UpdateRecordOnly",
+      "Stage61State_HandleSavingData",
+      "Stage61State_GetSaveValidStatus",
+      "Stage61State_HandleLoadSector"
+    ],
+    "source_generator": "scripts/pr16_dex_scheduler.py",
+    "current_save_owner_total_bytes": 9560,
+    "rom_placed": false,
+    "capacity_reclaimed_bytes": null,
+    "arm_measurement_required": true,
+    "no_main_behavior": "既存normalのoriginal_counter/firstによる初回生成を保持",
+    "link_generation": {
+      "preflight": "source cを同じfirstのc+1へexact-old clone。RAMはcのまま",
+      "stock": "cのlogical0..4だけ更新",
+      "source_record": "cのid13のstock 0x7D0を保持しlive S61E/MDXのみ更新",
+      "postflight": "検証済みcを同じfirstのc+1へcloneし、最後にRAMを昇格",
+      "ht_normal_compatible": false
+    },
+    "controller_blockers_ja": [
+      "全14source SHAと既存owner検証を維持するcallback統合が未完",
+      "HT_Workspace本体+4096+7936byteの実save中RAM/heap所有証明が未完",
+      "INITIALのhas-records/loader absence証明が未完",
+      "HT_Normalはno-mainを受理せず、初回normal生成の明示経路が必要",
+      "Linkには最新selectorを使わないsource/target/first明示writerが必要",
+      "全save mode、LinkFull遅延署名、HOF-only loadのjournal gateが未接続",
+      "固定8entry veneerと既存mode3五sectionの参照監査・配置は別工程"
+    ]
+  }
+}

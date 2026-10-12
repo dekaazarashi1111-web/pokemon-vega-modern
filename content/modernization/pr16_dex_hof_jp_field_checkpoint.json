@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "status": "ACCEPTED_ONE_JP_FIELD_MINIMUM_TYPE",
+  "source_head": "608c7e2486870cb92523abeeba65646c6d29c4ad",
+  "run_id": 37697774244,
+  "run_attempt": 1,
+  "conclusion": "success",
+  "job": {
+    "id": 113053633223,
+    "name": "field-text",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 37697774244,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Same branch and closed source boundary",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Official Ubuntu compiler for current candidate",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "New Flash producer and complete badge text only",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Closed successful text publication guard",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Read-only checkout and task graph",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17
+      }
+    ]
+  },
+  "artifact": {
+    "id": 11515739265,
+    "name": "pr16-jp-field-text-only",
+    "size_in_bytes": 59319,
+    "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11515739265",
+    "archive_download_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/11515739265/zip",
+    "expired": false,
+    "created_at": "2026-10-07T22:43:43Z",
+    "expires_at": "2027-01-05T22:41:31Z",
+    "updated_at": "2026-10-07T22:43:43Z",
+    "digest": "sha256:c6eaf390867cce15ff2bef979b4e297a58c7514bff9d03b8711ef5a98f036d08",
+    "workflow_run": {
+      "id": 37697774244,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "608c7e2486870cb92523abeeba65646c6d29c4ad"
+    }
+  },
+  "classified": 780,
+  "unclassified": 94,
+  "newly_classified": 1,
+  "native_processes": 0,
+  "donor_safe_bytes": 0,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "donor_eligible": false,
+  "current_owner_count": 115,
+  "current_rom_reconstructions": 1,
+  "unit_tests": 117,
+  "old_full_rom_scan_runs": 0,
+  "old_native_cases_replayed": 0,
+  "donor_leased": false,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_dex_hof_jp_field_evidence/measurement.json": {
+      "size": 248568,
+      "sha256": "7db68c62b1273d4b06d1dad2efac1d35d715c1a0f94462da80e215f38e57e3d9"
+    },
+    "content/modernization/pr16_dex_hof_jp_field_evidence/reference-chain.json": {
+      "size": 160664,
+      "sha256": "0539ee048ea49cf0f6b492f88325a89578c43182936d6910c19a7d3c9f5cf6cd"
+    },
+    "content/modernization/pr16_dex_hof_jp_field_evidence/tests.json": {
+      "size": 97,
+      "sha256": "06f4bc3e81f46f398ef37cbed56d54932871723c500276b8b50a070a00ab0696"
+    }
+  },
+  "delta_identity": {
+    "size": 160664,
+    "sha256": "0539ee048ea49cf0f6b492f88325a89578c43182936d6910c19a7d3c9f5cf6cd"
+  },
+  "measurement_identity": {
+    "size": 248568,
+    "sha256": "7db68c62b1273d4b06d1dad2efac1d35d715c1a0f94462da80e215f38e57e3d9"
+  },
+  "tests_identity": {
+    "size": 97,
+    "sha256": "06f4bc3e81f46f398ef37cbed56d54932871723c500276b8b50a070a00ab0696"
+  },
+  "unknown_identity": {
+    "size": 29660,
+    "sha256": "1f89f11ec2fa84cbe9f31518c829876965f97808d347139303048fb167a0cc1d"
+  },
+  "guide": "docs/PR16_DEX_HOF_FLASH_ACCEPTED_JA.md",
+  "previous_checkpoint": "content/modernization/pr16_dex_hof_registered_ui_batch_checkpoint.json",
+  "next_ja": "保存済み780親から083DE02Bの交換原文FD再帰／FC09 copyとmailbox拒否の正rootを別々に閉じる。Flash成功scopeや旧caseは再走しない。全保存入口ready／退避53300開始前Free／同期非再入／controller6528は別gate。"
+}

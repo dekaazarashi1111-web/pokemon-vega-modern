@@ -1,0 +1,46 @@
+{
+  "tests": 30,
+  "passed": 30,
+  "stdout": "",
+  "stderr": "test_approach_no_dialogue_button (test_pr16_story_trainer_adapter.TrainerTests.test_approach_no_dialogue_button) ... ok\ntest_approach_template_only (test_pr16_story_trainer_adapter.TrainerTests.test_approach_template_only) ... ok\ntest_entry_closed_plaintext_and_party (test_pr16_story_trainer_adapter.TrainerTests.test_entry_closed_plaintext_and_party) ... ok\ntest_entry_reject_battle_tower_corruption (test_pr16_story_trainer_adapter.TrainerTests.test_entry_reject_battle_tower_corruption) ... ok\ntest_entry_reject_money (test_pr16_story_trainer_adapter.TrainerTests.test_entry_reject_money) ... ok\ntest_entry_reject_pp (test_pr16_story_trainer_adapter.TrainerTests.test_entry_reject_pp) ... ok\ntest_entry_reject_rematch_corruption (test_pr16_story_trainer_adapter.TrainerTests.test_entry_reject_rematch_corruption) ... ok\ntest_entry_reject_residual_win (test_pr16_story_trainer_adapter.TrainerTests.test_entry_reject_residual_win) ... ok\ntest_entry_reject_unknown_stat (test_pr16_story_trainer_adapter.TrainerTests.test_entry_reject_unknown_stat) ... ok\ntest_entry_reject_wrong_enemy (test_pr16_story_trainer_adapter.TrainerTests.test_entry_reject_wrong_enemy) ... ok\ntest_reject_already_unlocked (test_pr16_story_trainer_adapter.TrainerTests.test_reject_already_unlocked) ... ok\ntest_reject_bag (test_pr16_story_trainer_adapter.TrainerTests.test_reject_bag) ... ok\ntest_reject_callback (test_pr16_story_trainer_adapter.TrainerTests.test_reject_callback) ... ok\ntest_reject_daycare (test_pr16_story_trainer_adapter.TrainerTests.test_reject_daycare) ... ok\ntest_reject_identity (test_pr16_story_trainer_adapter.TrainerTests.test_reject_identity) ... ok\ntest_reject_ledger (test_pr16_story_trainer_adapter.TrainerTests.test_reject_ledger) ... ok\ntest_reject_outcome (test_pr16_story_trainer_adapter.TrainerTests.test_reject_outcome) ... ok\ntest_reject_pp (test_pr16_story_trainer_adapter.TrainerTests.test_reject_pp) ... ok\ntest_reject_save (test_pr16_story_trainer_adapter.TrainerTests.test_reject_save) ... ok\ntest_reject_stale_new_win (test_pr16_story_trainer_adapter.TrainerTests.test_reject_stale_new_win) ... ok\ntest_reject_step_counter (test_pr16_story_trainer_adapter.TrainerTests.test_reject_step_counter) ... ok\ntest_reject_trainer (test_pr16_story_trainer_adapter.TrainerTests.test_reject_trainer) ... ok\ntest_reject_trainer_flag (test_pr16_story_trainer_adapter.TrainerTests.test_reject_trainer_flag) ... ok\ntest_reject_unknown_script (test_pr16_story_trainer_adapter.TrainerTests.test_reject_unknown_script) ... ok\ntest_reject_unknown_var (test_pr16_story_trainer_adapter.TrainerTests.test_reject_unknown_var) ... ok\ntest_reject_wrong_origin (test_pr16_story_trainer_adapter.TrainerTests.test_reject_wrong_origin) ... ok\ntest_reject_wrong_target (test_pr16_story_trainer_adapter.TrainerTests.test_reject_wrong_target) ... ok\ntest_same_frame_script_pc (test_pr16_story_trainer_adapter.TrainerTests.test_same_frame_script_pc) ... ok\ntest_sight_has_no_step_maintenance (test_pr16_story_trainer_adapter.TrainerTests.test_sight_has_no_step_maintenance) ... ok\ntest_source_pc_read_only (test_pr16_story_trainer_adapter.TrainerTests.test_source_pc_read_only) ... ok\n\n----------------------------------------------------------------------\nRan 30 tests in 0.020s\n\nOK\n",
+  "source_bindings": {
+    "scripts/pr16_story_trainer_adapter.py": {
+      "size": 6624,
+      "sha256": "1998df0490c519696fe509de0c0dbf5ff6780d28fbee7c043165ee1d86dc436c"
+    },
+    "scripts/pr16_story_trainer_probe.py": {
+      "size": 6222,
+      "sha256": "afe2a7d90058aaf3199ed09222d097a88e930e6da8505b89220d89f4a57c9e62"
+    },
+    "scripts/pr16_story_trainer_session.py": {
+      "size": 2386,
+      "sha256": "54d381829fe8c9c83716c1aea2748cfc674e665f66e6ce05b64a305e01879086"
+    },
+    "scripts/pr16_story_trainer_trace.py": {
+      "size": 3400,
+      "sha256": "f007f671b7cfa4db46d94fbeafc98ed47dc4010a3cd38b60b45aca88e9a6a272"
+    },
+    "scripts/pr16_story_dex_guard.py": {
+      "size": 3619,
+      "sha256": "dff697d560732cee593685acdf6644e59a8d6ff624f0d2630dd4244d1b1fe4a3"
+    },
+    "scripts/pr16_story_rom_metadata.py": {
+      "size": 888,
+      "sha256": "178bb04d04ec831f910033fb4452e7eaa6da991c1b1ae8dc1535e18f038c056e"
+    },
+    "tests/test_pr16_story_trainer_adapter.py": {
+      "size": 6083,
+      "sha256": "897f7bc4b420594c335b0fff2940c2a2328cb43239cff0aca5a5f7c05099ea6c"
+    },
+    "content/modernization/pr16_story_trainer_owners.json": {
+      "size": 3738,
+      "sha256": "1cfa82e62507853a6f7df3f8d46fca4c9c997b017e699d484570b5e411c66403"
+    },
+    "content/modernization/pr16_story_dex_seen_audit.json": {
+      "size": 12277,
+      "sha256": "6c62d99c7e835de93fe01a5bbd97162e7af18290dbadb99668a1d7086c975bff"
+    }
+  },
+  "new_native_processes": 0,
+  "scope": "Final source focused tests, including no-ROM-fragments public metadata; prior accepted80 cases not rerun"
+}

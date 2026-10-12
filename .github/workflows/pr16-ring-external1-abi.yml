@@ -1,0 +1,42 @@
+name: pr16-ring-external1-abi
+run-name: 保存外部callee prefix ABIの検証記録・非force push
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_ring_external1_abi.py
+      - tests/test_pr16_ring_external1_abi.py
+      - .github/workflows/pr16-ring-external1-abi.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-external1-abi
+  cancel-in-progress: false
+jobs:
+  verify-record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 保存prefix限定検証・正本と両ログ・guard・非force push
+        run: python3 scripts/pr16_ring_external1_abi.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-external1-abi
+          path: |
+            .local/pr16-ring-external1-abi/tests.json
+            .local/pr16-ring-external1-abi/tests.txt
+            .local/pr16-ring-external1-abi/recorded-result.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90

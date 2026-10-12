@@ -1,0 +1,117 @@
+{
+  "artifact": {
+    "digest": "sha256:08b33fb7e5b2d5eb70fd1bc22718f328747c6227d075b8201a5de99b2deb808a",
+    "id": 11722642450,
+    "name": "pr16-selected-sound-roots-public-text",
+    "size_in_bytes": 94857
+  },
+  "diagnosis_ja": "nested ToneData rootのindicesがtupleのため、JSON復元listとの直接比較で停止。測定は保存済み。list化の6境界試験後、測定JSONを改作せず受領する。",
+  "failure_not_rewritten": true,
+  "job_id": 114631314717,
+  "measurement_replayed": false,
+  "members": {
+    "attempt.json": {
+      "sha256": "b4615245747dc95a43e6cb9f838890efda1c782d1a20f3f35bc38f3d57edace6",
+      "size": 279
+    },
+    "failure.json": {
+      "sha256": "a646d821eeb3f7e79e4d4b4525667f6fafcad6fb5bcacd9f9fec8d60821964bc",
+      "size": 679
+    },
+    "parent-actions-completion.json": {
+      "sha256": "28ebc2e52e06beca72b5b2698f82e66fa9e270b366e2b402cc23ca74e95f1705",
+      "size": 21891
+    },
+    "sound-roots.json": {
+      "sha256": "4c364e81daaf4d08bbafec305b0a9c4561f92fa9c18250ee6646327a6d247702",
+      "size": 824912
+    },
+    "sound-tests.txt": {
+      "sha256": "e11fff77487a832ceed4d038ca6bf3fa2aaade118049ecfaa0c64c0f9d7632ff",
+      "size": 3243
+    }
+  },
+  "new_serialization_tests": 6,
+  "observed_at": "2026-10-12T02:03:30.053389+00:00",
+  "old_32_tests_replayed": false,
+  "original_measurement_sources": {
+    ".github/workflows/pr16-selected-sound-roots.yml": {
+      "sha256": "7cc68257adce6a95195e3e181aea9197056d275f6a8fa30c0999063f509be672",
+      "size": 1565
+    },
+    "scripts/pr16_selected_sound_roots.py": {
+      "sha256": "f303c68dd78317d4c70cbc83438e08388b85f0f0895473206d5c3de9bf2ea2f8",
+      "size": 11395
+    },
+    "scripts/pr16_selected_sound_roots_actions.py": {
+      "sha256": "ddf7806f8dbd9c1028cac24a8a94e8453db94f48422ddec08f47c4a72b0e2517",
+      "size": 15133
+    },
+    "tests/test_pr16_selected_sound_roots.py": {
+      "sha256": "8a79fd0ff37afbd658f0940c1a21572c83134d6e791d38b2de3d185b2701c9f3",
+      "size": 6832
+    }
+  },
+  "read_only_recovery_passed": true,
+  "run_conclusion": "failure",
+  "run_id": 38193578259,
+  "run_status": "completed",
+  "schema_version": 1,
+  "source_head": "6ced361784848e2df562251b43276b6aab9f51b7",
+  "steps": [
+    {
+      "conclusion": "success",
+      "name": "Set up job",
+      "number": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/checkout@v4",
+      "number": 2,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/setup-python@v5",
+      "number": 3,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "新scope候補再構成用ツール",
+      "number": 4,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "name": "有限音声rootの宣言境界を検証して記録",
+      "number": 5,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/upload-artifact@v4",
+      "number": 6,
+      "status": "completed"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "Post Run actions/setup-python@v5",
+      "number": 11,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Post Run actions/checkout@v4",
+      "number": 12,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Complete job",
+      "number": 13,
+      "status": "completed"
+    }
+  ]
+}

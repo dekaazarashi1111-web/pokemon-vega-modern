@@ -1,0 +1,85 @@
+name: pr16-p06-current-reconcile
+run-name: P06 current-view consistency and retained evidence verification
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-p06-current-reconcile.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  reconcile:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Revalidate originals and regenerate current view, no emulator run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-p06-current-reconcile
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          python3 scripts/restore_modernization_final_originals.py > "$out/restore.json"
+          python3 scripts/pr16_completion_checkpoint.py > "$out/originals.json"
+          python3 scripts/pr16_refresh_current_view.py --write > "$out/refresh.json"
+          python3 scripts/pr16_refresh_current_view.py > "$out/check.json"
+          python3 scripts/record_modernization_final_acceptance.py > "$out/final-generator.json"
+          python3 scripts/record_modernization_p03_forgetting.py > "$out/forgetting-generator.json"
+          for pattern in test_pr16_completion_checkpoint.py test_pr16_current_view.py test_modernization_owner_policy.py test_modernization_final_integration.py; do
+            python3 -m unittest discover -s tests -p "$pattern" -v >> "$out/unit.log" 2>&1
+          done
+          python3 - <<'PY'
+          import json,pathlib,subprocess
+          p=pathlib.Path('content/modernization/p08_remaining_work.json')
+          old=json.loads(subprocess.check_output(['git','show','HEAD:'+str(p)]));new=json.loads(p.read_bytes())
+          assert old['full_p06_acceptance'] is True and old['p06_adoption']['full_phase_accepted'] is False
+          assert new['full_p06_acceptance'] is True and new['p06_adoption']['full_phase_accepted'] is True
+          old['p06_adoption']['full_phase_accepted']=True
+          assert old==new,'unexpected current-view change'
+          marker='PR16-P06-CURRENT-MIRROR-20260911'
+          entry='\n## 2026-09-11 / '+marker+'\n\n- Task: USER-MODERNIZATION-P06 / verified current-view consistency.\n- Fixed nested p06_adoption.full_phase_accepted to derive from the verified full_p06_acceptance boolean; no historical receipt, ROM, save, adopted scope or release gate changed.\n- Both existing generation entry points, retained originals and targeted unit tests passed in run '+str(__import__('os').environ['GITHUB_RUN_ID'])+'. No new emulator execution is claimed.\n- Preserve public and free move-memory owner policy, Stage62, actual-play saves, existing native successes and unmerged PR #16.\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              p=pathlib.Path(name);text=p.read_text();assert marker not in text;p.write_text(text+entry)
+          PY
+      - name: Commit only the verified mirror and append-only logs
+        env:
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import pathlib,subprocess
+          names=['content/modernization/p08_remaining_work.json','design/run_log.md','design/version_log.md']
+          changed=set(filter(None,subprocess.check_output(['git','diff','--name-only','-z']).decode().split('\0')))
+          assert changed==set(names)
+          for name in names[1:]:assert pathlib.Path(name).read_bytes().startswith(subprocess.check_output(['git','show','HEAD:'+name]))
+          subprocess.run(['git','add','--',*names],check=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-MODERNIZATION-P06: reconcile regenerated phase flag without changing prior evidence'
+          git push origin "HEAD:refs/heads/$branch"
+          git rev-parse HEAD > .local/pr16-p06-current-reconcile/published-head.txt
+          python3 scripts/pr16_refresh_current_view.py > .local/pr16-p06-current-reconcile/post-commit-check.json
+          git diff --exit-code
+      - name: Preserve resulting current-view text and checks
+        if: always()
+        run: |
+          mkdir -p .local/pr16-p06-current-reconcile
+          cp content/modernization/p08_remaining_work.json .local/pr16-p06-current-reconcile/current-view.json
+          cp scripts/pr16_refresh_current_view.py tests/test_pr16_current_view.py .local/pr16-p06-current-reconcile/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-p06-current-reconcile
+          path: .local/pr16-p06-current-reconcile/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

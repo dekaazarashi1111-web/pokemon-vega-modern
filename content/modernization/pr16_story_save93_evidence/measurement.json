@@ -1,0 +1,306 @@
+{
+  "status": "MEASURED_SAVE93_AWAITING_VISUAL_AND_INDEPENDENT_ACCEPTANCE",
+  "source_head": "2718151982e8cdd82768c720b05c852ccdbb7d1b",
+  "run_id": 37188523239,
+  "input_save": {
+    "size": 131088,
+    "sha256": "79864ff24d80a3b1cee73166bffb95f5795e2450f54582bad67ac6c024e2f9bf"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "93cdaccd2cd5cb969a9d4bc78187b25b62fd0f9b05924f2c2bd0ad26ed73d255"
+  },
+  "inspection": {
+    "status": "STATIC_SAVE93_MUSEUM_ADMISSION_ONLY",
+    "preparation": {
+      "size": 16400,
+      "sha256": "6ef8a9a5ffd1748484cdc4311b1600abf2d0789cbef76d5f5c321b74fc0254bf"
+    },
+    "route": [
+      [
+        14,
+        9
+      ],
+      [
+        14,
+        8
+      ],
+      [
+        14,
+        7
+      ],
+      [
+        14,
+        6
+      ],
+      [
+        14,
+        5
+      ]
+    ],
+    "coord": {
+      "address": 137879216,
+      "hex": "0e000500030061400000000036f21708",
+      "xy": [
+        14,
+        5
+      ],
+      "elevation": 3,
+      "variable": 16481,
+      "value": 0,
+      "script": 135787062
+    },
+    "expected": {
+      "money_before": 23164,
+      "money_after": 23114,
+      "entry_fee": 50,
+      "admission_var": 16481,
+      "admission_before": 0,
+      "admission_after": 1,
+      "route": [
+        [
+          14,
+          9
+        ],
+        [
+          14,
+          8
+        ],
+        [
+          14,
+          7
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          5
+        ]
+      ],
+      "scripted_arrival_candidates": [
+        [
+          14,
+          5
+        ],
+        [
+          15,
+          5
+        ],
+        [
+          14,
+          4
+        ],
+        [
+          15,
+          4
+        ]
+      ],
+      "museum_second_floor_accepted": false
+    },
+    "instruction_count": 56,
+    "native_route_accepted": false
+  },
+  "route": [
+    [
+      14,
+      9
+    ],
+    [
+      14,
+      8
+    ],
+    [
+      14,
+      7
+    ],
+    [
+      14,
+      6
+    ],
+    [
+      14,
+      5
+    ]
+  ],
+  "battle": null,
+  "teleport": [],
+  "frontier": {
+    "kind": "new_museum_admission",
+    "trigger": [
+      14,
+      5
+    ],
+    "map": [
+      6,
+      0
+    ],
+    "xy": [
+      14,
+      5
+    ],
+    "facing": 4,
+    "dialogue_observations": [
+      4,
+      5,
+      6
+    ],
+    "observation": 7
+  },
+  "final": {
+    "observe": 33,
+    "frame": 3156,
+    "map": [
+      6,
+      0
+    ],
+    "xy": [
+      14,
+      5
+    ],
+    "live_xy": [
+      21,
+      12
+    ],
+    "facing": 4,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 93,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "565b246bde44f27bd3ae40958aaba32c96f8ed0287d5c5c053f38e9798491676",
+    "flash_sha256": "cb04954429a5aae6f988c86d3fba2b41237b67a50bf67d92843844969c8980d3",
+    "ledger_sha256": "9ec11aa0a1bdb1cd0f3249e05c96218f562911b9089f274134863b5fa143844f"
+  },
+  "continued": {
+    "observe": 1,
+    "frame": 1510,
+    "map": [
+      6,
+      0
+    ],
+    "xy": [
+      14,
+      5
+    ],
+    "live_xy": [
+      21,
+      12
+    ],
+    "facing": 4,
+    "field": true,
+    "lock": 0,
+    "callback2": 134569589,
+    "party_count": 4,
+    "save_counter": 93,
+    "rp": 0,
+    "battle_flags": 0,
+    "battle_outcome": 0,
+    "party_sha256": "565b246bde44f27bd3ae40958aaba32c96f8ed0287d5c5c053f38e9798491676",
+    "flash_sha256": "cb04954429a5aae6f988c86d3fba2b41237b67a50bf67d92843844969c8980d3",
+    "ledger_sha256": "9ec11aa0a1bdb1cd0f3249e05c96218f562911b9089f274134863b5fa143844f"
+  },
+  "progress": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "79864ff24d80a3b1cee73166bffb95f5795e2450f54582bad67ac6c024e2f9bf"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "93cdaccd2cd5cb969a9d4bc78187b25b62fd0f9b05924f2c2bd0ad26ed73d255"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 3156,
+      "inputs": 60,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 34
+  },
+  "independent_continue": {
+    "returncode": 0,
+    "initial_save": {
+      "size": 131088,
+      "sha256": "93cdaccd2cd5cb969a9d4bc78187b25b62fd0f9b05924f2c2bd0ad26ed73d255"
+    },
+    "final_save": {
+      "size": 131088,
+      "sha256": "93cdaccd2cd5cb969a9d4bc78187b25b62fd0f9b05924f2c2bd0ad26ed73d255"
+    },
+    "native_end": {
+      "end": "STORY_INPUT_CHECKPOINT",
+      "frames": 1510,
+      "inputs": 13,
+      "warnings_errors": 0,
+      "host_write_barriers": 7,
+      "guarded_host_writes": 0,
+      "fixture_calls": 0,
+      "natural_research_arrival_accepted": false
+    },
+    "observations": 2
+  },
+  "screen_count": 36,
+  "native_processes": 2,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "rom_changes": 0,
+  "fixture_writes": 0,
+  "ordinary_saves": 1,
+  "cave_crossing_complete": true,
+  "outside_route503_reached": true,
+  "inner_floor_entered": true,
+  "hole_descent_observed": false,
+  "hole_descent_previously_accepted": true,
+  "mansion_exit_previously_accepted": true,
+  "gym_entry_previously_accepted": true,
+  "first_diglett_previously_accepted": true,
+  "second_diglett_previously_accepted": true,
+  "third_diglett_previously_accepted": true,
+  "fourth_diglett_previously_accepted": true,
+  "fifth_diglett_previously_accepted": true,
+  "sixth_diglett_previously_accepted": true,
+  "seventh_diglett_previously_accepted": true,
+  "trainer132_previously_accepted": true,
+  "trainer160_previously_accepted": true,
+  "eighth_diglett_previously_accepted": true,
+  "leader417_previously_accepted": true,
+  "ninth_diglett_previously_accepted": true,
+  "tenth_diglett_previously_accepted": true,
+  "eleventh_diglett_previously_accepted": true,
+  "gym_leader_defeated": true,
+  "gym_exit_observed": true,
+  "gym_exit_accepted": true,
+  "museum_entry_observed": true,
+  "museum_entry_accepted": true,
+  "museum_second_floor_observed": false,
+  "museum_second_floor_accepted": false,
+  "museum_admission_observed": true,
+  "museum_admission_accepted": false,
+  "gym_entered": true,
+  "letter_consumer_resolved": true,
+  "letter_handoff_requires_badge": true,
+  "statue_paper_observed": true,
+  "paper_obtained": true,
+  "paper_consumed_or_delivered": false,
+  "paper_acceptance_pending": false,
+  "normal_recovery_required": false,
+  "pp_recovery_accepted": true,
+  "full_story_accepted": false,
+  "release_ready": false,
+  "artifact_excludes": [
+    "existing ROM",
+    "runner",
+    "runtime",
+    "input Save92"
+  ]
+}

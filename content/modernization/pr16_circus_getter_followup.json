@@ -1,0 +1,3441 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260920-CIRCUS-GETTER-FIELDS",
+  "classification": "CIRCUS_GETTER_ABI_DIAGNOSTIC_OPEN",
+  "source_head": "5618a38f6854aa4551e5c518509f5f97cf2a79b0",
+  "predecessor_checks": [
+    {
+      "id": 35500143124,
+      "head_sha": "5b600c1362bb3db1d4af4a532395b3589b8c6b38",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35502970203,
+      "head_sha": "39fef638dd532a79a234f91509713f3890437d6b",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 35503126098,
+      "head_sha": "27c1556ddeabb06b652e64ab937d68c3f0105540",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35503435444,
+      "head_sha": "7b38bf550266d63cd2e11d51b57726a08ec915b9",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ],
+  "original_failure": {
+    "run_id": 35494023398,
+    "job_id": 106033721719,
+    "artifact_id": 10600576182,
+    "head_sha": "bacc3089488b2f67d6bc848140c6e8239de86d60",
+    "status": "completed",
+    "conclusion": "failure",
+    "archive": {
+      "size": 2635482,
+      "sha256": "b6eac53c9e54381fcdc66773cda12f60a522b67b65e9273332f94ba106ce2e03"
+    },
+    "diagnostic": {
+      "draws": 64,
+      "target_draws": 0,
+      "observed_owner_current": 30,
+      "only_one_global_effect": true,
+      "original_conclusion": "failure",
+      "note_ja": "抽選回数を増やさず、getterの第４引数破壊を修復する。"
+    },
+    "normal_save30": {
+      "candidate": {
+        "size": 33554432,
+        "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+      },
+      "save": {
+        "size": 131088,
+        "sha256": "b4846fe3d915f69f7cefb2f58a0c2c0c571d9f96d5d16a295537854d849c2371"
+      },
+      "source_head": "7ae147d9e06591f8029b098629b6ba3361e15598",
+      "run_id": 35494023398,
+      "cache_key": "pr16-circus-save30-2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183-35494023398",
+      "prefix": {
+        "exact_event_count": 143,
+        "byte_prefix": {
+          "size": 986769,
+          "sha256": "ee9ff8ff8ab0c53ea9bddc8cf722f6a3309b794fc37c913b5fa2587b62fd2055"
+        },
+        "accepted_standalone_replays": 0,
+        "continuation_prefix_wins": 30,
+        "reason_ja": "旧artifactはSRAMを保持していないため、未完抑制への継続prefixとして一度だけ真正Save30を確保。"
+      },
+      "verified": true,
+      "tracked": false,
+      "artifact_included": false
+    }
+  },
+  "original": {
+    "run_id": 35479503528,
+    "job_id": 105994620734,
+    "artifact_id": 10596015821,
+    "tested_head": "7ac90a66df9a31212fb09cedbd430d59d62649bf",
+    "archive": {
+      "size": 1074450,
+      "sha256": "ac762db37f9402ea03db1d8f6a8f763e4ad48cde228297b9117ea23509246ecf"
+    },
+    "original_conclusion": "success",
+    "generated": {
+      "p03b_archive_embedded.c": {
+        "size": 20163,
+        "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+      },
+      "p03a_fullslots_embedded.c": {
+        "size": 12877,
+        "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+      },
+      "p03_learning_embedded.c": {
+        "size": 7996,
+        "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+      },
+      "p03_p02_embedded.c": {
+        "size": 39678,
+        "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+      },
+      "pr16_shop_breeding_helpers.c": {
+        "size": 19625,
+        "sha256": "fa420d273a80b8423d001b123e7eaeebd1a29717c52b8d24b7d5f32efc1095b3"
+      },
+      "pr16_capture_shop_helpers.c": {
+        "size": 10007,
+        "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+      },
+      "pr16_gear_capture_helpers.c": {
+        "size": 9640,
+        "sha256": "4c057989f1638e14d6814c269291f952ad2cb8e96be5a36274ff8707fc63bee8"
+      },
+      "pr16_bp_native_helpers.c": {
+        "size": 16314,
+        "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+      },
+      "pr16_bp_control_embedded.c": {
+        "size": 11463,
+        "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+      },
+      "pr16_circus_selection_helpers.c": {
+        "size": 10511,
+        "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+      },
+      "pr16_circus_turn_helpers.c": {
+        "size": 3939,
+        "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+      },
+      "pr16_gear_route.h": {
+        "size": 518,
+        "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+      },
+      "pr16_circus_addresses.h": {
+        "size": 87,
+        "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+      },
+      "pr16_streak_legacy.c": {
+        "size": 11746,
+        "sha256": "de1618b95f09d8ce02c2a1ce8b833fa893f35c4da08b64dd69f9927cfe0c89c2"
+      },
+      "pr16_streak_policy.c": {
+        "size": 64843,
+        "sha256": "f08a41accc2a789a4eaccbc947865b90aa625489a761b6316a74fa28057954ab"
+      },
+      "controller.c": {
+        "size": 12838,
+        "sha256": "649bfe64db299aa1d9b6aab58c8a0f51e38d6b12a6e12d298c1f3b55ed9691a5"
+      }
+    },
+    "host_dependencies": {
+      "overlays/circus_streak/circus_drought.c": {
+        "size": 2578,
+        "sha256": "545890f227f54f3c650afa5477fa0b52cefd1d6924ef7d5c3d345b69c5efabf5"
+      },
+      "overlays/circus_streak/circus_drought.h": {
+        "size": 1998,
+        "sha256": "9370dddbc53921a80e5e50dcbb30135525b288e01dc6d0ad99eab9f946920bfe"
+      },
+      "overlays/circus_streak/circus_drought_launch.h": {
+        "size": 1243,
+        "sha256": "70ddc919acc2a9325249f04617c183a107c438c4c543d91484ef2c5fb199677e"
+      },
+      "overlays/circus_streak/circus_drought_rental.h": {
+        "size": 1439,
+        "sha256": "550c19430317bf4594d3a55335e297b6ec0d7f115778f6712a96c6283dae82e7"
+      },
+      "overlays/circus_streak/circus_drought_selection.h": {
+        "size": 1366,
+        "sha256": "2ffa16c6542fac3f95a1c2ba28aa2d6aaa73c312de556d233fa64a73ef315a00"
+      },
+      "overlays/factory_high_modes_v2/factory_high_modes_v2.h": {
+        "size": 6051,
+        "sha256": "290c4f9ea7f274121273f5b43f736b5c598a6b50d412e0a85c320d0e1765622b"
+      },
+      "overlays/save_migration/save_migration.h": {
+        "size": 12497,
+        "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67"
+      },
+      "scripts/pr16_circus_continuous_probe.py": {
+        "size": 10004,
+        "sha256": "a900e3d8182a6075569a0f5a3bdaffcb8f22547a00f52f14d6247b092839f746"
+      },
+      "scripts/pr16_circus_reentry_probe.py": {
+        "size": 8403,
+        "sha256": "d0e39d3297f68ae8be3f433279b012a9cc66093d1868694a71b577e6261a1fc8"
+      },
+      "tests/fixtures/circus_drought_fixture.c": {
+        "size": 3108,
+        "sha256": "6173d1bdfe125f281dc37da79e93064edeabf77306b92f1f4fec72bc5c240f60"
+      },
+      "tests/fixtures/circus_drought_launch_fixture.c": {
+        "size": 2949,
+        "sha256": "0deaad258e659c3531619a39cf297307e9b3bb6839bef05ec963ec4a0faefd5a"
+      },
+      "tests/fixtures/circus_drought_rental_fixture.c": {
+        "size": 3992,
+        "sha256": "ff32da560b4e7f0c5045dd33ccce5d8b77536f15298203b4c9ad794a1d75fd0e"
+      },
+      "tests/fixtures/circus_drought_selection_fixture.c": {
+        "size": 3300,
+        "sha256": "ae33cbd3246654c4af5c7af5b1ce07bad79e7b5694eb8aa111d33eb645028e22"
+      },
+      "tools/mgba_ai_fixture_runner.c": {
+        "size": 36272,
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+      },
+      "tools/mgba_battle_core_smoke.c": {
+        "size": 94688,
+        "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24"
+      },
+      "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+        "size": 39669,
+        "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b"
+      },
+      "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+        "size": 20154,
+        "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467"
+      },
+      "tools/mgba_modernization_p03_breeding_e2e.c": {
+        "size": 19614,
+        "sha256": "a99cafd942f958c932709bed6099695f067dc292401b3bfb91e60afe4d6823de"
+      },
+      "tools/mgba_modernization_p03_fullslots_e2e.c": {
+        "size": 12868,
+        "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa"
+      },
+      "tools/mgba_modernization_p03_learning_e2e.c": {
+        "size": 7987,
+        "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d"
+      },
+      "tools/mgba_pr16_bp_battle_progress.c": {
+        "size": 3939,
+        "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+      },
+      "tools/mgba_pr16_bp_battle_return.c": {
+        "size": 8320,
+        "sha256": "286e2cccc1b5dcf5fffc2063664a45194f9902452d7d805229582cc7e9050a17"
+      },
+      "tools/mgba_pr16_bp_native_controls.c": {
+        "size": 10327,
+        "sha256": "44e28abe05a7dcad0d430b8c48b5046cbf89c246f7235158a2e5451b29bb0f56"
+      },
+      "tools/mgba_pr16_bp_selection_native.c": {
+        "size": 10488,
+        "sha256": "7815a29617038dfcd3fd57d9a5a7e61eed0a88c9d4ba7c9b45ec2d1fbc3de690"
+      },
+      "tools/mgba_pr16_bp_win_exchange.c": {
+        "size": 15394,
+        "sha256": "95f1e9e3044df165190dc879c47b98251ecbbcc48de0b8f588ff6ec5af94480c"
+      },
+      "tools/mgba_pr16_circus_accuracy.h": {
+        "size": 3853,
+        "sha256": "e7ec806604a6b8cb8840a37a3cf07f1e63a13c2a9d3d43dc6ec271f4c613b511"
+      },
+      "tools/mgba_pr16_circus_continuous.c": {
+        "size": 12838,
+        "sha256": "649bfe64db299aa1d9b6aab58c8a0f51e38d6b12a6e12d298c1f3b55ed9691a5"
+      },
+      "tools/mgba_pr16_circus_coverage.h": {
+        "size": 372,
+        "sha256": "df410935b8476ae4293d4a44960db7c3325a139f3c7c401ed09b138852d90bda"
+      },
+      "tools/mgba_pr16_circus_drain.h": {
+        "size": 1553,
+        "sha256": "07db7c5fd35a2b94b7ee7ea01ac7a4148790ea50f8e9b971182cf42a4c358aec"
+      },
+      "tools/mgba_pr16_circus_drought_watch.h": {
+        "size": 880,
+        "sha256": "b7dda5609fb269f52d42c33b2be1e44f448c6ef96c0452a0f63d414353d56203"
+      },
+      "tools/mgba_pr16_circus_effective.h": {
+        "size": 1776,
+        "sha256": "2d1988eab00bf22e3856312219efbea2c527fdcd551675a24a55b2e0fd73d7db"
+      },
+      "tools/mgba_pr16_circus_loss_weather.h": {
+        "size": 832,
+        "sha256": "855c195f470faee9daa2965e93b76e939ed9c17b848d74dcf12ac103fe462b18"
+      },
+      "tools/mgba_pr16_circus_matchup.h": {
+        "size": 7044,
+        "sha256": "dcbc29c562f6e1c98b3eb71c35a00f62a48180e15e915fb2d6d83282c4095e07"
+      },
+      "tools/mgba_pr16_circus_menu_identity.h": {
+        "size": 687,
+        "sha256": "acc57bdbaa5a77e825a63f29f3c9c22ea73063eaf142437c7458f1847cdacc88"
+      },
+      "tools/mgba_pr16_circus_native.c": {
+        "size": 11730,
+        "sha256": "6267e2bbd682198d79998ac250b52aef63e337db7eb96bb8f3921bc96a39e885"
+      },
+      "tools/mgba_pr16_circus_pivot.h": {
+        "size": 3115,
+        "sha256": "18da4e5418e46a3e997683ba93626cf971837cb8f1099fbea05438940664fa63"
+      },
+      "tools/mgba_pr16_circus_reentry.h": {
+        "size": 4038,
+        "sha256": "2cf09a3021604a2afd39f52de0b8e9077a95a7f633d5b24476657ceb1e73231a"
+      },
+      "tools/mgba_pr16_circus_reliability.h": {
+        "size": 848,
+        "sha256": "dd4b1520740598a221bf8ede4755b9c70182adaea81c21ae301d66ec0d12e5df"
+      },
+      "tools/mgba_pr16_circus_rental_drought.h": {
+        "size": 2636,
+        "sha256": "6f7a7dc8c0df76f981e6be1e272c9799002e408ad65eb7224aa03677f3f3f5d3"
+      },
+      "tools/mgba_pr16_circus_selection_context.h": {
+        "size": 951,
+        "sha256": "ba8364eb8552cde4c21b30a19683be1e4964462709a7ae38c2ae997cde119dfb"
+      },
+      "tools/mgba_pr16_circus_sustain.h": {
+        "size": 5921,
+        "sha256": "4eafd6b52fd841f974ea96987c0a42ebcd29ba31e376a9dfc1abd66097763dbf"
+      },
+      "tools/mgba_pr16_circus_tactical.h": {
+        "size": 5387,
+        "sha256": "eaf6cf5e1ecc4e540b9b2f258e16364e334b045ec2e50e52398576b0c0700856"
+      },
+      "tools/mgba_pr16_circus_taunt.h": {
+        "size": 2994,
+        "sha256": "c857270e9b449fc0b42d89e8fd4abec7d0cee52c6807ca1ea91e7c76b4cfefac"
+      },
+      "tools/mgba_pr16_natural_capture.c": {
+        "size": 9630,
+        "sha256": "cd09b0ad480403b0e76239196415656c36b26abe18f12bcc946c4f9f9c9d2e6e"
+      },
+      "tools/mgba_pr16_purchased_gear.c": {
+        "size": 16307,
+        "sha256": "ba8a7994d25bf7d5d95fdf9fb35bace671f4b1625f5cee96df235a92bbdac9aa"
+      },
+      "tools/mgba_pr16_shop_routes.c": {
+        "size": 10000,
+        "sha256": "16eda36fade0e8ef0ec3dc0b45b22c9776969f557aedc6ac25f1b65ffc09848c"
+      },
+      "tools/mgba_qol_production_smoke.c": {
+        "size": 149046,
+        "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85"
+      }
+    },
+    "save_not_retained_in_prior_artifact": true
+  },
+  "previous_attempt": {
+    "run_id": 35500143124,
+    "conclusion": "failure",
+    "getter_calls": [
+      {
+        "callsite": 152056704,
+        "veneer": 153993764,
+        "target": 167729373,
+        "args": [
+          0,
+          65535,
+          65535,
+          65535
+        ],
+        "r3_at_entry": 65535,
+        "fifth_argument": 0,
+        "sp_before": 50363836,
+        "sp_after": 50363836,
+        "result": 0,
+        "owner_current": 30,
+        "phase": 2,
+        "frames": 54,
+        "steps": 5473485,
+        "host_writes": 0,
+        "host_calls": 0
+      }
+    ],
+    "archive": {
+      "size": 221044,
+      "sha256": "5487e5e02040d6f07714a85ae47b92844883445cc1831190085bdca1565dbaee"
+    },
+    "immutable": "evidence/pr16_circus_getter/35500143124/finish.json"
+  },
+  "inherited_abi_tests": {
+    "tests_run": 20,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "host_tests": {
+    "tests_run": 20,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "sources": {
+    "scripts/pr16_circus_getter_fields.py": {
+      "size": 17959,
+      "sha256": "0046884228141f1353e8b3d49acf26473899cf00c25b3c733873abf4137a60b3"
+    },
+    "tests/test_pr16_circus_getter_fields.py": {
+      "size": 6767,
+      "sha256": "e42921db3710d19ef8b71a42f2ba44ba983ef3f6d9483ec6f417bb658a7e5682"
+    },
+    "tests/fixtures/pr16_circus_getter_fields.json": {
+      "size": 1550,
+      "sha256": "b9c2cc4ea7c0831d59bbe257fb65b2b91d5112c5c313ed3797c6a50da2ff9806"
+    },
+    ".github/workflows/pr16-circus-getter-fields.yml": {
+      "size": 3757,
+      "sha256": "4031971440633f781dec10c16ad70c347de2a60d149474ec179d5c2f5eee98e9"
+    },
+    "overlays/circus_streak/circus_streak_runtime.c": {
+      "size": 8062,
+      "sha256": "7255243751f1896b56b43cdbb4db206a33f101b2ed8aa4e2aae03c9c1ab72ec6"
+    }
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+  },
+  "new_emulator_processes": 1,
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "accepted_standalone_replays": 0,
+  "prefix_wins_reexecuted": 0,
+  "rom_changes": 1,
+  "native_verified": false,
+  "physical_admission_accepted": false,
+  "suppression_accepted": false,
+  "release_ready": false,
+  "visual_review_completed": false,
+  "failures": [
+    {
+      "stage": "getter-native-or-build",
+      "type": "ValueError",
+      "error": "native process or logger failed"
+    }
+  ],
+  "recording_run": 35503514936,
+  "recording_source_head": "c20ec417864c9c9f437b7a53839b415806b2831b",
+  "text_evidence": {
+    "evidence/pr16_circus_getter/35503514936/execution/build.json": {
+      "size": 63844,
+      "sha256": "ca4796ea77fbe57eb72ea174382aaddc902066e07b719019d757949fe02f7604"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/circus-suppression-save.process.json": {
+      "size": 90,
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/circus-suppression-save.stderr": {
+      "size": 192209,
+      "sha256": "7b59c9ffce521efc88d21becd00051b595576c2aa56c7dd88435d095cd23af33"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/circus-suppression-save.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/compile.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/compile.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/compile.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/field-contracts.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/field-contracts.stderr": {
+      "size": 2217,
+      "sha256": "9112101194e79fd7577883b1b2e2164a60ed314506650e780dc9ba87ecc00a1d"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/field-contracts.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/cg_addresses.h": {
+      "size": 60,
+      "sha256": "21868ddb440be1b5cf8b04e44599e5428873746f324d48d3b220b1009e914c9d"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/controller.c": {
+      "size": 13022,
+      "sha256": "86121ea4bf945584900f2ee3a62b617e523032ef5d6e45ca3a17c89d90a4184f"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/getter_suppression.h": {
+      "size": 10265,
+      "sha256": "c6918db369792a3de2846a7a5407faaa1157b328ddf6946fca08ede94c7f922e"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/p03_learning_embedded.c": {
+      "size": 7996,
+      "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/p03_p02_embedded.c": {
+      "size": 39678,
+      "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/p03a_fullslots_embedded.c": {
+      "size": 12877,
+      "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/p03b_archive_embedded.c": {
+      "size": 20163,
+      "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_bp_control_embedded.c": {
+      "size": 11463,
+      "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_bp_native_helpers.c": {
+      "size": 16314,
+      "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_capture_shop_helpers.c": {
+      "size": 10007,
+      "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_circus_addresses.h": {
+      "size": 87,
+      "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_circus_selection_helpers.c": {
+      "size": 10511,
+      "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_circus_turn_helpers.c": {
+      "size": 3939,
+      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_gear_capture_helpers.c": {
+      "size": 9640,
+      "sha256": "4c057989f1638e14d6814c269291f952ad2cb8e96be5a36274ff8707fc63bee8"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_gear_route.h": {
+      "size": 518,
+      "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_shop_breeding_helpers.c": {
+      "size": 19626,
+      "sha256": "1a97210389443f72586fdb1fa6c6523b296f56ee116065e71040a14f465a14c0"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_streak_legacy.c": {
+      "size": 11746,
+      "sha256": "de1618b95f09d8ce02c2a1ce8b833fa893f35c4da08b64dd69f9927cfe0c89c2"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/pr16_streak_policy.c": {
+      "size": 64843,
+      "sha256": "f08a41accc2a789a4eaccbc947865b90aa625489a761b6316a74fa28057954ab"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/generated/ss_routes.h": {
+      "size": 2248,
+      "sha256": "537c00aaa9986c2de7a4328f03c737cf03c196cf43a1176a749bb4e05b21494b"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/reconstruct.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/reconstruct.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/reconstruct.stdout": {
+      "size": 6294,
+      "sha256": "3ac2c4ea6b4c0d27e1873c2a0155fdbfe8828bf254d10e3d52fa40a1b8c42747"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/resume-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/resume-START.stderr": {
+      "size": 2449,
+      "sha256": "cb15d60df6d6098f0095e7a040e61ab0b667c3d4af3a71192abbe3c0f5a9845c"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/resume-START.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/task-graph-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/task-graph-START.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_getter/35503514936/execution/task-graph-START.stdout": {
+      "size": 77,
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    }
+  },
+  "native_source_head": "c20ec417864c9c9f437b7a53839b415806b2831b",
+  "cache": {
+    "source_run": 35494023398,
+    "save": {
+      "size": 131088,
+      "sha256": "b4846fe3d915f69f7cefb2f58a0c2c0c571d9f96d5d16a295537854d849c2371"
+    },
+    "cache_key": "pr16-circus-save30-2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183-35494023398",
+    "prefix_wins_reexecuted": 0,
+    "host_state_injection": false
+  },
+  "reconstruction": {
+    "parent": {
+      "size": 33554432,
+      "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+    },
+    "layers": [
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579"
+        },
+        "patches": 5,
+        "allocations": 0,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+        },
+        "patches": 6,
+        "allocations": 0,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "09e9d8cf085d175299b58e93347e3beb2467c3c09016130f7d35ce033fa50096"
+        },
+        "patches": 3,
+        "allocations": 0,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "09e9d8cf085d175299b58e93347e3beb2467c3c09016130f7d35ce033fa50096"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b"
+        },
+        "patches": 1,
+        "allocations": 0,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "beef0d6aaf5b9e1be04b3075a7e9a4f388110776763fa11c6a74fdc6a38310c7"
+        },
+        "patches": 237,
+        "allocations": 85,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "beef0d6aaf5b9e1be04b3075a7e9a4f388110776763fa11c6a74fdc6a38310c7"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        "patches": 2,
+        "allocations": 86,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267"
+        },
+        "patches": 122,
+        "allocations": 87,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "df8a15c3b464854ca84a5c0533177cfa3187b5eef252d20248f7654edb72887c"
+        },
+        "patches": 1,
+        "allocations": 0,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "df8a15c3b464854ca84a5c0533177cfa3187b5eef252d20248f7654edb72887c"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92"
+        },
+        "patches": 1,
+        "allocations": 0,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "fcda15075a586d59f4f9da5f7f55a294765f826ab1453a576e74192df822d879"
+        },
+        "patches": 2,
+        "allocations": 88,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "fcda15075a586d59f4f9da5f7f55a294765f826ab1453a576e74192df822d879"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd"
+        },
+        "patches": 2,
+        "allocations": 0,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b"
+        },
+        "patches": 3,
+        "allocations": 90,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "72fbca91cd6ee1082198678ccaed76bcb76dfd19ce9f6f3c26309745b2f09ac0"
+        },
+        "patches": 2,
+        "allocations": 91,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "72fbca91cd6ee1082198678ccaed76bcb76dfd19ce9f6f3c26309745b2f09ac0"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc"
+        },
+        "patches": 2,
+        "allocations": 92,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b"
+        },
+        "patches": 2,
+        "allocations": 93,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "3554dc42923bf426332f25c5776d4e213ab0d89a9d2ad6d3861be8d93b9e2cc1"
+        },
+        "patches": 2,
+        "allocations": 94,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "3554dc42923bf426332f25c5776d4e213ab0d89a9d2ad6d3861be8d93b9e2cc1"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "3b5f919958bf72bad9aa5b466215f33311f9c8c19e1f7f409303416eab952d5d"
+        },
+        "patches": 26,
+        "allocations": 96,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "3b5f919958bf72bad9aa5b466215f33311f9c8c19e1f7f409303416eab952d5d"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399"
+        },
+        "patches": 2,
+        "allocations": 97,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "7a5676f9f330a7718baa18ff86d825d718041f47c5356eb029ea819930cc9dc5"
+        },
+        "patches": 2,
+        "allocations": 98,
+        "whole_rom_rollback_matches_parent": true
+      },
+      {
+        "parent": {
+          "size": 33554432,
+          "sha256": "7a5676f9f330a7718baa18ff86d825d718041f47c5356eb029ea819930cc9dc5"
+        },
+        "candidate": {
+          "size": 33554432,
+          "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+        },
+        "patches": 2,
+        "allocations": 99,
+        "whole_rom_rollback_matches_parent": true
+      }
+    ],
+    "whole_chain_rollback_matches_parent": true,
+    "arm_compiles": 0,
+    "native_processes": 0,
+    "accepted_native_cases_replayed": 0
+  },
+  "build": {
+    "parent": {
+      "size": 33554432,
+      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38"
+    },
+    "old_veneer": {
+      "address": 153946824,
+      "target": 167729373,
+      "bytes": "004b1847dd58ff09",
+      "fourth_argument_clobbered": true,
+      "callsite": 152056704,
+      "source": "scripts/pr16_circus_streak.py",
+      "accepted_parent_unchanged": true
+    },
+    "new_veneer": {
+      "address": 153993764,
+      "bytes": "00c09fe51cff2fe1dd58ff09"
+    },
+    "patches": [
+      {
+        "offset": 19729096,
+        "before": "004b1847dd58ff09",
+        "after": "7847c046d42d00ea"
+      },
+      {
+        "offset": 19776036,
+        "before": "ffffffffffffffffffffffff",
+        "after": "00c09fe51cff2fe1dd58ff09"
+      },
+      {
+        "offset": 33511832,
+        "before": "3a400000",
+        "after": "00000000",
+        "load_pc": 167729388,
+        "field": "NUMBER",
+        "old_var_id": 16442,
+        "field_index": 0
+      },
+      {
+        "offset": 33511840,
+        "before": "17500000",
+        "after": "03000000",
+        "load_pc": 167729420,
+        "field": "BATTLE_TYPE",
+        "old_var_id": 20503,
+        "field_index": 3
+      },
+      {
+        "offset": 33511848,
+        "before": "18500000",
+        "after": "04000000",
+        "load_pc": 167729466,
+        "field": "TIER",
+        "old_var_id": 20504,
+        "field_index": 4
+      },
+      {
+        "offset": 33511852,
+        "before": "15500000",
+        "after": "01000000",
+        "load_pc": 167729486,
+        "field": "PARTY_SIZE",
+        "old_var_id": 20501,
+        "field_index": 1
+      },
+      {
+        "offset": 33511856,
+        "before": "16500000",
+        "after": "02000000",
+        "load_pc": 167729506,
+        "field": "LEVEL",
+        "old_var_id": 20502,
+        "field_index": 2
+      }
+    ],
+    "allocation": {
+      "schema_version": 1,
+      "regions": [
+        {
+          "name": "vega_base",
+          "start": 0,
+          "end_exclusive": 16777216,
+          "size": 16777216,
+          "alignment": 4,
+          "kind": "reserved",
+          "owner": "Vega",
+          "purpose": "Vega IPS output and original data",
+          "gba_start": 134217728,
+          "gba_end_exclusive": 150994944
+        },
+        {
+          "name": "cfru_payload",
+          "start": 16777216,
+          "end_exclusive": 18874368,
+          "size": 2097152,
+          "alignment": 4,
+          "kind": "reserved",
+          "owner": "CFRU-JP",
+          "purpose": "T01 CFRU linked payload envelope",
+          "gba_start": 150994944,
+          "gba_end_exclusive": 153092096
+        },
+        {
+          "name": "integration_modules",
+          "start": 18874368,
+          "end_exclusive": 23068672,
+          "size": 4194304,
+          "alignment": 4,
+          "kind": "allocatable",
+          "owner": "project",
+          "purpose": "relocated adapters and integration modules",
+          "gba_start": 153092096,
+          "gba_end_exclusive": 157286400
+        },
+        {
+          "name": "dpe_payload",
+          "start": 23068672,
+          "end_exclusive": 32833536,
+          "size": 9764864,
+          "alignment": 4,
+          "kind": "reserved",
+          "owner": "DPE-JP",
+          "purpose": "T01 DPE linked payload envelope",
+          "gba_start": 157286400,
+          "gba_end_exclusive": 167051264
+        },
+        {
+          "name": "future_tail",
+          "start": 32833536,
+          "end_exclusive": 33554432,
+          "size": 720896,
+          "alignment": 4,
+          "kind": "allocatable",
+          "owner": "project",
+          "purpose": "future small generated tables and metadata",
+          "gba_start": 167051264,
+          "gba_end_exclusive": 167772160
+        }
+      ],
+      "allocations": [
+        {
+          "name": "vega_adapter_module",
+          "region": "integration_modules",
+          "start": 18874368,
+          "end_exclusive": 18874402,
+          "size": 34,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "vega_adapter",
+          "purpose": "T03 deterministic no-op harness module",
+          "content_sha256": "16ab88fb53956eccba0cb99a9621c14e9f04282535f8c7cc74ee4b5dd010e350",
+          "sequence": 0,
+          "gba_start": 153092096,
+          "gba_end_exclusive": 153092130
+        },
+        {
+          "name": "move_table_bridge",
+          "region": "integration_modules",
+          "start": 18874404,
+          "end_exclusive": 18918436,
+          "size": 44032,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T04",
+          "purpose": "Vega move tables with V3 adjustments and canonical repoints",
+          "content_sha256": "3714b6df11dab92069829afbf201bdad25d976980969aa0cac58fc042496a30b",
+          "sequence": 1,
+          "gba_start": 153092132,
+          "gba_end_exclusive": 153136164
+        },
+        {
+          "name": "species_surface_front",
+          "region": "future_tail",
+          "start": 32833536,
+          "end_exclusive": 32846504,
+          "size": 12968,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 front",
+          "content_sha256": "58d8e581d625eed139e35f589282d5581bd3c48d632b194fe7497750910ab895",
+          "sequence": 2,
+          "gba_start": 167051264,
+          "gba_end_exclusive": 167064232
+        },
+        {
+          "name": "species_surface_back",
+          "region": "future_tail",
+          "start": 32846504,
+          "end_exclusive": 32859472,
+          "size": 12968,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 back",
+          "content_sha256": "59d6131c1a0eb7a8f43af824d2bc97a2bbbe0c532baf69a491cf62774289c691",
+          "sequence": 3,
+          "gba_start": 167064232,
+          "gba_end_exclusive": 167077200
+        },
+        {
+          "name": "species_surface_palette",
+          "region": "future_tail",
+          "start": 32859472,
+          "end_exclusive": 32872440,
+          "size": 12968,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 palette",
+          "content_sha256": "942cba43f8e932580f2ea252d778a335ca17505ca3e8ddc87ea1224796dbb4d3",
+          "sequence": 4,
+          "gba_start": 167077200,
+          "gba_end_exclusive": 167090168
+        },
+        {
+          "name": "species_surface_shiny_palette",
+          "region": "future_tail",
+          "start": 32872440,
+          "end_exclusive": 32885408,
+          "size": 12968,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 shiny_palette",
+          "content_sha256": "e8c9320e74dc87ee0bed31bb00966a81fd80a99f63696090625f9df2ee75dea0",
+          "sequence": 5,
+          "gba_start": 167090168,
+          "gba_end_exclusive": 167103136
+        },
+        {
+          "name": "species_surface_icon",
+          "region": "future_tail",
+          "start": 32885408,
+          "end_exclusive": 32891892,
+          "size": 6484,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 icon",
+          "content_sha256": "dfd234e85e6fa02fe5f3f4f7ac34080137cfcd627c77e3986cf624290a3d06ca",
+          "sequence": 6,
+          "gba_start": 167103136,
+          "gba_end_exclusive": 167109620
+        },
+        {
+          "name": "species_surface_icon_palette",
+          "region": "future_tail",
+          "start": 32891892,
+          "end_exclusive": 32893513,
+          "size": 1621,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 icon_palette",
+          "content_sha256": "1a1d28cc365f5ca478d964d4e521976d42889128735222cd85ae7ba690a04d89",
+          "sequence": 7,
+          "gba_start": 167109620,
+          "gba_end_exclusive": 167111241
+        },
+        {
+          "name": "species_surface_front_coords",
+          "region": "future_tail",
+          "start": 32893516,
+          "end_exclusive": 32900000,
+          "size": 6484,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 front_coords",
+          "content_sha256": "f60fac43883f17304bdb3f69f4a8d96f3f3f2f9001aea8efcebbc2561d4d8382",
+          "sequence": 8,
+          "gba_start": 167111244,
+          "gba_end_exclusive": 167117728
+        },
+        {
+          "name": "species_surface_back_coords",
+          "region": "future_tail",
+          "start": 32900000,
+          "end_exclusive": 32906484,
+          "size": 6484,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 back_coords",
+          "content_sha256": "3cbe584de6ae1f0d94b5cf198e43a038e060477e3b30da00bad7beb2fb496379",
+          "sequence": 9,
+          "gba_start": 167117728,
+          "gba_end_exclusive": 167124212
+        },
+        {
+          "name": "species_surface_elevation",
+          "region": "future_tail",
+          "start": 32906484,
+          "end_exclusive": 32908105,
+          "size": 1621,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 elevation",
+          "content_sha256": "dcfc617f0708dd218e36dedb14b97f60a17b1fb71479e344d21e7a0774bca607",
+          "sequence": 10,
+          "gba_start": 167124212,
+          "gba_end_exclusive": 167125833
+        },
+        {
+          "name": "species_surface_footprint",
+          "region": "future_tail",
+          "start": 32908108,
+          "end_exclusive": 32914592,
+          "size": 6484,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 footprint",
+          "content_sha256": "aa4f048339199ebc8b63fe45e2de4630316701158c180d72ab7d749ce79518ef",
+          "sequence": 11,
+          "gba_start": 167125836,
+          "gba_end_exclusive": 167132320
+        },
+        {
+          "name": "species_surface_cry",
+          "region": "future_tail",
+          "start": 32914592,
+          "end_exclusive": 32934044,
+          "size": 19452,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 cry",
+          "content_sha256": "d1a4e5a1e566391dc8bc923b086f992fd238c16faedfe3933aec7dd299c7a504",
+          "sequence": 12,
+          "gba_start": 167132320,
+          "gba_end_exclusive": 167151772
+        },
+        {
+          "name": "species_surface_cry2",
+          "region": "future_tail",
+          "start": 32934044,
+          "end_exclusive": 32953496,
+          "size": 19452,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 cry2",
+          "content_sha256": "3dddbc0be651cc63bd726aea30c31cfb58c79e6957b1dd6181f9df997455e138",
+          "sequence": 13,
+          "gba_start": 167151772,
+          "gba_end_exclusive": 167171224
+        },
+        {
+          "name": "species_surface_dex_entries",
+          "region": "future_tail",
+          "start": 32953496,
+          "end_exclusive": 32998884,
+          "size": 45388,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 dex_entries",
+          "content_sha256": "399fc94c3cf1f8f5f28b80d990c52bc48bc28037881390c026abe8d0db0d46b2",
+          "sequence": 14,
+          "gba_start": 167171224,
+          "gba_end_exclusive": 167216612
+        },
+        {
+          "name": "species_surface_national_dex",
+          "region": "future_tail",
+          "start": 32998884,
+          "end_exclusive": 33002126,
+          "size": 3242,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 national_dex",
+          "content_sha256": "4eb1fc7ea17d7af1df1ce0d965bfbf8936d066538e870196d486cf25b624f4f3",
+          "sequence": 15,
+          "gba_start": 167216612,
+          "gba_end_exclusive": 167219854
+        },
+        {
+          "name": "species_surface_national_dex_runtime",
+          "region": "future_tail",
+          "start": 33002128,
+          "end_exclusive": 33005368,
+          "size": 3240,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 national_dex_runtime",
+          "content_sha256": "5b700e46500eddd8ac59a91c366beee9e4210057cab231007ae1262dffab7170",
+          "sequence": 16,
+          "gba_start": 167219856,
+          "gba_end_exclusive": 167223096
+        },
+        {
+          "name": "species_surface_evolutions",
+          "region": "future_tail",
+          "start": 33005368,
+          "end_exclusive": 33212856,
+          "size": 207488,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 evolutions",
+          "content_sha256": "3fc4c8cd5d21c5b7f1fa2972223288ec1040f115321298a19e168694ee45e002",
+          "sequence": 17,
+          "gba_start": 167223096,
+          "gba_end_exclusive": 167430584
+        },
+        {
+          "name": "species_surface_level_up_data",
+          "region": "future_tail",
+          "start": 33212856,
+          "end_exclusive": 33294741,
+          "size": 81885,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 level_up_data",
+          "content_sha256": "4544753386775f0330073d879222e4bf9527a49183c3a06d83559a32d73440c3",
+          "sequence": 18,
+          "gba_start": 167430584,
+          "gba_end_exclusive": 167512469
+        },
+        {
+          "name": "species_surface_level_up_pointers",
+          "region": "future_tail",
+          "start": 33294744,
+          "end_exclusive": 33301228,
+          "size": 6484,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 level_up_pointers",
+          "content_sha256": "a3559c327f61a0f9ced3f676b6f646cc2250e37577c62334fd8dc1bdacf1a70f",
+          "sequence": 19,
+          "gba_start": 167512472,
+          "gba_end_exclusive": 167518956
+        },
+        {
+          "name": "species_surface_egg_moves",
+          "region": "future_tail",
+          "start": 33301228,
+          "end_exclusive": 33315982,
+          "size": 14754,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 egg_moves",
+          "content_sha256": "715c6676fece3846db21a0779cdf77128cb825f80d49d5d6071ca27b53d5d2fa",
+          "sequence": 20,
+          "gba_start": 167518956,
+          "gba_end_exclusive": 167533710
+        },
+        {
+          "name": "species_surface_tmhm",
+          "region": "future_tail",
+          "start": 33315984,
+          "end_exclusive": 33341920,
+          "size": 25936,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 tmhm",
+          "content_sha256": "a24cebced039ef5bb36da6104a678a26fe3ea3adba538622b5f3402f09b49768",
+          "sequence": 21,
+          "gba_start": 167533712,
+          "gba_end_exclusive": 167559648
+        },
+        {
+          "name": "species_surface_tutor",
+          "region": "future_tail",
+          "start": 33341920,
+          "end_exclusive": 33367856,
+          "size": 25936,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 tutor",
+          "content_sha256": "a44431aea3f197a030bd496482aa91b747f260d19822d8ab4eedc0a8363b441f",
+          "sequence": 22,
+          "gba_start": 167559648,
+          "gba_end_exclusive": 167585584
+        },
+        {
+          "name": "species_surface_species_names",
+          "region": "future_tail",
+          "start": 33367856,
+          "end_exclusive": 33385687,
+          "size": 17831,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 species_names",
+          "content_sha256": "2f0a184e6b566a3196a1d064c8c40c451de758f75e14b1a584a1891d14e889da",
+          "sequence": 23,
+          "gba_start": 167585584,
+          "gba_end_exclusive": 167603415
+        },
+        {
+          "name": "species_surface_species_names_legacy",
+          "region": "future_tail",
+          "start": 33385688,
+          "end_exclusive": 33398656,
+          "size": 12968,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 species_names_legacy",
+          "content_sha256": "fd479f125007841683556ffc2a4478a5df1d941d65d83b4bfa922566d4f4a237",
+          "sequence": 24,
+          "gba_start": 167603416,
+          "gba_end_exclusive": 167616384
+        },
+        {
+          "name": "species_surface_species_runtime",
+          "region": "future_tail",
+          "start": 33398656,
+          "end_exclusive": 33399356,
+          "size": 700,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T09",
+          "purpose": "T09 species_runtime",
+          "content_sha256": "1a462029beef54897525230a1d57403ba059c9038e790bd8467634b548af42b6",
+          "sequence": 25,
+          "gba_start": 167616384,
+          "gba_end_exclusive": 167617084
+        },
+        {
+          "name": "content_population_payload",
+          "region": "integration_modules",
+          "start": 18918436,
+          "end_exclusive": 18995530,
+          "size": 77094,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T16",
+          "purpose": "dual-region manifests and runtime lookup payload",
+          "content_sha256": "6058a8b222ae3cbdc50269fd5fc0f089075ad5896d91f99c061d8c4ef4f9c4a2",
+          "sequence": 26,
+          "gba_start": 153136164,
+          "gba_end_exclusive": 153213258
+        },
+        {
+          "name": "regression_runtime_payload",
+          "region": "integration_modules",
+          "start": 18995532,
+          "end_exclusive": 19710932,
+          "size": 715400,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "T17",
+          "purpose": "Kanto map roots/assets/wild tables, portal, and QOL-B runtime",
+          "content_sha256": "4272ce6d22e977dbbbcf3da4886b65213c0c5b833baafa97cca9f45b3db413ae",
+          "sequence": 27,
+          "gba_start": 153213260,
+          "gba_end_exclusive": 153928660
+        },
+        {
+          "name": "trainer_rebalance_v4_parties",
+          "region": "integration_modules",
+          "start": 19710932,
+          "end_exclusive": 19719108,
+          "size": 8176,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260814-TRAINER-V4",
+          "purpose": "V4 main-story trainer party rows",
+          "content_sha256": "b03de7b7c2dd310852ae864ef5fdc8ebccbb03217a66e26bff7cffbb85b7ac35",
+          "sequence": 28,
+          "gba_start": 153928660,
+          "gba_end_exclusive": 153936836
+        },
+        {
+          "name": "facility_runtime_payload",
+          "region": "integration_modules",
+          "start": 19719108,
+          "end_exclusive": 19724318,
+          "size": 5210,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260814-FACILITY-RUNTIME",
+          "purpose": "実ROM Factory受付、6候補/3選択、交換、3連戦、保存復元",
+          "content_sha256": "03d7b3ca8025954bf111f7a876d4937bf932f0b3330b0dfa86e4e30915ab9b10",
+          "sequence": 29,
+          "gba_start": 153936836,
+          "gba_end_exclusive": 153942046
+        },
+        {
+          "name": "first_battle_priority_guard",
+          "region": "integration_modules",
+          "start": 19724320,
+          "end_exclusive": 19724512,
+          "size": 192,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260814-FIRST-BATTLE-LOOP",
+          "purpose": "Quick Draw indicatorと実特性を照合するturn scheduler wrapper",
+          "content_sha256": "e24bf0a1c4cd0ff96981d8a434c2155fc747248f0e2abc051421798a01944832",
+          "sequence": 30,
+          "gba_start": 153942048,
+          "gba_end_exclusive": 153942240
+        },
+        {
+          "name": "hm_field_access_runtime",
+          "region": "integration_modules",
+          "start": 19724512,
+          "end_exclusive": 19724920,
+          "size": 408,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260814-HM-FIELD-ACCESS",
+          "purpose": "Vega HM01..08所持を正本とするfield能力とparty callback guard",
+          "content_sha256": "002a4f140852bcca8d7f3552132ad9f42a50f3e8aa11883c47db26fbab3684d5",
+          "sequence": 31,
+          "gba_start": 153942240,
+          "gba_end_exclusive": 153942648
+        },
+        {
+          "name": "battle_ui_runtime",
+          "region": "integration_modules",
+          "start": 19724920,
+          "end_exclusive": 19726120,
+          "size": 1200,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260814-BATTLE-UI",
+          "purpose": "固定CFRU move type/effectiveness/STAB表示adapter",
+          "content_sha256": "67100cbdfd05eca9f4534888efadebab9804c12035d52aaa802d769a3091f55f",
+          "sequence": 32,
+          "gba_start": 153942648,
+          "gba_end_exclusive": 153943848
+        },
+        {
+          "name": "move_memory_runtime",
+          "region": "integration_modules",
+          "start": 19726128,
+          "end_exclusive": 19729096,
+          "size": 2968,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260814-MOVE-MEMORY",
+          "purpose": "item/NPC共通の技思い出し・技忘れ・タマゴ技管理core",
+          "content_sha256": "6152439799fe625ffbfedfa14e88a87fc187e6d6cc159403740446ca2eca9e97",
+          "sequence": 33,
+          "gba_start": 153943856,
+          "gba_end_exclusive": 153946824
+        },
+        {
+          "name": "acquisition_runtime",
+          "region": "integration_modules",
+          "start": 19729104,
+          "end_exclusive": 19774165,
+          "size": 45061,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260816-ACQUISITION-EVENTS",
+          "purpose": "201取得event transaction/menu/save runtime",
+          "content_sha256": "b49996fd455a46dd8d4d195f84a589c063ef9136fd6893a4e601cc7b6e6f464b",
+          "sequence": 34,
+          "gba_start": 153946832,
+          "gba_end_exclusive": 153991893
+        },
+        {
+          "name": "acquisition_map_scripts",
+          "region": "integration_modules",
+          "start": 19774168,
+          "end_exclusive": 19776036,
+          "size": 1868,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260816-ACQUISITION-EVENTS",
+          "purpose": "24取得host scripts/restored objects/event headers",
+          "content_sha256": "b0801e6682455a6294e61cfe49c6828ef015346b3774473c74a11bea2f8f4301",
+          "sequence": 35,
+          "gba_start": 153991896,
+          "gba_end_exclusive": 153993764
+        },
+        {
+          "name": "bp_shop_runtime_payload",
+          "region": "integration_modules",
+          "start": 19776048,
+          "end_exclusive": 19780472,
+          "size": 4424,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260817-BP-SHOP-RUNTIME",
+          "purpose": "Factory BP catalog/menu/purchase/save runtime and physical shop NPC",
+          "content_sha256": "b8ca4ba9d62f19c2b49cda603ad386800e2cdeb77587719296af6b5287a48cc5",
+          "sequence": 36,
+          "gba_start": 153993776,
+          "gba_end_exclusive": 153998200
+        },
+        {
+          "name": "factory_reward_runtime_payload",
+          "region": "integration_modules",
+          "start": 19780480,
+          "end_exclusive": 19782152,
+          "size": 1672,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260818-FACTORY-REWARD-RUNTIME",
+          "purpose": "Factory Trial first-clear item/BP and streak encounter-credit wrapper",
+          "content_sha256": "8094ce3dd299752c6ec99a74efd3f2cc8d3bb6db162c417f3b96c7d649a95d88",
+          "sequence": 37,
+          "gba_start": 153998208,
+          "gba_end_exclusive": 153999880
+        },
+        {
+          "name": "factory_repeat_reward_runtime_payload",
+          "region": "integration_modules",
+          "start": 19782160,
+          "end_exclusive": 19782732,
+          "size": 572,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260818-FACTORY-REPEAT-REWARD-RUNTIME",
+          "purpose": "Factory Trial repeat item/BP reward wrapper",
+          "content_sha256": "6ce2ff15aa77f10b86ac61e4fe0c3f08b4bccc0b5b887f8f9036a2e04ee32fec",
+          "sequence": 38,
+          "gba_start": 153999888,
+          "gba_end_exclusive": 154000460
+        },
+        {
+          "name": "factory_special_event_runtime_payload",
+          "region": "integration_modules",
+          "start": 19782736,
+          "end_exclusive": 19783160,
+          "size": 424,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260818-FACTORY-SPECIAL-EVENT-RUNTIME",
+          "purpose": "Factory Trial 49-streak special-event claim wrapper",
+          "content_sha256": "6c97dd30b6fc6885f4085c61abb32402dcb337185fa0d6125283a1cc2757a30e",
+          "sequence": 39,
+          "gba_start": 154000464,
+          "gba_end_exclusive": 154000888
+        },
+        {
+          "name": "factory_shiny_memorial_runtime_payload",
+          "region": "integration_modules",
+          "start": 19783168,
+          "end_exclusive": 19786490,
+          "size": 3322,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260818-FACTORY-SHINY-MEMORIAL-RUNTIME",
+          "purpose": "Factory Trial 100-streak shiny memorial transaction runtime",
+          "content_sha256": "985d450165c7bdc4fe6a3447bc10ba8e088b44111a4bc00673fe51148717f5f4",
+          "sequence": 40,
+          "gba_start": 154000896,
+          "gba_end_exclusive": 154004218
+        },
+        {
+          "name": "trainer_v5_stage31_foundation_payload",
+          "region": "integration_modules",
+          "start": 19786496,
+          "end_exclusive": 19833744,
+          "size": 47248,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-TRAINER-V5-STAGE31-INTEGRATION-FOUNDATION",
+          "purpose": "Trainer V5 25 encounters, expanded trainer table, sidecar runtime, save-compatible hooks",
+          "content_sha256": "23d922c55eaadadd95e572096c2f1e36ac397e756de1ff968ee6141247bdf562",
+          "sequence": 41,
+          "gba_start": 154004224,
+          "gba_end_exclusive": 154051472
+        },
+        {
+          "name": "trainer_v5_stage32_tohoku_batch02_payload",
+          "region": "integration_modules",
+          "start": 19833744,
+          "end_exclusive": 19882720,
+          "size": 48976,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-TRAINER-V5-STAGE32-TOHOKU-BATCH02",
+          "purpose": "Trainer V5 cumulative 39 encounters, exact command rebind table, sidecar runtime, save-compatible hooks",
+          "content_sha256": "f1374c489749c1906122a97c5116e9541c356693a3953bd1ff0170649693bb4e",
+          "sequence": 42,
+          "gba_start": 154051472,
+          "gba_end_exclusive": 154100448
+        },
+        {
+          "name": "trainer_v5_stage33_tohoku_batch03_payload",
+          "region": "integration_modules",
+          "start": 19882720,
+          "end_exclusive": 19934032,
+          "size": 51312,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-TRAINER-V5-STAGE33-TOHOKU-BATCH03",
+          "purpose": "Trainer V5 cumulative 54 encounters, RematchMap V2, exact command rebind table, sidecar runtime, save-compatible hooks",
+          "content_sha256": "ff4c0096241cf99ad163a57f2bc0022e4280d46896a7adb8f249899f3992c7ea",
+          "sequence": 43,
+          "gba_start": 154100448,
+          "gba_end_exclusive": 154151760
+        },
+        {
+          "name": "trainer_changekit_final_stage35_payload",
+          "region": "integration_modules",
+          "start": 19934032,
+          "end_exclusive": 20409646,
+          "size": 475614,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260819-TRAINER-CHANGEKIT-FINAL-INTEGRATION",
+          "purpose": "Trainer ChangeKit 1302 physical battles, 4284 trainer table, 6490-member sidecars, Kanto/Archive events, dialogue and four-mechanic policy runtime",
+          "content_sha256": "1c6fdddbc4415d67cb6ba1fcf9e60db53ebb93e5e16a83eb4a3f17a461cbd945",
+          "sequence": 44,
+          "gba_start": 154151760,
+          "gba_end_exclusive": 154627374
+        },
+        {
+          "name": "qol_production_stage36_payload",
+          "region": "integration_modules",
+          "start": 20409648,
+          "end_exclusive": 20479088,
+          "size": 69440,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T19",
+          "purpose": "QOL 35 production UI/PC/daycare/battle/save runtime and authored research table",
+          "content_sha256": "053f7aaa79e87dfc29caf26512ae4652d2b14240f180a1b2165fee7897854c23",
+          "sequence": 45,
+          "gba_start": 154627376,
+          "gba_end_exclusive": 154696816
+        },
+        {
+          "name": "event_design_stage37_payload",
+          "region": "integration_modules",
+          "start": 20479088,
+          "end_exclusive": 20513648,
+          "size": 34560,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T20",
+          "purpose": "76 authored events, 326 dialogue strings, 63 rooted physical bindings, dispatcher scripts, and monotonic state runtime",
+          "content_sha256": "48daa966ac390f72f1edb0a4f7526428c0d6ec87f65a00d34df1a5cbecccaa81",
+          "sequence": 46,
+          "gba_start": 154696816,
+          "gba_end_exclusive": 154731376
+        },
+        {
+          "name": "mirage_production_stage38_payload",
+          "region": "integration_modules",
+          "start": 20513648,
+          "end_exclusive": 20522144,
+          "size": 8496,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T21",
+          "purpose": "Mirage carried-party 4-round/28-battle field scripts, isolated save transaction, virtual-item adapter, badge-exact cleanup and load chain",
+          "content_sha256": "712e70c0a0f7096444b176171e29e822161d7c012198b14c9cc6317c04697c03",
+          "sequence": 47,
+          "gba_start": 154731376,
+          "gba_end_exclusive": 154739872
+        },
+        {
+          "name": "move_distribution_v4_stage39_payload",
+          "region": "integration_modules",
+          "start": 20522144,
+          "end_exclusive": 20699248,
+          "size": 177104,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T22",
+          "purpose": "Move Distribution V4 canonical learnsets, form policy, wild-only adapter",
+          "content_sha256": "83022ea095984a60bd6c1223cd7bcb1642709767f92810d04149201e0b10d524",
+          "sequence": 48,
+          "gba_start": 154739872,
+          "gba_end_exclusive": 154916976
+        },
+        {
+          "name": "research_economy_v1_stage40_payload",
+          "region": "integration_modules",
+          "start": 20699248,
+          "end_exclusive": 20711816,
+          "size": 12568,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T23",
+          "purpose": "Research Economy V1 runtime, six activities, seven ranks, 23-row shop, 35 dialogues and nine Stage39-rooted field bindings",
+          "content_sha256": "0f8186357d36cc363edfc9a970246de441765c1b337437e6150dfc62074bbc3f",
+          "sequence": 49,
+          "gba_start": 154916976,
+          "gba_end_exclusive": 154929544
+        },
+        {
+          "name": "reward_encounters_v2_stage41_payload",
+          "region": "integration_modules",
+          "start": 20711824,
+          "end_exclusive": 20722596,
+          "size": 10772,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T24",
+          "purpose": "Reward Encounters V2 runtime, four services, 24-entry pool, 56 dialogues and Vermilion Scientist field root",
+          "content_sha256": "17adb88a0df2e5bd336aa104c85113e116c4ac900a01f5a235576a21b2fbe1ea",
+          "sequence": 50,
+          "gba_start": 154929552,
+          "gba_end_exclusive": 154940324
+        },
+        {
+          "name": "factory_high_modes_v2_stage42_payload",
+          "region": "integration_modules",
+          "start": 20722608,
+          "end_exclusive": 20747563,
+          "size": 24955,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T25",
+          "purpose": "Factory High Modes V2 runtime, 24 modes, 248 rentals, 55 profiles, 16 rewards, 28 dialogues and receptionist field graph",
+          "content_sha256": "e05f53be976a9f9223108221edc08610643bd1d3d9e2994ed781ac2ee78553c3",
+          "sequence": 51,
+          "gba_start": 154940336,
+          "gba_end_exclusive": 154965291
+        },
+        {
+          "name": "codex_battle_bridge_stage43_payload",
+          "region": "integration_modules",
+          "start": 20747568,
+          "end_exclusive": 20749136,
+          "size": 1568,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T26",
+          "purpose": "Stage43 gameplay-neutral versioned Codex Battle mailbox, ReadKeys delegate wrapper and PING/PONG validator",
+          "content_sha256": "f07c92eb55aa7258599b7c482cbcddb7c496f9ee43d35d14119023fff58784a3",
+          "sequence": 52,
+          "gba_start": 154965296,
+          "gba_end_exclusive": 154966864
+        },
+        {
+          "name": "codex_battle_runtime_stage44_payload",
+          "region": "integration_modules",
+          "start": 20749136,
+          "end_exclusive": 20765488,
+          "size": 16352,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T27",
+          "purpose": "Stage44 Codex 6-to-3 runtime, private action seal, controller interposer, UPSTREAM_OPEN adapters and production reception",
+          "content_sha256": "370ef7f03885c1a92654b5270eecbede733b733b8a857fa4ebe9b5cfb79ae917",
+          "sequence": 53,
+          "gba_start": 154966864,
+          "gba_end_exclusive": 154983216
+        },
+        {
+          "name": "codex_battle_rewards_stage45_payload",
+          "region": "integration_modules",
+          "start": 20765488,
+          "end_exclusive": 20773712,
+          "size": 8224,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T28",
+          "purpose": "Stage45 match-bound optional reward journal, normal bag/party/PC delivery, replay recovery and field completion adapters",
+          "content_sha256": "441017c04cd89f9af320aa3c10e34e107430a3c8f8d0c2d307c7062d44b1fc5c",
+          "sequence": 54,
+          "gba_start": 154983216,
+          "gba_end_exclusive": 154991440
+        },
+        {
+          "name": "windows_battle_catalog_stage46_payload",
+          "region": "integration_modules",
+          "start": 20773712,
+          "end_exclusive": 20782336,
+          "size": 8624,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T29",
+          "purpose": "Stage46 reusable Windows catalog context over the T28 normal bag/party/PC exactly-once transaction owner",
+          "content_sha256": "4a73f05d101fc7b6fb8e6e8af4648d8b9cf30659872a6111cb4e22c47e4172cb",
+          "sequence": 55,
+          "gba_start": 154991440,
+          "gba_end_exclusive": 155000064
+        },
+        {
+          "name": "windows_box14_vault_stage47_payload",
+          "region": "integration_modules",
+          "start": 20782336,
+          "end_exclusive": 20792096,
+          "size": 9760,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "T30",
+          "purpose": "Stage47 Box14 exact 80-byte export/remove/import protocol over the Stage46 normal field runtime",
+          "content_sha256": "a44ba25dc01dc8d141589261de48793a19e57d00274aa76f4db94c6b4731325a",
+          "sequence": 56,
+          "gba_start": 155000064,
+          "gba_end_exclusive": 155009824
+        },
+        {
+          "name": "world_item_recovery_stage49_payload",
+          "region": "integration_modules",
+          "start": 20792096,
+          "end_exclusive": 20827652,
+          "size": 35556,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260824-STAGE48-WORLD-ITEM-RECOVERY",
+          "purpose": "Stage48 world event復旧、低レベルRaid host、会話・店・回復script",
+          "content_sha256": "3446004594ea4d6cb6f2b63347e147afdd975aae79e3f9ce1c3ba4057b924d00",
+          "sequence": 57,
+          "gba_start": 155009824,
+          "gba_end_exclusive": 155045380
+        },
+        {
+          "name": "interaction_ownership_repair_stage50_payload",
+          "region": "integration_modules",
+          "start": 20827664,
+          "end_exclusive": 20899384,
+          "size": 71720,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260824-STAGE49-INTERACTION-OWNERSHIP-REPAIR",
+          "purpose": "Stage49 interaction owner撤回、field object・遭遇・視線補正",
+          "content_sha256": "586d17d7d0dde699b63f8daf97a793411370bbb2d6922518a3897e1da8e4cc06",
+          "sequence": 58,
+          "gba_start": 155045392,
+          "gba_end_exclusive": 155117112
+        },
+        {
+          "name": "world_runtime_e2e_repair_stage55_payload",
+          "region": "integration_modules",
+          "start": 20899392,
+          "end_exclusive": 20994536,
+          "size": 95144,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR",
+          "purpose": "678 mapのtrainer/item/dialogue/field/wild owner根本修復",
+          "content_sha256": "fb6a1e05bd07f3a560d79ad648cfbc05098da8a60955f5ed91f4fc4347490116",
+          "sequence": 59,
+          "gba_start": 155117120,
+          "gba_end_exclusive": 155212264
+        },
+        {
+          "name": "collection_supply_v1_stage56_payload",
+          "region": "integration_modules",
+          "start": 20994544,
+          "end_exclusive": 21053344,
+          "size": 58800,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION",
+          "purpose": "388 form・34 G-Max・999 Item・14 Raid hostのStage56 production runtime",
+          "content_sha256": "3322be52ab63ab96aa0cb4640519ec1fed3db0801c7cf1e60e9753242ee0c43c",
+          "sequence": 60,
+          "gba_start": 155212272,
+          "gba_end_exclusive": 155271072
+        },
+        {
+          "name": "comprehensive_debug_repair_stage57_payload",
+          "region": "integration_modules",
+          "start": 21053344,
+          "end_exclusive": 21054064,
+          "size": 720,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR",
+          "purpose": "NPC/menu/wild identity横断修復とBG安全script",
+          "content_sha256": "e82e3fb6781acef0b0c867924125f40783335150b192f769deed447f6b6b547d",
+          "sequence": 61,
+          "gba_start": 155271072,
+          "gba_end_exclusive": 155271792
+        },
+        {
+          "name": "qol_world_convenience_stage58_payload",
+          "region": "integration_modules",
+          "start": 21054064,
+          "end_exclusive": 21067312,
+          "size": 13248,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG",
+          "purpose": "Codex拠点PC・全回復・money mart、Kanto野生方式/確率、薄い場所イベント",
+          "content_sha256": "12fdf78b4c9831ac84560b6e5af0645db923c41906ea1ddeb2cb523f9c42e4d4",
+          "sequence": 62,
+          "gba_start": 155271792,
+          "gba_end_exclusive": 155285040
+        },
+        {
+          "name": "root_cause_repair_stage59_payload",
+          "region": "integration_modules",
+          "start": 21067312,
+          "end_exclusive": 21067348,
+          "size": 36,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260829-STAGE58-ROOT-CAUSE-REPAIR",
+          "purpose": "kind9 trainerbattleの既存敗北継続flagsをstock callback用RAMへ橋渡し",
+          "content_sha256": "b06f000e393091bd4a0b69ddf7a03844b12ddcfe06004b28eab00e002c5f9777",
+          "sequence": 63,
+          "gba_start": 155285040,
+          "gba_end_exclusive": 155285076
+        },
+        {
+          "name": "wild_species_root_repair_stage60_payload",
+          "region": "integration_modules",
+          "start": 21067360,
+          "end_exclusive": 21067952,
+          "size": 592,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260829-STAGE59-WILD-SPECIES-ROOT-REPAIR",
+          "purpose": "global BuildTrainerParty ChangeKit ownership gate",
+          "content_sha256": "6ad66a1b3be584c5a7b83b865a3e1e2577e68de26ee2624443a02dd941867168",
+          "sequence": 64,
+          "gba_start": 155285088,
+          "gba_end_exclusive": 155285680
+        },
+        {
+          "name": "display_npc_event_audit_stage61_payload",
+          "region": "integration_modules",
+          "start": 21067952,
+          "end_exclusive": 21281408,
+          "size": 213456,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT",
+          "purpose": "表示名名前空間、全SOURCE_DIRECT event、最終NPC配置、カビゴン固定遭遇の統合修復",
+          "content_sha256": "6b2702fa54cf93848e021a2478c310ecb7ac0893fd19663875ef7d4b8cc91856",
+          "sequence": 65,
+          "gba_start": 155285680,
+          "gba_end_exclusive": 155499136
+        },
+        {
+          "name": "stage61_runtime_hotfix_payload",
+          "region": "integration_modules",
+          "start": 21281408,
+          "end_exclusive": 21307984,
+          "size": 26576,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260903-STAGE61-RUNTIME-HOTFIX",
+          "purpose": "TM120+HM8・教え技64の実行時tableと互換bitset",
+          "content_sha256": "ef6d1b9ea5d5954fbf02d88dcff622f481ae3fc1c4aacf80400c8087b3e0535a",
+          "sequence": 66,
+          "gba_start": 155499136,
+          "gba_end_exclusive": 155525712
+        },
+        {
+          "name": "modernization_p03_stage65_caterpie_level_up",
+          "region": "future_tail",
+          "start": 33399356,
+          "end_exclusive": 33399368,
+          "size": 12,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+          "purpose": "P03 representative Caterpie replacement level-up rows",
+          "content_sha256": "bfc502059916a7b645801191ef9625396942167b1566536c63bf8abe95fc00bb",
+          "sequence": 67,
+          "gba_start": 167617084,
+          "gba_end_exclusive": 167617096
+        },
+        {
+          "name": "modernization_p03_stage66_bulk_level_up",
+          "region": "future_tail",
+          "start": 33399368,
+          "end_exclusive": 33459484,
+          "size": 60116,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
+          "purpose": "P03 corrected targetsのruntime-ready level-up replacement rows",
+          "content_sha256": "0bde103cdbc375ec7842a72b79ba9cd85a9ea54e2d489848f5e098696281a09b",
+          "sequence": 68,
+          "gba_start": 167617096,
+          "gba_end_exclusive": 167677212
+        },
+        {
+          "name": "modernization_p03_stage67_evolution_level_rows",
+          "region": "future_tail",
+          "start": 33459484,
+          "end_exclusive": 33476803,
+          "size": 17319,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+          "purpose": "進化時level0 rowsとStage66通常level rowsの結合表",
+          "content_sha256": "bc2546ffb6cc68c0e678da572a24df1ac0be7793a60d92d6673719c4e41e11ee",
+          "sequence": 69,
+          "gba_start": 167677212,
+          "gba_end_exclusive": 167694531
+        },
+        {
+          "name": "modernization_p03_stage67_normal_egg_rows",
+          "region": "future_tail",
+          "start": 33476804,
+          "end_exclusive": 33491922,
+          "size": 15118,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+          "purpose": "安全450 targetの通常egg replacementと未採用Vega record保存表",
+          "content_sha256": "d9feba3494b83578dab53ab260705fada1f6ca64a18b5b5e52e37c3abab1f3a8",
+          "sequence": 70,
+          "gba_start": 167694532,
+          "gba_end_exclusive": 167709650
+        },
+        {
+          "name": "modernization_mega_shop_stage68_payload",
+          "region": "integration_modules",
+          "start": 21307984,
+          "end_exclusive": 21375408,
+          "size": 67424,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-MEGA-STONE-BP-SHOP",
+          "purpose": "45 Mega Stone item tables/assets, BP shop runtime, and Factory NPC",
+          "content_sha256": "3ed9991c2f8f56cbd1ad1c1d304fae0e5d7c5cc2f23f887f997009ce35c01882",
+          "sequence": 71,
+          "gba_start": 155525712,
+          "gba_end_exclusive": 155593136
+        },
+        {
+          "name": "modernization_floette_gift_stage69_payload",
+          "region": "integration_modules",
+          "start": 21375408,
+          "end_exclusive": 21377380,
+          "size": 1972,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT",
+          "purpose": "Floette Eternal one-time gift runtime, scripts, and Factory NPC",
+          "content_sha256": "c11517d3a05514970cbee20e2d07501ecab3383cc08d0fbc845271299036941b",
+          "sequence": 72,
+          "gba_start": 155593136,
+          "gba_end_exclusive": 155595108
+        },
+        {
+          "name": "modernization_p04_species_runtime_stage70_payload",
+          "region": "integration_modules",
+          "start": 21377392,
+          "end_exclusive": 22227936,
+          "size": 850544,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70",
+          "purpose": "P04 Mega 49 species fixed tables/assets and Ability 312..317 UI-safe rows",
+          "content_sha256": "642fa4f37ace84c2f735a6449b9cb33b90f7401db6a0c5165973d59e508ab695",
+          "sequence": 73,
+          "gba_start": 155595120,
+          "gba_end_exclusive": 156445664
+        },
+        {
+          "name": "modernization_p05_ability_rom_runtime_stage72_payload",
+          "region": "integration_modules",
+          "start": 22227936,
+          "end_exclusive": 22235076,
+          "size": 7140,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72",
+          "purpose": "Ability 312..317 thin CFRU-JP battle adapters and final descriptions",
+          "content_sha256": "0d2e7fb9e238ba339c9494e8159bf1eed31f3525bc95a8c13854a64a747f2190",
+          "sequence": 74,
+          "gba_start": 156445664,
+          "gba_end_exclusive": 156452804
+        },
+        {
+          "name": "modernization_p03_stage73_consumer_runtime_payload",
+          "region": "integration_modules",
+          "start": 22235088,
+          "end_exclusive": 22256766,
+          "size": 21678,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+          "purpose": "conditional/shared/reminder consumer hooks and Rotom form-move transaction adapter",
+          "content_sha256": "aff0b17e3b1c243d084c3a412ccac9a74d2fa599600d6efe70b3f652f66e0f45",
+          "sequence": 75,
+          "gba_start": 156452816,
+          "gba_end_exclusive": 156474494
+        },
+        {
+          "name": "modernization_p03_stage73_exact_egg_rows",
+          "region": "future_tail",
+          "start": 33491924,
+          "end_exclusive": 33506942,
+          "size": 15018,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+          "purpose": "Stage67 egg table with seven audited alias/incense conflict species replaced exactly",
+          "content_sha256": "0aeb5095cbfe717dc360bd50433bb0475ea334254d85d0d326731383e6f19778",
+          "sequence": 76,
+          "gba_start": 167709652,
+          "gba_end_exclusive": 167724670
+        },
+        {
+          "name": "modernization_p03_stage74_supply_runtime_payload",
+          "region": "integration_modules",
+          "start": 22256768,
+          "end_exclusive": 22327340,
+          "size": 70572,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME",
+          "purpose": "family-separated direct machine/tutor archive tables, BuildLearnable-only preservation table, paged dispatcher, and bag UI scripts",
+          "content_sha256": "e4922f42818efa4fb8d7369bcab254688a021f8950a82fc64c95bdf0714463a1",
+          "sequence": 77,
+          "gba_start": 156474496,
+          "gba_end_exclusive": 156545068
+        },
+        {
+          "name": "modernization_rockruff_own_tempo_stage75_payload",
+          "region": "integration_modules",
+          "start": 22327344,
+          "end_exclusive": 22892624,
+          "size": 565280,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75",
+          "purpose": "Own Tempo Rockruff internal form species tables, evolution, breeding, acquisition, and P03 owner runtime",
+          "content_sha256": "cc40c531609c1443502f722d239e14f20c3fd9ae26cba0db1acf505553f7009e",
+          "sequence": 78,
+          "gba_start": 156545072,
+          "gba_end_exclusive": 157110352
+        },
+        {
+          "name": "modernization_p05_stage76_edges_payload",
+          "region": "integration_modules",
+          "start": 22892624,
+          "end_exclusive": 22894690,
+          "size": 2066,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P05-STAGE76-EDGES",
+          "purpose": "Mega Sol production Solar Beam popup plus Piercing Drill and Spicy Spray AI edge adapters",
+          "content_sha256": "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e",
+          "sequence": 79,
+          "gba_start": 157110352,
+          "gba_end_exclusive": 157112418
+        },
+        {
+          "name": "modernization_p05_stage77_circus_suppression_payload",
+          "region": "integration_modules",
+          "start": 22894704,
+          "end_exclusive": 22895924,
+          "size": 1220,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION",
+          "purpose": "Battle Circus global ability-suppression dispatch for all 29 Stage72 ability hooks",
+          "content_sha256": "933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672",
+          "sequence": 80,
+          "gba_start": 157112432,
+          "gba_end_exclusive": 157113652
+        },
+        {
+          "name": "modernization_p05_stage78_eelevate_switch_ai_payload",
+          "region": "integration_modules",
+          "start": 22895936,
+          "end_exclusive": 22896624,
+          "size": 688,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI",
+          "purpose": "Eelevate-aware FindMonThatAbsorbsOpponentsMove adapters and stable runtime probe",
+          "content_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+          "sequence": 81,
+          "gba_start": 157113664,
+          "gba_end_exclusive": 157114352
+        },
+        {
+          "name": "modernization-p07-preserved-level",
+          "region": "integration_modules",
+          "start": 22896624,
+          "end_exclusive": 22912761,
+          "size": 16137,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "P07",
+          "purpose": "exact adopted V4 preservation level",
+          "content_sha256": "a53aa7ced55de4a1333245678ee3060b230cea898b8246483960659bac19dd12",
+          "sequence": 82,
+          "gba_start": 157114352,
+          "gba_end_exclusive": 157130489
+        },
+        {
+          "name": "modernization-p07-preserved-egg",
+          "region": "integration_modules",
+          "start": 22912764,
+          "end_exclusive": 22928160,
+          "size": 15396,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "P07",
+          "purpose": "exact adopted V4 preservation egg",
+          "content_sha256": "348d7903446a01b8e7bdf25e78458c382aac8d5d85da08b9713503a2b6f6fe7b",
+          "sequence": 83,
+          "gba_start": 157130492,
+          "gba_end_exclusive": 157145888
+        },
+        {
+          "name": "modernization-p07-preserved-runtime",
+          "region": "integration_modules",
+          "start": 22928160,
+          "end_exclusive": 22928558,
+          "size": 398,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "P07",
+          "purpose": "exact adopted V4 preservation runtime",
+          "content_sha256": "bc96478be1386d04e04feb42c2be778863f41bcb293c568542ed2a2676ba6c57",
+          "sequence": 84,
+          "gba_start": 157145888,
+          "gba_end_exclusive": 157146286
+        },
+        {
+          "name": "modernization-p03-native-evolution-dispatch",
+          "region": "integration_modules",
+          "start": 22928560,
+          "end_exclusive": 22928600,
+          "size": 40,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "P03",
+          "purpose": "two real evolution callers use accepted level-0 learning",
+          "content_sha256": "17e7b93648efc04e1f0cd538a11612061681d78264e1d749322a1bfaf53a2ccb",
+          "sequence": 85,
+          "gba_start": 157146288,
+          "gba_end_exclusive": 157146328
+        },
+        {
+          "name": "pr16-shop-display-safe-content",
+          "region": "integration_modules",
+          "start": 22928600,
+          "end_exclusive": 22933116,
+          "size": 4516,
+          "alignment": 4,
+          "placement": "FIRST_FIT",
+          "owner": "P05",
+          "purpose": "safe field-shop renderer: bounded tiles 1..336 and top border 1",
+          "content_sha256": "4b9e8a45a541218d51346c9bd5e0e454e8bc4779750dbb61d3c51795f8b61876",
+          "sequence": 86,
+          "gba_start": 157146328,
+          "gba_end_exclusive": 157150844
+        },
+        {
+          "name": "pr16_factory_loss_return",
+          "region": "future_tail",
+          "start": 33506944,
+          "end_exclusive": 33507124,
+          "size": 180,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260913-BP-LOSS-RETURN",
+          "purpose": "Bounded Trial loss script continuation; ordinary WhiteOut preserved",
+          "content_sha256": "1c989258f2d1f8ce1e487bf3be817065f0eb106b1a48aff90a842c5dcf72fb30",
+          "sequence": 87,
+          "gba_start": 167724672,
+          "gba_end_exclusive": 167724852
+        },
+        {
+          "name": "pr16_factory_party_retention_trampoline",
+          "region": "integration_modules",
+          "start": 19726120,
+          "end_exclusive": 19726128,
+          "size": 8,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260914-BP-PARTY-RETENTION",
+          "purpose": "Near Thumb tail jump for the verified player predicate callsite",
+          "content_sha256": "9044e7978b40e75834cbb31fd0293a238e4563a187d9df49f9fdae92ca1cf6bf",
+          "sequence": 88,
+          "gba_start": 153943848,
+          "gba_end_exclusive": 153943856
+        },
+        {
+          "name": "pr16_factory_party_retention_runtime",
+          "region": "future_tail",
+          "start": 33507124,
+          "end_exclusive": 33507312,
+          "size": 188,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260914-BP-PARTY-RETENTION",
+          "purpose": "Read-only exchange-party retention predicate wrapper",
+          "content_sha256": "54292e541bf58e0572825f6b18aa86aa1e2cf3e38c7c213167238f1a2bf0eda5",
+          "sequence": 89,
+          "gba_start": 167724852,
+          "gba_end_exclusive": 167725040
+        },
+        {
+          "name": "pr16_ring_npc_runtime",
+          "region": "future_tail",
+          "start": 33507312,
+          "end_exclusive": 33507864,
+          "size": 552,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260918-RING-NPC",
+          "purpose": "Safe Ring NPC; regular Bag grant; no policy or save-layout write",
+          "content_sha256": "8d9af0fe66a9b00b7240b687b85c9c03aec8335deafdc8945f783f201897d06b",
+          "sequence": 90,
+          "gba_start": 167725040,
+          "gba_end_exclusive": 167725592
+        },
+        {
+          "name": "pr16_ring_ordinary_policy_runtime",
+          "region": "future_tail",
+          "start": 33507864,
+          "end_exclusive": 33508036,
+          "size": 172,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260918-RING-POLICY",
+          "purpose": "Ring ordinary begin bridge; no NPC/save/UI replacement",
+          "content_sha256": "a3a0f2ce19462c697e1d0fb7b01e93db7dd51f5a715a671624d3ab32d9c9907e",
+          "sequence": 91,
+          "gba_start": 167725592,
+          "gba_end_exclusive": 167725764
+        },
+        {
+          "name": "pr16_circus_reception_runtime",
+          "region": "future_tail",
+          "start": 33508048,
+          "end_exclusive": 33509062,
+          "size": 1014,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260918-CIRCUS-ENTRY",
+          "purpose": "Circus optional real reception and exact pending/draw sequence",
+          "content_sha256": "840c891514fc1073b089e355932c4f8af538643673e472ab5d54cccae6d4cff4",
+          "sequence": 92,
+          "gba_start": 167725776,
+          "gba_end_exclusive": 167726790
+        },
+        {
+          "name": "pr16_circus_party_retention_runtime",
+          "region": "future_tail",
+          "start": 33509064,
+          "end_exclusive": 33509344,
+          "size": 280,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260919-CIRCUS-RETENTION",
+          "purpose": "Circus-only read-only party predicate; previous Factory predicate retained",
+          "content_sha256": "13875fb82cbae6d7ae79fd07918567041ce481f66ffee68ff3572a55217fb70d",
+          "sequence": 93,
+          "gba_start": 167726792,
+          "gba_end_exclusive": 167727072
+        },
+        {
+          "name": "pr16_circus_streak_runtime",
+          "region": "future_tail",
+          "start": 33509344,
+          "end_exclusive": 33515984,
+          "size": 6640,
+          "alignment": 16,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260919-CIRCUS-STREAK",
+          "purpose": "Circus-owned streak/save and isolated reception runtime",
+          "content_sha256": "a501c3c18af7a1d0f35e05db7dd93086f42dea5376e6aa1a8b8d29f0965b9afa",
+          "sequence": 94,
+          "gba_start": 167727072,
+          "gba_end_exclusive": 167733712
+        },
+        {
+          "name": "pr16_circus_streak_get_veneer",
+          "region": "integration_modules",
+          "start": 19729096,
+          "end_exclusive": 19729104,
+          "size": 8,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260919-CIRCUS-STREAK",
+          "purpose": "sp072 read-only Circus streak getter long-call veneer",
+          "content_sha256": "c8ff9377bc6536e8bbf7d284621758fb74934f1a592ce2e4de1b0e6f999658ef",
+          "sequence": 95,
+          "gba_start": 153946824,
+          "gba_end_exclusive": 153946832
+        },
+        {
+          "name": "pr16_circus_cold_load_bridge",
+          "region": "future_tail",
+          "start": 33515984,
+          "end_exclusive": 33516348,
+          "size": 364,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260919-CIRCUS-COLD-LOAD",
+          "purpose": "CRC-valid Circus64 prime before legacy automatic recovery Saves",
+          "content_sha256": "4c1953e00dd046396c401c33ada42f1f988e84d74a748018a5d298fcbe54b5f6",
+          "sequence": 96,
+          "gba_start": 167733712,
+          "gba_end_exclusive": 167734076
+        },
+        {
+          "name": "pr16_circus_drought_empty_loader",
+          "region": "future_tail",
+          "start": 33516348,
+          "end_exclusive": 33517616,
+          "size": 1268,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260920-CIRCUS-SELECTION-RUN35451609631",
+          "purpose": "Circus WIN only native empty Drought loader termination",
+          "content_sha256": "2823449e80d55dd74643741f7982e8fc27a9a32ec941ed009f05e1cc047db840",
+          "sequence": 97,
+          "gba_start": 167734076,
+          "gba_end_exclusive": 167735344
+        },
+        {
+          "name": "pr16_circus_rental_drought",
+          "region": "future_tail",
+          "start": 33517616,
+          "end_exclusive": 33519388,
+          "size": 1772,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260920-CIRCUS-RENTAL-DROUGHT-RUN35456028016",
+          "purpose": "Circus READY six-rental field return empty Drought loader termination",
+          "content_sha256": "7a0d04377d80920052e1f036dc8952dd6d891f29c00058aa4e6506898f793693",
+          "sequence": 98,
+          "gba_start": 167735344,
+          "gba_end_exclusive": 167737116
+        },
+        {
+          "name": "pr16_circus_getter_preserve_r3",
+          "region": "integration_modules",
+          "start": 19776036,
+          "end_exclusive": 19776048,
+          "size": 12,
+          "alignment": 4,
+          "placement": "EXPLICIT",
+          "owner": "USER-20260920-CIRCUS-GETTER-REACH",
+          "purpose": "Circus getter five-argument preserving ARM interworking tail",
+          "content_sha256": "8bde5f74b38d833cec080ef107d265755969066ff494743b21dfa8fea059711b",
+          "sequence": 99,
+          "gba_start": 153993764,
+          "gba_end_exclusive": 153993776
+        }
+      ],
+      "summaries": {
+        "rom_size": 33554432,
+        "gba_rom_base": 134217728,
+        "region_count": 5,
+        "allocatable_region_count": 2,
+        "reserved_region_count": 3,
+        "region_bytes": 33554432,
+        "allocatable_bytes": 4915200,
+        "reserved_bytes": 28639232,
+        "allocation_count": 100,
+        "allocated_bytes": 4744396,
+        "remaining_allocatable_bytes": 170804,
+        "overlap_count": 0,
+        "region_usage": [
+          {
+            "region": "vega_base",
+            "kind": "reserved",
+            "size": 16777216,
+            "allocated_bytes": 0,
+            "remaining_bytes": 0,
+            "allocation_count": 0
+          },
+          {
+            "region": "cfru_payload",
+            "kind": "reserved",
+            "size": 2097152,
+            "allocated_bytes": 0,
+            "remaining_bytes": 0,
+            "allocation_count": 0
+          },
+          {
+            "region": "integration_modules",
+            "kind": "allocatable",
+            "size": 4194304,
+            "allocated_bytes": 4058577,
+            "remaining_bytes": 135727,
+            "allocation_count": 61
+          },
+          {
+            "region": "dpe_payload",
+            "kind": "reserved",
+            "size": 9764864,
+            "allocated_bytes": 0,
+            "remaining_bytes": 0,
+            "allocation_count": 0
+          },
+          {
+            "region": "future_tail",
+            "kind": "allocatable",
+            "size": 720896,
+            "allocated_bytes": 685819,
+            "remaining_bytes": 35077,
+            "allocation_count": 39
+          }
+        ]
+      }
+    },
+    "changed_prior_allocations": [
+      "pr16_circus_streak_get_veneer",
+      "pr16_circus_streak_runtime"
+    ],
+    "whole_rom_rollback_matches_parent": true,
+    "save_layout_changed": false,
+    "old_getter_runtime_unchanged": false,
+    "old_veneer_unchanged": false,
+    "getter_callsite_unchanged": true,
+    "interworking_entry": "7847c046d42d00ea",
+    "arm_compiles": 0,
+    "arm_links": 0,
+    "accepted_30_relabelled": false,
+    "getter_instructions_unchanged": true,
+    "typed_field_repair": {
+      "original_failure_run": 35500143124,
+      "field_patches": [
+        {
+          "offset": 33511832,
+          "before": "3a400000",
+          "after": "00000000",
+          "load_pc": 167729388,
+          "field": "NUMBER",
+          "old_var_id": 16442,
+          "field_index": 0
+        },
+        {
+          "offset": 33511840,
+          "before": "17500000",
+          "after": "03000000",
+          "load_pc": 167729420,
+          "field": "BATTLE_TYPE",
+          "old_var_id": 20503,
+          "field_index": 3
+        },
+        {
+          "offset": 33511848,
+          "before": "18500000",
+          "after": "04000000",
+          "load_pc": 167729466,
+          "field": "TIER",
+          "old_var_id": 20504,
+          "field_index": 4
+        },
+        {
+          "offset": 33511852,
+          "before": "15500000",
+          "after": "01000000",
+          "load_pc": 167729486,
+          "field": "PARTY_SIZE",
+          "old_var_id": 20501,
+          "field_index": 1
+        },
+        {
+          "offset": 33511856,
+          "before": "16500000",
+          "after": "02000000",
+          "load_pc": 167729506,
+          "field": "LEVEL",
+          "old_var_id": 20502,
+          "field_index": 2
+        }
+      ],
+      "getter_before": {
+        "size": 224,
+        "sha256": "0aab129521508a720df08e250fe0aeb6f7b152b6e8c30ca5028ebc79cc36db12"
+      },
+      "getter_after": {
+        "size": 224,
+        "sha256": "03211eba529266836b04e78bc6e0a07622dbe2f0d7982a1c9ca55b55aa4b2831"
+      },
+      "state_api": {
+        "size": 256,
+        "sha256": "eb7c59dad8b1ddbfb5de12e5990cd8fa635d11e596324c707531ddee590579bf"
+      },
+      "instruction_bytes_changed": 0,
+      "save_owner_changed": false,
+      "legacy_fallback_unchanged": true,
+      "source_mapping": "scripts/build_battle_core.py: enum VegaFacilityStateField"
+    }
+  },
+  "generated": {
+    "p03b_archive_embedded.c": {
+      "size": 20163,
+      "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+    },
+    "p03a_fullslots_embedded.c": {
+      "size": 12877,
+      "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+    },
+    "p03_learning_embedded.c": {
+      "size": 7996,
+      "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+    },
+    "p03_p02_embedded.c": {
+      "size": 39678,
+      "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+    },
+    "pr16_shop_breeding_helpers.c": {
+      "size": 19626,
+      "sha256": "1a97210389443f72586fdb1fa6c6523b296f56ee116065e71040a14f465a14c0"
+    },
+    "pr16_capture_shop_helpers.c": {
+      "size": 10007,
+      "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+    },
+    "pr16_gear_capture_helpers.c": {
+      "size": 9640,
+      "sha256": "4c057989f1638e14d6814c269291f952ad2cb8e96be5a36274ff8707fc63bee8"
+    },
+    "pr16_bp_native_helpers.c": {
+      "size": 16314,
+      "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+    },
+    "pr16_bp_control_embedded.c": {
+      "size": 11463,
+      "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+    },
+    "pr16_circus_selection_helpers.c": {
+      "size": 10511,
+      "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+    },
+    "pr16_circus_turn_helpers.c": {
+      "size": 3939,
+      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+    },
+    "pr16_gear_route.h": {
+      "size": 518,
+      "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+    },
+    "pr16_circus_addresses.h": {
+      "size": 87,
+      "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+    },
+    "pr16_streak_legacy.c": {
+      "size": 11746,
+      "sha256": "de1618b95f09d8ce02c2a1ce8b833fa893f35c4da08b64dd69f9927cfe0c89c2"
+    },
+    "pr16_streak_policy.c": {
+      "size": 64843,
+      "sha256": "f08a41accc2a789a4eaccbc947865b90aa625489a761b6316a74fa28057954ab"
+    },
+    "controller.c": {
+      "size": 13022,
+      "sha256": "86121ea4bf945584900f2ee3a62b617e523032ef5d6e45ca3a17c89d90a4184f"
+    },
+    "getter_suppression.h": {
+      "size": 10265,
+      "sha256": "c6918db369792a3de2846a7a5407faaa1157b328ddf6946fca08ede94c7f922e"
+    },
+    "cg_addresses.h": {
+      "size": 60,
+      "sha256": "21868ddb440be1b5cf8b04e44599e5428873746f324d48d3b220b1009e914c9d"
+    },
+    "ss_routes.h": {
+      "size": 2248,
+      "sha256": "537c00aaa9986c2de7a4328f03c737cf03c196cf43a1176a749bb4e05b21494b"
+    }
+  },
+  "host_compiles": 1,
+  "executable": {
+    "size": 227504,
+    "sha256": "fee440b243da3995a41ab36fdf6de3b4d58d5835fea2a0c40d82baad49a9a101"
+  },
+  "guard_evidence_reused": [
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-bus8.process.json",
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-bus16.process.json",
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-bus32.process.json",
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-raw8.process.json",
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-raw16.process.json",
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-raw32.process.json",
+    "evidence/pr16_circus_rental_drought/35457636604/native/guard-register.process.json"
+  ],
+  "process": {
+    "schema_version": 1,
+    "returncode": 1,
+    "timed_out": false,
+    "spawn_error": null
+  },
+  "draws": [
+    {
+      "attempt": 0,
+      "delay": 0,
+      "frame": 6136,
+      "current": 30,
+      "best": 30,
+      "bp": 90,
+      "counter": 3,
+      "flags": 8388672,
+      "types": 100663564,
+      "newbs": 33650228,
+      "target": false
+    },
+    {
+      "attempt": 1,
+      "delay": 17,
+      "frame": 12651,
+      "current": 30,
+      "best": 30,
+      "bp": 90,
+      "counter": 3,
+      "flags": 75497472,
+      "types": 100663564,
+      "newbs": 33650228,
+      "target": false
+    },
+    {
+      "attempt": 2,
+      "delay": 34,
+      "frame": 19185,
+      "current": 30,
+      "best": 30,
+      "bp": 90,
+      "counter": 3,
+      "flags": 37748736,
+      "types": 100663564,
+      "newbs": 33650228,
+      "target": false
+    },
+    {
+      "attempt": 3,
+      "delay": 51,
+      "frame": 25701,
+      "current": 30,
+      "best": 30,
+      "bp": 90,
+      "counter": 3,
+      "flags": 2147484160,
+      "types": 100663564,
+      "newbs": 33650228,
+      "target": true
+    }
+  ],
+  "natural_calls": [
+    {
+      "kind": "dispatch",
+      "name": "CheckGrounding",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "root": 151865112,
+      "delegate": 156451572,
+      "expected_suppressed": 156451572,
+      "preserve_r3": false,
+      "r3_before": 33808316,
+      "r3_after": 156451573,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151865112,
+        151865114,
+        157112908,
+        157112910,
+        157112912,
+        157112914,
+        157112916,
+        157112918,
+        157112920,
+        157112922,
+        157112924,
+        157112926,
+        156451572
+      ]
+    },
+    {
+      "kind": "dispatch",
+      "name": "CheckGrounding",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "root": 151865112,
+      "delegate": 156451572,
+      "expected_suppressed": 156451572,
+      "preserve_r3": false,
+      "r3_before": 65,
+      "r3_after": 156451573,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151865112,
+        151865114,
+        157112908,
+        157112910,
+        157112912,
+        157112914,
+        157112916,
+        157112918,
+        157112920,
+        157112922,
+        157112924,
+        157112926,
+        156451572
+      ]
+    },
+    {
+      "kind": "dispatch",
+      "name": "AI_SpecialTypeCalc",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "root": 151937656,
+      "delegate": 156451652,
+      "expected_suppressed": 156451652,
+      "preserve_r3": false,
+      "r3_before": 1,
+      "r3_after": 156451653,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151937656,
+        151937658,
+        157113396,
+        157113398,
+        157113400,
+        157113402,
+        157113404,
+        157113406,
+        157113408,
+        157113410,
+        157113412,
+        157113414,
+        156451652
+      ]
+    },
+    {
+      "kind": "predicate",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "bank": 1,
+      "raw_ability": 65,
+      "result": 1,
+      "return_pc": 152128898,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151878576,
+        151878578,
+        151878580,
+        151878582,
+        151878584,
+        151878586,
+        151878588,
+        151878590,
+        151878592,
+        151878594,
+        151878596,
+        151878598,
+        151878600,
+        151878602,
+        151878604,
+        152128898
+      ]
+    },
+    {
+      "kind": "predicate",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "bank": 1,
+      "raw_ability": 65,
+      "result": 1,
+      "return_pc": 152128898,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151878576,
+        151878578,
+        151878580,
+        151878582,
+        151878584,
+        151878586,
+        151878588,
+        151878590,
+        151878592,
+        151878594,
+        151878596,
+        151878598,
+        151878600,
+        151878602,
+        151878604,
+        152128898
+      ]
+    },
+    {
+      "kind": "predicate",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "bank": 0,
+      "raw_ability": 46,
+      "result": 1,
+      "return_pc": 152128898,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151878576,
+        151878578,
+        151878580,
+        151878582,
+        151878584,
+        151878586,
+        151878588,
+        151878590,
+        151878592,
+        151878594,
+        151878596,
+        151878598,
+        151878600,
+        151878602,
+        151878604,
+        152128898
+      ]
+    },
+    {
+      "kind": "predicate",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "bank": 0,
+      "raw_ability": 46,
+      "result": 1,
+      "return_pc": 152128898,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151878576,
+        151878578,
+        151878580,
+        151878582,
+        151878584,
+        151878586,
+        151878588,
+        151878590,
+        151878592,
+        151878594,
+        151878596,
+        151878598,
+        151878600,
+        151878602,
+        151878604,
+        152128898
+      ]
+    },
+    {
+      "kind": "dispatch",
+      "name": "GetMoveTypeSpecialPreAbility",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "root": 151935440,
+      "delegate": 156451420,
+      "expected_suppressed": 156451420,
+      "preserve_r3": false,
+      "r3_before": 20,
+      "r3_after": 156451421,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151935440,
+        151935442,
+        157113268,
+        157113270,
+        157113272,
+        157113274,
+        157113276,
+        157113278,
+        157113280,
+        157113282,
+        157113284,
+        157113286,
+        156451420
+      ]
+    },
+    {
+      "kind": "dispatch",
+      "name": "GetMoveTypeSpecialPostAbility",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "root": 151933876,
+      "delegate": 156451392,
+      "expected_suppressed": 156451392,
+      "preserve_r3": false,
+      "r3_before": 4294967295,
+      "r3_after": 156451393,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151933876,
+        151933878,
+        157113148,
+        157113150,
+        157113152,
+        157113154,
+        157113156,
+        157113158,
+        157113160,
+        157113162,
+        157113164,
+        157113166,
+        156451392
+      ]
+    },
+    {
+      "kind": "dispatch",
+      "name": "CheckGrounding",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "root": 151865112,
+      "delegate": 156451572,
+      "expected_suppressed": 156451572,
+      "preserve_r3": false,
+      "r3_before": 0,
+      "r3_after": 156451573,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151865112,
+        151865114,
+        157112908,
+        157112910,
+        157112912,
+        157112914,
+        157112916,
+        157112918,
+        157112920,
+        157112922,
+        157112924,
+        157112926,
+        156451572
+      ]
+    },
+    {
+      "kind": "predicate",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "bank": 1,
+      "raw_ability": 65,
+      "result": 1,
+      "return_pc": 152128898,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151878576,
+        151878578,
+        151878580,
+        151878582,
+        151878584,
+        151878586,
+        151878588,
+        151878590,
+        151878592,
+        151878594,
+        151878596,
+        151878598,
+        151878600,
+        151878602,
+        151878604,
+        152128898
+      ]
+    },
+    {
+      "kind": "predicate",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "bank": 1,
+      "raw_ability": 65,
+      "result": 1,
+      "return_pc": 152128898,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151878576,
+        151878578,
+        151878580,
+        151878582,
+        151878584,
+        151878586,
+        151878588,
+        151878590,
+        151878592,
+        151878594,
+        151878596,
+        151878598,
+        151878600,
+        151878602,
+        151878604,
+        152128898
+      ]
+    },
+    {
+      "kind": "predicate",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "bank": 0,
+      "raw_ability": 46,
+      "result": 1,
+      "return_pc": 152128898,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151878576,
+        151878578,
+        151878580,
+        151878582,
+        151878584,
+        151878586,
+        151878588,
+        151878590,
+        151878592,
+        151878594,
+        151878596,
+        151878598,
+        151878600,
+        151878602,
+        151878604,
+        152128898
+      ]
+    },
+    {
+      "kind": "predicate",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "bank": 0,
+      "raw_ability": 46,
+      "result": 1,
+      "return_pc": 152128898,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151878576,
+        151878578,
+        151878580,
+        151878582,
+        151878584,
+        151878586,
+        151878588,
+        151878590,
+        151878592,
+        151878594,
+        151878596,
+        151878598,
+        151878600,
+        151878602,
+        151878604,
+        152128898
+      ]
+    },
+    {
+      "kind": "dispatch",
+      "name": "GetMoveTypeSpecialPreAbility",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "root": 151935440,
+      "delegate": 156451420,
+      "expected_suppressed": 156451420,
+      "preserve_r3": false,
+      "r3_before": 33700764,
+      "r3_after": 156451421,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151935440,
+        151935442,
+        157113268,
+        157113270,
+        157113272,
+        157113274,
+        157113276,
+        157113278,
+        157113280,
+        157113282,
+        157113284,
+        157113286,
+        156451420
+      ]
+    },
+    {
+      "kind": "dispatch",
+      "name": "GetMoveTypeSpecialPostAbility",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "root": 151933876,
+      "delegate": 156451392,
+      "expected_suppressed": 156451392,
+      "preserve_r3": false,
+      "r3_before": 4294967295,
+      "r3_after": 156451393,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151933876,
+        151933878,
+        157113148,
+        157113150,
+        157113152,
+        157113154,
+        157113156,
+        157113158,
+        157113160,
+        157113162,
+        157113164,
+        157113166,
+        156451392
+      ]
+    },
+    {
+      "kind": "dispatch",
+      "name": "AccuracyCalc",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "root": 151766664,
+      "delegate": 156451848,
+      "expected_suppressed": 156451848,
+      "preserve_r3": false,
+      "r3_before": 151266656,
+      "r3_after": 156451849,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151766664,
+        151766666,
+        157112580,
+        157112582,
+        157112584,
+        157112586,
+        157112588,
+        157112590,
+        157112592,
+        157112594,
+        157112596,
+        157112598,
+        156451848
+      ]
+    },
+    {
+      "kind": "dispatch",
+      "name": "CheckGrounding",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "root": 151865112,
+      "delegate": 156451572,
+      "expected_suppressed": 156451572,
+      "preserve_r3": false,
+      "r3_before": 33808316,
+      "r3_after": 156451573,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151865112,
+        151865114,
+        157112908,
+        157112910,
+        157112912,
+        157112914,
+        157112916,
+        157112918,
+        157112920,
+        157112922,
+        157112924,
+        157112926,
+        156451572
+      ]
+    },
+    {
+      "kind": "dispatch",
+      "name": "CheckGrounding",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "root": 151865112,
+      "delegate": 156451572,
+      "expected_suppressed": 156451572,
+      "preserve_r3": false,
+      "r3_before": 65,
+      "r3_after": 156451573,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151865112,
+        151865114,
+        157112908,
+        157112910,
+        157112912,
+        157112914,
+        157112916,
+        157112918,
+        157112920,
+        157112922,
+        157112924,
+        157112926,
+        156451572
+      ]
+    },
+    {
+      "kind": "dispatch",
+      "name": "GetMoveTypeSpecialPreAbility",
+      "frame": 25701,
+      "flags": 2147484160,
+      "types": 100663564,
+      "root": 151935440,
+      "delegate": 156451420,
+      "expected_suppressed": 156451420,
+      "preserve_r3": false,
+      "r3_before": 33700764,
+      "r3_after": 156451421,
+      "host_writes": 0,
+      "host_calls": 0,
+      "pcs": [
+        151935440,
+        151935442,
+        157113268,
+        157113270,
+        157113272,
+        157113274,
+        157113276,
+        157113278,
+        157113280,
+        157113282,
+        157113284,
+        157113286,
+        156451420
+      ]
+    }
+  ],
+  "getter_calls": [
+    {
+      "callsite": 152056704,
+      "veneer": 153993764,
+      "target": 167729373,
+      "args": [
+        0,
+        65535,
+        65535,
+        65535
+      ],
+      "r3_at_entry": 65535,
+      "fifth_argument": 0,
+      "sp_before": 50363836,
+      "sp_after": 50363836,
+      "result": 30,
+      "owner_current": 30,
+      "phase": 2,
+      "frames": 54,
+      "steps": 5478353,
+      "host_writes": 0,
+      "host_calls": 0
+    }
+  ]
+}

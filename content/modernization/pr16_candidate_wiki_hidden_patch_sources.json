@@ -1,0 +1,65 @@
+{
+  "input_receipt": {
+    "artifact_id": 10621585199,
+    "artifact_sha256": "5ce5e7444ea2bf8015a4eca2fa79a835a14ee983889c4abf9dbac8c7186ca88d",
+    "manifest_sha256": "a81a0471381f97fa652e6ec181bbb890707a154f20ee6618d47671abda4c59d5",
+    "run_id": 35558584772,
+    "source_head": "99b19e11485193ccf81f8493b699f6dbf1c32a4f"
+  },
+  "new_native_runs": 0,
+  "schema_version": 1,
+  "scope": "LOCKED_PARTY_MENU_SOURCE_NOT_RUNTIME_ACCEPTANCE",
+  "source_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+  "source_repository": "kapibarasan000/CFRU-JP",
+  "sources": {
+    "src/party_menu.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "sha256": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+      "size": 83459,
+      "units": [
+        {
+          "end_line": 2467,
+          "sha256": "1de2bdb5cb0b7907edfc16329ed0ff3d18eed9fb1bf17ef234b19015927eaa3d",
+          "start_line": 2463,
+          "symbol": "FieldUseFunc_AbilityCapsule",
+          "text": "void FieldUseFunc_AbilityCapsule(u8 taskId)\n{\n\tgItemUseCB = ItemUseCB_AbilityCapsule;\n\tSetUpItemUseCallback(taskId);\n}\n"
+        },
+        {
+          "end_line": 2493,
+          "sha256": "7fc5915d3a58de246c5113115fa3eaf4d6edf281a229bcb43edf7b09b27ffba4",
+          "start_line": 2471,
+          "symbol": "ItemUseCB_AbilityCapsule",
+          "text": "static void ItemUseCB_AbilityCapsule(u8 taskId, TaskFunc func)\n{\n\tstruct Pokemon* mon = &gPlayerParty[gPartyMenu.slotId];\n\tu16 changeTo = GetAbilityCapsuleNewAbility(mon); //Pick Ability to change to\n\n\tPlaySE(SE_SELECT);\n\tif (changeTo != ABILITY_NONE) //Ability can be changed\n\t{\n\t\tGetMonNickname(mon, gStringVar1);\n\t\tCopyAbilityName(gStringVar2, changeTo);\n\t\tStringExpandPlaceholders(gStringVar4, gText_AbilityCapsuleOfferChange);\n\t\tDisplayPartyMenuMessage(gStringVar4, TRUE);\n\t\tScheduleBgCopyTilemapToVram(2);\n\t\tgTasks[taskId].func = Task_OfferAbilityChange;\n\t}\n\telse //No Effect\n\t{\n\t\tgPartyMenuUseExitCallback = FALSE;\n\t\tDisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);\n\t\tScheduleBgCopyTilemapToVram(2);\n\t\tgTasks[taskId].func = func;\n\t}\n}\n"
+        },
+        {
+          "end_line": 2535,
+          "sha256": "5c5b3dc7b4b842a8b7932e4797098013b2a0db219ebc240b05a3904fe7407b9d",
+          "start_line": 2495,
+          "symbol": "GetAbilityCapsuleNewAbility",
+          "text": "static u16 GetAbilityCapsuleNewAbility(struct Pokemon* mon)\n{\n\tu16 item = Var800E;\n\tu8 abilityType = ItemId_GetHoldEffectParam(item);\n\tu16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);\n\tu16 ability = GetMonAbility(mon);\n\tu16 ability1 = GetAbility1(species);\n\tu16 ability2 = GetAbility2(species);\n\tu16 hiddenAbility = GetHiddenAbility(species);\n\tu16 changeTo = ABILITY_NONE;\n\n\tif (abilityType != 0) //Hidden Ability Capsule\n\t{\n\t\tif (ability != hiddenAbility\n\t\t&& hiddenAbility != ABILITY_NONE\n\t\t#ifdef UNBOUND\n\t\t&& (FlagGet(FLAG_ABILITY_RANDOMIZER)\n\t\t || SpeciesToNationalPokedexNum(species) != NATIONAL_DEX_ZYGARDE) //Must be given with Power Construct\n\t\t&& (FlagGet(FLAG_SYS_GAME_CLEAR) //Can be given once the game is cleared\n\t\t || VarGet(VAR_GAME_DIFFICULTY) < OPTIONS_EXPERT_DIFFICULTY //Or if the player is not on a crazy difficulty\n\t\t || gBaseStats[species].hiddenAbility != ABILITY_IMPOSTER) //Don't allow Imposter until the post-game\n\t\t#endif\n\t\t)\n\t\t\tchangeTo = hiddenAbility; //Set the Hidden Ability\n\t}\n\telse //Regular ability capsule\n\t{\n\t\tif (ability == ability1)\n\t\t{\n\t\t\tif (ability != ability2 && ability2 != ABILITY_NONE)\n\t\t\t\tchangeTo = ability2;\n\t\t}\n\t\telse if (ability == ability2) //Explicit check just in case the Pokemon has its Hidden Ability\n\t\t{\n\t\t\tif (ability1 != ABILITY_NONE)\n\t\t\t\tchangeTo = ability1;\n\t\t}\n\t}\n\t\n\treturn changeTo;\n}\n"
+        },
+        {
+          "end_line": 2544,
+          "sha256": "e074b4cb30aaa73a54981503b94a912de7699f5d8b9e233e1f2bf308969d8661",
+          "start_line": 2537,
+          "symbol": "Task_OfferAbilityChange",
+          "text": "static void Task_OfferAbilityChange(u8 taskId)\n{\n    if (IsPartyMenuTextPrinterActive() != TRUE)\n    {\n        PartyMenuDisplayYesNoMenu();\n        gTasks[taskId].func = Task_HandleAbilityChangeYesNoInput;\n    }\n}\n"
+        },
+        {
+          "end_line": 2560,
+          "sha256": "704fc029a44aa2442562a0d53205c14c8e686bfffeb04daa904a8974f6986a61",
+          "start_line": 2546,
+          "symbol": "Task_HandleAbilityChangeYesNoInput",
+          "text": "static void Task_HandleAbilityChangeYesNoInput(u8 taskId)\n{\n    switch (Menu_ProcessInputNoWrapClearOnChoose())\n    {\n\t\tcase 0:\n\t\t\tgTasks[taskId].func = Task_ChangeAbility;\n\t\t\tbreak;\n\t\tcase MENU_B_PRESSED:\n\t\t\tPlaySE(SE_SELECT);\n\t\t\t// Fallthrough\n\t\tcase 1:\n\t\t\tgTasks[taskId].func = Task_ClosePartyMenuAfterText;\n\t\t\tbreak;\n    }\n}\n"
+        },
+        {
+          "end_line": 2588,
+          "sha256": "b20ac3a5d4ef4b15eb9e68081e566f3573dd1ad1d3fca903be5235469924752d",
+          "start_line": 2562,
+          "symbol": "Task_ChangeAbility",
+          "text": "static void Task_ChangeAbility(u8 taskId)\n{\n\tu16 item = Var800E;\n\tu8 abilityType = ItemId_GetHoldEffectParam(item);\n\tstruct Pokemon* mon = &gPlayerParty[gPartyMenu.slotId];\n\tPlaySE(SE_USE_ITEM);\n\t\n\tif (abilityType != 0) //Hidden Ability capsule\n\t{\n\t\tmon->hiddenAbility = TRUE;\n\t}\n\telse //Regular Ability capsule\n\t{\n\t\tu8 abilityNum = GetMonData(mon, MON_DATA_ALT_ABILITY, NULL) ^ 1; //Flip ability bit\n\t\tmon->hiddenAbility = FALSE;\n\t\tSetMonData(mon, MON_DATA_ALT_ABILITY, &abilityNum);\n\t\tCalculateMonStats(mon);\n\t}\n\n\tGetMonNickname(mon, gStringVar1);\n\tCopyAbilityName(gStringVar2, GetMonAbility(mon));\n\tStringExpandPlaceholders(gStringVar4, gText_AbilityCapsuleChangedAbility);\n\tDisplayPartyMenuMessage(gStringVar4, TRUE);\n\tScheduleBgCopyTilemapToVram(2);\n\tgTasks[taskId].func = Task_ClosePartyMenuAfterText;\n\tRemoveBagItem(item, 1);\n}\n"
+        }
+      ]
+    }
+  }
+}

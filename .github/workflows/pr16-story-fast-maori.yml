@@ -1,0 +1,38 @@
+name: pr16-story-fast-maori
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-fast-maori.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-story-fast-maori
+  cancel-in-progress: false
+jobs:
+  measurement:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Fixed resume integrity without native acceptance replay
+        run: python3 -B scripts/pr16_resume.py check
+      - name: New Maori176 and independent cold20 only
+        run: python3 -B scripts/pr16_story_fast_maori_measure.py
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-fast-maori-checkpoint
+          path: .local/pr16-story-fast-maori/artifact
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

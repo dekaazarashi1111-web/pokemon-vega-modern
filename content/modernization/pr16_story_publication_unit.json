@@ -1,0 +1,24 @@
+{
+  "status": "PASS_MINIMUM_PUBLIC_TEXT_SCREENSHOT_SCOPE",
+  "tests": 4,
+  "passed": 4,
+  "stdout": "",
+  "stderr": "test_hidden_file_rejected_before_public_directory (test_pr16_story_publication.PublicationTests.test_hidden_file_rejected_before_public_directory) ... ok\ntest_only_verified_text_screens (test_pr16_story_publication.PublicationTests.test_only_verified_text_screens) ... ok\ntest_rom_rejected_before_public_directory (test_pr16_story_publication.PublicationTests.test_rom_rejected_before_public_directory) ... ok\ntest_symlink_rejected_before_public_directory (test_pr16_story_publication.PublicationTests.test_symlink_rejected_before_public_directory) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.002s\n\nOK\n",
+  "source_bindings": {
+    "scripts/pr16_story_route_probe.py": {
+      "size": 10638,
+      "sha256": "a6c655d0f0886884e4c18aa62bf786530bd5a8944ad6c802dec965d402d2b384"
+    },
+    ".github/workflows/pr16-story-route-adapter.yml": {
+      "size": 1880,
+      "sha256": "a19116bded16a09ab90dff8d5fe8ba24510eafd5aa3de1b1aa994e7d45663a39"
+    },
+    "tests/test_pr16_story_publication.py": {
+      "size": 1547,
+      "sha256": "dfbd154f87b86577964a1d7e27f57c5ed481cfae5bbf52a8ac7d80c98a59fb1c"
+    }
+  },
+  "public_directory": "public-story-route-evidence",
+  "hidden_files": false,
+  "old_rejected_workflow_not_published": true
+}

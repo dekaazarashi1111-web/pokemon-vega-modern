@@ -1,0 +1,87 @@
+{
+  "artifacts": [
+    {
+      "digest": "sha256:cce8aeb863cd535bb7e9b8d2d631d5d3e22e659983d063c0e8c0738dbcaa9870",
+      "head_sha": "f1342a81d19f5c26d7f2efdfa7cec0aa05c148fc",
+      "id": 10109174670,
+      "name": "p03-fullslots-e2e",
+      "run_id": 34364100108
+    }
+  ],
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "f1342a81d19f5c26d7f2efdfa7cec0aa05c148fc",
+      "id": 102508248160,
+      "name": "fullslots-save-reload",
+      "run_id": 34364100108,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fixed toolchain",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Recipe and result-contract regression tests",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Eight fresh candidate cases and two failing parent controls",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Preserve original logs on success or failure",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "f1342a81d19f5c26d7f2efdfa7cec0aa05c148fc",
+    "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+    "run_attempt": 1,
+    "run_id": 34364100108,
+    "status": "completed",
+    "workflow_path": ".github/workflows/p03-fullslots-e2e.yml"
+  },
+  "sources": {
+    ".github/workflows/p03-fullslots-e2e.yml": {
+      "sha256": "dcaf1b657a4908914c31e831ec7f18af21a3bf8f150f5b06d537ac921ae3d606",
+      "size": 1558
+    },
+    "infra/setup_github_actions.sh": {
+      "sha256": "8b081dd37ae761325e80ed4f689b1d790f76a6acb311ba810820221828c79cc2",
+      "size": 2571
+    },
+    "infra/toolchain_manifest.json": {
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff",
+      "size": 33230
+    }
+  }
+}

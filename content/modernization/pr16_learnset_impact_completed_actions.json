@@ -1,0 +1,332 @@
+{
+  "accepted_unit_reruns": 0,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "6e88a021785bfa7cf00e26d7f2433c380602d830e94e1d2fc31e3198cda31df2",
+    "size": 33554432
+  },
+  "completed": {
+    "egg": {
+      "artifact": {
+        "digest": "sha256:69ae7e9324bd5cbe2772b296de53bf0ae1ce89ac69876b1493ccfed782ca9370",
+        "id": 10740527650,
+        "name": "pr16-learnset-egg-gameplay-proof",
+        "size_in_bytes": 28196
+      },
+      "completed": true,
+      "job_id": 107104139470,
+      "job_steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v5",
+          "number": 3,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "未受入の育て屋8ケース用host libraryのみ導入",
+          "number": 4,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "新規18境界試験と通常育て屋・孵化・保存8ケース",
+          "number": 5,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "成功と失敗の原本・固定引継ぎ・両ログを記録",
+          "number": 6,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "同branchへ非force commit/pushし最新refを照合",
+          "number": 7,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "失敗実測を成功へ読み替えずrun終端へ反映",
+          "number": 9,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@v5",
+          "number": 17,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 18,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "status": "completed"
+        }
+      ],
+      "reflected_head": "3e05281b8adc824f736a6f3c712d346e65afbc90",
+      "run_id": 35837431004,
+      "source_head": "d9227eeb0ff92e523e4d2f848909b50ec83f022f",
+      "verification": {
+        "sha256": "2c76a19e7869ec54642d19971f7c5be16830b8675d2867a5588846bdbb15790f",
+        "size": 27573
+      },
+      "workflow": ".github/workflows/pr16-learnset-egg-gameplay.yml"
+    },
+    "visual": {
+      "artifact": {
+        "digest": "sha256:af74072b3e30a6462138e09d78dbbe63e6625638a177aae94256ec0359755a3b",
+        "id": 10741160378,
+        "name": "pr16-learnset-visual-proof",
+        "size_in_bytes": 53866
+      },
+      "completed": true,
+      "job_id": 107110255482,
+      "job_steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v5",
+          "number": 3,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "撮影用host libraryのみ導入",
+          "number": 4,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "新規10境界試験と2対象の一覧・summary撮影のみ",
+          "number": 5,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "撮影原本と目視未完を区別して記録",
+          "number": 6,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "同branchへ非force commit/pushし最新refを照合",
+          "number": 7,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "失敗をrun終端へ反映",
+          "number": 9,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@v5",
+          "number": 17,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 18,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "status": "completed"
+        }
+      ],
+      "reflected_head": "9fcdc3c68682a22d6e521169c7fe7c323c638cc7",
+      "run_id": 35839299224,
+      "source_head": "29f1d8ca2b4f8468471265418a6e42430a660616",
+      "verification": {
+        "sha256": "0d31d67f415cdec1e15278b55a97e4ba3568fe0b9e36c65aeff90ba857d3f04b",
+        "size": 9337
+      },
+      "workflow": ".github/workflows/pr16-learnset-visual.yml"
+    },
+    "visual_list": {
+      "artifact": {
+        "digest": "sha256:c620b1d2f9d174c7a59d6c60a281cd77dab21d3cb59da73c6bb1e876d2caa5b1",
+        "id": 10740712679,
+        "name": "pr16-learnset-visual-list-proof",
+        "size_in_bytes": 19105
+      },
+      "completed": true,
+      "job_id": 107112414903,
+      "job_steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v5",
+          "number": 3,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "撮影用host libraryのみ導入",
+          "number": 4,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "新規8境界試験とフラエッテ一覧1枚のみ",
+          "number": 5,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "修復原本と目視未完を区別して記録",
+          "number": 6,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "同branchへ非force commit/pushし最新refを照合",
+          "number": 7,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "失敗をrun終端へ反映",
+          "number": 9,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@v5",
+          "number": 17,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 18,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "status": "completed"
+        }
+      ],
+      "reflected_head": "14daff5721ceb21e3b621bcc0c22bbeb019f18cd",
+      "run_id": 35839963209,
+      "source_head": "ec80e1a3d59911cf3a25fe29092a1f4658398ba9",
+      "verification": {
+        "sha256": "a873e4fe0810ef607f987158a5bd1ea5d71a2644ff74b99587696352b204ab5a",
+        "size": 7243
+      },
+      "workflow": ".github/workflows/pr16-learnset-visual-list.yml"
+    }
+  },
+  "issue19_complete": false,
+  "native_runs": 0,
+  "new_unit_tests": 17,
+  "next_step_ja": "Issue19: 通常Bag23・通常戦闘・条件付きタマゴ8・代表一覧/summary4枚は保存原本/完了Actionsを継承し再実行しない。次は初期技/通常level-up/進化の実操作について現在候補6e88a021への変更影響を絞り、未受入経路だけ検証。原本収集/Wiki生成/旧4hook/ARM/PLA1/PLC2は再実行しない。全owner/全孵化条件/Issue19/release/baseline切替は未完。",
+  "original_visual_images_retained": 3,
+  "release_ready": false,
+  "repaired_visual_images": 1,
+  "rom_changes": 0,
+  "run_id": 35840409058,
+  "schema_version": 1,
+  "source_head": "749bf679ca7c622f14e8260a42bcad430dac8ac8",
+  "status": "PASS_COMPLETED_ACTIONS_SCOPED_EGG_AND_VISUAL",
+  "visual_review": {
+    "images": {
+      "repair/screens/floette-replace-420-list.ppm": {
+        "identity": {
+          "sha256": "1c5b4442db35afb798e1883954e1dcfc9b88281ad3baa97b049f5192838370a5",
+          "size": 115215
+        },
+        "observation_ja": "目視確認: 修復一覧ではカーソルが「あやしいかぜ」に一致し、左欄もゴースト・PP5・威力60・命中100と対応する説明に更新されている。旧画像の「めいそう」への描画遅延は解消。フラエッテへの習得確認と一覧枠が読める。"
+      },
+      "screens/floette-replace-420-summary.ppm": {
+        "identity": {
+          "sha256": "45ed97397b18c82ce9b27bc40e67ee6427ec70876b74633a17c160036f4f5707",
+          "size": 115215
+        },
+        "observation_ja": "目視確認: フラエッテのsummaryで既存4技とPP7/35・8/40・9/40・10/25を保持。5行目にゴーストの「あやしいかぜ」PP5/5が表示される。個体表示・技名・枠が描画され、黒い遷移画面ではない。"
+      },
+      "screens/machine-page4-replace-list.ppm": {
+        "identity": {
+          "sha256": "cf5a5ea7183db2b559da8d7a40a4b60132ba83a5b2082b8d166dec80106e024b",
+          "size": 115215
+        },
+        "observation_ja": "目視確認: ミュウの一覧先頭「うっぷんばらし」にカーソル。左欄にタイプあく・PP5・威力75・命中100と技説明、下欄にミュウへの習得確認が読める。枠と文字が描画され、黒い遷移画面ではない。"
+      },
+      "screens/machine-page4-replace-summary.ppm": {
+        "identity": {
+          "sha256": "055899baa9a765bb5efff41327f6100f09751d5148d54bb01189169f91d5df78",
+          "size": 115215
+        },
+        "observation_ja": "目視確認: ミュウのsummaryで既存4技（たいあたり・いとをはく・なきごえ・ひのこ）とPP7/35・8/40・9/40・10/25を表示。5行目に追加候補「うっぷんばらし」PP5/5が表示され、選択前の画面と枠が読める。"
+      }
+    },
+    "reviewed": true
+  },
+  "wiki_generations": 0
+}

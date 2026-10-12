@@ -1,0 +1,476 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-CAVE-COORD-TELEPORT-SAVE28",
+  "status": "PASS_CAVE_COORD19_TO27_SAVE28_SCOPED",
+  "measurement_source": "1cc88ec763b69ada00bc4f5da4b5c632c5ccd9c8",
+  "run_id": 37117145212,
+  "job_id": 111186021028,
+  "artifact": {
+    "id": 11271154923,
+    "name": "pr16-story-save28-checkpoint",
+    "size_in_bytes": 127600,
+    "digest": "sha256:43f98cdb2823fce7c34fbb76f439b3ffd26a900ddf9cee8c394567129a1b95ed",
+    "workflow_run": {
+      "id": 37117145212,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "1cc88ec763b69ada00bc4f5da4b5c632c5ccd9c8"
+    },
+    "expires_at": "2027-01-01T10:39:37Z"
+  },
+  "verification": {
+    "status": "PASS_CAVE_COORD19_TO27_SAVE28_SCOPED",
+    "trainer_victories": 0,
+    "wild_victories": 0,
+    "escapes": 0,
+    "captures": 0,
+    "ordinary_saves": 1,
+    "save_counter": 28,
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      27,
+      7
+    ],
+    "facing": 1,
+    "party_count": 4,
+    "rp": 0,
+    "teleport_accepted": true,
+    "accepted_teleport": {
+      "trigger": [
+        19,
+        14
+      ],
+      "destination": [
+        27,
+        7
+      ],
+      "flag4367": 0
+    },
+    "west8_10_teleport_accepted": false,
+    "trigger_observation": 2,
+    "destination_observation": 4,
+    "unlocked_destination": 6,
+    "save_success_text_observation": 13,
+    "stable_field_observation": 14,
+    "partial_write_observations": [
+      10,
+      11,
+      12
+    ],
+    "progress_inputs": 40,
+    "continue_inputs": 13,
+    "screen_count": 17,
+    "native_processes": 2,
+    "failed_preflight_native_processes": 0,
+    "record_native_processes": 0,
+    "accepted_case_reruns": 0,
+    "accepted_test_reruns": 0,
+    "development_controller_rechecks": 16,
+    "compiles": 0,
+    "rom_changes": 0,
+    "fixture_writes": 0,
+    "hm05_taught_or_used": false,
+    "trainer352_accepted": false,
+    "trainer353_accepted": false,
+    "cave_crossing_complete": false,
+    "national_dex_unlocked": false,
+    "natural_growth_accepted": false,
+    "natural_evolution_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "boundary": {
+      "party_unchanged_bytes": 600,
+      "pp": [
+        1,
+        14,
+        0,
+        5
+      ],
+      "bag_unchanged": true,
+      "hm05_owned": true,
+      "money_before": 12712,
+      "money_after": 12712,
+      "physical_flag_deltas": [],
+      "variable_deltas": [],
+      "flag4367": 0,
+      "old_bank_preserved_bytes": 57344,
+      "pc_s61e_preserved": true,
+      "s61e_crc_verified": true,
+      "sector_checksum_checks": 42,
+      "national_dex_magic": 0,
+      "national_var404e": 0,
+      "national_flag840": 0,
+      "story_vars": {
+        "4071": 6,
+        "4072": 1
+      },
+      "badge_count": 1,
+      "all_save_rtc_cold_identical": true,
+      "changed_bytes": 6916,
+      "changed_ranges": 1743
+    },
+    "input_save": {
+      "size": 131088,
+      "sha256": "fb3c41c4178a04cee89301c74ecf2a646dc4d5633eefa8086664ca0057d7b1d4"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "a5cfc5714bcc447550d78ff45f42c74109f12d607bad1d94dbf61fe96b06f4a4"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    }
+  },
+  "record_source": "3900c985f1901d9e0a674cc6254b2b6af2923bd0",
+  "record_run_id": 37117631601,
+  "save28_accepted": true,
+  "teleport_accepted": true,
+  "visual_review": "content/modernization/pr16_story_save28_visual_review.json",
+  "source_bindings": {
+    ".github/workflows/pr16-story-save28-record.yml": {
+      "size": 2141,
+      "sha256": "a1af094a72b2948422936ce90e4d41aac781cb826ef165b725566d09c5f3f4d2"
+    },
+    ".github/workflows/pr16-story-save28.yml": {
+      "size": 1622,
+      "sha256": "efd2fd0e6b5d994c73da1f4043029b4c25df682b219a673089d3f763fe90f264"
+    },
+    "content/modernization/pr16_story_save28_visual_review.json": {
+      "size": 2800,
+      "sha256": "facf9c55de5f1c9ba57349d38a604881244f85cb10ccc9b26f2b19a6a0687659"
+    },
+    "scripts/pr16_story_save28_accept.py": {
+      "size": 8271,
+      "sha256": "4e229f1b5795e90c1c316135efef91052651366a7c1d504a69c505b0b2b7840a"
+    },
+    "scripts/pr16_story_save28_measure.py": {
+      "size": 10497,
+      "sha256": "1e9fb2d7967f9d96a4a357d6f5c45c45d8233286991bf472a30afb6e392f12dc"
+    },
+    "scripts/pr16_story_save28_record.py": {
+      "size": 14886,
+      "sha256": "33ea4f4e5c7346f13eb397c8330f0d47c39781d919c70fe6da289f13983d0c33"
+    },
+    "tests/test_pr16_story_save28_accept.py": {
+      "size": 2479,
+      "sha256": "6ee603412e38360884fed9801299817a53940d0365e033e2e4314e0558aefd71"
+    },
+    "tests/test_pr16_story_save28_branch.py": {
+      "size": 1063,
+      "sha256": "1730bcc12f348ca4e640a9c7b401c205eddb16808efa10eaff56299f194162c3"
+    },
+    "tests/test_pr16_story_save28_measure.py": {
+      "size": 1536,
+      "sha256": "51b3a6044cb64d0224c074e01e750eea6a9545a22395e96f9d457fbcb8999045"
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_save28_evidence/continue/commands.txt": {
+      "size": 25,
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3"
+    },
+    "content/modernization/pr16_story_save28_evidence/continue/execution.json": {
+      "size": 548,
+      "sha256": "e9e83d79687b8106506efddc979c8113ddfaaef87a55b6cc1d6fb91749042e3a"
+    },
+    "content/modernization/pr16_story_save28_evidence/continue/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save28_evidence/continue/stdout.txt": {
+      "size": 2101,
+      "sha256": "cae33925effc8343fb8fd12256be960f18ff1f9ba2c9d1ce043331749b887d60"
+    },
+    "content/modernization/pr16_story_save28_evidence/controller-test-receipt.json": {
+      "size": 1766,
+      "sha256": "6c75797fd609f51cace08d512bd3e2ea9ba14a90642d0b7d7793af1794ff4fff"
+    },
+    "content/modernization/pr16_story_save28_evidence/coord-operands.json": {
+      "size": 178,
+      "sha256": "2cc28ae3f7e2d5ee2c1cbae011ea91f0340b5fd286d39a3ae23a2b22898fb768"
+    },
+    "content/modernization/pr16_story_save28_evidence/coord-owner.json": {
+      "size": 247,
+      "sha256": "3c0ff3835c3e25d0af3575d4614bbe3c3fc698cf179db3f26a49b33eae26b0d2"
+    },
+    "content/modernization/pr16_story_save28_evidence/failed-preflight-terminals.json": {
+      "size": 7362,
+      "sha256": "6f4714461094f3d9e9c487115fa0a19c33674f025b0483bdfb5944e7d57323f4"
+    },
+    "content/modernization/pr16_story_save28_evidence/manifest.json": {
+      "size": 4850,
+      "sha256": "a2e7519ff5292feae177fdf1b56f98b728246709a275c07865b17475c93b9a1f"
+    },
+    "content/modernization/pr16_story_save28_evidence/measurement.json": {
+      "size": 3773,
+      "sha256": "cac00ab94dd0572a504af72c0b7c7d8108786c20219b7d7774d378f8bfe42872"
+    },
+    "content/modernization/pr16_story_save28_evidence/preflight-failure-2.json": {
+      "size": 245,
+      "sha256": "409da9a59f9714dcc04bfd812e21a24d08addc9d99985dadc8892af371d0f096"
+    },
+    "content/modernization/pr16_story_save28_evidence/preflight-failure.json": {
+      "size": 236,
+      "sha256": "6d0c77cc7350cf4e0db94e41c253f9978b08dc823bbd9c364eeac74c7c07a34e"
+    },
+    "content/modernization/pr16_story_save28_evidence/preflight-misaligned-operands.json": {
+      "size": 178,
+      "sha256": "c59ffc0c364f9848fb8b57ae88dca8f2fbfe43424dd8691c250338fc0a9fd8a0"
+    },
+    "content/modernization/pr16_story_save28_evidence/progress/commands.txt": {
+      "size": 405,
+      "sha256": "dfc06dcd2a4e3cd2c49dc938a4971f720e075409d6629369d9e4200c51249700"
+    },
+    "content/modernization/pr16_story_save28_evidence/progress/execution.json": {
+      "size": 549,
+      "sha256": "9f365730e2d833d2f45ad77945b50609dbd14a474a4c7c59a519a8459b105c5e"
+    },
+    "content/modernization/pr16_story_save28_evidence/progress/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save28_evidence/progress/stdout.txt": {
+      "size": 10533,
+      "sha256": "364df95d0b845a881bff756cf224650943698b25e42374cde218c6b27bf725f1"
+    },
+    "content/modernization/pr16_story_save28_evidence/save27-record-terminal.json": {
+      "size": 3955,
+      "sha256": "7c85cac00ca8c752c494a0c3ca0b4b9d085c3d84af6dd416fbb79645d4dde19a"
+    },
+    "content/modernization/pr16_story_save28_evidence/terminal.json": {
+      "size": 3457,
+      "sha256": "6c34091f99224d1988653b3067e3daca2ff743415bd329e18cebd0ac7c101def"
+    },
+    "content/modernization/pr16_story_save28_evidence/unit.stderr.txt": {
+      "size": 2103,
+      "sha256": "a3032fe54d2fab4947e5c81711c7efeec38536d02e29e14d8a95b72401dfbc79"
+    },
+    "content/modernization/pr16_story_save28_evidence/verification.json": {
+      "size": 2405,
+      "sha256": "be9fbba1717c7f343d41db5817203e003ab7ca1c3f5345562547ac4aa69f8a04"
+    }
+  },
+  "prior_controller_tests": 16,
+  "development_controller_rechecks": 16,
+  "failed_preflight_runs": [
+    {
+      "run": {
+        "id": 37116752441,
+        "head_sha": "02266ff46e26bca0a2a40ed784c45a9b2ca03fe6",
+        "head_branch": "codex/modernization-followup-20260908",
+        "path": ".github/workflows/pr16-story-save28.yml",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      },
+      "job": {
+        "id": 111184942745,
+        "run_id": 37116752441,
+        "workflow_name": "pr16-story-save28",
+        "head_branch": "codex/modernization-followup-20260908",
+        "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37116752441",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUPNhZs8AAAAZ4yOWmQ",
+        "head_sha": "02266ff46e26bca0a2a40ed784c45a9b2ca03fe6",
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111184942745",
+        "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37116752441/job/111184942745",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-10-03T10:32:37Z",
+        "started_at": "2026-10-03T10:32:38Z",
+        "completed_at": "2026-10-03T10:33:06Z",
+        "name": "continuation",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T10:32:39Z",
+            "completed_at": "2026-10-03T10:32:40Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T10:32:40Z",
+            "completed_at": "2026-10-03T10:32:52Z"
+          },
+          {
+            "name": "Twelve new Save28 coord-owner checks and source guard",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T10:32:52Z",
+            "completed_at": "2026-10-03T10:32:53Z"
+          },
+          {
+            "name": "New coordinate teleport Save28 and independent Continue only",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 4,
+            "started_at": "2026-10-03T10:32:53Z",
+            "completed_at": "2026-10-03T10:33:03Z"
+          },
+          {
+            "name": "Lightweight task graph",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 5,
+            "started_at": "2026-10-03T10:33:03Z",
+            "completed_at": "2026-10-03T10:33:03Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-03T10:33:03Z",
+            "completed_at": "2026-10-03T10:33:04Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-03T10:33:04Z",
+            "completed_at": "2026-10-03T10:33:05Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-03T10:33:05Z",
+            "completed_at": "2026-10-03T10:33:05Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111184942745",
+        "labels": [
+          "ubuntu-24.04"
+        ],
+        "runner_id": 1000018976,
+        "runner_name": "GitHub Actions 1000018976",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      "native_processes": 0
+    },
+    {
+      "run": {
+        "id": 37116959565,
+        "head_sha": "f202f9f7779efa8e5b278c58ef21514025410b73",
+        "head_branch": "codex/modernization-followup-20260908",
+        "path": ".github/workflows/pr16-story-save28.yml",
+        "status": "completed",
+        "conclusion": "failure",
+        "run_attempt": 1
+      },
+      "job": {
+        "id": 111185510454,
+        "run_id": 37116959565,
+        "workflow_name": "pr16-story-save28",
+        "head_branch": "codex/modernization-followup-20260908",
+        "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37116959565",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOUPNhZs8AAAAZ4yxANg",
+        "head_sha": "f202f9f7779efa8e5b278c58ef21514025410b73",
+        "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111185510454",
+        "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37116959565/job/111185510454",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-10-03T10:36:15Z",
+        "started_at": "2026-10-03T10:36:17Z",
+        "completed_at": "2026-10-03T10:36:41Z",
+        "name": "continuation",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-03T10:36:18Z",
+            "completed_at": "2026-10-03T10:36:18Z"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-03T10:36:18Z",
+            "completed_at": "2026-10-03T10:36:31Z"
+          },
+          {
+            "name": "Four new Save28 zero-condition checks; original twelve reused and source guard",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-03T10:36:31Z",
+            "completed_at": "2026-10-03T10:36:32Z"
+          },
+          {
+            "name": "New coordinate teleport Save28 and independent Continue only",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 4,
+            "started_at": "2026-10-03T10:36:32Z",
+            "completed_at": "2026-10-03T10:36:39Z"
+          },
+          {
+            "name": "Lightweight task graph",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 5,
+            "started_at": "2026-10-03T10:36:39Z",
+            "completed_at": "2026-10-03T10:36:39Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-03T10:36:39Z",
+            "completed_at": "2026-10-03T10:36:40Z"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12,
+            "started_at": "2026-10-03T10:36:40Z",
+            "completed_at": "2026-10-03T10:36:40Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-03T10:36:40Z",
+            "completed_at": "2026-10-03T10:36:40Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111185510454",
+        "labels": [
+          "ubuntu-24.04"
+        ],
+        "runner_id": 1000018992,
+        "runner_name": "GitHub Actions 1000018992",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      "native_processes": 0
+    }
+  ],
+  "new_acceptance_tests": 20,
+  "record_native_processes": 0,
+  "next_goal_ja": "Save28 artifact11271154923のstory-fast.srm（a5cfc5714bcc447550d78ff45f42c74109f12d607bad1d94dbf61fe96b06f4a4、131088bytes）だけから再開。map1/73・27,7南・party4/RP0・12712円・badge1・story4071=6/4072=1。19,14→27,7の正規teleport（flag4367=0）、Save28/独立Continueは完了。次は27,7高台から西側の正規通路/橋/coord11〜16,14（var4071=6）とflag4367のstory ownerを追い、新しい通常入力を進める。8,10行きはflag4367=1の未解禁枝。27,7へのteleport成功を洞窟走破へ昇格せず、19,14を無目的に周回しない。trainer352/353も未対戦。ミュウツーPP[1,14,0,5]/HP324、オノノクスPP[15,10,15,20]/HP294。火炎放射PP0を使わず、host回復/flag/var解禁は禁止。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をhash固定してActions入力のみ再利用。新公開artifactは新save/画面/textだけ。40/cold13入力・17画面・20新受入試験とSave1〜27は無影響再走しない。旧preflight2回はnative0失敗のまま保持。洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。",
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "general_ci_all_success_claimed": false
+}

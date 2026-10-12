@@ -1,0 +1,78 @@
+{
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+    "size": 33554432
+  },
+  "changed_bytes": 15,
+  "current_object": {
+    "events": 137877348,
+    "group": 137454764,
+    "header": 137448960,
+    "objects": 137877280,
+    "root": 153899412,
+    "script": 153226448
+  },
+  "declared_bytes": 15,
+  "heal_call": 135873778,
+  "heal_special": 0,
+  "healing_injected": false,
+  "locked_route": "ORIGINAL_MOTHER",
+  "native_recovery_accepted": false,
+  "npc_relocated": false,
+  "original": {
+    "sha256": "f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5",
+    "size": 16777216
+  },
+  "original_mother_goto": 135773371,
+  "original_object": {
+    "events": 137877348,
+    "group": 137454764,
+    "header": 137448960,
+    "objects": 137877280,
+    "root": 137455448,
+    "script": 135773371
+  },
+  "original_regions": [
+    {
+      "offset": 1555643,
+      "sha256": "fbd53e1431c945471cace10d7b2ced346e2d7e92db814e294e4795484697152a",
+      "size": 1024
+    },
+    {
+      "offset": 1656050,
+      "sha256": "b989fc667f9b52da0d4e203e1c6e6ac4e8f5178308f69f51950e78e8284c1364",
+      "size": 12
+    },
+    {
+      "offset": 1657743,
+      "sha256": "ad75116888d9e6ababfd2fd7e2ff079dde4eee99dc35a6c594e39d5ae6cb5c75",
+      "size": 8
+    }
+  ],
+  "outside_declared_changes": 0,
+  "parent": {
+    "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
+    "size": 33554432
+  },
+  "patches": [
+    {
+      "after": "05bbbc17080000000000",
+      "before": "0f00af0c220909046c02",
+      "offset": 19008760
+    },
+    {
+      "after": "05bbbc1708",
+      "before": "6c02000000",
+      "offset": 19008791
+    }
+  ],
+  "release_ready": false,
+  "schema_version": 1,
+  "travel_native_accepted": false,
+  "unlock_flags_changed": false,
+  "unlocked_accept_route": "UNCHANGED_T17_TRAVEL",
+  "unlocked_decline_route": "ORIGINAL_MOTHER",
+  "whole_rom_rollback": true
+}

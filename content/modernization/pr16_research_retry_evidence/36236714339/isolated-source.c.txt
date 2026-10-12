@@ -1,0 +1,100 @@
+#include <stddef.h>
+typedef unsigned char u8; typedef unsigned short u16; typedef unsigned u32;
+#define RESEARCH_ECONOMY_SHOP_COUNT 23
+typedef struct ResearchEconomyVolatileState {
+    u32 magic;
+    u32 wild_pid;
+    u16 wild_species;
+    u16 game_initial_payout;
+    u16 game_pre_coins;
+    u16 game_last_remaining;
+    u16 last_result;
+    u16 selected_catalog;
+    u16 test_bag_capacity;
+    u8 wild_activity;
+    u8 wild_pre_caught;
+    u8 wild_armed;
+    u8 game_active;
+    u8 migration_dirty;
+    u8 recovery_blocked;
+    u8 test_unlock_all;
+    u8 test_persistence_fault;
+    u8 eligible_count;
+    u8 page;
+    u8 window_id;
+    u8 menu_active;
+    u8 reserved0;
+    u8 reserved1;
+    u16 eligible[RESEARCH_ECONOMY_SHOP_COUNT];
+    u8 balance_text[14];
+} ResearchEconomyVolatileState;
+
+
+_Static_assert(sizeof(ResearchEconomyVolatileState) == 96, "volatile ABI");
+_Static_assert(offsetof(ResearchEconomyVolatileState, migration_dirty) == 26, "dirty ABI");
+_Static_assert(offsetof(ResearchEconomyVolatileState, recovery_blocked) == 27, "blocked ABI");
+#define G_VOLATILE ((volatile ResearchEconomyVolatileState*)0x0203F0A0u)
+#define G_LEDGER ((volatile u8*)0x0203D000u)
+#define G_OWNER ((volatile u8*)0x0203D73Fu)
+#define G_SAVE_ROLLBACK ((volatile u8*)0x0203E400u)
+#define RESEARCH_ECONOMY_LEDGER_SIZE 2048u
+#define OWNER_PENDING_KIND 48
+#define PENDING_NONE 0
+#define SAVE_OK 0
+#define SAVE_EMPTY 1
+#define LEDGER_VERSION_OFFSET 4
+#define LEDGER_VERSION_V1 1
+#define FLAG_BADGE_1 0x0820
+#define RESEARCH_RESULT_SUCCESS 0
+#define RESEARCH_RESULT_EFFECTLESS 1
+extern void ensure_volatile_state(void);
+extern u32 ResearchEconomy_SaveValidate(const void*,u32);
+extern void ResearchEconomy_SaveInitNew(void*,u8);
+extern u8 flag_get(u16);
+extern u8 persist_phase(u8);
+extern u32 ResearchEconomy_MigrateV1(void*,u32);
+extern u16 recover_internal(void);
+extern void copy_bytes(volatile void*,const volatile void*,u32);
+static inline u16 read_u16(const volatile u8*p){return p[0]|((u16)p[1]<<8);}
+__attribute__((section(".text.ensure_save_idle"),used)) u8 ensure_save_idle(void)
+{
+    u32 status;
+    ensure_volatile_state();
+    status = ResearchEconomy_SaveValidate((const void *)G_LEDGER,
+                                           RESEARCH_ECONOMY_LEDGER_SIZE);
+    if (status == SAVE_EMPTY) {
+        /* 未保存V2を有効扱いして再試行を素通りさせない。
+         * 初期化前の全byteを保持し、失敗時はV1と同じく復元する。 */
+        copy_bytes(G_SAVE_ROLLBACK, G_LEDGER,
+                   RESEARCH_ECONOMY_LEDGER_SIZE);
+        ResearchEconomy_SaveInitNew((void *)G_LEDGER, flag_get(FLAG_BADGE_1));
+    } else if (status != SAVE_OK) {
+        return 0u;
+    } else if (read_u16(G_LEDGER + LEDGER_VERSION_OFFSET)
+                    != LEDGER_VERSION_V1) {
+        goto recover;
+    } else if (ResearchEconomy_MigrateV1((void *)G_LEDGER,
+                                        RESEARCH_ECONOMY_LEDGER_SIZE)
+                    != SAVE_OK) {
+        goto failed;
+    }
+    if (!persist_phase(0u))
+        goto failed;
+    G_VOLATILE->migration_dirty = 0u;
+recover:
+    if (G_OWNER[OWNER_PENDING_KIND] != PENDING_NONE
+        || G_VOLATILE->recovery_blocked) {
+        u16 recovery = recover_internal();
+        if (recovery != RESEARCH_RESULT_SUCCESS
+            && recovery != RESEARCH_RESULT_EFFECTLESS)
+            return 0u;
+    }
+    return 1u;
+failed:
+    if (status == SAVE_EMPTY || G_VOLATILE->migration_dirty)
+        copy_bytes(G_LEDGER, G_SAVE_ROLLBACK,
+                   RESEARCH_ECONOMY_LEDGER_SIZE);
+    G_VOLATILE->migration_dirty = 0u;
+    G_VOLATILE->recovery_blocked = 1u;
+    return 0u;
+}

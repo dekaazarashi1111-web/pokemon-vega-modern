@@ -1,0 +1,376 @@
+{
+  "accepted_case_reruns": 0,
+  "accepted_cases": [
+    "lab",
+    "fishing",
+    "game",
+    "ecology"
+  ],
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "artifacts": [
+    {
+      "digest": "sha256:4cb370e24507813119ee999e0057cfde750a477d23bf16da5d8f7d4c4cd955eb",
+      "id": 10920635514,
+      "name": "pr16-research-connection-measurement",
+      "size_in_bytes": 169242,
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a",
+        "id": 36284847516,
+        "repository_id": 1358127462
+      }
+    },
+    {
+      "digest": "sha256:28ab30edeec1448f4e31f7478ffb604038e25b9e75d3ebbfbbf8db6c7ba4a0ef",
+      "id": 10919907386,
+      "name": "pr16-research-ecology-guide",
+      "size_in_bytes": 21980,
+      "workflow_run": {
+        "head_branch": "codex/modernization-followup-20260908",
+        "head_repository_id": 1358127462,
+        "head_sha": "51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1",
+        "id": 36285051878,
+        "repository_id": 1358127462
+      }
+    }
+  ],
+  "candidate": {
+    "sha256": "26dac23cfdbc02c3c25e357b79dcdf3d247c10d893f54a4f6d6b1227bf5624da",
+    "size": 33554432
+  },
+  "counter_numeric_display_accepted": false,
+  "evidence_manifest": "content/modernization/pr16_research_connection_acceptance/manifest.json",
+  "fixture": {
+    "balance_credit_injected": false,
+    "fixture": {
+      "sha256": "434076d0db74c4c5bf1b63e3aa4cc336d17e1f2dbb894160e840c721aa337a38",
+      "size": 131072
+    },
+    "initial_lifetime": 0,
+    "initial_rp": 0,
+    "ledger": {
+      "sha256": "14674d7af0c4b8d32abefb5661603456d9cc2aff92b29538cccff936ab50a913",
+      "size": 2048
+    },
+    "natural_arrival_claimed": false,
+    "offset": 127076,
+    "outside_ledger_changes": 0,
+    "progression_is_fixture": true,
+    "seed": {
+      "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+      "size": 131072
+    }
+  },
+  "fixture_identity": {
+    "sha256": "434076d0db74c4c5bf1b63e3aa4cc336d17e1f2dbb894160e840c721aa337a38",
+    "size": 131072
+  },
+  "host_compiles": 0,
+  "measurement_runs": [
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "ed1f8051c9e3ac80b3d4034553d80fe4d2172e8a",
+      "id": 36284847516,
+      "path": ".github/workflows/pr16-research-connection-20260927.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "51f4ce7eae44ebb5ed6c192bf088b3ebbf030ed1",
+      "id": 36285051878,
+      "path": ".github/workflows/pr16-research-ecology-guide-20260927.yml",
+      "run_attempt": 1,
+      "status": "completed"
+    }
+  ],
+  "native_processes": 0,
+  "natural_story_progress_accepted": false,
+  "naturally_earned_spending_accepted": false,
+  "oracle": "content/modernization/pr16_research_connection_acceptance/oracle.json",
+  "own_actions_completion_confirmed": false,
+  "previous_failure": {
+    "conclusion": "failure",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "0f178e314857b2b0c0b52d88226c541a5a3570c1",
+    "id": 36284738523,
+    "path": ".github/workflows/pr16-research-connection-20260927.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "protected_bindings": {
+    ".github/workflows/pr16-research-connection-20260927.yml": {
+      "sha256": "c56ce9c6631d46dcaaf50938227fad4aad492a08c66097e7b85b7125d2b738e0",
+      "size": 2627
+    },
+    ".github/workflows/pr16-research-ecology-guide-20260927.yml": {
+      "sha256": "89042021706424fca9b5a6c141aacb3a1d2c54949842473221925abe715456d9",
+      "size": 10235
+    },
+    "CHATGPT_RESUME.md": {
+      "sha256": "963f3d4b12d184aaa9be7decbdd98cfe7b89317bfa8396008c8e1ab3581359f6",
+      "size": 7562
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "content/modernization/p08_remaining_work.json": {
+      "sha256": "d538985b7b16a1b295e2a75bf63f94371bc812208d49aae41c6a017b7ff26981",
+      "size": 41097
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "sha256": "4deb7c27771c63740ab94b9cf8c7b3c386f7193b989f35ede9d131c4f4bf15bf",
+      "size": 9442
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/candidate-audit.json": {
+      "sha256": "8c50f5dcb55255fb52bc2dcef6f460419cf9fa84fe9851acd17a05e1a6df669a",
+      "size": 6000
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/compile.json": {
+      "sha256": "6c79c069b16b438374c60ebd9e1b6c5c6b744ed535f24c16ba010f0f024589c3",
+      "size": 1134
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/ecology/commands.txt": {
+      "sha256": "c94fc1b2b194c84a7981def51c0a1ebdce6268b76e41da94d7a25a4a4d729791",
+      "size": 117
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/ecology/measurement.json": {
+      "sha256": "31a59906a11e8a18647be26c75a72b7d8df33c9c2aaf5de35367194896b345d3",
+      "size": 1332
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/ecology/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/ecology/stdout.txt": {
+      "sha256": "cea3a25369697100f0f14cb5720d4fd9079c7c6509ac013b775ecb9287a505fd",
+      "size": 9284
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/fishing/commands.txt": {
+      "sha256": "0cbe04754bbac7792d530ba02760df574b270864a33100ae74a8d2cedc52becd",
+      "size": 175
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/fishing/measurement.json": {
+      "sha256": "3ac7971f6f84971d07956a9bed42182a6ee907bf9f3a322692615209b8d695a1",
+      "size": 1605
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/fishing/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/fishing/stdout.txt": {
+      "sha256": "9eb49e29edcde3ba1aee4f388c86b0126f84064c8b2c77d0ecf7203bdb1a84bc",
+      "size": 11279
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/game/commands.txt": {
+      "sha256": "f7bd8f234ec498e1a9c50a83047a182405aafae4afca5b6e3cd996c18f019bd5",
+      "size": 205
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/game/measurement.json": {
+      "sha256": "60618fb84a15fd66da6e4b175778522a6f8d1f5217264f063d892e91b2585bc2",
+      "size": 1605
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/game/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/game/stdout.txt": {
+      "sha256": "28631b36d8acc969d5e03c1160a1ca201208ebff7f112d0df0539efe427e31e5",
+      "size": 12608
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/generated.c.txt": {
+      "sha256": "6595fdc0be6584860aea53eaa7d2b1b6d94b33cf3359739fa93ed05b1c56f3d1",
+      "size": 62364
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/guards.json": {
+      "sha256": "706a61726b37922a2f030e27a30988fff2f92c365ec9b03cdd637ec358704a1e",
+      "size": 1999
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/inputs.json": {
+      "sha256": "483d9dde12ec67e1baf48c351d035a8b86f08ad86168a7986c095a2881d0d714",
+      "size": 1967
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/invocation.json": {
+      "sha256": "a602d18361f882c8a606d4e7653535422dccfa98817415f6fab74a6dfde571e8",
+      "size": 2645
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/lab/commands.txt": {
+      "sha256": "048cb565a024a5f008fe40c42254685271bdcaf705d10da009406e2c6f22e776",
+      "size": 556
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/lab/measurement.json": {
+      "sha256": "89092458fc32badf2b76dfd93afb150df6279f44f59411bd4f5d5f9480eb5b89",
+      "size": 3120
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/lab/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/lab/stdout.txt": {
+      "sha256": "f096e423f312163c826a61a5c1ee225066007fec9d2815b2b6d3854a18a202e2",
+      "size": 26584
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/manifest.json": {
+      "sha256": "fbe10c5154581d3daba3ed6ef0a6eb75a9a65b888481f72b1d12f1fa6d1be5e6",
+      "size": 5113
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/measurement.json": {
+      "sha256": "060fb07782ecf443b689b3c56576e2ecd30a909c1ede2c5034bb982704311823",
+      "size": 9115
+    },
+    "content/modernization/pr16_research_connection_evidence/36284847516/previous-failure.json": {
+      "sha256": "2868bf49ff8c849b2a2f79deda7dc274b01fa3a7a231fdb921e6731170fc5915",
+      "size": 530
+    },
+    "content/modernization/pr16_research_connection_evidence/36285051878/commands.txt": {
+      "sha256": "7bd5e7a21909fd81053c08f5692b11d7a76f9e63eefe523da39209b5f52c8c91",
+      "size": 162
+    },
+    "content/modernization/pr16_research_connection_evidence/36285051878/compile.json": {
+      "sha256": "60607527368c4f890f1c62fae81e9a875e22a4c9e9b6e97a3e0f45ed381f9efc",
+      "size": 575
+    },
+    "content/modernization/pr16_research_connection_evidence/36285051878/compile.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_connection_evidence/36285051878/compile.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_connection_evidence/36285051878/guards.json": {
+      "sha256": "706a61726b37922a2f030e27a30988fff2f92c365ec9b03cdd637ec358704a1e",
+      "size": 1999
+    },
+    "content/modernization/pr16_research_connection_evidence/36285051878/inputs.json": {
+      "sha256": "483d9dde12ec67e1baf48c351d035a8b86f08ad86168a7986c095a2881d0d714",
+      "size": 1967
+    },
+    "content/modernization/pr16_research_connection_evidence/36285051878/manifest.json": {
+      "sha256": "5c050ae3b11cd430522dde68f4c39db5b0ac1912deccf0fcad815553ae1e9b29",
+      "size": 1731
+    },
+    "content/modernization/pr16_research_connection_evidence/36285051878/measurement.json": {
+      "sha256": "88988440af6a80157200f28d8b0727bdbe3f5d8bb58ddd48c9537928c69137a8",
+      "size": 1940
+    },
+    "content/modernization/pr16_research_connection_evidence/36285051878/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_research_connection_evidence/36285051878/stdout.txt": {
+      "sha256": "cd8d5b36ce9c7767ad9fb6b1946477dc52c2ccead8a0563a1ea962754c81878a",
+      "size": 10104
+    },
+    "content/modernization/pr16_research_game_corner_checkpoint.json": {
+      "sha256": "da406e68da9ed502a1b7fc89db0cc75caaed18f9d0dd277e9baff4df05361163",
+      "size": 3065
+    },
+    "content/modernization/pr16_research_save_impact_checkpoint.json": {
+      "sha256": "7fad32c544c8aae20401665934c19b4e7ac6e3a712bd885dbd4c35afbc0aef13",
+      "size": 10809
+    },
+    "content/modernization/pr16_special_wild_ui_checkpoint.json": {
+      "sha256": "69c403857d191d28984a07ff4e3b0714cd3ad0ac8f5affe8b9b6ac9c0cde7ff9",
+      "size": 19502
+    },
+    "content/research_economy_v1/canonical_model.json": {
+      "sha256": "4b49923047ed5494784b5c2a49ba672f1b7e7c12ff91cf7edc8a416f745d9efd",
+      "size": 46529
+    },
+    "design/active_play_baseline.md": {
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8",
+      "size": 5551
+    },
+    "docs/PR16_RESEARCH_GAME_CORNER_JA.md": {
+      "sha256": "15c85ae83e316ae8040ecb0d4512402e17df2d1203d28fab345cbaa10355e00e",
+      "size": 3324
+    },
+    "overlays/research_economy_v1/research_economy_v1.c": {
+      "sha256": "08375e4c9c65f698358b92c4eb1c8439fe5e70e7d7ddd9d17854edce4b58abda",
+      "size": 63636
+    },
+    "scripts/pr16_research_connection.py": {
+      "sha256": "a8f07095f1d47033d45edda57444475599d8eb60a669d44e29e3608e47ed8f0b",
+      "size": 7220
+    },
+    "scripts/pr16_research_connection_actions.py": {
+      "sha256": "7c13049fa2cb1e89470fb3f0e358490167dde26e279e571c5cb33117ee371fcd",
+      "size": 14237
+    },
+    "tools/mgba_pr16_research_connection.c": {
+      "sha256": "2bd86af2ef6560bb95c4b2d7e907c9905dce772b3eafa5acb57994c8fc2dcc58",
+      "size": 4698
+    }
+  },
+  "release_ready": false,
+  "rom_changes": 0,
+  "run_id": 36285446907,
+  "schema_version": 1,
+  "seed_artifact": {
+    "digest": "sha256:7d3de78d4e852583eb35551076021630c1343aa623e91fe1529d73f4cf1471ed",
+    "id": 10898510128,
+    "name": "pr16-special-wild-gameplay-data",
+    "size_in_bytes": 17366330,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "8660fe70f4354333cf7647186663cacafa04451b",
+      "id": 36218655601,
+      "repository_id": 1358127462
+    }
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-research-connection-accept-20260927.yml": {
+      "sha256": "9f4edbf6bc72ceca8e734f32e9c678289aed86db9e41d25d217437774d0a9099",
+      "size": 2246
+    },
+    "scripts/pr16_research_connection_accept.py": {
+      "sha256": "f0eac7d7a38c8be5694e238aa96086c7e90c0e9426b1ade93685592225635bab",
+      "size": 15484
+    },
+    "scripts/pr16_research_connection_oracle.py": {
+      "sha256": "f5a884964ffa428dc464bd3dfc83eea1edd79610241c84a8e78c5cca2256cd23",
+      "size": 10460
+    },
+    "tests/test_pr16_research_connection_oracle.py": {
+      "sha256": "54816fe7ad2ce2d7e52e50424c0452e99f15953a6cfd0056d6ae98b26818e0ae",
+      "size": 7372
+    }
+  },
+  "source_head": "c4da83fc8dd55c18281a02d1ba838728d7ee48c6",
+  "status": "PASS_PHYSICAL_DOOR_AND_STATIC_GUIDE_SCOPED",
+  "task": "USER-20260927-RESEARCH-CONNECTION",
+  "tests": {
+    "arm_compiles": 0,
+    "expected_tests": 140,
+    "host_compiles": 0,
+    "module": "tests.test_pr16_research_connection_oracle",
+    "native_processes": 0,
+    "passed_tests": 140,
+    "returncode": 0,
+    "stderr": {
+      "sha256": "352d1ae94c44b526f957b0071090350a2095ed292e8b34b1ea4cd935b75dde50",
+      "size": 15690
+    },
+    "stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "test_runs": 1
+  },
+  "visual_review": "content/modernization/pr16_research_connection_acceptance/visual-review.json"
+}

@@ -1,0 +1,45 @@
+name: pr16-research-mining-20260927
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-mining-20260927.yml]
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-mining-20260927
+  cancel-in-progress: false
+jobs:
+  capture:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 新規採掘3ケース・64負例をsource固定で測定（旧受入再実行0）
+        run: python3 -B scripts/pr16_research_mining_capture.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-mining-measurement
+          path: |
+            .local/pr16-research-mining-capture/public/
+            .local/pr16-research-mining-capture/mining-*/*.ppm
+          retention-days: 14
+          if-no-files-found: error
+      - name: 次工程contextと最新Actionsをread-only保存
+        if: always()
+        run: python3 -B scripts/pr16_research_activities_context.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-mining-source-context
+          path: .local/pr16-research-activities/context/
+          retention-days: 14
+          if-no-files-found: error

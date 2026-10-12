@@ -1,0 +1,124 @@
+name: pr16-research-story-route-ci-limit
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-route-ci-limit.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  record-ci-limit:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Read existing CI failure and prove its inputs unchanged without tests
+        run: |
+          python3 -B - <<'PY'
+          import base64,datetime,json,os,pathlib,subprocess,sys
+          root=pathlib.Path.cwd();sys.path[:0]=[str(root/'scripts'),str(root)]
+          import pr16_research_story_route as m
+          import pr16_research_story_route_actions as s
+          import pr16_research_lifecycle_actions as d
+          import record_modernization_p03_capacity as cap
+          from pr16_learnset_compact_record import publish_resume
+          START='20d1bb4f98efdf89adb241d81a62259e3f6b4bd1';SAVED='ed76bcd4d0b2a0c1fd870146d827fa10b12bd0a2'
+          SOURCE='228d31f3e3ab74dbfc089b63a75478c0d5fde1eb';MERGE='f3ed5e7266acd511b48a66593032dbe0078b507e'
+          RUN=36330551685;JOB=108651517097;ART=10935806576
+          WF='.github/workflows/pr16-research-story-route-ci-limit.yml';REC='content/modernization/pr16_research_story_route_ci_limit.json'
+          QOL='overlays/qol_production/qol_production.c';QOL_BLOB='d1ba686a3c2d7abf936edd0d17810d93a4357374'
+          d.current();state=s.source_check();out=root/'.local/pr16-story-route-ci-limit';out.mkdir(parents=True)
+          subprocess.run(['git','merge-base','--is-ancestor',SAVED,'HEAD'],check=True)
+          cp=d.read(root/s.CP)
+          m.need(cp['status']=='PASS_NATURAL_STORY_POTION_SAVE_SCOPED' and cp['actions_completion_confirmed'] is True and not (root/REC).exists(),'already accepted new interval remains unchanged')
+          term=d.inputs.api('actions/runs/36330809679');tj=d.inputs.api('actions/runs/36330809679/jobs?per_page=100')
+          m.need(term['head_sha']=='6162f3e9a3dede208318bfd8dfce1cc1293500cd' and term['status']=='completed' and term['conclusion']=='success' and tj['total_count']==len(tj['jobs'])==1,'terminal run externally complete')
+          terminal=tj['jobs'][0]
+          m.need(terminal['id']==108652234123 and terminal['conclusion']=='success' and len(terminal['steps'])==8 and all(x['status']=='completed' and x['conclusion']=='success' for x in terminal['steps']),'all8 terminal steps success')
+          run=d.inputs.api('actions/runs/'+str(RUN));jobs=d.inputs.api('actions/runs/'+str(RUN)+'/jobs?per_page=100')
+          m.need(run['head_sha']==SOURCE and run['path']=='.github/workflows/ci.yml' and run['status']=='completed' and run['conclusion']=='failure' and jobs['total_count']==len(jobs['jobs'])==1,'actual general CI failure')
+          job=jobs['jobs'][0]
+          m.need(job['id']==JOB and job['conclusion']=='failure' and next(x for x in job['steps'] if x['name']=='P03 capacity fixed originals and cold-save acceptance')['conclusion']=='failure','capacity failed rather than scoped story')
+          meta=d.inputs.api('actions/artifacts/'+str(ART));raw=d.inputs.api('actions/artifacts/'+str(ART)+'/zip',True)
+          archive=dict(size=1430,sha256='8121cd32d05a9ef3d5db7ac1adb53142cb1c090384796a60b7108108bad3ae95')
+          m.need(meta['workflow_run']['id']==RUN and meta['workflow_run']['head_sha']==SOURCE and meta['name']=='p03-capacity-final-ci' and not meta['expired'] and meta['digest']=='sha256:'+archive['sha256'] and meta['size_in_bytes']==archive['size'] and m.identity(raw)==archive,'fixed CI diagnostic artifact')
+          with s.safe_zip(raw,1000000) as z:
+            m.need(set(z.namelist())=={'source-head.txt','checkout-head.txt','tests.txt'} and z.read('source-head.txt').decode().strip()==SOURCE and z.read('checkout-head.txt').decode().strip()==MERGE,'exact CI source and merge checkout')
+            tests=z.read('tests.txt');text=tests.decode()
+            m.need(text.count(' ... ERROR\n')==2 and text.count(' ... ok\n')==23 and 'Ran 25 tests in ' in text and text.endswith('FAILED (errors=2)\n') and text.count('ValueError: tested source changed: '+QOL)==2,'two real positive-original source mismatch errors')
+            for name in z.namelist():(out/name).write_bytes(z.read(name))
+          paths=set(cap.sources())|{'scripts/record_modernization_p03_capacity.py','tests/test_modernization_p08_capacity_evidence.py','.github/workflows/ci.yml',cap.EVIDENCE+'/original.zip'}
+          same={}
+          for name in sorted(paths):
+            before=subprocess.check_output(['git','show',START+':'+name]);now=(root/name).read_bytes()
+            m.need(before==now,'pre-existing capacity input was not changed by this task: '+name)
+            same[name]=m.identity(now)
+          m.need(subprocess.check_output(['git','rev-parse','HEAD:'+QOL]).decode().strip()==QOL_BLOB,'current exact QOL git blob')
+          merge=d.inputs.api('contents/'+QOL+'?ref='+MERGE)
+          m.need(merge['sha']==QOL_BLOB and merge['encoding']=='base64' and base64.b64decode(merge['content'])==(root/QOL).read_bytes(),'actual CI merge has the same whole QOL bytes')
+          originals=cap.unpack((root/cap.EVIDENCE/'original.zip').read_bytes())
+          expected=json.loads(originals['runtime/result.json'])['sources'][QOL]
+          m.need(expected!=same[QOL],'historical accepted original differs from unchanged current source')
+          receipt=dict(schema_version=1,status='GENERAL_CI_PREEXISTING_CAPACITY_SOURCE_MISMATCH_NOT_NEW_STORY_FAILURE',observed_at=datetime.datetime.now(datetime.timezone.utc).isoformat(),task=s.TASK,start_head=START,accepted_story_commit=SAVED,verified_source_head=SOURCE,ci_checkout=MERGE,ci_run=d.run_summary(run),ci_job={k:job[k] for k in ('id','name','status','conclusion','steps')},artifact={k:meta[k] for k in ('id','name','size_in_bytes','digest','workflow_run','created_at','expires_at')},archive=archive,tests_log=m.identity(tests),test_count=25,errors=2,successful_tests=23,error_type='ValueError',error_message='tested source changed: '+QOL,unchanged_inputs_since_task_start=same,qol_git_blob=QOL_BLOB,historical_expected_qol=expected,current_qol=same[QOL],terminal_run=d.run_summary(term),terminal_job={k:terminal[k] for k in ('id','name','status','conclusion','steps')},accepted_story_status=cp['status'],accepted_story_replayed=False,new_native_processes=0,new_unit_test_runs=0,new_compiles=0,source_inputs_changed=False,old_acceptance_weakened=False,full_ci_green=False,release_ready=False,active_baseline_changed=False)
+          s.observe_checks(state,SOURCE)
+          recent=d.inputs.api('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=20')
+          receipt['latest_branch_actions']=[d.run_summary(r) for r in recent['workflow_runs']];receipt['complete_repository_history_claimed']=False
+          d.write(root/REC,receipt)
+          with (root/s.GUIDE).open('a') as f:
+            f.write('\n## 一般CIの既存制約（旧受入再実行なしの照合）\n\n一般CI run36330551685/job108651517097はP03容量原本の陽性2件が `ValueError: tested source changed: overlays/qol_production/qol_production.c` で失敗した。新規story検証の失敗ではない。artifact10935806576の25件中23成功・2errorを原本から確認し、容量検証source全依存・検査・旧original.zip・ci.ymlが作業開始20d1bb4fからbyte不変であること、および実際のPR merge checkoutも同じQOL blobであることを確認。旧原本が期待するハッシュとの不一致は今回の変更以前から存在する。詳しいidentityと失敗stepは `'+REC+'`。旧原本の書換え・検査緩和・旧test/nativeの手動再実行は行っていない。一般CI全緑とは扱わず、道路Saveの限定受入と分離する。終端run36330809679も全8step成功を外部確認済み。\n')
+          state['general_ci_capacity_limit']=dict(path=REC,status=receipt['status'],run_id=RUN,full_ci_green=False,inputs_unchanged_since_task_start=True)
+          state['next_action']['read_paths'].append(REC)
+          state['do_not_repeat'].insert(0,'一般CIの旧容量原本source不一致は '+REC+'。開始HEADから全依存不変で今回story変更に起因しない。旧受入を緩和/書換え/再実行せず、後継potion.srm以降を進める。')
+          for name in (REC,s.GUIDE,WF):state['source_bindings'][name]=m.identity((root/name).read_bytes())
+          state['logs_synchronized']=True;publish_resume(state)
+          s.append_logs('道路Save受入を維持し、一般CIの旧容量source不一致を分離記録。作業開始HEADから全依存byte不変、CI merge QOLも同一、旧originalの期待SHAのみ相違。','既存run36330551685の25件23成功/2error原本を回収。terminal36330809679全8step成功外部確認。今回のnative/unit/compile再実行0、旧原本変更0、一般CI全緑を主張しない。','research-story-route-ci-limit-v1','DONE（既存CI制約の記録、道路Save限定受入は維持）')
+          owned={REC,s.GUIDE,d.STATE,d.DOC}|d.LOGS
+          (out/'paths.txt').write_text('\n'.join(sorted(owned))+'\n')
+          d.write(out/'verification.json',dict(status='PASS_SCOPED_READONLY_CI_LIMIT_RECORD',source_head=os.environ['GITHUB_SHA'],old_tests_replayed=0,native_processes=0,compiles=0,accepted_story_status=cp['status'],general_ci_green=False))
+          print('PASS: exact pre-existing CI source mismatch recorded; old replay0')
+          PY
+      - name: Validate fixed resume and scoped append-only index
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t paths < .local/pr16-story-route-ci-limit/paths.txt
+          git add -- "${paths[@]}"
+          python3 -B - <<'PY'
+          import os,pathlib,sys
+          sys.path.insert(0,'scripts');import pr16_learnset_runtime_record as g
+          g.START=os.environ['GITHUB_SHA'];g.CODE=set();g.OWNED=set(pathlib.Path('.local/pr16-story-route-ci-limit/paths.txt').read_text().splitlines());g.guard()
+          PY
+          git diff --cached --check
+      - name: Commit and non-force push scope clarification
+        run: |
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260928-RESEARCH-STORY-ROUTE: 旧容量CI不一致と新区間成功を分離記録'
+          git push origin "HEAD:$GITHUB_REF"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-story-route-ci-limit/committed-head.txt
+          python3 -B - <<'PY'
+          import pathlib,subprocess,zipfile
+          out=pathlib.Path('.local/pr16-story-route-ci-limit')
+          with zipfile.ZipFile(out/'record.zip','w',zipfile.ZIP_DEFLATED) as z:
+            for p in (out/'paths.txt').read_text().splitlines():
+              raw=subprocess.check_output(['git','show','HEAD:'+p]);assert raw==pathlib.Path(p).read_bytes();z.writestr(p,raw)
+            z.writestr('record-head.txt',subprocess.check_output(['git','rev-parse','HEAD']))
+          PY
+          printf 'RESULT=DONE TASK=USER-20260928-RESEARCH-STORY-ROUTE VERIFY=SCOPED_PASS_WITH_RECORDED_CI_LIMIT COMMIT=%s\n' "$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-story-route-ci-limit
+          path: .local/pr16-story-route-ci-limit
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

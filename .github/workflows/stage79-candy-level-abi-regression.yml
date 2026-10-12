@@ -1,0 +1,57 @@
+name: stage79-candy-level-abi-regression
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/stage79-candy-level-abi-regression.yml
+      - tests/test_modernization_stage79_candy_level_abi.py
+      - overlays/qol_production/qol_production.c
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: stage79-candy-level-abi-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  regression:
+    if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: bash infra/setup_github_actions.sh --install
+      - name: Test the real source and generate its canonical header
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-candy-abi
+          python3 -m unittest tests.test_modernization_stage79_candy_level_abi -v 2>&1 | tee .local/stage79-candy-abi/tests.log
+          python3 - <<'PY'
+          import hashlib
+          from pathlib import Path
+          from scripts.build_qol_production import _generated_header, _load_model
+          parent = Path('build/stages/78_modernization_p05_eelevate_switch_ai.gba')
+          assert hashlib.sha256(parent.read_bytes()).hexdigest() == '98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b'
+          header = _generated_header(_load_model())
+          assert header
+          Path('.local/stage79-candy-abi/qol_production_generated.h').write_bytes(header)
+          print('Generated the production header; no source or candidate was modified.')
+          PY
+      - name: Compile the actual production translation unit
+        run: |
+          set -euo pipefail
+          arm-none-eabi-gcc -std=c11 -mcpu=arm7tdmi -mthumb -mthumb-interwork -Os -Wall -Wextra -Werror -ffreestanding -fno-builtin -I.local/stage79-candy-abi -I. -c overlays/qol_production/qol_production.c -o .local/stage79-candy-abi/qol_production.o
+          git diff --exit-code
+          git rev-parse HEAD > .local/stage79-candy-abi/validated-head.txt
+          echo 'Source regressions and ARM compilation only. This is not runtime acceptance, 7/7 PASS, P08 integration, or a release promotion.' | tee .local/stage79-candy-abi/scope.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-candy-level-abi-regression
+          path: .local/stage79-candy-abi
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

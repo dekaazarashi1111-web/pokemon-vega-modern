@@ -1,0 +1,132 @@
+{
+  "candidate": {
+    "sha256": "59ac6688576238f00dac88cccec1a42415f6f0e4f3f07d60411f6d3059bf61e6",
+    "size": 33554432
+  },
+  "completed": true,
+  "findings": {
+    "b_cancel_closed.ppm": "会話も閉じ、受付前の地形へ戻る。枠残りなし。",
+    "b_cancel_message.ppm": "リストが消え、「またきろくを あつめてきてね。」を確認。",
+    "balance_selected.ppm": "リストが閉じ、下の会話枠にRP 0 / ランク 1が2行で表示。",
+    "counter_approach.ppm": "受付前の地形と人物を確認。窓なし。",
+    "counter_intro.ppm": "「けんきゅうを はじめよう。」の会話と緑の枠が表示。",
+    "door_entered.ppm": "入口マットと研究所の地形・人物を確認。会話/リスト窓なし。",
+    "end.ppm": "終了観測でも地形・人物が維持され、リスト/会話の残留なし。",
+    "exit_closed.ppm": "終了後に会話窓も消える。地形の欠け/枠残りなし。",
+    "exit_cursor.ppm": "3行目「おわる」にカーソル。会話枠は保持。",
+    "exit_message.ppm": "終了行選択でリストが消え、再訪案内を表示。",
+    "guide_cursor.ppm": "2行目「ポイントのあつめかた」にカーソル移動。文字と枠の欠けなし。",
+    "guide_one.ppm": "「つりとちょうさで ポイントがふえる。」を会話枠内で確認。",
+    "guide_two.ppm": "「むしといわと しゃしんもあるよ。」を会話枠内で確認。",
+    "menu_after_balance.ppm": "3行リストが復帰。RP 0 / ランク 1の会話枠は保持。",
+    "menu_after_guide.ppm": "案内後に3行リストが復帰。下の案内会話枠も保持。",
+    "menu_first.ppm": "3行が枠内に表示。先頭の「ポイントとランク」にカーソル。下の導入会話は保持。",
+    "menu_revisit.ppm": "2回目の3行リストが同じ配置で開く。",
+    "menu_third.ppm": "3回目も3行リストが同じ枠とカーソルで表示。",
+    "revisit_intro.ppm": "2回目の導入会話が正常な緑枠で表示。",
+    "third_cancel_message.ppm": "3回目B取消でリストを閉じ、再訪案内を表示。",
+    "third_closed.ppm": "3回目の会話終了後、地形へ復帰。",
+    "third_intro.ppm": "3回目の導入会話が正常に表示。"
+  },
+  "method": "ASSISTANT_VISUAL_REVIEW_NO_OCR",
+  "method_ja": "固定artifact10929142898をSHA-256照合後、22枚のPPMを2倍最近傍拡大・3枚の一覧で本会話中に直接視認。OCR不使用。検証コードは画像のidentityと記録整合性を照合し、自動視認を主張しない。",
+  "natural_story_progress_accepted": false,
+  "naturally_earned_spending_accepted": false,
+  "release_ready": false,
+  "reviewed_on": "2026-09-27",
+  "reviewed_screen_count": 22,
+  "run_id": 36312254126,
+  "schema_version": 1,
+  "screens": {
+    "b_cancel_closed.ppm": {
+      "sha256": "1deaddcdd37ea592367a12720bab1b8559317c19c0a4f37e110ec541f2dce5c0",
+      "size": 115215
+    },
+    "b_cancel_message.ppm": {
+      "sha256": "09b3ac94c9b74448c9e0e3bffb119bb45cac3734d0bc39955ae2e3508ab936f3",
+      "size": 115215
+    },
+    "balance_selected.ppm": {
+      "sha256": "cac17e9e40532a0d83e214c3c7c5159c4b26b7d0d9418ac8145a0eb221cbc144",
+      "size": 115215
+    },
+    "counter_approach.ppm": {
+      "sha256": "1deaddcdd37ea592367a12720bab1b8559317c19c0a4f37e110ec541f2dce5c0",
+      "size": 115215
+    },
+    "counter_intro.ppm": {
+      "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+      "size": 115215
+    },
+    "door_entered.ppm": {
+      "sha256": "7ee8b4aff0a844134a5ee3c6efbf3662b4430f717de1e867917dd9417a45e588",
+      "size": 115215
+    },
+    "end.ppm": {
+      "sha256": "1deaddcdd37ea592367a12720bab1b8559317c19c0a4f37e110ec541f2dce5c0",
+      "size": 115215
+    },
+    "exit_closed.ppm": {
+      "sha256": "1deaddcdd37ea592367a12720bab1b8559317c19c0a4f37e110ec541f2dce5c0",
+      "size": 115215
+    },
+    "exit_cursor.ppm": {
+      "sha256": "e4205859cfd3907cc222b32796b1f49c0f63a30e6331627abe8022b3d5ad8772",
+      "size": 115215
+    },
+    "exit_message.ppm": {
+      "sha256": "09b3ac94c9b74448c9e0e3bffb119bb45cac3734d0bc39955ae2e3508ab936f3",
+      "size": 115215
+    },
+    "guide_cursor.ppm": {
+      "sha256": "194fb0d6a88beae67ee2e46aa6378db07b0a23b8cf72877473d52ebba813fa18",
+      "size": 115215
+    },
+    "guide_one.ppm": {
+      "sha256": "98c404793cac0adfde987c0829b94babd9d43773612c821be447220c4791d4ad",
+      "size": 115215
+    },
+    "guide_two.ppm": {
+      "sha256": "407c7e1a6b7e8bbaa868c5e30db21fec0ce3e1c813da5d78aac466f7d44784bd",
+      "size": 115215
+    },
+    "menu_after_balance.ppm": {
+      "sha256": "373996ce578bf8577884b94257e41fd3edb09e55731c905572649f0fbfba665d",
+      "size": 115215
+    },
+    "menu_after_guide.ppm": {
+      "sha256": "b63afb003fd6aca05237808657c4d273a9307c5bd61c70754944bd5e91431e29",
+      "size": 115215
+    },
+    "menu_first.ppm": {
+      "sha256": "b99e400912179806bac10e9a38117f0b1e5f48f053d152c44a1fe28dd56dfaa7",
+      "size": 115215
+    },
+    "menu_revisit.ppm": {
+      "sha256": "b99e400912179806bac10e9a38117f0b1e5f48f053d152c44a1fe28dd56dfaa7",
+      "size": 115215
+    },
+    "menu_third.ppm": {
+      "sha256": "b99e400912179806bac10e9a38117f0b1e5f48f053d152c44a1fe28dd56dfaa7",
+      "size": 115215
+    },
+    "revisit_intro.ppm": {
+      "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+      "size": 115215
+    },
+    "third_cancel_message.ppm": {
+      "sha256": "09b3ac94c9b74448c9e0e3bffb119bb45cac3734d0bc39955ae2e3508ab936f3",
+      "size": 115215
+    },
+    "third_closed.ppm": {
+      "sha256": "1deaddcdd37ea592367a12720bab1b8559317c19c0a4f37e110ec541f2dce5c0",
+      "size": 115215
+    },
+    "third_intro.ppm": {
+      "sha256": "233016191a69832c207a816bcaa34415e869ded6b82c74c961674c3a227d4f39",
+      "size": 115215
+    }
+  },
+  "source_head": "164028f28c9fa753afa1525907e2824b17a16698",
+  "whole_game_visual_quality_accepted": false
+}

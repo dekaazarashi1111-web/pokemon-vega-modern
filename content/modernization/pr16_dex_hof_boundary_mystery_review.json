@@ -1,0 +1,495 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "pret-mystery_gift_menu.c": {
+      "local": "pret-mystery_gift_menu.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/mystery_gift_menu.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/mystery_gift_menu.c",
+      "size": 47233,
+      "sha256": "0bb89d37bbd201f4b5ec59f5cf66582bc467b01df419ddb3593b254a70a5f215",
+      "git_blob_sha": "77c032c1b1d3360ff5fb87070815c4a98019df8c"
+    },
+    "pret-task.c": {
+      "local": "pret-task.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/task.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/task.c",
+      "size": 5029,
+      "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+      "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+    },
+    "pret-main.c": {
+      "local": "pret-main.c",
+      "repository": "pret/pokefirered",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "path": "src/main.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/main.c",
+      "size": 11699,
+      "sha256": "0bfa6c662b1cbd49bd31020b6c2509208004611e6701ad64badce22eca371139",
+      "git_blob_sha": "542b0f5d16dd93107523d11163bfcb70a42b707a"
+    }
+  },
+  "hit": {
+    "address": 135540573,
+    "target": 167706878,
+    "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+    "size": 4,
+    "sha256": "2b613342208b5c5580a9f10556e394e4ac5f03fe523c7ad346795de3f15b3bcb",
+    "classification": "UNCLASSIFIED",
+    "accepted": false,
+    "reason": "no_complete_typed_asset_consumer_witness",
+    "owner_candidates": []
+  },
+  "root": {
+    "kind": "conditional_actual_cb2_create_task_dispatch",
+    "initializer": 135539148,
+    "setup_call": 135539152,
+    "setup_success_guard": 135539156,
+    "callback_setter_call": 135539162,
+    "callback_literal": 135539180,
+    "callback_entry": 135538608,
+    "constructor_call": 135539172,
+    "constructor": 135542112,
+    "create_task_call": 135542118,
+    "create_task": 134704052,
+    "insert_task": 134704136,
+    "find_first": 134704448,
+    "main_callback_field": 50344244,
+    "main_indirect_call": 134219062,
+    "runtasks_call": 135538610,
+    "runtasks": 134704400,
+    "task_indirect_call": 134704426,
+    "task_entry": 135542184,
+    "tasks": 50352336,
+    "task_data_base": 50352344,
+    "task_stride": 40,
+    "selected_admission": "all_16_inactive_then_first_free_row0",
+    "state_offset": 8,
+    "text_state_offset": 9,
+    "state_bound": 37,
+    "state_table": 135542228,
+    "state11_slot": 135542272,
+    "state23_slot": 135542320,
+    "helper_entry": 135540388,
+    "text_state0_to1_store": 135540618,
+    "pending_return": -2
+  },
+  "windows": [
+    {
+      "label": "main_setter",
+      "address": 134219076,
+      "size": 16,
+      "sha256": "ec1b3773f6d0521e06945a26db83b027eace56daaea78238830954d96f966c2e"
+    },
+    {
+      "label": "main_dispatch",
+      "address": 134219024,
+      "size": 48,
+      "sha256": "234f875549e5851fa44668d223d92d011ca69e696c3061148ad40489cd137c55"
+    },
+    {
+      "label": "bx_r0",
+      "address": 136084168,
+      "size": 2,
+      "sha256": "81904e68a8b9a2427e9e87e2c61b1098057608d18357d70d9281e8513941cf53"
+    },
+    {
+      "label": "bx_r1",
+      "address": 136084172,
+      "size": 2,
+      "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5"
+    },
+    {
+      "label": "initializer_success_guard_registration_constructor",
+      "address": 135539148,
+      "size": 32,
+      "sha256": "f7f6bf363365ec6fb694b2f54573ac1e2c82c1cbbea4b968c02f18494082ff15"
+    },
+    {
+      "label": "registered_cb2_calls_runtasks_first",
+      "address": 135538608,
+      "size": 22,
+      "sha256": "c48e3888d564704c637f3ecba14dc3ed90b1517d19ce1c445b81553db570d219"
+    },
+    {
+      "label": "create_task_selected_free_row",
+      "address": 134704052,
+      "size": 58,
+      "sha256": "57dd0dd02f18dfa2596c6b8be992554dcb9cd1918d375551a103e857b1f3376f"
+    },
+    {
+      "label": "create_task_return",
+      "address": 134704128,
+      "size": 6,
+      "sha256": "c42b496278191110e2cf7e7edde6877677f9c84802b895e70ab84e194a86e7f0"
+    },
+    {
+      "label": "insert_selected_task_into_empty_list",
+      "address": 134704136,
+      "size": 42,
+      "sha256": "4022125b648f807970fcf148a08b00ac94fdc743b095c5c75a4624e995feba1e"
+    },
+    {
+      "label": "insert_task_return",
+      "address": 134704276,
+      "size": 10,
+      "sha256": "a9d2b3876577ccd2bdf166081cfe0cc83c24bccaaf5eb50cf6d7049e7746a779"
+    },
+    {
+      "label": "find_first_active_task",
+      "address": 134704448,
+      "size": 56,
+      "sha256": "b928f137260122f147a64852a970ed33bc8ab5f8eafb677e0ba82596e84298af"
+    },
+    {
+      "label": "runtasks_argument_and_indirect_consumer",
+      "address": 134704400,
+      "size": 42,
+      "sha256": "dc1a90615dae67b96669e1bea0f8914a05d040247682b3af9f3a8e52b1437be6"
+    },
+    {
+      "label": "constructor_taskid_fields",
+      "address": 135542112,
+      "size": 64,
+      "sha256": "1edd5b2aa2b52f83c3d27261f0d1adebc0c63cf2820386aef5205e016a7e36ef"
+    },
+    {
+      "label": "task_entry_bounded_dispatch",
+      "address": 135542184,
+      "size": 36,
+      "sha256": "ad246cc1757d21b29ee1b891cb9e0739614b8eb7012dcda8ebb50447502ff864"
+    },
+    {
+      "label": "state11_producer_select_return4",
+      "address": 135542764,
+      "size": 24,
+      "sha256": "77613d43c44ba350c0edd6914091a12197cdbdaa2aca8703ae9ea8fd980b14e7"
+    },
+    {
+      "label": "state11_producer_store",
+      "address": 135542854,
+      "size": 14,
+      "sha256": "ad277c7da0957d435bca837782630a8cd9753ceaaee4b290a0cddb37287ded5f"
+    },
+    {
+      "label": "state23_producer_guard",
+      "address": 135543412,
+      "size": 46,
+      "sha256": "48c4c2ee83a9bdb61a4da90d31afdec5f374f498fa6db7f988c0e250d4057a02"
+    },
+    {
+      "label": "state_common_store",
+      "address": 135542382,
+      "size": 4,
+      "sha256": "b88816e39a00be2aecf0ac0b3708cc9251d6a144a03832c4e9ab55cc0e924171"
+    },
+    {
+      "label": "state11_call_and_pending_guard",
+      "address": 135542936,
+      "size": 26,
+      "sha256": "b118947c7d3f7dbcf15086f7d4afa09d390c9d72e09173a1493cae29c4d12f5f"
+    },
+    {
+      "label": "state11_pending_no_store",
+      "address": 135543010,
+      "size": 10,
+      "sha256": "297e3a1d2dd67eadf9fba27c1caa5022e70f12b26788daacb6e3be3de5fce510"
+    },
+    {
+      "label": "state23_call_and_pending_no_store",
+      "address": 135543458,
+      "size": 36,
+      "sha256": "53ef9a36f0c2e0948f7ecec8e57911d168a89f3cebbe49039f3ae1faaa12a531"
+    },
+    {
+      "label": "task_pending_return",
+      "address": 135543906,
+      "size": 8,
+      "sha256": "5d736c3686f6a490070ed24f18dbcae4f5e972fc360d67fddcd196465a128631"
+    },
+    {
+      "label": "helper_entry_text_state_dispatch",
+      "address": 135540388,
+      "size": 30,
+      "sha256": "de49bbf4c822d063cba02142e767c39d4eea34ce9f8b6e8d311ee3d8c7457598"
+    },
+    {
+      "label": "helper_state0_question_select",
+      "address": 135540430,
+      "size": 14,
+      "sha256": "dc6e6a7c9b39d30ada84e52fe7d29fc4c30773dbfc0cd6b528eeaa13256df209"
+    },
+    {
+      "label": "helper_state0_alternate_window",
+      "address": 135540452,
+      "size": 2,
+      "sha256": "35e7a461d093b978a60dd7b1c0f776aed228f992fd5ab4bde39d6d9a73c68198"
+    },
+    {
+      "label": "helper_state0_window_calls",
+      "address": 135540454,
+      "size": 72,
+      "sha256": "b4030085183b2bef9759217c4a85777d91bfb8c5e4bec63a2d70eff4d1035fcc"
+    },
+    {
+      "label": "helper_state1_literal_consumer",
+      "address": 135540540,
+      "size": 26,
+      "sha256": "f74aa7bc6d869456f0d1bd7b28277ab248d9801a49c826c52f9eb5bd1f1fe43c"
+    },
+    {
+      "label": "helper_state1_code_consumer",
+      "address": 135540576,
+      "size": 38,
+      "sha256": "70888fcb14a97b093e4edf431c338aa012586888b36caf76744bdfc3cde74152"
+    },
+    {
+      "label": "helper_common_increment",
+      "address": 135540614,
+      "size": 8,
+      "sha256": "da251b917a2e86fd38ab88faae462f5100fe39c11aef034533ba7c5526c6d0f9"
+    },
+    {
+      "label": "helper_pending_return",
+      "address": 135540718,
+      "size": 12,
+      "sha256": "f4c8f33777b4ae454a583fb0ccfc92415fb045b9f5bfd508b858e0015bd1c5e1"
+    },
+    {
+      "label": "literal_08000554",
+      "address": 134219092,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "label": "literal_08000540",
+      "address": 134219072,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "label": "literal_08076bf0",
+      "address": 134704112,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "label": "literal_08076c34",
+      "address": 134704180,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "label": "literal_08076d78",
+      "address": 134704504,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "label": "literal_08076d3c",
+      "address": 134704444,
+      "size": 4,
+      "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+    },
+    {
+      "label": "literal_081429ec",
+      "address": 135539180,
+      "size": 4,
+      "sha256": "209b7d75bc40e1b483361368e5416f69641cd42faf58ec75566ce412a2255e8f"
+    },
+    {
+      "label": "literal_081429f0",
+      "address": 135539184,
+      "size": 4,
+      "sha256": "0849c2cf70dc34477b1a33ad9adb8812069ae6a3f8258e89e8da21573a64e9b7"
+    },
+    {
+      "label": "literal_081435a0",
+      "address": 135542176,
+      "size": 4,
+      "sha256": "0c629d0077efd173a3434982a392711fb4107056eafaf68efd236da90d903659"
+    },
+    {
+      "label": "literal_081435a4",
+      "address": 135542180,
+      "size": 4,
+      "sha256": "0d9a13aefbed9c2c262ff4b06a23f7c1dcf5b94f2e562e36ee05a3546e3e1cc8"
+    },
+    {
+      "label": "literal_081435cc",
+      "address": 135542220,
+      "size": 4,
+      "sha256": "0d9a13aefbed9c2c262ff4b06a23f7c1dcf5b94f2e562e36ee05a3546e3e1cc8"
+    },
+    {
+      "label": "literal_081435d0",
+      "address": 135542224,
+      "size": 4,
+      "sha256": "fcd71a5bd0480a912fec89f434fcc9e29dc6c57c508cd9426b48fda6bb3e8b0c"
+    },
+    {
+      "label": "literal_081435f4",
+      "address": 135542260,
+      "size": 4,
+      "sha256": "c79c0869fa28fa78fa5a704666e7000c263165dc20716359d7ed5c9dd3527a70"
+    },
+    {
+      "label": "literal_0814362c",
+      "address": 135542316,
+      "size": 4,
+      "sha256": "8bb09639c1df6e22d2abeb67e1252222fea420f48958b2f53f30c21c81fe85c4"
+    },
+    {
+      "label": "literal_08143600",
+      "address": 135542272,
+      "size": 4,
+      "sha256": "10456cc0a9d7aafbd1e95ef0b8b4d6c0facbd9d110ad0317b80da4e53d799c32"
+    },
+    {
+      "label": "literal_08143630",
+      "address": 135542320,
+      "size": 4,
+      "sha256": "60d7c59c18abef67fddda95252fb74c27cb0ad391ba922b522c74e0a17aed4f3"
+    },
+    {
+      "label": "literal_08143804",
+      "address": 135542788,
+      "size": 4,
+      "sha256": "54ed7ece0ec62a71dd10728c363c9c284b23f0f1b080d69aa5a1c033e6b4639f"
+    },
+    {
+      "label": "literal_08143810",
+      "address": 135542800,
+      "size": 4,
+      "sha256": "f507aaba7fdddbf393b9c2c384603a87975922fb6115d459fc338e8aa6b9b97d"
+    },
+    {
+      "label": "literal_08143854",
+      "address": 135542868,
+      "size": 4,
+      "sha256": "18224f55df3fe81ef446d741ac32988744c471d155d6fccf9c04b37ac3f333b0"
+    },
+    {
+      "label": "literal_08143858",
+      "address": 135542872,
+      "size": 4,
+      "sha256": "d5f0b4e0bdf0876fa8e86325c5f50ec1906381156be860c22ead094db9275c15"
+    },
+    {
+      "label": "literal_081438c0",
+      "address": 135542976,
+      "size": 4,
+      "sha256": "635d4b66724fdb8d0dffaca00b8ff222b7359f1495b9a428b096692290d8364e"
+    },
+    {
+      "label": "literal_08143ac8",
+      "address": 135543496,
+      "size": 4,
+      "sha256": "4ff4d02a1afeb845ae07e3f132f09a99c214534fd8fa8696024f11bfb3ec1a4e"
+    },
+    {
+      "label": "literal_08142edc",
+      "address": 135540444,
+      "size": 4,
+      "sha256": "f31d45fbff05c0a5cdec5375dee92c4759c03f5fdf6bb34ee1808fb384a32f24"
+    },
+    {
+      "label": "literal_08142ee0",
+      "address": 135540448,
+      "size": 4,
+      "sha256": "6bb39611be5287de50ad235f8445daed6829663c5cd0bf430154377d6e7033da"
+    },
+    {
+      "label": "literal_08142f30",
+      "address": 135540528,
+      "size": 4,
+      "sha256": "817747e32f834dac99afc20b1cf7c95a94030a279463490edc02153661051d38"
+    },
+    {
+      "label": "literal_08142f34",
+      "address": 135540532,
+      "size": 4,
+      "sha256": "d1e87ff35a4343270c2da3e5a4c528698d1458a4e5a006da20ec24a34a239f97"
+    },
+    {
+      "label": "literal_08142f38",
+      "address": 135540536,
+      "size": 4,
+      "sha256": "f31d45fbff05c0a5cdec5375dee92c4759c03f5fdf6bb34ee1808fb384a32f24"
+    },
+    {
+      "label": "literal_08142f58",
+      "address": 135540568,
+      "size": 4,
+      "sha256": "ac9d820b8f1c56ab39d6cde58305d08ac4475bb539c83e90832586fc531d7f0a"
+    },
+    {
+      "label": "literal_08142f5c",
+      "address": 135540572,
+      "size": 4,
+      "sha256": "5fc1f3b5dfc3af9f4a3c54c77f448216c82908ce3953813f1e12695bb71271c8"
+    },
+    {
+      "label": "literal_08142f90",
+      "address": 135540624,
+      "size": 4,
+      "sha256": "5fc1f3b5dfc3af9f4a3c54c77f448216c82908ce3953813f1e12695bb71271c8"
+    },
+    {
+      "label": "yesno_template_fields",
+      "address": 138608952,
+      "size": 8,
+      "sha256": "4d6e6233b65fd3a0b6db511d6eeedbea8148c9ad2ebc051a1892aaebdfb4c2bb"
+    },
+    {
+      "label": "minimal_boundary",
+      "address": 135540572,
+      "size": 6,
+      "sha256": "56e23ac810e438bc340d6fe37ab342c80ff23a9351c32cd09f6abbd6d14c24b6"
+    }
+  ],
+  "claims": {
+    "proof_scope": "conditional_finite_registered_task_mask_and_instruction_roles",
+    "full_story_reachability_claimed": false,
+    "runtime_execution_observed": false,
+    "universal_callback_epoch_claimed": false,
+    "all_task_states_proven": false,
+    "irq_noninterference_proven": false,
+    "client_heap_lifetime_required": false,
+    "all_opaque_callees_return_proven": false,
+    "both_paths_same_execution_claimed": false,
+    "literal_interpreted_as_pointer": false,
+    "whole_function_range_classified": false,
+    "indirect_reference_completeness_claimed": false,
+    "donor_eligible": false,
+    "donor_leased": false
+  },
+  "input_contract": {
+    "scope": "finite_selected_slices_only_not_observed_RAM",
+    "initializer_admission": "entry_0x081429CC_with_valid_nonalias_ABI_stack",
+    "setup_success": "0x081427C8_returns_nonzero_with_ABI_preserved",
+    "create_admission": "one_sufficient_selected_example_all_16_task_active_bytes_zero; not_a_general_necessity",
+    "opaque_calls": "calls_at_explicit_BL_sites_return_with_ABI; preserve_selected_func_active_head_tail_state_textState_and_callback2_except_documented_writes; memset_clears_only_32_task_data_bytes",
+    "cb2_return": "RunTextPrinters_AnimateSprites_BuildOamBuffer_calls_return_normally_and_preserve_selected_task_fields",
+    "task_epoch": "row0_func_active_head_tail_and_callback2_hold_for_each_selected_dispatch_only",
+    "main_dispatch_guards": "calls_at_0x08000512_and_0x0800051A_return0; callback1_is_null; callback2_is_registered_0x081427B1",
+    "state11_producer": "state8_dispatch_and_MysteryGiftClient_Run_returns4; textState0_is_preserved",
+    "state23_producer": "state22_dispatch; AskDiscardGift_returns0_with_textState0; isWonderNews0; saved_gift_check_returns1",
+    "between_producer_and_helper": "selected_state11_or23_and_textState0_retained_until_RunTasks_dispatch",
+    "state0_success": "readable_static_message; text_expansion_and_window_calls_return_normally_with_valid_window_resource",
+    "between_two_helper_calls": "same_selected_task_state_and_textState1_retained; ABI_stack_disjoint_from_task_data_and_globals",
+    "mask_consumption": "eight_readable_template_bytes_and_writable_nonalias_28byte_helper_stack_frame",
+    "client_heap": "no_dereference_on_selected_state11_or23_helper_paths; lifetime_not_required"
+  }
+}

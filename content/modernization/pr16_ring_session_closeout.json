@@ -1,0 +1,781 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-SESSION-CLOSEOUT",
+  "source_head": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+  "run_id": 35087956576,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "FRONTIER_AND_DELEGATE_ORIGINALS_VERIFIED_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "completed_milestones": [
+      {
+        "run_id": 35086278411,
+        "job_id": 104761735917,
+        "artifact_id": 10442551182,
+        "archive_identity": {
+          "size": 7097,
+          "sha256": "07aefc3352ee190042049bcc02032230b4e19acf9eb1056adf72adf913183282"
+        },
+        "receipt": {
+          "status": "PASS_RECORDED_NONFORCE_PUSHED",
+          "task": "PR-P08-7-RING-BRANCH-FRONTIER",
+          "source_head": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+          "commit": "d059ce8696dce5f220790721eb495c7ae38de8cf",
+          "run_id": 35086278411,
+          "tests": {
+            "tests_run": 30,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "successful": true
+          },
+          "outputs": [
+            "content/modernization/pr16_ring_branch_frontier.json",
+            "content/modernization/pr16_native_supply_resume_20260913.json",
+            "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+            "content/modernization/p08_remaining_work.json",
+            "design/run_log.md",
+            "design/version_log.md"
+          ],
+          "new_emulator_processes": 0,
+          "ring_acquisition_accepted": false,
+          "release_ready": false
+        },
+        "guard": {
+          "base": "37e57f61bc891c5b8fb862b1b556a51276b957ea",
+          "changed_paths": [
+            ".github/workflows/pr16-ring-branch-frontier.yml",
+            "content/modernization/p08_remaining_work.json",
+            "content/modernization/pr16_native_supply_resume_20260913.json",
+            "content/modernization/pr16_ring_branch_frontier.json",
+            "design/run_log.md",
+            "design/version_log.md",
+            "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+            "scripts/pr16_ring_branch_frontier.py",
+            "tests/test_pr16_ring_branch_frontier.py"
+          ],
+          "new_violations": 0,
+          "full_guard_before": 1,
+          "full_guard_after": 1,
+          "exact_output_match": true,
+          "full_guard_pass_claimed": false
+        },
+        "focused_tests": {
+          "tests_run": 30,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "successful": true
+        },
+        "original_tests_text": "test_arm_adr_add_sub (test_pr16_ring_branch_frontier.Frontier.test_arm_adr_add_sub) ... ok\ntest_arm_adr_not_adr (test_pr16_ring_branch_frontier.Frontier.test_arm_adr_not_adr) ... ok\ntest_arm_adr_rotation (test_pr16_ring_branch_frontier.Frontier.test_arm_adr_rotation) ... ok\ntest_arm_blx_rejected (test_pr16_ring_branch_frontier.Frontier.test_arm_blx_rejected) ... ok\ntest_arm_conditions (test_pr16_ring_branch_frontier.Frontier.test_arm_conditions) ... ok\ntest_arm_forward_backward (test_pr16_ring_branch_frontier.Frontier.test_arm_forward_backward) ... ok\ntest_arm_literal_reject_other_modes (test_pr16_ring_branch_frontier.Frontier.test_arm_literal_reject_other_modes) ... ok\ntest_arm_literal_sign_pc (test_pr16_ring_branch_frontier.Frontier.test_arm_literal_sign_pc) ... ok\ntest_arm_signed_limits (test_pr16_ring_branch_frontier.Frontier.test_arm_signed_limits) ... ok\ntest_canonical_aliases (test_pr16_ring_branch_frontier.Frontier.test_canonical_aliases) ... ok\ntest_canonical_outside (test_pr16_ring_branch_frontier.Frontier.test_canonical_outside) ... ok\ntest_input_unchanged_and_claims (test_pr16_ring_branch_frontier.Frontier.test_input_unchanged_and_claims) ... ok\ntest_invalid_inputs (test_pr16_ring_branch_frontier.Frontier.test_invalid_inputs) ... ok\ntest_literal_arm_pc (test_pr16_ring_branch_frontier.Frontier.test_literal_arm_pc) ... ok\ntest_literal_outside_not_read (test_pr16_ring_branch_frontier.Frontier.test_literal_outside_not_read) ... ok\ntest_literal_thumb_odd_mirrored (test_pr16_ring_branch_frontier.Frontier.test_literal_thumb_odd_mirrored) ... ok\ntest_no_full_caller_claim (test_pr16_ring_branch_frontier.Frontier.test_no_full_caller_claim) ... ok\ntest_reference_arm (test_pr16_ring_branch_frontier.Frontier.test_reference_arm) ... ok\ntest_reference_budget (test_pr16_ring_branch_frontier.Frontier.test_reference_budget) ... ok\ntest_reference_conditional (test_pr16_ring_branch_frontier.Frontier.test_reference_conditional) ... ok\ntest_reference_short (test_pr16_ring_branch_frontier.Frontier.test_reference_short) ... ok\ntest_swi_undefined_rejected (test_pr16_ring_branch_frontier.Frontier.test_swi_undefined_rejected) ... ok\ntest_thumb_adr_alignment (test_pr16_ring_branch_frontier.Frontier.test_thumb_adr_alignment) ... ok\ntest_thumb_backward (test_pr16_ring_branch_frontier.Frontier.test_thumb_backward) ... ok\ntest_thumb_bl_blx_bx_rejected (test_pr16_ring_branch_frontier.Frontier.test_thumb_bl_blx_bx_rejected) ... ok\ntest_thumb_conditions (test_pr16_ring_branch_frontier.Frontier.test_thumb_conditions) ... ok\ntest_thumb_forward (test_pr16_ring_branch_frontier.Frontier.test_thumb_forward) ... ok\ntest_thumb_signed_limits (test_pr16_ring_branch_frontier.Frontier.test_thumb_signed_limits) ... ok\ntest_thumb_sp_not_adr (test_pr16_ring_branch_frontier.Frontier.test_thumb_sp_not_adr) ... ok\ntest_trailing_halfword (test_pr16_ring_branch_frontier.Frontier.test_trailing_halfword) ... ok\n\n----------------------------------------------------------------------\nRan 30 tests in 0.001s\n\nOK\n",
+        "member_identities": {
+          "analysis.json": {
+            "size": 10998,
+            "sha256": "afcd907affb4c33e7074550286530db993ef0a3e930c58178abec2d7e949fd67"
+          },
+          "preflight.json": {
+            "size": 1331,
+            "sha256": "063e1669526b490b2a1c7775b029b24a913288ba7f36dcf5f5c98e8f01f8c96b"
+          },
+          "guard.json": {
+            "size": 657,
+            "sha256": "025a223cd3c3dcfc5d282cb0b202c3997122d4558c763bf1d4a695fb4a9151f5"
+          },
+          "recorded-result.json": {
+            "size": 750,
+            "sha256": "2f8cc59c54e1ce0c98305d3ed1c2230c89083ea45472d624bd03e30086b33d37"
+          },
+          "tests.json": {
+            "size": 90,
+            "sha256": "3865aac4509696211e584288e428c5a1c9b9eb196ccb4f1b2136d7eda4108eb3"
+          },
+          "tests.txt": {
+            "size": 3019,
+            "sha256": "2c586f430d44f936440e0c034d45c31c37a7e70dc8057d4217388334de0183f4"
+          }
+        },
+        "observed_run": {
+          "id": 35086278411,
+          "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      },
+      {
+        "run_id": 35087488359,
+        "job_id": 104765650607,
+        "artifact_id": 10443061273,
+        "archive_identity": {
+          "size": 4004,
+          "sha256": "1942a182acff72bfb309fb55334dc35126fda201544add7067186e33e38ad2ca"
+        },
+        "receipt": {
+          "status": "PASS_RECORDED_NONFORCE_PUSHED",
+          "task": "PR-P08-7-RING-DELEGATE-CONTRACTS",
+          "source_head": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+          "commit": "f57fcf3d10662fc302ea4ed8f2548e4570251896",
+          "run_id": 35087488359,
+          "tests": {
+            "tests_run": 36,
+            "failures": 0,
+            "errors": 0,
+            "skips": 0,
+            "successful": true
+          },
+          "outputs": [
+            "content/modernization/pr16_ring_delegate_contracts.json",
+            "content/modernization/pr16_native_supply_resume_20260913.json",
+            "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+            "content/modernization/p08_remaining_work.json",
+            "design/run_log.md",
+            "design/version_log.md"
+          ],
+          "new_emulator_processes": 0,
+          "ring_acquisition_accepted": false,
+          "release_ready": false
+        },
+        "guard": {
+          "base": "d059ce8696dce5f220790721eb495c7ae38de8cf",
+          "changed_paths": [
+            ".github/workflows/pr16-ring-delegate-contracts.yml",
+            "content/modernization/p08_remaining_work.json",
+            "content/modernization/pr16_native_supply_resume_20260913.json",
+            "content/modernization/pr16_ring_delegate_contracts.json",
+            "design/run_log.md",
+            "design/version_log.md",
+            "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+            "scripts/pr16_ring_delegate_contracts.py",
+            "tests/test_pr16_ring_delegate_contracts.py"
+          ],
+          "new_violations": 0,
+          "full_guard_before": 1,
+          "full_guard_after": 1,
+          "exact_output_match": true,
+          "full_guard_pass_claimed": false
+        },
+        "focused_tests": {
+          "tests_run": 36,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "successful": true
+        },
+        "original_tests_text": "test_boundaries_remain_explicit (test_pr16_ring_delegate_contracts.Contracts.test_boundaries_remain_explicit) ... ok\ntest_date_actual_lenient_edges (test_pr16_ring_delegate_contracts.Contracts.test_date_actual_lenient_edges) ... ok\ntest_date_bad_length (test_pr16_ring_delegate_contracts.Contracts.test_date_bad_length) ... ok\ntest_date_error_bits (test_pr16_ring_delegate_contracts.Contracts.test_date_error_bits) ... ok\ntest_date_leap_stops_before_external (test_pr16_ring_delegate_contracts.Contracts.test_date_leap_stops_before_external) ... ok\ntest_date_model_rejects_wrong_scope (test_pr16_ring_delegate_contracts.Contracts.test_date_model_rejects_wrong_scope) ... ok\ntest_date_month_table_not_invented (test_pr16_ring_delegate_contracts.Contracts.test_date_month_table_not_invented) ... ok\ntest_date_normal (test_pr16_ring_delegate_contracts.Contracts.test_date_normal) ... ok\ntest_date_status_bits (test_pr16_ring_delegate_contracts.Contracts.test_date_status_bits) ... ok\ntest_date_weekday_unchecked (test_pr16_ring_delegate_contracts.Contracts.test_date_weekday_unchecked) ... ok\ntest_fill_bad_inputs (test_pr16_ring_delegate_contracts.Contracts.test_fill_bad_inputs) ... ok\ntest_fill_full_byte_classes (test_pr16_ring_delegate_contracts.Contracts.test_fill_full_byte_classes) ... ok\ntest_fill_truncates_value (test_pr16_ring_delegate_contracts.Contracts.test_fill_truncates_value) ... ok\ntest_fill_word_and_tail_boundaries (test_pr16_ring_delegate_contracts.Contracts.test_fill_word_and_tail_boundaries) ... ok\ntest_fill_zero (test_pr16_ring_delegate_contracts.Contracts.test_fill_zero) ... ok\ntest_gate_busy (test_pr16_ring_delegate_contracts.Contracts.test_gate_busy) ... ok\ntest_gate_external_is_not_mocked (test_pr16_ring_delegate_contracts.Contracts.test_gate_external_is_not_mocked) ... ok\ntest_reader_bad_inputs (test_pr16_ring_delegate_contracts.Contracts.test_reader_bad_inputs) ... ok\ntest_reader_busy_blocks (test_pr16_ring_delegate_contracts.Contracts.test_reader_busy_blocks) ... ok\ntest_reader_gpio_write_counts (test_pr16_ring_delegate_contracts.Contracts.test_reader_gpio_write_counts) ... ok\ntest_reader_non_one_busy (test_pr16_ring_delegate_contracts.Contracts.test_reader_non_one_busy) ... ok\ntest_reader_serial_bit_order (test_pr16_ring_delegate_contracts.Contracts.test_reader_serial_bit_order) ... ok\ntest_reset_exact_writes (test_pr16_ring_delegate_contracts.Contracts.test_reset_exact_writes) ... ok\ntest_status_busy_returns (test_pr16_ring_delegate_contracts.Contracts.test_status_busy_returns) ... ok\ntest_status_stack_pointer_argument (test_pr16_ring_delegate_contracts.Contracts.test_status_stack_pointer_argument) ... ok\ntest_time_reader_preserves_prefix (test_pr16_ring_delegate_contracts.Contracts.test_time_reader_preserves_prefix) ... ok\ntest_vm_arithmetic_and_signed_flags (test_pr16_ring_delegate_contracts.Contracts.test_vm_arithmetic_and_signed_flags) ... ok\ntest_vm_io_not_assumed (test_pr16_ring_delegate_contracts.Contracts.test_vm_io_not_assumed) ... ok\ntest_vm_literal_is_not_executable (test_pr16_ring_delegate_contracts.Contracts.test_vm_literal_is_not_executable) ... ok\ntest_vm_rom_not_writable (test_pr16_ring_delegate_contracts.Contracts.test_vm_rom_not_writable) ... ok\ntest_vm_shift_boundaries (test_pr16_ring_delegate_contracts.Contracts.test_vm_shift_boundaries) ... ok\ntest_vm_sp_restore (test_pr16_ring_delegate_contracts.Contracts.test_vm_sp_restore) ... ok\ntest_vm_step_and_entry_bounds (test_pr16_ring_delegate_contracts.Contracts.test_vm_step_and_entry_bounds) ... ok\ntest_vm_stm_and_return (test_pr16_ring_delegate_contracts.Contracts.test_vm_stm_and_return) ... ok\ntest_vm_unknown_instruction (test_pr16_ring_delegate_contracts.Contracts.test_vm_unknown_instruction) ... ok\ntest_vm_unprovided_unaligned (test_pr16_ring_delegate_contracts.Contracts.test_vm_unprovided_unaligned) ... ok\n\n----------------------------------------------------------------------\nRan 36 tests in 0.499s\n\nOK\n",
+        "member_identities": {
+          "analysis.json": {
+            "size": 4622,
+            "sha256": "b4733a1a0733bac7b283054843d792fdf04c981370fd1a89e700a44170d9ee23"
+          },
+          "recorded-result.json": {
+            "size": 756,
+            "sha256": "2c61ee2adee78bb3bb90f3be67efce3f9bc9aaaa2751010e136c6a03608bad78"
+          },
+          "guard.json": {
+            "size": 669,
+            "sha256": "7d8c3c8edfb8e7b4795b34670bcf6443f372171d84c7b540dc66b9fdf41b546d"
+          },
+          "tests.json": {
+            "size": 90,
+            "sha256": "3d7a50bab094f34da68f71a76800f7cf4a815f567387018351bba0e6b678faf7"
+          },
+          "tests.txt": {
+            "size": 3955,
+            "sha256": "d77aa046d9176faf4d7d237c55c9196b831d04497a88771590f3fe7727966436"
+          }
+        },
+        "observed_run": {
+          "id": 35087488359,
+          "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      }
+    ],
+    "session_totals": {
+      "new_implementation_tests": 66,
+      "new_reference_candidates": 0,
+      "new_sampled_bytes": 3326,
+      "saved_bytes_reused": 622,
+      "bounded_delegate_vectors": 8191,
+      "delegate_vector_counts": {
+        "fill_vectors": 2584,
+        "reset_vectors": 256,
+        "gate_vectors": 256,
+        "status_prefix_vectors": 256,
+        "reader_vectors": 3072,
+        "date_vectors": 1767
+      },
+      "candidate_reconstructions": 1,
+      "new_emulator_processes": 0,
+      "accepted_native_cases_replayed": 0,
+      "prior_abi_classifications_replayed": 0,
+      "rom_changes": 0
+    },
+    "actions_observed": [
+      {
+        "id": 35084775436,
+        "name": "p03-forgetting-ci",
+        "head_sha": "37e57f61bc891c5b8fb862b1b556a51276b957ea",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "action_required"
+      },
+      {
+        "id": 35084775435,
+        "name": "source-validation",
+        "head_sha": "37e57f61bc891c5b8fb862b1b556a51276b957ea",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "action_required"
+      },
+      {
+        "id": 35087957236,
+        "name": "source-validation",
+        "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+        "event": "pull_request",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 35087956488,
+        "name": "Stage79 mGBA (all)",
+        "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+        "event": "push",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 35087956496,
+        "name": "source-validation",
+        "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+        "event": "push",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 35087957216,
+        "name": "p03-forgetting-ci",
+        "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+        "event": "pull_request",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 35087956576,
+        "name": "分岐frontierと7delegateの成功原本・記録照合",
+        "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+        "event": "push",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 35087956555,
+        "name": "Stage79 runtime boundary audit",
+        "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35087956508,
+        "name": "p03-forgetting-ci",
+        "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+        "event": "push",
+        "status": "in_progress",
+        "conclusion": null
+      },
+      {
+        "id": 35086282481,
+        "name": "p03-forgetting-ci",
+        "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35086282494,
+        "name": "source-validation",
+        "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35086278468,
+        "name": "Stage79 runtime boundary audit",
+        "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35086278424,
+        "name": "p03-forgetting-ci",
+        "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35086278411,
+        "name": "未検索分岐と6delegateの限定採取・記録",
+        "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35086278380,
+        "name": "Stage79 mGBA (all)",
+        "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35086278335,
+        "name": "source-validation",
+        "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35086423273,
+        "name": "source-validation",
+        "head_sha": "d059ce8696dce5f220790721eb495c7ae38de8cf",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "action_required"
+      },
+      {
+        "id": 35086423324,
+        "name": "p03-forgetting-ci",
+        "head_sha": "d059ce8696dce5f220790721eb495c7ae38de8cf",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "action_required"
+      },
+      {
+        "id": 35087492824,
+        "name": "p03-forgetting-ci",
+        "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35087492829,
+        "name": "source-validation",
+        "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35087488387,
+        "name": "Stage79 runtime boundary audit",
+        "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35087488290,
+        "name": "p03-forgetting-ci",
+        "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35087488359,
+        "name": "保存7delegateの局所契約・未読境界・記録",
+        "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35087488327,
+        "name": "source-validation",
+        "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35087488365,
+        "name": "Stage79 mGBA (all)",
+        "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 35087576675,
+        "name": "p03-forgetting-ci",
+        "head_sha": "f57fcf3d10662fc302ea4ed8f2548e4570251896",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "action_required"
+      },
+      {
+        "id": 35087576735,
+        "name": "source-validation",
+        "head_sha": "f57fcf3d10662fc302ea4ed8f2548e4570251896",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "action_required"
+      }
+    ],
+    "cached_stage79_native_steps": [
+      {
+        "run_id": 35086278380,
+        "job_id": 104762056909,
+        "name": "domain (p04_mega_runtime)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35086278380,
+        "job_id": 104762056936,
+        "name": "domain (p03)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35086278380,
+        "job_id": 104762056982,
+        "name": "domain (floette)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35086278380,
+        "job_id": 104762056993,
+        "name": "domain (battle_policy)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35086278380,
+        "job_id": 104762057004,
+        "name": "domain (mega_shop)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35086278380,
+        "job_id": 104762057186,
+        "name": "domain (p02)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35086278380,
+        "job_id": 104762057217,
+        "name": "domain (p05)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35087488365,
+        "job_id": 104765917740,
+        "name": "domain (mega_shop)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35087488365,
+        "job_id": 104765917781,
+        "name": "domain (p03)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35087488365,
+        "job_id": 104765917798,
+        "name": "domain (p02)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35087488365,
+        "job_id": 104765917814,
+        "name": "domain (p05)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35087488365,
+        "job_id": 104765917823,
+        "name": "domain (p04_mega_runtime)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35087488365,
+        "job_id": 104765917898,
+        "name": "domain (battle_policy)",
+        "native_step_conclusion": "skipped"
+      },
+      {
+        "run_id": 35087488365,
+        "job_id": 104765917949,
+        "name": "domain (floette)",
+        "native_step_conclusion": "skipped"
+      }
+    ],
+    "next_unread_contracts": {
+      "external_targets": [
+        152224937,
+        152225109,
+        151625221
+      ],
+      "month_table": [
+        152474928,
+        152474976
+      ],
+      "initializer": 135346564,
+      "unsearched_forms": [
+        "register-computed/table-dispatched targets",
+        "nonliteral loads",
+        "execution from RAM",
+        "execution at mirrored PC addresses"
+      ],
+      "actual_caller_pointer_size_limit_proven": false
+    },
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "old_frontier_removed": false,
+    "all_runtime_owners_excluded": false,
+    "all_callers_resolved": false,
+    "candidate_reconstructions": 0,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0,
+    "rom_changes": 0,
+    "ring_acquisition_accepted": false,
+    "release_ready": false
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_session_closeout.py": {
+      "size": 9526,
+      "sha256": "7b22e37f7978b48f8fb6674c97cb76657b4dc7dbdeefb792d67cc78902d04014"
+    },
+    "tests/test_pr16_ring_session_closeout.py": {
+      "size": 4976,
+      "sha256": "2b67476f825d615606b9976cd26e984d7e13265a2fd26e75091dc47d9188aad7"
+    },
+    ".github/workflows/pr16-ring-session-closeout.yml": {
+      "size": 1943,
+      "sha256": "848c9824b5771ca82726d85590001776f474bdd28a57d43bb8b4d286e4fd6efe"
+    },
+    "content/modernization/pr16_ring_delegate_contracts.json": {
+      "size": 11904,
+      "sha256": "3423377b57a598d22e36a1f1447e44172a8bf65bdb73a0d3c269877b918df77d"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "content/modernization/pr16_ring_branch_frontier.json": {
+      "size": 18753,
+      "sha256": "3c1ea4c589af430f115a0a6ed02c330e41e609fb14fdc6f60e9c01090a80861b"
+    },
+    "scripts/pr16_ring_control_closeout.py": {
+      "size": 10009,
+      "sha256": "f9cdcb66e3ec124e6c1ee4c0e7142eacef7b6d848e5604d4b23cfd9f26e8dadb"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 18,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35087488359,
+      "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35087957236,
+      "name": "source-validation",
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35087956496,
+      "name": "source-validation",
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35087956555,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35087956508,
+      "name": "p03-forgetting-ci",
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35087957216,
+      "name": "p03-forgetting-ci",
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35087956576,
+      "name": "分岐frontierと7delegateの成功原本・記録照合",
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35087956488,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "abef270af148fd2919e8fc3fc5e4412ed72e1dc7",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35087576675,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f57fcf3d10662fc302ea4ed8f2548e4570251896",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35087576735,
+      "name": "source-validation",
+      "head_sha": "f57fcf3d10662fc302ea4ed8f2548e4570251896",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35087492824,
+      "name": "p03-forgetting-ci",
+      "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35087492829,
+      "name": "source-validation",
+      "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35087488387,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35087488290,
+      "name": "p03-forgetting-ci",
+      "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35087488359,
+      "name": "保存7delegateの局所契約・未読境界・記録",
+      "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35087488327,
+      "name": "source-validation",
+      "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35087488365,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35086423273,
+      "name": "source-validation",
+      "head_sha": "d059ce8696dce5f220790721eb495c7ae38de8cf",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35086423324,
+      "name": "p03-forgetting-ci",
+      "head_sha": "d059ce8696dce5f220790721eb495c7ae38de8cf",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35086282481,
+      "name": "p03-forgetting-ci",
+      "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35086282494,
+      "name": "source-validation",
+      "head_sha": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-CAVE-RETURN-WILD-SAVE35",
+  "status": "PASS_CAVE_RETURN_WILD_SAVE35_SCOPED",
+  "measurement_source": "95edb59bcf19a560f81355aa446c3cf57bf95a62",
+  "run_id": 37124732153,
+  "job_id": 111207625688,
+  "artifact": {
+    "id": 11274735081,
+    "name": "pr16-story-save35-checkpoint",
+    "size_in_bytes": 365141,
+    "digest": "sha256:df1e104b934c21c0577822e864eac2c42e67e38f7cb78e953f432b357215162b",
+    "workflow_run": {
+      "id": 37124732153,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "95edb59bcf19a560f81355aa446c3cf57bf95a62"
+    },
+    "expires_at": "2027-01-01T13:00:34Z"
+  },
+  "verification": {
+    "status": "PASS_CAVE_RETURN_WILD_SAVE35_SCOPED",
+    "trainer_victories": 0,
+    "wild_victories": 1,
+    "escapes": 0,
+    "captures": 0,
+    "ordinary_saves": 1,
+    "save_counter": 35,
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      16,
+      5
+    ],
+    "facing": 3,
+    "party_count": 4,
+    "rp": 0,
+    "return_teleport_accepted": true,
+    "west_stair_accepted": false,
+    "dynamic8_5_native_arrival": false,
+    "trainer360_accepted": false,
+    "move_selections": 2,
+    "actual_pp_consumed": 1,
+    "flinch_observation": 32,
+    "save_success_text_observation": 54,
+    "save_success_wording_observed": true,
+    "save_completion_basis": "FULL_FLASH_SECTOR_CHECKSUMS_SUCCESS_TEXT_FIELD_RETURN_AND_INDEPENDENT_CONTINUE",
+    "stable_field_observation": 57,
+    "partial_write_observations": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53
+    ],
+    "progress_inputs": 115,
+    "continue_inputs": 13,
+    "screen_count": 60,
+    "native_processes": 2,
+    "prior_failed_native_processes": 2,
+    "total_development_native_processes": 4,
+    "record_native_processes": 0,
+    "accepted_case_reruns": 0,
+    "accepted_test_reruns": 0,
+    "compiles": 0,
+    "rom_changes": 0,
+    "fixture_writes": 0,
+    "hm05_taught_or_used": false,
+    "trainer352_accepted": false,
+    "cave_crossing_complete": false,
+    "national_dex_unlocked": false,
+    "natural_growth_accepted": false,
+    "natural_evolution_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "boundary": {
+      "party_changes": [
+        [
+          41,
+          6,
+          7
+        ],
+        [
+          53,
+          14,
+          13
+        ],
+        [
+          86,
+          66,
+          64
+        ],
+        [
+          241,
+          104,
+          105
+        ]
+      ],
+      "party_growth_byte_changes": [
+        [
+          41,
+          6,
+          7
+        ],
+        [
+          241,
+          104,
+          105
+        ]
+      ],
+      "growth_byte_runtime_owners_resolved": false,
+      "pp": [
+        1,
+        13,
+        0,
+        0
+      ],
+      "hp": [
+        320,
+        354
+      ],
+      "bag_unchanged": true,
+      "hm05_owned": true,
+      "money_before": 13128,
+      "money_after": 13128,
+      "physical_flag_deltas": [],
+      "variable_deltas": [
+        [
+          16417,
+          119,
+          7
+        ],
+        [
+          16418,
+          1,
+          0
+        ]
+      ],
+      "auxiliary_runtime_owners_resolved": false,
+      "flag4367": 1,
+      "old_bank_preserved_bytes": 57344,
+      "pc_s61e_preserved": true,
+      "s61e_crc_verified": true,
+      "sector_checksum_checks": 42,
+      "national_dex_magic": 0,
+      "national_var404e": 0,
+      "national_flag840": 0,
+      "story_vars": {
+        "4071": 7,
+        "4072": 1
+      },
+      "badge_count": 1,
+      "all_save_rtc_cold_identical": true,
+      "changed_bytes": 6941,
+      "changed_ranges": 1770
+    },
+    "input_save": {
+      "size": 131088,
+      "sha256": "c90cde2874e2c9a13b96c990c3907326bea066bb22a6bd61ae71b63ae5419692"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "df15c94737ee6511a80173215ab0edbfb3927161c7b6dbb59f9c403b4a197d98"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    }
+  },
+  "record_source": "091d51ca2184ab1befb931ec804232a824e90eb1",
+  "record_run_id": 37125070319,
+  "save35_accepted": true,
+  "return_teleport_accepted": true,
+  "west_stair_accepted": false,
+  "dynamic8_5_native_arrival": false,
+  "visual_review": "content/modernization/pr16_story_save35_visual_review.json",
+  "source_bindings": {
+    ".github/workflows/pr16-story-save35-record.yml": {
+      "size": 2405,
+      "sha256": "7b9b9c7b97949a646329fc42109c3fa7f93fa9b4340211bc5321a4ae04973361"
+    },
+    ".github/workflows/pr16-story-save35.yml": {
+      "size": 1645,
+      "sha256": "5cb76b52cd94cdc4c9dd398b580bed98e8978d1e00667837d7c94a765b9cddc8"
+    },
+    "content/modernization/pr16_story_save35_visual_review.json": {
+      "size": 7612,
+      "sha256": "d2ade2971c11644986591b1ab4bbb22645b919b2fcdd5470a83fd109e8fe57b0"
+    },
+    "scripts/pr16_story_save35_accept.py": {
+      "size": 9547,
+      "sha256": "f0df14fa5329012c3cfcacd2f73445c35f37579fb75c25ecf88030b8c5961aa0"
+    },
+    "scripts/pr16_story_save35_measure.py": {
+      "size": 17906,
+      "sha256": "040246608198084dfe065c6033bc73ea547514719c47a936a8b6b02b567d96d2"
+    },
+    "scripts/pr16_story_save35_record.py": {
+      "size": 15524,
+      "sha256": "2242357ded01d6462f50c30a0f07806d7b8f830b2a03b7de62155f73c4aea034"
+    },
+    "tests/test_pr16_story_save35_accept.py": {
+      "size": 3311,
+      "sha256": "3044ccfa2805a362b1f2112ebbd7412eb5270b66c2384af70e405aee8dd9410f"
+    },
+    "tests/test_pr16_story_save35_measure.py": {
+      "size": 3224,
+      "sha256": "0bf3519e34307226bd65aceb812a37b8fd950d3ed5c84a8a32112b692b121826"
+    },
+    "tests/test_pr16_story_save35_transition.py": {
+      "size": 771,
+      "sha256": "3131475d3b6f142d9edf76c4921a3668c5c0f8f8f131029fd9f59b149afe7a86"
+    },
+    "tests/test_pr16_story_save35_transition_wait.py": {
+      "size": 957,
+      "sha256": "31a31ef450f207ebeeae4709ab5723fd1606974ab8184192aedd2a121830f797"
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_save35_evidence/continue/commands.txt": {
+      "size": 25,
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3"
+    },
+    "content/modernization/pr16_story_save35_evidence/continue/execution.json": {
+      "size": 548,
+      "sha256": "b44d48b2e68407531d8f2235d138a95edb8e6d493a1dc49b5cb33db0a9f0899f"
+    },
+    "content/modernization/pr16_story_save35_evidence/continue/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save35_evidence/continue/stdout.txt": {
+      "size": 2101,
+      "sha256": "a67d2ee61c11b1f6b45c13e52c01732844483a82baad01cf0afefd8cef5dfb83"
+    },
+    "content/modernization/pr16_story_save35_evidence/controller-test-receipt.json": {
+      "size": 702,
+      "sha256": "cf2c9e8ecbb688bffe4f2704f92cd6fa64c0a17a5b5db4d3a1f554a05540feb7"
+    },
+    "content/modernization/pr16_story_save35_evidence/failed-original.json": {
+      "size": 2462,
+      "sha256": "de163dc7797920a6919eb1b01cd3dee038ae73974df9f00d6d79c615898ec9dd"
+    },
+    "content/modernization/pr16_story_save35_evidence/inspection.json": {
+      "size": 5591,
+      "sha256": "9b60c90126771ce351259f46776a8122cb76699e1012e96d961583fa021b9243"
+    },
+    "content/modernization/pr16_story_save35_evidence/manifest.json": {
+      "size": 10513,
+      "sha256": "6daa216d94e7434bcd4e01ccf142d73c256b05371a93699ba8baf3bdfb82ef8e"
+    },
+    "content/modernization/pr16_story_save35_evidence/measurement.json": {
+      "size": 10909,
+      "sha256": "3cf99b61286cadd690948e2eeacf45f2c1a676a7ae4084a115a47365e6d56ee7"
+    },
+    "content/modernization/pr16_story_save35_evidence/progress/commands.txt": {
+      "size": 1551,
+      "sha256": "47b3bbb4d707c2126fc11ff7af6798cf632bba3617e08a802cb754eff1eeddca"
+    },
+    "content/modernization/pr16_story_save35_evidence/progress/execution.json": {
+      "size": 550,
+      "sha256": "5d44cb6949ecbe5f927c71bbabfafcd4392f73f6c2a6d5b1e422ba8c54c91a09"
+    },
+    "content/modernization/pr16_story_save35_evidence/progress/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save35_evidence/progress/stdout.txt": {
+      "size": 37794,
+      "sha256": "0d372f7ea796af7fe98543234775d2bc2744fd2f0eb15a3b5b47e1276e74672a"
+    },
+    "content/modernization/pr16_story_save35_evidence/save34-record-terminal.json": {
+      "size": 4177,
+      "sha256": "fc409a61311ac2cfb1d4b06fbb8daf60ce57e7b739d376a94e2db3e65d8ceec5"
+    },
+    "content/modernization/pr16_story_save35_evidence/second-failed-original.json": {
+      "size": 782,
+      "sha256": "223a164492e3350a35074a8a0dd1322df538a95aa813bd7387024ff8dca0219f"
+    },
+    "content/modernization/pr16_story_save35_evidence/terminal.json": {
+      "size": 3464,
+      "sha256": "40c3c82ce16ac54eb749197be70ee2f9a4db328d8c79c70d39a555e17a372fb8"
+    },
+    "content/modernization/pr16_story_save35_evidence/unit.stderr.txt": {
+      "size": 2811,
+      "sha256": "20ccd408bea0af4469c22af0198b20bb588a7ad735b3799b009bef32a1f16a19"
+    },
+    "content/modernization/pr16_story_save35_evidence/verification.json": {
+      "size": 3116,
+      "sha256": "f7db8362648cd98889c60dff4ff75d988198d2f8b8a5fb3331e4b49c1aaa2ddd"
+    }
+  },
+  "new_controller_tests": 5,
+  "inherited_controller_tests": 23,
+  "new_acceptance_tests": 26,
+  "prior_failed_native_processes": 2,
+  "total_development_native_processes": 4,
+  "record_native_processes": 0,
+  "next_goal_ja": "Save35 artifact11274735081のstory-fast.srm（df15c94737ee6511a80173215ab0edbfb3927161c7b6dbb59f9c403b4a197d98、131088bytes）だけから再開。map1/73・16,5西・party4/RP0・13128円・badge1・story4071=7/4072=1・flag4367=1。戻り転送8,10→27,7と野生バルキー1勝、通常Save35/独立Continueまで限定受入。ミュウツーHP320/354・PP[1,13,0,0]。はどうだん選択2回のうち初回はひるみ、実PP消費1。host回復/PP/flag/var注入禁止。次は16,5→16,4→15,4→14,4→13,4→13,5西岩階段→13,6→12,6→11,6→10,6→9,6→8,6→8,5→7,5候補。失敗辺9,7→9,6は反復せず、戻り転送の今回完了prefixも再走しない。保存済920cells/map-load3node14命令/7,5event6nodeを再採取しない。8,5はflag4367により開く静的ownerを継承するが、西階段/実8,5/7,5event/trainer360は未受入。本成功115/cold13入力・60画面・全77member、旧controller19+4成功step継承/新5wait-only/新26受入。失敗run37124366728の56入力24画面、37124554654の57入力25画面はいずれも未保存native1で保持。party offset41/241の各+1と補助var4021=119→7/4022=1→0のruntime ownerは未解決で、自然成長受入へ昇格しない。保存成功文言54〜56/全Flash完成54/field復帰57/cold全SaveRTC一致。trainer352/360、洞窟出口4,19→map1/38、全国図鑑、自然成長進化、全storyは未完。既存ROM/runtime/inputはActionsだけ、新公開artifactは新save/画面/textのみ。",
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "general_ci_all_success_claimed": false
+}

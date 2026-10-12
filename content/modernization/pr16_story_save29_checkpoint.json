@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-CAVE-WEST-SAVE29",
+  "status": "PASS_CAVE_WEST_HIGH_WILD_SAVE29_SCOPED",
+  "measurement_source": "33e1b9337469170adfca8af14ec4b3f298135b75",
+  "run_id": 37118447519,
+  "job_id": 111189690507,
+  "artifact": {
+    "id": 11271899477,
+    "name": "pr16-story-save29-checkpoint",
+    "size_in_bytes": 232451,
+    "digest": "sha256:bb04e57ceb77be61b068e30e9dc88a343feb9754a7dec7c5066182ff4501f22f",
+    "workflow_run": {
+      "id": 37118447519,
+      "repository_id": 1358127462,
+      "head_repository_id": 1358127462,
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_sha": "33e1b9337469170adfca8af14ec4b3f298135b75"
+    },
+    "expires_at": "2027-01-01T11:03:58Z"
+  },
+  "verification": {
+    "status": "PASS_CAVE_WEST_HIGH_WILD_SAVE29_SCOPED",
+    "trainer_victories": 0,
+    "wild_victories": 1,
+    "escapes": 0,
+    "captures": 0,
+    "wild_species_ja": "ディグダ",
+    "wild_level": 8,
+    "ordinary_saves": 1,
+    "save_counter": 29,
+    "map": [
+      1,
+      73
+    ],
+    "xy": [
+      17,
+      4
+    ],
+    "facing": 3,
+    "party_count": 4,
+    "rp": 0,
+    "encounter_transition": 16,
+    "battle_start": 17,
+    "victory_field_return": 28,
+    "save_success_text_observation": 35,
+    "stable_field_observation": 36,
+    "partial_write_observations": [
+      32,
+      33,
+      34
+    ],
+    "progress_inputs": 88,
+    "continue_inputs": 13,
+    "screen_count": 39,
+    "native_processes": 2,
+    "record_native_processes": 0,
+    "accepted_case_reruns": 0,
+    "accepted_test_reruns": 0,
+    "compiles": 0,
+    "rom_changes": 0,
+    "fixture_writes": 0,
+    "hm05_taught_or_used": false,
+    "trainer352_accepted": false,
+    "trainer353_accepted": false,
+    "teleport_accepted": false,
+    "cave_crossing_complete": false,
+    "national_dex_unlocked": false,
+    "natural_growth_accepted": false,
+    "natural_evolution_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "boundary": {
+      "party_changes": [
+        [
+          55,
+          5,
+          4
+        ]
+      ],
+      "bag_unchanged": true,
+      "hm05_owned": true,
+      "money_before": 12712,
+      "money_after": 12712,
+      "physical_flag_deltas": [],
+      "auxiliary_var_deltas": [
+        [
+          16417,
+          68,
+          81
+        ]
+      ],
+      "auxiliary_runtime_owners_resolved": false,
+      "old_bank_preserved_bytes": 57344,
+      "pc_s61e_preserved": true,
+      "s61e_crc_verified": true,
+      "sector_checksum_checks": 42,
+      "national_dex_magic": 0,
+      "national_var404e": 0,
+      "national_flag840": 0,
+      "story_vars": {
+        "4071": 6,
+        "4072": 1
+      },
+      "badge_count": 1,
+      "all_save_rtc_cold_identical": true,
+      "changed_bytes": 6949,
+      "changed_ranges": 1760
+    },
+    "input_save": {
+      "size": 131088,
+      "sha256": "a5cfc5714bcc447550d78ff45f42c74109f12d607bad1d94dbf61fe96b06f4a4"
+    },
+    "output_save": {
+      "size": 131088,
+      "sha256": "780c27a138bc0795e2f30c328f69a77ded3569a9960318a61f0dc3d431f56a83"
+    },
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    }
+  },
+  "record_source": "a5d169ffc645d574d8d2bd471555fc82a56b592f",
+  "record_run_id": 37119219773,
+  "save29_accepted": true,
+  "teleport_accepted": false,
+  "visual_review": "content/modernization/pr16_story_save29_visual_review.json",
+  "source_bindings": {
+    ".github/workflows/pr16-story-save29-record.yml": {
+      "size": 2146,
+      "sha256": "62b23df5b29950a0d47f86913777b5d1e4e868366fc517cf1ddc85a72ec97edf"
+    },
+    ".github/workflows/pr16-story-save29.yml": {
+      "size": 1618,
+      "sha256": "d6d65a7fb848080f8c216493bbfb7e5353df35b448760e8a65c01a0ff1bcb42e"
+    },
+    "content/modernization/pr16_story_save29_visual_review.json": {
+      "size": 5165,
+      "sha256": "29ac7988f8101d0460f703b6402de0bfb4aad3c74064f670f10da66515cbe9af"
+    },
+    "scripts/pr16_story_save29_accept.py": {
+      "size": 8679,
+      "sha256": "00f26ee405ed733e171d6ae0d36ec34c04b93d8ec70f70e4bf7f5cb59453402e"
+    },
+    "scripts/pr16_story_save29_measure.py": {
+      "size": 12564,
+      "sha256": "419128bd8a0598cfdd3319f33f40de90401aadfb0d4346ada8e175ba751d7b1d"
+    },
+    "scripts/pr16_story_save29_record.py": {
+      "size": 18835,
+      "sha256": "1f4f3823bee9abd5fbadd560842171c6cf7391da03ee6a8341c4f90946770ad6"
+    },
+    "tests/test_pr16_story_save29_accept.py": {
+      "size": 2543,
+      "sha256": "cc082ab4c94501eb5c5f2ff1184a7c2ae1a5ad4d7bda457876c0d0330517259a"
+    },
+    "tests/test_pr16_story_save29_measure.py": {
+      "size": 1937,
+      "sha256": "9daf58224cf2c23d2e5266841a918f6038526855823faf1a924e413ab3410775"
+    },
+    "tests/test_pr16_story_save29_owner.py": {
+      "size": 866,
+      "sha256": "883a8d4d767a82c1651f488f752dfcc2aea951e35fa988e32627f0faf9eb4b49"
+    },
+    "tests/test_pr16_story_save29_receipt.py": {
+      "size": 754,
+      "sha256": "6c98bea40ded91b9d5a19e4ea107f3c7c7c3a845453cdcafd1e98946c62d128b"
+    },
+    "tests/test_pr16_story_save29_record_targets.py": {
+      "size": 587,
+      "sha256": "1ec528086c178259bbafd2eca6479333db1958748e81d0347fa8d004bbf31b3a"
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_save29_evidence/acceptance-test-reused-receipt.json": {
+      "size": 5315,
+      "sha256": "3b427490f8eaae2ec73bf7c7dcafc048be8489e3d757162ea01df91fa5444a90"
+    },
+    "content/modernization/pr16_story_save29_evidence/continue/commands.txt": {
+      "size": 25,
+      "sha256": "5aa3363ef7287a5fe371442e67ec861616823326b1d70e16730c34c4baab07a3"
+    },
+    "content/modernization/pr16_story_save29_evidence/continue/execution.json": {
+      "size": 548,
+      "sha256": "28b8406bf9992eb7790a281577b0e4f386ee79dace50f29715110f3deea5f1bb"
+    },
+    "content/modernization/pr16_story_save29_evidence/continue/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save29_evidence/continue/stdout.txt": {
+      "size": 2101,
+      "sha256": "b4b05a4761ee01aefbdc7045bea9cb1b8fdad3523ba56ad8261d4c46196447a2"
+    },
+    "content/modernization/pr16_story_save29_evidence/controller-test-receipt.json": {
+      "size": 2407,
+      "sha256": "91890676a6feeb7ea6229f56ea693062c0ef8df01ac89b6826aaf3d5f6d3e8da"
+    },
+    "content/modernization/pr16_story_save29_evidence/failed-preflight-terminal.json": {
+      "size": 3448,
+      "sha256": "490e6f9c2de95985fc36d454be293a291dc173db3eb806d036fe9cbaf75bbf3e"
+    },
+    "content/modernization/pr16_story_save29_evidence/inspection.json": {
+      "size": 3754,
+      "sha256": "1eb6e6e88f3e7fb7b82cd1b3da18aa72c449683a1fbd5672e38fce5f86d1eb9b"
+    },
+    "content/modernization/pr16_story_save29_evidence/manifest.json": {
+      "size": 7477,
+      "sha256": "1d1d336d0ac305ae314bafa55a4980e286d43d15b9d52541e4dfb7250be050fe"
+    },
+    "content/modernization/pr16_story_save29_evidence/measurement.json": {
+      "size": 8336,
+      "sha256": "0cdfe3014c676a95ede1d8500c3295aea487b244f55281407e7e776ca16eb6bf"
+    },
+    "content/modernization/pr16_story_save29_evidence/preflight-failure.json": {
+      "size": 249,
+      "sha256": "9b2d2d4c97f149f264146a17efe97abdeff28131d371cff7081246ba15594be0"
+    },
+    "content/modernization/pr16_story_save29_evidence/progress/commands.txt": {
+      "size": 1078,
+      "sha256": "697aa2836e3d4cf869d4ae28f77991b47d82e910e1092860500b817d89eea3f1"
+    },
+    "content/modernization/pr16_story_save29_evidence/progress/execution.json": {
+      "size": 549,
+      "sha256": "cca6db86d24b7948f0da36f896dd9c96066e23e616853e0e88cac93db1387778"
+    },
+    "content/modernization/pr16_story_save29_evidence/progress/stderr.txt": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "content/modernization/pr16_story_save29_evidence/progress/stdout.txt": {
+      "size": 24912,
+      "sha256": "9418eec6dcd8707a8f0225673434b35e25bae8913e746516c69fa81aa321e3ab"
+    },
+    "content/modernization/pr16_story_save29_evidence/save28-record-terminal.json": {
+      "size": 3955,
+      "sha256": "62fd3e7144adbe4001ccd6b56d9a0f63fc7292493cfef0e5774b4cc08c0807b0"
+    },
+    "content/modernization/pr16_story_save29_evidence/terminal.json": {
+      "size": 3448,
+      "sha256": "7f6a9215ae08c09c4531415364f2319e3decc7c031c2dceea06c96c80ca02eef"
+    },
+    "content/modernization/pr16_story_save29_evidence/unit.stderr.txt": {
+      "size": 310,
+      "sha256": "5bc8b2c051b4d2ca142f972fa8696adf0c25bed1ed1719e9f3078a9e8f2b859c"
+    },
+    "content/modernization/pr16_story_save29_evidence/verification.json": {
+      "size": 2281,
+      "sha256": "5a8a843dddd791750e2882fef0eed39a38b967ff8aa267921276fc69a50487a3"
+    }
+  },
+  "prior_controller_tests": 20,
+  "controller_test_split": [
+    16,
+    4
+  ],
+  "failed_preflight_run": 37118280803,
+  "new_acceptance_tests": 20,
+  "acceptance_tests_this_record_run": 0,
+  "new_record_target_tests": 2,
+  "target_tests_this_record_run": 0,
+  "new_receipt_tests": 2,
+  "record_native_processes": 0,
+  "next_goal_ja": "Save29 artifact11271899477のstory-fast.srm（780c27a138bc0795e2f30c328f69a77ded3569a9960318a61f0dc3d431f56a83、131088bytes）だけから再開。map1/73・17,4西・party4/RP0・12712円・badge1・story4071=6/4072=1。西高台の通常移動、野生ディグダ♂Lv8の通常1勝、Save29/独立Continueは完了。次は17,4から西4歩で13,4、南の正規岩階段13,5→13,6へ進み、低地/橋からcoord11〜16,14のownerへ向かう。root0x08214656はsetflag4367/var4071=7の正規owner。先頭0x69・末尾0x6b/endを実byte観測。flag4367は未設定で8,10枝は未解禁。ミュウツーHP324/PP[1,14,0,4]、オノノクスHP294/PP[15,10,15,20]。火炎放射PP0を使わず、host回復/flag/var解禁は禁止。trainer352/353は未対戦。既存ROM/runnerはSave24 artifact11263343138、runtime11263910704をhash固定してActions入力のみ再利用。新公開artifactは新save/画面/textだけ。88/cold13入力・39画面・16controller+4owner/新20受入試験、Save1〜28は無影響再走しない。初回native0失敗を保持。13,5岩階段/洞窟走破/HM05原因/全国図鑑/自然成長進化/全storyは未完。",
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "general_ci_all_success_claimed": false
+}

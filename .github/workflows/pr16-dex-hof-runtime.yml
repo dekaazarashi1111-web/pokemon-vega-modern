@@ -1,0 +1,51 @@
+name: pr16-dex-hof-runtime
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-dex-hof-runtime
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  successor:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 24
+      - name: Exact new successor source and previous evidence
+        run: python3 -B scripts/pr16_dex_hof_runtime_actions.py guard
+      - name: Official Ubuntu ARM compiler and fixed mGBA
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev libmgba-dev
+      - name: Changed save owner placement and new controller ARM
+        run: python3 -B scripts/pr16_dex_hof_runtime_actions.py run
+      - name: Closed runtime publication guard
+        id: publication_guard
+        if: always()
+        run: python3 -B scripts/pr16_dex_hof_runtime_actions.py export
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.publication_guard.outcome == 'success' }}
+        with:
+          name: pr16-dex-hof-runtime-text-only
+          path: public-dex-hof-runtime
+          retention-days: 90
+          if-no-files-found: error
+
+# freeze successor source before bounded linker injection
+
+# classify exact retained compressed assets and exercise direct WriteSector
+
+# bind all115 actual owner hashes to latest measured byte audit

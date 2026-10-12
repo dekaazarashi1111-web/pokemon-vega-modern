@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "status": "PASS_32SECTOR_HOF_STORAGE_DESIGN_AND_NATIVE_ABI",
+  "source_head": "42d8d57a914bc3febede56ec21dec7e8be150e05",
+  "run_id": 37271761754,
+  "host_tests": 16,
+  "host_metrics": {
+    "c_python_codec_shapes": 52,
+    "inverse_shapes": 51,
+    "journal_corruptions": 256,
+    "durable_boundary_samples": 308,
+    "restart_then_normal": 37,
+    "rotation_parity_wrap": 42,
+    "initial_omitted_erase_rejections": 3,
+    "successive_full_history_transactions": 55,
+    "selected_journal_damage_rejections": 256,
+    "fault_then_normal": 94,
+    "recovery_boundary_samples": 58
+  },
+  "codec_arm": {
+    "text": 864,
+    "data": 0,
+    "bss": 0,
+    "arm_compiles": 1,
+    "rom_placed": false,
+    "new_runtime_owner": false
+  },
+  "native_abi": {
+    "status": "PASS_ISOLATED_ARM_HOF_EXISTING_ABI",
+    "cases": 228,
+    "pack_cases": 16,
+    "append_cases": 204,
+    "clear_cases": 8,
+    "calls": 228,
+    "steps": 94840,
+    "mon_bytes": 20,
+    "team_bytes": 120,
+    "max_teams": 50,
+    "species_bits": 9,
+    "opaque_suffix_bytes": 1936,
+    "native_processes": 1,
+    "game_boots": 0,
+    "real_saves": 0,
+    "native_gameplay_accepted": false,
+    "all_species_accepted": false,
+    "generation_binding_accepted": false
+  },
+  "native_processes": 1,
+  "unaffected_native_reruns": 0,
+  "flash_bytes": 131072,
+  "flash_sectors": 32,
+  "hof_history_teams": 50,
+  "hof_opaque_suffix_retained": 1936,
+  "journal_bytes": 256,
+  "journal_logical_sector": 4,
+  "journal_offset": 3776,
+  "scratch_logical_sectors": [
+    8,
+    9
+  ],
+  "final_commit_logical_sector": 13,
+  "auxiliary_sectors_modified": [],
+  "candidate": {
+    "size": 33554432,
+    "sha256": "88be88116bd452bd70cffaf2a820d5c6c6b6b7410fa603a9a0228b694725d5de"
+  },
+  "candidate_changed": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "runtime_generation_binding": false,
+  "runtime_cross_store_atomicity": false,
+  "all_species_accepted": false,
+  "initial_migration_wired": false,
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-storage.yml": {
+      "size": 2751,
+      "sha256": "83f35505ce5123ba77bdc3a98278293c0b23c8517eb61e59a446b203f3389aac"
+    },
+    "content/modernization/pr16_dex_hof_abi_bindings.json": {
+      "size": 5435,
+      "sha256": "83208a8de0b3367368e851e3577af4cbc90157a01d64d8f58874c4942262855e"
+    },
+    "docs/PR16_DEX_HOF_STORAGE_JA.md": {
+      "size": 5679,
+      "sha256": "45dcf1e0f2c702b32a5f47a0999992ec1d99c485fb0a034579bdc35b09b245cb"
+    },
+    "overlays/hof_journal/hof_journal.c": {
+      "size": 2889,
+      "sha256": "03dc74df666cec3935235e5a779e324689f2fd1b71b655c59d48f88e764a9cc2"
+    },
+    "overlays/hof_journal/hof_journal.h": {
+      "size": 957,
+      "sha256": "472b36ae14202c561d451c1e2b364906e8d42b8309d77ec2fd1f8cea25ebfb9f"
+    },
+    "scripts/pr16_dex_hof_storage.py": {
+      "size": 13156,
+      "sha256": "f424a291c72715c695c1da927782ab9413a02283478906ac9281a3f3c6829e4e"
+    },
+    "scripts/pr16_dex_hof_storage_actions.py": {
+      "size": 14153,
+      "sha256": "80f04f8b7c018c99952477584417d731b8e28326c04f150c24d93e022de45335"
+    },
+    "tests/test_pr16_dex_hof_storage.py": {
+      "size": 11051,
+      "sha256": "87678ebb28ca950ed5b5ced55afc373460c9fddee4851f9b7bcb0f3b5d8aedf5"
+    },
+    "tools/mgba_pr16_dex_hof_abi.h": {
+      "size": 10556,
+      "sha256": "6c3b139317d09214b6e6738e295443fad2bf3631fb95c8a250e3d307afd25078"
+    }
+  },
+  "guide": "docs/PR16_DEX_HOF_STORAGE_JA.md",
+  "evidence_bindings": {
+    "content/modernization/pr16_dex_hof_storage_evidence/abi-stdout.txt": {
+      "size": 377,
+      "sha256": "3c857b0ef6f799588dd60abc94b2fbf26861a2859a7a0c457be26582e439f775"
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/abi-windows.json": {
+      "size": 1698,
+      "sha256": "cf21d8401623e3a2dfc1a85c472729e24627d2c313f234b69c84ac5d79241ca0"
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/attempts.json": {
+      "size": 73,
+      "sha256": "f3837affbf3fce3632b0cc1a4a98d734b99ee6582777715d2cc022978f41b5c2"
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/codec-arm.json": {
+      "size": 117,
+      "sha256": "cdebf315fb7753feb455a3d3ac3730d75f2ddf9aae31d90545f090cf571eba4a"
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/host-metrics.json": {
+      "size": 376,
+      "sha256": "75ef45eee9c1750db13ef4605ce85f46951e4ce0a7eba1b482b934b2e2371314"
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/host-tests.txt": {
+      "size": 2315,
+      "sha256": "76f672dfa1a54471541440406b4378f88a41df7bb529afcb3bd9344a60e33be3"
+    },
+    "content/modernization/pr16_dex_hof_storage_evidence/measurement.json": {
+      "size": 3421,
+      "sha256": "768423fe5232b882178d0930f0de898cb253b4e888a0a539d372283578f598ec"
+    }
+  },
+  "runtime_integration_accepted": false,
+  "record_run": 37271761754,
+  "record_source": "42d8d57a914bc3febede56ec21dec7e8be150e05"
+}

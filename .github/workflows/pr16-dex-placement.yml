@@ -1,0 +1,54 @@
+name: pr16-dex-placement
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_dex_placement.py
+      - scripts/pr16_dex_placement_actions.py
+      - tests/test_pr16_dex_placement.py
+      - tools/mgba_pr16_dex_placement.c
+      - .github/workflows/pr16-dex-placement.yml
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-dex-placement
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  placement:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 8
+      - name: Exact branch, new source and retained allocator guard
+        run: python3 -B scripts/pr16_dex_placement_actions.py guard
+      - name: Official Ubuntu compiler and fixed mGBA packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev libmgba-dev
+      - name: Transfer exact retired owner, link at real address, validate native ABI
+        run: python3 -B scripts/pr16_dex_placement_actions.py run
+      - name: Lightweight task graph
+        run: python3 -B scripts/validate_task_graph.py --check
+      - name: Strict text-only publication guard
+        id: publication_guard
+        if: always()
+        run: python3 -B scripts/pr16_dex_placement_actions.py export
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() && steps.publication_guard.outcome == 'success' }}
+        with:
+          name: pr16-dex-placement-text-only
+          path: public-dex-placement
+          retention-days: 90
+          if-no-files-found: warn

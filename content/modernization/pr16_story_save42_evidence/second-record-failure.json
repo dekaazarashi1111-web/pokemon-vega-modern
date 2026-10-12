@@ -1,0 +1,135 @@
+{
+  "terminal": {
+    "run": {
+      "id": 37132813539,
+      "head_sha": "a5dedfd0b2dbbc6777a25f2b84744b85733d1a9d",
+      "head_branch": "codex/modernization-followup-20260908",
+      "path": ".github/workflows/pr16-story-save42-record.yml",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1
+    },
+    "job": {
+      "id": 111231147495,
+      "run_id": 37132813539,
+      "workflow_name": "pr16-story-save42-record",
+      "head_branch": "codex/modernization-followup-20260908",
+      "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37132813539",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUPNhZs8AAAAZ5eSd5w",
+      "head_sha": "a5dedfd0b2dbbc6777a25f2b84744b85733d1a9d",
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111231147495",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37132813539/job/111231147495",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-03T15:19:02Z",
+      "started_at": "2026-10-03T15:19:04Z",
+      "completed_at": "2026-10-03T15:19:30Z",
+      "name": "record",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-03T15:19:05Z",
+          "completed_at": "2026-10-03T15:19:06Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-03T15:19:06Z",
+          "completed_at": "2026-10-03T15:19:18Z"
+        },
+        {
+          "name": "Exact new acceptance source guard",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-03T15:19:18Z",
+          "completed_at": "2026-10-03T15:19:18Z"
+        },
+        {
+          "name": "Accept originals at corrected unique Save42 destination; retain failed guard",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 4,
+          "started_at": "2026-10-03T15:19:18Z",
+          "completed_at": "2026-10-03T15:19:27Z"
+        },
+        {
+          "name": "Scoped final index private guard and fixed resume",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5,
+          "started_at": "2026-10-03T15:19:27Z",
+          "completed_at": "2026-10-03T15:19:27Z"
+        },
+        {
+          "name": "Lightweight task graph",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-10-03T15:19:27Z",
+          "completed_at": "2026-10-03T15:19:27Z"
+        },
+        {
+          "name": "Commit and nonforce push same branch",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7,
+          "started_at": "2026-10-03T15:19:27Z",
+          "completed_at": "2026-10-03T15:19:27Z"
+        },
+        {
+          "name": "Exact committed text readback",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-03T15:19:27Z",
+          "completed_at": "2026-10-03T15:19:27Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-03T15:19:27Z",
+          "completed_at": "2026-10-03T15:19:28Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-03T15:19:28Z",
+          "completed_at": "2026-10-03T15:19:28Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-03T15:19:28Z",
+          "completed_at": "2026-10-03T15:19:28Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111231147495",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000019740,
+      "runner_name": "GitHub Actions 1000019740",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  },
+  "artifact_id": 11277088734,
+  "native_processes": 0,
+  "accepted_tests_passed": 30,
+  "replayed_tests": 0,
+  "tracked_writes": 0,
+  "reason_ja": "30試験は全件ok/OK。成功した試験名underpass_falsely_skippedに含まれるskippedへsubstring guardが誤反応した。成功原本を不変で継承し、正確なunittest終端/全行okだけで照合。元run結論failureを保持。"
+}

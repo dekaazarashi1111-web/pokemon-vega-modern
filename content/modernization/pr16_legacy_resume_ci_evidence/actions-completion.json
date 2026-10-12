@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261012-LEGACY-RESUME-SOURCE-BOUNDARY",
+  "status": "SCOPED_LEGACY_RESUME_CI_PASS",
+  "tested_head": "07edca35568c959968d8dd9829fc8b8c9e84fad5",
+  "accepted_run": {
+    "id": 38253880695,
+    "job_id": 114826813228,
+    "conclusion": "success",
+    "event": "push",
+    "focused_unittest_count": 32,
+    "focused_unittest_result": "PASS",
+    "resume_read_only_check": "PASS",
+    "task_graph": "PASS",
+    "git_diff_clean": "PASS"
+  },
+  "implementation_commits": [
+    "df1a9e10401b11131fe182b5cc1d5f2130ea65a3",
+    "07edca35568c959968d8dd9829fc8b8c9e84fad5"
+  ],
+  "old_bindings_not_rewritten": true,
+  "old_source_exact_bytes_preserved": true,
+  "preserved_originals": [
+    "CHATGPT_RESUME_BEFORE_WIKI_FIRST.md",
+    "content/modernization/pr16_resume_legacy_source_evidence/pr16_resume.py.txt",
+    "content/modernization/pr16_resume_legacy_source_evidence/test_pr16_resume.py.txt"
+  ],
+  "active_new_resume_sha_checked_against_fixed_plan": true,
+  "other_ci": {
+    "source_validation": {
+      "run_id": 38253882331,
+      "conclusion": "failure",
+      "reason": "P03 capacity historical evidence: tested source changed: overlays/qol_production/qol_production.c"
+    },
+    "p03_forgetting": {
+      "run_id": 38253880866,
+      "conclusion": "failure",
+      "reason": "historical artifact 10152134447 download returned nonzero; dependent tests skipped"
+    },
+    "native_loss_return": {
+      "run_id": 38253881197,
+      "conclusion": "failure",
+      "reason": "checkpoint aggregate differs"
+    },
+    "stage79_runtime": {
+      "run_id": 38253882621,
+      "conclusion": "success"
+    },
+    "stage79_mgba": {
+      "run_id": 38253882582,
+      "conclusion": "success"
+    }
+  },
+  "all_ci_green_claimed": false,
+  "full_index_private_guard_this_scope": "NOT_RERUN_PRIOR_FULL_GUARD_FAILURE_RETAINED",
+  "accepted_legacy_tests_unaffected_reruns": 0,
+  "new_native_processes": 0,
+  "rom_or_save_changes": 0,
+  "release_ready": false
+}

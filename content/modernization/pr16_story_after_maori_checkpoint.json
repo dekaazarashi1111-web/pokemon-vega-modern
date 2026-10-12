@@ -1,0 +1,415 @@
+{
+  "actions_completion_confirmed": true,
+  "actions_conclusion": "success",
+  "active_baseline_changed": false,
+  "artifact": {
+    "digest": "sha256:e78ed5327d55427cca992406d43fa488f92065d11fe0bc0636493a83c97fb4db",
+    "expires_at": "2026-12-28T02:03:16Z",
+    "id": 11008723945,
+    "name": "pr16-story-after-maori-checkpoint",
+    "size_in_bytes": 18112423,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+      "id": 36510782954,
+      "repository_id": 1358127462
+    }
+  },
+  "evidence_bindings": {
+    "content/modernization/pr16_story_after_maori_evidence/continue/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_after_maori_evidence/continue/stdout.txt": {
+      "sha256": "f262f23091e2139e4d2c137791f207ab91fb6a54c9d01e0c52916b23a57c3f93",
+      "size": 3059
+    },
+    "content/modernization/pr16_story_after_maori_evidence/development-failure-receipt.json": {
+      "sha256": "d261dc2754e72419ddbd975873dcc3afdc56fc6719a9d512c6e8e07c77ae606c",
+      "size": 1158
+    },
+    "content/modernization/pr16_story_after_maori_evidence/inspection.json": {
+      "sha256": "34efad7974aa2df272d4cb099d318a14ec608976db7f1dc33f8907497a25ab40",
+      "size": 23264
+    },
+    "content/modernization/pr16_story_after_maori_evidence/manifest.json": {
+      "sha256": "e0d53e9db9b7916e73689bbe9bf54e82b4e15e85a5c398279af14f2f151d4596",
+      "size": 19668
+    },
+    "content/modernization/pr16_story_after_maori_evidence/measurement.json": {
+      "sha256": "35e3ae32da784f940a36329e1c0b787f46481c401ba0b68910ea2459d9b82c12",
+      "size": 6648
+    },
+    "content/modernization/pr16_story_after_maori_evidence/prior-19-receipt.json": {
+      "sha256": "079f6c200b27096180b73f3a995ed6e04ed8962c5ded12693925e806dc3283b7",
+      "size": 1113
+    },
+    "content/modernization/pr16_story_after_maori_evidence/prior-19-unit.stderr.txt": {
+      "sha256": "d0576459c9c4071c22a0c0db9c6ecfda7288ba5c5188d8bc417faa1e5e65202e",
+      "size": 1764
+    },
+    "content/modernization/pr16_story_after_maori_evidence/progress/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_after_maori_evidence/progress/stdout.txt": {
+      "sha256": "7ee6edef325f5f0ea2fe0168282d5e6dc7857d6ed725c2b755e7125a54aff82b",
+      "size": 79953
+    },
+    "content/modernization/pr16_story_after_maori_evidence/terminal.json": {
+      "sha256": "f08c3189dc173d52966902187eaaab07bddb4aa13729665976db2ac5bc6af567",
+      "size": 5074
+    },
+    "content/modernization/pr16_story_after_maori_evidence/unit.stderr.txt": {
+      "sha256": "6122f49145f77281803e3936e8fb9c5616a6a89614209157822c3c01d879683a",
+      "size": 3575
+    },
+    "content/modernization/pr16_story_after_maori_evidence/unit.stdout.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "content/modernization/pr16_story_after_maori_evidence/verification.json": {
+      "sha256": "d73cf608aee03bc804590e78ae159082054d0c7dc3c9cd8a6e01e9ec8e475ca1",
+      "size": 3804
+    }
+  },
+  "general_ci_all_success_claimed": false,
+  "job_id": 109222190727,
+  "next_goal_ja": "story-fastはアヤメシティ通常回復Save17を唯一の開始点とする。artifact11008723945のstory-fast.srmを復元し、map5/4・7,4・北向きのポケモンセンターから通常の出口・町イベントを進める。今回の317/cold22入力・34試験・受入済み19試験・マオリ・旧BP/P08/Save1〜16は影響なしに再走しない。全国図鑑正規解禁へ向けて通常storyを継続し、次の自然保存境界で区切る。progression原本は戦闘前Axew Lv37/EXP68589のまま保持し、NationalDex magic0を注入で解除しない。自然育成/進化、Lucky Egg対照・12成長ケース・Lv100soak・研究施設自然到達・全storyは未完。",
+  "record_accepted_case_reruns": 0,
+  "record_native_processes": 0,
+  "record_run_id": 36511503554,
+  "record_source_head": "c4095e34e024c9331fea32c0135a201b98395bbd",
+  "release_ready": false,
+  "run_id": 36510782954,
+  "save_byte_ledger": {
+    "artifact_only": true,
+    "binding": {
+      "sha256": "e76b4c5679d59fe0602fa9a71245f7531c18be13db4b34b3577730dab7afda96",
+      "size": 184461
+    },
+    "changed_bytes": 6620,
+    "ranges": 1732
+  },
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-story-after-maori.yml": {
+      "sha256": "af82d703c686b0f6ae43800509244b7f024135635e8cb198b7eb2d7b5d6fc3c9",
+      "size": 1132
+    },
+    "content/modernization/pr16_story_after_maori_development/continue-commands.txt": {
+      "sha256": "6afc3877ca7a60e31e10f8c183397177be2461f7d2f98328017e7c4e55239f25",
+      "size": 114
+    },
+    "content/modernization/pr16_story_after_maori_development/expected.json": {
+      "sha256": "216d3f76fb0c5b822d4055f5d461bc244642b8ca883e8bf67ad8edc715545156",
+      "size": 2395
+    },
+    "content/modernization/pr16_story_after_maori_development/failure-receipt.json": {
+      "sha256": "3efaf1212da9a340ab5134709282827db56aeb46d57f1cb3397adf797ad65849",
+      "size": 981
+    },
+    "content/modernization/pr16_story_after_maori_development/progress-commands.txt": {
+      "sha256": "3300a282a157371fc4ec1209f53eec6367fba2cb592d3d9420052c495db07565",
+      "size": 4066
+    },
+    "scripts/pr16_story_after_maori.py": {
+      "sha256": "094873217c89f543c1a5ed00435bf2d7a50ff486e0ed06908ee6c75a0414eaf6",
+      "size": 9178
+    },
+    "scripts/pr16_story_after_maori_accept.py": {
+      "sha256": "90aa3e30a34e8d14468e75b1859cad916c317647c837ee3d282e70b7e244dd9e",
+      "size": 10334
+    },
+    "scripts/pr16_story_after_maori_measure.py": {
+      "sha256": "de98881ca4a904ce3676a56e223c6691b0d00f07224bd6acb9116285b1513b82",
+      "size": 8189
+    },
+    "scripts/pr16_story_after_maori_session.py": {
+      "sha256": "1fa24fa46102436b45989c92d821d3a48e97d0061dc650cf48feb6e3bd2484d2",
+      "size": 4370
+    },
+    "tests/test_pr16_story_after_maori.py": {
+      "sha256": "26dfaa2ea301f3b459334f690cad460f1edacde2d4b602054ef84eb97b251c5f",
+      "size": 4289
+    },
+    "tests/test_pr16_story_after_maori_accept.py": {
+      "sha256": "ef0ce303c37b3e5ec33d1691b1f54f754e2f78779b610292e5eb208e77ecd4be",
+      "size": 4736
+    }
+  },
+  "source_head": "0c5a118c855ee52eecbadaa7c4114d32a59e500f",
+  "status": "PASS_STORY_AFTER_MAORI_AYAME_SAVE17_SCOPED",
+  "task": "USER-20260929-STORY-AFTER-MAORI",
+  "terminal_evidence": "content/modernization/pr16_story_after_maori_evidence/terminal.json",
+  "verification": {
+    "candidate": {
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "size": 33554432
+    },
+    "captures": 0,
+    "cold_frames": 1746,
+    "cold_inputs": 22,
+    "double_battles": 1,
+    "episodes": [
+      {
+        "flags": 13,
+        "outcome": 35,
+        "start": 14,
+        "unlocked_field": 39
+      },
+      {
+        "flags": 12,
+        "outcome": 59,
+        "start": 47,
+        "unlocked_field": 61
+      },
+      {
+        "flags": 12,
+        "outcome": 80,
+        "start": 69,
+        "unlocked_field": 82
+      }
+    ],
+    "escapes": 0,
+    "evolution_accepted": false,
+    "friendly_fire_preserved": true,
+    "full_story_accepted": false,
+    "input_save": {
+      "sha256": "5c4a03b9d92f7be54250d565162b03b5b85a2f221c3873d26d894b74b76778ce",
+      "size": 131088
+    },
+    "losses": 0,
+    "natural_difficulty_accepted": false,
+    "natural_growth_accepted": false,
+    "natural_research_arrival_accepted": false,
+    "ordinary_heals": 1,
+    "ordinary_saves": 1,
+    "output_save": {
+      "sha256": "6bd7a37962e31b3c3c553a882903c766b7146f016cdf00a62036273789ab6f2a",
+      "size": 131088
+    },
+    "party_count": 4,
+    "progress_frames": 28007,
+    "progress_inputs": 317,
+    "release_ready": false,
+    "rom_owners": [
+      {
+        "local_id": 1,
+        "script": 154623651,
+        "trainer_references": [
+          [
+            702,
+            7
+          ],
+          [
+            1342,
+            4
+          ]
+        ],
+        "xy": [
+          34,
+          17
+        ]
+      },
+      {
+        "local_id": 2,
+        "script": 154623651,
+        "trainer_references": [
+          [
+            702,
+            7
+          ],
+          [
+            1342,
+            4
+          ]
+        ],
+        "xy": [
+          33,
+          17
+        ]
+      },
+      {
+        "local_id": 10,
+        "script": 154589367,
+        "trainer_references": [
+          [
+            190,
+            0
+          ],
+          [
+            1107,
+            5
+          ]
+        ],
+        "xy": [
+          43,
+          11
+        ]
+      },
+      {
+        "local_id": 3,
+        "script": 154588091,
+        "trainer_references": [
+          [
+            175,
+            0
+          ],
+          [
+            1095,
+            5
+          ]
+        ],
+        "xy": [
+          65,
+          10
+        ]
+      }
+    ],
+    "route": [
+      [
+        3,
+        19
+      ],
+      [
+        3,
+        20
+      ],
+      [
+        3,
+        11
+      ],
+      [
+        3,
+        20
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "rp": 0,
+    "save_counter": 17,
+    "save_structure": {
+      "additional_flag_delta_not_counted_as_trainer": 913,
+      "all_five_bag_pockets_unchanged": true,
+      "all_save_rtc_preserved_after_continue": true,
+      "general_sector_checksum_acceptance_claimed": false,
+      "money_after": 3372,
+      "money_before": 2936,
+      "national_dex_magic": 0,
+      "party_changed_bytes": [
+        {
+          "after": 1,
+          "before": 0,
+          "offset": 41
+        },
+        {
+          "after": 10,
+          "before": 6,
+          "offset": 52
+        },
+        {
+          "after": 2,
+          "before": 0,
+          "offset": 58
+        },
+        {
+          "after": 37,
+          "before": 36,
+          "offset": 141
+        },
+        {
+          "after": 1,
+          "before": 0,
+          "offset": 158
+        },
+        {
+          "after": 1,
+          "before": 0,
+          "offset": 160
+        },
+        {
+          "after": 101,
+          "before": 100,
+          "offset": 241
+        },
+        {
+          "after": 51,
+          "before": 50,
+          "offset": 341
+        }
+      ],
+      "pc_sections_preserved": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "previous_bank_preserved_bytes": 57344,
+      "prize_money": 436,
+      "rooted_trainer_flags": [
+        175,
+        190,
+        702
+      ],
+      "unused_party_bytes_preserved": 200
+    },
+    "save_success_text_frame_captured": false,
+    "screens": 119,
+    "trainer_victories": 3,
+    "wild_victories": 0
+  },
+  "visual_review": {
+    "anchors": {
+      "continue": [
+        0,
+        1,
+        2
+      ],
+      "progress": [
+        2,
+        14,
+        23,
+        25,
+        35,
+        38,
+        39,
+        47,
+        60,
+        61,
+        64,
+        67,
+        69,
+        75,
+        76,
+        81,
+        82,
+        87,
+        103,
+        105,
+        106,
+        107,
+        109,
+        111,
+        112,
+        113,
+        114,
+        115
+      ]
+    },
+    "method": "DIRECT_PIXEL_REVIEW_NO_OCR",
+    "notes_ja": "双子戦でオノノクスが味方ミュウツーを攻撃した通常入力を保持。賞金168+108+160。アヤメシティ・全回復の実UI。obs113は保存中、114が保存完了。保存完了文言そのもののframeは未取得。全国図鑑・自然育成・全storyは受入しない。"
+  }
+}

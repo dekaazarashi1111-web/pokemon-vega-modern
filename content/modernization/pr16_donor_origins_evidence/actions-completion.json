@@ -1,0 +1,63 @@
+{
+  "actions": {
+    "conclusion": "success",
+    "id": 38089484705,
+    "observed_at": "2026-10-10T22:21:02.153806+00:00",
+    "required_steps": [
+      "Bind selected origin symbols without replaying accepted measurements",
+      "Run actions/upload-artifact@v4"
+    ],
+    "source_head": "3cdd1b0fef4d83eadc1a9b6197bfdbac24196e65",
+    "status": "completed"
+  },
+  "artifact_id": 11683572845,
+  "claims": {
+    "accepted_test_reruns": 0,
+    "actual_consumer_proven": false,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "formal_classification_changes": 0,
+    "indirect_reference_completeness_claimed": false,
+    "intra_donor_origins_covered": false,
+    "native_processes": 0,
+    "old_full_rom_scan_runs": 0,
+    "outside_target_excludes_access": false,
+    "retirement_or_transfer_complete": false,
+    "rom_reconstructions": 0,
+    "rom_writes": 0,
+    "save_writes": 0,
+    "symbol_neighborhood_is_owner": false
+  },
+  "measurement_commit": "c615eb6f384f25de4ce67fd64e851b6047726c4e",
+  "measurement_replays": 0,
+  "member_identities": {
+    "pr16_donor_origins_checkpoint.json": {
+      "sha256": "4bef5ecf22a6be551db3c62c73cca1318cc3742d0943db64dc176c7ddb1554eb",
+      "size": 6083
+    },
+    "result.json": {
+      "sha256": "74bf4f922b6b1d922677a1db331e340f2002788d99ca6bf620457da5741639ed",
+      "size": 817
+    },
+    "scoped-context.zip": {
+      "sha256": "f06e15acf7cc55ffc6d684ee8aac79b21a8aae5f05b26328b9e48e77cbdb3273",
+      "size": 203949
+    },
+    "symbol-frontier.json": {
+      "sha256": "3601c1f46ca532efa7d75929fff58736b0a4ceddd648c8be64b6acb718a4108f",
+      "size": 13186
+    },
+    "symbol-tests.txt": {
+      "sha256": "b71cb2d898d576c8fe97dc4269f8ba2e6b676e618e7da33cc9b86a601444438d",
+      "size": 1515
+    }
+  },
+  "old_scope_test_reruns": 0,
+  "schema_version": 1,
+  "status": "COMPLETED_ORIGIN_SYMBOL_ACTIONS_RECEIVED",
+  "zip_identity": {
+    "sha256": "05bda8001cb4b6e47a3687a122ac8f6bcb9d7073b33ddee6cbf5c872b7d50cdd",
+    "size": 199354
+  }
+}

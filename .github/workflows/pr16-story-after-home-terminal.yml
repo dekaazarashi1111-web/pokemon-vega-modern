@@ -1,0 +1,51 @@
+name: pr16-story-after-home-terminal
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-after-home-terminal.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-after-home-terminal
+  cancel-in-progress: false
+jobs:
+  terminal:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reconcile all completed steps artifact and commit without replay
+        run: python3 -B scripts/pr16_story_after_home_actions.py terminal
+      - name: Validate task graph and exact staged text boundary
+        run: |
+          python3 -B scripts/validate_task_graph.py --check
+          python3 -B scripts/pr16_story_after_home_actions.py guard
+      - name: Commit terminal receipt and non-force push same branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260928-STORY-AFTER-HOME: 全11stepと110画面Save7の終端確認、再開点確定 run=$GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/$branch
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$(git rev-parse HEAD)"
+          echo "RESULT=DONE TASK=USER-20260928-STORY-AFTER-HOME VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+      - name: Read back committed handoff and both logs
+        run: python3 -B scripts/pr16_story_after_home_actions.py snapshot
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-story-after-home-terminal-receipt
+          path: .local/pr16-story-after-home/checkpoint
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

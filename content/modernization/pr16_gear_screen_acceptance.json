@@ -1,0 +1,902 @@
+{
+  "acceptance": {
+    "actual_fresh_cores": 9,
+    "actual_native_processes": 4,
+    "all_six_gear_routes_accepted": false,
+    "full_p05_acceptance": false,
+    "initial_map_party_ring_bp_policy_are_fixtures": true,
+    "mandatory_bound_screens": 53,
+    "native_results": [
+      {
+        "name": "eelektross-active",
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        },
+        "result": {
+          "ability": 313,
+          "automatic_saves": 1,
+          "bp_after": 48,
+          "bp_before": 64,
+          "case": "eelektross-active",
+          "cold_reload_before_encounter": false,
+          "enemy_level": 78,
+          "enemy_species": 730,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "held_stone_not_consumed": true,
+          "host_write_barriers": 7,
+          "initial_map_party_ring_bp_policy_are_fixtures": true,
+          "item": 1012,
+          "manual_saves": 2,
+          "mega_species": 1634,
+          "move": 558,
+          "outcome": 4,
+          "party_inventory_bp_persisted": true,
+          "personality": 2817168667,
+          "physical_give": true,
+          "physical_map_transition": true,
+          "pp_after": 9,
+          "pp_before": 10,
+          "release_ready": false,
+          "ring_bp_natural_acquisition_accepted": false,
+          "rom_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+          "schema_version": 2,
+          "scope": "PR16_PURCHASE_GIVE_WALK_MEGA_COLD_SAVE",
+          "species": 411,
+          "status": "PASS",
+          "toggles": 1,
+          "total_frames": 11287,
+          "walking_steps": 53,
+          "warnings_errors": 0,
+          "witness": {
+            "bag": 1785,
+            "boundary": 4931,
+            "encounter": 6257,
+            "equipped": 2303,
+            "field": 7531,
+            "interaction": 123,
+            "mega": 6358,
+            "move_menu": 6319,
+            "purchased": 1417,
+            "reloaded": 0,
+            "reloaded_again": 11287,
+            "saved": 4127,
+            "saved_again": 8865,
+            "spent": 6840,
+            "toggle": 6320
+          }
+        }
+      },
+      {
+        "name": "eelektross-no-toggle",
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        },
+        "result": {
+          "ability": 26,
+          "automatic_saves": 1,
+          "bp_after": 48,
+          "bp_before": 64,
+          "case": "eelektross-no-toggle",
+          "cold_reload_before_encounter": false,
+          "enemy_level": 78,
+          "enemy_species": 730,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "held_stone_not_consumed": true,
+          "host_write_barriers": 7,
+          "initial_map_party_ring_bp_policy_are_fixtures": true,
+          "item": 1012,
+          "manual_saves": 2,
+          "mega_species": 411,
+          "move": 558,
+          "outcome": 4,
+          "party_inventory_bp_persisted": true,
+          "personality": 2817168667,
+          "physical_give": true,
+          "physical_map_transition": true,
+          "pp_after": 9,
+          "pp_before": 10,
+          "release_ready": false,
+          "ring_bp_natural_acquisition_accepted": false,
+          "rom_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+          "schema_version": 2,
+          "scope": "PR16_PURCHASE_GIVE_WALK_MEGA_COLD_SAVE",
+          "species": 411,
+          "status": "PASS",
+          "toggles": 0,
+          "total_frames": 12467,
+          "walking_steps": 53,
+          "warnings_errors": 0,
+          "witness": {
+            "bag": 1785,
+            "boundary": 4931,
+            "encounter": 6257,
+            "equipped": 2303,
+            "field": 8711,
+            "interaction": 123,
+            "mega": 0,
+            "move_menu": 6319,
+            "purchased": 1417,
+            "reloaded": 0,
+            "reloaded_again": 12467,
+            "saved": 4127,
+            "saved_again": 10045,
+            "spent": 6514,
+            "toggle": 0
+          }
+        }
+      },
+      {
+        "name": "eelektross-cancel-toggle",
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        },
+        "result": {
+          "ability": 26,
+          "automatic_saves": 1,
+          "bp_after": 48,
+          "bp_before": 64,
+          "case": "eelektross-cancel-toggle",
+          "cold_reload_before_encounter": false,
+          "enemy_level": 78,
+          "enemy_species": 730,
+          "fresh_cores": 2,
+          "full_p05_acceptance": false,
+          "held_stone_not_consumed": true,
+          "host_write_barriers": 7,
+          "initial_map_party_ring_bp_policy_are_fixtures": true,
+          "item": 1012,
+          "manual_saves": 2,
+          "mega_species": 411,
+          "move": 558,
+          "outcome": 4,
+          "party_inventory_bp_persisted": true,
+          "personality": 2817168667,
+          "physical_give": true,
+          "physical_map_transition": true,
+          "pp_after": 9,
+          "pp_before": 10,
+          "release_ready": false,
+          "ring_bp_natural_acquisition_accepted": false,
+          "rom_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+          "schema_version": 2,
+          "scope": "PR16_PURCHASE_GIVE_WALK_MEGA_COLD_SAVE",
+          "species": 411,
+          "status": "PASS",
+          "toggles": 2,
+          "total_frames": 11568,
+          "walking_steps": 53,
+          "warnings_errors": 0,
+          "witness": {
+            "bag": 1785,
+            "boundary": 4931,
+            "encounter": 6257,
+            "equipped": 2303,
+            "field": 7812,
+            "interaction": 123,
+            "mega": 0,
+            "move_menu": 6319,
+            "purchased": 1417,
+            "reloaded": 0,
+            "reloaded_again": 11568,
+            "saved": 4127,
+            "saved_again": 9146,
+            "spent": 6577,
+            "toggle": 6320
+          }
+        }
+      },
+      {
+        "name": "eelektross-cold-policy-reset",
+        "process": {
+          "returncode": 0,
+          "schema_version": 1,
+          "spawn_error": null,
+          "timed_out": false
+        },
+        "result": {
+          "ability": 26,
+          "automatic_saves": 1,
+          "bp_after": 48,
+          "bp_before": 64,
+          "case": "eelektross-cold-policy-reset",
+          "cold_reload_before_encounter": true,
+          "enemy_level": 77,
+          "enemy_species": 838,
+          "fresh_cores": 3,
+          "full_p05_acceptance": false,
+          "held_stone_not_consumed": true,
+          "host_write_barriers": 7,
+          "initial_map_party_ring_bp_policy_are_fixtures": true,
+          "item": 1012,
+          "manual_saves": 2,
+          "mega_species": 411,
+          "move": 558,
+          "outcome": 4,
+          "party_inventory_bp_persisted": true,
+          "personality": 2817168667,
+          "physical_give": true,
+          "physical_map_transition": true,
+          "pp_after": 9,
+          "pp_before": 10,
+          "release_ready": false,
+          "ring_bp_natural_acquisition_accepted": false,
+          "rom_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+          "schema_version": 2,
+          "scope": "PR16_PURCHASE_GIVE_WALK_MEGA_COLD_SAVE",
+          "species": 411,
+          "status": "PASS",
+          "toggles": 1,
+          "total_frames": 13766,
+          "walking_steps": 54,
+          "warnings_errors": 0,
+          "witness": {
+            "bag": 1785,
+            "boundary": 7353,
+            "encounter": 8716,
+            "equipped": 2303,
+            "field": 9882,
+            "interaction": 123,
+            "mega": 0,
+            "move_menu": 8778,
+            "purchased": 1417,
+            "reloaded": 6549,
+            "reloaded_again": 13766,
+            "saved": 4127,
+            "saved_again": 11344,
+            "spent": 8828,
+            "toggle": 8779
+          }
+        }
+      }
+    ],
+    "ordinary_policy_selection_accepted": false,
+    "purchased_gear_to_battle_accepted": true,
+    "release_ready": false,
+    "reviewed_images": {
+      "eelektross-active-bag-stone.ppm": {
+        "sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387",
+        "size": 115215
+      },
+      "eelektross-active-battle-reloaded.ppm": {
+        "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
+        "size": 115215
+      },
+      "eelektross-active-equip-menus-closed.ppm": {
+        "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+        "size": 115215
+      },
+      "eelektross-active-equipped.ppm": {
+        "sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8",
+        "size": 115215
+      },
+      "eelektross-active-fixture.ppm": {
+        "sha256": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b",
+        "size": 115215
+      },
+      "eelektross-active-give-menu.ppm": {
+        "sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a",
+        "size": 115215
+      },
+      "eelektross-active-give-party.ppm": {
+        "sha256": "e691bbe8a9fcfb02abe6baa09d7904a42ec1796e2782c9aa789038dca3da22bd",
+        "size": 115215
+      },
+      "eelektross-active-mega-active.ppm": {
+        "sha256": "4ac6b318edad53e6661fae58656862816153902f6e52b68e6eaee892e8d2da41",
+        "size": 115215
+      },
+      "eelektross-active-mega-selection.ppm": {
+        "sha256": "43f68d505f859a3cf2760f0c28a4b4e2c5eca357199cdfaacaeae2fd00151edf",
+        "size": 115215
+      },
+      "eelektross-active-native-turn.ppm": {
+        "sha256": "bb9bac4917e87d56c9004cf93d020fb38941ec201ebb7397a61e881d532883a6",
+        "size": 115215
+      },
+      "eelektross-active-natural-equipped-battle.ppm": {
+        "sha256": "f9b82662d7d217bcb449ad4c42e8b1d10ea1abe444a6de5b23604e0403c627da",
+        "size": 115215
+      },
+      "eelektross-active-opened.ppm": {
+        "sha256": "6b7c766fa56d5670859f3175248c97dd5e84c77f698ae9780978d9dc172bbe05",
+        "size": 115215
+      },
+      "eelektross-active-physical-map-boundary.ppm": {
+        "sha256": "89db2bc3b88b214b1d307a1e3b7ed2c49090f397a41200c220d887c8d3f93052",
+        "size": 115215
+      },
+      "eelektross-active-purchased.ppm": {
+        "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+        "size": 115215
+      },
+      "eelektross-active-reverted-field.ppm": {
+        "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-bag-stone.ppm": {
+        "sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-battle-reloaded.ppm": {
+        "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-equip-menus-closed.ppm": {
+        "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-equipped.ppm": {
+        "sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-fixture.ppm": {
+        "sha256": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-give-menu.ppm": {
+        "sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-give-party.ppm": {
+        "sha256": "e691bbe8a9fcfb02abe6baa09d7904a42ec1796e2782c9aa789038dca3da22bd",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-mega-selection.ppm": {
+        "sha256": "ddef92c577c1171b9f0bcb11e72c0456fda80de5ca8ad36f6e41fe7a80316f49",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-native-turn.ppm": {
+        "sha256": "1e5ebf69ea2c09061f9788bdcce731e930eb0e94f83c83762de1183c79acd7a4",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-natural-equipped-battle.ppm": {
+        "sha256": "f9b82662d7d217bcb449ad4c42e8b1d10ea1abe444a6de5b23604e0403c627da",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-opened.ppm": {
+        "sha256": "6b7c766fa56d5670859f3175248c97dd5e84c77f698ae9780978d9dc172bbe05",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-physical-map-boundary.ppm": {
+        "sha256": "89db2bc3b88b214b1d307a1e3b7ed2c49090f397a41200c220d887c8d3f93052",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-purchased.ppm": {
+        "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+        "size": 115215
+      },
+      "eelektross-cancel-toggle-reverted-field.ppm": {
+        "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-bag-stone.ppm": {
+        "sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-battle-reloaded.ppm": {
+        "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-equip-menus-closed.ppm": {
+        "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-equipped-reloaded.ppm": {
+        "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-equipped.ppm": {
+        "sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-fixture.ppm": {
+        "sha256": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-give-menu.ppm": {
+        "sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-give-party.ppm": {
+        "sha256": "e691bbe8a9fcfb02abe6baa09d7904a42ec1796e2782c9aa789038dca3da22bd",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-mega-selection.ppm": {
+        "sha256": "1cc1e986d7f356f6376ec3b5f0272b14554ef19462f1b72fc9d3061243072954",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-native-turn.ppm": {
+        "sha256": "bc81f3e1b86520815afc787f9d3fbef76bca2723deaee24d0fb9cfcc5eff32e6",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-natural-equipped-battle.ppm": {
+        "sha256": "cab4d6719f3fe8b8bbbbe0f97254e26a0307cac3702ac8c2f49f1e321e4fac8a",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-opened.ppm": {
+        "sha256": "6b7c766fa56d5670859f3175248c97dd5e84c77f698ae9780978d9dc172bbe05",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-physical-map-boundary.ppm": {
+        "sha256": "89db2bc3b88b214b1d307a1e3b7ed2c49090f397a41200c220d887c8d3f93052",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-purchased.ppm": {
+        "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+        "size": 115215
+      },
+      "eelektross-cold-policy-reset-reverted-field.ppm": {
+        "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+        "size": 115215
+      },
+      "eelektross-no-toggle-bag-stone.ppm": {
+        "sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387",
+        "size": 115215
+      },
+      "eelektross-no-toggle-battle-reloaded.ppm": {
+        "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
+        "size": 115215
+      },
+      "eelektross-no-toggle-equip-menus-closed.ppm": {
+        "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+        "size": 115215
+      },
+      "eelektross-no-toggle-equipped.ppm": {
+        "sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8",
+        "size": 115215
+      },
+      "eelektross-no-toggle-fixture.ppm": {
+        "sha256": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b",
+        "size": 115215
+      },
+      "eelektross-no-toggle-give-menu.ppm": {
+        "sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a",
+        "size": 115215
+      },
+      "eelektross-no-toggle-give-party.ppm": {
+        "sha256": "e691bbe8a9fcfb02abe6baa09d7904a42ec1796e2782c9aa789038dca3da22bd",
+        "size": 115215
+      },
+      "eelektross-no-toggle-mega-selection.ppm": {
+        "sha256": "b01e91665d21c428f2bb0966e5e721e859aac98a8189d9a124d4e5dc5d37aef3",
+        "size": 115215
+      },
+      "eelektross-no-toggle-native-turn.ppm": {
+        "sha256": "b6515f3ba8514bc83ebc76711f61aa51891839ab7f28ba0b5a40532fe4386f18",
+        "size": 115215
+      },
+      "eelektross-no-toggle-natural-equipped-battle.ppm": {
+        "sha256": "f9b82662d7d217bcb449ad4c42e8b1d10ea1abe444a6de5b23604e0403c627da",
+        "size": 115215
+      },
+      "eelektross-no-toggle-opened.ppm": {
+        "sha256": "6b7c766fa56d5670859f3175248c97dd5e84c77f698ae9780978d9dc172bbe05",
+        "size": 115215
+      },
+      "eelektross-no-toggle-physical-map-boundary.ppm": {
+        "sha256": "89db2bc3b88b214b1d307a1e3b7ed2c49090f397a41200c220d887c8d3f93052",
+        "size": 115215
+      },
+      "eelektross-no-toggle-purchased.ppm": {
+        "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+        "size": 115215
+      },
+      "eelektross-no-toggle-reverted-field.ppm": {
+        "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
+        "size": 115215
+      }
+    },
+    "ring_bp_natural_acquisition_accepted": false,
+    "screen_bindings": {
+      "eelektross-active": {
+        "case": "eelektross-active",
+        "files": {
+          "eelektross-active-bag-stone.ppm": {
+            "height": 160,
+            "sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-active-battle-reloaded.ppm": {
+            "height": 160,
+            "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-active-equip-menus-closed.ppm": {
+            "height": 160,
+            "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-active-equipped.ppm": {
+            "height": 160,
+            "sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-active-fixture.ppm": {
+            "height": 160,
+            "sha256": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-active-give-menu.ppm": {
+            "height": 160,
+            "sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-active-give-party.ppm": {
+            "height": 160,
+            "sha256": "e691bbe8a9fcfb02abe6baa09d7904a42ec1796e2782c9aa789038dca3da22bd",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-active-native-turn.ppm": {
+            "height": 160,
+            "sha256": "bb9bac4917e87d56c9004cf93d020fb38941ec201ebb7397a61e881d532883a6",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-active-natural-equipped-battle.ppm": {
+            "height": 160,
+            "sha256": "f9b82662d7d217bcb449ad4c42e8b1d10ea1abe444a6de5b23604e0403c627da",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-active-opened.ppm": {
+            "height": 160,
+            "sha256": "6b7c766fa56d5670859f3175248c97dd5e84c77f698ae9780978d9dc172bbe05",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-active-physical-map-boundary.ppm": {
+            "height": 160,
+            "sha256": "89db2bc3b88b214b1d307a1e3b7ed2c49090f397a41200c220d887c8d3f93052",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-active-purchased.ppm": {
+            "height": 160,
+            "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-active-reverted-field.ppm": {
+            "height": 160,
+            "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
+            "size": 115215,
+            "width": 240
+          }
+        },
+        "full_p05_acceptance": false,
+        "native_result_schema": 2,
+        "presentation_accepted": false,
+        "release_ready": false,
+        "required_screens": 13,
+        "schema_version": 1,
+        "status": "SCREEN_BYTES_BOUND_NOT_VISUALLY_ACCEPTED",
+        "visual_review_completed": false
+      },
+      "eelektross-cancel-toggle": {
+        "case": "eelektross-cancel-toggle",
+        "files": {
+          "eelektross-cancel-toggle-bag-stone.ppm": {
+            "height": 160,
+            "sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cancel-toggle-battle-reloaded.ppm": {
+            "height": 160,
+            "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cancel-toggle-equip-menus-closed.ppm": {
+            "height": 160,
+            "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cancel-toggle-equipped.ppm": {
+            "height": 160,
+            "sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cancel-toggle-fixture.ppm": {
+            "height": 160,
+            "sha256": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cancel-toggle-give-menu.ppm": {
+            "height": 160,
+            "sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cancel-toggle-give-party.ppm": {
+            "height": 160,
+            "sha256": "e691bbe8a9fcfb02abe6baa09d7904a42ec1796e2782c9aa789038dca3da22bd",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cancel-toggle-native-turn.ppm": {
+            "height": 160,
+            "sha256": "1e5ebf69ea2c09061f9788bdcce731e930eb0e94f83c83762de1183c79acd7a4",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cancel-toggle-natural-equipped-battle.ppm": {
+            "height": 160,
+            "sha256": "f9b82662d7d217bcb449ad4c42e8b1d10ea1abe444a6de5b23604e0403c627da",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cancel-toggle-opened.ppm": {
+            "height": 160,
+            "sha256": "6b7c766fa56d5670859f3175248c97dd5e84c77f698ae9780978d9dc172bbe05",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cancel-toggle-physical-map-boundary.ppm": {
+            "height": 160,
+            "sha256": "89db2bc3b88b214b1d307a1e3b7ed2c49090f397a41200c220d887c8d3f93052",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cancel-toggle-purchased.ppm": {
+            "height": 160,
+            "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cancel-toggle-reverted-field.ppm": {
+            "height": 160,
+            "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
+            "size": 115215,
+            "width": 240
+          }
+        },
+        "full_p05_acceptance": false,
+        "native_result_schema": 2,
+        "presentation_accepted": false,
+        "release_ready": false,
+        "required_screens": 13,
+        "schema_version": 1,
+        "status": "SCREEN_BYTES_BOUND_NOT_VISUALLY_ACCEPTED",
+        "visual_review_completed": false
+      },
+      "eelektross-cold-policy-reset": {
+        "case": "eelektross-cold-policy-reset",
+        "files": {
+          "eelektross-cold-policy-reset-bag-stone.ppm": {
+            "height": 160,
+            "sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-battle-reloaded.ppm": {
+            "height": 160,
+            "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-equip-menus-closed.ppm": {
+            "height": 160,
+            "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-equipped-reloaded.ppm": {
+            "height": 160,
+            "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-equipped.ppm": {
+            "height": 160,
+            "sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-fixture.ppm": {
+            "height": 160,
+            "sha256": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-give-menu.ppm": {
+            "height": 160,
+            "sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-give-party.ppm": {
+            "height": 160,
+            "sha256": "e691bbe8a9fcfb02abe6baa09d7904a42ec1796e2782c9aa789038dca3da22bd",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-native-turn.ppm": {
+            "height": 160,
+            "sha256": "bc81f3e1b86520815afc787f9d3fbef76bca2723deaee24d0fb9cfcc5eff32e6",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-natural-equipped-battle.ppm": {
+            "height": 160,
+            "sha256": "cab4d6719f3fe8b8bbbbe0f97254e26a0307cac3702ac8c2f49f1e321e4fac8a",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-opened.ppm": {
+            "height": 160,
+            "sha256": "6b7c766fa56d5670859f3175248c97dd5e84c77f698ae9780978d9dc172bbe05",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-physical-map-boundary.ppm": {
+            "height": 160,
+            "sha256": "89db2bc3b88b214b1d307a1e3b7ed2c49090f397a41200c220d887c8d3f93052",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-purchased.ppm": {
+            "height": 160,
+            "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-cold-policy-reset-reverted-field.ppm": {
+            "height": 160,
+            "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+            "size": 115215,
+            "width": 240
+          }
+        },
+        "full_p05_acceptance": false,
+        "native_result_schema": 2,
+        "presentation_accepted": false,
+        "release_ready": false,
+        "required_screens": 14,
+        "schema_version": 1,
+        "status": "SCREEN_BYTES_BOUND_NOT_VISUALLY_ACCEPTED",
+        "visual_review_completed": false
+      },
+      "eelektross-no-toggle": {
+        "case": "eelektross-no-toggle",
+        "files": {
+          "eelektross-no-toggle-bag-stone.ppm": {
+            "height": 160,
+            "sha256": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-no-toggle-battle-reloaded.ppm": {
+            "height": 160,
+            "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-no-toggle-equip-menus-closed.ppm": {
+            "height": 160,
+            "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-no-toggle-equipped.ppm": {
+            "height": 160,
+            "sha256": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-no-toggle-fixture.ppm": {
+            "height": 160,
+            "sha256": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-no-toggle-give-menu.ppm": {
+            "height": 160,
+            "sha256": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-no-toggle-give-party.ppm": {
+            "height": 160,
+            "sha256": "e691bbe8a9fcfb02abe6baa09d7904a42ec1796e2782c9aa789038dca3da22bd",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-no-toggle-native-turn.ppm": {
+            "height": 160,
+            "sha256": "b6515f3ba8514bc83ebc76711f61aa51891839ab7f28ba0b5a40532fe4386f18",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-no-toggle-natural-equipped-battle.ppm": {
+            "height": 160,
+            "sha256": "f9b82662d7d217bcb449ad4c42e8b1d10ea1abe444a6de5b23604e0403c627da",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-no-toggle-opened.ppm": {
+            "height": 160,
+            "sha256": "6b7c766fa56d5670859f3175248c97dd5e84c77f698ae9780978d9dc172bbe05",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-no-toggle-physical-map-boundary.ppm": {
+            "height": 160,
+            "sha256": "89db2bc3b88b214b1d307a1e3b7ed2c49090f397a41200c220d887c8d3f93052",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-no-toggle-purchased.ppm": {
+            "height": 160,
+            "sha256": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383",
+            "size": 115215,
+            "width": 240
+          },
+          "eelektross-no-toggle-reverted-field.ppm": {
+            "height": 160,
+            "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
+            "size": 115215,
+            "width": 240
+          }
+        },
+        "full_p05_acceptance": false,
+        "native_result_schema": 2,
+        "presentation_accepted": false,
+        "release_ready": false,
+        "required_screens": 13,
+        "schema_version": 1,
+        "status": "SCREEN_BYTES_BOUND_NOT_VISUALLY_ACCEPTED",
+        "visual_review_completed": false
+      }
+    },
+    "source_files": 37,
+    "targeted_tests": 65,
+    "visual_review": {
+      "completed": true,
+      "images": 58,
+      "images_sha256": "d594115c87f2ec3c7a05692a769cb36f3ef586d5e8f7ac065cef7f6328947934",
+      "limitation": "Static frames only, not a full animation review; mega-active is sampled before sprite refresh",
+      "scope": "58 original shop/bag/give/walk/battle/return/reload frames; no apparent UI corruption"
+    }
+  },
+  "candidate": {
+    "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+    "size": 33554432
+  },
+  "full_p05_acceptance": false,
+  "new_emulator_runs_by_this_verifier": 0,
+  "original": {
+    "artifact_id": 10194976718,
+    "path": "content/modernization/pr16_gear_evidence/34589284710/original.zip",
+    "run_id": 34589284710,
+    "sha256": "6eba3f6c0947af2e2cb446552cc37ccf832665a8ac849a80e2f45bca986e6de9",
+    "size": 580351,
+    "tested_head": "4b5971179795bcdbbca1abf142387ef1bb6f1ce9"
+  },
+  "prior_runs_added_to_current_count": false,
+  "release_ready": false,
+  "schema_version": 1,
+  "separate_prior_native_run": 34587080329,
+  "status": "SCOPED_GEAR_SCREEN_ACCEPTED_PRODUCT_INCOMPLETE"
+}

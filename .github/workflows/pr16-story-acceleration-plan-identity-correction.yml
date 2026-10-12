@@ -1,0 +1,117 @@
+name: pr16-story-acceleration-plan-identity-correction
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-acceleration-plan-identity-correction.yml]
+permissions:
+  contents: write
+concurrency:
+  group: pr16-story-acceleration-plan-identity-correction
+  cancel-in-progress: false
+jobs:
+  correct:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Correct preserved Save14 party identity text and bindings
+        run: |
+          python3 - <<'PY'
+          from __future__ import annotations
+          import datetime as dt
+          import hashlib
+          import json
+          import os
+          import textwrap
+          from pathlib import Path
+
+          root=Path('.')
+          plan_path=root/'content/modernization/pr16_story_acceleration_plan.json'
+          state_path=root/'content/modernization/pr16_native_supply_resume_20260913.json'
+          checkpoint_path=root/'content/modernization/pr16_story_save14_checkpoint.json'
+          plan=json.loads(plan_path.read_text(encoding='utf-8'))
+          state=json.loads(state_path.read_text(encoding='utf-8'))
+          checkpoint=json.loads(checkpoint_path.read_text(encoding='utf-8'))
+          assert checkpoint['party_species'] == [1129, 1]
+          old='move original Toucannon and Leafeon to empty PC slots without rewriting their 100-byte identities'
+          assert plan['story_fast']['pc_preservation'] == old
+          plan['story_fast']['pc_preservation'] = (
+              'Save14の既存ツツケラ（species 1129）とリープン（species 1）を、'
+              '各100-byte identityを変更せず空きPC slotへ退避する。進化後種・別種へ読み替えない。'
+          )
+          plan['identity_correction']={
+              'run_id': int(os.environ['GITHUB_RUN_ID']),
+              'source_head': os.environ['GITHUB_SHA'],
+              'reason_ja': '計画Markdownはツツケラ/リープンで正しかったが、機械可読pc_preservationだけがToucannon/Leafeonと誤記されていたためSave14 checkpointのspecies [1129,1]へ同期。実個体byte・受入scope・編成は不変。',
+              'native_reruns': 0,
+              'rom_changes': 0,
+          }
+          plan_path.write_text(json.dumps(plan,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          raw=plan_path.read_bytes()
+          state['source_bindings']['content/modernization/pr16_story_acceleration_plan.json']={
+              'sha256':hashlib.sha256(raw).hexdigest(),'size':len(raw)}
+          state['story_acceleration_plan']['identity_correction_run_id']=int(os.environ['GITHUB_RUN_ID'])
+          state_path.write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          timestamp=dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z')
+          with (root/'design/run_log.md').open('a',encoding='utf-8') as f:
+              f.write(textwrap.dedent(f'''\
+
+              ## {timestamp}
+
+              - Task: `USER-20260929-STORY-ACCELERATION-IDENTITY-CORRECTION`
+              - Status: DONE
+              - Summary: 機械可読planの既存party退避説明を、誤記Toucannon/LeafeonからSave14正本のツツケラspecies1129/リープンspecies1へ訂正。Markdown、実個体byte、受入scope、編成は不変。
+              - Verify: Save14 checkpoint `party_species=[1129,1]`、plan source binding、resume render/check、focused tests、task graph、remote readback PASS。
+              - Runtime accounting: native 0 / ROM 0 / accepted rerun 0。
+              - Commit: `-`（Actions commit、run `{os.environ['GITHUB_RUN_ID']}`）
+              '''))
+          with (root/'design/version_log.md').open('a',encoding='utf-8') as f:
+              f.write(textwrap.dedent(f'''\
+
+              ## {timestamp} — Story acceleration Save14 identity text correction
+
+              - `pr16_story_acceleration_plan.json` の既存party退避説明をツツケラspecies1129/リープンspecies1へ訂正。
+              - 実装、候補ROM、Save、受入scope、次作業は不変。run `{os.environ['GITHUB_RUN_ID']}`。
+              '''))
+          PY
+      - name: Validate correction
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py render
+          python3 -B scripts/pr16_resume.py check
+          python3 -B -m unittest discover -s tests -p test_pr16_resume.py -v
+          python3 -B scripts/validate_task_graph.py --check
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('content/modernization/pr16_story_acceleration_plan.json').read_text(encoding='utf-8'))
+          c=json.loads(Path('content/modernization/pr16_story_save14_checkpoint.json').read_text(encoding='utf-8'))
+          assert c['party_species']==[1129,1]
+          assert 'ツツケラ' in p['story_fast']['pc_preservation']
+          assert 'リープン' in p['story_fast']['pc_preservation']
+          assert 'Toucannon' not in p['story_fast']['pc_preservation']
+          assert 'Leafeon' not in p['story_fast']['pc_preservation']
+          PY
+          git diff --check
+      - name: Non-force commit and remote readback
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add content/modernization/pr16_story_acceleration_plan.json \
+            content/modernization/pr16_native_supply_resume_20260913.json \
+            docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md \
+            design/run_log.md design/version_log.md
+          git diff --cached --check
+          git commit -m "USER-20260929-STORY-ACCELERATION: Save14既存2体のidentity説明を訂正 run=$GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/$branch
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 -B scripts/pr16_resume.py check
+          echo "RESULT=DONE TASK=USER-20260929-STORY-ACCELERATION-IDENTITY-CORRECTION COMMIT=$(git rev-parse HEAD)"

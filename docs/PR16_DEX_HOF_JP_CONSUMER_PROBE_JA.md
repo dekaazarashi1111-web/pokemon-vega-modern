@@ -1,0 +1,15 @@
+# JP候補2組の現ROM限定計測
+
+保存済みの独立crosswalk2組を現0641へ接続する第一段階。正式779分類／95未知を変更せず、ROM再構成1回と115owner配置照合の後、名前付き14関数の有限直接CFG、2登録cell、4文の限定字句／EOSを観測する。旧分類・heap・native・全ROM scanは実行しない。
+
+探索予算は独立に固定した上限であり、英語reference sizeでもJP関数extentでもない。BL先は自動追跡せず、復帰し得る構文上のfallthroughを調べるだけで正常復帰を証明しない。literal_thumb_hookはLDR/BX命令pattern候補であり実行済みhookとは呼ばない。間接分岐・return・未対応命令・予算外で止まる。literalは名前付きpointerの結合とcell identityのみ。任意literal値・逆アセンブル一覧・ROM断片を出力しない。
+
+新たに同じ固定pret commitのcharmap.txt、include/characters.h、src/string_util.c、src/text.cの全文identityを束縛する。STR_VAR_1/2/3のselectorは2/3/4。FC09は2byte、FDはselector込み2byteとして解析し、制御operand内のFFをEOSと誤認しない。未対応controlは拒否する。128byteの独立上限内でEOSを探し、隣接symbol差をextentにしない。
+
+この字句観測はprinterの実読取ではない。4文ともPAUSE_UNTIL_PRESSを含む可能性があり、全文reader／正常復帰の証明は別に必要。field moveはbadge不足枝、交換はYes＋AddBagItem成功＋新item非mail、mailboxは非egg＋held item非0を有限条件にする。StringExpandPlaceholders原文読取とgStringVar4のprinter読取を分離する。
+
+右文083DDEE4には既存stock_limit_rootsのCFRU root／27byte受入がある。同一candidateの既存証拠は参照し、stock CursorCB_Enterへ暗黙に置き換えない。残る3文は実root・引数・独立全文serializer・全token消費・future-live条件まで閉じる前に分類しない。
+
+Actionsは既存tokenでread-only取得・再構成を行う。公開は成功専用のmeasurement.json／probe-tests.json（固定成功summary）のみ。raw ROM・入力save・runtime・runner・credential・任意literal値は保存しない。公開前にmeasurement step成功・source/run・全CODE bytes・HEAD・tracked/index無変更を再確認する。失敗詳細はprivateに保持し、公開logは固定error codeとsource frameだけ。推測した第三組083DE6ABは対象外。
+
+次は成功観測のhook差・実literal siteを用いて最小のconsumer意味仕様を固定する。必要なcurrent窓が揃わない場合は診断のまま保持し、保存済み原本を再利用して欠けたrootだけを補う。正式ROM／Save101、egg15118全域保護、安全容量0を維持する。

@@ -1,0 +1,57 @@
+name: pr16-learnset-runtime
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-learnset-runtime.yml
+      - .github/pr16-learnset-runtime-run.json
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-learnset-runtime
+  cancel-in-progress: false
+jobs:
+  runtime-boundary:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 修正nativeハーネスの依存だけを導入
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+      - name: 成功済みhostとARMを再利用しnative終了処理だけを検証
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_learnset_runtime_recovery.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-runtime-proof
+          path: .local/pr16-learnset-runtime/proof/
+          retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-learnset-runtime-data
+          path: .local/pr16-learnset-runtime/data/
+          retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-runtime-link-checkpoint
+          path: .local/pr16-learnset-runtime/link-checkpoint/
+          retention-days: 30
+          if-no-files-found: warn

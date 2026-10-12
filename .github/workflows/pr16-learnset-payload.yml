@@ -1,0 +1,52 @@
+name: pr16-learnset-payload
+run-name: PR16 species binding and payload ${{ github.sha }}
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    # 受入済み54試験を記録ロジックの修正だけで再実行しない。
+    # 実装/検証範囲を変更した場合は入力lockを更新して再検証を要求する。
+    paths:
+      - content/modernization/pr16_learnset_payload_inputs.json
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-learnset-payload
+  cancel-in-progress: false
+jobs:
+  payload-verify:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 新規54試験と後継payloadだけを独立2プロセスで検証
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_payload_verify.py verify
+          git diff --check
+          git diff --exit-code
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: pr16-learnset-payload-data
+          path: .local/pr16-learnset-payload/build11/
+          retention-days: 30
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-payload-proof
+          path: .local/pr16-learnset-payload/proof/
+          retention-days: 30
+          if-no-files-found: error

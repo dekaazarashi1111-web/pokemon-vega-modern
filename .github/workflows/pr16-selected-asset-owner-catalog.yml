@@ -1,0 +1,37 @@
+name: pr16-selected-asset-owner-catalog
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_selected_asset_owner_catalog_actions.py
+      - .github/workflows/pr16-selected-asset-owner-catalog.yml
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-selected-asset-owner-catalog
+  cancel-in-progress: false
+jobs:
+  catalog:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 残るasset配置sourceだけを読取検証
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 -B scripts/pr16_selected_asset_owner_catalog_actions.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-selected-asset-owner-catalog-public-text
+          path: .local/pr16-selected-asset-owner-catalog/public/
+          if-no-files-found: error
+          retention-days: 90

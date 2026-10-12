@@ -1,0 +1,49 @@
+{
+  "anchors": {
+    "after_heal": {
+      "frame": 3218,
+      "observe": 6,
+      "sha256": "e23f2d728c9b33f46ed0188a834e7acb8e0c271a635edc9c7d3fac6c95af342b"
+    },
+    "information": {
+      "frame": 4480,
+      "observe": 14,
+      "sha256": "aaba4940c74ed07d9e35af8d5e8f57ad526d7aca16baa8d867fc001af298ee75"
+    },
+    "mother_offer": {
+      "frame": 1832,
+      "observe": 3,
+      "sha256": "96b1aa48ca5a9bbd7d26194d378ac4f9d1656cec9e7078576199ba333ad97bf3"
+    },
+    "mother_rest": {
+      "frame": 2616,
+      "observe": 5,
+      "sha256": "045295d98d5eebf7ba6be2bbebbea56383070f7dba06f3cb08307338e5882ed9"
+    },
+    "moves": {
+      "frame": 4724,
+      "observe": 16,
+      "sha256": "82be14ab63b2fee4a0404eefac1dc789c9de26617bbcd1e963c195fa3101bd49"
+    },
+    "party": {
+      "frame": 4296,
+      "observe": 13,
+      "sha256": "7625bab166ffc4ed86035b6940cc40ce869891b4fb8c0fc1c6142aa1015f5723"
+    },
+    "stats": {
+      "frame": 4602,
+      "observe": 15,
+      "sha256": "571bf0b28c4dea80027c5b260256bcbe3c08224b320e7b565b5765d246a6de2a"
+    }
+  },
+  "development_note_ja": "進行探索1processは正式採用しない旧実行ファイル文字列更新方式。正式受入はsourceから通常compileした保存runnerで別測定する。冷起動探索1processは保存済み正式compile runner。元81入力を改作しない。",
+  "findings_ja": [
+    "元の母親が「すこし やすんで いったら」と会話する。",
+    "通常party UIでLv7、HP23/23、麻痺アイコンなし。",
+    "能力画面で経験値245、HP23/23。",
+    "技画面でひっかく35/35、しっぽをふる30/30、すいとる25/25。",
+    "別Continueの4画面は訪問後と全byte一致。"
+  ],
+  "method": "DIRECT_PIXEL_REVIEW_NO_OCR",
+  "schema_version": 1
+}

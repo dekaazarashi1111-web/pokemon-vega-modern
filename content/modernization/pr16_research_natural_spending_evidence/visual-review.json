@@ -1,0 +1,82 @@
+{
+  "candidate": {
+    "sha256": "e1efb1009c6e6b0ec4967bf7b20562d2330bbd933f64f7f7863cdad56eb1f842",
+    "size": 33554432
+  },
+  "completed": true,
+  "findings": {
+    "confirmation.ppm": "交換確認の2行と「はい／いいえ」の枠を確認。会話窓の所有は保持される。",
+    "declined.ppm": "確認取消後に会話・リスト枠が消え、地形へ戻る。",
+    "door_entered.ppm": "屋外から物理キーで入った研究所の入口。これは場所fixture後の移動であり通常進行到達ではない。",
+    "end.ppm": "0RP再訪・B取消後に枠残りなし。",
+    "page_0.ppm": "RP 10、モンスターボール10RP等5商品と「つぎ」。上・左・下の枠が欠けず、古い会話の端も残らない。",
+    "page_1.ppm": "2ページ目の5商品・価格と「つぎ」が枠内に収まる。会話枠の残留なし。",
+    "page_2.ppm": "3ページ目の5商品・価格と「つぎ」が枠内に収まる。",
+    "page_3.ppm": "最終4商品の価格と「やめる」。短いリストに合った枠で、左下にも会話枠が残らない。",
+    "pages_closed.ppm": "ページ巡回のB取消後、地形へ戻り窓残留なし。",
+    "purchase_continue.ppm": "保持済み支出saveを別coreで開いた地形。新しい購入は行わない。",
+    "selected.ppm": "商品選択でリストが閉じ、「これとこうかん／しますか？」の会話が正常表示。",
+    "zero_balance_menu.ppm": "RP 0の再訪メニュー。文字/価格/枠は保たれ、古い会話の端は残らない。"
+  },
+  "method": "ASSISTANT_VISUAL_REVIEW_NO_OCR",
+  "method_ja": "固定Actions runtimeをローカルで使用したUI-only実測12 PPMを2倍最近傍拡大の2枚の一覧で直接視認。画像はこの作業環境の原本でありGitHub Actionsの画像artifactとは主張しない。記録コードはhashと所見の結合だけを検証する。",
+  "natural_story_progress_accepted": false,
+  "reviewed_on": "2026-09-27",
+  "reviewed_screens": 12,
+  "schema_version": 1,
+  "screens": {
+    "confirmation.ppm": {
+      "sha256": "796740f0b956b603ec71c2c0adc54195e95c9e5b617ffe7fa3320363187ef609",
+      "size": 115215
+    },
+    "declined.ppm": {
+      "sha256": "8ca22ff80af079175ea54040e32055c86b879f77ec002d5c5d1ca329b4f45257",
+      "size": 115215
+    },
+    "door_entered.ppm": {
+      "sha256": "7ee8b4aff0a844134a5ee3c6efbf3662b4430f717de1e867917dd9417a45e588",
+      "size": 115215
+    },
+    "end.ppm": {
+      "sha256": "2c785e443d25d44e12dfb6d70d1910a3d2228592fdd0c0dc30490f89cbbfa1e4",
+      "size": 115215
+    },
+    "page_0.ppm": {
+      "sha256": "5cd8a376e98f69c91a6a07f8fca4f5e939b436025574160941f1d506cbfe94bc",
+      "size": 115215
+    },
+    "page_1.ppm": {
+      "sha256": "e78538b33fc2a1aa58ed73b700825cbdfe8e01e7750236c756b3bab9b3c443b8",
+      "size": 115215
+    },
+    "page_2.ppm": {
+      "sha256": "8bb920136c32dafbf94cb6c4691f2a25cb16165b0540858685ca7eaaac62426d",
+      "size": 115215
+    },
+    "page_3.ppm": {
+      "sha256": "b3e29a2b968d77f5efdf56104457f256009003b672a1fc23ab0888bfe87fad2f",
+      "size": 115215
+    },
+    "pages_closed.ppm": {
+      "sha256": "8ca22ff80af079175ea54040e32055c86b879f77ec002d5c5d1ca329b4f45257",
+      "size": 115215
+    },
+    "purchase_continue.ppm": {
+      "sha256": "2c785e443d25d44e12dfb6d70d1910a3d2228592fdd0c0dc30490f89cbbfa1e4",
+      "size": 115215
+    },
+    "selected.ppm": {
+      "sha256": "3e9033c5ced1ea6593ab5c675b35feaf7e66e13b08dd8cf665c8c1bc86e5c275",
+      "size": 115215
+    },
+    "zero_balance_menu.ppm": {
+      "sha256": "8b572808d25950ad71ebf29f7f4284f008b44685c1356468ddc44588b74544f4",
+      "size": 115215
+    }
+  },
+  "superseded_visual_observations": {
+    "spend-2": "論理取引は成功したが上枠が切れ古い会話の断片が見えるためUI受入なし。",
+    "spend-3": "取引/Continueは成功したが会話用枠の左右1tileが残るためUI受入なし。最終変更影響だけUI-onlyで検証。"
+  },
+  "whole_game_visual_quality_accepted": false
+}

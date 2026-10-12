@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260915-BP-THREE-WIN-REWARD-ACCEPTANCE",
+  "classification": "SCOPED_ACCEPTANCE",
+  "status": "PASS_NATIVE_THREE_WIN_REWARD_9BP",
+  "branch": "codex/modernization-followup-20260908",
+  "run_id": 34854927678,
+  "job_id": 104011896602,
+  "tested_head": "d9d0dfefcc524b35993eab0f98ae7b6849133644",
+  "workflow": ".github/workflows/pr16-bp-three-win-reward-native.yml",
+  "workflow_conclusion": "success",
+  "workflow_started_at": "2026-09-14T14:20:07Z",
+  "workflow_completed_at": "2026-09-14T14:22:34Z",
+  "artifact": {
+    "id": 10353145355,
+    "name": "pr16-bp-three-win-reward-native",
+    "size": 1517614,
+    "sha256": "7196514ad1edc43fc4e4028cbd39d1e4529f49b4e32406a55d2b4b8d2819854d",
+    "expires_at": "2026-12-13T14:20:04Z",
+    "member_count": 97
+  },
+  "candidate": {
+    "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+    "size": 33554432,
+    "crc32": "3EB17B36"
+  },
+  "accepted_prefix": {
+    "retention_run_id": 34825059791,
+    "retention_job_id": 103915172830,
+    "retention_artifact_id": 10339976783,
+    "same_candidate": true,
+    "accepted_native_cases_replayed": 0
+  },
+  "process": {
+    "returncode": 0,
+    "timed_out": false,
+    "spawn_error": null,
+    "actual_new_processes": 1,
+    "successful_fresh_cores": 1
+  },
+  "native_result": {
+    "schema_version": 1,
+    "status": "PASS_NATIVE_THREE_WIN_REWARD_9BP",
+    "scope": "PR16_P05_NATIVE_THREE_WIN_REWARD",
+    "candidate_sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+    "battle_started": true,
+    "selected_frame": 1936,
+    "second_chooser_frame": 2283,
+    "first_battle_outcome": 1,
+    "second_battle_outcome": 1,
+    "third_battle_outcome": 1,
+    "native_battle_wins_observed": 3,
+    "second_afterbattle_frame": 28071,
+    "third_afterbattle_frame": 45263,
+    "reward_complete_frame": 45322,
+    "bp_before_reward": 0,
+    "bp_after_reward": 9,
+    "bp_delta": 9,
+    "bp_earned": 9,
+    "special_result": 9,
+    "reward_final_streak": 3,
+    "reward_final_pending": 0,
+    "reward_final_marker": 0,
+    "reward_final_snapshot_valid": 0,
+    "reward_final_party_count": 1,
+    "original_party_restored_bytes": 600,
+    "host_write_barriers": 7,
+    "input_only_after_guard": true,
+    "warnings_errors": 0,
+    "manual_saves": 0,
+    "native_three_win_reward_accepted": true,
+    "native_bp_earning_accepted": true,
+    "native_bp_spending_accepted": false,
+    "native_exchange_accepted": false,
+    "p05_native_bp_gap_closed": true,
+    "release_ready": false
+  },
+  "verification": {
+    "focused_tests": 7,
+    "focused_test_result": "PASS",
+    "resume_check_before_native": "PASS",
+    "artifact_guard": {
+      "tracked_snapshot_utf8_only": true,
+      "credential_pattern_hits": 0,
+      "rom_save_patch_bytes_published": false
+    },
+    "key_screen_members": {
+      "native-three-win-reward-9bp-second-afterbattle.ppm": {
+        "sha256": "ab02b737b86a87f3d76fdaae1c89f1c788fdbc2082918809be8b8039f3414eef",
+        "size": 115215
+      },
+      "native-three-win-reward-9bp-third-afterbattle.ppm": {
+        "sha256": "ab02b737b86a87f3d76fdaae1c89f1c788fdbc2082918809be8b8039f3414eef",
+        "size": 115215
+      },
+      "native-three-win-reward-9bp-three-win-complete.ppm": {
+        "sha256": "ab02b737b86a87f3d76fdaae1c89f1c788fdbc2082918809be8b8039f3414eef",
+        "size": 115215
+      },
+      "native-three-win-reward-9bp-second-exchange-committed.ppm": {
+        "sha256": "cf064f5c6ab16213769e479f3b73fc3584bad188c1c8237e3ec3089e37c8a1d6",
+        "size": 115215
+      }
+    },
+    "visual_review": {
+      "completed": true,
+      "method": "Assistant inspected the second/third after-battle, second exchange, and completion screenshots; exact BP amount remains bound to structured native state rather than image inference."
+    }
+  },
+  "native_three_win_reward_accepted": true,
+  "native_bp_earning_accepted": true,
+  "native_bp_spending_accepted": false,
+  "native_exchange_accepted": false,
+  "p05_native_bp_gap_closed": true,
+  "release_ready": false,
+  "merge_performed": false,
+  "active_baseline_changed": false,
+  "next_step_ja": "同じcandidateで稼得した9 BPを通常BPショップUIから消費し、購入物・残高・通常Save/fresh Continueをnativeに検証する。"
+}

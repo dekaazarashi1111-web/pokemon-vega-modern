@@ -1,0 +1,88 @@
+{
+  "status": "STATIC_SAVE90_ELEVENTH_DIGLETT_ONLY",
+  "preparation": {
+    "size": 16417,
+    "sha256": "e6ff40a2167ec5c924802c345c30a024f5df187ef7ed37e4dab9e64d0f15d905"
+  },
+  "route": [
+    [
+      9,
+      11
+    ]
+  ],
+  "terrain": [
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        9,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    }
+  ],
+  "interaction": {
+    "local_id": 8,
+    "target": [
+      9,
+      12
+    ],
+    "script": 141220512,
+    "visibility_flag": 4374,
+    "button": "A",
+    "from_xy": [
+      9,
+      11
+    ],
+    "facing": 1,
+    "object_address": 155169756,
+    "object_hex": "0881000009000c000308110000000000a0da6a0816110000"
+  },
+  "initial_flags": {
+    "4372": 0,
+    "4373": 0,
+    "4374": 0,
+    "4375": 1,
+    "4376": 0,
+    "4377": 0,
+    "4378": 1
+  },
+  "expected_flag_changes": [
+    [
+      4372,
+      0,
+      1
+    ],
+    [
+      4374,
+      0,
+      1
+    ],
+    [
+      4375,
+      1,
+      0
+    ]
+  ],
+  "expected_object_changes": [
+    {
+      "local_id": 5,
+      "operation": "removeobject"
+    },
+    {
+      "local_id": 8,
+      "operation": "removeobject"
+    },
+    {
+      "local_id": 9,
+      "operation": "addobject"
+    }
+  ],
+  "instruction_count": 43,
+  "text_count": 2,
+  "native_route_accepted": false
+}

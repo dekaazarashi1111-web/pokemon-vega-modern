@@ -1,0 +1,386 @@
+{
+  "alignment": 4,
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "claims": {
+    "accepted_test_reruns": 0,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "formal_classification_changes": 0,
+    "indirect_reference_completeness_claimed": false,
+    "intra_donor_origins_covered": false,
+    "native_processes": 0,
+    "old_full_rom_scan_runs": 0,
+    "outside_target_excludes_access": false,
+    "retirement_or_transfer_complete": false,
+    "rom_reconstructions": 0,
+    "rom_writes": 0,
+    "save_writes": 0
+  },
+  "donor_range": {
+    "end_exclusive": 167709650,
+    "size": 15118,
+    "start": 167694532
+  },
+  "examined_windows": 2148,
+  "first_start": 167694532,
+  "inherited": {
+    "classified": 785,
+    "total": 874,
+    "unclassified": 89
+  },
+  "last_start": 167703120,
+  "limitations_ja": [
+    "対象は保存inventoryの正規化済みtarget点。窓外からの長さ付きread/計算参照/ROM mirrorを安全側で除外しない。",
+    "旧inventoryは15118byte内に全体が収まるoriginを除外したため、部分窓内外の参照完全性は未証明。",
+    "acceptedは元の有限条件付き型証拠の継承であり、全実行状態の非参照証明ではない。",
+    "同点は最小addressで固定。選定窓は調査範囲であり配置承認・owner退役・保存成功ではない。"
+  ],
+  "minimum_unclassified_target_entries": 10,
+  "objective": "minimum_unclassified_target_entries_then_lowest_start_not_minimum_safety_risk",
+  "optimal_start_bands": [
+    {
+      "first_start": 167694532,
+      "last_start": 167694964,
+      "windows": 109
+    },
+    {
+      "first_start": 167695048,
+      "last_start": 167695244,
+      "windows": 50
+    }
+  ],
+  "outside_point_count": 79,
+  "outside_point_rows_still_unresolved": true,
+  "parent_audit_identity": {
+    "sha256": "f88d65c235eda330aef618776bff97037d5ca2c4c9fbea53798217dcb5bda669",
+    "size": 5408731
+  },
+  "recorded_owners": {
+    "active_roots": [
+      {
+        "address": 134500884,
+        "points_to": 157130492,
+        "sha256": "5244b7a9ed616eb5414c2076658667edef471607f11db7dd3a454506f9320da3",
+        "size": 4
+      },
+      {
+        "address": 134501004,
+        "points_to": 157130492,
+        "sha256": "5244b7a9ed616eb5414c2076658667edef471607f11db7dd3a454506f9320da3",
+        "size": 4
+      }
+    ],
+    "current_scan_limit": 7696,
+    "old": {
+      "address": 167694532,
+      "size": 15118
+    },
+    "partial_window_transfer_proven": false,
+    "replacement": {
+      "address": 157130492,
+      "size": 15396
+    },
+    "whole_owner_retirement_proven": false
+  },
+  "required_bytes": 6528,
+  "schema_version": 1,
+  "score_histogram": [
+    {
+      "unclassified_target_entries": 10,
+      "windows": 159
+    },
+    {
+      "unclassified_target_entries": 11,
+      "windows": 103
+    },
+    {
+      "unclassified_target_entries": 12,
+      "windows": 38
+    },
+    {
+      "unclassified_target_entries": 13,
+      "windows": 24
+    },
+    {
+      "unclassified_target_entries": 14,
+      "windows": 100
+    },
+    {
+      "unclassified_target_entries": 15,
+      "windows": 3
+    },
+    {
+      "unclassified_target_entries": 16,
+      "windows": 73
+    },
+    {
+      "unclassified_target_entries": 17,
+      "windows": 57
+    },
+    {
+      "unclassified_target_entries": 18,
+      "windows": 1
+    },
+    {
+      "unclassified_target_entries": 19,
+      "windows": 2
+    },
+    {
+      "unclassified_target_entries": 21,
+      "windows": 98
+    },
+    {
+      "unclassified_target_entries": 22,
+      "windows": 143
+    },
+    {
+      "unclassified_target_entries": 23,
+      "windows": 238
+    },
+    {
+      "unclassified_target_entries": 24,
+      "windows": 143
+    },
+    {
+      "unclassified_target_entries": 25,
+      "windows": 54
+    },
+    {
+      "unclassified_target_entries": 26,
+      "windows": 28
+    },
+    {
+      "unclassified_target_entries": 30,
+      "windows": 12
+    },
+    {
+      "unclassified_target_entries": 31,
+      "windows": 47
+    },
+    {
+      "unclassified_target_entries": 33,
+      "windows": 4
+    },
+    {
+      "unclassified_target_entries": 34,
+      "windows": 1
+    },
+    {
+      "unclassified_target_entries": 35,
+      "windows": 39
+    },
+    {
+      "unclassified_target_entries": 36,
+      "windows": 25
+    },
+    {
+      "unclassified_target_entries": 39,
+      "windows": 5
+    },
+    {
+      "unclassified_target_entries": 40,
+      "windows": 3
+    },
+    {
+      "unclassified_target_entries": 42,
+      "windows": 32
+    },
+    {
+      "unclassified_target_entries": 43,
+      "windows": 23
+    },
+    {
+      "unclassified_target_entries": 45,
+      "windows": 42
+    },
+    {
+      "unclassified_target_entries": 46,
+      "windows": 24
+    },
+    {
+      "unclassified_target_entries": 48,
+      "windows": 1
+    },
+    {
+      "unclassified_target_entries": 50,
+      "windows": 1
+    },
+    {
+      "unclassified_target_entries": 51,
+      "windows": 23
+    },
+    {
+      "unclassified_target_entries": 52,
+      "windows": 37
+    },
+    {
+      "unclassified_target_entries": 54,
+      "windows": 3
+    },
+    {
+      "unclassified_target_entries": 55,
+      "windows": 2
+    },
+    {
+      "unclassified_target_entries": 56,
+      "windows": 5
+    },
+    {
+      "unclassified_target_entries": 58,
+      "windows": 4
+    },
+    {
+      "unclassified_target_entries": 59,
+      "windows": 5
+    },
+    {
+      "unclassified_target_entries": 61,
+      "windows": 46
+    },
+    {
+      "unclassified_target_entries": 62,
+      "windows": 5
+    },
+    {
+      "unclassified_target_entries": 63,
+      "windows": 87
+    },
+    {
+      "unclassified_target_entries": 64,
+      "windows": 32
+    },
+    {
+      "unclassified_target_entries": 65,
+      "windows": 24
+    },
+    {
+      "unclassified_target_entries": 66,
+      "windows": 66
+    },
+    {
+      "unclassified_target_entries": 67,
+      "windows": 58
+    },
+    {
+      "unclassified_target_entries": 68,
+      "windows": 36
+    },
+    {
+      "unclassified_target_entries": 69,
+      "windows": 113
+    },
+    {
+      "unclassified_target_entries": 70,
+      "windows": 21
+    },
+    {
+      "unclassified_target_entries": 71,
+      "windows": 58
+    }
+  ],
+  "selected": {
+    "accepted_false_positive_entries": 141,
+    "distinct_unclassified_targets": 10,
+    "end_exclusive": 167701060,
+    "size": 6528,
+    "start": 167694532,
+    "unclassified_target_entries": 10,
+    "unclassified_target_rows": [
+      {
+        "accepted": false,
+        "address": 134873199,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "34ab26c2eaf2a22455a60b55e8b489ed9a07e9939dd3e68c1bd9007fe5eb8a9d",
+        "size": 4,
+        "target": 167695616
+      },
+      {
+        "accepted": false,
+        "address": 136091369,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "9bd8fd67ee8be1be8cdeb36dba8bc477c063d5b9956f73eb37da1012b5cd6258",
+        "size": 4,
+        "target": 167700214
+      },
+      {
+        "accepted": false,
+        "address": 138879919,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "eb72d696d22c970b1090b11a8020bfb44f42ecff189aaffc9b47eb75cbeb0993",
+        "size": 4,
+        "target": 167699418
+      },
+      {
+        "accepted": false,
+        "address": 141316543,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "169f39595db6c1ad1cf83234441b8a0ec54dc2a94afab2cc05d80713fb0a0a41",
+        "size": 4,
+        "target": 167700464
+      },
+      {
+        "accepted": false,
+        "address": 142670436,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "b12945a9395fea471444b59c0a9e33507a82af3be4b8d0a17ffbf5077f926c37",
+        "size": 4,
+        "target": 167695044
+      },
+      {
+        "accepted": false,
+        "address": 147192984,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "9cd21e4f7f81bc2652457d64d06b8bbf7b820174e7436ef380b9b920405b8f9f",
+        "size": 4,
+        "target": 167698446
+      },
+      {
+        "accepted": false,
+        "address": 147394384,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "7b25c4295c4557003431fc342ed7f11fd23a0f312a9ff5508ab5fb0a6f63e394",
+        "size": 4,
+        "target": 167697170
+      },
+      {
+        "accepted": false,
+        "address": 152947327,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "24bacfcab7d33a3ceaf1d0d4081f9ff609b5b99283fd7e2d46e22e930a29f957",
+        "size": 4,
+        "target": 167699972
+      },
+      {
+        "accepted": false,
+        "address": 163413345,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "2a104f5801c3c3568b6e8e9590073f806dc49940945c6152820556355a78aba3",
+        "size": 4,
+        "target": 167697676
+      },
+      {
+        "accepted": false,
+        "address": 165704221,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "19ef338573c058958ae2d1cb232de6ca58d71e4598f8acf5b7f2ebfd489ec07e",
+        "size": 4,
+        "target": 167697902
+      }
+    ]
+  },
+  "status": "FINITE_WINDOW_RANKING_NOT_A_LEASE"
+}

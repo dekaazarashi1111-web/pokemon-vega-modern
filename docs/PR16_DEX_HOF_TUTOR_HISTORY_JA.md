@@ -1,0 +1,13 @@
+# 旧T09数値consumerの歴史入力測定
+
+現723分類・151未知のうち、T09内の最後の4byteを分類する前提として、固定Stage38候補の実rootとconsumerを読み取る。現表16strideを過去20strideへ転用せず、現ROMから過去byteを逆算しない。
+
+既存入力契約のarchive全SHA・正確member全SHAを照合し、候補17240646の実root、73命令の5word数値mask経路、全25936byte ownerを測定する。通常教え技0..151のうち、対象species278/word4の4byteだけが次段候補。元serializer1621×16byteに対して歴史consumerは20strideであり、全1621種の安全性は主張しない。
+
+このread-only測定では現0641の分類を変更しない。成功の最小address-size-SHA証拠を独立source/runへ束縛し、次段で現0641全SHA、actual T09 ownerと同一内容を別途照合する。正式ROM・Save101・donor・controller配線・nativeは不変。歴史型が判明しても旧eggの間接参照/完全退役やdonor移管にはならない。
+
+新16合成拒否試験は全命令のoperand drift、root、callee、20→16stride、152→64上限、入口trampoline、word4の誤解釈を拒否する。合成試験は歴史ROM実測の代用ではない。
+
+公開は成功の固定3textだけ。producer/guard/upload directoryとnameの一致、非空、全identity、改行、通常file、UTF-8と上限を検査する。ROM・断片・rawhex・私有入力所在・runner・credentialは追加公開しない。失敗詳細はprivate出力にのみ保存する。
+
+既受入の独立最終song/battle/Surf再レビューは未実施という境界を保持する。同レビューの別経路再実行ではなく、残未知T09の新規実root測定に限定する。

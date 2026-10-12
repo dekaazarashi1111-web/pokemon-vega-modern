@@ -1,0 +1,109 @@
+{
+  "accepted_native_case_reruns": 0,
+  "cause": "CI traceback environment paths rejected by unchanged final private guard",
+  "changed_boundary_checks": [
+    "raw original rejected by unchanged path guard",
+    "tracked manifest accepted by unchanged path guard"
+  ],
+  "failed_attempt_committed": false,
+  "failed_job": {
+    "conclusion": "failure",
+    "id": 108732051727,
+    "name": "terminal",
+    "status": "completed",
+    "steps": [
+      {
+        "completed_at": "2026-09-27T23:30:28Z",
+        "conclusion": "success",
+        "name": "Set up job",
+        "number": 1,
+        "started_at": "2026-09-27T23:30:28Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:30:37Z",
+        "conclusion": "success",
+        "name": "Run actions/checkout@v4",
+        "number": 2,
+        "started_at": "2026-09-27T23:30:28Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:30:45Z",
+        "conclusion": "success",
+        "name": "Verify external completed run and exact retained originals without native replay",
+        "number": 3,
+        "started_at": "2026-09-27T23:30:37Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:30:47Z",
+        "conclusion": "failure",
+        "name": "Task graph fixed resume and append-only scoped final index",
+        "number": 4,
+        "started_at": "2026-09-27T23:30:45Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:30:47Z",
+        "conclusion": "skipped",
+        "name": "Non-force terminal receipt commit",
+        "number": 5,
+        "started_at": "2026-09-27T23:30:47Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:30:47Z",
+        "conclusion": "skipped",
+        "name": "Preserve committed text readback",
+        "number": 6,
+        "started_at": "2026-09-27T23:30:47Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:30:48Z",
+        "conclusion": "success",
+        "name": "Run actions/upload-artifact@v4",
+        "number": 7,
+        "started_at": "2026-09-27T23:30:47Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:30:48Z",
+        "conclusion": "success",
+        "name": "Post Run actions/checkout@v4",
+        "number": 14,
+        "started_at": "2026-09-27T23:30:48Z",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-09-27T23:30:48Z",
+        "conclusion": "success",
+        "name": "Complete job",
+        "number": 15,
+        "started_at": "2026-09-27T23:30:48Z",
+        "status": "completed"
+      }
+    ]
+  },
+  "failed_run": {
+    "conclusion": "failure",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "ac1577ff2ccdfc39afae143ec9f540be228acd2d",
+    "id": 36358919647,
+    "path": ".github/workflows/pr16-research-story-growth-terminal.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "growth_measurement_rerun": false,
+  "new_native_processes": 0,
+  "new_unit_test_runs": 0,
+  "old_private_guard_changed": false,
+  "original_archive_artifact": 10945245745,
+  "originals_rewritten": false,
+  "raw_original_storage": "ci-originals in terminal artifact only",
+  "recovery_source_head": "6326bdcf4b232d1bd332f960dc93efc1ccbebb2b",
+  "schema_version": 1,
+  "status": "ARTIFACT_ONLY_CI_ORIGINALS_FINAL_INDEX_RECOVERY",
+  "tracked_raw_originals": 0
+}

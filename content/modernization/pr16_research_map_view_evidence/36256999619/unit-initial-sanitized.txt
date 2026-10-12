@@ -1,0 +1,68 @@
+test_actual_single_byte_recipe (test_pr16_research_map_view.MapViewTests.test_actual_single_byte_recipe) ... ok
+test_all_owner_bytes (test_pr16_research_map_view.MapViewTests.test_all_owner_bytes) ... ok
+test_boundary_mutations (test_pr16_research_map_view.MapViewTests.test_boundary_mutations) ... FAIL
+test_boundary_result_mutations (test_pr16_research_map_view.MapViewTests.test_boundary_result_mutations) ... ok
+test_changed_reviewed_image_set (test_pr16_research_map_view.MapViewTests.test_changed_reviewed_image_set) ... ok
+test_complete_boundary (test_pr16_research_map_view.MapViewTests.test_complete_boundary) ... ok
+test_complete_fixture_required (test_pr16_research_map_view.MapViewTests.test_complete_fixture_required) ... ok
+test_complete_photo (test_pr16_research_map_view.MapViewTests.test_complete_photo) ... ok
+test_duplicate_key (test_pr16_research_map_view.MapViewTests.test_duplicate_key) ... ok
+test_fixture_checksum (test_pr16_research_map_view.MapViewTests.test_fixture_checksum) ... ok
+test_fixture_zero_rp_required (test_pr16_research_map_view.MapViewTests.test_fixture_zero_rp_required) ... ok
+test_generated_candidate_and_no_accepted_main_call (test_pr16_research_map_view.MapViewTests.test_generated_candidate_and_no_accepted_main_call) ... ok
+test_generator_rejects_double_main (test_pr16_research_map_view.MapViewTests.test_generator_rejects_double_main) ... ok
+test_interleaving_order (test_pr16_research_map_view.MapViewTests.test_interleaving_order) ... ok
+test_missing_or_extra_row (test_pr16_research_map_view.MapViewTests.test_missing_or_extra_row) ... ok
+test_nonbytes_parent_rejected (test_pr16_research_map_view.MapViewTests.test_nonbytes_parent_rejected) ... ok
+test_nonfinite (test_pr16_research_map_view.MapViewTests.test_nonfinite) ... ok
+test_photo_observation_has_no_host_write (test_pr16_research_map_view.MapViewTests.test_photo_observation_has_no_host_write) ... ok
+test_recipe_literal_preimage (test_pr16_research_map_view.MapViewTests.test_recipe_literal_preimage) ... ok
+test_reject_bag (test_pr16_research_map_view.MapViewTests.test_reject_bag) ... ok
+test_reject_blue_image (test_pr16_research_map_view.MapViewTests.test_reject_blue_image) ... ok
+test_reject_checksum_type (test_pr16_research_map_view.MapViewTests.test_reject_checksum_type) ... ok
+test_reject_cold_counter (test_pr16_research_map_view.MapViewTests.test_reject_cold_counter) ... ok
+test_reject_cold_label (test_pr16_research_map_view.MapViewTests.test_reject_cold_label) ... ok
+test_reject_confirmation (test_pr16_research_map_view.MapViewTests.test_reject_confirmation) ... ok
+test_reject_counter_bool (test_pr16_research_map_view.MapViewTests.test_reject_counter_bool) ... ok
+test_reject_credit (test_pr16_research_map_view.MapViewTests.test_reject_credit) ... ok
+test_reject_credit_bool (test_pr16_research_map_view.MapViewTests.test_reject_credit_bool) ... ok
+test_reject_empty_bool (test_pr16_research_map_view.MapViewTests.test_reject_empty_bool) ... ok
+test_reject_extra_save (test_pr16_research_map_view.MapViewTests.test_reject_extra_save) ... ok
+test_reject_flash (test_pr16_research_map_view.MapViewTests.test_reject_flash) ... ok
+test_reject_frame (test_pr16_research_map_view.MapViewTests.test_reject_frame) ... ok
+test_reject_hash_format (test_pr16_research_map_view.MapViewTests.test_reject_hash_format) ... ok
+test_reject_hidden_repeat (test_pr16_research_map_view.MapViewTests.test_reject_hidden_repeat) ... ok
+test_reject_host_write (test_pr16_research_map_view.MapViewTests.test_reject_host_write) ... ok
+test_reject_item (test_pr16_research_map_view.MapViewTests.test_reject_item) ... ok
+test_reject_layout (test_pr16_research_map_view.MapViewTests.test_reject_layout) ... ok
+test_reject_ledger (test_pr16_research_map_view.MapViewTests.test_reject_ledger) ... ok
+test_reject_map (test_pr16_research_map_view.MapViewTests.test_reject_map) ... ok
+test_reject_natural_claim (test_pr16_research_map_view.MapViewTests.test_reject_natural_claim) ... ok
+test_reject_other_owner (test_pr16_research_map_view.MapViewTests.test_reject_other_owner) ... ok
+test_reject_party_count (test_pr16_research_map_view.MapViewTests.test_reject_party_count) ... ok
+test_reject_position (test_pr16_research_map_view.MapViewTests.test_reject_position) ... ok
+test_reject_prompt_image (test_pr16_research_map_view.MapViewTests.test_reject_prompt_image) ... ok
+test_reject_prompt_keys (test_pr16_research_map_view.MapViewTests.test_reject_prompt_keys) ... ok
+test_reject_recovery (test_pr16_research_map_view.MapViewTests.test_reject_recovery) ... ok
+test_reject_release (test_pr16_research_map_view.MapViewTests.test_reject_release) ... ok
+test_reject_reward_image (test_pr16_research_map_view.MapViewTests.test_reject_reward_image) ... ok
+test_reject_saved_counter (test_pr16_research_map_view.MapViewTests.test_reject_saved_counter) ... ok
+test_reject_tail_type (test_pr16_research_map_view.MapViewTests.test_reject_tail_type) ... ok
+test_reject_tileset (test_pr16_research_map_view.MapViewTests.test_reject_tileset) ... ok
+test_reject_visual_extra (test_pr16_research_map_view.MapViewTests.test_reject_visual_extra) ... ok
+test_synthetic_apply_and_full_rollback (test_pr16_research_map_view.MapViewTests.test_synthetic_apply_and_full_rollback) ... ok
+test_wrong_parent_rejected (test_pr16_research_map_view.MapViewTests.test_wrong_parent_rejected) ... ok
+
+======================================================================
+FAIL: test_boundary_mutations (test_pr16_research_map_view.MapViewTests.test_boundary_mutations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>/tests/test_pr16_research_map_view.py", line 110, in test_boundary_mutations
+    with self.assertRaises(ValueError):self.validate(rows,'predicate-boundary')
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 54 tests in 1.794s
+
+FAILED (failures=1)

@@ -1,0 +1,69 @@
+{
+  "accepted_pcm_measurements_replayed": 0,
+  "accepted_provenance_measurements_replayed": 0,
+  "actual_asset_reader_proven": false,
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "candidate_reconstructions": 1,
+  "donor_safe_bytes": 0,
+  "fixed_arm_source_identity": {
+    "sha256": "348ed832bb30b24fa3ad9cf90242cc708ad972c19dff43b4dd550de4e5716dbf",
+    "size": 39597
+  },
+  "fixed_dpcm_source": {
+    "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+    "git_blob": "4cbbf08129ed6f85f3c730429f6b430627109117",
+    "path": "src/m4a_1.s",
+    "repository": "pret/pokefirered"
+  },
+  "formal_classification_changes": 0,
+  "formal_classified": 789,
+  "formal_unclassified": 85,
+  "input_provenance_identity": {
+    "sha256": "4a7d3a8d6e13c5c06604c0cf375a9c6ec3ffe0d32d2266daa3f4a25dc26bb05e",
+    "size": 6750
+  },
+  "input_sound_identity": {
+    "sha256": "4c364e81daaf4d08bbafec305b0a9c4561f92fa9c18250ee6646327a6d247702",
+    "size": 824912
+  },
+  "limitations_ja": [
+    "公開DPCM Unk2の64sample/33byteの静的消費範囲。実ROMからのdecoder呼出/再生経路を未証明。",
+    "73群の保存済bank/indexだけ。有限root外と旧不採用PCMは再検査しない。",
+    "宣言sample数は消費byte数ではなく、末尾の部分64sampleも33byteの読込み単位。",
+    "type1が0件でも無い証明ではない。配置owner/IPSだけではasset型や退役を確定しない。"
+  ],
+  "match_count": 0,
+  "matched_targets": [],
+  "matches": [],
+  "native_processes": 0,
+  "owner_lineage": {
+    "address": 157280328,
+    "alignment_checkpoint": "content/modernization/pr16_learnset_supply_alignment_checkpoint.json",
+    "asset_reader_proven": false,
+    "free_space_proven": false,
+    "owner": "pr16_supply_pla1",
+    "owner_offset": 17232,
+    "placement_checkpoint": "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
+    "placement_end_exclusive": 157284479,
+    "placement_start": 157263096,
+    "source_checkpoint": "content/modernization/pr16_learnset_supply_checkpoint.json",
+    "source_image": "archive-image.bin",
+    "source_image_identity": {
+      "sha256": "499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13",
+      "size": 21383
+    },
+    "source_task": "USER-20260922-LEARNSET-SUPPLY-ABI"
+  },
+  "schema_version": 1,
+  "scope": "SAVED_73_BANKS_TYPE1_ONLY_WITHOUT_PCM_REPLAY",
+  "selected_unknown_origins": 6,
+  "stats": {
+    "not_direct_pcm_type": 12187,
+    "not_rom_pointer": 113,
+    "saved_tone_records_checked": 13194
+  },
+  "unique_type1_waves": 0
+}

@@ -1,0 +1,641 @@
+{
+  "schema_version": 1,
+  "status": "PASS_728_PARENT_BOUND_CALLBACK_REFERENCE_CHAIN",
+  "baseline": {
+    "path": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent": {
+    "path": "content/modernization/pr16_dex_hof_controller_space_evidence/reference-chain.json",
+    "size": 23481,
+    "sha256": "1ede9031a30c4c5f52ec2b6cbf47ad177c4117931fb72796ce597c2786c01476"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "inherited_candidates": 874,
+  "inherited_classified": 728,
+  "inherited_unclassified": 146,
+  "changes": [
+    {
+      "address": 135670781,
+      "target": 167704822,
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "size": 4,
+      "sha256": "39de8c653e640e50b4443bede58ca1faecaf0c7eb98185d9fe8d3431fe522fec",
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_ROOTED_THUMB_INSTRUCTION_STREAM",
+      "accepted": true,
+      "witness_ids": [
+        0
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "id": 0,
+      "address": 135670780,
+      "size": 6,
+      "kind": "rooted_thumb_instruction_stream",
+      "evidence": {
+        "root": {
+          "kind": "reset_vector",
+          "entry": 134218660,
+          "literal": 134218308
+        },
+        "instruction_window": {
+          "address": 135670780,
+          "size": 6,
+          "sha256": "387ec922cb1c14c867add579cdf69a11fc4e177d300846eae114f0b921a8715d"
+        },
+        "instructions": [
+          {
+            "address": 135670780,
+            "size": 4
+          },
+          {
+            "address": 135670784,
+            "size": 2
+          }
+        ],
+        "root_verified": true,
+        "literal_pool_included": false,
+        "full_story_reachability_claimed": false,
+        "scene_producer_and_selector_verified": true,
+        "protected_windows": [
+          {
+            "address": 134217728,
+            "size": 4,
+            "sha256": "1e69530c7fbbf50dee8541042a8016af295c4d84435e2764c295a0ce5d18307d"
+          },
+          {
+            "address": 134218244,
+            "size": 48,
+            "sha256": "d351dac18b97db56c30ec6b71463a08edde9480d27fb2c48bdda135efec937e6"
+          },
+          {
+            "address": 134218308,
+            "size": 4,
+            "sha256": "9b586d63f1542a55b4d7744d30bcc5adfc99ffd5285ac47b08794aaa264586a0"
+          },
+          {
+            "address": 134218660,
+            "size": 62,
+            "sha256": "95b04db2ab6d9c37eed0a233075b1f005f468fcbbcb7ee8523b8ff17caf8d33c"
+          },
+          {
+            "address": 134218840,
+            "size": 12,
+            "sha256": "a55f96719f9b971b55e5ae3abfa4d98f49b3071948f1ccaeb700c8c1f0932129"
+          },
+          {
+            "address": 134218948,
+            "size": 18,
+            "sha256": "1a39142007ec23cf1783fffbc0c188102ba4a95da3bad81c3cd6e96e31d963fe"
+          },
+          {
+            "address": 134218996,
+            "size": 8,
+            "sha256": "ab529e1e31c62c8ee0e18132bb2500d0daba299cb5997d708b4c3d799768326a"
+          },
+          {
+            "address": 134219024,
+            "size": 72,
+            "sha256": "aee5579d89e8087c95456aa144aba90cf05140b3285e907be1b0e050fb0c125d"
+          },
+          {
+            "address": 134647916,
+            "size": 18,
+            "sha256": "019053902e4a03a6e70e21baa5e701db1099faac63e9ae320ee6b02606c4b178"
+          },
+          {
+            "address": 134648088,
+            "size": 26,
+            "sha256": "c23e12489eeb9a5ddc85d4216365fb60541ae3b9d43eb3181fe4fa0b7ca84ace"
+          },
+          {
+            "address": 134648248,
+            "size": 24,
+            "sha256": "531aab4c2389f4a0b267b57b8149600694a637ef2d2ac58d4c8160af8f74d2b8"
+          },
+          {
+            "address": 134648756,
+            "size": 12,
+            "sha256": "788b86c4e1aaa3d233e4db7939a2a588372025bb8fe5a9fa3fe83a3794612e38"
+          },
+          {
+            "address": 134648792,
+            "size": 12,
+            "sha256": "b3c70bf2c0a62715a25820d07656cb9966893428f4be517da599073332c0ec8b"
+          },
+          {
+            "address": 134649788,
+            "size": 36,
+            "sha256": "e9b3d12899fc857fff7931051a423a7e316af8ac6be5c5b4dd9c17ca9c9be086"
+          },
+          {
+            "address": 134704052,
+            "size": 58,
+            "sha256": "57dd0dd02f18dfa2596c6b8be992554dcb9cd1918d375551a103e857b1f3376f"
+          },
+          {
+            "address": 134704112,
+            "size": 22,
+            "sha256": "98c0cc607f9a017464534cf6efd7f927c0cec15e69f4e2b8ad05a7bf6708cd25"
+          },
+          {
+            "address": 134704400,
+            "size": 42,
+            "sha256": "dc1a90615dae67b96669e1bea0f8914a05d040247682b3af9f3a8e52b1437be6"
+          },
+          {
+            "address": 134704444,
+            "size": 64,
+            "sha256": "36598d6fa4549882ffc20fa57b0a3e41768af4bd69907c6cd487aedc2a78eaf1"
+          },
+          {
+            "address": 134704768,
+            "size": 14,
+            "sha256": "8ebd53645771dc916cabb134c350437bd0cda985ff408b0d88e12d6d3b85030c"
+          },
+          {
+            "address": 134704784,
+            "size": 52,
+            "sha256": "4073a7859b0196f7f9ad4495b65c3b798427f6f2add02256ef9a9d767648edcf"
+          },
+          {
+            "address": 134704838,
+            "size": 2,
+            "sha256": "474f2af47544e9c7ce4338cabd43c5ca1c26432b7300ce387406157ea433891f"
+          },
+          {
+            "address": 134704842,
+            "size": 40,
+            "sha256": "939c0f273a7473ef6be9e6cd68bc77b10920820fb912b8d86721838f70dbd0f6"
+          },
+          {
+            "address": 134704884,
+            "size": 4,
+            "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+          },
+          {
+            "address": 134709420,
+            "size": 26,
+            "sha256": "747f1bfed170ad82a77a7030118511b92090afa7c3e3945055370cc662a00501"
+          },
+          {
+            "address": 134709448,
+            "size": 10,
+            "sha256": "93ef83621f41f9569a73ae2a5c211cdbf126a5ab9298be46cae367d7b3dc0832"
+          },
+          {
+            "address": 134709470,
+            "size": 136,
+            "sha256": "ff7f557d266f9164fecc4a72648b54581d6a86098fc510085f18596ba7a0a6d0"
+          },
+          {
+            "address": 134709612,
+            "size": 190,
+            "sha256": "3e4b1c8cf3a4cf353bbd8ab227b35b54d33a820c6ba943c6323637055af8d72c"
+          },
+          {
+            "address": 134709804,
+            "size": 96,
+            "sha256": "557b4ec1bbd1a6238d79da0790e4c364f8166787fed5e12d44fc86b48b8704cf"
+          },
+          {
+            "address": 134709912,
+            "size": 38,
+            "sha256": "3468c03920ad1dc3bce567b14b544c744322123b1e7f6be104008c6397e1b9e6"
+          },
+          {
+            "address": 134709960,
+            "size": 4,
+            "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+          },
+          {
+            "address": 134710068,
+            "size": 6,
+            "sha256": "7efbea5d4c0d89427fc4a2ba4e145456b809be349ef515f99f8a49de0073b020"
+          },
+          {
+            "address": 134710204,
+            "size": 68,
+            "sha256": "b3e7e4f3f03881028ab208bc2c6e0b76007bff185b5d7b6671a8944ff33dcd28"
+          },
+          {
+            "address": 134710276,
+            "size": 48,
+            "sha256": "6877862ebc73e1aa241f517b3ce5d4c85567b7e14c803a6d2172b6f6f51f64db"
+          },
+          {
+            "address": 134711128,
+            "size": 16,
+            "sha256": "3a1abefc8c9f77dab67f20c47737ed8f10ed4ea6664f8b268506274ed8f7b909"
+          },
+          {
+            "address": 134711192,
+            "size": 12,
+            "sha256": "0f8764c81f3d3874d3d52a4013659a94a9997a96a2b85f59d7f5326e4124f7d0"
+          },
+          {
+            "address": 134711240,
+            "size": 4,
+            "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+          },
+          {
+            "address": 134711252,
+            "size": 34,
+            "sha256": "a492189aa08af299879523ef6d12c79589022d6e85f59f4d7e324112a89cc5fd"
+          },
+          {
+            "address": 134711288,
+            "size": 8,
+            "sha256": "070cf0438389a476dab2545331ca33843791312786162f982066cf5bd2ac13b3"
+          },
+          {
+            "address": 134712952,
+            "size": 22,
+            "sha256": "766cf3b2115bac3f8dfe6e8a57ef6868557db347ad86844ccdf65cf8d5aef421"
+          },
+          {
+            "address": 134712980,
+            "size": 4,
+            "sha256": "0d7cce6d02220d12073e954846bc9de4f57c4da857a3520aaa33f19c1967812f"
+          },
+          {
+            "address": 135189728,
+            "size": 18,
+            "sha256": "54e6f5e86af2f43021411a908cd329515a25e31842c0405a5b6f1d065158610b"
+          },
+          {
+            "address": 135189752,
+            "size": 4,
+            "sha256": "3c4e2872bfc1a8b00d007ea782c823fd7ff93c72f23025259f42d1dbd7681597"
+          },
+          {
+            "address": 135189844,
+            "size": 18,
+            "sha256": "ca184f3aaba26d0bfd27f9bd448499974dee96d4cf4ca1a7a22a5afb9ddaf488"
+          },
+          {
+            "address": 135189864,
+            "size": 4,
+            "sha256": "1d26ec2371a637104c8db9786ddc13f3a758f8f83ed1c8ea3b1fbae3a5a068ae"
+          },
+          {
+            "address": 135189876,
+            "size": 8,
+            "sha256": "dcb25991a486b8eb9bb0dfacec613b2eb921112fa6db959e1c3f9edeb036f58d"
+          },
+          {
+            "address": 135189886,
+            "size": 6,
+            "sha256": "7af11ac5d020b76f9564514aaa6469a4e5b6cce63e32183eb9783a5c4c1ce36c"
+          },
+          {
+            "address": 135190276,
+            "size": 10,
+            "sha256": "f282eb5202629f84996e3a2e276c53f6d1cb808a0282528633479d1400448c85"
+          },
+          {
+            "address": 135190296,
+            "size": 10,
+            "sha256": "b7babbaf4d33974346d275a9533ebd431d8ee113cf43f1e03ef9858fb8682591"
+          },
+          {
+            "address": 135190380,
+            "size": 22,
+            "sha256": "52ebbc61f11098a0510cfc2823f622129089752148c14e41b57fa1e92907eb7d"
+          },
+          {
+            "address": 135190408,
+            "size": 8,
+            "sha256": "4717c7a4f5b99f72fd2cdd8194e52ca75ad8aaf2697181c5d6492e840e3f6837"
+          },
+          {
+            "address": 135190660,
+            "size": 32,
+            "sha256": "11063bd7df38a626bf3efca8c0e582b3f6c2b7997340afa85978bd1441414fa9"
+          },
+          {
+            "address": 135190700,
+            "size": 4,
+            "sha256": "0f016a7796b548424d9ce6101acccb93314f18afce614cb61ec080abb981213d"
+          },
+          {
+            "address": 135190736,
+            "size": 6,
+            "sha256": "8aff5b0c7c2f6d397b6ebf4c4d295ddcad6cf55d5409a98b566b0d39f23cef7f"
+          },
+          {
+            "address": 135190892,
+            "size": 42,
+            "sha256": "62b4be830b8dfadc5b6002d20d2d79c83d0bf7725a2fc731325599b4bf82cd9e"
+          },
+          {
+            "address": 135190936,
+            "size": 68,
+            "sha256": "e26d437678ad85ff53c43cce83ec7cbb51d066c8700b48f438463faff36c1c11"
+          },
+          {
+            "address": 135191012,
+            "size": 8,
+            "sha256": "8e0cf5cee56c2e51769dae7e2862c5e1c978660527f2339bf00d680fa5ad8eb8"
+          },
+          {
+            "address": 135195368,
+            "size": 14,
+            "sha256": "4dc16e87c1f187ccbf9d1fa160bd865348fc6654620b129c8ac52746c999fcb8"
+          },
+          {
+            "address": 135195384,
+            "size": 60,
+            "sha256": "b4ef27c53093b7d7a8a62f77acbe5f639c90f8b7c1b39638332fa7c6fa0769b2"
+          },
+          {
+            "address": 135195452,
+            "size": 4,
+            "sha256": "69ea131d95d0cefd58cc407ecbfb3fb3248e5f669394440a0277610938893fec"
+          },
+          {
+            "address": 135670364,
+            "size": 112,
+            "sha256": "c7c936f4a05d05ed704f057e3af6e00664a942a354f8a3de10614df6b53998a8"
+          },
+          {
+            "address": 135670484,
+            "size": 38,
+            "sha256": "4be09fcc42d43df697f53103340851a7d15a8fa5fa509056b74833d3495459a9"
+          },
+          {
+            "address": 135670528,
+            "size": 26,
+            "sha256": "e713245c349aa8f4f41cd9af75fade77c3dbab8ee9d4753bc3a456d3e9bd427f"
+          },
+          {
+            "address": 135670556,
+            "size": 10,
+            "sha256": "d1fa04d60d3d4b5fde8d34d33b1ff4a48d9cfaa7d9218daaea27d02d3f23fd03"
+          },
+          {
+            "address": 135670568,
+            "size": 20,
+            "sha256": "4b7f333c2f7427699c1853b573acc993f9c442afe6534651e899717214cd5d5f"
+          },
+          {
+            "address": 135670592,
+            "size": 8,
+            "sha256": "8358f8f7db16a4cb738a02674d6cd3baeb37db6b6c712976761750fcbd3cf584"
+          },
+          {
+            "address": 135670620,
+            "size": 22,
+            "sha256": "dc1332438b16e9503ca870f9ab3c7756349c8c5e13213e82a9f7209f4132e4f4"
+          },
+          {
+            "address": 135670644,
+            "size": 10,
+            "sha256": "1c32c669c080393ad7805793c96eddb7f2e45b62cfa5b6bb380164f43798f196"
+          },
+          {
+            "address": 135670656,
+            "size": 16,
+            "sha256": "2f5616fbe00b17295767b1b91e30e03e9f82e39804d05fcc6f24dff29790623b"
+          },
+          {
+            "address": 135670674,
+            "size": 112,
+            "sha256": "ea788b04164f8ae8331ec795ad4806afe689bc5fbf250dd8bf7679fb83ab9839"
+          },
+          {
+            "address": 135670816,
+            "size": 12,
+            "sha256": "980092a416788c7eefa200934c13ef882eb981bd87aced12497f765e7c0eaaab"
+          },
+          {
+            "address": 135670964,
+            "size": 10,
+            "sha256": "2fd4ba4acd1105d4b07986388e215bc1c6c142ba67aa486bb86fa59f64fe58ef"
+          },
+          {
+            "address": 135671128,
+            "size": 4,
+            "sha256": "f21c1ed85cfab4586ca40e80555fcd716c66fbb3cbbcaa5c7b44a3b89b1d2c54"
+          },
+          {
+            "address": 136084168,
+            "size": 2,
+            "sha256": "81904e68a8b9a2427e9e87e2c61b1098057608d18357d70d9281e8513941cf53"
+          },
+          {
+            "address": 136084172,
+            "size": 2,
+            "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5"
+          },
+          {
+            "address": 137914644,
+            "size": 4,
+            "sha256": "588af0db71247e3567a2ab2a241ff1af4fc7c5bf4624a8a0c6c72678a9e2f4c7"
+          }
+        ]
+      },
+      "evidence_identity": {
+        "size": 8515,
+        "sha256": "62eaaa2570f4f0dc91aeac66cd601620b313ade4f77ff82768410afd4b0efe92"
+      }
+    }
+  ],
+  "classified": 729,
+  "unclassified": 145,
+  "newly_classified": 1,
+  "proof": {
+    "data": {
+      "status": "PASS_NEW_FINITE_CALLBACK_ROOTS",
+      "title": {
+        "status": "PASS_FINITE_RESET_INTRO_TITLE_BERRY_CODE_WINDOW",
+        "count": 1,
+        "scene_producer_and_selector_verified": true,
+        "heap_word_arg_roundtrip_verified": true,
+        "berry_state_producer_and_selector_verified": true,
+        "path_instructions": 560,
+        "full_story_reachability_claimed": false,
+        "full_title_lifetime_claimed": false,
+        "actual_berry_fix_hardware_exchange_claimed": false
+      },
+      "party": {
+        "status": "PASS_LOCAL_PARTY_CALLBACKS_NOT_ACCEPTED",
+        "role": "party_read_held_mail",
+        "semantic_instruction_count": 401,
+        "instruction_window_count": 24,
+        "task": {
+          "status": "PASS_LOCAL_PARTY_TASK_CONSUMERS_NOT_ACCEPTED",
+          "role": "party_move_tutor_stop_learning",
+          "hit": 135424779,
+          "special_id": 397,
+          "actual_special_registration_bound": true,
+          "sixth_stack_argument_local_flow_bound": true,
+          "local_task_field0_rewrites_bound": true,
+          "semantic_instruction_count": 509,
+          "instruction_window_count": 38,
+          "full_root_to_hit_lifetime_proven": false,
+          "newly_classified": 0,
+          "donor_eligible": false,
+          "current_acceptance_claimed": false,
+          "unresolved_obligations": [
+            "constructor_fields_to_callback_tail_complete_cfg_not_bound",
+            "all_setup_states_and_success_conditions_not_bound",
+            "same_allocation_and_task_lifetime_across_opaque_calls_not_proven",
+            "input_and_tutor_helper_return_conditions_not_proven",
+            "whole_current_candidate_and_sources_delegated_to_parent_wrapper"
+          ]
+        },
+        "shared_heap_pointer_cell_address": 33796112,
+        "exit_callback_copied_before_free_locally": true,
+        "same_allocation_full_lifetime_proven": false,
+        "actual_root_proven": false,
+        "newly_classified": 0,
+        "unresolved_obligations": [
+          "outer_actual_menu_root_and_installed_hook_path_unproven",
+          "all_setup_state_producers_and_success_path_unproven",
+          "same_allocation_across_opaque_calls_and_scheduler_lifetime_unproven",
+          "selector_input_range_and_mail_menu_entry_reachability_unproven"
+        ],
+        "donor_eligible": false,
+        "current_acceptance_claimed": false,
+        "checked_unknown_hits": [
+          135415155,
+          135424779
+        ],
+        "diagnostic_only": true
+      },
+      "new_data": 0,
+      "new_code": 1,
+      "independent_old_final_source_review_completed": false,
+      "donor_leased": false,
+      "indirect_reference_completeness_claimed": false
+    },
+    "song": {
+      "status": "PASS_RETAINED_133_MODELS_50_ASSETS_NEW_CONSUMER_INTERSECTION",
+      "combined_song_models": 133,
+      "retained_sample_witnesses": 50,
+      "model_identity": {
+        "size": 213296,
+        "sha256": "71f01cee0a344409445e17fdea268371269a3e622c6b93563d04b35677e0b975"
+      },
+      "sample_identity": {
+        "size": 1121492,
+        "sha256": "9f765e8eee8ad78eaac8902ccafbf9e14c7c694f842e9ae6b2002583181b70ee"
+      },
+      "old_protected_read_windows": 198334,
+      "old_protected_read_identity": {
+        "size": 26409459,
+        "sha256": "26ae440b2d8456747f59e7fd73679a17b6289ef1a733bdd51c1f9ff668fc8914"
+      },
+      "all133_models_exact": true,
+      "all50_sample_identities_exact": true,
+      "old_and_new_root_windows": 3983,
+      "old_and_new_root_identity": {
+        "size": 426441,
+        "sha256": "911c63db75d63d184e48af6181496fed4e4de2728f2a45c84ff8b55517454cd3"
+      },
+      "new_song_discovery_runs": 0,
+      "new_songs": [],
+      "new_audio_classified": 0,
+      "native_processes": 0,
+      "donor_leased": false
+    },
+    "public_source_bindings": {
+      "BPRJ.ld": {
+        "repository": "kapibarasan000/CFRU-JP",
+        "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+        "source": "BPRJ.ld",
+        "size": 68505,
+        "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+        "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51"
+      },
+      "gaps-pret-scrcmd.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/scrcmd.c",
+        "size": 56954,
+        "sha256": "898dad5a07ce0a125731b998654d86808885a8d48163d607478a5e70c1cac553",
+        "git_blob_sha": "97b695ee2f6fca80a3b78f52f6a444f696fe5814"
+      },
+      "pret-task.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/task.c",
+        "size": 5029,
+        "sha256": "8bdd5205ec396be7b66d6e384a82309b3cab59783d46fb8c4c991b2172d4868b",
+        "git_blob_sha": "01503dc7ae78cf2348524bfb5bbb89183640f944"
+      },
+      "pret-main.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/main.c",
+        "size": 11699,
+        "sha256": "0bfa6c662b1cbd49bd31020b6c2509208004611e6701ad64badce22eca371139",
+        "git_blob_sha": "542b0f5d16dd93107523d11163bfcb70a42b707a"
+      },
+      "pret-crt0.s": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/crt0.s",
+        "size": 2573,
+        "sha256": "a13a09dab32f5f073387183ca5072e009e997223c7eba16d65dd6ecf2d575d73",
+        "git_blob_sha": "a0d8a4b55237b38afc5b69d4e9aad0c2df232e14"
+      },
+      "pret-hall_of_fame.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/hall_of_fame.c",
+        "size": 36837,
+        "sha256": "00dd00b63f3edf8e0ee617a09936d1a51306cc9dc33e6021da8f1042af5dd4ab",
+        "git_blob_sha": "05c7d75384c2ad8481b6819f71faaf089f683bbf"
+      },
+      "pret-intro.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/intro.c",
+        "size": 85302,
+        "sha256": "b34890d753fe07cb471084c6935ef029c300cbd48b3139943dd6d124c8b7e8c2",
+        "git_blob_sha": "bec0f3144ece4167b27dd2eccc0fd12546bf95c4"
+      },
+      "pret-title_screen.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/title_screen.c",
+        "size": 37011,
+        "sha256": "c2521f842e2f7385f429465330c50c663a88b24da7d419e6dbe77362643f56d5",
+        "git_blob_sha": "75f0e6743a2a84c906090df230bac7accb8dbe84"
+      },
+      "pret-berry_fix_program.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/berry_fix_program.c",
+        "size": 5546,
+        "sha256": "7ba2a44f4dfd30003061a0d31d68997f6c78a68df2672d2089064920c9c8ef4d",
+        "git_blob_sha": "4ef103aecaf43c2409ed9f8e9d872561b1772716"
+      },
+      "pret-party_menu.c": {
+        "repository": "pret/pokefirered",
+        "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+        "source": "src/party_menu.c",
+        "size": 211085,
+        "sha256": "8290dfd5b6444e743029ab76543ed5e4b5b32c1c2f475c686946545f934d5f9b",
+        "git_blob_sha": "7f3a881e6c56773aee03da475c9a1adc50530223"
+      }
+    }
+  },
+  "proof_identity": {
+    "size": 5719,
+    "sha256": "37a33208923e42da9b52dd2dbb7ab7ac21d170d275a017afa0fe2432243d2726"
+  },
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0
+}

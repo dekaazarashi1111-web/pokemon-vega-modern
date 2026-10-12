@@ -1,0 +1,81 @@
+name: PR16 Vega breeding adjudication audit
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - tools/pr16_vega_breeding.py
+      - tests/test_pr16_vega_breeding.py
+      - .github/workflows/pr16-vega-breeding-audit.yml
+permissions:
+  contents: read
+  actions: read
+jobs:
+  breeding-audit:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GITHUB_TOKEN: ${{ github.token }}
+      PR16_VEGA_BREEDING_SOURCE: .local/pr16-vega-breeding-audit/source
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 完了済みの不足範囲採取artifactだけを照合
+        run: |
+          python3 -B - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          from pr16_vega_original_verify import capture_artifact, stable
+          request = {'run_id':35622433529,'source_head':'3da7acfeb3aff56478313578ec871053fe67b476',
+                     'workflow':'.github/workflows/pr16-vega-breeding-source.yml','job_name':'missing-source',
+                     'artifact_id':10650172587,'artifact_name':'pr16-vega-breeding-source',
+                     'artifact_sha256':'9b7fe4824578e5fda41bb868a6a4b59bb94524afbc822afad2ab24ac3015e8cb'}
+          out=Path('.local/pr16-vega-breeding-audit/source')
+          actions=capture_artifact(request,out)
+          (out/'source-actions.json').write_bytes(stable(actions))
+          PY
+      - name: 非直接eggと原作consumerの13境界だけを検証
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s tests -p test_pr16_vega_breeding.py -v 2>&1 | tee .local/pr16-vega-breeding-audit/unit.txt
+      - name: 独立2生成と純読取check・既存原本不変
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONHASHSEED=17 python3 -B tools/pr16_vega_breeding.py generate --source "$PR16_VEGA_BREEDING_SOURCE" --output .local/pr16-vega-breeding-audit/generated
+          PYTHONHASHSEED=53 python3 -B tools/pr16_vega_breeding.py generate --source "$PR16_VEGA_BREEDING_SOURCE" --output .local/pr16-vega-breeding-build2
+          python3 -B - <<'PY'
+          from pathlib import Path
+          import json,os,subprocess,sys
+          from tools.pr16_vega_breeding import identity
+          out=Path('.local/pr16-vega-breeding-audit')
+          first=out/'generated';second=Path('.local/pr16-vega-breeding-build2')
+          assert {p.name:p.read_bytes() for p in first.iterdir()} == {p.name:p.read_bytes() for p in second.iterdir()}
+          paths=[*first.iterdir(),*(out/'source').iterdir(),*Path('content/modernization/pr16_vega_original_evidence').iterdir()]
+          snapshot=lambda:{str(p):(identity(p.read_bytes()),p.stat().st_mtime_ns) for p in paths if p.is_file()}
+          before=snapshot()
+          subprocess.run([sys.executable,'-B','tools/pr16_vega_breeding.py','check','--source',str(out/'source'),'--output',str(first)],check=True)
+          assert before==snapshot()
+          report={'status':'PASS_SOURCE_ADJUDICATION_ONLY','verification_head':os.environ['GITHUB_SHA'],
+                  'verification_run_id':int(os.environ['GITHUB_RUN_ID']),'focused_tests':13,
+                  'two_process_outputs_identical':True,'readonly_byte_mtime_unchanged':True,
+                  'files':{p.name:identity(p.read_bytes()) for p in first.iterdir()},
+                  'reused_collision_tests':{'run_id':35621880869,'head':'c8af78b793c554d43230cddeab5ce33ae515a742','tests':5},
+                  'rom_changes':0,'new_native_runs':0,'accepted_native_reruns':0,'official_baseline_reruns':0,
+                  'wiki_pages_fetched':0,'runtime_applied':False,'issue19_complete':False,'release_ready':False}
+          (out/'verify.json').write_text(json.dumps(report,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          PY
+          git diff --exit-code
+          git diff --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-vega-breeding-adjudicated
+          path: .local/pr16-vega-breeding-audit/
+          retention-days: 30
+          if-no-files-found: error

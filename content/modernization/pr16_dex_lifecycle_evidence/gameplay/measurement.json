@@ -1,0 +1,539 @@
+{
+  "status": "PASS_CANDIDATE_ORDINARY_DEX_SAVE_CONTINUE_NEWGAME",
+  "source_head": "d7052a19a0c2991c48de3826278dc9a5c665da5f",
+  "run_id": 37231996230,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "71a1131dae058f568bc5537d21bb8c85dfa551c956c4ac36d9e52293eaf5915c"
+  },
+  "parent_run": 37230810454,
+  "cases": {
+    "save101": {
+      "status": "PASS_ORDINARY_SAVE_AND_INDEPENDENT_CONTINUE",
+      "fresh_processes": 2,
+      "ordinary_saves": 1,
+      "counter_before": 101,
+      "counter_after": 102,
+      "processes": [
+        {
+          "case": "save101-save",
+          "input": {
+            "size": 131088,
+            "sha256": "814a8e31ce20d720a1f1bddc08caa9cdd3d86b5bbb874738b9cb859653552149"
+          },
+          "output": {
+            "size": 131088,
+            "sha256": "c83c27e5950103dffef6755f865d4fc060a5c55652e44f232d727955df8c909f"
+          },
+          "trace": {
+            "observations": [
+              {
+                "observe": 0,
+                "frame": 1390,
+                "map": [
+                  3,
+                  24
+                ],
+                "xy": [
+                  53,
+                  13
+                ],
+                "live_xy": [
+                  60,
+                  20
+                ],
+                "facing": 3,
+                "field": true,
+                "lock": 0,
+                "callback2": 134569589,
+                "party_count": 4,
+                "save_counter": 101,
+                "rp": 0,
+                "battle_flags": 0,
+                "battle_outcome": 0,
+                "party_sha256": "a889748859f118b98c42e9ef5f0fd2847466d07383f5743946453c961261580d",
+                "flash_sha256": "8b44629f94877b5aac2e23ff15a903e66e19b74e236aa89e1f590849ed509b4d",
+                "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+              },
+              {
+                "observe": 1,
+                "frame": 2852,
+                "map": [
+                  3,
+                  24
+                ],
+                "xy": [
+                  53,
+                  13
+                ],
+                "live_xy": [
+                  60,
+                  20
+                ],
+                "facing": 3,
+                "field": true,
+                "lock": 0,
+                "callback2": 134569589,
+                "party_count": 4,
+                "save_counter": 102,
+                "rp": 0,
+                "battle_flags": 0,
+                "battle_outcome": 0,
+                "party_sha256": "a889748859f118b98c42e9ef5f0fd2847466d07383f5743946453c961261580d",
+                "flash_sha256": "fbbb8f87325828b2d2108cc7d848a14b0ebcb9c7f285b921bb75498b1561a8f2",
+                "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+              }
+            ],
+            "mdx": [
+              {
+                "mdx": 0,
+                "frame": 1390,
+                "valid": true,
+                "legacy_snapshot": 1,
+                "seen_count": 0,
+                "caught_count": 0,
+                "live_sha256": "b33d6d7b257485bcac6dea92b43fe403abd2626eeaca74903fcb0e5b8c9014af",
+                "legacy_sha256": "4c776b05231ba21fb86ca53e28e2e1e395702d6788b64338d4381c628d34cc3e",
+                "stock_flags_vars_sha256": "25724aa725e0584036a780a30a55d7775bb4cf6c4aaa567b158028f6f2fce43a",
+                "bag_sha256": "5e7d314e869058d1330233cbb3833e10b41aed3f5dc0c4314dec1290d370946e",
+                "legacy_snapshot_matches_current_stock": true,
+                "physical_matches_current_generation": 0,
+                "save_file_status": 1
+              },
+              {
+                "mdx": 1,
+                "frame": 2852,
+                "valid": true,
+                "legacy_snapshot": 1,
+                "seen_count": 0,
+                "caught_count": 0,
+                "live_sha256": "b33d6d7b257485bcac6dea92b43fe403abd2626eeaca74903fcb0e5b8c9014af",
+                "legacy_sha256": "4c776b05231ba21fb86ca53e28e2e1e395702d6788b64338d4381c628d34cc3e",
+                "stock_flags_vars_sha256": "25724aa725e0584036a780a30a55d7775bb4cf6c4aaa567b158028f6f2fce43a",
+                "bag_sha256": "5e7d314e869058d1330233cbb3833e10b41aed3f5dc0c4314dec1290d370946e",
+                "legacy_snapshot_matches_current_stock": true,
+                "physical_matches_current_generation": 1,
+                "save_file_status": 1
+              }
+            ],
+            "screens": [
+              {
+                "screen": 0,
+                "frame": 1390,
+                "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+              },
+              {
+                "screen": 1,
+                "frame": 2852,
+                "sha256": "34b6e4265a527e25b4b7e49da9b0ec42722eb28b2015b5bc527e3445f318ad73"
+              }
+            ],
+            "saves": [
+              {
+                "ordinary_save": true,
+                "before": 101,
+                "after": 102,
+                "frame": 2852
+              }
+            ],
+            "inputs": 35,
+            "frames": 2852,
+            "end": {
+              "end": "STORY_INPUT_CHECKPOINT",
+              "frames": 2852,
+              "inputs": 35,
+              "warnings_errors": 0,
+              "host_write_barriers": 7,
+              "guarded_host_writes": 0,
+              "fixture_calls": 0,
+              "natural_research_arrival_accepted": false
+            }
+          },
+          "returncode": 0,
+          "reused": true,
+          "source": "0ff7227157be8622ffee965fa5027cefa67b0b93",
+          "run": 37231227293
+        },
+        {
+          "case": "save101-cold",
+          "input": {
+            "size": 131088,
+            "sha256": "c83c27e5950103dffef6755f865d4fc060a5c55652e44f232d727955df8c909f"
+          },
+          "output": {
+            "size": 131088,
+            "sha256": "c83c27e5950103dffef6755f865d4fc060a5c55652e44f232d727955df8c909f"
+          },
+          "trace": {
+            "observations": [
+              {
+                "observe": 0,
+                "frame": 1390,
+                "map": [
+                  3,
+                  24
+                ],
+                "xy": [
+                  53,
+                  13
+                ],
+                "live_xy": [
+                  60,
+                  20
+                ],
+                "facing": 3,
+                "field": true,
+                "lock": 0,
+                "callback2": 134569589,
+                "party_count": 4,
+                "save_counter": 102,
+                "rp": 0,
+                "battle_flags": 0,
+                "battle_outcome": 0,
+                "party_sha256": "a889748859f118b98c42e9ef5f0fd2847466d07383f5743946453c961261580d",
+                "flash_sha256": "fbbb8f87325828b2d2108cc7d848a14b0ebcb9c7f285b921bb75498b1561a8f2",
+                "ledger_sha256": "1a34e64cfee8f3793ea60b1736daa6df07d122390dcb69aacacf45cbffd0a229"
+              }
+            ],
+            "mdx": [
+              {
+                "mdx": 0,
+                "frame": 1390,
+                "valid": true,
+                "legacy_snapshot": 1,
+                "seen_count": 0,
+                "caught_count": 0,
+                "live_sha256": "b33d6d7b257485bcac6dea92b43fe403abd2626eeaca74903fcb0e5b8c9014af",
+                "legacy_sha256": "4c776b05231ba21fb86ca53e28e2e1e395702d6788b64338d4381c628d34cc3e",
+                "stock_flags_vars_sha256": "25724aa725e0584036a780a30a55d7775bb4cf6c4aaa567b158028f6f2fce43a",
+                "bag_sha256": "5e7d314e869058d1330233cbb3833e10b41aed3f5dc0c4314dec1290d370946e",
+                "legacy_snapshot_matches_current_stock": true,
+                "physical_matches_current_generation": 1,
+                "save_file_status": 1
+              }
+            ],
+            "screens": [
+              {
+                "screen": 0,
+                "frame": 1390,
+                "sha256": "431a9d362e801d3480e2ad9f40c00889fbcc404acb9723f8a6fe0383475bf423"
+              }
+            ],
+            "saves": [],
+            "inputs": 12,
+            "frames": 1390,
+            "end": {
+              "end": "STORY_INPUT_CHECKPOINT",
+              "frames": 1390,
+              "inputs": 12,
+              "warnings_errors": 0,
+              "host_write_barriers": 7,
+              "guarded_host_writes": 0,
+              "fixture_calls": 0,
+              "natural_research_arrival_accepted": false
+            }
+          },
+          "returncode": 0,
+          "reused": true,
+          "source": "0ff7227157be8622ffee965fa5027cefa67b0b93",
+          "run": 37231227293
+        }
+      ],
+      "formal_save_changed": false,
+      "reused": true,
+      "source": "0ff7227157be8622ffee965fa5027cefa67b0b93",
+      "run": 37231227293,
+      "artifact": 11314120736
+    },
+    "newgame": {
+      "status": "PASS_ORDINARY_SAVE_AND_INDEPENDENT_CONTINUE",
+      "fresh_processes": 2,
+      "ordinary_saves": 1,
+      "counter_before": 0,
+      "counter_after": 1,
+      "processes": [
+        {
+          "case": "newgame-save",
+          "input": {
+            "size": 131072,
+            "sha256": "b5a41c3758763bbec72769fab4a2533bf2db0b6312d93d25a695f9e4b9e02260"
+          },
+          "output": {
+            "size": 131088,
+            "sha256": "5f8c0e489f7f14fa46ed5b3f01403668b3274c989dd33bf87d04cc89851e3fb9"
+          },
+          "trace": {
+            "observations": [
+              {
+                "observe": 0,
+                "frame": 14090,
+                "map": [
+                  4,
+                  0
+                ],
+                "xy": [
+                  10,
+                  2
+                ],
+                "live_xy": [
+                  17,
+                  9
+                ],
+                "facing": 3,
+                "field": true,
+                "lock": 0,
+                "callback2": 134569589,
+                "party_count": 0,
+                "save_counter": 0,
+                "rp": 0,
+                "battle_flags": 0,
+                "battle_outcome": 0,
+                "party_sha256": "e782bfe3ee232868110c3130b411330f3cc44261563ee6292b21b6c4f6c18089",
+                "flash_sha256": "b5a41c3758763bbec72769fab4a2533bf2db0b6312d93d25a695f9e4b9e02260",
+                "ledger_sha256": "8e27442ac7febd51498deb99f543c2fb797092c5ce319fba333083d298852245"
+              },
+              {
+                "observe": 1,
+                "frame": 15124,
+                "map": [
+                  4,
+                  0
+                ],
+                "xy": [
+                  10,
+                  2
+                ],
+                "live_xy": [
+                  17,
+                  9
+                ],
+                "facing": 3,
+                "field": true,
+                "lock": 0,
+                "callback2": 134569589,
+                "party_count": 0,
+                "save_counter": 1,
+                "rp": 0,
+                "battle_flags": 0,
+                "battle_outcome": 0,
+                "party_sha256": "e782bfe3ee232868110c3130b411330f3cc44261563ee6292b21b6c4f6c18089",
+                "flash_sha256": "bffb7aa86c15196bbba79c84218c66b411ca59f9aff08d226ceab68689458551",
+                "ledger_sha256": "8e27442ac7febd51498deb99f543c2fb797092c5ce319fba333083d298852245"
+              }
+            ],
+            "mdx": [
+              {
+                "mdx": 0,
+                "frame": 14090,
+                "valid": true,
+                "legacy_snapshot": 0,
+                "seen_count": 0,
+                "caught_count": 0,
+                "live_sha256": "0277dddf83341b59bdc4da5c04a212f33e122384a4b0739fe15c25d489d1caaa",
+                "legacy_sha256": "46f531b7ea0428fbf2c3ca2b60e8dc33d6bbfa000e0fd1b489c5e39140a47006",
+                "stock_flags_vars_sha256": "4650ecf75f095ff6e8537d714a4cbd3b3d14875160f77dbe73210e64bc0fc506",
+                "bag_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+                "legacy_snapshot_matches_current_stock": true,
+                "physical_matches_current_generation": 0,
+                "save_file_status": 0,
+                "stock_byte_deltas": []
+              },
+              {
+                "mdx": 1,
+                "frame": 15124,
+                "valid": true,
+                "legacy_snapshot": 0,
+                "seen_count": 0,
+                "caught_count": 0,
+                "live_sha256": "0277dddf83341b59bdc4da5c04a212f33e122384a4b0739fe15c25d489d1caaa",
+                "legacy_sha256": "46f531b7ea0428fbf2c3ca2b60e8dc33d6bbfa000e0fd1b489c5e39140a47006",
+                "stock_flags_vars_sha256": "63c994dd519624f737868f1c93e29b47ded31005d2af3ee25a1cf20fe5492008",
+                "bag_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+                "legacy_snapshot_matches_current_stock": true,
+                "physical_matches_current_generation": 1,
+                "save_file_status": 0,
+                "stock_byte_deltas": [
+                  [
+                    263,
+                    1,
+                    65
+                  ]
+                ]
+              }
+            ],
+            "screens": [
+              {
+                "screen": 0,
+                "frame": 14090,
+                "sha256": "c735c4070e9cf842661e600b45924f4f58ae3409d28ba8418db7986741d0ded6"
+              },
+              {
+                "screen": 1,
+                "frame": 15124,
+                "sha256": "c735c4070e9cf842661e600b45924f4f58ae3409d28ba8418db7986741d0ded6"
+              }
+            ],
+            "saves": [
+              {
+                "ordinary_save": true,
+                "before": 0,
+                "after": 1,
+                "frame": 15124
+              }
+            ],
+            "inputs": 249,
+            "frames": 15124,
+            "end": {
+              "end": "STORY_INPUT_CHECKPOINT",
+              "frames": 15124,
+              "inputs": 249,
+              "warnings_errors": 0,
+              "host_write_barriers": 7,
+              "guarded_host_writes": 0,
+              "fixture_calls": 0,
+              "natural_research_arrival_accepted": false
+            }
+          },
+          "returncode": 0,
+          "reused": true,
+          "source": "2c42a7c9d1e4ceb41cc34c429b84465c589f919d",
+          "run": 37231607258
+        },
+        {
+          "case": "newgame-cold",
+          "input": {
+            "size": 131088,
+            "sha256": "5f8c0e489f7f14fa46ed5b3f01403668b3274c989dd33bf87d04cc89851e3fb9"
+          },
+          "output": {
+            "size": 131088,
+            "sha256": "5f8c0e489f7f14fa46ed5b3f01403668b3274c989dd33bf87d04cc89851e3fb9"
+          },
+          "trace": {
+            "observations": [
+              {
+                "observe": 0,
+                "frame": 1390,
+                "map": [
+                  4,
+                  0
+                ],
+                "xy": [
+                  10,
+                  2
+                ],
+                "live_xy": [
+                  17,
+                  9
+                ],
+                "facing": 3,
+                "field": true,
+                "lock": 0,
+                "callback2": 134569589,
+                "party_count": 0,
+                "save_counter": 1,
+                "rp": 0,
+                "battle_flags": 0,
+                "battle_outcome": 0,
+                "party_sha256": "e782bfe3ee232868110c3130b411330f3cc44261563ee6292b21b6c4f6c18089",
+                "flash_sha256": "bffb7aa86c15196bbba79c84218c66b411ca59f9aff08d226ceab68689458551",
+                "ledger_sha256": "8e27442ac7febd51498deb99f543c2fb797092c5ce319fba333083d298852245"
+              }
+            ],
+            "mdx": [
+              {
+                "mdx": 0,
+                "frame": 1390,
+                "valid": true,
+                "legacy_snapshot": 0,
+                "seen_count": 0,
+                "caught_count": 0,
+                "live_sha256": "0277dddf83341b59bdc4da5c04a212f33e122384a4b0739fe15c25d489d1caaa",
+                "legacy_sha256": "46f531b7ea0428fbf2c3ca2b60e8dc33d6bbfa000e0fd1b489c5e39140a47006",
+                "stock_flags_vars_sha256": "63c994dd519624f737868f1c93e29b47ded31005d2af3ee25a1cf20fe5492008",
+                "bag_sha256": "688c3d52d630e445add9fb46d2b1d85448f8637d8262457aeba156c64704c3ec",
+                "legacy_snapshot_matches_current_stock": true,
+                "physical_matches_current_generation": 1,
+                "save_file_status": 1,
+                "stock_byte_deltas": []
+              }
+            ],
+            "screens": [
+              {
+                "screen": 0,
+                "frame": 1390,
+                "sha256": "c735c4070e9cf842661e600b45924f4f58ae3409d28ba8418db7986741d0ded6"
+              }
+            ],
+            "saves": [],
+            "inputs": 12,
+            "frames": 1390,
+            "end": {
+              "end": "STORY_INPUT_CHECKPOINT",
+              "frames": 1390,
+              "inputs": 12,
+              "warnings_errors": 0,
+              "host_write_barriers": 7,
+              "guarded_host_writes": 0,
+              "fixture_calls": 0,
+              "natural_research_arrival_accepted": false
+            }
+          },
+          "returncode": 0
+        }
+      ],
+      "formal_save_changed": false
+    }
+  },
+  "new_ordinary_saves": 0,
+  "reused_ordinary_saves": 2,
+  "native_processes": 1,
+  "reused_native_processes": 3,
+  "accepted_native_processes": 4,
+  "reused_newgame": {
+    "source": "2c42a7c9d1e4ceb41cc34c429b84465c589f919d",
+    "run": 37231607258,
+    "artifact": 11314690728
+  },
+  "reused_save101": {
+    "source": "0ff7227157be8622ffee965fa5027cefa67b0b93",
+    "run": 37231227293,
+    "artifact": 11314120736
+  },
+  "host_compiles": 1,
+  "host_tests": 6,
+  "ordinary_saves": 2,
+  "newgame_introductions": 1,
+  "new_high_owner_gameplay_registration": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "formal_save": 101,
+  "all_consumers_wired": false,
+  "all_save_modes_accepted": false,
+  "source_bindings": {
+    ".github/workflows/pr16-dex-gameplay.yml": {
+      "size": 1986,
+      "sha256": "3a046bfda0815f2aa8e8d738171ce03c5e952f3afa4349611990c7ede6403666"
+    },
+    "content/modernization/pr16_dex_first_menu_audit.json": {
+      "size": 2268,
+      "sha256": "92e1edde14eba57fa73180d99502beb5562d087be6372c86e98266d2386fc065"
+    },
+    "scripts/pr16_dex_gameplay.py": {
+      "size": 6407,
+      "sha256": "c8e4589d43e5f10bbb1f4cf0a8f66c2cf592b65a31230808ba4f56bfa41eab0b"
+    },
+    "scripts/pr16_dex_gameplay_actions.py": {
+      "size": 14844,
+      "sha256": "13c338b405b5803260e660fded2ba5a6749931bf28c794bbdcf103350a15c28e"
+    },
+    "tests/test_pr16_dex_gameplay.py": {
+      "size": 1248,
+      "sha256": "c8b8dbcaad5c774e467d69ec0feceae7bf1b128316d3c9e2cca1b31464a0c15c"
+    },
+    "tools/mgba_pr16_dex_gameplay.h": {
+      "size": 2692,
+      "sha256": "25a9a683930c233586db11c3d622543c7899a124f3140ece231dbf95f11e0209"
+    }
+  }
+}

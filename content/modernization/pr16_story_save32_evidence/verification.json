@@ -1,0 +1,162 @@
+{
+  "status": "PASS_CAVE_SOUTH_TRAINER353_SAVE32_SCOPED",
+  "trainer_victories": 1,
+  "trainer_id": 353,
+  "wild_victories": 0,
+  "escapes": 0,
+  "captures": 0,
+  "ordinary_saves": 1,
+  "save_counter": 32,
+  "map": [
+    1,
+    73
+  ],
+  "xy": [
+    21,
+    19
+  ],
+  "facing": 4,
+  "party_count": 4,
+  "rp": 0,
+  "encounter_transition": 14,
+  "battle_start": 17,
+  "battle_outcome_observation": 50,
+  "victory_field_return": 53,
+  "save_success_text_observation": 60,
+  "stable_field_observation": 61,
+  "partial_write_observations": [
+    57,
+    58,
+    59
+  ],
+  "progress_inputs": 138,
+  "continue_inputs": 13,
+  "screen_count": 64,
+  "native_processes": 2,
+  "record_native_processes": 0,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "compiles": 0,
+  "rom_changes": 0,
+  "fixture_writes": 0,
+  "hm05_taught_or_used": false,
+  "trainer352_accepted": false,
+  "trainer353_accepted": true,
+  "teleport_accepted": false,
+  "east_stair_accepted": false,
+  "cave_crossing_complete": false,
+  "national_dex_unlocked": false,
+  "natural_growth_accepted": false,
+  "natural_evolution_accepted": false,
+  "full_story_accepted": false,
+  "release_ready": false,
+  "boundary": {
+    "party_changes": [
+      [
+        55,
+        4,
+        0
+      ],
+      [
+        86,
+        68,
+        66
+      ]
+    ],
+    "bag_unchanged": true,
+    "hm05_owned": true,
+    "money_before": 12712,
+    "money_after": 13128,
+    "reward": 416,
+    "physical_flag_deltas": [
+      [
+        1633,
+        0,
+        1
+      ]
+    ],
+    "auxiliary_var_deltas": [
+      [
+        16417,
+        93,
+        103
+      ],
+      [
+        16418,
+        2,
+        0
+      ]
+    ],
+    "auxiliary_runtime_owners_resolved": false,
+    "old_bank_preserved_bytes": 57344,
+    "pc_s61e_preserved": true,
+    "s61e_crc_verified": true,
+    "sector_checksum_checks": 42,
+    "national_dex_magic": 0,
+    "national_var404e": 0,
+    "national_flag840": 0,
+    "story_vars": {
+      "4071": 7,
+      "4072": 1
+    },
+    "badge_count": 1,
+    "all_save_rtc_cold_identical": true,
+    "changed_bytes": 6973,
+    "changed_ranges": 1782,
+    "trainer_owner": {
+      "root_count": 1,
+      "unique_root_address_count": 1,
+      "visited_script_count": 2,
+      "nodes": [
+        {
+          "address": 136398545,
+          "end_reason": "end",
+          "instruction_count": 3,
+          "edges": [],
+          "roots": [
+            "cave_local7"
+          ]
+        },
+        {
+          "address": 154601888,
+          "end_reason": "goto",
+          "instruction_count": 2,
+          "edges": [
+            136398545
+          ],
+          "roots": [
+            "cave_local7"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "category": "trainer",
+          "value": 353,
+          "access": "battle",
+          "instruction_address": 154601888,
+          "opcode": 92,
+          "command": "trainerbattle",
+          "battle_type": 0,
+          "script_address": 154601888,
+          "roots": [
+            "cave_local7"
+          ]
+        }
+      ],
+      "diagnostics": []
+    }
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "f0d2c1afb303390fb415e52090379a234a813f1bd7854ea77d92f5cb7b50ac2f"
+  },
+  "output_save": {
+    "size": 131088,
+    "sha256": "df4a9c40ce888a26f88493d69e7d37f9b0ea13b2fce793c4f2e34ac0380cd871"
+  },
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  }
+}

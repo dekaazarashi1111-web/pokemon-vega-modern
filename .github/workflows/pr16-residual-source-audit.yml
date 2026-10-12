@@ -1,0 +1,54 @@
+name: pr16-residual-source-audit
+run-name: Exact residual requirements and facility source context, not native acceptance
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-residual-source-audit.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  residual-sources:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Read fixed original instructions and upstream facility source only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-residual-sources
+          python3 scripts/pr16_source_context.py > .local/pr16-residual-sources/context.stdout 2> .local/pr16-residual-sources/context.stderr
+          cp .local/pr16-continuation/context/source-context.json .local/pr16-residual-sources/source-context.json
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-residual-sources'
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0');bindings={}
+          selected={'.json','.csv','.h','.py','.md','.txt','.toml','.inc','.s'}
+          with zipfile.ZipFile(out/'residual-source-files.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(filter(None,names)):
+                  p=root/name
+                  if not (name=='Makefile' or name.startswith(('config/','content/','manifests/','generated/runtime/','state/','tasks/'))) or not (name=='Makefile' or p.suffix in selected):continue
+                  if not p.is_file() or p.is_symlink() or p.stat().st_size>6000000:continue
+                  raw=p.read_bytes()
+                  try:raw.decode('utf8')
+                  except UnicodeDecodeError:continue
+                  assert b'\0' not in raw
+                  z.writestr(name,raw);bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          (out/'tested-head.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-residual-sources
+          path: .local/pr16-residual-sources/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

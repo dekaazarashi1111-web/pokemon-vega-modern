@@ -1,0 +1,9 @@
+# native読取の限定受入
+
+source `7f879dd653b5833d4c5050f22b96ab4bd8c15685`、run `37203041912` / job `111438456742` の全8step成功。artifact `11303576858`、19436bytes/SHA256 `e57ad91c7906bd0f3c81fd517e46a7fe48b410b81e150e012b9f9e45029a1303`、全10member/2実画面を独立照合。Save101のparty600bytes、legacy flags288bytes/vars256個、拡張1536bytes＋ball/coins6bytesが実RAMと一致。全Save/RTCは入力と同一。入力13は起動Continue12と無入力待機120framesだけ。通常歩行/戦闘/回復/Save0。新compile1/native1、記録native0、旧受入再走0。
+
+最初のrun37202842013は消失済み旧runtime artifact10898620034への404でcompile/native0。失敗原本を保持したまま、保存済みartifact11263910704と元と同じ公式Ubuntu `0.10.2+dfsg-1.1build3` headersへ修正。package側libmgbaと保存runtimeの全byte一致を要求した。
+
+120frames待機ではSaveBlock2のoffset17が16→18、object領域2bytesが変化した。現在の純粋戦闘adapterはSaveBlock2全byte不変を要求するので、このまま長時間戦闘に流用しない。時計ownerとNPCの観測を切り分けてから続行する。
+
+215歩の静的候補は新計画JSONへ保存。terrainはcollision0/elevation3、草14tileだが、trainer131/128/1065の視線候補と現在の物理flag、敵party/報酬/UI/回復ownerが未解決。runtime_authorized=false。診断停止をmilestone完成にしない。

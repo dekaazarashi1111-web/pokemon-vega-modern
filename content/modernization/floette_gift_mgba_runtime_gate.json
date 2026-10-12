@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT",
+  "stage": 69,
+  "status": "PARTIAL_PASS_HARNESS_FIXTURE_BLOCKED",
+  "release_gate": "PENDING_EXACT_PARTY_PC_FULL_AND_FRESH_RELOAD",
+  "rom_path": "build/stages/69_modernization_floette_gift.gba",
+  "rom_size": 33554432,
+  "rom_sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
+  "attempt_count": 3,
+  "execution_attempts": 3,
+  "retry_count": 2,
+  "successful_process_runs": 0,
+  "warnings_errors_before_harness_stop": 0,
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "FAIL_HARNESS_ASSERTION",
+      "last_completed_phase": "party-delivery",
+      "failed_phase": "pc-delivery",
+      "supplemental_assertion": "stock GetBoxMonDataAt plus legacy Codex box-level adapter",
+      "rom_claim_result": "SUCCESS",
+      "rom_species1029_postcondition": "PASS_INSIDE_GIFT_RUNTIME_USING_DPE_ABI",
+      "rom_transaction_failure": false
+    },
+    {
+      "attempt": 2,
+      "status": "FAIL_HARNESS_ASSERTION",
+      "last_completed_phase": "party-delivery",
+      "failed_phase": "pc-delivery",
+      "supplemental_assertion": "CreateMon(1029,50) EXP identity still read through obsolete stock GetBoxMonDataAt 0x0808B4B5",
+      "rom_claim_result": "SUCCESS",
+      "rom_species1029_postcondition": "PASS_INSIDE_GIFT_RUNTIME_USING_DPE_ABI",
+      "rom_transaction_failure": false
+    },
+    {
+      "attempt": 3,
+      "status": "FAIL_HARNESS_FIXTURE_SETUP",
+      "completed_phases": [
+        "natural-new-game",
+        "physical-graph-and-save-init",
+        "clean-production-fixture",
+        "party-delivery",
+        "pc-delivery"
+      ],
+      "failed_phase": "party-and-pc-full fixture creation",
+      "reason": "stock SetBoxMonAt fixture writes were not address-compatible with the linked DPE GetBoxMonDataAt validation ABI",
+      "gift_full_branch_invoked": false,
+      "rom_party_claim_result": "SUCCESS",
+      "rom_pc_claim_result": "SUCCESS",
+      "rom_species1029_postcondition": "PASS_INSIDE_GIFT_RUNTIME_USING_DPE_ABI",
+      "rom_transaction_failure": false,
+      "executed_runner_source_sha256": "b61faf2ae294ba9e9d89969b9623f762bc6f1027b9258aa573e544bfa89c2785",
+      "executed_runner_binary_sha256": "44bc4598eb68a33f769dc9ec318024aad8c01cbc8eee7315627076eac346b5bc"
+    }
+  ],
+  "exact_rom_confirmed": {
+    "physical_npc_script_graph_to_entrypoint": true,
+    "acquisition_save_initialization": true,
+    "mega_ring_580_gate": true,
+    "party_delivery_species1029_level50": true,
+    "full_party_pc_delivery_species1029_level50": true,
+    "claim_flag_14cd_after_party_and_pc_delivery": true,
+    "national670_collection_bit850_after_party_and_pc_delivery": true
+  },
+  "host_confirmed_pending_exact_rom": {
+    "party_and_pc_full_unclaimed": true,
+    "standard_save_rollback": true,
+    "sector31_save_rollback": true,
+    "same_session_once_rejected": true
+  },
+  "not_yet_executed_exact_rom": {
+    "fresh_core_standard_save_reload": "PENDING",
+    "fresh_core_once_rejected": "PENDING"
+  },
+  "corrected_runner": {
+    "status": "COMPILE_PASS_NOT_EXECUTED_PER_THREE_ATTEMPT_LIMIT",
+    "source_path": "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
+    "source_size": 23196,
+    "source_sha256": "35306047c3f052b13761edfbab1ae6bf7f7220b15d0d31fa4ec69faaed8fd8eb",
+    "binary_size": 47232,
+    "binary_sha256": "8e70ab35aa37e006c1e83f1b2ae0f25fda88a351853fd00cd894a10458a9e9d1",
+    "embedded_harness_path": "tools/mgba_regression_smoke.c",
+    "embedded_harness_sha256": "f2e63f6bbf3c2c860664fa6bb178304b834352917b75d3605fb0aa20dd11c5b0",
+    "fixture_correction": "uses Stage26 linked DPE GetBoxedMonPtr to resolve each slot, copies a production CreateMon BoxMon image, validates through linked DPE GetBoxMonDataAt, and clears through linked DPE ZeroBoxMonAt",
+    "linked_get_boxed_mon_ptr": "0x09123AE1",
+    "linked_get_box_mon_data_at": "0x09123BE5",
+    "linked_zero_box_mon_at": "0x091239C9"
+  },
+  "retained_artifacts": [
+    "content/modernization/floette_gift_mgba_runtime_gate.json"
+  ],
+  "temporary_saves_retained": false
+}

@@ -1,0 +1,767 @@
+{
+  "schema_version": 1,
+  "status": "OLD_FORMAL_NEW_SONG_ROOT_STATIC_REVIEW_CURRENT_CANDIDATE_NOT_YET_BOUND",
+  "old_formal": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "required_current_sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+  "sources": [
+    {
+      "local": "pret-hall_of_fame.c",
+      "repository": "pret/pokefirered",
+      "source": "src/hall_of_fame.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "05c7d75384c2ad8481b6819f71faaf089f683bbf",
+      "size": 36837,
+      "sha256": "00dd00b63f3edf8e0ee617a09936d1a51306cc9dc33e6021da8f1042af5dd4ab"
+    },
+    {
+      "local": "pret-battle_anim.c",
+      "repository": "pret/pokefirered",
+      "source": "src/battle_anim.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "30f9a7ad2482d1767f5c70ee30a3c85528605bb3",
+      "size": 46944,
+      "sha256": "5883d9ee0483120ef67461952f5880499f322fb1c706cc213ca13c0c2b0e88c5"
+    },
+    {
+      "local": "pret-battle_anim_script.inc",
+      "repository": "pret/pokefirered",
+      "source": "asm/macros/battle_anim_script.inc",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "15c48c39f5860efe132e782c22a6cedb0f8d5ac3",
+      "size": 4279,
+      "sha256": "cb193c567289983c26ed8acaa8dd64501c64c7e088e28995c49439333b52b27c"
+    },
+    {
+      "local": "cfru-battle_anims.c",
+      "repository": "kapibarasan000/CFRU-JP",
+      "source": "src/battle_anims.c",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "096a8763a4260052566ed029f841bc68e561d269",
+      "size": 192535,
+      "sha256": "4893fda793e75356672e8b1be3bca4bd54fe562774fd8b07ed9f8f9ba501aff3"
+    },
+    {
+      "local": "cfru-hooks.txt",
+      "repository": "kapibarasan000/CFRU-JP",
+      "source": "hooks",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "51a0f10dd4cccad235b476edd534a0e3e7e612ad",
+      "size": 21787,
+      "sha256": "19c730e12bcc8ee614b43745a1a6478429c1876a025fdce23b80a49599d8deb5"
+    },
+    {
+      "local": "cfru-moves.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "source": "include/constants/moves.h",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "444712bfec68c13fabffd3e167d380b6c23770ba",
+      "size": 30601,
+      "sha256": "bc2ae17e444625fa2e1727d42c50a24f6758da26e44229a6f12a3afa3a275d79"
+    },
+    {
+      "local": "pret-overworld.c",
+      "repository": "pret/pokefirered",
+      "source": "src/overworld.c",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "339014da46ae8543143edc99ab72bf7496203a0d",
+      "size": 103643,
+      "sha256": "df352e738b56856765aec65adc6fdea0a4b25fe567bc760d4ce2d34afc6ff7e2"
+    }
+  ],
+  "source_reuse": [
+    "song-research/sources/BPRJ.ld",
+    "song-research/sources/repoints",
+    "song-research/sources/pret-sound.c"
+  ],
+  "windows": [
+    {
+      "address": 135214196,
+      "size": 136,
+      "sha256": "000dce0b23016afc6376097629ead984e6bf13fb34c0b655cbdb0bf1fed00190",
+      "name": "Task_Hof_PaletteFadeAndPrintWelcomeText"
+    },
+    {
+      "address": 134683248,
+      "size": 44,
+      "sha256": "cf6b8b41fe3a3350ed809a3f6ba4418a09096c3c573a82f8fd7e230ff6792a3c",
+      "name": "PlaySE"
+    },
+    {
+      "address": 134683968,
+      "size": 8,
+      "sha256": "49f5ad8c23fd3cde74a61c80a3f0ce6660a0e30b4510dd7f87b741a0433f122d",
+      "name": "DoMoveAnim_hook"
+    },
+    {
+      "address": 151807572,
+      "size": 184,
+      "sha256": "bebb232f59ebad97540ab2e220e029b9af0f14c297518423d88e87c58bb7dfba",
+      "name": "CFRU_DoMoveAnim"
+    },
+    {
+      "address": 134684024,
+      "size": 364,
+      "sha256": "f2e2b2b6ae42b8097f2702177cf6eaddc34321751f0b7b9b99511d80358d5a81",
+      "name": "LaunchBattleAnimation_with_installed_illusion_hook"
+    },
+    {
+      "address": 134684620,
+      "size": 64,
+      "sha256": "27772fec185d49ba508113901c1616f3d235859c83f78149ced851c75dbec373",
+      "name": "RunAnimScriptCommand"
+    },
+    {
+      "address": 136084168,
+      "size": 2,
+      "sha256": "81904e68a8b9a2427e9e87e2c61b1098057608d18357d70d9281e8513941cf53",
+      "name": "dispatch_r0_trampoline"
+    },
+    {
+      "address": 134684684,
+      "size": 8,
+      "sha256": "a967117a620150f01dad5e9a2ebe7db090d31b6b116622715237c47362bc7d51",
+      "name": "loadspritegfx_hook"
+    },
+    {
+      "address": 151805192,
+      "size": 116,
+      "sha256": "45dbf47f5ed44ac05bebff668bbcb9a126388e2d58b99f12cb6e03e0e5701294",
+      "name": "CFRU_ScriptCmd_loadspritegfx"
+    },
+    {
+      "address": 134684576,
+      "size": 44,
+      "sha256": "83d37e601fc225687d68a2c2b533a97f47c82fea5e260f1b4b29948da8b83b68",
+      "name": "WaitAnimFrameCount"
+    },
+    {
+      "address": 134689644,
+      "size": 56,
+      "sha256": "56014028714af7ebbfc206ed43d6a1f870bff3cc86549c43852ab320854472d6",
+      "name": "Cmd_playsewithpan"
+    },
+    {
+      "address": 134683288,
+      "size": 84,
+      "sha256": "99d4e1f5865c2b0bc5e692c237bf94dc9e9c5360c022968b22b7a8db891295bb",
+      "name": "PlaySE12WithPanning"
+    },
+    {
+      "address": 151808464,
+      "size": 2,
+      "sha256": "477db9ac7ca5efc12e37f882656b8fe5a363ffeb99b2e565a953d10c3c91ab21",
+      "name": "CFRU_r3_trampoline"
+    },
+    {
+      "address": 134690420,
+      "size": 136,
+      "sha256": "42c51c282365375d1ff9845b5786714ba4012aee59e17637b4fd37ef4701e8cf",
+      "name": "Cmd_loopsewithpan"
+    },
+    {
+      "address": 134690556,
+      "size": 92,
+      "sha256": "d3b4ff6a8ef9bbcc0b2e21434f910c6a64d5ddad4c8d68691afdaadd7d2b4ef7",
+      "name": "Task_LoopAndPlaySE"
+    },
+    {
+      "address": 136084172,
+      "size": 2,
+      "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5",
+      "name": "dispatch_r1_trampoline"
+    },
+    {
+      "address": 134564600,
+      "size": 24,
+      "sha256": "733689d01c5b4c7e6dcdfc924ca20020f90b63849bbdf45dd068da697055c1f9",
+      "name": "Overworld_GetMapHeaderByGroupAndId"
+    },
+    {
+      "address": 134567468,
+      "size": 32,
+      "sha256": "894438257aab852c7ec6034bd8ccc631860abdad70d95d860b9c5acd509f03e0",
+      "name": "GetLocationMusic"
+    },
+    {
+      "address": 134567500,
+      "size": 24,
+      "sha256": "1e2e2613e80c2adfc0a30c17dd563a3fb4bf5442a1d2d25bab115ad939429afa",
+      "name": "GetCurrLocationDefaultMusic"
+    },
+    {
+      "address": 134567556,
+      "size": 180,
+      "sha256": "7c72bcfa6a1da8e810dcf9b2000d9b32b53eb6cd496f598cba4aa63b46745873",
+      "name": "Overworld_PlaySpecialMapMusic"
+    },
+    {
+      "address": 134681112,
+      "size": 32,
+      "sha256": "3465cbe50f9d3573033ec7b9c32f9a47ad4903c8c0248c7bda53ab1f82dc97d4",
+      "name": "PlayNewMapMusic"
+    },
+    {
+      "address": 134680816,
+      "size": 84,
+      "sha256": "24ee8d7f8b1ccf60ffe47f85f37d7087add2c0baaa0d1b9fbb9e31517ad65227",
+      "name": "MapMusicMain_state1_prefix"
+    },
+    {
+      "address": 134683204,
+      "size": 44,
+      "sha256": "fc6304615d31690d69a09e650c37f0a3e8e3345d759affe6773babd6b8d029ab",
+      "name": "PlayBGM"
+    }
+  ],
+  "roots": [
+    {
+      "name": "DoMoveAnim_hook_target",
+      "value": 151807573,
+      "address": 134683972,
+      "size": 4,
+      "sha256": "ced8923c1d96b56dc337e782a8673195825f03416fabdd13d3b9dcd4c1f7aae6"
+    },
+    {
+      "name": "DoMoveAnim_gMoveAnimations",
+      "value": 151299796,
+      "address": 151807736,
+      "size": 4,
+      "sha256": "e4f60993ecb18f7008ffec660be5e9e5a8a8351852d24d1ecfb53887359e7798"
+    },
+    {
+      "name": "DoMoveAnim_LaunchBattleAnimation",
+      "value": 134684025,
+      "address": 151807740,
+      "size": 4,
+      "sha256": "2cf5f74b5ee549be6d83059375a4e61c657426c1d547b36ae1158e6116e50974"
+    },
+    {
+      "name": "legacy_gMoveAnimations_repoint",
+      "value": 151299796,
+      "address": 134684020,
+      "size": 4,
+      "sha256": "e4f60993ecb18f7008ffec660be5e9e5a8a8351852d24d1ecfb53887359e7798"
+    },
+    {
+      "name": "MOVE_PSYBEAM_60_script",
+      "value": 136006924,
+      "address": 151300036,
+      "size": 4,
+      "sha256": "8f8748825f20c27ec5f09e53beb758e5eb3741053e8d1415a825a6058a075a3b"
+    },
+    {
+      "name": "LaunchBattleAnimation_RunAnimScriptCommand",
+      "value": 134684621,
+      "address": 134684284,
+      "size": 4,
+      "sha256": "9123bb2247f043f7ec29eda5a32854a1c4bdc96e14251b416e7fd0f52ab29e4f"
+    },
+    {
+      "name": "RunAnimScriptCommand_table",
+      "value": 137830284,
+      "address": 134684668,
+      "size": 4,
+      "sha256": "beaaff41ecf5ef84cca2b3d87296388efa6a8837b19cdfdfc4b8bd04ed1aaa85"
+    },
+    {
+      "name": "dispatch_slot0_loadspritegfx",
+      "value": 134684685,
+      "address": 137830284,
+      "size": 4,
+      "sha256": "968aaa65b1263cc6d6ac9adedfae8ca85cb6d84a16969999e8951beb3bf627cd"
+    },
+    {
+      "name": "dispatch_slot25_playsewithpan",
+      "value": 134689645,
+      "address": 137830384,
+      "size": 4,
+      "sha256": "eaeb9fe4c857ea731fe85a37234eabad5af9ead906e5c4b17a34d522b887ce92"
+    },
+    {
+      "name": "loadspritegfx_hook_target",
+      "value": 151805193,
+      "address": 134684688,
+      "size": 4,
+      "sha256": "f98a9db627744c7ee3a0d794618655b9ec4182e4e9dac6799ddb0564c5218f10"
+    },
+    {
+      "name": "loadspritegfx_WaitAnimFrameCount",
+      "value": 134684577,
+      "address": 151805304,
+      "size": 4,
+      "sha256": "eaae56394200bae9a87c8e2425f81f0ee8d7e5c1cbd4d58d45162ba5473f7153"
+    },
+    {
+      "name": "WaitAnimFrameCount_dispatch",
+      "value": 134684621,
+      "address": 134684608,
+      "size": 4,
+      "sha256": "9123bb2247f043f7ec29eda5a32854a1c4bdc96e14251b416e7fd0f52ab29e4f"
+    },
+    {
+      "name": "dispatch_slot28_loopsewithpan",
+      "value": 134690421,
+      "address": 137830396,
+      "size": 4,
+      "sha256": "c8200d42cae0ee7325d9061c92548d2ba66e7a88a78f020a7a856dbf2fb522c5"
+    },
+    {
+      "name": "Cmd_loopsewithpan_task_callback",
+      "value": 134690557,
+      "address": 134690544,
+      "size": 4,
+      "sha256": "3f49aa3914553a36f35c019ebbe43c18f453593d2316403f46afe9227af62a6d"
+    },
+    {
+      "name": "MOVE_TAILWHIP_39_script",
+      "value": 135971533,
+      "address": 151299952,
+      "size": 4,
+      "sha256": "bf10fef2422cb3c10ee1e0ec5576cdca1d8c328b6cde79a6463de77def56a4e3"
+    },
+    {
+      "name": "map_groups_literal",
+      "value": 153899412,
+      "address": 134564620,
+      "size": 4,
+      "sha256": "d672c5b39141ec15b78c62a82995e610593e06bd92fe2cb5aa5434696139c61e"
+    },
+    {
+      "name": "explicit_map_group3_entry",
+      "value": 137454500,
+      "address": 153899424,
+      "size": 4,
+      "sha256": "3e4115335b5bb8ce7241718cc2f21a58680b6254a105ff93bb7a8d8837aad1a1"
+    },
+    {
+      "name": "explicit_map3_24_header_entry",
+      "value": 137447784,
+      "address": 137454596,
+      "size": 4,
+      "sha256": "17e6cbb40e6ae9bec78ccca9a1ce253ec6447879ca7fc2258a12f95fb14a36c1"
+    },
+    {
+      "name": "GetCurrLocationDefaultMusic_SaveBlock1Ptr",
+      "value": 50352200,
+      "address": 134567520,
+      "size": 4,
+      "sha256": "789f854e51f6834d7d2cf52f271d22064ba2c413904c37fa4d24d4f063f614c2"
+    },
+    {
+      "name": "PlayNewMapMusic_current",
+      "value": 50335680,
+      "address": 134681132,
+      "size": 4,
+      "sha256": "8aa786f76936048341b66fc398d156a67749d072928d0b154d48c5ce7caf6496"
+    },
+    {
+      "name": "PlayNewMapMusic_next",
+      "value": 50335682,
+      "address": 134681136,
+      "size": 4,
+      "sha256": "f7d93cc51a442bccf63b41d40310b3e72bcb31539024a0819b084190c2a403cd"
+    },
+    {
+      "name": "PlayNewMapMusic_state",
+      "value": 50335684,
+      "address": 134681140,
+      "size": 4,
+      "sha256": "7661710d911ae2833a6efe3596d64286b486da5cc980b47d53a7357dbdc1fcd0"
+    },
+    {
+      "name": "MapMusicMain_state",
+      "value": 50335684,
+      "address": 134680840,
+      "size": 4,
+      "sha256": "7661710d911ae2833a6efe3596d64286b486da5cc980b47d53a7357dbdc1fcd0"
+    },
+    {
+      "name": "MapMusicMain_switch",
+      "value": 134680848,
+      "address": 134680844,
+      "size": 4,
+      "sha256": "8746b8b5ad8ea6eab965b35717824127628024b6dfa1e4228a2bdb9bbe40cc3b"
+    },
+    {
+      "name": "MapMusicMain_case1_target",
+      "value": 134680880,
+      "address": 134680852,
+      "size": 4,
+      "sha256": "ae96995bf0a4fd25ce5d5bbfffef9f5bf047d18be1a10d334ffb0119a3172f10"
+    },
+    {
+      "name": "MapMusicMain_current",
+      "value": 50335680,
+      "address": 134680896,
+      "size": 4,
+      "sha256": "8aa786f76936048341b66fc398d156a67749d072928d0b154d48c5ce7caf6496"
+    }
+  ],
+  "edges": [
+    {
+      "kind": "THUMB_BL",
+      "target": 134683248,
+      "address": 135214296,
+      "size": 4,
+      "sha256": "fa6851858d209e12a0781483886f6ea16ef3768799912093eb2305908157fa2b"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 136057008,
+      "address": 134683272,
+      "size": 4,
+      "sha256": "4f31f570ab0042fdcb2afce544d69fe8d8324f1a344f58197e3d286298b0e446"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 151808464,
+      "address": 151807632,
+      "size": 4,
+      "sha256": "3ef32c2d3df3811bea8304c43153cf2ad9f3490ef0d1d30d5407594413b99457"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 134684024,
+      "address": 134683996,
+      "size": 4,
+      "sha256": "c0aecc56a252671a235f81286c74247037baf9abc591985fef462fae3bf90626"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 136084168,
+      "address": 134684636,
+      "size": 4,
+      "sha256": "76593d822efca59e41a94d268d82865eb2ec43534a06e101855b2f4160554048"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 134689256,
+      "address": 134689666,
+      "size": 4,
+      "sha256": "d0206bcc97e92517c4b8421f432300c1c2d7052acb5d141fdb3a3b0c037a5265"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 134683288,
+      "address": 134689678,
+      "size": 4,
+      "sha256": "4d092dc09d405eb5cc86867de5b3fe012ff4510df04c4b0c4f9c7c1e16516ed7"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 136057008,
+      "address": 134683304,
+      "size": 4,
+      "sha256": "7acef7cc58f497fa19cc8b051be8aa52c4c2bc82af2f24dbab5463e81959010b"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 134704052,
+      "address": 134690470,
+      "size": 4,
+      "sha256": "2d00b2eb2ad5d89098795be5190e3bc80a5c8d7d922df6f92a2f90e2b9d0fe40"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 136084172,
+      "address": 134690510,
+      "size": 4,
+      "sha256": "8f2619f86d475d206422871689f346c3cbea52e9c6c2710b4489ed74de3836a3"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 134683288,
+      "address": 134690612,
+      "size": 4,
+      "sha256": "7bfbf411098ef9f29c21ad10574f8c38349de8b14915b0255e007db2074f617e"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 134564600,
+      "address": 134567490,
+      "size": 4,
+      "sha256": "601a0dc4d01f00a8bcd30b34d9240c071406d1306276d45c6b2b84b3c256a606"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 134567468,
+      "address": 134567508,
+      "size": 4,
+      "sha256": "ad189eb34a2ac8b2efb1824c1afa7e2932a042bd8b92638990525f4214ddc597"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 134567500,
+      "address": 134567652,
+      "size": 4,
+      "sha256": "5d686459359ed697ef853696a8b6a687aafb8cdb69d4e73d114f4ea37f5d5fac"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 134681112,
+      "address": 134567720,
+      "size": 4,
+      "sha256": "c1d954c88ae9e657bc317b8134b4e931abfc84e62b27357c112df863831bad72"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 134683204,
+      "address": 134680888,
+      "size": 4,
+      "sha256": "bb7a07736f1c11b8f0bd95b9e0f5f9a1296658e7b6450af74a895d72b6910f28"
+    },
+    {
+      "kind": "THUMB_BL",
+      "target": 136057008,
+      "address": 134683230,
+      "size": 4,
+      "sha256": "bdc47f0024c36a2e2f5b8ee8a8a57cbe120d232a4f34461e49779737ec4fc08f"
+    }
+  ],
+  "selected_song_roots": [
+    {
+      "song_id": 98,
+      "kind": "EXPLICIT_JP_IMMEDIATE_CALLSITE",
+      "function": "Task_Hof_PaletteFadeAndPrintWelcomeText",
+      "bprj_symbol_address": 135214196,
+      "source": "pret-hall_of_fame.c",
+      "constant_site": {
+        "address": 135214294,
+        "size": 2,
+        "sha256": "f9b2c9ca5d58ec71e63623240c420de81a992cc44551b036a9a88b42c6ef2076"
+      },
+      "callsite": 135214296,
+      "semantics_ja": "有限6体のpriority loop後、r0に98を設定してPlaySEへ渡す。PlaySEは制御フラグにより抑制されるが、通る場合はsong IDを変えずm4aSongNumStartへ渡す。実ゲーム呼出や演奏受理は主張しない。"
+    },
+    {
+      "song_id": 182,
+      "kind": "FINITE_EXPLICIT_MOVE_SOURCE_ID_TO_JP_ANIMATION_SCRIPT",
+      "source": "cfru-moves.h",
+      "source_line": 65,
+      "source_define": "MOVE_PSYBEAM",
+      "move_id": 60,
+      "table_row": {
+        "address": 151300036,
+        "size": 4,
+        "sha256": "8f8748825f20c27ec5f09e53beb758e5eb3741053e8d1415a825a6058a075a3b"
+      },
+      "script_prefix": {
+        "address": 136006924,
+        "size": 7,
+        "sha256": "ace2288b99b3d7a067c037f7fb49c826b04dc991a3801c6d0daeb9ecc9ad6f53"
+      },
+      "commands": [
+        {
+          "opcode": 0,
+          "kind": "loadspritegfx",
+          "address": 136006924,
+          "size": 3,
+          "sha256": "3abb0267e1451c5ee0829509a88b8be13cebeccd83c4be98e91d33e98317f9d0"
+        },
+        {
+          "opcode": 25,
+          "kind": "playsewithpan",
+          "song_id": 182,
+          "address": 136006927,
+          "size": 4,
+          "sha256": "bf0c1d30eed70b6c35fcd7b28ec666a00be5316d21b21ce8bcf2ebe6aa67d810"
+        }
+      ],
+      "semantics_ja": "CFRU hooks 08071D40のDoMoveAnimとrepoints 08071D74に束縛する有限source move60。CFRU DoMoveAnimはmoveを変更せずLaunchBattleAnimationへ渡し、選択rowはJP scriptの7byte prefixを指す。opcode0はcmdPtrを計3byte進め、WaitAnimFrameCountの1frame後にdispatchへ戻す。opcode25は続くu16 IDを読み、panning調整後もsong ID182を保持してPlaySE12WithPanningへ渡す。"
+    },
+    {
+      "song_id": 160,
+      "kind": "FINITE_EXPLICIT_MOVE_SOURCE_ID_TO_JP_ANIMATION_SCRIPT",
+      "source": "cfru-moves.h",
+      "source_line": 44,
+      "source_define": "MOVE_TAILWHIP",
+      "move_id": 39,
+      "table_row": {
+        "address": 151299952,
+        "size": 4,
+        "sha256": "bf10fef2422cb3c10ee1e0ec5576cdca1d8c328b6cde79a6463de77def56a4e3"
+      },
+      "script_prefix": {
+        "address": 135971533,
+        "size": 6,
+        "sha256": "32310ddda22e793dd5c5edf7baba755ff25e5d47567f46a7a47492b2be4e6207"
+      },
+      "commands": [
+        {
+          "opcode": 28,
+          "kind": "loopsewithpan",
+          "song_id": 160,
+          "address": 135971533,
+          "size": 6,
+          "sha256": "32310ddda22e793dd5c5edf7baba755ff25e5d47567f46a7a47492b2be4e6207"
+        }
+      ],
+      "semantics_ja": "有限source move39のscript先頭1command。opcode28はu16 song ID、pan、間隔、回数を読み、CreateTaskでTask_LoopAndPlaySEへ保存する。frameCounterをframesToWaitと同値にして直ちにfunc(taskId)を呼ぶため、scheduler到達を追加仮定せず初回consumerが成立する。Taskはu16 song IDを改変せずPlaySE12WithPanningへ渡す。task ID割当成功と通常call returnを前提とする静的consumerで、native再生は主張しない。"
+    },
+    {
+      "song_id": 294,
+      "kind": "EXPLICIT_HISTORICALLY_OBSERVED_MAP_PAIR_TO_JP_TYPED_MUSIC_FIELD",
+      "map_group": 3,
+      "map_number": 24,
+      "selection_evidence": {
+        "binding": {
+          "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+          "commit": "f81f21024a1f2a78466e65fc2aac3bf54e6bb1b9",
+          "source": "content/modernization/pr16_story_route_adapter_checkpoint.json",
+          "git_blob_sha": "9819471839b742676cc1315f2d2fe6b43f1fb359",
+          "size": 45222,
+          "sha256": "ff7094f278de5502b40bca5ceaccb1a29ba6776b9b5eedc5ccdcb5ea03be19c7"
+        },
+        "json_selector": "cases[run=37208042999].last_observation.map",
+        "expected": [
+          3,
+          24
+        ],
+        "actual_audio_playback_claimed": false
+      },
+      "header": {
+        "address": 137447784,
+        "size": 28,
+        "sha256": "b4fb3dc6846ac3cef8295edc84a2118f4f5c2838d763d5a48c9626554fc8534e"
+      },
+      "music_field": {
+        "address": 137447800,
+        "size": 2,
+        "sha256": "a098cf43f0192eae10259edc74640c58207c39e9523cf2379843489771a09c91"
+      },
+      "semantics_ja": "固定route checkpointで実際に観測したmap3,24だけを選択する。JP named getterはgMapGroups[group][number]からMapHeaderを返し、GetLocationMusicはその+16をu16として読む。現在location consumerからOverworld_PlaySpecialMapMusicに渡り、無効化・savedMusic・SURF overrideがない場合はPlayNewMapMusicが同IDをcurrentへ保存しstate1にする。MapMusicMainのstate1は同currentをPlayBGMへ渡す。現在候補でそのmapへ遷移した、新たに音声再生した、という主張はしない。JP map/song表全体の長さを推定しない。"
+    }
+  ],
+  "diagnostic_new_assets": [
+    {
+      "asset": {
+        "address": 139263980,
+        "size": 6972,
+        "sha256": "6aad1376e06e41b95ab9357f2f9b4e1cd0a903bab55e7818668beffbcd6f940a"
+      },
+      "codec": "pcm8",
+      "consumers": [
+        98
+      ],
+      "hits": [
+        {
+          "address": 139267141,
+          "size": 4,
+          "sha256": "0e035c180cf629090016706d765d32895d55212566313fbec82970c583e2f375"
+        },
+        {
+          "address": 139270828,
+          "size": 4,
+          "sha256": "f36ef8c026287cb77f9782e76f13087e867635c0c9d19adaab4e8c0f2ab31502"
+        }
+      ]
+    },
+    {
+      "asset": {
+        "address": 139245736,
+        "size": 13022,
+        "sha256": "716701396676a73001326ac58a5b70dbd43439e3866aeea54059efe2f94318fb"
+      },
+      "codec": "pcm8",
+      "consumers": [
+        182
+      ],
+      "hits": [
+        {
+          "address": 139247961,
+          "size": 4,
+          "sha256": "3e40695bb83b615ff96c7c319cd7105489a23e257e4bb8aba4d58e1a4a9b9ca5"
+        },
+        {
+          "address": 139248354,
+          "size": 4,
+          "sha256": "f415bef7ef5d97f9b78093f14f170a8b33e56efb7cc7213f06d0bfcd62560881"
+        },
+        {
+          "address": 139248703,
+          "size": 4,
+          "sha256": "d0eaa941a373eaa58c02926c58a0b859752430c6736ae018537979de58b6f599"
+        }
+      ]
+    },
+    {
+      "asset": {
+        "address": 139174172,
+        "size": 5042,
+        "sha256": "0c5a1a151ae013c185b1dd1874cba3b589e9f84e1c6bbe91ca3221b1a11760af"
+      },
+      "codec": "pcm8",
+      "consumers": [
+        160
+      ],
+      "hits": [
+        {
+          "address": 139178252,
+          "size": 4,
+          "sha256": "e192844819ca5b56f491fefd282d0b48fe2abebf8ddb951de5296e01e4e306ae"
+        }
+      ]
+    },
+    {
+      "asset": {
+        "address": 138865532,
+        "size": 4928,
+        "sha256": "c4875255b5bae38857ca259226def50758c4e34122e9a4e4c021793fdd203d22"
+      },
+      "codec": "pcm8",
+      "consumers": [
+        294
+      ],
+      "hits": [
+        {
+          "address": 138868154,
+          "size": 4,
+          "sha256": "0458b3adea51dbce1bf677cd34573d933d252509c0413309a5cb094ee6cae6db"
+        }
+      ]
+    }
+  ],
+  "diagnostic_new_hit_count": 7,
+  "diagnostic_remaining_if_all_current_binding_passes": 248,
+  "cross_song_requirement_ja": "既126曲と追加IDを一緒にモデル走査し、全VOICE/keymap/child/command attemptを保護する。旧assetと新commandを含む競合があればfail-closed。旧874hitと旧受入619全fieldは保持。保存auditだけでは不採用tone構造が網羅されず全protectを再現できない。",
+  "remaining_audio_diagnostic": {
+    "status": "UNROOTED_US_INDEX_DISCOVERY_ONLY_NOT_ACCEPTANCE",
+    "possible_hits": 17,
+    "possible_samples": 7,
+    "indices_are_not_jp_extent": true,
+    "id306_root_unresolved": true,
+    "minimum_unresolved_audio_hits_after_proposed_roots": 10,
+    "source_map306_diagnostic_matches": 0,
+    "source_map306_diagnostic_pairs": 399
+  },
+  "limitations_ja": [
+    "旧formalの事前semantic reviewであり、現0641の分類実測ではない。全window/root/edge/asset/hitは現candidate全SHAと再結合するまで採用不可。",
+    "LaunchBattleAnimationにはIllusion hookがある。表選択code窓を源とし、外部callの全return・全runtime到達・実演奏は証明していない。",
+    "DPCM runtime read footprint、間接参照・退役完全性、donor使用許可を主張しない。",
+    "ROM断片/rawhex/disassembly全文、ROM再構成、native、既874再inventoryは実施していない。"
+  ],
+  "writes": {
+    "existing_tracked_files": 0,
+    "rom": 0,
+    "save": 0,
+    "new_review_and_public_source_only": true
+  },
+  "explicit_scalar_check_sites": [
+    {
+      "address": 134567494,
+      "semantics": "MapHeader.music is a u16 load at offset16"
+    },
+    {
+      "address": 134680886,
+      "semantics": "state1 uses u16 sCurrentMapMusic without ID remapping"
+    },
+    {
+      "address": 135214294,
+      "semantics": "HOF call supplies constant ID98"
+    }
+  ],
+  "old_formal_window_root_edge_and_scalar_checks_passed": true
+}

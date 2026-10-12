@@ -1,0 +1,85 @@
+name: pr16-wiki-r0-reconcile
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_wiki_r0_reconcile.py
+      - scripts/pr16_wiki_r0_reconcile_actions.py
+      - tests/test_pr16_wiki_r0_reconcile.py
+      - .github/workflows/pr16-wiki-r0-reconcile.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-wiki-r0-reconcile
+  cancel-in-progress: false
+jobs:
+  reconcile:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 新しい系譜境界35試験とtask graph
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-wiki-r0-reconcile/proof
+          python3 -B -m unittest discover -s tests -p test_pr16_wiki_r0_reconcile.py -v >.local/pr16-wiki-r0-reconcile/proof/unit.txt 2>&1
+          python3 -B scripts/validate_task_graph.py >.local/pr16-wiki-r0-reconcile/proof/task-graph.txt
+      - name: 受入済みlinkを読取り数値と現registryを照合して記録
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_wiki_r0_reconcile_actions.py run --tests 35
+      - name: 最終indexと原本保護を確認
+        run: |
+          set -euo pipefail
+          python3 -B - <<'PY'
+          import sys, subprocess
+          sys.path.insert(0,'scripts')
+          import pr16_wiki_r0_reconcile_actions as a
+          m=a.m
+          subprocess.run(['git','add','--',*sorted(a.CODE|a.OUTPUTS)],check=True)
+          full=subprocess.run(['python3','-B','scripts/guard_private_files.py'],capture_output=True)
+          state=m.load(m.read(m.ROOT,m.STATE))
+          state['recording']['last_execution']['full_index_private_guard']={'executed':True,'passed':full.returncode==0,'historical_violations_not_rewritten':True}
+          state['recording']['full_index_private_guard_executed']=True
+          a.changed_write(m.STATE,m.encode(state))
+          subprocess.run(['git','add','--',m.STATE],check=True)
+          proof=a.guard()
+          proof['full_index_guard']={'exit_code':full.returncode,'passed':full.returncode==0,'raw_log_published':False}
+          (a.WORK/'proof/index.json').write_bytes(m.encode(proof))
+          PY
+      - name: 同branchへ単親commitと非force push
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20261010-WIKI-R0-RECONCILE: 数値系譜5段と1671フォーム対応を証明しR0生成へ進む'
+          git push origin "HEAD:$branch"
+          head=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$head"
+          printf 'RESULT=DONE TASK=USER-20261010-WIKI-R0-RECONCILE VERIFY=PASS COMMIT=%s\n' "$head" | tee .local/pr16-wiki-r0-reconcile/proof/result.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-wiki-r0-reconcile-proof
+          path: .local/pr16-wiki-r0-reconcile/proof/
+          include-hidden-files: true
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-wiki-r0-reconcile-context
+          path: .local/pr16-wiki-r0-reconcile/context.zip
+          include-hidden-files: true
+          if-no-files-found: warn

@@ -1,0 +1,895 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-CONTROL-ROLES",
+  "source_head": "8050cb1a2cd17f127922483247c34829aa92e287",
+  "run_id": 35084187651,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "SAVED_CONTROL_ROLE_CONTRACTS_NOT_STORY_REACHABILITY",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "bcd_vectors_checked": 2048,
+    "bcd_converter": {
+      "entry": 152202420,
+      "raw_address": 50355928,
+      "converted_address": 50355952,
+      "input_fields": 7,
+      "year_bias": 2000,
+      "invalid_year": 2255,
+      "invalid_other_field": 255,
+      "hour_adjust_flag": 33808328,
+      "validity": "BCD digits only; not calendar field bounds",
+      "raw_bytes_written": 0,
+      "frame_bytes": 16,
+      "external_calls": 0,
+      "scope_ja": "selectorと同じbyteをBCD年として読む実装。実到達/同時利用は未観測。"
+    },
+    "reader_wrapper": {
+      "entry": 152203360,
+      "frame_bytes": 24,
+      "io_address": 67109384,
+      "external_targets": [
+        152225276,
+        152225772,
+        152225328,
+        152225380,
+        152203004
+      ],
+      "gated_predicate": "external status & 15 == 1",
+      "output_pointer": 50355928,
+      "cases": [
+        {
+          "input_status": 0,
+          "mock_validation": 0,
+          "calls": [
+            {
+              "site": 152203382,
+              "target": 152225276,
+              "args": [
+                305397760,
+                305397761,
+                305397762,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203386,
+              "target": 152225772,
+              "args": [
+                0,
+                3735879681,
+                3735879682,
+                3735879683
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            }
+          ],
+          "status_after": 1,
+          "classification": "CONDITIONAL_EXTERNAL_MOCK_NOT_NATIVE"
+        },
+        {
+          "input_status": 0,
+          "mock_validation": 4080,
+          "calls": [
+            {
+              "site": 152203382,
+              "target": 152225276,
+              "args": [
+                305397760,
+                305397761,
+                305397762,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203386,
+              "target": 152225772,
+              "args": [
+                0,
+                3735879681,
+                3735879682,
+                3735879683
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            }
+          ],
+          "status_after": 1,
+          "classification": "CONDITIONAL_EXTERNAL_MOCK_NOT_NATIVE"
+        },
+        {
+          "input_status": 1,
+          "mock_validation": 0,
+          "calls": [
+            {
+              "site": 152203382,
+              "target": 152225276,
+              "args": [
+                305397760,
+                305397761,
+                305397762,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203386,
+              "target": 152225772,
+              "args": [
+                0,
+                3735879681,
+                3735879682,
+                3735879683
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203432,
+              "target": 152225328,
+              "args": [
+                50355928,
+                1,
+                1,
+                50355928
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203448,
+              "target": 152225380,
+              "args": [
+                50355928,
+                3735879681,
+                3735879682,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203458,
+              "target": 152203004,
+              "args": [
+                50355928,
+                3735879681,
+                3735879682,
+                129
+              ],
+              "io_at_call": 129,
+              "status_at_call": 0
+            }
+          ],
+          "status_after": 0,
+          "classification": "CONDITIONAL_EXTERNAL_MOCK_NOT_NATIVE"
+        },
+        {
+          "input_status": 1,
+          "mock_validation": 4080,
+          "calls": [
+            {
+              "site": 152203382,
+              "target": 152225276,
+              "args": [
+                305397760,
+                305397761,
+                305397762,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203386,
+              "target": 152225772,
+              "args": [
+                0,
+                3735879681,
+                3735879682,
+                3735879683
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203432,
+              "target": 152225328,
+              "args": [
+                50355928,
+                1,
+                1,
+                50355928
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203448,
+              "target": 152225380,
+              "args": [
+                50355928,
+                3735879681,
+                3735879682,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203458,
+              "target": 152203004,
+              "args": [
+                50355928,
+                3735879681,
+                3735879682,
+                129
+              ],
+              "io_at_call": 129,
+              "status_at_call": 0
+            }
+          ],
+          "status_after": 4080,
+          "classification": "CONDITIONAL_EXTERNAL_MOCK_NOT_NATIVE"
+        },
+        {
+          "input_status": 17,
+          "mock_validation": 0,
+          "calls": [
+            {
+              "site": 152203382,
+              "target": 152225276,
+              "args": [
+                305397760,
+                305397761,
+                305397762,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203386,
+              "target": 152225772,
+              "args": [
+                0,
+                3735879681,
+                3735879682,
+                3735879683
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203432,
+              "target": 152225328,
+              "args": [
+                50355928,
+                1,
+                1,
+                50355928
+              ],
+              "io_at_call": 0,
+              "status_at_call": 2
+            },
+            {
+              "site": 152203448,
+              "target": 152225380,
+              "args": [
+                50355928,
+                3735879681,
+                3735879682,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 2
+            },
+            {
+              "site": 152203458,
+              "target": 152203004,
+              "args": [
+                50355928,
+                3735879681,
+                3735879682,
+                129
+              ],
+              "io_at_call": 129,
+              "status_at_call": 2
+            }
+          ],
+          "status_after": 0,
+          "classification": "CONDITIONAL_EXTERNAL_MOCK_NOT_NATIVE"
+        },
+        {
+          "input_status": 17,
+          "mock_validation": 4080,
+          "calls": [
+            {
+              "site": 152203382,
+              "target": 152225276,
+              "args": [
+                305397760,
+                305397761,
+                305397762,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203386,
+              "target": 152225772,
+              "args": [
+                0,
+                3735879681,
+                3735879682,
+                3735879683
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203432,
+              "target": 152225328,
+              "args": [
+                50355928,
+                1,
+                1,
+                50355928
+              ],
+              "io_at_call": 0,
+              "status_at_call": 2
+            },
+            {
+              "site": 152203448,
+              "target": 152225380,
+              "args": [
+                50355928,
+                3735879681,
+                3735879682,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 2
+            },
+            {
+              "site": 152203458,
+              "target": 152203004,
+              "args": [
+                50355928,
+                3735879681,
+                3735879682,
+                129
+              ],
+              "io_at_call": 129,
+              "status_at_call": 2
+            }
+          ],
+          "status_after": 4080,
+          "classification": "CONDITIONAL_EXTERNAL_MOCK_NOT_NATIVE"
+        },
+        {
+          "input_status": 255,
+          "mock_validation": 0,
+          "calls": [
+            {
+              "site": 152203382,
+              "target": 152225276,
+              "args": [
+                305397760,
+                305397761,
+                305397762,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203386,
+              "target": 152225772,
+              "args": [
+                0,
+                3735879681,
+                3735879682,
+                3735879683
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            }
+          ],
+          "status_after": 1,
+          "classification": "CONDITIONAL_EXTERNAL_MOCK_NOT_NATIVE"
+        },
+        {
+          "input_status": 255,
+          "mock_validation": 4080,
+          "calls": [
+            {
+              "site": 152203382,
+              "target": 152225276,
+              "args": [
+                305397760,
+                305397761,
+                305397762,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203386,
+              "target": 152225772,
+              "args": [
+                0,
+                3735879681,
+                3735879682,
+                3735879683
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            }
+          ],
+          "status_after": 1,
+          "classification": "CONDITIONAL_EXTERNAL_MOCK_NOT_NATIVE"
+        },
+        {
+          "input_status": 65537,
+          "mock_validation": 0,
+          "calls": [
+            {
+              "site": 152203382,
+              "target": 152225276,
+              "args": [
+                305397760,
+                305397761,
+                305397762,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203386,
+              "target": 152225772,
+              "args": [
+                0,
+                3735879681,
+                3735879682,
+                3735879683
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203432,
+              "target": 152225328,
+              "args": [
+                50355928,
+                1,
+                1,
+                50355928
+              ],
+              "io_at_call": 0,
+              "status_at_call": 2
+            },
+            {
+              "site": 152203448,
+              "target": 152225380,
+              "args": [
+                50355928,
+                3735879681,
+                3735879682,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 2
+            },
+            {
+              "site": 152203458,
+              "target": 152203004,
+              "args": [
+                50355928,
+                3735879681,
+                3735879682,
+                129
+              ],
+              "io_at_call": 129,
+              "status_at_call": 2
+            }
+          ],
+          "status_after": 0,
+          "classification": "CONDITIONAL_EXTERNAL_MOCK_NOT_NATIVE"
+        },
+        {
+          "input_status": 65537,
+          "mock_validation": 4080,
+          "calls": [
+            {
+              "site": 152203382,
+              "target": 152225276,
+              "args": [
+                305397760,
+                305397761,
+                305397762,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203386,
+              "target": 152225772,
+              "args": [
+                0,
+                3735879681,
+                3735879682,
+                3735879683
+              ],
+              "io_at_call": 0,
+              "status_at_call": 0
+            },
+            {
+              "site": 152203432,
+              "target": 152225328,
+              "args": [
+                50355928,
+                1,
+                1,
+                50355928
+              ],
+              "io_at_call": 0,
+              "status_at_call": 2
+            },
+            {
+              "site": 152203448,
+              "target": 152225380,
+              "args": [
+                50355928,
+                3735879681,
+                3735879682,
+                129
+              ],
+              "io_at_call": 0,
+              "status_at_call": 2
+            },
+            {
+              "site": 152203458,
+              "target": 152203004,
+              "args": [
+                50355928,
+                3735879681,
+                3735879682,
+                129
+              ],
+              "io_at_call": 129,
+              "status_at_call": 2
+            }
+          ],
+          "status_after": 4080,
+          "classification": "CONDITIONAL_EXTERNAL_MOCK_NOT_NATIVE"
+        }
+      ],
+      "external_return_and_preservation_proven": false,
+      "external_buffer_writes_proven": false
+    },
+    "entry_prefix": {
+      "tick": 152203492,
+      "init": 152203592,
+      "counter_address": 50355961,
+      "tick_inputs_checked": 256,
+      "tick_reader_condition": "counter == 0",
+      "nonzero_counter_update": "1..59 increment; 60..255 reset to zero and return",
+      "init_resets_counter_before_reader": true,
+      "reused_reference_sites": [
+        {
+          "site": 152196464,
+          "target": 152203492,
+          "kind": "thumb_bl_candidate",
+          "encoded": "01f0b8fd",
+          "runtime_reachable": false,
+          "code_data_boundary_proven": false
+        },
+        {
+          "site": 153224344,
+          "target": 152203592,
+          "kind": "aligned_pointer_candidate",
+          "encoded": "0x09127149",
+          "runtime_reachable": false,
+          "code_data_boundary_proven": false
+        },
+        {
+          "site": 153224616,
+          "target": 152203592,
+          "kind": "aligned_pointer_candidate",
+          "encoded": "0x09127149",
+          "runtime_reachable": false,
+          "code_data_boundary_proven": false
+        },
+        {
+          "site": 153224932,
+          "target": 152203592,
+          "kind": "aligned_pointer_candidate",
+          "encoded": "0x09127149",
+          "runtime_reachable": false,
+          "code_data_boundary_proven": false
+        }
+      ]
+    },
+    "external_veneer": {
+      "entry": 151625238,
+      "instructions": 2,
+      "tail_target": 136093177,
+      "r0_r1_r2_r4_r11_sp_lr_preserved_until_tail": true,
+      "delegate_return_preservation_proven": false,
+      "memset_effect_proven": false
+    },
+    "initializer_caller_boundary": {
+      "target": 135346564,
+      "direct_bl_and_aligned_pointer_candidates": 0,
+      "all_callers_absent_proven": false,
+      "caller_pointer_size_limit_proven": false,
+      "unsearched_forms": [
+        "Thumb short/tail branches",
+        "ARM B/BL",
+        "computed/indirect/mirrored targets"
+      ]
+    },
+    "unread_delegates": [
+      136093177,
+      152225277,
+      152225773,
+      152225329,
+      152225381,
+      152203005
+    ],
+    "old_unread_targets": [
+      134647037,
+      134647989,
+      134648233,
+      134648273,
+      135346165,
+      151613701,
+      154152717,
+      154155097,
+      154635157,
+      154635821,
+      154635823,
+      154635825,
+      154639241,
+      154639243,
+      154917233,
+      154917289,
+      154922465,
+      154922573
+    ],
+    "old_frontier_removed": false,
+    "all_runtime_owners_excluded": false,
+    "selector1_runtime_observed": false,
+    "selector2_runtime_observed": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "prior_abi_classifications_replayed": 0,
+    "candidate_reconstructions": 0
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_control_roles.py": {
+      "size": 18313,
+      "sha256": "1ded67f68d8a1822eb39662819f8cfba1bc23929be313ef95b195f357ea756f0"
+    },
+    "tests/test_pr16_ring_control_roles.py": {
+      "size": 6325,
+      "sha256": "0e9a864856a7d2e9c05cfe13395f54e854c45d7118a110a3fe56de868c4be67f"
+    },
+    ".github/workflows/pr16-ring-control-roles.yml": {
+      "size": 1932,
+      "sha256": "86ff6b384492f54f894f43c481a6914bba4d5170a1579514336691f363cdb6b3"
+    },
+    "content/modernization/pr16_ring_record_callers.json": {
+      "size": 102561,
+      "sha256": "622b9d69ef96fc0d975fc4e1bec5e08c4d07e85ee0ddea5a4f8fe538fa65d77a"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    },
+    "content/modernization/pr16_ring_selector_owners.json": {
+      "size": 1704471,
+      "sha256": "64e746c4b085f85afb180bbf03299c84ae7efebd1e72964f5f0195e97d553727"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 35,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35082799310,
+      "head_sha": "fd4ba2041e61d425bec24d107d4abe08f7b94f38",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35084191981,
+      "name": "p03-forgetting-ci",
+      "head_sha": "8050cb1a2cd17f127922483247c34829aa92e287",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35084191988,
+      "name": "source-validation",
+      "head_sha": "8050cb1a2cd17f127922483247c34829aa92e287",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35084187301,
+      "name": "p03-forgetting-ci",
+      "head_sha": "8050cb1a2cd17f127922483247c34829aa92e287",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35084187471,
+      "name": "source-validation",
+      "head_sha": "8050cb1a2cd17f127922483247c34829aa92e287",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35084187651,
+      "name": "保存BCD・I/O wrapper・veneerの局所契約（native非実行）",
+      "head_sha": "8050cb1a2cd17f127922483247c34829aa92e287",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35084187377,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "8050cb1a2cd17f127922483247c34829aa92e287",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35084187425,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "8050cb1a2cd17f127922483247c34829aa92e287",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35082984267,
+      "name": "p03-forgetting-ci",
+      "head_sha": "781fd40d23c75bcc11f9d51320d90f5ebcee7e0f",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35082984277,
+      "name": "source-validation",
+      "head_sha": "781fd40d23c75bcc11f9d51320d90f5ebcee7e0f",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35082804878,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fd4ba2041e61d425bec24d107d4abe08f7b94f38",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35082804802,
+      "name": "source-validation",
+      "head_sha": "fd4ba2041e61d425bec24d107d4abe08f7b94f38",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35082799277,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fd4ba2041e61d425bec24d107d4abe08f7b94f38",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35082799358,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "fd4ba2041e61d425bec24d107d4abe08f7b94f38",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35082799279,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "fd4ba2041e61d425bec24d107d4abe08f7b94f38",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35082799235,
+      "name": "source-validation",
+      "head_sha": "fd4ba2041e61d425bec24d107d4abe08f7b94f38",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35082799310,
+      "name": "initializer caller・外部calleeの不足byte限定採取（native非実行）",
+      "head_sha": "fd4ba2041e61d425bec24d107d4abe08f7b94f38",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35075033008,
+      "name": "p03-forgetting-ci",
+      "head_sha": "9d0910f84f6fdda11649c3f8db5bb3e156a4a90e",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35075033012,
+      "name": "source-validation",
+      "head_sha": "9d0910f84f6fdda11649c3f8db5bb3e156a4a90e",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35074966599,
+      "name": "source-validation",
+      "head_sha": "eb949aedc42717f8011422d1e961da25ada30b98",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35074966642,
+      "name": "p03-forgetting-ci",
+      "head_sha": "eb949aedc42717f8011422d1e961da25ada30b98",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

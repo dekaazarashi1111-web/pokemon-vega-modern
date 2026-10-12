@@ -1,0 +1,448 @@
+{
+  "status": "PASS_C_CONTROLLER_HOST_AND_ARM_FOOTPRINT",
+  "source_head": "70fa9bb3888c1aa5e08f93d857e86479152c2cc6",
+  "run_id": 37274287686,
+  "host_tests": 12,
+  "host_metrics": {
+    "whole_c_python_transactions": 51,
+    "cut_restart_normal": 224,
+    "partial_erase_then_normal": 76,
+    "selected_journal_corruptions": 256,
+    "omitted_tail_precommit_barriers": 2,
+    "recovery_cut_restarts": 32,
+    "continuous_updates": 55,
+    "resolve_rotation_parity_wrap": 42,
+    "normal_token_wrap_rotations": 14
+  },
+  "arm": {
+    "compile_units": 2,
+    "links": 1,
+    "sections": [
+      {
+        "name": ".text",
+        "address": 155484160,
+        "size": 6528,
+        "alignment": 4
+      }
+    ],
+    "symbols": [
+      {
+        "name": "read32",
+        "address": 155484160,
+        "size": 22,
+        "kind": "t"
+      },
+      {
+        "name": "write32",
+        "address": 155484182,
+        "size": 16,
+        "kind": "t"
+      },
+      {
+        "name": "crc.constprop.0",
+        "address": 155484200,
+        "size": 56,
+        "kind": "t"
+      },
+      {
+        "name": "HJ_Validate",
+        "address": 155484256,
+        "size": 242,
+        "kind": "T"
+      },
+      {
+        "name": "HJ_Build",
+        "address": 155484500,
+        "size": 408,
+        "kind": "T"
+      },
+      {
+        "name": "HJ_Rollback",
+        "address": 155484908,
+        "size": 124,
+        "kind": "T"
+      },
+      {
+        "name": "rd32",
+        "address": 155485032,
+        "size": 22,
+        "kind": "t"
+      },
+      {
+        "name": "cp",
+        "address": 155485054,
+        "size": 20,
+        "kind": "t"
+      },
+      {
+        "name": "same",
+        "address": 155485074,
+        "size": 30,
+        "kind": "t"
+      },
+      {
+        "name": "all",
+        "address": 155485104,
+        "size": 22,
+        "kind": "t"
+      },
+      {
+        "name": "sha_block",
+        "address": 155485128,
+        "size": 436,
+        "kind": "t"
+      },
+      {
+        "name": "sha_begin",
+        "address": 155485564,
+        "size": 76,
+        "kind": "t"
+      },
+      {
+        "name": "sha_add",
+        "address": 155485640,
+        "size": 58,
+        "kind": "t"
+      },
+      {
+        "name": "sha_end",
+        "address": 155485698,
+        "size": 156,
+        "kind": "t"
+      },
+      {
+        "name": "digest",
+        "address": 155485854,
+        "size": 44,
+        "kind": "t"
+      },
+      {
+        "name": "args",
+        "address": 155485898,
+        "size": 248,
+        "kind": "t"
+      },
+      {
+        "name": "read_sector",
+        "address": 155486146,
+        "size": 44,
+        "kind": "t"
+      },
+      {
+        "name": "checksum",
+        "address": 155486190,
+        "size": 40,
+        "kind": "t"
+      },
+      {
+        "name": "main_sector",
+        "address": 155486232,
+        "size": 182,
+        "kind": "t"
+      },
+      {
+        "name": "hash_sectors",
+        "address": 155486416,
+        "size": 76,
+        "kind": "t"
+      },
+      {
+        "name": "read_hof",
+        "address": 155486492,
+        "size": 148,
+        "kind": "t"
+      },
+      {
+        "name": "build_main",
+        "address": 155486640,
+        "size": 128,
+        "kind": "t"
+      },
+      {
+        "name": "build_copy",
+        "address": 155486768,
+        "size": 14,
+        "kind": "t"
+      },
+      {
+        "name": "preflight",
+        "address": 155486782,
+        "size": 66,
+        "kind": "t"
+      },
+      {
+        "name": "erase_verified",
+        "address": 155486848,
+        "size": 90,
+        "kind": "t"
+      },
+      {
+        "name": "protect_after.isra.0",
+        "address": 155486938,
+        "size": 92,
+        "kind": "t"
+      },
+      {
+        "name": "physical.isra.0",
+        "address": 155487030,
+        "size": 12,
+        "kind": "t"
+      },
+      {
+        "name": "absent",
+        "address": 155487042,
+        "size": 46,
+        "kind": "t"
+      },
+      {
+        "name": "build_hof",
+        "address": 155487088,
+        "size": 120,
+        "kind": "t"
+      },
+      {
+        "name": "write_built",
+        "address": 155487208,
+        "size": 372,
+        "kind": "t"
+      },
+      {
+        "name": "HT_Resolve",
+        "address": 155487580,
+        "size": 1010,
+        "kind": "T"
+      },
+      {
+        "name": "HT_Recover",
+        "address": 155488592,
+        "size": 492,
+        "kind": "T"
+      },
+      {
+        "name": "HT_Commit",
+        "address": 155489084,
+        "size": 900,
+        "kind": "T"
+      },
+      {
+        "name": "HT_Normal",
+        "address": 155489984,
+        "size": 448,
+        "kind": "T"
+      },
+      {
+        "name": "k.0",
+        "address": 155490432,
+        "size": 256,
+        "kind": "t"
+      }
+    ],
+    "stack": [
+      {
+        "function": "rd32",
+        "bytes": 0,
+        "type": "static"
+      },
+      {
+        "function": "cp",
+        "bytes": 8,
+        "type": "static"
+      },
+      {
+        "function": "same",
+        "bytes": 12,
+        "type": "static"
+      },
+      {
+        "function": "all",
+        "bytes": 0,
+        "type": "static"
+      },
+      {
+        "function": "sha_block",
+        "bytes": 88,
+        "type": "static"
+      },
+      {
+        "function": "sha_begin",
+        "bytes": 0,
+        "type": "static"
+      },
+      {
+        "function": "sha_add",
+        "bytes": 24,
+        "type": "static"
+      },
+      {
+        "function": "sha_end",
+        "bytes": 32,
+        "type": "static"
+      },
+      {
+        "function": "digest",
+        "bytes": 24,
+        "type": "static"
+      },
+      {
+        "function": "args",
+        "bytes": 16,
+        "type": "static"
+      },
+      {
+        "function": "read_sector",
+        "bytes": 8,
+        "type": "static"
+      },
+      {
+        "function": "checksum",
+        "bytes": 24,
+        "type": "static"
+      },
+      {
+        "function": "main_sector",
+        "bytes": 32,
+        "type": "static"
+      },
+      {
+        "function": "hash_sectors",
+        "bytes": 32,
+        "type": "static"
+      },
+      {
+        "function": "read_hof",
+        "bytes": 40,
+        "type": "static"
+      },
+      {
+        "function": "build_main",
+        "bytes": 32,
+        "type": "static"
+      },
+      {
+        "function": "build_copy",
+        "bytes": 8,
+        "type": "static"
+      },
+      {
+        "function": "preflight",
+        "bytes": 24,
+        "type": "static"
+      },
+      {
+        "function": "erase_verified",
+        "bytes": 16,
+        "type": "static"
+      },
+      {
+        "function": "protect_after.isra",
+        "bytes": 64,
+        "type": "static"
+      },
+      {
+        "function": "physical.isra",
+        "bytes": 0,
+        "type": "static"
+      },
+      {
+        "function": "absent",
+        "bytes": 8,
+        "type": "static"
+      },
+      {
+        "function": "build_hof",
+        "bytes": 16,
+        "type": "static"
+      },
+      {
+        "function": "write_built",
+        "bytes": 136,
+        "type": "static"
+      },
+      {
+        "function": "HT_Resolve",
+        "bytes": 40,
+        "type": "static"
+      },
+      {
+        "function": "HT_Recover",
+        "bytes": 112,
+        "type": "static"
+      },
+      {
+        "function": "HT_Commit",
+        "bytes": 168,
+        "type": "static"
+      },
+      {
+        "function": "HT_Normal",
+        "bytes": 136,
+        "type": "static"
+      },
+      {
+        "function": "read32",
+        "bytes": 0,
+        "type": "static"
+      },
+      {
+        "function": "write32",
+        "bytes": 0,
+        "type": "static"
+      },
+      {
+        "function": "crc.constprop",
+        "bytes": 20,
+        "type": "static"
+      },
+      {
+        "function": "HJ_Validate",
+        "bytes": 24,
+        "type": "static"
+      },
+      {
+        "function": "HJ_Build",
+        "bytes": 288,
+        "type": "static"
+      },
+      {
+        "function": "HJ_Rollback",
+        "bytes": 16,
+        "type": "static"
+      }
+    ],
+    "total_allocated_bytes": 6528
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-controller.yml": {
+      "size": 1665,
+      "sha256": "03295889b1f876d1536e58c17e42dd7fa54c5840eade6ea0213dad21d8fb424a"
+    },
+    "overlays/hof_journal/hof_transaction.c": {
+      "size": 19047,
+      "sha256": "6d1e905e29c2913781f28fda1fcc984c29de57909e781fdaadc6ad5096d5b855"
+    },
+    "overlays/hof_journal/hof_transaction.h": {
+      "size": 5009,
+      "sha256": "91ff66d4346dbd84b4d3911f87bf90e9773c6ccb7be6dce3f0794832535ea8cc"
+    },
+    "scripts/pr16_dex_hof_controller_actions.py": {
+      "size": 4864,
+      "sha256": "019c2d1721fb524d11f6ed9b90e93701112b2295617b071a0e1d8d5ee4ebd15d"
+    },
+    "tests/test_pr16_dex_hof_controller.py": {
+      "size": 8456,
+      "sha256": "9b9eaffe9644384a110c2af3d8e6fef8f8e6395e92ce159c0ebf07030993aa86"
+    },
+    "tools/pr16_hof_controller_host.c": {
+      "size": 5300,
+      "sha256": "da89d87818c1e8757d5466588b70babe002a5c2dc8cdb77ae3c7496bf8c48f0a"
+    }
+  },
+  "runtime_generation_binding": false,
+  "runtime_cross_store_atomicity": false,
+  "rom_placed": false,
+  "native_processes": 0,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "candidate_changed": false,
+  "unaffected_native_reruns": 0
+}

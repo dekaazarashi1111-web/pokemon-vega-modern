@@ -1,0 +1,100 @@
+name: stage79-core-teardown-repair
+run-name: Stage79 core teardown repair
+
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/stage79-core-teardown-repair.yml
+      - .github/scripts/stage79_core_teardown_repair.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: stage79-core-teardown-repair-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run wrapper regression tests
+        run: python3 -m unittest tests.test_modernization_stage79_github_domain -v
+      - name: Apply exact pinned C ownership repair
+        run: python3 .github/scripts/stage79_core_teardown_repair.py
+      - name: Install pinned mGBA toolchain
+        run: bash infra/setup_github_actions.sh --install
+      - name: Validate changed source identities and unchanged ROM
+        run: |
+          python3 scripts/run_modernization_stage79_github_domain.py plan \
+            > .local/stage79-core-repair/plan.json
+          git diff --check
+      - name: Validate all three changed runners without cache
+        run: |
+          set -uo pipefail
+          status=0
+          for domain in p03 p04_mega_runtime p05; do
+            output=".local/stage79-core-repair/$domain"
+            mkdir -p "$output"
+            python3 scripts/run_modernization_stage79_github_domain.py \
+              run-domain --domain "$domain" --output-directory "$output" \
+              > "$output/job-summary.json" 2> "$output/helper.stderr.log" || status=1
+            cat "$output/helper.stderr.log"
+            cat "$output/job-summary.json"
+          done
+          exit "$status"
+      - name: Commit only validated source and identity changes to the same PR branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_SHA: ${{ github.sha }}
+          HEAD_REF: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "refs/heads/$HEAD_REF" | cut -f1)" = "$EXPECTED_SHA"
+          python3 - <<'PY'
+          import hashlib, json, pathlib, subprocess
+          root = pathlib.Path('.')
+          config = json.loads((root / 'config/modernization_stage79_cumulative_mgba.json').read_text())
+          identity = config['input_identity']['rom']
+          assert hashlib.sha256((root / identity['path']).read_bytes()).hexdigest() == identity['sha256']
+          targets = json.loads((root / '.local/stage79-core-repair/targets.json').read_text())
+          expected = {
+              'tools/mgba_modernization_stage79_p03_smoke.c',
+              'tools/mgba_modernization_stage79_mega_runtime_smoke.c',
+              'tools/mgba_modernization_stage79_p05_runtime_smoke.c',
+              'config/modernization_stage79_cumulative_mgba.json',
+          }
+          actual = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
+          assert actual == set(targets) == expected, (actual, targets)
+          subprocess.run(['git', 'add', '--', *targets], check=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(stage79): respect mGBA core ownership and refresh source identities'
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+          git rev-parse HEAD > .local/stage79-core-repair/committed-head.txt
+          # This dispatch still runs the original seven-domain acceptance gate.
+          # Unrelated failures are not converted into PASS by the repair job.
+          gh api --method POST \
+            "repos/$GITHUB_REPOSITORY/actions/workflows/353585844/dispatches" \
+            -f "ref=$HEAD_REF" -f 'inputs[domain]=all'
+      - name: Preserve source snapshot, exact diff and all diagnostics
+        if: always()
+        run: |
+          mkdir -p .local/stage79-core-repair
+          git diff > .local/stage79-core-repair/uncommitted.patch
+          git show --stat -1 > .local/stage79-core-repair/head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-core-repair-diagnostics
+          path: .local/stage79-core-repair
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error

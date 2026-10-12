@@ -1,0 +1,314 @@
+{
+  "acceptance": {
+    "all_shared_egg_routes_accepted": false,
+    "cases": [
+      {
+        "action": 1,
+        "case": "shared-605-empty",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 2,
+        "species": 605,
+        "target": 603
+      },
+      {
+        "action": 0,
+        "case": "shared-605-slot0",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 0,
+        "species": 605,
+        "target": 23
+      },
+      {
+        "action": 0,
+        "case": "shared-605-slot1",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 1,
+        "species": 605,
+        "target": 603
+      },
+      {
+        "action": 0,
+        "case": "shared-605-slot2",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 2,
+        "species": 605,
+        "target": 23
+      },
+      {
+        "action": 0,
+        "case": "shared-605-slot3",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 3,
+        "species": 605,
+        "target": 603
+      },
+      {
+        "action": 2,
+        "case": "shared-605-refuse",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 1,
+        "species": 605,
+        "target": 23
+      },
+      {
+        "action": 3,
+        "case": "shared-605-summary-cancel",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 1,
+        "species": 605,
+        "target": 603
+      },
+      {
+        "action": 4,
+        "case": "shared-605-list-cancel",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 1,
+        "species": 605,
+        "target": 23
+      },
+      {
+        "action": 1,
+        "case": "shared-549-empty",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 2,
+        "species": 549,
+        "target": 663
+      },
+      {
+        "action": 0,
+        "case": "shared-549-slot0",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 0,
+        "species": 549,
+        "target": 34
+      },
+      {
+        "action": 0,
+        "case": "shared-549-slot1",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 1,
+        "species": 549,
+        "target": 663
+      },
+      {
+        "action": 0,
+        "case": "shared-549-slot2",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 2,
+        "species": 549,
+        "target": 34
+      },
+      {
+        "action": 0,
+        "case": "shared-549-slot3",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 3,
+        "species": 549,
+        "target": 663
+      },
+      {
+        "action": 2,
+        "case": "shared-549-refuse",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 1,
+        "species": 549,
+        "target": 34
+      },
+      {
+        "action": 3,
+        "case": "shared-549-summary-cancel",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 1,
+        "species": 549,
+        "target": 663
+      },
+      {
+        "action": 4,
+        "case": "shared-549-list-cancel",
+        "fresh_cores": 2,
+        "saved_mon_bytes": 100,
+        "slot": 1,
+        "species": 549,
+        "target": 34
+      }
+    ],
+    "fixture_boundary": "species, moves, Move Memory item, HOF/DH flags and initial map are prepared before UI. No natural capture, unlock, donor transfer or breeding claim.",
+    "fresh_cores": 32,
+    "full_p03_acceptance": false,
+    "full_p07_acceptance": false,
+    "natural_acquisition_accepted": false,
+    "new_native_processes": 16,
+    "old_runs_relabelled": 0,
+    "receivers": [
+      {
+        "adopted_record_sha256": "977abf7bc03664d9158cfff1ff94041114f77d8f3e1f1288bdfb34ed6916b3c4",
+        "adopted_shared_sha256": "c8a105d3f1f67daba8db490314619957ae833636719f257051043555f9432ff4",
+        "form_key": "",
+        "legacy": [
+          241,
+          191
+        ],
+        "legacy_source": {
+          "kind": "legacy-ancestry-incense",
+          "primary_species": 605,
+          "secondary_species": 605
+        },
+        "merged": [
+          241,
+          191,
+          23,
+          34,
+          74,
+          111,
+          184,
+          205,
+          246,
+          254,
+          255,
+          256,
+          257,
+          281,
+          336,
+          405,
+          603
+        ],
+        "pre_evolution_carry": 79,
+        "shared": [
+          23,
+          34,
+          74,
+          111,
+          184,
+          205,
+          246,
+          254,
+          255,
+          256,
+          257,
+          281,
+          336,
+          405,
+          603
+        ],
+        "shared_only": [
+          23,
+          34,
+          74,
+          111,
+          184,
+          205,
+          246,
+          254,
+          255,
+          256,
+          257,
+          281,
+          336,
+          405,
+          603
+        ],
+        "species": 605,
+        "species_key": "SPECIES_KEY_CAMERUPT"
+      },
+      {
+        "adopted_record_sha256": "9080df5b068d5ac26bf48c6792e027ba0389e19ed925be6687a64837b9e2aa34",
+        "adopted_shared_sha256": "5b3c57ed7be419758aede41ee69f14e1c920e9efe47c56ad4745d56940fc9bb4",
+        "form_key": "",
+        "legacy": [
+          191
+        ],
+        "legacy_source": {
+          "kind": "legacy-ancestry-incense",
+          "primary_species": 549,
+          "secondary_species": 549
+        },
+        "merged": [
+          191,
+          34,
+          68,
+          90,
+          116,
+          173,
+          246,
+          283,
+          390,
+          514,
+          603,
+          545,
+          663
+        ],
+        "pre_evolution_carry": 66,
+        "shared": [
+          34,
+          68,
+          90,
+          116,
+          173,
+          246,
+          283,
+          390,
+          514,
+          603,
+          545,
+          663
+        ],
+        "shared_only": [
+          34,
+          68,
+          90,
+          116,
+          173,
+          246,
+          283,
+          390,
+          514,
+          603,
+          545,
+          663
+        ],
+        "species": 549,
+        "species_key": "SPECIES_KEY_DONPHAN"
+      }
+    ],
+    "release_ready": false,
+    "scope": "PR16_SHARED_ONLY_PHYSICAL_MEMORY_SAVE",
+    "shared_only_selected_receiver_routes_accepted": true,
+    "status": "PASS",
+    "unit_tests": 12
+  },
+  "candidate": {
+    "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+    "size": 33554432
+  },
+  "full_p03_acceptance": false,
+  "full_p07_acceptance": false,
+  "historical_successes_preserved_not_relabelled": true,
+  "new_emulator_runs": 0,
+  "original": {
+    "artifact_id": 10185434186,
+    "path": "content/modernization/pr16_shared_egg_evidence/34564143971/original.zip",
+    "run_id": 34564143971,
+    "sha256": "1c272eaca2c44f177063633dcaec8957881b214a370979b52b4e84734488e55b",
+    "size": 115806,
+    "tested_head": "00fb5ccf6009e1f87e5a83b60fda1fde35f157ac"
+  },
+  "release_ready": false,
+  "schema_version": 1,
+  "scope": "RETAINED_SHARED_ONLY_PHYSICAL_SUBROUTES",
+  "status": "PASS"
+}

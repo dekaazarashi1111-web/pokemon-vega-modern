@@ -1,0 +1,223 @@
+{
+  "accepted_measurement": {
+    "artifact": {
+      "digest": "sha256:fd5b03faa863d5ac1475789cd14fe3971db9ccfecce3019c0a81ba19f532436e",
+      "id": 11686762210,
+      "name": "pr16-sound-origin-reader-public-text",
+      "size_in_bytes": 75027
+    },
+    "checkpoint_identity": {
+      "sha256": "dc143165ed8eb918c9890c2aa88bad895536e8e8696ccfb92c1da7ebdec7e074",
+      "size": 10070
+    },
+    "checkpoint_path": "content/modernization/pr16_sound_origin_reader_checkpoint.json",
+    "conclusion": "success",
+    "id": 38097726375,
+    "measurement_replays": 0,
+    "native_replays": 0,
+    "observed_at": "2026-10-11T00:20:48.952195+00:00",
+    "record_commit": "b9aa38924526d9b7953a42d0aad0c6fb20491890",
+    "required_steps": [
+      "Verify sound reader or receive completed measurement without replay",
+      "Run actions/upload-artifact@v4"
+    ],
+    "source_head": "1351fe458c5ac3a5706e979f7f9bb471fd211cc2",
+    "status": "completed"
+  },
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "changes": [
+    {
+      "accepted": true,
+      "address": 138879919,
+      "classification": "FALSE_POSITIVE_TYPED_REFERENCE_S8_PCM_VOICE_TABLE_ARM_MIXER",
+      "evidence": [
+        {
+          "sound_origin_reader_reference_chain_witness": 0
+        }
+      ],
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "owner_candidates": [],
+      "reason": "fixed_pcm_asset_three_voice_tables_and_actual_signed_byte_mixer_consumer",
+      "sha256": "eb72d696d22c970b1090b11a8020bfb44f42ecff189aaffc9b47eb75cbeb0993",
+      "size": 4,
+      "target": 167699418
+    }
+  ],
+  "claims": {
+    "accepted_measurement_replays": 0,
+    "accepted_test_reruns": 0,
+    "actual_note_dispatch_executed": false,
+    "actual_runtime_execution_observed": true,
+    "actual_runtime_iwram_copy_proven": false,
+    "all_alternative_readers_excluded": false,
+    "conditional_finite_reader_only": true,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "formal_classification_accepted": true,
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "indirect_reference_completeness_claimed": false,
+    "natural_entry_reachability_proven": false
+  },
+  "classified": 788,
+  "donor_safe_bytes": 0,
+  "inherited_candidates": 874,
+  "inherited_classified": 787,
+  "inherited_unclassified": 87,
+  "measurement_identity": {
+    "sha256": "332f0b623f3d909b043037edc777f7b04a60db2059e1d6945dbe58ab196ab142",
+    "size": 23587
+  },
+  "namespace": "sound_origin_reader_reference_chain",
+  "newly_classified": 1,
+  "parent_chain_identity": {
+    "sha256": "99be8c45e24dd8e281ee6e77861f04297b65ecc1b5c09f37f91e80aab36e83be",
+    "size": 5763
+  },
+  "parent_chain_path": "content/modernization/pr16_typed_origins_receipt_evidence/reference-chain.json",
+  "parent_frontier_path": "content/modernization/pr16_typed_origins_receipt_evidence/unknown-frontier.json",
+  "parent_window_path": "content/modernization/pr16_typed_origins_receipt_evidence/window-progress.json",
+  "proof_identity": {
+    "sha256": "332f0b623f3d909b043037edc777f7b04a60db2059e1d6945dbe58ab196ab142",
+    "size": 23587
+  },
+  "proof_path": "content/modernization/pr16_sound_origin_reader_evidence/reader-proof.json",
+  "schema_version": 1,
+  "status": "ACCEPTED_SINGLE_PCM_ORIGIN_CONDITIONAL_READER",
+  "unclassified": 86,
+  "witnesses": [
+    {
+      "actual_mixer": {
+        "actual_runtime_iwram_copy_proven": false,
+        "arm_entry": 136053244,
+        "current_candidate_code_bound": true,
+        "end_exclusive": 136053788,
+        "full_upstream_function_compiled": true,
+        "linked_text_identity": {
+          "sha256": "ec606fdb6d57db1567f1e99baaa3d1f75ef19db7d38f4582ca4cd58486e504ce",
+          "size": 956
+        },
+        "object_identity": {
+          "sha256": "92a88a332bc0579e8798f7997635ee297690589b3ddbdde31c3d985cc2db4343",
+          "size": 24012
+        },
+        "public_symbols": {
+          "SoundMainRAM": {
+            "address": 136052832,
+            "line": 24396,
+            "row_sha256": "325a35b4242a4ede11ae55c02bf8d421da86a4e12846ff195d9e5706a1856d72"
+          },
+          "SoundMainRAM_Unk1": {
+            "address": 136053788,
+            "line": 24440,
+            "row_sha256": "4e4629b75b10f4f4782dc198e1f26b7c6cb2db6b1b2a8782e6f5fec2177fa859"
+          },
+          "voicegroup002": {
+            "address": 138734864,
+            "line": 39217,
+            "row_sha256": "991a8e309b16ee99c0423f15120a39520033facd894dea8a68658f159a1771a5"
+          },
+          "voicegroup156": {
+            "address": 138791096,
+            "line": 39259,
+            "row_sha256": "3a85387d129063511bde901092ce54fd25771beffb7f990f26f1a876a7fe67c8"
+          },
+          "voicegroup157": {
+            "address": 138792632,
+            "line": 39260,
+            "row_sha256": "ae214eb12498d8130e433f93a87af5654af54f9421a2c8c1a0ca945ffc4086f9"
+          }
+        },
+        "sha256": "ec606fdb6d57db1567f1e99baaa3d1f75ef19db7d38f4582ca4cd58486e504ce",
+        "size": 956,
+        "source_body_identity": {
+          "sha256": "14f049bfcff1a440df2ce7b7ff09a3219390c4632f0fe23535bf386305a7b1ef",
+          "size": 7679
+        },
+        "start": 136052832,
+        "stop_before_thumb_channel_dispatch": 136053752
+      },
+      "actual_runtime_iwram_copy_proven": false,
+      "actual_table_entries": [
+        {
+          "actual_note_dispatch_executed": false,
+          "address": 138734900,
+          "current_candidate_identity": {
+            "sha256": "c71285832d34b206558d14957d48c4132e5f79614fc774eb9533918ef5554f21",
+            "size": 12
+          },
+          "current_candidate_table_bound": true,
+          "current_table_bound": false,
+          "group": "voicegroup002",
+          "line": 103,
+          "row_sha256": "56f5d7686cbb28d95e53a98bcaaa16d637d37609da9a842c9ee55181a0e22eb0",
+          "size": 12,
+          "slot": 3,
+          "source_text": "voice_directsound 60, 0, DirectSoundWaveData_unused_sc88pro_unison_slap, 255, 165, 206, 127",
+          "type": 0,
+          "upstream_macro_equal": true,
+          "wave_pointer": 138878072
+        },
+        {
+          "actual_note_dispatch_executed": false,
+          "address": 138791528,
+          "current_candidate_identity": {
+            "sha256": "247703685dc5498279abe7506c38897a6cae9d9548e6c78a0a37ff963d9998dc",
+            "size": 12
+          },
+          "current_candidate_table_bound": true,
+          "current_table_bound": false,
+          "group": "voicegroup156",
+          "line": 4168,
+          "row_sha256": "838bd295df15a8031dd1f42998d9a70290d559c9319e3caecd09f3e59c80be8a",
+          "size": 12,
+          "slot": 36,
+          "source_text": "voice_directsound 60, 0, DirectSoundWaveData_unused_sc88pro_unison_slap, 255, 165, 180, 216",
+          "type": 0,
+          "upstream_macro_equal": true,
+          "wave_pointer": 138878072
+        },
+        {
+          "actual_note_dispatch_executed": false,
+          "address": 138793064,
+          "current_candidate_identity": {
+            "sha256": "247703685dc5498279abe7506c38897a6cae9d9548e6c78a0a37ff963d9998dc",
+            "size": 12
+          },
+          "current_candidate_table_bound": true,
+          "current_table_bound": false,
+          "group": "voicegroup157",
+          "line": 4299,
+          "row_sha256": "838bd295df15a8031dd1f42998d9a70290d559c9319e3caecd09f3e59c80be8a",
+          "size": 12,
+          "slot": 36,
+          "source_text": "voice_directsound 60, 0, DirectSoundWaveData_unused_sc88pro_unison_slap, 255, 165, 180, 216",
+          "type": 0,
+          "upstream_macro_equal": true,
+          "wave_pointer": 138878072
+        }
+      ],
+      "all_alternative_readers_excluded": false,
+      "asset_proof_identity": {
+        "sha256": "71964fbe283cc6bd6e76ea45e5905b7e3cc01b60be524c417fa7db2726acf395",
+        "size": 8543
+      },
+      "asset_proof_path": "content/modernization/pr16_sound_origin_asset_evidence/asset-binding.json",
+      "conditional_finite_reader_only": true,
+      "donor_safe_bytes": 0,
+      "independent_model_equal": true,
+      "native_cases": 26,
+      "native_identity": {
+        "sha256": "e6a24f27560b4053f62c2bacd5fdaaa4c3090f2a47fe890212f8ee0d6aab22dc",
+        "size": 14496
+      },
+      "native_path": "content/modernization/pr16_sound_origin_reader_evidence/native.json",
+      "natural_entry_reachability_proven": false,
+      "origin": 138879919
+    }
+  ]
+}

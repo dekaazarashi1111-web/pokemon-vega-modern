@@ -1,0 +1,135 @@
+{
+  "status": "PASS_CURRENT_PARENT_BOUND_REFERENCE_GAPS",
+  "source_head": "8f396fd19ba77df2a5ff6edc279e1b2a83946fac",
+  "run_id": 37315690673,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "candidate_changed": false,
+  "unit_tests": 146,
+  "classified": 661,
+  "unclassified": 213,
+  "newly_classified": 17,
+  "new_data": 11,
+  "new_code": 3,
+  "new_song": 3,
+  "old_inventory_candidates": 874,
+  "previous_classified": 644,
+  "previous_unknown": 230,
+  "owner_unknown": 5,
+  "unowned_unknown": 208,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "old_full_rom_inventory_reused": true,
+  "delta_identity": {
+    "size": 95619,
+    "sha256": "c38d8e67a6718cacc17a3999922dca9edd9977734711b3cf5a74f85c1b76bb32"
+  },
+  "baseline_identity": {
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent_identity": {
+    "size": 149772,
+    "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+  },
+  "unknown_identity": {
+    "size": 93681,
+    "sha256": "59b214a03bfad7532fbf17bc945ca839d251eae983e32e71d2525509df8032bc"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-reference-gaps.yml": {
+      "size": 2860,
+      "sha256": "b15b6da35c019280833095f9069084088e00b6a9ee8eb61b153b27284ffccd96"
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_review.json": {
+      "size": 194252,
+      "sha256": "61eee6953d3c0daebfa332de2497d3b10058798edcd9ed223e21ce943c8c4ea4"
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_song_review.json": {
+      "size": 33068,
+      "sha256": "7c80352ffaf283e7c0dbc2b77f929791749ab0104a00dd8e528b94a8f528614d"
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_song_sources.json": {
+      "size": 18426,
+      "sha256": "ca27ecf5ec3c6b565eebe59889794e849bb4da9d09316c6347ca8570b31b8ce7"
+    },
+    "docs/PR16_DEX_HOF_REFERENCE_GAPS_JA.md": {
+      "size": 4436,
+      "sha256": "1fbde77b1153152f02cedc72a9627c8156d4312ceebe9362db7216065a869f81"
+    },
+    "scripts/pr16_dex_hof_reference_chain.py": {
+      "size": 12491,
+      "sha256": "5932316cc2b7de37cdd22861a699064b83e5aef550e981a1b0662af348065767"
+    },
+    "scripts/pr16_dex_hof_reference_gaps.py": {
+      "size": 30125,
+      "sha256": "2ab5e4107a0570504547c5e492616d8d7201be9f74fa53797d837f6d605a1910"
+    },
+    "scripts/pr16_dex_hof_reference_gaps_actions.py": {
+      "size": 21835,
+      "sha256": "e8fd2f8aa2266ce3bbdb4356f46e378c3b2f806aeb4f5b93f87e56d1ba886c95"
+    },
+    "scripts/pr16_dex_hof_reference_gaps_song.py": {
+      "size": 11890,
+      "sha256": "e06023d84dd722be8e39875d4cfad8c57a6b2374f318981042c46abb58a59dde"
+    },
+    "tests/test_pr16_dex_hof_reference_chain.py": {
+      "size": 8827,
+      "sha256": "895838644b07b9628ffc24a323be6892fc96133ed84240099c54a690a7ae4fa2"
+    },
+    "tests/test_pr16_dex_hof_reference_gaps.py": {
+      "size": 5918,
+      "sha256": "7ed4b8b8332fe494b3b2fca06e5706341017572b3cf0b979a8fc92c75c2fe9bd"
+    },
+    "tests/test_pr16_dex_hof_reference_gaps_actions.py": {
+      "size": 6568,
+      "sha256": "ed87ed2ae37c3519d4baf4b84d4c1f3d52455f6f9903b2f607c92a2a1da3743a"
+    },
+    "tests/test_pr16_dex_hof_reference_gaps_song.py": {
+      "size": 9119,
+      "sha256": "bb6f930ceb0ea76a789fd8f8b0d86328cb4da27a9a08a4e5447cf4a2708baed9"
+    }
+  },
+  "inherited_bindings": {
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "content/modernization/pr16_dex_hof_reference_checkpoint.json": {
+      "size": 6090,
+      "sha256": "682396b303807263598c30d14f65716e3b53f2f859ae69942be6833bb48417ab"
+    },
+    "content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json": {
+      "size": 149772,
+      "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+    },
+    "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json": {
+      "size": 4063919,
+      "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+    },
+    "content/modernization/pr16_story_route_adapter_checkpoint.json": {
+      "size": 45222,
+      "sha256": "ff7094f278de5502b40bca5ceaccb1a29ba6776b9b5eedc5ccdcb5ea03be19c7"
+    },
+    "state/source-lock.json": {
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    }
+  },
+  "current_owner_count": 115,
+  "current_rom_reconstructions": 1,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "accepted_heap_reruns": 0,
+  "combined_song_models": 132,
+  "old_models_reused_for_new_cross_song_role_safety": true,
+  "tutor_upper_word_remains_unknown": true,
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "controller_runtime_wired": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false
+}

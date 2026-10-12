@@ -1,0 +1,234 @@
+{
+  "map": [
+    3,
+    2
+  ],
+  "header_address": 137447168,
+  "header_scripts_pointer": {
+    "address": 137447176,
+    "size": 4,
+    "hex": "34041708"
+  },
+  "map_script_table": {
+    "address": 135726132,
+    "size": 11,
+    "hex": "03e84e210802e0a0400800"
+  },
+  "type3_root": 136400616,
+  "instructions": [
+    {
+      "address": 136400616,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1411"
+    },
+    {
+      "address": 136400619,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1511"
+    },
+    {
+      "address": 136400622,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1611"
+    },
+    {
+      "address": 136400625,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1711"
+    },
+    {
+      "address": 136400628,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1811"
+    },
+    {
+      "address": 136400631,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1911"
+    },
+    {
+      "address": 136400634,
+      "opcode": 42,
+      "size": 3,
+      "hex": "2a1a11"
+    },
+    {
+      "address": 136400637,
+      "opcode": 208,
+      "size": 3,
+      "hex": "d09208"
+    },
+    {
+      "address": 136400640,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02"
+    }
+  ],
+  "references": [
+    {
+      "category": "flag",
+      "value": 4372,
+      "access": "clear",
+      "instruction_address": 136400616,
+      "opcode": 42,
+      "command": "clearflag",
+      "script_address": 136400616,
+      "roots": [
+        "map:3:2:map_script:3:0"
+      ]
+    },
+    {
+      "category": "flag",
+      "value": 4373,
+      "access": "clear",
+      "instruction_address": 136400619,
+      "opcode": 42,
+      "command": "clearflag",
+      "script_address": 136400616,
+      "roots": [
+        "map:3:2:map_script:3:0"
+      ]
+    },
+    {
+      "category": "flag",
+      "value": 4374,
+      "access": "clear",
+      "instruction_address": 136400622,
+      "opcode": 42,
+      "command": "clearflag",
+      "script_address": 136400616,
+      "roots": [
+        "map:3:2:map_script:3:0"
+      ]
+    },
+    {
+      "category": "flag",
+      "value": 4375,
+      "access": "clear",
+      "instruction_address": 136400625,
+      "opcode": 42,
+      "command": "clearflag",
+      "script_address": 136400616,
+      "roots": [
+        "map:3:2:map_script:3:0"
+      ]
+    },
+    {
+      "category": "flag",
+      "value": 4376,
+      "access": "clear",
+      "instruction_address": 136400628,
+      "opcode": 42,
+      "command": "clearflag",
+      "script_address": 136400616,
+      "roots": [
+        "map:3:2:map_script:3:0"
+      ]
+    },
+    {
+      "category": "flag",
+      "value": 4377,
+      "access": "clear",
+      "instruction_address": 136400631,
+      "opcode": 42,
+      "command": "clearflag",
+      "script_address": 136400616,
+      "roots": [
+        "map:3:2:map_script:3:0"
+      ]
+    },
+    {
+      "category": "flag",
+      "value": 4378,
+      "access": "clear",
+      "instruction_address": 136400634,
+      "opcode": 42,
+      "command": "clearflag",
+      "script_address": 136400616,
+      "roots": [
+        "map:3:2:map_script:3:0"
+      ]
+    },
+    {
+      "category": "fly_flag",
+      "value": 2194,
+      "access": "set_world_map",
+      "instruction_address": 136400637,
+      "opcode": 208,
+      "command": "setworldmapflag",
+      "script_address": 136400616,
+      "roots": [
+        "map:3:2:map_script:3:0"
+      ]
+    }
+  ],
+  "actual_expanded_flag_changes": [
+    [
+      4372,
+      1,
+      0
+    ],
+    [
+      4374,
+      1,
+      0
+    ],
+    [
+      4378,
+      1,
+      0
+    ]
+  ],
+  "all_gym_flags_after": {
+    "4372": 0,
+    "4373": 0,
+    "4374": 0,
+    "4375": 0,
+    "4376": 0,
+    "4377": 0,
+    "4378": 0
+  },
+  "observed_physical_flags": [
+    [
+      2056,
+      1,
+      0
+    ]
+  ],
+  "physical_flag2056_runtime_owner_resolved": false,
+  "legacy_var_deltas": [
+    [
+      16417,
+      39,
+      49
+    ],
+    [
+      16554,
+      2049,
+      0
+    ],
+    [
+      16556,
+      16,
+      0
+    ],
+    [
+      16557,
+      4,
+      0
+    ],
+    [
+      16558,
+      15,
+      80
+    ]
+  ],
+  "legacy_runtime_owners_resolved": false
+}

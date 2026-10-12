@@ -1,0 +1,414 @@
+{
+  "artifacts_written": [
+    "content/modernization/p03_stage66_mgba_runtime_gate.json"
+  ],
+  "claims": {
+    "can_mon_learn_tmhm_executed": true,
+    "exact_generated_stage66_rom": true,
+    "first_middle_last_and_caterpie_exercised": true,
+    "full_p03_acceptance": false,
+    "get_level_up_moves_by_species_executed": true,
+    "replacement_not_union": true,
+    "scheduler_e2e": false
+  },
+  "classification": "REAL_CONSUMER_DIRECT_CALL_BOUNDED_NOT_SCHEDULER_E2E",
+  "execution": {
+    "compile_flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "compiler": "/usr/bin/cc",
+    "compiler_version": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "identical_results": true,
+    "independent_processes": true,
+    "link_flags": [
+      "-lmgba"
+    ],
+    "process_runs": 2,
+    "runner_result_sha256": "7442c4b1ba4535cb15a4796a8e1089748ca15dd738d4f9b5fc12c9ab631eb8a5"
+  },
+  "inputs": {
+    "battle_core_fingerprint": "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717",
+    "change_audit": {
+      "changed_byte_count": 81693,
+      "changed_offsets_sha256": "9ad8dfee26f6be0e1dd31f4093c9b2779f764650123561cf758b8b150acc47dc",
+      "changed_span_count": 3520,
+      "level_payload_sha256": "0bde103cdbc375ec7842a72b79ba9cd85a9ea54e2d489848f5e098696281a09b"
+    },
+    "config": {
+      "path": "config/modernization_p03_stage66.json",
+      "sha256": "a6f1cdfff3bca980305c3284c3760a95765df65bcf8414e9e683aa9cdba444d1",
+      "size": 7580
+    },
+    "libmgba": {
+      "path": "/lib/x86_64-linux-gnu/libmgba.so.0.10.2",
+      "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d",
+      "size": 1968536
+    },
+    "offsets": [
+      {
+        "can_mon_learn_tmhm": "0x09110184",
+        "get_level_up_moves_by_species": "0x091142A0",
+        "path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-1/offsets.ini",
+        "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523",
+        "size": 971694
+      },
+      {
+        "can_mon_learn_tmhm": "0x09110184",
+        "get_level_up_moves_by_species": "0x091142A0",
+        "path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-2/offsets.ini",
+        "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523",
+        "size": 971694
+      }
+    ],
+    "p03_contracts": {
+      "p03_compiled_index": {
+        "path": "content/modernization/p03_compiled_index.json",
+        "sha256": "fe2285fa8865a557d4607e7c72be5eb68874920951dcebdbef45db6016cb6180",
+        "size": 1380994
+      },
+      "p03_contract": {
+        "path": "content/modernization/p03_learnset_contract.json",
+        "sha256": "4c2a97f4c5e3b2a0056313bc0ab25240b95b9c38cb1ae4c47a67ec78796e6b58",
+        "size": 9095
+      },
+      "p03_runtime_handoff": {
+        "path": "content/modernization/p03_runtime_handoff.json",
+        "sha256": "32ea838df56988082253fccbcec8e9cd570ace8fadc5658b15cfb8bf7128594e",
+        "size": 8980
+      }
+    },
+    "route_audit": {
+      "compiled_route_count": 118528,
+      "corrected_target_count": 1300,
+      "materialized_route_content_sha256": "bb4d13cfc76df27ef68e5a5ab44146dccbbb080b808353c8d8fde9179f90c14d",
+      "materialized_routes": 47548
+    },
+    "sources": [
+      {
+        "path": "config/modernization_p03_stage66.json",
+        "sha256": "a6f1cdfff3bca980305c3284c3760a95765df65bcf8414e9e683aa9cdba444d1",
+        "size": 7580
+      },
+      {
+        "path": "tools/modernization_p03_stage66.py",
+        "sha256": "108fe651c8549ab9d90c115df136ad1d252b9017f04ed462b512fac63582dcc2",
+        "size": 46977
+      },
+      {
+        "path": "tools/modernization_learnsets.py",
+        "sha256": "3d0eae7a5d1cf81780d1028d78bf6d1b80be7e2b1ba304d23f5558d113bb5ecb",
+        "size": 59117
+      },
+      {
+        "path": "tools/modernization_identity.py",
+        "sha256": "92f8dbb900c9b9988a4e00b2f3d0c94692c7b45ff1b47e9531959d14d7a7b0a9",
+        "size": 41461
+      },
+      {
+        "path": "scripts/run_modernization_p03_stage66_mgba.py",
+        "sha256": "01ebd36396324bb97d41093eae50a4f7b2e2ebfe4112ab40f6f7776c5fa7582f",
+        "size": 18570
+      },
+      {
+        "path": "tools/mgba_modernization_p03_stage66_smoke.c",
+        "sha256": "9afef942a586c132311879c5a9977a69b36197c65c227663559b85f2737ff8a8",
+        "size": 11757
+      },
+      {
+        "path": "tools/mgba_battle_core_smoke.c",
+        "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23",
+        "size": 94532
+      },
+      {
+        "path": "tools/mgba_ai_fixture_runner.c",
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+        "size": 36272
+      }
+    ],
+    "stage65": {
+      "path": "build/stages/65_modernization_p03_caterpie_slice.gba",
+      "sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
+      "size": 33554432
+    },
+    "stage66": {
+      "path": "build/stages/66_modernization_p03_bulk_learnsets.gba",
+      "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
+      "size": 33554432
+    }
+  },
+  "runtime_result": {
+    "artifacts_written": [],
+    "classification": "REAL_CONSUMER_DIRECT_CALL_BOUNDED",
+    "full_p03_acceptance": false,
+    "payload_pc_seen": true,
+    "read_only": true,
+    "rom_sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
+    "roots": {
+      "level_literal": "0x093A4CAC",
+      "level_up": "0x093A4CAC",
+      "tm_catalog": "0x0944BB80",
+      "tm_compatibility": "0x0944BD00"
+    },
+    "samples": [
+      {
+        "level_count": 13,
+        "level_instructions": 185,
+        "level_pointer": "0x09FDA248",
+        "level_rows": [
+          [
+            45,
+            1
+          ],
+          [
+            64,
+            1
+          ],
+          [
+            116,
+            5
+          ],
+          [
+            98,
+            9
+          ],
+          [
+            17,
+            13
+          ],
+          [
+            104,
+            17
+          ],
+          [
+            332,
+            21
+          ],
+          [
+            708,
+            25
+          ],
+          [
+            97,
+            29
+          ],
+          [
+            373,
+            33
+          ],
+          [
+            283,
+            37
+          ],
+          [
+            383,
+            41
+          ],
+          [
+            179,
+            45
+          ]
+        ],
+        "negative_instructions": 387,
+        "negative_machine_slot": 0,
+        "negative_result": 0,
+        "positive_instructions": 405,
+        "positive_machine_move": 19,
+        "positive_machine_slot": 121,
+        "positive_result": 1,
+        "role": "FIRST_CORRECTED_TARGET",
+        "species_id": 10
+      },
+      {
+        "level_count": 15,
+        "level_instructions": 211,
+        "level_pointer": "0x09FE14BA",
+        "level_rows": [
+          [
+            10,
+            1
+          ],
+          [
+            43,
+            1
+          ],
+          [
+            210,
+            5
+          ],
+          [
+            232,
+            10
+          ],
+          [
+            259,
+            15
+          ],
+          [
+            184,
+            20
+          ],
+          [
+            566,
+            25
+          ],
+          [
+            319,
+            30
+          ],
+          [
+            163,
+            35
+          ],
+          [
+            370,
+            40
+          ],
+          [
+            334,
+            45
+          ],
+          [
+            575,
+            50
+          ],
+          [
+            405,
+            55
+          ],
+          [
+            14,
+            60
+          ],
+          [
+            12,
+            65
+          ]
+        ],
+        "negative_instructions": 387,
+        "negative_machine_slot": 2,
+        "negative_result": 0,
+        "positive_instructions": 387,
+        "positive_machine_move": 14,
+        "positive_machine_slot": 0,
+        "positive_result": 1,
+        "role": "MIDDLE_CORRECTED_TARGET",
+        "species_id": 858
+      },
+      {
+        "level_count": 13,
+        "level_instructions": 185,
+        "level_pointer": "0x09FE8CF2",
+        "level_rows": [
+          [
+            123,
+            1
+          ],
+          [
+            139,
+            1
+          ],
+          [
+            262,
+            1
+          ],
+          [
+            310,
+            1
+          ],
+          [
+            110,
+            8
+          ],
+          [
+            194,
+            16
+          ],
+          [
+            313,
+            24
+          ],
+          [
+            631,
+            32
+          ],
+          [
+            247,
+            40
+          ],
+          [
+            1056,
+            48
+          ],
+          [
+            92,
+            56
+          ],
+          [
+            387,
+            64
+          ],
+          [
+            105,
+            72
+          ]
+        ],
+        "negative_instructions": 387,
+        "negative_machine_slot": 0,
+        "negative_result": 0,
+        "positive_instructions": 394,
+        "positive_machine_move": 156,
+        "positive_machine_slot": 51,
+        "positive_result": 1,
+        "role": "LAST_CORRECTED_TARGET",
+        "species_id": 1620
+      },
+      {
+        "level_count": 3,
+        "level_instructions": 55,
+        "level_pointer": "0x09FDF33C",
+        "level_rows": [
+          [
+            33,
+            1
+          ],
+          [
+            81,
+            1
+          ],
+          [
+            535,
+            9
+          ]
+        ],
+        "negative_instructions": 387,
+        "negative_machine_slot": 0,
+        "negative_result": 0,
+        "positive_instructions": 405,
+        "positive_machine_move": 489,
+        "positive_machine_slot": 116,
+        "positive_result": 1,
+        "role": "CATERPIE_CORRECTION_SENTINEL",
+        "species_id": 649
+      }
+    ],
+    "scheduler_e2e": false,
+    "schema_version": 1,
+    "status": "PASS",
+    "symbols": {
+      "level_up": "0x091142A0",
+      "level_up_thumb": "0x091142A1",
+      "machine": "0x09110184",
+      "machine_thumb": "0x09110185"
+    },
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "task": "USER-MODERNIZATION-P03-STAGE66-MGBA-GATE",
+  "task_completion": "CHECKPOINT_NOT_P03_DONE"
+}

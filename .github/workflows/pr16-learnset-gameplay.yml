@@ -1,0 +1,70 @@
+name: pr16-learnset-gameplay
+# v6: non-link IS_MASTER exact flag + readonly diagnostics; inherit 22 tests.
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-learnset-gameplay.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-learnset-gameplay
+  cancel-in-progress: false
+jobs:
+  gameplay:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 新しい通常戦闘用のhost libraryだけ導入
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+      - name: 22試験を継承し6通常戦闘境界試験・未受入自然戦闘1ケース
+        id: native
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/pr16_learnset_battle_field.py execute
+      - name: 固定引継ぎMD/JSON・両ログと成功失敗の原本を記録
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_learnset_battle_field.py record
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          python3 -B scripts/pr16_learnset_battle_field.py paths | tr '\n' '\0' >.local/pr16-learnset-battle/paths.z
+          git add --pathspec-from-file=.local/pr16-learnset-battle/paths.z --pathspec-file-nul
+          python3 -B scripts/pr16_learnset_battle_field.py guard
+      - name: 同branchへ非force commit/pushし最新refを照合
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260923-LEARNSET-BATTLE: 通常非link戦闘判定を修復し実測原本と固定引継ぎ・両ログを記録'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-learnset-battle/proof/reflected-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-learnset-battle-proof
+          path: .local/pr16-learnset-battle/proof/
+          retention-days: 30
+          if-no-files-found: error
+      - name: 失敗した実測を成功へ読み替えずrun終端へ反映
+        if: steps.native.outcome != 'success'
+        run: exit 1

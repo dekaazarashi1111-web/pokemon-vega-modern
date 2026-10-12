@@ -1,0 +1,123 @@
+name: PR16 Circus actual owner link
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-link.yml
+      - scripts/pr16_circus_link_probe.py
+      - tests/test_pr16_circus_link_probe.py
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-circus-link
+  cancel-in-progress: false
+jobs:
+  link:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: 新規ELF異常境界のみ
+        run: |
+          mkdir -p .local/pr16-circus-link-run
+          python3 -m unittest discover -s tests -p test_pr16_circus_link_probe.py -v > .local/pr16-circus-link-run/tests.stdout 2> .local/pr16-circus-link-run/tests.stderr
+      - name: Restore pinned compiler and unchanged Stage84 input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-link-run
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore pinned private inputs and character map
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-link-run
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" \
+            --pattern pokemon-vega-private-env-v1-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-modernization-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-state.zip \
+            --pattern pokemon-vega-private-env-v1-build-cache.zip \
+            --dir "$assets"
+          python3 scripts/github_private_environment.py restore \
+            --archive-dir "$assets" \
+            --archive pokemon-vega-private-env-v1-inputs.zip \
+            --archive pokemon-vega-private-env-v1-modernization-inputs.zip \
+            > "$out/private-restore.json"
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip'
+          bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-trial-native-inputs'/name
+          raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:
+              data=z.read(member)
+          path=root/member
+          assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():
+              assert path.read_bytes()==data
+          else:
+              path.parent.mkdir(parents=True,exist_ok=True)
+              path.write_bytes(data)
+              path.chmod(0o444)
+          PYCODE
+      - name: Rebuild exact retained candidate parents without separate accepted-case replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-link-run
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: Build bounded Ring policy successor with independent ARM compiles
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_ring_policy_successor.py > .local/pr16-circus-link-run/build.stdout 2> .local/pr16-circus-link-run/build.stderr
+          git diff --exit-code
+      - name: 新しいCircus ARMを実ownerへlinkし受付rootを照合
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-inputs
+          cp .local/pr16-bp-trial-native-inputs/pokemon-vega-private-env-v1-state.zip .local/pr16-inputs/
+          python3 -c 'import sys;sys.path.insert(0,"scripts");import pr16_receiver_audit as a;a.restore_map_inputs()'
+          python3 scripts/pr16_circus_link_probe.py --archive .local/pr16-bp-trial-native-inputs/pokemon-vega-private-env-v1-build-cache.zip --candidate .local/pr16-ring-policy-successor/candidate.gba > .local/pr16-circus-link-run/link.stdout 2> .local/pr16-circus-link-run/link.stderr
+      - name: ROM save ELFを除外してtext原本を保持
+        if: always()
+        run: |
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib,re
+          out=pathlib.Path('.local/pr16-circus-link-evidence');out.mkdir(parents=True,exist_ok=True)
+          members={}
+          for prefix in ('pr16-circus-link-run','pr16-circus-link'):
+              source=pathlib.Path('.local')/prefix
+              for p in sorted(source.rglob('*')):
+                  if p.is_dir() or p.suffix not in {'.json','.txt','.stdout','.stderr','.log','.ld'}:continue
+                  assert p.is_file() and not p.is_symlink()
+                  data=p.read_bytes();data.decode('utf-8');assert b'\0' not in data and len(data)<2000000
+                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',data)
+                  name=prefix+'/'+p.relative_to(source).as_posix();dest=out/name
+                  dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
+                  members[name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (out/'members.json').write_text(json.dumps(members,indent=2)+'\n')
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-link
+          path: .local/pr16-circus-link-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

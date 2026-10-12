@@ -1,0 +1,45 @@
+name: PR16 Circus battle30 completed receipt
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_circus_battle30_receipt.py
+      - tests/test_pr16_circus_battle30_receipt.py
+      - .github/workflows/pr16-circus-battle30-receipt.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-battle30-receipt
+  cancel-in-progress: false
+jobs:
+  reconcile:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 完了runと原本と確認済み画面を照合し固定引継ぎと両ログを非force保存
+        run: |
+          mkdir -p .local/pr16-circus-battle30-receipt
+          python3 scripts/pr16_circus_battle30_receipt.py > .local/pr16-circus-battle30-receipt/record.stdout 2> .local/pr16-circus-battle30-receipt/record.stderr
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-battle30-receipt
+          path: |
+            .local/pr16-circus-battle30-receipt/*.json
+            .local/pr16-circus-battle30-receipt/*.stdout
+            .local/pr16-circus-battle30-receipt/*.stderr
+            .local/pr16-circus-battle30-receipt/execution/*.json
+            .local/pr16-circus-battle30-receipt/execution/*.stdout
+            .local/pr16-circus-battle30-receipt/execution/*.stderr
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

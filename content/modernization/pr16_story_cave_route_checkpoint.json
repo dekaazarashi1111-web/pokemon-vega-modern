@@ -1,0 +1,554 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-CAVE-COORD-ROUTE",
+  "status": "PASS_CAVE_COORDINATE_ROUTE_OWNER_STATIC_ONLY",
+  "source_head": "d9435a2d4af239ba25e262722bd52d8814a6bf86",
+  "run_id": 37092347183,
+  "result": {
+    "status": "PASS_CAVE_COORDINATE_ROUTE_OWNER_STATIC_ONLY",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+    },
+    "input_save": {
+      "size": 131088,
+      "sha256": "728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb"
+    },
+    "coordinate_events": [
+      {
+        "index": 0,
+        "xy": [
+          19,
+          14
+        ],
+        "elevation": 4,
+        "trigger_var": 16384,
+        "trigger_value": 0,
+        "script": 136398433
+      },
+      {
+        "index": 1,
+        "xy": [
+          27,
+          7
+        ],
+        "elevation": 4,
+        "trigger_var": 16384,
+        "trigger_value": 0,
+        "script": 136398474
+      },
+      {
+        "index": 2,
+        "xy": [
+          8,
+          10
+        ],
+        "elevation": 4,
+        "trigger_var": 16384,
+        "trigger_value": 0,
+        "script": 136398463
+      },
+      {
+        "index": 3,
+        "xy": [
+          11,
+          14
+        ],
+        "elevation": 3,
+        "trigger_var": 16497,
+        "trigger_value": 6,
+        "script": 136398422
+      },
+      {
+        "index": 4,
+        "xy": [
+          12,
+          14
+        ],
+        "elevation": 3,
+        "trigger_var": 16497,
+        "trigger_value": 6,
+        "script": 136398422
+      },
+      {
+        "index": 5,
+        "xy": [
+          13,
+          14
+        ],
+        "elevation": 3,
+        "trigger_var": 16497,
+        "trigger_value": 6,
+        "script": 136398422
+      },
+      {
+        "index": 6,
+        "xy": [
+          14,
+          14
+        ],
+        "elevation": 3,
+        "trigger_var": 16497,
+        "trigger_value": 6,
+        "script": 136398422
+      },
+      {
+        "index": 7,
+        "xy": [
+          15,
+          14
+        ],
+        "elevation": 3,
+        "trigger_var": 16497,
+        "trigger_value": 6,
+        "script": 136398422
+      },
+      {
+        "index": 8,
+        "xy": [
+          16,
+          14
+        ],
+        "elevation": 3,
+        "trigger_var": 16497,
+        "trigger_value": 6,
+        "script": 136398422
+      },
+      {
+        "index": 9,
+        "xy": [
+          7,
+          5
+        ],
+        "elevation": 3,
+        "trigger_var": 16497,
+        "trigger_value": 7,
+        "script": 136398577
+      },
+      {
+        "index": 10,
+        "xy": [
+          4,
+          1
+        ],
+        "elevation": 0,
+        "trigger_var": 0,
+        "trigger_value": 0,
+        "script": 0
+      }
+    ],
+    "next_trigger": {
+      "index": 1,
+      "xy": [
+        27,
+        7
+      ],
+      "elevation": 4,
+      "trigger_var": 16384,
+      "trigger_value": 0,
+      "script": 136398474
+    },
+    "next_teleport": {
+      "address": 136398474,
+      "target_map": [
+        1,
+        73
+      ],
+      "warp_id": 153,
+      "xy": [
+        19,
+        14
+      ],
+      "instruction_count": 4,
+      "scope": "STATIC_SCRIPT_OWNER_NOT_NATIVE_TELEPORT_ACCEPTANCE"
+    },
+    "reverse_teleport": {
+      "address": 136398463,
+      "target_map": [
+        1,
+        73
+      ],
+      "warp_id": 153,
+      "xy": [
+        27,
+        7
+      ],
+      "instruction_count": 4,
+      "scope": "STATIC_SCRIPT_OWNER_NOT_NATIVE_TELEPORT_ACCEPTANCE"
+    },
+    "static_route": [
+      [
+        20,
+        3
+      ],
+      [
+        21,
+        3
+      ],
+      [
+        22,
+        3
+      ],
+      [
+        23,
+        3
+      ],
+      [
+        24,
+        3
+      ],
+      [
+        25,
+        3
+      ],
+      [
+        26,
+        3
+      ],
+      [
+        27,
+        3
+      ],
+      [
+        27,
+        4
+      ],
+      [
+        27,
+        5
+      ],
+      [
+        27,
+        6
+      ],
+      [
+        27,
+        7
+      ]
+    ],
+    "static_route_steps": 11,
+    "graph": {
+      "root_count": 4,
+      "unique_root_address_count": 4,
+      "visited_script_count": 5,
+      "nodes": [
+        {
+          "address": 136398422,
+          "end_reason": "end",
+          "instruction_count": 5,
+          "edges": [],
+          "roots": [
+            "cave_coord_3"
+          ]
+        },
+        {
+          "address": 136398433,
+          "end_reason": "end",
+          "instruction_count": 6,
+          "edges": [
+            136398453
+          ],
+          "roots": [
+            "cave_coord_0"
+          ]
+        },
+        {
+          "address": 136398453,
+          "end_reason": "end",
+          "instruction_count": 3,
+          "edges": [],
+          "roots": [
+            "cave_coord_0"
+          ]
+        },
+        {
+          "address": 136398463,
+          "end_reason": "end",
+          "instruction_count": 4,
+          "edges": [],
+          "roots": [
+            "cave_coord_2"
+          ]
+        },
+        {
+          "address": 136398474,
+          "end_reason": "end",
+          "instruction_count": 4,
+          "edges": [],
+          "roots": [
+            "cave_coord_1"
+          ]
+        }
+      ],
+      "references": [
+        {
+          "category": "flag",
+          "value": 4367,
+          "access": "set",
+          "instruction_address": 136398423,
+          "opcode": 41,
+          "command": "setflag",
+          "script_address": 136398422,
+          "roots": [
+            "cave_coord_3"
+          ]
+        },
+        {
+          "category": "flag",
+          "value": 4367,
+          "access": "read",
+          "instruction_address": 136398434,
+          "opcode": 43,
+          "command": "checkflag",
+          "script_address": 136398433,
+          "roots": [
+            "cave_coord_0"
+          ]
+        },
+        {
+          "category": "map",
+          "value": [
+            1,
+            73
+          ],
+          "access": "warp",
+          "instruction_address": 136398443,
+          "opcode": 61,
+          "command": "warpteleport",
+          "map_id_class": "PHYSICAL",
+          "script_address": 136398433,
+          "roots": [
+            "cave_coord_0"
+          ]
+        },
+        {
+          "category": "map",
+          "value": [
+            1,
+            73
+          ],
+          "access": "warp",
+          "instruction_address": 136398453,
+          "opcode": 61,
+          "command": "warpteleport",
+          "map_id_class": "PHYSICAL",
+          "script_address": 136398453,
+          "roots": [
+            "cave_coord_0"
+          ]
+        },
+        {
+          "category": "map",
+          "value": [
+            1,
+            73
+          ],
+          "access": "warp",
+          "instruction_address": 136398464,
+          "opcode": 61,
+          "command": "warpteleport",
+          "map_id_class": "PHYSICAL",
+          "script_address": 136398463,
+          "roots": [
+            "cave_coord_2"
+          ]
+        },
+        {
+          "category": "map",
+          "value": [
+            1,
+            73
+          ],
+          "access": "warp",
+          "instruction_address": 136398475,
+          "opcode": 61,
+          "command": "warpteleport",
+          "map_id_class": "PHYSICAL",
+          "script_address": 136398474,
+          "roots": [
+            "cave_coord_1"
+          ]
+        },
+        {
+          "category": "var",
+          "value": 16497,
+          "access": "write",
+          "instruction_address": 136398426,
+          "opcode": 22,
+          "command": "setvar",
+          "operand": 7,
+          "script_address": 136398422,
+          "roots": [
+            "cave_coord_3"
+          ]
+        }
+      ],
+      "diagnostics": []
+    },
+    "saved_var4000": 0,
+    "saved_var4071": 6,
+    "saved_expanded_flags": {
+      "4354": 0,
+      "4366": 1,
+      "4367": 0,
+      "4368": 0,
+      "4369": 0
+    },
+    "note_ja": "衝突gridだけではwarp/script辺を表現しない。到達不能やROMバグとは判断しない。elevation4/VarGetによる実発火は未観測。",
+    "native_processes": 0,
+    "accepted_case_reruns": 0,
+    "accepted_test_reruns": 0,
+    "compiles": 0,
+    "rom_changes": 0,
+    "save_changes": 0,
+    "next_teleport_native_accepted": false,
+    "full_story_accepted": false,
+    "release_ready": false,
+    "active_baseline_changed": false
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-story-cave-route.yml": {
+      "size": 2595,
+      "sha256": "73ee681657254d1899a0c5fa8cc39afb7397f86d6fdb1588c62eaf7c6c46382a"
+    },
+    "scripts/pr16_story_cave_route.py": {
+      "size": 12979,
+      "sha256": "d122cc50e34d6cb54c1d61f55b9c1b266a6fe5a40f7a61aaa6988c920615478c"
+    },
+    "tests/test_pr16_story_cave_route.py": {
+      "size": 1221,
+      "sha256": "5888e66fa5b8c9dcf5761fbfd5514dc9e031655dd883e1b3a8113ae786031849"
+    }
+  },
+  "inherited_save23_record": {
+    "run": {
+      "id": 37091670533,
+      "head_sha": "f74ed8efe29f36952c3f9ec864ca6a8f37a47c82",
+      "head_branch": "codex/modernization-followup-20260908",
+      "path": ".github/workflows/pr16-story-save23-record.yml",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    "job": {
+      "id": 111113139437,
+      "run_id": 37091670533,
+      "workflow_name": "pr16-story-save23-record",
+      "head_branch": "codex/modernization-followup-20260908",
+      "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37091670533",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUPNhZs8AAAAZ3tv07Q",
+      "head_sha": "f74ed8efe29f36952c3f9ec864ca6a8f37a47c82",
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111113139437",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37091670533/job/111113139437",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-03T02:59:12Z",
+      "started_at": "2026-10-03T02:59:15Z",
+      "completed_at": "2026-10-03T02:59:51Z",
+      "name": "record",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-03T02:59:16Z",
+          "completed_at": "2026-10-03T02:59:17Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-03T02:59:17Z",
+          "completed_at": "2026-10-03T02:59:30Z"
+        },
+        {
+          "name": "Scoped source guard before original-only recovery",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-03T02:59:30Z",
+          "completed_at": "2026-10-03T02:59:30Z"
+        },
+        {
+          "name": "Verify preserved Save23 and record without native replay",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-03T02:59:30Z",
+          "completed_at": "2026-10-03T02:59:41Z"
+        },
+        {
+          "name": "Scoped final index private guard and fixed resume",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-03T02:59:41Z",
+          "completed_at": "2026-10-03T02:59:45Z"
+        },
+        {
+          "name": "Lightweight task graph",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-03T02:59:45Z",
+          "completed_at": "2026-10-03T02:59:45Z"
+        },
+        {
+          "name": "Commit and nonforce push same branch",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-03T02:59:45Z",
+          "completed_at": "2026-10-03T02:59:46Z"
+        },
+        {
+          "name": "Exact committed text readback",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-03T02:59:46Z",
+          "completed_at": "2026-10-03T02:59:47Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-03T02:59:47Z",
+          "completed_at": "2026-10-03T02:59:49Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-03T02:59:49Z",
+          "completed_at": "2026-10-03T02:59:49Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-03T02:59:49Z",
+          "completed_at": "2026-10-03T02:59:49Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111113139437",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000018765,
+      "runner_name": "GitHub Actions 1000018765",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    "reflected_head": "46cbf4bc3e2d303c7178377e3882ecc874dba8ed"
+  },
+  "next_goal_ja": "Save23 artifact11261539316のstory-fast.srm（SHA256 728bd39b11ea53bafd31cff5fb50e7f81fe5973c0c5fae559ea22037827832bb、131088bytes）からだけ再開。map1/73・20,3東から通常入力で東7歩/南4歩の座標27,7へ進み、正規coord scriptの19,14へのteleportを新規実測する。elevation4/var4000=0のruntime発火は未受入。道中に野生戦が起きたら通常UIで対処し、host-writeやflag注入は使わない。到達後は通常Saveと独立Continueで区切る。座標trigger・静的11歩・4root/5nodeは保存済み監査を再利用。Save23までの45/cold13入力、24受入試験、旧Save1〜22/BP/P08は無影響に再走しない。27,7/19,14のteleport実到達、洞窟走破、HM05解決、全国図鑑、自然育成/進化、全storyは未完。",
+  "release_ready": false,
+  "active_baseline_changed": false
+}

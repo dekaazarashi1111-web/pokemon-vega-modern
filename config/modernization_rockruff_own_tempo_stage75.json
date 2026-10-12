@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75",
+  "stage": 75,
+  "inputs": {
+    "rom": {"path": "build/stages/74_modernization_p03_supply_runtime.gba", "size": 33554432, "sha256": "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e"},
+    "metadata": {"path": "build/stages/74_modernization_p03_supply_runtime.json", "sha256": "2fef4dbe682f23140ca14fa1169aaec50105130189428508ee9570a40fa23ae7"},
+    "allocation": {"path": "build/stages/74_modernization_p03_supply_runtime_allocation.json", "sha256": "d7a2425d59aac259f2803d4b5fbd8a88f0be94c906e9262ebef69a2a31401f23"},
+    "p04_contract": {"path": "content/modernization/p04_species_runtime_contract.json", "sha256": "80ded428ec1df683b758555c8e4357123baee2ce8b5201dea960fa89618818a4"},
+    "p04_config": {"path": "config/modernization_p04_species_runtime.json", "sha256": "260537ad559a5891bf238058159623e506d6901bb46839aa40e831ef6ede7e11"},
+    "p03_index": {"path": "content/modernization/p03_compiled_index.json", "sha256": "a4258048c50df88ecbaf2525e04edaa6f2440da2a79d2f336ccb67e3a2362751"},
+    "stage73_config": {"path": "config/modernization_p03_stage73_runtime.json", "sha256": "7e3110936c10421086d883b411c10283be5ca98f926bd41f61d149d91a50b4f7"},
+    "stage73_symbols": {"path": "generated/runtime/modernization_p03_stage73_consumer_runtime_symbols.json", "sha256": "5a9113d2450a6c1aed5559176faa88a3cea4aac9a8c886e8e72a7546384bec72"},
+    "stage74_config": {"path": "config/modernization_p03_stage74_supply.json", "sha256": "aa3cdd33683be5799a30184dfa03485012f03fa5928d0c341028ff88722708fc"},
+    "stage74_symbols": {"path": "generated/runtime/modernization_p03_stage74_supply_runtime_symbols.json", "sha256": "49a9e87097acc46270e80f4f3bccb69f670b7c9353d3ac4b7a86d270b1542da3"},
+    "stage74_route_audit": {"path": "generated/runtime/modernization_p03_stage74_supply_route_audit.json", "sha256": "64b7f72f99bc01d777045536ff5ba82ab049e4e008035fe3760d377355334f10"},
+    "rom_regions": {"path": "config/rom_regions.csv", "sha256": "f5dcb0ecf2f726bfff1e9c8382204e79b1354ee9071f8d9ac00a83de7a9b3553"},
+    "ability_manifest": {"path": "manifests/ability_ids.csv", "sha256": "8ae721ef01feeddb50cb0ef1ce2f59193a87a871133561ae2557ac8a5c9bfbcf"}
+  },
+  "identity": {
+    "reference_id": "scarletviolet:0744.01",
+    "species_key": "SPECIES_KEY_ROCKRUFF_OWN_TEMPO",
+    "form_key": "FORM_KEY_ROCKRUFF_OWN_TEMPO",
+    "classification": "INTERNAL_CONDITIONAL_FORM",
+    "species_id": 1670,
+    "normal_species_id": 1142,
+    "dusk_species_id": 1263,
+    "national_dex": 744,
+    "ability_id": 20,
+    "ability_slots": [20, 20, 20],
+    "collection_class": 4,
+    "collection_weight": 0,
+    "save_layout_changed": false
+  },
+  "evolution": {
+    "normal_removed_slot": 2,
+    "own_tempo_slot": 0,
+    "row_u16": [28, 25, 1263, 4372]
+  },
+  "p03": {
+    "owner_clone_species": 1142,
+    "egg_moves": [37, 283, 745, 541],
+    "selected_owner_route_counts": {"level_up": 14, "machine": 38, "egg": 4, "shared_egg": 4, "total": 60},
+    "withheld_carry_paths": 38,
+    "carry_resolution_counts": {"reference_existing_slot": 21, "reference_stage74_archive": 17},
+    "route_accounting_delta": 0,
+    "build_learnable_capacity_u16": 429
+  },
+  "exclusions": {
+    "side_change_project_move_id": 1063,
+    "side_change_materialized": 0,
+    "browt_pombon_gecqua_materialized": 0,
+    "prohibited_coercions_materialized": 0,
+    "full_p03_done": false
+  },
+  "breeding": {
+    "get_egg_species_intercepts": [1263, 1670],
+    "get_egg_species_result": 1670,
+    "all_other_species": "EXACT_PARENT_TRAMPOLINE",
+    "get_egg_moves_1670": [37, 283, 745, 541]
+  },
+  "wild_acquisition": {
+    "policy": "POST_GENERATION_PERSONALITY_MIXED_LOW_3_BITS_ZERO",
+    "probability_numerator": 1,
+    "probability_denominator": 8,
+    "additional_rng_calls": 0,
+    "mix": "x=pid^(pid>>16);x*=0x9E3779B1;x^=x>>16",
+    "normal_rockruff_retained": true,
+    "delegate_thumb": "0x094141BD"
+  },
+  "parent_abi": {
+    "hooks": [
+      {"name": "GetEggSpecies", "address": "0x08044F34", "width": 8, "parent_hex": "f0b5474680b40004", "target": "Stage75_GetEggSpecies", "continuation_thumb": "0x08044F3D"},
+      {"name": "GetEggMoves", "address": "0x080451EC", "width": 8, "parent_hex": "f0b5474680b48846", "target": "Stage75_GetEggMoves", "continuation_thumb": "0x080451F5"},
+      {"name": "TryGenerateWildMon", "address": "0x080826D8", "width": 8, "parent_hex": "004b1847bd414109", "target": "Stage75_TryGenerateWildMonAdapter"},
+      {"name": "GetMoveRelearnerMoves", "address": "0x091141D4", "width": 8, "parent_hex": "004b1847a9a05309", "target": "Stage75_GetMoveRelearnerMoves"},
+      {"name": "BuildLearnableMoveset", "address": "0x091143B8", "width": 8, "parent_hex": "004b184715a15309", "target": "Stage75_BuildLearnableMoveset"}
+    ],
+    "item_script_pointer": {"address": "0x092D05B4", "parent_hex": "34a65309", "target": "Stage75_ItemScript"}
+  },
+  "runtime_abi": {
+    "stage73_symbols": {
+      "Stage73_SharedIndex": "0x09534C9E",
+      "Stage73_SharedMoves": "0x0953594A",
+      "Stage73_ReminderIndex": "0x09538088",
+      "Stage73_ReminderMoves": "0x09538D34"
+    },
+    "stage74_symbols": {
+      "Stage74_MachineIndex": "0x0953A89A",
+      "Stage74_MachineMoves": "0x0953B546",
+      "Stage74_TutorIndex": "0x09548294",
+      "Stage74_TutorMoves": "0x09548F40",
+      "Stage74_PreservationIndex": "0x09549222",
+      "Stage74_PreservationMoves": "0x09549ECE",
+      "Stage74_GetMoveRelearnerMoves": "0x0953A0A9",
+      "Stage74_BuildLearnableMoveset": "0x0953A115",
+      "Stage74_PrepareMachinePages": "0x0953A1D5",
+      "Stage74_CommitMachinePage": "0x0953A1FD",
+      "Stage74_SelectedMachinePageHasMoves": "0x0953A23D",
+      "Stage74_OpenArchiveModeMenu": "0x0953A299",
+      "Stage74_OpenMachinePageMenu": "0x0953A2B1",
+      "Stage74_TextChooseMon": "0x0953A83C",
+      "Stage74_TextNoMoves": "0x0953A850",
+      "Stage74_TextEggRejected": "0x0953A864",
+      "Stage74_TextArchiveLocked": "0x0953A870",
+      "Stage74_TextPageNoMoves": "0x0953A888"
+    },
+    "engine_thumb": {
+      "GetMonData": {"address": "0x0803F355", "parent_hex": "10b5041c0b1c181c"},
+      "SetMonData": {"address": "0x0803FA71", "parent_hex": "10b5031c0c1c201c"},
+      "CalculateMonStats": {"address": "0x0803DBE9", "parent_hex": "004908479d930d09"},
+      "TryGenerateWildMonParent": {"address": "0x094141BD", "parent_hex": "10b5064b00f00ef8"}
+    },
+    "existing_scripts": {
+      "CheckContext": {"address": "0x092CFFB0", "parent_hex": "93200a4b70b50001"},
+      "ContextReject": {"address": "0x092D09F8", "parent_hex": "0f0041072d090904"},
+      "NormalRemember": {"address": "0x092D07A0", "parent_hex": "2321012d090f0049"},
+      "Forget": {"address": "0x092D08FC", "parent_hex": "2321012d090f0055"},
+      "Egg": {"address": "0x092D0818", "parent_hex": "2399022d09210d80"}
+    }
+  },
+  "allocation": {
+    "name": "modernization_rockruff_own_tempo_stage75_payload",
+    "region": "integration_modules",
+    "alignment": 16,
+    "owner": "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75",
+    "purpose": "Own Tempo Rockruff internal form species tables, evolution, breeding, acquisition, and P03 owner runtime"
+  },
+  "outputs": {
+    "rom": "build/stages/75_modernization_rockruff_own_tempo.gba",
+    "metadata": "build/stages/75_modernization_rockruff_own_tempo.json",
+    "allocation": "build/stages/75_modernization_rockruff_own_tempo_allocation.json",
+    "incremental_bps": "build/patches/stage74-to-stage75-modernization-rockruff-own-tempo.bps",
+    "payload": "generated/runtime/modernization_rockruff_own_tempo_stage75.bin",
+    "symbols": "generated/runtime/modernization_rockruff_own_tempo_stage75_symbols.json",
+    "audit": "generated/runtime/modernization_rockruff_own_tempo_stage75_audit.json",
+    "route_audit": "generated/runtime/modernization_rockruff_own_tempo_stage75_route_audit.json",
+    "contract": "content/modernization/rockruff_own_tempo_stage75_contract.json",
+    "checkpoint": "content/modernization/rockruff_own_tempo_stage75_checkpoint.json"
+  }
+}

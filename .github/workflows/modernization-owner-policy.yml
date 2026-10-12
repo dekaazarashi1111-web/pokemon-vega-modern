@@ -1,0 +1,100 @@
+name: modernization-owner-policy
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - content/modernization/p08_owner_approved_policy.json
+      - tools/modernization_owner_policy.py
+      - tests/test_modernization_owner_policy.py
+      - .github/scripts/integrate_owner_policy.py
+      - .github/workflows/modernization-owner-policy.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: modernization-owner-policy-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  integrate-and-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+      - name: Preserve originals and record inherited guard outcome
+        run: |
+          set -euo pipefail
+          mkdir -p .local/owner-policy
+          git rev-parse HEAD > .local/owner-policy/source-head.txt
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess
+          root=pathlib.Path('.')
+          tracked=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          names=[p for p in tracked if pathlib.Path(p).suffix.lower() in ('.gba','.sav','.srm')]
+          names+=['config/active_play_baseline.json','design/active_play_baseline.md','config/modernization_p03_stage74_supply.json','scripts/guard_private_files.py','content/modernization/p08_p03_forgetting_acceptance.json']
+          data={p:hashlib.sha256((root/p).read_bytes()).hexdigest() for p in names}
+          (root/'.local/owner-policy/protected-before.json').write_text(json.dumps(data,sort_keys=True))
+          proc=subprocess.run(['python3','scripts/guard_private_files.py'],capture_output=True)
+          assert proc.returncode in (0,1)
+          (root/'.local/owner-policy/guard-before.json').write_text(json.dumps({'returncode':proc.returncode,'stdout_sha256':hashlib.sha256(proc.stdout).hexdigest(),'stderr_sha256':hashlib.sha256(proc.stderr).hexdigest()},sort_keys=True))
+          PY
+      - name: Integrate approved conditions without rewriting historical sources
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/integrate_owner_policy.py > .local/owner-policy/integration.json
+      - name: Owner-policy and existing forty acceptance regressions
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_modernization_owner_policy.py -v > .local/owner-policy/policy-tests.log 2>&1
+          python3 -m unittest discover -s tests -p test_modernization_remaining_routes.py -v > .local/owner-policy/remaining-tests.log 2>&1
+          python3 -m unittest discover -s tests -p test_modernization_p08_forgetting_evidence.py -v > .local/owner-policy/forgetting-tests.log 2>&1
+          python3 scripts/record_modernization_p03_forgetting.py > .local/owner-policy/acceptance.json
+          python3 scripts/validate_task_graph.py > .local/owner-policy/task-graph.log
+          git diff --check
+      - name: Append tested decisions and commit only declared paths
+        env:
+          SOURCE_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess
+          root=pathlib.Path('.');out=root/'.local/owner-policy'
+          text='\n\n## USER-20260910-OWNER-POLICY\n\n殿堂入り後・Bagのわざメモリーから無料を正式採用。publicは所有者の意図した現行設定であり、privateとする過去の説明を訂正。非公開化・既存原本移動は完了条件にしない。料金・公開状態の判断を現在の残件生成に接続し、履歴受入は不変。\n検証: owner-policy 11件、既存remaining-routes 24件、forgetting-evidence 16件、原本照合・task graph・差分検査。ROM変更0、新規mGBA実行0。製品完成、全工程受入、PRマージ、実プレイ基準変更は行わない。\nSource HEAD: `'+os.environ['SOURCE_HEAD']+'`。Actions run: `'+os.environ['GITHUB_RUN_ID']+'`。\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              p=root/name;old=p.read_text()
+              if '## USER-20260910-OWNER-POLICY' not in old:p.write_text(old+text)
+          before=json.loads((out/'protected-before.json').read_text())
+          assert all(hashlib.sha256((root/p).read_bytes()).hexdigest()==sha for p,sha in before.items())
+          allowed={'scripts/record_modernization_p03_forgetting.py','scripts/record_modernization_final_acceptance.py','docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md','docs/FINAL_INTEGRATION_HANDOFF_JA.md','design/run_log.md','design/version_log.md','content/modernization/p08_remaining_work.json'}
+          changed=set(subprocess.check_output(['git','diff','--name-only']).decode().splitlines())
+          assert changed<=allowed,'unexpected source changes'
+          subprocess.run(['git','add','--',*sorted(changed)],check=True)
+          proc=subprocess.run(['python3','scripts/guard_private_files.py'],capture_output=True)
+          after={'returncode':proc.returncode,'stdout_sha256':hashlib.sha256(proc.stdout).hexdigest(),'stderr_sha256':hashlib.sha256(proc.stderr).hexdigest()}
+          assert after==json.loads((out/'guard-before.json').read_text()),'full guard findings changed'
+          (out/'guard-after.json').write_text(json.dumps(after,sort_keys=True))
+          (out/'result.json').write_text(json.dumps({'status':'OWNER_POLICY_INTEGRATED_TESTED_NOT_RELEASE','tests':51,'protected_files_unchanged':len(before),'inherited_guard':after,'guard_disabled':False,'rom_changes':0,'new_emulator_runs':0,'release_ready':False},sort_keys=True,indent=2)+'\n')
+          PY
+          git diff --cached --check
+          git fetch origin codex/modernization-followup-20260908
+          test "$(git rev-parse FETCH_HEAD)" = "$SOURCE_HEAD"
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'USER-OWNER-POLICY: adopt free postgame archive and intentional public state in current acceptance'
+            git push origin HEAD:codex/modernization-followup-20260908
+          fi
+          git rev-parse HEAD > .local/owner-policy/final-head.txt
+          python3 scripts/record_modernization_p03_forgetting.py > .local/owner-policy/final-head-acceptance.json
+          python3 -m unittest discover -s tests -p test_modernization_owner_policy.py -v > .local/owner-policy/final-head-policy-tests.log 2>&1
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: owner-policy-acceptance
+          path: .local/owner-policy/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

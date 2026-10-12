@@ -1,0 +1,314 @@
+{
+  "accepted_case_keys": [
+    "existing-earn-0",
+    "existing-earn-1",
+    "existing-earn-2",
+    "existing-earn-3",
+    "rank-0",
+    "rank-1",
+    "rank-2",
+    "rank-3",
+    "rank-4",
+    "simple-earn-0",
+    "simple-earn-1",
+    "simple-earn-2",
+    "simple-earn-3",
+    "spend-0",
+    "spend-1",
+    "spend-2",
+    "spend-3",
+    "spend-4"
+  ],
+  "accepted_case_reruns": 0,
+  "accepted_fresh_cores": 54,
+  "accepted_native_cases": 18,
+  "actions_completion_confirmed": true,
+  "active_baseline_changed": false,
+  "arm_compiles": 0,
+  "candidate": {
+    "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
+    "size": 33554432
+  },
+  "canonical_source": {
+    "binding": {
+      "sha256": "88a14bd79e1c7247b80102c76b48023b8de67dc7cdc6fb526cd1c155393e93c3",
+      "size": 63507
+    },
+    "path": "overlays/research_economy_v1/research_economy_v1.c"
+  },
+  "earn": {
+    "applicability": "Only the unused Bag-capacity literal differs; CreditActivity/recover_pending/persist_phase bodies and all inputs are unchanged. Not executed again on the new candidate.",
+    "applies_to": {
+      "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
+      "size": 33554432
+    },
+    "cases": [
+      "existing-earn-0",
+      "existing-earn-1",
+      "existing-earn-2",
+      "existing-earn-3",
+      "simple-earn-0",
+      "simple-earn-1",
+      "simple-earn-2",
+      "simple-earn-3"
+    ],
+    "measured_candidate": {
+      "sha256": "23d584095f7bc0691e1582da447d6cd9a389d8698e061ea2de9f6eac03b63f48",
+      "size": 33554432
+    },
+    "run_id": 36229142708,
+    "source_head": "625987cd510dcf379be575b3702d3bb9a80816cf",
+    "verification": {
+      "binding": {
+        "sha256": "a8449922b56f33a959fd7e89a5ce643c954ccec6e2b8793fef0fe00bc66d02e6",
+        "size": 39051
+      },
+      "path": "content/modernization/pr16_research_save_impact_evidence/36231053062/earn-verification.json"
+    }
+  },
+  "evidence_manifest": {
+    "binding": {
+      "sha256": "755c363ef54965c8fe3bdc35434427813f8e4924bce6a167d3b2f79527d6e74f",
+      "size": 26176
+    },
+    "path": "content/modernization/pr16_research_save_impact_evidence/36231053062/evidence-manifest.json"
+  },
+  "excluded_scopes": [
+    "normal transaction UI",
+    "all catalog rows",
+    "new save / V1 migration",
+    "phase0 failure injection",
+    "map3/19 excluded130 rows"
+  ],
+  "historical_actions_guard_processes": 14,
+  "historical_actions_host_compiles": 2,
+  "historical_actions_native_processes": 26,
+  "issue19_complete": false,
+  "items": {
+    "cases": [
+      "rank-0",
+      "rank-1",
+      "rank-2",
+      "rank-3",
+      "rank-4",
+      "spend-0",
+      "spend-1",
+      "spend-2",
+      "spend-3",
+      "spend-4"
+    ],
+    "measured_candidate": {
+      "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
+      "size": 33554432
+    },
+    "run_id": 36229762846,
+    "source_head": "9cb7ca0a7699fd49f1e217cf8204fea682d5dbb8",
+    "verification": {
+      "binding": {
+        "sha256": "c59578bae9ee624c90fbf1f211fddca77db3325ac4b3800c3aeeb001d3dd5603",
+        "size": 40134
+      },
+      "path": "content/modernization/pr16_research_save_impact_evidence/36231053062/items-verification.json"
+    }
+  },
+  "local_diagnostics_ja": "別途ローカルfixture/IRQ/scheduler/Bag境界診断あり。正式18件やActions26processへ混入せず、タスク全体のnative数0とは主張しない。",
+  "new_unit_tests": 12,
+  "normal_transaction_ui_accepted": false,
+  "preserved_formal_acceptance": [
+    "BP/P08",
+    "special-wild fishing/hidden UI 2 cases",
+    "active play baseline"
+  ],
+  "record_receipt": {
+    "binding": {
+      "sha256": "97c8964f2d4071a13bc04696ef95ff384442ef8ae12dffcfecf7adce0e398cbb",
+      "size": 16215
+    },
+    "path": "content/modernization/pr16_research_save_impact_evidence/36231053062/receipt.json",
+    "run_id": 36231053062,
+    "source_head": "43cd63bbba977f5df07b4efc16106706ee1acd51"
+  },
+  "record_source_bindings": {
+    ".github/workflows/pr16-research-bag-native-20260926.yml": {
+      "sha256": "43988c73c108cec3caa77d453636a090e424c41ee3ee6e0d066953b14623c20a",
+      "size": 1068
+    },
+    ".github/workflows/pr16-research-save-impact-20260926.yml": {
+      "sha256": "27fe320908a435283e7dd02a2eebf7bb80b112cc5f32abff1ab3d9e93b4c7603",
+      "size": 5361
+    },
+    ".github/workflows/pr16-research-save-impact-native-20260926.yml": {
+      "sha256": "f4efa2aa5b39560cdc6e3149cee257506bf69de96ed4d06b896c1964b9809087",
+      "size": 9601
+    },
+    ".github/workflows/pr16-research-save-impact-record-20260926.yml": {
+      "sha256": "14d5666e33af1511aeb34b536ad9c3ce6e58571e4db2975edace17f4833a99f4",
+      "size": 3234
+    },
+    "config/research_economy_v1.json": {
+      "sha256": "7e92079158303a125358ae6fa49c231f6085b2ca0a335d5f0e8bb6c55db2ed8d",
+      "size": 9388
+    },
+    "overlays/research_economy_v1/research_economy_v1.c": {
+      "sha256": "88a14bd79e1c7247b80102c76b48023b8de67dc7cdc6fb526cd1c155393e93c3",
+      "size": 63507
+    },
+    "overlays/research_economy_v1/research_economy_v1.h": {
+      "sha256": "3216824bad136a1ce3c886ecdbc3e2057970d3439d9bcd2272bece617c7c9021",
+      "size": 3743
+    },
+    "scripts/common.py": {
+      "sha256": "adeee991aef21b5bbae6bacdf05cb7e0a8e0c120811d325dcc01de065ea921d3",
+      "size": 9326
+    },
+    "scripts/guard_private_files.py": {
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905",
+      "size": 5443
+    },
+    "scripts/pr16_learnset_runtime_record.py": {
+      "sha256": "978c90346dce45544406174ff473c7cc2a016491938fce1f6f5a5a7ad4dfcca9",
+      "size": 17882
+    },
+    "scripts/pr16_research_bag_actions.py": {
+      "sha256": "785b1ec81ede3e50e673eb9f1a0861e6240048e7409f29d30d5331351527f5b8",
+      "size": 8168
+    },
+    "scripts/pr16_research_bag_delegate.py": {
+      "sha256": "9964a15ebf2fcb8a14145766fd9c89157ef98a525362832537a12774ecfaf7ad",
+      "size": 6509
+    },
+    "scripts/pr16_research_public_evidence.py": {
+      "sha256": "85f29aedeeda14a5d216366dfb3300e8470809e2be006887976f5eee07f13619",
+      "size": 6053
+    },
+    "scripts/pr16_research_save_delegate.py": {
+      "sha256": "ed64cc810b7ad05da32b68827d96e54e39eeb04d8eeb65302f07a4ef54676474",
+      "size": 3372
+    },
+    "scripts/pr16_research_save_impact.py": {
+      "sha256": "c7bb583ba27d062c0bbf417a72fd846eff597d78bd64fc971d237c62c1c543e7",
+      "size": 20035
+    },
+    "scripts/pr16_research_save_impact_record.py": {
+      "sha256": "c5587df9b085491036d2e7ebf6e129692324424d5a4aff13e4f7e031c003d518",
+      "size": 21173
+    },
+    "tests/test_pr16_research_public_evidence.py": {
+      "sha256": "2ec09ed98b29e11c794358b33b8e10c3a79fb61a6812475cc28c97161ab419cf",
+      "size": 3722
+    },
+    "tests/test_pr16_research_save_impact.py": {
+      "sha256": "e09a1928aa8384d7030f489ea32de830b90c964c2613c17405ac2796395ea40e",
+      "size": 16945
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_pr16_research_save_impact.c": {
+      "sha256": "b57e58a94f208f6f3ce8418b850d9cd03de203c12bb73a0cd0cdf6fb7968b78f",
+      "size": 16977
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    }
+  },
+  "release_ready": false,
+  "repair": {
+    "affected_cases": [
+      "spend",
+      "rank"
+    ],
+    "after": "099a0908",
+    "arm_compiles": 0,
+    "before": "49990908",
+    "candidate": {
+      "sha256": "4aee03e8ec0135efa52d8d2b41edf61637ddc65e4be9f1a0b60a2e1c23dbefe7",
+      "size": 33554432
+    },
+    "canonical_source": "overlays/research_economy_v1/research_economy_v1.c",
+    "changed_bytes": 2,
+    "context_sha256": "25d16958732a8b0744849dd2296583488534a8b063b09941d8d197febdf2bad0",
+    "live_callers": [
+      "PurchaseByIndex 0x093BE450",
+      "ClaimNextRankReward 0x093BE628"
+    ],
+    "native_target_bindings": [
+      {
+        "offset": 629064,
+        "sha256": "18f76837d0f8ddc8e7067e101442d8d1f782d40fac38d6baf026f072a433d7a0",
+        "size": 108
+      },
+      {
+        "offset": 629256,
+        "sha256": "b1eabb958e6c8b96a4093e541a8c9c496b3cb0974cc8ae7be83b0a8102d2dd89",
+        "size": 132
+      },
+      {
+        "offset": 628948,
+        "sha256": "46cf629140fc9867c19229fe01aa23fd2b294ad83c637eb021ad061d3c8569ed",
+        "size": 116
+      }
+    ],
+    "new_delegate": "CheckBagHasSpace 0x08099A09",
+    "offset": 20706608,
+    "old_delegate": "CheckBagHasItem 0x08099949",
+    "outside_declared_changes": 0,
+    "parent": {
+      "sha256": "23d584095f7bc0691e1582da447d6cd9a389d8698e061ea2de9f6eac03b63f48",
+      "size": 33554432
+    },
+    "rollback_verified": true,
+    "schema_version": 1,
+    "scope_ja": "空き確認だけを所持確認から分離。旧候補のearn8件は同一実行bodyとして再実行せず限定適用。spend/rankは修正候補で新規検証。通常取引UI/全catalog/Issue19/releaseは受入しない。",
+    "source_after": {
+      "sha256": "88a14bd79e1c7247b80102c76b48023b8de67dc7cdc6fb526cd1c155393e93c3",
+      "size": 63507
+    },
+    "source_before": {
+      "sha256": "3f71ea1d9f308c652e70dd863b601ad39a9c648ca25bf55932b4966fa4246e62",
+      "size": 63507
+    },
+    "unaffected_calls": [
+      "CreditActivity",
+      "recover_pending",
+      "persist_phase",
+      "wild capture",
+      "manual save"
+    ]
+  },
+  "reused_unit_tests": 68,
+  "schema_version": 1,
+  "scope": "SCHEDULED_PRODUCTION_TRANSACTION_SERVICES_NOT_NORMAL_TRANSACTION_UI",
+  "scope_audit": {
+    "binding": {
+      "sha256": "eccd4d69db647670a29d806167898760987abbb8f29b9a77fb203b9ffee8cd18",
+      "size": 3188
+    },
+    "path": "content/modernization/pr16_research_save_impact_evidence/36231053062/scope-audit.json"
+  },
+  "session_start_head": "be751c120cea6bdaa58a6fa5240ab40a942e1cf6",
+  "status": "PASS_RESEARCH_SAVE_IMPACT_18_SCOPED",
+  "task": "USER-20260926-RESEARCH-SAVE-IMPACT",
+  "terminal_receipt": {
+    "binding": {
+      "sha256": "77936e6a8ca8d8996ce0ef6e57da2c1abf8f0d8d8e75242464241fdd5aaefe53",
+      "size": 8648
+    },
+    "path": "content/modernization/pr16_research_save_impact_evidence/36231114319/receipt.json",
+    "run_id": 36231114319,
+    "source_head": "fb44f475d954b200f9a7ffdddc90f4b2a137ca92"
+  },
+  "unit_reuse": {
+    "binding": {
+      "sha256": "05d8c44b4e42e4f584675ee416d48a2941f848268dd1de832658e5ceb1a01c4d",
+      "size": 2840
+    },
+    "path": "content/modernization/pr16_research_save_impact_evidence/36231053062/unit-reuse.json"
+  }
+}

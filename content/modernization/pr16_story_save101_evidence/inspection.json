@@ -1,0 +1,182 @@
+{
+  "status": "STATIC_SAVE101_RELEASED_WEST_REGION_CONNECTION",
+  "preparation": {
+    "size": 37535,
+    "sha256": "d1eeb2c1ed8e35efee5e951c4aed8897b7a46ec5c8fc784c91610643201e64dc"
+  },
+  "route": [
+    [
+      4,
+      17
+    ],
+    [
+      3,
+      17
+    ],
+    [
+      2,
+      17
+    ],
+    [
+      1,
+      17
+    ],
+    [
+      0,
+      17
+    ]
+  ],
+  "terrain": [
+    {
+      "map": [
+        3,
+        2
+      ],
+      "xy": [
+        4,
+        17
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0
+    },
+    {
+      "map": [
+        3,
+        2
+      ],
+      "xy": [
+        3,
+        17
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0
+    },
+    {
+      "map": [
+        3,
+        2
+      ],
+      "xy": [
+        2,
+        17
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0
+    },
+    {
+      "map": [
+        3,
+        2
+      ],
+      "xy": [
+        1,
+        17
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0
+    },
+    {
+      "map": [
+        3,
+        2
+      ],
+      "xy": [
+        0,
+        17
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0
+    },
+    {
+      "map": [
+        3,
+        24
+      ],
+      "xy": [
+        53,
+        13
+      ],
+      "collision": 0,
+      "elevation": 3,
+      "behavior": 0
+    }
+  ],
+  "connection_owner": {
+    "source": {
+      "direction": 3,
+      "offset": 4,
+      "target_map": [
+        3,
+        24
+      ]
+    },
+    "reciprocal": {
+      "direction": 4,
+      "offset": -4,
+      "target_map": [
+        3,
+        2
+      ]
+    },
+    "source_edge": [
+      0,
+      17
+    ],
+    "input_target": [
+      -1,
+      17
+    ],
+    "target_candidate": [
+      53,
+      13
+    ],
+    "button": 32,
+    "direction": 3,
+    "classification": "CONTIGUOUS_MAP_CONNECTION_NOT_WARP_EVENT",
+    "native_accepted": false
+  },
+  "milestone_contract": {
+    "schema_version": 1,
+    "id": "MILL_CITY_RELEASED_WEST_CONNECTION",
+    "kind": "region_connection",
+    "reason_ja": "ダグトリオ解放後に初めて使う地域接続の通常入力/保存再開。",
+    "origin": {
+      "map": [
+        3,
+        2
+      ],
+      "xy": [
+        4,
+        17
+      ]
+    },
+    "endpoint": {
+      "map": [
+        3,
+        24
+      ],
+      "xy": [
+        53,
+        13
+      ],
+      "facing": 3
+    },
+    "ordinary_battle_checkpoint": false,
+    "allowed_battles": {},
+    "resource_floor": {
+      "hp": 1,
+      "usable_pp": 1
+    },
+    "max_battles": 0,
+    "diagnostic_stop_is_milestone": false,
+    "owner_plan": "docs/PR16_STORY_ACCELERATED_ACCEPTANCE_PLAN_JA.md",
+    "native_battle_continuation_accepted": false
+  },
+  "binding_count": 48,
+  "native_route_accepted": false
+}

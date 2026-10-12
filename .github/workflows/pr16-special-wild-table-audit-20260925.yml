@@ -1,0 +1,109 @@
+name: pr16-special-wild-table-audit-20260925
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-special-wild-table-audit-20260925.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-special-wild-table-audit-20260925
+  cancel-in-progress: false
+jobs:
+  special-wild-table-audit:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 受入済みを再実行せず保存候補の研究表差分だけ抽出
+        run: |
+          python3 -B - <<'PY'
+          import datetime, json, os, pathlib, struct, subprocess, sys
+          sys.path.insert(0,'scripts')
+          import pr16_special_wild_repair as s
+          import pr16_learnset_battle as b
+          import pr16_learnset_entry_repair as e
+          import pr16_learnset_wild_repair as w
+          from pr16_learnset_wiki_actions import current
+          from pr16_learnset_compact_record import publish_resume
+          from pr16_wiki_reconcile import fetch
+          head=current();work=pathlib.Path('.local/pr16-special-wild-table-audit');work.mkdir(parents=True)
+          cp=s.load(s.ROOT/s.CP)
+          s.need(cp['run_id']==36155273674 and cp['new_unit_tests']==17 and cp['native_processes']==0 and cp['failure']['message']=='exact authored846/QOL binary table','saved failure boundary')
+          done=fetch('actions/runs/36155273674');s.need(done['status']=='completed' and done['conclusion']=='failure','prior terminal failure')
+          b.WORK=work/'restore-root';b.WORK.mkdir();parent=b.restore();rom,_=e.apply(parent)
+          natural=s.load(s.ROOT/s.old.BASE/'pr16_learnset_natural_checkpoint.json');rom=w.replay(rom,natural['wild_repair']);a=s.old.anchors(rom)
+          declared=s.research_rows();expected=[r['fields'] for r in declared]
+          packed=b''.join(struct.pack('<BBH8B',*r) for r in expected)
+          start,end=a['qol_start']-0x08000000,a['qol_end']-0x08000000
+          def hits(value,lo,hi):
+              result=[];at=lo
+              while True:
+                  at=rom.find(value,at,hi)
+                  if at<0:break
+                  result.append(at);at+=1
+              return result
+          candidates=[]
+          for at in range(start,end-len(packed)+1,2):
+              # Row address candidates only; never accept by score alone.
+              first=list(struct.unpack_from('<BBH8B',rom,at))
+              if first[0:2]!=expected[0][0:2] or first[3:5]!=expected[0][3:5]:continue
+              probe=[list(struct.unpack_from('<BBH8B',rom,at+12*i)) for i in range(16)]
+              if sum(row[:2]==want[:2] and row[3:5]==want[3:5] for row,want in zip(probe,expected))<12:continue
+              actual=[list(struct.unpack_from('<BBH8B',rom,at+12*i)) for i in range(846)]
+              if not all(0<r[2]<1671 and 1<=r[3]<=r[4]<=100 and r[5]<=31 and r[6]<=100 and r[7]<=100 and r[9]<=16 and r[10]<=1 for r in actual):continue
+              refs=hits(struct.pack('<I',0x08000000+at),start,at)
+              if not refs:continue
+              score=sum(x==y for row,want in zip(actual,expected) for x,y in zip(row,want))
+              diffs=[{'index':i,'research_key':declared[i]['research_key'],'expected':want,'actual':row} for i,(row,want) in enumerate(zip(actual,expected)) if row!=want]
+              candidates.append({'offset':at,'score':score,'literal_refs':refs,'identity':s.identity(rom[at:at+len(packed)]),'differences':diffs,'first':actual[:3],'last':actual[-3:]})
+          candidates.sort(key=lambda c:-c['score'])
+          result={'source_head':head,'run_id':int(os.environ['GITHUB_RUN_ID']),'parent_run':36155273674,'parent_conclusion':'failure','candidate':s.old.CANDIDATE,'anchors':a,'expected':s.identity(packed),'whole_rom_exact_matches':hits(packed,0,len(rom)),'first_row_matches':hits(packed[:12],start,end),'candidates':candidates[:3],'new_native_runs':0,'new_unit_tests':0,'new_host_compiles':0,'new_arm_compiles':0,'rom_changes':0,'actions_completion_confirmed':False,'runtime_accepted':False,'issue19_complete':False,'release_ready':False}
+          path='content/modernization/pr16_special_wild_research_table_audit.json';s.need(not pathlib.Path(path).exists(),'no duplicate audit');s.write(path,result)
+          state=s.load(s.ROOT/s.old.STATE)
+          state['special_wild_table_audit']={'path':path,'run_id':result['run_id'],'source_head':head,'native_runs':0}
+          state['next_action']['read_paths']=[path,s.GUIDE,s.CP,s.SELF]
+          state['bp']['current_stop']='Issue19: native起動前の研究表byte照合差分を保存。監査JSONから未成功経路だけ再開。'
+          for p in (path,'.github/workflows/pr16-special-wild-table-audit-20260925.yml'):state['source_bindings'][p]=s.identity(pathlib.Path(p).read_bytes())
+          state['logs_synchronized']=True;publish_resume(state)
+          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          note=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: {s.TASK} / 研究表byte差分の限定監査\n- Version: issue19-special-wild-table-audit-v1\n- Status: DONE（読取監査のみ、特殊技未受入）\n- Summary: 36155273674は17新unit成功、native/host0のまま研究表一致gateで停止。原失敗を維持しliteral参照付き候補表の差分だけ保存。\n- Files changed: 専用監査JSON/Workflow、固定引継ぎMD/JSON、両ログ。\n- Verify: private ROM改変0、native/unit/host/ARM再実行0。全体Issue19/release未完。\n- Commit: 同branch非force push、反映先headをartifactで照合。\n- Network: 保存済みGitHub artifact/Actionsの読取のみ。\n'
+          for p in ('design/run_log.md','design/version_log.md'):
+              with pathlib.Path(p).open('a') as f:f.write(note)
+          owned={path,s.old.STATE,s.old.DOC,'design/run_log.md','design/version_log.md'}
+          subprocess.run(['git','add','--',*sorted(owned)],check=True)
+          import pr16_learnset_runtime_record as g
+          g.START=head;g.CODE=set();g.OWNED=owned;g.guard()
+          s.write(work/'summary.json',result)
+          PY
+      - name: 整合検証・同branch非force commit/push
+        run: |
+          set -euo pipefail
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          git diff --cached --check
+          branch='codex/modernization-followup-20260908'
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260925-SPECIAL-WILD: 実ROM研究表の差分監査と引継ぎ・両ログを保存（再実行0）'
+          git push origin "HEAD:$branch"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$sha"
+          echo "$sha" >.local/pr16-special-wild-table-audit/reflected-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-special-wild-table-audit
+          path: |
+            .local/pr16-special-wild-table-audit/summary.json
+            .local/pr16-special-wild-table-audit/reflected-head.txt
+          retention-days: 30
+          if-no-files-found: error

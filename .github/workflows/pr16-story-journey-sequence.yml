@@ -1,0 +1,106 @@
+name: pr16-story-journey-sequence
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-story-journey-sequence.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-story-journey-sequence
+  cancel-in-progress: false
+jobs:
+  boundary:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Changed boundary only and immutable acceptance context
+        run: |
+          set -euo pipefail
+          test "$GITHUB_RUN_ATTEMPT" = 1
+          mkdir -p .local/pr16-journey-sequence
+          python3 -B scripts/pr16_resume.py check
+          python3 -B -m unittest discover -s tests -p 'test_pr16_story_journey*.py' -v > .local/pr16-journey-sequence/unit.txt 2>&1
+          cat .local/pr16-journey-sequence/unit.txt
+      - name: Record 28 source checks without replaying native cases
+        run: |
+          python3 -B - <<'PY'
+          import datetime,hashlib,json,os,pathlib,subprocess,sys
+          root=pathlib.Path.cwd();sys.path.insert(0,str(root/'scripts'))
+          import pr16_resume as r
+          from pr16_learnset_compact_record import publish_resume
+          s=r.validate(root)
+          cp='content/modernization/pr16_story_journey_sequence_checkpoint.json'
+          evidence='content/modernization/pr16_story_journey_sequence_unit.txt'
+          wf='.github/workflows/pr16-story-journey-sequence.yml'
+          sources=['scripts/pr16_story_journey_boundaries.py','tests/test_pr16_story_journey_boundaries.py','tests/test_pr16_story_journey_sequence.py',wf]
+          unit=(root/'.local/pr16-journey-sequence/unit.txt').read_bytes()
+          assert unit.count(b' ... ok\n')==28 and b'\nOK\n' in unit and b'skipped' not in unit
+          assert not (root/cp).exists()
+          identity=lambda b:dict(size=len(b),sha256=hashlib.sha256(b).hexdigest())
+          result=dict(schema_version=1,task='USER-20260928-STORY-SAVE10',status='PASS_JOURNEY_SEQUENCE_SCOPED',
+              source_head=os.environ['GITHUB_SHA'],run_id=int(os.environ['GITHUB_RUN_ID']),focused_tests=28,
+              new_sequence_tests=16,changed_boundary_regression_tests=12,development_test_executions=16,
+              new_native_processes=0,accepted_native_reruns=0,rom_changes=0,active_baseline_changed=False,
+              ordinary_save10_accepted=False,release_ready=False,actions_completion_confirmed=False,
+              scope_ja='連続観測の欠落/重複/逆行/型/範囲拒否と戦闘終端の分類のみ。既存12検査は変更された境界関数への直接影響回帰。新ゲーム区間やSave10の受入ではない。',
+              unit=identity(unit),source_bindings={p:identity((root/p).read_bytes()) for p in sources})
+          (root/evidence).write_bytes(unit)
+          (root/cp).write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+          s['story_journey_sequence']=dict(path=cp,status=result['status'],source_head=result['source_head'],run_id=result['run_id'],focused_tests=28)
+          for p in sources+[cp,evidence]:s['source_bindings'][p]=identity((root/p).read_bytes())
+          additions=['content/modernization/pr16_story_save10_working.json','docs/PR16_STORY_SAVE10_WIP_JA.md',cp]
+          s['next_action']['read_paths']=list(dict.fromkeys(additions+s['next_action']['read_paths']))
+          note='Save10の前回WIPに通常Save/独立Continue終端はない。回収できる正式親はSave9 artifact10963436148。WIPの敗北を勝利とせず、観測境界28検査をゲーム進行受入と混同しない。'
+          if note not in s['do_not_repeat']:s['do_not_repeat'].insert(0,note)
+          s['logs_synchronized']=True
+          publish_resume(s)
+          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20260928-STORY-SAVE10 / 観測列境界の完成\n- Version: story-journey-sequence-v1\n- Status: DONE（境界検査のみ。Save10/用品/トレーナー/全storyは未受入）\n- Summary: 欠落・重複・逆行・不正型・範囲を拒否。同frame観測と残留fieldを新規勝利にしない。前回WIPの敗北記述とSave9正式受入を保全。\n- Files changed: 境界source、新規16検査、28検査原本/checkpoint、固定引継ぎMD/JSON、両ログ。\n- Verify: 新規16 + 変更関数に直接影響する既存12 = 28 PASS。開発16 PASSとは別会計。このworkflowのnative/ROM変更/accepted native再実行0。resume/task graph/scoped index/diff確認。既存一般CIのcapacity原本failureは未解決、全体guard PASSは主張しない。\n- Commit: WIP5481f3c2024c57247dcdae493c2d490d448fe30c、検証source={os.environ["GITHUB_SHA"]}、run={os.environ["GITHUB_RUN_ID"]}。記録を含むcommitを同branchへ非force push。\n- Network: GitHubのみ。merge/release/baseline変更0。\n'
+          logs=['design/run_log.md','design/version_log.md']
+          for p in logs:
+              with (root/p).open('a',encoding='utf-8') as f:f.write(entry)
+          paths=[cp,evidence,r.STATE,r.DOC]+logs
+          (root/'.local/pr16-journey-sequence/owned.json').write_text(json.dumps(paths))
+          subprocess.run(['git','add','--',*paths],check=True)
+          r.validate(root)
+          import pr16_learnset_runtime_record as g
+          g.START=os.environ['GITHUB_SHA'];g.CODE=set();g.OWNED=set(paths);g.guard()
+          PY
+          python3 -B scripts/validate_task_graph.py --check
+          git diff --cached --check
+      - name: Non-force commit and readback
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260928-STORY-SAVE10: 観測境界28検査を限定受入・固定引継ぎと両ログを同期 run=$GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/$branch
+          test "$(git ls-remote origin refs/heads/$branch | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-journey-sequence/completion-head.txt
+          python3 -B - <<'PY'
+          import json,pathlib,subprocess,zipfile
+          root=pathlib.Path.cwd();out=root/'.local/pr16-journey-sequence'
+          with zipfile.ZipFile(out/'record.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in json.loads((out/'owned.json').read_text()):
+                  raw=subprocess.check_output(['git','show','HEAD:'+p]);assert raw==(root/p).read_bytes();z.writestr(p,raw)
+          PY
+          echo "RESULT=DONE TASK=USER-20260928-STORY-SAVE10 VERIFY=28_PASS COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-story-journey-sequence
+          path: .local/pr16-journey-sequence
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

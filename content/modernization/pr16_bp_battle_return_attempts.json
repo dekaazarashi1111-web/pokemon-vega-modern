@@ -1,0 +1,42 @@
+{
+  "active_baseline_changed": false,
+  "attempts": [
+    {
+      "actual_native_processes": 1,
+      "artifact_id": 10314659211,
+      "canonical_and_latest_previous_actions_reconciled": true,
+      "conclusion_at_checkpoint": "failure",
+      "first_unmatched_condition": "native loss routed to WhiteOut instead of FacilityRuntime_AfterBattle",
+      "job_id": 103703085018,
+      "native_observations": "content/modernization/pr16_bp_battle_return_diagnostic.json",
+      "native_result_verified": true,
+      "observed_stage": "native battle-return step",
+      "run_id": 34749370272,
+      "scope": "FIRST_BATTLE_RETURN_DIAGNOSTIC_NOT_EARNING",
+      "source_tests_passed": 13,
+      "status_at_checkpoint": "completed",
+      "successful_fresh_cores": 0,
+      "tested_head": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
+      "zip": {
+        "sha256": "9fa6bdf3dc7a4ad316788413b61687c90e23882c742ca938388f9e531ad9ed0c",
+        "size": 883756
+      }
+    }
+  ],
+  "branch": "codex/modernization-followup-20260908",
+  "candidate_sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+  "historical_accepted_cases_replayed": 0,
+  "merge_performed": false,
+  "native_bp_earning_accepted": false,
+  "native_bp_spending_accepted": false,
+  "next_ja": "敗北後WhiteOut callbackと失われるfacility script復帰の所有者を候補ROMで固定し、最小修復後だけ影響区間を再検証する。現行bffdの同一敗北診断は再実行しない。",
+  "originals_verified": "content/modernization/pr16_bp_battle_return_evidence/verification.json",
+  "previous_native_diagnostic": 34741232621,
+  "release_ready": false,
+  "retained_accepted_cancel_run": 34733866168,
+  "rom_source_changes": 0,
+  "schema_version": 1,
+  "source_checkpoint": "0689c1d9208b88461974793e47bbfc7c31e36ec6",
+  "starting_head": "10e657f1c57b25d4a2d42428d999908b0895e182",
+  "task": "USER-20260913-BP-FIRST-BATTLE"
+}

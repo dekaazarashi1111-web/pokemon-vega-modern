@@ -1,0 +1,78 @@
+name: PR16 Circus scoped acceptance receipt
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_circus_acceptance.py
+      - tests/test_pr16_circus_acceptance.py
+      - content/modernization/pr16_circus_visual_review.json
+      - .github/workflows/pr16-circus-acceptance.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-suppression
+  cancel-in-progress: false
+jobs:
+  receipt:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 未登録のresume実装bindingを固定入力から修復しsource checkpointを非force保存
+        run: |
+          mkdir -p .local/pr16-circus-acceptance
+          python3 - <<'PYCODE'
+          import hashlib,json,subprocess,sys
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          import pr16_circus_battle25 as b
+          import pr16_ring_compiled_record as guard
+          manifest=json.loads(r'''{"scripts/pr16_circus_acceptance.py":{"before":"4f6ee701082f67bb1a5f1e4b8f0b2d37de1db556cb9c3926c02df1751fc8e133","after":"9cf16632efe68a68b1e6c1ec655f86ac5cee01e6cd64e79851196a6a0a85f241","edits":[["need(state['source_bindings'][path] == identity(prior), 'unexpected prior resume binding')","need(state['source_bindings'].get(path, identity(prior)) == identity(prior), 'unexpected prior resume binding')"],["    value['visual_review'] = verify_screens(zips[1], b.load(REVIEW))","    value['prior_unbound_source_failure'] = dict(run_id=35506544430,conclusion='failure',\n        artifact_id=10603743757,archive_sha256='26d0eb3e4c9009df148c31fe3e79db3e92ff4b05e8290fdb5ee951eb43dca33b',\n        cause_ja='新たにbindingへ追加するresume実装を既登録と仮定したKeyError。既登録はBASE照合、未登録は固定BASEの親を保持して新規登録に修復。',\n        new_emulator_processes=0)\n    value['visual_review'] = verify_screens(zips[1], b.load(REVIEW))"]]}}''')
+          identity=lambda raw:hashlib.sha256(raw).hexdigest()
+          head=b.scope();prepared={}
+          for name,model in manifest.items():
+              raw=Path(name).read_bytes()
+              if identity(raw)==model['after']:continue
+              b.need(identity(raw)==model['before'],'unexpected correction input: '+name)
+              text=raw.decode()
+              for before,after in model['edits']:
+                  b.need(text.count(before)==1,'correction anchor: '+name)
+                  text=text.replace(before,after)
+              raw=text.encode();b.need(identity(raw)==model['after'],'correction output: '+name)
+              prepared[name]=raw
+          if prepared:
+              for name,raw in prepared.items():Path(name).write_bytes(raw)
+              subprocess.run(['git','add','--',*prepared],check=True)
+              guard.BASE,guard.OUT,guard.ALLOWED=head,Path('.local/pr16-circus-acceptance'),set(prepared)
+              guard.guard()
+              subprocess.run(['git','diff','--cached','--check'],check=True)
+              b.scope()
+              subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
+              subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
+              subprocess.run(['git','commit','-m','USER-20260920-CIRCUS-ACCEPTANCE: WIP 未登録実装bindingの追加境界を修復'],check=True)
+              subprocess.run(['git','push','origin','HEAD:refs/heads/'+b.BRANCH],check=True)
+          Path('.local/pr16-circus-acceptance/corrected-source-head.txt').write_text(b.scope()+'\n')
+          PYCODE
+      - name: 完了原本と目視29画面を照合し正式受入・引継ぎ・両ログを非force保存
+        run: |
+          mkdir -p .local/pr16-circus-acceptance
+          python3 scripts/pr16_circus_acceptance.py execute > .local/pr16-circus-acceptance/execute.stdout 2> .local/pr16-circus-acceptance/execute.stderr
+      - name: P08限定読取用tracked textを保存（ROMとsaveは除外）
+        if: always()
+        run: python3 scripts/pr16_circus_acceptance.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-acceptance
+          path: .local/pr16-circus-acceptance/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

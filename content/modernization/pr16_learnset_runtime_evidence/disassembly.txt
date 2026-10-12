@@ -1,0 +1,434 @@
+
+.local/pr16-learnset-runtime/build11/runtime.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+095f9464 <Pr16ResolveLearnsetOwner>:
+ 95f9464:	b530      	push	{r4, r5, lr}
+ 95f9466:	9c03      	ldr	r4, [sp, #12]
+ 95f9468:	2c00      	cmp	r4, #0
+ 95f946a:	d103      	bne.n	95f9474 <Pr16ResolveLearnsetOwner+0x10>
+ 95f946c:	2000      	movs	r0, #0
+ 95f946e:	bc30      	pop	{r4, r5}
+ 95f9470:	bc02      	pop	{r1}
+ 95f9472:	4708      	bx	r1
+ 95f9474:	2501      	movs	r5, #1
+ 95f9476:	426d      	negs	r5, r5
+ 95f9478:	8025      	strh	r5, [r4, #0]
+ 95f947a:	2800      	cmp	r0, #0
+ 95f947c:	d0f6      	beq.n	95f946c <Pr16ResolveLearnsetOwner+0x8>
+ 95f947e:	4d0d      	ldr	r5, [pc, #52]	@ (95f94b4 <Pr16ResolveLearnsetOwner+0x50>)
+ 95f9480:	42a9      	cmp	r1, r5
+ 95f9482:	d1f3      	bne.n	95f946c <Pr16ResolveLearnsetOwner+0x8>
+ 95f9484:	490c      	ldr	r1, [pc, #48]	@ (95f94b8 <Pr16ResolveLearnsetOwner+0x54>)
+ 95f9486:	428a      	cmp	r2, r1
+ 95f9488:	d8f0      	bhi.n	95f946c <Pr16ResolveLearnsetOwner+0x8>
+ 95f948a:	2b08      	cmp	r3, #8
+ 95f948c:	d8ee      	bhi.n	95f946c <Pr16ResolveLearnsetOwner+0x8>
+ 95f948e:	5c80      	ldrb	r0, [r0, r2]
+ 95f9490:	1e41      	subs	r1, r0, #1
+ 95f9492:	2906      	cmp	r1, #6
+ 95f9494:	d8ea      	bhi.n	95f946c <Pr16ResolveLearnsetOwner+0x8>
+ 95f9496:	8022      	strh	r2, [r4, #0]
+ 95f9498:	2804      	cmp	r0, #4
+ 95f949a:	d807      	bhi.n	95f94ac <Pr16ResolveLearnsetOwner+0x48>
+ 95f949c:	2801      	cmp	r0, #1
+ 95f949e:	d107      	bne.n	95f94b0 <Pr16ResolveLearnsetOwner+0x4c>
+ 95f94a0:	2b02      	cmp	r3, #2
+ 95f94a2:	d001      	beq.n	95f94a8 <Pr16ResolveLearnsetOwner+0x44>
+ 95f94a4:	2b05      	cmp	r3, #5
+ 95f94a6:	d1e2      	bne.n	95f946e <Pr16ResolveLearnsetOwner+0xa>
+ 95f94a8:	2004      	movs	r0, #4
+ 95f94aa:	e7e0      	b.n	95f946e <Pr16ResolveLearnsetOwner+0xa>
+ 95f94ac:	2003      	movs	r0, #3
+ 95f94ae:	e7de      	b.n	95f946e <Pr16ResolveLearnsetOwner+0xa>
+ 95f94b0:	2002      	movs	r0, #2
+ 95f94b2:	e7dc      	b.n	95f946e <Pr16ResolveLearnsetOwner+0xa>
+ 95f94b4:	00000687 	.word	0x00000687
+ 95f94b8:	00000686 	.word	0x00000686
+
+095f94bc <read32>:
+ 95f94bc:	7842      	ldrb	r2, [r0, #1]
+ 95f94be:	7803      	ldrb	r3, [r0, #0]
+ 95f94c0:	0212      	lsls	r2, r2, #8
+ 95f94c2:	431a      	orrs	r2, r3
+ 95f94c4:	7883      	ldrb	r3, [r0, #2]
+ 95f94c6:	78c0      	ldrb	r0, [r0, #3]
+ 95f94c8:	041b      	lsls	r3, r3, #16
+ 95f94ca:	4313      	orrs	r3, r2
+ 95f94cc:	0600      	lsls	r0, r0, #24
+ 95f94ce:	4318      	orrs	r0, r3
+ 95f94d0:	4770      	bx	lr
+
+095f94d2 <Pr16ReadLearnsetRuntime>:
+ 95f94d2:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 95f94d4:	b08b      	sub	sp, #44	@ 0x2c
+ 95f94d6:	9305      	str	r3, [sp, #20]
+ 95f94d8:	9b10      	ldr	r3, [sp, #64]	@ 0x40
+ 95f94da:	0006      	movs	r6, r0
+ 95f94dc:	000c      	movs	r4, r1
+ 95f94de:	9204      	str	r2, [sp, #16]
+ 95f94e0:	2b00      	cmp	r3, #0
+ 95f94e2:	d105      	bne.n	95f94f0 <Pr16ReadLearnsetRuntime+0x1e>
+ 95f94e4:	2500      	movs	r5, #0
+ 95f94e6:	0028      	movs	r0, r5
+ 95f94e8:	b00b      	add	sp, #44	@ 0x2c
+ 95f94ea:	bcf0      	pop	{r4, r5, r6, r7}
+ 95f94ec:	bc02      	pop	{r1}
+ 95f94ee:	4708      	bx	r1
+ 95f94f0:	2300      	movs	r3, #0
+ 95f94f2:	9a10      	ldr	r2, [sp, #64]	@ 0x40
+ 95f94f4:	6013      	str	r3, [r2, #0]
+ 95f94f6:	4b72      	ldr	r3, [pc, #456]	@ (95f96c0 <Pr16ReadLearnsetRuntime+0x1ee>)
+ 95f94f8:	6053      	str	r3, [r2, #4]
+ 95f94fa:	2800      	cmp	r0, #0
+ 95f94fc:	d0f2      	beq.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f94fe:	291f      	cmp	r1, #31
+ 95f9500:	d9f0      	bls.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9502:	f7ff ffdb 	bl	95f94bc <read32>
+ 95f9506:	4b6f      	ldr	r3, [pc, #444]	@ (95f96c4 <Pr16ReadLearnsetRuntime+0x1f2>)
+ 95f9508:	4298      	cmp	r0, r3
+ 95f950a:	d1eb      	bne.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f950c:	7973      	ldrb	r3, [r6, #5]
+ 95f950e:	7932      	ldrb	r2, [r6, #4]
+ 95f9510:	021b      	lsls	r3, r3, #8
+ 95f9512:	4313      	orrs	r3, r2
+ 95f9514:	2b01      	cmp	r3, #1
+ 95f9516:	d1e5      	bne.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9518:	79f3      	ldrb	r3, [r6, #7]
+ 95f951a:	79b1      	ldrb	r1, [r6, #6]
+ 95f951c:	4a6a      	ldr	r2, [pc, #424]	@ (95f96c8 <Pr16ReadLearnsetRuntime+0x1f6>)
+ 95f951e:	021b      	lsls	r3, r3, #8
+ 95f9520:	430b      	orrs	r3, r1
+ 95f9522:	4293      	cmp	r3, r2
+ 95f9524:	d1de      	bne.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9526:	0030      	movs	r0, r6
+ 95f9528:	3018      	adds	r0, #24
+ 95f952a:	f7ff ffc7 	bl	95f94bc <read32>
+ 95f952e:	42a0      	cmp	r0, r4
+ 95f9530:	d1d8      	bne.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9532:	0030      	movs	r0, r6
+ 95f9534:	301c      	adds	r0, #28
+ 95f9536:	f7ff ffc1 	bl	95f94bc <read32>
+ 95f953a:	2800      	cmp	r0, #0
+ 95f953c:	d1d2      	bne.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f953e:	0030      	movs	r0, r6
+ 95f9540:	3008      	adds	r0, #8
+ 95f9542:	f7ff ffbb 	bl	95f94bc <read32>
+ 95f9546:	0007      	movs	r7, r0
+ 95f9548:	0030      	movs	r0, r6
+ 95f954a:	300c      	adds	r0, #12
+ 95f954c:	f7ff ffb6 	bl	95f94bc <read32>
+ 95f9550:	9003      	str	r0, [sp, #12]
+ 95f9552:	0030      	movs	r0, r6
+ 95f9554:	3010      	adds	r0, #16
+ 95f9556:	f7ff ffb1 	bl	95f94bc <read32>
+ 95f955a:	0005      	movs	r5, r0
+ 95f955c:	0030      	movs	r0, r6
+ 95f955e:	3014      	adds	r0, #20
+ 95f9560:	f7ff ffac 	bl	95f94bc <read32>
+ 95f9564:	9002      	str	r0, [sp, #8]
+ 95f9566:	2f20      	cmp	r7, #32
+ 95f9568:	d1bc      	bne.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f956a:	23d5      	movs	r3, #213	@ 0xd5
+ 95f956c:	9a03      	ldr	r2, [sp, #12]
+ 95f956e:	00db      	lsls	r3, r3, #3
+ 95f9570:	429a      	cmp	r2, r3
+ 95f9572:	d1b7      	bne.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9574:	4b55      	ldr	r3, [pc, #340]	@ (95f96cc <Pr16ReadLearnsetRuntime+0x1fa>)
+ 95f9576:	429d      	cmp	r5, r3
+ 95f9578:	d1b4      	bne.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f957a:	0003      	movs	r3, r0
+ 95f957c:	079b      	lsls	r3, r3, #30
+ 95f957e:	d1b1      	bne.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9580:	4a53      	ldr	r2, [pc, #332]	@ (95f96d0 <Pr16ReadLearnsetRuntime+0x1fe>)
+ 95f9582:	4290      	cmp	r0, r2
+ 95f9584:	d9ae      	bls.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9586:	4284      	cmp	r4, r0
+ 95f9588:	d3ac      	bcc.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f958a:	4a52      	ldr	r2, [pc, #328]	@ (95f96d4 <Pr16ReadLearnsetRuntime+0x202>)
+ 95f958c:	1a23      	subs	r3, r4, r0
+ 95f958e:	4293      	cmp	r3, r2
+ 95f9590:	d9a8      	bls.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9592:	4a51      	ldr	r2, [pc, #324]	@ (95f96d8 <Pr16ReadLearnsetRuntime+0x206>)
+ 95f9594:	1883      	adds	r3, r0, r2
+ 95f9596:	42a3      	cmp	r3, r4
+ 95f9598:	d1a4      	bne.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f959a:	240e      	movs	r4, #14
+ 95f959c:	0030      	movs	r0, r6
+ 95f959e:	ab06      	add	r3, sp, #24
+ 95f95a0:	18e4      	adds	r4, r4, r3
+ 95f95a2:	9400      	str	r4, [sp, #0]
+ 95f95a4:	9b05      	ldr	r3, [sp, #20]
+ 95f95a6:	9a04      	ldr	r2, [sp, #16]
+ 95f95a8:	4947      	ldr	r1, [pc, #284]	@ (95f96c8 <Pr16ReadLearnsetRuntime+0x1f6>)
+ 95f95aa:	3020      	adds	r0, #32
+ 95f95ac:	f7ff ff5a 	bl	95f9464 <Pr16ResolveLearnsetOwner>
+ 95f95b0:	1e05      	subs	r5, r0, #0
+ 95f95b2:	9007      	str	r0, [sp, #28]
+ 95f95b4:	d096      	beq.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f95b6:	8823      	ldrh	r3, [r4, #0]
+ 95f95b8:	4a48      	ldr	r2, [pc, #288]	@ (95f96dc <Pr16ReadLearnsetRuntime+0x20a>)
+ 95f95ba:	00d8      	lsls	r0, r3, #3
+ 95f95bc:	9303      	str	r3, [sp, #12]
+ 95f95be:	1833      	adds	r3, r6, r0
+ 95f95c0:	189a      	adds	r2, r3, r2
+ 95f95c2:	7817      	ldrb	r7, [r2, #0]
+ 95f95c4:	7852      	ldrb	r2, [r2, #1]
+ 95f95c6:	0212      	lsls	r2, r2, #8
+ 95f95c8:	4317      	orrs	r7, r2
+ 95f95ca:	4a45      	ldr	r2, [pc, #276]	@ (95f96e0 <Pr16ReadLearnsetRuntime+0x20e>)
+ 95f95cc:	189b      	adds	r3, r3, r2
+ 95f95ce:	781c      	ldrb	r4, [r3, #0]
+ 95f95d0:	785b      	ldrb	r3, [r3, #1]
+ 95f95d2:	021b      	lsls	r3, r3, #8
+ 95f95d4:	431c      	orrs	r4, r3
+ 95f95d6:	23d5      	movs	r3, #213	@ 0xd5
+ 95f95d8:	00db      	lsls	r3, r3, #3
+ 95f95da:	18c0      	adds	r0, r0, r3
+ 95f95dc:	1830      	adds	r0, r6, r0
+ 95f95de:	f7ff ff6d 	bl	95f94bc <read32>
+ 95f95e2:	1eab      	subs	r3, r5, #2
+ 95f95e4:	061b      	lsls	r3, r3, #24
+ 95f95e6:	0e1b      	lsrs	r3, r3, #24
+ 95f95e8:	2b01      	cmp	r3, #1
+ 95f95ea:	d80d      	bhi.n	95f9608 <Pr16ReadLearnsetRuntime+0x136>
+ 95f95ec:	3001      	adds	r0, #1
+ 95f95ee:	d000      	beq.n	95f95f2 <Pr16ReadLearnsetRuntime+0x120>
+ 95f95f0:	e778      	b.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f95f2:	2f00      	cmp	r7, #0
+ 95f95f4:	d000      	beq.n	95f95f8 <Pr16ReadLearnsetRuntime+0x126>
+ 95f95f6:	e775      	b.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f95f8:	4b3a      	ldr	r3, [pc, #232]	@ (95f96e4 <Pr16ReadLearnsetRuntime+0x212>)
+ 95f95fa:	429c      	cmp	r4, r3
+ 95f95fc:	d000      	beq.n	95f9600 <Pr16ReadLearnsetRuntime+0x12e>
+ 95f95fe:	e771      	b.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9600:	9b10      	ldr	r3, [sp, #64]	@ 0x40
+ 95f9602:	9a03      	ldr	r2, [sp, #12]
+ 95f9604:	80da      	strh	r2, [r3, #6]
+ 95f9606:	e76e      	b.n	95f94e6 <Pr16ReadLearnsetRuntime+0x14>
+ 95f9608:	2f28      	cmp	r7, #40	@ 0x28
+ 95f960a:	d900      	bls.n	95f960e <Pr16ReadLearnsetRuntime+0x13c>
+ 95f960c:	e76a      	b.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f960e:	4b36      	ldr	r3, [pc, #216]	@ (95f96e8 <Pr16ReadLearnsetRuntime+0x216>)
+ 95f9610:	429c      	cmp	r4, r3
+ 95f9612:	d900      	bls.n	95f9616 <Pr16ReadLearnsetRuntime+0x144>
+ 95f9614:	e766      	b.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9616:	4b2e      	ldr	r3, [pc, #184]	@ (95f96d0 <Pr16ReadLearnsetRuntime+0x1fe>)
+ 95f9618:	4298      	cmp	r0, r3
+ 95f961a:	d800      	bhi.n	95f961e <Pr16ReadLearnsetRuntime+0x14c>
+ 95f961c:	e762      	b.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f961e:	9b02      	ldr	r3, [sp, #8]
+ 95f9620:	4283      	cmp	r3, r0
+ 95f9622:	d200      	bcs.n	95f9626 <Pr16ReadLearnsetRuntime+0x154>
+ 95f9624:	e75e      	b.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9626:	2203      	movs	r2, #3
+ 95f9628:	1c7b      	adds	r3, r7, #1
+ 95f962a:	435a      	muls	r2, r3
+ 95f962c:	9b02      	ldr	r3, [sp, #8]
+ 95f962e:	1a1b      	subs	r3, r3, r0
+ 95f9630:	429a      	cmp	r2, r3
+ 95f9632:	d900      	bls.n	95f9636 <Pr16ReadLearnsetRuntime+0x164>
+ 95f9634:	e756      	b.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9636:	3a03      	subs	r2, #3
+ 95f9638:	1812      	adds	r2, r2, r0
+ 95f963a:	5cb1      	ldrb	r1, [r6, r2]
+ 95f963c:	18b2      	adds	r2, r6, r2
+ 95f963e:	7853      	ldrb	r3, [r2, #1]
+ 95f9640:	021b      	lsls	r3, r3, #8
+ 95f9642:	430b      	orrs	r3, r1
+ 95f9644:	d000      	beq.n	95f9648 <Pr16ReadLearnsetRuntime+0x176>
+ 95f9646:	e74d      	b.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9648:	7892      	ldrb	r2, [r2, #2]
+ 95f964a:	2aff      	cmp	r2, #255	@ 0xff
+ 95f964c:	d000      	beq.n	95f9650 <Pr16ReadLearnsetRuntime+0x17e>
+ 95f964e:	e749      	b.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f9650:	1832      	adds	r2, r6, r0
+ 95f9652:	0011      	movs	r1, r2
+ 95f9654:	9204      	str	r2, [sp, #16]
+ 95f9656:	4a25      	ldr	r2, [pc, #148]	@ (95f96ec <Pr16ReadLearnsetRuntime+0x21a>)
+ 95f9658:	4694      	mov	ip, r2
+ 95f965a:	42bb      	cmp	r3, r7
+ 95f965c:	d113      	bne.n	95f9686 <Pr16ReadLearnsetRuntime+0x1b4>
+ 95f965e:	9b10      	ldr	r3, [sp, #64]	@ 0x40
+ 95f9660:	9a03      	ldr	r2, [sp, #12]
+ 95f9662:	80da      	strh	r2, [r3, #6]
+ 95f9664:	9b05      	ldr	r3, [sp, #20]
+ 95f9666:	2b03      	cmp	r3, #3
+ 95f9668:	d007      	beq.n	95f967a <Pr16ReadLearnsetRuntime+0x1a8>
+ 95f966a:	2b04      	cmp	r3, #4
+ 95f966c:	d122      	bne.n	95f96b4 <Pr16ReadLearnsetRuntime+0x1e2>
+ 95f966e:	2780      	movs	r7, #128	@ 0x80
+ 95f9670:	9a02      	ldr	r2, [sp, #8]
+ 95f9672:	0123      	lsls	r3, r4, #4
+ 95f9674:	189b      	adds	r3, r3, r2
+ 95f9676:	18f3      	adds	r3, r6, r3
+ 95f9678:	9304      	str	r3, [sp, #16]
+ 95f967a:	9b10      	ldr	r3, [sp, #64]	@ 0x40
+ 95f967c:	9a04      	ldr	r2, [sp, #16]
+ 95f967e:	2501      	movs	r5, #1
+ 95f9680:	601a      	str	r2, [r3, #0]
+ 95f9682:	809f      	strh	r7, [r3, #4]
+ 95f9684:	e72f      	b.n	95f94e6 <Pr16ReadLearnsetRuntime+0x14>
+ 95f9686:	780a      	ldrb	r2, [r1, #0]
+ 95f9688:	0010      	movs	r0, r2
+ 95f968a:	784a      	ldrb	r2, [r1, #1]
+ 95f968c:	0212      	lsls	r2, r2, #8
+ 95f968e:	4302      	orrs	r2, r0
+ 95f9690:	3a01      	subs	r2, #1
+ 95f9692:	0412      	lsls	r2, r2, #16
+ 95f9694:	9106      	str	r1, [sp, #24]
+ 95f9696:	0c12      	lsrs	r2, r2, #16
+ 95f9698:	4562      	cmp	r2, ip
+ 95f969a:	d900      	bls.n	95f969e <Pr16ReadLearnsetRuntime+0x1cc>
+ 95f969c:	e722      	b.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f969e:	9a06      	ldr	r2, [sp, #24]
+ 95f96a0:	7892      	ldrb	r2, [r2, #2]
+ 95f96a2:	3a01      	subs	r2, #1
+ 95f96a4:	3103      	adds	r1, #3
+ 95f96a6:	2a63      	cmp	r2, #99	@ 0x63
+ 95f96a8:	d900      	bls.n	95f96ac <Pr16ReadLearnsetRuntime+0x1da>
+ 95f96aa:	e71b      	b.n	95f94e4 <Pr16ReadLearnsetRuntime+0x12>
+ 95f96ac:	3301      	adds	r3, #1
+ 95f96ae:	041b      	lsls	r3, r3, #16
+ 95f96b0:	0c1b      	lsrs	r3, r3, #16
+ 95f96b2:	e7d2      	b.n	95f965a <Pr16ReadLearnsetRuntime+0x188>
+ 95f96b4:	9b07      	ldr	r3, [sp, #28]
+ 95f96b6:	2b04      	cmp	r3, #4
+ 95f96b8:	d100      	bne.n	95f96bc <Pr16ReadLearnsetRuntime+0x1ea>
+ 95f96ba:	e714      	b.n	95f94e6 <Pr16ReadLearnsetRuntime+0x14>
+ 95f96bc:	2505      	movs	r5, #5
+ 95f96be:	e712      	b.n	95f94e6 <Pr16ReadLearnsetRuntime+0x14>
+ 95f96c0:	ffff0000 	.word	0xffff0000
+ 95f96c4:	31524c50 	.word	0x31524c50
+ 95f96c8:	00000687 	.word	0x00000687
+ 95f96cc:	00003ae0 	.word	0x00003ae0
+ 95f96d0:	00003adf 	.word	0x00003adf
+ 95f96d4:	00005caf 	.word	0x00005caf
+ 95f96d8:	00005cb0 	.word	0x00005cb0
+ 95f96dc:	000006ac 	.word	0x000006ac
+ 95f96e0:	000006ae 	.word	0x000006ae
+ 95f96e4:	0000ffff 	.word	0x0000ffff
+ 95f96e8:	000005ca 	.word	0x000005ca
+ 95f96ec:	00000425 	.word	0x00000425
+
+095f96f0 <Pr16RuntimeLevelMoves>:
+ 95f96f0:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 95f96f2:	b085      	sub	sp, #20
+ 95f96f4:	001c      	movs	r4, r3
+ 95f96f6:	ab0a      	add	r3, sp, #40	@ 0x28
+ 95f96f8:	881d      	ldrh	r5, [r3, #0]
+ 95f96fa:	2c00      	cmp	r4, #0
+ 95f96fc:	d104      	bne.n	95f9708 <Pr16RuntimeLevelMoves+0x18>
+ 95f96fe:	2000      	movs	r0, #0
+ 95f9700:	b005      	add	sp, #20
+ 95f9702:	bcf0      	pop	{r4, r5, r6, r7}
+ 95f9704:	bc02      	pop	{r1}
+ 95f9706:	4708      	bx	r1
+ 95f9708:	ae02      	add	r6, sp, #8
+ 95f970a:	2303      	movs	r3, #3
+ 95f970c:	9600      	str	r6, [sp, #0]
+ 95f970e:	f7ff fee0 	bl	95f94d2 <Pr16ReadLearnsetRuntime>
+ 95f9712:	2801      	cmp	r0, #1
+ 95f9714:	d1f3      	bne.n	95f96fe <Pr16RuntimeLevelMoves+0xe>
+ 95f9716:	88b0      	ldrh	r0, [r6, #4]
+ 95f9718:	42a8      	cmp	r0, r5
+ 95f971a:	d8f0      	bhi.n	95f96fe <Pr16RuntimeLevelMoves+0xe>
+ 95f971c:	2200      	movs	r2, #0
+ 95f971e:	2603      	movs	r6, #3
+ 95f9720:	9d02      	ldr	r5, [sp, #8]
+ 95f9722:	0413      	lsls	r3, r2, #16
+ 95f9724:	0c1b      	lsrs	r3, r3, #16
+ 95f9726:	4298      	cmp	r0, r3
+ 95f9728:	d802      	bhi.n	95f9730 <Pr16RuntimeLevelMoves+0x40>
+ 95f972a:	0600      	lsls	r0, r0, #24
+ 95f972c:	0e00      	lsrs	r0, r0, #24
+ 95f972e:	e7e7      	b.n	95f9700 <Pr16RuntimeLevelMoves+0x10>
+ 95f9730:	0033      	movs	r3, r6
+ 95f9732:	4353      	muls	r3, r2
+ 95f9734:	5d5f      	ldrb	r7, [r3, r5]
+ 95f9736:	18eb      	adds	r3, r5, r3
+ 95f9738:	7859      	ldrb	r1, [r3, #1]
+ 95f973a:	0209      	lsls	r1, r1, #8
+ 95f973c:	0053      	lsls	r3, r2, #1
+ 95f973e:	4339      	orrs	r1, r7
+ 95f9740:	52e1      	strh	r1, [r4, r3]
+ 95f9742:	3201      	adds	r2, #1
+ 95f9744:	e7ed      	b.n	95f9722 <Pr16RuntimeLevelMoves+0x32>
+
+095f9746 <Pr16RuntimeMachineAllowed>:
+ 95f9746:	b51f      	push	{r0, r1, r2, r3, r4, lr}
+ 95f9748:	001c      	movs	r4, r3
+ 95f974a:	2b7f      	cmp	r3, #127	@ 0x7f
+ 95f974c:	d904      	bls.n	95f9758 <Pr16RuntimeMachineAllowed+0x12>
+ 95f974e:	2000      	movs	r0, #0
+ 95f9750:	b004      	add	sp, #16
+ 95f9752:	bc10      	pop	{r4}
+ 95f9754:	bc02      	pop	{r1}
+ 95f9756:	4708      	bx	r1
+ 95f9758:	ab02      	add	r3, sp, #8
+ 95f975a:	9300      	str	r3, [sp, #0]
+ 95f975c:	2304      	movs	r3, #4
+ 95f975e:	f7ff feb8 	bl	95f94d2 <Pr16ReadLearnsetRuntime>
+ 95f9762:	0003      	movs	r3, r0
+ 95f9764:	2801      	cmp	r0, #1
+ 95f9766:	d1f2      	bne.n	95f974e <Pr16RuntimeMachineAllowed+0x8>
+ 95f9768:	9902      	ldr	r1, [sp, #8]
+ 95f976a:	08e2      	lsrs	r2, r4, #3
+ 95f976c:	5c88      	ldrb	r0, [r1, r2]
+ 95f976e:	2207      	movs	r2, #7
+ 95f9770:	4014      	ands	r4, r2
+ 95f9772:	4120      	asrs	r0, r4
+ 95f9774:	4018      	ands	r0, r3
+ 95f9776:	0600      	lsls	r0, r0, #24
+ 95f9778:	0e00      	lsrs	r0, r0, #24
+ 95f977a:	e7e9      	b.n	95f9750 <Pr16RuntimeMachineAllowed+0xa>
+
+095f977c <Pr16_GameGetLevelUpMovesBySpecies>:
+ 95f977c:	b513      	push	{r0, r1, r4, lr}
+ 95f977e:	000b      	movs	r3, r1
+ 95f9780:	2128      	movs	r1, #40	@ 0x28
+ 95f9782:	4c05      	ldr	r4, [pc, #20]	@ (95f9798 <Pr16_GameGetLevelUpMovesBySpecies+0x1c>)
+ 95f9784:	0002      	movs	r2, r0
+ 95f9786:	9100      	str	r1, [sp, #0]
+ 95f9788:	0020      	movs	r0, r4
+ 95f978a:	4904      	ldr	r1, [pc, #16]	@ (95f979c <Pr16_GameGetLevelUpMovesBySpecies+0x20>)
+ 95f978c:	f7ff ffb0 	bl	95f96f0 <Pr16RuntimeLevelMoves>
+ 95f9790:	bc16      	pop	{r1, r2, r4}
+ 95f9792:	bc02      	pop	{r1}
+ 95f9794:	4708      	bx	r1
+ 95f9796:	46c0      	nop			@ (mov r8, r8)
+ 95f9798:	095dee7c 	.word	0x095dee7c
+ 95f979c:	0001a5e8 	.word	0x0001a5e8
+
+095f97a0 <Pr16_GameCanMonLearnTMHM>:
+ 95f97a0:	b510      	push	{r4, lr}
+ 95f97a2:	0002      	movs	r2, r0
+ 95f97a4:	000c      	movs	r4, r1
+ 95f97a6:	2800      	cmp	r0, #0
+ 95f97a8:	d00f      	beq.n	95f97ca <Pr16_GameCanMonLearnTMHM+0x2a>
+ 95f97aa:	2200      	movs	r2, #0
+ 95f97ac:	060b      	lsls	r3, r1, #24
+ 95f97ae:	4293      	cmp	r3, r2
+ 95f97b0:	db0b      	blt.n	95f97ca <Pr16_GameCanMonLearnTMHM+0x2a>
+ 95f97b2:	2141      	movs	r1, #65	@ 0x41
+ 95f97b4:	4b07      	ldr	r3, [pc, #28]	@ (95f97d4 <Pr16_GameCanMonLearnTMHM+0x34>)
+ 95f97b6:	f000 f813 	bl	95f97e0 <Pr16_GameCanMonLearnTMHM+0x40>
+ 95f97ba:	0402      	lsls	r2, r0, #16
+ 95f97bc:	0c12      	lsrs	r2, r2, #16
+ 95f97be:	0023      	movs	r3, r4
+ 95f97c0:	4805      	ldr	r0, [pc, #20]	@ (95f97d8 <Pr16_GameCanMonLearnTMHM+0x38>)
+ 95f97c2:	4906      	ldr	r1, [pc, #24]	@ (95f97dc <Pr16_GameCanMonLearnTMHM+0x3c>)
+ 95f97c4:	f7ff ffbf 	bl	95f9746 <Pr16RuntimeMachineAllowed>
+ 95f97c8:	0002      	movs	r2, r0
+ 95f97ca:	0010      	movs	r0, r2
+ 95f97cc:	bc10      	pop	{r4}
+ 95f97ce:	bc02      	pop	{r1}
+ 95f97d0:	4708      	bx	r1
+ 95f97d2:	46c0      	nop			@ (mov r8, r8)
+ 95f97d4:	0803f355 	.word	0x0803f355
+ 95f97d8:	095dee7c 	.word	0x095dee7c
+ 95f97dc:	0001a5e8 	.word	0x0001a5e8
+ 95f97e0:	4718      	bx	r3
+ 95f97e2:	46c0      	nop			@ (mov r8, r8)

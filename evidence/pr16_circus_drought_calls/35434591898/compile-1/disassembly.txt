@@ -1,0 +1,364 @@
+
+drought.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+09ff6b3c <CircusDroughtInitAll>:
+ 9ff6b3c:	4b10      	ldr	r3, [pc, #64]	@ (9ff6b80 <CircusDroughtInitAll+0x44>)
+ 9ff6b3e:	681b      	ldr	r3, [r3, #0]
+ 9ff6b40:	4b10      	ldr	r3, [pc, #64]	@ (9ff6b84 <CircusDroughtInitAll+0x48>)
+ 9ff6b42:	001a      	movs	r2, r3
+ 9ff6b44:	b510      	push	{r4, lr}
+ 9ff6b46:	326e      	adds	r2, #110	@ 0x6e
+ 9ff6b48:	7812      	ldrb	r2, [r2, #0]
+ 9ff6b4a:	001a      	movs	r2, r3
+ 9ff6b4c:	3370      	adds	r3, #112	@ 0x70
+ 9ff6b4e:	326f      	adds	r2, #111	@ 0x6f
+ 9ff6b50:	7812      	ldrb	r2, [r2, #0]
+ 9ff6b52:	781b      	ldrb	r3, [r3, #0]
+ 9ff6b54:	4b0c      	ldr	r3, [pc, #48]	@ (9ff6b88 <CircusDroughtInitAll+0x4c>)
+ 9ff6b56:	781b      	ldrb	r3, [r3, #0]
+ 9ff6b58:	4b0c      	ldr	r3, [pc, #48]	@ (9ff6b8c <CircusDroughtInitAll+0x50>)
+ 9ff6b5a:	781b      	ldrb	r3, [r3, #0]
+ 9ff6b5c:	4b0c      	ldr	r3, [pc, #48]	@ (9ff6b90 <CircusDroughtInitAll+0x54>)
+ 9ff6b5e:	781b      	ldrb	r3, [r3, #0]
+ 9ff6b60:	4b0c      	ldr	r3, [pc, #48]	@ (9ff6b94 <CircusDroughtInitAll+0x58>)
+ 9ff6b62:	781b      	ldrb	r3, [r3, #0]
+ 9ff6b64:	4b0c      	ldr	r3, [pc, #48]	@ (9ff6b98 <CircusDroughtInitAll+0x5c>)
+ 9ff6b66:	781b      	ldrb	r3, [r3, #0]
+ 9ff6b68:	4b0c      	ldr	r3, [pc, #48]	@ (9ff6b9c <CircusDroughtInitAll+0x60>)
+ 9ff6b6a:	681b      	ldr	r3, [r3, #0]
+ 9ff6b6c:	4b0c      	ldr	r3, [pc, #48]	@ (9ff6ba0 <CircusDroughtInitAll+0x64>)
+ 9ff6b6e:	681b      	ldr	r3, [r3, #0]
+ 9ff6b70:	4b0c      	ldr	r3, [pc, #48]	@ (9ff6ba4 <CircusDroughtInitAll+0x68>)
+ 9ff6b72:	f000 f81b 	bl	9ff6bac <CircusDroughtInitAll+0x70>
+ 9ff6b76:	2180      	movs	r1, #128	@ 0x80
+ 9ff6b78:	480b      	ldr	r0, [pc, #44]	@ (9ff6ba8 <CircusDroughtInitAll+0x6c>)
+ 9ff6b7a:	0109      	lsls	r1, r1, #4
+ 9ff6b7c:	f000 f840 	bl	9ff6c00 <VegaSaveValidate>
+ 9ff6b80:	02022aac 	.word	0x02022aac
+ 9ff6b84:	0203d392 	.word	0x0203d392
+ 9ff6b88:	02023dea 	.word	0x02023dea
+ 9ff6b8c:	02038538 	.word	0x02038538
+ 9ff6b90:	02038539 	.word	0x02038539
+ 9ff6b94:	02038530 	.word	0x02038530
+ 9ff6b98:	0203852e 	.word	0x0203852e
+ 9ff6b9c:	03003134 	.word	0x03003134
+ 9ff6ba0:	03000eb8 	.word	0x03000eb8
+ 9ff6ba4:	09ff56e5 	.word	0x09ff56e5
+ 9ff6ba8:	0203d000 	.word	0x0203d000
+ 9ff6bac:	4718      	bx	r3
+ 9ff6bae:	46c0      	nop			@ (mov r8, r8)
+
+09ff6bb0 <BytesAreZero>:
+ 9ff6bb0:	1841      	adds	r1, r0, r1
+ 9ff6bb2:	7803      	ldrb	r3, [r0, #0]
+ 9ff6bb4:	2b00      	cmp	r3, #0
+ 9ff6bb6:	d104      	bne.n	9ff6bc2 <BytesAreZero+0x12>
+ 9ff6bb8:	3001      	adds	r0, #1
+ 9ff6bba:	4288      	cmp	r0, r1
+ 9ff6bbc:	d1f9      	bne.n	9ff6bb2 <BytesAreZero+0x2>
+ 9ff6bbe:	2001      	movs	r0, #1
+ 9ff6bc0:	4770      	bx	lr
+ 9ff6bc2:	2000      	movs	r0, #0
+ 9ff6bc4:	e7fc      	b.n	9ff6bc0 <BytesAreZero+0x10>
+	...
+
+09ff6bc8 <VegaSaveChecksum>:
+ 9ff6bc8:	0002      	movs	r2, r0
+ 9ff6bca:	b570      	push	{r4, r5, r6, lr}
+ 9ff6bcc:	2800      	cmp	r0, #0
+ 9ff6bce:	d00f      	beq.n	9ff6bf0 <VegaSaveChecksum+0x28>
+ 9ff6bd0:	2580      	movs	r5, #128	@ 0x80
+ 9ff6bd2:	2300      	movs	r3, #0
+ 9ff6bd4:	4808      	ldr	r0, [pc, #32]	@ (9ff6bf8 <VegaSaveChecksum+0x30>)
+ 9ff6bd6:	4e09      	ldr	r6, [pc, #36]	@ (9ff6bfc <VegaSaveChecksum+0x34>)
+ 9ff6bd8:	012d      	lsls	r5, r5, #4
+ 9ff6bda:	0019      	movs	r1, r3
+ 9ff6bdc:	3908      	subs	r1, #8
+ 9ff6bde:	2400      	movs	r4, #0
+ 9ff6be0:	2903      	cmp	r1, #3
+ 9ff6be2:	d900      	bls.n	9ff6be6 <VegaSaveChecksum+0x1e>
+ 9ff6be4:	5cd4      	ldrb	r4, [r2, r3]
+ 9ff6be6:	4060      	eors	r0, r4
+ 9ff6be8:	3301      	adds	r3, #1
+ 9ff6bea:	4370      	muls	r0, r6
+ 9ff6bec:	42ab      	cmp	r3, r5
+ 9ff6bee:	d1f4      	bne.n	9ff6bda <VegaSaveChecksum+0x12>
+ 9ff6bf0:	bc70      	pop	{r4, r5, r6}
+ 9ff6bf2:	bc02      	pop	{r1}
+ 9ff6bf4:	4708      	bx	r1
+ 9ff6bf6:	46c0      	nop			@ (mov r8, r8)
+ 9ff6bf8:	811c9dc5 	.word	0x811c9dc5
+ 9ff6bfc:	01000193 	.word	0x01000193
+
+09ff6c00 <VegaSaveValidate>:
+ 9ff6c00:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+ 9ff6c02:	0004      	movs	r4, r0
+ 9ff6c04:	2506      	movs	r5, #6
+ 9ff6c06:	2800      	cmp	r0, #0
+ 9ff6c08:	d100      	bne.n	9ff6c0c <VegaSaveValidate+0xc>
+ 9ff6c0a:	e0f5      	b.n	9ff6df8 <VegaSaveValidate+0x1f8>
+ 9ff6c0c:	2380      	movs	r3, #128	@ 0x80
+ 9ff6c0e:	3d02      	subs	r5, #2
+ 9ff6c10:	011b      	lsls	r3, r3, #4
+ 9ff6c12:	4299      	cmp	r1, r3
+ 9ff6c14:	d200      	bcs.n	9ff6c18 <VegaSaveValidate+0x18>
+ 9ff6c16:	e0ef      	b.n	9ff6df8 <VegaSaveValidate+0x1f8>
+ 9ff6c18:	2201      	movs	r2, #1
+ 9ff6c1a:	0015      	movs	r5, r2
+ 9ff6c1c:	0001      	movs	r1, r0
+ 9ff6c1e:	18c0      	adds	r0, r0, r3
+ 9ff6c20:	2300      	movs	r3, #0
+ 9ff6c22:	429d      	cmp	r5, r3
+ 9ff6c24:	d002      	beq.n	9ff6c2c <VegaSaveValidate+0x2c>
+ 9ff6c26:	780b      	ldrb	r3, [r1, #0]
+ 9ff6c28:	425d      	negs	r5, r3
+ 9ff6c2a:	416b      	adcs	r3, r5
+ 9ff6c2c:	001d      	movs	r5, r3
+ 9ff6c2e:	2300      	movs	r3, #0
+ 9ff6c30:	429a      	cmp	r2, r3
+ 9ff6c32:	d003      	beq.n	9ff6c3c <VegaSaveValidate+0x3c>
+ 9ff6c34:	780b      	ldrb	r3, [r1, #0]
+ 9ff6c36:	3bff      	subs	r3, #255	@ 0xff
+ 9ff6c38:	425a      	negs	r2, r3
+ 9ff6c3a:	4153      	adcs	r3, r2
+ 9ff6c3c:	3101      	adds	r1, #1
+ 9ff6c3e:	001a      	movs	r2, r3
+ 9ff6c40:	4281      	cmp	r1, r0
+ 9ff6c42:	d1ed      	bne.n	9ff6c20 <VegaSaveValidate+0x20>
+ 9ff6c44:	431d      	orrs	r5, r3
+ 9ff6c46:	d000      	beq.n	9ff6c4a <VegaSaveValidate+0x4a>
+ 9ff6c48:	e0d6      	b.n	9ff6df8 <VegaSaveValidate+0x1f8>
+ 9ff6c4a:	7863      	ldrb	r3, [r4, #1]
+ 9ff6c4c:	7822      	ldrb	r2, [r4, #0]
+ 9ff6c4e:	021b      	lsls	r3, r3, #8
+ 9ff6c50:	4313      	orrs	r3, r2
+ 9ff6c52:	78a2      	ldrb	r2, [r4, #2]
+ 9ff6c54:	0412      	lsls	r2, r2, #16
+ 9ff6c56:	431a      	orrs	r2, r3
+ 9ff6c58:	78e3      	ldrb	r3, [r4, #3]
+ 9ff6c5a:	061b      	lsls	r3, r3, #24
+ 9ff6c5c:	4313      	orrs	r3, r2
+ 9ff6c5e:	4a6b      	ldr	r2, [pc, #428]	@ (9ff6e0c <VegaSaveValidate+0x20c>)
+ 9ff6c60:	4293      	cmp	r3, r2
+ 9ff6c62:	d000      	beq.n	9ff6c66 <VegaSaveValidate+0x66>
+ 9ff6c64:	e0c7      	b.n	9ff6df6 <VegaSaveValidate+0x1f6>
+ 9ff6c66:	7966      	ldrb	r6, [r4, #5]
+ 9ff6c68:	7923      	ldrb	r3, [r4, #4]
+ 9ff6c6a:	0236      	lsls	r6, r6, #8
+ 9ff6c6c:	431e      	orrs	r6, r3
+ 9ff6c6e:	1e73      	subs	r3, r6, #1
+ 9ff6c70:	2b01      	cmp	r3, #1
+ 9ff6c72:	d900      	bls.n	9ff6c76 <VegaSaveValidate+0x76>
+ 9ff6c74:	e0c4      	b.n	9ff6e00 <VegaSaveValidate+0x200>
+ 9ff6c76:	79e3      	ldrb	r3, [r4, #7]
+ 9ff6c78:	79a2      	ldrb	r2, [r4, #6]
+ 9ff6c7a:	021b      	lsls	r3, r3, #8
+ 9ff6c7c:	4313      	orrs	r3, r2
+ 9ff6c7e:	2280      	movs	r2, #128	@ 0x80
+ 9ff6c80:	0112      	lsls	r2, r2, #4
+ 9ff6c82:	4293      	cmp	r3, r2
+ 9ff6c84:	d000      	beq.n	9ff6c88 <VegaSaveValidate+0x88>
+ 9ff6c86:	e0bd      	b.n	9ff6e04 <VegaSaveValidate+0x204>
+ 9ff6c88:	7a62      	ldrb	r2, [r4, #9]
+ 9ff6c8a:	7a23      	ldrb	r3, [r4, #8]
+ 9ff6c8c:	0212      	lsls	r2, r2, #8
+ 9ff6c8e:	431a      	orrs	r2, r3
+ 9ff6c90:	7aa3      	ldrb	r3, [r4, #10]
+ 9ff6c92:	7ae7      	ldrb	r7, [r4, #11]
+ 9ff6c94:	041b      	lsls	r3, r3, #16
+ 9ff6c96:	4313      	orrs	r3, r2
+ 9ff6c98:	063f      	lsls	r7, r7, #24
+ 9ff6c9a:	0020      	movs	r0, r4
+ 9ff6c9c:	431f      	orrs	r7, r3
+ 9ff6c9e:	f7ff ff93 	bl	9ff6bc8 <VegaSaveChecksum>
+ 9ff6ca2:	4287      	cmp	r7, r0
+ 9ff6ca4:	d000      	beq.n	9ff6ca8 <VegaSaveValidate+0xa8>
+ 9ff6ca6:	e0af      	b.n	9ff6e08 <VegaSaveValidate+0x208>
+ 9ff6ca8:	0020      	movs	r0, r4
+ 9ff6caa:	2103      	movs	r1, #3
+ 9ff6cac:	3041      	adds	r0, #65	@ 0x41
+ 9ff6cae:	f7ff ff7f 	bl	9ff6bb0 <BytesAreZero>
+ 9ff6cb2:	2800      	cmp	r0, #0
+ 9ff6cb4:	d076      	beq.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6cb6:	0027      	movs	r7, r4
+ 9ff6cb8:	3744      	adds	r7, #68	@ 0x44
+ 9ff6cba:	21f0      	movs	r1, #240	@ 0xf0
+ 9ff6cbc:	0038      	movs	r0, r7
+ 9ff6cbe:	f7ff ff77 	bl	9ff6bb0 <BytesAreZero>
+ 9ff6cc2:	2800      	cmp	r0, #0
+ 9ff6cc4:	d156      	bne.n	9ff6d74 <VegaSaveValidate+0x174>
+ 9ff6cc6:	0023      	movs	r3, r4
+ 9ff6cc8:	3345      	adds	r3, #69	@ 0x45
+ 9ff6cca:	781b      	ldrb	r3, [r3, #0]
+ 9ff6ccc:	783a      	ldrb	r2, [r7, #0]
+ 9ff6cce:	021b      	lsls	r3, r3, #8
+ 9ff6cd0:	4313      	orrs	r3, r2
+ 9ff6cd2:	0022      	movs	r2, r4
+ 9ff6cd4:	3246      	adds	r2, #70	@ 0x46
+ 9ff6cd6:	7812      	ldrb	r2, [r2, #0]
+ 9ff6cd8:	0412      	lsls	r2, r2, #16
+ 9ff6cda:	431a      	orrs	r2, r3
+ 9ff6cdc:	0023      	movs	r3, r4
+ 9ff6cde:	3347      	adds	r3, #71	@ 0x47
+ 9ff6ce0:	781b      	ldrb	r3, [r3, #0]
+ 9ff6ce2:	061b      	lsls	r3, r3, #24
+ 9ff6ce4:	4313      	orrs	r3, r2
+ 9ff6ce6:	4a4a      	ldr	r2, [pc, #296]	@ (9ff6e10 <VegaSaveValidate+0x210>)
+ 9ff6ce8:	4293      	cmp	r3, r2
+ 9ff6cea:	d15b      	bne.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6cec:	0023      	movs	r3, r4
+ 9ff6cee:	3348      	adds	r3, #72	@ 0x48
+ 9ff6cf0:	781a      	ldrb	r2, [r3, #0]
+ 9ff6cf2:	785b      	ldrb	r3, [r3, #1]
+ 9ff6cf4:	021b      	lsls	r3, r3, #8
+ 9ff6cf6:	4313      	orrs	r3, r2
+ 9ff6cf8:	2b01      	cmp	r3, #1
+ 9ff6cfa:	d153      	bne.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6cfc:	0023      	movs	r3, r4
+ 9ff6cfe:	334a      	adds	r3, #74	@ 0x4a
+ 9ff6d00:	781a      	ldrb	r2, [r3, #0]
+ 9ff6d02:	785b      	ldrb	r3, [r3, #1]
+ 9ff6d04:	021b      	lsls	r3, r3, #8
+ 9ff6d06:	4313      	orrs	r3, r2
+ 9ff6d08:	2bf0      	cmp	r3, #240	@ 0xf0
+ 9ff6d0a:	d14b      	bne.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6d0c:	0022      	movs	r2, r4
+ 9ff6d0e:	0023      	movs	r3, r4
+ 9ff6d10:	324d      	adds	r2, #77	@ 0x4d
+ 9ff6d12:	7812      	ldrb	r2, [r2, #0]
+ 9ff6d14:	334c      	adds	r3, #76	@ 0x4c
+ 9ff6d16:	781b      	ldrb	r3, [r3, #0]
+ 9ff6d18:	0212      	lsls	r2, r2, #8
+ 9ff6d1a:	431a      	orrs	r2, r3
+ 9ff6d1c:	0023      	movs	r3, r4
+ 9ff6d1e:	334e      	adds	r3, #78	@ 0x4e
+ 9ff6d20:	781b      	ldrb	r3, [r3, #0]
+ 9ff6d22:	041b      	lsls	r3, r3, #16
+ 9ff6d24:	4313      	orrs	r3, r2
+ 9ff6d26:	0022      	movs	r2, r4
+ 9ff6d28:	324f      	adds	r2, #79	@ 0x4f
+ 9ff6d2a:	7812      	ldrb	r2, [r2, #0]
+ 9ff6d2c:	0612      	lsls	r2, r2, #24
+ 9ff6d2e:	431a      	orrs	r2, r3
+ 9ff6d30:	2108      	movs	r1, #8
+ 9ff6d32:	2301      	movs	r3, #1
+ 9ff6d34:	2708      	movs	r7, #8
+ 9ff6d36:	9201      	str	r2, [sp, #4]
+ 9ff6d38:	4249      	negs	r1, r1
+ 9ff6d3a:	425b      	negs	r3, r3
+ 9ff6d3c:	2200      	movs	r2, #0
+ 9ff6d3e:	2903      	cmp	r1, #3
+ 9ff6d40:	d902      	bls.n	9ff6d48 <VegaSaveValidate+0x148>
+ 9ff6d42:	0022      	movs	r2, r4
+ 9ff6d44:	324c      	adds	r2, #76	@ 0x4c
+ 9ff6d46:	5c52      	ldrb	r2, [r2, r1]
+ 9ff6d48:	4053      	eors	r3, r2
+ 9ff6d4a:	003a      	movs	r2, r7
+ 9ff6d4c:	0858      	lsrs	r0, r3, #1
+ 9ff6d4e:	4684      	mov	ip, r0
+ 9ff6d50:	2001      	movs	r0, #1
+ 9ff6d52:	4003      	ands	r3, r0
+ 9ff6d54:	482f      	ldr	r0, [pc, #188]	@ (9ff6e14 <VegaSaveValidate+0x214>)
+ 9ff6d56:	425b      	negs	r3, r3
+ 9ff6d58:	4003      	ands	r3, r0
+ 9ff6d5a:	4660      	mov	r0, ip
+ 9ff6d5c:	3a01      	subs	r2, #1
+ 9ff6d5e:	0612      	lsls	r2, r2, #24
+ 9ff6d60:	4043      	eors	r3, r0
+ 9ff6d62:	0e12      	lsrs	r2, r2, #24
+ 9ff6d64:	d1f2      	bne.n	9ff6d4c <VegaSaveValidate+0x14c>
+ 9ff6d66:	3101      	adds	r1, #1
+ 9ff6d68:	29e8      	cmp	r1, #232	@ 0xe8
+ 9ff6d6a:	d1e7      	bne.n	9ff6d3c <VegaSaveValidate+0x13c>
+ 9ff6d6c:	43db      	mvns	r3, r3
+ 9ff6d6e:	9a01      	ldr	r2, [sp, #4]
+ 9ff6d70:	4293      	cmp	r3, r2
+ 9ff6d72:	d117      	bne.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6d74:	0020      	movs	r0, r4
+ 9ff6d76:	3035      	adds	r0, #53	@ 0x35
+ 9ff6d78:	210f      	movs	r1, #15
+ 9ff6d7a:	30ff      	adds	r0, #255	@ 0xff
+ 9ff6d7c:	f7ff ff18 	bl	9ff6bb0 <BytesAreZero>
+ 9ff6d80:	2800      	cmp	r0, #0
+ 9ff6d82:	d00f      	beq.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6d84:	2e01      	cmp	r6, #1
+ 9ff6d86:	d10f      	bne.n	9ff6da8 <VegaSaveValidate+0x1a8>
+ 9ff6d88:	2140      	movs	r1, #64	@ 0x40
+ 9ff6d8a:	4b23      	ldr	r3, [pc, #140]	@ (9ff6e18 <VegaSaveValidate+0x218>)
+ 9ff6d8c:	18e0      	adds	r0, r4, r3
+ 9ff6d8e:	f7ff ff0f 	bl	9ff6bb0 <BytesAreZero>
+ 9ff6d92:	2800      	cmp	r0, #0
+ 9ff6d94:	d006      	beq.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6d96:	4b21      	ldr	r3, [pc, #132]	@ (9ff6e1c <VegaSaveValidate+0x21c>)
+ 9ff6d98:	2181      	movs	r1, #129	@ 0x81
+ 9ff6d9a:	18e0      	adds	r0, r4, r3
+ 9ff6d9c:	f7ff ff08 	bl	9ff6bb0 <BytesAreZero>
+ 9ff6da0:	2800      	cmp	r0, #0
+ 9ff6da2:	d129      	bne.n	9ff6df8 <VegaSaveValidate+0x1f8>
+ 9ff6da4:	250f      	movs	r5, #15
+ 9ff6da6:	e027      	b.n	9ff6df8 <VegaSaveValidate+0x1f8>
+ 9ff6da8:	4b1b      	ldr	r3, [pc, #108]	@ (9ff6e18 <VegaSaveValidate+0x218>)
+ 9ff6daa:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6dac:	2b01      	cmp	r3, #1
+ 9ff6dae:	d1f9      	bne.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6db0:	23e8      	movs	r3, #232	@ 0xe8
+ 9ff6db2:	00db      	lsls	r3, r3, #3
+ 9ff6db4:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6db6:	2b40      	cmp	r3, #64	@ 0x40
+ 9ff6db8:	d1f4      	bne.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6dba:	4b19      	ldr	r3, [pc, #100]	@ (9ff6e20 <VegaSaveValidate+0x220>)
+ 9ff6dbc:	5ce1      	ldrb	r1, [r4, r3]
+ 9ff6dbe:	4b19      	ldr	r3, [pc, #100]	@ (9ff6e24 <VegaSaveValidate+0x224>)
+ 9ff6dc0:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6dc2:	4a19      	ldr	r2, [pc, #100]	@ (9ff6e28 <VegaSaveValidate+0x228>)
+ 9ff6dc4:	021b      	lsls	r3, r3, #8
+ 9ff6dc6:	430b      	orrs	r3, r1
+ 9ff6dc8:	4293      	cmp	r3, r2
+ 9ff6dca:	d8eb      	bhi.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6dcc:	4b17      	ldr	r3, [pc, #92]	@ (9ff6e2c <VegaSaveValidate+0x22c>)
+ 9ff6dce:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6dd0:	3b01      	subs	r3, #1
+ 9ff6dd2:	2b06      	cmp	r3, #6
+ 9ff6dd4:	d8e6      	bhi.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6dd6:	4b16      	ldr	r3, [pc, #88]	@ (9ff6e30 <VegaSaveValidate+0x230>)
+ 9ff6dd8:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6dda:	2b3b      	cmp	r3, #59	@ 0x3b
+ 9ff6ddc:	d8e2      	bhi.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6dde:	4b15      	ldr	r3, [pc, #84]	@ (9ff6e34 <VegaSaveValidate+0x234>)
+ 9ff6de0:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6de2:	2b04      	cmp	r3, #4
+ 9ff6de4:	d8de      	bhi.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6de6:	23ee      	movs	r3, #238	@ 0xee
+ 9ff6de8:	00db      	lsls	r3, r3, #3
+ 9ff6dea:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6dec:	2b01      	cmp	r3, #1
+ 9ff6dee:	d8d9      	bhi.n	9ff6da4 <VegaSaveValidate+0x1a4>
+ 9ff6df0:	2104      	movs	r1, #4
+ 9ff6df2:	4b11      	ldr	r3, [pc, #68]	@ (9ff6e38 <VegaSaveValidate+0x238>)
+ 9ff6df4:	e7ca      	b.n	9ff6d8c <VegaSaveValidate+0x18c>
+ 9ff6df6:	2502      	movs	r5, #2
+ 9ff6df8:	0028      	movs	r0, r5
+ 9ff6dfa:	bcfe      	pop	{r1, r2, r3, r4, r5, r6, r7}
+ 9ff6dfc:	bc02      	pop	{r1}
+ 9ff6dfe:	4708      	bx	r1
+ 9ff6e00:	2503      	movs	r5, #3
+ 9ff6e02:	e7f9      	b.n	9ff6df8 <VegaSaveValidate+0x1f8>
+ 9ff6e04:	2504      	movs	r5, #4
+ 9ff6e06:	e7f7      	b.n	9ff6df8 <VegaSaveValidate+0x1f8>
+ 9ff6e08:	2505      	movs	r5, #5
+ 9ff6e0a:	e7f5      	b.n	9ff6df8 <VegaSaveValidate+0x1f8>
+ 9ff6e0c:	31534756 	.word	0x31534756
+ 9ff6e10:	51434156 	.word	0x51434156
+ 9ff6e14:	edb88320 	.word	0xedb88320
+ 9ff6e18:	0000073f 	.word	0x0000073f
+ 9ff6e1c:	0000077f 	.word	0x0000077f
+ 9ff6e20:	00000743 	.word	0x00000743
+ 9ff6e24:	00000744 	.word	0x00000744
+ 9ff6e28:	0000270f 	.word	0x0000270f
+ 9ff6e2c:	00000745 	.word	0x00000745
+ 9ff6e30:	00000746 	.word	0x00000746
+ 9ff6e34:	0000076f 	.word	0x0000076f
+ 9ff6e38:	0000077b 	.word	0x0000077b

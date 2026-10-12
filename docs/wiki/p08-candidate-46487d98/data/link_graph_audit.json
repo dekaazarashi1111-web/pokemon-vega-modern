@@ -1,0 +1,602 @@
+{
+  "candidate": {
+    "crc32": "CC068B4A",
+    "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+    "size": 33554432
+  },
+  "complete_z_callgraph": false,
+  "graphs": [
+    {
+      "conditional_paths_are_overapproximation": true,
+      "direct_calls": [],
+      "entry": 152137616,
+      "full_function_extent_proven": false,
+      "indirect_edges_resolved": false,
+      "instruction_overlap_sites": [],
+      "limit_reached": false,
+      "native_acceptance": "DEFERRED_AUDIT",
+      "node_count": 2,
+      "nodes": [
+        {
+          "address": 152137616,
+          "encoding_sha256": "e916f3568f5f422b77334ed032cb53b37f6286b6ddfdf824bfc304c7d14aaa68",
+          "kind": "PC_RELATIVE_LITERAL_LOAD",
+          "literal_site": 152137620,
+          "rom_pointer_value": 153943641,
+          "size": 2,
+          "successors": [
+            152137618
+          ]
+        },
+        {
+          "address": 152137618,
+          "encoding_sha256": "477db9ac7ca5efc12e37f882656b8fe5a363ffeb99b2e565a953d10c3c91ab21",
+          "kind": "INDIRECT_PC_TRANSFER",
+          "register": 3,
+          "size": 2,
+          "successors": []
+        }
+      ],
+      "outside_branches": [],
+      "seed_scope": "SAVED_STAGE06_SYMBOL_AT_CURRENT_CANDIDATE_ADDRESS",
+      "seed_symbol": "HandleInputChooseMove",
+      "seed_window": {
+        "address": "0x9116f90",
+        "candidate_window_sha256": "78aadae6e3b347081d0b5239d7042e02b061b89cc08ea46b3bcb64084b3c36df",
+        "metadata_paths": [
+          "/upstream_runs/0/integration_symbols/HandleInputChooseMove",
+          "/upstream_runs/1/integration_symbols/HandleInputChooseMove"
+        ],
+        "native_acceptance": "DEFERRED_AUDIT",
+        "same_256_byte_window_as_saved_stage06": null,
+        "symbol": "HandleInputChooseMove",
+        "symbol_extent": "NOT_PROVEN_WITHOUT_ELF_SIZE",
+        "window_size": 256
+      },
+      "source_equivalence_not_proven": true,
+      "terminal_kinds": {
+        "INDIRECT_PC_TRANSFER": 1
+      }
+    },
+    {
+      "conditional_paths_are_overapproximation": true,
+      "direct_calls": [
+        {
+          "site": 152202184,
+          "target": 152202416,
+          "target_symbol_from_saved_metadata": null
+        },
+        {
+          "site": 152202194,
+          "target": 152105008,
+          "target_symbol_from_saved_metadata": null
+        }
+      ],
+      "entry": 152202164,
+      "full_function_extent_proven": false,
+      "indirect_edges_resolved": false,
+      "instruction_overlap_sites": [],
+      "limit_reached": false,
+      "native_acceptance": "DEFERRED_AUDIT",
+      "node_count": 16,
+      "nodes": [
+        {
+          "address": 152202164,
+          "encoding_sha256": "45032905ccc19f93939ffc8a27669cc54ac144bd58ce513681f9320712ed9b2c",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202166
+          ]
+        },
+        {
+          "address": 152202166,
+          "encoding_sha256": "aed9f5e8dedf580817cc0d9a2c1bba0cfffe9fc607e6caedc8011cfc80fe0dd4",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202168
+          ]
+        },
+        {
+          "address": 152202168,
+          "condition_code": 1,
+          "encoding_sha256": "23e6931c964e77b02506b08ebf115bad0e1eca662cad5302430ab6fe20a796d9",
+          "kind": "CONDITIONAL_B",
+          "size": 2,
+          "successors": [
+            152202170,
+            152202174
+          ]
+        },
+        {
+          "address": 152202170,
+          "encoding_sha256": "474f2af47544e9c7ce4338cabd43c5ca1c26432b7300ce387406157ea433891f",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202172
+          ]
+        },
+        {
+          "address": 152202172,
+          "encoding_sha256": "d61f3ece088ca2fb6ebd3f47479ea5514bdbc39d0decd1f678f629b107878331",
+          "kind": "POP_PC_RETURN_OR_INDIRECT",
+          "size": 2,
+          "successors": []
+        },
+        {
+          "address": 152202174,
+          "encoding_sha256": "05b96c186e4119caeaeadb579b6298d6c7456ead475199e8d8ec2bb5f2f423c9",
+          "kind": "PC_RELATIVE_LITERAL_LOAD",
+          "literal_site": 152202200,
+          "size": 2,
+          "successors": [
+            152202176
+          ]
+        },
+        {
+          "address": 152202176,
+          "encoding_sha256": "9bac88d3a3fb86f6e0c4afc05695c6e0b83bb6c9e6e64b35cae9733f3ebb59e3",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202178
+          ]
+        },
+        {
+          "address": 152202178,
+          "encoding_sha256": "d2c796f4dd3c17b03de6fffbd1c2e472655b05b9705a510197cc4420d40113df",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202180
+          ]
+        },
+        {
+          "address": 152202180,
+          "condition_code": 9,
+          "encoding_sha256": "c3b2e97f31f8aa2c87c81dde005e0a66a3b51cb4de9d684cad4362ebf0efc178",
+          "kind": "CONDITIONAL_B",
+          "size": 2,
+          "successors": [
+            152202170,
+            152202182
+          ]
+        },
+        {
+          "address": 152202182,
+          "encoding_sha256": "49ee35b4c1732e7d10fd4a3b3dce5dbf35ca38f60b31333506082d1cb00657f8",
+          "kind": "PC_RELATIVE_LITERAL_LOAD",
+          "literal_site": 152202204,
+          "rom_pointer_value": 134695273,
+          "size": 2,
+          "successors": [
+            152202184
+          ]
+        },
+        {
+          "address": 152202184,
+          "call_target": 152202416,
+          "encoding_sha256": "f107fd4ae7a10b0962c3094519bf2f27ff87cdf00ada8985b41b996de99f80b5",
+          "kind": "DIRECT_BL",
+          "size": 4,
+          "successors": [
+            152202188
+          ]
+        },
+        {
+          "address": 152202188,
+          "encoding_sha256": "1c972398125398a3665f212930758ae9518a8c948adbccca6753f11525730591",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202190
+          ]
+        },
+        {
+          "address": 152202190,
+          "condition_code": 8,
+          "encoding_sha256": "6cd24cba09ba1680da4646e8202402493d2d4d874dfe0d193ab361c6a2a2a355",
+          "kind": "CONDITIONAL_B",
+          "size": 2,
+          "successors": [
+            152202170,
+            152202192
+          ]
+        },
+        {
+          "address": 152202192,
+          "encoding_sha256": "802e40a08e421a764f7749c9af19b6e490b10cd5aa6faaf0dc180853c87c038c",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202194
+          ]
+        },
+        {
+          "address": 152202194,
+          "call_target": 152105008,
+          "encoding_sha256": "1d5dfa8179ce9056d54c63406e23e40ca77f6e7a1b5483f47564ea4b1f07d579",
+          "kind": "DIRECT_BL",
+          "size": 4,
+          "successors": [
+            152202198
+          ]
+        },
+        {
+          "address": 152202198,
+          "encoding_sha256": "3f5995f13b5c4d4824d194b7954481ca824102c3efe3c6fbe48e526fbf1f192c",
+          "kind": "DIRECT_B",
+          "size": 2,
+          "successors": [
+            152202172
+          ]
+        }
+      ],
+      "outside_branches": [],
+      "seed_scope": "SAVED_STAGE06_SYMBOL_AT_CURRENT_CANDIDATE_ADDRESS",
+      "seed_symbol": "VegaBattlePolicyCanZ",
+      "seed_window": {
+        "address": "0x9126bb4",
+        "candidate_window_sha256": "8de095ab8699a6be927a4c5459a28fd7dbeaaf1f9f23afb388377f12c2c7ecc4",
+        "metadata_paths": [
+          "/upstream_runs/0/integration_symbols/VegaBattlePolicyCanZ",
+          "/upstream_runs/1/integration_symbols/VegaBattlePolicyCanZ"
+        ],
+        "native_acceptance": "DEFERRED_AUDIT",
+        "same_256_byte_window_as_saved_stage06": null,
+        "symbol": "VegaBattlePolicyCanZ",
+        "symbol_extent": "NOT_PROVEN_WITHOUT_ELF_SIZE",
+        "window_size": 256
+      },
+      "source_equivalence_not_proven": true,
+      "terminal_kinds": {
+        "POP_PC_RETURN_OR_INDIRECT": 1
+      }
+    },
+    {
+      "conditional_paths_are_overapproximation": true,
+      "direct_calls": [
+        {
+          "site": 152202224,
+          "target": 152202416,
+          "target_symbol_from_saved_metadata": null
+        },
+        {
+          "site": 152202234,
+          "target": 152105048,
+          "target_symbol_from_saved_metadata": null
+        }
+      ],
+      "entry": 152202208,
+      "full_function_extent_proven": false,
+      "indirect_edges_resolved": false,
+      "instruction_overlap_sites": [],
+      "limit_reached": false,
+      "native_acceptance": "DEFERRED_AUDIT",
+      "node_count": 14,
+      "nodes": [
+        {
+          "address": 152202208,
+          "encoding_sha256": "45032905ccc19f93939ffc8a27669cc54ac144bd58ce513681f9320712ed9b2c",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202210
+          ]
+        },
+        {
+          "address": 152202210,
+          "encoding_sha256": "08a3e2cbce599d75b970e99c39d71b418e7d1e96af3cbfc300253575a28ccc8c",
+          "kind": "PC_RELATIVE_LITERAL_LOAD",
+          "literal_site": 152202240,
+          "size": 2,
+          "successors": [
+            152202212
+          ]
+        },
+        {
+          "address": 152202212,
+          "encoding_sha256": "9bac88d3a3fb86f6e0c4afc05695c6e0b83bb6c9e6e64b35cae9733f3ebb59e3",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202214
+          ]
+        },
+        {
+          "address": 152202214,
+          "encoding_sha256": "d2c796f4dd3c17b03de6fffbd1c2e472655b05b9705a510197cc4420d40113df",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202216
+          ]
+        },
+        {
+          "address": 152202216,
+          "condition_code": 8,
+          "encoding_sha256": "4a9868967003d43ddf0f042f7746934a6e27d3464b9b32ac9d93bab42b295696",
+          "kind": "CONDITIONAL_B",
+          "size": 2,
+          "successors": [
+            152202218,
+            152202222
+          ]
+        },
+        {
+          "address": 152202218,
+          "encoding_sha256": "474f2af47544e9c7ce4338cabd43c5ca1c26432b7300ce387406157ea433891f",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202220
+          ]
+        },
+        {
+          "address": 152202220,
+          "encoding_sha256": "d61f3ece088ca2fb6ebd3f47479ea5514bdbc39d0decd1f678f629b107878331",
+          "kind": "POP_PC_RETURN_OR_INDIRECT",
+          "size": 2,
+          "successors": []
+        },
+        {
+          "address": 152202222,
+          "encoding_sha256": "49ee35b4c1732e7d10fd4a3b3dce5dbf35ca38f60b31333506082d1cb00657f8",
+          "kind": "PC_RELATIVE_LITERAL_LOAD",
+          "literal_site": 152202244,
+          "rom_pointer_value": 134695273,
+          "size": 2,
+          "successors": [
+            152202224
+          ]
+        },
+        {
+          "address": 152202224,
+          "call_target": 152202416,
+          "encoding_sha256": "0fa712d7beb674ce49d4c9c0da5a992b6a94af09b500f602f8907f1a3c614175",
+          "kind": "DIRECT_BL",
+          "size": 4,
+          "successors": [
+            152202228
+          ]
+        },
+        {
+          "address": 152202228,
+          "encoding_sha256": "1c972398125398a3665f212930758ae9518a8c948adbccca6753f11525730591",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202230
+          ]
+        },
+        {
+          "address": 152202230,
+          "condition_code": 8,
+          "encoding_sha256": "91d6824546d844cf5825a1b4459015e6ea43e54d4ba89c0de85d926844dfdefd",
+          "kind": "CONDITIONAL_B",
+          "size": 2,
+          "successors": [
+            152202218,
+            152202232
+          ]
+        },
+        {
+          "address": 152202232,
+          "encoding_sha256": "802e40a08e421a764f7749c9af19b6e490b10cd5aa6faaf0dc180853c87c038c",
+          "kind": "FALLTHROUGH",
+          "size": 2,
+          "successors": [
+            152202234
+          ]
+        },
+        {
+          "address": 152202234,
+          "call_target": 152105048,
+          "encoding_sha256": "1d5dfa8179ce9056d54c63406e23e40ca77f6e7a1b5483f47564ea4b1f07d579",
+          "kind": "DIRECT_BL",
+          "size": 4,
+          "successors": [
+            152202238
+          ]
+        },
+        {
+          "address": 152202238,
+          "encoding_sha256": "5e979987889bc2a4402c040011897484a6f200b1933a1a6534665817d36b658b",
+          "kind": "DIRECT_B",
+          "size": 2,
+          "successors": [
+            152202220
+          ]
+        }
+      ],
+      "outside_branches": [],
+      "seed_scope": "SAVED_STAGE06_SYMBOL_AT_CURRENT_CANDIDATE_ADDRESS",
+      "seed_symbol": "VegaBattlePolicyMarkZ",
+      "seed_window": {
+        "address": "0x9126be0",
+        "candidate_window_sha256": "92473fc80c7cb22d0310940c49f98276eef44744f3627dbea4f653683ad9a403",
+        "metadata_paths": [
+          "/upstream_runs/0/integration_symbols/VegaBattlePolicyMarkZ",
+          "/upstream_runs/1/integration_symbols/VegaBattlePolicyMarkZ"
+        ],
+        "native_acceptance": "DEFERRED_AUDIT",
+        "same_256_byte_window_as_saved_stage06": null,
+        "symbol": "VegaBattlePolicyMarkZ",
+        "symbol_extent": "NOT_PROVEN_WITHOUT_ELF_SIZE",
+        "window_size": 256
+      },
+      "source_equivalence_not_proven": true,
+      "terminal_kinds": {
+        "POP_PC_RETURN_OR_INDIRECT": 1
+      }
+    }
+  ],
+  "later_saved_elf_audit": "data/saved_link_audit.json",
+  "limits_ja": "保存metadataの3入口から到達し得るThumb-1命令を有界に追う。条件分岐は両側、BL先関数へは入らず、BX/POP PC/PC書換/未対応命令で止まる。source同一性・全関数範囲・実行済みは主張しない。",
+  "new_native_runs": 0,
+  "rom_changes": 0,
+  "saved_link_input": {
+    "arm_builds": 0,
+    "available_link_paths": [],
+    "candidate": {
+      "crc32": "CC068B4A",
+      "sha256": "46487d98a09916012dccd335d2fac983e8130087c9812276e889b4f199638c38",
+      "size": 33554432
+    },
+    "input_receipt": {
+      "artifact_id": 10623083176,
+      "artifact_sha256": "b20766e8740854f672b9cf3e894241e7180f843ddab610f8a3b5db9b1e1d7410",
+      "manifest_sha256": "a27bd7656996450c2ded1bc043e3dbd2724ca1ed5e854abcf920dd6e68c97946",
+      "run_id": 35563682153
+    },
+    "metadata": {
+      "keys": [
+        "battle_policy_smoke",
+        "battle_script_command_tables",
+        "battle_smoke",
+        "canonical_id_compatibility",
+        "canonical_runtime_roots",
+        "downstream_symbols",
+        "evolution_compatibility",
+        "evolution_linked_references",
+        "fingerprint",
+        "fingerprint_inputs",
+        "hook_audit",
+        "input",
+        "models",
+        "move_effect_lowering",
+        "output",
+        "payload",
+        "published_artifacts",
+        "repeatability",
+        "runtime_abi_bridges",
+        "runtime_generator",
+        "runtime_tables",
+        "schema_version",
+        "status",
+        "t04_repoints",
+        "task",
+        "trainer_ai_smoke",
+        "upstream_runs"
+      ],
+      "path": "build/stages/06_battle_core.json",
+      "sha256": "3c107c77cd50e39c075277a499e4a86a874c77ebbabd4e4507e125d5cc094260",
+      "size": 255032
+    },
+    "missing_symbols": [
+      "CanUseZMove",
+      "GetTypeBasedZMove",
+      "CalcMoveSplit",
+      "GetSpecialZMove",
+      "SetZEffect",
+      "ReplaceWithZMoveRuntime",
+      "gMovesThatChangePhysicality",
+      "GiveBoxMonInitialMoveset",
+      "GiveMoveToBoxMon",
+      "CreateBoxMon",
+      "CreateMon",
+      "GetHiddenAbility",
+      "GetAbility1",
+      "GetAbility2",
+      "GetMonAbility",
+      "FieldUseFunc_AbilityCapsule"
+    ],
+    "new_native_runs": 0,
+    "no_pattern_guessing": true,
+    "offset_bindings": [],
+    "payload": {
+      "sha256": "a9be3fca28416453ea021bbfde0ef687872efffff5ada869871f16dce12b1b76",
+      "size": 1960618,
+      "start": 16777216
+    },
+    "rom_changes": 0,
+    "run_id": 35563682153,
+    "snapshot_rebuilds": 0,
+    "source_head": "10552180e7f6cb34ccaf0b7b7e0f6843d11cb54a",
+    "stage06_identity": null,
+    "symbol_windows": [
+      {
+        "address": "0x9116f90",
+        "candidate_window_sha256": "78aadae6e3b347081d0b5239d7042e02b061b89cc08ea46b3bcb64084b3c36df",
+        "metadata_paths": [
+          "/upstream_runs/0/integration_symbols/HandleInputChooseMove",
+          "/upstream_runs/1/integration_symbols/HandleInputChooseMove"
+        ],
+        "native_acceptance": "DEFERRED_AUDIT",
+        "same_256_byte_window_as_saved_stage06": null,
+        "symbol": "HandleInputChooseMove",
+        "symbol_extent": "NOT_PROVEN_WITHOUT_ELF_SIZE",
+        "window_size": 256
+      },
+      {
+        "address": "0x9126bb4",
+        "candidate_window_sha256": "8de095ab8699a6be927a4c5459a28fd7dbeaaf1f9f23afb388377f12c2c7ecc4",
+        "metadata_paths": [
+          "/upstream_runs/0/integration_symbols/VegaBattlePolicyCanZ",
+          "/upstream_runs/1/integration_symbols/VegaBattlePolicyCanZ"
+        ],
+        "native_acceptance": "DEFERRED_AUDIT",
+        "same_256_byte_window_as_saved_stage06": null,
+        "symbol": "VegaBattlePolicyCanZ",
+        "symbol_extent": "NOT_PROVEN_WITHOUT_ELF_SIZE",
+        "window_size": 256
+      },
+      {
+        "address": "0x9126be0",
+        "candidate_window_sha256": "92473fc80c7cb22d0310940c49f98276eef44744f3627dbea4f653683ad9a403",
+        "metadata_paths": [
+          "/upstream_runs/0/integration_symbols/VegaBattlePolicyMarkZ",
+          "/upstream_runs/1/integration_symbols/VegaBattlePolicyMarkZ"
+        ],
+        "native_acceptance": "DEFERRED_AUDIT",
+        "same_256_byte_window_as_saved_stage06": null,
+        "symbol": "VegaBattlePolicyMarkZ",
+        "symbol_extent": "NOT_PROVEN_WITHOUT_ELF_SIZE",
+        "window_size": 256
+      }
+    ],
+    "upstream_runs": [
+      {
+        "linked_object": {
+          "sha256": "52bbd57a7d2649164c4706ee45dc17ef1f8357862d8dbd79bdcd439c2b0a36fb",
+          "size": 5733212
+        },
+        "offsets": {
+          "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523",
+          "symbol_count": 13131
+        },
+        "output_bin": {
+          "sha256": "518de9585051557c285f66c7c25defa0a1b82422020cda44b995c41f1cacec04",
+          "size": 1960618
+        },
+        "run": 1
+      },
+      {
+        "linked_object": {
+          "sha256": "52bbd57a7d2649164c4706ee45dc17ef1f8357862d8dbd79bdcd439c2b0a36fb",
+          "size": 5733212
+        },
+        "offsets": {
+          "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523",
+          "symbol_count": 13131
+        },
+        "output_bin": {
+          "sha256": "518de9585051557c285f66c7c25defa0a1b82422020cda44b995c41f1cacec04",
+          "size": 1960618
+        },
+        "run": 2
+      }
+    ]
+  },
+  "schema_version": 1,
+  "summary": {
+    "link_graph_direct_bl_sites": 4,
+    "link_graph_limited_seeds": 0,
+    "link_graph_nodes": 32,
+    "link_graph_overlap_sites": 0,
+    "link_graph_seeds": 3,
+    "missing_named_link_symbols": 16
+  }
+}

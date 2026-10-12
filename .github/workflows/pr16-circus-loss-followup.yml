@@ -1,0 +1,115 @@
+name: PR16 Circus loss followup
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-loss-followup.yml
+      - scripts/pr16_circus_loss_followup.py
+      - tests/test_pr16_circus_loss_followup.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-loss-followup
+  cancel-in-progress: false
+jobs:
+  circus-loss-followup:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 旧失敗を照合しsource修復と引継ぎを先に非force保存
+        id: prepare
+        run: python3 scripts/pr16_circus_loss_followup.py prepare
+      - name: 固定compilerとStage84親入力を復元
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-loss-followup
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: 固定private入力とcharmapだけを復元
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-loss-followup
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip';bound=next(a for a in cfg['archives'] if a['name']==name)
+          raw=(root/'.local/pr16-bp-trial-native-inputs'/name).read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(root/'.local/pr16-bp-trial-native-inputs'/name) as z:data=z.read(member)
+          path=root/member
+          assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():assert path.read_bytes()==data
+          else:
+              path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
+          PY
+      - name: 修復sourceから独立2linkし旧受入は再実行しない
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-loss-followup
+          python3 scripts/pr16_resume.py check > "$out/resume-before.json"
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+          python3 scripts/pr16_circus_entry.py > "$out/parent.stdout" 2> "$out/parent.stderr"
+          python3 scripts/pr16_circus_retention.py > "$out/retention.stdout" 2> "$out/retention.stderr"
+          python3 scripts/pr16_circus_streak.py > "$out/build.stdout" 2> "$out/build.stderr"
+          git diff --exit-code
+      - name: 1byte限定証明と未受入の敗北保存native
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-loss-followup
+          sudo apt-get update > "$out/apt-update.log" 2>&1
+          sudo apt-get install -y libmgba-dev > "$out/apt-mgba.log" 2>&1
+          python3 scripts/pr16_circus_loss_followup.py native > "$out/native.stdout" 2> "$out/native.stderr"
+          git diff --exit-code
+      - name: 成功と失敗を区別して原本と引継ぎを非force保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_loss_followup.py record
+      - name: ROM save credentialを除外して証跡を保存
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re,subprocess
+          root=pathlib.Path('.');out=root/'.local/pr16-circus-loss-evidence';out.mkdir(parents=True,exist_ok=True);members={}
+          def save(name,p):
+              assert p.is_file() and not p.is_symlink();raw=p.read_bytes()
+              if p.suffix=='.ppm':assert raw.startswith(b'P6\n240 160\n255\n') and len(raw)==115215
+              else:
+                  raw.decode('utf-8');assert len(raw)<3000000 and b'\0' not in raw
+                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw)
+              dst=out/name;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(raw)
+              members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          for prefix in ('pr16-circus-loss-followup','pr16-circus-streak-build','pr16-streak-native','pr16-streak-input'):
+              for p in sorted((root/'.local'/prefix).rglob('*')):
+                  if p.is_file() and p.suffix in {'.json','.txt','.stdout','.stderr','.log','.c','.h','.ppm','.ld','.S'}:save(prefix+'/'+p.relative_to(root/'.local'/prefix).as_posix(),p)
+          names=['scripts/pr16_circus_loss_followup.py','tests/test_pr16_circus_loss_followup.py','.github/workflows/pr16-circus-loss-followup.yml',
+              'overlays/circus_streak/circus_streak_loss.h','tests/fixtures/circus_streak_loss_fixture.c','tests/test_pr16_circus_streak_edges.py',
+              'content/modernization/pr16_circus_loss_followup.json','content/modernization/pr16_native_supply_resume_20260913.json',
+              'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','content/modernization/p08_remaining_work.json']
+          tracked=set(subprocess.check_output(['git','ls-files'],text=True).splitlines())
+          for name in names:
+              if name in tracked:save('source/'+name,root/name)
+          (out/'members.json').write_text(json.dumps(members,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-loss-followup
+          path: .local/pr16-circus-loss-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

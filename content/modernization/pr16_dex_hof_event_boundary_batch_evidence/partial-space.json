@@ -1,0 +1,815 @@
+{
+  "schema_version": 1,
+  "status": "PARTIAL_LEASE_RESEARCH_BLOCKED_NO_PROVEN_LEASE",
+  "measurement_scope": "CAPACITY_METADATA_FUNCTION_ONLY_NO_ROM_OR_JOB_DISPATCH",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "input_bindings": {
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/unknown-frontier.json": {
+      "size": 64815,
+      "sha256": "435ae082b4cba009029f452e0bffcc365a73c66a439241842dd12107f54bab06"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_checkpoint.json": {
+      "size": 11195,
+      "sha256": "660b6dc8b99c0005e8804998ad962772358233338eb2876d12853d75507342b9"
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "content/modernization/pr16_dex_hof_controller_evidence/controller-footprint.json": {
+      "size": 9353,
+      "sha256": "5ec5d9b72d25dcd249c3d6cf8af75544749748a8bdcee6da2092c3e583223d6c"
+    }
+  },
+  "donor": {
+    "name": "modernization_p03_stage67_normal_egg_rows",
+    "address": 167694532,
+    "size": 15118,
+    "sha256": "d9feba3494b83578dab53ab260705fada1f6ca64a18b5b5e52e37c3abab1f3a8"
+  },
+  "controller": {
+    "measured_sections": [
+      {
+        "name": ".text",
+        "address": 155484160,
+        "size": 6528,
+        "alignment": 4
+      }
+    ],
+    "total_allocated_bytes": 6528,
+    "source_bindings_from_saved_measurement": {
+      ".github/workflows/pr16-dex-hof-controller.yml": {
+        "size": 1665,
+        "sha256": "03295889b1f876d1536e58c17e42dd7fa54c5840eade6ea0213dad21d8fb424a"
+      },
+      "overlays/hof_journal/hof_transaction.c": {
+        "size": 19047,
+        "sha256": "6d1e905e29c2913781f28fda1fcc984c29de57909e781fdaadc6ad5096d5b855"
+      },
+      "overlays/hof_journal/hof_transaction.h": {
+        "size": 5009,
+        "sha256": "91ff66d4346dbd84b4d3911f87bf90e9773c6ccb7be6dce3f0794832535ea8cc"
+      },
+      "scripts/pr16_dex_hof_controller_actions.py": {
+        "size": 4864,
+        "sha256": "019c2d1721fb524d11f6ed9b90e93701112b2295617b071a0e1d8d5ee4ebd15d"
+      },
+      "tests/test_pr16_dex_hof_controller.py": {
+        "size": 8456,
+        "sha256": "9b9eaffe9644384a110c2af3d8e6fef8f8e6395e92ce159c0ebf07030993aa86"
+      },
+      "tools/pr16_hof_controller_host.c": {
+        "size": 5300,
+        "sha256": "da89d87818c1e8757d5466588b70babe002a5c2dc8cdb77ae3c7496bf8c48f0a"
+      }
+    },
+    "current_capacity_source_bindings_verified": {
+      "overlays/hof_journal/hof_transaction.c": {
+        "size": 19047,
+        "sha256": "6d1e905e29c2913781f28fda1fcc984c29de57909e781fdaadc6ad5096d5b855"
+      },
+      "overlays/hof_journal/hof_transaction.h": {
+        "size": 5009,
+        "sha256": "91ff66d4346dbd84b4d3911f87bf90e9773c6ccb7be6dce3f0794832535ea8cc"
+      },
+      "scripts/pr16_dex_hof_controller_actions.py": {
+        "size": 4864,
+        "sha256": "019c2d1721fb524d11f6ed9b90e93701112b2295617b071a0e1d8d5ee4ebd15d"
+      },
+      "tests/test_pr16_dex_hof_controller.py": {
+        "size": 8456,
+        "sha256": "9b9eaffe9644384a110c2af3d8e6fef8f8e6395e92ce159c0ebf07030993aa86"
+      },
+      "tools/pr16_hof_controller_host.c": {
+        "size": 5300,
+        "sha256": "da89d87818c1e8757d5466588b70babe002a5c2dc8cdb77ae3c7496bf8c48f0a"
+      }
+    },
+    "historical_workflow_not_required_to_match_current": true,
+    "final_runtime_capacity_may_increase": true,
+    "prior_measurement_rerun": false
+  },
+  "unknown_frontier": {
+    "count": 148,
+    "unique_targets": 109,
+    "smallest_target": 167694576,
+    "largest_target": 167709450,
+    "bounded_access_rows": 0,
+    "origin_word_bytes_not_target_extent": 4
+  },
+  "current_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 148,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false
+  },
+  "unsafe_point_only_upper_bound": {
+    "safe_to_lease": false,
+    "assumptions_ja": "現在の全unknown targetを残す条件で、他ownerと間接参照を無視しtarget各1byteだけを保護した仮想値。実アクセス範囲ではなく、追加分類で空隙は増え得る。",
+    "total_gap_bytes": 15009,
+    "gap_count": 110,
+    "largest_gap_bytes": 1269,
+    "alignment": 4,
+    "largest_aligned_gap": {
+      "address": 167695620,
+      "size": 1266
+    },
+    "contiguous_measured_controller_fits": false
+  },
+  "other_known_capacity": {
+    "allocatable_regions": [
+      {
+        "name": "integration_modules",
+        "free_bytes": 200,
+        "largest_gap_bytes": 16
+      },
+      {
+        "name": "future_tail",
+        "free_bytes": 311,
+        "largest_gap_bytes": 276
+      }
+    ],
+    "global_free_bytes": 511,
+    "save_subowner_free_bytes": 804,
+    "sum_upper_bound_bytes": 1315,
+    "deficit_vs_6528_bytes": 5213,
+    "all_115_owners_preserved": true,
+    "reserved_region_bytes_counted_free": 0,
+    "sum_implies_packable": false
+  },
+  "execution": {
+    "rom_reads": 0,
+    "rom_reconstructions": 0,
+    "old_inventory_runs": 0,
+    "native_runs": 0,
+    "actions_runs": 0,
+    "old_test_runs": 0,
+    "lease_created": false
+  },
+  "successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 123,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 125,
+    "current_unknown_count": 123,
+    "newly_classified_count": 2,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 54787,
+      "sha256": "036a9bd87ea101d84fada4d1fbd65f29bec00cf6ab1a6c00f6d16226d27e931d"
+    }
+  },
+  "successor_point_only_projection": {
+    "unique_targets": 92,
+    "total_gap_bytes": 15026,
+    "largest_gap_bytes": 1553,
+    "largest_aligned_gap_bytes": 1550,
+    "current_unknown_targets_retained_assumption": true,
+    "safe_to_lease": false,
+    "indirect_or_owner_protection_omitted_for_projection_only": true
+  },
+  "fixed726_base_successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 131,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 148,
+    "current_unknown_count": 131,
+    "newly_classified_count": 17,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 64815,
+      "sha256": "435ae082b4cba009029f452e0bffcc365a73c66a439241842dd12107f54bab06"
+    }
+  },
+  "immediate_parent_input_bindings": {
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/unknown-frontier.json": {
+      "size": 54787,
+      "sha256": "036a9bd87ea101d84fada4d1fbd65f29bec00cf6ab1a6c00f6d16226d27e931d"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_checkpoint.json": {
+      "size": 75332,
+      "sha256": "608c5faa5f2f2b8ff988ef25dbbf77ad5fffbcafc4da4aee8809a521251f098f"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/partial-space.json": {
+      "size": 25234,
+      "sha256": "dd198330e486045d12e8d554e787c0614d795f72b2b0fc443f0c4962d4a39164"
+    }
+  },
+  "immediate_parent_checkpoint": "content/modernization/pr16_dex_hof_field_consumer_batch_checkpoint.json",
+  "fixed728_parent_successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 131,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 146,
+    "current_unknown_count": 131,
+    "newly_classified_count": 15,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 63943,
+      "sha256": "9a58057a3d7d8c18661270902c00c478da298ba65f0b637cc99a1d09a32df85f"
+    }
+  },
+  "fixed729_lifetime_parent_successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 131,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 145,
+    "current_unknown_count": 131,
+    "newly_classified_count": 14,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    }
+  },
+  "fixed729_runtime_parent_successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 131,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 145,
+    "current_unknown_count": 131,
+    "newly_classified_count": 14,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    }
+  },
+  "fixed732_boundary_parent_successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 131,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 142,
+    "current_unknown_count": 131,
+    "newly_classified_count": 11,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 62199,
+      "sha256": "53ea3d2a47a3066f72278de164c8cbc19ba5a6ebf3ec815cde921db50a65aa6d"
+    }
+  },
+  "fixed733_party_parent_successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 131,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 141,
+    "current_unknown_count": 131,
+    "newly_classified_count": 10,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 61763,
+      "sha256": "ef91033ce77034dffa6b1155011bbe7df86f26df79c5ea8f630288cae8462a1f"
+    }
+  },
+  "fixed735_summary_parent_successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 131,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 139,
+    "current_unknown_count": 131,
+    "newly_classified_count": 8,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 60891,
+      "sha256": "acb5cbea26a6eaba403dd3fc3e3215f54a9ad7dde440b8dfd3636dd697241621"
+    }
+  },
+  "immediate_parent_capacity_identity": {
+    "size": 25234,
+    "sha256": "dd198330e486045d12e8d554e787c0614d795f72b2b0fc443f0c4962d4a39164"
+  },
+  "immediate_parent_recorded_successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 125,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 128,
+    "current_unknown_count": 125,
+    "newly_classified_count": 3,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 56095,
+      "sha256": "8e463394c3ff6160d15f4d89d8b97153766e7c1b5af13d51d323abdb1ad5e2c0"
+    }
+  },
+  "fixed737_remaining_consumers_parent_successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 131,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 137,
+    "current_unknown_count": 131,
+    "newly_classified_count": 6,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 60019,
+      "sha256": "8e9a910b72b855ae7115a28b279abeddf82612f8f975e6085b6bb17fafd1093d"
+    }
+  },
+  "help_batch_runtime_boundary": {
+    "status": "UNPROVEN_RUNTIME_BOUNDARY_NO_ALLOCATION_OR_WIRING",
+    "controller_measured_bytes": 6528,
+    "controller_runtime_wired": false,
+    "heap_scratch_bytes": 13352,
+    "heap_lifetime_proven": false,
+    "universal_irq_or_heap_lifetime_claimed": false,
+    "stock_save_backup_bytes": 53300,
+    "release_before_stock_save_entry": 134527068,
+    "stock_save_boundary_crossing_allowed": false,
+    "all_save_entry_heap_ready_proven": false,
+    "synchronous_nonreentrant_use_proven": false,
+    "donor_safe_bytes": 0,
+    "donor_leased": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  },
+  "fixed741_help_batch_parent_successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 131,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 133,
+    "current_unknown_count": 131,
+    "newly_classified_count": 2,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 58275,
+      "sha256": "55bee1d2fbe5f830cd23acb58ec0f09d56ac0e4d2fe7af9ea798894a14c13adf"
+    }
+  },
+  "fixed743_help_batch_point_only_projection": {
+    "unique_targets": 97,
+    "total_gap_bytes": 15021,
+    "largest_gap_bytes": 1553,
+    "largest_aligned_gap_bytes": 1550,
+    "current_unknown_targets_retained_assumption": true,
+    "safe_to_lease": false,
+    "indirect_or_owner_protection_omitted_for_projection_only": true
+  },
+  "root_batch_runtime_boundary": {
+    "status": "UNPROVEN_RUNTIME_BOUNDARY_NO_ALLOCATION_OR_WIRING",
+    "controller_measured_bytes": 6528,
+    "controller_runtime_wired": false,
+    "heap_scratch_bytes": 13352,
+    "heap_lifetime_proven": false,
+    "universal_irq_or_heap_lifetime_claimed": false,
+    "stock_save_backup_bytes": 53300,
+    "release_before_stock_save_entry": 134527068,
+    "stock_save_boundary_crossing_allowed": false,
+    "all_save_entry_heap_ready_proven": false,
+    "synchronous_nonreentrant_use_proven": false,
+    "indirect_reference_completeness_proven": false,
+    "target_retirement_proven": false,
+    "explicit_owner_transfer_proven": false,
+    "natural_play_universal_reachability_claimed": false,
+    "donor_safe_bytes": 0,
+    "donor_leased": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  },
+  "current_owner_binding": {
+    "path": "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
+    "checkpoint_identity": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "actual_owner_rows_identity": {
+      "size": 29637,
+      "sha256": "9a1be1f1caffa55682a2045060f5332ed0319f04a175448d1fa1661b83de3ed4"
+    },
+    "actual_owner_count": 115,
+    "save_owner_count": 52,
+    "save_free_bytes": 804,
+    "donor_lease_or_owner_transfer_performed": false
+  },
+  "fixed746_root_batch_successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 128,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 131,
+    "current_unknown_count": 128,
+    "newly_classified_count": 3,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 57403,
+      "sha256": "50358bbd4cc7b0a5bdd7d4e85bb0f57a79b038d35f5394734e85a4d9c9271e8e"
+    }
+  },
+  "fixed746_root_batch_point_only_projection": {
+    "unique_targets": 94,
+    "total_gap_bytes": 15024,
+    "largest_gap_bytes": 1553,
+    "largest_aligned_gap_bytes": 1550,
+    "current_unknown_targets_retained_assumption": true,
+    "safe_to_lease": false,
+    "indirect_or_owner_protection_omitted_for_projection_only": true
+  },
+  "field_consumer_batch_runtime_boundary": {
+    "status": "UNPROVEN_RUNTIME_BOUNDARY_NO_ALLOCATION_OR_WIRING",
+    "controller_measured_bytes": 6528,
+    "controller_runtime_wired": false,
+    "heap_scratch_bytes": 13352,
+    "heap_lifetime_proven": false,
+    "universal_irq_or_heap_lifetime_claimed": false,
+    "stock_save_backup_bytes": 53300,
+    "release_before_stock_save_entry": 134527068,
+    "stock_save_boundary_crossing_allowed": false,
+    "all_save_entry_heap_ready_proven": false,
+    "synchronous_nonreentrant_use_proven": false,
+    "indirect_reference_completeness_proven": false,
+    "target_retirement_proven": false,
+    "explicit_owner_transfer_proven": false,
+    "natural_play_universal_reachability_claimed": false,
+    "donor_safe_bytes": 0,
+    "donor_leased": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  },
+  "fixed749_field_consumer_batch_successor_plan": {
+    "status": "GEOMETRY_ONLY_NOT_A_LEASE",
+    "owner_count": 115,
+    "unbounded_access_count": 125,
+    "unresolved_obligations": [
+      "indirect_reference_completeness_unproven",
+      "partial_retirement_and_explicit_owner_transfer_unproven"
+    ],
+    "protected": [
+      {
+        "address": 167694532,
+        "size": 15118
+      }
+    ],
+    "gaps": [],
+    "aligned_gaps": [],
+    "total_unprotected_bytes": 0,
+    "largest_aligned_gap_bytes": 0,
+    "requested_bytes": 6528,
+    "geometry_fits_contiguously": false,
+    "lease_eligible": false,
+    "lease_authorized_semantics": "technical_allocator_lease_not_user_permission",
+    "lease_authorized": false,
+    "rom_mutation_performed": false,
+    "parent_unknown_count": 128,
+    "current_unknown_count": 125,
+    "newly_classified_count": 3,
+    "full_inventory_count": 874,
+    "candidate": {
+      "size": 33554432,
+      "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+    },
+    "semantic_chain_acceptance_rechecked": false,
+    "parent_frontier_identity": {
+      "size": 56095,
+      "sha256": "8e463394c3ff6160d15f4d89d8b97153766e7c1b5af13d51d323abdb1ad5e2c0"
+    }
+  },
+  "fixed749_field_consumer_batch_point_only_projection": {
+    "unique_targets": 92,
+    "total_gap_bytes": 15026,
+    "largest_gap_bytes": 1553,
+    "largest_aligned_gap_bytes": 1550,
+    "current_unknown_targets_retained_assumption": true,
+    "safe_to_lease": false,
+    "indirect_or_owner_protection_omitted_for_projection_only": true
+  },
+  "event_boundary_batch_runtime_boundary": {
+    "status": "UNPROVEN_RUNTIME_BOUNDARY_NO_ALLOCATION_OR_WIRING",
+    "controller_measured_bytes": 6528,
+    "controller_runtime_wired": false,
+    "heap_scratch_bytes": 13352,
+    "heap_lifetime_proven": false,
+    "universal_irq_or_heap_lifetime_claimed": false,
+    "stock_save_backup_bytes": 53300,
+    "release_before_stock_save_entry": 134527068,
+    "stock_save_boundary_crossing_allowed": false,
+    "all_save_entry_heap_ready_proven": false,
+    "synchronous_nonreentrant_use_proven": false,
+    "indirect_reference_completeness_proven": false,
+    "target_retirement_proven": false,
+    "explicit_owner_transfer_proven": false,
+    "natural_play_universal_reachability_claimed": false,
+    "donor_safe_bytes": 0,
+    "donor_leased": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260915-BP-SPENDING-ACCEPTANCE",
+  "attempts": [
+    {
+      "run_id": 34933733445,
+      "job_id": 104267125162,
+      "tested_head": "adee4dbcf6f7f73a92912791c316c2405d471115",
+      "artifact_id": 10383085559,
+      "artifact": {
+        "size": 843411,
+        "sha256": "271e77ccadcb4e7ca593faba71ae52ab5330fd958a980bf3c2b044665f42eb81"
+      },
+      "original_conclusion": "failure",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "native_failure_retained": true,
+      "executed_in_this_session": false,
+      "diagnosis": "obsolete 45-entry observer"
+    },
+    {
+      "run_id": 34945660762,
+      "job_id": 104304323195,
+      "tested_head": "bcd6d5caa63ad7b6f3c0d143521696822d867ca4",
+      "artifact_id": 10387360949,
+      "artifact": {
+        "size": 843650,
+        "sha256": "8ffaa6c8e8fc8a71a39e317f5e800b9c4541e3f5dcc41a25f77268843237b8ab"
+      },
+      "original_conclusion": "failure",
+      "process": {
+        "schema_version": 1,
+        "returncode": 1,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "native_failure_retained": true,
+      "executed_in_this_session": true,
+      "diagnosis": "obsolete Stage27 18-entry observer"
+    },
+    {
+      "run_id": 34946969126,
+      "job_id": 104308573084,
+      "tested_head": "0b7497b575a3180a045f2be377386490f192a012",
+      "artifact_id": 10386754174,
+      "artifact": {
+        "size": 859444,
+        "sha256": "7f2443cfcf43402e3f00952f7ab9f6a4487acd3c976dd5fd487a418dfc6085b0"
+      },
+      "original_conclusion": "success",
+      "process": {
+        "schema_version": 1,
+        "returncode": 0,
+        "timed_out": false,
+        "spawn_error": null
+      },
+      "native_failure_retained": false,
+      "executed_in_this_session": true,
+      "diagnosis": "actual QolSupplyShopState 50-entry observer"
+    }
+  ],
+  "session_new_native_processes": 2,
+  "session_failed_native_processes": 1,
+  "successful_native_processes": 1,
+  "successful_actual_fresh_cores": 2,
+  "accepted_standalone_replays": 0
+}

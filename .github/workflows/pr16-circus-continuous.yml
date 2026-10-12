@@ -1,0 +1,47 @@
+name: PR16 Circus continuous thirty target
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-continuous.yml
+      - scripts/pr16_circus_continuous.py
+      - scripts/pr16_circus_continuous_probe.py
+      - tools/mgba_pr16_circus_continuous.c
+      - tests/test_pr16_circus_continuous.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-three-win
+  cancel-in-progress: false
+jobs:
+  circus-finish:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 受入3勝9BPと5画面を照合し連続区間を記録
+        id: prepare
+        run: python3 scripts/pr16_circus_continuous.py prepare
+      - name: 固定候補で連続10入場を最大30勝まで通常入力検証
+        run: python3 scripts/pr16_circus_continuous.py pipeline
+      - name: 成否原本と固定引継ぎと両ログを非force保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_continuous.py finish
+      - name: ROMとsaveを除外して証跡を保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_continuous.py pack
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.prepare.outcome == 'success'
+        with:
+          name: pr16-circus-continuous
+          path: .local/pr16-circus-finish-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

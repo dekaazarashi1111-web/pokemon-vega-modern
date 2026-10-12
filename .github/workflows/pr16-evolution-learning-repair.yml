@@ -1,0 +1,134 @@
+name: pr16-evolution-learning-repair
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-evolution-learning-repair.yml
+      - scripts/pr16_evolution_learning_repair.py
+      - scripts/pr16_repaired_acceptance.py
+      - tests/test_pr16_repaired_acceptance.py
+      - tests/test_pr16_evolution_learning_repair.py
+      - overlays/modernization_p03_evolution_learning/**
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-evolution-learning-repair
+  cancel-in-progress: false
+jobs:
+  build-repair:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Preserve exact HEAD and fixed Stage84 parent
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-final-routes
+          git rev-parse HEAD > .local/pr16-final-routes/tested-head.txt
+          bash infra/setup_github_actions.sh --install > .local/pr16-final-routes/toolchain.log 2>&1
+          python3 scripts/modernization_final_integration.py prepare > .local/pr16-final-routes/stage84.json
+      - name: Restore only the exact adopted V4 source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-inputs
+          gh release download private-environment-v1 --pattern pokemon-vega-private-env-v1-inputs.zip --dir .local/pr16-inputs
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'config/github_private_environment.json').read_text())
+          model=next(a for a in cfg['archives'] if a['name']=='pokemon-vega-private-env-v1-inputs.zip')
+          archive=root/'.local/pr16-inputs'/model['name'];raw=archive.read_bytes()
+          assert len(raw)==model['size'] and hashlib.sha256(raw).hexdigest()==model['sha256']
+          name='userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip'
+          with zipfile.ZipFile(archive) as z:data=z.read(name)
+          assert hashlib.sha256(data).hexdigest()=='4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2'
+          target=root/name
+          assert not any(p.is_symlink() for p in (target,*target.parents))
+          if target.exists():assert target.read_bytes()==data
+          else:
+              target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data);target.chmod(0o444)
+          PY
+      - name: Exact P07 parent and negative repair tests
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-evolution-evidence
+          python3 scripts/pr16_p07_preserved_layer.py > .local/pr16-evolution-evidence/parent.stdout 2> .local/pr16-evolution-evidence/parent.stderr
+          python3 -m unittest discover -s tests -p test_pr16_evolution_learning_repair.py -v > .local/pr16-evolution-evidence/unit.log 2>&1
+      - name: Fail-closed new-candidate path and identity projections
+        run: python3 -m unittest discover -s tests -p test_pr16_repaired_acceptance.py -v
+      - name: Two independent builds with verified native instruction preimages
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_evolution_learning_repair.py > .local/pr16-evolution-evidence/build-a.stdout 2> .local/pr16-evolution-evidence/build-a.stderr
+          python3 scripts/pr16_evolution_learning_repair.py --output .local/pr16-evolution-repair-second > .local/pr16-evolution-evidence/build-b.stdout 2> .local/pr16-evolution-evidence/build-b.stderr
+          cmp .local/pr16-evolution-repair/candidate.gba .local/pr16-evolution-repair-second/candidate.gba
+          cmp .local/pr16-evolution-repair/candidate.json .local/pr16-evolution-repair-second/candidate.json
+          cp .local/pr16-evolution-repair/*.bps .local/pr16-evolution-evidence/
+          cp .local/pr16-evolution-repair/candidate.json .local/pr16-evolution-evidence/
+          git diff --exit-code
+      - name: Real Rare Candy and evolution learning with normal save and cold Continue
+        if: ${{ !cancelled() }}
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_repaired_acceptance.py learning > .local/pr16-evolution-evidence/learning.stdout 2> .local/pr16-evolution-evidence/learning.stderr
+          git diff --exit-code
+      - name: Impact regression through actual move-memory menus and saves
+        if: ${{ !cancelled() }}
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_repaired_acceptance.py memory > .local/pr16-evolution-evidence/memory.stdout 2> .local/pr16-evolution-evidence/memory.stderr
+          git diff --exit-code
+      - name: All three P06 adopted fields, native effects and reviewed Summary on repaired candidate
+        if: ${{ !cancelled() }}
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_repaired_acceptance.py p06 > .local/pr16-evolution-evidence/p06.stdout 2> .local/pr16-evolution-evidence/p06.stderr
+          git diff --exit-code
+      - name: Preserve native results before domain regression
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-repaired-native-results
+          path: |
+            .local/pr16-evolution-evidence/acceptance/
+            .local/pr16-evolution-evidence/*.stderr
+            .local/pr16-evolution-evidence/candidate.json
+            .local/pr16-final-routes/tested-head.txt
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: Seven original domain validators on the same independently composed repaired candidate
+        if: ${{ !cancelled() }}
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_repaired_acceptance.py domains > .local/pr16-evolution-evidence/domains.stdout 2> .local/pr16-evolution-evidence/domains.stderr
+          git diff --exit-code
+      - name: Preserve exact build sources, not ROM or save
+        if: always()
+        run: |
+          python3 - <<'PY2'
+          from pathlib import Path
+          import hashlib,json,zipfile,subprocess
+          root=Path('.');out=root/'.local/pr16-evolution-evidence';out.mkdir(parents=True,exist_ok=True)
+          files=['scripts/pr16_repaired_acceptance.py','tests/test_pr16_repaired_acceptance.py','scripts/pr16_integrated_native.py','scripts/pr16_integrated_domains.py','scripts/pr16_integrated_p06.py','scripts/pr16_native_learning.py','tools/mgba_pr16_level_learning.c','scripts/pr16_evolution_learning_repair.py','overlays/modernization_p03_evolution_learning/dispatch.s','tests/test_pr16_evolution_learning_repair.py','.github/workflows/pr16-evolution-learning-repair.yml']
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in files:z.write(root/p,p)
+          (out/'source-bindings.json').write_text(json.dumps({p:{'size':(root/p).stat().st_size,'sha256':hashlib.sha256((root/p).read_bytes()).hexdigest()} for p in files},sort_keys=True,indent=2)+'\n')
+          (out/'tested-head.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          PY2
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-repaired-candidate-acceptance
+          path: .local/pr16-evolution-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

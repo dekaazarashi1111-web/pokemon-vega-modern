@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_EVENT_BOUNDARY_BATCH_REVIEW",
+  "review_scope": "new_event_boundary_batch_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "initial_head": "bd46b754b7ac5ed058f3ff50b17c57195ca92518",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-event-boundary-batch.yml": {
+      "size": 3060,
+      "sha256": "2a26bfbe25ec9209d80c0bdccbd0bd60a080ff8067fe1bf9d639043f593dafcc"
+    },
+    "content/modernization/pr16_dex_hof_battle_tail_roots_review.json": {
+      "size": 44401,
+      "sha256": "fa824c5c3639cfdf8e65aa82ea6e701019f0c07e2a9bbb06159c6f07dde1656b"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_sources.json": {
+      "size": 5344,
+      "sha256": "d69b7f4b0e7225026305176d90ed44e1764900d9de6d599c47dfe02fa1df38cc"
+    },
+    "content/modernization/pr16_dex_hof_event_placeholder_roots_review.json": {
+      "size": 16500,
+      "sha256": "ff1d18e0ac201ac276435b28f2935089df7cdbbe6862d9db1f68f92ba3d773d6"
+    },
+    "docs/PR16_DEX_HOF_EVENT_BOUNDARY_BATCH_JA.md": {
+      "size": 5861,
+      "sha256": "48c604a3a7c504e44bc8b38a70b0f75d95720d4bf057a6bd4bcf2da7f7c99c65"
+    },
+    "scripts/pr16_dex_hof_battle_tail_roots.py": {
+      "size": 18556,
+      "sha256": "9058cf8089678f379df13b81f33c6fe0ebb029208853d259c93b7aa2d4930264"
+    },
+    "scripts/pr16_dex_hof_event_boundary_batch.py": {
+      "size": 6568,
+      "sha256": "8edbf8b1c7517203f32941e1a1586b888446fd003c6093245ee45350ede31184"
+    },
+    "scripts/pr16_dex_hof_event_boundary_batch_actions.py": {
+      "size": 28586,
+      "sha256": "13e32c7f84b79f40ca1a31645ced1da7b2617f86b5e80dab22e7a0ec45ccf53d"
+    },
+    "scripts/pr16_dex_hof_event_boundary_batch_capacity.py": {
+      "size": 10664,
+      "sha256": "724e7b7c25049131a5fef6f642c9845e44a8aeaff2d6f3570244e5fa32b7df29"
+    },
+    "scripts/pr16_dex_hof_event_boundary_batch_chain.py": {
+      "size": 25218,
+      "sha256": "5119240e6fb36f0f0e789c5ae721dda2dc24c0b94871f76a9127acce4bb7da1b"
+    },
+    "scripts/pr16_dex_hof_event_placeholder_roots.py": {
+      "size": 38030,
+      "sha256": "095c8e8d9fc1f98cd7823e0e198c8c9c42c3c243a378890a9d5158b5948416ac"
+    },
+    "tests/test_pr16_dex_hof_battle_tail_roots.py": {
+      "size": 12298,
+      "sha256": "0cec5029ff5ca37f7ca221817952593d12784cf3ec8fe472bd3d3023141b56c4"
+    },
+    "tests/test_pr16_dex_hof_event_boundary_batch.py": {
+      "size": 8555,
+      "sha256": "ee42831454c9a10b52b914cf49c1aaeae9c485bb451627e42f27d249d5ea2eda"
+    },
+    "tests/test_pr16_dex_hof_event_boundary_batch_actions.py": {
+      "size": 17372,
+      "sha256": "9a6229a28d4c92ed3bd293361f1bb4b191fbec1edad4b7e27c96673d1841487f"
+    },
+    "tests/test_pr16_dex_hof_event_boundary_batch_capacity.py": {
+      "size": 12663,
+      "sha256": "fe3a6803a43de77ea974c14057a63d440469f27bf979e81dab7bfa57286a128f"
+    },
+    "tests/test_pr16_dex_hof_event_boundary_batch_chain.py": {
+      "size": 16425,
+      "sha256": "abec42dcf694202015eb7168d12450b89dd6fdfe5e988a3267256ebda7ef1739"
+    },
+    "tests/test_pr16_dex_hof_event_placeholder_roots.py": {
+      "size": 17519,
+      "sha256": "a65e8a84820f28b19b0b2f2ff2ed446d6a703e41a70a71e2144521ec8839bafa"
+    }
+  },
+  "diagnostic": {
+    "status": "OLD_DIAGNOSTIC_ONLY_CURRENT_ACTIONS_REQUIRED",
+    "unit_tests": 282,
+    "new_integration_tests": 101,
+    "reused_new_scope_test_logs": [
+      {
+        "path": "battle-tail-roots-work/new-tests.txt",
+        "tests": 52,
+        "identity": {
+          "size": 7882,
+          "sha256": "9b8f58294cf451344658c42063ec6628ccf56ff93f2fbd0f9bee351de5d7febf"
+        },
+        "reused": true
+      },
+      {
+        "path": "event-placeholder-roots-work/tests.txt",
+        "tests": 94,
+        "identity": {
+          "size": 13121,
+          "sha256": "45063823e05e6d191a1567203ae141ff8b1e9c79c7e541cc1fcffafa5a4b6786"
+        },
+        "reused": true
+      },
+      {
+        "path": "event-boundary-batch-work/chain-tests-initial.txt",
+        "tests": 21,
+        "identity": {
+          "size": 4302,
+          "sha256": "9f1c7d6d25a66cada2ea0b907ef485b30f99361ed2405caa0b72e859699826ac"
+        },
+        "reused": true
+      },
+      {
+        "path": "event-boundary-batch-work/capacity-tests-initial.txt",
+        "tests": 14,
+        "identity": {
+          "size": 2976,
+          "sha256": "5235361952b4d6304ce261629aad8d83d217d50bf2fb3e5248e842980f1d5545"
+        },
+        "reused": true
+      }
+    ],
+    "classifications": [
+      751,
+      123
+    ],
+    "newly_classified": 2,
+    "diagnostic_candidate": {
+      "size": 33554432,
+      "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+      "identity_source": "previous_verified_recovery_not_current_measurement"
+    },
+    "delta_identity": {
+      "size": 13664,
+      "sha256": "76c94e9a4c299ce9846c94e1a48d15ea94b569fe0a0cb555c860bf15dd3276d9"
+    },
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "donor_leased": false
+  },
+  "diagnostic_test_log": {
+    "size": 42205,
+    "sha256": "99f8655cf1e4658b5d94487ae5c7e640ec8a78d39f504c4cb7088cf72024a29f"
+  },
+  "source_only_review": {
+    "status": "PASS",
+    "files": 17,
+    "open_findings": 0,
+    "current_rom_measured": false,
+    "old_independent_final_review_retried": false,
+    "scope": "new_event_boundary_batch_sources_only",
+    "method_ja": "新effect231/184登録battle末尾2境界の独立serializerと実field consumer、event登録2候補根の別message/標準2/ENDと未知保持、全16親保持・最新owner容量・公開guardを新sourceだけ独立確認。現0641全ROMは別Actions測定。"
+  },
+  "development_history": [
+    {
+      "stage": "new_scaffold_review",
+      "finding": "旧capacity履歴keyへの新749plan上書きと記録文の旧127changesを検出",
+      "resolution": "新fixed749_field_consumer_batch_*へ独立保存、全130changesへ訂正。新chain21/capacity14/統合101unitで確認。",
+      "old_suites_run": 0
+    },
+    {
+      "path": "docs/PR16_DEX_HOF_EVENT_BOUNDARY_BATCH_JA.md",
+      "before": {
+        "size": 5720,
+        "sha256": "349762269082533560b3b6cd7a97100cb4ed61fe461dcc6af725ad94a7619b89"
+      },
+      "after": {
+        "size": 5861,
+        "sha256": "48c604a3a7c504e44bc8b38a70b0f75d95720d4bf057a6bd4bcf2da7f7c99c65"
+      },
+      "change_ja": "標準2helper未実行、完了とcontext/stack保持を条件とするterminal probe境界を追記。",
+      "code_or_tests_changed": false,
+      "tests_rerun": 0
+    }
+  ],
+  "publication_budget": {
+    "status": "PRECURRENT_CONSERVATIVE_SIZE_CHECK_NOT_ACCEPTANCE",
+    "files": {
+      "reference-chain.json": 20428,
+      "measurement.json": 132435,
+      "fixed-checkpoint.json": 172435,
+      "fixed-state.json": 3609324,
+      "fixed-resume.md": 171060,
+      "fixed-run-log.md": 2079383,
+      "fixed-version-log.md": 1690781,
+      "event-boundary-batch-tests.txt": 42205,
+      "unknown-frontier.json": 100000,
+      "partial-space.json": 60000,
+      "record.json": 30000
+    },
+    "total": 8108051,
+    "max_file": 4000000,
+    "max_total": 12000000,
+    "state_uses_complete_proof_reference": true
+  },
+  "unchanged_parent": {
+    "classified": 749,
+    "unclassified": 125,
+    "parent_inputs": 31,
+    "retained_proof_families": 16,
+    "changes": 130,
+    "witnesses": 120,
+    "owner_count": 115,
+    "hit_count": 874,
+    "song_models": 133,
+    "assets": 50
+  },
+  "acceptance_boundary": {
+    "current_candidate_verified": false,
+    "current_actions_required": true,
+    "natural_play_reachability_proven": false,
+    "universal_epoch_irq_proven": false,
+    "old_independent_final_source_review_completed": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "controller_runtime_wired": false,
+    "formal_rom_changed": false,
+    "formal_save_changed": false
+  }
+}

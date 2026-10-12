@@ -1,0 +1,365 @@
+{
+  "status": "STATIC_FIRST_DIGLETT_FIRST_USE_NOT_NATIVE",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "10c7d4b96e2b36db13158ba3a8d8929caabac28275e98e01a93c586b0315d836"
+  },
+  "parent_route_binding": {
+    "size": 181052,
+    "sha256": "a4a832dd7f2b8e16b4bc618244a957d1c17244b1a6a12a8d6d6a33c07aecd6a3"
+  },
+  "map": [
+    10,
+    16
+  ],
+  "start": [
+    6,
+    18
+  ],
+  "route": [
+    [
+      6,
+      18
+    ],
+    [
+      6,
+      17
+    ],
+    [
+      6,
+      16
+    ],
+    [
+      6,
+      15
+    ]
+  ],
+  "interaction": {
+    "target": [
+      6,
+      14
+    ],
+    "local_id": 5,
+    "script": 141220048,
+    "visibility_flag": 4372,
+    "first_use_flag": 4378,
+    "button": "A",
+    "from_xy": [
+      6,
+      15
+    ],
+    "facing": 2
+  },
+  "terrain": [
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        18
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 101
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        17
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "map": [
+        10,
+        16
+      ],
+      "xy": [
+        6,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    }
+  ],
+  "initial_flags": {
+    "4372": 0,
+    "4373": 0,
+    "4374": 0,
+    "4375": 0,
+    "4376": 0,
+    "4377": 0,
+    "4378": 0
+  },
+  "expected_flag_changes": [
+    [
+      4372,
+      0,
+      1
+    ],
+    [
+      4378,
+      0,
+      1
+    ]
+  ],
+  "expected_removed_local_id": 5,
+  "instructions": [
+    {
+      "address": 136400176,
+      "opcode": 161,
+      "size": 5,
+      "hex": "a110000200",
+      "node": 136400176
+    },
+    {
+      "address": 136400181,
+      "opcode": 151,
+      "size": 2,
+      "hex": "9701",
+      "node": 136400176
+    },
+    {
+      "address": 136400183,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b050001",
+      "node": 136400176
+    },
+    {
+      "address": 136400187,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b060001",
+      "node": 136400176
+    },
+    {
+      "address": 136400191,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b080001",
+      "node": 136400176
+    },
+    {
+      "address": 136400195,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b090001",
+      "node": 136400176
+    },
+    {
+      "address": 136400199,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b0a0001",
+      "node": 136400176
+    },
+    {
+      "address": 136400203,
+      "opcode": 91,
+      "size": 4,
+      "hex": "5b0b0001",
+      "node": 136400176
+    },
+    {
+      "address": 136400207,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 136400176
+    },
+    {
+      "address": 141219312,
+      "opcode": 106,
+      "size": 1,
+      "hex": "6a",
+      "node": 141219312
+    },
+    {
+      "address": 141219313,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00084f2108",
+      "node": 141219312
+    },
+    {
+      "address": 141219319,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0902",
+      "node": 141219312
+    },
+    {
+      "address": 141219321,
+      "opcode": 4,
+      "size": 5,
+      "hex": "04304d2108",
+      "node": 141219312
+    },
+    {
+      "address": 141219326,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 141219312
+    },
+    {
+      "address": 141219331,
+      "opcode": 151,
+      "size": 2,
+      "hex": "9700",
+      "node": 141219331
+    },
+    {
+      "address": 141219333,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f00214f2108",
+      "node": 141219331
+    },
+    {
+      "address": 141219339,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0906",
+      "node": 141219331
+    },
+    {
+      "address": 141219341,
+      "opcode": 108,
+      "size": 1,
+      "hex": "6c",
+      "node": 141219331
+    },
+    {
+      "address": 141219342,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 141219331
+    },
+    {
+      "address": 141219344,
+      "opcode": 41,
+      "size": 3,
+      "hex": "291a11",
+      "node": 141219344
+    },
+    {
+      "address": 141219347,
+      "opcode": 41,
+      "size": 3,
+      "hex": "291411",
+      "node": 141219344
+    },
+    {
+      "address": 141219350,
+      "opcode": 83,
+      "size": 3,
+      "hex": "530500",
+      "node": 141219344
+    },
+    {
+      "address": 141219353,
+      "opcode": 3,
+      "size": 1,
+      "hex": "03",
+      "node": 141219344
+    },
+    {
+      "address": 141220048,
+      "opcode": 106,
+      "size": 1,
+      "hex": "6a",
+      "node": 141220048
+    },
+    {
+      "address": 141220049,
+      "opcode": 4,
+      "size": 5,
+      "hex": "04f0d56a08",
+      "node": 141220048
+    },
+    {
+      "address": 141220054,
+      "opcode": 43,
+      "size": 3,
+      "hex": "2b1a11",
+      "node": 141220048
+    },
+    {
+      "address": 141220057,
+      "opcode": 6,
+      "size": 6,
+      "hex": "0601ebd86a08",
+      "node": 141220048
+    },
+    {
+      "address": 141220063,
+      "opcode": 4,
+      "size": 5,
+      "hex": "0410d66a08",
+      "node": 141220048
+    },
+    {
+      "address": 141220068,
+      "opcode": 5,
+      "size": 5,
+      "hex": "0503d66a08",
+      "node": 141220048
+    }
+  ],
+  "texts": {
+    "136400648": {
+      "hex": "fd011a0022191f0419fe9480899116001a150c00060910ff",
+      "decoded": "<fd>あは めのまえの\\nディグダに はなし かけた"
+    },
+    "136400673": {
+      "hex": "152e14abfe9480899119001a021137001d2e060c10ff",
+      "decoded": "なんと！\\nディグダの はいちが へんかした"
+    }
+  },
+  "source_graph_reused": true,
+  "full_gym_puzzle_accepted": false,
+  "native_route_accepted": false,
+  "source_notes_ja": "保存済gym graphの初回4378未set分岐だけ。callstd2/cry16→set4378/4372→removeobject5→callstd6。再採取/byte searchなし。"
+}

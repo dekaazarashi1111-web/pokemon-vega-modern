@@ -1,0 +1,52 @@
+name: pr16-research-connection-accept-20260927
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-connection-accept-20260927.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-research-connection-accept-20260927
+  cancel-in-progress: false
+jobs:
+  accept:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 原本照合・新規oracle試験・33画面binding・引継ぎ・最終index guard
+        run: python3 -B scripts/pr16_research_connection_accept.py
+      - name: task graphと現HEAD一致
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -B scripts/validate_task_graph.py
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          python3 -B -c 'import sys;sys.path[:0]=["scripts","."];import pr16_research_lifecycle_actions as d;d.current()'
+      - name: 限定受入をcommit・同branchへ非force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "USER-20260927-RESEARCH-CONNECTION: 4入口と静的案内の独立受入を確定"
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          echo "RESULT=DONE TASK=USER-20260927-RESEARCH-CONNECTION VERIFY=PASS COMMIT=$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-connection-acceptance
+          path: |
+            .local/pr16-research-connection-accept/public/
+            content/modernization/pr16_research_connection_acceptance.json
+          retention-days: 14
+          if-no-files-found: warn

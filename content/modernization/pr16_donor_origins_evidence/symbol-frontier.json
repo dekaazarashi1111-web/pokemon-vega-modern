@@ -1,0 +1,403 @@
+{
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "claims": {
+    "accepted_test_reruns": 0,
+    "actual_consumer_proven": false,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "donor_safe_bytes": 0,
+    "formal_classification_changes": 0,
+    "indirect_reference_completeness_claimed": false,
+    "intra_donor_origins_covered": false,
+    "native_processes": 0,
+    "old_full_rom_scan_runs": 0,
+    "outside_target_excludes_access": false,
+    "retirement_or_transfer_complete": false,
+    "rom_reconstructions": 0,
+    "rom_writes": 0,
+    "save_writes": 0,
+    "symbol_neighborhood_is_owner": false
+  },
+  "limitations_ja": [
+    "公開JP symbolの隣接labelは現候補のowner/asset extent/実consumer証明ではない。",
+    "高位ROM originに近傍labelがない場合も未確認。最終labelの範囲をROM末尾まで延長しない。",
+    "窓外からの跨りread・旧owner内部origin・計算/間接参照は残る。正式785/89、安全容量0。"
+  ],
+  "origins": [
+    {
+      "actual_consumer_proven": false,
+      "current_candidate_bytes_bound": false,
+      "following_label": {
+        "address": 134878000,
+        "labels": [
+          {
+            "line": 6744,
+            "name": ".gcc2_compiled.",
+            "row_sha256": "b659f114a0a397021fddcdb5fbd9a5562c151b73a8a915628de06fc1a6dce826"
+          },
+          {
+            "line": 6743,
+            "name": "HealPlayerParty",
+            "row_sha256": "b054c299b1942e40d5959c658733b6a8f8deaee4bff1b2eed70ac1d28ab67116"
+          }
+        ]
+      },
+      "hit": {
+        "accepted": false,
+        "address": 134873199,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "34ab26c2eaf2a22455a60b55e8b489ed9a07e9939dd3e68c1bd9007fe5eb8a9d",
+        "size": 4,
+        "target": 167695616
+      },
+      "labels_starting_inside_hit": [],
+      "offset_from_preceding": 471,
+      "preceding_label": {
+        "address": 134872728,
+        "labels": [
+          {
+            "line": 6742,
+            "name": "HideMoneyBox",
+            "row_sha256": "b24189b37e7b6d5b2f29dc8f1c0aaf73fff03dcebc6955b6198d94372037ba38"
+          }
+        ]
+      },
+      "status": "PUBLIC_SYMBOL_NEIGHBORHOOD_ONLY_CURRENT_OWNER_UNPROVEN"
+    },
+    {
+      "actual_consumer_proven": false,
+      "current_candidate_bytes_bound": false,
+      "following_label": {
+        "address": 136091408,
+        "labels": [
+          {
+            "line": 24979,
+            "name": "__mulsf3",
+            "row_sha256": "461f015a4c54f48ec66605097512ce4ffd0fb26795c57983067070dcd990dfc4"
+          }
+        ]
+      },
+      "hit": {
+        "accepted": false,
+        "address": 136091369,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "9bd8fd67ee8be1be8cdeb36dba8bc477c063d5b9956f73eb37da1012b5cd6258",
+        "size": 4,
+        "target": 167700214
+      },
+      "labels_starting_inside_hit": [],
+      "offset_from_preceding": 13,
+      "preceding_label": {
+        "address": 136091356,
+        "labels": [
+          {
+            "line": 24978,
+            "name": "__subsf3",
+            "row_sha256": "8eae1dfa38f55b613e9db42b0c75a1c33019454270306563e7243e3e897b4a0a"
+          }
+        ]
+      },
+      "status": "PUBLIC_SYMBOL_NEIGHBORHOOD_ONLY_CURRENT_OWNER_UNPROVEN"
+    },
+    {
+      "actual_consumer_proven": false,
+      "current_candidate_bytes_bound": false,
+      "following_label": {
+        "address": 138891892,
+        "labels": [
+          {
+            "line": 39324,
+            "name": "DirectSoundWaveData_unknown_snare",
+            "row_sha256": "17f1250e07cdc65537188c3ee9c16ebdd0c72b5ce4ca2136548581e701b361f4"
+          }
+        ]
+      },
+      "hit": {
+        "accepted": false,
+        "address": 138879919,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "eb72d696d22c970b1090b11a8020bfb44f42ecff189aaffc9b47eb75cbeb0993",
+        "size": 4,
+        "target": 167699418
+      },
+      "labels_starting_inside_hit": [],
+      "offset_from_preceding": 1847,
+      "preceding_label": {
+        "address": 138878072,
+        "labels": [
+          {
+            "line": 39323,
+            "name": "DirectSoundWaveData_unused_sc88pro_unison_slap",
+            "row_sha256": "455b8622b31207a9c4b0822a9122ecfddc7f76e8288feded18027d66e77f4fe6"
+          }
+        ]
+      },
+      "status": "PUBLIC_SYMBOL_NEIGHBORHOOD_ONLY_CURRENT_OWNER_UNPROVEN"
+    },
+    {
+      "actual_consumer_proven": false,
+      "current_candidate_bytes_bound": false,
+      "following_label": {
+        "address": 141327672,
+        "labels": [
+          {
+            "line": 43373,
+            "name": "gMultiBootProgram_BerryGlitchFix_End",
+            "row_sha256": "8ac2eef0df42a7c3c0579cc973a092e29367f1251af9ed0f41f10d0a40b7c630"
+          },
+          {
+            "line": 43374,
+            "name": "gMultiBootProgram_PokemonColosseum_Start",
+            "row_sha256": "d35cad12f8a980c7f47cabcacbab2897a71f071b40c7e3f43fe448991004f165"
+          }
+        ]
+      },
+      "hit": {
+        "accepted": false,
+        "address": 141316543,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "169f39595db6c1ad1cf83234441b8a0ec54dc2a94afab2cc05d80713fb0a0a41",
+        "size": 4,
+        "target": 167700464
+      },
+      "labels_starting_inside_hit": [],
+      "offset_from_preceding": 2323,
+      "preceding_label": {
+        "address": 141314220,
+        "labels": [
+          {
+            "line": 43371,
+            "name": "gMultiBootProgram_BerryGlitchFix_Start",
+            "row_sha256": "2bab0708dd422a5cd21023d5b46378efa2983f8e6aeb359bc292c35a37afde69"
+          },
+          {
+            "line": 43372,
+            "name": "gMultiBootProgram_EReader_End",
+            "row_sha256": "208a74432289cb7dc16c42424d4977fa847732e9a62964f37f8565fd78bbbba0"
+          }
+        ]
+      },
+      "status": "PUBLIC_SYMBOL_NEIGHBORHOOD_ONLY_CURRENT_OWNER_UNPROVEN"
+    },
+    {
+      "actual_consumer_proven": false,
+      "current_candidate_bytes_bound": false,
+      "following_label": {
+        "address": 146801880,
+        "labels": [
+          {
+            "line": 43375,
+            "name": "gBattleInterface_Textbox_Pal",
+            "row_sha256": "49f224578c1c30e458874183d5674ef64dcde4b5233a573a01a88770b550e927"
+          }
+        ]
+      },
+      "hit": {
+        "accepted": false,
+        "address": 142670436,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "b12945a9395fea471444b59c0a9e33507a82af3be4b8d0a17ffbf5077f926c37",
+        "size": 4,
+        "target": 167695044
+      },
+      "labels_starting_inside_hit": [],
+      "offset_from_preceding": 1342764,
+      "preceding_label": {
+        "address": 141327672,
+        "labels": [
+          {
+            "line": 43373,
+            "name": "gMultiBootProgram_BerryGlitchFix_End",
+            "row_sha256": "8ac2eef0df42a7c3c0579cc973a092e29367f1251af9ed0f41f10d0a40b7c630"
+          },
+          {
+            "line": 43374,
+            "name": "gMultiBootProgram_PokemonColosseum_Start",
+            "row_sha256": "d35cad12f8a980c7f47cabcacbab2897a71f071b40c7e3f43fe448991004f165"
+          }
+        ]
+      },
+      "status": "PUBLIC_SYMBOL_NEIGHBORHOOD_ONLY_CURRENT_OWNER_UNPROVEN"
+    },
+    {
+      "actual_consumer_proven": false,
+      "current_candidate_bytes_bound": false,
+      "following_label": {
+        "address": 147193668,
+        "labels": [
+          {
+            "line": 44443,
+            "name": "gMonPalette_Victreebel",
+            "row_sha256": "40ffeccdd0dad1031a3d346246e847eb4400505b22e18cf3a49e5b907d768417"
+          }
+        ]
+      },
+      "hit": {
+        "accepted": false,
+        "address": 147192984,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "9cd21e4f7f81bc2652457d64d06b8bbf7b820174e7436ef380b9b920405b8f9f",
+        "size": 4,
+        "target": 167698446
+      },
+      "labels_starting_inside_hit": [],
+      "offset_from_preceding": 384,
+      "preceding_label": {
+        "address": 147192600,
+        "labels": [
+          {
+            "line": 44442,
+            "name": "gMonFrontPic_Victreebel",
+            "row_sha256": "98e043bc2dd5f0643dddc188bd45b4feee8ea7290f03267d062b527a877421d1"
+          }
+        ]
+      },
+      "status": "PUBLIC_SYMBOL_NEIGHBORHOOD_ONLY_CURRENT_OWNER_UNPROVEN"
+    },
+    {
+      "actual_consumer_proven": false,
+      "current_candidate_bytes_bound": false,
+      "following_label": {
+        "address": 147394612,
+        "labels": [
+          {
+            "line": 44865,
+            "name": "gMonShinyPalette_Kabutops",
+            "row_sha256": "25ec8d3068712c56371600fdd5ee401eaa7db53116d74b711064848e14aa3dae"
+          }
+        ]
+      },
+      "hit": {
+        "accepted": false,
+        "address": 147394384,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "7b25c4295c4557003431fc342ed7f11fd23a0f312a9ff5508ab5fb0a6f63e394",
+        "size": 4,
+        "target": 167697170
+      },
+      "labels_starting_inside_hit": [],
+      "offset_from_preceding": 704,
+      "preceding_label": {
+        "address": 147393680,
+        "labels": [
+          {
+            "line": 44864,
+            "name": "gMonBackPic_Kabutops",
+            "row_sha256": "9a57a8334ae89340324134687bc7a2375ce317a9a766830c64622d44d3408f34"
+          }
+        ]
+      },
+      "status": "PUBLIC_SYMBOL_NEIGHBORHOOD_ONLY_CURRENT_OWNER_UNPROVEN"
+    },
+    {
+      "actual_consumer_proven": false,
+      "current_candidate_bytes_bound": false,
+      "following_label": null,
+      "hit": {
+        "accepted": false,
+        "address": 152947327,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "24bacfcab7d33a3ceaf1d0d4081f9ff609b5b99283fd7e2d46e22e930a29f957",
+        "size": 4,
+        "target": 167699972
+      },
+      "labels_starting_inside_hit": [],
+      "offset_from_preceding": 4484559,
+      "preceding_label": {
+        "address": 148462768,
+        "labels": [
+          {
+            "line": 47400,
+            "name": "gFile_graphics_mail_retro_map_tilemap",
+            "row_sha256": "5b4159a8cb5279abdb9291f7d92253365718fbf2af0c131fbc3e938bbcc3ebf2"
+          }
+        ]
+      },
+      "status": "PUBLIC_SYMBOL_NEIGHBORHOOD_ONLY_CURRENT_OWNER_UNPROVEN"
+    },
+    {
+      "actual_consumer_proven": false,
+      "current_candidate_bytes_bound": false,
+      "following_label": null,
+      "hit": {
+        "accepted": false,
+        "address": 163413345,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "2a104f5801c3c3568b6e8e9590073f806dc49940945c6152820556355a78aba3",
+        "size": 4,
+        "target": 167697676
+      },
+      "labels_starting_inside_hit": [],
+      "offset_from_preceding": 14950577,
+      "preceding_label": {
+        "address": 148462768,
+        "labels": [
+          {
+            "line": 47400,
+            "name": "gFile_graphics_mail_retro_map_tilemap",
+            "row_sha256": "5b4159a8cb5279abdb9291f7d92253365718fbf2af0c131fbc3e938bbcc3ebf2"
+          }
+        ]
+      },
+      "status": "PUBLIC_SYMBOL_NEIGHBORHOOD_ONLY_CURRENT_OWNER_UNPROVEN"
+    },
+    {
+      "actual_consumer_proven": false,
+      "current_candidate_bytes_bound": false,
+      "following_label": null,
+      "hit": {
+        "accepted": false,
+        "address": 165704221,
+        "classification": "UNCLASSIFIED",
+        "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+        "sha256": "19ef338573c058958ae2d1cb232de6ca58d71e4598f8acf5b7f2ebfd489ec07e",
+        "size": 4,
+        "target": 167697902
+      },
+      "labels_starting_inside_hit": [],
+      "offset_from_preceding": 17241453,
+      "preceding_label": {
+        "address": 148462768,
+        "labels": [
+          {
+            "line": 47400,
+            "name": "gFile_graphics_mail_retro_map_tilemap",
+            "row_sha256": "5b4159a8cb5279abdb9291f7d92253365718fbf2af0c131fbc3e938bbcc3ebf2"
+          }
+        ]
+      },
+      "status": "PUBLIC_SYMBOL_NEIGHBORHOOD_ONLY_CURRENT_OWNER_UNPROVEN"
+    }
+  ],
+  "plan_identity": {
+    "sha256": "100dd710037fd958db20191a4bffa8590fb0414a2e252705f1111d75e15e9d2c",
+    "size": 9687
+  },
+  "public_symbol_source": {
+    "commit": "c04a31542086b20d8c6ee641eaa70b8db6713fd3",
+    "git_blob": "53316c0d61da2c6cc22acf3d79f68c61c64c65be",
+    "path": "diagnostics/pokefirered_jp.sym.audit.tsv",
+    "repository": "ComplexRobot/frlg-sym",
+    "sha256": "fc1e4b579b21a592b8e09fa3c36f242833837190401128cd6866c945eff2f44e",
+    "size": 4147002
+  },
+  "schema_version": 1,
+  "selected_window": {
+    "end_exclusive": 167701060,
+    "size": 6528,
+    "start": 167694532
+  },
+  "status": "TEN_ORIGIN_SYMBOL_FRONTIER_BOUND_NOT_OWNER_PROOF"
+}

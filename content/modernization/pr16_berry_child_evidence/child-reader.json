@@ -1,0 +1,185 @@
+{
+  "abi_header": {
+    "sha256": "958eda4ce9d37a69a73150359ee40b9637195fd641529ec9a47d0990d70f4dbf",
+    "size": 8062
+  },
+  "accepted_reader_replays": 0,
+  "accepted_test_reruns": 0,
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "child_origin": 33556755,
+  "conditional_mapped_image": {
+    "sha256": "1b23d91f9b5ca8759a7608516ed9bf986488bc002d14ddaa3add469bb0afb20f",
+    "size": 13456
+  },
+  "conditions_ja": [
+    "成功した実転送ではなく、現Taskが渡すimageを子機RAMへ事前配置した条件付きfixture。",
+    "現候補ROMは子機側cartモデルとして読取専用。Ruby/Sapphire実カートリッジを再現していない。",
+    "ARM header entryから同一image byteをmGBAで発行。entry後のhost bus/raw/register書込7APIを拒否。",
+    "既存mGBA builtin BIOSを使用。元BIOS CPU/実リンク/IRQ全寿命/実画面/ゲーム保存の受入ではない。",
+    "観測済み発行spanと単なるbyte形を区別する。未発行なら型不明を維持し、外部run受領前に正式台帳を増やさない。"
+  ],
+  "donor_safe_bytes": 0,
+  "formal_classified": 788,
+  "formal_unclassified": 86,
+  "full_rom_scans": 0,
+  "label_image": {
+    "sha256": "06acf5c00490ccbaaf8bf57a4d53d36d7df80495f894576f2acd3b9f1e9da052",
+    "size": 13452
+  },
+  "library": {
+    "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d",
+    "size": 1968536
+  },
+  "library_package_version": "0.10.2+dfsg-1.1build3",
+  "mapping": {
+    "cartridge_model": "unchanged current candidate",
+    "child_start": 33554432,
+    "entry": 33554432,
+    "initial_cpsr": 223,
+    "initial_r0_r12": 0,
+    "initial_sp": 50364160,
+    "rom_start": 141314220,
+    "size": 13456
+  },
+  "native": {
+    "all_issued_child_bytes_equal_source": true,
+    "builtin_bios_steps": 0,
+    "child_boot_fixtures": 1,
+    "final_registers": {
+      "cpsr": 1073742047,
+      "lr": 33554772,
+      "r0": 67109152,
+      "r1": 0,
+      "r2": 0,
+      "r3": 0,
+      "sp": 50364160
+    },
+    "formal_rom_changed": false,
+    "formal_save_changed": false,
+    "host_write_guards": 7,
+    "host_writes_after_entry": 0,
+    "instruction_sequence_fnv": 3885776185,
+    "issued_spans": [
+      {
+        "address": 33554432,
+        "visits": 1,
+        "width_mask": 4
+      },
+      {
+        "address": 33554688,
+        "visits": 1,
+        "width_mask": 4
+      },
+      {
+        "address": 33554720,
+        "visits": 131073,
+        "width_mask": 4
+      },
+      {
+        "address": 33554724,
+        "visits": 131072,
+        "width_mask": 4
+      },
+      {
+        "address": 33554728,
+        "visits": 131072,
+        "width_mask": 4
+      },
+      {
+        "address": 33554764,
+        "visits": 1,
+        "width_mask": 4
+      },
+      {
+        "address": 33554768,
+        "visits": 1,
+        "width_mask": 4
+      }
+    ],
+    "mapped_bytes": 13456,
+    "native_processes": 1,
+    "natural_link_transfer_proven": false,
+    "original_bios_cpu_execution_claimed": false,
+    "parent_game_boots": 0,
+    "schema_version": 1,
+    "status": "BOUNDED_CHILD_FRONTIER",
+    "steps": 393220,
+    "stop_pc": 33554720,
+    "stop_reason": "REPEATED_PC_BUDGET",
+    "swi_opcodes_issued": 0,
+    "target_byte_mask": 0
+  },
+  "native_binary": {
+    "sha256": "4894f62f8a7f88f6188691427f2a6147052937950e94a253fee00b72c014fc51",
+    "size": 17304
+  },
+  "native_processes": 1,
+  "origin": {
+    "address": 141316543,
+    "sha256": "169f39595db6c1ad1cf83234441b8a0ec54dc2a94afab2cc05d80713fb0a0a41",
+    "size": 4
+  },
+  "reader": {
+    "all_four_bytes_issued": false,
+    "donor_safe_bytes": 0,
+    "formal_classification_changes": 0,
+    "issued_spans": [
+      {
+        "child_address": 33554432,
+        "rom_address": 141314220,
+        "sha256": "afe9970cb98a852d64ea378a388861da6b45ae7b7b4a129439f01d2159439881",
+        "size": 4
+      },
+      {
+        "child_address": 33554688,
+        "rom_address": 141314476,
+        "sha256": "df5381bd87c61c5cf8776fff0f1bb5f9e382d71471c0703f6492d662e2ad9426",
+        "size": 4
+      },
+      {
+        "child_address": 33554720,
+        "rom_address": 141314508,
+        "sha256": "25ea959c73909eae238d98b95a137ea8be48c2eae288dd813542d887d02f315a",
+        "size": 4
+      },
+      {
+        "child_address": 33554724,
+        "rom_address": 141314512,
+        "sha256": "ca9e539511ab7651114fc15bbddb5c4dd4c6aac5ef7ad72fe236c43178e89e47",
+        "size": 4
+      },
+      {
+        "child_address": 33554728,
+        "rom_address": 141314516,
+        "sha256": "39da244fb397720d32e12f1b8c2bab775e8435276485ec489fc0f67027c3e5ae",
+        "size": 4
+      },
+      {
+        "child_address": 33554764,
+        "rom_address": 141314552,
+        "sha256": "1a2f2b5a9557abb1b55d14fde94321431b1a90fa0e78c3f32dad98868c3ba22a",
+        "size": 4
+      },
+      {
+        "child_address": 33554768,
+        "rom_address": 141314556,
+        "sha256": "3b40cfbe32718502e3e59ab5219d4154ca4ae6fa469fd3e42a8963cc9453da6f",
+        "size": 4
+      }
+    ],
+    "natural_transfer_proven": false,
+    "root_mapping_is_fixture": true,
+    "target_bytes_issued": 0
+  },
+  "rom_reconstructions": 1,
+  "schema_version": 1,
+  "selected_unknown_origins": 7,
+  "status": "BOUNDED_CHILD_FRONTIER",
+  "tail_outside_label": {
+    "sha256": "ad95131bc0b799c0b1af477fb14fcf26a6a9f76079e48bf090acb7e8367bfd0e",
+    "size": 4
+  }
+}

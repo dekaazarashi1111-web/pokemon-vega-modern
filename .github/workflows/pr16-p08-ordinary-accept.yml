@@ -1,0 +1,42 @@
+name: PR16 P08 ordinary evidence acceptance
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_p08_ordinary_acceptance.py
+      - tests/test_pr16_p08_ordinary_acceptance.py
+      - .github/workflows/pr16-p08-ordinary-accept.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-p08-closeout
+  cancel-in-progress: false
+jobs:
+  accept:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 原本受入の拒否系契約のみ
+        run: python3 -m unittest discover -s tests -p test_pr16_p08_ordinary_acceptance.py -v
+      - name: 完了Actions・固定原本・5画面を照合し非force受入checkpoint
+        run: python3 scripts/pr16_p08_ordinary_acceptance.py accept
+      - name: 原本と次の候補移送に必要な限定textを保存
+        if: always()
+        run: python3 scripts/pr16_p08_ordinary_acceptance.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-p08-ordinary-accept
+          path: .local/pr16-p08-ordinary-accept/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,107 @@
+name: pr16-research-story-install
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story-install.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  install:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify exact text transport and cached development evidence
+        run: |
+          python3 -B - <<'PY'
+          import ast,base64,datetime,hashlib,json,lzma,os,pathlib,subprocess,sys,urllib.request
+          root=pathlib.Path.cwd();out=root/'.local/pr16-story-install';out.mkdir(parents=True)
+          base='8ab63c2465aabf6dd4e1ae0281ade439741092f3'
+          def need(ok,msg):
+            if not ok: raise ValueError(msg)
+          def identity(b):return {'size':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+          def get(path):
+            q=urllib.request.Request('https://api.github.com/repos/'+os.environ['GITHUB_REPOSITORY']+'/'+path,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+            with urllib.request.urlopen(q) as r:return json.load(r)
+          pr=get('pulls/16');need(pr['state']=='open' and pr['draft'] and not pr['merged'] and pr['head']['sha']==os.environ['GITHUB_SHA'] and pr['head']['ref']=='codex/modernization-followup-20260908','exact open draft HEAD')
+          subprocess.run(['git','merge-base','--is-ancestor',base,'HEAD'],check=True)
+          pieces=[]
+          for sha,size in [('2b0a458b32ae0dfb16540df73a68fe40290f009c',5500),('c8d9943fa00dc37d8f038a8b8de49b3eeb8702d1',5500),('8eeadcd3c558c6ee4056f2b02cbc5a42ca9a1f8e',5500),('3c52d58542f4a8e57b0280c955c37e7c21c7c25b',3568)]:
+            v=get('git/blobs/'+sha);need(v['encoding']=='base64' and v['size']==size,'bounded blob');b=base64.b64decode(v['content']);need(len(b)==size and hashlib.sha1(('blob '+str(size)+'\0').encode()+b).hexdigest()==sha,'git blob identity');pieces.append(b)
+          packed=b''.join(pieces);need(identity(packed)=={'size':20068,'sha256':'dc4f1e4eb618b4f554acfb3f314eb2aed3d579087a4ceca06033dc07f43b62a4'},'packed identity')
+          decoder=lzma.LZMADecompressor(memlimit=67108864);raw=decoder.decompress(packed,max_length=116068);need(decoder.eof and not decoder.unused_data and identity(raw)=={'size':116067,'sha256':'302fd5c1b071a539789a7e19359da9e66f752ae5f196f7a56318c0aab6a40031'},'text identity')
+          def unique(pairs):
+            d={}
+            for k,v in pairs:need(k not in d,'duplicate JSON');d[k]=v
+            return d
+          value=json.loads(raw,object_pairs_hook=unique);need(set(value)=={'base_head','files'} and value['base_head']==base and len(value['files'])==16,'payload scope')
+          dev='content/modernization/pr16_research_story_development'
+          code={'tools/mgba_pr16_research_story.c','scripts/pr16_research_story.py','scripts/pr16_research_story_actions.py','tests/test_pr16_research_story.py'}
+          expected=code|{dev+'/'+n for n in ['black-video.stderr.txt','black-video.stdout.txt','commands.txt','driver.c.txt','loader-failure.stderr.txt','manifest.json','stderr.txt','stdout.txt','unit.stderr.txt','unit.stdout.txt','verification.json','visual-review.json']}
+          need(set(value['files'])==expected,'exact source/evidence paths')
+          for name,row in value['files'].items():
+            p=root/name;need(set(row)=={'before','binding','content'} and row['before'] is None and not p.exists() and not p.is_symlink(),'new regular text only')
+            b=row['content'].encode();need(b'\0' not in b and identity(b)==row['binding'],'inner UTF8 identity')
+          for name,row in value['files'].items():
+            p=root/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(row['content'],encoding='utf-8')
+          # 記録文だけの精度訂正。missing-headerの最初のstderr未保存を原本保存と呼ばない。
+          p=root/'scripts/pr16_research_story_actions.py';s=p.read_text();old='未実行のloader依存解決/missing header compileの失敗も原本保存。';need(s.count(old)==1,'one record wording correction');p.write_text(s.replace(old,'loader失敗の原本とmissing-headerのtool観測を区別して保存。最初のmissing-header stderrは未保存。'))
+          sys.path[:0]=[str(root/'scripts'),str(root)]
+          import pr16_research_story as m
+          d=root/dev;full=m.generate().decode().split('static struct mCore *st_open(')[0]+(d/'driver.c.txt').read_text()
+          local=json.loads((d/'verification.json').read_text());need(identity(full.encode())==local['generated'],'original measured generated source reconstruction');(d/'generated.c.txt').write_text(full)
+          manifest=json.loads((d/'manifest.json').read_text())
+          for n,binding in manifest.items():need(identity((root/n).read_bytes())==binding,'original development identity '+n)
+          for n,binding in local['source_bindings'].items():need(identity((root/n).read_bytes())==binding,'59 cached tests source '+n)
+          unit=(d/'unit.stderr.txt').read_bytes();need(local['unit_tests']==59 and unit.count(b' ... ok\n')==59 and b'\nOK\n' in unit and not (d/'unit.stdout.txt').read_bytes(),'59 original tests')
+          m.source_check((root/m.DRIVER).read_text()) if hasattr(m,'DRIVER') else m.generate()
+          for n in code:
+            if n.endswith('.py'):ast.parse((root/n).read_text())
+          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat();entry=f'\n## {stamp}\n- Timestamp: {stamp}\n- Task: USER-20260927-RESEARCH-STORY / 自然進行のinput-only runner実装\n- Version: research-natural-starter-WIP\n- Status: STOPPED（実装checkpoint、正式nativeは次run）\n- Summary: 消去Flash→自宅退出→屋外誘導→序盤研究所→リープン選択→通常Saveの開発原本を保存。ホスト注入禁止のC、閉じた入力/画面/保存oracle、59新規試験原本を反映。自然RP到達は未受入。\n- Files changed: 専用C/Python/test4件、開発text原本13件、両ログ。ROM/save/画像はtrackedに含まない。\n- Verify: transport外側/内側hash、59試験source/原本一致、生成source復元hash、AST確認PASS。新native/compile/旧試験再実行0。続けてtask graph/private scoped index検査。\n- Commit: source={os.environ["GITHUB_SHA"]}; run={os.environ["GITHUB_RUN_ID"]}; 同branch非force push。\n- Network: GitHub固定4blobのみ。merge/release/baseline変更0。\n'
+          logs={'design/run_log.md','design/version_log.md'}
+          for n in logs:
+            with (root/n).open('a') as f:f.write(entry)
+          owned=expected|{dev+'/generated.c.txt'}|logs
+          (out/'paths.txt').write_text('\n'.join(sorted(owned))+'\n')
+          (out/'verification.json').write_text(json.dumps({'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'files':{n:identity((root/n).read_bytes()) for n in sorted(owned)},'cached_tests':59,'new_tests':0,'new_native':0,'record_wording_correction':True},ensure_ascii=False,indent=2)+'\n')
+          print('PASS: scoped text implementation and original 59 tests preserved; formal native not yet accepted')
+          PY
+      - name: Validate resume task graph and final scoped index
+        run: |
+          python3 -B scripts/pr16_resume.py check
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t paths < .local/pr16-story-install/paths.txt
+          git add -- "${paths[@]}"
+          python3 -B - <<'PY'
+          import pathlib,sys
+          sys.path.insert(0,'scripts')
+          import pr16_learnset_runtime_record as g
+          g.START='8ab63c2465aabf6dd4e1ae0281ade439741092f3';g.CODE=set();g.OWNED=set(pathlib.Path('.local/pr16-story-install/paths.txt').read_text().splitlines())|{'.github/workflows/pr16-research-story-install.yml'};g.guard()
+          PY
+          git diff --cached --check
+      - name: Non-force implementation checkpoint commit
+        run: |
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260927-RESEARCH-STORY: WIP 自然スターター入力器と59検査原本を公開'
+          git push origin "HEAD:$GITHUB_REF"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-story-install/committed-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-story-install
+          path: .local/pr16-story-install
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

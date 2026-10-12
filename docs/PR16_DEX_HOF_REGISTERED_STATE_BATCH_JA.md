@@ -1,0 +1,42 @@
+# PR16 登録state/caller最小型batch
+
+## 固定親と検証範囲
+
+開始HEADは `b9be8c6c231df0aac1c5eb163b154a4ec8ff5787`。前registered-item batchの774分類/100未知を、全47入力の全文size/SHA・LFで固定して継承する。24namespaceの155changes/145witness、874hitのidentity、旧acceptedと残unknownの全field、133曲/50assetを保持する。原本本文を新proofへ複製せず、旧consumer/suite/nativeは再走しない。
+
+実登録APIから必要最小型の読取・命令fetchまでを閉じる。自然playの全prefix成功、初回状態producer、全callee効果、普遍future-live/IRQ/heap寿命は、この型の受入条件へ混入させず別義務として明示する。各有限context条件はsource layoutと実loaderへ束縛し、sourceの状態読取を後付けpatchで飛ばさない。
+
+## 新しい独立consumer
+
+新scopeは2件・各6byte、計12byteだけ。現0641測定が全条件を満たした場合の結果は776分類/98未知、25namespace/157changes/147witnessである。
+
+- Dancer 090E20AB: 実special072がCircus flagsを生成し、同epochの登録opcode49全wrapper/prologueからstate48へ進む。DancerInProgress=true等の有限context条件で初回ABILITY_ON_FIELDを短絡する。bank2の直接ability217・生存・absent・partnerを実読取し、GetBaseMoveTarget正常API戻り0後のTarget HP0/1の二枝を529/530stepで合成する。各9境界。実BL090E20AAとLDR090E20AEの全fetchで最小6byteを覆う。初回Dancer状態producerや自然battle到達は未証明。
+- MultiMoneyCalc 0911A3C9: 実opcode5D→stock完全入口→hook080250F4→wrapper09097FDC→0911A3B4を30命令で合成する。勝利状態1/trainer131を有限API入力条件とし、追加facility guard戻り0とCalc正常復帰の2opaqueを明示する。Calc戻りはUnknownのまま未使用。BL0911A3C8と後続LDRの最小6byteだけを分類する。賞金効果全体や自然戦闘からの到達は未証明。
+
+Dancerの24source/35窓978byte、MultiMoneyの9source/9窓90byteを束縛する。新consumerの全保護byte/reseal、source drift、必要future-live byte、epoch変更を反証する。未結合のDexNav090ED992/09140BFCを分類へ加えない。
+
+公開sourceのscalarやIDが現manifestと異なる場合は、実project manifestとalias生成規則へ独立結合する。一律offsetや観測値だけでsourceを置換しない。
+
+## 所有者と安全容量
+
+最新generation-writer checkpointの実owner全fieldを独立hashで固定し、115actual owner、52save owner、save残804byteを保存する。古いcheckpointのnominal suffixや旧owner hashを現在の実ownerの代わりにしない。
+
+旧egg15118byte全域保護、安全容量0、donor leaseなし。global511＋save804の1315byteは既存owner/subownerを保持した既知上限で、新規安全領域ではない。単一controller6528byte/align4は未配線。
+
+heap13352の普遍IRQ/allocation寿命、stock保存退避53300跨ぎ、全保存入口heap-ready・同期非再入・0804B85C退避前Freeは未証明。間接参照完全性、対象退役、明示owner移管を別gateとして保持する。正式ROMとSave101を変更しない。
+
+## 測定・記録・公開
+
+- 新scopeの独立source-only reviewは全source全文identityと未解決指摘0を要求する。旧独立最終song/battle/Surf reviewの未実施と拒否履歴は継承し、同操作を別経路で再試行しない。
+- reviewおよび公開source manifestを閉じてから、Actionsで現0641を一度だけ再構成し、全SHA/115actual owner/874hitと新窓を測定する。新unitのみ。歴史候補再構成0、native0。
+- 新delta/measurementには新scope分だけを記録する。ROM断片、rawhex、ROM、入力save、runtime dump、runner/private archive/memberpath、credentialsは追加公開しない。
+- producer/guard/upload/pathを一致させ、閉じた非空success text集合だけを公開する。UTF-8/LF/全size/SHA、全量予算、flat regular file、hidden/symlink/未知拡張子の拒否をcommit前とupload前に検査する。
+- 全source blobは実Git blobの全文/LFを読戻してから、expected HEAD一致の同branchへ非force更新する。
+- 終端では実source/run/job/artifactの全identityと全step successを確認する。受信measurement receiptの全本文を検査し、終端receipt本文を実committed state.recordingと全snapshot/Git blobへ結合する。
+- 固定再開MD/JSON・checkpointと両append-onlyログを同branchへ記録し、完了measurement triggerを退役させ、pendingを解除する。保存済consumer/ARM/ROM/nativeは終端で再走しない。
+
+## 残る工程
+
+残unknownは別の新しい実consumer根が得られた場合に限り再開する。source一致や近傍だけの登録推定、単一callerの負結果を全caller不存在へ一般化しない。
+
+必要な安全容量と全保存境界が閉じた後に限り、単一controllerを全S61E/MDX writer/loader/Link exact-source・no-main・INITIAL・全mode・早期31・species9bitへ接続する。その後trainer131後半からシオウ通常回復・保存・独立cold Continueへ進める。雑魚戦ごとのcheckpoint Saveはしない。

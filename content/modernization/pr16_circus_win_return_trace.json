@@ -1,0 +1,71 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "candidate": {
+    "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_WIN_RETURN_READONLY_DIAGNOSTIC_OPEN",
+  "compile_failure_preserved": {
+    "compiler": "evidence/pr16_circus_win_return_trace/35431032216/native/compile.stderr",
+    "job_id": 105865517281,
+    "native_processes": 0,
+    "original_conclusion": "failure",
+    "path": "evidence/pr16_circus_win_return_trace/35431032216/native/report.json",
+    "run_id": 35431032216
+  },
+  "diagnostic_complete": false,
+  "host_tests": [
+    {
+      "count": 9,
+      "pattern": "test_pr16_circus_win_return_trace.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "inherited_run": {
+    "job_id": 105863397028,
+    "original_conclusion": "failure",
+    "run_id": 35430246002,
+    "saved": false
+  },
+  "original_visual_review": {
+    "artifact_id": 10580033276,
+    "artifact_sha256": "adb7dd1548ab76c4e18023d8a62148f11d9ad7666b072c0eb95ce89804631ec1",
+    "observation_ja": "16戦目勝利/通常交換選択、17戦目勝利、その後の黒画面停止を目視。通常Save/Continueには到達していない。",
+    "screens": [
+      "streak-74-action",
+      "streak-75-outcome",
+      "streak-76-settled",
+      "streak-78-action",
+      "streak-79-outcome",
+      "streak-80-timeout"
+    ]
+  },
+  "physical_admission_accepted": false,
+  "recording_run": 35432359547,
+  "release_ready": false,
+  "schema_version": 1,
+  "suppression_accepted": false,
+  "text_evidence": {
+    "evidence/pr16_circus_win_return_trace/35432359547/native/circus-continuous-30-save.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_win_return_trace/35432359547/native/circus-continuous-30-save.stderr": {
+      "sha256": "b5d89868df612aa1aed9bead983d4d6542e558b3660045017f7726b930c7a7b9",
+      "size": 582667
+    },
+    "evidence/pr16_circus_win_return_trace/35432359547/native/circus-continuous-30-save.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_win_return_trace/35432359547/native/report.json": {
+      "sha256": "c52ca8042e6c30a87c5be40d2415ca35acfe93ec7b8eadbe5c6bf1e76a56bbfc",
+      "size": 106481
+    },
+    "evidence/pr16_circus_win_return_trace/35432359547/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
+    }
+  }
+}

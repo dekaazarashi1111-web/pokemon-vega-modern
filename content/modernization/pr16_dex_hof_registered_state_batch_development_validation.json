@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "status": "PASS_NEW_SOURCE_ONLY_REGISTERED_STATE_BATCH_REVIEW",
+  "review_scope": "new_registered_state_batch_sources_only",
+  "old_independent_final_review_retried": false,
+  "open_findings": [],
+  "initial_head": "b9be8c6c231df0aac1c5eb163b154a4ec8ff5787",
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-registered-state-batch.yml": {
+      "size": 3121,
+      "sha256": "e4b476d427d961fdb841a607b39260b5cdf7583cd9d9e6b71979a0f96a50d80b"
+    },
+    "content/modernization/pr16_dex_hof_dancer_roots_review.json": {
+      "size": 23620,
+      "sha256": "b9653065749067334b44e3b084e560e48b26a99f1dd28cd9d97eb56e046a36bb"
+    },
+    "content/modernization/pr16_dex_hof_money_reward_roots_review.json": {
+      "size": 10095,
+      "sha256": "622fe30898092fbf19c8a3b8082a18f86b9725816785438ccfd1b39f47d0d8d7"
+    },
+    "content/modernization/pr16_dex_hof_registered_state_batch_contract.json": {
+      "size": 2584,
+      "sha256": "fba61cb571e5f9c81da67727a9f0dd1f7608724809183c448cf450602822f68d"
+    },
+    "content/modernization/pr16_dex_hof_registered_state_batch_sources.json": {
+      "size": 14819,
+      "sha256": "e9ad4412402cfcbaf1cff7f0b6cb5c3388d7c8d0921a96ce3de33c4d1bf475ed"
+    },
+    "docs/PR16_DEX_HOF_REGISTERED_STATE_BATCH_JA.md": {
+      "size": 5279,
+      "sha256": "9227f697b4d382446aaa39cb4f7c2927a4c0b933491c211e553a2a86786100fe"
+    },
+    "scripts/pr16_dex_hof_dancer_roots.py": {
+      "size": 52203,
+      "sha256": "bd3dc9eb48e97a19710b652221f2688ad4bf9bab78cd5a05027d3bb61ab478dd"
+    },
+    "scripts/pr16_dex_hof_money_reward_roots.py": {
+      "size": 23173,
+      "sha256": "29fe574273fd70ec66bcd9ad586f69d1183780dd00a3a11449d7e4e7d57149c9"
+    },
+    "scripts/pr16_dex_hof_registered_state_batch.py": {
+      "size": 10099,
+      "sha256": "90f376643c436a179c17187c10eff2f42c7567d62f90cb6c8fefefbdda04086a"
+    },
+    "scripts/pr16_dex_hof_registered_state_batch_actions.py": {
+      "size": 34941,
+      "sha256": "d66884807067ea608e3491ecbce41da9b65f00692fad1ac8c3b6ee6ceab43a56"
+    },
+    "scripts/pr16_dex_hof_registered_state_batch_capacity.py": {
+      "size": 11561,
+      "sha256": "e57e2fdf24bf475d9ff0e87b913854618826f765ba0fdaedfb70bcc619343312"
+    },
+    "scripts/pr16_dex_hof_registered_state_batch_chain.py": {
+      "size": 20492,
+      "sha256": "99d2fc0ad332860453c0975bfd32b81a32816844554c6103517c0fe2409ce5e0"
+    },
+    "tests/test_pr16_dex_hof_dancer_roots.py": {
+      "size": 17802,
+      "sha256": "6bce378d9f654d9768c8834e55ab0f4d532747836a13c33ce9b9962cf1759192"
+    },
+    "tests/test_pr16_dex_hof_money_reward_roots.py": {
+      "size": 12310,
+      "sha256": "b280f25ce6b6c5dfdae0ce7d05c4c52ad6f9e687d728f7ae283429aed01cf1ef"
+    },
+    "tests/test_pr16_dex_hof_registered_state_batch.py": {
+      "size": 3570,
+      "sha256": "6c83c4419a712864558597a351414c32b3f1b459f5009dfce66d916913058f8b"
+    },
+    "tests/test_pr16_dex_hof_registered_state_batch_actions.py": {
+      "size": 17879,
+      "sha256": "71744e04cb52faa2ca9f41eed6ea29efb2f5d7608c71840d011f910b5b965294"
+    },
+    "tests/test_pr16_dex_hof_registered_state_batch_capacity.py": {
+      "size": 3916,
+      "sha256": "ef3ab3ecc6fbe3d34254f1bd8186eb135d4d8e52ff11e6458a5b289ff1632607"
+    },
+    "tests/test_pr16_dex_hof_registered_state_batch_chain.py": {
+      "size": 6249,
+      "sha256": "8a1cdbb6aad98dea86a0996591f34aff97aa9924b2440d78786df6c582838225"
+    }
+  },
+  "independent_reviews": [
+    {
+      "scope": "new_dancer_and_money_consumer_sources",
+      "report_identity": {
+        "size": 33272,
+        "sha256": "9f8c2aed5860939d20cc0c5cd940eca2a614e28714aad35f61e4a1858eac06c0"
+      },
+      "reviewed_source_count": 6,
+      "open_findings": 0
+    },
+    {
+      "scope": "new_registered_state_measurement_pipeline",
+      "report_identity": {
+        "size": 9186,
+        "sha256": "bc49466c9bce70c5363209494266304a482b29b86ac33c0f6a471a5eccadc258"
+      },
+      "reviewed_source_count": 12,
+      "open_findings": 0
+    },
+    {
+      "scope": "PASS_TARGETED_FIXTURE_CORRECTION_SOURCE_REVIEW",
+      "report_identity": {
+        "size": 5281,
+        "sha256": "2af3147ee996d1859aa77f347b94f0c44d53d669ce26e535367c834cb7405af1"
+      },
+      "reviewed_source_count": 1,
+      "open_findings": 0
+    },
+    {
+      "scope": "PASS_NARROW_STATE_FIXTURE_CORRECTION_PIPELINE_REVIEW",
+      "report_identity": {
+        "size": 8786,
+        "sha256": "8690c6d3093ef42c64a9ee1b08c3d0a266ba0d4f33aac98cf8343f3aad26ad15"
+      },
+      "reviewed_source_count": 12,
+      "open_findings": 0
+    }
+  ],
+  "validation": {
+    "new_consumer_source_tests": 102,
+    "new_pipeline_source_tests": 58,
+    "independent_pipeline_protocol_tests": 10,
+    "expected_current_actions_tests": 164,
+    "source_only_is_current_acceptance": false,
+    "source_only_classifications_added": 0,
+    "current_rom_reconstructions": 0,
+    "native_processes": 0,
+    "old_suite_runs": 0
+  },
+  "limits_ja": [
+    "現0641全identityと新有限窓の正式測定は未実施。",
+    "自然全play/全callee効果/普遍IRQ・heap寿命/間接完全性/退役/owner移管は未証明。",
+    "旧最終source reviewの拒否操作は再試行していない。",
+    "egg15118全域保護・donor安全0・正式ROM/Save101不変。"
+  ],
+  "fixture_correction": {
+    "initial_source": "dcc368dffa3ddb83220ef7967b85e6a2e69f12d5",
+    "failed_run": 37453822147,
+    "failed_job": 112236454951,
+    "failed_test": "test_pr16_dex_hof_dancer_roots.DancerTests.test_56_source_only_unbound_rom_fails_closed",
+    "failed_attempt_accepted": false,
+    "failed_attempt_artifacts": 0,
+    "current_reconstructions_in_failed_attempt": 1,
+    "native_processes": 0,
+    "corrected_test_only": true,
+    "new_local_targeted_checks": 2,
+    "new_current_actions_required": true,
+    "reason_ja": "疎fixture固有の拒否条件を注入current全文から分離し、独立source生成疎fixtureで検査する。consumer本体と旧受入は不変。"
+  }
+}

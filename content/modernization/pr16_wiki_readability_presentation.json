@@ -1,0 +1,98 @@
+{
+  "artifact_id": 11689004499,
+  "build_run_id": 38104885843,
+  "download_verification": {
+    "accepted_native_reruns": 0,
+    "all_member_hashes_match": true,
+    "artifact_transfer_hashes_match": true,
+    "build_run_id": 38104885843,
+    "changes_from_attempt2": [
+      "ABILITY_INDEX.md",
+      "MOVE_INDEX.md",
+      "POKEMON_INDEX.md",
+      "VEGA_BALANCE_INDEX.md",
+      "data/index.json"
+    ],
+    "files": 4517,
+    "four_tables_delta": "余分な末尾LFのみ除去",
+    "manifest_sha256": "5cc845e6958cba45966d3a2f7d446483509bd53ed7d6220db17399cedac77372",
+    "no_regeneration": true,
+    "package_sha256": "abd887f241fbfdcc454bfc13abf9fa3b7c7c2025943c40ec3880dc2a66f1268e",
+    "package_size": 33950355,
+    "rendered_html_identical_to_visually_reviewed_artifact": true,
+    "reviewed_paths": [
+      "ABILITY_INDEX.md",
+      "MOVE_INDEX.md",
+      "POKEMON_INDEX.md",
+      "README.md",
+      "VEGA_BALANCE_INDEX.md",
+      "pokemon/3.md"
+    ],
+    "reviewer": "ChatGPT（人向けMDの表示レビュー。所有者の承認ではない）",
+    "source_head": "4e3d869f2a13f4fbea78bfe4b137a18fe7bd82c6",
+    "status": "PASS_DOWNLOADED_FINAL_PACKAGE",
+    "uncompressed_bytes": 177464001,
+    "wiki_commit": "db1a250d80cd85015b183ec44a9a868bb051dc07"
+  },
+  "entry_path": "docs/wiki/r0.1-6e88a021/README.md",
+  "failed_attempts_retained": [
+    {
+      "cause_ja": "新規既知行検査がLv46のword boundaryを誤判定。原本形式/技ID/経路IDを照合する回帰へ修正。",
+      "conclusion": "failure",
+      "run_id": 38103743296
+    },
+    {
+      "cause_ja": "全件限定検証とZIP作成後、4主要表の末尾空行で最終index whitespace検査が停止。共通table関数を修正し空表/単行/複数行の回帰を追加。",
+      "conclusion": "failure",
+      "run_id": 38104183130
+    }
+  ],
+  "human_facing_review": {
+    "known_regression": "リーテイルのレベルLv46・技235こうごうせい・vega:3:level_up:17を確認。役割要約なし、全習得anchorと経路/条件を保持。",
+    "method": "Markdown表をChromiumで表示し、README・4主要一覧・リーテイルの画像を確認。最終版は主要4表の末尾LFだけが変わり、6対象のHTMLがレビュー済み版と完全一致することを照合。",
+    "reviewed_artifact_id": 11689260868,
+    "reviewed_artifact_run_id": 38104183130,
+    "reviewed_artifact_run_success_claimed": false,
+    "reviewer": "ChatGPT。人向けMarkdownを確認した記録であり、所有者による承認ではない。",
+    "table_counts": {
+      "ABILITY_INDEX.md": {
+        "columns": 5,
+        "rows": 318
+      },
+      "MOVE_INDEX.md": {
+        "columns": 9,
+        "rows": 1063
+      },
+      "POKEMON_INDEX.md": {
+        "columns": 14,
+        "rows": 1671
+      },
+      "VEGA_BALANCE_INDEX.md": {
+        "columns": 14,
+        "rows": 206
+      }
+    },
+    "visual_scope": "主要4表の見出し・列配置・冒頭行、READMEの保存/閲覧導線、リーテイルの折り畳みと全習得導線。全4517ページの個別目視を主張しない。"
+  },
+  "human_md_reviewed": true,
+  "manifest_sha256": "5cc845e6958cba45966d3a2f7d446483509bd53ed7d6220db17399cedac77372",
+  "next_after_receipt": "SAVE_CAPACITY_BERRY_ORIGIN_ACTUAL_OWNER_READER。788分類/86未知・選定残7・安全容量0を保持。未承認バランス変更なし。",
+  "offline_filename": "wiki-r0.1-6e88a021.zip",
+  "owner_approval_granted": false,
+  "package_artifact_digest": "sha256:fd84a545d7ce24dac1c23a40138715c5b6d3a45959a1594d7a87f0b7a83a64ea",
+  "package_sha256": "abd887f241fbfdcc454bfc13abf9fa3b7c7c2025943c40ec3880dc2a66f1268e",
+  "presentation_channel": "所有者の2026-10-11T01:44:48Z依頼へのChatGPT会話。公開commit固定の閲覧入口と検証済み保存用ZIPを実際に提示。",
+  "presented_at": "2026-10-11T02:28:43.684108+00:00",
+  "presented_to_owner": true,
+  "schema_version": 1,
+  "validation_scope": {
+    "focused_tests": 28,
+    "full_index_private_guard": "既存違反によりexit1。変更範囲の新規private記載なし/UTF-8/非binary/append-only/whitespace/許可path集合はPASS。",
+    "links": 592544,
+    "manual_accepted_native_reruns": 0,
+    "scoped_index_paths": 4527,
+    "unrelated_push_workflows_ja": "既存push設定が自動起動する他workflowは本Wiki限定検証とは区別。手動で旧受入を再起動せず、全体CI greenや全workflowのnative実行0とは主張しない。",
+    "wiki_workflow_native_processes": 0
+  },
+  "wiki_commit": "db1a250d80cd85015b183ec44a9a868bb051dc07"
+}

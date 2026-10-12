@@ -1,0 +1,74 @@
+name: pr16-home-recovery-owner
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-home-recovery-owner.yml]
+permissions:
+  contents: read
+jobs:
+  original-owner:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch fixed read-only original input archive
+        run: |
+          mkdir -p .local/pr16-home-owner/input .local/pr16-home-owner/output
+          gh release download private-environment-v1 --repo "$GITHUB_REPOSITORY" --pattern pokemon-vega-private-env-v1-inputs.zip --dir .local/pr16-home-owner/input
+      - name: Verify source-lock and isolate original mother owner
+        shell: python
+        run: |
+          import hashlib, json, os, pathlib, struct, subprocess, sys, zipfile
+          sys.path.insert(0,'scripts')
+          import github_private_environment as env
+          from build_project import apply_ips
+          out=pathlib.Path('.local/pr16-home-owner/output')
+          cfg=json.loads(pathlib.Path('config/github_private_environment.json').read_text())
+          bound=next(x for x in cfg['archives'] if x['name']=='pokemon-vega-private-env-v1-inputs.zip')
+          archive=pathlib.Path('.local/pr16-home-owner/input')/bound['name']
+          env._read_and_verify_archive(archive,bound)
+          def identity(raw):return {'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          lock=json.loads(pathlib.Path('state/source-lock.json').read_text())
+          links={r['path']:r['target'] for r in cfg['input_links']}
+          with zipfile.ZipFile(archive) as z:
+              clean=z.read(links[lock['inputs']['clean_rom']['path']])
+              ips=z.read(links[lock['inputs']['vega_ips']['path']])
+              for raw,key in [(clean,'clean_rom'),(ips,'vega_ips')]:
+                  assert identity(raw)=={k:lock['inputs'][key][k] for k in ['size','sha256']},key
+              original=z.read(links['inputs/reference/vega_reference_provided.gba'])
+          assert apply_ips(clean,ips)==original,'original must equal fixed clean+IPS'
+          base=0x08000000
+          def u(address):
+              assert base<=address<=base+len(original)-4
+              return struct.unpack_from('<I',original,address-base)[0]
+          root=u(0x08054b0c);group=u(root+4*4);header=u(group);events=u(header+4);objects=u(events+4)
+          rows=[]
+          for i in range(original[events-base]):
+              off=objects-base+i*24;row=original[off:off+24]
+              rows.append({'local_id':row[0],'xy':list(struct.unpack_from('<hh',row,4)),'record':identity(row),'script':hex(u(base+off+16))})
+          proof={'schema_version':1,'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),'archive':{k:bound[k] for k in ['name','size','sha256']},'clean':identity(clean),'ips':identity(ips),'original':identity(original),'provided_equals_clean_plus_ips':True,'chain':{k:hex(v) for k,v in dict(root=root,group=group,header=header,events=events,objects=objects).items()},'objects':rows,'native_executions':0,'accepted_test_reruns':0,'candidate_changes':0,'release_ready':False,'active_baseline_changed':False}
+          (out/'original.gba').write_bytes(original)
+          (out/'owner-input.json').write_text(json.dumps(proof,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          # Additional exact tracked sources needed by the new scoped implementation only.
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          bindings={}
+          with zipfile.ZipFile(out/'additional-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(paths):
+                  p=pathlib.PurePosixPath(name)
+                  selected=(name.startswith('content/modernization/pr16_research') and p.suffix in {'.json','.txt'} and 'evidence/' not in name and 'development/' not in name) or (name.startswith('tools/') and (p.name.startswith(('mgba_pr16_research','mgba_qol','mgba_battle_core','mgba_ai_fixture','pr16_vega_original')) or name.startswith(('tools/map_import/','tools/rom_allocator')))) or name in {'scripts/guard_private_files.py','tools/__init__.py','content/modernization/pr16_vega_original_evidence/source_lock.json'}
+                  if selected and pathlib.Path(name).is_file() and not pathlib.Path(name).is_symlink():
+                      raw=pathlib.Path(name).read_bytes();raw.decode('utf-8');assert b'\0' not in raw
+                      z.writestr(name,raw);bindings[name]=identity(raw)
+          (out/'source-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          print(json.dumps(proof,ensure_ascii=False))
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-home-recovery-original-owner
+          path: .local/pr16-home-owner/output
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

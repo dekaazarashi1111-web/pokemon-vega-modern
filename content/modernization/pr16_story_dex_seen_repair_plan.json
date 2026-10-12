@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "BLOCKED_STORAGE_ABI_AND_DEX_NAMESPACE_REPAIR_REQUIRED",
+  "candidate_sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5",
+  "guide": "docs/PR16_DEX_SEEN_REPAIR_JA.md",
+  "diagnosis": "content/modernization/pr16_story_trainer_owner_diagnosis.json",
+  "bounds_guard": "scripts/pr16_story_dex_guard.py",
+  "formal_save": 101,
+  "repair_implemented": false,
+  "repair_native_accepted": false,
+  "rom_changed": false,
+  "release_ready": false,
+  "blockers": [
+    "旧52byte setterに拡張nationalが流入し別fieldを破壊する",
+    "CFRU拡張保存先はlive Bagと衝突し明示RETIRED",
+    "既存拡張Saveの旧258byte予約はVACQ等へ転用済み、末尾129byteでは2bitmap不足",
+    "native/official全国番号aliasを容量修正と独立に解決する必要",
+    "T09コード再リンクはStage70の絶対literal patchへ影響"
+  ],
+  "required_changes": [
+    "stable-key図鑑namespaceと全alias監査",
+    "保存owner台帳とversion/CRC/RAM/flash/旧Save migration契約",
+    "署名照合付きlate-stageで全getter/setter/clear/count統合",
+    "consumer限定host/native/通常Save/独立Continue回帰",
+    "新候補を限定受入してからSave101の未保存失敗区間を再開"
+  ],
+  "consumer_impact": [
+    "battle entry and opponent switching",
+    "wild and capture",
+    "gift/acquisition",
+    "QOL owned counts",
+    "research capture decisions",
+    "Pokedex UI and counts",
+    "normal Save and cold Continue"
+  ],
+  "host_boundaries": [
+    0,
+    1,
+    386,
+    387,
+    416,
+    417,
+    742,
+    749,
+    963,
+    2048,
+    2049
+  ],
+  "forbidden_shortcuts": [
+    "大きなbyte許可mask",
+    "trainerRematches/FameChecker書込容認",
+    "DPE/CFRU旧パッチ直貼り",
+    "無宣言reserved占有",
+    "既存bitの根拠なし消去・解釈変更",
+    "未検証ROM/active baseline切替"
+  ],
+  "completion": "修復保存ABIとconsumer限定受入後、シオウPokecenter通常回復/Save/cold Continue"
+}

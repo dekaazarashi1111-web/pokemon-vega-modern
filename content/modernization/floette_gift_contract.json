@@ -1,0 +1,680 @@
+{
+  "acquisition_abi": {
+    "entrypoints": {
+      "GetBoxMonDataAt": {
+        "address": 152189924,
+        "stage68_first_16_hex": "10b5140094b0182819d81d2917d83a23",
+        "stage68_first_16_sha256": "9fc3c31edd9c2248d45444492d51aae3d33e957820ec15d137bd5b5dd4751557",
+        "thumb_entrypoint": 152189925
+      },
+      "GetBoxedMonPtr": {
+        "address": 152189664,
+        "stage68_first_16_hex": "10b518280cd81d290ad83a234b43054a",
+        "stage68_first_16_sha256": "df8bd289d1d0838d24d3cafcb96fe072eb4c00b003cf022a7afd16204bf708eb",
+        "thumb_entrypoint": 152189665
+      },
+      "GiveMonToPlayer": {
+        "address": 151905848,
+        "stage68_first_16_hex": "70b5050022f0aef9280036f097fc2800",
+        "stage68_first_16_sha256": "9a2ff540d71d626dd6a16b721c6f0045473efee35fc03db2b9710a03d2bab150",
+        "thumb_entrypoint": 151905849
+      },
+      "VegaAcqEngine_FinalizeInMemory": {
+        "address": 153953568,
+        "stage68_first_16_hex": "10b5fff7b7f8002805d00448fef70afe",
+        "stage68_first_16_sha256": "958833e18b978e439ef62af7da5cbd54f2ad42154e4557a6368675cba70f0287",
+        "thumb_entrypoint": 153953569
+      },
+      "VegaAcqEngine_GetPending": {
+        "address": 153951456,
+        "stage68_first_16_hex": "10b5fff749ff43425841044b40421840",
+        "stage68_first_16_sha256": "44733c315fa365e16635b95dae4ece6743a5393d1f2cdda2373c8b9ca6d5491a",
+        "thumb_entrypoint": 153951457
+      },
+      "ZeroBoxMonAt": {
+        "address": 152189384,
+        "stage68_first_16_hex": "10b5182801d81d2900d910bd3a234b43",
+        "stage68_first_16_sha256": "6d94a51b93685fb3e8823181cb6362f35911d961d347bb726dd83717c2d432b8",
+        "thumb_entrypoint": 152189385
+      }
+    },
+    "metadata_path": "build/stages/26_acquisition_events.json",
+    "metadata_sha256": "0f901534a04efb54f07a5773a91d4dc738a681e854328d0eec4d330da708fe31",
+    "save_finalize_semantics": "VegaAcqEngine_FinalizeInMemory finalizes acquisition CRC and outer Vega ledger checksum",
+    "status": "PASS_EXISTING_PROVEN_ABI_REUSED"
+  },
+  "claim_flag_namespace": {
+    "below_next_owner_boundary": true,
+    "claim_flag": 5325,
+    "claim_flag_hex": "0x14CD",
+    "claim_flag_key": "FLAG_KEY_STAGE69_FLOETTE_ETERNAL_GIFT",
+    "collision_count": 0,
+    "contiguous_after_stage68": true,
+    "global_manifest": {
+      "claim_row_present": false,
+      "data_row_count": 404,
+      "mutated": false,
+      "path": "manifests/flags.csv",
+      "sha256": "9bbaf18e36b41bede706cf55564bb70a7fcf0313a0e5f4ce8c2430070775fbb6",
+      "size": 63729
+    },
+    "migration": "expanded event flag zero-default on legacy saves",
+    "next_owner_boundary": "0x1500",
+    "source_of_truth": "config/modernization_floette_gift.json + Stage69 checkpoint",
+    "stage68_reserved": {
+      "count": 45,
+      "first": 5280,
+      "last": 5324
+    },
+    "status": "PASS_DEDICATED_STAGE69_ALLOCATION"
+  },
+  "delivery_contract": {
+    "destination_order": [
+      "party",
+      "PC"
+    ],
+    "form_specific_source_of_truth": "expanded flag 0x14CD",
+    "legacy_fire_red_pokedex_bitmap_write": false,
+    "national_670_seen_caught_source_of_truth": "canonical collection ledger bit 850",
+    "party_and_pc_full": "NO_DELIVERY_NO_CLAIM_NO_SAVE",
+    "publication_order": [
+      "CreateMon(Species1029,Lv50)",
+      "GiveMon(party-or-PC)",
+      "FlagSet(0x14CD)",
+      "set collection_bits[850]",
+      "VegaAcqEngine_FinalizeInMemory",
+      "TrySavingData(0)",
+      "TryWriteSector(31)"
+    ],
+    "save_failure_rollback": [
+      "FlagClear(0x14CD)",
+      "remove exact delivered party/PC slot",
+      "restore exact pre-transaction modern ledger",
+      "VegaAcqEngine_FinalizeInMemory",
+      "compensating TrySavingData(0)",
+      "compensating TryWriteSector(31)"
+    ],
+    "unlock": {
+      "item_id": 580,
+      "item_key": "ITEM_KEY_MEGA_RING"
+    }
+  },
+  "identity": {
+    "base_species_id": 959,
+    "base_species_key": "SPECIES_KEY_FLOETTE",
+    "canonical_national_dex": 670,
+    "level": 50,
+    "species_id": 1029,
+    "species_key": "SPECIES_KEY_FLOETTE_ETERNAL"
+  },
+  "legacy_collection_override": {
+    "legacy_model": {
+      "mutated": false,
+      "path": "content/collection_supply_v1/canonical_model.json",
+      "row": {
+        "base_species": 959,
+        "base_species_key": "SPECIES_KEY_FLOETTE",
+        "collection_policy": "UNOBTAINABLE_CANON_EXCLUDED",
+        "display_name": "フラエッテ",
+        "distributable": false,
+        "method": "DO_NOT_DISTRIBUTE",
+        "method_id": 5,
+        "record_key": "FORM_RECORD_1029",
+        "repeatability": "NOT_APPLICABLE",
+        "species_key": "SPECIES_KEY_FLOETTE_ETERNAL",
+        "status": "UNOBTAINABLE_EVENT_FORM_EXCLUDED",
+        "target_species": 1029,
+        "unlock": "NONE",
+        "unlock_id": 0
+      },
+      "sha256": "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0",
+      "size": 899889
+    },
+    "national_dex_registration": {
+      "base_species_id": 959,
+      "collection_bit": 850,
+      "collection_key": "COLLECTION_NATIONAL_0670",
+      "ledger_manifest_path": "vendor/vega_acquisition/manifests/collection_ledger_bits.csv",
+      "legacy_52_byte_pokedex_bitmaps_indexed": false,
+      "national_dex": 670,
+      "reason": "National 670 exceeds the legacy 416-bit FireRed bitmap; canonical acquisition ledger is the existing safe owner"
+    },
+    "stage69_override": {
+      "claim_owner": "expanded event flag 0x14CD",
+      "legacy_history_preserved": true,
+      "species_id": 1029,
+      "status": "OBTAINABLE_ONE_TIME_GIFT"
+    },
+    "status": "PASS_STAGE69_EXPLICIT_OVERRIDE_WITHOUT_REWRITE"
+  },
+  "schema_version": 1,
+  "species_manifest": {
+    "path": "manifests/species_ids.csv",
+    "row": {
+      "canonical_national_dex": "670",
+      "classification": "DPE_FORM_APPEND",
+      "display_name": "フラエッテ",
+      "dpe_id": "848",
+      "dpe_symbol": "SPECIES_FLOETTE_ETERNAL",
+      "form_key": "FORM_KEY_FLOETTE_ETERNAL",
+      "id": "1029",
+      "is_official": "true",
+      "review_state": "REVIEWED_FORM_NATIONAL_DEX",
+      "species_key": "SPECIES_KEY_FLOETTE_ETERNAL",
+      "status": "APPENDED"
+    },
+    "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366",
+    "size": 207095
+  },
+  "species_runtime": {
+    "all_required_roles": [
+      "base_stats",
+      "front_sprite",
+      "back_sprite",
+      "normal_palette",
+      "shiny_palette",
+      "icon",
+      "icon_palette",
+      "name",
+      "level_up",
+      "tm_compatibility",
+      "tutor_compatibility"
+    ],
+    "missing_role_count": 0,
+    "required_role_count": 11,
+    "stage67": {
+      "evidence": {
+        "back_sprite": {
+          "compressed_size_consumed": 850,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 710,
+          "decoded_sha256": "8f4537e7a9879e447b14372bdc7d919db2a860bd32f498ca9df8f6840b72dd7b",
+          "decoded_size": 2048,
+          "pointer": 158398672,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "d0f8700900080504",
+          "root": 167064232,
+          "row_address": 167072464,
+          "row_sha256": "eee24e8167c913efa6c06ffe4f206a25617ac8d89c7cfdc217799e6f2a0f6c03",
+          "row_size": 8,
+          "stride": 8
+        },
+        "base_stats": {
+          "abilities": [
+            167,
+            0,
+            181
+          ],
+          "raw_hex": "4a41435c7d8017177800000800000000fe1432000606a70000800000b5008200",
+          "root": 157286400,
+          "row_address": 157319328,
+          "row_sha256": "756d566678094767a7891522748d72a258a3a26f644fe0f6d237bc30a5bec91c",
+          "row_size": 32,
+          "stats": [
+            74,
+            65,
+            67,
+            92,
+            125,
+            128
+          ],
+          "stride": 32,
+          "type_names": [
+            "FAIRY",
+            "FAIRY"
+          ],
+          "types": [
+            23,
+            23
+          ]
+        },
+        "front_sprite": {
+          "compressed_size_consumed": 834,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 650,
+          "decoded_sha256": "d6e879a875401efed9d69bbe3f8887e3c0d4044ea516c53d859cbeece0ffee2c",
+          "decoded_size": 2048,
+          "pointer": 159718852,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "c41d850900080504",
+          "root": 167051264,
+          "row_address": 167059496,
+          "row_sha256": "15bd508b78da4a43a6c021272b8a11480ecce343f0abe36739a414e972bacefb",
+          "row_size": 8,
+          "stride": 8
+        },
+        "icon": {
+          "decoded_nonzero_bytes": 290,
+          "decoded_sha256": "482fd9813ed2c482e5079ff7e7c2b95c4e459e7e6f308eb11286ca31421c4ec1",
+          "decoded_size": 1024,
+          "pointer": 161220592,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "f0079c09",
+          "root": 167103136,
+          "row_address": 167107252,
+          "row_sha256": "1c473c10d5fca505c3686f9ea5244f35016f984d57b82724f8c8f910b458d7df",
+          "stride": 4
+        },
+        "icon_palette": {
+          "palette_index": 0,
+          "root": 167109620,
+          "row_address": 167110649,
+          "row_non_null": true,
+          "row_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+          "stride": 1
+        },
+        "level_up": {
+          "decoded_sha256": "31ac497522e7662bac949da022e61f89070042ace02e9d6e737f163dba21c59e",
+          "decoded_size": 51,
+          "entry_count_including_terminator": 17,
+          "pointer": 154794493,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "root": 154815660,
+          "root_pointer_site": 275564,
+          "row_address": 154819776,
+          "row_raw_hex": "fdf93909",
+          "row_sha256": "881026b1b207979aaa4428611a859f03b3c21a20a13f8db9f538480b65fdc7ef",
+          "rows": [
+            {
+              "level": 1,
+              "move_id": 33
+            },
+            {
+              "level": 1,
+              "move_id": 22
+            },
+            {
+              "level": 1,
+              "move_id": 543
+            },
+            {
+              "level": 6,
+              "move_id": 543
+            },
+            {
+              "level": 10,
+              "move_id": 720
+            },
+            {
+              "level": 15,
+              "move_id": 75
+            },
+            {
+              "level": 20,
+              "move_id": 273
+            },
+            {
+              "level": 25,
+              "move_id": 345
+            },
+            {
+              "level": 27,
+              "move_id": 697
+            },
+            {
+              "level": 33,
+              "move_id": 569
+            },
+            {
+              "level": 38,
+              "move_id": 312
+            },
+            {
+              "level": 43,
+              "move_id": 698
+            },
+            {
+              "level": 46,
+              "move_id": 546
+            },
+            {
+              "level": 50,
+              "move_id": 738
+            },
+            {
+              "level": 51,
+              "move_id": 80
+            },
+            {
+              "level": 58,
+              "move_id": 76
+            },
+            {
+              "level": 255,
+              "move_id": 0
+            }
+          ],
+          "stride": 4
+        },
+        "name": {
+          "decoded": "フラエッテ",
+          "raw_hex": "6c7754a063ffffffffffff",
+          "root": 167585584,
+          "row_address": 167596903,
+          "row_sha256": "33b14721ea0f5dc525af5cae915eebca6ecb478e746727fc656af250355bac48",
+          "stride": 11,
+          "terminated_encoded_hex": "6c7754a063ff",
+          "terminator_present": true
+        },
+        "normal_palette": {
+          "compressed_size_consumed": 40,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 28,
+          "decoded_sha256": "3c0b2ec6e18ee0fa29ccb15d14818a5d4082bccb6baa5518820407c2b9cf8a34",
+          "decoded_size": 32,
+          "pointer": 159719688,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "0821850905040000",
+          "root": 167077200,
+          "row_address": 167085432,
+          "row_sha256": "7abda6040be865e0daa2ea14be9f27db26b1c08b3fcbbdba4c5ddc7cbb15796c",
+          "row_size": 8,
+          "stride": 8
+        },
+        "shiny_palette": {
+          "compressed_size_consumed": 40,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 28,
+          "decoded_sha256": "ee669761fd9c528891524bd6756a785fdbba1e7d7fd881cacbc0ccdb5dd3d25e",
+          "decoded_size": 32,
+          "pointer": 158399524,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "24fc70095a0a0000",
+          "root": 167090168,
+          "row_address": 167098400,
+          "row_sha256": "5c8398dbe2b0ccd6acbd7ac0761241d626bf17eeb81fe6590bd357a663d37781",
+          "row_size": 8,
+          "stride": 8
+        },
+        "tm_compatibility": {
+          "nonzero_bytes": 12,
+          "raw_hex": "28863f94009e00002000620220a08384",
+          "root": 155499776,
+          "root_pointer_in_rom": true,
+          "root_pointer_non_null": true,
+          "root_pointer_site": 275124,
+          "row_address": 155516240,
+          "row_sha256": "4be76c601bea52271dedbda25cb73a7a5d048c229e95c1f4d74940267a6ab691",
+          "row_size": 16,
+          "stride": 16
+        },
+        "tutor_compatibility": {
+          "catalog_pointer_in_rom": true,
+          "catalog_pointer_non_null": true,
+          "catalog_pointer_site": 1184724,
+          "catalog_root": 155499648,
+          "nonzero_bytes": 10,
+          "raw_hex": "24080402480200900000130000004008",
+          "root": 154868520,
+          "root_pointer_in_rom": true,
+          "root_pointer_non_null": true,
+          "root_pointer_site": 1184800,
+          "row_address": 154884984,
+          "row_sha256": "2e44b8bc113b0c79fd5e5690867e30290837453fab55e9462586a7d82cf96327",
+          "row_size": 16,
+          "stride": 16
+        }
+      },
+      "rom_label": "Stage67",
+      "rom_sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
+      "rom_size": 33554432,
+      "species_id": 1029,
+      "status": "PASS_FULLY_RUNTIME_ADDRESSABLE"
+    },
+    "stage68_inheritance": {
+      "evidence": {
+        "back_sprite": {
+          "compressed_size_consumed": 850,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 710,
+          "decoded_sha256": "8f4537e7a9879e447b14372bdc7d919db2a860bd32f498ca9df8f6840b72dd7b",
+          "decoded_size": 2048,
+          "pointer": 158398672,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "d0f8700900080504",
+          "root": 167064232,
+          "row_address": 167072464,
+          "row_sha256": "eee24e8167c913efa6c06ffe4f206a25617ac8d89c7cfdc217799e6f2a0f6c03",
+          "row_size": 8,
+          "stride": 8
+        },
+        "base_stats": {
+          "abilities": [
+            167,
+            0,
+            181
+          ],
+          "raw_hex": "4a41435c7d8017177800000800000000fe1432000606a70000800000b5008200",
+          "root": 157286400,
+          "row_address": 157319328,
+          "row_sha256": "756d566678094767a7891522748d72a258a3a26f644fe0f6d237bc30a5bec91c",
+          "row_size": 32,
+          "stats": [
+            74,
+            65,
+            67,
+            92,
+            125,
+            128
+          ],
+          "stride": 32,
+          "type_names": [
+            "FAIRY",
+            "FAIRY"
+          ],
+          "types": [
+            23,
+            23
+          ]
+        },
+        "front_sprite": {
+          "compressed_size_consumed": 834,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 650,
+          "decoded_sha256": "d6e879a875401efed9d69bbe3f8887e3c0d4044ea516c53d859cbeece0ffee2c",
+          "decoded_size": 2048,
+          "pointer": 159718852,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "c41d850900080504",
+          "root": 167051264,
+          "row_address": 167059496,
+          "row_sha256": "15bd508b78da4a43a6c021272b8a11480ecce343f0abe36739a414e972bacefb",
+          "row_size": 8,
+          "stride": 8
+        },
+        "icon": {
+          "decoded_nonzero_bytes": 290,
+          "decoded_sha256": "482fd9813ed2c482e5079ff7e7c2b95c4e459e7e6f308eb11286ca31421c4ec1",
+          "decoded_size": 1024,
+          "pointer": 161220592,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "f0079c09",
+          "root": 167103136,
+          "row_address": 167107252,
+          "row_sha256": "1c473c10d5fca505c3686f9ea5244f35016f984d57b82724f8c8f910b458d7df",
+          "stride": 4
+        },
+        "icon_palette": {
+          "palette_index": 0,
+          "root": 167109620,
+          "row_address": 167110649,
+          "row_non_null": true,
+          "row_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+          "stride": 1
+        },
+        "level_up": {
+          "decoded_sha256": "31ac497522e7662bac949da022e61f89070042ace02e9d6e737f163dba21c59e",
+          "decoded_size": 51,
+          "entry_count_including_terminator": 17,
+          "pointer": 154794493,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "root": 154815660,
+          "root_pointer_site": 275564,
+          "row_address": 154819776,
+          "row_raw_hex": "fdf93909",
+          "row_sha256": "881026b1b207979aaa4428611a859f03b3c21a20a13f8db9f538480b65fdc7ef",
+          "rows": [
+            {
+              "level": 1,
+              "move_id": 33
+            },
+            {
+              "level": 1,
+              "move_id": 22
+            },
+            {
+              "level": 1,
+              "move_id": 543
+            },
+            {
+              "level": 6,
+              "move_id": 543
+            },
+            {
+              "level": 10,
+              "move_id": 720
+            },
+            {
+              "level": 15,
+              "move_id": 75
+            },
+            {
+              "level": 20,
+              "move_id": 273
+            },
+            {
+              "level": 25,
+              "move_id": 345
+            },
+            {
+              "level": 27,
+              "move_id": 697
+            },
+            {
+              "level": 33,
+              "move_id": 569
+            },
+            {
+              "level": 38,
+              "move_id": 312
+            },
+            {
+              "level": 43,
+              "move_id": 698
+            },
+            {
+              "level": 46,
+              "move_id": 546
+            },
+            {
+              "level": 50,
+              "move_id": 738
+            },
+            {
+              "level": 51,
+              "move_id": 80
+            },
+            {
+              "level": 58,
+              "move_id": 76
+            },
+            {
+              "level": 255,
+              "move_id": 0
+            }
+          ],
+          "stride": 4
+        },
+        "name": {
+          "decoded": "フラエッテ",
+          "raw_hex": "6c7754a063ffffffffffff",
+          "root": 167585584,
+          "row_address": 167596903,
+          "row_sha256": "33b14721ea0f5dc525af5cae915eebca6ecb478e746727fc656af250355bac48",
+          "stride": 11,
+          "terminated_encoded_hex": "6c7754a063ff",
+          "terminator_present": true
+        },
+        "normal_palette": {
+          "compressed_size_consumed": 40,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 28,
+          "decoded_sha256": "3c0b2ec6e18ee0fa29ccb15d14818a5d4082bccb6baa5518820407c2b9cf8a34",
+          "decoded_size": 32,
+          "pointer": 159719688,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "0821850905040000",
+          "root": 167077200,
+          "row_address": 167085432,
+          "row_sha256": "7abda6040be865e0daa2ea14be9f27db26b1c08b3fcbbdba4c5ddc7cbb15796c",
+          "row_size": 8,
+          "stride": 8
+        },
+        "shiny_palette": {
+          "compressed_size_consumed": 40,
+          "compression": "GBA_LZ77_0x10",
+          "decoded_nonzero_bytes": 28,
+          "decoded_sha256": "ee669761fd9c528891524bd6756a785fdbba1e7d7fd881cacbc0ccdb5dd3d25e",
+          "decoded_size": 32,
+          "pointer": 158399524,
+          "pointer_in_rom": true,
+          "pointer_non_null": true,
+          "raw_hex": "24fc70095a0a0000",
+          "root": 167090168,
+          "row_address": 167098400,
+          "row_sha256": "5c8398dbe2b0ccd6acbd7ac0761241d626bf17eeb81fe6590bd357a663d37781",
+          "row_size": 8,
+          "stride": 8
+        },
+        "tm_compatibility": {
+          "nonzero_bytes": 12,
+          "raw_hex": "28863f94009e00002000620220a08384",
+          "root": 155499776,
+          "root_pointer_in_rom": true,
+          "root_pointer_non_null": true,
+          "root_pointer_site": 275124,
+          "row_address": 155516240,
+          "row_sha256": "4be76c601bea52271dedbda25cb73a7a5d048c229e95c1f4d74940267a6ab691",
+          "row_size": 16,
+          "stride": 16
+        },
+        "tutor_compatibility": {
+          "catalog_pointer_in_rom": true,
+          "catalog_pointer_non_null": true,
+          "catalog_pointer_site": 1184724,
+          "catalog_root": 155499648,
+          "nonzero_bytes": 10,
+          "raw_hex": "24080402480200900000130000004008",
+          "root": 154868520,
+          "root_pointer_in_rom": true,
+          "root_pointer_non_null": true,
+          "root_pointer_site": 1184800,
+          "row_address": 154884984,
+          "row_sha256": "2e44b8bc113b0c79fd5e5690867e30290837453fab55e9462586a7d82cf96327",
+          "row_size": 16,
+          "stride": 16
+        }
+      },
+      "rom_label": "Stage68",
+      "rom_sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+      "rom_size": 33554432,
+      "species_id": 1029,
+      "status": "PASS_FULLY_RUNTIME_ADDRESSABLE"
+    },
+    "status": "PASS_STAGE67_PROVEN_AND_STAGE68_BYTE_IDENTICAL"
+  },
+  "stage": 69,
+  "status": "PASS_STATIC_CONTRACT",
+  "task": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT"
+}

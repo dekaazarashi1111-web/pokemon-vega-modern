@@ -1,0 +1,108 @@
+name: stage79-native-debug-kit
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/stage79-native-debug-kit.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-kit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: bash infra/setup_github_actions.sh --install
+      - name: Package only public mGBA headers and shared-library dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-native-kit/{include,lib}
+          cp -a /usr/include/mgba /usr/include/mgba-util .local/stage79-native-kit/include/
+          python3 - <<'PY'
+          import pathlib, re, shutil, subprocess
+          root=pathlib.Path('.local/stage79-native-kit')
+          candidates=list(pathlib.Path('/usr/lib/x86_64-linux-gnu').glob('libmgba.so.*'))
+          assert candidates
+          library=candidates[0].resolve()
+          output=subprocess.check_output(['ldd',str(library)],text=True)
+          (root/'ldd.txt').write_text(output)
+          paths=[library,*[pathlib.Path(p) for p in re.findall(r'=> (/\S+)',output)]]
+          skip={'libc.so.6','libm.so.6','libdl.so.2','libpthread.so.0','librt.so.1'}
+          for path in paths:
+              if path.name not in skip:
+                  shutil.copyfile(path,root/'lib'/path.name)
+          for path in candidates:
+              shutil.copyfile(path,root/'lib'/path.name)
+          shutil.copyfile(library,root/'lib/libmgba.so')
+          PY
+          git rev-parse HEAD > .local/stage79-native-kit/head.txt
+          dpkg-query -W libmgba-dev libmgba0.10 > .local/stage79-native-kit/packages.txt
+          tar -C .local -czf .local/stage79-native-kit.tar.gz stage79-native-kit
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage79-native-debug-kit
+          path: .local/stage79-native-kit.tar.gz
+          if-no-files-found: error
+          retention-days: 3
+  assertions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        domain: [p02, floette]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: bash infra/setup_github_actions.sh --install
+      - name: Log every failing assertion operand without changing the ROM or acceptance
+        env:
+          DOMAIN: ${{ matrix.domain }}
+        shell: python
+        run: |
+          import importlib.util, os, sys
+          spec=importlib.util.spec_from_file_location('probe','.github/scripts/stage79_runtime_probe.py')
+          probe=importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(probe)
+          original=probe.instrument
+          def instrument(domain,text):
+              text=original(domain,text)
+              if domain=='p02':
+                  marker='    if (!cancel_ok)'
+                  extra='''
+              fprintf(stderr, "CANCEL_ASSERT begin=%u update=%u physical_b=%u frames=%u species=%u level=%u exp=%u bag=%u ability_slot=%u moves=%u,%u,%u,%u\\n",
+                      cancel.begin_seen,cancel.update_seen,cancel.physical_b,cancel.frames,
+                      (unsigned)p02s_data(core,P02S_MON_DATA_SPECIES2),
+                      (unsigned)p02s_data(core,QOL_MON_DATA_LEVEL),(unsigned)p02s_data(core,QOL_MON_DATA_EXP),
+                      p02s_bag_exact(core,P02S_ITEM_RARE_CANDY,0U),
+                      (unsigned)p02s_data(core,P02S_MON_DATA_ALT_ABILITY),
+                      (unsigned)p02s_data(core,QOL_MON_DATA_MOVE1),(unsigned)p02s_data(core,QOL_MON_DATA_MOVE1+1U),
+                      (unsigned)p02s_data(core,QOL_MON_DATA_MOVE1+2U),(unsigned)p02s_data(core,QOL_MON_DATA_MOVE1+3U));
+          '''
+                  text=probe.once(text,marker,extra+marker)
+              else:
+                  marker='    if (fg_invoke(core, claim) != FG_RESULT_FULL'
+                  extra='''
+              uint32_t full_result = fg_invoke(core, claim);
+              fprintf(stderr,"FULL_ASSERT result=%u flag=%u collection=%u count=%u ledger=%016llx/%016llx flash=%016llx/%016llx\\n",
+                      full_result,fg_flag(core),fg_collection_bit(core,FG_LEDGER),read8(core,FG_PLAYER_COUNT),
+                      (unsigned long long)fg_hash_region(core,FG_LEDGER,FG_LEDGER_SIZE),(unsigned long long)full_ledger,
+                      (unsigned long long)fg_hash_region(core,FG_FLASH_LEDGER,FG_LEDGER_SIZE),(unsigned long long)full_flash);
+          '''
+                  text=probe.once(text,marker,extra+'    if (full_result != FG_RESULT_FULL')
+              return text
+          probe.instrument=instrument
+          sys.argv=['probe',os.environ['DOMAIN']]
+          raise SystemExit(probe.main())
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-assertion-${{ matrix.domain }}
+          path: .local/stage79-runtime-probe/${{ matrix.domain }}
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

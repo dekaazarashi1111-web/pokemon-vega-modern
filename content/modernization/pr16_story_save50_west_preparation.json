@@ -1,0 +1,2559 @@
+{
+  "status": "STATIC_ROUTE505_TERRAIN_OWNERS_ONLY_NOT_NATIVE",
+  "source_head": "a6e21c85944b1e613ae1bc63553dea1352ce6574",
+  "run_id": 37143284932,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "input_save": {
+    "size": 131088,
+    "sha256": "21374dbfbc9e38f0febf16304706b7f3b14feacf204d5956bd622dcf941b1a04"
+  },
+  "inherited_view": {
+    "map": [
+      3,
+      23
+    ],
+    "header": 137447756,
+    "layout": 137024268,
+    "scripts": 135748400,
+    "width": 48,
+    "height": 40,
+    "connections": [
+      {
+        "direction": 2,
+        "offset": 16,
+        "target_map": [
+          3,
+          44
+        ]
+      },
+      {
+        "direction": 1,
+        "offset": 0,
+        "target_map": [
+          3,
+          2
+        ]
+      }
+    ],
+    "warps": [
+      {
+        "id": 0,
+        "xy": [
+          8,
+          2
+        ],
+        "elevation": 0,
+        "target_warp": 1,
+        "target_map": [
+          1,
+          30
+        ]
+      },
+      {
+        "id": 1,
+        "xy": [
+          5,
+          2
+        ],
+        "elevation": 0,
+        "target_warp": 1,
+        "target_map": [
+          17,
+          0
+        ]
+      },
+      {
+        "id": 2,
+        "xy": [
+          6,
+          2
+        ],
+        "elevation": 3,
+        "target_warp": 1,
+        "target_map": [
+          17,
+          1
+        ]
+      },
+      {
+        "id": 3,
+        "xy": [
+          7,
+          2
+        ],
+        "elevation": 3,
+        "target_warp": 1,
+        "target_map": [
+          17,
+          1
+        ]
+      }
+    ],
+    "objects": [
+      {
+        "local_id": 1,
+        "xy": [
+          15,
+          12
+        ],
+        "script": 154622691,
+        "flag": 0
+      },
+      {
+        "local_id": 2,
+        "xy": [
+          30,
+          24
+        ],
+        "script": 154583947,
+        "flag": 0
+      },
+      {
+        "local_id": 3,
+        "xy": [
+          28,
+          27
+        ],
+        "script": 154590315,
+        "flag": 0
+      },
+      {
+        "local_id": 4,
+        "xy": [
+          22,
+          17
+        ],
+        "script": 154583815,
+        "flag": 0
+      },
+      {
+        "local_id": 5,
+        "xy": [
+          23,
+          17
+        ],
+        "script": 154583815,
+        "flag": 0
+      },
+      {
+        "local_id": 6,
+        "xy": [
+          13,
+          32
+        ],
+        "script": 148898851,
+        "flag": 345
+      },
+      {
+        "local_id": 7,
+        "xy": [
+          37,
+          18
+        ],
+        "script": 148898864,
+        "flag": 346
+      },
+      {
+        "local_id": 8,
+        "xy": [
+          29,
+          27
+        ],
+        "script": 154590315,
+        "flag": 0
+      },
+      {
+        "local_id": 9,
+        "xy": [
+          18,
+          27
+        ],
+        "script": 149013360,
+        "flag": 0
+      }
+    ],
+    "collision_grid": [
+      "##########################........##############",
+      "##########################........##############",
+      "#####WWWW#################........##############",
+      "##########################........##############",
+      "###..#####################........##############",
+      "##########################........##############",
+      "#####..###################........##############",
+      "#####..###################........##############",
+      "#################.....###.........##############",
+      "#################.................##############",
+      "#######..####......#..............#########..###",
+      "#######..####.............#........#########.###",
+      "#######........O........#..........#########.###",
+      "#######.................#..........#########.###",
+      "#######.................#....###..##########.###",
+      "#######..............#.......#....##############",
+      "#######..............#....####....##############",
+      "##########..........#.OO..#............#########",
+      "##########..........#....##..........O.#########",
+      "##########..........#....#...#.........#########",
+      "############........##..##.............#########",
+      "#############............#####.........#########",
+      "###############..........#####........##########",
+      "###############..........#####........##########",
+      "###############........#######O......###########",
+      "###############........#######.......###########",
+      "############...........#######.....#############",
+      "############.....#O...######OO.....#############",
+      "#########.............######.......#############",
+      "########..............######.......#############",
+      "########............#######........#############",
+      "########............#######........#############",
+      "##########...O......#######........#############",
+      "###########.........######.........#############",
+      "################....######........##############",
+      "################....######.#......##############",
+      "################....#######.......##############",
+      "############################......##############",
+      "############################......##############",
+      "############################......##############"
+    ],
+    "scope": "STATIC_COLLISION_ONLY_NOT_REACHABILITY_ACCEPTANCE"
+  },
+  "inherited_preparation": {
+    "size": 13562,
+    "sha256": "98a155b2e81cc229958a44326e9ff27bc97664499e161800ea6e6cdceba62177"
+  },
+  "new_terrain_cells": 187,
+  "allcells": [
+    {
+      "xy": [
+        17,
+        8
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        18,
+        8
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        19,
+        8
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        20,
+        8
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        21,
+        8
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        25,
+        8
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        17,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        18,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        19,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        20,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        21,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        22,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        23,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        24,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        25,
+        9
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        7,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        8,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        13,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        14,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        15,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        16,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        17,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        18,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        20,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        21,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        22,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        23,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        24,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        25,
+        10
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        7,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        8,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        13,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        14,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        15,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        16,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        17,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        18,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        19,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        20,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        21,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        22,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        23,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        24,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        25,
+        11
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        7,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        8,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        9,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        10,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        11,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        12,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        13,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        14,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        15,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        16,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        17,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        18,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        19,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        20,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        21,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        22,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        23,
+        12
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        25,
+        12
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        7,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        8,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        9,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        10,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        11,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        12,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        13,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        14,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        15,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        16,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        17,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        18,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        19,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        20,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        21,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        22,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        23,
+        13
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        25,
+        13
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        7,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        8,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        9,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        10,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        11,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        12,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        13,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        14,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        15,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        16,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        17,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        18,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        19,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        20,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        21,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        22,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        23,
+        14
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        25,
+        14
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        7,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        8,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        9,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        10,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        11,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        12,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        13,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        14,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        15,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        16,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        17,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        18,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        19,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        20,
+        15
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        22,
+        15
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        23,
+        15
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        24,
+        15
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        25,
+        15
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        7,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        8,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        9,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        10,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        11,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        12,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        13,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        14,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        15,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        16,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        17,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        18,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        19,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        20,
+        16
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        22,
+        16
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        23,
+        16
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        24,
+        16
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        25,
+        16
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        10,
+        17
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        11,
+        17
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        12,
+        17
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        13,
+        17
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        14,
+        17
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        15,
+        17
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        16,
+        17
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        17,
+        17
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        18,
+        17
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        19,
+        17
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        21,
+        17
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        22,
+        17
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        23,
+        17
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        24,
+        17
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        25,
+        17
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        10,
+        18
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 33
+    },
+    {
+      "xy": [
+        11,
+        18
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        12,
+        18
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        13,
+        18
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        14,
+        18
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        15,
+        18
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        16,
+        18
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        17,
+        18
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        18,
+        18
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        19,
+        18
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        21,
+        18
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        22,
+        18
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        23,
+        18
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        24,
+        18
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        10,
+        19
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        11,
+        19
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        12,
+        19
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        13,
+        19
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        14,
+        19
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        15,
+        19
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        16,
+        19
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        17,
+        19
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        18,
+        19
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        19,
+        19
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        21,
+        19
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        22,
+        19
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        23,
+        19
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        24,
+        19
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        12,
+        20
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        13,
+        20
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        14,
+        20
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        15,
+        20
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        16,
+        20
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        17,
+        20
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        18,
+        20
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        19,
+        20
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 2
+    },
+    {
+      "xy": [
+        22,
+        20
+      ],
+      "elevation": 0,
+      "collision": 0,
+      "behavior": 42
+    },
+    {
+      "xy": [
+        23,
+        20
+      ],
+      "elevation": 0,
+      "collision": 0,
+      "behavior": 42
+    }
+  ],
+  "map_script_rows": [],
+  "map_script_references": [],
+  "coords": [
+    {
+      "index": 0,
+      "xy": [
+        3,
+        1
+      ],
+      "elevation": 0,
+      "trigger_var": 0,
+      "trigger_value": 0,
+      "script": 0
+    },
+    {
+      "index": 1,
+      "xy": [
+        4,
+        1
+      ],
+      "elevation": 0,
+      "trigger_var": 0,
+      "trigger_value": 0,
+      "script": 0
+    }
+  ],
+  "graph": {
+    "root_count": 3,
+    "unique_root_address_count": 2,
+    "visited_script_count": 12,
+    "nodes": [
+      {
+        "address": 135965536,
+        "end_reason": "goto",
+        "instruction_count": 1,
+        "edges": [
+          154583712
+        ],
+        "roots": [
+          "west_npc_4",
+          "west_npc_5"
+        ]
+      },
+      {
+        "address": 135965554,
+        "end_reason": "end",
+        "instruction_count": 3,
+        "edges": [],
+        "roots": [
+          "west_npc_4",
+          "west_npc_5"
+        ]
+      },
+      {
+        "address": 148912206,
+        "end_reason": "end",
+        "instruction_count": 6,
+        "edges": [
+          148912232
+        ],
+        "roots": [
+          "west_npc_1"
+        ]
+      },
+      {
+        "address": 148912232,
+        "end_reason": "goto",
+        "instruction_count": 1,
+        "edges": [
+          154622720
+        ],
+        "roots": [
+          "west_npc_1"
+        ]
+      },
+      {
+        "address": 148912246,
+        "end_reason": "end",
+        "instruction_count": 3,
+        "edges": [],
+        "roots": [
+          "west_npc_1"
+        ]
+      },
+      {
+        "address": 148912402,
+        "end_reason": "end",
+        "instruction_count": 6,
+        "edges": [
+          135965536
+        ],
+        "roots": [
+          "west_npc_4",
+          "west_npc_5"
+        ]
+      },
+      {
+        "address": 154583712,
+        "end_reason": "goto",
+        "instruction_count": 1,
+        "edges": [
+          154583747
+        ],
+        "roots": [
+          "west_npc_4",
+          "west_npc_5"
+        ]
+      },
+      {
+        "address": 154583747,
+        "end_reason": "goto",
+        "instruction_count": 2,
+        "edges": [
+          135965554
+        ],
+        "roots": [
+          "west_npc_4",
+          "west_npc_5"
+        ]
+      },
+      {
+        "address": 154583815,
+        "end_reason": "goto",
+        "instruction_count": 2,
+        "edges": [
+          148912402
+        ],
+        "roots": [
+          "west_npc_4",
+          "west_npc_5"
+        ]
+      },
+      {
+        "address": 154622691,
+        "end_reason": "goto",
+        "instruction_count": 2,
+        "edges": [
+          148912206
+        ],
+        "roots": [
+          "west_npc_1"
+        ]
+      },
+      {
+        "address": 154622720,
+        "end_reason": "goto",
+        "instruction_count": 1,
+        "edges": [
+          154622755
+        ],
+        "roots": [
+          "west_npc_1"
+        ]
+      },
+      {
+        "address": 154622755,
+        "end_reason": "goto",
+        "instruction_count": 2,
+        "edges": [
+          148912246
+        ],
+        "roots": [
+          "west_npc_1"
+        ]
+      }
+    ],
+    "references": [
+      {
+        "category": "special",
+        "value": 57,
+        "access": "call",
+        "instruction_address": 148912206,
+        "opcode": 38,
+        "command": "specialvar",
+        "script_address": 148912206,
+        "roots": [
+          "west_npc_1"
+        ]
+      },
+      {
+        "category": "special",
+        "value": 57,
+        "access": "call",
+        "instruction_address": 148912402,
+        "opcode": 38,
+        "command": "specialvar",
+        "script_address": 148912402,
+        "roots": [
+          "west_npc_4",
+          "west_npc_5"
+        ]
+      },
+      {
+        "category": "trainer",
+        "value": 1053,
+        "access": "battle",
+        "instruction_address": 154583747,
+        "opcode": 92,
+        "command": "trainerbattle",
+        "battle_type": 7,
+        "script_address": 154583747,
+        "roots": [
+          "west_npc_4",
+          "west_npc_5"
+        ]
+      },
+      {
+        "category": "trainer",
+        "value": 1054,
+        "access": "battle",
+        "instruction_address": 154583815,
+        "opcode": 92,
+        "command": "trainerbattle",
+        "battle_type": 4,
+        "script_address": 154583815,
+        "roots": [
+          "west_npc_4",
+          "west_npc_5"
+        ]
+      },
+      {
+        "category": "trainer",
+        "value": 1339,
+        "access": "battle",
+        "instruction_address": 154622755,
+        "opcode": 92,
+        "command": "trainerbattle",
+        "battle_type": 5,
+        "script_address": 154622755,
+        "roots": [
+          "west_npc_1"
+        ]
+      },
+      {
+        "category": "trainer",
+        "value": 686,
+        "access": "battle",
+        "instruction_address": 154622691,
+        "opcode": 92,
+        "command": "trainerbattle",
+        "battle_type": 0,
+        "script_address": 154622691,
+        "roots": [
+          "west_npc_1"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 32781,
+        "access": "write",
+        "instruction_address": 148912206,
+        "opcode": 38,
+        "command": "specialvar",
+        "script_address": 148912206,
+        "roots": [
+          "west_npc_1"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 32781,
+        "access": "read",
+        "instruction_address": 148912211,
+        "opcode": 33,
+        "command": "compare_var_to_value",
+        "operand": 1,
+        "script_address": 148912206,
+        "roots": [
+          "west_npc_1"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 32781,
+        "access": "write",
+        "instruction_address": 148912402,
+        "opcode": 38,
+        "command": "specialvar",
+        "script_address": 148912402,
+        "roots": [
+          "west_npc_4",
+          "west_npc_5"
+        ]
+      },
+      {
+        "category": "var",
+        "value": 32781,
+        "access": "read",
+        "instruction_address": 148912407,
+        "opcode": 33,
+        "command": "compare_var_to_value",
+        "operand": 1,
+        "script_address": 148912402,
+        "roots": [
+          "west_npc_4",
+          "west_npc_5"
+        ]
+      }
+    ],
+    "diagnostics": []
+  },
+  "instructions": [
+    {
+      "address": 135965536,
+      "opcode": 5,
+      "size": 5,
+      "hex": "05a0c23609",
+      "node": 135965536
+    },
+    {
+      "address": 135965554,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f008cb96908",
+      "node": 135965554
+    },
+    {
+      "address": 135965560,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0906",
+      "node": 135965554
+    },
+    {
+      "address": 135965562,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 135965554
+    },
+    {
+      "address": 148912206,
+      "opcode": 38,
+      "size": 5,
+      "hex": "260d803900",
+      "node": 148912206
+    },
+    {
+      "address": 148912211,
+      "opcode": 33,
+      "size": 5,
+      "hex": "210d800100",
+      "node": 148912206
+    },
+    {
+      "address": 148912216,
+      "opcode": 6,
+      "size": 6,
+      "hex": "06016838e008",
+      "node": 148912206
+    },
+    {
+      "address": 148912222,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f0062ba6908",
+      "node": 148912206
+    },
+    {
+      "address": 148912228,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0906",
+      "node": 148912206
+    },
+    {
+      "address": 148912230,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 148912206
+    },
+    {
+      "address": 148912232,
+      "opcode": 5,
+      "size": 5,
+      "hex": "05005b3709",
+      "node": 148912232
+    },
+    {
+      "address": 148912246,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f0062ba6908",
+      "node": 148912246
+    },
+    {
+      "address": 148912252,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0906",
+      "node": 148912246
+    },
+    {
+      "address": 148912254,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 148912246
+    },
+    {
+      "address": 148912402,
+      "opcode": 38,
+      "size": 5,
+      "hex": "260d803900",
+      "node": 148912402
+    },
+    {
+      "address": 148912407,
+      "opcode": 33,
+      "size": 5,
+      "hex": "210d800100",
+      "node": 148912402
+    },
+    {
+      "address": 148912412,
+      "opcode": 6,
+      "size": 6,
+      "hex": "060160ab1a08",
+      "node": 148912402
+    },
+    {
+      "address": 148912418,
+      "opcode": 15,
+      "size": 6,
+      "hex": "0f008cb96908",
+      "node": 148912402
+    },
+    {
+      "address": 148912424,
+      "opcode": 9,
+      "size": 2,
+      "hex": "0906",
+      "node": 148912402
+    },
+    {
+      "address": 148912426,
+      "opcode": 2,
+      "size": 1,
+      "hex": "02",
+      "node": 148912402
+    },
+    {
+      "address": 154583712,
+      "opcode": 5,
+      "size": 5,
+      "hex": "05c3c23609",
+      "node": 154583712
+    },
+    {
+      "address": 154583747,
+      "opcode": 92,
+      "size": 18,
+      "hex": "5c071d04000039b969086eb96908c3b96908",
+      "node": 154583747
+    },
+    {
+      "address": 154583765,
+      "opcode": 5,
+      "size": 5,
+      "hex": "0572ab1a08",
+      "node": 154583747
+    },
+    {
+      "address": 154583815,
+      "opcode": 92,
+      "size": 18,
+      "hex": "5c041e04000039b969086eb96908c3b96908",
+      "node": 154583815
+    },
+    {
+      "address": 154583833,
+      "opcode": 5,
+      "size": 5,
+      "hex": "051239e008",
+      "node": 154583815
+    },
+    {
+      "address": 154622691,
+      "opcode": 92,
+      "size": 14,
+      "hex": "5c00ae02000034ba690854ba6908",
+      "node": 154622691
+    },
+    {
+      "address": 154622705,
+      "opcode": 5,
+      "size": 5,
+      "hex": "054e38e008",
+      "node": 154622691
+    },
+    {
+      "address": 154622720,
+      "opcode": 5,
+      "size": 5,
+      "hex": "05235b3709",
+      "node": 154622720
+    },
+    {
+      "address": 154622755,
+      "opcode": 92,
+      "size": 14,
+      "hex": "5c053b05000034ba690854ba6908",
+      "node": 154622755
+    },
+    {
+      "address": 154622769,
+      "opcode": 5,
+      "size": 5,
+      "hex": "057638e008",
+      "node": 154622755
+    }
+  ],
+  "inherited_east_preparation": "content/modernization/pr16_story_save50_preparation.json",
+  "new_map_views": 0,
+  "native_processes": 0,
+  "rom_changes": 0,
+  "save_changes": 0,
+  "accepted_case_reruns": 0,
+  "accepted_test_reruns": 0,
+  "prior_record": {
+    "run": {
+      "id": 37142517526,
+      "head_sha": "76ba6c8ff45c9f1f0943a7e2741bef643d279f81",
+      "head_branch": "codex/modernization-followup-20260908",
+      "path": ".github/workflows/pr16-story-save49-record.yml",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    "job": {
+      "id": 111259715046,
+      "run_id": 37142517526,
+      "workflow_name": "pr16-story-save49-record",
+      "head_branch": "codex/modernization-followup-20260908",
+      "run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37142517526",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUPNhZs8AAAAZ55iF5g",
+      "head_sha": "76ba6c8ff45c9f1f0943a7e2741bef643d279f81",
+      "url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/actions/jobs/111259715046",
+      "html_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/37142517526/job/111259715046",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-03T17:59:18Z",
+      "started_at": "2026-10-03T17:59:20Z",
+      "completed_at": "2026-10-03T17:59:51Z",
+      "name": "record",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-03T17:59:21Z",
+          "completed_at": "2026-10-03T17:59:21Z"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-03T17:59:21Z",
+          "completed_at": "2026-10-03T17:59:34Z"
+        },
+        {
+          "name": "Exact new acceptance source guard",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-03T17:59:34Z",
+          "completed_at": "2026-10-03T17:59:35Z"
+        },
+        {
+          "name": "Thirty-four new acceptance tests and exact terminal parser",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-03T17:59:35Z",
+          "completed_at": "2026-10-03T17:59:43Z"
+        },
+        {
+          "name": "Scoped final index private guard and fixed resume",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-03T17:59:43Z",
+          "completed_at": "2026-10-03T17:59:47Z"
+        },
+        {
+          "name": "Lightweight task graph",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-03T17:59:47Z",
+          "completed_at": "2026-10-03T17:59:47Z"
+        },
+        {
+          "name": "Commit and nonforce push same branch",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-03T17:59:47Z",
+          "completed_at": "2026-10-03T17:59:49Z"
+        },
+        {
+          "name": "Exact committed text readback",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-03T17:59:49Z",
+          "completed_at": "2026-10-03T17:59:49Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-03T17:59:49Z",
+          "completed_at": "2026-10-03T17:59:50Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-03T17:59:50Z",
+          "completed_at": "2026-10-03T17:59:50Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-03T17:59:50Z",
+          "completed_at": "2026-10-03T17:59:50Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern/check-runs/111259715046",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000019983,
+      "runner_name": "GitHub Actions 1000019983",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  }
+}

@@ -1,0 +1,2163 @@
+{
+  "schema_version": 1,
+  "status": "PASS_CURRENT_753_PARENT_HEALING_VEIL_BATCH_AND_PARTIAL_SPACE_REFUSAL",
+  "source_head": "718d9795bee3bf43129e1d3d39d922cb45e54a37",
+  "run_id": 37421487687,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "candidate_changed": false,
+  "unit_tests": 207,
+  "classified": 756,
+  "unclassified": 118,
+  "newly_classified": 3,
+  "new_data": 3,
+  "new_code": 0,
+  "new_boundary": 0,
+  "new_song": 0,
+  "old_inventory_candidates": 874,
+  "previous_classified": 753,
+  "previous_unknown": 121,
+  "owner_unknown": 0,
+  "unowned_unknown": 118,
+  "all_prior_accepted_retained": true,
+  "remaining_unknown_rows_retained": true,
+  "old_full_rom_inventory_reused": true,
+  "delta_identity": {
+    "size": 67352,
+    "sha256": "0833d5c4f8fc3f7aad4c7bac812ee1dc2c811f1b753deb8505f1d999b9f26869"
+  },
+  "baseline_identity": {
+    "size": 4063919,
+    "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+  },
+  "parent_identity": {
+    "size": 194298,
+    "sha256": "a5447e696153e276597a94f090fdb602d13762a486719c53c4b56b0186bbfbd9"
+  },
+  "earlier_identity": {
+    "size": 149772,
+    "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+  },
+  "unknown_identity": {
+    "size": 51735,
+    "sha256": "e5a2559bdfa94c4be9b8ec07fd8d9d178083ac2035858298dcf3ec648b641f28"
+  },
+  "capacity_identity": {
+    "size": 32590,
+    "sha256": "1c42ce891cecb5d280c41dcc06fa13181510ca84438df59b87acf73592d00655"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-healing-veil-batch.yml": {
+      "size": 3054,
+      "sha256": "287a3c88a76235bd6dedff53ad4136f3692319a391baada374cac36789b8e69e"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_development_validation.json": {
+      "size": 8008,
+      "sha256": "f2fd999b8eed473668d9aaf319d26cfabe96e83a1000b2340595ac06616e29eb"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_sources.json": {
+      "size": 2989,
+      "sha256": "86a55511cbf4026575cca09bbfe91c19ab798aa1dc3993b9b2e35aef28713e22"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_roots_review.json": {
+      "size": 58388,
+      "sha256": "2c356fa80c0fac8ae6f50eab12408e17694efb9c487e30a30c21189ba6936bad"
+    },
+    "docs/PR16_DEX_HOF_HEALING_VEIL_BATCH_JA.md": {
+      "size": 3440,
+      "sha256": "cb6c7ad22501aca6338362279e40e0f6c1437c9d3fbe624c008c54b59c6e8728"
+    },
+    "scripts/pr16_dex_hof_healing_veil_batch.py": {
+      "size": 6260,
+      "sha256": "b730bf71917803393fb656392a38893db445c8bb3f39fb3c696ee770ce3fc121"
+    },
+    "scripts/pr16_dex_hof_healing_veil_batch_actions.py": {
+      "size": 29209,
+      "sha256": "4caa5d0ea1d36a09613a5660e5caba6feb29b9f6c1b6a66fd92c7c387cb158ab"
+    },
+    "scripts/pr16_dex_hof_healing_veil_batch_capacity.py": {
+      "size": 10834,
+      "sha256": "d0199fae9d34ec5bd0db798f68d746ebe917154756a4af4b697c51bde5c40ea3"
+    },
+    "scripts/pr16_dex_hof_healing_veil_batch_chain.py": {
+      "size": 20110,
+      "sha256": "4bb411c2710f68aa781d7c45aefce6d85bcf61e164b34e66d3fffd5bfeb78561"
+    },
+    "scripts/pr16_dex_hof_healing_veil_roots.py": {
+      "size": 28107,
+      "sha256": "d8aba519beeee5ed8a08c3b518cf0b306f0e54e8c85d7aa578655a5c2f41d3c2"
+    },
+    "tests/test_pr16_dex_hof_healing_veil_batch.py": {
+      "size": 7733,
+      "sha256": "44c9d2eee3fa7d979b67251fa36a120322b20cfebe33e4d395a877588863c2aa"
+    },
+    "tests/test_pr16_dex_hof_healing_veil_batch_actions.py": {
+      "size": 18833,
+      "sha256": "e71e2542572259f83313d672514dd427045893df4705e2c142407f87d51959f6"
+    },
+    "tests/test_pr16_dex_hof_healing_veil_batch_capacity.py": {
+      "size": 14246,
+      "sha256": "3ea59a75c4189cf53c0ad57abe187087597a80cad60fd8faf0c8d0ae35b2220f"
+    },
+    "tests/test_pr16_dex_hof_healing_veil_batch_chain.py": {
+      "size": 17607,
+      "sha256": "058077cc495d42573410a2909134421bdb58deebe84e6d65a60bba01a90fcd40"
+    },
+    "tests/test_pr16_dex_hof_healing_veil_roots.py": {
+      "size": 16876,
+      "sha256": "313c111c94ffb9ed3ce7153aefac04f8978632865c10733c691788bb7edabfa5"
+    }
+  },
+  "inherited_bindings": {
+    "content/modernization/pr16_dex_hof_boundary_references_checkpoint.json": {
+      "size": 14687,
+      "sha256": "d97afe368fecf0b369e3630180dc1f579501ac6a2d276cfcbe5647a973703f7a"
+    },
+    "content/modernization/pr16_dex_hof_boundary_references_evidence/reference-chain.json": {
+      "size": 13165,
+      "sha256": "5b9ff2600caec75c226e720010e772725c76ec52da2391024176d01f19892eb7"
+    },
+    "content/modernization/pr16_dex_hof_boundary_references_evidence/unknown-frontier.json": {
+      "size": 61763,
+      "sha256": "ef91033ce77034dffa6b1155011bbe7df86f26df79c5ea8f630288cae8462a1f"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_checkpoint.json": {
+      "size": 52637,
+      "sha256": "974f9bc2cb87f30112a40e6c5df29ad4734336216a2e64f3568aeddb5150705a"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/reference-chain.json": {
+      "size": 60153,
+      "sha256": "06595ebf5830e45334dbb83ec1fb96658d40879f6f4a0126e3718a8d5ae6100a"
+    },
+    "content/modernization/pr16_dex_hof_callback_lifetimes_evidence/unknown-frontier.json": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_checkpoint.json": {
+      "size": 10439,
+      "sha256": "f6530690ae80c432d94aef8288273eb8f5a1bbf7b4c80115146a9cac9329e464"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_evidence/reference-chain.json": {
+      "size": 22816,
+      "sha256": "c49c05072bb5dcf19de4620440bfde82ad66e3c1269566a9b6184ebc9870bbc6"
+    },
+    "content/modernization/pr16_dex_hof_callback_references_evidence/unknown-frontier.json": {
+      "size": 63507,
+      "sha256": "c27a2ff878aa2ce0fafe40c7c9407cfad7164a7e472e29e4d0391db59e260676"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_checkpoint.json": {
+      "size": 11195,
+      "sha256": "660b6dc8b99c0005e8804998ad962772358233338eb2876d12853d75507342b9"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/reference-chain.json": {
+      "size": 28406,
+      "sha256": "20a394e6ce825113bbfd833989c18528a44f665f79eaf1c91f1ab6899a796dc7"
+    },
+    "content/modernization/pr16_dex_hof_consumer_references_evidence/unknown-frontier.json": {
+      "size": 64815,
+      "sha256": "435ae082b4cba009029f452e0bffcc365a73c66a439241842dd12107f54bab06"
+    },
+    "content/modernization/pr16_dex_hof_controller_evidence/controller-footprint.json": {
+      "size": 9353,
+      "sha256": "5ec5d9b72d25dcd249c3d6cf8af75544749748a8bdcee6da2092c3e583223d6c"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_checkpoint.json": {
+      "size": 9621,
+      "sha256": "a81a17085d98690f9e397c02f6334680e8064f76e0e7e24cc9f9fabb520ef631"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_evidence/reference-chain.json": {
+      "size": 23481,
+      "sha256": "1ede9031a30c4c5f52ec2b6cbf47ad177c4117931fb72796ce597c2786c01476"
+    },
+    "content/modernization/pr16_dex_hof_controller_space_evidence/unknown-frontier.json": {
+      "size": 63943,
+      "sha256": "9a58057a3d7d8c18661270902c00c478da298ba65f0b637cc99a1d09a32df85f"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_checkpoint.json": {
+      "size": 30849,
+      "sha256": "8ca9d8a8a014761a478b10da7e5818058106d0247585b9ff446457135fd78c05"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_evidence/partial-space.json": {
+      "size": 27710,
+      "sha256": "927af5f2ccd60e78b3a953e2e47ad84a63537079796e528427aa9f9955efc3ea"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_evidence/reference-chain.json": {
+      "size": 26093,
+      "sha256": "b93206ff3a84d498746a571e9e874441ee2e0397d030baa7f46c9b283b0ac0fb"
+    },
+    "content/modernization/pr16_dex_hof_event_boundary_batch_evidence/unknown-frontier.json": {
+      "size": 53915,
+      "sha256": "65c28b232f6c658dec0fc653e97ebfacd07e3dcd378c513f920aae1cc1c55b94"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_checkpoint.json": {
+      "size": 75332,
+      "sha256": "608c5faa5f2f2b8ff988ef25dbbf77ad5fffbcafc4da4aee8809a521251f098f"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/partial-space.json": {
+      "size": 25234,
+      "sha256": "dd198330e486045d12e8d554e787c0614d795f72b2b0fc443f0c4962d4a39164"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/reference-chain.json": {
+      "size": 75712,
+      "sha256": "f2b07ad37d428bb4d1be56da6fb65b3a9086a6957c60056697c32ecfc38d8fb3"
+    },
+    "content/modernization/pr16_dex_hof_field_consumer_batch_evidence/unknown-frontier.json": {
+      "size": 54787,
+      "sha256": "036a9bd87ea101d84fada4d1fbd65f29bec00cf6ab1a6c00f6d16226d27e931d"
+    },
+    "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json": {
+      "size": 388088,
+      "sha256": "2aa483a860c7f5bc4919f6a3f11c74e3d209399059e8febbd63f3baaa16a8d49"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_checkpoint.json": {
+      "size": 335169,
+      "sha256": "dff4dcab9cd7fadce44cbc6456d00ade32b724f9553455e3d66acfe9850e547f"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_evidence/partial-space.json": {
+      "size": 19893,
+      "sha256": "52a352d391906df2fbbc8eec3abce5be00087a9947b55216e7234fdcc69c24f1"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_evidence/reference-chain.json": {
+      "size": 352753,
+      "sha256": "53f4789fb532d93791fa7e0962b7feea9f74003d342f5175d00e1b07de7aa5d0"
+    },
+    "content/modernization/pr16_dex_hof_help_batch_evidence/unknown-frontier.json": {
+      "size": 57403,
+      "sha256": "50358bbd4cc7b0a5bdd7d4e85bb0f57a79b038d35f5394734e85a4d9c9271e8e"
+    },
+    "content/modernization/pr16_dex_hof_party_references_checkpoint.json": {
+      "size": 349521,
+      "sha256": "5236fec1ccd849b4110093ba2587885913a3f0eb767759d21a6932ef21ba8cda"
+    },
+    "content/modernization/pr16_dex_hof_party_references_evidence/reference-chain.json": {
+      "size": 375903,
+      "sha256": "55bc39b3b22ad61654fa24dbf37e5c44b33aae16357acf70e823af5baf4a748c"
+    },
+    "content/modernization/pr16_dex_hof_party_references_evidence/unknown-frontier.json": {
+      "size": 60891,
+      "sha256": "acb5cbea26a6eaba403dd3fc3e3215f54a9ad7dde440b8dfd3636dd697241621"
+    },
+    "content/modernization/pr16_dex_hof_reference_evidence/reference-delta.json": {
+      "size": 149772,
+      "sha256": "762320ba350f528777b90be404b5fec1d88caeb6dbf6594590d4f45b852c1c87"
+    },
+    "content/modernization/pr16_dex_hof_reference_gaps_evidence/reference-chain.json": {
+      "size": 95619,
+      "sha256": "c38d8e67a6718cacc17a3999922dca9edd9977734711b3cf5a74f85c1b76bb32"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_checkpoint.json": {
+      "size": 809502,
+      "sha256": "55cfbf03e124c26f78ed00b52b9d2da7604642c892dc8c85f0754b3e1a82aca3"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_evidence/partial-space.json": {
+      "size": 17993,
+      "sha256": "dea8c62dfb5e9b608ead9ade52bf1a907e29920d946990146f15ba4e58094115"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_evidence/reference-chain.json": {
+      "size": 875373,
+      "sha256": "1fb58b88ac19198de7ef29fc0728908c1fb720915bfa53d265b78994252a6917"
+    },
+    "content/modernization/pr16_dex_hof_remaining_consumers_evidence/unknown-frontier.json": {
+      "size": 58275,
+      "sha256": "55bee1d2fbe5f830cd23acb58ec0f09d56ac0e4d2fe7af9ea798894a14c13adf"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_checkpoint.json": {
+      "size": 8001,
+      "sha256": "62411cded366aa43cb449af76b13166e2df6476532b3997664c22baa00e1d226"
+    },
+    "content/modernization/pr16_dex_hof_remaining_references_evidence/reference-chain.json": {
+      "size": 71138,
+      "sha256": "185e66b6e93eb94a6d1850b7f29b4ccfd00dfd3b3a5668a6021dbf5059fd3bd2"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_checkpoint.json": {
+      "size": 444776,
+      "sha256": "5fadebac1cd15e645ce5cb047148e1e59fa193af735518138fc8373beb565d55"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_evidence/partial-space.json": {
+      "size": 22817,
+      "sha256": "895250c668b17b8063c23fd87871c4e6a464f0885fe559eb37d9cf581e4184df"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_evidence/reference-chain.json": {
+      "size": 478118,
+      "sha256": "2089134cff6c3f920bea3476e8c0b9e883901eff42eb7f933fd86c91e71f485e"
+    },
+    "content/modernization/pr16_dex_hof_root_batch_evidence/unknown-frontier.json": {
+      "size": 56095,
+      "sha256": "8e463394c3ff6160d15f4d89d8b97153766e7c1b5af13d51d323abdb1ad5e2c0"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_checkpoint.json": {
+      "size": 55238,
+      "sha256": "b9252156201ab5c7506396270d9757522240767a3a781a7330237b1c9ba50927"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_evidence/reference-chain.json": {
+      "size": 68925,
+      "sha256": "7fdc8ed846f529fd7dfd5b35b322ddf8bd1eb46e18f5fd45239e21e998adae8e"
+    },
+    "content/modernization/pr16_dex_hof_runtime_closure_evidence/unknown-frontier.json": {
+      "size": 62199,
+      "sha256": "53ea3d2a47a3066f72278de164c8cbc19ba5a6ebf3ec815cde921db50a65aa6d"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_checkpoint.json": {
+      "size": 188864,
+      "sha256": "9c103fcdd3158dd7e91cee7a3c84fdc395cb5142d6ac0aa41d9e35b368d8c46d"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_evidence/partial-space.json": {
+      "size": 30148,
+      "sha256": "3f040cd811b9ef39ae507799c1a2c2b8f480dc94c1e0a9b2aaaf562abe0fd228"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_evidence/reference-chain.json": {
+      "size": 194298,
+      "sha256": "a5447e696153e276597a94f090fdb602d13762a486719c53c4b56b0186bbfbd9"
+    },
+    "content/modernization/pr16_dex_hof_script_producer_batch_evidence/unknown-frontier.json": {
+      "size": 53043,
+      "sha256": "ec81c12a713e407c669f2fe39ba1f34f86b9da2b78029db55aca49ce24e503fc"
+    },
+    "content/modernization/pr16_dex_hof_script_references_checkpoint.json": {
+      "size": 8864,
+      "sha256": "026944a1ae8d2bfeca0eb3105868d9ebe3fc1b8f0d7669fc18b7fb69fddc58ff"
+    },
+    "content/modernization/pr16_dex_hof_script_references_evidence/reference-chain.json": {
+      "size": 134951,
+      "sha256": "da105fd05e4ddb51bd7648af890db509c9b8f1e7e79112dbc1b295ce15b51279"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_checkpoint.json": {
+      "size": 627652,
+      "sha256": "e63d3dfda20758d9a2f120a06bfc870183adf1cd997d887462babdae9af6529a"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_evidence/partial-space.json": {
+      "size": 15194,
+      "sha256": "0c02f86656a4bfc4f16a73e09c9eff9ae0f382989b89deeed99bfcc81f6c2da7"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_evidence/reference-chain.json": {
+      "size": 681669,
+      "sha256": "c11d71495d60fda8fed98464eb6962f7b57be75dc39e8b479be3d57903d68586"
+    },
+    "content/modernization/pr16_dex_hof_summary_references_evidence/unknown-frontier.json": {
+      "size": 60019,
+      "sha256": "8e9a910b72b855ae7115a28b279abeddf82612f8f975e6085b6bb17fafd1093d"
+    },
+    "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json": {
+      "size": 4063919,
+      "sha256": "814082398937869b6cc17faa09cbf1833f0c7f4aa300ddbd83d0de833d44b74c"
+    },
+    "content/modernization/pr16_story_route_adapter_checkpoint.json": {
+      "size": 45222,
+      "sha256": "ff7094f278de5502b40bca5ceaccb1a29ba6776b9b5eedc5ccdcb5ea03be19c7"
+    },
+    "state/source-lock.json": {
+      "size": 3166,
+      "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4"
+    }
+  },
+  "current_owner_count": 115,
+  "current_rom_reconstructions": 1,
+  "historical_rom_reconstructions": 0,
+  "old_full_rom_scan_runs": 0,
+  "native_processes": 0,
+  "accepted_heap_reruns": 0,
+  "independent_final_source_review_completed": false,
+  "new_healing_veil_batch_source_review_completed": true,
+  "development_validation": {
+    "size": 8008,
+    "sha256": "f2fd999b8eed473668d9aaf319d26cfabe96e83a1000b2340595ac06616e29eb"
+  },
+  "validation_scope": "新scope専用unit、現候補全SHA/115actual owner/874hit/新AuroraVeil/LifeDew/JungleHealing有限serializerとconsumer最小型・保存容量原本の機械検証。旧最終song/battle/Surf独立再レビュー未実施を保持。",
+  "combined_song_models": 133,
+  "retained_sample_witnesses": 50,
+  "old_models_reused_for_new_cross_song_role_safety": true,
+  "donor_leased": false,
+  "donor_eligible": false,
+  "indirect_reference_completeness_claimed": false,
+  "controller_runtime_wired": false,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "healing_veil_batch_diagnostics": {
+    "status": "PASS_NEW_REGISTERED_HEALING_VEIL_FIELDS",
+    "consumers": {
+      "registered_healing_veil_minimum_cross_field": {
+        "status": "PASS_THREE_REGISTERED_HEALING_VEIL_TYPES",
+        "count": 3,
+        "hits": [
+          151008779,
+          151008973,
+          151010306
+        ],
+        "typed_bytes": 12,
+        "serializer_window_sizes": [
+          41,
+          63,
+          53,
+          88
+        ],
+        "source_serialized_root": true,
+        "native_selector_models": [
+          {
+            "command": 151010278,
+            "opcode": 42,
+            "edge": "taken",
+            "entry": 134356752,
+            "next_cursor": 151010308,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151010278,
+            "opcode": 42,
+            "edge": "next",
+            "entry": 134356752,
+            "next_cursor": 151010290,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151010303,
+            "opcode": 40,
+            "edge": "taken",
+            "entry": 134356560,
+            "next_cursor": 136030474,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008564,
+            "opcode": 42,
+            "edge": "taken",
+            "entry": 134356752,
+            "next_cursor": 151008674,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008564,
+            "opcode": 42,
+            "edge": "next",
+            "entry": 134356752,
+            "next_cursor": 151008576,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008578,
+            "opcode": 42,
+            "edge": "taken",
+            "entry": 134356752,
+            "next_cursor": 151008658,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008578,
+            "opcode": 42,
+            "edge": "next",
+            "entry": 134356752,
+            "next_cursor": 151008590,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008590,
+            "opcode": 42,
+            "edge": "taken",
+            "entry": 134356752,
+            "next_cursor": 151008738,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008590,
+            "opcode": 42,
+            "edge": "next",
+            "entry": 134356752,
+            "next_cursor": 151008602,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008602,
+            "opcode": 42,
+            "edge": "taken",
+            "entry": 134356752,
+            "next_cursor": 151008897,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008602,
+            "opcode": 42,
+            "edge": "next",
+            "entry": 134356752,
+            "next_cursor": 151008614,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008614,
+            "opcode": 42,
+            "edge": "taken",
+            "entry": 134356752,
+            "next_cursor": 151008897,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008614,
+            "opcode": 42,
+            "edge": "next",
+            "entry": 134356752,
+            "next_cursor": 151008626,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008929,
+            "opcode": 40,
+            "edge": "taken",
+            "entry": 134356560,
+            "next_cursor": 151008940,
+            "command_entry_condition": true,
+            "natural_entry_proven": false
+          }
+        ],
+        "native_dispatch_models": [
+          {
+            "command": 151010278,
+            "opcode": 42,
+            "opcode_byte_reads": [
+              151010278
+            ],
+            "handler": 134356752,
+            "dispatch_slots": [
+              151254264
+            ],
+            "cursor_at_handler": 151010278,
+            "steps": 9,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151010303,
+            "opcode": 40,
+            "opcode_byte_reads": [
+              151010303
+            ],
+            "handler": 134356560,
+            "dispatch_slots": [
+              151254256
+            ],
+            "cursor_at_handler": 151010303,
+            "steps": 9,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151010308,
+            "opcode": 65289,
+            "opcode_byte_reads": [
+              151010308,
+              151010309
+            ],
+            "handler": 152153960,
+            "dispatch_slots": [
+              151255116,
+              151255156
+            ],
+            "cursor_at_handler": 151010309,
+            "steps": 20,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008564,
+            "opcode": 42,
+            "opcode_byte_reads": [
+              151008564
+            ],
+            "handler": 134356752,
+            "dispatch_slots": [
+              151254264
+            ],
+            "cursor_at_handler": 151008564,
+            "steps": 9,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008578,
+            "opcode": 42,
+            "opcode_byte_reads": [
+              151008578
+            ],
+            "handler": 134356752,
+            "dispatch_slots": [
+              151254264
+            ],
+            "cursor_at_handler": 151008578,
+            "steps": 9,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008590,
+            "opcode": 42,
+            "opcode_byte_reads": [
+              151008590
+            ],
+            "handler": 134356752,
+            "dispatch_slots": [
+              151254264
+            ],
+            "cursor_at_handler": 151008590,
+            "steps": 9,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008602,
+            "opcode": 42,
+            "opcode_byte_reads": [
+              151008602
+            ],
+            "handler": 134356752,
+            "dispatch_slots": [
+              151254264
+            ],
+            "cursor_at_handler": 151008602,
+            "steps": 9,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008614,
+            "opcode": 42,
+            "opcode_byte_reads": [
+              151008614
+            ],
+            "handler": 134356752,
+            "dispatch_slots": [
+              151254264
+            ],
+            "cursor_at_handler": 151008614,
+            "steps": 9,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008775,
+            "opcode": 227,
+            "opcode_byte_reads": [
+              151008775
+            ],
+            "handler": 134399252,
+            "dispatch_slots": [
+              151255004
+            ],
+            "cursor_at_handler": 151008775,
+            "steps": 9,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008781,
+            "opcode": 65289,
+            "opcode_byte_reads": [
+              151008781,
+              151008782
+            ],
+            "handler": 152153960,
+            "dispatch_slots": [
+              151255116,
+              151255156
+            ],
+            "cursor_at_handler": 151008782,
+            "steps": 20,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008929,
+            "opcode": 40,
+            "opcode_byte_reads": [
+              151008929
+            ],
+            "handler": 134356560,
+            "dispatch_slots": [
+              151254256
+            ],
+            "cursor_at_handler": 151008929,
+            "steps": 9,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008969,
+            "opcode": 227,
+            "opcode_byte_reads": [
+              151008969
+            ],
+            "handler": 134399252,
+            "dispatch_slots": [
+              151255004
+            ],
+            "cursor_at_handler": 151008969,
+            "steps": 9,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          },
+          {
+            "command": 151008975,
+            "opcode": 65289,
+            "opcode_byte_reads": [
+              151008975,
+              151008976
+            ],
+            "handler": 152153960,
+            "dispatch_slots": [
+              151255116,
+              151255156
+            ],
+            "cursor_at_handler": 151008976,
+            "steps": 20,
+            "command_entry_condition": true,
+            "handler_executed": false,
+            "natural_entry_proven": false
+          }
+        ],
+        "native_pointer_read_proofs": [
+          {
+            "command": 151010308,
+            "handler": 152153960,
+            "stop": 152154004,
+            "pointer": 151031313,
+            "pointer_bytes": 4,
+            "bank_operand": 1,
+            "resolver_slot": 152441876,
+            "bank_read_address": 33701067,
+            "distinct_bank_value_cases": 4,
+            "command_entry_condition": true,
+            "natural_entry_proven": false,
+            "counter_branch_executed": false
+          },
+          {
+            "command": 151008781,
+            "handler": 152153960,
+            "stop": 152154004,
+            "pointer": 151024593,
+            "pointer_bytes": 4,
+            "bank_operand": 0,
+            "resolver_slot": 152441872,
+            "bank_read_address": 33701068,
+            "distinct_bank_value_cases": 4,
+            "command_entry_condition": true,
+            "natural_entry_proven": false,
+            "counter_branch_executed": false
+          },
+          {
+            "command": 151008975,
+            "handler": 152153960,
+            "stop": 152154004,
+            "pointer": 151009076,
+            "pointer_bytes": 4,
+            "bank_operand": 0,
+            "resolver_slot": 152441872,
+            "bank_read_address": 33701068,
+            "distinct_bank_value_cases": 4,
+            "command_entry_condition": true,
+            "natural_entry_proven": false,
+            "counter_branch_executed": false
+          }
+        ],
+        "native_jumpiffainted_models": {
+          "status": "PASS_CONDITIONAL_E3_BANK_TARGET_TAKEN_NEXT",
+          "primary_slot": 151255004,
+          "entry": 134399252,
+          "legacy_resolver_entry": 134309428,
+          "redirect_literal": 134309432,
+          "actual_resolver_entry": 151862572,
+          "resolver_table_slot": 152441872,
+          "bank_read": 33701068,
+          "hp_base": 33700676,
+          "hp_stride": 88,
+          "hp_offset": 40,
+          "hp_width": 2,
+          "hp_domain_count": 65536,
+          "machine_cases": 56,
+          "models": [
+            {
+              "command": 151008775,
+              "edge": "taken",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 0,
+              "next_cursor": 136030474,
+              "steps": 44,
+              "full_pointer_read": true,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 136030474
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 1,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 255,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 256,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 32767,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 32768,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 65535,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "taken",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 0,
+              "next_cursor": 136030474,
+              "steps": 44,
+              "full_pointer_read": true,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 136030474
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 1,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 255,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 256,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 32767,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 32768,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 65535,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "taken",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 0,
+              "next_cursor": 136030474,
+              "steps": 44,
+              "full_pointer_read": true,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 136030474
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 1,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 255,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 256,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 32767,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 32768,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 65535,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "taken",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 0,
+              "next_cursor": 136030474,
+              "steps": 44,
+              "full_pointer_read": true,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 136030474
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 1,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 255,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 256,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 32767,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 32768,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008775,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 65535,
+              "next_cursor": 151008781,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008781
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "taken",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 0,
+              "next_cursor": 136030474,
+              "steps": 44,
+              "full_pointer_read": true,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 136030474
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 1,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 255,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 256,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 32767,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 32768,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 0,
+              "hp": 65535,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700716,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 0
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "taken",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 0,
+              "next_cursor": 136030474,
+              "steps": 44,
+              "full_pointer_read": true,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 136030474
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 1,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 255,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 256,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 32767,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 32768,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 1,
+              "hp": 65535,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700804,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 1
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "taken",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 0,
+              "next_cursor": 136030474,
+              "steps": 44,
+              "full_pointer_read": true,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 136030474
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 1,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 255,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 256,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 32767,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 32768,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 2,
+              "hp": 65535,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700892,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 2
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "taken",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 0,
+              "next_cursor": 136030474,
+              "steps": 44,
+              "full_pointer_read": true,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 136030474
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 1,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 255,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 256,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 32767,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 32768,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            },
+            {
+              "command": 151008969,
+              "edge": "next",
+              "entry": 134399252,
+              "bank": 3,
+              "hp": 65535,
+              "next_cursor": 151008975,
+              "steps": 34,
+              "full_pointer_read": false,
+              "hp_address": 33700980,
+              "writes": [
+                {
+                  "address": 33700644,
+                  "size": 1,
+                  "value": 3
+                },
+                {
+                  "address": 33701076,
+                  "size": 4,
+                  "value": 151008975
+                }
+              ]
+            }
+          ],
+          "entry_preconditions": [
+            "CURSORはsource束縛済みのE3全6byte命令2件の一方を指す",
+            "BANK_TARGET operandは0、実target RAM値は0..3",
+            "選択bankのbattle-mon HP halfwordは0..65535",
+            "有効で非aliasの専用stackと安定入力を仮定し、同時書換えなし"
+          ],
+          "public_us_address_alone_used_as_jp_evidence": false,
+          "natural_reachability_claimed": false,
+          "prefix_execution_claimed": false,
+          "callasm_success_claimed": false,
+          "move_effect_success_claimed": false,
+          "current_rom_identity_checked_by_local_model": false
+        },
+        "protected_windows": 313,
+        "protected_bytes": 891,
+        "donor_leased": false,
+        "donor_eligible": false,
+        "full_story_reachability_claimed": false,
+        "natural_battle_entry_reachability_claimed": false,
+        "whole_script_range_classified": false,
+        "attackcanceler_success_proven": false,
+        "indirect_reference_completeness_claimed": false,
+        "callasm_success_proven": false,
+        "goto_fallthrough_claimed": false,
+        "all_prefix_execution_claimed": false,
+        "owner_transfer_proven": false,
+        "opcode_handler_success_proven": false,
+        "whole_dispatcher_classified": false,
+        "current_rom_identity_checked_by_local_diagnostic": false,
+        "set_target_partner_success_proven": false,
+        "recovery_or_status_effect_success_proven": false,
+        "set_reflect_or_aurora_veil_success_proven": false,
+        "natural_bank_value_generation_proven": false
+      }
+    },
+    "held_roots": {},
+    "new_data": 3,
+    "new_code": 0,
+    "new_boundary": 0,
+    "natural_gameplay_reachability_claimed": false,
+    "universal_heap_or_irq_lifetime_claimed": false,
+    "independent_old_final_source_review_completed": false,
+    "donor_leased": false,
+    "indirect_reference_completeness_claimed": false
+  },
+  "guide": "docs/PR16_DEX_HOF_HEALING_VEIL_BATCH_JA.md",
+  "evidence_bindings": {
+    "content/modernization/pr16_dex_hof_healing_veil_batch_evidence/healing-veil-batch-tests.txt": {
+      "size": 30873,
+      "sha256": "de9e678300df62d0daee8a19301cfd3e7d1f566dbcafda8c1575df8be4678929"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_evidence/measurement.json": {
+      "size": 67683,
+      "sha256": "f6c35f48a22ec70b9f58617edbe9fe35e81f738b7233935b2eaf692485597071"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_evidence/partial-space.json": {
+      "size": 32590,
+      "sha256": "1c42ce891cecb5d280c41dcc06fa13181510ca84438df59b87acf73592d00655"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_evidence/reference-chain.json": {
+      "size": 67352,
+      "sha256": "0833d5c4f8fc3f7aad4c7bac812ee1dc2c811f1b753deb8505f1d999b9f26869"
+    },
+    "content/modernization/pr16_dex_hof_healing_veil_batch_evidence/unknown-frontier.json": {
+      "size": 51735,
+      "sha256": "e5a2559bdfa94c4be9b8ec07fd8d9d178083ac2035858298dcf3ec648b641f28"
+    }
+  },
+  "previous_checkpoint": "content/modernization/pr16_dex_hof_script_producer_batch_checkpoint.json",
+  "current_owner_checkpoint": "content/modernization/pr16_dex_hof_generation_writer_checkpoint.json",
+  "record_source": "718d9795bee3bf43129e1d3d39d922cb45e54a37",
+  "record_run": 37421487687,
+  "reference_baseline": "content/modernization/pr16_dex_hof_typed_recovery_evidence/egg-typed-audit.json",
+  "reference_parent": "content/modernization/pr16_dex_hof_script_producer_batch_evidence/reference-chain.json"
+}

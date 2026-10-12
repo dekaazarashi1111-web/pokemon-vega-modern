@@ -1,0 +1,190 @@
+name: pr16-native-supply-handoff
+run-name: Native supply handoff and ownership CI evidence (zero emulator runs)
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-native-supply-handoff.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-native-supply-handoff
+  cancel-in-progress: false
+jobs:
+  source-handoff:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      EXPECTED_HEAD: ${{ github.sha }}
+      BRANCH: codex/modernization-followup-20260908
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Guard current HEAD and revalidate unchanged retained evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-native-supply-handoff
+          mkdir -p "$out"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
+          git merge-base --is-ancestor 2d82b2a57646a49ff0149dec57ad98ac396cef4b HEAD
+          git diff --exit-code 2d82b2a57646a49ff0149dec57ad98ac396cef4b HEAD -- scripts tools tests config
+          python3 scripts/pr16_fixed_form_closeout.py --check > "$out/fixed-form.json"
+          python3 scripts/pr16_p05_supply_owner_evidence.py > "$out/supply-owner.json"
+          python3 scripts/pr16_bp_controls_checkpoint.py > "$out/bp-control.json"
+      - name: Retain failed and corrected ownership CI without rerunning tests or native cases
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import io,json,os,pathlib,subprocess,sys,zipfile
+          sys.path.insert(0,'scripts')
+          import pr16_fixed_form_closeout as c
+          from pr16_fixed_form_originals import scan
+          root=pathlib.Path('.').resolve();out=root/'.local/pr16-native-supply-handoff'
+          base='content/modernization/pr16_native_supply_handoff_evidence'
+          pins=(
+            (34704254858,103581320808,10301137817,'60146f8819c8fdc716bd15e3a32946225d612a1e',2171,'3d63e44a638e8f29f683e6a7c9e5f6a9fdef2ece788ee01b13c0325bae02fa24','failure',()),
+            (34704480513,103581943332,10300613009,'2d82b2a57646a49ff0149dec57ad98ac396cef4b',2167,'1d39e755492ea3e6c7252a67451766b7242dd01c02ec824ce222debbed77d2ef','success',()),
+          )
+          def api(suffix):return subprocess.check_output(['gh','api','repos/'+c.REPOSITORY+'/'+suffix],timeout=90)
+          records=[]
+          for pin in pins:
+              folder=root/base/str(pin[0]);folder.mkdir(parents=True,exist_ok=True)
+              original=folder/'original.zip';metadata=folder/'actions.json'
+              if original.exists():
+                  raw=original.read_bytes();actions=c.load(metadata.read_bytes())
+              else:
+                  assert not metadata.exists(),'partial retention requires reconciliation'
+                  actions=dict(run=c.load(api(f'actions/runs/{pin[0]}')),jobs=c.load(api(f'actions/runs/{pin[0]}/jobs')),artifact=c.load(api(f'actions/artifacts/{pin[2]}')))
+                  c.actions_valid(actions,pin)
+                  assert actions['artifact']['expired'] is False
+                  raw=api(f'actions/artifacts/{pin[2]}/zip')
+              assert c.identity(raw)==dict(size=pin[4],sha256=pin[5])
+              c.actions_valid(actions,pin)
+              with zipfile.ZipFile(io.BytesIO(raw)) as z:
+                  scan(z)
+                  names={'checkout-head.txt','source-head.txt','runtime-contracts.log','original-mutations.log'}
+                  if pin[6]=='success':names.add('check.json')
+                  assert set(z.namelist())==names
+                  assert all(z.read(n).decode().strip()==pin[3] for n in ('checkout-head.txt','source-head.txt'))
+                  contract=z.read('runtime-contracts.log');mutation=z.read('original-mutations.log')
+                  assert b'Ran 24 tests' in contract and contract.rstrip().endswith(b'OK')
+                  assert b'Ran 20 tests' in mutation
+                  if pin[6]=='failure':
+                      assert mutation.rstrip().endswith(b'FAILED (failures=1)')
+                      assert b'PASS_SCOPED_CANDIDATE_PENDING_P08_TRANSFER' in mutation and b'PENDING_FIXED_FORM_ROUTE_ACCEPTANCE' in mutation
+                  else:
+                      assert mutation.rstrip().endswith(b'OK')
+                      assert c.load(z.read('check.json'))==dict(status='PASS',source_run_id=34459625383,accepted_native_processes=12,save_continue_cycles=12,new_emulator_runs=0,release_ready=False)
+                  members={name:c.identity(z.read(name)) for name in sorted(names)}
+              if not original.exists():
+                  with original.open('xb') as f:f.write(raw)
+                  with metadata.open('xb') as f:f.write(c.stable(actions))
+              records.append(dict(run_id=pin[0],job_id=pin[1],tested_head=pin[3],conclusion=pin[6],artifact_id=pin[2],original=dict(path=str(original.relative_to(root)),**c.identity(raw)),members=members))
+          p08=c.load((root/c.P08).read_bytes());conditions={r['id']:r for r in p08['remaining_conditions']}
+          assert conditions['EVOLUTION_FORM_OTHER_EGG']['remaining_physical_gap_ids']==[]
+          assert conditions['P07_REMAINING_ROUTE_ACCEPTANCE']['complete'] is True
+          assert conditions['P07_REMAINING_ROUTE_ACCEPTANCE']['remaining_physical_gap_ids']==[]
+          gaps=conditions['NATURAL_CAPTURE_GEAR']['remaining_supply_gap_ids']+['PHYSICAL_CIRCUS_ADMISSION']
+          assert len(gaps)==4 and p08['release_ready'] is False and p08['active_baseline_changed'] is False
+          evidence={name:c.load((out/(name+'.json')).read_bytes()) for name in ('fixed-form','supply-owner','bp-control')}
+          assert all(row['new_emulator_runs']==0 for row in evidence.values())
+          report=dict(schema_version=1,status='PASS_SCOPED_PROGRESS_HANDOFF_PRODUCT_INCOMPLETE',
+            source_head=os.environ['EXPECTED_HEAD'],ci_correction_commit='2d82b2a57646a49ff0149dec57ad98ac396cef4b',
+            ci_regression='Later fixed-form completion contradicted a historical ownership-test expectation, not native forgetting behavior.',
+            ci_fix='Require evidence-backed fixed-form5/5 completion while preserving full_p03_acceptance=false and other owners.',
+            ci_originals=records,corrected_source_tests_passed=44,original_forgetting_cases_preserved=12,
+            new_emulator_runs_during_handoff=0,new_rom_changes_during_session=0,
+            new_native_processes_during_session=1,new_native_case='reception-cancel-unchanged',
+            revalidated_checkpoint_results=evidence,remaining_physical_gap_ids=gaps,
+            remaining_p08_gates=['FINAL_NATIVE_ACCEPTANCE','RELEASE_DECISION'],
+            native_bp_earning_accepted=False,release_ready=False,active_baseline_changed=False,
+            global_private_guard_passed=False,
+            global_private_guard_boundary='content/modernization/pr16_fixed_form_acceptance_evidence/34698120000/guard_boundary.json',
+            resume_document='docs/PR16_NATIVE_SUPPLY_RESUME_20260912_JA.md')
+          path=root/'content/modernization/pr16_native_supply_handoff.json'
+          if not path.exists():path.write_bytes(c.stable(report))
+          else:
+              existing=c.load(path.read_bytes());assert existing['ci_originals']==records and existing['remaining_physical_gap_ids']==gaps
+          marker='## USER-MODERNIZATION: native supply handoff and ownership CI correction / 2026-09-12'
+          note=('\n\n'+marker+'\n\n'
+            'fixed-form正式5ケースの閉鎖に対し、forgetting側の旧ownershipテストだけがP03未完状態を要求していた。'
+            'run34704254858はruntime契約24PASS、証拠20件中1FAILで、技忘却nativeの再発ではない。'
+            'commit2d82b2aはその4行だけを5ケース正本/候補SHA/gap閉鎖/P08移送未完を要求する20行へ置換。'
+            '修正run34704480513とpush run34704478309は成功。原本確認は24+20=44 source tests PASS、忘却12ケース/12保存Continueを再検証、新規emulator0。'
+            '前後CI原本を別ZIPとして保持。P03/generic FORM/P07を再オープンせず、既存native成功を再実行しない。'
+            'この作業束で新規nativeはBP受付取消1process/1coreだけ。positive BP獲得/通常保存Continueは未受入。'
+            '残るphysical gap4件とP08ゲート2件、Trial誤delegate092CF790、Circus旧F0=sprite pointerを正本へ同期。'
+            'ROM変更0、release_ready/active_baseline_changed=false、既存global private guard違反は残す。'
+            'content/modernization/pr16_native_supply_handoff.json と docs/PR16_NATIVE_SUPPLY_RESUME_20260912_JA.md を参照。\n')
+          for name in ('design/run_log.md','design/version_log.md'):
+              file=root/name
+              if marker not in file.read_text():
+                  with file.open('a') as f:f.write(note)
+          (out/'handoff.json').write_bytes(path.read_bytes())
+          PY
+      - name: Stage narrow safe paths, check index originals, commit and verify non-force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          base=content/modernization/pr16_native_supply_handoff_evidence
+          git add -- content/modernization/pr16_native_supply_handoff.json design/run_log.md design/version_log.md \
+            "$base/34704254858/actions.json" "$base/34704480513/actions.json"
+          git add -f -- "$base/34704254858/original.zip" "$base/34704480513/original.zip"
+          python3 scripts/validate_task_graph.py > .local/pr16-native-supply-handoff/task-graph.txt
+          python3 - <<'PY'
+          import io,pathlib,subprocess,sys,zipfile
+          sys.path.insert(0,'scripts');import guard_private_files as guard
+          import pr16_fixed_form_closeout as c
+          from pr16_fixed_form_originals import scan
+          root=pathlib.Path('.').resolve();base='content/modernization/pr16_native_supply_handoff_evidence/'
+          allowed={'content/modernization/pr16_native_supply_handoff.json','design/run_log.md','design/version_log.md',
+            *(base+str(run)+'/'+name for run in (34704254858,34704480513) for name in ('actions.json','original.zip'))}
+          changed=set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
+          assert changed<=allowed and not subprocess.check_output(['git','diff','--name-only'])
+          for name in changed:
+              p=pathlib.PurePosixPath(name);raw=guard.index_blob(root,name)
+              assert p.suffix.lower() not in guard.BLOCKED_SUFFIXES
+              assert not any(name==part or name.startswith(part+'/') for part in guard.BLOCKED_PARTS)
+              if p.suffix=='.zip':
+                  assert not guard.blocked_zip_members(raw)
+                  with zipfile.ZipFile(io.BytesIO(raw)) as z:scan(z)
+              elif p.suffix in guard.DOCUMENT_SUFFIXES:assert not guard.document_user_path_lines(raw)
+          for name in ('design/run_log.md','design/version_log.md'):
+              assert guard.index_blob(root,name).startswith(subprocess.check_output(['git','show','HEAD:'+name]))
+          report=c.load((root/'content/modernization/pr16_native_supply_handoff.json').read_bytes())
+          for row in report['ci_originals']:
+              original=row['original'];assert c.identity(guard.index_blob(root,original['path']))=={k:original[k] for k in ('size','sha256')}
+          PY
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'USER-MODERNIZATION: retain ownership CI correction and synchronized native-supply handoff; four physical gaps remain'
+          fi
+          python3 - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_fixed_form_closeout as c
+          report=c.load(pathlib.Path('content/modernization/pr16_native_supply_handoff.json').read_bytes())
+          for row in report['ci_originals']:
+              original=row['original'];assert c.identity(subprocess.check_output(['git','show','HEAD:'+original['path']]))=={k:original[k] for k in ('size','sha256')}
+          pathlib.Path('.local/pr16-native-supply-handoff/head-check.json').write_bytes(c.stable(dict(status='PASS_HANDOFF_ORIGINALS_IN_GIT_HEAD',new_emulator_runs=0,release_ready=False)))
+          PY
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
+          git push origin "HEAD:refs/heads/$BRANCH"
+          git rev-parse HEAD > .local/pr16-native-supply-handoff/pushed-head.txt
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-native-supply-handoff
+          path: .local/pr16-native-supply-handoff/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

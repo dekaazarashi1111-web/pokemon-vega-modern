@@ -1,0 +1,40 @@
+name: pr16-ips-dpe-boundary
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_selected_ips_dpe_frontier.py
+      - tests/test_pr16_selected_ips_dpe_frontier.py
+      - .github/workflows/pr16-ips-dpe-boundary.yml
+permissions:
+  contents: read
+concurrency:
+  group: pr16-ips-dpe-boundary
+  cancel-in-progress: false
+jobs:
+  frontier:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 新規12境界試験（受入済み測定は再走しない）
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 -B -m unittest discover -s tests -p test_pr16_selected_ips_dpe_frontier.py -v
+      - name: IPS recordとDPE envelopeの有限証拠
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          python3 -B scripts/pr16_selected_ips_dpe_frontier.py --output .local/pr16-ips-dpe-boundary/public/boundary.json
+          python3 -B scripts/validate_task_graph.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ips-dpe-boundary-public-text
+          path: .local/pr16-ips-dpe-boundary/public/
+          if-no-files-found: error
+          retention-days: 90

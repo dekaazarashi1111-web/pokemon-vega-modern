@@ -1,0 +1,63 @@
+name: PR16 Circus suppression
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-suppression.yml
+      - scripts/pr16_circus_suppression.py
+      - scripts/pr16_circus_suppression_contract.py
+      - tools/mgba_pr16_circus_suppression.h
+      - tests/test_pr16_circus_suppression.py
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-suppression
+  cancel-in-progress: false
+jobs:
+  suppression:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 固定原本と新規20契約を照合し開始checkpointを非force記録
+        id: prepare
+        run: |
+          mkdir -p .local/pr16-circus-suppression
+          python3 scripts/pr16_circus_suppression.py prepare > .local/pr16-circus-suppression/prepare.stdout 2> .local/pr16-circus-suppression/prepare.stderr
+      - name: host mGBA依存のみ導入
+        run: |
+          sudo apt-get update > .local/pr16-circus-suppression/apt-update.log 2>&1
+          sudo apt-get install -y libmgba-dev > .local/pr16-circus-suppression/apt-install.log 2>&1
+      - name: 真正保存地点から通常入力で抑制を観測する単一継続process
+        run: python3 scripts/pr16_circus_suppression.py native
+      - name: 真正Save30のみ非tracked cacheへ保持して次回の30戦再実行を防ぐ
+        if: always() && hashFiles('.local/pr16-circus-suppression/resume/provenance.json') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: .local/pr16-circus-suppression/resume/
+          key: pr16-circus-save30-2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183-${{ github.run_id }}
+      - name: 成功と未達を分離し原本・固定引継ぎ・両ログを非force記録
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_suppression.py finish
+      - name: ROM・save・cache・private入力を除外して原本を保存
+        if: always()
+        run: python3 scripts/pr16_circus_suppression.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-suppression
+          path: .local/pr16-circus-suppression/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: native未達をActions成功へ改作しない
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_suppression.py result

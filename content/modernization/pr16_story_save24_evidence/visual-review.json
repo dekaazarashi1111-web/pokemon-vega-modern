@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261003-CAVE-EAST-SAVE24",
+  "measurement_source": "d983562695f17ecac20e1ede1a6916dc04392468",
+  "run_id": 37093559410,
+  "artifact_id": 11263343138,
+  "reviewed_screens": {
+    "progress": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "continue": [
+      0,
+      1
+    ]
+  },
+  "total_screens_reviewed": 22,
+  "observations_ja": [
+    "0〜11は梯子脇20,3から東通路31,3へ。12は南を向くのみ、13は31,4へ1歩。",
+    "14はSTART menu、15はレポート確認、16は上書き確認。17/18は書込途中。19は通常fieldへ復帰。",
+    "独立Continue0/1は31,4南向きで、同じ東通路と未戦闘のNPCが見える。",
+    "保存完了文言の単独anchorは採取されていない。保存完了は通常UI・安定field/counter24・全Save/RTC独立保持を根拠にする。"
+  ],
+  "screen_anchors": {
+    "progress/screen-0013.ppm": "e65ee227c12ca00776a8d0d7dd9b3a14ae7c96ee2bacd3f82a2f58423dca8783",
+    "progress/screen-0015.ppm": "87e6aacf2f51fd62120612ae82783a0b4dac8a78f08a2192afb3e3fb5b70786e",
+    "progress/screen-0016.ppm": "85ee503d849ff11f9395f198afdb72f92f50d18469b23f505b1ced5bb51f4b96",
+    "progress/screen-0017.ppm": "1fcf6bf4a6bdbd6dacc852933ae8eefafce876e9ed6c8c324ee21f6f4bf3360e",
+    "progress/screen-0018.ppm": "1fcf6bf4a6bdbd6dacc852933ae8eefafce876e9ed6c8c324ee21f6f4bf3360e",
+    "progress/screen-0019.ppm": "e65ee227c12ca00776a8d0d7dd9b3a14ae7c96ee2bacd3f82a2f58423dca8783",
+    "continue/screen-0000.ppm": "e65ee227c12ca00776a8d0d7dd9b3a14ae7c96ee2bacd3f82a2f58423dca8783",
+    "continue/screen-0001.ppm": "e65ee227c12ca00776a8d0d7dd9b3a14ae7c96ee2bacd3f82a2f58423dca8783"
+  },
+  "save_success_wording_observed": false,
+  "teleport_accepted": false,
+  "cave_crossing_complete": false,
+  "rom_changes": 0,
+  "release_ready": false
+}

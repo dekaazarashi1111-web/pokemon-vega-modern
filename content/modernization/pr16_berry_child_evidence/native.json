@@ -1,0 +1,68 @@
+{
+  "all_issued_child_bytes_equal_source": true,
+  "builtin_bios_steps": 0,
+  "child_boot_fixtures": 1,
+  "final_registers": {
+    "cpsr": 1073742047,
+    "lr": 33554772,
+    "r0": 67109152,
+    "r1": 0,
+    "r2": 0,
+    "r3": 0,
+    "sp": 50364160
+  },
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "host_write_guards": 7,
+  "host_writes_after_entry": 0,
+  "instruction_sequence_fnv": 3885776185,
+  "issued_spans": [
+    {
+      "address": 33554432,
+      "visits": 1,
+      "width_mask": 4
+    },
+    {
+      "address": 33554688,
+      "visits": 1,
+      "width_mask": 4
+    },
+    {
+      "address": 33554720,
+      "visits": 131073,
+      "width_mask": 4
+    },
+    {
+      "address": 33554724,
+      "visits": 131072,
+      "width_mask": 4
+    },
+    {
+      "address": 33554728,
+      "visits": 131072,
+      "width_mask": 4
+    },
+    {
+      "address": 33554764,
+      "visits": 1,
+      "width_mask": 4
+    },
+    {
+      "address": 33554768,
+      "visits": 1,
+      "width_mask": 4
+    }
+  ],
+  "mapped_bytes": 13456,
+  "native_processes": 1,
+  "natural_link_transfer_proven": false,
+  "original_bios_cpu_execution_claimed": false,
+  "parent_game_boots": 0,
+  "schema_version": 1,
+  "status": "BOUNDED_CHILD_FRONTIER",
+  "steps": 393220,
+  "stop_pc": 33554720,
+  "stop_reason": "REPEATED_PC_BUDGET",
+  "swi_opcodes_issued": 0,
+  "target_byte_mask": 0
+}

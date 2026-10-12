@@ -1,0 +1,105 @@
+{
+  "artifact_id": 10187444217,
+  "artifact_name": "pr16-shop-display-probe",
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "203d2d64ac143c66e62e1c2430d685306d4feea6",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "203d2d64ac143c66e62e1c2430d685306d4feea6",
+      "id": 103169880757,
+      "name": "display-probe",
+      "run_id": 34569993409,
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-11T06:27:27Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-11T06:27:27Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:27:32Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-11T06:27:27Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:28:12Z",
+          "conclusion": "success",
+          "name": "Exact Stage84 parent and toolchain",
+          "number": 3,
+          "started_at": "2026-09-11T06:27:32Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:28:18Z",
+          "conclusion": "success",
+          "name": "Restore fixed V4 and original text encoding only",
+          "number": 4,
+          "started_at": "2026-09-11T06:28:12Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:28:37Z",
+          "conclusion": "success",
+          "name": "Reconstruct unchanged accepted parent",
+          "number": 5,
+          "started_at": "2026-09-11T06:28:18Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:29:17Z",
+          "conclusion": "success",
+          "name": "Compare physical purchase and cancellation with only top-coordinate changed",
+          "number": 6,
+          "started_at": "2026-09-11T06:28:37Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:29:17Z",
+          "conclusion": "success",
+          "name": "Preserve actual implementation and raw screenshots, not experimental ROMs",
+          "number": 7,
+          "started_at": "2026-09-11T06:29:17Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:29:18Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "started_at": "2026-09-11T06:29:17Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:29:19Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "started_at": "2026-09-11T06:29:18Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:29:19Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "started_at": "2026-09-11T06:29:19Z",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "path": ".github/workflows/pr16-shop-display-probe.yml",
+  "run_attempt": 1,
+  "run_id": 34569993409,
+  "sha256": "cd82f52151604c997e6ed458c63c3fe65d8bc6992e955eeba192ec334b4f2b8d",
+  "size": 296690,
+  "status": "completed"
+}

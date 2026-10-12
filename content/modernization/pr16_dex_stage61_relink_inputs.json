@@ -1,0 +1,988 @@
+{
+  "schema_version": 1,
+  "status": "PASS_RECOVERED_SOURCE_MACROS_SYMBOLS_AND_WHOLE_FIXED_CODE_IDENTITY_NOT_RELINKED",
+  "archives": [
+    {
+      "name": "pokemon-vega-private-env-v1-inputs.zip",
+      "asset_id": 548153147,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/releases/download/private-environment-v1/pokemon-vega-private-env-v1-inputs.zip",
+      "archive": {
+        "size": 104736629,
+        "sha256": "c7e982c7a6445f41e8926b17c548e64205df736ed83be13dd7676549543a23fe"
+      },
+      "member": "userfile/imports/stage61_runtime_hotfix/61_critical_release_candidate_original.json",
+      "member_identity": {
+        "size": 3385066,
+        "sha256": "aba2cdc552a404f6299cd0d9ff8c0d90315147826714caa92d0b4bfbcad6a108"
+      }
+    },
+    {
+      "name": "pokemon-vega-private-env-v1-state.zip",
+      "asset_id": 549625325,
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/releases/download/private-environment-v1/pokemon-vega-private-env-v1-state.zip",
+      "archive": {
+        "size": 218929898,
+        "sha256": "b878134dc4a00b7de1e028f178c329db638b0304096b96c84c6776ddfb0983af"
+      },
+      "member": "generated/runtime/stage61_critical_release_candidate_symbols.json",
+      "member_identity": {
+        "size": 10604,
+        "sha256": "65cbafd6f38e09c327c97cb764cc58bc1c92487f454134da1b4ed79479e8c4e6"
+      }
+    }
+  ],
+  "source": {
+    "path": "overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c",
+    "sha256": "7ad33b6b00aacb30088b7a0cc528a7fb41c947a709bb4006ab225d82d4e271bf",
+    "size": 129221
+  },
+  "original_code": {
+    "address": 155486560,
+    "address_hex": "0x09448960",
+    "size": 12568,
+    "end_exclusive": 155499128,
+    "sha256": "00c052e674a5161df02b467e4a7b1d5a0e75af40bfc49ef45590df531f776131",
+    "whole_current_candidate_code_matches": true
+  },
+  "toolchain_manifest_sha256": "c3eee03762388c6d5c8d29d944c520dd6624140e2ffad91e0a2aec9bdff74963",
+  "symbol_toolchain_manifest_matches": true,
+  "macro_count": 24,
+  "runtime_macros": {
+    "STAGE61_CFRU_SAFE_ROAMER_CORNERS": 155288104,
+    "STAGE61_CFRU_SAFE_ROAMER_DIMENSIONS": 155289128,
+    "STAGE61_CHANGEKIT_GET_REMATCH": 154152409,
+    "STAGE61_KANTO_FLY_RECORDS": 155287568,
+    "STAGE61_KANTO_FLY_TABLE": 155287888,
+    "STAGE61_KANTO_NAME_TABLE": 155286376,
+    "STAGE61_KANTO_POSITION_TABLE": 155287248,
+    "STAGE61_KANTO_REGION_GFX": 155290152,
+    "STAGE61_KANTO_REGION_GRID": 155286588,
+    "STAGE61_KANTO_REGION_TILEMAP": 155293500,
+    "STAGE61_KANTO_SOURCE_SECTION_IDS": 155288048,
+    "STAGE61_KANTO_VISIT_FLAGS": 155294108,
+    "STAGE61_QUEST_LOG_PROJECT_PAIRS": 155294520,
+    "STAGE61_QUEST_LOG_SOURCE_PAIRS": 155294214,
+    "STAGE61_STOCK_GET_DUNGEON_FLAVOR_TEXT": 155294933,
+    "STAGE61_STOCK_GET_DUNGEON_MAPSEC_TYPE": 155294845,
+    "STAGE61_STOCK_GET_DUNGEON_NAME": 155294949,
+    "STAGE61_STOCK_GET_MAPSEC_TYPE": 155294829,
+    "STAGE61_STOCK_GET_MAP_PREVIEW_SCREEN_IDX": 155294917,
+    "STAGE61_STOCK_GET_PLAYER_POSITION": 155294861,
+    "STAGE61_STOCK_GET_SELECTED_MAP_SECTION": 155294885,
+    "STAGE61_STOCK_HANDLE_SAVING_DATA": 135115313,
+    "STAGE61_TRAINER_REMATCH_ALIAS_COUNT": 452,
+    "STAGE61_TRAINER_REMATCH_ALIAS_TABLE": 155482940
+  },
+  "symbol_count": 99,
+  "symbols": [
+    {
+      "name": "Stage61Facility_TestSetFactoryPrepareFault",
+      "address": 155486560,
+      "address_hex": "0x09448960",
+      "size": 120,
+      "kind": "T",
+      "preimage_sha256": "47817f8883ea6ca031e3e26f6663517ad9b071878ebf3df6d33a34cfb91de2b1"
+    },
+    {
+      "name": "FactoryHighModesV2_PrepareBattleStage61Adapter",
+      "address": 155486680,
+      "address_hex": "0x094489D8",
+      "size": 146,
+      "kind": "T",
+      "preimage_sha256": "15972b47187d01cf97764ab47653760576eb115d8111e8dda2b842b66da9443d"
+    },
+    {
+      "name": "Stage61DisplayNpcEvent_IsSurfableInSeafoamIslands",
+      "address": 155486828,
+      "address_hex": "0x09448A6C",
+      "size": 66,
+      "kind": "T",
+      "preimage_sha256": "8b90d05bea7545c4cf01c5034e3dbe9f9eb5a247f8d62a3be474d63a1ddfd308"
+    },
+    {
+      "name": "Stage61Codex_ReadKeysBootstrapAdapter",
+      "address": 155486896,
+      "address_hex": "0x09448AB0",
+      "size": 334,
+      "kind": "T",
+      "preimage_sha256": "c5bb42b02824e10438f298c0d4904298fa18787646544fb6b27680e48f1f0111"
+    },
+    {
+      "name": "Stage61State_HandleWriteSector",
+      "address": 155487232,
+      "address_hex": "0x09448C00",
+      "size": 310,
+      "kind": "T",
+      "preimage_sha256": "9723b785313f877b2a066dbb8bbc4c44c76b9168fede7b5549bc284fea5ea6f3"
+    },
+    {
+      "name": "Stage61State_HandleReplaceSector",
+      "address": 155487544,
+      "address_hex": "0x09448D38",
+      "size": 498,
+      "kind": "T",
+      "preimage_sha256": "eab4d3ae33c21eef5f54000869aa89e15347b427af6c9c024cec2d48da0b80bf"
+    },
+    {
+      "name": "Stage61State_CommitSignatureByte",
+      "address": 155488044,
+      "address_hex": "0x09448F2C",
+      "size": 226,
+      "kind": "T",
+      "preimage_sha256": "64aaacfa87ef58e387a71e1a24a3b0dc2b08eca1ca54723b0e82311ab5db84ea"
+    },
+    {
+      "name": "Stage61State_EnsureBackupGeneration",
+      "address": 155488272,
+      "address_hex": "0x09449010",
+      "size": 176,
+      "kind": "T",
+      "preimage_sha256": "18ee44d790bdd54fe0369f0ac70761e84bc3b37188d41821cdec70ff686ee68c"
+    },
+    {
+      "name": "Stage61State_UpdateRecordOnly",
+      "address": 155488448,
+      "address_hex": "0x094490C0",
+      "size": 734,
+      "kind": "T",
+      "preimage_sha256": "b202d75e8684c87e41bafa5dbbbc97e7680c6e6be723005b8b446cb7231dbaff"
+    },
+    {
+      "name": "Stage61State_HandleSavingData",
+      "address": 155489184,
+      "address_hex": "0x094493A0",
+      "size": 138,
+      "kind": "T",
+      "preimage_sha256": "cab587ea248d0d2d998775904da0a1daef45e3500321e1f01995e9189446696d"
+    },
+    {
+      "name": "Stage61State_GetSaveValidStatus",
+      "address": 155489324,
+      "address_hex": "0x0944942C",
+      "size": 16,
+      "kind": "T",
+      "preimage_sha256": "90a26d42c4316660a54a8ebed11fb8313eee6be584049a8d5ae4b51b3f199e45"
+    },
+    {
+      "name": "Stage61State_HandleLoadSector",
+      "address": 155489340,
+      "address_hex": "0x0944943C",
+      "size": 654,
+      "kind": "T",
+      "preimage_sha256": "e64101fd682b8e289d00e99b24230a17acbd0286f72d54fdb57abdebed4dbcac"
+    },
+    {
+      "name": "Stage61DisplayNpcEvent_GetMapName",
+      "address": 155489996,
+      "address_hex": "0x094496CC",
+      "size": 186,
+      "kind": "T",
+      "preimage_sha256": "4252661fa86bc8568f3fba23cbb6d034b12e73e4ea046a39fc518f6ff590975e"
+    },
+    {
+      "name": "Stage61DisplayNpcEvent_ResolveNamePointer",
+      "address": 155490184,
+      "address_hex": "0x09449788",
+      "size": 14,
+      "kind": "T",
+      "preimage_sha256": "3a94d0f97d770b3b28df1714e5853a63b6228a1cef2d8fa83dc3322c92f2298e"
+    },
+    {
+      "name": "Stage61RegionMap_DecompressGfx",
+      "address": 155490200,
+      "address_hex": "0x09449798",
+      "size": 62,
+      "kind": "T",
+      "preimage_sha256": "e84c61298dcec71d8cb6178023a3b987723f511a2428e7c656ee7de3349b2da7"
+    },
+    {
+      "name": "Stage61RegionMap_DecompressTilemap",
+      "address": 155490264,
+      "address_hex": "0x094497D8",
+      "size": 42,
+      "kind": "T",
+      "preimage_sha256": "802261d52335543f14e3a3d8e3240e85771447e0c29eebd6a86c975126727fbf"
+    },
+    {
+      "name": "Stage61RegionMap_GetMapsecType",
+      "address": 155490308,
+      "address_hex": "0x09449804",
+      "size": 82,
+      "kind": "T",
+      "preimage_sha256": "1e4bcbfbb85f864d6f75dee45ca1a904367f5cf03564f711d2522abcdcbf2880"
+    },
+    {
+      "name": "Stage61RegionMap_GetDungeonMapsecType",
+      "address": 155490392,
+      "address_hex": "0x09449858",
+      "size": 82,
+      "kind": "T",
+      "preimage_sha256": "2b7449e1640fb118dfecd4df78b1885bf5f1920470c195dae824da6158598bec"
+    },
+    {
+      "name": "Stage61RegionMap_GetPlayerPosition",
+      "address": 155490476,
+      "address_hex": "0x094498AC",
+      "size": 90,
+      "kind": "T",
+      "preimage_sha256": "a9d1bfe8b8d7a3442c9521f955c0a6892258c0e651a36010b8999299bd23e0a9"
+    },
+    {
+      "name": "Stage61RegionMap_GetSelectedMapSection",
+      "address": 155490568,
+      "address_hex": "0x09449908",
+      "size": 94,
+      "kind": "T",
+      "preimage_sha256": "1bd1c047a4b117ee717bea79d1bbbd8f46a4026bc285cf0d804a03e0e60e8cc6"
+    },
+    {
+      "name": "Stage61Visit_RunOnTransitionMapScript",
+      "address": 155490664,
+      "address_hex": "0x09449968",
+      "size": 74,
+      "kind": "T",
+      "preimage_sha256": "80d371a3401c6086295f0c78ec356376dff3bef55ce80c491b6db78f59f82f02"
+    },
+    {
+      "name": "Stage61MapSection_GetRaidCompatibleCurrent",
+      "address": 155490740,
+      "address_hex": "0x094499B4",
+      "size": 58,
+      "kind": "T",
+      "preimage_sha256": "d04f789a5d691ea43f539d7f2f45b36e167365f4637c81c2f9cd22d34d72c7b5"
+    },
+    {
+      "name": "Stage61MapSection_RaidFlagGet",
+      "address": 155490800,
+      "address_hex": "0x094499F0",
+      "size": 46,
+      "kind": "T",
+      "preimage_sha256": "dbff746f3c4f1591d3c26e82d3acc0195d30d54d7530fa3be8aad1e8bc592301"
+    },
+    {
+      "name": "Stage61MapSection_RaidFlagSet",
+      "address": 155490848,
+      "address_hex": "0x09449A20",
+      "size": 46,
+      "kind": "T",
+      "preimage_sha256": "39ca136067c4dd3d02192e7ea6c6d8d4a85a3dba9ecfd520a6edd0becd87f8b0"
+    },
+    {
+      "name": "Stage61MapSection_RaidFlagClear",
+      "address": 155490896,
+      "address_hex": "0x09449A50",
+      "size": 46,
+      "kind": "T",
+      "preimage_sha256": "111228a9bdcb5b51ae67522c73aec545fc6a117464bb9b21257ac85bcfc3897c"
+    },
+    {
+      "name": "Stage61MapSection_MusicCanOverrideMapMusic",
+      "address": 155490944,
+      "address_hex": "0x09449A80",
+      "size": 76,
+      "kind": "T",
+      "preimage_sha256": "12b006132f10db2006160166af4f41bf493e0bf4de1289ce57e1425b05e28571"
+    },
+    {
+      "name": "Stage61MapSection_GetMapPreviewScreenIdx",
+      "address": 155491020,
+      "address_hex": "0x09449ACC",
+      "size": 46,
+      "kind": "T",
+      "preimage_sha256": "7dd6cc637fa336ae8486a6ca6cfc5c81a4554597239c30350b402b62982311d7"
+    },
+    {
+      "name": "Stage61MapSection_WarpFadeOutScreen",
+      "address": 155491068,
+      "address_hex": "0x09449AFC",
+      "size": 14,
+      "kind": "T",
+      "preimage_sha256": "8231c48cf1255ab1cf6ee66a4485d46599318526115b7508cfcae06e5d363df1"
+    },
+    {
+      "name": "Stage61MapSection_CfruWarpFadeOutScreen",
+      "address": 155491082,
+      "address_hex": "0x09449B0A",
+      "size": 14,
+      "kind": "T",
+      "preimage_sha256": "fb331ba0e49821552cf5aa20696095382855f1a781a4d6200159e89a4f6a60fd"
+    },
+    {
+      "name": "Stage61MapSection_GetDungeonFlavorText",
+      "address": 155491096,
+      "address_hex": "0x09449B18",
+      "size": 46,
+      "kind": "T",
+      "preimage_sha256": "23678c5a4ef40f949e6daf3d2ced6c2dcc96f2cd95d3f8ba53887bf470d51a21"
+    },
+    {
+      "name": "Stage61MapSection_GetDungeonName",
+      "address": 155491144,
+      "address_hex": "0x09449B48",
+      "size": 46,
+      "kind": "T",
+      "preimage_sha256": "0b57c9b66672cbc29940c7881edd2af26c75f1915c9647cff09f58b1d3b45aee"
+    },
+    {
+      "name": "Stage61MapSection_GetDungeonMapsecUnderCursor",
+      "address": 155491192,
+      "address_hex": "0x09449B78",
+      "size": 120,
+      "kind": "T",
+      "preimage_sha256": "48fca0c7162bd4aac2a051111fbc4a1c2c35b94d3f58ce54efee1bd4557386fd"
+    },
+    {
+      "name": "Stage61MapSection_IsDungeonCeruleanUnlocked",
+      "address": 155491312,
+      "address_hex": "0x09449BF0",
+      "size": 30,
+      "kind": "T",
+      "preimage_sha256": "1498624ba63db3f9a82fb44b502b4800484a374240d431700e6381b640348768"
+    },
+    {
+      "name": "Stage61MapSection_CreateDungeonIconsCeruleanGate",
+      "address": 155491344,
+      "address_hex": "0x09449C10",
+      "size": 42,
+      "kind": "T",
+      "preimage_sha256": "2d8eb1d4cf8c4bf67b443695b2c8d95fc49d26667736af57d36e4cee09520a75"
+    },
+    {
+      "name": "Stage61MapSection_IsKantoOrSeviiForMemo",
+      "address": 155491400,
+      "address_hex": "0x09449C48",
+      "size": 74,
+      "kind": "T",
+      "preimage_sha256": "da73277eca89ec795ee11bae7b481acf579b3d0e5b8fb6bdef0ec117af7908fa"
+    },
+    {
+      "name": "Stage61MapSection_GetWildHeaderMapSection",
+      "address": 155491476,
+      "address_hex": "0x09449C94",
+      "size": 58,
+      "kind": "T",
+      "preimage_sha256": "f9f594ecd77fe4255c6959a7174296c9aca3714f09a79e6e971f812295852428"
+    },
+    {
+      "name": "Stage61MapSection_QuestLogGymCompare",
+      "address": 155491536,
+      "address_hex": "0x09449CD0",
+      "size": 20,
+      "kind": "T",
+      "preimage_sha256": "b763b537a34f2d2524fb747c25182e6a20b3b27a285cce1b3a7d22586ecd6216"
+    },
+    {
+      "name": "Stage61MapSection_QuestLogTeleportHome",
+      "address": 155491564,
+      "address_hex": "0x09449CEC",
+      "size": 18,
+      "kind": "T",
+      "preimage_sha256": "ca30d5083225d6fb3f27118f8736e33f02de78e2532bcc932f5894eaa6992c96"
+    },
+    {
+      "name": "Stage61MapSection_QuestLog_CheckDepartingIndoorsMap",
+      "address": 155491592,
+      "address_hex": "0x09449D08",
+      "size": 126,
+      "kind": "T",
+      "preimage_sha256": "5a62de1d1fc6ea68b00bbde16d76c4bac689bdc9a78a2d2b9d0b8a9a815eb941"
+    },
+    {
+      "name": "Stage61MapSection_QuestLog_TryRecordDepartedLocation",
+      "address": 155491720,
+      "address_hex": "0x09449D88",
+      "size": 470,
+      "kind": "T",
+      "preimage_sha256": "27d09e6aa229d1e825ea28cc4378f6d65fff48e37f880548fba203ad3703cec2"
+    },
+    {
+      "name": "Stage61MapSection_CreateTownMapRoamerSprites",
+      "address": 155492192,
+      "address_hex": "0x09449F60",
+      "size": 268,
+      "kind": "T",
+      "preimage_sha256": "b2afb7c4f36bff61fc5f772034f67b72982f08bc1c3426279ff7dd0f1b3011b2"
+    },
+    {
+      "name": "Stage61Trainer_GetRematchTrainerId",
+      "address": 155492460,
+      "address_hex": "0x0944A06C",
+      "size": 114,
+      "kind": "T",
+      "preimage_sha256": "46745c7d4bea570c5baa75dceed9764beb855cdbf29714c2ba965c42c42c89c9"
+    },
+    {
+      "name": "Stage61DisplayNpcEvent_SetFlyWarpDestination",
+      "address": 155492576,
+      "address_hex": "0x0944A0E0",
+      "size": 174,
+      "kind": "T",
+      "preimage_sha256": "4e525452de0c82029af73cd213d5dbdf033ff12a686abfb0e31efe2d21e1e1fd"
+    },
+    {
+      "name": "Stage61DisplayNpcEvent_Probe",
+      "address": 155492752,
+      "address_hex": "0x0944A190",
+      "size": 20,
+      "kind": "T",
+      "preimage_sha256": "5f3f5416003820faf7d7fe6b7e7fd8697b04c502ef28b7c3fb1b128d8b785a74"
+    },
+    {
+      "name": "stage61_save_mark_damaged",
+      "address": 155492772,
+      "address_hex": "0x0944A1A4",
+      "size": 40,
+      "kind": "t",
+      "preimage_sha256": "4747c3f0c6b26109c74f7867bf9dd4a8554d569b19ffa79bb006d90974803824"
+    },
+    {
+      "name": "current_group",
+      "address": 155492812,
+      "address_hex": "0x0944A1CC",
+      "size": 20,
+      "kind": "t",
+      "preimage_sha256": "7175d2f64dd665ae2f500204491b3647292a403e906aa78423dea3d286f4a35e"
+    },
+    {
+      "name": "current_map",
+      "address": 155492832,
+      "address_hex": "0x0944A1E0",
+      "size": 20,
+      "kind": "t",
+      "preimage_sha256": "01d82022aadb4bc625c783dc7125355ad7745868a45b22449cba9fbcd677a4b8"
+    },
+    {
+      "name": "is_imported_kanto_context",
+      "address": 155492852,
+      "address_hex": "0x0944A1F4",
+      "size": 26,
+      "kind": "t",
+      "preimage_sha256": "167cd00b1dbd99a59b2f8173407845cdaa0eea75bc9a3df8a97a59722fbc1a46"
+    },
+    {
+      "name": "stage61_read32",
+      "address": 155492878,
+      "address_hex": "0x0944A20E",
+      "size": 28,
+      "kind": "t",
+      "preimage_sha256": "1074b6a7b09e9c0693a4e9012aee06419a78db3aba6905c3897efba2e0572208"
+    },
+    {
+      "name": "stage61_save_expected_chunk_data",
+      "address": 155492908,
+      "address_hex": "0x0944A22C",
+      "size": 128,
+      "kind": "t",
+      "preimage_sha256": "b5fe14f51acdda4d22197417eb8002221b5b34e0a9bbd22ded639d7b8add4308"
+    },
+    {
+      "name": "stage61_save_chunk_descriptor_is_valid",
+      "address": 155493036,
+      "address_hex": "0x0944A2AC",
+      "size": 72,
+      "kind": "t",
+      "preimage_sha256": "4f8ff9d70f507b0f1b76b8241f494a6a0cd150118cb1ce9e98581ba4eed99f9f"
+    },
+    {
+      "name": "stage61_save_all_descriptors_are_valid",
+      "address": 155493108,
+      "address_hex": "0x0944A2F4",
+      "size": 36,
+      "kind": "t",
+      "preimage_sha256": "2853ac959ee21d9d872f38891ad82920bffaf6e5722e048ee9359827d69089b3"
+    },
+    {
+      "name": "stage61_save_validate_slot",
+      "address": 155493144,
+      "address_hex": "0x0944A318",
+      "size": 406,
+      "kind": "t",
+      "preimage_sha256": "d883f4f4fa1b3bbbb60915d82032dbdc92089d936c5b08183390181cbfbe5b25"
+    },
+    {
+      "name": "stage61_save_validations_match",
+      "address": 155493552,
+      "address_hex": "0x0944A4B0",
+      "size": 80,
+      "kind": "t",
+      "preimage_sha256": "dd076a527ed08a483aeaccea526c688b015295951447df5774844578bc855683"
+    },
+    {
+      "name": "stage61_save_select_generation",
+      "address": 155493632,
+      "address_hex": "0x0944A500",
+      "size": 144,
+      "kind": "t",
+      "preimage_sha256": "4a8e922f856b5e8c236b71c38060a4b50844fc94054b3f13d3953603f0b2dbe7"
+    },
+    {
+      "name": "stage61_save_physical_sector_for_id",
+      "address": 155493776,
+      "address_hex": "0x0944A590",
+      "size": 44,
+      "kind": "t",
+      "preimage_sha256": "327b0a696bb0d162c24ed5803814c44ed14f1a3effec1d7a5d7a9f24bdab509c"
+    },
+    {
+      "name": "stage61_crc_byte",
+      "address": 155493820,
+      "address_hex": "0x0944A5BC",
+      "size": 36,
+      "kind": "t",
+      "preimage_sha256": "249a884f4343d73d5394d391103458e659f6b0230b64371195a760d5b3bed36e"
+    },
+    {
+      "name": "stage61_state_crc",
+      "address": 155493856,
+      "address_hex": "0x0944A5E0",
+      "size": 104,
+      "kind": "t",
+      "preimage_sha256": "305fcaa2c45135c2145cdde4eb9ef3fd67501bfc6ea77e4f387df8dfa6a7bdc5"
+    },
+    {
+      "name": "stage61_state_clear",
+      "address": 155493960,
+      "address_hex": "0x0944A648",
+      "size": 88,
+      "kind": "t",
+      "preimage_sha256": "57fcf4ca242f6799f0d14f9558b5dcd36bf291814f3ecac9f20127d8a5bbc637"
+    },
+    {
+      "name": "stage61_save_section_crc32",
+      "address": 155494048,
+      "address_hex": "0x0944A6A0",
+      "size": 34,
+      "kind": "t",
+      "preimage_sha256": "0599ae8a484149856028d60acbf276d9b211f4f26a24f0ab032caafff36fb472"
+    },
+    {
+      "name": "stage61_save_reject_written_target_sector",
+      "address": 155494084,
+      "address_hex": "0x0944A6C4",
+      "size": 130,
+      "kind": "t",
+      "preimage_sha256": "01e6c6504ffdb3a059bb1bfb1cbd947970a13c0ca4da0352e904782019a67b6d"
+    },
+    {
+      "name": "stage61_quest_log_pair_is_enabled",
+      "address": 155494216,
+      "address_hex": "0x0944A748",
+      "size": 32,
+      "kind": "t",
+      "preimage_sha256": "f5bdc41cbefca3186070b093ccacd8dd940d021e98f64879f4c15ec2a3cba9a5"
+    },
+    {
+      "name": "stage61_current_matches_pair_side",
+      "address": 155494248,
+      "address_hex": "0x0944A768",
+      "size": 44,
+      "kind": "t",
+      "preimage_sha256": "03bf4f79304397cee1b670842edad6033b60548306b5e5a1bd008499d4fd15fb"
+    },
+    {
+      "name": "stage61_record_departed",
+      "address": 155494292,
+      "address_hex": "0x0944A794",
+      "size": 50,
+      "kind": "t",
+      "preimage_sha256": "8a6a00a6f3069afe10d9e049d6dbb609271a0dd55b773c41a9e402416b90bc19"
+    },
+    {
+      "name": "stage61_quest_log_clear_pending",
+      "address": 155494344,
+      "address_hex": "0x0944A7C8",
+      "size": 26,
+      "kind": "t",
+      "preimage_sha256": "bdb7c7689832662fb5bdd02f229436b0623b3fc72ea3aa305eb45b427a930bd1"
+    },
+    {
+      "name": "stage61_save_clear_damaged",
+      "address": 155494372,
+      "address_hex": "0x0944A7E4",
+      "size": 24,
+      "kind": "t",
+      "preimage_sha256": "9e3144832b135eb983e0d26fafc412775bb6794d2c6fe907a7702fe3e22c17e8"
+    },
+    {
+      "name": "imported_kanto_map_is_valid",
+      "address": 155494396,
+      "address_hex": "0x0944A7FC",
+      "size": 60,
+      "kind": "t",
+      "preimage_sha256": "2bf2c5d709d6da7d0eaaf13eabe588740b8cf60fd77e148960702ef8f5f46106"
+    },
+    {
+      "name": "normalize_section_for_physical_group",
+      "address": 155494456,
+      "address_hex": "0x0944A838",
+      "size": 28,
+      "kind": "t",
+      "preimage_sha256": "65ee4abcf8786747b96dcf6c9bf55ec7fcb48cf00ad6dc0eda49f82a7db77acd"
+    },
+    {
+      "name": "stage61_save_build_live_descriptors.part.0",
+      "address": 155494484,
+      "address_hex": "0x0944A854",
+      "size": 56,
+      "kind": "t",
+      "preimage_sha256": "18f66755b7aee013a2dbe7292a62b34276367b742e994593542305d6f5e56d7c"
+    },
+    {
+      "name": "stage61_state_record_byte",
+      "address": 155494540,
+      "address_hex": "0x0944A88C",
+      "size": 148,
+      "kind": "t",
+      "preimage_sha256": "4aca0d10d6f94fb5d2646ca8853b63a4eb9efaf604ab991d12ac7f2488caa5fb"
+    },
+    {
+      "name": "stage61_save_readback_matches_prepared",
+      "address": 155494688,
+      "address_hex": "0x0944A920",
+      "size": 262,
+      "kind": "t",
+      "preimage_sha256": "49640cbc383d1cd34abc3bfb65f97a1390cdbf88272bce59879738c7b1a00de6"
+    },
+    {
+      "name": "stage61_state_tail_matches_live_crc",
+      "address": 155494952,
+      "address_hex": "0x0944AA28",
+      "size": 72,
+      "kind": "t",
+      "preimage_sha256": "88d4893ee253cedd8f1d1e28c1eb17437415652e36c17b4608d980f1205c865f"
+    },
+    {
+      "name": "stage61_state_inject_tail.part.0",
+      "address": 155495024,
+      "address_hex": "0x0944AA70",
+      "size": 48,
+      "kind": "t",
+      "preimage_sha256": "af092f6aacb38128a459324e56551529bc0b71c88c0e85c09e828c1c2e96a2de"
+    },
+    {
+      "name": "stage61_has_project_name_provenance.part.0",
+      "address": 155495072,
+      "address_hex": "0x0944AAA0",
+      "size": 164,
+      "kind": "t",
+      "preimage_sha256": "06242ad0eef80938c3eba826c214c73565216bec36ee5fda8647e669ca19fa3c"
+    },
+    {
+      "name": "stage61_departed_inside_section",
+      "address": 155495236,
+      "address_hex": "0x0944AB44",
+      "size": 42,
+      "kind": "t",
+      "preimage_sha256": "19d9f06a8b26d7c2d6915f3a024e1f447901ec2483e15edec1d5cf98e9f8feba"
+    },
+    {
+      "name": "stage61_quest_log_record_shared_map_exit",
+      "address": 155495280,
+      "address_hex": "0x0944AB70",
+      "size": 120,
+      "kind": "t",
+      "preimage_sha256": "f6393337a93355d2cea88403034c52259de709a384a7d7a953dc877dd41ffea7"
+    },
+    {
+      "name": "stage61_quest_log_record_warp_variant",
+      "address": 155495400,
+      "address_hex": "0x0944ABE8",
+      "size": 92,
+      "kind": "t",
+      "preimage_sha256": "d6a95baa3a1073b8dc023c4a6510479c9e851f20b8976d1f0353e475e5500c19"
+    },
+    {
+      "name": "stage61_quest_log_arm_current_source",
+      "address": 155495492,
+      "address_hex": "0x0944AC44",
+      "size": 114,
+      "kind": "t",
+      "preimage_sha256": "b703e7277aa54a51072615be3ea2fb78d1669709802260a6a5ad3a56e92a9592"
+    },
+    {
+      "name": "stage61_quest_log_arm_current_project",
+      "address": 155495608,
+      "address_hex": "0x0944ACB8",
+      "size": 114,
+      "kind": "t",
+      "preimage_sha256": "e53a671f18fc2993d13722aed36d33ed0c70b90b2db6a9f0895df6394d301819"
+    },
+    {
+      "name": "stage61_warp_fade_out",
+      "address": 155495724,
+      "address_hex": "0x0944AD2C",
+      "size": 194,
+      "kind": "t",
+      "preimage_sha256": "f0305541fffd8bf385a46b265582b8ab2995271df9c45b5f515745af1efcf8fe"
+    },
+    {
+      "name": "resolve_name_pointer",
+      "address": 155495920,
+      "address_hex": "0x0944ADF0",
+      "size": 120,
+      "kind": "t",
+      "preimage_sha256": "21fe6e0199b94667204ce7ebd795422025ff8e70f528cb7d253d1c16ba3eaae1"
+    },
+    {
+      "name": "stage61_save_normal_copy_on_write",
+      "address": 155496040,
+      "address_hex": "0x0944AE68",
+      "size": 1252,
+      "kind": "t",
+      "preimage_sha256": "a9928c18b79d38d0968585d516ed4e8106c8e6393f8ce923de2ac43bcb028860"
+    },
+    {
+      "name": "stage61_save_clone_complete_generation.constprop.0",
+      "address": 155497292,
+      "address_hex": "0x0944B34C",
+      "size": 990,
+      "kind": "t",
+      "preimage_sha256": "a9ff9fe92e39c853fc58d1652e4c02221d4cd25a8f63594751d9700c169c2213"
+    },
+    {
+      "name": "stage61_save_ensure_live_backup_generation",
+      "address": 155498284,
+      "address_hex": "0x0944B72C",
+      "size": 30,
+      "kind": "t",
+      "preimage_sha256": "7f31db1ff4a2107878c66bbeb29a9c3bad252141cd64639eb39d6b34fd15fade"
+    },
+    {
+      "name": "stage61_save_update_live_record_only",
+      "address": 155498314,
+      "address_hex": "0x0944B74A",
+      "size": 40,
+      "kind": "t",
+      "preimage_sha256": "c207cd486b961bc018a0eca727f1e8806ebe83366f2c9d5b5367c4b1866cb398"
+    },
+    {
+      "name": "__gnu_thumb1_case_uqi",
+      "address": 155498356,
+      "address_hex": "0x0944B774",
+      "size": 18,
+      "kind": "T",
+      "preimage_sha256": "30dd7acf87ed2f928bb31b22ea29427c655562563f6c59e889373bfff108593d"
+    },
+    {
+      "name": "__udivsi3",
+      "address": 155498376,
+      "address_hex": "0x0944B788",
+      "size": 252,
+      "kind": "T",
+      "preimage_sha256": "adaf1652f7b9c342fb0f62c44892ce4c0c3998bb1ac6319d0dbd48ef350e0da3"
+    },
+    {
+      "name": "__aeabi_uidivmod",
+      "address": 155498628,
+      "address_hex": "0x0944B884",
+      "size": 32,
+      "kind": "T",
+      "preimage_sha256": "b34e0a4cef48578a3748606d0e2c9b87f8bc6acdf1e28f1f31a2765a86af09ce"
+    },
+    {
+      "name": "__divsi3",
+      "address": 155498660,
+      "address_hex": "0x0944B8A4",
+      "size": 304,
+      "kind": "T",
+      "preimage_sha256": "8d1512e97341f2684cf38f2f1c43c9d4a24c88d0cbb6d7d53b6b532d0a40fc4b"
+    },
+    {
+      "name": "__aeabi_idivmod",
+      "address": 155498964,
+      "address_hex": "0x0944B9D4",
+      "size": 32,
+      "kind": "T",
+      "preimage_sha256": "496bd63d0f1b47301c390656edc9ea20cf750fb30a9211915a950525a0c60560"
+    },
+    {
+      "name": "__aeabi_idiv0",
+      "address": 155498996,
+      "address_hex": "0x0944B9F4",
+      "size": 2,
+      "kind": "W",
+      "preimage_sha256": "c7dfbb7d02759eacb64dbc916c1bb6f21eabaff1c1032ea5c9176abf7fd28df8"
+    },
+    {
+      "name": "__aeabi_ldiv0",
+      "address": 155498996,
+      "address_hex": "0x0944B9F4",
+      "size": 2,
+      "kind": "W",
+      "preimage_sha256": "c7dfbb7d02759eacb64dbc916c1bb6f21eabaff1c1032ea5c9176abf7fd28df8"
+    },
+    {
+      "name": "____aeabi_idivmod_from_thumb",
+      "address": 155499000,
+      "address_hex": "0x0944B9F8",
+      "size": 8,
+      "kind": "t",
+      "preimage_sha256": "0da097d09c460c6ab28469104fa8ebd1d9b34b289f38f6e9c21fbead92e61046"
+    },
+    {
+      "name": "____aeabi_uidivmod_from_thumb",
+      "address": 155499008,
+      "address_hex": "0x0944BA00",
+      "size": 8,
+      "kind": "t",
+      "preimage_sha256": "9cbf54cff72602b1498fde3d0db4ce44680b648567ea9c43a9e909388a21e338"
+    },
+    {
+      "name": "____aeabi_idiv0_from_arm",
+      "address": 155499016,
+      "address_hex": "0x0944BA08",
+      "size": 12,
+      "kind": "t",
+      "preimage_sha256": "9cadab891bb2996201eef08556859457fff763fada54686a963694d7f827887c"
+    },
+    {
+      "name": "CSWTCH.174",
+      "address": 155499032,
+      "address_hex": "0x0944BA18",
+      "size": 24,
+      "kind": "t",
+      "preimage_sha256": "c8f30ea75aab0ff1e78386eede0c248bd2ffd690501ca34be663307df986b003"
+    },
+    {
+      "name": "sStage61SourceQuestLogComponentExtras",
+      "address": 155499056,
+      "address_hex": "0x0944BA30",
+      "size": 15,
+      "kind": "t",
+      "preimage_sha256": "3d594bb33c28edace913d0d567a5b49615d05d6a34b3e92b5232371c0271fc95"
+    },
+    {
+      "name": "sStage61SaveChunkSizes",
+      "address": 155499072,
+      "address_hex": "0x0944BA40",
+      "size": 28,
+      "kind": "t",
+      "preimage_sha256": "0dfff2b5cc49aaf5bc61e84c71cdd13d9fb309af04b4d2f22d226eb86c7298a1"
+    },
+    {
+      "name": "sStage61SaveChunkOffsets",
+      "address": 155499100,
+      "address_hex": "0x0944BA5C",
+      "size": 28,
+      "kind": "t",
+      "preimage_sha256": "a78f3d62889362caaf5b49fd25f6b74febbc6e32a1352004c27b9a4024b08835"
+    }
+  ],
+  "compile_argv_canonical": [
+    "$TOOL:gcc",
+    "-mthumb",
+    "-mcpu=arm7tdmi",
+    "-mthumb-interwork",
+    "-Os",
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-unwind-tables",
+    "-fno-asynchronous-unwind-tables",
+    "-fdata-sections",
+    "-ffunction-sections",
+    "-fno-common",
+    "-DSTAGE61_CFRU_SAFE_ROAMER_CORNERS=0x09418228u",
+    "-DSTAGE61_CFRU_SAFE_ROAMER_DIMENSIONS=0x09418628u",
+    "-DSTAGE61_CHANGEKIT_GET_REMATCH=0x09302DD9u",
+    "-DSTAGE61_KANTO_FLY_RECORDS=0x09418010u",
+    "-DSTAGE61_KANTO_FLY_TABLE=0x09418150u",
+    "-DSTAGE61_KANTO_NAME_TABLE=0x09417B68u",
+    "-DSTAGE61_KANTO_POSITION_TABLE=0x09417ED0u",
+    "-DSTAGE61_KANTO_REGION_GFX=0x09418A28u",
+    "-DSTAGE61_KANTO_REGION_GRID=0x09417C3Cu",
+    "-DSTAGE61_KANTO_REGION_TILEMAP=0x0941973Cu",
+    "-DSTAGE61_KANTO_SOURCE_SECTION_IDS=0x094181F0u",
+    "-DSTAGE61_KANTO_VISIT_FLAGS=0x0941999Cu",
+    "-DSTAGE61_QUEST_LOG_PROJECT_PAIRS=0x09419B38u",
+    "-DSTAGE61_QUEST_LOG_SOURCE_PAIRS=0x09419A06u",
+    "-DSTAGE61_STOCK_GET_DUNGEON_FLAVOR_TEXT=0x09419CD5u",
+    "-DSTAGE61_STOCK_GET_DUNGEON_MAPSEC_TYPE=0x09419C7Du",
+    "-DSTAGE61_STOCK_GET_DUNGEON_NAME=0x09419CE5u",
+    "-DSTAGE61_STOCK_GET_MAPSEC_TYPE=0x09419C6Du",
+    "-DSTAGE61_STOCK_GET_MAP_PREVIEW_SCREEN_IDX=0x09419CC5u",
+    "-DSTAGE61_STOCK_GET_PLAYER_POSITION=0x09419C8Du",
+    "-DSTAGE61_STOCK_GET_SELECTED_MAP_SECTION=0x09419CA5u",
+    "-DSTAGE61_STOCK_HANDLE_SAVING_DATA=0x080DB231u",
+    "-DSTAGE61_TRAINER_REMATCH_ALIAS_COUNT=0x000001C4u",
+    "-DSTAGE61_TRAINER_REMATCH_ALIAS_TABLE=0x09447B3Cu",
+    "-c",
+    "$WORKSPACE/overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c",
+    "-o",
+    "$BUILD/runtime.o"
+  ],
+  "link_argv_canonical": [
+    "$TOOL:gcc",
+    "-mthumb",
+    "-mcpu=arm7tdmi",
+    "-mthumb-interwork",
+    "-nostdlib",
+    "-Wl,--build-id=none",
+    "-Wl,--gc-sections",
+    "-Wl,-e,Stage61DisplayNpcEvent_Probe",
+    "-Wl,-T,$BUILD/linker.ld",
+    "$BUILD/runtime.o",
+    "-lgcc",
+    "-o",
+    "$BUILD/runtime.elf"
+  ],
+  "linker_script": {
+    "canonical_path": "$BUILD/linker.ld",
+    "load_address": "0x09448960",
+    "raw": "SECTIONS\n{\n  . = 0x09448960;\n  .text : { KEEP(*(.text.Stage61*)) *(.text*) *(.rodata*) *(.v4_bx) *(.glue_7) *(.glue_7t) }\n  ASSERT(ADDR(.text) == 0x09448960, \"Stage61 .text VMA mismatch\")\n  /DISCARD/ : { *(.comment*) *(.ARM.attributes*) *(.note*) *(.ARM.exidx*) *(.ARM.extab*) }\n}\n",
+    "sha256": "f45809e6ad7f0b4c3d62c91d8be6637e2bf438e1af3708bcf7e6c707820482e0",
+    "size": 281
+  },
+  "toolchain_versions": {
+    "gcc": "arm-none-eabi-gcc (15:13.2.rel1-2) 13.2.1 20231009",
+    "ld": "GNU ld (2.42-1ubuntu1+23) 2.42",
+    "nm": "GNU nm (2.42-1ubuntu1+23) 2.42",
+    "objcopy": "GNU objcopy (2.42-1ubuntu1+23) 2.42",
+    "objdump": "GNU objdump (2.42-1ubuntu1+23) 2.42"
+  },
+  "rom_bytes_included": false,
+  "source_regeneration_runs": 0,
+  "arm_compiles": 0,
+  "native_runs": 0,
+  "candidate": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "scope_ja": "保存済原本から全24macro/99symbolを再取得し固定candidateの12568byte codeと照合。旧source再生成・ARM compile/native・ROM書換えなし。既存owner置換の入力であり置換受入ではない。",
+  "unsized_alias_count": 4,
+  "unsized_aliases": [
+    {
+      "name": ".udivsi3_skip_div0_test",
+      "address": 155498376,
+      "kind": "t"
+    },
+    {
+      "name": "__aeabi_uidiv",
+      "address": 155498376,
+      "kind": "T"
+    },
+    {
+      "name": "__aeabi_idiv",
+      "address": 155498660,
+      "kind": "T"
+    },
+    {
+      "name": ".divsi3_skip_div0_test",
+      "address": 155498668,
+      "kind": "t"
+    }
+  ],
+  "project_dependencies": {
+    "overlays/factory_high_modes_v2/factory_high_modes_v2.h": {
+      "size": 6051,
+      "sha256": "290c4f9ea7f274121273f5b43f736b5c598a6b50d412e0a85c320d0e1765622b"
+    },
+    "overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c": {
+      "size": 129221,
+      "sha256": "7ad33b6b00aacb30088b7a0cc528a7fb41c947a709bb4006ab225d82d4e271bf"
+    }
+  }
+}

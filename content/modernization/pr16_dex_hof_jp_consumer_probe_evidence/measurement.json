@@ -1,0 +1,1834 @@
+{
+  "status": "MEASURED_CURRENT_JP_CANDIDATES_NOT_TYPE_ACCEPTANCE",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "functions": {
+    "CursorCB_FieldMove": {
+      "entry": 135417608,
+      "exploration_budget": 768,
+      "instruction_count": 122,
+      "windows": [
+        {
+          "address": 135417608,
+          "size": 106,
+          "sha256": "034d4a7788e4be9803f69bbe85b9dd37cece462b1e946dc5a2868856e0de9b1d"
+        },
+        {
+          "address": 135417724,
+          "size": 50,
+          "sha256": "412846993ebeb88b4aac7f2359272d1fb2a62d9e89551945181d49003e5b16a5"
+        },
+        {
+          "address": 135417788,
+          "size": 38,
+          "sha256": "f18098b88ea730ac92fa5defacf9ffd27942ae2540f30170bc2c9cef0473e976"
+        },
+        {
+          "address": 135418048,
+          "size": 36,
+          "sha256": "2be896b7750214aa47d32c0c85fd3626ce34b1f3a7eb1772880c0613ca7ba5f9"
+        },
+        {
+          "address": 135418096,
+          "size": 46,
+          "sha256": "513b537f51a870ce444a62caf7fe91aafac79b0294dc31b749232f0c5dc331fc"
+        }
+      ],
+      "calls": [
+        {
+          "callsite": 135417614,
+          "target": 135333056,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135417640,
+          "target": 134683248,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135417662,
+          "target": 135406768,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135417670,
+          "target": 135406768,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135417674,
+          "target": 135006424,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135417686,
+          "target": 135379220,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135417708,
+          "target": 135406808,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135417738,
+          "target": 134667972,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135417754,
+          "target": 135400168,
+          "target_name": "DisplayPartyMenuMessage",
+          "return_assumed": false
+        },
+        {
+          "callsite": 135417796,
+          "target": 136084168,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135418054,
+          "target": 135398140,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135418072,
+          "target": 135419156,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135418078,
+          "target": 135397992,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135418104,
+          "target": 135418736,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135418110,
+          "target": 135418552,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135418118,
+          "target": 135406808,
+          "target_name": null,
+          "return_assumed": false
+        }
+      ],
+      "named_literal_reads": [
+        {
+          "instruction": 135417618,
+          "register": 5,
+          "cell": {
+            "address": 135417716,
+            "size": 4,
+            "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135417644,
+          "register": 1,
+          "cell": {
+            "address": 135417720,
+            "size": 4,
+            "sha256": "977f9a671233b57af26e34de818086384d71ba21a326b656df0d185ed58d7e62"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135417750,
+          "register": 0,
+          "cell": {
+            "address": 135417776,
+            "size": 4,
+            "sha256": "31456aca9dc0050c4ae635c42396810da33a7366cf5c36fc25dd6b7f084fe38b"
+          },
+          "named_target": "gText_CantUseUntilNewBadge",
+          "target": 138272454
+        },
+        {
+          "instruction": 135417758,
+          "register": 1,
+          "cell": {
+            "address": 135417780,
+            "size": 4,
+            "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135417768,
+          "register": 1,
+          "cell": {
+            "address": 135417784,
+            "size": 4,
+            "sha256": "0456b9e66a3c85ac26601325089116bdea3f94ddef580d9f4773a8113bcf5587"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135417788,
+          "register": 1,
+          "cell": {
+            "address": 135417828,
+            "size": 4,
+            "sha256": "977f9a671233b57af26e34de818086384d71ba21a326b656df0d185ed58d7e62"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135417818,
+          "register": 1,
+          "cell": {
+            "address": 135417832,
+            "size": 4,
+            "sha256": "3dc30a917d983d8d4e48c7614c42eab62de6ade97b2834da9c18619c20ae2874"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135418048,
+          "register": 1,
+          "cell": {
+            "address": 135418084,
+            "size": 4,
+            "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135418050,
+          "register": 0,
+          "cell": {
+            "address": 135418088,
+            "size": 4,
+            "sha256": "a716d08701b78e497cf66256e83e2a1569575920d2a2ea8c0d7ece1ee1032c55"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135418066,
+          "register": 1,
+          "cell": {
+            "address": 135418092,
+            "size": 4,
+            "sha256": "d9903b18594ad0946e1799203bf46b5409b0a5cb1a57935e31ac090da3dfc6cc"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135418122,
+          "register": 0,
+          "cell": {
+            "address": 135418144,
+            "size": 4,
+            "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135418132,
+          "register": 0,
+          "cell": {
+            "address": 135418148,
+            "size": 4,
+            "sha256": "4653b6ce71698b57190d7133601e1198f8fd0b98aba3d591f90203cf4cc56849"
+          },
+          "named_target": null
+        }
+      ],
+      "stops": [
+        {
+          "address": 135417824,
+          "reason": "indirect_or_return"
+        },
+        {
+          "address": 135418140,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "CursorCB_Enter": {
+      "entry": 135416112,
+      "exploration_budget": 384,
+      "instruction_count": 2,
+      "windows": [
+        {
+          "address": 135416112,
+          "size": 4,
+          "sha256": "5f56445b32723f512e86339dfec1123c33fa20bcaac48e7e69607c65b4195763"
+        }
+      ],
+      "calls": [],
+      "named_literal_reads": [
+        {
+          "instruction": 135416112,
+          "register": 1,
+          "cell": {
+            "address": 135416116,
+            "size": 4,
+            "sha256": "7a552b2f0dfe6f68ae3259ce61729531af940d7582672abbcb51d122da6ebc06"
+          },
+          "named_target": null
+        }
+      ],
+      "stops": [
+        {
+          "address": 135416114,
+          "reason": "literal_thumb_hook",
+          "target": 152181905,
+          "cell": 135416116
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "DisplaySwitchedHeldItemMessage": {
+      "entry": 135400776,
+      "exploration_budget": 256,
+      "instruction_count": 38,
+      "windows": [
+        {
+          "address": 135400776,
+          "size": 88,
+          "sha256": "37004fd5b9f961caf9b5ad847a5d9d8d686f68f73e76700551824a3aac7b4600"
+        }
+      ],
+      "calls": [
+        {
+          "callsite": 135400814,
+          "target": 135419076,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135400822,
+          "target": 134846616,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135400830,
+          "target": 134846616,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135400840,
+          "target": 134253384,
+          "target_name": "StringExpandPlaceholders",
+          "return_assumed": false
+        },
+        {
+          "callsite": 135400848,
+          "target": 135400168,
+          "target_name": "DisplayPartyMenuMessage",
+          "return_assumed": false
+        },
+        {
+          "callsite": 135400854,
+          "target": 135231484,
+          "target_name": null,
+          "return_assumed": false
+        }
+      ],
+      "named_literal_reads": [
+        {
+          "instruction": 135400796,
+          "register": 0,
+          "cell": {
+            "address": 135400864,
+            "size": 4,
+            "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135400806,
+          "register": 1,
+          "cell": {
+            "address": 135400868,
+            "size": 4,
+            "sha256": "d9903b18594ad0946e1799203bf46b5409b0a5cb1a57935e31ac090da3dfc6cc"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135400818,
+          "register": 1,
+          "cell": {
+            "address": 135400872,
+            "size": 4,
+            "sha256": "18224f55df3fe81ef446d741ac32988744c471d155d6fccf9c04b37ac3f333b0"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135400826,
+          "register": 1,
+          "cell": {
+            "address": 135400876,
+            "size": 4,
+            "sha256": "a7d838de04093cc2922b45e5355c1ad44dc67c319495b52060dc3fcabe376b21"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135400834,
+          "register": 4,
+          "cell": {
+            "address": 135400880,
+            "size": 4,
+            "sha256": "f31d45fbff05c0a5cdec5375dee92c4759c03f5fdf6bb34ee1808fb384a32f24"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135400836,
+          "register": 1,
+          "cell": {
+            "address": 135400884,
+            "size": 4,
+            "sha256": "a92846c50f822b104d6e47f0e1b40f150bd94b7ae5acdb9a2f81b85f92c02459"
+          },
+          "named_target": "gText_SwitchedPkmnItem",
+          "target": 138272790
+        }
+      ],
+      "stops": [
+        {
+          "address": 135400862,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "TryGiveMailToSelectedMon": {
+      "entry": 135429436,
+      "exploration_budget": 384,
+      "instruction_count": 55,
+      "windows": [
+        {
+          "address": 135429436,
+          "size": 74,
+          "sha256": "0f82692f33abef3335f926ed72f2c10ef42d99daf62d3a35dde365b46c5bcb79"
+        },
+        {
+          "address": 135429540,
+          "size": 48,
+          "sha256": "7c732ff09b7dff32f0b93294d801ef76a744c9ccb46a80ce7dd7e7724825bb08"
+        }
+      ],
+      "calls": [
+        {
+          "callsite": 135429492,
+          "target": 134476628,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135429504,
+          "target": 135400168,
+          "target_name": "DisplayPartyMenuMessage",
+          "return_assumed": false
+        },
+        {
+          "callsite": 135429544,
+          "target": 134838580,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135429550,
+          "target": 134837984,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135429558,
+          "target": 135400168,
+          "target_name": "DisplayPartyMenuMessage",
+          "return_assumed": false
+        },
+        {
+          "callsite": 135429564,
+          "target": 135231484,
+          "target_name": null,
+          "return_assumed": false
+        }
+      ],
+      "named_literal_reads": [
+        {
+          "instruction": 135429442,
+          "register": 0,
+          "cell": {
+            "address": 135429512,
+            "size": 4,
+            "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135429452,
+          "register": 0,
+          "cell": {
+            "address": 135429516,
+            "size": 4,
+            "sha256": "d9903b18594ad0946e1799203bf46b5409b0a5cb1a57935e31ac090da3dfc6cc"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135429456,
+          "register": 1,
+          "cell": {
+            "address": 135429520,
+            "size": 4,
+            "sha256": "fe26a89eaa040117ebe8469951e090b93a165de0ca174072da556496798c136e"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135429462,
+          "register": 2,
+          "cell": {
+            "address": 135429524,
+            "size": 4,
+            "sha256": "789f854e51f6834d7d2cf52f271d22064ba2c413904c37fa4d24d4f063f614c2"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135429464,
+          "register": 0,
+          "cell": {
+            "address": 135429528,
+            "size": 4,
+            "sha256": "c8858c398162128004030755efc9239e3548df3158c8a0d19df432520298d7d2"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135429480,
+          "register": 1,
+          "cell": {
+            "address": 135429532,
+            "size": 4,
+            "sha256": "f64a9a1d670c617d78e8817f89c303cf637322b6d573346a6d5f4038f4a696cf"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135429500,
+          "register": 0,
+          "cell": {
+            "address": 135429536,
+            "size": 4,
+            "sha256": "a39faeee526545e190722ba3f4c26de122d332718e755280161c6e4079a1d66c"
+          },
+          "named_target": "gText_PkmnHoldingItemCantHoldMail",
+          "target": 138272814
+        },
+        {
+          "instruction": 135429554,
+          "register": 0,
+          "cell": {
+            "address": 135429588,
+            "size": 4,
+            "sha256": "b127545ef095fcf8d8167451d7ca256eac5bfb9acf120104e3d2d1140dbb2fe3"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135429568,
+          "register": 0,
+          "cell": {
+            "address": 135429592,
+            "size": 4,
+            "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135429578,
+          "register": 0,
+          "cell": {
+            "address": 135429596,
+            "size": 4,
+            "sha256": "243fee8d5e98e72a54c70b93fef1de9231755d513a0706b4749954d7796a60f2"
+          },
+          "named_target": null
+        }
+      ],
+      "stops": [
+        {
+          "address": 135429586,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "Task_SwitchItemsYesNo": {
+      "entry": 135413976,
+      "exploration_budget": 128,
+      "instruction_count": 19,
+      "windows": [
+        {
+          "address": 135413976,
+          "size": 42,
+          "sha256": "d091924dfd6e7f56b114eda140229743e84257a31a712d48db7f93129b7c41a2"
+        }
+      ],
+      "calls": [
+        {
+          "callsite": 135413982,
+          "target": 135400288,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135413994,
+          "target": 135407576,
+          "target_name": null,
+          "return_assumed": false
+        }
+      ],
+      "named_literal_reads": [
+        {
+          "instruction": 135413998,
+          "register": 0,
+          "cell": {
+            "address": 135414020,
+            "size": 4,
+            "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414008,
+          "register": 0,
+          "cell": {
+            "address": 135414024,
+            "size": 4,
+            "sha256": "96e491a09deb7fc8e876812a9219c68eea7ebf2ff3801eca6e08bd5ee501971e"
+          },
+          "named_target": "Task_HandleSwitchItemsYesNoInput(Thumb)",
+          "target": 135414029
+        }
+      ],
+      "stops": [
+        {
+          "address": 135414016,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "Task_HandleSwitchItemsYesNoInput": {
+      "entry": 135414028,
+      "exploration_budget": 384,
+      "instruction_count": 100,
+      "windows": [
+        {
+          "address": 135414028,
+          "size": 102,
+          "sha256": "b0680b3f3fe34edc934cd2bc2ca5d88095b4c2cb274e35c10b4e1d54454e0593"
+        },
+        {
+          "address": 135414152,
+          "size": 48,
+          "sha256": "81f252374d226f538851d887287a26adaf0ccb7f7f8068f43753bc8c16861f4c"
+        },
+        {
+          "address": 135414216,
+          "size": 46,
+          "sha256": "9b14bf6e19ddbc00ce37c54130083382ae05dddeaeb43ffcfc52d0fd2b41ac41"
+        },
+        {
+          "address": 135414280,
+          "size": 26,
+          "sha256": "0542d22f17a81d6b5811e1788d9b8fd25070dea0e93a63fba12f3fac70f597dc"
+        }
+      ],
+      "calls": [
+        {
+          "callsite": 135414034,
+          "target": 135334904,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135414072,
+          "target": 134847456,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135414082,
+          "target": 134847116,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135414096,
+          "target": 134847116,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135414102,
+          "target": 135401032,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135414110,
+          "target": 135400168,
+          "target_name": "DisplayPartyMenuMessage",
+          "return_assumed": false
+        },
+        {
+          "callsite": 135414154,
+          "target": 134839016,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135414180,
+          "target": 135400888,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135414232,
+          "target": 135400888,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135414242,
+          "target": 135400776,
+          "target_name": "DisplaySwitchedHeldItemMessage",
+          "return_assumed": false
+        },
+        {
+          "callsite": 135414282,
+          "target": 134683248,
+          "target_name": null,
+          "return_assumed": false
+        }
+      ],
+      "named_literal_reads": [
+        {
+          "instruction": 135414066,
+          "register": 5,
+          "cell": {
+            "address": 135414132,
+            "size": 4,
+            "sha256": "a1e55afb6fdd7982f82bd0e0829751cb3f7def43815cd9fc2d4c42a56f8108ef"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414076,
+          "register": 6,
+          "cell": {
+            "address": 135414136,
+            "size": 4,
+            "sha256": "31e5d56ff98a52967f1cf7e59488d9b26bfcf7def3477a03090d67b34b6e87f5"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414106,
+          "register": 0,
+          "cell": {
+            "address": 135414140,
+            "size": 4,
+            "sha256": "f31d45fbff05c0a5cdec5375dee92c4759c03f5fdf6bb34ee1808fb384a32f24"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414114,
+          "register": 1,
+          "cell": {
+            "address": 135414144,
+            "size": 4,
+            "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414124,
+          "register": 1,
+          "cell": {
+            "address": 135414148,
+            "size": 4,
+            "sha256": "0456b9e66a3c85ac26601325089116bdea3f94ddef580d9f4773a8113bcf5587"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414164,
+          "register": 0,
+          "cell": {
+            "address": 135414200,
+            "size": 4,
+            "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414174,
+          "register": 1,
+          "cell": {
+            "address": 135414204,
+            "size": 4,
+            "sha256": "d9903b18594ad0946e1799203bf46b5409b0a5cb1a57935e31ac090da3dfc6cc"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414184,
+          "register": 1,
+          "cell": {
+            "address": 135414208,
+            "size": 4,
+            "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414194,
+          "register": 1,
+          "cell": {
+            "address": 135414212,
+            "size": 4,
+            "sha256": "481fbd558b45b6cc5dc546d0fc01b315ba69460a2b6f24befaada44b7be1b983"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414216,
+          "register": 0,
+          "cell": {
+            "address": 135414264,
+            "size": 4,
+            "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414226,
+          "register": 1,
+          "cell": {
+            "address": 135414268,
+            "size": 4,
+            "sha256": "d9903b18594ad0946e1799203bf46b5409b0a5cb1a57935e31ac090da3dfc6cc"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414246,
+          "register": 1,
+          "cell": {
+            "address": 135414272,
+            "size": 4,
+            "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414256,
+          "register": 1,
+          "cell": {
+            "address": 135414276,
+            "size": 4,
+            "sha256": "8cc735579176986ea9fb0c61f6f00a3c9e4433c53b873cb5b8df496e6e43f870"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414286,
+          "register": 0,
+          "cell": {
+            "address": 135414308,
+            "size": 4,
+            "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135414296,
+          "register": 0,
+          "cell": {
+            "address": 135414312,
+            "size": 4,
+            "sha256": "0456b9e66a3c85ac26601325089116bdea3f94ddef580d9f4773a8113bcf5587"
+          },
+          "named_target": null
+        }
+      ],
+      "stops": [
+        {
+          "address": 135414304,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "ChooseMonToGiveMailFromMailbox": {
+      "entry": 135429392,
+      "exploration_budget": 96,
+      "instruction_count": 16,
+      "windows": [
+        {
+          "address": 135429392,
+          "size": 34,
+          "sha256": "7610ae58363ab28c88e992c79be5670eb14a63aab3b7e903aa61fbf3f906054d"
+        }
+      ],
+      "calls": [
+        {
+          "callsite": 135429416,
+          "target": 135393868,
+          "target_name": "InitPartyMenu",
+          "return_assumed": false
+        }
+      ],
+      "named_literal_reads": [
+        {
+          "instruction": 135429400,
+          "register": 0,
+          "cell": {
+            "address": 135429428,
+            "size": 4,
+            "sha256": "a9f005984cdfbd81ffef1e5dc4aa34f75574d816e6d074ebb3281fc865b62d44"
+          },
+          "named_target": "Task_HandleChooseMonInput(Thumb)",
+          "target": 135398169
+        },
+        {
+          "instruction": 135429404,
+          "register": 0,
+          "cell": {
+            "address": 135429432,
+            "size": 4,
+            "sha256": "d8d2f188d0b66092dc7b95e1f353a22923ae472010c1c48c3ec3ea4485566021"
+          },
+          "named_target": null
+        }
+      ],
+      "stops": [
+        {
+          "address": 135429424,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "Task_HandleChooseMonInput": {
+      "entry": 135398168,
+      "exploration_budget": 256,
+      "instruction_count": 50,
+      "windows": [
+        {
+          "address": 135398168,
+          "size": 60,
+          "sha256": "994a85fc38a98229d6c341377fb602754902883492c1d6ca71bf235b06f77d10"
+        },
+        {
+          "address": 135398232,
+          "size": 54,
+          "sha256": "3a6a8d7c076e280b22e5fe7fad37053ea0fb1ae27bb3ed99d864151abd1bcae1"
+        }
+      ],
+      "calls": [
+        {
+          "callsite": 135398188,
+          "target": 135006488,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135398200,
+          "target": 135398292,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135398206,
+          "target": 135399148,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135398242,
+          "target": 135398324,
+          "target_name": "HandleChooseMonSelection",
+          "return_assumed": false
+        },
+        {
+          "callsite": 135398252,
+          "target": 135398776,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135398272,
+          "target": 134683248,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135398276,
+          "target": 135416372,
+          "target_name": null,
+          "return_assumed": false
+        }
+      ],
+      "named_literal_reads": [
+        {
+          "instruction": 135398176,
+          "register": 0,
+          "cell": {
+            "address": 135398228,
+            "size": 4,
+            "sha256": "29eadcb3e113d486ad4ffcad5d6892cf60a86228604504a63fb375ac0c2d0784"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135398258,
+          "register": 0,
+          "cell": {
+            "address": 135398288,
+            "size": 4,
+            "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+          },
+          "named_target": null
+        }
+      ],
+      "stops": [
+        {
+          "address": 135398284,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "HandleChooseMonSelection": {
+      "entry": 135398324,
+      "exploration_budget": 512,
+      "instruction_count": 18,
+      "windows": [
+        {
+          "address": 135398324,
+          "size": 28,
+          "sha256": "7066f6ab25ab1dbd6c3778fe4cea147c00f5b4bf8b5a4b2767379b401d34bfe5"
+        },
+        {
+          "address": 135398356,
+          "size": 4,
+          "sha256": "6b6b0f7315d31682c7f8059490eb3df143139881118c2c78a5b82ce1834d895d"
+        },
+        {
+          "address": 135398726,
+          "size": 6,
+          "sha256": "514f6aa802bdc4d077005cde997c6ee1f921c1ce496ca6cc35e22b9a405f8a71"
+        }
+      ],
+      "calls": [
+        {
+          "callsite": 135398346,
+          "target": 136084172,
+          "target_name": null,
+          "return_assumed": false
+        }
+      ],
+      "named_literal_reads": [
+        {
+          "instruction": 135398340,
+          "register": 0,
+          "cell": {
+            "address": 135398352,
+            "size": 4,
+            "sha256": "04b2ea8055b0639e354b56e5fcd2cc6f6105ea531d9a3406b66415b3771ddb24"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135398356,
+          "register": 0,
+          "cell": {
+            "address": 135398360,
+            "size": 4,
+            "sha256": "1eebc285e44b9a3c204b3bc357eb52291f46176351e082faa2216845bcc6f622"
+          },
+          "named_target": null
+        }
+      ],
+      "stops": [
+        {
+          "address": 135398358,
+          "reason": "literal_thumb_hook",
+          "target": 151616129,
+          "cell": 135398360
+        },
+        {
+          "address": 135398730,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "Task_HandleSelectionMenuInput": {
+      "entry": 135410744,
+      "exploration_budget": 384,
+      "instruction_count": 94,
+      "windows": [
+        {
+          "address": 135410744,
+          "size": 56,
+          "sha256": "bb8a5539e199200edc1d80cca0e65f2631fa317d89648538fdb3cfc29e2eb126"
+        },
+        {
+          "address": 135410812,
+          "size": 116,
+          "sha256": "b345bc555fad2762325c2aad4de665ee8777270aded59e29d47dde872e782ed8"
+        },
+        {
+          "address": 135410936,
+          "size": 40,
+          "sha256": "16ec1265b1bcd8ca96175140a504406fdb0576db38186ed9cd0cd80c8c15114c"
+        }
+      ],
+      "calls": [
+        {
+          "callsite": 135410762,
+          "target": 135006488,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135410794,
+          "target": 135333412,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135410812,
+          "target": 135333304,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135410824,
+          "target": 135333056,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135410840,
+          "target": 135333056,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135410854,
+          "target": 135407876,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135410858,
+          "target": 135333056,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135410888,
+          "target": 134683248,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135410898,
+          "target": 135406768,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135410922,
+          "target": 136084172,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135410942,
+          "target": 135406768,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135410966,
+          "target": 136084172,
+          "target_name": null,
+          "return_assumed": false
+        }
+      ],
+      "named_literal_reads": [
+        {
+          "instruction": 135410750,
+          "register": 0,
+          "cell": {
+            "address": 135410800,
+            "size": 4,
+            "sha256": "29eadcb3e113d486ad4ffcad5d6892cf60a86228604504a63fb375ac0c2d0784"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135410780,
+          "register": 1,
+          "cell": {
+            "address": 135410804,
+            "size": 4,
+            "sha256": "0d9a13aefbed9c2c262ff4b06a23f7c1dcf5b94f2e562e36ee05a3546e3e1cc8"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135410784,
+          "register": 0,
+          "cell": {
+            "address": 135410808,
+            "size": 4,
+            "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135410836,
+          "register": 0,
+          "cell": {
+            "address": 135410928,
+            "size": 4,
+            "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135410892,
+          "register": 4,
+          "cell": {
+            "address": 135410928,
+            "size": 4,
+            "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135410902,
+          "register": 2,
+          "cell": {
+            "address": 135410932,
+            "size": 4,
+            "sha256": "8f8d49aa02620ee41ac2201e5c0b2c902b674a5fd8d035f69b82927ef22cf219"
+          },
+          "named_target": "sCursorOptions",
+          "target": 138517928
+        },
+        {
+          "instruction": 135410936,
+          "register": 4,
+          "cell": {
+            "address": 135410976,
+            "size": 4,
+            "sha256": "401369c6ac2880741f3c7481c9fed2000999a4cee6807273aa6881c52da63346"
+          },
+          "named_target": null
+        },
+        {
+          "instruction": 135410946,
+          "register": 1,
+          "cell": {
+            "address": 135410980,
+            "size": 4,
+            "sha256": "8f8d49aa02620ee41ac2201e5c0b2c902b674a5fd8d035f69b82927ef22cf219"
+          },
+          "named_target": "sCursorOptions",
+          "target": 138517928
+        }
+      ],
+      "stops": [
+        {
+          "address": 135410974,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "DisplayPartyMenuMessage": {
+      "entry": 135400168,
+      "exploration_budget": 96,
+      "instruction_count": 18,
+      "windows": [
+        {
+          "address": 135400168,
+          "size": 40,
+          "sha256": "b1f85b43e2fa6c9a4c47834d5e46e8d5bff3ac38d7464159da1fa821ceb79d74"
+        }
+      ],
+      "calls": [
+        {
+          "callsite": 135400174,
+          "target": 135407500,
+          "target_name": "PartyMenuPrintText",
+          "return_assumed": false
+        },
+        {
+          "callsite": 135400182,
+          "target": 134704052,
+          "target_name": "CreateTask",
+          "return_assumed": false
+        }
+      ],
+      "named_literal_reads": [
+        {
+          "instruction": 135400178,
+          "register": 0,
+          "cell": {
+            "address": 135400208,
+            "size": 4,
+            "sha256": "2aa5830f1d7f7cc6b83c933f73a8042015ff609bf8fe16cb5b088c83f43e981e"
+          },
+          "named_target": "Task_PrintAndWaitForText(Thumb)",
+          "target": 135400217
+        },
+        {
+          "instruction": 135400190,
+          "register": 2,
+          "cell": {
+            "address": 135400212,
+            "size": 4,
+            "sha256": "77c7fedbad4a80e92e4b312f068441cd67d9fd0579b8517e57326acc5fd540d4"
+          },
+          "named_target": null
+        }
+      ],
+      "stops": [
+        {
+          "address": 135400206,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "PartyMenuPrintText": {
+      "entry": 135407500,
+      "exploration_budget": 128,
+      "instruction_count": 33,
+      "windows": [
+        {
+          "address": 135407500,
+          "size": 72,
+          "sha256": "ce79b39f2180d4cf373bff261a73610fb96de0909ec8a79f7c600b48aa9e7f54"
+        }
+      ],
+      "calls": [
+        {
+          "callsite": 135407514,
+          "target": 135331232,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135407528,
+          "target": 135235848,
+          "target_name": null,
+          "return_assumed": false
+        },
+        {
+          "callsite": 135407560,
+          "target": 135232808,
+          "target_name": "AddTextPrinterParameterized2",
+          "return_assumed": false
+        }
+      ],
+      "named_literal_reads": [
+        {
+          "instruction": 135407518,
+          "register": 2,
+          "cell": {
+            "address": 135407572,
+            "size": 4,
+            "sha256": "e3ef7b7758ea07582a0df77a4bd61331810980b04b7d203437781c74ebc15c22"
+          },
+          "named_target": null
+        }
+      ],
+      "stops": [
+        {
+          "address": 135407570,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "StringExpandPlaceholders": {
+      "entry": 134253384,
+      "exploration_budget": 384,
+      "instruction_count": 17,
+      "windows": [
+        {
+          "address": 134253384,
+          "size": 28,
+          "sha256": "4f4aa8c6222cdd23d279c97962760c874f79d84dadd1eba6f442b3e02db616dc"
+        },
+        {
+          "address": 134253602,
+          "size": 6,
+          "sha256": "ec7ebaaeeef7b4a08fa789c1ee40c1c0606a29bf52d28523b64a8d43925d1f5a"
+        }
+      ],
+      "calls": [],
+      "named_literal_reads": [
+        {
+          "instruction": 134253404,
+          "register": 1,
+          "cell": {
+            "address": 134253412,
+            "size": 4,
+            "sha256": "6eb276a5fe334cec1b178c9e49c134d70fddc34cedf5972c96cfe11b9770cfb1"
+          },
+          "named_target": null
+        }
+      ],
+      "stops": [
+        {
+          "address": 134253410,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    },
+    "AddTextPrinterParameterized2": {
+      "entry": 135232808,
+      "exploration_budget": 256,
+      "instruction_count": 71,
+      "windows": [
+        {
+          "address": 135232808,
+          "size": 144,
+          "sha256": "7c0e22de77fcd1f7e56411bce7afc77f168413a540b5a21d3d9b6d3b1a9f322e"
+        }
+      ],
+      "calls": [
+        {
+          "callsite": 135232932,
+          "target": 134229232,
+          "target_name": null,
+          "return_assumed": false
+        }
+      ],
+      "named_literal_reads": [
+        {
+          "instruction": 135232914,
+          "register": 2,
+          "cell": {
+            "address": 135232952,
+            "size": 4,
+            "sha256": "e3ef7b7758ea07582a0df77a4bd61331810980b04b7d203437781c74ebc15c22"
+          },
+          "named_target": null
+        }
+      ],
+      "stops": [
+        {
+          "address": 135232950,
+          "reason": "indirect_or_return"
+        }
+      ],
+      "path_feasibility_proven": false,
+      "api_arguments_proven": false,
+      "registered_root_proven": false
+    }
+  },
+  "texts": {
+    "gText_CantUseUntilNewBadge": {
+      "address": 138272454,
+      "size": 30,
+      "sha256": "d1742b432af18c29e00c6906a7e5bc67d80ab3ff45ceb28ee87d0c05ff61236c",
+      "eos_address": 138272483,
+      "tokens": [
+        {
+          "offset": 0,
+          "size": 17,
+          "role": "glyph"
+        },
+        {
+          "offset": 17,
+          "size": 1,
+          "role": "newline"
+        },
+        {
+          "offset": 18,
+          "size": 9,
+          "role": "glyph"
+        },
+        {
+          "offset": 27,
+          "size": 2,
+          "role": "pause_until_press"
+        },
+        {
+          "offset": 29,
+          "size": 1,
+          "role": "eos"
+        }
+      ],
+      "lexical_complete": true,
+      "runtime_read_proven": false
+    },
+    "gText_NoMoreThanThreeMayEnter": {
+      "address": 138272484,
+      "size": 27,
+      "sha256": "ac6b97db77c122b6131e23e29fcb1ebbe0c09480bb8ca57b04ba7aaca182e724",
+      "eos_address": 138272510,
+      "tokens": [
+        {
+          "offset": 0,
+          "size": 13,
+          "role": "glyph"
+        },
+        {
+          "offset": 13,
+          "size": 1,
+          "role": "newline"
+        },
+        {
+          "offset": 14,
+          "size": 10,
+          "role": "glyph"
+        },
+        {
+          "offset": 24,
+          "size": 2,
+          "role": "pause_until_press"
+        },
+        {
+          "offset": 26,
+          "size": 1,
+          "role": "eos"
+        }
+      ],
+      "lexical_complete": true,
+      "runtime_read_proven": false
+    },
+    "gText_SwitchedPkmnItem": {
+      "address": 138272790,
+      "size": 24,
+      "sha256": "d5a7d3df2c8c59c7e85d5125c435550afc96daeb6b44b2cc5a22ea11a4ff3b49",
+      "eos_address": 138272813,
+      "tokens": [
+        {
+          "offset": 0,
+          "size": 2,
+          "role": "string_var_2"
+        },
+        {
+          "offset": 2,
+          "size": 7,
+          "role": "glyph"
+        },
+        {
+          "offset": 9,
+          "size": 1,
+          "role": "newline"
+        },
+        {
+          "offset": 10,
+          "size": 2,
+          "role": "string_var_1"
+        },
+        {
+          "offset": 12,
+          "size": 9,
+          "role": "glyph"
+        },
+        {
+          "offset": 21,
+          "size": 2,
+          "role": "pause_until_press"
+        },
+        {
+          "offset": 23,
+          "size": 1,
+          "role": "eos"
+        }
+      ],
+      "lexical_complete": true,
+      "runtime_read_proven": false
+    },
+    "gText_PkmnHoldingItemCantHoldMail": {
+      "address": 138272814,
+      "size": 38,
+      "sha256": "8bdd256110b1a1dd65ce82874e572d7e975f890595196fab3de96d77e2b678e9",
+      "eos_address": 138272851,
+      "tokens": [
+        {
+          "offset": 0,
+          "size": 16,
+          "role": "glyph"
+        },
+        {
+          "offset": 16,
+          "size": 1,
+          "role": "newline"
+        },
+        {
+          "offset": 17,
+          "size": 18,
+          "role": "glyph"
+        },
+        {
+          "offset": 35,
+          "size": 2,
+          "role": "pause_until_press"
+        },
+        {
+          "offset": 37,
+          "size": 1,
+          "role": "eos"
+        }
+      ],
+      "lexical_complete": true,
+      "runtime_read_proven": false
+    }
+  },
+  "cells": [
+    {
+      "name": "ENTER",
+      "address": 138518028,
+      "size": 4,
+      "sha256": "ff24b07a4c85d2ecbf7de3b12332a74dc183d278986f13b2e1a92b9759d1d47c",
+      "expected_thumb": 135416113,
+      "matches_expected": true,
+      "actual_thumb_target": 135416113
+    },
+    {
+      "name": "FIELD_MOVES_FIRST",
+      "address": 138518076,
+      "size": 4,
+      "sha256": "798ed87caa80c2553611e70349ed2e93325eb3eb9bcf6381cb99bc625833e279",
+      "expected_thumb": 135417609,
+      "matches_expected": true,
+      "actual_thumb_target": 135417609
+    }
+  ],
+  "hits": [
+    {
+      "address": 138272481,
+      "size": 4,
+      "sha256": "f267137302c6bee4b5bebbf3b7f09b9f879c7c5e7d34ce2100e78def5bf442a1",
+      "byte_roles": [
+        {
+          "address": 138272481,
+          "owners": [
+            {
+              "text": "gText_CantUseUntilNewBadge",
+              "role": "pause_until_press"
+            }
+          ]
+        },
+        {
+          "address": 138272482,
+          "owners": [
+            {
+              "text": "gText_CantUseUntilNewBadge",
+              "role": "pause_until_press"
+            }
+          ]
+        },
+        {
+          "address": 138272483,
+          "owners": [
+            {
+              "text": "gText_CantUseUntilNewBadge",
+              "role": "eos"
+            }
+          ]
+        },
+        {
+          "address": 138272484,
+          "owners": [
+            {
+              "text": "gText_NoMoreThanThreeMayEnter",
+              "role": "glyph"
+            }
+          ]
+        }
+      ],
+      "accepted": false
+    },
+    {
+      "address": 138272811,
+      "size": 4,
+      "sha256": "1b3ec2bd404d75bf176b0825e09bc38b0c9bfa96d18a7e5a27b78c6736a84ee7",
+      "byte_roles": [
+        {
+          "address": 138272811,
+          "owners": [
+            {
+              "text": "gText_SwitchedPkmnItem",
+              "role": "pause_until_press"
+            }
+          ]
+        },
+        {
+          "address": 138272812,
+          "owners": [
+            {
+              "text": "gText_SwitchedPkmnItem",
+              "role": "pause_until_press"
+            }
+          ]
+        },
+        {
+          "address": 138272813,
+          "owners": [
+            {
+              "text": "gText_SwitchedPkmnItem",
+              "role": "eos"
+            }
+          ]
+        },
+        {
+          "address": 138272814,
+          "owners": [
+            {
+              "text": "gText_PkmnHoldingItemCantHoldMail",
+              "role": "glyph"
+            }
+          ]
+        }
+      ],
+      "accepted": false
+    }
+  ],
+  "classified": 779,
+  "unclassified": 95,
+  "newly_classified": 0,
+  "native_processes": 0,
+  "formal_rom_changed": false,
+  "formal_save_changed": false,
+  "donor_eligible": false,
+  "serializer_execution_proven": false,
+  "all_api_arguments_proven": false,
+  "old_full_rom_scan_runs": 0,
+  "source_head": "dd69e1253b7705ad2fc5ebe9c69723b3308e114a",
+  "run_id": 37688855091,
+  "current_rom_reconstructions": 1,
+  "unit_tests": 59,
+  "current_owner_count": 115,
+  "source_bindings": {
+    ".github/workflows/pr16-dex-hof-jp-consumer-probe.yml": {
+      "size": 2364,
+      "sha256": "c6d389dc605a4a7cf1979fd54bb4161b10204e50e211bac5ebc63093982be5f1"
+    },
+    "content/modernization/pr16_dex_hof_jp_consumer_probe_sources.json": {
+      "size": 769,
+      "sha256": "b160689f181ec70664cbd8634ed17210a440450825fb0a15164c78c51531ccaa"
+    },
+    "docs/PR16_DEX_HOF_JP_CONSUMER_PROBE_JA.md": {
+      "size": 2812,
+      "sha256": "2acb3507abd4b0720cb0e8f4cdabbe2d7318bbfbc065c1cfed55446d3e18efce"
+    },
+    "scripts/pr16_dex_hof_jp_consumer_probe.py": {
+      "size": 19065,
+      "sha256": "b8a3aa56f5e69cc7a1c6643a827f329ca7a5d78d59e0b9bea385a880c48cb8f9"
+    },
+    "scripts/pr16_dex_hof_jp_consumer_probe_actions.py": {
+      "size": 8537,
+      "sha256": "2a4246b661d85cc4f68e386f0cbf6500d7f05eb1eb00d3766a2725f0f98a4f5e"
+    },
+    "tests/test_pr16_dex_hof_jp_consumer_probe.py": {
+      "size": 12225,
+      "sha256": "5cb786df8d417a7d1aea5bdc45a45e16b6c258a633d3be517fcd0eed2ba70369"
+    }
+  },
+  "fixed_crosswalk_identity": {
+    "size": 29001,
+    "sha256": "583722debf82f1b0f4703f5b2374ec7c445e5782b89472da6542bd33e0cb3c0c"
+  },
+  "extra_source_bindings": {
+    "charmap.txt": {
+      "size": 21853,
+      "sha256": "4da662317b3b5109a52064f9012d85b644d1dbf0f3f24243374aeef4cf25f061",
+      "git_blob_sha": "b9d0ed9de00d05fc303bb987a5aa634b19009b47"
+    },
+    "include/characters.h": {
+      "size": 12798,
+      "sha256": "6787db76f83c4f8426c5adbfa7aa061c46585db9522f1fef00ad888616199b98",
+      "git_blob_sha": "d00ecf0a3afcd9fc1fa9534c00f4b74793d5f06f"
+    },
+    "src/string_util.c": {
+      "size": 14320,
+      "sha256": "ed9519d4eaf51ed660a522915366dc0ebf2916d592a91a1d7fc2a012e4f3f17e",
+      "git_blob_sha": "5c26d151a61274caac3a16c3b9c4eb73bf9a9e26"
+    },
+    "src/text.c": {
+      "size": 63210,
+      "sha256": "5696f49443eeaaac74b530421ac7f0cbfc71996c557399583788111c322dd80c",
+      "git_blob_sha": "f3eef07ce6dea8269980a5ecfdd6902c1c9c13d2"
+    }
+  }
+}

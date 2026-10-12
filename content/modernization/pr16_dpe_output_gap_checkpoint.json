@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261012-DPE-PINNED-OUTPUT-GAP",
+  "status": "BLOCKED_NO_ATTESTED_DPE_OUTPUT_BIN",
+  "investigation_parent_head": "07edca35568c959968d8dd9829fc8b8c9e84fad5",
+  "upstream": {
+    "repository": "kapibarasan000/DPE-JP",
+    "pinned_commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+    "verified_tree_not_truncated": true,
+    "tracked_entry_count": 5934,
+    "tracked_output_bin_count": 0,
+    "raw_output_bin_fetched": false
+  },
+  "build": {
+    "fixed_insert_address": 157286400,
+    "private_output_location": "build/upstream-cache",
+    "prior_successful_instruction_run": 38244314715,
+    "prior_cache_output_bin_candidates": 0,
+    "actual_output_sha256": null,
+    "actual_output_length_bytes": null,
+    "linked_symbol_at_0x09673660": null,
+    "site_containment_proven": false,
+    "site_four_bytes_equal_current_rom_proven": false
+  },
+  "ips": {
+    "record_index": 11873,
+    "write_begin": 142653360,
+    "write_end_exclusive": 142670544,
+    "target": 142670436,
+    "asset_start_proven": false,
+    "asset_end_proven": false,
+    "real_instruction_reader_proven": false
+  },
+  "prior_evidence": {
+    "saved_pointer_sites": 11,
+    "unaligned_origins": 9,
+    "finite_literal_shapes": 0,
+    "accepted_tests_rerun": 0,
+    "rom_reconstructions": 0,
+    "native_processes": 0
+  },
+  "formal": {
+    "classified": 789,
+    "unclassified": 85,
+    "selected_unknown_origins": 6,
+    "donor_safe_bytes": 0,
+    "classification_changes": 0
+  },
+  "next_required_evidence_ja": "source-lock固定10ff98c8から再現した実output.binとsource SHA/ビルドrecipe/output sizeを同一identityで取得。配置後ROMの対象4byteとの一致、offset map具体symbol・readerの実命令/到達経路、IPS record11873の実asset境界を個別に示す。受入済み11試験・保存ROM再構築・PLA1等を変更影響なしに再実行しない。",
+  "partial_scope_pass_claimed": false
+}

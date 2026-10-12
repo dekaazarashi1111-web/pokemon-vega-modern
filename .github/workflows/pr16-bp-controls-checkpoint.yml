@@ -1,0 +1,140 @@
+name: pr16-bp-controls-checkpoint
+run-name: Retain native BP reception control (zero new emulator runs)
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-bp-controls-checkpoint.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-bp-controls-checkpoint
+  cancel-in-progress: false
+jobs:
+  checkpoint-bp-controls:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      EXPECTED_HEAD: ${{ github.sha }}
+      BRANCH: codex/modernization-followup-20260908
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Guard current branch and preserve accepted P03 and static owner originals
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-controls-checkpoint
+          mkdir -p "$out"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
+          git merge-base --is-ancestor 7ebf7b34396ce70e0484be2e74514647b5e7ac56 HEAD
+          git rev-parse HEAD > "$out/entry-head.txt"
+          python3 scripts/pr16_fixed_form_closeout.py --check > "$out/fixed-before.json"
+          python3 scripts/pr16_p05_supply_owner_evidence.py > "$out/owner-before.json"
+      - name: Retain both originals and test native-control and zero-run boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-controls-checkpoint
+          python3 scripts/pr16_bp_controls_checkpoint.py --retain > "$out/retain.stdout" 2> "$out/retain.stderr"
+          python3 -m unittest tests.test_pr16_bp_controls_checkpoint -v > "$out/tests.stdout" 2> "$out/tests.stderr"
+          python3 scripts/pr16_fixed_form_closeout.py --check > "$out/fixed-after.json"
+          python3 scripts/pr16_p05_supply_owner_evidence.py > "$out/owner-after.json"
+          cmp "$out/fixed-before.json" "$out/fixed-after.json"
+          cmp "$out/owner-before.json" "$out/owner-after.json"
+          python3 scripts/validate_task_graph.py > "$out/task-graph.txt"
+      - name: Stage only exact safe original paths and append-only logs
+        shell: bash
+        run: |
+          set -euo pipefail
+          base=content/modernization/pr16_bp_native_controls_evidence
+          git add -- "$base/34702872369/actions.json" "$base/34703571879/actions.json" \
+            content/modernization/pr16_bp_native_controls_acceptance.json \
+            content/modernization/pr16_bp_native_controls_receipt.json \
+            content/modernization/p08_remaining_work.json design/run_log.md design/version_log.md
+          git add -f -- "$base/34702872369/original.zip" "$base/34703571879/original.zip"
+          python3 - <<'PY'
+          import io,json,pathlib,subprocess,sys,zipfile
+          sys.path.insert(0,'scripts')
+          import guard_private_files as guard
+          from pr16_fixed_form_originals import scan
+          root=pathlib.Path('.').resolve();base='content/modernization/pr16_bp_native_controls_evidence/'
+          allowed={*(base+str(run)+'/'+name for run in (34702872369,34703571879) for name in ('actions.json','original.zip')),
+            'content/modernization/pr16_bp_native_controls_acceptance.json',
+            'content/modernization/pr16_bp_native_controls_receipt.json',
+            'content/modernization/p08_remaining_work.json','design/run_log.md','design/version_log.md'}
+          changed=set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
+          assert changed<=allowed,sorted(changed-allowed)
+          assert not subprocess.check_output(['git','diff','--name-only']), 'unstaged tracked changes'
+          for name in sorted(changed):
+              p=pathlib.PurePosixPath(name)
+              assert p.suffix.lower() not in guard.BLOCKED_SUFFIXES
+              assert not any(name==part or name.startswith(part+'/') for part in guard.BLOCKED_PARTS)
+              raw=guard.index_blob(root,name)
+              if p.suffix.lower()=='.zip':
+                  assert not guard.blocked_zip_members(raw)
+                  with zipfile.ZipFile(io.BytesIO(raw)) as z:scan(z)
+              elif p.suffix.lower() in guard.DOCUMENT_SUFFIXES:
+                  assert not guard.document_user_path_lines(raw)
+          for name in ('design/run_log.md','design/version_log.md'):
+              assert subprocess.check_output(['git','show',':'+name]).startswith(subprocess.check_output(['git','show','HEAD:'+name])), 'log rewritten'
+          record=dict(status='PASS_CHANGED_INDEX_PATHS_ONLY',changed_paths=sorted(changed),new_private_findings=0,
+            global_private_guard_claimed=False,global_historical_guard_boundary='content/modernization/pr16_fixed_form_acceptance_evidence/34698120000/guard_boundary.json',release_ready=False)
+          (root/'.local/pr16-bp-controls-checkpoint/changed-private-guard.json').write_text(json.dumps(record,sort_keys=True,indent=2)+'\n')
+          PY
+          python3 scripts/pr16_bp_controls_checkpoint.py --surface index > .local/pr16-bp-controls-checkpoint/index-check.json
+      - name: Commit once, verify original bytes from HEAD, then non-force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'USER-MODERNIZATION: retain native BP reception cancellation; preserve Trial owner blocker and all four physical gaps'
+          fi
+          python3 scripts/pr16_bp_controls_checkpoint.py --surface head > .local/pr16-bp-controls-checkpoint/head-check.json
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
+          git push origin "HEAD:refs/heads/$BRANCH"
+          git rev-parse HEAD > .local/pr16-bp-controls-checkpoint/pushed-head.txt
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$(git rev-parse HEAD)"
+      - name: Snapshot bounded checkpoint sources and canonical results even on failure
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-bp-controls-checkpoint';out.mkdir(parents=True,exist_ok=True)
+          names=['scripts/pr16_bp_controls_checkpoint.py','tests/test_pr16_bp_controls_checkpoint.py',
+            '.github/workflows/pr16-bp-controls-checkpoint.yml',
+            'content/modernization/pr16_bp_native_controls_acceptance.json',
+            'content/modernization/pr16_bp_native_controls_receipt.json',
+            'content/modernization/pr16_bp_native_controls_preflight.json',
+            'content/modernization/p08_remaining_work.json']
+          bindings={}
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in names:
+                  path=root/name
+                  if not path.exists():continue
+                  raw=path.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<4000000 and not path.is_symlink()
+                  z.writestr(name,raw);bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'source-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          for path in out.iterdir():
+              assert path.is_file() and not path.is_symlink() and path.suffix in {'.txt','.json','.stdout','.stderr','.zip'}
+              if path.suffix=='.zip':assert path.name=='sources.zip'
+              else:path.read_bytes().decode('utf-8')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-controls-checkpoint
+          path: .local/pr16-bp-controls-checkpoint/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

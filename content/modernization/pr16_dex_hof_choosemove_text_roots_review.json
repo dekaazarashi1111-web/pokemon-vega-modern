@@ -1,0 +1,947 @@
+{
+  "schema_version": 1,
+  "required_candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "diagnostic_input": {
+    "size": 33554432,
+    "sha256": "06c5e85cf8cf86eacb369347896154d33594e7a42b3da3a25140bc1cc4da03d5"
+  },
+  "source_bindings": {
+    "choosemove-BPRJ.ld": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "cf5363abd8439d63c7bd12cbe83ade861b0ebb51",
+      "local": "choosemove-BPRJ.ld",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+      "size": 68505,
+      "source": "BPRJ.ld",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/BPRJ.ld"
+    },
+    "choosemove-cfru-charmap.tbl": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "b841b842a93f886ee396c9b7f6529bb633964dbb",
+      "local": "choosemove-cfru-charmap.tbl",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "35c1b978f7004129679751a79cf4b40d7edd2fcd678bc81a29483b64b75b7ed5",
+      "size": 1639,
+      "source": "charmap.tbl",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/charmap.tbl"
+    },
+    "choosemove-cfru-hooks": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "51a0f10dd4cccad235b476edd534a0e3e7e612ad",
+      "local": "choosemove-cfru-hooks",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "19c730e12bcc8ee614b43745a1a6478429c1876a025fdce23b80a49599d8deb5",
+      "size": 21787,
+      "source": "hooks",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/hooks"
+    },
+    "choosemove-cfru-include--battle.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "7add3e78535b105d9d08d3d601da4e1d784f526a",
+      "local": "choosemove-cfru-include--battle.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "8c6b332ef73bc545297b4f6c5bedc1ad11fa4470901f39cf386c1be53f4abdc9",
+      "size": 52228,
+      "source": "include/battle.h",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/battle.h"
+    },
+    "choosemove-cfru-include--battle_controllers.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "306d9ae6ce5956171207a4a779fb878883f271af",
+      "local": "choosemove-cfru-include--battle_controllers.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "95456edaefe281ebeaf55172635f8ccde14d5f4d0e6818f548ce0b37722ed9a1",
+      "size": 11694,
+      "source": "include/battle_controllers.h",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/battle_controllers.h"
+    },
+    "choosemove-cfru-include--constants--battle.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "6ebffb06ae7978281cf9bbd6b082182e4e481714",
+      "local": "choosemove-cfru-include--constants--battle.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "88681a4d9e3f34b8608417adf44f828b8c1a19669bba30e00fe22540e2936fb0",
+      "size": 16608,
+      "source": "include/constants/battle.h",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/constants/battle.h"
+    },
+    "choosemove-cfru-include--gba--types.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "601fdf73ab404a2d1e0ccd5a4d0c3f5382ede8e0",
+      "local": "choosemove-cfru-include--gba--types.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "467a0219173bd2f8e20e962a9eaa43eafba298f815dab6655ae1761367d43ae6",
+      "size": 4241,
+      "source": "include/gba/types.h",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/gba/types.h"
+    },
+    "choosemove-cfru-include--global.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "574c09b9b6209f6bee6e1d3a2fb8866221af8900",
+      "local": "choosemove-cfru-include--global.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "c2973e69e55633ce39c9fe1763c891e5530b4ac1dc15e82a666c1f1ea7201bc0",
+      "size": 19566,
+      "source": "include/global.h",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/global.h"
+    },
+    "choosemove-cfru-include--new--dynamax.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "44172f4de362d06376656a2e48b896f6e7f1b80a",
+      "local": "choosemove-cfru-include--new--dynamax.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "6ac0d6b45362c382cae65e3a168020cdda6b79900a922dede71ac87e8a58df5b",
+      "size": 5148,
+      "source": "include/new/dynamax.h",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/new/dynamax.h"
+    },
+    "choosemove-cfru-include--new--z_move_effects.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "a947a82a6d423797405dacd34c55d69635469756",
+      "local": "choosemove-cfru-include--new--z_move_effects.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "75669f5f8c4c58774e2d43d2ca1917116666b568f9c1cfbb78d305b89288c1f1",
+      "size": 1020,
+      "source": "include/new/z_move_effects.h",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/new/z_move_effects.h"
+    },
+    "choosemove-cfru-include--pokemon.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "b18f2ee2a1517efa8aeb742daedac9e778d73d7a",
+      "local": "choosemove-cfru-include--pokemon.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "d75972c66e85835a3fc9c859cb695c033995ba6627ba1d44f577b35136356c78",
+      "size": 29476,
+      "source": "include/pokemon.h",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/pokemon.h"
+    },
+    "choosemove-cfru-include--sprite.h": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "da7057376c71e2cbe3543f262a6e360e2eeaaf8a",
+      "local": "choosemove-cfru-include--sprite.h",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "c848594606e7889276457e723c5189cbedbe71862a1b001ed9ec39299a8fe511",
+      "size": 11836,
+      "source": "include/sprite.h",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/include/sprite.h"
+    },
+    "choosemove-cfru-scripts--string.py": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "6f67bd402b7f85c7681d3049f49a956a9a8a78b8",
+      "local": "choosemove-cfru-scripts--string.py",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "828d3813ed258a318f5d69f3fbabb05c9f0ef0975701f14875668c680a0f312e",
+      "size": 7959,
+      "source": "scripts/string.py",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/scripts/string.py"
+    },
+    "choosemove-cfru-src--move_menu.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "5154ff0d103203d733a0c54f94cff320dfde1124",
+      "local": "choosemove-cfru-src--move_menu.c",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "4d75ed407c017d2788b7b71c954082751be55d5f0fb6a62becc26d30b8394a52",
+      "size": 84120,
+      "source": "src/move_menu.c",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/src/move_menu.c"
+    },
+    "choosemove-cfru-strings--general_battle_strings.string": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "32c2b30b5822d6be665031f9a27b30a4ae7e1592",
+      "local": "choosemove-cfru-strings--general_battle_strings.string",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "cb94fc213838166058f589d9683903bfd584f950ff6ff83144fc3b992a719ba8",
+      "size": 9483,
+      "source": "strings/general_battle_strings.string",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/strings/general_battle_strings.string"
+    },
+    "choosemove-move_ids.csv": {
+      "commit": "b9be8c6c231df0aac1c5eb163b154a4ec8ff5787",
+      "git_blob_sha": "48e248aed492791bd1c90d7327764b62293683ec",
+      "local": "choosemove-move_ids.csv",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20",
+      "size": 128694,
+      "source": "manifests/move_ids.csv",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/b9be8c6c231df0aac1c5eb163b154a4ec8ff5787/manifests/move_ids.csv"
+    },
+    "choosemove-pret-battle_message.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "a6392be9a91cd8171d920ff45c684b627b0c98b1",
+      "local": "choosemove-pret-battle_message.c",
+      "repository": "pret/pokefirered",
+      "sha256": "257be289b56dbfe63da9cf956a87d91219d45eb72a47d2dff681caa684f2b6de",
+      "size": 151308,
+      "source": "src/battle_message.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/battle_message.c"
+    },
+    "choosemove-pret-string_util.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "5c26d151a61274caac3a16c3b9c4eb73bf9a9e26",
+      "local": "choosemove-pret-string_util.c",
+      "repository": "pret/pokefirered",
+      "sha256": "ed9519d4eaf51ed660a522915366dc0ebf2916d592a91a1d7fc2a012e4f3f17e",
+      "size": 14320,
+      "source": "src/string_util.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/string_util.c"
+    },
+    "choosemove-pret-text.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "f3eef07ce6dea8269980a5ecfdd6902c1c9c13d2",
+      "local": "choosemove-pret-text.c",
+      "repository": "pret/pokefirered",
+      "sha256": "5696f49443eeaaac74b530421ac7f0cbfc71996c557399583788111c322dd80c",
+      "size": 63210,
+      "source": "src/text.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/text.c"
+    },
+    "choosemove-project-overlays--battle_ui--battle_ui.c": {
+      "commit": "b9be8c6c231df0aac1c5eb163b154a4ec8ff5787",
+      "git_blob_sha": "e21b02abf274454492578df658ed6dc989ee978e",
+      "local": "choosemove-project-overlays--battle_ui--battle_ui.c",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "1712b63da4f63c0dcf7209e344f46f5d39793d166e5e3d704f1cf3714e8b5cd5",
+      "size": 14621,
+      "source": "overlays/battle_ui/battle_ui.c",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/b9be8c6c231df0aac1c5eb163b154a4ec8ff5787/overlays/battle_ui/battle_ui.c"
+    },
+    "choosemove-project-overlays--battle_ui--battle_ui_trampoline.S": {
+      "commit": "b9be8c6c231df0aac1c5eb163b154a4ec8ff5787",
+      "git_blob_sha": "bb69ea63ff992f4d22a2fe62bcdc5422d629bd23",
+      "local": "choosemove-project-overlays--battle_ui--battle_ui_trampoline.S",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "3dcf04f37000752f4dfb70e77b63f3d2433d1f89a5a6841cfba4b72dabdb30e0",
+      "size": 2274,
+      "source": "overlays/battle_ui/battle_ui_trampoline.S",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/b9be8c6c231df0aac1c5eb163b154a4ec8ff5787/overlays/battle_ui/battle_ui_trampoline.S"
+    },
+    "choosemove-project-overlays--qol_production--qol_production.c": {
+      "commit": "b9be8c6c231df0aac1c5eb163b154a4ec8ff5787",
+      "git_blob_sha": "d1ba686a3c2d7abf936edd0d17810d93a4357374",
+      "local": "choosemove-project-overlays--qol_production--qol_production.c",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "6a07635ca20dcd37365a2393910eb610d4f9c5a682585149ecb1243738cce23a",
+      "size": 164877,
+      "source": "overlays/qol_production/qol_production.c",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/b9be8c6c231df0aac1c5eb163b154a4ec8ff5787/overlays/qol_production/qol_production.c"
+    },
+    "choosemove-cfru-battle_moves.c": {
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "git_blob_sha": "46a6e4b194479dc26080b9f26f275968d1307332",
+      "local": "choosemove-cfru-battle_moves.c",
+      "repository": "kapibarasan000/CFRU-JP",
+      "sha256": "7c13282701ce28e47370a7be82cd1d8f489e7cbf4b5030ab677ab6b70c79470d",
+      "size": 356184,
+      "source": "src/Tables/battle_moves.c",
+      "url": "https://github.com/kapibarasan000/CFRU-JP/blob/e24a16fe39e27ae162faf5b78596d1f3df18489d/src/Tables/battle_moves.c"
+    },
+    "choosemove-project-qol_production.h": {
+      "commit": "c2059ee805d978575b319e7a113b3edf0a676f1e",
+      "git_blob_sha": "72c81d3dbf656b5c1005dd38bb16afc1859408b6",
+      "local": "choosemove-project-qol_production.h",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "d659645003fc4da6611815f2071e83185a334a78f7e9981533135a9aef6fde7f",
+      "size": 7233,
+      "source": "overlays/qol_production/qol_production.h",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/c2059ee805d978575b319e7a113b3edf0a676f1e/overlays/qol_production/qol_production.h"
+    },
+    "choosemove-project-build_battle_ui.py": {
+      "commit": "c2059ee805d978575b319e7a113b3edf0a676f1e",
+      "git_blob_sha": "54a4d131d1b57b62d5d4df03d07eb509611bd4a0",
+      "local": "choosemove-project-build_battle_ui.py",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "7489c3aa28e1547eea0801ca7d8b532b8252cbf67ede2fe0d199c96587893ce6",
+      "size": 54088,
+      "source": "scripts/build_battle_ui.py",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/c2059ee805d978575b319e7a113b3edf0a676f1e/scripts/build_battle_ui.py"
+    },
+    "choosemove-project-qol_hooks.S": {
+      "commit": "c2059ee805d978575b319e7a113b3edf0a676f1e",
+      "git_blob_sha": "50f7c241f24faea37885ed370774ac528bd58cf5",
+      "local": "choosemove-project-qol_hooks.S",
+      "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+      "sha256": "f98689fe9c02b1345ae63feddc861a9b28fbd35fd8e024b931e88f788f5ac4e5",
+      "size": 9448,
+      "source": "overlays/qol_production/qol_production_hooks.S",
+      "url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/blob/c2059ee805d978575b319e7a113b3edf0a676f1e/overlays/qol_production/qol_production_hooks.S"
+    },
+    "choosemove-pret-text_printer.c": {
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+      "git_blob_sha": "e425ccb181b52d1f0827785e76c1793c2b2d693d",
+      "local": "choosemove-pret-text_printer.c",
+      "repository": "pret/pokefirered",
+      "sha256": "075af562bb87de25773e9dcee93d8180c84083209aede0ed6f02343f94f5823e",
+      "size": 16043,
+      "source": "src/text_printer.c",
+      "url": "https://github.com/pret/pokefirered/blob/c75f352304d529f6ba92d4f74b9cf8b5c3810788/src/text_printer.c"
+    }
+  },
+  "hits": [
+    {
+      "accepted": false,
+      "address": 152318566,
+      "classification": "UNCLASSIFIED",
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "owner_candidates": [],
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "sha256": "6f4e172e4fcd9a3d582f9bd6d633760e3659b4e2a441a4f9363376de8618367c",
+      "size": 4,
+      "target": 167708726
+    },
+    {
+      "accepted": false,
+      "address": 152318997,
+      "classification": "UNCLASSIFIED",
+      "kind": "ALL_BYTE_START_U32_ALL_ROM_MIRRORS",
+      "owner_candidates": [],
+      "reason": "no_complete_typed_asset_consumer_witness",
+      "sha256": "4a05febfefaddb6dcaf3164a12d42f3d2853c9bc0f790c41a7b735cce2f5ec1a",
+      "size": 4,
+      "target": 167708700
+    }
+  ],
+  "root": {
+    "kind": "source_registered_ChooseMove_API_to_four_typed_text_consumers",
+    "entry": 134406636,
+    "qol_adapter": 154630976,
+    "qol_guard": 154635220,
+    "original_cfru_entry": 152137616,
+    "battle_ui_wrapper": 153943640,
+    "trampoline": 153943736,
+    "continuation": 152137624,
+    "choose_data": 33696552,
+    "choose_stride": 512,
+    "choose_struct_size": 120,
+    "new_battle_struct_cell": 33808304,
+    "contact_call": 152140436,
+    "contact_literal": 152141160,
+    "battle_window_api": 135108620,
+    "window_id": 4,
+    "printer_call": 135108996,
+    "printer_api": 134229232,
+    "printer_hook": 154634800,
+    "printer_byte_read": 134240270,
+    "z_dispatch": 152132462,
+    "z_cell": 152470100,
+    "reset_literal": 152133164,
+    "max_dispatch": 152140872,
+    "max_cells": [
+      152470668,
+      152470672
+    ],
+    "max_literals": [
+      152142080,
+      152142076
+    ],
+    "string_copy": 134252800,
+    "string_byte_read": 134252812
+  },
+  "windows": [
+    {
+      "address": 134229232,
+      "size": 18,
+      "sha256": "57ab6f9c95e590181ec3e30de0c3c0dbb881eafc69d29a921821cabd66bc90e0"
+    },
+    {
+      "address": 134229256,
+      "size": 76,
+      "sha256": "9346a86e3da98b69eff97492271c1a35110abe1583da818a6bcde3094364b385"
+    },
+    {
+      "address": 134229372,
+      "size": 74,
+      "sha256": "ddc61a4e29e17b8937a78524c91c6678f77ba1d6a5a19624806e89094db8d6ee"
+    },
+    {
+      "address": 134229448,
+      "size": 8,
+      "sha256": "120ddd0f222de85a2f7578d18042e6ed08ee299f07379ec7ddbe19b41e9bba2b"
+    },
+    {
+      "address": 134229580,
+      "size": 44,
+      "sha256": "cf02ddee6871230ad3f76bf612881266a7a511375804d8bc37056f47e137fc44"
+    },
+    {
+      "address": 134239100,
+      "size": 54,
+      "sha256": "07b1a8eb2d0795bf96f26bde436048160eee3bcd3a07314ba88fedba9b70210b"
+    },
+    {
+      "address": 134239156,
+      "size": 54,
+      "sha256": "177710611b76f1fb28ca82fa34eef5b33bb7a628f1cd6f2f5f780a8f79b5e801"
+    },
+    {
+      "address": 134240092,
+      "size": 14,
+      "sha256": "e1884b1ae3cf6e5c6a380ff1d260112273063feba13208395e645bd2ad35c440"
+    },
+    {
+      "address": 134240108,
+      "size": 10,
+      "sha256": "9cfade071c13a677af346372ad06f39d3ca8a348dea9f45caff81d4b6c8d9fc1"
+    },
+    {
+      "address": 134240120,
+      "size": 12,
+      "sha256": "642e8ba9e52b2a683ee0b59df97da02df63a59a5bc34e8d8cbfd099c34e2a5ca"
+    },
+    {
+      "address": 134240152,
+      "size": 12,
+      "sha256": "f26d8a596e5e8b7ec47989ef32144f5e22d0bba18267f649eed70ea837ae71a7"
+    },
+    {
+      "address": 134240178,
+      "size": 6,
+      "sha256": "bd6e52c8ed8e3052cd31db9149c6bc92ff71fe2a17ac2e6e291bfda2c62c29c5"
+    },
+    {
+      "address": 134240236,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "address": 134240244,
+      "size": 12,
+      "sha256": "a5bf8694d175f66b27a12be1b5ea956d21dc78be2a90977e3c95870ed947f911"
+    },
+    {
+      "address": 134240260,
+      "size": 40,
+      "sha256": "1667772b869abdf85de1adef731cafed2d79c3a6b5c90d1c165b63b8dcbc0439"
+    },
+    {
+      "address": 134240316,
+      "size": 4,
+      "sha256": "27529aaf18f13d5a3c11200edc75e17b70187849d52d5cc4d0dbc7dbd30ee92b"
+    },
+    {
+      "address": 134240324,
+      "size": 42,
+      "sha256": "855f7365836983a951bfdb40921b0abe1d5ea430b258b00664ce4938b10eb644"
+    },
+    {
+      "address": 134240368,
+      "size": 4,
+      "sha256": "21eced07b0254d6fdde112f9cd12e833f19c32d2cf2c8a1886ee6229ac4d1b04"
+    },
+    {
+      "address": 134240400,
+      "size": 4,
+      "sha256": "8e8758a287dcd882c62f7bb5e76048fdd7371e2b6508bfd0002aea14a37a3c0e"
+    },
+    {
+      "address": 134240436,
+      "size": 4,
+      "sha256": "a2c6de6e5bf390caaa1139d8bedfeb5b8c4c7545e4ff0415d041aca17701b645"
+    },
+    {
+      "address": 134240972,
+      "size": 24,
+      "sha256": "877f966f7281fe79c548c283c9b10f7e5446d501d3b4199feeb3c1d81decae97"
+    },
+    {
+      "address": 134241000,
+      "size": 8,
+      "sha256": "a9fedaea751963353e1066b0440ed757608ef06942f6dc2c43955eb57fc4351f"
+    },
+    {
+      "address": 134241028,
+      "size": 16,
+      "sha256": "f33948e9c7e9fcb5253bd5d5241f8162964ec124d43e103a1d3c78ad8315ac9a"
+    },
+    {
+      "address": 134241066,
+      "size": 30,
+      "sha256": "8600c3894bc1bc1af2dc50c574eab5313bf6e50de9bbb9d34808140288e20a5e"
+    },
+    {
+      "address": 134241364,
+      "size": 8,
+      "sha256": "aacc58101b11d55af5e8e7e05fbaa10d7d42fbbca674b5fc37bc7b3cc3ca729f"
+    },
+    {
+      "address": 134252800,
+      "size": 30,
+      "sha256": "9f256aa82c7b59268956fe86bca001d2bad212728554d3b809ca7604007bc1f2"
+    },
+    {
+      "address": 134406636,
+      "size": 8,
+      "sha256": "4a7c1c8ed2491ec397e91a39bc83f66fdcddaca3854d87148ed27b137727d1ce"
+    },
+    {
+      "address": 135108620,
+      "size": 68,
+      "sha256": "950fa7e41aadad596716d8bc9d0b5fa9555412d31948566786000e2f58763ec3"
+    },
+    {
+      "address": 135108712,
+      "size": 4,
+      "sha256": "0360ccd16d59a9e0b4a13ce94544ac5b03e84ab803a8be120920fd09912b8b6e"
+    },
+    {
+      "address": 135108720,
+      "size": 120,
+      "sha256": "4caa80ee7225fb583f91b67b8c5c4ab96811e2895476f2bc44a7b428e0c37ca4"
+    },
+    {
+      "address": 135108852,
+      "size": 4,
+      "sha256": "0360ccd16d59a9e0b4a13ce94544ac5b03e84ab803a8be120920fd09912b8b6e"
+    },
+    {
+      "address": 135108860,
+      "size": 36,
+      "sha256": "3203949bfa99a11cea1f60333ec9abe494ef97ff586b70c05f8e9e77959c67b7"
+    },
+    {
+      "address": 135108908,
+      "size": 26,
+      "sha256": "74f17d9cceb0eb32b204c43ea87c29f8b05f40f5da784b46805cc3eeea0450e8"
+    },
+    {
+      "address": 135108972,
+      "size": 36,
+      "sha256": "5b0479b64388059db70776ecf6af9772951a30ec9263bdac4723bb0806973af9"
+    },
+    {
+      "address": 136084172,
+      "size": 2,
+      "sha256": "bac8ca6ee9f77b46c7ab5824c7c59d99fd0ca53ae998ea2872b78bb6a5189cc5"
+    },
+    {
+      "address": 138168872,
+      "size": 12,
+      "sha256": "1bab8359eb9e2af0c579ffacfcd7b3cd9debc7a5d1f4140f25f7bd26d558af80"
+    },
+    {
+      "address": 138293492,
+      "size": 4,
+      "sha256": "1b14bb8b173da766a16a5e92044a5a3f4a9946b7477d1df3dddc1f54e4f67e31"
+    },
+    {
+      "address": 151266955,
+      "size": 1,
+      "sha256": "4bf5122f344554c53bde2ebb8cd2b7e3d1600ad631c385a5d7cce23c7785459a"
+    },
+    {
+      "address": 151277599,
+      "size": 1,
+      "sha256": "8a331fdde7032f33a71e1b2e257d80166e348e00fcb17914f48bdb57a1c63007"
+    },
+    {
+      "address": 151277647,
+      "size": 1,
+      "sha256": "334359b90efed75da5f0ada1d5e6b256f4a6bd0aee7eb39c0f90182a021ffc8b"
+    },
+    {
+      "address": 152131860,
+      "size": 20,
+      "sha256": "766d60b9e67057cc36c336b6385f4dee7c9609126520c38c283c80116e0766ad"
+    },
+    {
+      "address": 152131936,
+      "size": 2,
+      "sha256": "31ad9e712aea2a78b3b24a595ce1f05f6c5e4f7dd901ffe9b3d767d7dcc126e9"
+    },
+    {
+      "address": 152132020,
+      "size": 8,
+      "sha256": "29bc9d607f6347d1b5dfd54eeedee3d6daf54a3a297e5dc929d6f6532b63de85"
+    },
+    {
+      "address": 152132232,
+      "size": 212,
+      "sha256": "802e42c0848b9ba403ea33de1c13fd7faaa1f46606c94f0ac5cc6fb2c4729a0e"
+    },
+    {
+      "address": 152132446,
+      "size": 10,
+      "sha256": "469425b44974603fb2b954097a045c89a33e9391d296fef0f8b724fc84f8e5b4"
+    },
+    {
+      "address": 152132458,
+      "size": 8,
+      "sha256": "b3b86f95ef89bf796ec2a440fbf51ec2fa4b1aea7f58e5cecc5080eb368be58c"
+    },
+    {
+      "address": 152132918,
+      "size": 10,
+      "sha256": "051827fd22683dbe6a7907df5165cb172b5357126ae4ea01c84d6e56d6f6a081"
+    },
+    {
+      "address": 152133020,
+      "size": 48,
+      "sha256": "763d59866a42105bcedc46aa05950ef822c8abe50fb4586a690286c95fd33826"
+    },
+    {
+      "address": 152133164,
+      "size": 4,
+      "sha256": "202be615434870766d1155ad0346e103db3161f0fa59d02476ef6e7aea059533"
+    },
+    {
+      "address": 152137616,
+      "size": 134,
+      "sha256": "2d1f2d3e1c3553e4c199ece568e510266524e48cfa2855bd998a2e93f0e57d7f"
+    },
+    {
+      "address": 152137764,
+      "size": 4,
+      "sha256": "74cb51b22d1b84a06b4c338ebe06b355ddc551d1f56e0bddaa210e5a40fd8a0c"
+    },
+    {
+      "address": 152137782,
+      "size": 4,
+      "sha256": "433809a59a22c1a883959aaad59f985c4e536ea882ab108dfd7e6ff347b27bee"
+    },
+    {
+      "address": 152137800,
+      "size": 4,
+      "sha256": "e3d797634ed4efe844205c1f40567be34925fabfb0b5570bb663759d22a38112"
+    },
+    {
+      "address": 152137816,
+      "size": 4,
+      "sha256": "e5c445d91a625627cdf5d69444ac3e38810a7b179b252cde7eb69ef1864df278"
+    },
+    {
+      "address": 152137832,
+      "size": 88,
+      "sha256": "f2ccf368591dd647d0521da85fc7cac34f5695a7bf4f8e140e16bcc267deec4a"
+    },
+    {
+      "address": 152138056,
+      "size": 18,
+      "sha256": "5ee1f34e8fc0c7fd4df756df00b2309db172023bb24e4ba05cdbe90d7da8c84a"
+    },
+    {
+      "address": 152138076,
+      "size": 12,
+      "sha256": "d74711046265b1f1b137c93312210f4257912c0390f5328cad6e8fa76470c790"
+    },
+    {
+      "address": 152138324,
+      "size": 16,
+      "sha256": "27374c88e17f4fc7eca2e81133dc1d754f9e75999acadacbf509435d803b4e17"
+    },
+    {
+      "address": 152138344,
+      "size": 12,
+      "sha256": "0de8d51e1e3a125dd9bed28f8b3951979a572ed8ccdd30cbdb4fd4d816132c3b"
+    },
+    {
+      "address": 152138380,
+      "size": 4,
+      "sha256": "efa90a159cf215fa62b9e47396466ba5d31f83afb6df4ba10ef72d33af17f1c8"
+    },
+    {
+      "address": 152138802,
+      "size": 4,
+      "sha256": "12e127a33ac3e5a4a143ab21006b415422b4e0d9bad4d1a1ee388f635ab5f93f"
+    },
+    {
+      "address": 152138884,
+      "size": 6,
+      "sha256": "85478d9ea5778ae127b600bf37c32b2f1574a030d41ab60acdd536ca8d743f23"
+    },
+    {
+      "address": 152139608,
+      "size": 10,
+      "sha256": "f5817f06a53f34d9769c26b0557aaa1bac2a2f791807e39bab08e279b942df3a"
+    },
+    {
+      "address": 152140252,
+      "size": 16,
+      "sha256": "41a6d63b707b18305f5a06fa2f5ba8964adafb24a27b3a76216112b97db9a869"
+    },
+    {
+      "address": 152140272,
+      "size": 14,
+      "sha256": "e4577d7ada59a9b7a837ecb93e274534af87c6d208a43571ec253fbb2ca6f9fd"
+    },
+    {
+      "address": 152140290,
+      "size": 8,
+      "sha256": "8ee4790d427d26048a75c01185d16e95d1da03f1c3674d646eca44570dc6a816"
+    },
+    {
+      "address": 152140302,
+      "size": 18,
+      "sha256": "360f2553cc56823a515f6f2e593a184052e103d2fa0704a8220c7245e5e544ea"
+    },
+    {
+      "address": 152140322,
+      "size": 110,
+      "sha256": "05f4325f52331f41cd17bb8ab3180d5d053ff21e65841a806f2bdd933781bd64"
+    },
+    {
+      "address": 152140434,
+      "size": 6,
+      "sha256": "3d0160d8742380783710a2da330f57dedb72fd58cd2c61de51469d2c315e93b8"
+    },
+    {
+      "address": 152140680,
+      "size": 8,
+      "sha256": "9396c366af75c36607a2a8da370eb6228154c8c40e49970af9d3ccc1292070d7"
+    },
+    {
+      "address": 152140692,
+      "size": 8,
+      "sha256": "ae086c7106c8f8c99cf50cae9a403b48cf4e3b6af73af0f2576959276bb5a4cc"
+    },
+    {
+      "address": 152140704,
+      "size": 8,
+      "sha256": "095ddf703ce8d784485c6ab89d406fccc5191287082a36774779d3ae4a1eb69b"
+    },
+    {
+      "address": 152140716,
+      "size": 48,
+      "sha256": "e8fed7d177974dc251ea0616bb03d0c1436f14a8cc448d5dcefbd61b9ea014ed"
+    },
+    {
+      "address": 152140766,
+      "size": 6,
+      "sha256": "8789d6a6891d1b7c3ccb8e18608eb3c1175d68b461cb6af27d7a937c95785306"
+    },
+    {
+      "address": 152140776,
+      "size": 90,
+      "sha256": "f20f8d381d20dafd109187e4338206a72304d54c24a4e539af922fb8b061f718"
+    },
+    {
+      "address": 152140868,
+      "size": 8,
+      "sha256": "3210d401ff6afca0003017f3f4cf403bbaa64ccab984e4c2ec4b537363ce5241"
+    },
+    {
+      "address": 152141132,
+      "size": 32,
+      "sha256": "8e4a25815ab8dc7d7714d51138f26fa6987226038a1e50f1381c81a38699d5ff"
+    },
+    {
+      "address": 152141168,
+      "size": 4,
+      "sha256": "08c7084b95e9dabca9f2a902a1d956219980ae4db8651fbdfe00abe2665bbb63"
+    },
+    {
+      "address": 152141204,
+      "size": 4,
+      "sha256": "b27bf412427a96912b8bb052057bfeed9e115f7af881857b2ccfbf72c3b4d2cc"
+    },
+    {
+      "address": 152141786,
+      "size": 8,
+      "sha256": "b28ed58711cdcdfdce47acc2d671eceacc4cb815118d9d3a057609713aa08bbf"
+    },
+    {
+      "address": 152141796,
+      "size": 8,
+      "sha256": "b75e56a7359a2ba23becbef58522844377e79a71a79ef5b8556de1075550b8b6"
+    },
+    {
+      "address": 152142076,
+      "size": 8,
+      "sha256": "073cc8d1df2bd128e49a9ec035c1cf8b185214f52a51af6e7c32776d04dc551b"
+    },
+    {
+      "address": 152146208,
+      "size": 2,
+      "sha256": "477db9ac7ca5efc12e37f882656b8fe5a363ffeb99b2e565a953d10c3c91ab21"
+    },
+    {
+      "address": 152146216,
+      "size": 4,
+      "sha256": "47b63d383cb7322696c7da7fee47f8b268d05bc40b5c29460248cc559c5b6721"
+    },
+    {
+      "address": 152146222,
+      "size": 2,
+      "sha256": "91f026c996feb33556b5d418d17e015945f305c96666b62e5c6284cc1df22a09"
+    },
+    {
+      "address": 152318562,
+      "size": 23,
+      "sha256": "e9609fc9037e9e4e4c5febc353369f148e586cc6a4ab2a79f2971837bdba4e80"
+    },
+    {
+      "address": 152318983,
+      "size": 34,
+      "sha256": "ba787fac9faf40ad31b94331346764193895b280d0424bb30d3e23f6e250b580"
+    },
+    {
+      "address": 152470100,
+      "size": 4,
+      "sha256": "13042fa276b68aca106aa86b98d503eab158ed18eb330b88827e0bfd00f3bd79"
+    },
+    {
+      "address": 152470668,
+      "size": 8,
+      "sha256": "73e2aed7b55458cdf72fa4c60740fd7035025d2a6e7c71e0b2324b3bacc15628"
+    },
+    {
+      "address": 153943640,
+      "size": 10,
+      "sha256": "c0f2a476c3ddb3ea36ac08c51211de66a5a9effc028fe549b6220d1c1da1ebd9"
+    },
+    {
+      "address": 153943700,
+      "size": 4,
+      "sha256": "3ff518d4faa523953af7253c7228b55a950e355615d45a8df08713b447234b38"
+    },
+    {
+      "address": 153943736,
+      "size": 16,
+      "sha256": "639298c9aa275cbc62a085142e7419591c564b4641f73f4943e21d3a73065790"
+    },
+    {
+      "address": 154630976,
+      "size": 34,
+      "sha256": "90dfb0e08dc537d1194b2f1dbb62b3debd351be15200f6ba3462cff67f61615f"
+    },
+    {
+      "address": 154631016,
+      "size": 8,
+      "sha256": "932f4db5c2f4303de0bbf11f1cd6e29fce64acb03a6123f2ce513b43ab7679ee"
+    },
+    {
+      "address": 154631112,
+      "size": 12,
+      "sha256": "daf60f0c28be7df609ebefa8bb998cb88366330034f9c3e5a7b2e98fc73979a9"
+    },
+    {
+      "address": 154631142,
+      "size": 2,
+      "sha256": "8726ef5c42206476b80835e7e75d7377ac67a1d964a577f875d20c9dcc98dd97"
+    },
+    {
+      "address": 154634800,
+      "size": 4,
+      "sha256": "394d9290b1b323183a700a728a3ee2479ce07fc8c501e2b5fbff7cc03b1d6836"
+    },
+    {
+      "address": 154634806,
+      "size": 12,
+      "sha256": "0c844cbdaee33e2ee1aa6840c46b906e7390ac5c5faf9d666f14299cdf83f237"
+    },
+    {
+      "address": 154635080,
+      "size": 8,
+      "sha256": "ef0857a3b649682a0c1539bf4a365fa0545e573101a284fd3aff0131bdc24af7"
+    },
+    {
+      "address": 154635220,
+      "size": 20,
+      "sha256": "15e34aeb6133eeee2621f417da32a665171b56649e57806be5f410202de1a01c"
+    },
+    {
+      "address": 154635252,
+      "size": 6,
+      "sha256": "514f6aa802bdc4d077005cde997c6ee1f921c1ce496ca6cc35e22b9a405f8a71"
+    },
+    {
+      "address": 154635260,
+      "size": 12,
+      "sha256": "a27b5807d13529d9611bf79225ad83ffa719be32b717387f888418ab0ff4ac3d"
+    }
+  ],
+  "claims": {
+    "conditional_registered_api_entry": true,
+    "complete_selected_caller_path": true,
+    "all_selected_text_bytes_and_eos_read": true,
+    "selected_pointer_host_seeded": false,
+    "source_only_independent_semantic_fixture": true,
+    "source_bound_move_producer_effects": true,
+    "source_bound_struct_layout": true,
+    "future_live_read_before_write_projection": true,
+    "future_resource_read_and_write_epochs": true,
+    "nonlive_ram_erased_at_every_boundary": true,
+    "current_candidate_measurement_required": true,
+    "actual_runtime_execution_observed": false,
+    "natural_battle_entry_proven": false,
+    "natural_all_prefix_success_proven": false,
+    "choose_move_emit_producer_proven": false,
+    "all_opaque_callee_effects_proven": false,
+    "final_graphics_or_move_effect_success_proven": false,
+    "universal_heap_or_irq_lifetime_proven": false,
+    "indirect_reference_completeness_proven": false,
+    "retirement_proven": false,
+    "donor_eligible": false,
+    "donor_leased": false,
+    "owner_transfer_proven": false
+  },
+  "input_contract": {
+    "entry_ja": "実0802E1EC APIを有効stack/通常ABIで呼ぶ有限context。bank0/cursor0、NewBSの必要field、ChooseMove120byte配置、QoL magic/inverse/auto_active0はAPI入口条件。内部PC・text pointer・effectをhost注入しない。EmitChooseMoveや自然battle入口は未証明。",
+    "prefix_ja": "QoL guardの実2比較、manual入力枝、BattleUIの実prologue trampoline、CFRU全prologue、5used/done field同期、3SIDE getter実引数とpartyIndex writer、single条件のHighlightPossibleTargets短絡、全key優先順を実行。",
+    "max_ja": "START key・battle flag bit30・dynamaxed bit4=true・canMegaEvolve0・Z/Max viewing0。Z関数のfalse早期復帰とMegaのfalse復帰を実行し、選択possibleMaxMoves984/988から12byte stride/+11byteを実read。独立公開producer表のMAX_EFFECT_HEAL_TEAM/SPITE=34/35、実dispatch cellを通る。",
+    "reset_ja": "START・非dynamaxed・Z viewing0・possibleZMoves[0]=FFFF・moves[0]=AGILITY97。IsTerastal(bank0)正常戻り0を有限条件とし、独立producer表Z_EFFECT_RESET_STATS1を実read/table dispatchする。",
+    "contact_ja": "L key・Z/Max viewing0・details0・makesContact[0]=0。4cursor/4window clearとmove-nameの実callを通り、NoContact literalからBattlePutTextOnWindow window4へ配送する。",
+    "consumer_ja": "StringCopyは全source byteとEOSを実LDRBし同DISPLAYへwriteして実復帰。NoContactは実window4 template→font1/speed0→AddTextPrinter→現QoL hook→temporary printer→font dispatch→RenderText全7byte/EOS→実復帰まで。日本語templateの10利用field/12strideは明示有限dataと実consumerで束縛し、英語pretのtemplate値やsizeから導出したとは主張しない。",
+    "opaque_ja": "非対象cursor/空text・move-name表示、glyph decoder/copy・font lookup生成は正確なsite/target/引数に対する正常同期ABIのみ条件化。getter0/IsTerastal0以外の戻りとcaller-saved/NZCVをUnknownへ消去し、全副作用や描画成功を仮定しない。",
+    "epoch_ja": "各境界の実将来read-before-write RAMだけを保持して非liveを消去。resourceは将来readとwriteの両方を逆向き集計し、NewBS/stack/DISPLAYの必要epochだけ維持。実hookのactive writerが生成するtemporary printer世代も、そのwriter後～最後のuseだけ同epoch。window4はNoContact printer期間のuseだけが根で、Max/Resetにwindow同epochを課さない。正常外部APIで必要な有効window3..6は各呼出の局所条件であり、全寿命の証明ではない。",
+    "minimum_ja": "4有限caseの実消費和を09143266/09143415各4byteだけへ射影。隣接text全57byteは独立文字serializer証拠だが全extentを分類しない。命令/literal/table/templateも証拠であり新分類には含めない。"
+  },
+  "finite_profiles": {
+    "heal": {
+      "text": 2,
+      "key": 8,
+      "move": 984,
+      "effect": 34,
+      "endpoint": 152141804
+    },
+    "spite": {
+      "text": 3,
+      "key": 8,
+      "move": 988,
+      "effect": 35,
+      "endpoint": 152141794
+    },
+    "reset": {
+      "text": 1,
+      "key": 8,
+      "move": 97,
+      "effect": 1,
+      "endpoint": 152132928
+    },
+    "contact": {
+      "text": 0,
+      "key": 512,
+      "move": 97,
+      "effect": 1,
+      "endpoint": 152140440
+    }
+  },
+  "texts": [
+    {
+      "address": 152318562,
+      "size": 7,
+      "label": "gText_NoContact",
+      "text": "ひせっしょく"
+    },
+    {
+      "address": 152318569,
+      "size": 16,
+      "label": "gText_ResetStats",
+      "text": "さがった のうりょくを もどす"
+    },
+    {
+      "address": 152318983,
+      "size": 17,
+      "label": "gText_MaxMoveHealTeam",
+      "text": "みかたの たいりょくを かいふく"
+    },
+    {
+      "address": 152319000,
+      "size": 17,
+      "label": "gText_MaxMoveSpite",
+      "text": "さいごの わざのPPを 2へらす"
+    }
+  ]
+}

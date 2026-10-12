@@ -1,0 +1,150 @@
+{
+  "status": "STATIC_WEST_CANDIDATE_NOT_REACHABILITY_PROOF",
+  "preparation": {
+    "size": 8633,
+    "sha256": "1a5433c6daf97f28ea3ef970f7e185721bc0e7e382c3bfa70081fc5c0f4373a4"
+  },
+  "route": [
+    [
+      8,
+      10
+    ],
+    [
+      9,
+      10
+    ],
+    [
+      9,
+      9
+    ],
+    [
+      9,
+      8
+    ],
+    [
+      9,
+      7
+    ],
+    [
+      9,
+      6
+    ],
+    [
+      8,
+      6
+    ],
+    [
+      8,
+      5
+    ],
+    [
+      7,
+      5
+    ]
+  ],
+  "terrain": [
+    {
+      "xy": [
+        8,
+        10
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        9,
+        10
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        9,
+        9
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        9,
+        8
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        9,
+        7
+      ],
+      "elevation": 4,
+      "collision": 0,
+      "behavior": 50
+    },
+    {
+      "xy": [
+        9,
+        6
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        8,
+        6
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    },
+    {
+      "xy": [
+        8,
+        5
+      ],
+      "elevation": 0,
+      "collision": 1,
+      "behavior": 0
+    },
+    {
+      "xy": [
+        7,
+        5
+      ],
+      "elevation": 3,
+      "collision": 0,
+      "behavior": 8
+    }
+  ],
+  "dynamic_tile": {
+    "xy": [
+      8,
+      5
+    ],
+    "metatile": 641,
+    "collision": 0,
+    "flag": 4367,
+    "script": 136398412
+  },
+  "uncertain_edge": [
+    [
+      9,
+      7
+    ],
+    [
+      9,
+      6
+    ]
+  ],
+  "note_ja": "height4→3/behavior50の境界はnative未測定。3試行停止ならその場で通常保存して未到達を保持。強制通過しない。",
+  "native_arrival_accepted": false
+}

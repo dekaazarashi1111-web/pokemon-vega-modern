@@ -1,0 +1,2568 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-STORY-RESOURCE-SUPPLIERS",
+  "source_head": "a041183bde6aae8a3ffacf8fe18b5dc1bc372c7d",
+  "run_id": 35329291913,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "initial_roots": [
+      134220225,
+      134224421,
+      134224437,
+      134224455,
+      134224477,
+      134224487,
+      134224497,
+      134224521,
+      134228297,
+      134228713,
+      134526993,
+      136093081
+    ],
+    "new_nodes": [
+      {
+        "address": 134220224,
+        "size": 2,
+        "hex": "00b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134220226,
+        "size": 2,
+        "hex": "0006",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220228,
+        "size": 2,
+        "hex": "020e",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220230,
+        "size": 2,
+        "hex": "042a",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220232,
+        "size": 2,
+        "hex": "10d1",
+        "kind": "conditional",
+        "target": 134220268,
+        "memory_write": false
+      },
+      {
+        "address": 134220234,
+        "size": 2,
+        "hex": "054a",
+        "kind": "ordinary",
+        "literal_address": 134220256,
+        "literal_value": 67108868,
+        "memory_write": false
+      },
+      {
+        "address": 134220236,
+        "size": 2,
+        "hex": "1188",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220238,
+        "size": 2,
+        "hex": "0548",
+        "kind": "ordinary",
+        "literal_address": 134220260,
+        "literal_value": 65511,
+        "memory_write": false
+      },
+      {
+        "address": 134220240,
+        "size": 2,
+        "hex": "0840",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220242,
+        "size": 2,
+        "hex": "1080",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134220244,
+        "size": 2,
+        "hex": "0449",
+        "kind": "ordinary",
+        "literal_address": 134220264,
+        "literal_value": 50331652,
+        "memory_write": false
+      },
+      {
+        "address": 134220246,
+        "size": 2,
+        "hex": "1088",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220248,
+        "size": 2,
+        "hex": "0988",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220250,
+        "size": 2,
+        "hex": "0843",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220252,
+        "size": 2,
+        "hex": "1080",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134220254,
+        "size": 2,
+        "hex": "0ce0",
+        "kind": "jump",
+        "target": 134220282,
+        "memory_write": false
+      },
+      {
+        "address": 134220268,
+        "size": 2,
+        "hex": "8020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220270,
+        "size": 2,
+        "hex": "c004",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220272,
+        "size": 2,
+        "hex": "1018",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220274,
+        "size": 2,
+        "hex": "0349",
+        "kind": "ordinary",
+        "literal_address": 134220288,
+        "literal_value": 50331648,
+        "memory_write": false
+      },
+      {
+        "address": 134220276,
+        "size": 2,
+        "hex": "5118",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220278,
+        "size": 2,
+        "hex": "0988",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220280,
+        "size": 2,
+        "hex": "0180",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134220282,
+        "size": 2,
+        "hex": "01bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134220284,
+        "size": 2,
+        "hex": "0047",
+        "kind": "indirect",
+        "register": 0,
+        "memory_write": false
+      },
+      {
+        "address": 134224420,
+        "size": 2,
+        "hex": "ff20",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224422,
+        "size": 2,
+        "hex": "0090",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224424,
+        "size": 2,
+        "hex": "0190",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224426,
+        "size": 2,
+        "hex": "0290",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224428,
+        "size": 2,
+        "hex": "0390",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224430,
+        "size": 2,
+        "hex": "201c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224432,
+        "size": 2,
+        "hex": "191c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224434,
+        "size": 2,
+        "hex": "24e0",
+        "kind": "jump",
+        "target": 134224510,
+        "memory_write": false
+      },
+      {
+        "address": 134224436,
+        "size": 2,
+        "hex": "ff20",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224438,
+        "size": 2,
+        "hex": "0090",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224440,
+        "size": 2,
+        "hex": "0190",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224442,
+        "size": 2,
+        "hex": "0290",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224444,
+        "size": 2,
+        "hex": "0390",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224446,
+        "size": 2,
+        "hex": "201c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224448,
+        "size": 2,
+        "hex": "ff21",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224450,
+        "size": 2,
+        "hex": "1a1c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224452,
+        "size": 2,
+        "hex": "1ce0",
+        "kind": "jump",
+        "target": 134224512,
+        "memory_write": false
+      },
+      {
+        "address": 134224454,
+        "size": 2,
+        "hex": "ff20",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224456,
+        "size": 2,
+        "hex": "0090",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224458,
+        "size": 2,
+        "hex": "0190",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224460,
+        "size": 2,
+        "hex": "0290",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224462,
+        "size": 2,
+        "hex": "0390",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224464,
+        "size": 2,
+        "hex": "201c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224466,
+        "size": 2,
+        "hex": "ff21",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224468,
+        "size": 2,
+        "hex": "ff22",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224470,
+        "size": 4,
+        "hex": "fff72ffb",
+        "kind": "call",
+        "target": 134222008,
+        "memory_write": false
+      },
+      {
+        "address": 134224474,
+        "size": 2,
+        "hex": "20e0",
+        "kind": "jump",
+        "target": 134224542,
+        "memory_write": false
+      },
+      {
+        "address": 134224476,
+        "size": 2,
+        "hex": "0093",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224478,
+        "size": 2,
+        "hex": "ff20",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224480,
+        "size": 2,
+        "hex": "0190",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224482,
+        "size": 2,
+        "hex": "0290",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224484,
+        "size": 2,
+        "hex": "08e0",
+        "kind": "jump",
+        "target": 134224504,
+        "memory_write": false
+      },
+      {
+        "address": 134224486,
+        "size": 2,
+        "hex": "ff20",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224488,
+        "size": 2,
+        "hex": "0090",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224490,
+        "size": 2,
+        "hex": "0193",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224492,
+        "size": 2,
+        "hex": "0290",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224494,
+        "size": 2,
+        "hex": "03e0",
+        "kind": "jump",
+        "target": 134224504,
+        "memory_write": false
+      },
+      {
+        "address": 134224496,
+        "size": 2,
+        "hex": "ff20",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224498,
+        "size": 2,
+        "hex": "0090",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224500,
+        "size": 2,
+        "hex": "0190",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224502,
+        "size": 2,
+        "hex": "0293",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224504,
+        "size": 2,
+        "hex": "0390",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224506,
+        "size": 2,
+        "hex": "201c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224508,
+        "size": 2,
+        "hex": "ff21",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224510,
+        "size": 2,
+        "hex": "ff22",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224512,
+        "size": 2,
+        "hex": "ff23",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224514,
+        "size": 4,
+        "hex": "fff719fb",
+        "kind": "call",
+        "target": 134222008,
+        "memory_write": false
+      },
+      {
+        "address": 134224518,
+        "size": 2,
+        "hex": "0ae0",
+        "kind": "jump",
+        "target": 134224542,
+        "memory_write": false
+      },
+      {
+        "address": 134224520,
+        "size": 2,
+        "hex": "ff20",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224522,
+        "size": 2,
+        "hex": "0090",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224524,
+        "size": 2,
+        "hex": "0190",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224526,
+        "size": 2,
+        "hex": "0290",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224528,
+        "size": 2,
+        "hex": "0393",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134224530,
+        "size": 2,
+        "hex": "201c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224532,
+        "size": 2,
+        "hex": "ff21",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224534,
+        "size": 2,
+        "hex": "ff22",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224536,
+        "size": 2,
+        "hex": "ff23",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134224538,
+        "size": 4,
+        "hex": "fff70dfb",
+        "kind": "call",
+        "target": 134222008,
+        "memory_write": false
+      },
+      {
+        "address": 134228296,
+        "size": 2,
+        "hex": "00b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134228298,
+        "size": 2,
+        "hex": "021c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228300,
+        "size": 2,
+        "hex": "0b1c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228302,
+        "size": 2,
+        "hex": "103b",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228304,
+        "size": 2,
+        "hex": "111c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228306,
+        "size": 4,
+        "hex": "fff7ebff",
+        "kind": "call",
+        "target": 134228268,
+        "memory_write": false
+      },
+      {
+        "address": 134228310,
+        "size": 2,
+        "hex": "01bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228312,
+        "size": 2,
+        "hex": "0047",
+        "kind": "indirect",
+        "register": 0,
+        "memory_write": false
+      },
+      {
+        "address": 134228712,
+        "size": 2,
+        "hex": "30b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134228714,
+        "size": 2,
+        "hex": "81b0",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228716,
+        "size": 2,
+        "hex": "0c1c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228718,
+        "size": 4,
+        "hex": "fff735ff",
+        "kind": "call",
+        "target": 134228316,
+        "memory_write": false
+      },
+      {
+        "address": 134228722,
+        "size": 2,
+        "hex": "051c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228724,
+        "size": 2,
+        "hex": "002d",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228726,
+        "size": 2,
+        "hex": "11d0",
+        "kind": "conditional",
+        "target": 134228764,
+        "memory_write": false
+      },
+      {
+        "address": 134228728,
+        "size": 2,
+        "hex": "0320",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228730,
+        "size": 2,
+        "hex": "2040",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228732,
+        "size": 2,
+        "hex": "0028",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228734,
+        "size": 2,
+        "hex": "02d0",
+        "kind": "conditional",
+        "target": 134228742,
+        "memory_write": false
+      },
+      {
+        "address": 134228736,
+        "size": 2,
+        "hex": "a008",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228738,
+        "size": 2,
+        "hex": "0130",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228740,
+        "size": 2,
+        "hex": "8400",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228742,
+        "size": 2,
+        "hex": "0020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228744,
+        "size": 2,
+        "hex": "0090",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134228746,
+        "size": 2,
+        "hex": "6202",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228748,
+        "size": 2,
+        "hex": "d20a",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228750,
+        "size": 2,
+        "hex": "a020",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228752,
+        "size": 2,
+        "hex": "c004",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228754,
+        "size": 2,
+        "hex": "0243",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228756,
+        "size": 2,
+        "hex": "6846",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228758,
+        "size": 2,
+        "hex": "291c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228760,
+        "size": 4,
+        "hex": "c4f1b6ff",
+        "kind": "call",
+        "target": 136084104,
+        "memory_write": false
+      },
+      {
+        "address": 134228764,
+        "size": 2,
+        "hex": "281c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228766,
+        "size": 2,
+        "hex": "01b0",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228768,
+        "size": 2,
+        "hex": "30bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228770,
+        "size": 2,
+        "hex": "02bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134228772,
+        "size": 2,
+        "hex": "0847",
+        "kind": "indirect",
+        "register": 1,
+        "memory_write": false
+      },
+      {
+        "address": 134526992,
+        "size": 2,
+        "hex": "30b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134526994,
+        "size": 2,
+        "hex": "0c4c",
+        "kind": "ordinary",
+        "literal_address": 134527044,
+        "literal_value": 50352200,
+        "memory_write": false
+      },
+      {
+        "address": 134526996,
+        "size": 2,
+        "hex": "2568",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134526998,
+        "size": 4,
+        "hex": "f8f739fe",
+        "kind": "call",
+        "target": 134497420,
+        "memory_write": false
+      },
+      {
+        "address": 134527002,
+        "size": 2,
+        "hex": "7c21",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134527004,
+        "size": 2,
+        "hex": "0140",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134527006,
+        "size": 2,
+        "hex": "0a4a",
+        "kind": "ordinary",
+        "literal_address": 134527048,
+        "literal_value": 50352204,
+        "memory_write": false
+      },
+      {
+        "address": 134527008,
+        "size": 2,
+        "hex": "0a48",
+        "kind": "ordinary",
+        "literal_address": 134527052,
+        "literal_value": 33703144,
+        "memory_write": false
+      },
+      {
+        "address": 134527010,
+        "size": 2,
+        "hex": "0818",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134527012,
+        "size": 2,
+        "hex": "1060",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134527014,
+        "size": 2,
+        "hex": "0a48",
+        "kind": "ordinary",
+        "literal_address": 134527056,
+        "literal_value": 33707148,
+        "memory_write": false
+      },
+      {
+        "address": 134527016,
+        "size": 2,
+        "hex": "0818",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134527018,
+        "size": 2,
+        "hex": "2060",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134527020,
+        "size": 2,
+        "hex": "094a",
+        "kind": "ordinary",
+        "literal_address": 134527060,
+        "literal_value": 50352208,
+        "memory_write": false
+      },
+      {
+        "address": 134527022,
+        "size": 2,
+        "hex": "0a48",
+        "kind": "ordinary",
+        "literal_address": 134527064,
+        "literal_value": 33722956,
+        "memory_write": false
+      },
+      {
+        "address": 134527024,
+        "size": 2,
+        "hex": "0918",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134527026,
+        "size": 2,
+        "hex": "1160",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 134527028,
+        "size": 4,
+        "hex": "4ef00af8",
+        "kind": "call",
+        "target": 134846540,
+        "memory_write": false
+      },
+      {
+        "address": 134527032,
+        "size": 2,
+        "hex": "281c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134527034,
+        "size": 4,
+        "hex": "c5f0a7fd",
+        "kind": "call",
+        "target": 135336844,
+        "memory_write": false
+      },
+      {
+        "address": 134527038,
+        "size": 2,
+        "hex": "30bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134527040,
+        "size": 2,
+        "hex": "01bc",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 134527042,
+        "size": 2,
+        "hex": "0047",
+        "kind": "indirect",
+        "register": 0,
+        "memory_write": false
+      },
+      {
+        "address": 136093080,
+        "size": 2,
+        "hex": "30b5",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136093082,
+        "size": 2,
+        "hex": "051c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093084,
+        "size": 2,
+        "hex": "2c1c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093086,
+        "size": 2,
+        "hex": "0b1c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093088,
+        "size": 2,
+        "hex": "0f2a",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093090,
+        "size": 2,
+        "hex": "19d9",
+        "kind": "conditional",
+        "target": 136093144,
+        "memory_write": false
+      },
+      {
+        "address": 136093092,
+        "size": 2,
+        "hex": "181c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093094,
+        "size": 2,
+        "hex": "2843",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093096,
+        "size": 2,
+        "hex": "0321",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093098,
+        "size": 2,
+        "hex": "0840",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093100,
+        "size": 2,
+        "hex": "0028",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093102,
+        "size": 2,
+        "hex": "13d1",
+        "kind": "conditional",
+        "target": 136093144,
+        "memory_write": false
+      },
+      {
+        "address": 136093104,
+        "size": 2,
+        "hex": "291c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093106,
+        "size": 2,
+        "hex": "01cb",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093108,
+        "size": 2,
+        "hex": "01c1",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136093110,
+        "size": 2,
+        "hex": "01cb",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093112,
+        "size": 2,
+        "hex": "01c1",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136093114,
+        "size": 2,
+        "hex": "01cb",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093116,
+        "size": 2,
+        "hex": "01c1",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136093118,
+        "size": 2,
+        "hex": "01cb",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093120,
+        "size": 2,
+        "hex": "01c1",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136093122,
+        "size": 2,
+        "hex": "103a",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093124,
+        "size": 2,
+        "hex": "0f2a",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093126,
+        "size": 2,
+        "hex": "f4d8",
+        "kind": "conditional",
+        "target": 136093106,
+        "memory_write": false
+      },
+      {
+        "address": 136093128,
+        "size": 2,
+        "hex": "032a",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093130,
+        "size": 2,
+        "hex": "04d9",
+        "kind": "conditional",
+        "target": 136093142,
+        "memory_write": false
+      },
+      {
+        "address": 136093132,
+        "size": 2,
+        "hex": "01cb",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093134,
+        "size": 2,
+        "hex": "01c1",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136093136,
+        "size": 2,
+        "hex": "043a",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093138,
+        "size": 2,
+        "hex": "032a",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093140,
+        "size": 2,
+        "hex": "fad8",
+        "kind": "conditional",
+        "target": 136093132,
+        "memory_write": false
+      },
+      {
+        "address": 136093142,
+        "size": 2,
+        "hex": "0c1c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093144,
+        "size": 2,
+        "hex": "013a",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093146,
+        "size": 2,
+        "hex": "0120",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093148,
+        "size": 2,
+        "hex": "4042",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093150,
+        "size": 2,
+        "hex": "8242",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093152,
+        "size": 2,
+        "hex": "07d0",
+        "kind": "conditional",
+        "target": 136093170,
+        "memory_write": false
+      },
+      {
+        "address": 136093154,
+        "size": 2,
+        "hex": "011c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093156,
+        "size": 2,
+        "hex": "1878",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093158,
+        "size": 2,
+        "hex": "2070",
+        "kind": "ordinary",
+        "memory_write": true
+      },
+      {
+        "address": 136093160,
+        "size": 2,
+        "hex": "0133",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093162,
+        "size": 2,
+        "hex": "0134",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093164,
+        "size": 2,
+        "hex": "013a",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093166,
+        "size": 2,
+        "hex": "8a42",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093168,
+        "size": 2,
+        "hex": "f8d1",
+        "kind": "conditional",
+        "target": 136093156,
+        "memory_write": false
+      },
+      {
+        "address": 136093170,
+        "size": 2,
+        "hex": "281c",
+        "kind": "ordinary",
+        "memory_write": false
+      },
+      {
+        "address": 136093172,
+        "size": 2,
+        "hex": "30bd",
+        "kind": "return",
+        "memory_write": false
+      }
+    ],
+    "roots": [
+      {
+        "entry": 134220225,
+        "window": [
+          134220224,
+          134220344
+        ],
+        "new_node_addresses": [
+          134220224,
+          134220226,
+          134220228,
+          134220230,
+          134220232,
+          134220234,
+          134220236,
+          134220238,
+          134220240,
+          134220242,
+          134220244,
+          134220246,
+          134220248,
+          134220250,
+          134220252,
+          134220254,
+          134220268,
+          134220270,
+          134220272,
+          134220274,
+          134220276,
+          134220278,
+          134220280,
+          134220282,
+          134220284
+        ],
+        "boundaries": [
+          {
+            "site": 134220282,
+            "kind": "revisited_node_boundary",
+            "target": 134220283
+          },
+          {
+            "site": 134220284,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134224421,
+        "window": [
+          134224420,
+          134224548
+        ],
+        "new_node_addresses": [
+          134224420,
+          134224422,
+          134224424,
+          134224426,
+          134224428,
+          134224430,
+          134224432,
+          134224434,
+          134224510,
+          134224512,
+          134224514,
+          134224518
+        ],
+        "boundaries": [
+          {
+            "site": 134224514,
+            "kind": "unread_call",
+            "target": 134222009
+          },
+          {
+            "site": 134224542,
+            "kind": "saved_node_boundary",
+            "target": 134224543
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134224437,
+        "window": [
+          134224436,
+          134224552
+        ],
+        "new_node_addresses": [
+          134224436,
+          134224438,
+          134224440,
+          134224442,
+          134224444,
+          134224446,
+          134224448,
+          134224450,
+          134224452
+        ],
+        "boundaries": [
+          {
+            "site": 134224512,
+            "kind": "saved_node_boundary",
+            "target": 134224513
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134224455,
+        "window": [
+          134224454,
+          134224552
+        ],
+        "new_node_addresses": [
+          134224454,
+          134224456,
+          134224458,
+          134224460,
+          134224462,
+          134224464,
+          134224466,
+          134224468,
+          134224470,
+          134224474
+        ],
+        "boundaries": [
+          {
+            "site": 134224470,
+            "kind": "unread_call",
+            "target": 134222009
+          },
+          {
+            "site": 134224542,
+            "kind": "saved_node_boundary",
+            "target": 134224543
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134224477,
+        "window": [
+          134224476,
+          134224552
+        ],
+        "new_node_addresses": [
+          134224476,
+          134224478,
+          134224480,
+          134224482,
+          134224484,
+          134224504,
+          134224506,
+          134224508
+        ],
+        "boundaries": [
+          {
+            "site": 134224510,
+            "kind": "saved_node_boundary",
+            "target": 134224511
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134224487,
+        "window": [
+          134224486,
+          134224552
+        ],
+        "new_node_addresses": [
+          134224486,
+          134224488,
+          134224490,
+          134224492,
+          134224494
+        ],
+        "boundaries": [
+          {
+            "site": 134224504,
+            "kind": "saved_node_boundary",
+            "target": 134224505
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134224497,
+        "window": [
+          134224496,
+          134224552
+        ],
+        "new_node_addresses": [
+          134224496,
+          134224498,
+          134224500,
+          134224502
+        ],
+        "boundaries": [
+          {
+            "site": 134224504,
+            "kind": "saved_node_boundary",
+            "target": 134224505
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134224521,
+        "window": [
+          134224520,
+          134224552
+        ],
+        "new_node_addresses": [
+          134224520,
+          134224522,
+          134224524,
+          134224526,
+          134224528,
+          134224530,
+          134224532,
+          134224534,
+          134224536,
+          134224538
+        ],
+        "boundaries": [
+          {
+            "site": 134224538,
+            "kind": "unread_call",
+            "target": 134222009
+          },
+          {
+            "site": 134224542,
+            "kind": "saved_node_boundary",
+            "target": 134224543
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134228297,
+        "window": [
+          134228296,
+          134228316
+        ],
+        "new_node_addresses": [
+          134228296,
+          134228298,
+          134228300,
+          134228302,
+          134228304,
+          134228306,
+          134228310,
+          134228312
+        ],
+        "boundaries": [
+          {
+            "site": 134228306,
+            "kind": "unread_call",
+            "target": 134228269
+          },
+          {
+            "site": 134228312,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134228713,
+        "window": [
+          134228712,
+          134228840
+        ],
+        "new_node_addresses": [
+          134228712,
+          134228714,
+          134228716,
+          134228718,
+          134228722,
+          134228724,
+          134228726,
+          134228728,
+          134228730,
+          134228732,
+          134228734,
+          134228736,
+          134228738,
+          134228740,
+          134228742,
+          134228744,
+          134228746,
+          134228748,
+          134228750,
+          134228752,
+          134228754,
+          134228756,
+          134228758,
+          134228760,
+          134228764,
+          134228766,
+          134228768,
+          134228770,
+          134228772
+        ],
+        "boundaries": [
+          {
+            "site": 134228718,
+            "kind": "unread_call",
+            "target": 134228317
+          },
+          {
+            "site": 134228742,
+            "kind": "revisited_node_boundary",
+            "target": 134228743
+          },
+          {
+            "site": 134228760,
+            "kind": "unread_call",
+            "target": 136084105
+          },
+          {
+            "site": 134228764,
+            "kind": "revisited_node_boundary",
+            "target": 134228765
+          },
+          {
+            "site": 134228772,
+            "kind": "indirect_boundary",
+            "register": 1
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 134526993,
+        "window": [
+          134526992,
+          134527068
+        ],
+        "new_node_addresses": [
+          134526992,
+          134526994,
+          134526996,
+          134526998,
+          134527002,
+          134527004,
+          134527006,
+          134527008,
+          134527010,
+          134527012,
+          134527014,
+          134527016,
+          134527018,
+          134527020,
+          134527022,
+          134527024,
+          134527026,
+          134527028,
+          134527032,
+          134527034,
+          134527038,
+          134527040,
+          134527042
+        ],
+        "boundaries": [
+          {
+            "site": 134526998,
+            "kind": "unread_call",
+            "target": 134497421
+          },
+          {
+            "site": 134527028,
+            "kind": "unread_call",
+            "target": 134846541
+          },
+          {
+            "site": 134527034,
+            "kind": "unread_call",
+            "target": 135336845
+          },
+          {
+            "site": 134527042,
+            "kind": "indirect_boundary",
+            "register": 0
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      },
+      {
+        "entry": 136093081,
+        "window": [
+          136093080,
+          136093176
+        ],
+        "new_node_addresses": [
+          136093080,
+          136093082,
+          136093084,
+          136093086,
+          136093088,
+          136093090,
+          136093092,
+          136093094,
+          136093096,
+          136093098,
+          136093100,
+          136093102,
+          136093104,
+          136093106,
+          136093108,
+          136093110,
+          136093112,
+          136093114,
+          136093116,
+          136093118,
+          136093120,
+          136093122,
+          136093124,
+          136093126,
+          136093128,
+          136093130,
+          136093132,
+          136093134,
+          136093136,
+          136093138,
+          136093140,
+          136093142,
+          136093144,
+          136093146,
+          136093148,
+          136093150,
+          136093152,
+          136093154,
+          136093156,
+          136093158,
+          136093160,
+          136093162,
+          136093164,
+          136093166,
+          136093168,
+          136093170,
+          136093172
+        ],
+        "boundaries": [
+          {
+            "site": 136093106,
+            "kind": "revisited_node_boundary",
+            "target": 136093107
+          },
+          {
+            "site": 136093132,
+            "kind": "revisited_node_boundary",
+            "target": 136093133
+          },
+          {
+            "site": 136093142,
+            "kind": "revisited_node_boundary",
+            "target": 136093143
+          },
+          {
+            "site": 136093144,
+            "kind": "revisited_node_boundary",
+            "target": 136093145
+          },
+          {
+            "site": 136093144,
+            "kind": "revisited_node_boundary",
+            "target": 136093145
+          },
+          {
+            "site": 136093156,
+            "kind": "revisited_node_boundary",
+            "target": 136093157
+          },
+          {
+            "site": 136093170,
+            "kind": "revisited_node_boundary",
+            "target": 136093171
+          },
+          {
+            "site": 136093172,
+            "kind": "return_opcode_not_abi_proof"
+          }
+        ],
+        "candidate_control_flow_only": true,
+        "runtime_reachable": false,
+        "side_effects_excluded": false
+      }
+    ],
+    "waves": [
+      {
+        "index": 0,
+        "roots": [
+          134220225,
+          134224421,
+          134224437,
+          134224455,
+          134224477,
+          134224487,
+          134224497,
+          134224521,
+          134228297,
+          134228713,
+          134526993,
+          136093081
+        ],
+        "new_nodes": 190,
+        "following": []
+      }
+    ],
+    "deferred_by_wave_limit": [],
+    "saved_nodes_redecoded": 0,
+    "saved_boundary_links": [
+      {
+        "root": 134220225,
+        "site": 134220282,
+        "kind": "revisited_node_boundary",
+        "target": 134220283,
+        "effective_target": 134220283,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134224421,
+        "site": 134224514,
+        "kind": "unread_call",
+        "target": 134222009,
+        "effective_target": 134222009,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134224421,
+        "site": 134224542,
+        "kind": "saved_node_boundary",
+        "target": 134224543,
+        "effective_target": 134224543,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134224437,
+        "site": 134224512,
+        "kind": "saved_node_boundary",
+        "target": 134224513,
+        "effective_target": 134224513,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134224455,
+        "site": 134224470,
+        "kind": "unread_call",
+        "target": 134222009,
+        "effective_target": 134222009,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134224455,
+        "site": 134224542,
+        "kind": "saved_node_boundary",
+        "target": 134224543,
+        "effective_target": 134224543,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134224477,
+        "site": 134224510,
+        "kind": "saved_node_boundary",
+        "target": 134224511,
+        "effective_target": 134224511,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134224487,
+        "site": 134224504,
+        "kind": "saved_node_boundary",
+        "target": 134224505,
+        "effective_target": 134224505,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134224497,
+        "site": 134224504,
+        "kind": "saved_node_boundary",
+        "target": 134224505,
+        "effective_target": 134224505,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134224521,
+        "site": 134224538,
+        "kind": "unread_call",
+        "target": 134222009,
+        "effective_target": 134222009,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134224521,
+        "site": 134224542,
+        "kind": "saved_node_boundary",
+        "target": 134224543,
+        "effective_target": 134224543,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134228297,
+        "site": 134228306,
+        "kind": "unread_call",
+        "target": 134228269,
+        "effective_target": 134228269,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134228713,
+        "site": 134228718,
+        "kind": "unread_call",
+        "target": 134228317,
+        "effective_target": 134228317,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134228713,
+        "site": 134228742,
+        "kind": "revisited_node_boundary",
+        "target": 134228743,
+        "effective_target": 134228743,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 134228713,
+        "site": 134228764,
+        "kind": "revisited_node_boundary",
+        "target": 134228765,
+        "effective_target": 134228765,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 136093081,
+        "site": 136093106,
+        "kind": "revisited_node_boundary",
+        "target": 136093107,
+        "effective_target": 136093107,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 136093081,
+        "site": 136093132,
+        "kind": "revisited_node_boundary",
+        "target": 136093133,
+        "effective_target": 136093133,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 136093081,
+        "site": 136093142,
+        "kind": "revisited_node_boundary",
+        "target": 136093143,
+        "effective_target": 136093143,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 136093081,
+        "site": 136093144,
+        "kind": "revisited_node_boundary",
+        "target": 136093145,
+        "effective_target": 136093145,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 136093081,
+        "site": 136093156,
+        "kind": "revisited_node_boundary",
+        "target": 136093157,
+        "effective_target": 136093157,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      },
+      {
+        "root": 136093081,
+        "site": 136093170,
+        "kind": "revisited_node_boundary",
+        "target": 136093171,
+        "effective_target": 136093171,
+        "binding": "SAVED_NODE_ONLY_NOT_RETURN_OR_LIVE_FRAME_PROOF"
+      }
+    ],
+    "pending_boundaries": [
+      {
+        "root": 134220225,
+        "site": 134220284,
+        "kind": "indirect_boundary",
+        "register": 0
+      },
+      {
+        "root": 134228297,
+        "site": 134228312,
+        "kind": "indirect_boundary",
+        "register": 0
+      },
+      {
+        "root": 134228713,
+        "site": 134228760,
+        "kind": "unread_call",
+        "target": 136084105,
+        "effective_target": 136084105
+      },
+      {
+        "root": 134228713,
+        "site": 134228772,
+        "kind": "indirect_boundary",
+        "register": 1
+      },
+      {
+        "root": 134526993,
+        "site": 134526998,
+        "kind": "unread_call",
+        "target": 134497421,
+        "effective_target": 134497421
+      },
+      {
+        "root": 134526993,
+        "site": 134527028,
+        "kind": "unread_call",
+        "target": 134846541,
+        "effective_target": 134846541
+      },
+      {
+        "root": 134526993,
+        "site": 134527034,
+        "kind": "unread_call",
+        "target": 135336845,
+        "effective_target": 135336845
+      },
+      {
+        "root": 134526993,
+        "site": 134527042,
+        "kind": "indirect_boundary",
+        "register": 0
+      }
+    ],
+    "pending_direct_callees": [
+      134497421,
+      134846541,
+      135336845,
+      136084105
+    ],
+    "pending_continuations": [],
+    "classification": "CANDIDATE_RESOURCE_SUPPLIER_BYTES_NOT_NORMAL_STORY_EXECUTION",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "data_tables": [
+      {
+        "name": "bg_default",
+        "address": 136109700,
+        "hex": "00000000",
+        "identity": {
+          "size": 4,
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119"
+        }
+      },
+      {
+        "name": "bg_attribute_slots",
+        "address": 134224392,
+        "hex": "241a0008341a0008461a00085c1a0008701a0008881a0008661a0008",
+        "identity": {
+          "size": 28,
+          "sha256": "28cc2947f2d1df4b5e81e5937e345f170d1a91f2a2312e221a54d3aa75ee04c4"
+        }
+      }
+    ],
+    "attribute_slots": [
+      {
+        "selector": 1,
+        "address": 134224392,
+        "target": 134224420,
+        "decode_root": 134224421
+      },
+      {
+        "selector": 2,
+        "address": 134224396,
+        "target": 134224436,
+        "decode_root": 134224437
+      },
+      {
+        "selector": 3,
+        "address": 134224400,
+        "target": 134224454,
+        "decode_root": 134224455
+      },
+      {
+        "selector": 4,
+        "address": 134224404,
+        "target": 134224476,
+        "decode_root": 134224477
+      },
+      {
+        "selector": 5,
+        "address": 134224408,
+        "target": 134224496,
+        "decode_root": 134224497
+      },
+      {
+        "selector": 6,
+        "address": 134224412,
+        "target": 134224520,
+        "decode_root": 134224521
+      },
+      {
+        "selector": 7,
+        "address": 134224416,
+        "target": 134224486,
+        "decode_root": 134224487
+      }
+    ],
+    "new_node_count": 190,
+    "saved_node_count": 10056,
+    "new_windows": [
+      {
+        "start": 134220224,
+        "end": 134220286,
+        "hex": "00b50006020e042a10d1054a1188054808401080044910880988084310800ce004000004e7ff0000040000038020c0041018034951180988018001bc0047",
+        "identity": {
+          "size": 62,
+          "sha256": "b3be8f9fa69ca26306a572f3b61ceb9a4a4e1b803e51694c1a86822484b7ea87"
+        }
+      },
+      {
+        "start": 134220288,
+        "end": 134220292,
+        "hex": "00000003",
+        "identity": {
+          "size": 4,
+          "sha256": "88185d128d9922e0e6bcd32b07b6c7f20f27968eab447a1d8d1cdf250f79f7d3"
+        }
+      },
+      {
+        "start": 134224392,
+        "end": 134224542,
+        "hex": "241a0008341a0008461a00085c1a0008701a0008881a0008661a0008ff200090019002900390201c191c24e0ff200090019002900390201cff211a1c1ce0ff200090019002900390201cff21ff22fff72ffb20e00093ff200190029008e0ff2000900193029003e0ff200090019002930390201cff21ff22ff23fff719fb0ae0ff200090019002900393201cff21ff22ff23fff70dfb",
+        "identity": {
+          "size": 150,
+          "sha256": "93a44d9c327202869ca5c8ccca3ea22fb18d93aa45ae62c93a9ea1ee92f9e235"
+        }
+      },
+      {
+        "start": 134228296,
+        "end": 134228314,
+        "hex": "00b5021c0b1c103b111cfff7ebff01bc0047",
+        "identity": {
+          "size": 18,
+          "sha256": "e43b5d086a5b439ab771e75d26508677814d3d3cb3fbdf7a3c1019e74231db32"
+        }
+      },
+      {
+        "start": 134228712,
+        "end": 134228774,
+        "hex": "30b581b00c1cfff735ff051c002d11d003202040002802d0a00801308400002000906202d20aa020c00402436846291cc4f1b6ff281c01b030bc02bc0847",
+        "identity": {
+          "size": 62,
+          "sha256": "f68ff2b984088a2c70e78ba9edf269b7f31caff08fbe7159c69dc5e416698d0d"
+        }
+      },
+      {
+        "start": 134526992,
+        "end": 134527068,
+        "hex": "30b50c4c2568f8f739fe7c2101400a4a0a48081810600a4808182060094a0a48091811604ef00af8281cc5f0a7fd30bc01bc0047485000034c500003e84402028c540202505000034c920202",
+        "identity": {
+          "size": 76,
+          "sha256": "75177a4d07a98357466cbc98b693c6dbede0de3e567542fe62909fc36c7bc512"
+        }
+      },
+      {
+        "start": 136093080,
+        "end": 136093174,
+        "hex": "30b5051c2c1c0b1c0f2a19d9181c284303210840002813d1291c01cb01c101cb01c101cb01c101cb01c1103a0f2af4d8032a04d901cb01c1043a032afad80c1c013a01204042824207d0011c1878207001330134013a8a42f8d1281c30bd",
+        "identity": {
+          "size": 94,
+          "sha256": "8e7cfc589c83bae793a94cf85f766bb3eb938c85151c8002b14966cc1f2ef825"
+        }
+      },
+      {
+        "start": 136109700,
+        "end": 136109704,
+        "hex": "00000000",
+        "identity": {
+          "size": 4,
+          "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119"
+        }
+      }
+    ],
+    "new_window_bytes": 470,
+    "saved_bytes_reused": 0,
+    "heap_io_window_font_supply_proven": false,
+    "candidate_reconstructions": 1,
+    "rom_changes": 0,
+    "new_emulator_processes": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "accepted_native_cases_replayed": 0,
+    "normal_story_observed": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "boundary_ja": "BG実定数と実属性dispatch7slotを供給。memcpy/heap/GPU静的callee帰還は実行証明ではない。未読save relocation/暗号化、HW転送、通常storyは未証明。",
+    "export_manifest": {
+      "size": 65422,
+      "sha256": "63406dc1219c6a841e89fc3aff402560fe64f1e2e1547c5725b82f5bc54104c3"
+    }
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_bios_record.py": {
+      "size": 11374,
+      "sha256": "448e17fa82fbe031d9202fd6045315e88c590202ae4f3c4f864283052a414ffa"
+    },
+    "scripts/pr16_ring_story_resource_suppliers.py": {
+      "size": 8839,
+      "sha256": "0be6cd1fefbdef5cbae8fdd789f5bf340024a9e7da5df2085203bd8f8776da15"
+    },
+    "tests/test_pr16_ring_story_resource_suppliers.py": {
+      "size": 3110,
+      "sha256": "462335e4906d3e4042410ffaac649ff1317a49dc18a35788fe002ede9bb4464e"
+    },
+    ".github/workflows/pr16-ring-story-resource-suppliers.yml": {
+      "size": 1757,
+      "sha256": "fed7b3c03ccc5ade9c5aaa3dcc3b8419bbd97de80a3dfab39e1fb9e8b462548d"
+    },
+    "content/modernization/pr16_ring_story_resources_frontier.json": {
+      "size": 249558,
+      "sha256": "20c16c20540822ff111241ecd9cf4cedd897dc8256b28045a7bf4b7902e16a68"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_story_resources_frontier.py": {
+      "size": 9747,
+      "sha256": "cf52b84636b4191417614cf6fa1e74493297aae35b8b94ce1aeba84352989fdc"
+    },
+    "scripts/pr16_ring_story_dispatch_frontier.py": {
+      "size": 10872,
+      "sha256": "51373f424de8476dfdf6b39b86817c41ad4e0ed8c4e1e9f66f04813385ebad70"
+    },
+    "scripts/pr16_ring_story_caller_frontier.py": {
+      "size": 14052,
+      "sha256": "a3a344fed68068d672c70d1368589807913d513baf2c07384a10089dcca4a84e"
+    },
+    "scripts/pr16_ring_owner_frontier.py": {
+      "size": 12711,
+      "sha256": "e7505577537eba4df7a5ee641836b56f212706473eb99ef139a60d22141b9e65"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    },
+    "scripts/pr16_ring_message_task_frontier.py": {
+      "size": 11023,
+      "sha256": "281514fa091e8a6082a37024fd6aa54869ff39b996ef15517e7132ce750322ee"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 20,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35328554870,
+      "head_sha": "db6a249d19f0fcb60586721477d1e4d2e4881148",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35329297321,
+      "name": "p03-forgetting-ci",
+      "head_sha": "a041183bde6aae8a3ffacf8fe18b5dc1bc372c7d",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35329297317,
+      "name": "source-validation",
+      "head_sha": "a041183bde6aae8a3ffacf8fe18b5dc1bc372c7d",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35329291800,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "a041183bde6aae8a3ffacf8fe18b5dc1bc372c7d",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35329291953,
+      "name": "p03-forgetting-ci",
+      "head_sha": "a041183bde6aae8a3ffacf8fe18b5dc1bc372c7d",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35329292026,
+      "name": "source-validation",
+      "head_sha": "a041183bde6aae8a3ffacf8fe18b5dc1bc372c7d",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35329291913,
+      "name": "BG実定数・属性表とmemcpy・heap・GPU供給を限定採取",
+      "head_sha": "a041183bde6aae8a3ffacf8fe18b5dc1bc372c7d",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35329291984,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "a041183bde6aae8a3ffacf8fe18b5dc1bc372c7d",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35328723041,
+      "name": "p03-forgetting-ci",
+      "head_sha": "5ace4113413471eff4736fa41fbed8ce7a7814e8",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35328722989,
+      "name": "source-validation",
+      "head_sha": "5ace4113413471eff4736fa41fbed8ce7a7814e8",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35328558986,
+      "name": "p03-forgetting-ci",
+      "head_sha": "db6a249d19f0fcb60586721477d1e4d2e4881148",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35328558991,
+      "name": "source-validation",
+      "head_sha": "db6a249d19f0fcb60586721477d1e4d2e4881148",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35328554990,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "db6a249d19f0fcb60586721477d1e4d2e4881148",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35328554882,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "db6a249d19f0fcb60586721477d1e4d2e4881148",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35328554873,
+      "name": "p03-forgetting-ci",
+      "head_sha": "db6a249d19f0fcb60586721477d1e4d2e4881148",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35328554859,
+      "name": "source-validation",
+      "head_sha": "db6a249d19f0fcb60586721477d1e4d2e4881148",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35328554870,
+      "name": "heap・BG・画面初期化の未読依存を限定採取",
+      "head_sha": "db6a249d19f0fcb60586721477d1e4d2e4881148",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35328051982,
+      "name": "p03-forgetting-ci",
+      "head_sha": "0f006d3dea36feb618dfbe9673618f9e17b2b02d",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35328051898,
+      "name": "source-validation",
+      "head_sha": "0f006d3dea36feb618dfbe9673618f9e17b2b02d",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35328047579,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "0f006d3dea36feb618dfbe9673618f9e17b2b02d",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35328047513,
+      "name": "source-validation",
+      "head_sha": "0f006d3dea36feb618dfbe9673618f9e17b2b02d",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

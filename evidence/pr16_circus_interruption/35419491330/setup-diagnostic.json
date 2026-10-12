@@ -1,0 +1,26 @@
+{
+  "artifact_id": 10577695453,
+  "artifact_sha256": "c59f90fa96befa9deda814ea30e0c1fcd3755aa092deb6ea0bd8d4595c3dd6e0",
+  "checkpoint": {
+    "sha256": "be71fdf202670538c29f64a00f6d80847ab1e2214267db52dcfc08e9da12dc7b",
+    "size": 1713
+  },
+  "checkpoint_head": "d312e25bc5d6e46172ffb91d609dda6069c6d319",
+  "excerpt_source": "GitHub Actions job log 105834335146 at 2026-09-19T03:47:09.9134225Z",
+  "job_id": 105834335146,
+  "native_processes_executed": 0,
+  "original_conclusion": "failure",
+  "original_log_excerpt": "bash: line 3: .local/pr16-circus-three-win/toolchain.log: No such file or directory",
+  "repaired_path": "scripts/pr16_circus_interruption.py",
+  "run_id": 35419491330,
+  "schema_version": 1,
+  "scope_ja": "setup出力先mkdir欠落のみ修復。前回はcompiler/候補復元/nativeの実行前に停止。native検証条件・入力controller・ROMは変更しない。",
+  "source_after": {
+    "sha256": "d5c54508e3d47c9f2b6ec29d0d0e8feb315073e744b808b3611489b8cec678a6",
+    "size": 9701
+  },
+  "source_before": {
+    "sha256": "fde409d61a51de4ef74808c336881a562498752442fb32ee03521e7fde548655",
+    "size": 9651
+  }
+}

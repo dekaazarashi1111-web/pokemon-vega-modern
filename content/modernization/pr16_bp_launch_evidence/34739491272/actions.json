@@ -1,0 +1,61 @@
+{
+  "run": {
+    "conclusion": "success",
+    "event": "workflow_dispatch",
+    "head_sha": "613fd76915f262c080b56700a48f77827bf3e378",
+    "id": 34739491272,
+    "path": ".github/workflows/pr16-bp-selection-native.yml",
+    "run_attempt": 1,
+    "status": "completed"
+  },
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "613fd76915f262c080b56700a48f77827bf3e378",
+      "id": 103676647813,
+      "name": "selection-native",
+      "status": "completed"
+    }
+  ],
+  "artifact": {
+    "digest": "sha256:303b3d51a8d3116e2def4f464578d1c29f44e4f8e37f7f54eb677e5f78a4ac07",
+    "expired": false,
+    "id": 10312207537,
+    "name": "pr16-bp-selection-native",
+    "size_in_bytes": 750753,
+    "workflow_run": {
+      "head_branch": "codex/modernization-followup-20260908",
+      "head_repository_id": 1358127462,
+      "head_sha": "613fd76915f262c080b56700a48f77827bf3e378",
+      "id": 34739491272,
+      "repository_id": 1358127462
+    }
+  },
+  "classification": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
+  "native_head_checks": [
+    {
+      "conclusion": "action_required",
+      "event": "pull_request",
+      "head_sha": "613fd76915f262c080b56700a48f77827bf3e378",
+      "id": 34739493101,
+      "name": "source-validation",
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "event": "pull_request",
+      "head_sha": "613fd76915f262c080b56700a48f77827bf3e378",
+      "id": 34739493102,
+      "name": "p03-forgetting-ci",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "head_sha": "613fd76915f262c080b56700a48f77827bf3e378",
+      "id": 34739491272,
+      "name": "Native three-selection dataflow diagnostic on bffd; no BP acceptance",
+      "status": "completed"
+    }
+  ]
+}

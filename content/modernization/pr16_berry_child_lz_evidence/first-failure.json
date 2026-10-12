@@ -1,0 +1,50 @@
+{
+  "artifact": {
+    "sha256": "50a803ba4ab9fc8d1bfa6a03c5da03714265b8c94361c38e3ce1da3e619b194e",
+    "size": 1173
+  },
+  "artifact_id": 11698727383,
+  "correction_ja": "mGBA default loggerはDEBUGもstdoutへ出す。native loggerを明示し数をJSONへ記録、warn/error/stubは拒否。初回のreader証拠は未受入のまま保持。",
+  "failure": {
+    "attempt": {
+      "accepted_reader_replays": 0,
+      "accepted_test_reruns": 0,
+      "full_rom_scans": 0,
+      "native_processes": 1,
+      "rom_reconstructions": 1
+    },
+    "detail": "Expecting value: line 1 column 1 (char 0)",
+    "exception_type": "JSONDecodeError",
+    "frames": [
+      {
+        "line": 257,
+        "path": "scripts/pr16_berry_child_lz_actions.py"
+      },
+      {
+        "line": 209,
+        "path": "scripts/pr16_berry_child_lz_actions.py"
+      }
+    ],
+    "phase": "new-continuation-native",
+    "status": "NOT_ACCEPTED"
+  },
+  "members": {
+    "attempt.json": {
+      "sha256": "7a52f0a8479b0568d070fc9f8621b85f971d5572a10035bba9f3c5a52092cb78",
+      "size": 140
+    },
+    "failure.json": {
+      "sha256": "5f559ee8b89806767dec6b2bfd0f3987e052441cbe5de59b715fc51346bbd587",
+      "size": 523
+    },
+    "lz-tests.txt": {
+      "sha256": "2ec6a075bc178cf7a33eccd535ea70885699664e24c0bf4fdd63336c9358168c",
+      "size": 2313
+    }
+  },
+  "pure_test_replays": 0,
+  "pure_tests_reused": 25,
+  "run_id": 38129501468,
+  "source_head": "3ca9da928024890c252510116380888c7e419f73",
+  "status": "NOT_ACCEPTED"
+}

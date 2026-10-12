@@ -1,0 +1,48 @@
+{
+  "artifact_digest": "sha256:b1166c0d8cbd40487b300a3814851ad4e64fdb3fc190082df525f6241be37fe8",
+  "artifact_head_sha": "96c634134730f0c4f5aed989e7a4ed6b23c2c6d6",
+  "artifact_id": 10137176189,
+  "artifact_name": "p05-native-mega-lifecycle",
+  "artifact_run_id": 34438575892,
+  "artifact_size": 162216,
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "96c634134730f0c4f5aed989e7a4ed6b23c2c6d6",
+  "job_conclusion": "success",
+  "job_id": 102748670155,
+  "job_name": "native-mega-turn-revert-cold-save",
+  "job_run_id": 34438575892,
+  "job_status": "completed",
+  "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+  "run_attempt": 1,
+  "run_id": 34438575892,
+  "status": "completed",
+  "steps": [
+    {
+      "conclusion": "success",
+      "name": "Fixed compiler and emulator",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Regression contracts and exact candidate",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Fresh 42 processes and 48 cores without PASS cache",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Preserve exact source and workflow",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed"
+    }
+  ],
+  "workflow_path": ".github/workflows/p05-mega-lifecycle-e2e.yml"
+}

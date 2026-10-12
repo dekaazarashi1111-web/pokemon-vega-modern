@@ -1,0 +1,63 @@
+name: pr16-home-recovery-context
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-home-recovery-context.yml]
+permissions:
+  contents: read
+jobs:
+  context:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Export scoped tracked text without executing accepted tests
+        shell: python
+        run: |
+          import hashlib, json, os, pathlib, subprocess, zipfile
+          root = pathlib.Path('.')
+          out = root / '.local/pr16-home-recovery-context'
+          out.mkdir(parents=True, exist_ok=True)
+          paths = subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          allowed = []
+          for name in paths:
+              if not name:
+                  continue
+              p = pathlib.PurePosixPath(name)
+              if p.suffix not in {'.py','.json','.md','.txt','.c','.h','.yml','.sh'}:
+                  continue
+              selected = (name == 'AGENTS.md' or name == 'CHATGPT_RESUME.md'
+                  or name.startswith(('tools/regression/','config/','state/','infra/'))
+                  or name in {'design/active_play_baseline.md','design/run_log.md','design/version_log.md','docs/PR16_RESEARCH_STORY_TRAINING_JA.md','docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md'}
+                  or (name.startswith('scripts/') and (p.name.startswith(('pr16_','build_','github_','validate_task_graph','private_file_guard')) or p.name == '__init__.py'))
+                  or (name.startswith('tests/') and p.name.startswith(('test_pr16_research_story','test_rom_runtime','test_regression','__init__')))
+                  or name in {'content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/p08_remaining_work.json'}
+                  or name.startswith('content/modernization/pr16_research_story_training')
+                  or (name.startswith('.github/workflows/') and 'pr16-research-story' in name))
+              if selected and not pathlib.Path(name).is_symlink():
+                  data = pathlib.Path(name).read_bytes()
+                  try:
+                      data.decode('utf-8')
+                  except UnicodeDecodeError:
+                      continue
+                  if b'\0' not in data:
+                      allowed.append(name)
+          manifest = {'schema_version':1,'source_head':os.environ['GITHUB_SHA'],'read_only':True,'native_executions':0,'accepted_test_reruns':0,'files':{}}
+          with zipfile.ZipFile(out / 'scoped-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(allowed):
+                  data = pathlib.Path(name).read_bytes()
+                  z.writestr(name,data)
+                  manifest['files'][name] = {'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (out / 'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+          (out / 'tracked-paths.txt').write_text('\n'.join(paths))
+          print('Scoped source files:',len(allowed),'native=0 accepted_test_reruns=0')
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-home-recovery-context
+          path: .local/pr16-home-recovery-context
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

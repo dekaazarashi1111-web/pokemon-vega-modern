@@ -1,0 +1,71 @@
+name: pr16-research-story
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-research-story.yml]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+jobs:
+  story:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Measure new natural starter Save and independent Continue only
+        run: |
+          mkdir -p .local/pr16-story-run
+          python3 -B scripts/pr16_research_story_actions.py measure > .local/pr16-story-run/measure.stdout.txt 2> .local/pr16-story-run/measure.stderr.txt
+      - name: Record immutable evidence fixed resume and append-only logs
+        run: |
+          python3 -B scripts/pr16_research_story_actions.py record
+      - name: Task graph and scoped final index
+        run: |
+          python3 -B scripts/validate_task_graph.py
+          mapfile -t paths < <(python3 -B scripts/pr16_research_story_actions.py paths)
+          git add -- "${paths[@]}"
+          python3 -B scripts/pr16_research_story_actions.py guard
+      - name: Non-force scoped completion commit
+        run: |
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260927-RESEARCH-STORY: 自然スターター取得とSave・独立Continueを限定受入'
+          git push origin "HEAD:$GITHUB_REF"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-story-run/completion-head.txt
+      - name: Preserve text completion snapshot
+        run: python3 -B scripts/pr16_research_story_actions.py snapshot
+      - name: Preserve successful partial inputs even if later oracle or writer fails
+        if: always()
+        run: |
+          python3 -B - <<'PY'
+          import pathlib,shutil
+          out=pathlib.Path('.local/pr16-story-run');target=out/'checkpoint';target.mkdir(parents=True,exist_ok=True)
+          for mode in ('new-game','continue'):
+            source=out/mode
+            if source.is_dir():
+              dest=target/mode;dest.mkdir(exist_ok=True)
+              for p in source.iterdir():
+                if p.is_file() and p.suffix in ('.ppm','.srm'):shutil.copy2(p,dest/p.name)
+          for p in (out/'public').glob('*'):
+            if p.is_file():shutil.copy2(p,target/p.name)
+          for p in out.glob('*.txt'):
+            if p.is_file():shutil.copy2(p,target/p.name)
+          if (out/'runner').is_file():shutil.copy2(out/'runner',target/'runner')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-research-story-checkpoint
+          path: .local/pr16-story-run/checkpoint
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
