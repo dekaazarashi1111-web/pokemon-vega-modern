@@ -14,7 +14,7 @@ R0.1は別出力として実装・限定検証・パッケージ生成/展開確
 
 ## 次の未完作業
 
-現在の next_action は SAVE_CAPACITY_SELECTED_PLA1_AND_IPS_ACTUAL_READER。保存73bankのtype1は一致0件（type1不在の全域証明ではない）。次はpr16_supply_pla1のarchive-image.bin内+17232(0x095FE848)を現代化learnset供給consumerの具体的ABI/読取命令へ束縛し、0x0880FA64のIPS記録11873に由来する実asset境界と0x09673660の未所有配置元も個別に調べる。形/所有者だけで正式型・安全容量に昇格しない。今回22境界試験/type1新1計測と受入済み音声/系譜/map/LZ/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存統合/窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。 固定JSONのread_pathsを使う。
+現在の next_action は SAVE_CAPACITY_IPS_AND_DPE_ASSET_READERS。PLA1二次逆参照の全4byte読取は受領済み。0x0880FA64のIPS記録11873から実asset境界とcallerを特定し、0x09673660はDPE予約envelope内の配置元/具体的asset readerを照合する。予約regionは実ownerではなく未所有は空き容量ではない。この二次参照の解決で主対象の全reader/正式分類を完了扱いにしない。新36境界試験/2実ARM profile/14受領試験と受入済みtype1/PCM/系譜/map/LZ/逆参照/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。 固定JSONのread_pathsを使う。
 
 所有者が閲覧版で案を検討する間も、実作業セッションでは保存容量→CI整合→追加機構の技術確認を継続する。未承認バランス案や新メガ/Gmax/Zの対象・性能は決めない。無人バックグラウンド実行の約束ではない。
 

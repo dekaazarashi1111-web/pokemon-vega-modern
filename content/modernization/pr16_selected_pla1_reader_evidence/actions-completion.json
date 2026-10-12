@@ -1,0 +1,96 @@
+{
+  "accepted_measurement_reruns": 0,
+  "accepted_test_reruns": 0,
+  "additional_rom_reconstructions": 0,
+  "artifact": {
+    "digest": "sha256:eeafdc7cd027495e34ea8ece8d2c1c4ced038413284a6c76e044a815005111ae",
+    "id": 11726251879,
+    "name": "pr16-selected-pla1-reader-public-text",
+    "size_in_bytes": 179708
+  },
+  "artifact_members": {
+    "attempt.json": {
+      "sha256": "fd14f0710deb38144ca03dd09e77dec1d8dd84ffe41ca6fd3ee3b703eb32336a",
+      "size": 167
+    },
+    "pla1-reader.json": {
+      "sha256": "dcde9da4036fac3a18e321eab5f99a85462c45353885b58787ad05a49d12c0d5",
+      "size": 23054
+    },
+    "reader-tests.txt": {
+      "sha256": "3b0448a618787c82847bbec4b037e3aa98e18a9e6ba1417bfc8a72cce74e42d3",
+      "size": 3617
+    },
+    "result.json": {
+      "sha256": "69ff0a7ef41603b0bfdbccf52a404e3da7572d01e34119d4a6a14322be252617",
+      "size": 908
+    },
+    "saved-arm-reuse.json": {
+      "sha256": "0087c26dae640860154aeffcd5ea32db1ac15f6842ff4999a7f1d3a21e30b7ef",
+      "size": 1245
+    },
+    "scoped-context.zip": {
+      "sha256": "6de307df258a4e482f82d445f68d6879f20b0810ec4fc3896ff5ac98acda9485",
+      "size": 174046
+    },
+    "starting-head-checks.json": {
+      "sha256": "f2836863696be197a1a74f75ae5a1c42adef5d100f4a2a988b5791ffd50e75d3",
+      "size": 2057
+    },
+    "task-graph.txt": {
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a",
+      "size": 77
+    }
+  },
+  "conclusion": "success",
+  "conditional_reader_only": true,
+  "formal_classification_changes": 0,
+  "id": 38203143951,
+  "observed_at": "2026-10-12T04:26:33.893940+00:00",
+  "published_source_commit": "01aff6bdfde2cb8ab07bec612bfaa45adf9167cd",
+  "required_steps": [
+    "新PLA1全4byteの境界と実consumerのみ検証",
+    "Run actions/upload-artifact@v4"
+  ],
+  "result": {
+    "accepted_measurement_reruns": 0,
+    "accepted_test_reruns": 0,
+    "actions_run_id": 38203143951,
+    "donor_safe_bytes": 0,
+    "family": 0,
+    "formal_classified": 789,
+    "formal_unclassified": 85,
+    "native_processes": 0,
+    "new_reader_profiles_completed": 2,
+    "new_unit_tests": 36,
+    "other_two_targets_reader_proven": false,
+    "owner": 530,
+    "profiles": [
+      {
+        "capacity": 160,
+        "instruction_count": 12728,
+        "output_count": 32,
+        "returned": 1
+      },
+      {
+        "capacity": 31,
+        "instruction_count": 12497,
+        "output_count": null,
+        "returned": 0
+      }
+    ],
+    "roles": [
+      "selector_u8",
+      "xor_mask_u8",
+      "xor_mask_u8",
+      "xor_mask_u8"
+    ],
+    "rom_reconstructions_started": 1,
+    "selected_unknown_origins": 6,
+    "source_head": "01aff6bdfde2cb8ab07bec612bfaa45adf9167cd",
+    "status": "MEASURED_PLA1_CONDITIONAL_READER_RECEIPT_PENDING",
+    "target": 157280328
+  },
+  "source_head": "01aff6bdfde2cb8ab07bec612bfaa45adf9167cd",
+  "status": "completed"
+}

@@ -11846,3 +11846,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 保存73bankのtype1は一致0件（type1不在の全域証明ではない）。次はpr16_supply_pla1のarchive-image.bin内+17232(0x095FE848)を現代化learnset供給consumerの具体的ABI/読取命令へ束縛し、0x0880FA64のIPS記録11873に由来する実asset境界と0x09673660の未所有配置元も個別に調べる。形/所有者だけで正式型・安全容量に昇格しない。今回22境界試験/type1新1計測と受入済み音声/系譜/map/LZ/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存統合/窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
 - Commit: 両ログを含む単親通常commit。実SHAはActions result/Git履歴。
 - Network: 同repo固定Actions/artifact読取と同branch非force pushのみ。ROM/IPS/Save/private原本はGit追加なし。
+
+## 2026-10-12T04:26:40.550950+00:00
+- Timestamp: 2026-10-12T04:26:40.550950+00:00
+- Task: USER-20261012-SELECTED-PLA1-CLOSEOUT / 選定PLA1実readerの受領
+- Version: selected-pla1-reader-v1
+- Status: DONE（条件付き二次参照readerのみ。主asset/保存統合は未完）
+- Summary: 選定二次逆参照0x095FE848はPLA1 owner530/family0のrecord17227..17239にあり、末尾selector1byteとXOR mask3byteを実ARM LDRB 0x09FFF2EC/0x09FFF328で全4byte消費。実配置の保存2788byte ARM/21383byte image/現候補全SHA一致。正常容量160で32件、容量31では出力/count無変更で拒否。明示ABIの条件付きdecoder実行であり自然入口の新受入ではない。
+- Files changed: 新reader/36境界試験/Actions、受領器/14試験、改作なしの測定原本/完了受領/JSON/引継ぎMD・両ログ。
+- Verify: run38203143951/job114660715809全必須step成功。ZIP179708byte SHA256 eeafdc7cd027495e34ea8ece8d2c1c4ced038413284a6c76e044a815005111ae・8member・測定source/context全byte照合。新36試験、12728/12497命令の2条件、今回14受領試験、task graph、最終index読戻し。
+- Scope: 保存ARMとPLA1不変。実測時のみ候補復元1、受領時0。旧全owner/native/PCM/type1/系譜/map/LZ/Wiki再走0。正式789/85・残6・安全容量0。
+- Boundary: 全体private guardの歴史的違反・一般CI失敗は成功へ読み替えず別記録。自然UI/容量確保/保存統合未受入。
+- Next: PLA1二次逆参照の全4byte読取は受領済み。0x0880FA64のIPS記録11873から実asset境界とcallerを特定し、0x09673660はDPE予約envelope内の配置元/具体的asset readerを照合する。予約regionは実ownerではなく未所有は空き容量ではない。この二次参照の解決で主対象の全reader/正式分類を完了扱いにしない。新36境界試験/2実ARM profile/14受領試験と受入済みtype1/PCM/系譜/map/LZ/逆参照/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。
+- Commit: 両ログ込み単親通常commit。実SHAはActions result/Git履歴。
+- Network: 同repo Actions/artifact読取と同branch非force pushのみ。ROM/IPS/Saveの追加なし。

@@ -270,6 +270,16 @@ IPS全recordの上書き順と現115owner境界を検証。値一致は中間の
 
 [checkpoint](../content/modernization/pr16_selected_compressed_asset_checkpoint.json) / [type1測定](../content/modernization/pr16_selected_compressed_asset_evidence/compressed-asset.json) / [完了run受領](../content/modernization/pr16_selected_compressed_asset_evidence/actions-completion.json)。失敗run38200730808はARM compiler未導入による未受入原本のまま保持。成功run38200881853の22試験/task graph/候補復元1/静的type1計測1を新scopeとして受領し、受入済みPCM測定・系譜28試験の再走0。CI全体greenや正式分類の受入を主張しない。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 保存73bankのtype1は一致0件（type1不在の全域証明ではない）。次はpr16_supply_pla1のarchive-image.bin内+17232(0x095FE848)を現代化learnset供給consumerの具体的ABI/読取命令へ束縛し、0x0880FA64のIPS記録11873に由来する実asset境界と0x09673660の未所有配置元も個別に調べる。形/所有者だけで正式型・安全容量に昇格しない。今回22境界試験/type1新1計測と受入済み音声/系譜/map/LZ/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存統合/窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+
+## PLA1二次逆参照の条件付き実reader
+
+選定二次逆参照0x095FE848はPLA1 owner530/family0のrecord17227..17239にあり、末尾selector1byteとXOR mask3byteを実ARM LDRB 0x09FFF2EC/0x09FFF328で全4byte消費。実配置の保存2788byte ARM/21383byte image/現候補全SHA一致。正常容量160で32件、容量31では出力/count無変更で拒否。明示ABIの条件付きdecoder実行であり自然入口の新受入ではない。
+
+[checkpoint](../content/modernization/pr16_selected_pla1_reader_checkpoint.json) / [改作しない実測](../content/modernization/pr16_selected_pla1_reader_evidence/pla1-reader.json) / [完了受領](../content/modernization/pr16_selected_pla1_reader_evidence/actions-completion.json)。run38203143951の36試験・2profile成功を受領。新受領14試験のみ。正式origin分類の増減0、ROM/Save変更0。
+
+## 次の未完作業
+
+PLA1二次逆参照の全4byte読取は受領済み。0x0880FA64のIPS記録11873から実asset境界とcallerを特定し、0x09673660はDPE予約envelope内の配置元/具体的asset readerを照合する。予約regionは実ownerではなく未所有は空き容量ではない。この二次参照の解決で主対象の全reader/正式分類を完了扱いにしない。新36境界試験/2実ARM profile/14受領試験と受入済みtype1/PCM/系譜/map/LZ/逆参照/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。
