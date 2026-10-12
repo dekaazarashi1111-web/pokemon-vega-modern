@@ -4,9 +4,9 @@
   "authority_ja": "このJSONが作業選択の正本。R0.1の全gateと実物提示は完了し、閲覧改善優先条件を充足。現在はnext_actionのBerry現owner/reader未完scopeへ戻る。旧R0のreadyだけで解除したのではない。旧方針・旧解析の記録は履歴として保持する。",
   "bindings": {
     "CHATGPT_RESUME.md": {
-      "git_blob_sha": "77e9dae34caeddeaea86eb1813783785ad4dee83",
-      "sha256": "39a3878783a8a79d120a27c7991e282c88de1eb1e7e8673fc79ef63349212f13",
-      "size": 2833
+      "git_blob_sha": "9f1476067cf4499ad116efe3dbb36ed2f1e992bb",
+      "sha256": "7e5aa83109a22c593d46bb0fffe9be022f52b22037c0bbc787e2867e78b176be",
+      "size": 2956
     },
     "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
       "git_blob_sha": "116c6f1f8ccbed26029de10f31be7c69be75b09f",
@@ -29,80 +29,66 @@
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "long_term_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
   "next_action": {
-    "done_ja": "残る実asset全4byteを具体的読取命令に束縛したときだけ正式型差分へ進む。",
-    "goal_ja": "IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。",
-    "id": "SAVE_CAPACITY_IPS_AND_DPE_ASSET_READERS",
+    "id": "SAVE_CAPACITY_IPS_DPE_PINNED_OUTPUT_AND_REAL_CALLERS",
+    "goal_ja": "保存11参照地点の現候補実word SHAと非整列9件を確認。限定±4104byte ARM/±1028byte Thumb PC相対literal LDR形は0件で、実callerが存在しない証明ではない。DPE固定予約内0x09673660からの実output.bin候補は今回のbuild/upstream-cacheに0件、包含/owner/asset readerは未証明。次は固定DPE pin 10ff98c8の対応output.bin実体とビルド系譜/長さ/ROM包含を取得して照合し、IPS record11873の実asset開始/終端および保存11起点以外のtable/計算参照から元asset readerの実命令・経路を有限に追う。新規11試験・今回の成功候補復元・既受入PLA1/12境界/7 private guard/全旧音声・map・LZ・Wikiは変更影響なしに再走しない。正式789/85・選定残6・安全容量0、保存controller/窓外跨り/heap/局所Saveは未完。",
+    "done_ja": "固定pinが一致するDPE output.binの実長と配置箇所の4byte一致・具体symbol/asset readerを取得し、IPS recordの実asset/指向起点の命令readerを確定した分だけ別receiptにする。0件/未証明は正式型に昇格しない。",
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
-      "content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json",
-      "content/modernization/pr16_ips_dpe_private_guard_checkpoint.json",
-      "content/modernization/pr16_ips_dpe_private_guard_evidence/actions-completion.json",
-      "content/modernization/pr16_selected_ips_dpe_frontier_evidence/dpe-source-chain.json",
-      "content/modernization/pr16_selected_ips_dpe_frontier_evidence/ci-context.json",
-      "content/modernization/pr16_selected_ips_dpe_frontier_evidence/actions-completion.json",
-      "content/modernization/pr16_selected_asset_provenance_evidence/provenance.json",
+      "content/modernization/pr16_ips_dpe_instruction_extent_checkpoint.json",
+      "content/modernization/pr16_ips_dpe_instruction_extent_evidence/actions-completion.json",
       "content/modernization/pr16_selected_asset_xrefs_evidence/inverse-references.json",
-      "content/modernization/pr16_selected_pla1_reader_checkpoint.json"
+      "content/modernization/pr16_selected_asset_provenance_evidence/provenance.json",
+      "content/modernization/pr16_selected_ips_dpe_frontier_evidence/dpe-source-chain.json",
+      "content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json"
     ]
   },
   "observed_head_checks": {
-    "source_head": "cd5c249f904d2f9dc6bece5b0683fa074525e241",
+    "source_head": "d386f3eec2e8784b8fd52ecaa4c19a2ffb852f16",
     "all_ci_green_claimed": false,
+    "successful_new_limited_run": 38244314715,
     "runs": [
       {
-        "id": 38231902939,
-        "name": "pr16-ips-dpe-private-guard",
+        "id": 38244314715,
+        "name": "pr16-ips-dpe-instruction-extent",
         "event": "push",
         "status": "completed",
         "conclusion": "success"
       },
       {
-        "id": 38231902778,
+        "id": 38244314531,
         "name": "Stage79 runtime boundary audit",
         "event": "push",
         "status": "completed",
         "conclusion": "success"
       },
       {
-        "id": 38231903157,
-        "name": "Stage79 mGBA (all)",
-        "event": "push",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      {
-        "id": 38231902850,
+        "id": 38244314627,
         "name": "source-validation",
         "event": "push",
         "status": "completed",
         "conclusion": "failure"
       },
       {
-        "id": 38231903207,
+        "id": 38244315015,
         "name": "p03-forgetting-ci",
         "event": "push",
         "status": "completed",
         "conclusion": "failure"
       },
       {
-        "id": 38231916908,
+        "id": 38244328211,
         "name": "source-validation",
         "event": "pull_request",
         "status": "completed",
         "conclusion": "failure"
       },
       {
-        "id": 38231916801,
+        "id": 38244327977,
         "name": "p03-forgetting-ci",
         "event": "pull_request",
         "status": "completed",
         "conclusion": "failure"
       }
-    ],
-    "guard_scope_new_violations": 0,
-    "full_guard_before_after": [
-      1,
-      1
     ]
   },
   "owner_execution_plan": {
@@ -202,11 +188,11 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json",
+        "checkpoint_path": "content/modernization/pr16_ips_dpe_instruction_extent_checkpoint.json",
         "classified": 789,
         "completion_evidence_path": null,
         "donor_safe_bytes": 0,
-        "next_ja": "IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。 DPE固定source-lock pin 10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e / make.py→insert.pyは静的確認済み。次はoutput.bin実長と対象の実caller/readを追う（今回source pinを再読しない）。",
+        "next_ja": "保存11参照地点の現候補実word SHAと非整列9件を確認。限定±4104byte ARM/±1028byte Thumb PC相対literal LDR形は0件で、実callerが存在しない証明ではない。DPE固定予約内0x09673660からの実output.bin候補は今回のbuild/upstream-cacheに0件、包含/owner/asset readerは未証明。次は固定DPE pin 10ff98c8の対応output.bin実体とビルド系譜/長さ/ROM包含を取得して照合し、IPS record11873の実asset開始/終端および保存11起点以外のtable/計算参照から元asset readerの実命令・経路を有限に追う。新規11試験・今回の成功候補復元・既受入PLA1/12境界/7 private guard/全旧音声・map・LZ・Wikiは変更影響なしに再走しない。正式789/85・選定残6・安全容量0、保存controller/窓外跨り/heap/局所Saveは未完。",
         "reference_chain_path": "content/modernization/pr16_berry_lz_type_evidence/reference-chain.json",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
@@ -218,7 +204,7 @@
         ],
         "scheduling_status": "READY_FROM_SAVED_SELECTED_ORIGINS",
         "selected_unknown_origins": 6,
-        "status": "IPS_WRITE_DPE_RESERVATION_BOUND_READER_PENDING",
+        "status": "IPS_DPE_SAVED_WORDS_VERIFIED_FINITE_LITERAL_SHAPES_ZERO_OWNER_PENDING",
         "unclassified": 85,
         "unknown_frontier_path": "content/modernization/pr16_berry_lz_type_evidence/unknown-frontier.json",
         "window_progress_path": "content/modernization/pr16_berry_lz_type_evidence/window-progress.json"
@@ -417,28 +403,27 @@
       }
     },
     "last_execution": {
-      "task": "USER-20261012-IPS-DPE-PRIVATE-DELTA-GUARD",
-      "source_head": "cd5c249f904d2f9dc6bece5b0683fa074525e241",
-      "actions_run_id": 38231902939,
+      "task": "USER-20261012-IPS-DPE-INSTRUCTION-EXTENT",
+      "source_head": "d386f3eec2e8784b8fd52ecaa4c19a2ffb852f16",
+      "actions_run_id": 38244314715,
       "actions_completion_confirmed": true,
-      "new_unit_tests": 7,
-      "prior_bounded_unit_tests": 12,
-      "changed_tracked_text_paths": 15,
-      "new_private_violations": 0,
-      "full_index_private_guard": {
-        "executed": true,
-        "base_exit_code": 1,
-        "current_exit_code": 1,
-        "passed": false,
-        "historical_violations_retained": true,
-        "new_changed_path_violations": 0,
-        "raw_private_log_published": false
-      },
-      "all_ci_green_claimed": false,
+      "previous_failed_run_id": 38243855751,
+      "previous_failed_run_reason": "GITHUB_TOKEN absent: KeyError before candidate measurement",
+      "new_unit_tests": 11,
+      "task_graph_passed": true,
+      "rom_reconstructions": 1,
+      "native_processes": 0,
       "accepted_test_reruns": 0,
-      "old_native_reruns": 0,
-      "new_rom_reconstructions": 0,
-      "formal_classification_changes": 0
+      "saved_pointer_sites_verified": 11,
+      "unaligned_pointer_sites": 9,
+      "actual_arm_thumb_literal_shapes": 0,
+      "dpe_output_bin_candidates": 0,
+      "actual_reader_accepted": false,
+      "formal_classification_changes": 0,
+      "donor_safe_bytes": 0,
+      "all_ci_green_claimed": false,
+      "full_index_private_guard_this_execution": "NOT_RERUN_PRIOR_FULL_INDEX_EXIT_1_RETAINED",
+      "artifact_zip_verified": true
     },
     "legacy_generated_md_modified": false,
     "legacy_log_append": {
@@ -519,9 +504,9 @@
     "selected_map_asset_receipt": "content/modernization/pr16_selected_map_asset_receipt.json",
     "selected_pla1_reader_checkpoint": "content/modernization/pr16_selected_pla1_reader_checkpoint.json",
     "selected_sound_roots_checkpoint": "content/modernization/pr16_selected_sound_roots_checkpoint.json",
-    "source_head": "4a189c0e393c087346db471b99ac60b65b0382b5",
-    "status": "IPS_WRITE_DPE_RESERVATION_BOUND_READER_PENDING",
-    "task": "USER-20261012-IPS-DPE-BOUNDARY",
+    "source_head": "d386f3eec2e8784b8fd52ecaa4c19a2ffb852f16",
+    "status": "IPS_DPE_SAVED_WORDS_VERIFIED_FINITE_LITERAL_SHAPES_ZERO_OWNER_PENDING",
+    "task": "USER-20261012-IPS-DPE-INSTRUCTION-EXTENT",
     "wiki_generated": true,
     "wiki_readability_execution": {
       "accepted_test_reruns": 0,
@@ -662,7 +647,9 @@
     "latest_boundary_source_chain": "content/modernization/pr16_selected_ips_dpe_frontier_evidence/dpe-source-chain.json",
     "latest_boundary_ci_receipt": "content/modernization/pr16_selected_ips_dpe_frontier_evidence/ci-context.json",
     "latest_boundary_guard_checkpoint": "content/modernization/pr16_ips_dpe_private_guard_checkpoint.json",
-    "latest_boundary_guard_receipt": "content/modernization/pr16_ips_dpe_private_guard_evidence/actions-completion.json"
+    "latest_boundary_guard_receipt": "content/modernization/pr16_ips_dpe_private_guard_evidence/actions-completion.json",
+    "ips_dpe_instruction_extent_checkpoint": "content/modernization/pr16_ips_dpe_instruction_extent_checkpoint.json",
+    "ips_dpe_instruction_extent_actions": "content/modernization/pr16_ips_dpe_instruction_extent_evidence/actions-completion.json"
   },
   "routing_rules": [
     {

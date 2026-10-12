@@ -11896,3 +11896,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundaries: old source-validation/P03 known fail; DPE owner/reader and IPS real asset boundary still pending; formal789/85 / selected6 / safe bytes0. No merge/draft解除/baseline/release.
 - Files: scripts/pr16_ips_dpe_private_guard.py + new 7 tests/workflow from previous commit, now guard checkpoint/receipt, fixed JSON, guide and append-only logs; regular samebranch nonforce record commit.
 - Next: preserve limited guard proof; reconstruct only new actual owner/reader evidence when verified DPE output.bin extent and target instruction consumers can be proven.
+
+## 2026-10-12T11:44:00Z
+- Timestamp: 2026-10-12T11:44:00Z
+- Task: USER-20261012-IPS-DPE-INSTRUCTION-EXTENT / 保存11起点の有限命令形とDPE出力実体境界
+- Version: ips-dpe-instruction-extent-v1
+- Status: DONE (限定実ROM起点照合が成功。実caller/owner/asset reader証明は未完)
+- Source: d386f3eec2e8784b8fd52ecaa4c19a2ffb852f16 / [Actions run 38244314715](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/38244314715) / job 114794296522 / artifact 11743528607 ZIP SHA verified.
+- Summary: 現候補32MiB全SHA、11参照word全SHA一致。非整列9件。±4104 ARM / ±1028 Thumb PC相対literal形0件、実caller不在とは推定しない。DPE cache output.bin候補0件、固定source pinのみ静的受領。
+- Verify: 新規11unit PASS、task graph PASS、全job/step success、ZIP 2334byte sha256:5f468ba3901d1d496962f9cc3985b4aa42639b282813e11aa4baca26c9013cbd・全3member hash verified。最初のrun38243855751はtoken欠落KeyErrorで未受入、権限修正し一度成功。
+- Count: 新候補復元成功1、native0、受入済み試験再走0、正式789/85・選定残6・donor安全容量0、ROM/Save/Wiki/baseline不変。
+- CI: 新scope successだが同head source-validation/p03-forgetting-ci failure。旧full-index private guard exit1継続。今回の全index guard未再実施をPASSとしない。
+- Files changed: 新検査script/runner/11test/専用workflow、限定checkpoint/Actions原本のhash受領、固定resume/JSON/guide、append-only両ログ。
+- Next: 保存11参照地点の現候補実word SHAと非整列9件を確認。限定±4104byte ARM/±1028byte Thumb PC相対literal LDR形は0件で、実callerが存在しない証明ではない。DPE固定予約内0x09673660からの実output.bin候補は今回のbuild/upstream-cacheに0件、包含/owner/asset readerは未証明。次は固定DPE pin 10ff98c8の対応output.bin実体とビルド系譜/長さ/ROM包含を取得して照合し、IPS record11873の実asset開始/終端および保存11起点以外のtable/計算参照から元asset readerの実命令・経路を有限に追う。新規11試験・今回の成功候補復元・既受入PLA1/12境界/7 private guard/全旧音声・map・LZ・Wikiは変更影響なしに再走しない。正式789/85・選定残6・安全容量0、保存controller/窓外跨り/heap/局所Saveは未完。
+- Commit: 同branch単親non-force、実SHAはGit履歴を参照。
+- Network: 同repo private inputsをActions内で限定読取（byte非公開）、Actions evidenceの公開text artifactを取得してhash検証。既受入原本を書換えない。

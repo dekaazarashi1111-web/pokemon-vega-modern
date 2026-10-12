@@ -302,6 +302,18 @@ PLA1二次逆参照の全4byte読取は受領済み。0x0880FA64のIPS記録1187
 
 [guard checkpoint](../content/modernization/pr16_ips_dpe_private_guard_checkpoint.json) / [run完了証拠](../content/modernization/pr16_ips_dpe_private_guard_evidence/actions-completion.json) / [guard本体](../scripts/pr16_ips_dpe_private_guard.py)。正式789/85・選定残6・容量0、実caller/ownerは未証明のまま維持。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。
+
+## IPS/DPE実ROM有限命令形の新規限定測定（2026-10-12）
+
+新scope専用workflowで11人工境界試験とtask graphが成功。初回run [38243855751](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/38243855751) はAPI token未設定のKeyErrorで候補復元前停止（未受入）。workflowへ読取token/権限を限定付与後の成功run [38244314715](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/38244314715) / job114794296522全10step成功。公開artifact 11743528607はZIP 2334byte・sha256 `5f468ba3901d1d496962f9cc3985b4aa42639b282813e11aa4baca26c9013cbd` を取得・全3member hashで照合。
+
+全候補32MiB SHA一致、保存11起点の各4byte SHAとpointer値一致。うち非4byte整列9件、有限ARM±4104byte/Thumb±1028byte PC相対LDR literal**形0件**。形0は実caller不在・CPU/DMA/計算table参照不在の証明ではない。DPE予約地点は固定source chainのみ静的証明、今回のcache内に対象`output.bin`候補0件で実blob長/包含/owner/reader未証明。該当型・安全容量は増やさない。candidate復元成功1、native0、既受入試験再走0、ROM/Save/Wiki/baseline変更0。
+
+[限定checkpoint](../content/modernization/pr16_ips_dpe_instruction_extent_checkpoint.json) / [Actions証拠](../content/modernization/pr16_ips_dpe_instruction_extent_evidence/actions-completion.json) / [測定スクリプト](../scripts/pr16_ips_dpe_instruction_probe.py)。全CIではsource-validation/p03-forgetting-ci失敗が残り、旧private guardも全index greenではない。今回の限定測定と混同しない。
+
+## 次の未完作業
+
+保存11参照地点の現候補実word SHAと非整列9件を確認。限定±4104byte ARM/±1028byte Thumb PC相対literal LDR形は0件で、実callerが存在しない証明ではない。DPE固定予約内0x09673660からの実output.bin候補は今回のbuild/upstream-cacheに0件、包含/owner/asset readerは未証明。次は固定DPE pin 10ff98c8の対応output.bin実体とビルド系譜/長さ/ROM包含を取得して照合し、IPS record11873の実asset開始/終端および保存11起点以外のtable/計算参照から元asset readerの実命令・経路を有限に追う。新規11試験・今回の成功候補復元・既受入PLA1/12境界/7 private guard/全旧音声・map・LZ・Wikiは変更影響なしに再走しない。正式789/85・選定残6・安全容量0、保存controller/窓外跨り/heap/局所Saveは未完。
