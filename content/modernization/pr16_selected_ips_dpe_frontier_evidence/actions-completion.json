@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261012-IPS-DPE-BOUNDARY",
+  "source_head": "4a189c0e393c087346db471b99ac60b65b0382b5",
+  "run_id": 38229002566,
+  "status": "completed",
+  "conclusion": "success",
+  "job": {
+    "id": 114743529593,
+    "name": "frontier",
+    "conclusion": "success",
+    "all_steps_success": true
+  },
+  "verified_steps": [
+    "新規12境界試験（受入済み測定は再走しない）",
+    "IPS recordとDPE envelopeの有限証拠",
+    "Run actions/upload-artifact@v4"
+  ],
+  "artifact": {
+    "id": 11737542403,
+    "name": "pr16-ips-dpe-boundary-public-text",
+    "size_in_bytes": 1390,
+    "digest": "sha256:b1cce5a870193a6b42859f09edd4f9a449e315728463c262515aeb083d504f02",
+    "expired": false,
+    "zip_members_downloaded": false
+  },
+  "new_unit_tests": 12,
+  "task_graph_passed": true,
+  "run_log_boundaries": [
+    "IPS_RECORD_BOUND=0x0880B7B0..0x0880FAD0",
+    "DPE_ENVELOPE_OFFSET=0x73660"
+  ],
+  "candidate_reconstructions": 0,
+  "native_processes": 0,
+  "accepted_test_reruns": 0,
+  "global_ci_green_claimed": false,
+  "source_files": [
+    "scripts/pr16_selected_ips_dpe_frontier.py",
+    "tests/test_pr16_selected_ips_dpe_frontier.py",
+    ".github/workflows/pr16-ips-dpe-boundary.yml"
+  ],
+  "note_ja": "Actions run/job/stepsとartifact metadata/digestを照合。artifact本体の全member byte hashは未回収。asset/readerの実型は未受入。"
+}

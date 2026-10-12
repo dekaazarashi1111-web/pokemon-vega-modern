@@ -14605,3 +14605,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: PLA1二次逆参照の全4byte読取は受領済み。0x0880FA64のIPS記録11873から実asset境界とcallerを特定し、0x09673660はDPE予約envelope内の配置元/具体的asset readerを照合する。予約regionは実ownerではなく未所有は空き容量ではない。この二次参照の解決で主対象の全reader/正式分類を完了扱いにしない。新36境界試験/2実ARM profile/14受領試験と受入済みtype1/PCM/系譜/map/LZ/逆参照/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。
 - Commit: 両ログ込み単親通常commit。実SHAはActions result/Git履歴。
 - Network: 同repo Actions/artifact読取と同branch非force pushのみ。ROM/IPS/Saveの追加なし。
+
+## 2026-10-12T09:26:31.798Z
+- Timestamp: 2026-10-12T09:26:31.798Z
+- Task: USER-20261012-IPS-DPE-BOUNDARY / IPS write record and DPE reservation boundary
+- Version: selected-ips-dpe-frontier-v1
+- Status: DONE (bounded write/envelope evidence only, actual asset reader pending)
+- Summary: IPS record11873 [0x0880B7B0,0x0880FAD0) 17184 bytes, target 0x0880FA64 at +17076 and 104 post-target bytes. Prior saved 11 pointer targets inside; DPE 0x09673660 at +0x73660 within reserved [0x09600000,0x0A000000). Neither establishes actual asset extent/caller/owner/free space.
+- Source: 4a189c0e393c087346db471b99ac60b65b0382b5 / Actions 38229002566 completed/success; job 114743529593 all steps success; artifact 11737542403 SHA256 b1cce5a870193a6b42859f09edd4f9a449e315728463c262515aeb083d504f02 metadata verified, ZIP contents not fetched.
+- Verify: new 12 scoped tests PASS; task graph PASS; accepted PLA1 36/2 native/14 and other previously accepted scopes not replayed; ROM reconstruction 0, native 0. Historical source-validation and p03-forgetting-ci failures remain; final full-index guard not executed on this record phase.
+- Files: new checker/tests/workflow commit 4a189c0e393c087346db471b99ac60b65b0382b5; this append-only log entry, fixed resume/JSON, guide, checkpoint and Actions receipt via next regular nonforce commit.
+- Boundaries: formal 789/85, selected 6, safe bytes 0; no Save/controller/heap/local acceptance, no ROM/Save101/Wiki/baseline/merge/release modification.
+- Next: IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。
+- Commit: this record is included in a new regular single-parent commit; actual SHA is Git history (avoid self-hash-only commit).

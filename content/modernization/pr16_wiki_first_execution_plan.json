@@ -4,9 +4,9 @@
   "authority_ja": "このJSONが作業選択の正本。R0.1の全gateと実物提示は完了し、閲覧改善優先条件を充足。現在はnext_actionのBerry現owner/reader未完scopeへ戻る。旧R0のreadyだけで解除したのではない。旧方針・旧解析の記録は履歴として保持する。",
   "bindings": {
     "CHATGPT_RESUME.md": {
-      "git_blob_sha": "669a1688ac9b1e84271bb5b2cd7c07570b2966a6",
-      "sha256": "92e099de4a1266e12637416bed8cb43d80351a0f9bb757baf014ce166ad3276e",
-      "size": 2634
+      "git_blob_sha": "77e9dae34caeddeaea86eb1813783785ad4dee83",
+      "sha256": "39a3878783a8a79d120a27c7991e282c88de1eb1e7e8673fc79ef63349212f13",
+      "size": 2833
     },
     "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
       "git_blob_sha": "116c6f1f8ccbed26029de10f31be7c69be75b09f",
@@ -30,87 +30,71 @@
   "long_term_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
   "next_action": {
     "done_ja": "残る実asset全4byteを具体的読取命令に束縛したときだけ正式型差分へ進む。",
-    "goal_ja": "PLA1二次逆参照の全4byte読取は受領済み。0x0880FA64のIPS記録11873から実asset境界とcallerを特定し、0x09673660はDPE予約envelope内の配置元/具体的asset readerを照合する。予約regionは実ownerではなく未所有は空き容量ではない。この二次参照の解決で主対象の全reader/正式分類を完了扱いにしない。新36境界試験/2実ARM profile/14受領試験と受入済みtype1/PCM/系譜/map/LZ/逆参照/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。",
+    "goal_ja": "IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。",
     "id": "SAVE_CAPACITY_IPS_AND_DPE_ASSET_READERS",
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
-      "content/modernization/pr16_selected_pla1_reader_checkpoint.json",
-      "content/modernization/pr16_selected_pla1_reader_evidence/pla1-reader.json",
-      "content/modernization/pr16_selected_pla1_reader_evidence/actions-completion.json",
-      "content/modernization/pr16_selected_asset_provenance_checkpoint.json",
+      "content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json",
+      "content/modernization/pr16_selected_ips_dpe_frontier_evidence/actions-completion.json",
       "content/modernization/pr16_selected_asset_provenance_evidence/provenance.json",
       "content/modernization/pr16_selected_asset_xrefs_evidence/inverse-references.json",
-      "content/modernization/pr16_selected_asset_records_evidence/record-candidates.json"
+      "content/modernization/pr16_selected_pla1_reader_checkpoint.json"
     ]
   },
   "observed_head_checks": {
+    "source_head": "4a189c0e393c087346db471b99ac60b65b0382b5",
     "all_ci_green_claimed": false,
     "runs": [
       {
-        "conclusion": null,
-        "event": "pull_request",
-        "head_sha": "54e2c0d7da2dd19cd44139110a24fb10329dc7bb",
-        "id": 38203781523,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "pull_request",
-        "head_sha": "54e2c0d7da2dd19cd44139110a24fb10329dc7bb",
-        "id": 38203781507,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
+        "id": 38229002566,
+        "name": "pr16-ips-dpe-boundary",
         "event": "push",
-        "head_sha": "54e2c0d7da2dd19cd44139110a24fb10329dc7bb",
-        "id": 38203773730,
-        "name": "Stage79 mGBA (all)",
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
-        "status": "in_progress"
+        "status": "completed",
+        "conclusion": "success"
       },
       {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "54e2c0d7da2dd19cd44139110a24fb10329dc7bb",
-        "id": 38203773723,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "54e2c0d7da2dd19cd44139110a24fb10329dc7bb",
-        "id": 38203773763,
-        "name": "pr16-selected-pla1-closeout",
-        "path": ".github/workflows/pr16-selected-pla1-closeout.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": "failure",
-        "event": "push",
-        "head_sha": "54e2c0d7da2dd19cd44139110a24fb10329dc7bb",
-        "id": 38203773883,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "event": "push",
-        "head_sha": "54e2c0d7da2dd19cd44139110a24fb10329dc7bb",
-        "id": 38203773495,
+        "id": 38229002578,
         "name": "Stage79 runtime boundary audit",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "status": "completed"
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 38229002778,
+        "name": "Stage79 mGBA (all)",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 38229002190,
+        "name": "source-validation",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 38229002787,
+        "name": "p03-forgetting-ci",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 38229010913,
+        "name": "source-validation",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 38229011166,
+        "name": "p03-forgetting-ci",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "failure"
       }
-    ],
-    "source_head": "54e2c0d7da2dd19cd44139110a24fb10329dc7bb"
+    ]
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -209,11 +193,11 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_selected_pla1_reader_checkpoint.json",
+        "checkpoint_path": "content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json",
         "classified": 789,
         "completion_evidence_path": null,
         "donor_safe_bytes": 0,
-        "next_ja": "PLA1二次逆参照の全4byte読取は受領済み。0x0880FA64のIPS記録11873から実asset境界とcallerを特定し、0x09673660はDPE予約envelope内の配置元/具体的asset readerを照合する。予約regionは実ownerではなく未所有は空き容量ではない。この二次参照の解決で主対象の全reader/正式分類を完了扱いにしない。新36境界試験/2実ARM profile/14受領試験と受入済みtype1/PCM/系譜/map/LZ/逆参照/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。",
+        "next_ja": "IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。",
         "reference_chain_path": "content/modernization/pr16_berry_lz_type_evidence/reference-chain.json",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
@@ -225,7 +209,7 @@
         ],
         "scheduling_status": "READY_FROM_SAVED_SELECTED_ORIGINS",
         "selected_unknown_origins": 6,
-        "status": "PLA1_SECONDARY_EDGE_CONDITIONAL_READER_ACCEPTED_TWO_ASSET_ORIGINS_PENDING",
+        "status": "IPS_WRITE_DPE_RESERVATION_BOUND_READER_PENDING",
         "unclassified": 85,
         "unknown_frontier_path": "content/modernization/pr16_berry_lz_type_evidence/unknown-frontier.json",
         "window_progress_path": "content/modernization/pr16_berry_lz_type_evidence/window-progress.json"
@@ -424,27 +408,22 @@
       }
     },
     "last_execution": {
-      "accepted_measurement_reruns": 0,
+      "task": "USER-20261012-IPS-DPE-BOUNDARY",
+      "source_head": "4a189c0e393c087346db471b99ac60b65b0382b5",
+      "actions_run_id": 38229002566,
+      "actions_completion_confirmed": true,
+      "new_unit_tests": 12,
+      "task_graph_passed": true,
       "accepted_test_reruns": 0,
-      "actions_run_id": 38203773763,
-      "closeout_actions_completion_confirmed": false,
+      "accepted_measurement_reruns": 0,
+      "candidate_reconstructions": 0,
+      "native_processes": 0,
+      "formal_classification_changes": 0,
+      "donor_safe_bytes": 0,
       "full_index_private_guard": {
-        "executed": true,
-        "exit_code": 1,
-        "historical_violations_not_rewritten": true,
-        "passed": false,
-        "raw_private_log_published": false
-      },
-      "measurement_completion_confirmed": true,
-      "measurement_run_id": 38203143951,
-      "measurement_source_head": "01aff6bdfde2cb8ab07bec612bfaa45adf9167cd",
-      "new_receipt_tests": 14,
-      "new_rom_reconstructions": 0,
-      "new_unit_tests": 36,
-      "read_only_check_passed": true,
-      "source_head": "54e2c0d7da2dd19cd44139110a24fb10329dc7bb",
-      "task": "USER-20261012-SELECTED-PLA1-CLOSEOUT",
-      "task_graph_passed": true
+        "executed": false,
+        "reason": "旧既存違反を含む全index guardについて新規実行・成功認定をしていない"
+      }
     },
     "legacy_generated_md_modified": false,
     "legacy_log_append": {
@@ -525,9 +504,9 @@
     "selected_map_asset_receipt": "content/modernization/pr16_selected_map_asset_receipt.json",
     "selected_pla1_reader_checkpoint": "content/modernization/pr16_selected_pla1_reader_checkpoint.json",
     "selected_sound_roots_checkpoint": "content/modernization/pr16_selected_sound_roots_checkpoint.json",
-    "source_head": "54e2c0d7da2dd19cd44139110a24fb10329dc7bb",
-    "status": "PLA1_SECONDARY_EDGE_CONDITIONAL_READER_ACCEPTED_TWO_ASSET_ORIGINS_PENDING",
-    "task": "USER-20261012-SELECTED-PLA1-CLOSEOUT",
+    "source_head": "4a189c0e393c087346db471b99ac60b65b0382b5",
+    "status": "IPS_WRITE_DPE_RESERVATION_BOUND_READER_PENDING",
+    "task": "USER-20261012-IPS-DPE-BOUNDARY",
     "wiki_generated": true,
     "wiki_readability_execution": {
       "accepted_test_reruns": 0,
@@ -663,7 +642,8 @@
       "generated_again": false,
       "source_head": "e2f4bc4cd0fbd8d08b4d60b1a8d262a1bb3753aa",
       "task": "USER-20261011-WIKI-READABILITY-RECEIPT"
-    }
+    },
+    "ips_dpe_frontier_checkpoint": "content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json"
   },
   "routing_rules": [
     {

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261012-IPS-DPE-BOUNDARY",
+  "status": "IPS_WRITE_DPE_RESERVATION_BOUND_READER_PENDING",
+  "source_head": "4a189c0e393c087346db471b99ac60b65b0382b5",
+  "actions_run_id": 38229002566,
+  "actions_completion_confirmed": true,
+  "receipt_path": "content/modernization/pr16_selected_ips_dpe_frontier_evidence/actions-completion.json",
+  "artifact_boundary_json": "pr16-ips-dpe-boundary-public-text/boundary.json",
+  "candidate": {
+    "size": 33554432,
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583"
+  },
+  "ips": {
+    "record_index": 11873,
+    "start": 142653360,
+    "end_exclusive": 142670544,
+    "record_size": 17184,
+    "target": 142670436,
+    "offset": 17076,
+    "trailing_after_target": 104,
+    "saved_first_level_refs": 11,
+    "actual_asset_extent_proven": false,
+    "actual_caller_proven": false
+  },
+  "dpe": {
+    "reservation_start": 157286400,
+    "reservation_end_exclusive": 167772160,
+    "origin": 157759072,
+    "offset": 472672,
+    "stored_pointer_value": 142667728,
+    "output_blob_containment_proven": false,
+    "actual_owner_proven": false,
+    "actual_asset_reader_proven": false,
+    "free_space_proven": false
+  },
+  "formal_classified": 789,
+  "formal_unclassified": 85,
+  "selected_unknown_origins": 6,
+  "donor_safe_bytes": 0,
+  "formal_classification_changes": 0,
+  "accepted_test_reruns": 0,
+  "native_processes": 0,
+  "candidate_reconstructions": 0,
+  "new_unit_tests": 12,
+  "task_graph_passed": true,
+  "prior_accepted_pla1_unchanged": true,
+  "next_ja": "IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。",
+  "source_paths": [
+    "content/modernization/pr16_selected_asset_provenance_evidence/provenance.json",
+    "content/modernization/pr16_selected_asset_xrefs_evidence/inverse-references.json",
+    "scripts/build_upstream.py"
+  ],
+  "limitations_ja": [
+    "IPS書込record境界 != 実asset境界",
+    "DPE予約envelope != 現owner/実asset読取命令",
+    "既保存11pointerは実行の証明ではない",
+    "今回のrunは12新規試験であり過去全CIの成功ではない"
+  ]
+}
