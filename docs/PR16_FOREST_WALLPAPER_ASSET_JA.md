@@ -296,6 +296,12 @@ PLA1二次逆参照の全4byte読取は受領済み。0x0880FA64のIPS記録1187
 
 [pin source-chain](../content/modernization/pr16_selected_ips_dpe_frontier_evidence/dpe-source-chain.json) / [記録後Actions状態](../content/modernization/pr16_selected_ips_dpe_frontier_evidence/ci-context.json)。記録コミット後の引継ぎ旧検証run38229956465は旧20260913台帳がroot再開MDに9236byte/旧SHAを要求して失敗。開始HEADでは当該MDが2634byteだったため旧不一致は事前から存在。旧受入台帳を修正してgreenにはしない。source-validationの古いQOL source binding失敗とP03復元失敗も継続。限定12試験成功とは区別する。
 
+## 最終index private差分guardの受領（2026-10-12T09:51:17.387Z）
+
+新規7試験PASS、[GitHub Actions run 38231902939](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/38231902939) / job 114753156040 全step成功、artifact 11739310971（digest metadata受領、ZIP全member未検査）。開始時固定HEAD `6acbf1d` と今回の検証HEAD `cd5c249` の各独立indexへ標準guardを実行し、**双方exit code 1**。旧違反は不変で、全index greenとは主張しない。一方、このscopeで増えたtracked text15pathはUTF-8・形式・機器固有ユーザpath増分検査に合格し、**新規private違反0件**。原本ROM/Save・承認済みnativeを再実行しない。
+
+[guard checkpoint](../content/modernization/pr16_ips_dpe_private_guard_checkpoint.json) / [run完了証拠](../content/modernization/pr16_ips_dpe_private_guard_evidence/actions-completion.json) / [guard本体](../scripts/pr16_ips_dpe_private_guard.py)。正式789/85・選定残6・容量0、実caller/ownerは未証明のまま維持。
+
 ## 次の未完作業
 
 IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。

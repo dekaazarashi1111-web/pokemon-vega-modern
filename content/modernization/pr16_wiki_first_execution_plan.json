@@ -35,6 +35,8 @@
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
       "content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json",
+      "content/modernization/pr16_ips_dpe_private_guard_checkpoint.json",
+      "content/modernization/pr16_ips_dpe_private_guard_evidence/actions-completion.json",
       "content/modernization/pr16_selected_ips_dpe_frontier_evidence/dpe-source-chain.json",
       "content/modernization/pr16_selected_ips_dpe_frontier_evidence/ci-context.json",
       "content/modernization/pr16_selected_ips_dpe_frontier_evidence/actions-completion.json",
@@ -44,68 +46,64 @@
     ]
   },
   "observed_head_checks": {
-    "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1",
+    "source_head": "cd5c249f904d2f9dc6bece5b0683fa074525e241",
+    "all_ci_green_claimed": false,
     "runs": [
       {
-        "id": 38229955865,
-        "name": "p03-forgetting-ci",
+        "id": 38231902939,
+        "name": "pr16-ips-dpe-private-guard",
         "event": "push",
         "status": "completed",
-        "conclusion": "failure",
-        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+        "conclusion": "success"
       },
       {
-        "id": 38229956465,
-        "name": "PR16 fixed handoff source-only verification",
-        "event": "push",
-        "status": "completed",
-        "conclusion": "failure",
-        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
-      },
-      {
-        "id": 38229957004,
-        "name": "source-validation",
-        "event": "push",
-        "status": "completed",
-        "conclusion": "failure",
-        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
-      },
-      {
-        "id": 38229957595,
+        "id": 38231902778,
         "name": "Stage79 runtime boundary audit",
         "event": "push",
         "status": "completed",
-        "conclusion": "success",
-        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+        "conclusion": "success"
       },
       {
-        "id": 38229957998,
+        "id": 38231903157,
         "name": "Stage79 mGBA (all)",
         "event": "push",
         "status": "completed",
-        "conclusion": "success",
-        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+        "conclusion": "success"
       },
       {
-        "id": 38229966093,
+        "id": 38231902850,
+        "name": "source-validation",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 38231903207,
+        "name": "p03-forgetting-ci",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 38231916908,
         "name": "source-validation",
         "event": "pull_request",
         "status": "completed",
-        "conclusion": "failure",
-        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+        "conclusion": "failure"
       },
       {
-        "id": 38229966103,
+        "id": 38231916801,
         "name": "p03-forgetting-ci",
         "event": "pull_request",
         "status": "completed",
-        "conclusion": "failure",
-        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+        "conclusion": "failure"
       }
     ],
-    "all_ci_green_claimed": false,
-    "legacy_handoff_failure": 38229956465,
-    "known_source_validation_mismatch": "overlays/qol_production/qol_production.c"
+    "guard_scope_new_violations": 0,
+    "full_guard_before_after": [
+      1,
+      1
+    ]
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -419,23 +417,28 @@
       }
     },
     "last_execution": {
-      "task": "USER-20261012-DPE-PINNED-SOURCE-CHAIN",
-      "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1",
-      "source_scopes": [
-        "PINNED_DPE_UPSTREAM_SOURCE",
-        "POST_RECORD_CI_DIAGNOSTICS"
-      ],
-      "actions_replayed": 0,
-      "accepted_test_reruns": 0,
-      "candidate_reconstructions": 0,
-      "native_processes": 0,
-      "upstream_rebuilds": 0,
-      "formal_classification_changes": 0,
-      "all_ci_green_claimed": false,
+      "task": "USER-20261012-IPS-DPE-PRIVATE-DELTA-GUARD",
+      "source_head": "cd5c249f904d2f9dc6bece5b0683fa074525e241",
+      "actions_run_id": 38231902939,
+      "actions_completion_confirmed": true,
+      "new_unit_tests": 7,
+      "prior_bounded_unit_tests": 12,
+      "changed_tracked_text_paths": 15,
+      "new_private_violations": 0,
       "full_index_private_guard": {
-        "executed": false,
-        "reason": "記録専用text更新。旧全index既知違反と限定scope検証を混同しない。"
-      }
+        "executed": true,
+        "base_exit_code": 1,
+        "current_exit_code": 1,
+        "passed": false,
+        "historical_violations_retained": true,
+        "new_changed_path_violations": 0,
+        "raw_private_log_published": false
+      },
+      "all_ci_green_claimed": false,
+      "accepted_test_reruns": 0,
+      "old_native_reruns": 0,
+      "new_rom_reconstructions": 0,
+      "formal_classification_changes": 0
     },
     "legacy_generated_md_modified": false,
     "legacy_log_append": {
@@ -657,7 +660,9 @@
     },
     "ips_dpe_frontier_checkpoint": "content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json",
     "latest_boundary_source_chain": "content/modernization/pr16_selected_ips_dpe_frontier_evidence/dpe-source-chain.json",
-    "latest_boundary_ci_receipt": "content/modernization/pr16_selected_ips_dpe_frontier_evidence/ci-context.json"
+    "latest_boundary_ci_receipt": "content/modernization/pr16_selected_ips_dpe_frontier_evidence/ci-context.json",
+    "latest_boundary_guard_checkpoint": "content/modernization/pr16_ips_dpe_private_guard_checkpoint.json",
+    "latest_boundary_guard_receipt": "content/modernization/pr16_ips_dpe_private_guard_evidence/actions-completion.json"
   },
   "routing_rules": [
     {

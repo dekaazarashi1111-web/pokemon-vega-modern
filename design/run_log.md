@@ -14629,3 +14629,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundaries: no original ROM/IPS/Save byte materialized; formal 789/85 / selected 6 / safe donor 0; full-index private guard not claimed; old legacy binding not rewritten; no green claim.
 - Files: DPE source-chain and latest CI evidence, checkpoint/state/guide, append-only logs; regular single-parent nonforce branch commit.
 - Next: verify actual DPE output.bin extent and linked symbol map at 0x09673660 and IPS11 first-level real reader instructions; do not retry static pin source check or completed 12 tests without impact.
+
+## 2026-10-12T09:51:17.387Z
+- Timestamp: 2026-10-12T09:51:17.387Z
+- Task: USER-20261012-IPS-DPE-PRIVATE-DELTA-GUARD / isolated baseline and final index full guard plus added private delta
+- Version: selected-ips-dpe-private-delta-v1
+- Status: DONE (15 changed tracked text paths safe in delta; full legacy index still fails)
+- Summary: 15 changed paths new private violations 0; full guard on isolated old/index HEAD returncodes [1,1], so **not full guard PASS**. Existing historical violations preserved; native ROM/Save untouched.
+- Verify: run 38231902939 job 114753156040 complete/success; 7 new focused tests; BASE_FULL_GUARD_EXIT=1 HEAD_FULL_GUARD_EXIT=1 NEW_PRIVATE_DELTA_VIOLATIONS=0; artifact 11739310971 sha256:f55796d26b15a126e751719f5cb271e643b597e5f49b493dcfb241e24894dd1b metadata verified, ZIP members not fetched.
+- Source: cd5c249f904d2f9dc6bece5b0683fa074525e241; tested private guard only (old accepted 12 IPS/DPE, 36 PLA1/2 ARM/14 receipt and ROM reconstruction not replayed).
+- Boundaries: old source-validation/P03 known fail; DPE owner/reader and IPS real asset boundary still pending; formal789/85 / selected6 / safe bytes0. No merge/draft解除/baseline/release.
+- Files: scripts/pr16_ips_dpe_private_guard.py + new 7 tests/workflow from previous commit, now guard checkpoint/receipt, fixed JSON, guide and append-only logs; regular samebranch nonforce record commit.
+- Next: preserve limited guard proof; reconstruct only new actual owner/reader evidence when verified DPE output.bin extent and target instruction consumers can be proven.

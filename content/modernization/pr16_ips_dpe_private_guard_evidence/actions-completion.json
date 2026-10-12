@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261012-IPS-DPE-PRIVATE-DELTA-GUARD",
+  "source_head": "cd5c249f904d2f9dc6bece5b0683fa074525e241",
+  "run_id": 38231902939,
+  "status": "completed",
+  "conclusion": "success",
+  "job": {
+    "id": 114753156040,
+    "name": "private-delta",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "steps_confirmed_success": [
+    "新規7 private差分境界試験",
+    "変更差分と旧/最終index guardを分離して照合",
+    "Run actions/upload-artifact@v4"
+  ],
+  "log_observations": [
+    "Ran 7 tests in 0.000s",
+    "OK",
+    "NEW_PRIVATE_DELTA_VIOLATIONS=0",
+    "BASE_FULL_GUARD_EXIT=1",
+    "HEAD_FULL_GUARD_EXIT=1",
+    "RESULT=DONE TASK=USER-20261012-IPS-DPE-PRIVATE-DELTA-GUARD VERIFY=PASS COMMIT=-"
+  ],
+  "artifact": {
+    "id": 11739310971,
+    "name": "pr16-ips-dpe-private-delta-public-text",
+    "digest": "sha256:f55796d26b15a126e751719f5cb271e643b597e5f49b493dcfb241e24894dd1b",
+    "size_in_bytes": 1918,
+    "expired": false,
+    "archive_members_sha256_verified": false
+  },
+  "changed_tracked_paths": 15,
+  "new_test_count": 7,
+  "added_private_violations": 0,
+  "full_before_exit_code": 1,
+  "full_after_exit_code": 1,
+  "full_guard_pass_claimed": false,
+  "limited_guard_pass_claimed": true,
+  "accepted_tests_rerun": 0,
+  "source_binding": "record phase observes source HEAD, does not self-reference closeout commit"
+}
