@@ -1,0 +1,38 @@
+name: pr16-ips-dpe-private-guard
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_ips_dpe_private_guard.py
+      - tests/test_pr16_ips_dpe_private_guard.py
+      - .github/workflows/pr16-ips-dpe-private-guard.yml
+permissions:
+  contents: read
+concurrency:
+  group: pr16-ips-dpe-private-guard
+  cancel-in-progress: false
+jobs:
+  private-delta:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: 新規7 private差分境界試験
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 -B -m unittest discover -s tests -p test_pr16_ips_dpe_private_guard.py -v
+      - name: 変更差分と旧/最終index guardを分離して照合
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: python3 -B scripts/pr16_ips_dpe_private_guard.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ips-dpe-private-delta-public-text
+          path: .local/pr16-ips-dpe-private-guard/public/
+          if-no-files-found: error
+          retention-days: 90
