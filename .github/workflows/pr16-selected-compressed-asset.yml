@@ -25,6 +25,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: 新scope ROM再構成に必要なARMツールのみ
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev gcc g++ make
       - name: 新しいtype1境界試験のみ
         env:
           PYTHONDONTWRITEBYTECODE: '1'
