@@ -150,9 +150,20 @@ HISTORICAL_ENTRY = 'CHATGPT_RESUME_BEFORE_WIKI_FIRST.md'
 ACTIVE_PLAN = 'content/modernization/pr16_wiki_first_execution_plan.json'
 HISTORICAL_ENTRY_BINDING = {'size': 9236,
     'sha256': 'b374bff6a93a6df00575eac83706303a662c816859439349be886e09fbb1f3e0'}
+# 実装コードの旧受入も同じsource_bindingsに束縛されている。
+# 変更前の実byteを証拠用の非実行テキストとして保存し、hashを更新しない。
+HISTORICAL_CODE = {
+    'scripts/pr16_resume.py': ('content/modernization/pr16_resume_legacy_source_evidence/pr16_resume.py.txt',
+        {'size': 27351, 'sha256': '385822716e7bbe1e3430ad778768a9ae0e1d2176d8bd3e3bdb09f1faf2b45252'}),
+    'tests/test_pr16_resume.py': ('content/modernization/pr16_resume_legacy_source_evidence/test_pr16_resume.py.txt',
+        {'size': 12856, 'sha256': 'cda46a7c39c0626d08b4f6ca84d3cc8917e5beb0487b12309c0fda2ac1adf8ff'}),
+}
 
 
 def bound_source_bytes(root: Path, name: str, meta: dict) -> bytes:
+    if name in HISTORICAL_CODE:
+        original, expected = HISTORICAL_CODE[name]
+        return safe_path(root, original).read_bytes() if meta == expected else safe_path(root, name).read_bytes()
     if name != 'CHATGPT_RESUME.md' or meta != HISTORICAL_ENTRY_BINDING:
         return safe_path(root, name).read_bytes()
     # R0.1の新しい入口を旧履歴バイトとして受入れない。どちらも独立に照合。
