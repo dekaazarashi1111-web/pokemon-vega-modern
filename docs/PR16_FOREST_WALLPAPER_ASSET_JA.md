@@ -238,6 +238,16 @@ run 38177623055の全job/必須step成功、artifact9member/87textと公開commi
 
 [checkpoint](../content/modernization/pr16_selected_asset_records_checkpoint.json) / [record候補](../content/modernization/pr16_selected_asset_records_evidence/record-candidates.json)。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 0x095FE848/0x09673660の2整列pointer起点からrecord/base候補を保存。新base参照0件、Thumb literal形0件。record-candidates.jsonの具体的構造体・参照元から、0x0880FA64を含む実asset境界と実caller/readerを特定する。構造体形やliteral形だけでは正式型にしない。保存した旧11起点への逆参照/30試験と今回22試験・base探索を再走しない。map/ARM/LZ/Wikiも無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+
+## 有限音声rootの0件測定と保存境界の復旧
+
+有限音声root73群・13194record・非圧縮PCM88sampleを照合し、対象3範囲との一致0件。初回run38193578259は新32試験と測定後、tuple/list保存照合で失敗。失敗原本は保持し、6保存境界試験とbyte不変受領で復旧。復旧時のROM再構成/測定/旧32試験再走0、task全体では候補復元1・音声測定1。実reader・保存統合は未完。
+
+[checkpoint](../content/modernization/pr16_selected_sound_roots_checkpoint.json) / [改作なしの測定JSON](../content/modernization/pr16_selected_sound_roots_evidence/sound-roots.json) / [失敗原本と復旧根拠](../content/modernization/pr16_selected_sound_roots_evidence/measurement-recovery.json)。
+
+## 次の未完作業
+
+有限音声root73群・13194音色recordのうち非圧縮PCM宣言範囲への一致0件を保存。実asset/reader未特定。0x0880FA64と0x095FE848/0x09673660の元ROM・Vega IPS・現代化ownerの配置元を束縛し、実asset境界/consumerへ進む。圧縮/未対応音色・有限root外は未証明。0件を不存在や正式型と扱わない。保存した32試験/音声測定/今回6保存試験と旧record/base/逆参照/map/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。

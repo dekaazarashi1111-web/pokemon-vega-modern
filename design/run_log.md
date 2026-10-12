@@ -14553,3 +14553,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 0x095FE848/0x09673660の2整列pointer起点からrecord/base候補を保存。新base参照0件、Thumb literal形0件。record-candidates.jsonの具体的構造体・参照元から、0x0880FA64を含む実asset境界と実caller/readerを特定する。構造体形やliteral形だけでは正式型にしない。保存した旧11起点への逆参照/30試験と今回22試験・base探索を再走しない。map/ARM/LZ/Wikiも無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
 - Commit: この記録を含む単親通常commit。実SHAはActions result/Git履歴。
 - Network: 同repo PR/ref/Actions/artifact、固定ComplexRobot/frlg-sym c04a315のJP symbol、既存private入力復元、同branch非force push。固定pret/pokefirered c75f352のWaveData/SpriteSheet公開headerを確認。ROM/save/生byte列を追加公開しない。一般P03はrun38181189840の固定original復元（artifact10152134447）で失敗、試験40件はskipped。受入原本を再測定で代替しない。
+
+## 2026-10-12T02:03:30.476592+00:00
+- Timestamp: 2026-10-12T02:03:30.476592+00:00
+- Task: USER-20261012-SELECTED-SOUND-ROOTS / 有限音声rootと保存境界の復旧
+- Version: selected-sound-roots-v2
+- Status: DONE（限定検査と保存を完了、実reader/保存容量は未完）
+- Summary: 有限音声root73群・13194record・非圧縮PCM88sampleを照合し、対象3範囲との一致0件。初回run38193578259は新32試験と測定後、tuple/list保存照合で失敗。失敗原本は保持し、6保存境界試験とbyte不変受領で復旧。復旧時のROM再構成/測定/旧32試験再走0、task全体では候補復元1・音声測定1。実reader・保存統合は未完。
+- Files changed: 新音声検査器/32試験/6保存試験/復旧runner/Actions、checkpoint/text証拠、固定MD/JSON、両ログ。
+- Verify: 新6保存試験、既存32成功原本のhash受領、初回失敗run/ZIP94857byte全hash/全5member、byte/mtime不変、task graph、最終index新規private違反0。全体guardと一般CIは別記録。
+- Next: 有限音声root73群・13194音色recordのうち非圧縮PCM宣言範囲への一致0件を保存。実asset/reader未特定。0x0880FA64と0x095FE848/0x09673660の元ROM・Vega IPS・現代化ownerの配置元を束縛し、実asset境界/consumerへ進む。圧縮/未対応音色・有限root外は未証明。0件を不存在や正式型と扱わない。保存した32試験/音声測定/今回6保存試験と旧record/base/逆参照/map/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+- Commit: この記録を含む単親通常commit。実SHAはActions result/Git履歴。
+- Network: 同repo PR/ref/Actions/artifactと同branch非force push。初回測定のみ固定JP symbol/pret公開header/sound.cと既存private入力復元。ROM/save/生byte列は非公開のまま。
