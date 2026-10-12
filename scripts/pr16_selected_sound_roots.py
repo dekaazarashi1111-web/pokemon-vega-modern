@@ -132,7 +132,7 @@ def inspect_banks(raw, roots, targets=TARGETS, max_banks=1024):
                         evidence=dict(keymap=x.canonical(keymap),keymap_identity=identity(read(raw,keymap,128)))
                     else:
                         values=tuple(range(128)); evidence={}
-                    queue.append(dict(base=x.canonical(target),indices=values,
+                    queue.append(dict(base=x.canonical(target),indices=list(values),
                                       parent=dict(bank=base,index=index,record_address=at,kind=kind,
                                                   record_identity=identity(data),**evidence)))
                     stats['nested_links']+=1

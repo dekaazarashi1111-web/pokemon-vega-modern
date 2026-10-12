@@ -5,6 +5,8 @@ on:
     paths:
       - scripts/pr16_selected_sound_roots.py
       - scripts/pr16_selected_sound_roots_actions.py
+      - scripts/pr16_selected_sound_roots_recover.py
+      - tests/test_pr16_selected_sound_roots_serialization.py
       - tests/test_pr16_selected_sound_roots.py
       - .github/workflows/pr16-selected-sound-roots.yml
 permissions:
@@ -26,19 +28,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 新scope候補再構成用ツール
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-dev gcc g++ make
-      - name: 有限音声rootの宣言境界を検証して記録
+      - name: 保存済み音声測定を再走せず検証して記録
         env:
           GITHUB_TOKEN: ${{ github.token }}
           PYTHONDONTWRITEBYTECODE: '1'
-        run: python3 -B scripts/pr16_selected_sound_roots_actions.py
+        run: python3 -B scripts/pr16_selected_sound_roots_recover.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: pr16-selected-sound-roots-public-text
-          path: .local/pr16-selected-sound-roots/public/
+          path: .local/pr16-selected-sound-roots-recovery/public/
           if-no-files-found: error
           retention-days: 90
