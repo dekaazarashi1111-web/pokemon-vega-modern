@@ -290,6 +290,12 @@ PLA1二次逆参照の全4byte読取は受領済み。0x0880FA64のIPS記録1187
 
 [checkpoint](../content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json) / [Actions受領](../content/modernization/pr16_selected_ips_dpe_frontier_evidence/actions-completion.json) / [検証script](../scripts/pr16_selected_ips_dpe_frontier.py)。新規12試験と旧受入検証は混同しない。正式789/85・選定残6・安全容量0、ROM/Save/baseline/Wiki不変。
 
+## DPE固定上流sourceと最新CIの境界（2026-10-12T09:38:41.913Z）
+
+固定source-lockのDPE commit `10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e` に対し、上流 `scripts/make.py`（blob `11e8da1f7205612349e7134a1640df122661e9ce`）、`scripts/insert.py`（`b26d6358d35272f2348e3a677ebede2540285153`）、`linker.ld`（`6ad0361f82fd3bd28fa2cbc17124fd53496eb646`）を直接照合。make.pyの空き領域走査false/固定offset 0x1600000、linker/insert上書き、insert.pyの `build/output.bin` 連続挿入を確認。linker元ファイルの+0x1800000はmakeで上書きされる。実output.binの長さと0x09673660のblob包含・symbol owner・reader命令は**未証明**。
+
+[pin source-chain](../content/modernization/pr16_selected_ips_dpe_frontier_evidence/dpe-source-chain.json) / [記録後Actions状態](../content/modernization/pr16_selected_ips_dpe_frontier_evidence/ci-context.json)。記録コミット後の引継ぎ旧検証run38229956465は旧20260913台帳がroot再開MDに9236byte/旧SHAを要求して失敗。開始HEADでは当該MDが2634byteだったため旧不一致は事前から存在。旧受入台帳を修正してgreenにはしない。source-validationの古いQOL source binding失敗とP03復元失敗も継続。限定12試験成功とは区別する。
+
 ## 次の未完作業
 
 IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。

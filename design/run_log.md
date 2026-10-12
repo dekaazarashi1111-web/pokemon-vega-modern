@@ -14618,3 +14618,14 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundaries: formal 789/85, selected 6, safe bytes 0; no Save/controller/heap/local acceptance, no ROM/Save101/Wiki/baseline/merge/release modification.
 - Next: IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。
 - Commit: this record is included in a new regular single-parent commit; actual SHA is Git history (avoid self-hash-only commit).
+
+## 2026-10-12T09:38:41.913Z
+- Timestamp: 2026-10-12T09:38:41.913Z
+- Task: USER-20261012-DPE-PINNED-SOURCE-CHAIN / DPE fixed source pin and postrecord CI context
+- Version: selected-ips-dpe-frontier-v1-source-chain
+- Status: DONE (static pinned DPE source placement receipt; actual blob span/reader not proven)
+- Summary: pinned kapibarasan000/DPE-JP 10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e, upstream make.py fixed offset 0x1600000 and SEARCH_FREE_SPACE=False; make edits linker and insert; insert.py writes build/output.bin. DPE origin 0x09673660 offset 0x73660 is only inside reservation envelope until actual bin size/symbol reader are observed.
+- Verify: GitHub exact pinned blobs {"scripts/make.py":"11e8da1f7205612349e7134a1640df122661e9ce","scripts/insert.py":"b26d6358d35272f2348e3a677ebede2540285153","linker.ld":"6ad0361f82fd3bd28fa2cbc17124fd53496eb646"}; source-lock resolved commit equality; upstream source guards; postrecord 7 Actions: Stage79 2 success; source-validation/P03 both push+PR failure; historical pr16-resume-maintenance 10 errors due stale root MD binding from pretask HEAD. No accepted measurements or old tests rerun.
+- Boundaries: no original ROM/IPS/Save byte materialized; formal 789/85 / selected 6 / safe donor 0; full-index private guard not claimed; old legacy binding not rewritten; no green claim.
+- Files: DPE source-chain and latest CI evidence, checkpoint/state/guide, append-only logs; regular single-parent nonforce branch commit.
+- Next: verify actual DPE output.bin extent and linked symbol map at 0x09673660 and IPS11 first-level real reader instructions; do not retry static pin source check or completed 12 tests without impact.

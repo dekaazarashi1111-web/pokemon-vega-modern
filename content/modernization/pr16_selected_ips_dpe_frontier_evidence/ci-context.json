@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "task": "USER-20261012-IPS-DPE-BOUNDARY-POSTRECORD-ACTIONS",
+  "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1",
+  "observed_at": "2026-10-12T09:38:41.913Z",
+  "all_ci_green_claimed": false,
+  "actions": [
+    {
+      "id": 38229955865,
+      "name": "p03-forgetting-ci",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "failure",
+      "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+    },
+    {
+      "id": 38229956465,
+      "name": "PR16 fixed handoff source-only verification",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "failure",
+      "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+    },
+    {
+      "id": 38229957004,
+      "name": "source-validation",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "failure",
+      "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+    },
+    {
+      "id": 38229957595,
+      "name": "Stage79 runtime boundary audit",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+    },
+    {
+      "id": 38229957998,
+      "name": "Stage79 mGBA (all)",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+    },
+    {
+      "id": 38229966093,
+      "name": "source-validation",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+    },
+    {
+      "id": 38229966103,
+      "name": "p03-forgetting-ci",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+    }
+  ],
+  "known_failure_roots": [
+    {
+      "workflow": "PR16 fixed handoff source-only verification",
+      "run_id": 38229956465,
+      "errors": 10,
+      "observed_exception": "ValueError: stale source: CHATGPT_RESUME.md",
+      "historical_binding": {
+        "sha256": "b374bff6a93a6df00575eac83706303a662c816859439349be886e09fbb1f3e0",
+        "size": 9236
+      },
+      "root_resume_before_this_task": {
+        "head": "6acbf1d863c1527849475eb6002ff3ad613991e4",
+        "size": 2634,
+        "sha256": "92e099de4a1266e12637416bed8cb43d80351a0f9bb757baf014ce166ad3276e"
+      },
+      "root_resume_current_git_blob_sha": "77e9dae34caeddeaea86eb1813783785ad4dee83",
+      "preexisting_binding_mismatch_at_initial_head": true,
+      "legacy_evidence_rewritten": false
+    },
+    {
+      "workflow": "source-validation",
+      "run_id": 38229957004,
+      "observed_exception": "ValueError: tested source changed: overlays/qol_production/qol_production.c",
+      "also_seen_on_initial_head_run": 38204367653
+    },
+    {
+      "workflow": "p03-forgetting-ci",
+      "run_id": 38229955865,
+      "failed_step": "Restore exact pinned integration originals for current acceptance",
+      "also_seen_on_initial_head_run": 38204367548
+    }
+  ],
+  "limited_success_run": {
+    "id": 38229002566,
+    "name": "pr16-ips-dpe-boundary",
+    "conclusion": "success",
+    "new_tests": 12
+  },
+  "old_acceptance_replayed_by_this_record": false,
+  "full_index_private_guard_this_record_executed": false,
+  "limitations_ja": [
+    "新規Actionsに失敗が残り、全CI成功は未主張。",
+    "旧resume台帳7504source bindingsの全改作/旧受入再検査は行わない。",
+    "旧台帳の一致不良は本task開始時点の既存不整合で、今回の保存scopeの12試験結果と混同しない。"
+  ]
+}

@@ -35,6 +35,8 @@
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
       "content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json",
+      "content/modernization/pr16_selected_ips_dpe_frontier_evidence/dpe-source-chain.json",
+      "content/modernization/pr16_selected_ips_dpe_frontier_evidence/ci-context.json",
       "content/modernization/pr16_selected_ips_dpe_frontier_evidence/actions-completion.json",
       "content/modernization/pr16_selected_asset_provenance_evidence/provenance.json",
       "content/modernization/pr16_selected_asset_xrefs_evidence/inverse-references.json",
@@ -42,59 +44,68 @@
     ]
   },
   "observed_head_checks": {
-    "source_head": "4a189c0e393c087346db471b99ac60b65b0382b5",
-    "all_ci_green_claimed": false,
+    "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1",
     "runs": [
       {
-        "id": 38229002566,
-        "name": "pr16-ips-dpe-boundary",
+        "id": 38229955865,
+        "name": "p03-forgetting-ci",
         "event": "push",
         "status": "completed",
-        "conclusion": "success"
+        "conclusion": "failure",
+        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
       },
       {
-        "id": 38229002578,
+        "id": 38229956465,
+        "name": "PR16 fixed handoff source-only verification",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "failure",
+        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+      },
+      {
+        "id": 38229957004,
+        "name": "source-validation",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "failure",
+        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
+      },
+      {
+        "id": 38229957595,
         "name": "Stage79 runtime boundary audit",
         "event": "push",
         "status": "completed",
-        "conclusion": "success"
+        "conclusion": "success",
+        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
       },
       {
-        "id": 38229002778,
+        "id": 38229957998,
         "name": "Stage79 mGBA (all)",
         "event": "push",
         "status": "completed",
-        "conclusion": "success"
+        "conclusion": "success",
+        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
       },
       {
-        "id": 38229002190,
-        "name": "source-validation",
-        "event": "push",
-        "status": "completed",
-        "conclusion": "failure"
-      },
-      {
-        "id": 38229002787,
-        "name": "p03-forgetting-ci",
-        "event": "push",
-        "status": "completed",
-        "conclusion": "failure"
-      },
-      {
-        "id": 38229010913,
+        "id": 38229966093,
         "name": "source-validation",
         "event": "pull_request",
         "status": "completed",
-        "conclusion": "failure"
+        "conclusion": "failure",
+        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
       },
       {
-        "id": 38229011166,
+        "id": 38229966103,
         "name": "p03-forgetting-ci",
         "event": "pull_request",
         "status": "completed",
-        "conclusion": "failure"
+        "conclusion": "failure",
+        "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1"
       }
-    ]
+    ],
+    "all_ci_green_claimed": false,
+    "legacy_handoff_failure": 38229956465,
+    "known_source_validation_mismatch": "overlays/qol_production/qol_production.c"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -197,7 +208,7 @@
         "classified": 789,
         "completion_evidence_path": null,
         "donor_safe_bytes": 0,
-        "next_ja": "IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。",
+        "next_ja": "IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64までのoffset17076・残104byteを保存逆参照11件と境界受領済み。書込区間は実asset境界ではない。0x09673660はDPE配置予約[0x09600000,0x0A000000)内offset0x73660、pointer値0x0880EFD0だが実output.bin包含・owner・asset readerは未証明。次は保存されたIPS先行11起点を実caller命令へ限定束縛し、固定DPE配置元の実output.bin extent/元asset readerを新scopeだけで照合する。未証明を正式型・空き容量に昇格しない。新12試験と受入済みPLA1 36/2実ARM/14受領、type1/PCM/系譜/map/LZ/逆参照/Wikiを変更影響なしに再走しない。正式789/85・選定残6・安全容量0。保存controller/窓外跨り/間接参照/退役移管/heap/局所Saveは未完。 DPE固定source-lock pin 10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e / make.py→insert.pyは静的確認済み。次はoutput.bin実長と対象の実caller/readを追う（今回source pinを再読しない）。",
         "reference_chain_path": "content/modernization/pr16_berry_lz_type_evidence/reference-chain.json",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
@@ -408,21 +419,22 @@
       }
     },
     "last_execution": {
-      "task": "USER-20261012-IPS-DPE-BOUNDARY",
-      "source_head": "4a189c0e393c087346db471b99ac60b65b0382b5",
-      "actions_run_id": 38229002566,
-      "actions_completion_confirmed": true,
-      "new_unit_tests": 12,
-      "task_graph_passed": true,
+      "task": "USER-20261012-DPE-PINNED-SOURCE-CHAIN",
+      "source_head": "c59b27186793f2f8d94455bcfb97e634cfaa56d1",
+      "source_scopes": [
+        "PINNED_DPE_UPSTREAM_SOURCE",
+        "POST_RECORD_CI_DIAGNOSTICS"
+      ],
+      "actions_replayed": 0,
       "accepted_test_reruns": 0,
-      "accepted_measurement_reruns": 0,
       "candidate_reconstructions": 0,
       "native_processes": 0,
+      "upstream_rebuilds": 0,
       "formal_classification_changes": 0,
-      "donor_safe_bytes": 0,
+      "all_ci_green_claimed": false,
       "full_index_private_guard": {
         "executed": false,
-        "reason": "旧既存違反を含む全index guardについて新規実行・成功認定をしていない"
+        "reason": "記録専用text更新。旧全index既知違反と限定scope検証を混同しない。"
       }
     },
     "legacy_generated_md_modified": false,
@@ -643,7 +655,9 @@
       "source_head": "e2f4bc4cd0fbd8d08b4d60b1a8d262a1bb3753aa",
       "task": "USER-20261011-WIKI-READABILITY-RECEIPT"
     },
-    "ips_dpe_frontier_checkpoint": "content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json"
+    "ips_dpe_frontier_checkpoint": "content/modernization/pr16_selected_ips_dpe_frontier_checkpoint.json",
+    "latest_boundary_source_chain": "content/modernization/pr16_selected_ips_dpe_frontier_evidence/dpe-source-chain.json",
+    "latest_boundary_ci_receipt": "content/modernization/pr16_selected_ips_dpe_frontier_evidence/ci-context.json"
   },
   "routing_rules": [
     {
