@@ -1,0 +1,32 @@
+name: pr16-form-technical-readiness
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_form_readiness.py
+      - tests/test_pr16_form_readiness.py
+      - .github/workflows/pr16-form-technical-readiness.yml
+      - content/modernization/p08_native_mega_acceptance.json
+      - content/modernization/pr16_fixed_form_acceptance_receipt.json
+      - content/modernization/pr16_generic_form_acceptance.json
+permissions:
+  contents: read
+jobs:
+  read-only-inventory:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: New focused source-only contract tests
+        run: python3 -m unittest discover -s tests -p test_pr16_form_readiness.py -v
+      - name: Verify fixed R0 ledger scopes without native replay
+        run: python3 scripts/pr16_form_readiness.py
+      - name: Read-only task graph and no tracked mutation
+        run: |
+          python3 scripts/validate_task_graph.py
+          git diff --exit-code
