@@ -116,3 +116,11 @@
 - Error excerpt: BLOCKED_NATIONAL_DEX_EVOLUTION_GUARD / exit3 / national_dex=0。
 - Question for human: 現時点で権限依頼は不要。正規の全国図鑑取得条件と進化gate設計ownerを照合し、設計判断が競合した場合だけ確認する。
 - Next step: 保存済みstory-fastから正規story続行。進化は自然解禁後の別境界か、影響台帳付きsource修正/後継候補で解決し、flag注入で成功扱いしない。旧受入smokeを無影響に再実行しない。
+
+## 2026-10-12T13:14:00Z — USER-20261012-DPE-PINNED-OUTPUT-GAP
+- Task: USER-20261012-DPE-PINNED-OUTPUT-GAP / DPE pinned output実体・実readerの取得阻害。
+- Block reason: 上流固定treeの追跡済みoutput.bin 0件、直前の新scope実Actions cache候補0件。実出力長/出所とROM対照、linked symbolと実callerがない。
+- What you tried: source-lock固定commit照合、DPE上流全5934tree entry/出力file名照合、既受入instruction extentとcache計測の参照、関連CI状態比較。
+- Error excerpt: TRACKED_OUTPUT_BIN_COUNT=0; ACCEPTED_CACHE_OUTPUT_BIN_CANDIDATES=0; ACTUAL_OUTPUT_BIN_CONTAINMENT_PROVEN=false（実ビルドを新規実行した結果ではない）。
+- Question for human: 現時点で追加権限確認不要。固定sourceと一致する実build artifact/recipeを取得できる実環境が必要。未証明のままowner推定をしない。
+- Next step: 実output.binのSHA/長さ/offset/現在ROM4byte同一を同じ固定pinで受領後、IPS record11873のasset境界とtable/命令readerを限定検証。正式789/85・6・安全0は維持。受入済み試験再走0。

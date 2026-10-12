@@ -14656,3 +14656,26 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 保存11参照地点の現候補実word SHAと非整列9件を確認。限定±4104byte ARM/±1028byte Thumb PC相対literal LDR形は0件で、実callerが存在しない証明ではない。DPE固定予約内0x09673660からの実output.bin候補は今回のbuild/upstream-cacheに0件、包含/owner/asset readerは未証明。次は固定DPE pin 10ff98c8の対応output.bin実体とビルド系譜/長さ/ROM包含を取得して照合し、IPS record11873の実asset開始/終端および保存11起点以外のtable/計算参照から元asset readerの実命令・経路を有限に追う。新規11試験・今回の成功候補復元・既受入PLA1/12境界/7 private guard/全旧音声・map・LZ・Wikiは変更影響なしに再走しない。正式789/85・選定残6・安全容量0、保存controller/窓外跨り/heap/局所Saveは未完。
 - Commit: 同branch単親non-force、実SHAはGit履歴を参照。
 - Network: 同repo private inputsをActions内で限定読取（byte非公開）、Actions evidenceの公開text artifactを取得してhash検証。既受入原本を書換えない。
+
+## 2026-10-12T13:14:00Z
+- Timestamp: 2026-10-12T13:14:00Z
+- Task: USER-20261012-LEGACY-RESUME-SOURCE-BOUNDARY / 旧resumeの履歴byte束縛と現行入口の独立CI修復
+- Status: DONE（旧resume限定CIの全32test/check PASS。他CIとは別）
+- Summary: 歴史的9236byteの入口/旧実装/旧テストを不変の退避byteで照合するcompatibility guardを実装し、新しいroot入口は固定JSON bindingsで別SHA検査。旧巨大JSONのmetaを改作しない。更新・欠落の拒否を新scopeで検証。
+- Files changed: scripts/pr16_resume.py、tests/test_pr16_resume.py、2つの履歴source txt（前2通常非force commit）、今回の結果receipt/固定状態JSON/引継ぎMD/append-onlyログ。
+- Verify: [Actions run38253880695](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/38253880695) / job114826813228 success; 新32 focused unittest PASS, pr16_resume.py check RESUME_PASS, validate_task_graph.py OK, git diff clean。post-commit受入済みROM/native再実行0。
+- Commit: 変更コミット df1a9e10401b11131fe182b5cc1d5f2130ea65a3 → 07edca35568c959968d8dd9829fc8b8c9e84fad5。今回の証拠/ログも同branch単親通常commit（実SHAはGit履歴）。
+- Network: GitHub connector read/write、PR#16とActions run/jobs/logs確認。private bytes/ROM/Saveの取得・送信なし。
+- Boundary: source-validation/P03の旧別失敗は残存、全CI greenの主張なし。旧hash置換・Wiki改作・全index guard PASS主張なし。
+
+
+## 2026-10-12T13:14:00Z — USER-20261012-DPE-PINNED-OUTPUT-GAP
+- Timestamp: 2026-10-12T13:14:00Z
+- Task: USER-20261012-DPE-PINNED-OUTPUT-GAP / 固定DPE output実体不在の証拠と安全停止境界
+- Status: BLOCKED（現時点で本物のoutput.bin・元readerは取得できない）
+- Summary: source-lock DPE pin 10ff98c8を確認、Git tracked tree 5934件（truncated=false）にoutput.binは0。前回実ROM限定検査run38244314715もcache候補0、命令形0。output実長/SHA/ROM offset4byte/linked symbolなし、IPS record11873は書込区間に留める。
+- Files changed: content/modernization/pr16_dpe_output_gap_checkpoint.json, docs/PR16_FOREST_WALLPAPER_ASSET_JA.md, content/modernization/pr16_wiki_first_execution_plan.json, design/blockers.md、両ログ。
+- Verify: 固定Git treeと既存受入原本のハッシュ照合をread-onlyで検証。新実blob・新ROM候補復元0、new native0、変更影響なしの既成功テスト0、正式分類の変更0、donor-safe0byte。DPE実readerはVERIFY=BLOCKED（PASSではない）。
+- Commit: 今回記録を含む単親nonforce同branch commit、実SHAはGit履歴。
+- Network: GitHub pinned DPE tree/source-lock、既存証拠と当該run metadata参照。原本byteや非公開アーカイブを公開せず。
+- Next: pinned DPE output.binの実同一性/extentとROM包含・symbol owner、IPS実callerを新scopeで証明してから分類へ進める。

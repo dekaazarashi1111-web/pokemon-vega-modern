@@ -317,3 +317,13 @@ IPS record11873の書込区間[0x0880B7B0,0x0880FAD0)、対象0x0880FA64まで�
 ## 次の未完作業
 
 保存11参照地点の現候補実word SHAと非整列9件を確認。限定±4104byte ARM/±1028byte Thumb PC相対literal LDR形は0件で、実callerが存在しない証明ではない。DPE固定予約内0x09673660からの実output.bin候補は今回のbuild/upstream-cacheに0件、包含/owner/asset readerは未証明。次は固定DPE pin 10ff98c8の対応output.bin実体とビルド系譜/長さ/ROM包含を取得して照合し、IPS record11873の実asset開始/終端および保存11起点以外のtable/計算参照から元asset readerの実命令・経路を有限に追う。新規11試験・今回の成功候補復元・既受入PLA1/12境界/7 private guard/全旧音声・map・LZ・Wikiは変更影響なしに再走しない。正式789/85・選定残6・安全容量0、保存controller/窓外跨り/heap/局所Saveは未完。
+
+## 2026-10-12 固定DPE output実体と旧resume CIの分離（USER-20261012-LEGACY-RESUME-SOURCE-BOUNDARY / USER-20261012-DPE-PINNED-OUTPUT-GAP）
+
+- 正本の前提は変更なし: 789分類・85未分類、選定未知6、donor-safe 0byte。実ROM・IPS・Save・旧Wiki・PLA1受入証拠への書込/再走0。
+- 固定DPE上流 `kapibarasan000/DPE-JP@10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e` のGit tree 5934項目を照合（truncated=false）。追跡済み `output.bin` は0。前回run38244314715の `build/upstream-cache` 候補も0。**実output.binの生成/長さ/SHA、ROMへの包含、0x09673660の所有者とasset readerは未証明**であり、配置予約0x09600000を安全な空き容量とはしない。
+- IPS record 11873 [0x0880B7B0,0x0880FAD0) はpatch書込区間でありasset実境界ではない。対象0x0880FA64と先行11参照のうち非整列9件/ARM+Thumbの限定literal形0件は前回証拠を継承、reader確定0。owner/caller/表間接参照は未完。
+- 独立CIの旧resume束縛は、既存 `CHATGPT_RESUME.md` の9236byte原本コピーに加え、旧 `scripts/pr16_resume.py` および `tests/test_pr16_resume.py` のbyte同一証拠を専用 `.txt` に固定した。旧巨大JSONのhashは更新していない。現行root入口は新方針JSONの独立hashで検証し、原本退避を書き換えて成功にしない。
+- 実Actions run [38253880695](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/38253880695) / job 114826813228 は **success**: focused 32 tests、resume読み取り専用check、task graph、git diff clean。新コード影響の必要回帰のみで、変更しない受入済みnative/ROM試験を再走しない。
+- 同HEADの `source-validation` run 38253882331 は旧QOL source SHA相違でfailure、`p03-forgetting-ci` run 38253880866 はartifact 10152134447取得失敗でfailure。Stage79の2ワークフローはsuccess。**全体CI greenではない**。
+- 新しい限定記録: `content/modernization/pr16_legacy_resume_ci_evidence/actions-completion.json` と `content/modernization/pr16_dpe_output_gap_checkpoint.json`。後続は固定DPE実build出力/系譜と具体readerが得られて初めて源の容量を評価する。新scopeなく旧11/36/12/7や旧Wikiを再実行しない。

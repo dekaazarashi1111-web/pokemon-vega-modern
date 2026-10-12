@@ -11911,3 +11911,23 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 保存11参照地点の現候補実word SHAと非整列9件を確認。限定±4104byte ARM/±1028byte Thumb PC相対literal LDR形は0件で、実callerが存在しない証明ではない。DPE固定予約内0x09673660からの実output.bin候補は今回のbuild/upstream-cacheに0件、包含/owner/asset readerは未証明。次は固定DPE pin 10ff98c8の対応output.bin実体とビルド系譜/長さ/ROM包含を取得して照合し、IPS record11873の実asset開始/終端および保存11起点以外のtable/計算参照から元asset readerの実命令・経路を有限に追う。新規11試験・今回の成功候補復元・既受入PLA1/12境界/7 private guard/全旧音声・map・LZ・Wikiは変更影響なしに再走しない。正式789/85・選定残6・安全容量0、保存controller/窓外跨り/heap/局所Saveは未完。
 - Commit: 同branch単親non-force、実SHAはGit履歴を参照。
 - Network: 同repo private inputsをActions内で限定読取（byte非公開）、Actions evidenceの公開text artifactを取得してhash検証。既受入原本を書換えない。
+
+## 2026-10-12T13:14:00Z
+- Version: pr16-legacy-resume-byte-boundary-v2
+- Commit: 変更段階 df1a9e10401b11131fe182b5cc1d5f2130ea65a3 / 07edca35568c959968d8dd9829fc8b8c9e84fad5、今回の記録は同branch単親通常commit
+- Task: USER-20261012-LEGACY-RESUME-SOURCE-BOUNDARY / 旧resume独立SHA束縛とCI修復
+- Summary:
+  - 旧root/実装/testsのhistorical byteを別の非実行原本で厳格に検証し、旧受入記録を改変しない。
+  - 現行rootは新方針JSONで照合。破損・source置換拒否を追加。
+  - 実Actions run38253880695 にて32 test + resume check + task graph成功。別CIの失敗は残す。
+- Verify: github Actions 38253880695 success / source-validation38253882331 failure（独立）
+
+
+## 2026-10-12T13:14:00Z — USER-20261012-DPE-PINNED-OUTPUT-GAP
+- Version: pr16-dpe-real-output-attestation-blocked-v1
+- Commit: 今回の証拠とログを含む同branch単親nonforce commit（実SHAはGit履歴）
+- Task: USER-20261012-DPE-PINNED-OUTPUT-GAP / 固定DPE output artifact未取得の停止境界
+- Summary:
+  - 追跡済み固定DPE全tree5934項目にoutput.binなし。既受入cache測定0件。
+  - 実asset長/owner/ROM包含とIPS命令readerを未証明のまま保存。正式789/85・6・安全0byte不変。
+- Verify: pinned Git tree read-only PASS; real output/reader acceptance BLOCKED; native/ROM replay SKIP

@@ -43,53 +43,54 @@
     ]
   },
   "observed_head_checks": {
-    "source_head": "d386f3eec2e8784b8fd52ecaa4c19a2ffb852f16",
+    "source_head": "07edca35568c959968d8dd9829fc8b8c9e84fad5",
     "all_ci_green_claimed": false,
-    "successful_new_limited_run": 38244314715,
+    "scoped_legacy_resume_run": 38253880695,
     "runs": [
       {
-        "id": 38244314715,
-        "name": "pr16-ips-dpe-instruction-extent",
+        "id": 38253880695,
+        "name": "pr16-resume-maintenance",
         "event": "push",
         "status": "completed",
         "conclusion": "success"
       },
       {
-        "id": 38244314531,
+        "id": 38253882621,
         "name": "Stage79 runtime boundary audit",
         "event": "push",
         "status": "completed",
         "conclusion": "success"
       },
       {
-        "id": 38244314627,
+        "id": 38253882582,
+        "name": "Stage79 mGBA (all)",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 38253882331,
         "name": "source-validation",
         "event": "push",
         "status": "completed",
         "conclusion": "failure"
       },
       {
-        "id": 38244315015,
+        "id": 38253880866,
         "name": "p03-forgetting-ci",
         "event": "push",
         "status": "completed",
         "conclusion": "failure"
       },
       {
-        "id": 38244328211,
-        "name": "source-validation",
-        "event": "pull_request",
-        "status": "completed",
-        "conclusion": "failure"
-      },
-      {
-        "id": 38244327977,
-        "name": "p03-forgetting-ci",
-        "event": "pull_request",
+        "id": 38253881197,
+        "name": "pr16-native-loss-return-record",
+        "event": "push",
         "status": "completed",
         "conclusion": "failure"
       }
-    ]
+    ],
+    "note_ja": "32 focused test+resume check+task graph successは旧resume整合限定。P03容量source相違/原本artifact取得失敗はfail維持。旧全index private guardもPASSに昇格しない。"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -166,14 +167,18 @@
     },
     "technical_lanes": {
       "ci_evidence": {
-        "blocker": null,
-        "completion_evidence_path": null,
-        "next_ja": "capacity証拠と現sourceの不一致、未完CIを原本改作なしに整理。",
+        "blocker": {
+          "reason_ja": "P03容量の旧source hash相違と失効/未取得Actions artifactの再現入力不足。他レーンの実検査も失敗。旧hash書換えによるgreen化を禁止。",
+          "evidence_path": "content/modernization/pr16_legacy_resume_ci_evidence/actions-completion.json"
+        },
+        "completion_evidence_path": "content/modernization/pr16_legacy_resume_ci_evidence/actions-completion.json",
+        "next_ja": "旧resumeの固定原本hash検証は新32試験/実Actions PASSで閉鎖。P03容量の旧QOL source mismatchとP03 artifact取得失敗は未完、元の受入hashは改変しない。",
         "remaining": [
-          "旧証拠と現sourceの検証責任の分離",
-          "最新Actionsと必要検査の完了照合"
+          "旧QOL候補の実検証sourceの保全と現候補影響範囲の別測定",
+          "P03 forgetting必要Actions原本artifactの取得可能性/失効処置を証拠付きで確定",
+          "全CI現HEADの必要gateの別々の完了確認"
         ],
-        "status": "NOT_STARTED"
+        "status": "SCOPED_RESUME_ALIGNMENT_PASS_OTHER_CI_BLOCKED"
       },
       "form_readiness": {
         "blocker": null,
@@ -187,7 +192,13 @@
         "status": "NOT_STARTED"
       },
       "save_capacity": {
-        "blocker": null,
+        "blocker": {
+          "kind": "MISSING_ATTESTED_DPE_OUTPUT_AND_ACTUAL_READER",
+          "evidence_path": "content/modernization/pr16_dpe_output_gap_checkpoint.json",
+          "reason_ja": "固定pinのGit追跡treeにはbuild/output.binなし（5934 entries）。前回限定Actions cache候補0。対応実build output/offset symbol/命令readerが無いため、正式origin分類/安全容量へ昇格できない。",
+          "needed_ja": "固定pin同一sourceの非公開出力実体・ビルド系譜・symbol/出所、IPS実consumer",
+          "external_dependency": true
+        },
         "checkpoint_path": "content/modernization/pr16_ips_dpe_instruction_extent_checkpoint.json",
         "classified": 789,
         "completion_evidence_path": null,
@@ -649,7 +660,31 @@
     "latest_boundary_guard_checkpoint": "content/modernization/pr16_ips_dpe_private_guard_checkpoint.json",
     "latest_boundary_guard_receipt": "content/modernization/pr16_ips_dpe_private_guard_evidence/actions-completion.json",
     "ips_dpe_instruction_extent_checkpoint": "content/modernization/pr16_ips_dpe_instruction_extent_checkpoint.json",
-    "ips_dpe_instruction_extent_actions": "content/modernization/pr16_ips_dpe_instruction_extent_evidence/actions-completion.json"
+    "ips_dpe_instruction_extent_actions": "content/modernization/pr16_ips_dpe_instruction_extent_evidence/actions-completion.json",
+    "legacy_resume_source_boundary": {
+      "task": "USER-20261012-LEGACY-RESUME-SOURCE-BOUNDARY",
+      "status": "SCOPED_VERIFIED",
+      "source_head": "07edca35568c959968d8dd9829fc8b8c9e84fad5",
+      "actions_run_id": 38253880695,
+      "actions_job_id": 114826813228,
+      "evidence_path": "content/modernization/pr16_legacy_resume_ci_evidence/actions-completion.json",
+      "tests": 32,
+      "script_tests_rerun_due_to_direct_changes": true,
+      "unaffected_accepted_tests_rerun": 0,
+      "old_bindings_modified": false,
+      "full_ci_green_claimed": false
+    },
+    "dpe_pinned_output_gap": {
+      "task": "USER-20261012-DPE-PINNED-OUTPUT-GAP",
+      "status": "BLOCKED",
+      "evidence_path": "content/modernization/pr16_dpe_output_gap_checkpoint.json",
+      "source_head": "07edca35568c959968d8dd9829fc8b8c9e84fad5",
+      "actual_output_bin_candidates": 0,
+      "newly_rebuilt_candidate": 0,
+      "actual_ownership_proven": false,
+      "formal_classification_changes": 0,
+      "donor_safe_bytes": 0
+    }
   },
   "routing_rules": [
     {
