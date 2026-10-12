@@ -1,0 +1,221 @@
+{
+  "actual_asset_reader_proven": false,
+  "candidate": {
+    "sha256": "0641af703570747e9b8e0754b4e8fad2f78bcc7f733743242214316cededd583",
+    "size": 33554432
+  },
+  "clean_identity": {
+    "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486",
+    "size": 16777216
+  },
+  "donor_safe_bytes": 0,
+  "formal_classification_changes": 0,
+  "formal_classified": 789,
+  "formal_unclassified": 85,
+  "input_receipt": {
+    "archive": {
+      "name": "pokemon-vega-private-env-v1-inputs.zip",
+      "sha256": "c7e982c7a6445f41e8926b17c548e64205df736ed83be13dd7676549543a23fe",
+      "size": 104736629
+    },
+    "asset_id": 548153147,
+    "inputs_extracted_to_git": false,
+    "release_tag": "private-environment-v1",
+    "selected_input_bindings": {
+      "clean": {
+        "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486",
+        "size": 16777216
+      },
+      "ips": {
+        "sha256": "94955c5830888c69a7dee3696abda3b88f69184af67f28a9fb77a8e8abd77f5b",
+        "size": 3720110
+      },
+      "vega": {
+        "sha256": "f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5",
+        "size": 16777216
+      }
+    },
+    "verified_manifest_members": 672
+  },
+  "inputs_are_originals": true,
+  "ips_identity": {
+    "sha256": "94955c5830888c69a7dee3696abda3b88f69184af67f28a9fb77a8e8abd77f5b",
+    "size": 3720110
+  },
+  "ips_record_count": 20195,
+  "ips_truncate": null,
+  "limitations_ja": [
+    "選定各4byteの値/入力順序/現owner境界のみ。値一致は履歴の書込不存在証明ではない。",
+    "IPSの未定義拡張paddingは推測しない。未所有範囲もfreeではない。",
+    "asset境界・実caller/reader・間接参照網羅・donor退役権限は未証明。"
+  ],
+  "placement_identity": {
+    "sha256": "4aa2ac0de3933b90c246591c7a01f89f641c7038f280b31e1f09ae8a2a8f99cf",
+    "size": 113550
+  },
+  "rows": [
+    {
+      "actual_asset_reader_proven": false,
+      "address": 142670436,
+      "clean_slice": {
+        "present": true,
+        "sha256": "ad95131bc0b799c0b1af477fb14fcf26a6a9f76079e48bf090acb7e8367bfd0e",
+        "size": 4
+      },
+      "current_target_equals_clean": false,
+      "current_target_equals_vega": true,
+      "current_target_identity": {
+        "sha256": "b12945a9395fea471444b59c0a9e33507a82af3be4b8d0a17ffbf5077f926c37",
+        "size": 4
+      },
+      "ips": {
+        "expansion_padding_inferred": false,
+        "fully_resolved": true,
+        "last_writer_indices": [
+          11873,
+          11873,
+          11873,
+          11873
+        ],
+        "offset": 8452708,
+        "overlapping_records": [
+          {
+            "end_exclusive": 8452816,
+            "index": 11873,
+            "kind": "literal",
+            "patch_offset": 2048219,
+            "payload_identity": {
+              "sha256": "76b7d5d60e4f3c21f68ccf85b35fdba67fd761bea3cfab8d3155c5b5d78eb5b8",
+              "size": 17184
+            },
+            "start": 8435632
+          }
+        ],
+        "reconstructed_identity": {
+          "sha256": "b12945a9395fea471444b59c0a9e33507a82af3be4b8d0a17ffbf5077f926c37",
+          "size": 4
+        },
+        "reference_matches": true,
+        "reference_slice": {
+          "present": true,
+          "sha256": "b12945a9395fea471444b59c0a9e33507a82af3be4b8d0a17ffbf5077f926c37",
+          "size": 4
+        },
+        "width": 4,
+        "within_declared_truncation": true
+      },
+      "modernization": {
+        "actual_asset_reader_proven": false,
+        "address": 142670436,
+        "crossing_owner_boundary": false,
+        "free_space_proven": false,
+        "fully_owned": false,
+        "owners": [],
+        "width": 4
+      }
+    },
+    {
+      "actual_asset_reader_proven": false,
+      "address": 157280328,
+      "clean_slice": {
+        "present": false,
+        "source_size": 16777216
+      },
+      "current_target_equals_clean": false,
+      "current_target_equals_vega": false,
+      "current_target_identity": {
+        "sha256": "554af33fbd5b07da23508894969a899dc3353bb21d4b8c3fb579cdfb0aa62805",
+        "size": 4
+      },
+      "ips": {
+        "expansion_padding_inferred": false,
+        "fully_resolved": false,
+        "last_writer_indices": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "offset": 23062600,
+        "overlapping_records": [],
+        "reconstructed_identity": null,
+        "reference_matches": false,
+        "reference_slice": {
+          "present": false,
+          "source_size": 16777216
+        },
+        "width": 4,
+        "within_declared_truncation": true
+      },
+      "modernization": {
+        "actual_asset_reader_proven": false,
+        "address": 157280328,
+        "crossing_owner_boundary": false,
+        "free_space_proven": false,
+        "fully_owned": true,
+        "owners": [
+          {
+            "allocation_content_sha256": "499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13",
+            "allocation_hash_is_current": true,
+            "current_owner_sha256": "499714cc04fd43ecb59ac45d8d23dad6badbc0137189c4fbcb8facbe13c46d13",
+            "end_exclusive": 157284479,
+            "full_target_containment": true,
+            "name": "pr16_supply_pla1",
+            "owner_offset": 17232,
+            "start": 157263096
+          }
+        ],
+        "width": 4
+      }
+    },
+    {
+      "actual_asset_reader_proven": false,
+      "address": 157759072,
+      "clean_slice": {
+        "present": false,
+        "source_size": 16777216
+      },
+      "current_target_equals_clean": false,
+      "current_target_equals_vega": false,
+      "current_target_identity": {
+        "sha256": "435a3bd621ca2d1c07e630c83bf3a4a2ea7bc77f12b70988df44c7681ecbdd19",
+        "size": 4
+      },
+      "ips": {
+        "expansion_padding_inferred": false,
+        "fully_resolved": false,
+        "last_writer_indices": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "offset": 23541344,
+        "overlapping_records": [],
+        "reconstructed_identity": null,
+        "reference_matches": false,
+        "reference_slice": {
+          "present": false,
+          "source_size": 16777216
+        },
+        "width": 4,
+        "within_declared_truncation": true
+      },
+      "modernization": {
+        "actual_asset_reader_proven": false,
+        "address": 157759072,
+        "crossing_owner_boundary": false,
+        "free_space_proven": false,
+        "fully_owned": false,
+        "owners": [],
+        "width": 4
+      }
+    }
+  ],
+  "schema_version": 1,
+  "selected_unknown_origins": 6,
+  "vega_identity": {
+    "sha256": "f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5",
+    "size": 16777216
+  }
+}

@@ -248,6 +248,18 @@ run 38177623055の全job/必須step成功、artifact9member/87textと公開commi
 
 [checkpoint](../content/modernization/pr16_selected_sound_roots_checkpoint.json) / [改作なしの測定JSON](../content/modernization/pr16_selected_sound_roots_evidence/sound-roots.json) / [失敗原本と復旧根拠](../content/modernization/pr16_selected_sound_roots_evidence/measurement-recovery.json)。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 有限音声root73群・13194音色recordのうち非圧縮PCM宣言範囲への一致0件を保存。実asset/reader未特定。0x0880FA64と0x095FE848/0x09673660の元ROM・Vega IPS・現代化ownerの配置元を束縛し、実asset境界/consumerへ進む。圧縮/未対応音色・有限root外は未証明。0件を不存在や正式型と扱わない。保存した32試験/音声測定/今回6保存試験と旧record/base/逆参照/map/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+
+## 選定3地点の入力系譜と現代化owner
+
+0x0880FA64: current=Vega True, current=clean False, owner  / 0x095FE848: current=Vega False, current=clean False, owner pr16_supply_pla1 / 0x09673660: current=Vega False, current=clean False, owner 。
+
+IPS全recordの上書き順と現115owner境界を検証。値一致は中間の書込不存在証明ではなく、実asset/readerの型受入も未完。
+
+[checkpoint](../content/modernization/pr16_selected_asset_provenance_checkpoint.json) / [入力系譜](../content/modernization/pr16_selected_asset_provenance_evidence/provenance.json)。
+
+## 次の未完作業
+
+入力系譜の3地点はprovenance.jsonに保存。0x0880FA64: current=Vega True, current=clean False, owner  / 0x095FE848: current=Vega False, current=clean False, owner pr16_supply_pla1 / 0x09673660: current=Vega False, current=clean False, owner 。配置owner/IPS区間はasset型ではない。保存した具体的ownerを生成するsourceとasset台帳を読む。音声は既存73群の未対応圧縮WaveData(type1)だけを既存DPCM decoderの正確な消費範囲で照合し、PCM測定を再走しない。0件なら一致を創作しない。全4byteの実reader束縛後だけ正式型差分へ進む。今回28試験/入力系譜と旧音声32/保存6/record/base/逆参照/map/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。保存統合は未完。

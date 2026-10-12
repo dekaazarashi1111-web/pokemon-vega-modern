@@ -1,0 +1,67 @@
+{
+  "artifact": {
+    "digest": "sha256:12151a548bbf50fbc5fdaf869021233b251f458fe359012f2ea5ddd2655dca1a",
+    "id": 11722342846,
+    "name": "pr16-selected-sound-roots-public-text",
+    "size_in_bytes": 694858
+  },
+  "conclusion": "success",
+  "id": 38194268192,
+  "members": {
+    "attempt.json": {
+      "sha256": "b4615245747dc95a43e6cb9f838890efda1c782d1a20f3f35bc38f3d57edace6",
+      "size": 279
+    },
+    "failure.json": {
+      "sha256": "a646d821eeb3f7e79e4d4b4525667f6fafcad6fb5bcacd9f9fec8d60821964bc",
+      "size": 679
+    },
+    "measurement-recovery.json": {
+      "sha256": "5de6555771588730a291ccf078c335cb1709a375cba42ce7b843491538b37232",
+      "size": 3485
+    },
+    "parent-actions-completion.json": {
+      "sha256": "28ebc2e52e06beca72b5b2698f82e66fa9e270b366e2b402cc23ca74e95f1705",
+      "size": 21891
+    },
+    "pr16_selected_sound_roots_checkpoint.json": {
+      "sha256": "7770cedd911892cfe46288c6743b99870c73622afee76b5d762e9dbadf662c1b",
+      "size": 26661
+    },
+    "result.json": {
+      "sha256": "e6759198816961f648073b20a103fa4962d0e6562a639adb23322a2ca5903a6f",
+      "size": 483
+    },
+    "scoped-context.zip": {
+      "sha256": "2173a42408a06cbc9423cf71c819c0aeab91b1d8261f543adc79307f1a498206",
+      "size": 610726
+    },
+    "serialization-tests.txt": {
+      "sha256": "e0f3cf9e1c52699d89a977e1aed87dcb823803055ce514ccfed18d93729a029c",
+      "size": 874
+    },
+    "sound-roots.json": {
+      "sha256": "4c364e81daaf4d08bbafec305b0a9c4561f92fa9c18250ee6646327a6d247702",
+      "size": 824912
+    },
+    "sound-tests.txt": {
+      "sha256": "e11fff77487a832ceed4d038ca6bf3fa2aaade118049ecfaa0c64c0f9d7632ff",
+      "size": 3243
+    },
+    "starting-head-checks.json": {
+      "sha256": "79f02305e3216f7e707480b37009e24bd39b1359a81762048a2a4dfefb0bcb6f",
+      "size": 2069
+    }
+  },
+  "observed_at": "2026-10-12T02:19:18.614529+00:00",
+  "original_measurement_run_conclusion": "failure",
+  "public_context_count": 130,
+  "published_commit": "55f1e69e1c2a6b00a556c5e02662cb17ab61cc33",
+  "required_steps": [
+    "保存済み音声測定を再走せず検証して記録",
+    "Run actions/upload-artifact@v4"
+  ],
+  "source_head": "6e000ae09ce0d92bca779f57e5b6c0e876a20c65",
+  "status": "completed",
+  "successful_recovery_does_not_rewrite_failure": true
+}
