@@ -11833,3 +11833,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 入力系譜の3地点はprovenance.jsonに保存。0x0880FA64: current=Vega True, current=clean False, owner  / 0x095FE848: current=Vega False, current=clean False, owner pr16_supply_pla1 / 0x09673660: current=Vega False, current=clean False, owner 。配置owner/IPS区間はasset型ではない。保存した具体的ownerを生成するsourceとasset台帳を読む。音声は既存73群の未対応圧縮WaveData(type1)だけを既存DPCM decoderの正確な消費範囲で照合し、PCM測定を再走しない。0件なら一致を創作しない。全4byteの実reader束縛後だけ正式型差分へ進む。今回28試験/入力系譜と旧音声32/保存6/record/base/逆参照/map/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。保存統合は未完。
 - Commit: この記録を含む単親通常commit。実SHAはActions result/Git履歴。
 - Network: 同repo PR/ref/Actions/artifact、既存private-environment-v1入力assetのhash検証読取、同branch非force push。ROM/IPS/Saveの原本や生byteは公開せず、入力は変更しない。
+
+## 2026-10-12T03:50:19.223284+00:00
+- Timestamp: 2026-10-12T03:50:19.223284+00:00
+- Task: USER-20261012-COMPRESSED-ASSET-CLOSEOUT / type1静的消費範囲とPLA1出典の受領
+- Version: selected-compressed-asset-v1
+- Status: DONE（限定type1照合0件を受領。実reader/保存統合は未完）
+- Summary: 保存済み音声73bank・13194 recordのtype1だけを、新しいDPCM 64sample/33byte消費境界で照合。妥当なtype1 WaveData 0件、選定3地点との全4byte一致0件。旧PCM測定/旧28試験/旧map・LZ・逆参照・Wiki再走0。0x095FE848はarchive-image.bin SHAと現PLA1(owner_offset 17232)が既存台帳・115owner配置と一致。実caller/readerは未証明。
+- Files changed: 新DPCM限定検査器・22境界試験・専用Actionsとtoolchain訂正、成功run受領器・公開証拠/checkpoint・固定入口MD/状態JSON・両ログ。
+- Verify: 新22試験とtask graph PASS、成功run38200881853全必須steps、2009byte ZIP SHA256 ab4317e233916b697eadbacdb611ffa61f4c578a016a32c8552901df9d23747f、公開2member全照合、保存provenance/sound原本hash・現PLA1台帳一致、保存読戻し/受入既存130証拠byte・mtime不変。全体guard既存失敗と一般CIの既存状態は別扱い。
+- Scope: 73保存bank/13194 toneのtype1限定。初回run38200730808失敗を成功に書替えない。計測時だけ新候補復元1、受領時再構成0、旧PCM/音声/系譜/record/base/逆参照/map/ARM/LZ/Wiki再走0。正式789/85・選定残6・安全容量0。
+- Next: 保存73bankのtype1は一致0件（type1不在の全域証明ではない）。次はpr16_supply_pla1のarchive-image.bin内+17232(0x095FE848)を現代化learnset供給consumerの具体的ABI/読取命令へ束縛し、0x0880FA64のIPS記録11873に由来する実asset境界と0x09673660の未所有配置元も個別に調べる。形/所有者だけで正式型・安全容量に昇格しない。今回22境界試験/type1新1計測と受入済み音声/系譜/map/LZ/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存統合/窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。
+- Commit: 両ログを含む単親通常commit。実SHAはActions result/Git履歴。
+- Network: 同repo固定Actions/artifact読取と同branch非force pushのみ。ROM/IPS/Save/private原本はGit追加なし。

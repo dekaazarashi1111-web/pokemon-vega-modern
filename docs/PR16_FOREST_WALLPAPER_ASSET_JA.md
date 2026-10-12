@@ -260,6 +260,16 @@ IPS全recordの上書き順と現115owner境界を検証。値一致は中間の
 
 [checkpoint](../content/modernization/pr16_selected_asset_provenance_checkpoint.json) / [入力系譜](../content/modernization/pr16_selected_asset_provenance_evidence/provenance.json)。
 
-## 次の未完作業
+## 以前の停止点（履歴）
 
 入力系譜の3地点はprovenance.jsonに保存。0x0880FA64: current=Vega True, current=clean False, owner  / 0x095FE848: current=Vega False, current=clean False, owner pr16_supply_pla1 / 0x09673660: current=Vega False, current=clean False, owner 。配置owner/IPS区間はasset型ではない。保存した具体的ownerを生成するsourceとasset台帳を読む。音声は既存73群の未対応圧縮WaveData(type1)だけを既存DPCM decoderの正確な消費範囲で照合し、PCM測定を再走しない。0件なら一致を創作しない。全4byteの実reader束縛後だけ正式型差分へ進む。今回28試験/入力系譜と旧音声32/保存6/record/base/逆参照/map/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。保存統合は未完。
+
+## 保存音声type1 DPCMの0件測定とPLA1台帳照合
+
+保存済み音声73bank・13194 recordのtype1だけを、新しいDPCM 64sample/33byte消費境界で照合。妥当なtype1 WaveData 0件、選定3地点との全4byte一致0件。旧PCM測定/旧28試験/旧map・LZ・逆参照・Wiki再走0。0x095FE848はarchive-image.bin SHAと現PLA1(owner_offset 17232)が既存台帳・115owner配置と一致。実caller/readerは未証明。
+
+[checkpoint](../content/modernization/pr16_selected_compressed_asset_checkpoint.json) / [type1測定](../content/modernization/pr16_selected_compressed_asset_evidence/compressed-asset.json) / [完了run受領](../content/modernization/pr16_selected_compressed_asset_evidence/actions-completion.json)。失敗run38200730808はARM compiler未導入による未受入原本のまま保持。成功run38200881853の22試験/task graph/候補復元1/静的type1計測1を新scopeとして受領し、受入済みPCM測定・系譜28試験の再走0。CI全体greenや正式分類の受入を主張しない。
+
+## 次の未完作業
+
+保存73bankのtype1は一致0件（type1不在の全域証明ではない）。次はpr16_supply_pla1のarchive-image.bin内+17232(0x095FE848)を現代化learnset供給consumerの具体的ABI/読取命令へ束縛し、0x0880FA64のIPS記録11873に由来する実asset境界と0x09673660の未所有配置元も個別に調べる。形/所有者だけで正式型・安全容量に昇格しない。今回22境界試験/type1新1計測と受入済み音声/系譜/map/LZ/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存統合/窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。

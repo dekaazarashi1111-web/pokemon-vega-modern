@@ -4,9 +4,9 @@
   "authority_ja": "このJSONが作業選択の正本。R0.1の全gateと実物提示は完了し、閲覧改善優先条件を充足。現在はnext_actionのBerry現owner/reader未完scopeへ戻る。旧R0のreadyだけで解除したのではない。旧方針・旧解析の記録は履歴として保持する。",
   "bindings": {
     "CHATGPT_RESUME.md": {
-      "git_blob_sha": "738449aeb1dd96b747f2f39db9f9fa485d592d6f",
-      "sha256": "1321924bf33fbdd2eed69ee88d6fdc6b247ac6ba5f06c68c96bb8d031cb9fdfd",
-      "size": 2811
+      "git_blob_sha": "ab199aa4e45e8d8c2dd24f6705bb537476843dca",
+      "sha256": "02cfb62f975f446e7d43bc4dc6ea9696a6156cb419865fcd8fec8a4f67828f67",
+      "size": 2649
     },
     "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md": {
       "git_blob_sha": "116c6f1f8ccbed26029de10f31be7c69be75b09f",
@@ -29,15 +29,18 @@
   "decision_id": "OWNER-20261010-WIKI-FIRST",
   "long_term_policy_doc": "docs/PR16_WIKI_FIRST_EXECUTION_POLICY_JA.md",
   "next_action": {
-    "done_ja": "具体的な配置元/圧縮assetから全4byteの実readerを束縛する。型の形だけでは正式化しない。",
-    "goal_ja": "入力系譜の3地点はprovenance.jsonに保存。0x0880FA64: current=Vega True, current=clean False, owner  / 0x095FE848: current=Vega False, current=clean False, owner pr16_supply_pla1 / 0x09673660: current=Vega False, current=clean False, owner 。配置owner/IPS区間はasset型ではない。保存した具体的ownerを生成するsourceとasset台帳を読む。音声は既存73群の未対応圧縮WaveData(type1)だけを既存DPCM decoderの正確な消費範囲で照合し、PCM測定を再走しない。0件なら一致を創作しない。全4byteの実reader束縛後だけ正式型差分へ進む。今回28試験/入力系譜と旧音声32/保存6/record/base/逆参照/map/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。保存統合は未完。",
-    "id": "SAVE_CAPACITY_SELECTED_COMPRESSED_ASSET_READER",
+    "done_ja": "3地点の具体的なbyte境界/consumer readerを全4byteで立証した場合のみ正式分類を更新。",
+    "goal_ja": "保存73bankのtype1は一致0件（type1不在の全域証明ではない）。次はpr16_supply_pla1のarchive-image.bin内+17232(0x095FE848)を現代化learnset供給consumerの具体的ABI/読取命令へ束縛し、0x0880FA64のIPS記録11873に由来する実asset境界と0x09673660の未所有配置元も個別に調べる。形/所有者だけで正式型・安全容量に昇格しない。今回22境界試験/type1新1計測と受入済み音声/系譜/map/LZ/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存統合/窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。",
+    "id": "SAVE_CAPACITY_SELECTED_PLA1_AND_IPS_ACTUAL_READER",
     "read_paths": [
       "docs/PR16_FOREST_WALLPAPER_ASSET_JA.md",
+      "content/modernization/pr16_selected_compressed_asset_checkpoint.json",
+      "content/modernization/pr16_selected_compressed_asset_evidence/compressed-asset.json",
+      "content/modernization/pr16_selected_compressed_asset_evidence/actions-completion.json",
       "content/modernization/pr16_selected_asset_provenance_checkpoint.json",
       "content/modernization/pr16_selected_asset_provenance_evidence/provenance.json",
-      "content/modernization/pr16_selected_sound_roots_checkpoint.json",
-      "content/modernization/pr16_selected_sound_roots_evidence/sound-roots.json"
+      "content/modernization/pr16_learnset_supply_checkpoint.json",
+      "content/modernization/pr16_learnset_supply_alignment_checkpoint.json"
     ]
   },
   "observed_head_checks": {
@@ -46,53 +49,53 @@
       {
         "conclusion": null,
         "event": "pull_request",
-        "head_sha": "a5a6bc531ce1e9a8cbf97399ad875e13744c9015",
-        "id": 38195293519,
+        "head_sha": "38e667705f13e788f09cc3448439386c97c6fe16",
+        "id": 38201305153,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
-        "conclusion": null,
+        "conclusion": "failure",
         "event": "pull_request",
-        "head_sha": "a5a6bc531ce1e9a8cbf97399ad875e13744c9015",
-        "id": 38195293480,
+        "head_sha": "38e667705f13e788f09cc3448439386c97c6fe16",
+        "id": 38201305203,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "in_progress"
+        "status": "completed"
       },
       {
         "conclusion": null,
         "event": "push",
-        "head_sha": "a5a6bc531ce1e9a8cbf97399ad875e13744c9015",
-        "id": 38195287126,
-        "name": "pr16-selected-asset-provenance",
-        "path": ".github/workflows/pr16-selected-asset-provenance.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "a5a6bc531ce1e9a8cbf97399ad875e13744c9015",
-        "id": 38195287119,
-        "name": "Stage79 mGBA (all)",
-        "path": ".github/workflows/modernization-stage79-mgba.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "a5a6bc531ce1e9a8cbf97399ad875e13744c9015",
-        "id": 38195287164,
+        "head_sha": "38e667705f13e788f09cc3448439386c97c6fe16",
+        "id": 38201297102,
         "name": "source-validation",
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "38e667705f13e788f09cc3448439386c97c6fe16",
+        "id": 38201297106,
+        "name": "pr16-selected-compressed-asset-closeout",
+        "path": ".github/workflows/pr16-selected-compressed-asset-closeout.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "push",
+        "head_sha": "38e667705f13e788f09cc3448439386c97c6fe16",
+        "id": 38201296797,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "pending"
       },
       {
         "conclusion": "success",
         "event": "push",
-        "head_sha": "a5a6bc531ce1e9a8cbf97399ad875e13744c9015",
-        "id": 38195287227,
+        "head_sha": "38e667705f13e788f09cc3448439386c97c6fe16",
+        "id": 38201296948,
         "name": "Stage79 runtime boundary audit",
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
@@ -100,14 +103,14 @@
       {
         "conclusion": "failure",
         "event": "push",
-        "head_sha": "a5a6bc531ce1e9a8cbf97399ad875e13744c9015",
-        "id": 38195287184,
+        "head_sha": "38e667705f13e788f09cc3448439386c97c6fe16",
+        "id": 38201297476,
         "name": "p03-forgetting-ci",
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
       }
     ],
-    "source_head": "a5a6bc531ce1e9a8cbf97399ad875e13744c9015"
+    "source_head": "38e667705f13e788f09cc3448439386c97c6fe16"
   },
   "owner_execution_plan": {
     "balance_batches": [],
@@ -206,11 +209,11 @@
       },
       "save_capacity": {
         "blocker": null,
-        "checkpoint_path": "content/modernization/pr16_selected_asset_provenance_checkpoint.json",
+        "checkpoint_path": "content/modernization/pr16_selected_compressed_asset_checkpoint.json",
         "classified": 789,
         "completion_evidence_path": null,
         "donor_safe_bytes": 0,
-        "next_ja": "入力系譜の3地点はprovenance.jsonに保存。0x0880FA64: current=Vega True, current=clean False, owner  / 0x095FE848: current=Vega False, current=clean False, owner pr16_supply_pla1 / 0x09673660: current=Vega False, current=clean False, owner 。配置owner/IPS区間はasset型ではない。保存した具体的ownerを生成するsourceとasset台帳を読む。音声は既存73群の未対応圧縮WaveData(type1)だけを既存DPCM decoderの正確な消費範囲で照合し、PCM測定を再走しない。0件なら一致を創作しない。全4byteの実reader束縛後だけ正式型差分へ進む。今回28試験/入力系譜と旧音声32/保存6/record/base/逆参照/map/ARM/LZ/Wikiは無変更再走しない。正式789/85・選定残6・安全容量0。保存統合は未完。",
+        "next_ja": "保存73bankのtype1は一致0件（type1不在の全域証明ではない）。次はpr16_supply_pla1のarchive-image.bin内+17232(0x095FE848)を現代化learnset供給consumerの具体的ABI/読取命令へ束縛し、0x0880FA64のIPS記録11873に由来する実asset境界と0x09673660の未所有配置元も個別に調べる。形/所有者だけで正式型・安全容量に昇格しない。今回22境界試験/type1新1計測と受入済み音声/系譜/map/LZ/Wikiを無変更再走しない。正式789/85・選定残6・安全容量0。保存統合/窓外跨り/間接参照/退役移管/heap/controller/局所Saveは未完。",
         "reference_chain_path": "content/modernization/pr16_berry_lz_type_evidence/reference-chain.json",
         "remaining": [
           "安全なROM容量/必要範囲の退役とowner移管",
@@ -222,7 +225,7 @@
         ],
         "scheduling_status": "READY_FROM_SAVED_SELECTED_ORIGINS",
         "selected_unknown_origins": 6,
-        "status": "SELECTED_ASSET_INPUT_PROVENANCE_BOUND_READER_PENDING",
+        "status": "SELECTED_TYPE1_ZERO_MATCH_PLA1_LEDGER_BOUND_READER_PENDING",
         "unclassified": 85,
         "unknown_frontier_path": "content/modernization/pr16_berry_lz_type_evidence/unknown-frontier.json",
         "window_progress_path": "content/modernization/pr16_berry_lz_type_evidence/window-progress.json"
@@ -421,10 +424,10 @@
       }
     },
     "last_execution": {
-      "accepted_sound_measurement_reruns": 0,
+      "accepted_pcm_measurement_reruns": 0,
       "accepted_test_reruns": 0,
-      "actions_completion_confirmed": false,
-      "actions_run_id": 38195287126,
+      "actions_completion_confirmed": true,
+      "actions_run_id": 38201297106,
       "full_index_private_guard": {
         "executed": true,
         "exit_code": 1,
@@ -432,16 +435,16 @@
         "passed": false,
         "raw_private_log_published": false
       },
-      "native_processes": 0,
-      "new_selected_provenance_measurements": 1,
-      "new_unit_tests": 28,
-      "old_lz_or_map_reruns": 0,
-      "old_xref_or_base_search_reruns": 0,
+      "measured_rom_reconstructions": 1,
+      "measurement_run_id": 38200881853,
+      "measurement_source_head": "5962b1bcd96a82d0734d3434a174e4f73806b6b6",
+      "new_rom_reconstructions": 0,
+      "new_unit_tests": 22,
       "read_only_check_passed": true,
-      "rom_reconstructions": 0,
-      "source_head": "a5a6bc531ce1e9a8cbf97399ad875e13744c9015",
-      "task": "USER-20261012-SELECTED-ASSET-PROVENANCE",
-      "task_graph_passed": true
+      "source_head": "38e667705f13e788f09cc3448439386c97c6fe16",
+      "task": "USER-20261012-COMPRESSED-ASSET-CLOSEOUT",
+      "task_graph_passed": true,
+      "type1_matches": 0
     },
     "legacy_generated_md_modified": false,
     "legacy_log_append": {
@@ -503,6 +506,7 @@
     "received_berry_transfer_completion": "content/modernization/pr16_berry_child_evidence/transfer-completion.json",
     "received_selected_asset_completion": "content/modernization/pr16_selected_map_asset_evidence/parent-actions-completion.json",
     "received_selected_asset_xrefs_completion": "content/modernization/pr16_selected_asset_records_evidence/parent-actions-completion.json",
+    "received_selected_compressed_actions_completion": "content/modernization/pr16_selected_compressed_asset_evidence/actions-completion.json",
     "received_selected_map_completion": "content/modernization/pr16_selected_map_receipt_evidence/actions-completion.json",
     "received_selected_map_receipt_completion": "content/modernization/pr16_selected_asset_xrefs_evidence/parent-actions-completion.json",
     "received_sound_asset_completion": "content/modernization/pr16_sound_origin_reader_evidence/asset-completion.json",
@@ -515,12 +519,13 @@
     "selected_asset_provenance_checkpoint": "content/modernization/pr16_selected_asset_provenance_checkpoint.json",
     "selected_asset_records_checkpoint": "content/modernization/pr16_selected_asset_records_checkpoint.json",
     "selected_asset_xrefs_checkpoint": "content/modernization/pr16_selected_asset_xrefs_checkpoint.json",
+    "selected_compressed_asset_checkpoint": "content/modernization/pr16_selected_compressed_asset_checkpoint.json",
     "selected_map_asset_checkpoint": "content/modernization/pr16_selected_map_asset_checkpoint.json",
     "selected_map_asset_receipt": "content/modernization/pr16_selected_map_asset_receipt.json",
     "selected_sound_roots_checkpoint": "content/modernization/pr16_selected_sound_roots_checkpoint.json",
-    "source_head": "a5a6bc531ce1e9a8cbf97399ad875e13744c9015",
-    "status": "SELECTED_ASSET_INPUT_PROVENANCE_BOUND_READER_PENDING",
-    "task": "USER-20261012-SELECTED-ASSET-PROVENANCE",
+    "source_head": "38e667705f13e788f09cc3448439386c97c6fe16",
+    "status": "SELECTED_TYPE1_ZERO_MATCH_PLA1_LEDGER_BOUND_READER_PENDING",
+    "task": "USER-20261012-COMPRESSED-ASSET-CLOSEOUT",
     "wiki_generated": true,
     "wiki_readability_execution": {
       "accepted_test_reruns": 0,

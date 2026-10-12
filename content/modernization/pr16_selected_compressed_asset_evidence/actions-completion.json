@@ -1,0 +1,54 @@
+{
+  "accepted_measurement_reruns": 0,
+  "accepted_test_reruns": 0,
+  "additional_rom_reconstructions": 0,
+  "artifact": {
+    "digest": "sha256:ab4317e233916b697eadbacdb611ffa61f4c578a016a32c8552901df9d23747f",
+    "id": 11725131506,
+    "name": "pr16-selected-compressed-asset-public-text",
+    "size_in_bytes": 2009
+  },
+  "artifact_members": {
+    "compressed-asset.json": {
+      "sha256": "d95003d105f660eedd711a696e39a02ef936d1aeb142f2dd3c894e1b97d4ec27",
+      "size": 2634
+    },
+    "result.json": {
+      "sha256": "c5130a2d8e4d737fee2810e339080e08b0ab5c9ef52dc8e68883e8fb82c6bf27",
+      "size": 432
+    }
+  },
+  "conclusion": "success",
+  "id": 38200881853,
+  "observed_at": "2026-10-12T03:50:12.407720+00:00",
+  "prior_failure_preserved": {
+    "reason": "initial runner lacked ARM toolchain",
+    "rewritten_as_success": false,
+    "run_id": 38200730808
+  },
+  "published_source_commit": "5962b1bcd96a82d0734d3434a174e4f73806b6b6",
+  "required_steps": [
+    "新しいtype1境界試験のみ",
+    "軽量task graph",
+    "保存済み73bankのtype1のみ新範囲測定",
+    "Run actions/upload-artifact@v4"
+  ],
+  "result": {
+    "actual_reader_proven": false,
+    "donor_safe_bytes": 0,
+    "formal_classified": 789,
+    "formal_unclassified": 85,
+    "match_count": 0,
+    "matched_targets": [],
+    "source_blob": "4cbbf08129ed6f85f3c730429f6b430627109117",
+    "stats": {
+      "not_direct_pcm_type": 12187,
+      "not_rom_pointer": 113,
+      "saved_tone_records_checked": 13194
+    },
+    "status": "TYPE1_DECLARED_EXTENT_MEASURED_READER_PENDING",
+    "unique_type1_waves": 0
+  },
+  "source_head": "5962b1bcd96a82d0734d3434a174e4f73806b6b6",
+  "status": "completed"
+}
